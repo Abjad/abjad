@@ -12,6 +12,11 @@ class PromptMakerMixin(AbjadObject):
     r'''Prompt maker mixin.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property

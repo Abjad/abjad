@@ -15,6 +15,9 @@ class FileManager(Manager):
 
     extension = ''
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

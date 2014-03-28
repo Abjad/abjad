@@ -7,6 +7,11 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
     r'''Octave transposition mapping inventory material manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

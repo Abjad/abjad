@@ -28,6 +28,27 @@ class MenuSection(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_index',
+        '_display_prepopulated_values',
+        '_indent_level',
+        '_is_alphabetized',
+        '_is_asset_section',
+        '_is_attribute_section',
+        '_is_command_section',
+        '_is_hidden',
+        '_is_informational_section',
+        '_is_material_summary_section',
+        '_is_navigation_section',
+        '_is_numbered',
+        '_is_ranged',
+        '_menu_entries',
+        '_name',
+        '_return_value_attribute',
+        '_title',
+        '_match_on_display_string',
+        )
+
     return_value_attributes = (
         'display_string', 
         'key', 
@@ -78,7 +99,7 @@ class MenuSection(AbjadObject):
         self._menu_entries = menu_entries or []
         self._title = title
         self._default_index = default_index
-        self.match_on_display_string = match_on_display_string
+        self._match_on_display_string = match_on_display_string
 
     ### SPECIAL METHODS ###
 
@@ -393,6 +414,22 @@ class MenuSection(AbjadObject):
         Returns boolean.
         '''
         return self._is_ranged
+
+    @property
+    def match_on_display_string(self):
+        r'''Is true when section should match on display string. Otherwise
+        false.
+
+        ..  container::
+
+            ::
+
+                >>> section.match_on_display_string
+                False
+
+        Returns boolean.
+        '''
+        return self._match_on_display_string
 
     @property
     def menu_entries(self):

@@ -5,4 +5,7 @@ class View(TypedList):
     r'''View.
     '''
 
-    pass
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )

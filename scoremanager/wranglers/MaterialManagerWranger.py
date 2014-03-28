@@ -21,6 +21,12 @@ class MaterialManagerWrangler(PackageWrangler):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_human_readable_target_name',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):

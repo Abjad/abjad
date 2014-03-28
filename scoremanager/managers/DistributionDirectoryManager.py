@@ -7,6 +7,11 @@ class DistributionDirectoryManager(DirectoryManager):
     r'''Distribution directory manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

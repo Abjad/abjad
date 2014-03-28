@@ -9,6 +9,11 @@ class PackageWrangler(Wrangler):
     r'''Package wrangler.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):

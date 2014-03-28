@@ -17,6 +17,12 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_cache_file_path',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

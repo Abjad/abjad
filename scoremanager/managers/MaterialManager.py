@@ -33,6 +33,15 @@ class MaterialManager(PackageManager):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_generic_output_name',
+        '_generic_class_name',
+        '_output_module_import_statements',
+        '_user_input_wrapper_in_memory',
+        )
+
     ### INTIALIZER ###
 
     def __init__(self, path=None, session=None):

@@ -13,6 +13,14 @@ class Manager(Controller):
     r'''Manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_generic_class_name',
+        '_main_menu',
+        '_path',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

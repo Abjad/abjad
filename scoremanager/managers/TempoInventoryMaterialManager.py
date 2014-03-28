@@ -7,6 +7,11 @@ class TempoInventoryMaterialManager(MaterialManager):
     r'''Tempo inventory material manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

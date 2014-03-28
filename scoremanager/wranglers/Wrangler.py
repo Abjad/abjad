@@ -11,12 +11,19 @@ from scoremanager.core.Controller import Controller
 
 class Wrangler(Controller):
     r'''Wrangler.
-
     '''
 
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
+    __slots__ = (
+        '_abjad_storehouse_path',
+        '_forbidden_directory_entries',
+        '_main_menu',
+        '_score_storehouse_path_infix_parts',
+        '_user_storehouse_path',
+        )
 
     ### INITIALIZER ###
 

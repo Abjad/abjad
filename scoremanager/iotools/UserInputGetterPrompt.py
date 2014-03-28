@@ -8,6 +8,19 @@ class UserInputGetterPrompt(AbjadObject):
     Returns user input getter prompt.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_prompt_string',
+        '_additional_help_template_arguments',
+        '_default_value',
+        '_help_template',
+        '_include_chevron',
+        '_setup_statements',
+        '_target_menu_section',
+        '_validation_function',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, 

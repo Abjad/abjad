@@ -11,6 +11,12 @@ class PackageManager(DirectoryManager):
     r'''Package manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_package_name',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):

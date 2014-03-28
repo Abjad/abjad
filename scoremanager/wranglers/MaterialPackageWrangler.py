@@ -3,6 +3,7 @@ import collections
 import os
 import traceback
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager import predicates
 from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
@@ -35,17 +36,21 @@ class MaterialPackageWrangler(PackageWrangler):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_material_manager_wrangler', 
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
-        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
-        self._material_manager_wrangler = wrangler
         path = self._configuration.abjad_material_packages_directory_path
         self._abjad_storehouse_path = path
-        path = self._configuration.user_library_material_packages_directory_path
+        path = \
+            self._configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
 
@@ -62,6 +67,12 @@ class MaterialPackageWrangler(PackageWrangler):
             return 'materials'
         else:
             return 'material library'
+
+    @property
+    @systemtools.Memoize
+    def _material_manager_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.MaterialManagerWrangler(session=self._session)
 
     @property
     def _user_input_to_action(self):

@@ -9,6 +9,8 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

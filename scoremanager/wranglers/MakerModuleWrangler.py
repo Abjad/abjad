@@ -21,6 +21,12 @@ class MakerModuleWrangler(FileWrangler):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_include_extensions',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):

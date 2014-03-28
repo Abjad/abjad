@@ -9,6 +9,11 @@ class SegmentPackageManager(PackageManager):
     r'''Segment package manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(

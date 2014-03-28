@@ -10,6 +10,25 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     r'''User input getter.
     '''
 
+    ### CLASS VARIABLES ###
+
+    # multiple inheritance breaks slots
+    __slots__ = (
+        '_all_prompts_are_done',
+        '_allow_none',
+        '_capitalize_prompts',
+        '_current_prompt_is_done',
+        '_evaluated_user_input',
+        '_include_newlines',
+        '_include_chevron',
+        '_number_prompts',
+        '_prompt_character',
+        '_prompt_index',
+        '_prompt_strings',
+        '_prompts',
+        '_my_where'
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -32,7 +51,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self._include_newlines = include_newlines
         self._number_prompts = number_prompts
         self._prompt_character = prompt_character
-        self.where = where
+        self._my_where = where
 
     ### SPECIAL METHODS ###
 
@@ -264,3 +283,11 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         Returns list of prompts.
         '''
         return self._prompts
+
+    @property
+    def where(self):
+        r'''Gets source code location strack of user input getter.
+
+        Returns stack or none.
+        '''
+        return self._my_where

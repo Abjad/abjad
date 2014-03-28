@@ -21,6 +21,13 @@ class IOManager(IOManager):
 
     '''
 
+    ### CLASS VARAIBLES ###
+
+    __slots__ = (
+        '_session',
+        '_configuration',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):

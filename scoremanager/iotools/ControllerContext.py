@@ -6,6 +6,18 @@ class ControllerContext(ContextManager):
     r'''Controller context manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_session',
+        '_controller',
+        '_is_in_confirmation_environment',
+        '_on_enter_callbacks',
+        '_on_exit_callbacks',
+        '_reset_hide_hidden_commands',
+        '_where',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -17,13 +29,13 @@ class ControllerContext(ContextManager):
         reset_hide_hidden_commands=True,
         where=None,
         ):
-        self.controller = controller
-        self.is_in_confirmation_environment = is_in_confirmation_environment
-        self.on_enter_callbacks = on_enter_callbacks or ()
-        self.on_exit_callbacks = on_exit_callbacks or ()
-        self.reset_hide_hidden_commands = reset_hide_hidden_commands
-        self.where = where
-        self._session = self.controller._session
+        self._controller = controller
+        self._is_in_confirmation_environment = is_in_confirmation_environment
+        self._on_enter_callbacks = on_enter_callbacks or ()
+        self._on_exit_callbacks = on_exit_callbacks or ()
+        self._reset_hide_hidden_commands = reset_hide_hidden_commands
+        self._where = where
+        self._session = self._controller._session
 
     ### SPECIAL METHODS ###
 
@@ -32,15 +44,15 @@ class ControllerContext(ContextManager):
 
         Returns none.
         '''
-        self._session._controller_stack.append(self.controller)
-        if self.controller not in self._session.controllers_visited:
-            self._session._controllers_visited.append(self.controller)
+        self._session._controller_stack.append(self._controller)
+        if self._controller not in self._session.controllers_visited:
+            self._session._controllers_visited.append(self._controller)
         self._session._is_in_confirmation_environment = \
-            self.is_in_confirmation_environment
-        self._session._where = self.where
-        if self.reset_hide_hidden_commands:
+            self._is_in_confirmation_environment
+        self._session._where = self._where
+        if self._reset_hide_hidden_commands:
             self._session._hide_hidden_commands = True
-        for on_enter_callback in self.on_enter_callbacks:
+        for on_enter_callback in self._on_enter_callbacks:
             on_enter_callback()
 
     def __exit__(self, exg_type, exc_value, trackeback):
@@ -51,9 +63,9 @@ class ControllerContext(ContextManager):
         self._session._controller_stack.pop()
         self._session._is_in_confirmation_environment = False
         self._session._where = None
-        if self.reset_hide_hidden_commands:
+        if self._reset_hide_hidden_commands:
             self._session._hide_hidden_commands = True
-        for on_exit_callback in self.on_exit_callbacks:
+        for on_exit_callback in self._on_exit_callbacks:
             on_exit_callback()
 
     def __repr__(self):
@@ -61,4 +73,4 @@ class ControllerContext(ContextManager):
 
         Returns string.
         '''
-        return '<{}({!r})>'.format(type(self).__name__, self.controller)
+        return '<{}({!r})>'.format(type(self).__name__, self._controller)

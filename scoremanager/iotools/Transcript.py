@@ -9,6 +9,14 @@ class Transcript(AbjadObject):
     r'''Transcript.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_configuration',
+        '_entries',
+        '_start_time',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

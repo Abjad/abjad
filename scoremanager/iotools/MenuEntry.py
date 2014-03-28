@@ -28,6 +28,16 @@ class MenuEntry(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_display_string',
+        '_explicit_return_value',
+        '_key',
+        '_menu_section',
+        '_prepopulated_value',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

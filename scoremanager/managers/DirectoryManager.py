@@ -12,6 +12,13 @@ class DirectoryManager(Manager):
     r'''Directory manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_asset_manager_class',
+        '_score_directory_suffix',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
