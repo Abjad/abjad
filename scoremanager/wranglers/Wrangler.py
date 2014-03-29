@@ -80,6 +80,7 @@ class Wrangler(Controller):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'mdmro': self.view_metadata_module,
+            'new': self.make_asset,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -125,6 +126,69 @@ class Wrangler(Controller):
             elif parent_directory not in parent_directories:
                 parent_directories.append(parent_directory)
         return parent_directories
+
+    def _find_git_manager(self, inside_score=True, must_have_file=False):
+        manager = self._find_up_to_date_manager(
+            inside_score=inside_score,
+            must_have_file=must_have_file,
+            system=True,
+            repository='git',
+            )
+        return manager
+
+    def _find_svn_manager(self, inside_score=True, must_have_file=False):
+        manager = self._find_up_to_date_manager(
+            inside_score=inside_score,
+            must_have_file=must_have_file,
+            system=False,
+            repository='svn',
+            )
+        return manager
+
+    def _find_up_to_date_manager(
+        self, 
+        inside_score=True,
+        must_have_file=False,
+        system=True,
+        repository='git',
+        ):
+        import scoremanager
+        abjad_library = False
+        abjad_score_packages = False
+        user_library = False
+        user_score_packages = False
+        if system and inside_score:
+            abjad_score_packages = True
+        elif system and not inside_score:
+            abjad_library = True
+        elif not system and inside_score:
+            user_score_packages = True
+        elif not system and not inside_score:
+            user_library = True
+        else:
+            Exception
+        asset_paths = self._list_asset_paths(
+            abjad_library=abjad_library,
+            abjad_score_packages=abjad_score_packages,
+            user_library=user_library,
+            user_score_packages=user_score_packages,
+            )
+        session = scoremanager.core.Session()
+        for asset_path in asset_paths:
+            manager = self._asset_manager_class(
+                path=asset_path,
+                session=session,
+                )
+            if (repository == 'git' and
+                manager._is_git_versioned() and 
+                manager._is_up_to_date() and
+                (not must_have_file or manager._find_first_file_name())):
+                return manager
+            elif (repository == 'svn' and
+                manager._is_svn_versioned() and
+                manager._is_up_to_date() and
+                (not must_have_file or manager._find_first_file_name())):
+                return manager
 
     def _get_current_directory_path_of_interest(self):
         score_directory_path = self._session.current_score_directory_path
@@ -172,6 +236,19 @@ class Wrangler(Controller):
             return self._get_next_asset_path()
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
+
+    def _get_view_from_disk(self):
+        package_manager = self._current_package_manager
+        if not package_manager:
+            return
+        view_name = package_manager._get_metadatum('view_name')
+        if not view_name:
+            return
+        view_inventory = self._read_view_inventory_from_disk()
+        if not view_inventory:
+            return
+        view = view_inventory.get(view_name)
+        return view
 
     def _initialize_asset_manager(self, path):
         assert os.path.sep in path, repr(path)
@@ -484,6 +561,34 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.doctest(prompt=prompt)
 
+    def get_available_path(
+        self, 
+        storehouse_path=None,
+        prompt_string=None,
+        ):
+        r'''Gets available path in `storehouse_path`.
+
+        Sets `storehouse_path` equal to current storehouse path when
+        `storehouse_path` is none.
+
+        Returns string.
+        '''
+        storehouse_path = storehouse_path or self._current_storehouse_path
+        while True:
+            prompt_string = prompt_string or 'package name'
+            getter = self._io_manager.make_getter(where=self._where)
+            getter.append_space_delimited_lowercase_string(prompt_string)
+            name = getter._run()
+            if self._should_backtrack():
+                return
+            name = stringtools.string_to_accent_free_snake_case(name)
+            path = os.path.join(storehouse_path, name)
+            if os.path.exists(path):
+                line = 'path already exists: {!r}.'
+                line = line.format(path)
+                self._io_manager.display([line, ''])
+            else:
+                return path
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 
@@ -532,6 +637,16 @@ class Wrangler(Controller):
         lines.append('')
         self._io_manager.display(lines)
         self._io_manager.proceed()
+
+    def make_asset(self):
+        r'''Makes asset.
+
+        Returns none.
+        '''
+        path = self.get_available_path()
+        if self._should_backtrack():
+            return
+        self._make_asset(path)
 
     def make_view(self):
         r'''Makes view.
@@ -661,6 +776,31 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.rewrite_metadata_module(prompt=prompt)
+
+    def select_asset_package_path(self, infinitival_phrase=None):
+        '''Selects asset package path.
+
+        Returns string.
+        '''
+        with self._controller_context:
+            while True:
+                name = '_human_readable_target_name'
+                human_readable_target_name = getattr(self, name, None)
+                breadcrumb = self._make_asset_selection_breadcrumb(
+                    human_readable_target_name=human_readable_target_name,
+                    infinitival_phrase=infinitival_phrase,
+                    )
+                menu = self._make_asset_selection_menu(
+                    packages_instead_of_paths=True,
+                    )
+                result = menu._run()
+                if self._should_backtrack():
+                    break
+                elif not result:
+                    continue
+                else:
+                    break
+            return result
 
     def select_view(self):
         r'''Selects view.
