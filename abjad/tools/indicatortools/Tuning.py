@@ -50,6 +50,49 @@ class Tuning(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def get_pitches_by_string_number(self, string_number):
+        r'''Gets tuning pitches by string number.
+
+        ::
+
+            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> string_number = indicatortools.StringNumber((2, 3))
+            >>> tuning.get_pitches_by_string_number(string_number)
+            (NamedPitch("a'"), NamedPitch("d'"))
+
+        Returns named pitches.
+        '''
+        from abjad.tools import indicatortools
+        string_number = indicatortools.StringNumber(string_number)
+        result = []
+        for number in string_number.numbers:
+            index = -number
+            pitch = self.pitches[index]
+            result.append(pitch)
+        return tuple(result)
+
+    def get_pitch_ranges_by_string_number(self, string_number):
+        r'''Gets tuning pitch ranges by string number.
+
+        ::
+
+            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> string_number = indicatortools.StringNumber((2, 3))
+            >>> tuning.get_pitch_ranges_by_string_number(string_number)
+            (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
+
+        Returns pitch ranges.
+        '''
+        from abjad.tools import indicatortools
+        string_number = indicatortools.StringNumber(string_number)
+        pitch_ranges = self.pitch_ranges
+        result = []
+        for number in string_number.numbers:
+            index = -number
+            pitch_range = pitch_ranges[index]
+            result.append(pitch_range)
+        return tuple(result)
+
     def voice_pitch_classes(
         self,
         pitch_classes,
@@ -59,7 +102,7 @@ class Tuning(AbjadObject):
 
         ::
 
-            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5')) 
+            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
             >>> voicings = tuning.voice_pitch_classes(('a',))
             >>> for voicing in voicings:
             ...     voicing
