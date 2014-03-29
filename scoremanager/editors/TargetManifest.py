@@ -6,6 +6,14 @@ class TargetManifest(AbjadObject):
     r'''Target manifest.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_attribute_details',
+        '_target_class',
+        '_target_name_attribute', 
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, _target_class, *attribute_details, **kwargs):
@@ -15,7 +23,7 @@ class TargetManifest(AbjadObject):
         for attribute_detail in attribute_details:
             attribute_detail = editors.AttributeDetail(*attribute_detail)
             self.attribute_details.append(attribute_detail)
-        self.target_name_attribute = kwargs.get('target_name_attribute')
+        self._target_name_attribute = kwargs.get('target_name_attribute')
 
     ### SPECIAL METHODS ###
 
@@ -173,3 +181,11 @@ class TargetManifest(AbjadObject):
         for attribute_detail in self.attribute_details:
             result.append(attribute_detail._space_delimited_lowercase_name)
         return result
+
+    @property
+    def target_name_attribute(self):
+        r'''Target name attribute of target manifest.
+
+        Returns string or none.
+        '''
+        return self._target_name_attribute
