@@ -15,6 +15,12 @@ class UserInputWrapper(collections.OrderedDict):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_user_input_module_import_statements',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, *arg):
