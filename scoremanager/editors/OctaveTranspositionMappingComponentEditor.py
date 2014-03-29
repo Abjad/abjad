@@ -8,6 +8,11 @@ class OctaveTranspositionMappingComponentEditor(Editor):
     r'''OctaveTranspositionMappingComponent editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -8,6 +8,11 @@ class RestRhythmMakerEditor(RhythmMakerEditor):
     r'''RestRhythmMaker editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

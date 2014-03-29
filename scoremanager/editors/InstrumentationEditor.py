@@ -9,6 +9,11 @@ class InstrumentationEditor(ListEditor):
     r'''Instrumentation editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
@@ -39,4 +44,3 @@ class InstrumentationEditor(ListEditor):
         return TargetManifest(
             instrumenttools.InstrumentationSpecifier,
             )
-

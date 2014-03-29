@@ -8,6 +8,11 @@ class PatternedArticulationsHandlerEditor(Editor):
     r'''PatternedArticulationsHandler editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

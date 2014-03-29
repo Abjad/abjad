@@ -8,6 +8,11 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
     r'''PitchRangeInventory editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):

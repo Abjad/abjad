@@ -6,6 +6,11 @@ class ObjectInventoryEditor(ListEditor):
     r'''ObjectInventory editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -8,6 +8,11 @@ class ClefEditor(Editor):
     r'''Clef editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

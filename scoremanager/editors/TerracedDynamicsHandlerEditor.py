@@ -8,6 +8,11 @@ class TerracedDynamicsHandlerEditor(Editor):
     r'''TerracedDynamicsHandler editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

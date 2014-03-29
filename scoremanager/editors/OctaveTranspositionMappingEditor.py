@@ -8,6 +8,11 @@ class OctaveTranspositionMappingEditor(ObjectInventoryEditor):
     r'''OctaveTranspositionMapping editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):

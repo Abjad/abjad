@@ -8,6 +8,11 @@ class ReiteratedDynamicHandlerEditor(Editor):
     r'''ReiteratedDynamicHandler editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

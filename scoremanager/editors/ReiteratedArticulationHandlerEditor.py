@@ -8,6 +8,11 @@ class ReiteratedArticulationHandlerEditor(Editor):
     r'''ReiteratedArticulationHandler editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

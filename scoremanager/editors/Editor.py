@@ -161,7 +161,7 @@ class Editor(Controller):
             result = editor._run()
             if self._should_backtrack():
                 # TODO: maybe this should be in a context manager
-                self.is_autoadvancing = False
+                self._is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
                 attribute_value = editor.target

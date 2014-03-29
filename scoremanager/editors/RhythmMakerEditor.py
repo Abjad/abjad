@@ -6,6 +6,11 @@ class RhythmMakerEditor(Editor):
     r'''RhythmMaker editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

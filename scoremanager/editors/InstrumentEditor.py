@@ -10,6 +10,11 @@ class InstrumentEditor(Editor):
     r'''Instrument editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

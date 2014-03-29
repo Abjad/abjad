@@ -8,6 +8,11 @@ class ClefInventoryEditor(ObjectInventoryEditor):
     r'''Clef inventory editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):

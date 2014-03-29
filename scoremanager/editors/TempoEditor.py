@@ -9,6 +9,11 @@ class TempoEditor(Editor):
     r'''Tempo editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+
     ### PUBLIC PROPERTIES ###
 
     @property

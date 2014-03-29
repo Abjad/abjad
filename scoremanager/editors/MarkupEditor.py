@@ -8,6 +8,11 @@ class MarkupEditor(Editor):
     r'''Markup editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

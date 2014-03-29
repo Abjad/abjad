@@ -8,6 +8,11 @@ class NoteRhythmMakerEditor(RhythmMakerEditor):
     r'''NoteRhythmMaker editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -8,6 +8,11 @@ class NoteAndChordHairpinsHandlerEditor(Editor):
     r'''NoteAndChordHairpinsHandler editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+    )
+    
     ### PUBLIC PROPERTIES ###
 
     @property
