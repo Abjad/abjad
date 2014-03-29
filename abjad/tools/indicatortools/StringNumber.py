@@ -37,7 +37,9 @@ class StringNumber(AbjadObject):
         numbers=None,
         ):
         numbers = numbers or ()
-        if not isinstance(numbers, collections.Sequence):
+        if isinstance(numbers, type(self)):
+            numbers = numbers.numbers
+        elif not isinstance(numbers, collections.Sequence):
             numbers = (numbers,)
         numbers = tuple(int(x) for x in numbers)
         assert all(0 < x < 7 for x in numbers)
