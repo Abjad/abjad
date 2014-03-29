@@ -555,7 +555,7 @@ class ScorePackageManager(PackageManager):
                 package_needed_to_be_fixed = True
                 message = 'create {!r}?'.format(path)
                 if not prompt or self._io_manager.confirm(message):
-                    os.mkdir(path)
+                    os.makedirs(path)
                     gitignore_path = os.path.join(path, '.gitignore')
                     with file(gitignore_path, 'w') as file_pointer:
                         file_pointer.write('')

@@ -2,10 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class ScorePackageWrangler(PackageWrangler):
+class ScorePackageWrangler(Wrangler):
     r'''Score package wrangler.
 
     ..  container:: example
@@ -90,6 +90,13 @@ class ScorePackageWrangler(PackageWrangler):
             must_have_file=must_have_file,
             )
         return manager
+
+    def _is_valid_directory_entry(self, expr):
+        superclass = super(ScorePackageWrangler, self)
+        if superclass._is_valid_directory_entry(expr):
+            if '.' not in expr:
+                return True
+        return False
 
     def _list_visible_asset_paths(
         self,

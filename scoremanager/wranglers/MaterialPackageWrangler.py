@@ -5,10 +5,10 @@ import traceback
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager import predicates
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class MaterialPackageWrangler(PackageWrangler):
+class MaterialPackageWrangler(Wrangler):
     r'''Material package wrangler.
 
     ..  container:: example
@@ -145,6 +145,13 @@ class MaterialPackageWrangler(PackageWrangler):
         wrangler = self._material_manager_wrangler
         manager = wrangler._initialize_asset_manager(package_path)
         return manager
+
+    def _is_valid_directory_entry(self, expr):
+        superclass = super(MaterialPackageWrangler, self)
+        if superclass._is_valid_directory_entry(expr):
+            if '.' not in expr:
+                return True
+        return False
 
     def _make_data_package(self, path, metadata=None):
         metadata = metadata or {}

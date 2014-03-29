@@ -4,10 +4,10 @@ from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class MaterialManagerWrangler(PackageWrangler):
+class MaterialManagerWrangler(Wrangler):
     r'''material manager wrangler.
 
     ..  container:: example

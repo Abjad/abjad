@@ -2,10 +2,10 @@
 import collections
 import os
 from abjad.tools import systemtools
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class SegmentPackageWrangler(PackageWrangler):
+class SegmentPackageWrangler(Wrangler):
     r'''Segment package wrangler.
 
     ..  container:: example
@@ -73,6 +73,13 @@ class SegmentPackageWrangler(PackageWrangler):
         else:
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
+
+    def _is_valid_directory_entry(self, expr):
+        superclass = super(SegmentPackageWrangler, self)
+        if superclass._is_valid_directory_entry(expr):
+            if '.' not in expr:
+                return True
+        return False
 
     def _make_all_segments_menu_section(self, menu):
         section = menu.make_command_section(name='all segments')

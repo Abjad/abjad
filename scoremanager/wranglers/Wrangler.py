@@ -11,7 +11,6 @@ from scoremanager.core.Controller import Controller
 
 class Wrangler(Controller):
     r'''Wrangler.
-    
     '''
 
     ### CLASS VARIABLES ###
@@ -343,13 +342,18 @@ class Wrangler(Controller):
         return visible_paths
 
     def _make_asset(self, asset_name):
+        if os.path.sep in asset_name:
+            asset_name = os.path.basename(asset_name)
         assert stringtools.is_snake_case_string(asset_name)
         path = os.path.join(
             self._current_storehouse_path, 
             asset_name,
             )
         manager = self._initialize_asset_manager(path)
-        manager._write_stub()
+        if hasattr(manager, '_write_stub'):
+            manager._write_stub()
+        elif hasattr(manager, 'fix'):
+            manager.fix(prompt=False)
 
     def _make_asset_selection_breadcrumb(
         self, 
