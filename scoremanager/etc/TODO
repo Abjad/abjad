@@ -91,9 +91,7 @@
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-27. Implement slots on wranglers.
-
-28. Encapsulate ...
+27. Encapsulate ...
         process = subprocess.Popen(
             command,
             shell=True,
@@ -102,20 +100,20 @@
             )
     ... in an IOManager method.
 
-29. Do something to put an empty .gitignore file in every directory everywhere.
+28. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-30. Eventually implement a Score Manager start-up behavior that will
+29. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-31: Bug:
+30: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-32. Bug:
+31. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
         in _get_next_score_directory_path
         index = paths.index(score_path)
@@ -123,5 +121,5 @@
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-33. Remove FileWrangler; no real code.
+32. Remove FileWrangler; no real code.
     Maybe remove PackageWrangler and hoist all code into Wrangler.
