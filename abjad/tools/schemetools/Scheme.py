@@ -81,8 +81,16 @@ class Scheme(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Scheme, self).__hash__()
+
     def __eq__(self, expr):
-        r'''Is true when `expr` is a scheme object with a value equal to that 
+        r'''Is true when `expr` is a scheme object with a value equal to that
         of this scheme object. Otherwise false.
 
         Returns boolean.

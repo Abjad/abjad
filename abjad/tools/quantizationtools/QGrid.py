@@ -137,6 +137,14 @@ class QGrid(AbjadObject):
         root_node, next_downbeat = self.__getnewargs__()
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(QGrid, self).__hash__()
+
     def __eq__(self, expr):
         r'''True if `expr` is a q-grid with root node and next downbeat equal
         to those of this q-grid. Otherwise false.

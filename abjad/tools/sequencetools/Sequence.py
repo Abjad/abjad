@@ -55,6 +55,14 @@ class Sequence(AbjadObject):
         elements = self._elements + expr._elements
         return type(self)(*elements)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Sequence, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a sequence with elements equal to those of
         this sequence. Otherwise false.

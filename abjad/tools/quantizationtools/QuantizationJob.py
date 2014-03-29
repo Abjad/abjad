@@ -116,6 +116,14 @@ class QuantizationJob(AbjadObject):
 
         self._q_grids = tuple(old_q_grids)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(QuantizationJob, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a quantization job with job ID, search tree,
         q-event proxies and q-grids equal to those of this quantization job.

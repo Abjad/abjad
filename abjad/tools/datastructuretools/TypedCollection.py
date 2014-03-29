@@ -35,6 +35,14 @@ class TypedCollection(AbjadObject):
             return False
         return self._collection.__contains__(item)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(TypedCollection, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a typed collection with items that compare
         equal to those of this typed collection. Otherwise false.
@@ -82,7 +90,7 @@ class TypedCollection(AbjadObject):
         return len(self._collection)
 
     def __ne__(self, expr):
-        r'''Is true when `expr` is not a typed collection with items equal to 
+        r'''Is true when `expr` is not a typed collection with items equal to
         this typed collection. Otherwise false.
 
         Returns boolean.

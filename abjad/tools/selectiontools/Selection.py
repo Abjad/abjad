@@ -41,6 +41,14 @@ class Selection(object):
         '''
         return expr in self._music
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Selection, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when selection and `expr` are of the same type
         and when music of selection equals music of `expr`.
@@ -114,7 +122,7 @@ class Selection(object):
         if isinstance(expr, type(self)):
             music = expr._music + self._music
             return Selection(music)
-        # eventually remove this permissive branch 
+        # eventually remove this permissive branch
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
@@ -202,7 +210,7 @@ class Selection(object):
                 not same_logical_voice:
                 return False
         return True
-    
+
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
         expr, prototype=None, allow_orphans=True):
@@ -311,7 +319,7 @@ class Selection(object):
                 same_parent = False
             if not previous._is_immediate_temporal_successor_of(current):
                 strictly_contiguous = False
-            if (not allow_orphans or 
+            if (not allow_orphans or
                 (allow_orphans and not orphan_components)) and \
                 (not same_parent or not strictly_contiguous):
                 return False
@@ -406,7 +414,7 @@ class Selection(object):
         Returns duration.
         '''
         return sum(
-            component._get_duration(in_seconds=in_seconds) 
+            component._get_duration(in_seconds=in_seconds)
             for component in self
             )
 

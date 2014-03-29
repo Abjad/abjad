@@ -31,7 +31,7 @@ class Annotation(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_name', 
+        '_name',
         '_value',
         )
 
@@ -63,6 +63,14 @@ class Annotation(AbjadObject):
         Returns new annotation.
         '''
         return type(self)(self.name, self.value)
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Annotation, self).__hash__()
 
     def __eq__(self, arg):
         r'''Is true when arg is an annotation with name and value

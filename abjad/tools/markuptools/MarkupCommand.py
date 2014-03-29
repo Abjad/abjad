@@ -35,7 +35,7 @@ class MarkupCommand(AbjadObject):
                     #0.1
                     ##f
 
-        Insert a markup command in markup in order to attach it to 
+        Insert a markup command in markup in order to attach it to
         score components:
 
         ::
@@ -71,7 +71,7 @@ class MarkupCommand(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_args', 
+        '_args',
         '_command',
         '_force_quotes',
         )
@@ -90,8 +90,16 @@ class MarkupCommand(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(MarkupCommand, self).__hash__()
+
     def __eq__(self, expr):
-        r'''Is true when `expr` is a markup command with command and 
+        r'''Is true when `expr` is a markup command with command and
         args equal to those of this markup command. Otherwise false.
 
         Returns boolean.
@@ -226,7 +234,7 @@ class MarkupCommand(AbjadObject):
                         }
                     }
 
-            The markup command forces quotes around only the spaced string 
+            The markup command forces quotes around only the spaced string
             ``'bar blah'``.
 
         ..  container:: example

@@ -99,6 +99,14 @@ class Timespan(BoundedObject):
             )
         return timespantools.TimespanInventory([timespan])
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Timespan, self).__hash__()
+
     def __eq__(self, timespan):
         r'''Is true when `timespan` is a timespan with equal offsets.
 

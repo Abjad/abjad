@@ -81,6 +81,14 @@ class RhythmMaker(AbjadObject):
         assert all(isinstance(x, prototype) for x in music), repr(music)
         return music
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(RhythmMaker, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a rhythm-maker with type and public
         properties equal to those of this rhythm-maker. Otherwise false.
@@ -133,7 +141,7 @@ class RhythmMaker(AbjadObject):
             divisions,
             )
         return lilypond_file
-        
+
     ### PRIVATE METHODS ###
 
     @staticmethod

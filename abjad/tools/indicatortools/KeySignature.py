@@ -49,9 +49,17 @@ class KeySignature(AbjadObject):
         Returns new key signature.
         '''
         return type(self)(
-            self.tonic, 
+            self.tonic,
             self.mode,
             )
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(KeySignature, self).__hash__()
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a key signature with tonic and mode equal

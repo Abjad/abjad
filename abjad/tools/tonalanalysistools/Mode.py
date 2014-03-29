@@ -6,7 +6,7 @@ from abjad.tools import pitchtools
 
 class Mode(AbjadObject):
     '''A diatonic mode.
-    
+
     Can be extended for nondiatonic mode.
 
     Modes with different ascending and descending forms not yet implemented.
@@ -35,6 +35,14 @@ class Mode(AbjadObject):
         self._mode_name = mode_name
 
     ### SPECIAL METHODS ###
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Mode, self).__hash__()
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a mode with mode name equal to that of this

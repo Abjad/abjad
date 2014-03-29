@@ -43,6 +43,14 @@ class PitchArrayColumn(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(PitchArrayColumn, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a pitch array column with pitch array cells
         equal to those of this pitch array column. Otherwise false.
@@ -81,7 +89,7 @@ class PitchArrayColumn(AbjadObject):
         Returns string.
         '''
         return '{}({})'.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._format_contents_string,
             )
 

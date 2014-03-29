@@ -72,6 +72,14 @@ class StemTremolo(AbjadObject):
         '''
         return type(self)(self.tremolo_flags)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(StemTremolo, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a stem tremolo with a tremolo flag count
         equal to that of this stem tremolo.  Otherwise false:

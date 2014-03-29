@@ -36,13 +36,13 @@ class ResidueClass(BaseResidueClass):
         ::
 
             >>> y.get_congruent_bases(40)
-                [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 
+                [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
                 23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
 
         ::
 
             >>> y.get_boolean_train(40)
-                [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
+                [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
     '''
@@ -50,7 +50,7 @@ class ResidueClass(BaseResidueClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_modulo', 
+        '_modulo',
         '_residue',
         )
 
@@ -69,6 +69,14 @@ class ResidueClass(BaseResidueClass):
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(ResidueClass, self).__hash__()
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a residue class with module and residue equal
@@ -187,10 +195,10 @@ class ResidueClass(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        r'''Returns all the congruent bases of this residue class within the 
+        r'''Returns all the congruent bases of this residue class within the
         given range.
 
-        The method takes one or two integer arguments. If only one it given, it 
+        The method takes one or two integer arguments. If only one it given, it
         is taken as the max range and the min is assumed to be 0.
 
         ..  container:: example
