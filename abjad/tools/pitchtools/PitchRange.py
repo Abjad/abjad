@@ -226,6 +226,15 @@ class PitchRange(AbjadObject):
         except (TypeError, ValueError):
             return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(PitchRange, self).__hash__()
+
     def __illustrate__(self):
         r'''Illustrates pitch range.
 

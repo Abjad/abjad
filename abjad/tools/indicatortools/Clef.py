@@ -175,6 +175,15 @@ class Clef(AbjadObject):
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(Clef, self).__hash__()
+
     def __ne__(self, arg):
         r'''Is true when clef of `arg` does not equal clef name of clef.
         Otherwise false.

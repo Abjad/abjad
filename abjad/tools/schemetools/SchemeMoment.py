@@ -72,6 +72,15 @@ class SchemeMoment(Scheme):
         '''
         return (self._value,)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(SchemeMoment, self).__hash__()
+
     def __lt__(self, arg):
         r'''Is true when `arg` is a scheme moment with value greater than that of
         this scheme moment.

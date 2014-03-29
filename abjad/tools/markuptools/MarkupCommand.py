@@ -117,6 +117,15 @@ class MarkupCommand(AbjadObject):
             return self._lilypond_format
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(MarkupCommand, self).__hash__()
+
     def __str__(self):
         r'''Gets string representation of markup command.
 

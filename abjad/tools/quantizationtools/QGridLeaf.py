@@ -75,6 +75,15 @@ class QGridLeaf(RhythmTreeNode):
 
     ### PRIVATE PROPERTIES ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(QGridLeaf, self).__hash__()
+
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]

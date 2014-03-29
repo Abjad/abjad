@@ -259,6 +259,15 @@ class PayloadTree(AbjadObject):
         '''
         return vars(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(PayloadTree, self).__hash__()
+
     def __len__(self):
         r'''Number of children in payload tree.
 

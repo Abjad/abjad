@@ -27,6 +27,15 @@ class TerminalQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(TerminalQEvent, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a terminal q-event with offset equal to that of
         this terminal q-event. Otherwise false.

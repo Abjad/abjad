@@ -132,6 +132,15 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ### PUBLIC PROPERTIES ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(OffsetTimespanTimeRelation, self).__hash__()
+
     @property
     def is_fully_loaded(self):
         r'''Is true when `timespan` and `offset` are both not none.

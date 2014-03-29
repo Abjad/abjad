@@ -61,6 +61,15 @@ class TreeNode(AbjadObject):
             state[name] = getattr(self, name)
         return state
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(TreeNode, self).__hash__()
+
     def __ne__(self, expr):
         r'''Is true when tree node does not equal `expr`. Otherwise false.
 

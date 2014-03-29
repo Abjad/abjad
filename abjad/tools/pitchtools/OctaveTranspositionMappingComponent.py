@@ -81,6 +81,15 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(OctaveTranspositionMappingComponent, self).__hash__()
+
     def __ne__(self, expr):
         r'''Is true when octave transposition mapping component does not equal 
         `expr`. Otherwise false.
