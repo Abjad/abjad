@@ -2,10 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.FileWrangler import FileWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class StylesheetWrangler(FileWrangler):
+class StylesheetWrangler(Wrangler):
     r'''Stylesheet wrangler.
 
     ..  container:: example
