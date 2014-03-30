@@ -212,9 +212,9 @@ class Clef(AbjadObject):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
+        from abjad.tools import systemtools
         from scoremanager import getters
-        return editors.TargetManifest(
+        return systemtools.TargetManifest(
             type(self),
             ('clef_name', 'nm', getters.get_string),
             )
