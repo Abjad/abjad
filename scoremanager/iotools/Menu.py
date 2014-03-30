@@ -487,7 +487,7 @@ class Menu(ScoreManagerObject):
         section.append(('system - shell', '!'))
         return section
 
-    def _make_tab(self, n):
+    def _make_tab(self, n=1):
         return 4 * n * ' '
 
     def _make_title_lines(self):

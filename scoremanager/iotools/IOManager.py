@@ -202,7 +202,7 @@ class IOManager(IOManager):
             return False
         return True
 
-    def _make_tab(self, n):
+    def _make_tab(self, n=1):
         return 4 * n * ' '
 
     def _pop_from_pending_user_input(self):

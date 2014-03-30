@@ -1231,10 +1231,19 @@ class Session(abctools.AbjadObject):
         '''
         lines = []
         for variable_name in sorted(self._variables_to_display):
-            variable_value = getattr(self, variable_name)
-            line = '{}: {!r}'
-            line = line.format(variable_name, variable_value)
-            lines.append(line)
+            if variable_name == 'controller_stack':
+                line = '{}'.format(variable_name)
+                lines.append(line)
+                variable_value = getattr(self, variable_name)
+                for controller in variable_value:
+                    tab_string = self._io_manager._make_tab()
+                    line = '{}{}'.format(tab_string, controller)
+                    lines.append(line)
+            else:
+                variable_value = getattr(self, variable_name)
+                line = '{}: {!r}'
+                line = line.format(variable_name, variable_value)
+                lines.append(line)
         lines.append('')
         self.io_manager.display(lines, capitalize_first_character=False)
         self.io_manager.proceed()

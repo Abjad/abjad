@@ -226,7 +226,7 @@ class MenuSection(AbjadObject):
             menu_lines.append('')
         return menu_lines
 
-    def _make_tab(self, n):
+    def _make_tab(self, n=1):
         tab_string = 4 * n * ' '
         if self.is_informational_section:
             characters = list(tab_string)
