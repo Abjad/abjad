@@ -45,8 +45,8 @@ class Editor(Controller):
                 message = 'can not find target manifest for {!r}.'
                 message = message.format(self)
                 raise Exception(message)
-        if target is not None:
-            assert isinstance(target, self._target_class)
+            if target is not None:
+                assert isinstance(target, self._target_class)
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -85,6 +85,7 @@ class Editor(Controller):
         dummy_target = target_class()
         target_manifest = getattr(dummy_target, '_target_manifest')
         return target_manifest
+        #return self.target._target_manifest
 
     @property
     def _target_name(self):
@@ -160,7 +161,7 @@ class Editor(Controller):
         self.__target_class = target_class
         self._run()
 
-    def _get_editor(
+    def _get_attribute_editor(
         self, 
         attribute_detail,
         space_delimited_attribute_name, 
@@ -209,22 +210,24 @@ class Editor(Controller):
             return
         attribute_name = self._target_manifest._menu_key_to_attribute_name(
             result)
+        #print repr(attribute_name), 'AN'
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
-        editor = self._menu_key_to_editor(
+        attribute_editor = self._menu_key_to_attribute_editor(
             result, 
             session=self._session, 
             prepopulated_value=prepopulated_value, 
             **kwargs
             )
-        if editor is not None:
-            result = editor._run()
+        #print repr(attribute_editor), 'EDITOR'
+        if attribute_editor is not None:
+            result = attribute_editor._run()
+            #print repr(result), 'RES'
             if self._should_backtrack():
-                # TODO: maybe this should be in a context manager
                 self._is_autoadvancing = False
                 return
-            if hasattr(editor, 'target'):
-                attribute_value = editor.target
+            if hasattr(attribute_editor, 'target'):
+                attribute_value = attribute_editor.target
             else:
                 attribute_value = result
             self._set_target_attribute(attribute_name, attribute_value)
@@ -302,7 +305,7 @@ class Editor(Controller):
     def _menu_key_to_delegated_editor_kwargs(self, menu_key):
         return {}
 
-    def _menu_key_to_editor(
+    def _menu_key_to_attribute_editor(
         self, 
         menu_key, 
         prepopulated_value, 
@@ -314,13 +317,13 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         attribute_name = attribute_name.replace('_', ' ')
         attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
-        editor = self._get_editor(
+        attribute_editor = self._get_attribute_editor(
             attribute_detail,
             attribute_name,
             prepopulated_value,
             **kwargs
             )
-        return editor
+        return attribute_editor
 
     def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = \
