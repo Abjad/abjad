@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanager.editors.Editor import Editor
 
 
 class AttributeDetail(AbjadObject):
@@ -11,14 +9,14 @@ class AttributeDetail(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_allow_none',
+        '_editor_callable',
+        '_is_null',
+        '_is_positional',
+        '_menu_key',
         '_name',
         '_retrievable_name',
         '_space_delimited_lowercase_name',
-        '_menu_key',
-        '_editor_callable',
-        '_is_positional',
-        '_allow_none',
-        '_is_null',
         )
 
     ### INITIALIZER ###
@@ -65,14 +63,14 @@ class AttributeDetail(AbjadObject):
             raise ValueError(message)
         if not space_delimited_lowercase_name and name:
             space_delimited_lowercase_name = name.replace('_', ' ')
+        self._allow_none = kwargs.get('allow_none', True)
+        self._editor_callable = editor_callable
+        self._menu_key = menu_key
         self._name = name
+        self._is_null = is_null
+        self._is_positional = is_positional
         self._retrievable_name = retrievable_name
         self._space_delimited_lowercase_name = space_delimited_lowercase_name
-        self._menu_key = menu_key
-        self._editor_callable = editor_callable
-        self._is_positional = is_positional
-        self._allow_none = kwargs.get('allow_none', True)
-        self._is_null = is_null
 
     ### SPECIAL METHODS ###
 
@@ -90,50 +88,6 @@ class AttributeDetail(AbjadObject):
             parts.append('allow_none=False')
         parts = ', '.join(parts)
         return '{}({})'.format(type(self).__name__, parts)
-
-    ### PRIVATE METHODS ###
-
-    def _get_editor(
-        self, 
-        space_delimited_attribute_name, 
-        prepopulated_value, 
-        session=None, 
-        **kwargs
-        ):
-        from scoremanager import iotools
-        from scoremanager import wizards
-        if (
-            isinstance(self.editor_callable, types.FunctionType) and
-            self.editor_callable.__name__.startswith('make_')
-            ):
-            editor = self.editor_callable(session=session, **kwargs)
-        elif isinstance(self.editor_callable, types.FunctionType):
-            editor = self.editor_callable(
-                space_delimited_attribute_name,
-                session=session, 
-                prepopulated_value=prepopulated_value, 
-                allow_none=self.allow_none, 
-                **kwargs
-                )
-        elif issubclass(self.editor_callable, Editor):
-            editor = self.editor_callable(
-                session=session, 
-                target=prepopulated_value, 
-                **kwargs
-                )
-        elif issubclass(self.editor_callable, iotools.Selector):
-            editor = self.editor_callable(session=session, **kwargs)
-        elif issubclass(self.editor_callable, wizards.Wizard):
-            editor = self.editor_callable(
-                session=session, 
-                target=prepopulated_value, 
-                **kwargs
-                )
-        else:
-            message = 'what is {!r}?'
-            message = message.format(self.editor_callable)
-            raise ValueError(message)
-        return editor
 
     ### PUBLIC PROPERTIES ###
 

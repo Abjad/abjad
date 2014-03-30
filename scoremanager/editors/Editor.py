@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import types
 from abjad.tools import stringtools
 from scoremanager.core.Controller import Controller
 
@@ -161,6 +162,49 @@ class Editor(Controller):
         self.__target_class = target_class
         self._run()
 
+    def _get_editor(
+        self, 
+        attribute_detail,
+        space_delimited_attribute_name, 
+        prepopulated_value, 
+        **kwargs
+        ):
+        from scoremanager import iotools
+        from scoremanager import wizards
+        editor_callable = attribute_detail.editor_callable
+        if (
+            isinstance(editor_callable, types.FunctionType) and
+            editor_callable.__name__.startswith('make_')
+            ):
+            editor = editor_callable(session=session, **kwargs)
+        elif isinstance(editor_callable, types.FunctionType):
+            editor = editor_callable(
+                space_delimited_attribute_name,
+                session=self._session, 
+                prepopulated_value=prepopulated_value, 
+                allow_none=attribute_detail.allow_none, 
+                **kwargs
+                )
+        elif issubclass(editor_callable, Editor):
+            editor = editor_callable(
+                session=self._session, 
+                target=prepopulated_value, 
+                **kwargs
+                )
+        elif issubclass(editor_callable, iotools.Selector):
+            editor = editor_callable(session=self._session, **kwargs)
+        elif issubclass(editor_callable, wizards.Wizard):
+            editor = editor_callable(
+                session=self._session, 
+                target=prepopulated_value, 
+                **kwargs
+                )
+        else:
+            message = 'what is {!r}?'
+            message = message.format(editor_callable)
+            raise ValueError(message)
+        return editor
+
     def _handle_main_menu_result(self, result):
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
@@ -273,13 +317,22 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         attribute_name = attribute_name.replace('_', ' ')
         attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
-        # TODO: move AttributeDetail._get_editor() to Editor._get_editor()
-        editor = attribute_detail._get_editor(
-            attribute_name, 
-            prepopulated_value, 
-            session=session, 
+
+#        # TODO: move AttributeDetail._get_editor() to Editor._get_editor()
+#        editor = attribute_detail._get_editor(
+#            attribute_name, 
+#            prepopulated_value, 
+#            session=session, 
+#            **kwargs
+#            )
+
+        editor = self._get_editor(
+            attribute_detail,
+            attribute_name,
+            prepopulated_value,
             **kwargs
             )
+
         return editor
 
     def _menu_key_to_prepopulated_value(self, menu_key):
