@@ -269,7 +269,7 @@ class Editor(Controller):
             entry_point = None
             is_first_pass = True
             while True:
-                breadcrumb = self._breadcrumb
+                #breadcrumb = self._breadcrumb
                 if self._is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
@@ -343,6 +343,30 @@ class Editor(Controller):
         Returns string or none.
         '''
         return self._explicit_breadcrumb
+
+    @property
+    def is_autoadding(self):
+        r'''Is true when editor is autoadding. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_autoadding
+
+    @property
+    def is_autoadvancing(self):
+        r'''Is true when editor is autoadvancing. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_autoadvancing
+
+    @property
+    def is_autostarting(self):
+        r'''Is true when editor is autostarting. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_autostarting
 
     @property
     def target(self):
