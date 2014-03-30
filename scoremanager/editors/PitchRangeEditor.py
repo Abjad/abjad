@@ -11,14 +11,14 @@ class PitchRangeEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             pitchtools.PitchRange,
             ('one_line_named_pitch_repr', 'rp', 
                 getters.get_symbolic_pitch_range_string),

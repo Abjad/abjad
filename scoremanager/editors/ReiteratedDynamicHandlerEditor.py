@@ -11,14 +11,14 @@ class ReiteratedDynamicHandlerEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             handlertools.ReiteratedDynamicHandler,
             ('dynamic_name', None, 'dy', getters.get_dynamic, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

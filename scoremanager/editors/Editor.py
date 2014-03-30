@@ -16,6 +16,7 @@ class Editor(Controller):
         '_is_autoadvancing',
         '_is_autostarting',
         '_target',
+        '__target_class',
         )
 
     ### INITIALIZER ###
@@ -30,19 +31,22 @@ class Editor(Controller):
         is_autostarting=False,
         ):
         Controller.__init__(self, session=session)
-        if target is not None:
-            assert isinstance(target, self._target_class)
-        self._target = target
         self._attributes_in_memory = {}
-        target_manifest = self._target_manifest
-        if not target_manifest:
-            message = 'can not find target manifest for {!r}.'
-            message = message.format(self)
-            raise Exception(message)
         self._explicit_breadcrumb = None
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
+        if type(self).__name__ == 'Editor':
+            self.__target_class = None
+        else:
+            target_manifest = self._target_manifest
+            if not target_manifest:
+                message = 'can not find target manifest for {!r}.'
+                message = message.format(self)
+                raise Exception(message)
+        if target is not None:
+            assert isinstance(target, self._target_class)
+        self._target = target
 
     ### SPECIAL METHODS ###
 
@@ -73,6 +77,13 @@ class Editor(Controller):
     @property
     def _target_class(self):
         return self._target_manifest._target_class
+
+    @property
+    def _target_manifest(self):
+        target_class = self.__target_class
+        dummy_target = target_class()
+        target_manifest = getattr(dummy_target, '_target_manifest')
+        return target_manifest
 
     @property
     def _target_name(self):
@@ -146,7 +157,7 @@ class Editor(Controller):
 
     def _edit(self, target_class):
         #print self._io_manager.not_yet_implemented()
-        self._target_class = target_class
+        self.__target_class = target_class
         self._run()
 
     def _handle_main_menu_result(self, result):

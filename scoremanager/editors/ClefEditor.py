@@ -11,14 +11,14 @@ class ClefEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             indicatortools.Clef,
             ('clef_name', 'nm', getters.get_string),
             )

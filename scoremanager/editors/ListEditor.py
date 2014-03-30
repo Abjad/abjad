@@ -61,8 +61,8 @@ class ListEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(list,)
+        from scoremanager import editors
+        return editors.TargetManifest(list,)
 
     @property
     def _target_summary_lines(self):

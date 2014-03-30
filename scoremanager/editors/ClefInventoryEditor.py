@@ -11,7 +11,7 @@ class ClefInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### INITIALIZER ###
 
@@ -29,8 +29,8 @@ class ClefInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             indicatortools.ClefInventory,
             target_name_attribute='name',
             )

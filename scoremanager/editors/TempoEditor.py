@@ -12,14 +12,14 @@ class TempoEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             indicatortools.Tempo,
             ('duration', 'd', getters.get_duration),
             ('units_per_minute', 'pm', getters.get_integer),

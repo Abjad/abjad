@@ -12,7 +12,7 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### INITIALIZER ###
 
@@ -29,8 +29,8 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             markuptools.MarkupInventory,
             target_name_attribute='inventory name',
             )

@@ -13,15 +13,14 @@ class InstrumentEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
         from scoremanager import editors
-        return TargetManifest(
+        return editors.TargetManifest(
             instrumenttools.Instrument,
             (
                 'instrument_name', 

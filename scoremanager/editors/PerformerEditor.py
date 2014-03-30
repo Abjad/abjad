@@ -13,7 +13,7 @@ class PerformerEditor(ListEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### INITIALIZER ###
 
@@ -36,8 +36,8 @@ class PerformerEditor(ListEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             instrumenttools.Performer,
             ('name', 'nm', getters.get_string),
             target_attribute_name='name',

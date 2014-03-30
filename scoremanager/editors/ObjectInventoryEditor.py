@@ -9,7 +9,7 @@ class ObjectInventoryEditor(ListEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### PUBLIC PROPERTIES ###
 

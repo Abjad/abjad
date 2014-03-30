@@ -11,14 +11,14 @@ class NoteAndChordHairpinsHandlerEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             handlertools.NoteAndChordHairpinsHandler,
             ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

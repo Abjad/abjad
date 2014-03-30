@@ -40,7 +40,7 @@ class InstrumentationEditor(ListEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             instrumenttools.InstrumentationSpecifier,
             )

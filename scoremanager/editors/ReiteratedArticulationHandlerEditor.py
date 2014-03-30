@@ -11,14 +11,14 @@ class ReiteratedArticulationHandlerEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             handlertools.ReiteratedArticulationHandler,
             ('articulation_list', None, 'al', getters.get_articulations, False),
             ('minimum_duration', None, 'nd', getters.get_duration, False),

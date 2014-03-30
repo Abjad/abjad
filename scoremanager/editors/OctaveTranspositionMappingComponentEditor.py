@@ -11,14 +11,14 @@ class OctaveTranspositionMappingComponentEditor(Editor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
     
     ### PUBLIC PROPERTIES ###
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             pitchtools.OctaveTranspositionMappingComponent,
             ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),
             ('target_octave_start_pitch', 'sp', getters.get_integer),

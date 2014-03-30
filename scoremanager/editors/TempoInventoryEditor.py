@@ -11,7 +11,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### INITIALIZER ###
 
@@ -30,8 +30,8 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager.editors import TargetManifest
-        return TargetManifest(
+        from scoremanager import editors
+        return editors.TargetManifest(
             indicatortools.TempoInventory,
             target_name_attribute='inventory name',
             )
