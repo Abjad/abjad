@@ -13,7 +13,7 @@ def test_Session_is_navigating_to_score_setup_01():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build manager',
+        'Red Example Score (2013) - build directory',
         'Red Example Score (2013) - setup',
         ]
     assert score_manager._transcript.titles == titles

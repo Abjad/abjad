@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
@@ -114,9 +115,10 @@ class BuildFileWrangler(Wrangler):
         self._session._is_navigating_to_score_build_files = False
 
     def _get_file_path_ending_with(self, string):
+        path = self._get_current_directory_path_of_interest()
         for file_name in self._list():
             if file_name.endswith(string):
-                file_path = os.path.join(self._path, file_name)
+                file_path = os.path.join(path, file_name)
                 return file_path
 
     def _handle_main_menu_result(self, result):
@@ -255,6 +257,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
+        build_directory_path = self._get_current_directory_path_of_interest()
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -279,11 +282,13 @@ class BuildFileWrangler(Wrangler):
                 directory_entry,
                 )
             target_file_path = os.path.join(
-                self._path,
+                build_directory_path,
                 target_file_name,
                 )
-            if not os.path.exists(self._current_build_directory_path):
-                os.mkdir(self._current_build_directory_path)
+            #if not os.path.exists(self._current_build_directory_path):
+            #    os.mkdir(self._current_build_directory_path)
+            if not os.path.exists(build_directory_path):
+                os.mkdir(build_directory_path)
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
             message = 'segment {} LilyPond file copied & trimmed.'
@@ -298,6 +303,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
+        build_directory_path = self._get_current_directory_path_of_interest()
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -320,7 +326,7 @@ class BuildFileWrangler(Wrangler):
                 directory_entry,
                 )
             target_file_path = os.path.join(
-                self._path,
+                build_directory_path,
                 target_file_name,
                 )
             shutil.copyfile(source_file_path, target_file_path)

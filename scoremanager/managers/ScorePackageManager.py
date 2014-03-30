@@ -36,14 +36,11 @@ class ScorePackageManager(PackageManager):
     @property
     @systemtools.Memoize
     def _build_directory_manager(self):
-        from scoremanager import managers
+        from scoremanager import wranglers
         if self._path is None:
             return
         path = os.path.join(self._path, 'build')
-        return managers.BuildDirectoryManager(
-            path=path,
-            session=self._session,
-            )
+        return wranglers.BuildFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize

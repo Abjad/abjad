@@ -1,14 +1,12 @@
 # -*- encoding: utf-8 -*-
 import filecmp
 import os
-import pytest
-pytest.skip()
 import shutil
 from abjad import *
 import scoremanager
 
 
-def test_BuildDirectoryManager_copy_segment_lilypond_files_01():
+def test_BuildFileWrangler_copy_segment_lilypond_files_01():
 
     # set up score manager and diretories
     score_manager = scoremanager.core.ScoreManager(is_test=True)

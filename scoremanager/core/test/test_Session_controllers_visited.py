@@ -38,7 +38,7 @@ def test_Session_controllers_visited_02():
 
 
 def test_Session_controllers_visited_03():
-    r'''Build directory manager.
+    r'''Build file wrangler.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -50,7 +50,7 @@ def test_Session_controllers_visited_03():
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
-        scoremanager.managers.BuildDirectoryManager(session=session),
+        scoremanager.wranglers.BuildFileWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
