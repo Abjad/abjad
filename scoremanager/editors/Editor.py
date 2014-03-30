@@ -54,8 +54,9 @@ class Editor(Controller):
         if self.target is None:
             summary = ''
         else:
-            summary = 'target={!r}'.format(self.target)
-        return '{}({})'.format(type(self).__name__, summary)
+            class_name = type(self.target).__name__
+            summary = 'target={}'.format(class_name)
+        return '<{}({})>'.format(type(self).__name__, summary)
 
     ### PRIVATE PROPERTIES ###
 
@@ -66,8 +67,8 @@ class Editor(Controller):
         elif self._target_name:
             return self._target_name
         else:
-            return stringtools.string_to_space_delimited_lowercase(
-                self._target_class.__name__)
+            class_name = self._target_class.__name__
+            return stringtools.string_to_space_delimited_lowercase(class_name)
 
     @property
     def _target_class(self):

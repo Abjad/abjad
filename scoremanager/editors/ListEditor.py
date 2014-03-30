@@ -15,7 +15,7 @@ class ListEditor(Editor):
         >>> editor = scoremanager.editors.ListEditor(session=session)
         >>> editor._target = ['first', 'second', 'third']
         >>> editor
-        ListEditor(target=['first', 'second', 'third'])
+        <ListEditor(target=list)>
 
     ::
 
@@ -24,7 +24,7 @@ class ListEditor(Editor):
     ::
 
         >>> editor
-        ListEditor(target=['second', 'third'])
+        <ListEditor(target=list)>
 
     '''
 
