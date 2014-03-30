@@ -143,6 +143,9 @@ class Editor(Controller):
                 self._attributes_in_memory[attribute_name] = attribute_value
         self._target = None
 
+    def _edit(self, class_):
+        print self._io_manager.not_yet_implemented()
+
     def _handle_main_menu_result(self, result):
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
@@ -175,11 +178,8 @@ class Editor(Controller):
     def _initialize_target(self):
         if self.target is not None:
             return
-        try:
+        else:
             self._target = self._target_class()
-        # TODO: remove bald except; this hid an important exception once
-        except:
-            pass
 
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
@@ -198,11 +198,7 @@ class Editor(Controller):
             if attribute_name in self._attributes_in_memory:
                 kwargs[attribute_name] = \
                     self._attributes_in_memory.get(attribute_name)
-        try:
-            self._target = self._target_class(*args, **kwargs)
-        # TODO: remove bald except; this hid an important exception once
-        except:
-            pass
+        self._target = self._target_class(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
         menu = self._io_manager.make_menu(
