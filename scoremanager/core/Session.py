@@ -1232,7 +1232,7 @@ class Session(abctools.AbjadObject):
         lines = []
         for variable_name in sorted(self._variables_to_display):
             if variable_name == 'controller_stack':
-                line = '{}'.format(variable_name)
+                line = '{}:'.format(variable_name)
                 lines.append(line)
                 variable_value = getattr(self, variable_name)
                 for controller in variable_value:
