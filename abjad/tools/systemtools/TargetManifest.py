@@ -17,11 +17,11 @@ class TargetManifest(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, _target_class, *attribute_details, **kwargs):
-        from scoremanager import editors
+        from abjad.tools import systemtools
         self._target_class = _target_class
         self._attribute_details = []
         for attribute_detail in attribute_details:
-            attribute_detail = editors.AttributeDetail(*attribute_detail)
+            attribute_detail = systemtools.AttributeDetail(*attribute_detail)
             self.attribute_details.append(attribute_detail)
         self._target_name_attribute = kwargs.get('target_name_attribute')
 

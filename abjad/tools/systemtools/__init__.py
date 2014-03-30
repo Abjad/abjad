@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from AbjadConfiguration import AbjadConfiguration
+from AttributeDetail import AttributeDetail
 from BenchmarkScoreMaker import BenchmarkScoreMaker
 from Configuration import Configuration
 from ForbidUpdate import ForbidUpdate

@@ -213,7 +213,6 @@ class Editor(Controller):
             result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
-        #editor = self._target_manifest._menu_key_to_editor(
         editor = self._menu_key_to_editor(
             result, 
             session=self._session, 
@@ -317,22 +316,12 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         attribute_name = attribute_name.replace('_', ' ')
         attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
-
-#        # TODO: move AttributeDetail._get_editor() to Editor._get_editor()
-#        editor = attribute_detail._get_editor(
-#            attribute_name, 
-#            prepopulated_value, 
-#            session=session, 
-#            **kwargs
-#            )
-
         editor = self._get_editor(
             attribute_detail,
             attribute_name,
             prepopulated_value,
             **kwargs
             )
-
         return editor
 
     def _menu_key_to_prepopulated_value(self, menu_key):
