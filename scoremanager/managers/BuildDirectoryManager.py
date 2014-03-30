@@ -125,8 +125,7 @@ class BuildDirectoryManager(DirectoryManager):
             name=name,
             )
         self._make_back_cover_menu_section(menu)
-        self._make_directory_menu_section(menu, 
-        is_permanent=True)
+        self._make_directory_menu_section(menu, is_permanent=True)
         self._make_front_cover_menu_section(menu)
         self._make_preface_menu_section(menu)
         self._make_score_menu_sections(menu)
