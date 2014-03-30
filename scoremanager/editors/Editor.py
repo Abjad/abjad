@@ -268,16 +268,14 @@ class Editor(Controller):
         session=None, 
         **kwargs
         ):
-        target_manifest = self._target_manifest
-        assert target_manifest
-        # TODO: shorten overlong attribute name
-        space_delimited_attribute_name = \
-            target_manifest._menu_key_to_space_delimited_lowercase_attribute_name(menu_key)
-        attribute_detail = target_manifest._menu_key_to_attribute_detail(
-            menu_key)
+        manifest = self._target_manifest
+        assert manifest
+        attribute_name = manifest._menu_key_to_attribute_name(menu_key)
+        attribute_name = attribute_name.replace('_', ' ')
+        attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
         # TODO: move AttributeDetail._get_editor() to Editor._get_editor()
         editor = attribute_detail._get_editor(
-            space_delimited_attribute_name, 
+            attribute_name, 
             prepopulated_value, 
             session=session, 
             **kwargs

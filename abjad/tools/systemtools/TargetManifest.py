@@ -52,11 +52,6 @@ class TargetManifest(AbjadObject):
         attribute_name = self._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def _menu_key_to_space_delimited_lowercase_attribute_name(self, menu_key):
-        attribute_detail = self._menu_key_to_attribute_detail(menu_key)
-        if attribute_detail:
-            return attribute_detail._space_delimited_lowercase_name
-
     def _to_initializer_argument_names(self, retrievable_attribute_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.retrievable_name == retrievable_attribute_name:
