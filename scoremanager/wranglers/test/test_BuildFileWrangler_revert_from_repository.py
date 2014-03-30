@@ -3,23 +3,23 @@ from abjad import *
 import scoremanager
 
 
-def test_DistributionFileWrangler_revert_from_repository_01():
+def test_BuildFileWrangler_revert_from_repository_01():
     r'''Flow control reaches method in score.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score d rrv default q'
+    input_ = 'red~example~score u rrv default q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._session._attempted_to_revert_to_repository
 
 
-def test_DistributionFileWrangler_revert_from_repository_02():
+def test_BuildFileWrangler_revert_from_repository_02():
     r'''Flow control reaches method in library.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'd rrv default q'
+    input_ = 'u rrv default q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._session._attempted_to_revert_to_repository
