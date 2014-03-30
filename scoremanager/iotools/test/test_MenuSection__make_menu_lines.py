@@ -9,5 +9,5 @@ def test_MenuSection__make_menu_lines_01():
     input_ = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=input_)
 
-    string = '  * Tempo(Duration(1, 8), 72)'
+    string = '  * 8=72'
     assert score_manager._transcript.last_menu_lines[2] == string

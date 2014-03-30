@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from scoremanager import getters
-from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
+from scoremanager.editors.ListEditor import ListEditor
 
 
-class OctaveTranspositionMappingEditor(ObjectInventoryEditor):
+class OctaveTranspositionMappingEditor(ListEditor):
     r'''OctaveTranspositionMapping editor.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### INITIALIZER ###
 

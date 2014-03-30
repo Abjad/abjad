@@ -65,6 +65,11 @@ class ListEditor(Editor):
         return systemtools.TargetManifest(list,)
 
     @property
+    def _target_name(self):
+        if self.target is not None:
+            return 'edit'
+
+    @property
     def _target_summary_lines(self):
         result = []
         for item in self._items:

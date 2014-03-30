@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
 from scoremanager import iotools
-from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
+from scoremanager.editors.ListEditor import ListEditor
 
 
-class ClefInventoryEditor(ObjectInventoryEditor):
+class ClefInventoryEditor(ListEditor):
     r'''Clef inventory editor.
     '''
 

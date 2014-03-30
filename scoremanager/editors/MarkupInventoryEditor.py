@@ -2,10 +2,10 @@
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from scoremanager import getters
-from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
+from scoremanager.editors.ListEditor import ListEditor
 
 
-class MarkupInventoryEditor(ObjectInventoryEditor):
+class MarkupInventoryEditor(ListEditor):
     r'''Markup inventory editor.
     '''
 
