@@ -157,7 +157,6 @@ class Editor(Controller):
         self._target = None
 
     def _edit(self, target_class):
-        #print self._io_manager.not_yet_implemented()
         self.__target_class = target_class
         self._run()
 
