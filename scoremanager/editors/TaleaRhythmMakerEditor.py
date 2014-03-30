@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from scoremanager import getters
-from scoremanager.editors.RhythmMakerEditor import RhythmMakerEditor
+from scoremanager.editors.Editor import Editor
 
 
-class TaleaRhythmMakerEditor(RhythmMakerEditor):
+class TaleaRhythmMakerEditor(Editor):
     r'''TaleaRhythmMaker editor.
     '''
 
@@ -26,3 +26,12 @@ class TaleaRhythmMakerEditor(RhythmMakerEditor):
             ('extra_counts_per_division', None, 'ad', getters.get_integers, False),
             ('split_divisions_by_counts', None, 'sd', getters.get_integers, False),
             )
+
+    @property
+    def _target_summary_lines(self):
+        result = []
+        if self.target:
+            result.append(self.target.__class__.__name__)
+            result.append('')
+            result.extend(Editor._target_summary_lines.fget(self))
+        return result

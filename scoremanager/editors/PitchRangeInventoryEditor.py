@@ -11,7 +11,7 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-    )
+        )
 
     ### INITIALIZER ###
 

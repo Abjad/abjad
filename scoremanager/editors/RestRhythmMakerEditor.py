@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from scoremanager import getters
-from scoremanager.editors.RhythmMakerEditor import RhythmMakerEditor
+from scoremanager.editors.Editor import Editor
 
 
-class RestRhythmMakerEditor(RhythmMakerEditor):
+class RestRhythmMakerEditor(Editor):
     r'''RestRhythmMaker editor.
     '''
 
