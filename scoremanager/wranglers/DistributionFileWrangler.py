@@ -49,7 +49,7 @@ class DistributionFileWrangler(Wrangler):
         if self._session.is_in_score:
             return 'distribution directory'
         else:
-            return 'distribution artifact library'
+            return 'distribution file library'
 
     @property
     def _user_input_to_action(self):

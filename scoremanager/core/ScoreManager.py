@@ -295,7 +295,7 @@ class ScoreManager(Controller):
             is_hidden=True,
             )
         section.append(('library - build files', 'u'))
-        section.append(('library - distribution artifacts', 'd'))
+        section.append(('library - distribution files', 'd'))
         section.append(('library - makers', 'k'))
         section.append(('library - materials', 'm'))
         section.append(('library - segments', 'g'))
@@ -529,7 +529,7 @@ class ScoreManager(Controller):
         self._build_file_wrangler._run()
 
     def manage_distribution_artifact_library(self):
-        r'''Manages distribution artifact library.
+        r'''Manages distribution file library.
 
         Returns none.
         '''

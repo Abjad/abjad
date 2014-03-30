@@ -20,14 +20,14 @@ def test_Session_is_navigating_to_material_library_01():
 
 
 def test_Session_is_navigating_to_material_library_02():
-    r'''From distribution artifact library to material library.
+    r'''From distribution file library to material library.
     '''
 
     input_ = 'd m q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - distribution artifact library',
+        'Score manager - distribution file library',
         'Score manager - material library',
         ]
     assert score_manager._transcript.titles == titles

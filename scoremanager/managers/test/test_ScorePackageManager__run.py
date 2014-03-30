@@ -110,8 +110,9 @@ def test_ScorePackageManager__run_05():
         session=session,
         )
 
-    assert manager._session is manager._distribution_directory_manager._session
     assert manager._session is manager._build_directory_manager._session
-    assert manager._session is manager._segment_package_wrangler._session
-    assert manager._session is manager._material_package_wrangler._session
+    assert manager._session is manager._distribution_file_wrangler._session
     assert manager._session is manager._material_manager_wrangler._session
+    assert manager._session is manager._material_package_wrangler._session
+    assert manager._session is manager._segment_package_wrangler._session
+    assert manager._session is manager._stylesheet_wrangler._session

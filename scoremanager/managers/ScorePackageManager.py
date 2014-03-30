@@ -40,24 +40,18 @@ class ScorePackageManager(PackageManager):
         if self._path is None:
             return
         path = os.path.join(self._path, 'build')
-        manager = managers.BuildDirectoryManager(
+        return managers.BuildDirectoryManager(
             path=path,
             session=self._session,
             )
-        return manager
 
     @property
     @systemtools.Memoize
-    def _distribution_directory_manager(self):
-        from scoremanager import managers
+    def _distribution_file_wrangler(self):
+        from scoremanager import wranglers
         if self._path is None:
             return
-        path = os.path.join(self._path, 'distribution')
-        manager = managers.DistributionDirectoryManager(
-            path=path,
-            session=self._session,
-            )
-        return manager
+        return wranglers.DistributionFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
@@ -132,7 +126,7 @@ class ScorePackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'd': self._distribution_directory_manager._run,
+            'd': self._distribution_file_wrangler._run,
             'g': self._segment_package_wrangler._run,
             'fix': self.fix,
             'imro': self._instrumentation_module_manager.view,

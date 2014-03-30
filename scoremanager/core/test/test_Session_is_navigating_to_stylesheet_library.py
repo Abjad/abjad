@@ -26,7 +26,7 @@ def test_Session_is_navigating_to_stylesheet_library_02():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - distribution artifact library',
+        'Score manager - distribution file library',
         'Score manager - stylesheet library',
         ]
     assert score_manager._transcript.titles == titles

@@ -29,7 +29,7 @@ def test_Session_is_navigating_to_score_maker_modules_02():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - distribution',
+        'Red Example Score (2013) - distribution directory',
         'Red Example Score (2013) - makers',
         ]
     assert score_manager._transcript.titles == titles
