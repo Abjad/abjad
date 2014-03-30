@@ -210,6 +210,15 @@ class Clef(AbjadObject):
     def _lilypond_format(self):
         return r'\clef "{}"'.format(self._name)
 
+    @property
+    def _target_manifest(self):
+        from scoremanager import editors
+        from scoremanager import getters
+        return editors.TargetManifest(
+            type(self),
+            ('clef_name', 'nm', getters.get_string),
+            )
+
     ### PRIVATE METHODS ###
 
     def _calculate_middle_c_position(self, clef_name):

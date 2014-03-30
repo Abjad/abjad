@@ -91,7 +91,7 @@ class AttributeDetail(AbjadObject):
         parts = ', '.join(parts)
         return '{}({})'.format(type(self).__name__, parts)
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     def _get_editor(
         self, 
@@ -102,8 +102,10 @@ class AttributeDetail(AbjadObject):
         ):
         from scoremanager import iotools
         from scoremanager import wizards
-        if (isinstance(self.editor_callable, types.FunctionType) and
-            self.editor_callable.__name__.startswith('make_')):
+        if (
+            isinstance(self.editor_callable, types.FunctionType) and
+            self.editor_callable.__name__.startswith('make_')
+            ):
             editor = self.editor_callable(session=session, **kwargs)
         elif isinstance(self.editor_callable, types.FunctionType):
             editor = self.editor_callable(

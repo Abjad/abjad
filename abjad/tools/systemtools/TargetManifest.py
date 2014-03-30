@@ -48,24 +48,6 @@ class TargetManifest(AbjadObject):
         if attribute_detail:
             return attribute_detail.name
 
-    def _menu_key_to_editor(
-        self, 
-        menu_key, 
-        prepopulated_value, 
-        session=None, 
-        **kwargs
-        ):
-        space_delimited_attribute_name = \
-            self._menu_key_to_space_delimited_lowercase_attribute_name(menu_key)
-        attribute_detail = self._menu_key_to_attribute_detail(menu_key)
-        editor = attribute_detail._get_editor(
-            space_delimited_attribute_name, 
-            prepopulated_value, 
-            session=session, 
-            **kwargs
-            )
-        return editor
-
     def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = self._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
@@ -75,15 +57,13 @@ class TargetManifest(AbjadObject):
         if attribute_detail:
             return attribute_detail._space_delimited_lowercase_name
 
-    def _to_initializer_argument_names(
-        self, retrievable_attribute_name):
+    def _to_initializer_argument_names(self, retrievable_attribute_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.retrievable_name == retrievable_attribute_name:
                 return attribute_detail.name
         raise ValueError
 
-    def _to_retrievable_attribute_name(
-        self, initializer_argument_name):
+    def _to_retrievable_attribute_name(self, initializer_argument_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.name == initializer_argument_name:
                 return attribute_detail.retrievable_name

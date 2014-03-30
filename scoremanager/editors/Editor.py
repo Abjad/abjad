@@ -169,7 +169,8 @@ class Editor(Controller):
             result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
-        editor = self._target_manifest._menu_key_to_editor(
+        #editor = self._target_manifest._menu_key_to_editor(
+        editor = self._menu_key_to_editor(
             result, 
             session=self._session, 
             prepopulated_value=prepopulated_value, 
@@ -259,6 +260,29 @@ class Editor(Controller):
 
     def _menu_key_to_delegated_editor_kwargs(self, menu_key):
         return {}
+
+    def _menu_key_to_editor(
+        self, 
+        menu_key, 
+        prepopulated_value, 
+        session=None, 
+        **kwargs
+        ):
+        target_manifest = self._target_manifest
+        assert target_manifest
+        # TODO: shorten overlong attribute name
+        space_delimited_attribute_name = \
+            target_manifest._menu_key_to_space_delimited_lowercase_attribute_name(menu_key)
+        attribute_detail = target_manifest._menu_key_to_attribute_detail(
+            menu_key)
+        # TODO: move AttributeDetail._get_editor() to Editor._get_editor()
+        editor = attribute_detail._get_editor(
+            space_delimited_attribute_name, 
+            prepopulated_value, 
+            session=session, 
+            **kwargs
+            )
+        return editor
 
     def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = \
