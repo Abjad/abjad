@@ -55,6 +55,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Gets format of user input getter.
+
+        Returns string.
+        '''
+        return repr(self)
+
     def __len__(self):
         r'''Gets number of prompts in user input getter menu.
 
@@ -68,6 +75,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         Returns string.
         '''
         return '<{} ({})>'.format(type(self).__name__, len(self))
+
+    def __str__(self):
+        r'''Gets string representation of user input getter.
+
+        Returns string.
+        '''
+        return repr(self)
 
     ### PRIVATE PROPERTIES ###
 
