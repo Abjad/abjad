@@ -17,8 +17,8 @@ class TerracedDynamicsHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             handlertools.TerracedDynamicsHandler,
             ('dynamics', None, 'dy', getters.get_dynamics, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

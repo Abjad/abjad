@@ -17,8 +17,8 @@ class PatternedArticulationsHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             handlertools.PatternedArticulationsHandler,
             ('articulation_lists', None, 'al', getters.get_lists, False),
             ('minimum_duration', None, 'nd', getters.get_duration, False),

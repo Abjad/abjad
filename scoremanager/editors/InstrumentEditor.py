@@ -19,8 +19,9 @@ class InstrumentEditor(Editor):
 
     @property
     def _target_manifest(self):
+        from abjad.tools import systemtools
         from scoremanager import editors
-        return editors.TargetManifest(
+        return systemtools.TargetManifest(
             instrumenttools.Instrument,
             (
                 'instrument_name', 

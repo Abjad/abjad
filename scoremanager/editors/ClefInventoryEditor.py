@@ -29,8 +29,8 @@ class ClefInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             indicatortools.ClefInventory,
             target_name_attribute='name',
             )

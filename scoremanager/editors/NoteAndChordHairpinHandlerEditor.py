@@ -17,8 +17,8 @@ class NoteAndChordHairpinHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             handlertools.NoteAndChordHairpinHandler,
             ('hairpin_token', None, 'ht', getters.get_hairpin_token, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

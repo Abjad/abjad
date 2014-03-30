@@ -17,8 +17,8 @@ class ReiteratedArticulationHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             handlertools.ReiteratedArticulationHandler,
             ('articulation_list', None, 'al', getters.get_articulations, False),
             ('minimum_duration', None, 'nd', getters.get_duration, False),

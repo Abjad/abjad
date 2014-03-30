@@ -30,8 +30,8 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             indicatortools.TempoInventory,
             target_name_attribute='inventory name',
             )

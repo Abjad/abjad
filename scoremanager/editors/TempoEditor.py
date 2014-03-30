@@ -18,8 +18,8 @@ class TempoEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest(
+        from abjad.tools import systemtools
+        return systemtools.TargetManifest(
             indicatortools.Tempo,
             ('duration', 'd', getters.get_duration),
             ('units_per_minute', 'pm', getters.get_integer),
