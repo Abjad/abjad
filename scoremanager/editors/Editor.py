@@ -33,7 +33,7 @@ class Editor(Controller):
         if target is not None:
             assert isinstance(target, self._target_class)
         self._target = target
-        self._initialize_attributes_in_memory()
+        self._attributes_in_memory = {}
         target_manifest = self._target_manifest
         if not target_manifest:
             message = 'can not find target manifest for {!r}.'
@@ -119,10 +119,10 @@ class Editor(Controller):
                 self._initialize_target_from_attributes_in_memory()
             except ValueError:
                 pass
-        self._initialize_attributes_in_memory()
+        self._attributes_in_memory = {}
 
     def _copy_target_attributes_to_memory(self):
-        self._initialize_attributes_in_memory()
+        self._attributes_in_memory = {}
         retrievable_attribute_names = []
         if hasattr(self, '_target_manifest'):
             names = self._target_manifest.positional_initializer_retrievable_attribute_names
@@ -144,8 +144,10 @@ class Editor(Controller):
                 self._attributes_in_memory[attribute_name] = attribute_value
         self._target = None
 
-    def _edit(self, class_):
-        print self._io_manager.not_yet_implemented()
+    def _edit(self, target_class):
+        #print self._io_manager.not_yet_implemented()
+        self._target_class = target_class
+        self._run()
 
     def _handle_main_menu_result(self, result):
         if result == 'user entered lone return':
@@ -172,9 +174,6 @@ class Editor(Controller):
             else:
                 attribute_value = result
             self._set_target_attribute(attribute_name, attribute_value)
-
-    def _initialize_attributes_in_memory(self):
-        self._attributes_in_memory = {}
 
     def _initialize_target(self):
         if self.target is not None:
@@ -270,7 +269,6 @@ class Editor(Controller):
             entry_point = None
             is_first_pass = True
             while True:
-                #breadcrumb = self._breadcrumb
                 if self._is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
