@@ -9,7 +9,7 @@ class UserInputWrapper(collections.OrderedDict):
 
         ::
 
-            >>> wrapper = scoremanager.editors.UserInputWrapper()
+            >>> wrapper = scoremanager.iotools.UserInputWrapper()
             >>> wrapper['flavor'] = 'cherry'
             >>> wrapper['duration'] = Duration(1, 4)
 
@@ -65,7 +65,7 @@ class UserInputWrapper(collections.OrderedDict):
 
                 >>> for line in wrapper.formatted_lines:
                 ...     print line
-                user_input_wrapper = UserInputWrapper([
+                user_input_wrapper = iotools.UserInputWrapper([
                     ('flavor', 'cherry'),
                     ('duration', durationtools.Duration(1, 4))])
 
@@ -74,11 +74,13 @@ class UserInputWrapper(collections.OrderedDict):
         result = []
         items = self.list_items()
         if not items:
-            result.append(
-                'user_input_wrapper = {}([])'.format(type(self).__name__))
+            line = 'user_input_wrapper = iotools.{}([])'
+            line = line.format(type(self).__name__)
+            result.append(line)
         else:
-            result.append(
-                'user_input_wrapper = {}(['.format(type(self).__name__))
+            line = 'user_input_wrapper = iotools.{}(['
+            line = line.format(type(self).__name__)
+            result.append(line)
             for name, value in items[:-1]:
                 template = '\t({!r}, {!r}),'
                 if hasattr(value, '_storage_format_specification'):
@@ -95,8 +97,7 @@ class UserInputWrapper(collections.OrderedDict):
 
     @property
     def is_complete(self):
-        r'''Is true when user input wrapper is complete.
-        Otherwise false.
+        r'''Is true when user input wrapper is complete. Otherwise false.
 
         ..  container:: example
 
@@ -150,13 +151,14 @@ class UserInputWrapper(collections.OrderedDict):
             ::
 
                 >>> wrapper.user_input_module_import_statements
-                ['from scoremanager.editors import UserInputWrapper']
+                ['from scoremanager import iotools']
 
         Returns sorted list.
         '''
-        result = [
-            'from scoremanager.editors import UserInputWrapper']
-        result.extend(self._user_input_module_import_statements)
+        result = ['from scoremanager import iotools']
+        for statement in self._user_input_module_import_statements:
+            if statement not in result:
+                result.append(statement)
         result.sort()
         return result
 

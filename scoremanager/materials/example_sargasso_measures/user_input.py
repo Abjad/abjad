@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from scoremanager.editors import UserInputWrapper
+from scoremanager import iotools
 
 
-user_input_wrapper = UserInputWrapper([
+user_input_wrapper = iotools.UserInputWrapper([
 	('measure_denominator', 4),
 	('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
 	('measure_division_denominator', 16),

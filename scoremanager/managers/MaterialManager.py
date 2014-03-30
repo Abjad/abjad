@@ -284,8 +284,8 @@ class MaterialManager(PackageManager):
             raise ValueError(result)
 
     def _initialize_empty_user_input_wrapper(self):
-        from scoremanager import editors
-        user_input_wrapper = editors.UserInputWrapper()
+        from scoremanager import iotools
+        user_input_wrapper = iotools.UserInputWrapper()
         user_input_wrapper._user_input_module_import_statements = \
             getattr(self, 'user_input_module_import_statements', [])[:]
         names = tuple([x[0] for x in self.user_input_demo_values])

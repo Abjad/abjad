@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad import *
-from scoremanager.editors import UserInputWrapper
+from scoremanager import iotools
 
 
-user_input_wrapper = UserInputWrapper([
+user_input_wrapper = iotools.UserInputWrapper([
 	('measure_denominator', None),
 	('measure_numerator_talea', None),
 	('measure_division_denominator', None),

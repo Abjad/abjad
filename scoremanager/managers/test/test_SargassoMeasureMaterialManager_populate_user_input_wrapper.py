@@ -16,7 +16,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         'testsargasso',
         )
     input_ = 'm nmm sargasso testsargasso default q'
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', None),
         ('measure_numerator_talea', None),
         ('measure_division_denominator', None),
@@ -65,7 +65,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
         ('measure_division_denominator', 16),
@@ -109,7 +109,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', None),
         ('measure_numerator_talea', None),
         ('measure_division_denominator', None),
@@ -153,7 +153,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', None),
         ('measure_numerator_talea', None),
         ('measure_division_denominator', 16),
@@ -199,7 +199,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
         ('measure_division_denominator', 16),
@@ -245,7 +245,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 3, 3]),
         ('measure_division_denominator', 16),
@@ -290,7 +290,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
         '__metadata__.py',
         'user_input.py',
         ]
-    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+    user_input_wrapper = scoremanager.iotools.UserInputWrapper([
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
         ('measure_division_denominator', 16),
