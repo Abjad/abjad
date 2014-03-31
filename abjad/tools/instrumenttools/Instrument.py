@@ -176,6 +176,14 @@ class Instrument(AbjadObject):
         return systemtools.TargetManifest(
             type(self),
             (
+                'allowable_clefs', 
+                'allowable clefs',
+                'clefs', 
+                'cf', 
+                editors.ClefInventoryEditor,
+                False,
+                ),
+            (
                 'instrument_name', 
                 'instrument name', 
                 'in', 
@@ -187,6 +195,14 @@ class Instrument(AbjadObject):
                 'instrument name markup',
                 'im', 
                 getters.get_markup,
+                False,
+                ),
+            (
+                'pitch_range', 
+                'pitch range',
+                'range', 
+                'rg', 
+                getters.get_symbolic_pitch_range_string,
                 False,
                 ),
             (
@@ -204,19 +220,10 @@ class Instrument(AbjadObject):
                 False,
                 ),
             (
-                'pitch_range', 
-                'pitch range',
-                'range', 
-                'rg', 
-                getters.get_symbolic_pitch_range_string,
-                False,
-                ),
-            (
-                'allowable_clefs', 
-                'allowable clefs',
-                'clefs', 
-                'cf', 
-                editors.ClefInventoryEditor,
+                'sounding_pitch_of_written_middle_c',
+                'sounding pitch of written middle C',
+                'sp',
+                getters.get_named_pitch,
                 False,
                 ),
             )
