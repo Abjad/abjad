@@ -30,36 +30,32 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-12. Make sure that editing instrumentation doesn't change FrenchHorn to merely
-    Instrument. Make sure that editing instrumentation doesn't reset
-    sounding_pitch_of_written_middle_c to C4.
-
-13. Note that ArticulationHandlerMaterialManager implementation is limited
+12. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-14. Implement an 'all whatever - edit' command.
+13. Implement an 'all whatever - edit' command.
 
-15. Write view tests. Start with segment wrangler.
+14. Write view tests. Start with segment wrangler.
 
-16. Search for 'whatever_section = menu.make_*_section()' and
+15. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-17. Make ScorePackageManager create missing top-level directories
+16. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-18. Make (ls) work in stylesheets menu. So (score > y > ls).
+17. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-19. Add (lytr) for 'lilypond ly - trash'. This will work together
+18. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-20. Write py.test tests for the following properties and methods:
+19. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -67,7 +63,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-21. Add 'output module - check (omc)' command.
+20. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -77,17 +73,17 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-22. Make 'vmro' provide a message when no __views__ module is found.
+21. Make 'vmro' provide a message when no __views__ module is found.
 
-23. Implement a 'views module - rewrite' (vmrw) command.
+22. Implement a 'views module - rewrite' (vmrw) command.
 
-24. Implement DirectoryManager.check_contents().
+23. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-25. Encapsulate ...
+24. Encapsulate ...
         process = subprocess.Popen(
             command,
             shell=True,
@@ -96,20 +92,20 @@
             )
     ... in an IOManager method.
 
-26. Do something to put an empty .gitignore file in every directory everywhere.
+25. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-27. Eventually implement a Score Manager start-up behavior that will
+26. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-28: Bug:
+27: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-29. Bug:
+28. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
         in _get_next_score_directory_path
         index = paths.index(score_path)
