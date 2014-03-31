@@ -20,6 +20,19 @@ class MarkupEditor(Editor):
         from abjad.tools import systemtools
         return systemtools.TargetManifest(
             markuptools.Markup,
-            ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),
-            ('direction', 'direction', 'dr', getters.get_direction_string, False),
+            (
+                'contents', 
+                'contents_string', 
+                'arg', 
+                'ag', 
+                getters.get_string, 
+                True,
+                ),
+            (
+                'direction', 
+                'direction', 
+                'dr', 
+                getters.get_direction_string, 
+                False,
+                ),
             )

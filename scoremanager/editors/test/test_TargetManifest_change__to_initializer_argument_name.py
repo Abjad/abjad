@@ -10,7 +10,7 @@ def test_TargetManifest_change__to_initializer_argument_name_01():
     editor = scoremanager.editors.MarkupEditor(session=session)
 
     assert editor._target_manifest._to_initializer_argument_names(
-        'contents_string') == 'arg'
+        'contents_string') == 'contents'
     assert editor._target_manifest._to_initializer_argument_names(
         'direction') == 'direction'
 

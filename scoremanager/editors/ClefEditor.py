@@ -20,5 +20,5 @@ class ClefEditor(Editor):
         from abjad.tools import systemtools
         return systemtools.TargetManifest(
             indicatortools.Clef,
-            ('clef_name', 'nm', getters.get_string),
+            ('name', 'nm', getters.get_string),
             )

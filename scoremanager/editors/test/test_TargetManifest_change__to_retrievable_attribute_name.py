@@ -9,11 +9,11 @@ def test_TargetManifest_change__to_retrievable_attribute_name_01():
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.MarkupEditor(session=session)
 
-    assert editor._target_manifest._to_retrievable_attribute_name('arg') == \
-        'contents_string'
+    assert editor._target_manifest._to_retrievable_attribute_name(
+        'contents') == 'contents_string'
 
-    assert editor._target_manifest._to_retrievable_attribute_name('direction') == \
-        'direction'
+    assert editor._target_manifest._to_retrievable_attribute_name(
+        'direction') == 'direction'
 
 
 def test_TargetManifest_change__to_retrievable_attribute_name_02():

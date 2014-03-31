@@ -97,6 +97,7 @@ class PitchRange(AbjadObject):
             start, stop = args
             if start is None:
                 start = start
+            # TODO: define prototype = whatever to clean up statement
             elif isinstance(start, (
                 pitchtools.Pitch,
                 int,
@@ -115,6 +116,7 @@ class PitchRange(AbjadObject):
             self._start = start
             if stop is None:
                 stop = stop
+            # TODO: define prototype = whatever to clean up statement
             elif isinstance(stop, (
                 pitchtools.Pitch,
                 int,

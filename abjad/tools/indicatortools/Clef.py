@@ -216,7 +216,7 @@ class Clef(AbjadObject):
         from scoremanager import getters
         return systemtools.TargetManifest(
             type(self),
-            ('clef_name', 'nm', getters.get_string),
+            ('name', 'nm', getters.get_string),
             )
 
     ### PRIVATE METHODS ###

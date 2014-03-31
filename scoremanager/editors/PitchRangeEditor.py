@@ -20,6 +20,9 @@ class PitchRangeEditor(Editor):
         from abjad.tools import systemtools
         return systemtools.TargetManifest(
             pitchtools.PitchRange,
-            ('one_line_named_pitch_repr', 'rp', 
-                getters.get_symbolic_pitch_range_string),
+            (
+                'one_line_named_pitch_repr', 
+                'rp', 
+                getters.get_symbolic_pitch_range_string,
+                ),
             )

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import types
 from abjad.tools import stringtools
+from abjad.tools.topleveltools import new
 from scoremanager.core.Controller import Controller
 
 
@@ -17,7 +18,6 @@ class Editor(Controller):
         '_is_autoadvancing',
         '_is_autostarting',
         '_target',
-        '__target_class',
         )
 
     ### INITIALIZER ###
@@ -37,9 +37,7 @@ class Editor(Controller):
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
-        if type(self).__name__ == 'Editor':
-            self.__target_class = None
-        else:
+        if not type(self).__name__ == 'Editor':
             target_manifest = self._target_manifest
             if not target_manifest:
                 message = 'can not find target manifest for {!r}.'
@@ -81,11 +79,7 @@ class Editor(Controller):
 
     @property
     def _target_manifest(self):
-        target_class = self.__target_class
-        dummy_target = target_class()
-        target_manifest = getattr(dummy_target, '_target_manifest')
-        return target_manifest
-        #return self.target._target_manifest
+        return self.target._target_manifest
 
     @property
     def _target_name(self):
@@ -157,9 +151,9 @@ class Editor(Controller):
                 self._attributes_in_memory[attribute_name] = attribute_value
         self._target = None
 
-    def _edit(self, target_class):
-        self.__target_class = target_class
-        self._run()
+#    def _edit(self, target_class):
+#        self.__target_class = target_class
+#        self._run()
 
     def _get_attribute_editor(
         self, 
@@ -210,7 +204,6 @@ class Editor(Controller):
             return
         attribute_name = self._target_manifest._menu_key_to_attribute_name(
             result)
-        #print repr(attribute_name), 'AN'
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
         attribute_editor = self._menu_key_to_attribute_editor(
@@ -219,10 +212,8 @@ class Editor(Controller):
             prepopulated_value=prepopulated_value, 
             **kwargs
             )
-        #print repr(attribute_editor), 'EDITOR'
         if attribute_editor is not None:
             result = attribute_editor._run()
-            #print repr(result), 'RES'
             if self._should_backtrack():
                 self._is_autoadvancing = False
                 return
@@ -380,15 +371,35 @@ class Editor(Controller):
                     return
 
     def _set_target_attribute(self, attribute_name, attribute_value):
+        from abjad.tools import indicatortools
+        from abjad.tools import pitchtools
         if self.target is not None:
             if not self._session.is_complete:
                 # if the attribute is read / write
                 try:
                     setattr(self.target, attribute_name, attribute_value)
+                    return
                 # elif the attribute is read only
                 except AttributeError:
+                    pass
+                # TODO: reimplement as something in PitchRange._target_manifest
+                if isinstance(self.target, pitchtools.PitchRange):
+                    assert attribute_name == 'one_line_named_pitch_repr'
+                    new_target = type(self.target)(attribute_value)
+                    self._target = new_target
+                # TODO: reimplement Tempo.__init__; see GitHub #366
+                elif isinstance(self.target, indicatortools.Tempo):
                     self._copy_target_attributes_to_memory()
-                    self._attributes_in_memory[attribute_name] = attribute_value
+                    self._attributes_in_memory[attribute_name] = \
+                        attribute_value
+                elif hasattr(self.target, '__new__'):
+                    kwargs = {attribute_name: attribute_value}
+                    new_target = new(self.target, **kwargs)
+                    self._target = new_target
+                else:
+                    self._copy_target_attributes_to_memory()
+                    self._attributes_in_memory[attribute_name] = \
+                        attribute_value
         else:
             self._attributes_in_memory[attribute_name] = attribute_value
 
