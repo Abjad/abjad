@@ -30,14 +30,13 @@ class DynamicHandlerMaterialManager(MaterialManager):
         return isinstance(material, handlertools.DynamicHandler)
 
     def _get_output_material_editor(self, target=None):
-        from scoremanager import wizards
+        from scoremanager import editors
         if target:
-            wizard = wizards.DynamicHandlerCreationWizard()
-            dynamic_handler_editor = wizard._get_target_editor(
-                target.__class__.__name__, 
+            editor = editors.Editor(
+                session=self._session,
                 target=target,
                 )
-            return dynamic_handler_editor
+            return editor
         else:
             return True
 

@@ -318,3 +318,23 @@ def test_Editor__run_15():
         )
 
     assert editor.target == handler
+
+
+def test_Editor__run_16():
+
+    session = scoremanager.core.Session(is_test=True)
+    target = handlertools.ReiteratedDynamicHandler()
+    editor = scoremanager.editors.Editor(
+        session=session, 
+        is_autoadvancing=True,
+        target=target
+        )
+    input_ = '1 f Duration(1, 8) q'
+    editor._run(pending_user_input=input_)
+
+    handler = handlertools.ReiteratedDynamicHandler(
+        dynamic_name='f',
+        minimum_duration=Duration(1, 8),
+        )
+
+    assert editor.target == handler
