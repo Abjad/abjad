@@ -16,5 +16,5 @@ def test_Editor___repr___01():
     string = '<PerformerEditor(target=Performer)>'
     assert string in transcript_contents
 
-    string = '<InstrumentEditor(target=Cello)>' 
+    string = '<Editor(target=Cello)>' 
     assert string in transcript_contents
