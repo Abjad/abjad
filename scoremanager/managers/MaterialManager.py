@@ -258,8 +258,7 @@ class MaterialManager(PackageManager):
             output_material = result[0]
             return output_material
 
-    @staticmethod
-    def _get_output_material_editor(target=None, session=None):
+    def _get_output_material_editor(self, target=None):
         return
 
     def _get_storage_format(self, expr):
@@ -383,7 +382,7 @@ class MaterialManager(PackageManager):
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
         if self._user_input_wrapper_in_memory:
-            editor = self._get_output_material_editor(session=self._session)
+            editor = self._get_output_material_editor()
             if not editor:
                 self._make_user_input_module_menu_section(menu)
         try:
@@ -396,7 +395,7 @@ class MaterialManager(PackageManager):
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        editor = self._get_output_material_editor(session=self._session)
+        editor = self._get_output_material_editor()
         if not editor:
             self._make_user_input_module_menu_section(menu)
         self._make_material_menu_section(menu)
@@ -424,7 +423,7 @@ class MaterialManager(PackageManager):
 
     def _make_material_menu_section(self, menu):
         section = menu.make_command_section(name='material')
-        editor = self._get_output_material_editor(session=self._session)
+        editor = self._get_output_material_editor()
         if editor:
             section.append(('material - edit', 'me'))
         section.append(('material - illustrate', 'mi'))
@@ -433,7 +432,7 @@ class MaterialManager(PackageManager):
     def _make_material_summary_menu_section(self, menu):
         if not self._should_have_output_material_section():
             return
-        editor = self._get_output_material_editor(session=self._session)
+        editor = self._get_output_material_editor()
         if not editor:
             return
         if not os.path.isfile(self._output_module_path):
@@ -441,7 +440,6 @@ class MaterialManager(PackageManager):
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(
             target=output_material,
-            session=self._session,
             )
         target_summary_lines = editor._target_summary_lines
         if not target_summary_lines:
@@ -451,8 +449,7 @@ class MaterialManager(PackageManager):
             section.append(line)
         return section
 
-    @staticmethod
-    def _make_output_material():
+    def _make_output_material(self):
         return
 
     def _make_output_material_from_user_input_wrapper_in_memory(self):
@@ -592,10 +589,12 @@ class MaterialManager(PackageManager):
     def _should_have_output_material_section(self):
         if os.path.isfile(self._definition_module_path):
             return True
-        if bool(self._user_input_wrapper_in_memory) and \
-            self._user_input_wrapper_in_memory.is_complete:
+        if (
+            bool(self._user_input_wrapper_in_memory) and
+            self._user_input_wrapper_in_memory.is_complete
+            ):
             return True
-        editor = self._get_output_material_editor(session=self._session)
+        editor = self._get_output_material_editor()
         if editor:
             return True
         return False
@@ -687,25 +686,22 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        editor = self._get_output_material_editor(session=self._session)
+        editor = self._get_output_material_editor()
         if not editor:
             return
         output_material = self._execute_output_module()
         if not hasattr(self, '_make_output_material'):
             output_material_handler = self._get_output_material_editor(
                 target=output_material,
-                session=self._session,
                 )
         elif output_material is None and self._make_output_material() and \
             isinstance(self._make_output_material(), wizards.Wizard):
             output_material_handler = self._make_output_material(
                 target=output_material,
-                session=self._session,
                 )
         else:
             output_material_handler = self._get_output_material_editor(
                 target=output_material,
-                session=self._session,
                 )
         output_material_handler._run()
         if self._should_backtrack():

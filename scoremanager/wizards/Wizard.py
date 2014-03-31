@@ -47,6 +47,7 @@ class Wizard(ScoreManagerObject):
         return target_editor
 
     def _run(self, pending_user_input=None):
+        from scoremanager import editors
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
@@ -56,7 +57,19 @@ class Wizard(ScoreManagerObject):
             handler_class_name = selector._run()
             if self._should_backtrack():
                 return
-            handler_editor = self._get_target_editor(handler_class_name)
+            statement = 'target = handlertools.{}()'
+            statement = statement.format(handler_class_name)
+            exec('from abjad import *')
+            exec('from experimental.tools import handlertools')
+            exec(statement)
+            assert target
+            if hasattr(target, '_target_manifest'):
+                handler_editor = editors.Editor(
+                    session=self._session,
+                    target=target,
+                    )
+            else:
+                handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._is_autoadvancing = True
             handler_editor._is_autostarting = True
             handler_editor._run()

@@ -29,24 +29,21 @@ class ArticulationHandlerMaterialManager(MaterialManager):
         from experimental.tools import handlertools
         return isinstance(x, handlertools.ArticulationHandler)
 
-    @staticmethod
-    def _get_output_material_editor(target=None, session=None):
-        from scoremanager import wizards
+    def _get_output_material_editor(self, target=None):
+        from scoremanager import editors
         if target:
-            wizard = wizards.ArticulationHandlerCreationWizard()
-            articulation_handler_editor = wizard._get_target_editor(
-                target.__class__.__name__, 
+            editor = editors.Editor(
+                session=self._session,
                 target=target,
                 )
-            return articulation_handler_editor
+            return editor
         else:
             return True
 
-    @staticmethod
-    def _make_output_material(target=None, session=None):
+    def _make_output_material(self, target=None):
         from scoremanager import wizards
         wizard = wizards.ArticulationHandlerCreationWizard(
-            session=session,
+            session=self._session,
             target=target,
             )
         return wizard

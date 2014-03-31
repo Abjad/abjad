@@ -67,15 +67,15 @@ class RhythmMakerMaterialManager(MaterialManager):
     def _check_output_material(expr):
         return isinstance(expr, rhythmmakertools.RhythmMaker)
 
-    @staticmethod
-    def _get_output_material_editor(target=None, session=None):
+    def _get_output_material_editor(self, target=None):
         if target:
             wizard = RhythmMakerCreationWizard()
             rhythm_maker_editor = wizard._get_target_editor(
-                target.__class__.__name__, target=target)
+                target.__class__.__name__, 
+                target=target,
+                )
             return rhythm_maker_editor
 
-    @staticmethod
-    def _make_output_material():
+    def _make_output_material(self):
         from scoremanager import wizards
         return wizards.RhythmMakerCreationWizard

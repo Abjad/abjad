@@ -29,8 +29,7 @@ class DynamicHandlerMaterialManager(MaterialManager):
         from experimental.tools import handlertools
         return isinstance(material, handlertools.DynamicHandler)
 
-    @staticmethod
-    def _get_output_material_editor(target=None, session=None):
+    def _get_output_material_editor(self, target=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.DynamicHandlerCreationWizard()
@@ -42,11 +41,10 @@ class DynamicHandlerMaterialManager(MaterialManager):
         else:
             return True
 
-    @staticmethod
-    def _make_output_material(target=None, session=None):
+    def _make_output_material(self, target=None):
         from scoremanager import wizards
         wizard = wizards.DynamicHandlerCreationWizard(
-            session=session,
+            session=self._session,
             target=target,
             )
         return wizard
