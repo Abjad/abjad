@@ -9,6 +9,7 @@ class RhythmMakerCreationWizard(Wizard):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_handler_editor_class_name_suffix',
         )
 
     ### INITIALIZER ###
@@ -23,8 +24,8 @@ class RhythmMakerCreationWizard(Wizard):
         selector = Selector.make_rhythm_maker_class_name_selector(
             session=self._session,
             )
-        self.selector = selector
-        self.handler_editor_class_name_suffix = 'Editor'
+        self._selector = selector
+        self._handler_editor_class_name_suffix = 'Editor'
 
     ### PUBLIC PROPERTIES ###
 

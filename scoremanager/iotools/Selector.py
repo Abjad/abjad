@@ -245,6 +245,7 @@ class Selector(ScoreManagerObject):
         session=None, 
         storehouse_paths=None,
         forbidden_directory_entries=None,
+        endswith=None,
         strip_file_extensions=False,
         ):
         r'''Makes directory content selector.
@@ -265,7 +266,10 @@ class Selector(ScoreManagerObject):
                 if strip_file_extensions:
                     entry = os.path.splitext(entry)[0]
                 if entry not in forbidden_directory_entries:
-                    items.append(entry)
+                    if not endswith:
+                        items.append(entry)
+                    elif entry.endswith(endswith):
+                        items.append(entry)
         selector = Selector(
             session=session,
             items=items,
@@ -437,6 +441,7 @@ class Selector(ScoreManagerObject):
         selector = Selector.make_directory_content_selector(
             session=session,
             storehouse_paths=[rhythm_maker_tools_directory_path],
+            endswith='RhythmMaker',
             strip_file_extensions=True,
             )
         return selector

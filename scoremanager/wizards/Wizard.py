@@ -10,6 +10,7 @@ class Wizard(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_selector',
         '_target',
         '_target_editor_class_name_suffix',
         )
@@ -22,6 +23,7 @@ class Wizard(ScoreManagerObject):
 
     def __init__(self, session=None, target=None):
         ScoreManagerObject.__init__(self, session=session)
+        self._selector = None
         self._target = target
         self._target_editor_class_name_suffix = 'Editor'
 
@@ -54,26 +56,33 @@ class Wizard(ScoreManagerObject):
         context = iotools.ControllerContext(self)
         with context:
             selector = self._selector
-            handler_class_name = selector._run()
+            class_name = selector._run()
             if self._should_backtrack():
                 return
-            statement = 'target = handlertools.{}()'
-            statement = statement.format(handler_class_name)
             exec('from abjad import *')
-            exec('from experimental.tools import handlertools')
-            exec(statement)
+            if class_name.endswith('Handler'):
+                statement = 'target = handlertools.{}()'
+                statement = statement.format(class_name)
+                exec('from experimental.tools import handlertools')
+                exec(statement)
+            elif class_name.endswith('RhythmMaker'):
+                statement = 'target = rhythmmakertools.{}()'
+                statement = statement.format(class_name)
+                exec(statement)
+            else:
+                raise ValueError(class_name)
             assert target
             if hasattr(target, '_target_manifest'):
-                handler_editor = editors.Editor(
+                editor = editors.Editor(
                     session=self._session,
                     target=target,
                     )
             else:
-                handler_editor = self._get_target_editor(handler_class_name)
-            handler_editor._is_autoadvancing = True
-            handler_editor._is_autostarting = True
-            handler_editor._run()
-            self._target = handler_editor.target
+                editor = self._get_target_editor(class_name)
+            editor._is_autoadvancing = True
+            editor._is_autostarting = True
+            editor._run()
+            self._target = editor.target
 
     def _should_backtrack(self):
         if self._session.is_complete:
