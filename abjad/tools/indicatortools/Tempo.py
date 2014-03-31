@@ -344,6 +344,16 @@ class Tempo(AbjadObject):
             positional_argument_values=positional_argument_values,
             )
 
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            ('duration', 'd', getters.get_duration),
+            ('units_per_minute', 'pm', getters.get_integer),
+            )
+
     ### PUBLIC PROPERTIES ###
 
 
