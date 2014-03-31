@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
+from experimental.tools import handlertools
 import scoremanager
 
 
@@ -202,3 +203,25 @@ def test_Editor__run_10():
     input_ = 'foo q'
     editor._run(pending_user_input=input_)
     assert editor._transcript.signature == (4, (0, 2))
+
+
+def test_Editor__run_11():
+    r'''Works to edit NoteAndChordHairpinHandler
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = handlertools.NoteAndChordHairpinHandler()
+    editor = scoremanager.editors.Editor(
+        session=session, 
+        is_autoadvancing=True,
+        target=target,
+        )
+    input_ = "ht ('p', '<', 'f') Duration(1, 8) done"
+    editor._run(pending_user_input=input_)
+
+    handler = handlertools.NoteAndChordHairpinHandler(
+        hairpin_token=('p', '<', 'f'),
+        minimum_duration=Duration(1, 8),
+        )
+
+    assert editor.target == handler
