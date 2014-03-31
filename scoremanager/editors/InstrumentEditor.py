@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from scoremanager import getters
-from scoremanager import iotools
 from scoremanager import wizards
 from scoremanager.editors.Editor import Editor
 
@@ -69,37 +68,6 @@ class InstrumentEditor(Editor):
                 ),
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _user_input_to_action(self):
-        result = {
-            'tprd': self.toggle_pitch_range_display,
-        }
-        return result
-
-    ### PRIVATE METHODS ###
-
-    def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
-        else:
-            super(InstrumentEditor, self)._handle_main_menu_result(result)
-
-    def _make_main_menu(self, name='instrument editor'):
-        superclass = super(InstrumentEditor, self)
-        menu = superclass._make_main_menu(name=name)
-        self._make_pitch_range_menu_section(menu)
-        return menu
-
-    def _make_pitch_range_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_hidden=True,
-            name='pitch range',
-            )
-        section.append(('pitch range - toggle display', 'tprd'))
-        return section
-        
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -122,15 +90,3 @@ class InstrumentEditor(Editor):
                 self._target = instruments[0]
             else:
                 self._target = None
-
-    def toggle_pitch_range_display(self):
-        r'''Toggle pitch range display.
-
-        Between numbered pitches and lettered pitches.
-
-        Returns none.
-        '''
-        if self._session.display_pitch_ranges_with_numbered_pitches:
-            self._session._display_pitch_ranges_with_numbered_pitches = False
-        else:
-            self._session._display_pitch_ranges_with_numbered_pitches = True
