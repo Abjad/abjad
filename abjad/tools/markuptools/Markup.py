@@ -246,6 +246,29 @@ class Markup(AbjadObject):
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            markuptools.Markup,
+            (
+                'contents', 
+                'contents_string', 
+                'arg', 
+                'ag', 
+                getters.get_string, 
+                True,
+                ),
+            (
+                'direction', 
+                'direction', 
+                'dr', 
+                getters.get_direction_string, 
+                False,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
