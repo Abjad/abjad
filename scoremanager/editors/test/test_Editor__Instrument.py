@@ -214,3 +214,32 @@ def test_Editor__Instrument_10():
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == Markup('bar')
+
+
+def test_Editor__Instrument_11():
+    r'''While editing instrument: main screen.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.Accordion()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target
+        )
+    input_ = 'q'
+    editor._run(pending_user_input=input_)
+
+    lines = [
+        'Accordion',
+        '',
+        "    1: instrument name (in): accordion",
+        "    2: instrument name markup (im): \markup { Accordion }",
+        "    3: short instrument name (sn): acc.",
+        "    4: short instrument name markup (sm): \markup { Acc. }",
+        '    5: range (rg): [E1, C8]',
+        '    6: clefs (cf): treble, bass',
+        '',
+        '    done (done)',
+        '',
+        ]
+    assert editor._transcript.last_menu_lines == lines
