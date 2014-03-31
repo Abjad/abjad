@@ -7,6 +7,7 @@ from scoremanager.core.Controller import Controller
 
 class Editor(Controller):
     r'''Editor.
+
     '''
 
     ### CLASS VARIABLES ###

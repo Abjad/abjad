@@ -225,3 +225,25 @@ def test_Editor__run_11():
         )
 
     assert editor.target == handler
+
+
+def test_Editor__run_12():
+    r'''Works to edit NoteAndChordsHairpinHandler.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = handlertools.NoteAndChordHairpinsHandler()
+    editor = scoremanager.editors.Editor(
+        session=session, 
+        is_autoadvancing=True,
+        target=target,
+        )
+    input_ = "ht [('p', '<', 'f')] Duration(1, 8) done"
+    editor._run(pending_user_input=input_)
+
+    handler = handlertools.NoteAndChordHairpinsHandler(
+        hairpin_tokens=[('p', '<', 'f')],
+        minimum_duration=Duration(1, 8),
+        )
+
+    assert editor.target == handler
