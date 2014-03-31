@@ -62,8 +62,6 @@ class PitchedQEvent(QEvent):
             return True
         return False
 
-    ### PUBLIC PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -72,6 +70,8 @@ class PitchedQEvent(QEvent):
         Returns integer.
         '''
         return super(PitchedQEvent, self).__hash__()
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attachments(self):

@@ -194,8 +194,6 @@ class CodeBlock(AbjadObject):
             return True
         return False
 
-    ### PUBLIC PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -204,6 +202,8 @@ class CodeBlock(AbjadObject):
         Returns integer.
         '''
         return super(CodeBlock, self).__hash__()
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def hide(self):

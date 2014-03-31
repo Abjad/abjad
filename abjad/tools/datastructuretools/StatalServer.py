@@ -40,8 +40,6 @@ class StatalServer(AbjadObject):
                 return True
         return False
 
-    ### PUBLIC PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -50,6 +48,8 @@ class StatalServer(AbjadObject):
         Returns integer.
         '''
         return super(StatalServer, self).__hash__()
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cyclic_tree(self):

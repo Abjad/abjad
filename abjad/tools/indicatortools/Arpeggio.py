@@ -59,8 +59,6 @@ class Arpeggio(AbjadObject):
                 return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -69,6 +67,8 @@ class Arpeggio(AbjadObject):
         Returns integer.
         '''
         return super(Arpeggio, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):

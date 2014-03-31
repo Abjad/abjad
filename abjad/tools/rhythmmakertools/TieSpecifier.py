@@ -47,8 +47,6 @@ class TieSpecifier(AbjadObject):
                 return True
         return False
 
-    ### PRIVATE METHODS ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -57,6 +55,8 @@ class TieSpecifier(AbjadObject):
         Returns integer.
         '''
         return super(TieSpecifier, self).__hash__()
+
+    ### PRIVATE METHODS ###
 
     def _make_ties(self, music):
         if self.tie_across_divisions:

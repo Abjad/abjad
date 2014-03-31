@@ -184,12 +184,6 @@ class NamedPitch(Pitch):
             return self > arg.stop_pitch
         return False
 
-#    def __hash__(self):
-#        r'''Hashes named pitch.
-#
-#        Returns integer.
-#        '''
-#        return hash(repr(self))
     def __hash__(self):
         r'''Required to be explicitely re-defined on Python 3 if
         __eq__ changes.

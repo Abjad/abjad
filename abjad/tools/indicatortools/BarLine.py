@@ -66,8 +66,6 @@ class BarLine(AbjadObject):
             return self.abbreviation == arg.abbreviation
         return False
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -76,6 +74,8 @@ class BarLine(AbjadObject):
         Returns integer.
         '''
         return super(BarLine, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):

@@ -27,6 +27,17 @@ class TerminalQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a terminal q-event with offset equal to that
+        of this terminal q-event. Otherwise false.
+
+        Returns boolean.
+        '''
+        if type(self) == type(expr) and \
+            self.offset == expr.offset:
+            return True
+        return False
+
     def __hash__(self):
         r'''Hashes my class.
 
@@ -36,13 +47,3 @@ class TerminalQEvent(QEvent):
         '''
         return super(TerminalQEvent, self).__hash__()
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a terminal q-event with offset equal to that of
-        this terminal q-event. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr) and \
-            self.offset == expr.offset:
-            return True
-        return False

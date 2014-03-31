@@ -76,8 +76,6 @@ class Annotation(AbjadObject):
                     return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -86,6 +84,8 @@ class Annotation(AbjadObject):
         Returns integer.
         '''
         return super(Annotation, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _repr_specification(self):

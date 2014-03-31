@@ -84,8 +84,6 @@ class SpacingIndication(AbjadObject):
                 return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -94,6 +92,8 @@ class SpacingIndication(AbjadObject):
         Returns integer.
         '''
         return super(SpacingIndication, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _repr_specification(self):

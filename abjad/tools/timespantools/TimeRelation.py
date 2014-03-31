@@ -50,8 +50,6 @@ class TimeRelation(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    ### PUBLIC PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -60,6 +58,8 @@ class TimeRelation(AbjadObject):
         Returns integer.
         '''
         return super(TimeRelation, self).__hash__()
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inequality(self):

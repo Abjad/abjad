@@ -83,8 +83,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
                     return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -93,6 +91,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         Returns integer.
         '''
         return super(RhythmTreeLeaf, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):

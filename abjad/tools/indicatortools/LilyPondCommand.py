@@ -119,8 +119,6 @@ class LilyPondCommand(AbjadObject):
             return self._lilypond_format
         return str(self)
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -129,6 +127,8 @@ class LilyPondCommand(AbjadObject):
         Returns integer.
         '''
         return super(LilyPondCommand, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):

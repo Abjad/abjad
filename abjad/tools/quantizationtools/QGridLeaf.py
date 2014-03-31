@@ -73,8 +73,6 @@ class QGridLeaf(RhythmTreeNode):
             self.is_divisible,
             )
 
-    ### PRIVATE PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -83,6 +81,8 @@ class QGridLeaf(RhythmTreeNode):
         Returns integer.
         '''
         return super(QGridLeaf, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):

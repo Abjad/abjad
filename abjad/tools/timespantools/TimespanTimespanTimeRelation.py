@@ -365,8 +365,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
         '''
         return self._timespan_2
 
-    ### PUBLIC METHODS ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -375,6 +373,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns integer.
         '''
         return super(TimespanTimespanTimeRelation, self).__hash__()
+
+    ### PUBLIC METHODS ###
 
     def get_counttime_components(self, counttime_components):
         r'''Get `counttime_components` that satisfy `time_relation`:

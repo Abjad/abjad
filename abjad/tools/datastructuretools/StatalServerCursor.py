@@ -121,8 +121,6 @@ class StatalServerCursor(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
-    ### PRIVATE METHODS ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -131,6 +129,8 @@ class StatalServerCursor(AbjadObject):
         Returns integer.
         '''
         return super(StatalServerCursor, self).__hash__()
+
+    ### PRIVATE METHODS ###
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []

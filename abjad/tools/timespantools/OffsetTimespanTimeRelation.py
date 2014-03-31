@@ -130,8 +130,6 @@ class OffsetTimespanTimeRelation(TimeRelation):
         superclass = super(OffsetTimespanTimeRelation, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PUBLIC PROPERTIES ###
-
     def __hash__(self):
         r'''Hashes my class.
 
@@ -140,6 +138,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Returns integer.
         '''
         return super(OffsetTimespanTimeRelation, self).__hash__()
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_fully_loaded(self):
