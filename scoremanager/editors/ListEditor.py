@@ -196,23 +196,16 @@ class ListEditor(Editor):
         '''
         from scoremanager import editors
         item = self._get_item_from_item_number(item_number)
-        if item is not None:
-            if self._item_editor_class is not None:
-                item_editor = self._item_editor_class(
-                    session=self._session, 
-                    target=item,
-                    )
-                item_editor._run()
-                item_index = int(item_number) - 1
-                self._items[item_index] = item_editor.target
-            # TODO: implement
-            #else:
-            #    item_editor = editors.Editor(session=self._session)
-            #    item_editor.__
-            #    #item_editor._edit(item)
-            #    item_editor._run(item)
-            #    item_index = int(item_number) - 1
-            #    self._items[item_index] = item_editor.target
+        if item is None:
+            return
+        item_editor_class = self._item_editor_class or editors.Editor
+        item_editor = item_editor_class(
+            session=self._session, 
+            target=item,
+            )
+        item_editor._run()
+        item_index = int(item_number) - 1
+        self._items[item_index] = item_editor.target
 
     def move_item(self):
         r'''Moves items in list.
