@@ -398,14 +398,14 @@ class Wrangler(Controller):
             where=self._where,
             name='asset selection',
             )
-        asset_section = menu.make_asset_section()
+        section = menu.make_asset_section()
         include_extensions = getattr(self, '_include_extensions', False)
         asset_menu_entries = self._make_asset_menu_entries(
             include_extensions=include_extensions,
             packages_instead_of_paths=packages_instead_of_paths,
             )
         for menu_entry in asset_menu_entries:
-            asset_section.append(menu_entry)
+            section.append(menu_entry)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -503,14 +503,14 @@ class Wrangler(Controller):
             where=self._where,
             name='storehouse selection',
             )
-        asset_section = menu.make_asset_section()
+        section = menu.make_asset_section()
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
             user_library=True,
             abjad_score_packages=False,
             user_score_packages=False)
         for menu_entry in menu_entries:
-            asset_section.append(menu_entry)
+            section.append(menu_entry)
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)

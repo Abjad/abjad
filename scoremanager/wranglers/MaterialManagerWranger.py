@@ -128,10 +128,10 @@ class MaterialManagerWrangler(Wrangler):
             where=self._where,
             name=name,
             )
-        asset_section = menu.make_asset_section()
+        section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
         for menu_entry in asset_menu_entries:
-            asset_section.append(menu_entry)
+            section.append(menu_entry)
         section = menu.make_command_section()
         section.append(('material manager - new', 'new'))
         return menu

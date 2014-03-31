@@ -78,9 +78,9 @@ class Menu(ScoreManagerObject):
         Returns menu section.
         '''
         assert isinstance(expr, str)
-        for menu_section in self.menu_sections:
-            if menu_section.name == expr:
-                return menu_section
+        for section in self.menu_sections:
+            if section.name == expr:
+                return section
         raise KeyError(expr)
 
     def __len__(self):
@@ -119,21 +119,21 @@ class Menu(ScoreManagerObject):
             user_input)
         if self._user_enters_nothing(user_input):
             default_value = None
-            for menu_section in self.menu_sections:
-                if menu_section._has_default_value:
-                    default_value = menu_section._default_value
+            for section in self.menu_sections:
+                if section._has_default_value:
+                    default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
         elif user_input in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
             return user_input
         elif user_input.startswith('!'):
             return user_input
-        for menu_section in self.menu_sections:
-            for menu_entry in menu_section.menu_entries:
+        for section in self.menu_sections:
+            for menu_entry in section.menu_entries:
                 if menu_entry.matches(user_input):
                     return self._enclose_in_list(menu_entry.return_value)
-        for menu_section in self.menu_sections:
-            for menu_entry in menu_section.menu_entries:
+        for section in self.menu_sections:
+            for menu_entry in section.menu_entries:
                 if menu_entry.matches(user_input.lower()):
                     return self._enclose_in_list(menu_entry.return_value)
         if self._user_enters_argument_range(user_input):
@@ -173,11 +173,11 @@ class Menu(ScoreManagerObject):
 
     def _display_all_commands(self):
         menu_lines = []
-        for menu_section in self.menu_sections:
-            #print repr(menu_section), 'SECTION'
-            if not menu_section.is_command_section:
+        for section in self.menu_sections:
+            #print repr(section), 'SECTION'
+            if not section.is_command_section:
                 continue
-            for menu_entry in menu_section.menu_entries:
+            for menu_entry in section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
                 menu_line = self._make_tab(1)
@@ -206,18 +206,18 @@ class Menu(ScoreManagerObject):
             return expr
 
     def _get_first_nonhidden_return_value_in_menu(self):
-        for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
+        for section in self.menu_sections:
+            if section.is_hidden:
                 continue
-            if menu_section._menu_entry_return_values:
-                return menu_section._menu_entry_return_values[0]
+            if section._menu_entry_return_values:
+                return section._menu_entry_return_values[0]
 
     def _handle_argument_range_user_input(self, user_input):
         if not self._has_ranged_section():
             return
-        for menu_section in self.menu_sections:
-            if menu_section.is_ranged:
-                ranged_section = menu_section
+        for section in self.menu_sections:
+            if section.is_ranged:
+                ranged_section = section
         entry_numbers = ranged_section._argument_range_string_to_numbers(
             user_input)
         if not entry_numbers:
@@ -410,7 +410,7 @@ class Menu(ScoreManagerObject):
         from scoremanager import iotools
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
-        menu_section = iotools.MenuSection(
+        section = iotools.MenuSection(
             is_alphabetized=is_alphabetized,
             is_asset_section=is_asset_section,
             is_attribute_section=is_attribute_section,
@@ -429,7 +429,7 @@ class Menu(ScoreManagerObject):
             return_value_attribute=return_value_attribute,
             title=title,
             )
-        self.menu_sections.append(menu_section)
+        self.menu_sections.append(section)
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [
             x for x in self.menu_sections
@@ -439,30 +439,30 @@ class Menu(ScoreManagerObject):
             self.menu_sections.remove(noncommand_section)
         for noncommand_section in noncommand_sections:
             self.menu_sections.insert(0, noncommand_section)
-        return menu_section
+        return section
 
     def _make_section_lines(self):
         result = []
         section_names = []
-        for menu_section in self.menu_sections:
-            if not len(menu_section):
+        for section in self.menu_sections:
+            if not len(section):
                 message = '{!r} contains {!r}.'
-                message = message.format(self, menu_section)
+                message = message.format(self, section)
                 raise Exception(message)
-            if not menu_section.name:
+            if not section.name:
                 message = '{!r} contains {!r}.'
-                message = message.format(self, menu_section)
+                message = message.format(self, section)
                 raise Exception(message)
-            if menu_section.name in section_names:
+            if section.name in section_names:
                 message = '{!r} with duplicate section: {!r}.'
-                message = message.format(self, menu_section)
+                message = message.format(self, section)
                 raise Exception(message)
             else:
-                section_names.append(menu_section.name)
+                section_names.append(section.name)
             hide = self._session.hide_hidden_commands
-            if hide and menu_section.is_hidden:
+            if hide and section.is_hidden:
                 continue
-            section_menu_lines = menu_section._make_menu_lines()
+            section_menu_lines = section._make_menu_lines()
             result.extend(section_menu_lines)
         if self._hide_current_run:
             result = []
@@ -502,17 +502,17 @@ class Menu(ScoreManagerObject):
         return result
 
     def _return_value_to_location_pair(self, return_value):
-        for i, menu_section in enumerate(self.menu_sections):
-            if return_value in menu_section._menu_entry_return_values:
-                j = menu_section._menu_entry_return_values.index(return_value)
+        for i, section in enumerate(self.menu_sections):
+            if return_value in section._menu_entry_return_values:
+                j = section._menu_entry_return_values.index(return_value)
                 return i, j
 
     def _return_value_to_next_return_value_in_section(self, return_value):
         section_index, entry_index = self._return_value_to_location_pair(
             return_value)
-        menu_section = self.menu_sections[section_index]
-        entry_index = (entry_index + 1) % len(menu_section)
-        return menu_section._menu_entry_return_values[entry_index]
+        section = self.menu_sections[section_index]
+        entry_index = (entry_index + 1) % len(section)
+        return section._menu_entry_return_values[entry_index]
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools
@@ -576,8 +576,8 @@ class Menu(ScoreManagerObject):
 
             ::
 
-                >>> for menu_section in menu.menu_sections:
-                ...     menu_section
+                >>> for section in menu.menu_sections:
+                ...     section
                 <MenuSection 'test' (3)>
 
         Returns list.

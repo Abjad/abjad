@@ -243,12 +243,12 @@ class Editor(Controller):
             )
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
-            keyed_attribute_section = menu.make_keyed_attribute_section(
+            section = menu.make_keyed_attribute_section(
                 name='keyed attributes',
                 is_numbered=True,
                 ) 
             for menu_entry in menu_entries:
-                keyed_attribute_section.append(menu_entry)
+                section.append(menu_entry)
         self._make_done_menu_section(menu)
         return menu
 

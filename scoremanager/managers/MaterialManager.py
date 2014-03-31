@@ -386,9 +386,9 @@ class MaterialManager(PackageManager):
             if not editor:
                 self._make_user_input_module_menu_section(menu)
         try:
-            material_summary_section = menu['material summary']
-            menu.menu_sections.remove(material_summary_section)
-            menu.menu_sections.insert(0, material_summary_section)
+            section = menu['material summary']
+            menu.menu_sections.remove(section)
+            menu.menu_sections.insert(0, section)
         except KeyError:
             pass
         self._make_sibling_asset_tour_menu_section(menu)
@@ -531,11 +531,11 @@ class MaterialManager(PackageManager):
     def _make_user_input_module_menu_section(self, menu):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
         if menu_entries:
-            numbered_section = menu.make_numbered_section(
+            section = menu.make_numbered_section(
                 name='material summary',
                 )
             for menu_entry in menu_entries:
-                numbered_section.append(menu_entry)
+                section.append(menu_entry)
         section = menu.make_command_section(name='user input')
         section.append(('user input - clear', 'uic'))
         section.append(('user input - load demo values', 'uil'))

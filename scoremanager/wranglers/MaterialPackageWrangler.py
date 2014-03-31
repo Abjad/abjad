@@ -175,7 +175,6 @@ class MaterialPackageWrangler(Wrangler):
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
         section.append(('material - new with manager', 'nmm'))
-        lilypond_section = menu['lilypond']
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
