@@ -20,6 +20,14 @@ class OctaveTranspositionMappingComponentEditor(Editor):
         from abjad.tools import systemtools
         return systemtools.TargetManifest(
             pitchtools.OctaveTranspositionMappingComponent,
-            ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),
-            ('target_octave_start_pitch', 'sp', getters.get_integer),
+            (
+                'source_pitch_range', 
+                'pr', 
+                getters.get_symbolic_pitch_range_string,
+                ),
+            (
+                'target_octave_start_pitch', 
+                'sp', 
+                getters.get_integer,
+                ),
             )

@@ -373,31 +373,31 @@ class Editor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
-        if self.target is not None:
-            if not self._session.is_complete:
-                # if the attribute is read / write
-                try:
-                    setattr(self.target, attribute_name, attribute_value)
-                    return
-                # elif the attribute is read only
-                except AttributeError:
-                    pass
-                # TODO: reimplement as something in PitchRange._target_manifest
-                if isinstance(self.target, pitchtools.PitchRange):
-                    assert attribute_name == 'one_line_named_pitch_repr'
-                    new_target = type(self.target)(attribute_value)
-                    self._target = new_target
-                # TODO: reimplement Tempo.__init__; see GitHub #366
-                elif isinstance(self.target, indicatortools.Tempo):
-                    self._copy_target_attributes_to_memory()
-                    self._attributes_in_memory[attribute_name] = \
-                        attribute_value
-                else:
-                    kwargs = {attribute_name: attribute_value}
-                    new_target = new(self.target, **kwargs)
-                    self._target = new_target
-        else:
+        if self.target is None:
             self._attributes_in_memory[attribute_name] = attribute_value
+            return
+        if not self._session.is_complete:
+            # TODO: reimplement Tempo.__init__; see GitHub #366
+            # TODO: reimplementOctaveTranspositionMappingComponent.__init__
+            # TODO: and OctaveTranspositionMapping.__init__, too.
+            prototype = (
+                indicatortools.Tempo,
+                pitchtools.OctaveTranspositionMappingComponent,
+                pitchtools.OctaveTranspositionMapping,
+                )
+            # TODO: reimplement as something in PitchRange._target_manifest
+            if isinstance(self.target, pitchtools.PitchRange):
+                assert attribute_name == 'one_line_named_pitch_repr'
+                new_target = type(self.target)(attribute_value)
+                self._target = new_target
+            elif isinstance(self.target, prototype):
+                self._copy_target_attributes_to_memory()
+                self._attributes_in_memory[attribute_name] = \
+                    attribute_value
+            else:
+                kwargs = {attribute_name: attribute_value}
+                new_target = new(self.target, **kwargs)
+                self._target = new_target
 
     def _target_args_to_target_summary_lines(self, target):
         result = []
