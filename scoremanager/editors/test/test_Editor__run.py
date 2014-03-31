@@ -127,3 +127,78 @@ def test_Editor__run_08():
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
     assert editor.target == component
+
+
+def test_Editor__run_09():
+    r'''Works to change pitch range.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = '1 [F#3, C5) q'
+    editor._run(pending_user_input=input_)
+
+    assert editor.target == pitchtools.PitchRange('[F#3, C5)')
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = '1 (A0, C8] q'
+    editor._run(pending_user_input=input_)
+
+    assert editor.target == pitchtools.PitchRange('(A0, C8]')
+
+
+def test_Editor__run_10():
+    r'''Quit, score, home & junk all work.
+
+    Note that back doesn't yet work here
+    because 'b' interprets as named chromatic pitch.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'q'
+    editor._run(pending_user_input=input_)
+    assert editor._transcript.signature == (2,)
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 's q'
+    editor._run(pending_user_input=input_)
+    assert editor._transcript.signature == (4, (0, 2))
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'h'
+    editor._run(pending_user_input=input_)
+    assert editor._transcript.signature == (2,)
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRange()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'foo q'
+    editor._run(pending_user_input=input_)
+    assert editor._transcript.signature == (4, (0, 2))

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
-from scoremanager.editors.Editor import Editor
 from scoremanager.editors.ListEditor import ListEditor
 
 
@@ -22,8 +21,9 @@ class PitchRangeInventoryEditor(ListEditor):
         superclass.__init__(session=session, target=target)
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_symbolic_pitch_range_string
+        # TODO: derive from self._target_manifest?
         self._item_class = pitchtools.PitchRange
-        self._item_editor_class = editors.PitchRangeEditor
+        # TODO: derive from self._item_class?
         self._item_identifier = 'pitch range'
 
 
