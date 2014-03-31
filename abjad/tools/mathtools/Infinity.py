@@ -65,6 +65,15 @@ class Infinity(AbjadObject):
         '''
         return self._value > expr
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(Infinity, self).__hash__()
+
     def __le__(self, expr):
         r'''Is true when `expr` is infinite. Otherwise false.
 

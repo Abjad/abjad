@@ -81,6 +81,15 @@ class LilyPondComment(AbjadObject):
             return self._contents_string == expr._contents_string
         return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(LilyPondComment, self).__hash__()
+
     def __str__(self):
         r'''Gets string format of LilyPond comment.
 

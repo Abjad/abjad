@@ -82,6 +82,15 @@ class ResidueClass(BaseResidueClass):
                     return True
         return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(ResidueClass, self).__hash__()
+
     def __lt__(self, expr):
         r'''Is true when `expr` is a residue class with module greater than that
         of this residue class. Also true when `expr` is a residue class with

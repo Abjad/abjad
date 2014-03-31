@@ -172,6 +172,15 @@ class TimeSignature(AbjadObject):
         else:
             raise TypeError
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(TimeSignature, self).__hash__()
+
     def __le__(self, arg):
         r'''Is true when duration of time signature is less than duration of
         `arg`. Otherwise false.

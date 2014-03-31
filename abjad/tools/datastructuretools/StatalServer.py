@@ -42,6 +42,15 @@ class StatalServer(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(StatalServer, self).__hash__()
+
     @property
     def cyclic_tree(self):
         r'''Statal server cyclic tree.

@@ -49,6 +49,15 @@ class TieSpecifier(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(TieSpecifier, self).__hash__()
+
     def _make_ties(self, music):
         if self.tie_across_divisions:
             self._make_ties_across_divisions(music)

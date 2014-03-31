@@ -118,6 +118,15 @@ class RhythmMaker(AbjadObject):
                 state[slot] = getattr(self, slot, None)
         return state
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(RhythmMaker, self).__hash__()
+
     def __illustrate__(self, divisions=None):
         r'''Illustrates rhythm-maker.
 

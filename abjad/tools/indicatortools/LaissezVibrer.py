@@ -41,6 +41,15 @@ class LaissezVibrer(AbjadObject):
         '''
         return isinstance(expr, type(self))
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(LaissezVibrer, self).__hash__()
+
     def __str__(self):
         r'''String representation of laissez vibrer.
 

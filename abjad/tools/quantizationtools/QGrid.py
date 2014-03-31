@@ -179,6 +179,15 @@ class QGrid(AbjadObject):
             '_root_node': self.root_node,
             }
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(QGrid, self).__hash__()
+
     def __setstate__(self, state):
         r'''Sets `state`.
 

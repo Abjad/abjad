@@ -155,6 +155,15 @@ class QuantizationJob(AbjadObject):
             '_search_tree': self.search_tree,
             }
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(QuantizationJob, self).__hash__()
+
     def __setstate__(self, state):
         r'''Sets state.
 

@@ -191,6 +191,15 @@ class Tempo(AbjadObject):
             return self._lilypond_format
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(Tempo, self).__hash__()
+
     def __lt__(self, arg):
         r'''Is true when `arg` is a tempo with quarters per minute greater than
         that of this tempo. Otherwise false.

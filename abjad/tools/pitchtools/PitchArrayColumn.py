@@ -68,6 +68,15 @@ class PitchArrayColumn(AbjadObject):
         '''
         return vars(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(PitchArrayColumn, self).__hash__()
+
     def __ne__(self, arg):
         r'''Is true when pitch array column does not equal `arg`. Otherwise false.
 

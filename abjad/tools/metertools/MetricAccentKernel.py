@@ -82,6 +82,15 @@ class MetricAccentKernel(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(MetricAccentKernel, self).__hash__()
+
     @property
     def _repr_specification(self):
         return self._storage_format_specification

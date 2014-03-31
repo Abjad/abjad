@@ -196,6 +196,15 @@ class NamedInterval(Interval):
         '''
         return float(self._number)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NamedInterval, self).__hash__()
+
     def __int__(self):
         r'''Returns number of named interval.
 

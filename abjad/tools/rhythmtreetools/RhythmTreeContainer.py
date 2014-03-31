@@ -238,6 +238,15 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     return True
         return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(RhythmTreeContainer, self).__hash__()
+
     def __setitem__(self, i, expr):
         r'''Set `expr` in self at nonnegative integer index `i`, 
         or set `expr` in self at slice i.
