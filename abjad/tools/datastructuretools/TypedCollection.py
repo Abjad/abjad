@@ -68,7 +68,7 @@ class TypedCollection(AbjadObject):
         return (self._collection, self.item_class)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes typed collection.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

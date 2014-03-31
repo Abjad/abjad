@@ -137,7 +137,7 @@ class PitchArrayRow(AbjadObject):
         return vars(self)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes pitch array row.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

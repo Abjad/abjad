@@ -21,8 +21,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             preprolated_duration=Duration(1, 1)
             )
 
-    Similar to Abjad containers, `RhythmTreeContainer` supports a list 
-    interface, and can be appended, extended, indexed and so forth 
+    Similar to Abjad containers, `RhythmTreeContainer` supports a list
+    interface, and can be appended, extended, indexed and so forth
     by other `RhythmTreeNode` subclasses:
 
     ::
@@ -77,7 +77,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             preprolated_duration=Duration(1, 1)
             )
 
-    Call `RhythmTreeContainer` with a preprolated_duration to generate 
+    Call `RhythmTreeContainer` with a preprolated_duration to generate
     a tuplet structure:
 
     ::
@@ -121,8 +121,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     def __add__(self, expr):
         r'''Concatenate containers self and expr. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
-        and a preprolated_duration equal to the sum of the durations 
-        of a and b. The operation is non-commutative: the content of the 
+        and a preprolated_duration equal to the sum of the durations
+        of a and b. The operation is non-commutative: the content of the
         first operand will be placed before the content of the second operand:
 
         ::
@@ -177,7 +177,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             assert 1 == len(expr) and isinstance(expr[0], type(self))
             expr = expr[0]
         container = type(self)(
-            preprolated_duration=self.preprolated_duration + 
+            preprolated_duration=self.preprolated_duration +
             expr.preprolated_duration)
         container.extend(self[:])
         container.extend(expr[:])
@@ -239,7 +239,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return False
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes rhythm-tree container.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 
@@ -248,10 +248,10 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return super(RhythmTreeContainer, self).__hash__()
 
     def __setitem__(self, i, expr):
-        r'''Set `expr` in self at nonnegative integer index `i`, 
+        r'''Set `expr` in self at nonnegative integer index `i`,
         or set `expr` in self at slice i.
         Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`, 
+        Attach parentage to contents of `expr`,
         and detach parentage of any replaced nodes.
 
         ::
@@ -336,7 +336,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def _contents_duration(self):
-        r'''The total preprolated_duration of the children 
+        r'''The total preprolated_duration of the children
         of a `RhythmTreeContainer` instance:
 
         ::

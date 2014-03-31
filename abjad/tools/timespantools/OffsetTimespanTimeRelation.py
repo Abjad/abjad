@@ -131,7 +131,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         return superclass.__format__(format_specification=format_specification)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes time relation.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

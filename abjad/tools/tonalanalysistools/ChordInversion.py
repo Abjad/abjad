@@ -75,7 +75,7 @@ class ChordInversion(AbjadObject):
         return False
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes chord inversion.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

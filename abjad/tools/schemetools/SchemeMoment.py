@@ -73,7 +73,7 @@ class SchemeMoment(Scheme):
         return (self._value,)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes scheme moment.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

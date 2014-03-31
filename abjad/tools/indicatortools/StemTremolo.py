@@ -128,7 +128,7 @@ class StemTremolo(AbjadObject):
         return str(self)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes stem tremolo.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

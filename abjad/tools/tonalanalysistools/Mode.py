@@ -47,7 +47,7 @@ class Mode(AbjadObject):
         return self.mode_name == arg.mode_name
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes mode.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

@@ -128,7 +128,7 @@ class Scheme(AbjadObject):
         return (self._value,)
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes scheme.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

@@ -196,7 +196,7 @@ class Timespan(BoundedObject):
         return self.start_offset > expr.start_offset
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes timespan.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

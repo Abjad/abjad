@@ -249,7 +249,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self.reduce() > expr
 
     def __hash__(self):
-        r'''Hashes my class.
+        r'''Hashes nonreduced fraction.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 
