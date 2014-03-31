@@ -73,6 +73,51 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 attach(new_articulation, note_or_chord)
         return expr
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            (
+                'articulation_list', 
+                None, 
+                'al', 
+                getters.get_articulations, 
+                False,
+                ),
+            (
+                'minimum_duration', 
+                None, 
+                'nd', 
+                getters.get_duration, 
+                False,
+                ),
+            (
+                'maximum_duration', 
+                None, 
+                'xd', 
+                getters.get_duration, 
+                False,
+                ),
+            (
+                'minimum_written_pitch', 
+                None, 
+                'np', 
+                getters.get_named_pitch, 
+                False,
+                ),
+            (
+                'maximum_written_pitch', 
+                None, 
+                'xp', 
+                getters.get_named_pitch, 
+                False,
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @apply
