@@ -13,7 +13,6 @@ class Editor(Controller):
 
     __slots__ = (
         '_attributes_in_memory',
-        '_explicit_breadcrumb',
         '_is_autoadding',
         '_is_autoadvancing',
         '_is_autostarting',
@@ -26,14 +25,12 @@ class Editor(Controller):
         self, 
         session=None, 
         target=None,
-        explicit_breadcrumb=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
         ):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
-        self._explicit_breadcrumb = None
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
@@ -65,9 +62,7 @@ class Editor(Controller):
 
     @property
     def _breadcrumb(self):
-        if self.explicit_breadcrumb:
-            return self.explicit_breadcrumb
-        elif self._target_name:
+        if self._target_name:
             return self._target_name
         else:
             class_name = self._target_class.__name__
@@ -413,14 +408,6 @@ class Editor(Controller):
         return result
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def explicit_breadcrumb(self):
-        r'''Gets editor explicit breadcrumb.
-
-        Returns string or none.
-        '''
-        return self._explicit_breadcrumb
 
     @property
     def is_autoadding(self):

@@ -687,9 +687,6 @@ class Wrangler(Controller):
             session=self._session,
             target=display_strings,
             )
-        breadcrumb = 'edit {} view'
-        breadcrumb = breadcrumb.format(view_name)
-        editor.explicit_breadcrumb = breadcrumb
         editor._run()
         if self._should_backtrack():
             return
@@ -841,7 +838,6 @@ class Wrangler(Controller):
         selector = self._io_manager.make_selector(
             where=self._where,
             items=view_names,
-            explicit_breadcrumb='select view',
             )
         view_name = selector._run()
         if self._should_backtrack():
