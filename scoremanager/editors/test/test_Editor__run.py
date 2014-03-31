@@ -247,3 +247,26 @@ def test_Editor__run_12():
         )
 
     assert editor.target == handler
+
+
+def test_Editor__run_13():
+
+    session = scoremanager.core.Session(is_test=True)
+    target = handlertools.PatternedArticulationsHandler()
+    editor = scoremanager.editors.Editor(
+        session=session, 
+        is_autoadvancing=True,
+        target=target,
+        )
+    input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
+    editor._run(pending_user_input=input_)
+
+    handler = handlertools.PatternedArticulationsHandler(
+        articulation_lists=[['.', '^'], ['.']],
+        minimum_duration=Duration(1, 16),
+        maximum_duration=Duration(1, 8),
+        minimum_written_pitch=NamedPitch("cs''"),
+        maximum_written_pitch=NamedPitch("c'''"),
+        )
+
+    assert editor.target == handler
