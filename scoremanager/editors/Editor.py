@@ -214,7 +214,6 @@ class Editor(Controller):
                 attribute_value = attribute_editor.target
             else:
                 attribute_value = result
-            #print repr(self.target), 'TARG'
             self._set_target_attribute(attribute_name, attribute_value)
 
     def _initialize_target(self):
@@ -367,7 +366,6 @@ class Editor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
-        #print 'FOO'
         if self.target is None:
             self._attributes_in_memory[attribute_name] = attribute_value
             return
