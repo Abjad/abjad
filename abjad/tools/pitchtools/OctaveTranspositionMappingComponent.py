@@ -139,6 +139,24 @@ class OctaveTranspositionMappingComponent(AbjadObject):
                 ),
             )
 
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            (
+                'source_pitch_range', 
+                'pr', 
+                getters.get_symbolic_pitch_range_string,
+                ),
+            (
+                'target_octave_start_pitch', 
+                'sp', 
+                getters.get_integer,
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
