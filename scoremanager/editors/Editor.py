@@ -147,7 +147,6 @@ class Editor(Controller):
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 self._attributes_in_memory[attribute_name] = attribute_value
-        self._target = None
 
     def _get_attribute_editor(
         self, 
@@ -391,6 +390,7 @@ class Editor(Controller):
         elif isinstance(self.target, prototype):
             self._copy_target_attributes_to_memory()
             self._attributes_in_memory[attribute_name] = attribute_value
+            self._initialize_target_from_attributes_in_memory()
         else:
             kwargs = {attribute_name: attribute_value}
             new_target = new(self.target, **kwargs)

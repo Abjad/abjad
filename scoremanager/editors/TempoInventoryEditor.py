@@ -21,9 +21,10 @@ class TempoInventoryEditor(ListEditor):
         superclass = super(TempoInventoryEditor, self)
         superclass.__init__(session=session, target=target)
         self._item_class = indicatortools.Tempo
-        self._item_editor_class = editors.TempoEditor
+        #self._item_editor_class = editors.TempoEditor
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_tempo
+        # TODO: derive from _item_class?
         self._item_identifier = 'tempo'
 
     ### PUBLIC PROPERTIES ###
