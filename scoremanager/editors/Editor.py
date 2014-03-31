@@ -131,29 +131,23 @@ class Editor(Controller):
     def _copy_target_attributes_to_memory(self):
         self._attributes_in_memory = {}
         retrievable_attribute_names = []
-        if hasattr(self, '_target_manifest'):
-            names = self._target_manifest.positional_initializer_retrievable_attribute_names
-            retrievable_attribute_names.extend(names)
+        manifest = self._target_manifest
+        names = manifest.positional_initializer_retrievable_attribute_names
+        retrievable_attribute_names.extend(names)
         for attribute_name in retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
-                attribute_name = \
-                    self._target_manifest._to_initializer_argument_names(
+                attribute_name = manifest._to_initializer_argument_names(
                     attribute_name)
                 self._attributes_in_memory[attribute_name] = attribute_value
         keyword_attribute_names = []
-        if hasattr(self, '_target_manifest'):
-            names = self._target_manifest.keyword_attribute_names
-            keyword_attribute_names.extend(names)
+        names = manifest.keyword_attribute_names
+        keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 self._attributes_in_memory[attribute_name] = attribute_value
         self._target = None
-
-#    def _edit(self, target_class):
-#        self.__target_class = target_class
-#        self._run()
 
     def _get_attribute_editor(
         self, 
@@ -221,6 +215,7 @@ class Editor(Controller):
                 attribute_value = attribute_editor.target
             else:
                 attribute_value = result
+            #print repr(self.target), 'TARG'
             self._set_target_attribute(attribute_name, attribute_value)
 
     def _initialize_target(self):
@@ -373,6 +368,7 @@ class Editor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
+        #print 'FOO'
         if self.target is None:
             self._attributes_in_memory[attribute_name] = attribute_value
             return
