@@ -50,3 +50,15 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                     )
                 attach(hairpin, group)
         return expr
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),
+            ('minimum_duration', None, 'md', getters.get_duration, True),
+            )
