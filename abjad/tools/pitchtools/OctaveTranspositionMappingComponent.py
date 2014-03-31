@@ -26,6 +26,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: reimplement explicit initializer
     def __init__(self, *args):
         if len(args) == 0:
             source_pitch_range = '[A0, C8]'
