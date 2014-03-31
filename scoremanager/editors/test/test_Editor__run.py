@@ -338,3 +338,25 @@ def test_Editor__run_16():
         )
 
     assert editor.target == handler
+
+
+def test_Editor__run_17():
+    r'''Works with terraced dynamics handler.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = handlertools.TerracedDynamicsHandler()
+    editor = scoremanager.editors.Editor(
+        session=session, 
+        is_autoadvancing=True,
+        target=target,
+        )
+    input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
+    editor._run(pending_user_input=input_)
+
+    handler = handlertools.TerracedDynamicsHandler(
+        dynamics=['p', 'f', 'f'],
+        minimum_duration=Duration(1, 8),
+        )
+
+    assert editor.target == handler
