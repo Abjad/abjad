@@ -98,13 +98,12 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self._io_manager.display(lines)
 
     def _evaluate_user_input(self, user_input):
-        target_menu_section = self._current_prompt.target_menu_section
+        section = self._current_prompt.target_menu_section
         setup_statements = self._current_prompt.setup_statements
         if self.allow_none and user_input in ('', 'None'):
             evaluated_user_input = None
-        elif target_menu_section is not None:
-            evaluated_user_input = \
-                target_menu_section._argument_range_string_to_numbers(
+        elif section is not None:
+            evaluated_user_input = section._argument_range_string_to_numbers(
                 user_input)
         elif setup_statements:
             for setup_statement in self._current_prompt.setup_statements:

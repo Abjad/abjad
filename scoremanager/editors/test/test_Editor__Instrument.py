@@ -112,7 +112,7 @@ def test_Editor__Instrument_05():
 
 
 def test_Editor__Instrument_06():
-    r'''Works to editor instrument range.
+    r'''Edits instrument range.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -137,7 +137,7 @@ def test_Editor__Instrument_06():
 
 
 def test_Editor__Instrument_07():
-    r'''Quit, back & home all work.
+    r'''While editing instrument name markup: quit, back & home all work.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -232,14 +232,35 @@ def test_Editor__Instrument_11():
     lines = [
         'Accordion',
         '',
-        "    1: instrument name (in): accordion",
-        "    2: instrument name markup (im): \markup { Accordion }",
-        "    3: short instrument name (sn): acc.",
-        "    4: short instrument name markup (sm): \markup { Acc. }",
-        '    5: range (rg): [E1, C8]',
-        '    6: clefs (cf): treble, bass',
+        '    1: clefs (cf): treble, bass',
+        "    2: instrument name (in): accordion",
+        "    3: instrument name markup (im): \markup { Accordion }",
+        '    4: range (rg): [E1, C8]',
+        "    5: short instrument name (sn): acc.",
+        "    6: short instrument name markup (sm): \markup { Acc. }",
+        "    7: sounding pitch of written middle C (sp): c'",
         '',
         '    done (done)',
         '',
         ]
     assert editor._transcript.last_menu_lines == lines
+
+
+def test_Editor__Instrument_12():
+    r'''Edits sounding pitch of written middle C.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.FrenchHorn()
+    assert target.sounding_pitch_of_written_middle_c == NamedPitch('f')
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'sp bf done'
+    editor._run(pending_user_input=input_)
+    instrument = editor.target
+    horn = instrumenttools.FrenchHorn(
+        sounding_pitch_of_written_middle_c=NamedPitch('bf')
+        )
+    assert instrument == horn

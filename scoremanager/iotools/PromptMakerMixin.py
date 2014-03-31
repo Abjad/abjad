@@ -489,8 +489,8 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value for {!r} must be named chromatic pitch.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        setup_statements.append(
-            'evaluated_user_input = pitchtools.NamedPitch({})')
+        string = 'evaluated_user_input = pitchtools.NamedPitch({!r})'
+        setup_statements.append(string)
         self._make_prompt(
             spaced_attribute_name, 
             help_template=help_template, 
