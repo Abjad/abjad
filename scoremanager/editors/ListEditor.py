@@ -146,8 +146,13 @@ class ListEditor(Editor):
 
         Returns none.
         '''
+        from scoremanager import editors
+        prototype = (
+            editors.MarkupInventoryEditor,
+            )
         if self._item_creator_class:
-            item_creator = self._item_creator_class(
+            item_creator_class = self._item_creator_class
+            item_creator = item_creator_class(
                 session=self._session, 
                 **self._item_creator_class_kwargs
                 )
@@ -158,9 +163,26 @@ class ListEditor(Editor):
                 self._session._is_autoadding = False
                 return
             result = result or item_creator.target
+        elif isinstance(self, prototype):
+            item_creator_class = editors.Editor
+            target = self._item_class()
+            item_creator = item_creator_class(
+                session=self._session,
+                target=target,
+                )
+            result = item_creator._run()
+            if self._should_backtrack():
+                return
+            if result == 'done':
+                self._session._is_autoadding = False
+                return
+            result = result or item_creator.target
         elif self._item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
-            self._item_getter_configuration_method(getter, self._item_identifier)
+            self._item_getter_configuration_method(
+                getter, 
+                self._item_identifier,
+                )
             item_initialization_token = getter._run()
             if self._should_backtrack():
                 return

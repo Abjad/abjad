@@ -20,8 +20,8 @@ class MarkupInventoryEditor(ListEditor):
         from scoremanager import editors
         superclass = super(MarkupInventoryEditor, self)
         superclass.__init__(session=session, target=target)
+        # TODO: derive self._item_class from self._target_manifest?
         self._item_class = markuptools.Markup
-        self._item_creator_class = editors.MarkupEditor
         # TODO: derive from self._item_class?
         self._item_identifier = 'markup'
 
