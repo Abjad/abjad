@@ -149,6 +149,7 @@ class ListEditor(Editor):
         from scoremanager import editors
         prototype = (
             editors.MarkupInventoryEditor,
+            editors.OctaveTranspositionMappingEditor,
             )
         if self._item_creator_class:
             item_creator_class = self._item_creator_class

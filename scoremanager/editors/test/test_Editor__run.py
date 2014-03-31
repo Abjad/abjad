@@ -110,3 +110,20 @@ def test_Editor__run_07():
     editor._run(pending_user_input=input_)
 
     assert editor.target == Markup('entirely new text', direction=Up)
+
+
+def test_Editor__run_08():
+    r'''Works to change component source and target.
+    '''
+
+    target = pitchtools.OctaveTranspositionMappingComponent()
+    session = scoremanager.core.Session(is_test=True)
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'source [A0, C8] target -18 q'
+    editor._run(pending_user_input=input_)
+
+    component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
+    assert editor.target == component

@@ -19,11 +19,9 @@ class OctaveTranspositionMappingEditor(ListEditor):
         from scoremanager import editors
         superclass = super(OctaveTranspositionMappingEditor, self)
         superclass.__init__(session=session, target=target)
+        # TODO: derive from self._tagte_manifest?
         self._item_class = pitchtools.OctaveTranspositionMappingComponent
-        self._item_creator_class = \
-            editors.OctaveTranspositionMappingComponentEditor
-        self._item_editor_class = \
-            editors.OctaveTranspositionMappingComponentEditor
+        # TODO: derive from self._item_class
         self._item_identifier = 'octave transposition mapping component'
 
     ### PUBLIC PROPERTIES ###
