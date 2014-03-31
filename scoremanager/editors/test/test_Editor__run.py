@@ -5,7 +5,7 @@ import scoremanager
 
 
 def test_Editor__run_01():
-    r'''Works to change clef name.
+    r'''Edits clef name.
     '''
 
     target = Clef('alto')
@@ -21,7 +21,7 @@ def test_Editor__run_01():
 
 
 def test_Editor__run_02():
-    r'''Works with unmodified tempo.
+    r'''Creates default tempo.
     '''
 
     target = Tempo()
@@ -37,7 +37,7 @@ def test_Editor__run_02():
 
 
 def test_Editor__run_03():
-    r'''Works to change tempo duration with pair.
+    r'''Edits tempo duration with pair.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -52,7 +52,7 @@ def test_Editor__run_03():
 
 
 def test_Editor__run_04():
-    r'''Works to change tempo duration with duration object.
+    r'''Edits tempo duration with duration object.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -67,7 +67,7 @@ def test_Editor__run_04():
 
 
 def test_Editor__run_05():
-    r'''Works to change markup contents.
+    r'''Edits markup contents.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -83,7 +83,7 @@ def test_Editor__run_05():
 
 
 def test_Editor__run_06():
-    r'''Works to change markup contents and direction.
+    r'''Edits markup contents and direction.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -98,7 +98,7 @@ def test_Editor__run_06():
 
 
 def test_Editor__run_07():
-    r'''Works to change markup contents and direction.
+    r'''Edits markup contents and direction.
     '''
 
     target = Markup('foo bar')
@@ -114,7 +114,7 @@ def test_Editor__run_07():
 
 
 def test_Editor__run_08():
-    r'''Works to change component source and target.
+    r'''Edits mapping component source and target.
     '''
 
     target = pitchtools.OctaveTranspositionMappingComponent()
@@ -131,7 +131,7 @@ def test_Editor__run_08():
 
 
 def test_Editor__run_09():
-    r'''Works to change pitch range.
+    r'''Edits pitch range.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -158,7 +158,7 @@ def test_Editor__run_09():
 
 
 def test_Editor__run_10():
-    r'''Quit, score, home & junk all work.
+    r'''While editing pitch range: quit, score, home & junk all work.
 
     Note that back doesn't yet work here
     because 'b' interprets as named chromatic pitch.
@@ -206,7 +206,7 @@ def test_Editor__run_10():
 
 
 def test_Editor__run_11():
-    r'''Works to edit NoteAndChordHairpinHandler
+    r'''Edits hairpin handler.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -228,7 +228,7 @@ def test_Editor__run_11():
 
 
 def test_Editor__run_12():
-    r'''Works to edit NoteAndChordsHairpinHandler.
+    r'''Edits hairpins handler.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -250,6 +250,8 @@ def test_Editor__run_12():
 
 
 def test_Editor__run_13():
+    r'''Edits patterned articulations handler.
+    '''
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
@@ -273,7 +275,7 @@ def test_Editor__run_13():
 
 
 def test_Editor__run_14():
-    r'''Works for reiterated articulation handler.
+    r'''Edits reiterated articulation handler.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -299,7 +301,7 @@ def test_Editor__run_14():
 
 
 def test_Editor__run_15():
-    r'''Works for reiterated articulation handler.
+    r'''Edits reiterated articulation handler.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -321,6 +323,8 @@ def test_Editor__run_15():
 
 
 def test_Editor__run_16():
+    r'''Edits reiterated dynamic handler.
+    '''
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedDynamicHandler()
@@ -341,7 +345,7 @@ def test_Editor__run_16():
 
 
 def test_Editor__run_17():
-    r'''Works with terraced dynamics handler.
+    r'''Edits terraced dynamics handler.
     '''
 
     session = scoremanager.core.Session(is_test=True)
