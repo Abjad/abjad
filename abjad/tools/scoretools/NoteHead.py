@@ -107,6 +107,15 @@ class NoteHead(AbjadObject):
             )
         return args
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NoteHead, self).__hash__()
+
     def __lt__(self, expr):
         r'''Is true when `expr` is a note-head with written pitch greater than
         that of this note-head. Otherwise false.

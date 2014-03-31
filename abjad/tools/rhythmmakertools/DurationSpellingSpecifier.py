@@ -86,6 +86,15 @@ class DurationSpellingSpecifier(AbjadObject):
             format_specification=format_specification,
             )
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(DurationSpellingSpecifier, self).__hash__()
+
     def __repr__(self):
         r'''Gets interpreter representation of duration spelling specifier.
 

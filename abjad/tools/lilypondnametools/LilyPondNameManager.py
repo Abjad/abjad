@@ -24,6 +24,15 @@ class LilyPondNameManager(AbjadObject):
         import copy
         return copy.deepcopy(vars(self))
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(LilyPondNameManager, self).__hash__()
+
     def __repr__(self):
         r'''Gets interpreter representation of LilyPond name manager.
 

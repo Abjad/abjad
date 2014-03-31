@@ -123,6 +123,15 @@ class StatalServerCursor(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(StatalServerCursor, self).__hash__()
+
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
         #print

@@ -95,6 +95,15 @@ class CyclicTuple(AbjadObject, tuple):
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(CyclicTuple, self).__hash__()
+
     def __str__(self):
         r'''String representation of cyclic tuple.
 

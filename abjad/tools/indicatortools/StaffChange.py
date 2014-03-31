@@ -78,6 +78,15 @@ class StaffChange(AbjadObject):
             return self.staff is expr.staff
         return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(StaffChange, self).__hash__()
+
     def __str__(self):
         r'''Gets string format of staff change.
 

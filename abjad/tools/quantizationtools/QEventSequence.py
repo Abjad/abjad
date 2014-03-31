@@ -167,6 +167,15 @@ class QEventSequence(AbjadObject):
         '''
         return self._sequence[expr]
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(QEventSequence, self).__hash__()
+
     def __iter__(self):
         r'''Iterates q-event sequence.
 

@@ -61,6 +61,15 @@ class ChordSuspension(AbjadObject):
                     return True
         return False
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(ChordSuspension, self).__hash__()
+
     def __ne__(self, arg):
         r'''Is true when `arg` does not equal chord suspension. Otherwise 
         false.

@@ -136,6 +136,15 @@ class PitchArrayRow(AbjadObject):
         '''
         return vars(self)
 
+    def __hash__(self):
+        r'''Hashes my class.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(PitchArrayRow, self).__hash__()
+
     def __iadd__(self, arg):
         r'''Adds `arg` to pitch array row in place.
 
