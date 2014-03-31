@@ -11,21 +11,18 @@ class Selector(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_items',
-
-        '_explicit_breadcrumb',
         '_is_numbered',
         '_is_ranged',
+        '_items',
         '_menu_entries',
-        '_return_value_attribute',
         '_my_where',
+        '_return_value_attribute',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        explicit_breadcrumb=None,
         is_numbered=True,
         is_ranged=False, 
         items=None, 
@@ -34,7 +31,6 @@ class Selector(ScoreManagerObject):
         where=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        self._explicit_breadcrumb = explicit_breadcrumb
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._items = items or []
@@ -45,9 +41,7 @@ class Selector(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        if getattr(self, '_explicit_breadcrumb', None):
-            return self._explicit_breadcrumb
-        elif hasattr(self, 'space_delimited_lowercase_target_name'):
+        if hasattr(self, 'space_delimited_lowercase_target_name'):
             string = 'select {}:'
             string = string.format(self.space_delimited_lowercase_target_name)
             return string
@@ -150,14 +144,6 @@ class Selector(ScoreManagerObject):
             return False
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def explicit_breadcrumb(self):
-        r'''Gets explicit breadcrumb of selector.
-
-        Returns string or none.
-        '''
-        return self._explicit_breadcrumb
 
     @property
     def is_numbered(self):

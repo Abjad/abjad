@@ -35,10 +35,6 @@ class PitchClassTransformCreationWizard(Wizard):
         else:
             return self._breadcrumb
 
-    def _get_explicit_breadcrumb(self, function_application_pairs):
-        if function_application_pairs:
-            return 'append pitch-class transform:'
-
     def _get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('transpose', 'multiply'):
@@ -64,12 +60,9 @@ class PitchClassTransformCreationWizard(Wizard):
                 items.append('transpose')
                 items.append('invert')
                 items.append('multiply')
-                explicit_breadcrumb = self._get_explicit_breadcrumb(
-                    function_application_pairs)
                 selector = iotools.Selector(
                     session=self._session,
                     items=items,
-                    explicit_breadcrumb=explicit_breadcrumb,
                     )
                 function_name = selector._run()
                 if self._should_backtrack():
