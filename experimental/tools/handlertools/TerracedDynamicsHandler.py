@@ -30,6 +30,18 @@ class TerracedDynamicsHandler(DynamicHandler):
                 attach(command, note_or_chord)
         return expr
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            ('dynamics', None, 'dy', getters.get_dynamics, True),
+            ('minimum_duration', None, 'md', getters.get_duration, True),
+            )
+
     ###  PUBLIC PROPERTIES ###
 
     @apply
