@@ -332,6 +332,44 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.__repr__(self)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            (
+                'extra_counts_per_division', 
+                None, 
+                'ad', 
+                getters.get_integers, 
+                False,
+                ),
+            (
+                'split_divisions_by_counts', 
+                None, 
+                'sd', 
+                getters.get_integers, 
+                False,
+                ),
+            (
+                'talea', 
+                None, 
+                'ta', 
+                getters.get_nonzero_integers, 
+                True,
+                ),
+            (
+                'talea_denominator', 
+                None, 
+                'de', 
+                getters.get_positive_integer_power_of_two, 
+                True,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _add_ties(self, result, talea):
