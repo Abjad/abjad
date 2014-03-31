@@ -251,7 +251,7 @@ class Markup(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.TargetManifest(
-            markuptools.Markup,
+            type(self),
             (
                 'contents', 
                 'contents_string', 

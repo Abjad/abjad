@@ -22,7 +22,7 @@ class MarkupInventoryEditor(ListEditor):
         superclass.__init__(session=session, target=target)
         self._item_class = markuptools.Markup
         self._item_creator_class = editors.MarkupEditor
-        self._item_editor_class = editors.MarkupEditor
+        # TODO: derive from self._item_class?
         self._item_identifier = 'markup'
 
     ### PUBLIC PROPERTIES ###

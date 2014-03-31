@@ -63,3 +63,50 @@ def test_Editor__run_04():
     editor._run(pending_user_input=input_)
 
     assert editor.target == Tempo(Duration(1, 8), 98)
+
+
+def test_Editor__run_05():
+    r'''Works to change markup contents.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=Markup(),
+        )
+    input_ = 'arg foo~text done'
+    editor._run(pending_user_input=input_)
+
+    markup = markuptools.Markup('foo text')
+    assert editor.target == markup
+
+
+def test_Editor__run_06():
+    r'''Works to change markup contents and direction.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=Markup(),
+        )
+    input_ = '''arg '"foo~text~here"' dir up done'''
+    editor._run(pending_user_input=input_)
+
+    assert editor.target == Markup('"foo text here"', direction=Up)
+
+
+def test_Editor__run_07():
+    r'''Works to change markup contents and direction.
+    '''
+
+    target = Markup('foo bar')
+    session = scoremanager.core.Session(is_test=True)
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'arg entirely~new~text direction up done'
+    editor._run(pending_user_input=input_)
+
+    assert editor.target == Markup('entirely new text', direction=Up)
