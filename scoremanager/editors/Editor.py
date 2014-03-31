@@ -392,14 +392,10 @@ class Editor(Controller):
                     self._copy_target_attributes_to_memory()
                     self._attributes_in_memory[attribute_name] = \
                         attribute_value
-                elif hasattr(self.target, '__new__'):
+                else:
                     kwargs = {attribute_name: attribute_value}
                     new_target = new(self.target, **kwargs)
                     self._target = new_target
-                else:
-                    self._copy_target_attributes_to_memory()
-                    self._attributes_in_memory[attribute_name] = \
-                        attribute_value
         else:
             self._attributes_in_memory[attribute_name] = attribute_value
 
