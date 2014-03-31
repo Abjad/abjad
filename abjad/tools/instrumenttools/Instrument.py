@@ -168,6 +168,59 @@ class Instrument(AbjadObject):
         else:
             return type(self._default_scope).__name__
 
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import editors
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            (
+                'instrument_name', 
+                'instrument name', 
+                'in', 
+                getters.get_string, 
+                False,
+                ),
+            (
+                'instrument_name_markup', 
+                'instrument name markup',
+                'im', 
+                getters.get_markup,
+                False,
+                ),
+            (
+                'short_instrument_name', 
+                'short instrument name',
+                'sn', 
+                getters.get_string,
+                False,
+                ),
+            (
+                'short_instrument_name_markup', 
+                'short instrument name markup',
+                'sm', 
+                getters.get_markup,
+                False,
+                ),
+            (
+                'pitch_range', 
+                'pitch range',
+                'range', 
+                'rg', 
+                getters.get_symbolic_pitch_range_string,
+                False,
+                ),
+            (
+                'allowable_clefs', 
+                'allowable clefs',
+                'clefs', 
+                'cf', 
+                editors.ClefInventoryEditor,
+                False,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _get_default_performer_name(self):
