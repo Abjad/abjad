@@ -374,6 +374,19 @@ class PitchRange(AbjadObject):
                 ),
             )
 
+    @property
+    def _target_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.TargetManifest(
+            type(self),
+            (
+                'one_line_named_pitch_repr', 
+                'rp', 
+                getters.get_symbolic_pitch_range_string,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
