@@ -107,3 +107,31 @@
     Score navigation from within material packge triggers bug.
 
 27. Rename AttributeDetail.editor_callable to AttributeDetail.editor.
+
+28. Implement an Editor method to allow an none-allowing attribute to be 
+    (re)set to none.
+    Example: change ...
+        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
+        2: split divisions by counts (sdc):
+        3: extra counts per division (xcd):
+        4: beam specifier (bs):
+        5: burnish specifier (rs):
+        6: duration spelling specifier (dss):
+        7: tie specifier (ts):
+    ... to ...
+        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
+        2: split divisions by counts (sdc):
+        3: extra counts per division (xcd):
+        4: beam specifier (bs): BeamSpecifier(beam_each_division=True, beam_divisions_together=False)
+        5: burnish specifier (rs):
+        6: duration spelling specifier (dss):
+        7: tie specifier (ts):
+    ... and then back to ...
+        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
+        2: split divisions by counts (sdc):
+        3: extra counts per division (xcd):
+        4: beam specifier (bs):
+        5: burnish specifier (rs):
+        6: duration spelling specifier (dss):
+        7: tie specifier (ts):
+    ... using the editor.
