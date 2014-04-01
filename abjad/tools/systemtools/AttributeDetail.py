@@ -21,26 +21,14 @@ class AttributeDetail(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: space_delimited_lowercase_name is a misnomer because
+    #       of 'sounding pitch of written middle C';
+    #       maybe change to self._display_name
     def __init__(self, *args):
         is_null = False
-        if len(args) == 0:
-            name = None
-            retrievable_name = None
-            space_delimited_lowercase_name = None
-            menu_key = None
-            editor_callable = None
-            is_positional = None
-            is_null = True
-        elif len(args) == 3:
+        if len(args) == 3:
             name, menu_key, editor_callable = args
             space_delimited_lowercase_name = None
-            is_positional = True
-            retrievable_name = name
-        elif len(args) == 4:
-            name = args[0]
-            space_delimited_lowercase_name = args[1]
-            menu_key = args[2]
-            editor_callable = args[3]
             is_positional = True
             retrievable_name = name
         elif len(args) == 5:
