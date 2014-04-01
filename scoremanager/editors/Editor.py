@@ -246,7 +246,7 @@ class Editor(Controller):
                 result.append(())
                 continue
             key = attribute_detail.menu_key
-            display_string = attribute_detail._space_delimited_lowercase_name
+            display_string = attribute_detail.display_string
             if self.target is not None:
                 attribute_value = getattr(
                     self.target, attribute_detail.retrievable_name, None)

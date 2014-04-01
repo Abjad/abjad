@@ -16,24 +16,21 @@ class AttributeDetail(AbjadObject):
         '_menu_key',
         '_name',
         '_retrievable_name',
-        '_space_delimited_lowercase_name',
+        '_display_string',
         )
 
     ### INITIALIZER ###
 
-    # TODO: space_delimited_lowercase_name is a misnomer because
-    #       of 'sounding pitch of written middle C';
-    #       maybe change to self._display_name
     def __init__(self, *args):
         is_null = False
         if len(args) == 3:
             name, menu_key, editor_callable = args
-            space_delimited_lowercase_name = None
+            display_string = None
             is_positional = True
             retrievable_name = name
         elif len(args) == 5:
             name = args[0]
-            space_delimited_lowercase_name = args[1]
+            display_string = args[1]
             menu_key = args[2]
             editor_callable = args[3]
             is_positional = args[4]
@@ -41,7 +38,7 @@ class AttributeDetail(AbjadObject):
         elif len(args) == 6:
             name = args[0]
             retrievable_name = args[1]
-            space_delimited_lowercase_name = args[2]
+            display_string = args[2]
             menu_key = args[3]
             editor_callable = args[4]
             is_positional = args[5]
@@ -49,8 +46,8 @@ class AttributeDetail(AbjadObject):
             message = 'can not parse attribute detail: {!r}.'
             message = message.format(args)
             raise ValueError(message)
-        if not space_delimited_lowercase_name and name:
-            space_delimited_lowercase_name = name.replace('_', ' ')
+        if not display_string and name:
+            display_string = name.replace('_', ' ')
         self._allow_none = True
         self._editor_callable = editor_callable
         self._menu_key = menu_key
@@ -58,7 +55,7 @@ class AttributeDetail(AbjadObject):
         self._is_null = is_null
         self._is_positional = is_positional
         self._retrievable_name = retrievable_name
-        self._space_delimited_lowercase_name = space_delimited_lowercase_name
+        self._display_string = display_string
 
     ### SPECIAL METHODS ###
 
@@ -68,7 +65,7 @@ class AttributeDetail(AbjadObject):
         Returns string.
         '''
         parts = [
-            repr(self.space_delimited_lowercase_name),
+            repr(self.display_string),
             repr(self.menu_key),
             self.editor_callable.__name__,
             ]
@@ -86,6 +83,14 @@ class AttributeDetail(AbjadObject):
         Returns boolean.
         '''
         return self._allow_none
+
+    @property
+    def display_string(self):
+        r'''Gets display string of attribute detail.
+
+        Returns string.
+        '''
+        return self._display_string
 
     @property
     def editor_callable(self):
@@ -134,11 +139,3 @@ class AttributeDetail(AbjadObject):
         Returns string.
         '''
         return self._retrievable_name
-
-    @property
-    def space_delimited_lowercase_name(self):
-        r'''Gets space-delimited lowercase name.
-
-        Returns string.
-        '''
-        return self._space_delimited_lowercase_name
