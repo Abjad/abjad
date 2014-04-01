@@ -364,3 +364,30 @@ def test_Editor__run_17():
         )
 
     assert editor.target == handler
+
+
+def test_Editor__run_18():
+    r'''Works with talea rhythm-maker.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = rhythmmakertools.TaleaRhythmMaker()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 't c (-1, 2, -3, 4) d 16 done sdc (6,) xcd (2, 3) done'
+    editor._run(pending_user_input=input_)
+
+    talea = rhythmmakertools.Talea(
+        counts=(-1, 2, -3, 4), 
+        denominator=16,
+        )
+
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=talea,
+        split_divisions_by_counts=(6,),
+        extra_counts_per_division=(2, 3),
+        )
+
+    assert editor.target == maker
