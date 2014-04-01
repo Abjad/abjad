@@ -79,7 +79,7 @@ class Editor(Controller):
         if self.target is not None:
             target_attribute_names = []
             if hasattr(self, '_attribute_manifest'):
-                names = self._attribute_manifest.attribute_names
+                names = self._attribute_manifest._attribute_names
                 target_attribute_names.extend(names)
             for target_attribute_name in target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
@@ -114,7 +114,7 @@ class Editor(Controller):
         self._attributes_in_memory = {}
         retrievable_attribute_names = []
         manifest = self._attribute_manifest
-        names = manifest.positional_initializer_retrievable_attribute_names
+        names = manifest._positional_initializer_retrievable_attribute_names
         retrievable_attribute_names.extend(names)
         for attribute_name in retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
@@ -123,7 +123,7 @@ class Editor(Controller):
                     attribute_name)
                 self._attributes_in_memory[attribute_name] = attribute_value
         keyword_attribute_names = []
-        names = manifest.keyword_attribute_names
+        names = manifest._keyword_attribute_names
         keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
@@ -208,14 +208,14 @@ class Editor(Controller):
         args, kwargs = [], {}
         positional_argument_names = []
         if hasattr(self, '_attribute_manifest'):
-            names = self._attribute_manifest.positional_initializer_argument_names
+            names = self._attribute_manifest._positional_initializer_argument_names
             positional_argument_names.extend(names)
         for attribute_name in positional_argument_names:
             if attribute_name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(attribute_name))
         keyword_attribute_names = []
         if hasattr(self, '_attribute_manifest'):
-            names = self._attribute_manifest.keyword_attribute_names
+            names = self._attribute_manifest._keyword_attribute_names
             keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             if attribute_name in self._attributes_in_memory:

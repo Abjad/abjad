@@ -36,6 +36,39 @@ class AttributeManifest(AbjadObject):
         return '{}({}, {})'.format(
             type(self).__name__, self._target_class.__name__, parts)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            result.append(attribute_detail.name)
+        return result
+
+    @property
+    def _keyword_attribute_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            if not attribute_detail.is_positional:
+                result.append(attribute_detail.name)
+        return result
+
+    @property
+    def _positional_initializer_argument_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            if attribute_detail.is_positional:
+                result.append(attribute_detail.name)
+        return result
+
+    @property
+    def _positional_initializer_retrievable_attribute_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            if attribute_detail.is_positional:
+                result.append(attribute_detail.retrievable_name)
+        return result
+
     ### PRIVATE METHODS ###
 
     def _menu_key_to_attribute_detail(self, menu_key):
@@ -73,50 +106,3 @@ class AttributeManifest(AbjadObject):
         Returns list.
         '''
         return self._attribute_details
-
-    @property
-    def attribute_names(self):
-        r'''Gets attribute names of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            result.append(attribute_detail.name)
-        return result
-
-    @property
-    def keyword_attribute_names(self):
-        r'''Gets keyword attribute names of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            if not attribute_detail.is_positional:
-                result.append(attribute_detail.name)
-        return result
-
-    @property
-    def positional_initializer_argument_names(self):
-        r'''Gets positional initializer argument names of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            if attribute_detail.is_positional:
-                result.append(attribute_detail.name)
-        return result
-
-    @property
-    def positional_initializer_retrievable_attribute_names(self):
-        r'''Gest positional initializer retrievable attribute names.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            if attribute_detail.is_positional:
-                result.append(attribute_detail.retrievable_name)
-        return result
