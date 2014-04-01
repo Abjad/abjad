@@ -13,33 +13,6 @@ class TaleaRhythmMakerEditor(Editor):
     __slots__ = (
         )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        return systemtools.AttributeManifest(
-            type(self),
-            systemtools.AttributeDetail(
-                name='extra_counts_per_division', 
-                menu_key='ad', 
-                editor_callable=getters.get_integers, 
-                is_positional=False,
-                ),
-            systemtools.AttributeDetail(
-                name='split_divisions_by_counts', 
-                menu_key='sd', 
-                editor_callable=getters.get_integers, 
-                is_positional=False,
-                ),
-            systemtools.AttributeDetail(
-                name='talea', 
-                menu_key='ta', 
-                editor_callable=getters.get_nonzero_integers, 
-                is_positional=False,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _get_target_summary_lines(self):

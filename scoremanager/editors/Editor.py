@@ -115,7 +115,6 @@ class Editor(Controller):
         attribute_detail,
         space_delimited_attribute_name, 
         prepopulated_value, 
-        **kwargs
         ):
         from scoremanager import iotools
         from scoremanager import wizards
@@ -124,28 +123,25 @@ class Editor(Controller):
             isinstance(editor_callable, types.FunctionType) and
             editor_callable.__name__.startswith('make_')
             ):
-            editor = editor_callable(session=session, **kwargs)
+            editor = editor_callable(session=session)
         elif isinstance(editor_callable, types.FunctionType):
             editor = editor_callable(
                 space_delimited_attribute_name,
                 session=self._session, 
                 prepopulated_value=prepopulated_value, 
                 allow_none=True,
-                **kwargs
                 )
         elif issubclass(editor_callable, Editor):
             editor = editor_callable(
                 session=self._session, 
                 target=prepopulated_value, 
-                **kwargs
                 )
         elif issubclass(editor_callable, iotools.Selector):
-            editor = editor_callable(session=self._session, **kwargs)
+            editor = editor_callable(session=self._session)
         elif issubclass(editor_callable, wizards.Wizard):
             editor = editor_callable(
                 session=self._session, 
                 target=prepopulated_value, 
-                **kwargs
                 )
         else:
             message = 'what is {!r}?'
@@ -263,7 +259,6 @@ class Editor(Controller):
         menu_key, 
         prepopulated_value, 
         session=None, 
-        **kwargs
         ):
         manifest = self._attribute_manifest
         assert manifest
@@ -274,7 +269,6 @@ class Editor(Controller):
             attribute_detail,
             attribute_name,
             prepopulated_value,
-            **kwargs
             )
         return attribute_editor
 
