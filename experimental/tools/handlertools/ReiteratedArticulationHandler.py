@@ -85,31 +85,26 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 name='articulation_list', 
                 menu_key='al', 
                 editor_callable=getters.get_articulations, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='nd', 
                 editor_callable=getters.get_duration, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='maximum_duration', 
                 menu_key='xd', 
                 editor_callable=getters.get_duration, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_written_pitch', 
                 menu_key='np', 
                 editor_callable=getters.get_named_pitch, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='maximum_written_pitch', 
                 menu_key='xp', 
                 editor_callable=getters.get_named_pitch, 
-                is_positional=False,
                 ),
             )
 

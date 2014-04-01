@@ -57,13 +57,11 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 name='hairpin_token', 
                 menu_key='ht', 
                 editor_callable=getters.get_hairpin_token, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='md', 
                 editor_callable=getters.get_duration, 
-                is_positional=False,
                 ),
             )
 

@@ -39,13 +39,11 @@ class ReiteratedDynamicHandler(DynamicHandler):
                 name='dynamic_name', 
                 menu_key='dy', 
                 editor_callable=getters.get_dynamic, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='md', 
                 editor_callable=getters.get_duration, 
-                is_positional=False,
                 ),
             )
 

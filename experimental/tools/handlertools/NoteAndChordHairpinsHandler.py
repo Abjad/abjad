@@ -63,12 +63,10 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                 name='hairpin_tokens', 
                 menu_key='ht', 
                 editor_callable=getters.get_hairpin_tokens, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='md', 
                 editor_callable=getters.get_duration, 
-                is_positional=False,
                 ),
             )

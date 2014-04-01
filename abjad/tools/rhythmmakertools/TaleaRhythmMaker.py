@@ -345,25 +345,21 @@ class TaleaRhythmMaker(RhythmMaker):
                 name='beam_specifier',
                 menu_key='bs',
                 editor_callable='edit attribute',
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division', 
                 menu_key='ad', 
                 editor_callable=getters.get_integers, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='split_divisions_by_counts', 
                 menu_key='sd', 
                 editor_callable=getters.get_integers, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='talea', 
                 menu_key='ta', 
                 editor_callable=getters.get_nonzero_integers, 
-                is_positional=False,
                 ),
             )
 

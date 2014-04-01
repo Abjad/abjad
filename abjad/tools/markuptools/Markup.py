@@ -249,13 +249,11 @@ class Markup(AbjadObject):
                 display_string='arg', 
                 menu_key='ag', 
                 editor_callable=getters.get_string, 
-                is_positional=False,
                 ),
             systemtools.AttributeDetail(
                 name='direction', 
                 menu_key='dr', 
                 editor_callable=getters.get_direction_string, 
-                is_positional=False,
                 ),
             )
 
