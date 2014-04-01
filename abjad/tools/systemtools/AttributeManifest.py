@@ -27,6 +27,13 @@ class AttributeManifest(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __getitem__(self, expr):
+        r'''Gets attribute detail from attribute manifest.
+
+        Returns attribute detail.
+        '''
+        return self.attribute_details.__getitem__(expr)
+
     def __repr__(self):
         r'''Gets interpreter representation of target manifest.
 
@@ -41,30 +48,22 @@ class AttributeManifest(AbjadObject):
     @property
     def _attribute_names(self):
         result = []
-        for attribute_detail in self.attribute_details:
+        for attribute_detail in self:
             result.append(attribute_detail.name)
         return result
 
     @property
     def _keyword_attribute_names(self):
         result = []
-        for attribute_detail in self.attribute_details:
+        for attribute_detail in self:
             if not attribute_detail.is_positional:
                 result.append(attribute_detail.name)
         return result
 
     @property
-    def _positional_initializer_argument_names(self):
+    def _positional_attribute_names(self):
         result = []
-        for attribute_detail in self.attribute_details:
-            if attribute_detail.is_positional:
-                result.append(attribute_detail.name)
-        return result
-
-    @property
-    def _positional_initializer_retrievable_attribute_names(self):
-        result = []
-        for attribute_detail in self.attribute_details:
+        for attribute_detail in self:
             if attribute_detail.is_positional:
                 result.append(attribute_detail.name)
         return result

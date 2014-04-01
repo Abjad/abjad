@@ -4,7 +4,6 @@ from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
 from scoremanager.core.Controller import Controller
 
-
 class Editor(Controller):
     r'''Editor.
     '''
@@ -96,23 +95,16 @@ class Editor(Controller):
 
     def _copy_target_attributes_to_memory(self):
         self._attributes_in_memory = {}
-        retrievable_attribute_names = []
         manifest = self._attribute_manifest
-        names = manifest._positional_initializer_retrievable_attribute_names
-        retrievable_attribute_names.extend(names)
-        for attribute_name in retrievable_attribute_names:
-            attribute_value = getattr(self.target, attribute_name, None)
+        for name in manifest._positional_attribute_names:
+            attribute_value = getattr(self.target, name, None)
             if attribute_value is not None:
-                attribute_name = manifest._to_initializer_argument_names(
-                    attribute_name)
-                self._attributes_in_memory[attribute_name] = attribute_value
-        keyword_attribute_names = []
-        names = manifest._keyword_attribute_names
-        keyword_attribute_names.extend(names)
-        for attribute_name in keyword_attribute_names:
-            attribute_value = getattr(self.target, attribute_name, None)
+                attribute_name = manifest._to_initializer_argument_names(name)
+                self._attributes_in_memory[name] = attribute_value
+        for name in manifest._keyword_attribute_names:
+            attribute_value = getattr(self.target, name, None)
             if attribute_value is not None:
-                self._attributes_in_memory[attribute_name] = attribute_value
+                self._attributes_in_memory[name] = attribute_value
 
     def _get_attribute_editor(
         self, 
@@ -203,20 +195,14 @@ class Editor(Controller):
 
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
-        positional_argument_names = []
         manifest = self._attribute_manifest
-        names = manifest._positional_initializer_argument_names
-        positional_argument_names.extend(names)
-        for attribute_name in positional_argument_names:
-            if attribute_name in self._attributes_in_memory:
-                args.append(self._attributes_in_memory.get(attribute_name))
-        keyword_attribute_names = []
-        names = manifest._keyword_attribute_names
-        keyword_attribute_names.extend(names)
-        for attribute_name in keyword_attribute_names:
-            if attribute_name in self._attributes_in_memory:
-                value = self._attributes_in_memory.get(attribute_name)
-                kwargs[attribute_name] = value
+        for name in manifest._positional_attribute_names:
+            if name in self._attributes_in_memory:
+                args.append(self._attributes_in_memory.get(name))
+        for name in manifest._keyword_attribute_names:
+            if name in self._attributes_in_memory:
+                value = self._attributes_in_memory.get(name)
+                kwargs[name] = value
         self._target = self._target_class(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
