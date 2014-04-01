@@ -148,3 +148,24 @@ def test_ListEditor__run_07():
         Tempo(Duration(1, 4), 84),
         ])
     assert editor.target == inventory
+
+
+def test_ListEditor__run_08():
+    r'''Edits empty pitch range inventory.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.PitchRangeInventory()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add range [C0, C6] done'
+    input_ += ' add range [C1, C7] done'
+    input_ += ' add range [C2, C8] done'
+    input_ += ' rm 1 mv 1 2 q'
+    editor._run(pending_user_input=input_)
+    assert editor.target == pitchtools.PitchRangeInventory([
+        pitchtools.PitchRange('[C2, C8]'), 
+        pitchtools.PitchRange('[C1, C7]'),
+        ])

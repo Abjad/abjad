@@ -8,6 +8,7 @@ from scoremanager.core.Controller import Controller
 
 class Editor(Controller):
     r'''Editor.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -362,7 +363,7 @@ class Editor(Controller):
             )
         # TODO: reimplement as something in PitchRange._attribute_manifest
         if isinstance(self.target, pitchtools.PitchRange):
-            assert attribute_name == 'one_line_named_pitch_repr'
+            assert attribute_name == 'range'
             new_target = type(self.target)(attribute_value)
             self._target = new_target
         elif isinstance(self.target, prototype):

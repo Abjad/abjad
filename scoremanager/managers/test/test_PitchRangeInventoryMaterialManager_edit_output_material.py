@@ -59,7 +59,9 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm nmm pitch testpir default'
-    input_ += ' testpir me add [A0, C8] add [C2, F#5] add [C2, G5]'
+    input_ += ' testpir me add range [A0, C8] done'
+    input_ += ' add range [C2, F#5] done'
+    input_ += ' add range [C2, G5] done'
     input_ += ' rm 1 mv 1 2 b default q'
 
     assert not os.path.exists(path)
