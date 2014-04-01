@@ -212,14 +212,6 @@ class Clef(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
-    @property
-    def _lilypond_format(self):
-        return r'\clef "{}"'.format(self._name)
-
-    @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
         from scoremanager import getters
@@ -231,6 +223,14 @@ class Clef(AbjadObject):
                 editor_callable=getters.get_string,
                 ),
             )
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._name)
+
+    @property
+    def _lilypond_format(self):
+        return r'\clef "{}"'.format(self._name)
 
     ### PRIVATE METHODS ###
 

@@ -340,33 +340,23 @@ class TaleaRhythmMaker(RhythmMaker):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            (
-                'extra_counts_per_division', 
-                None, 
-                'ad', 
-                getters.get_integers, 
-                False,
+            systemtools.AttributeDetail(
+                name='extra_counts_per_division', 
+                menu_key='ad', 
+                editor_callable=getters.get_integers, 
+                is_positional=False,
                 ),
-            (
-                'split_divisions_by_counts', 
-                None, 
-                'sd', 
-                getters.get_integers, 
-                False,
+            systemtools.AttributeDetail(
+                name='split_divisions_by_counts', 
+                menu_key='sd', 
+                editor_callable=getters.get_integers, 
+                is_positional=False,
                 ),
-            (
-                'talea', 
-                None, 
-                'ta', 
-                getters.get_nonzero_integers, 
-                True,
-                ),
-            (
-                'talea_denominator', 
-                None, 
-                'de', 
-                getters.get_positive_integer_power_of_two, 
-                True,
+            systemtools.AttributeDetail(
+                name='talea', 
+                menu_key='ta', 
+                editor_callable=getters.get_nonzero_integers, 
+                is_positional=False,
                 ),
             )
 

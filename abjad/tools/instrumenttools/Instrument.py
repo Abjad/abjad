@@ -136,56 +136,50 @@ class Instrument(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            (
-                'allowable_clefs', 
-                'allowable clefs',
-                'clefs', 
-                'cf', 
-                editors.ClefInventoryEditor,
-                False,
+            systemtools.AttributeDetail(
+                name='allowable_clefs', 
+                display_string='clefs', 
+                menu_key='cf', 
+                editor_callable=editors.ClefInventoryEditor,
+                is_positional=False,
                 ),
-            (
-                'instrument_name', 
-                'instrument name', 
-                'in', 
-                getters.get_string, 
-                False,
+            systemtools.AttributeDetail(
+                name='instrument_name', 
+                menu_key='in', 
+                editor_callable=getters.get_string, 
+                is_positional=False,
                 ),
-            (
-                'instrument_name_markup', 
-                'instrument name markup',
-                'im', 
-                getters.get_markup,
-                False,
+            systemtools.AttributeDetail(
+                name='instrument_name_markup', 
+                menu_key='im', 
+                editor_callable=getters.get_markup,
+                is_positional=False,
                 ),
-            (
-                'pitch_range', 
-                'pitch range',
-                'range', 
-                'rg', 
-                getters.get_symbolic_pitch_range_string,
-                False,
+            systemtools.AttributeDetail(
+                name='pitch_range', 
+                display_string='range', 
+                menu_key='rg', 
+                editor_callable=getters.get_symbolic_pitch_range_string,
+                is_positional=False,
                 ),
-            (
-                'short_instrument_name', 
-                'short instrument name',
-                'sn', 
-                getters.get_string,
-                False,
+            systemtools.AttributeDetail(
+                name='short_instrument_name', 
+                menu_key='sn', 
+                editor_callable=getters.get_string,
+                is_positional=False,
                 ),
-            (
-                'short_instrument_name_markup', 
-                'short instrument name markup',
-                'sm', 
-                getters.get_markup,
-                False,
+            systemtools.AttributeDetail(
+                name='short_instrument_name_markup', 
+                menu_key='sm', 
+                editor_callable=getters.get_markup,
+                is_positional=False,
                 ),
-            (
-                'sounding_pitch_of_written_middle_c',
-                'sounding pitch of written middle C',
-                'sp',
-                getters.get_named_pitch,
-                False,
+            systemtools.AttributeDetail(
+                name='sounding_pitch_of_written_middle_c',
+                display_string='sounding pitch of written middle C',
+                menu_key='sp',
+                editor_callable=getters.get_named_pitch,
+                is_positional=False,
                 ),
             )
 

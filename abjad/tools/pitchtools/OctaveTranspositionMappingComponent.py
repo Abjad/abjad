@@ -154,15 +154,15 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            (
-                'source_pitch_range', 
-                'pr', 
-                getters.get_symbolic_pitch_range_string,
+            systemtools.AttributeDetail(
+                name='source_pitch_range', 
+                menu_key='pr', 
+                editor_callable=getters.get_symbolic_pitch_range_string,
                 ),
-            (
-                'target_octave_start_pitch', 
-                'sp', 
-                getters.get_integer,
+            systemtools.AttributeDetail(
+                name='target_octave_start_pitch', 
+                menu_key='sp', 
+                editor_callable=getters.get_integer,
                 ),
             )
 

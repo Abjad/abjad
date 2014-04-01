@@ -19,34 +19,24 @@ class TaleaRhythmMakerEditor(Editor):
     def _attribute_manifest(self):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
-            rhythmmakertools.TaleaRhythmMaker,
-            (
-                'talea', 
-                None, 
-                'ta', 
-                getters.get_nonzero_integers, 
-                True,
+            type(self),
+            systemtools.AttributeDetail(
+                name='extra_counts_per_division', 
+                menu_key='ad', 
+                editor_callable=getters.get_integers, 
+                is_positional=False,
                 ),
-            (
-                'talea_denominator', 
-                None, 
-                'de', 
-                getters.get_positive_integer_power_of_two, 
-                True,
+            systemtools.AttributeDetail(
+                name='split_divisions_by_counts', 
+                menu_key='sd', 
+                editor_callable=getters.get_integers, 
+                is_positional=False,
                 ),
-            (
-                'extra_counts_per_division', 
-                None, 
-                'ad', 
-                getters.get_integers, 
-                False,
-                ),
-            (
-                'split_divisions_by_counts', 
-                None, 
-                'sd', 
-                getters.get_integers, 
-                False,
+            systemtools.AttributeDetail(
+                name='talea', 
+                menu_key='ta', 
+                editor_callable=getters.get_nonzero_integers, 
+                is_positional=False,
                 ),
             )
 

@@ -36,7 +36,11 @@ class PerformerEditor(ListEditor):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             instrumenttools.Performer,
-            ('name', 'nm', getters.get_string),
+            systemtools.AttributeDetail(
+                name='name', 
+                menu_key='nm', 
+                editor_callable=getters.get_string,
+                ),
             )
 
     ### PUBLIC METHODS ###
