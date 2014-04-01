@@ -243,18 +243,18 @@ class Editor(Controller):
             if self.target is not None:
                 attribute_value = getattr(
                     self.target, 
-                    attribute_detail.retrievable_name, 
+                    attribute_detail.name, 
                     None,
                     )
                 if attribute_value is None:
                     attribute_value = getattr(
                         self.target, attribute_detail.name, None)
             else:
-                attribute_value = self._attributes_in_memory.get(
-                    attribute_detail.retrievable_name)
+                name = attribute_detail.name
+                attribute_value = self._attributes_in_memory.get(name)
                 if attribute_value is None:
-                    attribute_value = self._attributes_in_memory.get(
-                        attribute_detail.name)
+                    name = attribute_detail.name
+                    attribute_value = self._attributes_in_memory.get(name)
             if (hasattr(attribute_value, '__len__') and 
                 not len(attribute_value)):
                 attribute_value = None

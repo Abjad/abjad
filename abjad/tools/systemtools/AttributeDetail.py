@@ -14,12 +14,10 @@ class AttributeDetail(AbjadObject):
         '_is_positional',
         '_menu_key',
         '_name',
-        '_retrievable_name',
         )
 
     ### INITIALIZER ###
 
-    # TODO: remove retrievable_name in favor of name
     # TODO: make is_positional default to False instead of True
     def __init__(
         self, 
@@ -35,7 +33,6 @@ class AttributeDetail(AbjadObject):
         self._is_positional = is_positional
         self._menu_key = menu_key
         self._name = name
-        self._retrievable_name = name
 
     ### SPECIAL METHODS ###
 
@@ -93,11 +90,3 @@ class AttributeDetail(AbjadObject):
         Returns string.
         '''
         return self._name
-
-    @property
-    def retrievable_name(self):
-        r'''Gets retrievable name of attribute detail.
-
-        Returns string.
-        '''
-        return self._retrievable_name

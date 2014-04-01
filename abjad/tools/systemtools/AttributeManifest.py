@@ -66,7 +66,7 @@ class AttributeManifest(AbjadObject):
         result = []
         for attribute_detail in self.attribute_details:
             if attribute_detail.is_positional:
-                result.append(attribute_detail.retrievable_name)
+                result.append(attribute_detail.name)
         return result
 
     ### PRIVATE METHODS ###
@@ -87,14 +87,14 @@ class AttributeManifest(AbjadObject):
 
     def _to_initializer_argument_names(self, retrievable_attribute_name):
         for attribute_detail in self.attribute_details:
-            if attribute_detail.retrievable_name == retrievable_attribute_name:
+            if attribute_detail.name == retrievable_attribute_name:
                 return attribute_detail.name
         raise ValueError
 
     def _to_retrievable_attribute_name(self, initializer_argument_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.name == initializer_argument_name:
-                return attribute_detail.retrievable_name
+                return attribute_detail.name
         raise ValueError
 
     ### PUBLIC PROPERTIES ###
