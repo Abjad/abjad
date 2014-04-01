@@ -22,6 +22,16 @@ def get_articulations(
     getter.append_articulations(space_delimited_attribute_name)
     return getter
 
+def get_boolean(
+    space_delimited_attribute_name, 
+    session=None, 
+    prepopulated_value=None, 
+    allow_none=True,
+    ):
+    getter = UserInputGetter(session=session, allow_none=allow_none)
+    getter.append_boolean(space_delimited_attribute_name)
+    return getter
+
 def get_direction_string(
     space_delimited_attribute_name, 
     session=None, 
