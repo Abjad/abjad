@@ -52,6 +52,15 @@ class ListEditor(Editor):
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
         self._item_identifier = 'element'
+        if target and getattr(target, '_item_callable', None):
+            assert self.target._item_callable
+            self._item_class = self.target._item_callable
+            self._item_creator_class = self.target._item_callable
+            dummy_item = self.target._item_callable()
+            item_identifier = \
+                stringtools.upper_camel_case_to_space_delimited_lowercase(
+                    type(dummy_item).__name__)
+            self._item_identifier = item_identifier
 
     ### PRIVATE PROPERTIES ###
 

@@ -131,8 +131,8 @@ class Instrument(AbjadObject):
 
     @property
     def _attribute_manifest(self):
+        from abjad.tools import indicatortools
         from abjad.tools import systemtools
-        from scoremanager import editors
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
@@ -140,7 +140,7 @@ class Instrument(AbjadObject):
                 name='allowable_clefs', 
                 display_string='clefs', 
                 menu_key='cf', 
-                editor_callable=editors.ClefInventoryEditor,
+                editor_callable=indicatortools.ClefInventory,
                 ),
             systemtools.AttributeDetail(
                 name='instrument_name', 

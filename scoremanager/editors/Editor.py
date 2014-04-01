@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import types
+from abjad.tools import datastructuretools
 from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
 from scoremanager.core.Controller import Controller
@@ -7,7 +8,6 @@ from scoremanager.core.Controller import Controller
 
 class Editor(Controller):
     r'''Editor.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -35,7 +35,7 @@ class Editor(Controller):
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
-        if not type(self).__name__ == 'Editor':
+        if not type(self).__name__ in ('Editor', 'ListEditor'):
             target_manifest = self._attribute_manifest
             if not target_manifest:
                 message = 'can not find target manifest for {!r}.'
@@ -118,6 +118,7 @@ class Editor(Controller):
         space_delimited_attribute_name, 
         prepopulated_value, 
         ):
+        from scoremanager import editors
         from scoremanager import iotools
         from scoremanager import wizards
         editor_callable = attribute_detail.editor_callable
@@ -137,6 +138,13 @@ class Editor(Controller):
             editor = editor_callable(
                 session=self._session, 
                 target=prepopulated_value, 
+                )
+        elif issubclass(editor_callable, datastructuretools.TypedList):
+            target = getattr(self.target, attribute_detail.name)
+            target = target or editor_callable()
+            editor = editors.ListEditor(
+                session=self._session,
+                target=target,
                 )
         elif isinstance(editor_callable, types.TypeType):
             target = getattr(self.target, attribute_detail.name)
