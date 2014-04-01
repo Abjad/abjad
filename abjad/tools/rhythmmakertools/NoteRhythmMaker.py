@@ -171,6 +171,32 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.__repr__(self)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import rhythmmakertools
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='beam_specifier',
+                menu_key='bs',
+                editor_callable=rhythmmakertools.BeamSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='duration_spelling_specifier',
+                menu_key='dss',
+                editor_callable=rhythmmakertools.DurationSpellingSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='tie_specifier',
+                menu_key='ts',
+                editor_callable=rhythmmakertools.TieSpecifier,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):

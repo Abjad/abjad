@@ -95,6 +95,22 @@ class RestRhythmMaker(RhythmMaker):
         superclass = super(RestRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import rhythmmakertools
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='duration_spelling_specifier',
+                menu_key='dss',
+                editor_callable=rhythmmakertools.DurationSpellingSpecifier,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
