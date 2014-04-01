@@ -21,7 +21,7 @@ class PitchRangeInventoryEditor(ListEditor):
         superclass.__init__(session=session, target=target)
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_symbolic_pitch_range_string
-        # TODO: derive from self._target_manifest?
+        # TODO: derive from self._attribute_manifest?
         self._item_class = pitchtools.PitchRange
         # TODO: derive from self._item_class?
         self._item_identifier = 'pitch range'
@@ -30,7 +30,7 @@ class PitchRangeInventoryEditor(ListEditor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def _target_manifest(self):
+    def _attribute_manifest(self):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             pitchtools.PitchRangeInventory,

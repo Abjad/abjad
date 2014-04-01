@@ -20,7 +20,7 @@ class MarkupInventoryEditor(ListEditor):
         from scoremanager import editors
         superclass = super(MarkupInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        # TODO: derive self._item_class from self._target_manifest?
+        # TODO: derive self._item_class from self._attribute_manifest?
         self._item_class = markuptools.Markup
         # TODO: derive from self._item_class?
         self._item_identifier = 'markup'
@@ -28,7 +28,7 @@ class MarkupInventoryEditor(ListEditor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def _target_manifest(self):
+    def _attribute_manifest(self):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             markuptools.MarkupInventory,

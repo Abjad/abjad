@@ -16,7 +16,7 @@ class NoteRhythmMakerEditor(Editor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def _target_manifest(self):
+    def _attribute_manifest(self):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             rhythmmakertools.NoteRhythmMaker,

@@ -169,7 +169,7 @@ class Instrument(AbjadObject):
             return type(self._default_scope).__name__
 
     @property
-    def _target_manifest(self):
+    def _attribute_manifest(self):
         from abjad.tools import systemtools
         from scoremanager import editors
         from scoremanager import getters

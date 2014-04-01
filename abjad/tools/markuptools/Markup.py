@@ -247,7 +247,7 @@ class Markup(AbjadObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
-    def _target_manifest(self):
+    def _attribute_manifest(self):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(

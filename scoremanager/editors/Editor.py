@@ -35,7 +35,7 @@ class Editor(Controller):
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
         if not type(self).__name__ == 'Editor':
-            target_manifest = self._target_manifest
+            target_manifest = self._attribute_manifest
             if not target_manifest:
                 message = 'can not find target manifest for {!r}.'
                 message = message.format(self)
@@ -70,19 +70,19 @@ class Editor(Controller):
 
     @property
     def _target_class(self):
-        return self._target_manifest._target_class
+        return self._attribute_manifest._target_class
 
     @property
-    def _target_manifest(self):
-        return self.target._target_manifest
+    def _attribute_manifest(self):
+        return self.target._attribute_manifest
 
     @property
     def _target_name(self):
-        target_name_attribute = self._target_manifest.target_name_attribute
+        target_name_attribute = self._attribute_manifest.target_name_attribute
         if target_name_attribute:
             return getattr(
                 self.target, 
-                self._target_manifest.target_name_attribute, 
+                self._attribute_manifest.target_name_attribute, 
                 None,
                 )
 
@@ -91,8 +91,8 @@ class Editor(Controller):
         result = []
         if self.target is not None:
             target_attribute_names = []
-            if hasattr(self, '_target_manifest'):
-                names = self._target_manifest.attribute_names
+            if hasattr(self, '_attribute_manifest'):
+                names = self._attribute_manifest.attribute_names
                 target_attribute_names.extend(names)
             for target_attribute_name in target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
@@ -126,7 +126,7 @@ class Editor(Controller):
     def _copy_target_attributes_to_memory(self):
         self._attributes_in_memory = {}
         retrievable_attribute_names = []
-        manifest = self._target_manifest
+        manifest = self._attribute_manifest
         names = manifest.positional_initializer_retrievable_attribute_names
         retrievable_attribute_names.extend(names)
         for attribute_name in retrievable_attribute_names:
@@ -190,7 +190,7 @@ class Editor(Controller):
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
             return
-        attribute_name = self._target_manifest._menu_key_to_attribute_name(
+        attribute_name = self._attribute_manifest._menu_key_to_attribute_name(
             result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
@@ -220,15 +220,15 @@ class Editor(Controller):
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
         positional_argument_names = []
-        if hasattr(self, '_target_manifest'):
-            names = self._target_manifest.positional_initializer_argument_names
+        if hasattr(self, '_attribute_manifest'):
+            names = self._attribute_manifest.positional_initializer_argument_names
             positional_argument_names.extend(names)
         for attribute_name in positional_argument_names:
             if attribute_name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(attribute_name))
         keyword_attribute_names = []
-        if hasattr(self, '_target_manifest'):
-            names = self._target_manifest.keyword_attribute_names
+        if hasattr(self, '_attribute_manifest'):
+            names = self._attribute_manifest.keyword_attribute_names
             keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             if attribute_name in self._attributes_in_memory:
@@ -254,7 +254,7 @@ class Editor(Controller):
 
     def _make_target_attribute_tokens(self):
         result = []
-        for attribute_detail in self._target_manifest.attribute_details:
+        for attribute_detail in self._attribute_manifest.attribute_details:
             if attribute_detail.is_null:
                 result.append(())
                 continue
@@ -291,7 +291,7 @@ class Editor(Controller):
         session=None, 
         **kwargs
         ):
-        manifest = self._target_manifest
+        manifest = self._attribute_manifest
         assert manifest
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         attribute_name = attribute_name.replace('_', ' ')
@@ -306,7 +306,7 @@ class Editor(Controller):
 
     def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = \
-            self._target_manifest._menu_key_to_attribute_name(menu_key)
+            self._attribute_manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
     def _run(self, pending_user_input=None):
@@ -375,7 +375,7 @@ class Editor(Controller):
             pitchtools.OctaveTranspositionMappingComponent,
             pitchtools.OctaveTranspositionMapping,
             )
-        # TODO: reimplement as something in PitchRange._target_manifest
+        # TODO: reimplement as something in PitchRange._attribute_manifest
         if isinstance(self.target, pitchtools.PitchRange):
             assert attribute_name == 'one_line_named_pitch_repr'
             new_target = type(self.target)(attribute_value)

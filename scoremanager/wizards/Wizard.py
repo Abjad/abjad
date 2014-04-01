@@ -72,7 +72,7 @@ class Wizard(ScoreManagerObject):
             else:
                 raise ValueError(class_name)
             assert target
-            if hasattr(target, '_target_manifest'):
+            if hasattr(target, '_attribute_manifest'):
                 editor = editors.Editor(
                     session=self._session,
                     target=target,
