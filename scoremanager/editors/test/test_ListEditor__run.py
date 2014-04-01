@@ -169,3 +169,45 @@ def test_ListEditor__run_08():
         pitchtools.PitchRange('[C2, C8]'), 
         pitchtools.PitchRange('[C1, C7]'),
         ])
+
+
+def test_ListEditor__run_09():
+    r'''Edits empty octave transposition mapping.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.OctaveTranspositionMapping()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add source [A0, F#4] target 22 done'
+    input_ += ' add source (F#4, C8] target 26 done done done'
+    editor._run(pending_user_input=input_)
+
+    mapping = pitchtools.OctaveTranspositionMapping([
+        ('[A0, F#4]', 22),
+        ('(F#4, C8]', 26),
+        ])
+    assert editor.target == mapping
+
+
+def test_ListEditor__run_10():
+    r'''Edits empty octave transposition mapping.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = pitchtools.OctaveTranspositionMapping()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add source [A0, F#4] target 22 done'
+    input_ +=  ' add source (F#4, C8] target 26 done done done'
+    editor._run(pending_user_input=input_)
+
+    mapping = pitchtools.OctaveTranspositionMapping(
+            [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
+            )
+
+    assert editor.target == mapping
