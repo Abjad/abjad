@@ -292,6 +292,24 @@ class Tempo(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='duration', 
+                menu_key='d', 
+                editor_callable=getters.get_duration,
+                ),
+            systemtools.AttributeDetail(
+                name='units_per_minute', 
+                menu_key='pm', 
+                editor_callable=getters.get_integer,
+                ),
+            )
+
+    @property
     def _dotted(self):
         return self.duration.lilypond_duration_string
 
@@ -351,16 +369,6 @@ class Tempo(AbjadObject):
             self,
             is_indented=is_indented,
             positional_argument_values=positional_argument_values,
-            )
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from scoremanager import getters
-        return systemtools.AttributeManifest(
-            type(self),
-            ('duration', 'd', getters.get_duration),
-            ('units_per_minute', 'pm', getters.get_integer),
             )
 
     ### PUBLIC PROPERTIES ###

@@ -33,17 +33,12 @@ class AttributeDetail(AbjadObject):
         retrievable_name = kwargs.get('retrievable_name', None)
         if not args:
             pass
-        elif len(args) == 3:
-            name = args[0]
-            menu_key = args[1]
-            editor_callable = args[2]
         elif len(args) == 5:
             name = args[0]
             display_string = args[1]
             menu_key = args[2]
             editor_callable = args[3]
             is_positional = args[4]
-
         elif len(args) == 6:
             name = args[0]
             retrievable_name = args[1]
