@@ -180,12 +180,10 @@ class Editor(Controller):
         attribute_name = self._attribute_manifest._menu_key_to_attribute_name(
             result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
-        kwargs = self._menu_key_to_delegated_editor_kwargs(result)
         attribute_editor = self._menu_key_to_attribute_editor(
             result, 
             session=self._session, 
             prepopulated_value=prepopulated_value, 
-            **kwargs
             )
         if attribute_editor is not None:
             result = attribute_editor._run()
@@ -246,7 +244,10 @@ class Editor(Controller):
             display_string = attribute_detail.display_string
             if self.target is not None:
                 attribute_value = getattr(
-                    self.target, attribute_detail.retrievable_name, None)
+                    self.target, 
+                    attribute_detail.retrievable_name, 
+                    None,
+                    )
                 if attribute_value is None:
                     attribute_value = getattr(
                         self.target, attribute_detail.name, None)
@@ -256,17 +257,14 @@ class Editor(Controller):
                 if attribute_value is None:
                     attribute_value = self._attributes_in_memory.get(
                         attribute_detail.name)
-            if hasattr(attribute_value, '__len__') and \
-                not len(attribute_value):
+            if (hasattr(attribute_value, '__len__') and 
+                not len(attribute_value)):
                 attribute_value = None
             prepopulated_value = self._io_manager._get_one_line_menu_summary(
                 attribute_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
         return result
-
-    def _menu_key_to_delegated_editor_kwargs(self, menu_key):
-        return {}
 
     def _menu_key_to_attribute_editor(
         self, 
