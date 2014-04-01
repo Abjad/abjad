@@ -9,7 +9,6 @@ class AttributeDetail(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allow_none',
         '_editor_callable',
         '_is_positional',
         '_menu_key',
@@ -46,7 +45,6 @@ class AttributeDetail(AbjadObject):
             raise ValueError(message)
         if not display_string and name:
             display_string = name.replace('_', ' ')
-        self._allow_none = True
         self._editor_callable = editor_callable
         self._menu_key = menu_key
         self._name = name
@@ -66,20 +64,10 @@ class AttributeDetail(AbjadObject):
             repr(self.menu_key),
             self.editor_callable.__name__,
             ]
-        if not self.allow_none:
-            parts.append('allow_none=False')
         parts = ', '.join(parts)
         return '{}({})'.format(type(self).__name__, parts)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def allow_none(self):
-        r'''Is true when none is allowed. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._allow_none
 
     @property
     def display_string(self):

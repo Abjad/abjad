@@ -150,7 +150,7 @@ class Editor(Controller):
                 space_delimited_attribute_name,
                 session=self._session, 
                 prepopulated_value=prepopulated_value, 
-                allow_none=attribute_detail.allow_none, 
+                allow_none=True,
                 **kwargs
                 )
         elif issubclass(editor_callable, Editor):
