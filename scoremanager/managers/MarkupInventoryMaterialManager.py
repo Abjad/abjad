@@ -75,7 +75,8 @@ class MarkupInventoryMaterialManager(MaterialManager):
 
     def _get_output_material_editor(self, target=None):
         from scoremanager import editors
-        editor = editors.MarkupInventoryEditor(
+        target = target or markuptools.MarkupInventory()
+        editor = editors.ListEditor(
             session=self._session,
             target=target,
             )

@@ -43,6 +43,7 @@ class ListEditor(Editor):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
+        from scoremanager import editors
         superclass = super(ListEditor, self)
         superclass.__init__(session=session, target=target)
         self._item_class = None
@@ -52,10 +53,11 @@ class ListEditor(Editor):
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
         self._item_identifier = 'element'
-        if target and getattr(target, '_item_callable', None):
+        if target is not None and getattr(target, '_item_callable', None):
             assert self.target._item_callable
             self._item_class = self.target._item_callable
-            self._item_creator_class = self.target._item_callable
+            #self._item_creator_class = self.target._item_callable
+            self._item_creator_class = editors.Editor
             dummy_item = self.target._item_callable()
             item_identifier = \
                 stringtools.upper_camel_case_to_space_delimited_lowercase(
@@ -158,13 +160,17 @@ class ListEditor(Editor):
         '''
         from scoremanager import editors
         prototype = (
-            editors.MarkupInventoryEditor,
             editors.OctaveTranspositionMappingEditor,
             )
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
+            if self._item_class:
+                target = self._item_class()
+            else:
+                target = None
             item_creator = item_creator_class(
                 session=self._session, 
+                target=target,
                 **self._item_creator_class_kwargs
                 )
             result = item_creator._run()
