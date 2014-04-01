@@ -19,28 +19,23 @@ class AttributeDetail(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: remove retrievable_name in favor of name
     # TODO: make is_positional default to False instead of True
     def __init__(
         self, 
-        *args,
-        **kwargs
+        display_string=None,
+        editor_callable=None,
+        is_positional=True,
+        menu_key=None,
+        name=None,
         ):
-        display_string = kwargs.get('display_string', None)
-        editor_callable = kwargs.get('editor_callable', None)
-        is_positional = kwargs.get('is_positional', True)
-        menu_key = kwargs.get('menu_key', None)
-        name = kwargs.get('name', None)
-        retrievable_name = kwargs.get('retrievable_name', None)
-        assert not args
-        assert not retrievable_name, repr(retrievable_name)
-        retrievable_name = retrievable_name or name
         display_string = display_string or name.replace('_', ' ')
         self._display_string = display_string
         self._editor_callable = editor_callable
         self._is_positional = is_positional
         self._menu_key = menu_key
         self._name = name
-        self._retrievable_name = retrievable_name
+        self._retrievable_name = name
 
     ### SPECIAL METHODS ###
 
