@@ -59,6 +59,16 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),
-            ('minimum_duration', None, 'md', getters.get_duration, True),
+            systemtools.AttributeDetail(
+                name='hairpin_tokens', 
+                menu_key='ht', 
+                editor_callable=getters.get_hairpin_tokens, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='minimum_duration', 
+                menu_key='md', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
+                ),
             )

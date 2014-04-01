@@ -81,40 +81,35 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            (
-                'articulation_list', 
-                None, 
-                'al', 
-                getters.get_articulations, 
-                False,
+            systemtools.AttributeDetail(
+                name='articulation_list', 
+                menu_key='al', 
+                editor_callable=getters.get_articulations, 
+                is_positional=False,
                 ),
-            (
-                'minimum_duration', 
-                None, 
-                'nd', 
-                getters.get_duration, 
-                False,
+            systemtools.AttributeDetail(
+                name='minimum_duration', 
+                menu_key='nd', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
                 ),
-            (
-                'maximum_duration', 
-                None, 
-                'xd', 
-                getters.get_duration, 
-                False,
+            systemtools.AttributeDetail(
+                name='maximum_duration', 
+                menu_key='xd', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
                 ),
-            (
-                'minimum_written_pitch', 
-                None, 
-                'np', 
-                getters.get_named_pitch, 
-                False,
+            systemtools.AttributeDetail(
+                name='minimum_written_pitch', 
+                menu_key='np', 
+                editor_callable=getters.get_named_pitch, 
+                is_positional=False,
                 ),
-            (
-                'maximum_written_pitch', 
-                None, 
-                'xp', 
-                getters.get_named_pitch, 
-                False,
+            systemtools.AttributeDetail(
+                name='maximum_written_pitch', 
+                menu_key='xp', 
+                editor_callable=getters.get_named_pitch, 
+                is_positional=False,
                 ),
             )
 

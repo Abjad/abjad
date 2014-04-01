@@ -37,7 +37,6 @@ class AttributeDetail(AbjadObject):
             name = args[0]
             menu_key = args[1]
             editor_callable = args[2]
-
         elif len(args) == 5:
             name = args[0]
             display_string = args[1]

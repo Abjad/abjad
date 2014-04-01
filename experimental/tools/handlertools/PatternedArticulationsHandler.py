@@ -80,13 +80,36 @@ class PatternedArticulationsHandler(ArticulationHandler):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            ('articulation_lists', None, 'al', getters.get_lists, False),
-            ('minimum_duration', None, 'nd', getters.get_duration, False),
-            ('maximum_duration', None, 'xd', getters.get_duration, False),
-            ('minimum_written_pitch', None, 'np', 
-                getters.get_named_pitch, False),
-            ('maximum_written_pitch', None, 'xp', 
-                getters.get_named_pitch, False),
+            systemtools.AttributeDetail(
+                name='articulation_lists', 
+                menu_key='al', 
+                editor_callable=getters.get_lists, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='minimum_duration', 
+                menu_key='nd', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='maximum_duration', 
+                menu_key='xd', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='minimum_written_pitch', 
+                menu_key='np', 
+                editor_callable=getters.get_named_pitch, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='maximum_written_pitch', 
+                menu_key='xp', 
+                editor_callable=getters.get_named_pitch, 
+                is_positional=False,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###

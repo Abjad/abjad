@@ -38,8 +38,18 @@ class TerracedDynamicsHandler(DynamicHandler):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            ('dynamics', None, 'dy', getters.get_dynamics, True),
-            ('minimum_duration', None, 'md', getters.get_duration, True),
+            systemtools.AttributeDetail(
+                name='dynamics', 
+                menu_key='dy', 
+                editor_callable=getters.get_dynamics, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='minimum_duration', 
+                menu_key='md', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
+                ),
             )
 
     ###  PUBLIC PROPERTIES ###

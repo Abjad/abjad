@@ -20,7 +20,10 @@ class ReiteratedDynamicHandler(DynamicHandler):
         for note_or_chord in \
             iterate(expr).by_class((scoretools.Note, scoretools.Chord)):
             #indicatortools.Dynamic(self.dynamic_name)(note_or_chord)
-            command = indicatortools.LilyPondCommand(self.dynamic_name, 'right')
+            command = indicatortools.LilyPondCommand(
+                self.dynamic_name, 
+                'right',
+                )
             attach(command, note_or_chord)
         return expr
 
@@ -32,8 +35,18 @@ class ReiteratedDynamicHandler(DynamicHandler):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
-            ('dynamic_name', None, 'dy', getters.get_dynamic, True),
-            ('minimum_duration', None, 'md', getters.get_duration, True),
+            systemtools.AttributeDetail(
+                name='dynamic_name', 
+                menu_key='dy', 
+                editor_callable=getters.get_dynamic, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='minimum_duration', 
+                menu_key='md', 
+                editor_callable=getters.get_duration, 
+                is_positional=False,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###
