@@ -11,19 +11,19 @@ class AttributeManifest(AbjadObject):
     __slots__ = (
         '_attribute_details',
         '_target_class',
-        '_target_name_attribute', 
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, _target_class, *attribute_details, **kwargs):
+    def __init__(self, _target_class, *attribute_details):
         from abjad.tools import systemtools
         self._target_class = _target_class
         self._attribute_details = []
         for attribute_detail in attribute_details:
-            attribute_detail = systemtools.AttributeDetail(*attribute_detail)
+            if not isinstance(attribute_detail, systemtools.AttributeDetail):
+                attribute_detail = systemtools.AttributeDetail(
+                    *attribute_detail)
             self.attribute_details.append(attribute_detail)
-        self._target_name_attribute = kwargs.get('target_name_attribute')
 
     ### SPECIAL METHODS ###
 
@@ -75,17 +75,6 @@ class AttributeManifest(AbjadObject):
         return self._attribute_details
 
     @property
-    def attribute_menu_keys(self):
-        r'''Gets attribute menu keys of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            result.append(attribute_detail.menu_key)
-        return result
-
-    @property
     def attribute_names(self):
         r'''Gets attribute names of target manifest.
 
@@ -94,20 +83,6 @@ class AttributeManifest(AbjadObject):
         result = []
         for attribute_detail in self.attribute_details:
             result.append(attribute_detail.name)
-        return result
-
-    @property
-    def format_pieces(self):
-        r'''Gets format pieces of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        result.append('{}({},'.format(
-            type(self).__name__, self._target_class.__name__))
-        for attribute_detail in self.attribute_details:
-            result.append('\t{!r},'.format(attribute_detail))
-        result.append('\t)')
         return result
 
     @property
@@ -145,22 +120,3 @@ class AttributeManifest(AbjadObject):
             if attribute_detail.is_positional:
                 result.append(attribute_detail.retrievable_name)
         return result
-
-    @property
-    def space_delimited_lowercase_attribute_names(self):
-        r'''Gets space delimited lowercase attribute names of target manifest.
-
-        Returns list.
-        '''
-        result = []
-        for attribute_detail in self.attribute_details:
-            result.append(attribute_detail._space_delimited_lowercase_name)
-        return result
-
-    @property
-    def target_name_attribute(self):
-        r'''Target name attribute of target manifest.
-
-        Returns string or none.
-        '''
-        return self._target_name_attribute

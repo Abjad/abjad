@@ -37,7 +37,6 @@ class PerformerEditor(ListEditor):
         return systemtools.AttributeManifest(
             instrumenttools.Performer,
             ('name', 'nm', getters.get_string),
-            target_attribute_name='name',
             )
 
     ### PUBLIC METHODS ###

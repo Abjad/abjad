@@ -31,5 +31,4 @@ class OctaveTranspositionMappingEditor(ListEditor):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             pitchtools.OctaveTranspositionMapping,
-            target_name_attribute='name',
             )

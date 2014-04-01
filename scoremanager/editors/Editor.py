@@ -62,11 +62,8 @@ class Editor(Controller):
 
     @property
     def _breadcrumb(self):
-        if self._target_name:
-            return self._target_name
-        else:
-            class_name = self._target_class.__name__
-            return stringtools.string_to_space_delimited_lowercase(class_name)
+        class_name = self._target_class.__name__
+        return stringtools.string_to_space_delimited_lowercase(class_name)
 
     @property
     def _target_class(self):
@@ -75,16 +72,6 @@ class Editor(Controller):
     @property
     def _attribute_manifest(self):
         return self.target._attribute_manifest
-
-    @property
-    def _target_name(self):
-        target_name_attribute = self._attribute_manifest.target_name_attribute
-        if target_name_attribute:
-            return getattr(
-                self.target, 
-                self._attribute_manifest.target_name_attribute, 
-                None,
-                )
 
     @property
     def _target_summary_lines(self):

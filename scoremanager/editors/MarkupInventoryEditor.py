@@ -32,5 +32,4 @@ class MarkupInventoryEditor(ListEditor):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             markuptools.MarkupInventory,
-            target_name_attribute='inventory name',
             )

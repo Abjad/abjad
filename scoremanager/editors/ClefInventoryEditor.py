@@ -31,5 +31,4 @@ class ClefInventoryEditor(ListEditor):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest(
             indicatortools.ClefInventory,
-            target_name_attribute='name',
             )
