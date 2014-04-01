@@ -11,7 +11,6 @@ class AttributeDetail(AbjadObject):
     __slots__ = (
         '_allow_none',
         '_editor_callable',
-        '_is_null',
         '_is_positional',
         '_menu_key',
         '_name',
@@ -22,7 +21,6 @@ class AttributeDetail(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        is_null = False
         if len(args) == 3:
             name, menu_key, editor_callable = args
             display_string = None
@@ -52,7 +50,6 @@ class AttributeDetail(AbjadObject):
         self._editor_callable = editor_callable
         self._menu_key = menu_key
         self._name = name
-        self._is_null = is_null
         self._is_positional = is_positional
         self._retrievable_name = retrievable_name
         self._display_string = display_string
@@ -99,14 +96,6 @@ class AttributeDetail(AbjadObject):
         Returns callable.
         '''
         return self._editor_callable
-
-    @property
-    def is_null(self):
-        r'''Is true when detail is null. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._is_null
 
     @property
     def is_positional(self):

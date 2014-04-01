@@ -242,9 +242,6 @@ class Editor(Controller):
     def _make_target_attribute_tokens(self):
         result = []
         for attribute_detail in self._attribute_manifest.attribute_details:
-            if attribute_detail.is_null:
-                result.append(())
-                continue
             key = attribute_detail.menu_key
             display_string = attribute_detail.display_string
             if self.target is not None:
