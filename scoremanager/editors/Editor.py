@@ -103,7 +103,7 @@ class Editor(Controller):
                 attribute_name = manifest._to_initializer_argument_names(name)
                 self._attributes_in_memory[name] = attribute_value
         for attribute_detail in manifest:
-            if attribute_detail.is_positional:
+            if not attribute_detail.is_keyword:
                 continue
             name = attribute_detail.name
             attribute_value = getattr(self.target, name, None)
@@ -201,13 +201,13 @@ class Editor(Controller):
         args, kwargs = [], {}
         manifest = self._attribute_manifest
         for attribute_detail in manifest:
-            if not attribute_detail.is_positional:
+            if attribute_detail.is_keyword:
                 continue
             name = attribute_detail.name
             if name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(name))
         for attribute_detail in manifest:
-            if attribute_detail.is_positional:
+            if not attribute_detail.is_keyword:
                 continue
             name = attribute_detail.name
             if name in self._attributes_in_memory:
