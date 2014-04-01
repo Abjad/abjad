@@ -21,7 +21,7 @@ class AttributeDetail(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         is_null = False
         if len(args) == 0:
             name = None
@@ -38,7 +38,7 @@ class AttributeDetail(AbjadObject):
             retrievable_name = name
         elif len(args) == 4:
             name = args[0]
-            space_delimited_lowercases_name = args[1]
+            space_delimited_lowercase_name = args[1]
             menu_key = args[2]
             editor_callable = args[3]
             is_positional = True
@@ -63,7 +63,7 @@ class AttributeDetail(AbjadObject):
             raise ValueError(message)
         if not space_delimited_lowercase_name and name:
             space_delimited_lowercase_name = name.replace('_', ' ')
-        self._allow_none = kwargs.get('allow_none', True)
+        self._allow_none = True
         self._editor_callable = editor_callable
         self._menu_key = menu_key
         self._name = name
