@@ -136,8 +136,9 @@ class Editor(Controller):
                 session=self._session, 
                 target=prepopulated_value, 
                 )
-        elif editor_callable == 'edit attribute':
+        elif isinstance(editor_callable, types.TypeType):
             target = getattr(self.target, attribute_detail.name)
+            target = target or editor_callable()
             editor = type(self)(
                 session=self._session,
                 target=target,
