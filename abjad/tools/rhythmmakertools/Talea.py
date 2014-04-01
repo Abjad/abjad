@@ -59,6 +59,26 @@ class Talea(AbjadObject):
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='counts',
+                menu_key='c',
+                editor_callable=getters.get_nonzero_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='denominator',
+                menu_key='d',
+                editor_callable=getters.get_positive_integer_power_of_two,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     @staticmethod

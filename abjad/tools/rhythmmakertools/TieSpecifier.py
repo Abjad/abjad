@@ -56,6 +56,26 @@ class TieSpecifier(AbjadObject):
         '''
         return super(TieSpecifier, self).__hash__()
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='tie_across_divisions',
+                menu_key='tad',
+                editor_callable=getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='tie_split_notes',
+                menu_key='tsn',
+                editor_callable=getters.get_boolean,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     def _make_ties(self, music):

@@ -294,6 +294,51 @@ class BurnishSpecifier(AbjadObject):
         '''
         return AbjadObject.__repr__(self)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='burnish_divisions',
+                menu_key='bd',
+                editor_callable=getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='burnish_output',
+                menu_key='bo',
+                editor_callable=getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='lefts',
+                menu_key='l',
+                editor_callable=getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='middles',
+                menu_key='m',
+                editor_callable=getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='rights',
+                menu_key='r',
+                editor_callable=getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='left_lengths',
+                menu_key='ll',
+                editor_callable=getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='right_lengths',
+                menu_key='rl',
+                editor_callable=getters.get_integers,
+                ),
+            )
+
     ### PRIVATE METHODS ###
 
     @staticmethod

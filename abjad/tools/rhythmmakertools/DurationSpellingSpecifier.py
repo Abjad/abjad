@@ -109,6 +109,26 @@ class DurationSpellingSpecifier(AbjadObject):
         '''
         return AbjadObject.__repr__(self)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='decrease_durations_monotonically',
+                menu_key='ddm',
+                editor_callable=getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='forbidden_written_duration',
+                menu_key='fwd',
+                editor_callable=getters.get_duration,
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

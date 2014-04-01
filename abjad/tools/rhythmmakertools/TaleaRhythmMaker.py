@@ -342,24 +342,39 @@ class TaleaRhythmMaker(RhythmMaker):
         return systemtools.AttributeManifest(
             type(self),
             systemtools.AttributeDetail(
-                name='beam_specifier',
-                menu_key='bs',
-                editor_callable='edit attribute',
-                ),
-            systemtools.AttributeDetail(
-                name='extra_counts_per_division', 
-                menu_key='ad', 
-                editor_callable=getters.get_integers, 
+                name='talea', 
+                menu_key='t', 
+                editor_callable=rhythmmakertools.Talea,
                 ),
             systemtools.AttributeDetail(
                 name='split_divisions_by_counts', 
-                menu_key='sd', 
+                menu_key='sdc', 
                 editor_callable=getters.get_integers, 
                 ),
             systemtools.AttributeDetail(
-                name='talea', 
-                menu_key='ta', 
-                editor_callable=getters.get_nonzero_integers, 
+                name='extra_counts_per_division', 
+                menu_key='xcd', 
+                editor_callable=getters.get_integers, 
+                ),
+            systemtools.AttributeDetail(
+                name='beam_specifier',
+                menu_key='bs',
+                editor_callable=rhythmmakertools.BeamSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='burnish_specifier',
+                menu_key='rs',
+                editor_callable=rhythmmakertools.BurnishSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='duration_spelling_specifier',
+                menu_key='dss',
+                editor_callable=rhythmmakertools.DurationSpellingSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='tie_specifier',
+                menu_key='ts',
+                editor_callable=rhythmmakertools.TieSpecifier,
                 ),
             )
 
