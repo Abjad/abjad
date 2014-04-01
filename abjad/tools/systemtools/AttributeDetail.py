@@ -31,25 +31,8 @@ class AttributeDetail(AbjadObject):
         menu_key = kwargs.get('menu_key', None)
         name = kwargs.get('name', None)
         retrievable_name = kwargs.get('retrievable_name', None)
-        if not args:
-            pass
-        elif len(args) == 5:
-            name = args[0]
-            display_string = args[1]
-            menu_key = args[2]
-            editor_callable = args[3]
-            is_positional = args[4]
-        elif len(args) == 6:
-            name = args[0]
-            retrievable_name = args[1]
-            display_string = args[2]
-            menu_key = args[3]
-            editor_callable = args[4]
-            is_positional = args[5]
-        else:
-            message = 'can not parse attribute detail: {!r}.'
-            message = message.format(args)
-            raise ValueError(message)
+        assert not args
+        assert not retrievable_name, repr(retrievable_name)
         retrievable_name = retrievable_name or name
         display_string = display_string or name.replace('_', ' ')
         self._display_string = display_string

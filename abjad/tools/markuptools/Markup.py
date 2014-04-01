@@ -239,35 +239,33 @@ class Markup(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='contents', 
+                display_string='arg', 
+                menu_key='ag', 
+                editor_callable=getters.get_string, 
+                is_positional=False,
+                ),
+            systemtools.AttributeDetail(
+                name='direction', 
+                menu_key='dr', 
+                editor_callable=getters.get_direction_string, 
+                is_positional=False,
+                ),
+            )
+
+    @property
     def _format_pieces(self):
         return self._get_format_pieces()
 
     @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from scoremanager import getters
-        return systemtools.AttributeManifest(
-            type(self),
-            (
-                'contents', 
-                'contents_string', 
-                'arg', 
-                'ag', 
-                getters.get_string, 
-                True,
-                ),
-            (
-                'direction', 
-                'direction', 
-                'dr', 
-                getters.get_direction_string, 
-                False,
-                ),
-            )
 
     ### PRIVATE METHODS ###
 
