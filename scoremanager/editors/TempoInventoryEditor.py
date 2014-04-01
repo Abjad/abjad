@@ -31,7 +31,7 @@ class TempoInventoryEditor(ListEditor):
     @property
     def _target_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             indicatortools.TempoInventory,
             target_name_attribute='inventory name',
             )

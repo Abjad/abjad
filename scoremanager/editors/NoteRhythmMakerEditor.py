@@ -18,6 +18,6 @@ class NoteRhythmMakerEditor(Editor):
     @property
     def _target_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             rhythmmakertools.NoteRhythmMaker,
             )

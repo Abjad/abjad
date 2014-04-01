@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TargetManifest(AbjadObject):
+class AttributeManifest(AbjadObject):
     r'''Target manifest.
     '''
 

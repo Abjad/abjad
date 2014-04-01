@@ -30,7 +30,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
     def _target_manifest(self):
         from abjad.tools import systemtools
         from scoremanager import getters
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             type(self),
             ('dynamic_name', None, 'dy', getters.get_dynamic, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

@@ -173,7 +173,7 @@ class Instrument(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import editors
         from scoremanager import getters
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             type(self),
             (
                 'allowable_clefs', 

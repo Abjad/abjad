@@ -79,7 +79,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
     def _target_manifest(self):
         from abjad.tools import systemtools
         from scoremanager import getters
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             type(self),
             (
                 'articulation_list', 

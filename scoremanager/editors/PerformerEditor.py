@@ -34,7 +34,7 @@ class PerformerEditor(ListEditor):
     @property
     def _target_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             instrumenttools.Performer,
             ('name', 'nm', getters.get_string),
             target_attribute_name='name',

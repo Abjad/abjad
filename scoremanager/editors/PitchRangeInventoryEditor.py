@@ -32,7 +32,7 @@ class PitchRangeInventoryEditor(ListEditor):
     @property
     def _target_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             pitchtools.PitchRangeInventory,
             target_name_attribute='name',
             )

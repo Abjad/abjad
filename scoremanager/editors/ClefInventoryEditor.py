@@ -29,7 +29,7 @@ class ClefInventoryEditor(ListEditor):
     @property
     def _target_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.TargetManifest(
+        return systemtools.AttributeManifest(
             indicatortools.ClefInventory,
             target_name_attribute='name',
             )

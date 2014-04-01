@@ -13,7 +13,7 @@ from ProgressIndicator import ProgressIndicator
 from RedirectedStreams import RedirectedStreams
 from StorageFormatManager import StorageFormatManager
 from StorageFormatSpecification import StorageFormatSpecification
-from TargetManifest import TargetManifest
+from AttributeManifest import AttributeManifest
 from TestManager import TestManager
 from TemporaryDirectoryChange import TemporaryDirectoryChange
 from Timer import Timer
