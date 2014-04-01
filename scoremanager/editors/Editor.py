@@ -96,12 +96,16 @@ class Editor(Controller):
     def _copy_target_attributes_to_memory(self):
         self._attributes_in_memory = {}
         manifest = self._attribute_manifest
-        for name in manifest._positional_attribute_names:
+        for attribute_detail in self._attribute_manifest:
+            name = attribute_detail.name
             attribute_value = getattr(self.target, name, None)
             if attribute_value is not None:
                 attribute_name = manifest._to_initializer_argument_names(name)
                 self._attributes_in_memory[name] = attribute_value
-        for name in manifest._keyword_attribute_names:
+        for attribute_detail in manifest:
+            if attribute_detail.is_positional:
+                continue
+            name = attribute_detail.name
             attribute_value = getattr(self.target, name, None)
             if attribute_value is not None:
                 self._attributes_in_memory[name] = attribute_value
@@ -152,10 +156,8 @@ class Editor(Controller):
     def _get_target_summary_lines(self):
         result = []
         if self.target is not None:
-            target_attribute_names = []
-            names = self._attribute_manifest._attribute_names
-            target_attribute_names.extend(names)
-            for target_attribute_name in target_attribute_names:
+            for attribute_detail in self._attribute_manifest:
+                target_attribute_name = attribute_detail.name 
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
                 value = self._io_manager._get_one_line_menu_summary(
@@ -196,10 +198,16 @@ class Editor(Controller):
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
         manifest = self._attribute_manifest
-        for name in manifest._positional_attribute_names:
+        for attribute_detail in manifest:
+            if not attribute_detail.is_positional:
+                continue
+            name = attribute_detail.name
             if name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(name))
-        for name in manifest._keyword_attribute_names:
+        for attribute_detail in manifest:
+            if attribute_detail.is_positional:
+                continue
+            name = attribute_detail.name
             if name in self._attributes_in_memory:
                 value = self._attributes_in_memory.get(name)
                 kwargs[name] = value

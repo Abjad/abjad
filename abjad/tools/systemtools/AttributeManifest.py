@@ -43,31 +43,6 @@ class AttributeManifest(AbjadObject):
         return '{}({}, {})'.format(
             type(self).__name__, self._target_class.__name__, parts)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_names(self):
-        result = []
-        for attribute_detail in self:
-            result.append(attribute_detail.name)
-        return result
-
-    @property
-    def _keyword_attribute_names(self):
-        result = []
-        for attribute_detail in self:
-            if not attribute_detail.is_positional:
-                result.append(attribute_detail.name)
-        return result
-
-    @property
-    def _positional_attribute_names(self):
-        result = []
-        for attribute_detail in self:
-            if attribute_detail.is_positional:
-                result.append(attribute_detail.name)
-        return result
-
     ### PRIVATE METHODS ###
 
     def _menu_key_to_attribute_detail(self, menu_key):
