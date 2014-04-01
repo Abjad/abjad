@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
@@ -56,13 +57,15 @@ class ListEditor(Editor):
         if target is not None and getattr(target, '_item_callable', None):
             assert self.target._item_callable
             self._item_class = self.target._item_callable
-            #self._item_creator_class = self.target._item_callable
-            self._item_creator_class = editors.Editor
             dummy_item = self.target._item_callable()
             item_identifier = \
                 stringtools.upper_camel_case_to_space_delimited_lowercase(
                     type(dummy_item).__name__)
             self._item_identifier = item_identifier
+            if isinstance(dummy_item, datastructuretools.TypedList):
+                self._item_creator_class = editors.ListEditor
+            else:
+                self._item_creator_class = editors.Editor
 
     ### PRIVATE PROPERTIES ###
 
@@ -161,10 +164,12 @@ class ListEditor(Editor):
         from scoremanager import editors
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
+            print repr(item_creator_class)
             if self._item_class:
                 target = self._item_class()
             else:
                 target = None
+            print repr(target)
             item_creator = item_creator_class(
                 session=self._session, 
                 target=target,

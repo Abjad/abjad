@@ -65,7 +65,8 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
 
     def _get_output_material_editor(self, target=None):
         from scoremanager import editors
-        editor = editors.OctaveTranspositionMappingInventoryEditor(
+        target = target or pitchtools.OctaveTranspositionMappingInventory()
+        editor = editors.ListEditor(
             session=self._session,
             target=target,
             )
