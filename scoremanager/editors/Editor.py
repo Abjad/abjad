@@ -136,6 +136,12 @@ class Editor(Controller):
                 session=self._session, 
                 target=prepopulated_value, 
                 )
+        elif editor_callable == 'edit attribute':
+            target = getattr(self.target, attribute_detail.name)
+            editor = type(self)(
+                session=self._session,
+                target=target,
+                )
         elif issubclass(editor_callable, iotools.Selector):
             editor = editor_callable(session=self._session)
         elif issubclass(editor_callable, wizards.Wizard):

@@ -52,6 +52,7 @@ class Tempo(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: remove kwargs?
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Score
@@ -301,11 +302,13 @@ class Tempo(AbjadObject):
                 name='duration', 
                 menu_key='d', 
                 editor_callable=getters.get_duration,
+                is_positional=True,
                 ),
             systemtools.AttributeDetail(
                 name='units_per_minute', 
                 menu_key='pm', 
                 editor_callable=getters.get_integer,
+                is_positional=True,
                 ),
             )
 

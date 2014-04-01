@@ -18,15 +18,17 @@ class AttributeDetail(AbjadObject):
 
     ### INITIALIZER ###
 
-    # TODO: make is_positional default to False instead of True
     def __init__(
         self, 
         display_string=None,
         editor_callable=None,
-        is_positional=True,
+        is_positional=False,
         menu_key=None,
         name=None,
         ):
+        assert isinstance(name, str)
+        assert isinstance(menu_key, str)
+        assert editor_callable
         display_string = display_string or name.replace('_', ' ')
         self._display_string = display_string
         self._editor_callable = editor_callable

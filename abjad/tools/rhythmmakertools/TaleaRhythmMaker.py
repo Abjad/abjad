@@ -336,10 +336,17 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @property
     def _attribute_manifest(self):
+        from abjad.tools import rhythmmakertools
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
             type(self),
+            systemtools.AttributeDetail(
+                name='beam_specifier',
+                menu_key='bs',
+                editor_callable='edit attribute',
+                is_positional=False,
+                ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division', 
                 menu_key='ad', 
