@@ -70,13 +70,6 @@ class ListEditor(Editor):
             return 'edit'
 
     @property
-    def _target_summary_lines(self):
-        result = []
-        for item in self._items:
-            result.append(self._io_manager._get_one_line_menu_summary(item))
-        return result
-
-    @property
     def _user_input_to_action(self):
         result = {
             'add': self.add_items,
@@ -92,6 +85,12 @@ class ListEditor(Editor):
             return self._items[int(item_number) - 1]
         except:
             pass
+
+    def _get_target_summary_lines(self):
+        result = []
+        for item in self._items:
+            result.append(self._io_manager._get_one_line_menu_summary(item))
+        return result
 
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
@@ -122,7 +121,7 @@ class ListEditor(Editor):
                 )
             for menu_entry in menu_entries:
                 section.append(menu_entry)
-        menu_entries = self._target_summary_lines
+        menu_entries = self._get_target_summary_lines()
         if menu_entries:
             section = menu.make_numbered_section(
                 name='numbered section',

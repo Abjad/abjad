@@ -73,22 +73,6 @@ class Editor(Controller):
     def _attribute_manifest(self):
         return self.target._attribute_manifest
 
-    @property
-    def _target_summary_lines(self):
-        result = []
-        if self.target is not None:
-            target_attribute_names = []
-            if hasattr(self, '_attribute_manifest'):
-                names = self._attribute_manifest._attribute_names
-                target_attribute_names.extend(names)
-            for target_attribute_name in target_attribute_names:
-                name = stringtools.string_to_space_delimited_lowercase(
-                    target_attribute_name)
-                value = self._io_manager._get_one_line_menu_summary(
-                    getattr(self.target, target_attribute_name))
-                result.append('{}: {}'.format(name, value))
-        return result
-
     ### PRIVATE METHODS ###
 
     def _attribute_name_to_menu_key(self, attribute_name, menu_keys):
@@ -173,28 +157,43 @@ class Editor(Controller):
             raise ValueError(message)
         return editor
 
+    def _get_target_summary_lines(self):
+        result = []
+        if self.target is not None:
+            target_attribute_names = []
+            names = self._attribute_manifest._attribute_names
+            target_attribute_names.extend(names)
+            for target_attribute_name in target_attribute_names:
+                name = stringtools.string_to_space_delimited_lowercase(
+                    target_attribute_name)
+                value = self._io_manager._get_one_line_menu_summary(
+                    getattr(self.target, target_attribute_name))
+                result.append('{}: {}'.format(name, value))
+        return result
+
     def _handle_main_menu_result(self, result):
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
             return
-        attribute_name = self._attribute_manifest._menu_key_to_attribute_name(
-            result)
+        manifest = self._attribute_manifest
+        attribute_name = manifest._menu_key_to_attribute_name(result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         attribute_editor = self._menu_key_to_attribute_editor(
             result, 
             session=self._session, 
             prepopulated_value=prepopulated_value, 
             )
-        if attribute_editor is not None:
-            result = attribute_editor._run()
-            if self._should_backtrack():
-                self._is_autoadvancing = False
-                return
-            if hasattr(attribute_editor, 'target'):
-                attribute_value = attribute_editor.target
-            else:
-                attribute_value = result
-            self._set_target_attribute(attribute_name, attribute_value)
+        if attribute_editor is None:
+            return
+        result = attribute_editor._run()
+        if self._should_backtrack():
+            self._is_autoadvancing = False
+            return
+        if hasattr(attribute_editor, 'target'):
+            attribute_value = attribute_editor.target
+        else:
+            attribute_value = result
+        self._set_target_attribute(attribute_name, attribute_value)
 
     def _initialize_target(self):
         if self.target is not None:
@@ -205,20 +204,19 @@ class Editor(Controller):
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
         positional_argument_names = []
-        if hasattr(self, '_attribute_manifest'):
-            names = self._attribute_manifest._positional_initializer_argument_names
-            positional_argument_names.extend(names)
+        manifest = self._attribute_manifest
+        names = manifest._positional_initializer_argument_names
+        positional_argument_names.extend(names)
         for attribute_name in positional_argument_names:
             if attribute_name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(attribute_name))
         keyword_attribute_names = []
-        if hasattr(self, '_attribute_manifest'):
-            names = self._attribute_manifest._keyword_attribute_names
-            keyword_attribute_names.extend(names)
+        names = manifest._keyword_attribute_names
+        keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             if attribute_name in self._attributes_in_memory:
-                kwargs[attribute_name] = \
-                    self._attributes_in_memory.get(attribute_name)
+                value = self._attributes_in_memory.get(attribute_name)
+                kwargs[attribute_name] = value
         self._target = self._target_class(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
@@ -287,8 +285,8 @@ class Editor(Controller):
         return attribute_editor
 
     def _menu_key_to_prepopulated_value(self, menu_key):
-        attribute_name = \
-            self._attribute_manifest._menu_key_to_attribute_name(menu_key)
+        manifest = self._attribute_manifest
+        attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
     def _run(self, pending_user_input=None):

@@ -441,7 +441,7 @@ class MaterialManager(PackageManager):
         editor = self._get_output_material_editor(
             target=output_material,
             )
-        target_summary_lines = editor._target_summary_lines
+        target_summary_lines = editor._get_target_summary_lines()
         if not target_summary_lines:
             return
         section = menu.make_material_summary_section()

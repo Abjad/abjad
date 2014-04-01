@@ -27,7 +27,7 @@ class PitchRangeInventoryEditor(ListEditor):
         self._item_identifier = 'pitch range'
 
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _attribute_manifest(self):
@@ -36,8 +36,9 @@ class PitchRangeInventoryEditor(ListEditor):
             pitchtools.PitchRangeInventory,
             )
 
-    @property
-    def _target_summary_lines(self):
+    ### PRIVATE METHODS ###
+
+    def _get_target_summary_lines(self):
         result = []
         for pitch_range in self.target:
             result.append(repr(pitch_range))
