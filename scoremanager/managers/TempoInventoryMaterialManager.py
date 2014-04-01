@@ -61,7 +61,8 @@ class TempoInventoryMaterialManager(MaterialManager):
 
     def _get_output_material_editor(self, target=None):
         from scoremanager import editors
-        editor = editors.TempoInventoryEditor(
+        target = target or indicatortools.TempoInventory()
+        editor = editors.ListEditor(
             session=self._session,
             target=target,
             )

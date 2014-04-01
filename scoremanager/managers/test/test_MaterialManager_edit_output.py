@@ -23,7 +23,8 @@ def test_MaterialManager_edit_output_01():
         ((1, 4), 90),
         ])
     input_ = 'm nmm tempo testtempoinventory default testtempoinventory me'
-    input_ += ' add ((1, 4), 60) add ((1, 4), 90) b default q'
+    input_ += ' add d (1, 4) units 60 done add d (1, 4) units 90 done'
+    input_ += ' done back q'
 
     assert not os.path.exists(path)
     try:

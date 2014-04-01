@@ -100,3 +100,51 @@ def test_ListEditor__run_05():
         )
 
     assert editor.target == inventory
+
+
+def test_ListEditor__run_06():
+    r'''Edits empty tempo inventory.
+
+    Works with duration pairs.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = indicatortools.TempoInventory()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add d (1, 4) units 60 done'
+    input_ +=  ' add d (1, 4) units 72 done'
+    input_ += ' add d (1, 4) units 84 done done'
+    editor._run(pending_user_input=input_)
+    inventory = indicatortools.TempoInventory([
+        Tempo(Duration(1, 4), 60), 
+        Tempo(Duration(1, 4), 72), 
+        Tempo(Duration(1, 4), 84),
+        ])
+    assert editor.target == inventory
+
+
+def test_ListEditor__run_07():
+    r'''Edits empty tempo inventory.
+
+    Works with durations.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = indicatortools.TempoInventory()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add d Duration(1, 4) units 60 done'
+    input_ += ' add d Duration(1, 4) units 72 done'
+    input_ += ' add d Duration(1, 4) units 84 done done'
+    editor._run(pending_user_input=input_)
+    inventory = indicatortools.TempoInventory([
+        Tempo(Duration(1, 4), 60), 
+        Tempo(Duration(1, 4), 72), 
+        Tempo(Duration(1, 4), 84),
+        ])
+    assert editor.target == inventory
