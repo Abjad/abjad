@@ -129,45 +129,6 @@ class Instrument(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @staticmethod
-    def _default_instrument_name_to_instrument_class(default_instrument_name):
-        for instrument_class in Instrument._list_instruments():
-            instrument = instrument_class()
-            if instrument.instrument_name == default_instrument_name:
-                return instrument_class
-
-    # TODO: _scope_name needs to be taken from IndicatorExpression!
-    #       should not be stored on instrument.
-    @property
-    def _lilypond_format(self):
-        result = []
-        line = r'\set {!s}.instrumentName = {!s}'
-        line = line.format(
-            self._scope_name, 
-            self.instrument_name_markup,
-            )
-        result.append(line)
-        line = r'\set {!s}.shortInstrumentName = {!s}'
-        line = line.format(
-            self._scope_name, 
-            self.short_instrument_name_markup,
-            )
-        result.append(line)
-        return result
-
-    @property
-    def _one_line_menu_summary(self):
-        return self.instrument_name
-
-    @property
-    def _scope_name(self):
-        if isinstance(self._default_scope, type):
-            return self._default_scope.__name__
-        elif isinstance(self._default_scope, str):
-            return self._default_scope
-        else:
-            return type(self._default_scope).__name__
-
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
@@ -227,6 +188,45 @@ class Instrument(AbjadObject):
                 False,
                 ),
             )
+
+    @staticmethod
+    def _default_instrument_name_to_instrument_class(default_instrument_name):
+        for instrument_class in Instrument._list_instruments():
+            instrument = instrument_class()
+            if instrument.instrument_name == default_instrument_name:
+                return instrument_class
+
+    # TODO: _scope_name needs to be taken from IndicatorExpression!
+    #       should not be stored on instrument.
+    @property
+    def _lilypond_format(self):
+        result = []
+        line = r'\set {!s}.instrumentName = {!s}'
+        line = line.format(
+            self._scope_name, 
+            self.instrument_name_markup,
+            )
+        result.append(line)
+        line = r'\set {!s}.shortInstrumentName = {!s}'
+        line = line.format(
+            self._scope_name, 
+            self.short_instrument_name_markup,
+            )
+        result.append(line)
+        return result
+
+    @property
+    def _one_line_menu_summary(self):
+        return self.instrument_name
+
+    @property
+    def _scope_name(self):
+        if isinstance(self._default_scope, type):
+            return self._default_scope.__name__
+        elif isinstance(self._default_scope, str):
+            return self._default_scope
+        else:
+            return type(self._default_scope).__name__
 
     ### PRIVATE METHODS ###
 
