@@ -26,10 +26,8 @@ class AttributeDetail(AbjadObject):
         menu_key=None,
         name=None,
         ):
-        assert isinstance(name, str)
-        assert isinstance(menu_key, str)
-        assert editor
-        display_string = display_string or name.replace('_', ' ')
+        if not display_string and name:
+            display_string = name.replace('_', ' ')
         self._display_string = display_string
         self._editor = editor
         self._is_keyword = is_keyword
@@ -43,11 +41,13 @@ class AttributeDetail(AbjadObject):
 
         Returns string.
         '''
-        parts = [
-            repr(self.display_string),
-            repr(self.menu_key),
-            self.editor.__name__,
-            ]
+        parts = []
+        if self.display_string:
+            parts.append(self.display_string)
+        if self.menu_key:
+            parts.append(self.menu_key)
+        if self.editor:
+            parts.append(self.editor.__name__)
         parts = ', '.join(parts)
         return '{}({})'.format(type(self).__name__, parts)
 
