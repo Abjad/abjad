@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-import types
+import sys
 from abjad.tools.systemtools.Configuration import Configuration
 
 
@@ -76,7 +76,7 @@ class AbjadConfiguration(Configuration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.abjad_configuration_directory_path, 
+                        self.abjad_configuration_directory_path,
                         'output',
                         )
                     )
@@ -222,7 +222,12 @@ class AbjadConfiguration(Configuration):
                 lilypond = 'lilypond'
         command = lilypond + ' --version'
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lilypond_version_string = proc.stdout.readline()
+        if sys.version_info[0] == 2:
+            lilypond_version_string = proc.stdout.readline()
+        else:
+            import locale
+            encoding = locale.getdefaultlocale()[1]
+            lilypond_version_string = proc.stdout.readline().decode(encoding)
         lilypond_version_string = lilypond_version_string.split(' ')[-1]
         lilypond_version_string = lilypond_version_string.strip()
         return lilypond_version_string
@@ -243,8 +248,13 @@ class AbjadConfiguration(Configuration):
         # python prints to stderr on startup (instead of stdout)
         command = 'python --version'
         proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
-        python_version_string = proc.stderr.readline()
         # massage output string
+        if sys.version_info[0] == 2:
+            python_version_string = proc.stderr.readline()
+        else:
+            import locale
+            encoding = locale.getdefaultlocale()[1]
+            python_version_string = proc.stderr.readline().decode(encoding)
         python_version_string = python_version_string.split(' ')[-1]
         python_version_string = python_version_string.strip()
         # return trimmed string
@@ -332,9 +342,9 @@ class AbjadConfiguration(Configuration):
     @staticmethod
     def set_default_accidental_spelling(spelling='mixed'):
         '''Sets default accidental spelling.
-        
+
         ..  container:: example
-        
+
             Sets default accidental spelling to sharps:
 
             ::
@@ -392,7 +402,7 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         relative_path = os.path.join(
-            self.home_directory_path, 
+            self.home_directory_path,
             '.abjad',
             )
         return os.path.abspath(relative_path)
