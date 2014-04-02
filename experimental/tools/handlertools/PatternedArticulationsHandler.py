@@ -83,27 +83,27 @@ class PatternedArticulationsHandler(ArticulationHandler):
             systemtools.AttributeDetail(
                 name='articulation_lists', 
                 menu_key='al', 
-                editor_callable=getters.get_lists, 
+                editor=getters.get_lists, 
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='nd', 
-                editor_callable=getters.get_duration, 
+                editor=getters.get_duration, 
                 ),
             systemtools.AttributeDetail(
                 name='maximum_duration', 
                 menu_key='xd', 
-                editor_callable=getters.get_duration, 
+                editor=getters.get_duration, 
                 ),
             systemtools.AttributeDetail(
                 name='minimum_written_pitch', 
                 menu_key='np', 
-                editor_callable=getters.get_named_pitch, 
+                editor=getters.get_named_pitch, 
                 ),
             systemtools.AttributeDetail(
                 name='maximum_written_pitch', 
                 menu_key='xp', 
-                editor_callable=getters.get_named_pitch, 
+                editor=getters.get_named_pitch, 
                 ),
             )
 

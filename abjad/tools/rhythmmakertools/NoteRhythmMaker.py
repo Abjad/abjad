@@ -183,17 +183,17 @@ class NoteRhythmMaker(RhythmMaker):
             systemtools.AttributeDetail(
                 name='beam_specifier',
                 menu_key='bs',
-                editor_callable=rhythmmakertools.BeamSpecifier,
+                editor=rhythmmakertools.BeamSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
                 menu_key='dss',
-                editor_callable=rhythmmakertools.DurationSpellingSpecifier,
+                editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='tie_specifier',
                 menu_key='ts',
-                editor_callable=rhythmmakertools.TieSpecifier,
+                editor=rhythmmakertools.TieSpecifier,
                 ),
             )
 

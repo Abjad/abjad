@@ -67,12 +67,12 @@ class TieSpecifier(AbjadObject):
             systemtools.AttributeDetail(
                 name='tie_across_divisions',
                 menu_key='tad',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='tie_split_notes',
                 menu_key='tsn',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             )
 

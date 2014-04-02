@@ -220,7 +220,7 @@ class Clef(AbjadObject):
             systemtools.AttributeDetail(
                 name='name', 
                 menu_key='nm', 
-                editor_callable=getters.get_string,
+                editor=getters.get_string,
                 ),
             )
 

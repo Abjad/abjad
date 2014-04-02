@@ -15,7 +15,7 @@ class AttributeManifest(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, _target_class, *attribute_details):
+    def __init__(self, _target_class=None, *attribute_details):
         from abjad.tools import systemtools
         self._target_class = _target_class
         self._attribute_details = []
@@ -40,8 +40,14 @@ class AttributeManifest(AbjadObject):
         Returns string.
         '''
         parts = ', '.join([str(x) for x in self.attribute_details])
-        return '{}({}, {})'.format(
-            type(self).__name__, self._target_class.__name__, parts)
+        if self._target_class:
+            class_name = self._target_class.__name__
+            result = '{}({}, {})'
+            result = result.format(type(self).__name__, class_name, parts)
+        else:
+            result = '{}({})'
+            result = result.format(type(self).__name__, parts)
+        return result
 
     ### PRIVATE METHODS ###
 

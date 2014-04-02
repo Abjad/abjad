@@ -117,6 +117,25 @@ class Performer(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import instrumenttools
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='name',
+                menu_key='nm',
+                editor=getters.get_string,
+                ),
+            systemtools.AttributeDetail(
+                name='instruments',
+                menu_key='i',
+                editor=instrumenttools.InstrumentInventory,
+                ),
+            )
+
+    @property
     def _one_line_menu_summary(self):
         if not self.instruments:
             result = '{}: no instruments'.format(self.name)

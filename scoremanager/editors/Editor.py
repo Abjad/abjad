@@ -122,48 +122,43 @@ class Editor(Controller):
         from scoremanager import editors
         from scoremanager import iotools
         from scoremanager import wizards
-        editor_callable = attribute_detail.editor_callable
-        if (
-            isinstance(editor_callable, types.FunctionType) and
-            editor_callable.__name__.startswith('make_')
-            ):
-            editor = editor_callable(session=session)
-        elif isinstance(editor_callable, types.FunctionType):
-            editor = editor_callable(
+        #editor = attribute_detail.editor
+        if isinstance(attribute_detail.editor, types.FunctionType):
+            editor = attribute_detail.editor(
                 space_delimited_attribute_name,
                 session=self._session, 
                 prepopulated_value=prepopulated_value, 
                 allow_none=True,
                 )
-        elif issubclass(editor_callable, Editor):
-            editor = editor_callable(
+        elif issubclass(attribute_detail.editor, Editor):
+            editor = attribute_detail.editor(
                 session=self._session, 
                 target=prepopulated_value, 
                 )
-        elif issubclass(editor_callable, datastructuretools.TypedList):
+        elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
-            target = target or editor_callable()
+            target = target or attribute_detail.editor()
             editor = editors.ListEditor(
                 session=self._session,
                 target=target,
                 )
-        elif isinstance(editor_callable, types.TypeType):
+        elif isinstance(attribute_detail.editor, types.TypeType):
             target = getattr(self.target, attribute_detail.name)
-            target = target or editor_callable()
+            target = target or attribute_detail.editor()
             editor = type(self)(
                 session=self._session,
                 target=target,
                 )
-        elif issubclass(editor_callable, iotools.Selector):
-            editor = editor_callable(session=self._session)
-        elif issubclass(editor_callable, wizards.Wizard):
-            editor = editor_callable(
+        elif issubclass(attribute_detail.editor, iotools.Selector):
+            editor = attribute_detail.editor(session=self._session)
+        elif issubclass(attribute_detail.editor, wizards.Wizard):
+            editor = attribute_detail.editor(
                 session=self._session, 
                 target=prepopulated_value, 
                 )
         else:
             message = 'what is {!r}?'
-            message = message.format(editor_callable)
+            message = message.format(attribute_detail.editor)
             raise ValueError(message)
         return editor
 

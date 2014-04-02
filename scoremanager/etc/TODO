@@ -106,9 +106,7 @@
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-27. Rename AttributeDetail.editor_callable to AttributeDetail.editor.
-
-28. Implement an Editor method to allow an none-allowing attribute to be 
+27. Implement an Editor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -136,10 +134,13 @@
         7: tie specifier (ts):
     ... using the editor.
 
-29. Bug:
+28. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
     The getter is checking for (a tuple or list of) integers;
     then the getter receives only a single integer the getter 
     should not explode.
+
+29. Remove AttributeManifest._target_class after removing PerformerEditor and
+    ListEditor.

@@ -305,37 +305,37 @@ class BurnishSpecifier(AbjadObject):
             systemtools.AttributeDetail(
                 name='burnish_divisions',
                 menu_key='bd',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='burnish_output',
                 menu_key='bo',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='lefts',
                 menu_key='l',
-                editor_callable=getters.get_integers,
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='middles',
                 menu_key='m',
-                editor_callable=getters.get_integers,
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='rights',
                 menu_key='r',
-                editor_callable=getters.get_integers,
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='left_lengths',
                 menu_key='ll',
-                editor_callable=getters.get_integers,
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='right_lengths',
                 menu_key='rl',
-                editor_callable=getters.get_integers,
+                editor=getters.get_integers,
                 ),
             )
 
