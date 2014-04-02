@@ -16,7 +16,6 @@ appear on your filesystem after checkout:
 
     boilerplate/
     core/
-    editors/
     etc/
     getters/
     iotools/
@@ -59,7 +58,6 @@ scoremanager/ directory to do this. You're ready to use the score manager when
 all tests pass.
 '''
 import core
-import iotools
 import exceptions
 import getters
 import iotools
