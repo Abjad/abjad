@@ -1246,18 +1246,11 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        def _offset(x, y):
-            if x._get_timespan().start_offset < y._get_timespan().start_offset:
-                return -1
-            elif y._get_timespan().start_offset < x._get_timespan().start_offset:
-                return 1
-            else:
-                return 0
         self._music.reverse()
         self._update_later(offsets=True)
         spanners = self._get_descendants()._get_spanners()
         for s in spanners:
-            s._components.sort(_offset)
+            s._components.sort(key=lambda x: x._get_timespan().start_offset)
 
     def select_leaves(
         self,
