@@ -961,11 +961,19 @@ class IterationAgent(abctools.AbjadObject):
         component_generator = iterate(self._client).by_class(component_class)
         components = list(component_generator)
         if not reverse:
-            components.sort(key=lambda x: [x._get_timespan().start_offset,
-                                           x._get_parentage().score_index])
+            components.sort(
+                key=lambda x: (
+                    x._get_timespan().start_offset,
+                    x._get_parentage().score_index,
+                    )
+                )
         else:
-            components.sort(key=lambda x: [-x._get_timespan().stop_offset,
-                                           x._get_parentage().score_index])
+            components.sort(
+                key=lambda x: (
+                    -x._get_timespan().stop_offset,
+                    x._get_parentage().score_index,
+                    )
+                )
         for component in components:
             yield component
 
