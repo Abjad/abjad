@@ -100,7 +100,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def _make_missing_directories(self):
         directory_paths = (
             self.user_library_directory_path,
-            self.user_library_editors_directory_path,
             self.user_library_material_managers_directory_path,
             self.user_library_material_packages_directory_path,
             self.user_library_makers_directory_path,
@@ -154,25 +153,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             raise ValueError(path)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def abjad_editors_directory_path(self):
-        r'''Gets abjad editors directory path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.abjad_editors_directory_path
-                '.../scoremanager/editors'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.score_manager_directory_path,
-            'editors',
-            )
-        return path
 
     @property
     def abjad_material_managers_directory_path(self):
@@ -466,25 +446,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         path = self._settings['score_manager_library']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
-        return path
-
-    @property
-    def user_library_editors_directory_path(self):
-        r'''Gets user library editors path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.user_library_editors_directory_path
-                '.../editors'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.user_library_directory_path,
-            'editors',
-            )
         return path
 
     @property

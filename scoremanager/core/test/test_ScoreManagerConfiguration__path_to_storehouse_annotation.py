@@ -13,10 +13,6 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_01():
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
     
-    path = configuration.user_library_editors_directory_path
-    annotation = configuration._path_to_storehouse_annotation(path)
-    assert annotation == configuration.composer_last_name
-
     path = configuration.user_library_makers_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
@@ -37,10 +33,6 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_01():
 def test_ScoreManagerConfiguration__path_to_storehouse_annotation_02():
     r'''Abjad library paths annotate 'Abjad'.
     '''
-
-    path = configuration.abjad_editors_directory_path
-    annotation = configuration._path_to_storehouse_annotation(path)
-    assert annotation == 'Abjad'
 
     path = configuration.abjad_material_managers_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
