@@ -128,7 +128,8 @@ class InstrumentationSpecifier(AbjadObject):
     def __init__(self, performers=None):
         from abjad.tools import instrumenttools
         self._performers = instrumenttools.PerformerInventory()
-        self.performers = performers
+        performers = performers or []
+        self.performers.extend(performers)
 
     ### SPECIAL METHODS ###
 
@@ -332,14 +333,14 @@ class InstrumentationSpecifier(AbjadObject):
         '''
         return self._performers
 
-    @performers.setter
-    def performers(self, performers):
-        from abjad.tools import instrumenttools
-        assert isinstance(performers,
-            (list, datastructuretools.TypedList, type(None)))
-        if performers is None:
-            self._performers[:] = []
-        else:
-            assert all(isinstance(x, instrumenttools.Performer)
-                for x in performers)
-            self._performers[:] = list(performers[:])
+#    @performers.setter
+#    def performers(self, performers):
+#        from abjad.tools import instrumenttools
+#        assert isinstance(performers,
+#            (list, datastructuretools.TypedList, type(None)))
+#        if performers is None:
+#            self._performers[:] = []
+#        else:
+#            assert all(isinstance(x, instrumenttools.Performer)
+#                for x in performers)
+#            self._performers[:] = list(performers[:])
