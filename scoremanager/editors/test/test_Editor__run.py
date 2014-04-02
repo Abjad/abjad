@@ -465,3 +465,150 @@ def test_Editor__run_21():
         )
 
     assert editor.target == performer
+
+
+def test_Editor__run_22():
+    r'''Adds three performers to instrumentation specifier.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentationSpecifier()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'ps add accordionist default add bassoonist default'
+    input_ += ' add cellist default done done'
+    editor._run(pending_user_input=input_)
+
+    specifier = instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(
+            name='accordionist', 
+            instruments=[instrumenttools.Accordion()],
+            ),
+        instrumenttools.Performer(
+            name='bassoonist', 
+            instruments=[instrumenttools.Bassoon()],
+            ),
+        instrumenttools.Performer(
+            name='cellist', 
+            instruments=[instrumenttools.Cello()],
+            )])
+
+    assert editor.target == specifier
+
+
+def test_Editor__run_23():
+    r'''Adds three performers to instrumentation specifier.
+    
+    Tests range handling.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentationSpecifier()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'ps add 1-3 default default default done done'
+    editor._run(pending_user_input=input_)
+
+    specifier = instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(
+            name='accordionist', 
+            instruments=[instrumenttools.Accordion()]),
+        instrumenttools.Performer(
+            name='alto', 
+            instruments=[instrumenttools.AltoVoice()]),
+        instrumenttools.Performer(
+            name='baritone', 
+            instruments=[instrumenttools.BaritoneVoice()]),
+            ])
+
+    assert editor.target == specifier
+
+
+def test_Editor__run_24():
+    r'''Edits instrumentation specifier. Adds three performers. Removes two.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentationSpecifier()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'ps add acc default add bass default add bassoon default'
+    input_ += ' rm 3 rm 2 done done'
+    editor._run(pending_user_input=input_)
+
+    specifier = instrumenttools.InstrumentationSpecifier(
+        [
+            instrumenttools.Performer(
+                'accordionist', 
+                instruments=[instrumenttools.Accordion()],
+                ),
+            ]
+        )
+
+    assert editor.target == specifier
+
+
+def test_Editor__run_25():
+    r'''Edits instrumentation specifier. Adds and removes.
+
+    Tests range handling.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentationSpecifier()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'ps add 1-3 default default default rm 3-2 done done'
+    editor._run(pending_user_input=input_)
+
+    specifier = instrumenttools.InstrumentationSpecifier(
+        [
+            instrumenttools.Performer(
+                'accordionist', 
+                instruments=[instrumenttools.Accordion()],
+                )
+            ]
+        )
+
+    assert editor.target == specifier
+
+
+def test_Editor__run_26():
+    r'''Edits instrumentation specifier. Adds three performers. 
+    Makes two moves.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentationSpecifier()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'ps add accordionist default add bassist default'
+    input_ += ' add bassoonist bassoon mv 1 2 mv 2 3 done done'
+    editor._run(pending_user_input=input_)
+
+    specifier = instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(
+            name='bassist', 
+            instruments=[instrumenttools.Contrabass()],
+            ),
+        instrumenttools.Performer(
+            name='bassoonist', 
+            instruments=[instrumenttools.Bassoon()],
+            ),
+        instrumenttools.Performer(
+            name='accordionist', 
+            instruments=[instrumenttools.Accordion()],
+            ),
+        ])
+
+    assert editor.target == specifier
