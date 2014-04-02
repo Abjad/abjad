@@ -46,3 +46,14 @@ class InstrumentInventory(TypedList):
         contents = [repr(x) for x in self]
         contents = ', '.join(contents)
         return '{}([{}])'.format(type(self).__name__, contents)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_creator_class(self):
+        from scoremanager import wizards
+        return wizards.InstrumentCreationWizard
+
+    @property
+    def _item_creator_class_kwargs(self):
+        return {'is_ranged': True}
