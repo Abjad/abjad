@@ -173,7 +173,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
+        manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None

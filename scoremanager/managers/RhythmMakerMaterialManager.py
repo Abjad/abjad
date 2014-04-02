@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad import *
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class RhythmMakerMaterialManager(MaterialManager):
+class RhythmMakerMaterialManager(MaterialPackageManager):
     r'''Rhythm-maker material manager.
     '''
 

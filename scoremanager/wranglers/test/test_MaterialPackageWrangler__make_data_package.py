@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
         wrangler._make_data_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
+        manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
@@ -55,7 +55,7 @@ def test_MaterialPackageWrangler__make_data_package_02():
         wrangler._make_data_package(path, metadata=metadata)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
+        manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._get_metadatum('color') == 'red'
         assert manager._get_metadatum('is_colored')

@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_make_data_package_01():
         wrangler.make_data_package()
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
+        manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
     finally:

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class PitchRangeInventoryMaterialManager(MaterialManager):
+class PitchRangeInventoryMaterialManager(MaterialPackageManager):
     r'''Pitch range inventory material manager.
     '''
 

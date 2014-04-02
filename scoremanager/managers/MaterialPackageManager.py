@@ -10,7 +10,7 @@ from scoremanager import wizards
 from scoremanager.managers.PackageManager import PackageManager
 
 
-class MaterialManager(PackageManager):
+class MaterialPackageManager(PackageManager):
     r'''Material manager.
 
     ..  container:: example
@@ -24,12 +24,12 @@ class MaterialManager(PackageManager):
             ...     configuration.abjad_material_packages_directory_path,
             ...     'example_numbers',
             ...     )
-            >>> manager = scoremanager.managers.MaterialManager(
+            >>> manager = scoremanager.managers.MaterialPackageManager(
             ...     path=path,
             ...     session=session,
             ...     )
             >>> manager
-            MaterialManager('.../materials/example_numbers')
+            MaterialPackageManager('.../materials/example_numbers')
 
     '''
 
@@ -157,7 +157,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _user_input_to_action(self):
-        superclass = super(MaterialManager, self)
+        superclass = super(MaterialPackageManager, self)
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
@@ -360,7 +360,7 @@ class MaterialManager(PackageManager):
             return section
 
     def _make_main_menu(self, name='material manager'):
-        superclass = super(MaterialManager, self)
+        superclass = super(MaterialPackageManager, self)
         where = self._where
         menu = superclass._make_main_menu(
             where=where,

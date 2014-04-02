@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class SargassoMeasureMaterialManager(MaterialManager):
+class SargassoMeasureMaterialManager(MaterialPackageManager):
     r'''Sargasso measure material manager.
     '''
 

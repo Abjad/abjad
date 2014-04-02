@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class DynamicHandlerMaterialManager(MaterialManager):
+class DynamicHandlerMaterialManager(MaterialPackageManager):
     r'''Dynamic handler material manager.
     '''
 

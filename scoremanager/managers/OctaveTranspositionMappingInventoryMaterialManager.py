@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
+class OctaveTranspositionMappingInventoryMaterialManager(MaterialPackageManager):
     r'''Octave transposition mapping inventory material manager.
     '''
 

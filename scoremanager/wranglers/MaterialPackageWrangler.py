@@ -59,7 +59,7 @@ class MaterialPackageWrangler(Wrangler):
     @property
     def _asset_manager_class(self):
         from scoremanager import managers
-        return managers.MaterialManager
+        return managers.MaterialPackageManager
 
     @property
     def _breadcrumb(self):
@@ -104,7 +104,7 @@ class MaterialPackageWrangler(Wrangler):
         material_package_path = self._configuration.path_to_package_path(
             path)
         if material_manager_class_name is None:
-            manager = managers.MaterialManager(
+            manager = managers.MaterialPackageManager(
                 path=path,
                 session=self._session,
                 )

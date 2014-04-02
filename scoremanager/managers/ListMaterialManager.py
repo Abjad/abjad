@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import iotools
 from scoremanager.iotools.ListEditor import ListEditor
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class ListMaterialManager(MaterialManager):
+class ListMaterialManager(MaterialPackageManager):
     r'''List material manager.
     '''
 

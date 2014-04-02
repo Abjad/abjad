@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class ArticulationHandlerMaterialManager(MaterialManager):
+class ArticulationHandlerMaterialManager(MaterialPackageManager):
     r'''Articulation handler material manager.
     '''
 

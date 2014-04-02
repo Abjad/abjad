@@ -39,7 +39,7 @@ class MaterialManagerWrangler(Wrangler):
         self._human_readable_target_name = 'material manager'
         self._forbidden_directory_entries = (
             'InventoryMaterialManager.py',
-            'MaterialManager.py',
+            'MaterialPackageManager.py',
             )
 
     ### PRIVATE PROPERTIES ###
@@ -76,7 +76,7 @@ class MaterialManagerWrangler(Wrangler):
     def _initialize_asset_manager(self, path):
         from scoremanager import managers
         assert os.path.sep in path, repr(path)
-        material_manager = managers.MaterialManager(
+        material_manager = managers.MaterialPackageManager(
             path=path, 
             session=self._session,
             )
