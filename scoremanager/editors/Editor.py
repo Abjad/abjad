@@ -123,12 +123,7 @@ class Editor(Controller):
         from scoremanager import iotools
         from scoremanager import wizards
         editor = attribute_detail.editor
-        if (
-            isinstance(editor, types.FunctionType) and
-            editor.__name__.startswith('make_')
-            ):
-            editor = editor(session=session)
-        elif isinstance(editor, types.FunctionType):
+        if isinstance(editor, types.FunctionType):
             editor = editor(
                 space_delimited_attribute_name,
                 session=self._session, 
