@@ -166,6 +166,22 @@ class InstrumentationSpecifier(AbjadObject):
         '''
         return super(InstrumentationSpecifier, self).__hash__()
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import instrumenttools
+        from abjad.tools import systemtools
+        from scoremanager import getters
+        return systemtools.AttributeManifest(
+            type(self),
+            systemtools.AttributeDetail(
+                name='performers',
+                menu_key='ps',
+                editor=instrumenttools.PerformerInventory,
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

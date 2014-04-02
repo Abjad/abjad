@@ -12,3 +12,14 @@ class PerformerInventory(TypedList):
 
     __slots__ = (
         )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_creator_class(self):
+        from scoremanager import wizards
+        return wizards.PerformerCreationWizard
+
+    @property
+    def _item_creator_class_kwargs(self):
+        return {'is_ranged': True}
