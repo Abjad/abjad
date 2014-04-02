@@ -30,9 +30,9 @@ class ArticulationHandlerMaterialManager(MaterialManager):
         return isinstance(x, handlertools.ArticulationHandler)
 
     def _get_output_material_editor(self, target=None):
-        from scoremanager import editors
+        from scoremanager import iotools
         if target:
-            editor = editors.Editor(
+            editor = iotools.Editor(
                 session=self._session,
                 target=target,
                 )

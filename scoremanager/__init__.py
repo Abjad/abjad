@@ -59,7 +59,7 @@ scoremanager/ directory to do this. You're ready to use the score manager when
 all tests pass.
 '''
 import core
-import editors
+import iotools
 import exceptions
 import getters
 import iotools

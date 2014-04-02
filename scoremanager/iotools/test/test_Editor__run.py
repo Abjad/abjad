@@ -10,7 +10,7 @@ def test_Editor__run_01():
 
     target = Clef('alto')
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -26,7 +26,7 @@ def test_Editor__run_02():
 
     target = Tempo()
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -41,7 +41,7 @@ def test_Editor__run_03():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=Tempo(),
         )
@@ -56,7 +56,7 @@ def test_Editor__run_04():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=Tempo(),
         )
@@ -71,7 +71,7 @@ def test_Editor__run_05():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=Markup(),
         )
@@ -87,7 +87,7 @@ def test_Editor__run_06():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=Markup(),
         )
@@ -103,7 +103,7 @@ def test_Editor__run_07():
 
     target = Markup('foo bar')
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -119,7 +119,7 @@ def test_Editor__run_08():
 
     target = pitchtools.OctaveTranspositionMappingComponent()
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -136,7 +136,7 @@ def test_Editor__run_09():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -147,7 +147,7 @@ def test_Editor__run_09():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -166,7 +166,7 @@ def test_Editor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -176,7 +176,7 @@ def test_Editor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -186,7 +186,7 @@ def test_Editor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -196,7 +196,7 @@ def test_Editor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -211,7 +211,7 @@ def test_Editor__run_11():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session, 
         is_autoadvancing=True,
         target=target,
@@ -233,7 +233,7 @@ def test_Editor__run_12():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinsHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session, 
         is_autoadvancing=True,
         target=target,
@@ -255,7 +255,7 @@ def test_Editor__run_13():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session, 
         is_autoadvancing=True,
         target=target,
@@ -280,7 +280,7 @@ def test_Editor__run_14():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         is_autoadvancing=True, 
         is_autostarting=True,
@@ -306,7 +306,7 @@ def test_Editor__run_15():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         is_autoadvancing=True, 
         is_autostarting=True,
@@ -328,7 +328,7 @@ def test_Editor__run_16():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedDynamicHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session, 
         is_autoadvancing=True,
         target=target
@@ -350,7 +350,7 @@ def test_Editor__run_17():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.TerracedDynamicsHandler()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session, 
         is_autoadvancing=True,
         target=target,
@@ -372,7 +372,7 @@ def test_Editor__run_18():
 
     session = scoremanager.core.Session(is_test=True)
     target = rhythmmakertools.TaleaRhythmMaker()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -399,7 +399,7 @@ def test_Editor__run_19():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -424,7 +424,7 @@ def test_Editor__run_20():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -448,7 +448,7 @@ def test_Editor__run_21():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -473,7 +473,7 @@ def test_Editor__run_22():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -506,7 +506,7 @@ def test_Editor__run_23():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -534,7 +534,7 @@ def test_Editor__run_24():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -562,7 +562,7 @@ def test_Editor__run_25():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -588,7 +588,7 @@ def test_Editor__run_26():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )

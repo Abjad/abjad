@@ -49,7 +49,7 @@ class Wizard(ScoreManagerObject):
         return target_editor
 
     def _run(self, pending_user_input=None):
-        from scoremanager import editors
+        from scoremanager import iotools
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
@@ -73,7 +73,7 @@ class Wizard(ScoreManagerObject):
                 raise ValueError(class_name)
             assert target
             if hasattr(target, '_attribute_manifest'):
-                editor = editors.Editor(
+                editor = iotools.Editor(
                     session=self._session,
                     target=target,
                     )

@@ -8,7 +8,6 @@ from scoremanager.core.Controller import Controller
 
 class Editor(Controller):
     r'''Editor.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -119,7 +118,7 @@ class Editor(Controller):
         space_delimited_attribute_name, 
         prepopulated_value, 
         ):
-        from scoremanager import editors
+        from scoremanager import iotools
         from scoremanager import iotools
         from scoremanager import wizards
         if isinstance(attribute_detail.editor, types.FunctionType):
@@ -137,7 +136,7 @@ class Editor(Controller):
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
-            editor = editors.ListEditor(
+            editor = iotools.ListEditor(
                 session=self._session,
                 target=target,
                 )

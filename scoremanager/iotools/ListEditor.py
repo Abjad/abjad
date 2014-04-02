@@ -3,8 +3,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager import iotools
-from scoremanager.editors.Editor import Editor
+from scoremanager.iotools.Editor import Editor
 
 
 class ListEditor(Editor):
@@ -13,7 +12,7 @@ class ListEditor(Editor):
     ::
 
         >>> session = scoremanager.core.Session()
-        >>> editor = scoremanager.editors.ListEditor(session=session)
+        >>> editor = scoremanager.iotools.ListEditor(session=session)
         >>> editor._target = ['first', 'second', 'third']
         >>> editor
         <ListEditor(target=list)>
@@ -44,7 +43,7 @@ class ListEditor(Editor):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        from scoremanager import editors
+        from scoremanager import iotools
         superclass = super(ListEditor, self)
         superclass.__init__(session=session, target=target)
         self._item_class = None
@@ -67,9 +66,9 @@ class ListEditor(Editor):
                     type(dummy_item).__name__)
             self._item_identifier = item_identifier
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = editors.ListEditor
+                self._item_creator_class = iotools.ListEditor
             else:
-                self._item_creator_class = editors.Editor
+                self._item_creator_class = iotools.Editor
 
     ### PRIVATE PROPERTIES ###
 
@@ -165,7 +164,7 @@ class ListEditor(Editor):
 
         Returns none.
         '''
-        from scoremanager import editors
+        from scoremanager import iotools
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
             if self._item_class:
@@ -223,11 +222,11 @@ class ListEditor(Editor):
 
         Returns none.
         '''
-        from scoremanager import editors
+        from scoremanager import iotools
         item = self._get_item_from_item_number(item_number)
         if item is None:
             return
-        item_editor_class = self._item_editor_class or editors.Editor
+        item_editor_class = self._item_editor_class or iotools.Editor
         item_editor = item_editor_class(
             session=self._session, 
             target=item,

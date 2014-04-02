@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import iotools
-from scoremanager.editors.ListEditor import ListEditor
+from scoremanager.iotools.ListEditor import ListEditor
 from scoremanager.managers.MaterialManager import MaterialManager
 
 
@@ -27,8 +27,8 @@ class ListMaterialManager(MaterialManager):
         return isinstance(material, list)
 
     def _get_output_material_editor(self, target=None):
-        from scoremanager import editors
-        editor = editors.ListEditor(
+        from scoremanager import iotools
+        editor = iotools.ListEditor(
             session=self._session,
             target=target,
             )

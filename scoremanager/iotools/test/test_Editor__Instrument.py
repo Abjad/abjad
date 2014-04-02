@@ -10,7 +10,7 @@ def test_Editor__Instrument_01():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -21,7 +21,7 @@ def test_Editor__Instrument_01():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -38,7 +38,7 @@ def test_Editor__Instrument_02():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Marimba()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -48,7 +48,7 @@ def test_Editor__Instrument_02():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Marimba()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -64,7 +64,7 @@ def test_Editor__Instrument_03():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -75,7 +75,7 @@ def test_Editor__Instrument_03():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )
@@ -92,7 +92,7 @@ def test_Editor__Instrument_04():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target
         )
@@ -123,7 +123,7 @@ def test_Editor__Instrument_05():
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.FrenchHorn()
     assert target.sounding_pitch_of_written_middle_c == NamedPitch('f')
-    editor = scoremanager.editors.Editor(
+    editor = scoremanager.iotools.Editor(
         session=session,
         target=target,
         )

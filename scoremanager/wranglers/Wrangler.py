@@ -675,7 +675,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        from scoremanager import editors
+        from scoremanager import iotools
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('view name')
         view_name = getter._run()
@@ -683,7 +683,7 @@ class Wrangler(Controller):
             return
         menu_entries = self._make_asset_menu_entries()
         display_strings = [x[0] for x in menu_entries]
-        editor = editors.ListEditor(
+        editor = iotools.ListEditor(
             session=self._session,
             target=display_strings,
             )

@@ -60,9 +60,9 @@ class TempoInventoryMaterialManager(MaterialManager):
         return isinstance(x, indicatortools.TempoInventory)
 
     def _get_output_material_editor(self, target=None):
-        from scoremanager import editors
+        from scoremanager import iotools
         target = target or indicatortools.TempoInventory()
-        editor = editors.ListEditor(
+        editor = iotools.ListEditor(
             session=self._session,
             target=target,
             )

@@ -497,9 +497,9 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        from scoremanager import editors
+        from scoremanager import iotools
         target = self._get_instrumentation()
-        editor = editors.Editor(
+        editor = iotools.Editor(
             session=self._session, 
             target=target,
             )

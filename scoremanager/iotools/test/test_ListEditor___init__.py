@@ -12,8 +12,8 @@ def test_ListEditor___init___01():
 
     os.chdir(configuration.score_manager_directory_path)
     session = scoremanager.core.Session()
-    editor = scoremanager.editors.ListEditor(session=session)
-    assert isinstance(editor, scoremanager.editors.ListEditor)
+    editor = scoremanager.iotools.ListEditor(session=session)
+    assert isinstance(editor, scoremanager.iotools.ListEditor)
 
 
 def test_ListEditor___init___02():
@@ -23,5 +23,5 @@ def test_ListEditor___init___02():
 
     os.chdir(configuration.abjad_directory_path)
     session = scoremanager.core.Session()
-    editor = scoremanager.editors.ListEditor(session=session)
-    assert isinstance(editor, scoremanager.editors.ListEditor)
+    editor = scoremanager.iotools.ListEditor(session=session)
+    assert isinstance(editor, scoremanager.iotools.ListEditor)

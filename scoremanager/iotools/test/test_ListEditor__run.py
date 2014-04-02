@@ -8,7 +8,7 @@ def test_ListEditor__run_01():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.editors.ListEditor(session=session)
+    editor = scoremanager.iotools.ListEditor(session=session)
     input_ = "17 99 'foo' done q"
     editor._is_autoadding = True
     editor._run(pending_user_input=input_)
@@ -22,7 +22,7 @@ def test_ListEditor__run_02():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.ClefInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -39,7 +39,7 @@ def test_ListEditor__run_03():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.ClefInventory(['treble', 'bass'])
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -56,7 +56,7 @@ def test_ListEditor__run_04():
 
     session = scoremanager.core.Session(is_test=True)
     target = markuptools.MarkupInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -78,7 +78,7 @@ def test_ListEditor__run_05():
 
     session = scoremanager.core.Session(is_test=True)
     target = markuptools.MarkupInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -110,7 +110,7 @@ def test_ListEditor__run_06():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.TempoInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -134,7 +134,7 @@ def test_ListEditor__run_07():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.TempoInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -156,7 +156,7 @@ def test_ListEditor__run_08():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRangeInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -177,7 +177,7 @@ def test_ListEditor__run_09():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -198,7 +198,7 @@ def test_ListEditor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
@@ -219,7 +219,7 @@ def test_ListEditor__run_11():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentInventory()
-    editor = scoremanager.editors.ListEditor(
+    editor = scoremanager.iotools.ListEditor(
         session=session,
         target=target,
         )
