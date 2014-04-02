@@ -140,39 +140,39 @@ class Instrument(AbjadObject):
                 name='allowable_clefs', 
                 display_string='clefs', 
                 menu_key='cf', 
-                editor_callable=indicatortools.ClefInventory,
+                editor=indicatortools.ClefInventory,
                 ),
             systemtools.AttributeDetail(
                 name='instrument_name', 
                 menu_key='in', 
-                editor_callable=getters.get_string, 
+                editor=getters.get_string, 
                 ),
             systemtools.AttributeDetail(
                 name='instrument_name_markup', 
                 menu_key='im', 
-                editor_callable=getters.get_markup,
+                editor=getters.get_markup,
                 ),
             systemtools.AttributeDetail(
                 name='pitch_range', 
                 display_string='range', 
                 menu_key='rg', 
-                editor_callable=getters.get_symbolic_pitch_range_string,
+                editor=getters.get_symbolic_pitch_range_string,
                 ),
             systemtools.AttributeDetail(
                 name='short_instrument_name', 
                 menu_key='sn', 
-                editor_callable=getters.get_string,
+                editor=getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='short_instrument_name_markup', 
                 menu_key='sm', 
-                editor_callable=getters.get_markup,
+                editor=getters.get_markup,
                 ),
             systemtools.AttributeDetail(
                 name='sounding_pitch_of_written_middle_c',
                 display_string='sounding pitch of written middle C',
                 menu_key='sp',
-                editor_callable=getters.get_named_pitch,
+                editor=getters.get_named_pitch,
                 ),
             )
 

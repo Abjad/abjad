@@ -301,13 +301,13 @@ class Tempo(AbjadObject):
             systemtools.AttributeDetail(
                 name='duration', 
                 menu_key='d', 
-                editor_callable=getters.get_duration,
+                editor=getters.get_duration,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
                 name='units_per_minute', 
                 menu_key='pm', 
-                editor_callable=getters.get_integer,
+                editor=getters.get_integer,
                 is_keyword=False,
                 ),
             )

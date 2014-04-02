@@ -152,12 +152,12 @@ class BeamSpecifier(AbjadObject):
             systemtools.AttributeDetail(
                 name='beam_divisions_together',
                 menu_key='bdt',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='beam_each_division',
                 menu_key='bed',
-                editor_callable=getters.get_boolean,
+                editor=getters.get_boolean,
                 ),
             )
 

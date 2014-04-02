@@ -248,12 +248,12 @@ class Markup(AbjadObject):
                 name='contents', 
                 display_string='arg', 
                 menu_key='ag', 
-                editor_callable=getters.get_string, 
+                editor=getters.get_string, 
                 ),
             systemtools.AttributeDetail(
                 name='direction', 
                 menu_key='dr', 
-                editor_callable=getters.get_direction_string, 
+                editor=getters.get_direction_string, 
                 ),
             )
 

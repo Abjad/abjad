@@ -70,12 +70,12 @@ class Talea(AbjadObject):
             systemtools.AttributeDetail(
                 name='counts',
                 menu_key='c',
-                editor_callable=getters.get_nonzero_integers,
+                editor=getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
                 name='denominator',
                 menu_key='d',
-                editor_callable=getters.get_positive_integer_power_of_two,
+                editor=getters.get_positive_integer_power_of_two,
                 ),
             )
 

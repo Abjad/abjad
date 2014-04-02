@@ -157,13 +157,13 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             systemtools.AttributeDetail(
                 name='source_pitch_range', 
                 menu_key='pr', 
-                editor_callable=getters.get_symbolic_pitch_range_string,
+                editor=getters.get_symbolic_pitch_range_string,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
                 name='target_octave_start_pitch', 
                 menu_key='sp', 
-                editor_callable=getters.get_integer,
+                editor=getters.get_integer,
                 is_keyword=False,
                 ),
             )

@@ -41,12 +41,12 @@ class TerracedDynamicsHandler(DynamicHandler):
             systemtools.AttributeDetail(
                 name='dynamics', 
                 menu_key='dy', 
-                editor_callable=getters.get_dynamics, 
+                editor=getters.get_dynamics, 
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration', 
                 menu_key='md', 
-                editor_callable=getters.get_duration, 
+                editor=getters.get_duration, 
                 ),
             )
 

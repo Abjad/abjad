@@ -392,7 +392,7 @@ class PitchRange(AbjadObject):
             systemtools.AttributeDetail(
                 name='range', 
                 menu_key='rp', 
-                editor_callable=getters.get_symbolic_pitch_range_string,
+                editor=getters.get_symbolic_pitch_range_string,
                 ),
             )
 

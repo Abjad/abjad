@@ -117,6 +117,16 @@ class Performer(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                ),
+            systemtools.AttributeDetail(
+                ),
+            )
+
+    @property
     def _one_line_menu_summary(self):
         if not self.instruments:
             result = '{}: no instruments'.format(self.name)

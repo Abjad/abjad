@@ -10,7 +10,7 @@ class AttributeDetail(AbjadObject):
 
     __slots__ = (
         '_display_string',
-        '_editor_callable',
+        '_editor',
         '_is_keyword',
         '_menu_key',
         '_name',
@@ -21,17 +21,17 @@ class AttributeDetail(AbjadObject):
     def __init__(
         self, 
         display_string=None,
-        editor_callable=None,
+        editor=None,
         is_keyword=True,
         menu_key=None,
         name=None,
         ):
         assert isinstance(name, str)
         assert isinstance(menu_key, str)
-        assert editor_callable
+        assert editor
         display_string = display_string or name.replace('_', ' ')
         self._display_string = display_string
-        self._editor_callable = editor_callable
+        self._editor = editor
         self._is_keyword = is_keyword
         self._menu_key = menu_key
         self._name = name
@@ -46,7 +46,7 @@ class AttributeDetail(AbjadObject):
         parts = [
             repr(self.display_string),
             repr(self.menu_key),
-            self.editor_callable.__name__,
+            self.editor.__name__,
             ]
         parts = ', '.join(parts)
         return '{}({})'.format(type(self).__name__, parts)
@@ -62,12 +62,12 @@ class AttributeDetail(AbjadObject):
         return self._display_string
 
     @property
-    def editor_callable(self):
+    def editor(self):
         r'''Gets editor callable of attribute detail.
 
         Returns callable.
         '''
-        return self._editor_callable
+        return self._editor
 
     @property
     def is_keyword(self):
