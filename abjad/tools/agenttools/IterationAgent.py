@@ -960,32 +960,12 @@ class IterationAgent(abctools.AbjadObject):
             component_class = scoretools.Leaf
         component_generator = iterate(self._client).by_class(component_class)
         components = list(component_generator)
-        def _backward_sort_helper(component_1, component_2):
-            result = cmp(
-                component_1._get_timespan().stop_offset,
-                component_2._get_timespan().stop_offset)
-            if result == 0:
-                return cmp(
-                    component_1._get_parentage().score_index,
-                    component_2._get_parentage().score_index)
-            else:
-                # note negative result of cmp() is returned
-                # for backward time sort
-                return -result
-        def _forward_sort_helper(component_1, component_2):
-            result = cmp(
-                component_1._get_timespan().start_offset,
-                component_2._get_timespan().start_offset)
-            if result == 0:
-                return cmp(
-                    component_1._get_parentage().score_index,
-                    component_2._get_parentage().score_index)
-            else:
-                return result
         if not reverse:
-            components.sort(_forward_sort_helper)
+            components.sort(key=lambda x: [x._get_timespan().start_offset,
+                                           x._get_parentage().score_index])
         else:
-            components.sort(_backward_sort_helper)
+            components.sort(key=lambda x: [-x._get_timespan().stop_offset,
+                                           x._get_parentage().score_index])
         for component in components:
             yield component
 
