@@ -168,12 +168,10 @@ class ListEditor(Editor):
         from scoremanager import editors
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
-            print repr(item_creator_class)
             if self._item_class:
                 target = self._item_class()
             else:
                 target = None
-            print repr(target)
             item_creator = item_creator_class(
                 session=self._session, 
                 target=target,

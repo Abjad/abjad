@@ -367,7 +367,7 @@ def test_Editor__run_17():
 
 
 def test_Editor__run_18():
-    r'''Works with talea rhythm-maker.
+    r'''Edits talea rhythm-maker.
     '''
 
     session = scoremanager.core.Session(is_test=True)
@@ -391,3 +391,77 @@ def test_Editor__run_18():
         )
 
     assert editor.target == maker
+
+
+def test_Editor__run_19():
+    r'''Adds instruments to performer instrument inventory.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.Performer()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'nm flutist i add flute add piccolo done done'
+    editor._run(pending_user_input=input_)
+
+    instruments = instrumenttools.InstrumentInventory([
+        instrumenttools.Flute(),
+        instrumenttools.Piccolo(),
+        ])
+    performer = instrumenttools.Performer(
+        name='flutist',
+        instruments=instruments,
+        )
+
+    assert editor.target == performer
+
+
+def test_Editor__run_20():
+    r'''Removes instruments from performer instrument inventory.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.Performer()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'nm flutist i add flute add piccolo rm piccolo done done'
+    editor._run(pending_user_input=input_)
+
+    instruments = instrumenttools.InstrumentInventory([
+        instrumenttools.Flute(),
+        ])
+    performer = instrumenttools.Performer(
+        name='flutist',
+        instruments=instruments,
+        )
+
+    assert editor.target == performer
+
+
+def test_Editor__run_21():
+    r'''Moves instruments in performer instrument inventory.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.Performer()
+    editor = scoremanager.editors.Editor(
+        session=session,
+        target=target,
+        )
+    input_ = 'nm flutist i add flute add piccolo mv 1 2 done done'
+    editor._run(pending_user_input=input_)
+
+    instruments = instrumenttools.InstrumentInventory([
+        instrumenttools.Piccolo(),
+        instrumenttools.Flute(),
+        ])
+    performer = instrumenttools.Performer(
+        name='flutist',
+        instruments=instruments,
+        )
+
+    assert editor.target == performer
