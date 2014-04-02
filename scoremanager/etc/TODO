@@ -141,3 +141,6 @@
     The getter is checking for (a tuple or list of) integers;
     then the getter receives only a single integer the getter 
     should not explode.
+
+29. Remove AttributeManifest._target_class after removing PerformerEditor and
+    ListEditor.
