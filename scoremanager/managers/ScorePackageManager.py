@@ -499,7 +499,7 @@ class ScorePackageManager(PackageManager):
         '''
         from scoremanager import editors
         target = self._get_instrumentation()
-        editor = editors.InstrumentationEditor(
+        editor = editors.Editor(
             session=self._session, 
             target=target,
             )

@@ -8,7 +8,7 @@ def test_UserInputGetter_display_calling_code_line_number_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=False)
-    input_ = 'ssx red~example~score setup instrumentation mv scl q'
+    input_ = 'ssx red~example~score p instr ps mv scl q'
     score_manager._run(pending_user_input=input_)
 
     string = '       file: ListEditor.py'

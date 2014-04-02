@@ -4,85 +4,6 @@ import scoremanager
 
 
 def test_Editor__Instrument_01():
-    r'''While editing instrument: quit, back, home, score & junk all work.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation hornist horn q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (12,)
-
-    input_ = 'red~example~score setup instrumentation hornist horn b q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (14, (8, 12))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn h q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (14, (0, 12))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn s q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (14, (2, 12))
-
-    input_ = 'red~example~score setup instrumentation hornist horn foo q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (14, (10, 12))
-
-
-def test_Editor__Instrument_02():
-    r'''While editing short instrument name markup: quit, back & home all work.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation hornist horn sm q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (13,)
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn sm b q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (10, 13))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn sm h q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (0, 13))
-
-
-def test_Editor__Instrument_03():
-    r'''While editing short instrument name: quit, back & home all work.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation hornist horn sn q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (13,)
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn sn b q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (10, 13))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn sn h q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (0, 13))
-
-
-def test_Editor__Instrument_04():
-    r'''Short instrument name: number is rejected.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn sn -99 q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15,)
-
-
-def test_Editor__Instrument_05():
     r'''Short instrument name does not change short instrument name markup.
     Unless short instrument name markup is set explicitly.
     '''
@@ -111,7 +32,7 @@ def test_Editor__Instrument_05():
     assert instrument.short_instrument_name_markup == Markup('bar')
 
 
-def test_Editor__Instrument_06():
+def test_Editor__Instrument_02():
     r'''Edits instrument range.
     '''
 
@@ -136,58 +57,7 @@ def test_Editor__Instrument_06():
     assert editor.target.pitch_range == pitchtools.PitchRange(-24, 36)
 
 
-def test_Editor__Instrument_07():
-    r'''While editing instrument name markup: quit, back & home all work.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation hornist horn im q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (13,)
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn im b q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (10, 13))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn im h q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (0, 13))
-
-
-def test_Editor__Instrument_08():
-    r'''While editing instrument name: quit, back & home all work.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation hornist horn in q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (13,)
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn in b q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (10, 13))
-
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn in h q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15, (0, 13))
-
-
-def test_Editor__Instrument_09():
-    r'''While editing instrument name: integer is rejected.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score setup instrumentation'
-    input_ += ' hornist horn in -99 q'
-    score_manager._run(pending_user_input=input_)
-    assert score_manager._transcript.signature == (15,)
-
-
-def test_Editor__Instrument_10():
+def test_Editor__Instrument_03():
     r'''While editing instrument name: instrument name does not 
     change instrument name markup.
     '''
@@ -216,7 +86,7 @@ def test_Editor__Instrument_10():
     assert instrument.instrument_name_markup == Markup('bar')
 
 
-def test_Editor__Instrument_11():
+def test_Editor__Instrument_04():
     r'''While editing instrument: main screen.
     '''
 
@@ -246,7 +116,7 @@ def test_Editor__Instrument_11():
     assert editor._transcript.last_menu_lines == lines
 
 
-def test_Editor__Instrument_12():
+def test_Editor__Instrument_05():
     r'''Edits sounding pitch of written middle C.
     '''
 

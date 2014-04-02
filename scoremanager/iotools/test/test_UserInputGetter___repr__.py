@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_UserInputGetter___repr___01():
 
-    input_ = 'étude~example~score p instr guitar nm sdv default q'
+    input_ = 'étude~example~score p instr ps guitar nm sdv default q'
     score_manager._run(pending_user_input=input_)
     transcript_contents = score_manager._transcript.contents
 
