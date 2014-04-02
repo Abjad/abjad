@@ -211,3 +211,24 @@ def test_ListEditor__run_10():
             )
 
     assert editor.target == mapping
+
+
+def test_ListEditor__run_11():
+    r'''Edits instrument inventory.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = instrumenttools.InstrumentInventory()
+    editor = scoremanager.editors.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add flute add piccolo done'
+    editor._run(pending_user_input=input_)
+
+    inventory = instrumenttools.InstrumentInventory([
+        instrumenttools.Flute(), 
+        instrumenttools.Piccolo(),
+        ])
+
+    assert editor.target == inventory

@@ -122,7 +122,6 @@ class Editor(Controller):
         from scoremanager import editors
         from scoremanager import iotools
         from scoremanager import wizards
-        #editor = attribute_detail.editor
         if isinstance(attribute_detail.editor, types.FunctionType):
             editor = attribute_detail.editor(
                 space_delimited_attribute_name,

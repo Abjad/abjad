@@ -54,7 +54,11 @@ class ListEditor(Editor):
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
         self._item_identifier = 'element'
-        if target is not None and getattr(target, '_item_callable', None):
+        if target is not None and hasattr(target, '_item_creator_class'):
+            self._item_creator_class = target._item_creator_class
+            kwargs = getattr(target, '_item_creator_class_kwargs', None)
+            self._item_creator_class_kwargs = kwargs
+        elif target is not None and getattr(target, '_item_callable', None):
             assert self.target._item_callable
             self._item_class = self.target._item_callable
             dummy_item = self.target._item_callable()
