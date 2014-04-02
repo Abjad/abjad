@@ -35,21 +35,7 @@ class Wizard(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_target_editor(self, target_class_name, target=None):
-        target_editor_class_name = target_class_name
-        target_editor_class_name += self._target_editor_class_name_suffix
-        command = 'from scoremanager.editors'
-        command += ' import {} as target_editor_class'
-        command = command.format(target_editor_class_name)
-        exec(command)
-        target_editor = target_editor_class(
-            session=self._session, 
-            target=target,
-            )
-        return target_editor
-
     def _run(self, pending_user_input=None):
-        from scoremanager import iotools
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
@@ -72,13 +58,10 @@ class Wizard(ScoreManagerObject):
             else:
                 raise ValueError(class_name)
             assert target
-            if hasattr(target, '_attribute_manifest'):
-                editor = iotools.Editor(
-                    session=self._session,
-                    target=target,
-                    )
-            else:
-                editor = self._get_target_editor(class_name)
+            editor = iotools.Editor(
+                session=self._session,
+                target=target,
+                )
             editor._is_autoadvancing = True
             editor._is_autostarting = True
             editor._run()
