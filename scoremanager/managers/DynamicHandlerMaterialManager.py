@@ -30,14 +30,12 @@ class DynamicHandlerMaterialManager(MaterialPackageManager):
 
     def _get_output_material_editor(self, target=None):
         from scoremanager import iotools
-        if target:
-            editor = iotools.Editor(
-                session=self._session,
-                target=target,
-                )
-            return editor
-        else:
-            return True
+        assert target is not None
+        editor = iotools.Editor(
+            session=self._session,
+            target=target,
+            )
+        return editor
 
     def _has_output_material_editor(self):
         return True
