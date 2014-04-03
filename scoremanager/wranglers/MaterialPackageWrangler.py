@@ -255,7 +255,7 @@ class MaterialPackageWrangler(Wrangler):
             metadata, 
             prompt=False,
             )
-        if not manager._read_material_manager_class_name():
+        if not manager._get_metadatum('material_manager_class_name'):
             manager._write_definition_module_stub(prompt=False)
         if manager._user_input_wrapper_in_memory:
             manager._write_user_input_module_stub()

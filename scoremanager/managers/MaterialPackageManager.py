@@ -425,7 +425,7 @@ class MaterialPackageManager(PackageManager):
             string = 'definition module - remove'
             section.append((string, 'dmrm'))
             section.append(('definition module - stub', 'dms'))
-        elif self._read_material_manager_class_name() is None:
+        elif self._get_metadatum('material_manager_class_name') is None:
             section = menu.make_command_section(name=name)
             section.append(('definition module - stub', 'dms'))
 
@@ -549,9 +549,6 @@ class MaterialPackageManager(PackageManager):
         section = menu.make_command_section(name='user input module')
         section.append(('user input module - remove', 'uimrm'))
         section.append(('user input module - read only', 'uimro'))
-
-    def _read_material_manager_class_name(self):
-        return self._get_metadatum('material_manager_class_name')
 
     def _read_user_input_wrapper_from_disk(self):
         result = self._user_input_module_manager._execute(

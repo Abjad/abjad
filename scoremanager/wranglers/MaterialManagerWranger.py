@@ -76,38 +76,30 @@ class MaterialManagerWrangler(Wrangler):
     def _initialize_asset_manager(self, path):
         from scoremanager import managers
         assert os.path.sep in path, repr(path)
-        material_manager = managers.MaterialPackageManager(
+        manager = managers.MaterialPackageManager(
             path=path, 
             session=self._session,
             )
-        if 'managers' in material_manager._path:
-            most, last = os.path.split(material_manager._path)
-            material_manager_class_name = os.path.splitext(last)[0]
-        else:
-            material_manager_class_name = \
-                material_manager._read_material_manager_class_name()
-        if material_manager_class_name is not None:
-            material_manager_class = None
-            command = 'from scoremanager'
-            command += '.managers '
-            command += 'import {} as material_manager_class'
-            command = command.format(material_manager_class_name)
-            try:
-                exec(command)
-            except ImportError:
-                command = 'from {} import {} as material_manager_class'
-                path = self._configuration.user_library_material_packages_directory_path
-                package_path = self._configuration.path_to_package_path(path)
-                command = command.format(
-                    package_path,
-                    material_manager_class_name,
-                    )
-                exec(command)
-            material_manager = material_manager_class(
-                path=path, 
-                session=self._session,
+        class_name = manager._get_metadatum('material_manager_class_name')
+        if class_name is None:
+            return manager
+        class_ = None
+        command = 'from scoremanager.managers import {} as class_'
+        command = command.format(class_name)
+        try:
+            exec(command)
+        except ImportError:
+            command = 'from {} import {} as class_'
+            configuration = self._configuration
+            path = configuration.user_library_material_packages_directory_path
+            package_path = self._configuration.path_to_package_path(path)
+            command = command.format(
+                package_path,
+                class_name,
                 )
-        return material_manager
+            exec(command)
+        manager = class_(path=path, session=self._session)
+        return manager
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry in ('test', 'stylesheets'):
