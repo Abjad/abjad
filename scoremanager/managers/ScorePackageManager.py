@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import functools
 import os
+from abjad.tools import indicatortools
 from abjad.tools import systemtools
 from scoremanager.managers.PackageManager import PackageManager
 
@@ -214,9 +215,11 @@ class ScorePackageManager(PackageManager):
         paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_asset_manager(path)
-            string = 'material_manager_class_name'
-            class_name = manager._get_metadatum(string)
-            if class_name == 'TempoInventoryMaterialManager':
+            #string = 'material_manager_class_name'
+            #class_name = manager._get_metadatum(string)
+            #if class_name == 'TempoInventoryMaterialManager':
+            output_class = manager._get_metadatum('output_class')
+            if output_class is indicatortools.TempoInventory:
                 output_material = manager._execute_output_module()
                 return output_material
 
