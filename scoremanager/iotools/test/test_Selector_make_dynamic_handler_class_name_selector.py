@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Selector_make_dynamic_handler_class_name_selector_01():
 
-    selector = scoremanager.iotools.Selector
+    selector = scoremanager.iotools.Selector()
     selector = selector.make_dynamic_handler_class_name_selector()
     selector._session._is_test = True
     input_ = 'q'
@@ -23,7 +23,7 @@ def test_Selector_make_dynamic_handler_class_name_selector_01():
 
 def test_Selector_make_dynamic_handler_class_name_selector_02():
 
-    selector = scoremanager.iotools.Selector
+    selector = scoremanager.iotools.Selector()
     selector = selector.make_dynamic_handler_class_name_selector()
     selector._session._is_test = True
 

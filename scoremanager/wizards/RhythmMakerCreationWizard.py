@@ -15,13 +15,14 @@ class RhythmMakerCreationWizard(Wizard):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        from scoremanager.iotools import Selector
+        from scoremanager import iotools
         Wizard.__init__(
             self,
             session=session,
             target=target,
             )
-        selector = Selector.make_rhythm_maker_class_name_selector(
+        selector = iotools.Selector(session=self._session)
+        selector = selector.make_rhythm_maker_class_name_selector(
             session=self._session,
             )
         self._selector = selector

@@ -27,11 +27,12 @@ class InstrumentSelectionWizard(Wizard):
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
+        selector = iotools.Selector(session=self._session)
+        selector = selector.make_score_instrument_selector(
+            session=self._session,
+            )
         with context:
             if self._session.is_in_score:
-                selector = iotools.Selector.make_score_instrument_selector(
-                    session=self._session,
-                    )
                 result = selector._run()
                 if self._should_backtrack():
                     return

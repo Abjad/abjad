@@ -112,13 +112,13 @@ class PerformerCreationWizard(Wizard):
         try_again = False
         performers = []
         context = iotools.ControllerContext(self)
+        selector = iotools.Selector(session=self._session)
+        selector = selector.make_score_tools_performer_name_selector(
+            session=self._session,
+            is_ranged=self._is_ranged,
+            )
         with context:
             while True:
-                selector = \
-                    iotools.Selector.make_score_tools_performer_name_selector(
-                    session=self._session,
-                    is_ranged=self._is_ranged,
-                    )
                 result = selector._run()
                 if self._should_backtrack():
                     break

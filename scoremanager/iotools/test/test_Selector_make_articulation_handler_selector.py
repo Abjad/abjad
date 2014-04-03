@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Selector_make_articulation_handler_selector_01():
 
-    selector = scoremanager.iotools.Selector
+    selector = scoremanager.iotools.Selector()
     selector = selector.make_articulation_handler_selector()
     selector._session._is_test = True
     input_ = 'scoremanager.materials.example_articulation_handler'
