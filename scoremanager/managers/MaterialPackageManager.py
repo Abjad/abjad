@@ -394,8 +394,7 @@ class MaterialPackageManager(PackageManager):
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
         if self._user_input_wrapper_in_memory:
-            editor = self._get_output_material_editor()
-            if not editor:
+            if not self._has_output_material_editor():
                 self._make_user_input_module_menu_section(menu)
         try:
             section = menu['material summary']
