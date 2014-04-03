@@ -256,9 +256,14 @@ class MaterialPackageManager(PackageManager):
 
     def _has_output_material_editor(self):
         return False
+        #metadata = self._get_metadata()
+        #if 'output_class_name' in metadata:
+        #    return True
+        #return False
 
     def _get_output_material_editor(self, target=None):
-        assert target is None
+        #assert target is None, repr(target)
+        return
 #        if target is None:
 #            return
 #        from scoremanager import iotools

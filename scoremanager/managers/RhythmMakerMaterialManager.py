@@ -30,11 +30,11 @@ class RhythmMakerMaterialManager(MaterialPackageManager):
 
     def _get_output_material_editor(self, target=None):
         wizard = RhythmMakerCreationWizard()
-        rhythm_maker_editor = wizard._get_target_editor(
+        editor = wizard._get_target_editor(
             target.__class__.__name__, 
             target=target,
             )
-        return rhythm_maker_editor
+        return editor
 
     def _has_output_material_editor(self):
         return True
