@@ -28,8 +28,8 @@ class InheritanceGraph(AbjadObject):
 
         >>> graph = documentationtools.InheritanceGraph(addresses=(F, E))
 
-    ``InheritanceGraph`` may be instantiated from one or more instances, 
-    classes or modules. If instantiated from a module, all public classes 
+    ``InheritanceGraph`` may be instantiated from one or more instances,
+    classes or modules. If instantiated from a module, all public classes
     in that module will be taken into the graph.
 
     A `root_class` keyword may be defined at instantiation, which filters out
@@ -50,7 +50,7 @@ class InheritanceGraph(AbjadObject):
         >>> graph = documentationtools.InheritanceGraph(
         ...     addresses=('abjad',))
 
-    To document only those classes descending from Container, 
+    To document only those classes descending from Container,
     use this formulation:
 
     ::
@@ -70,8 +70,8 @@ class InheritanceGraph(AbjadObject):
         ...     lineage_addresses=(scoretools,),
         ...     )
 
-    When creating the Graphviz representation, classes in the inheritance 
-    graph may be hidden, based on their distance from any defined lineage 
+    When creating the Graphviz representation, classes in the inheritance
+    graph may be hidden, based on their distance from any defined lineage
     class:
 
     ::
@@ -127,9 +127,6 @@ class InheritanceGraph(AbjadObject):
         # main addresses
         if addresses is None:
             addresses = ('abjad',)
-        for i, x in enumerate(addresses):
-            if isinstance(x, unicode):
-                addresses[i] = str(x)
         all_main_classes, main_immediate_classes, main_cached_addresses = \
             self._collect_classes(addresses, self.recurse_into_submodules)
         self._addresses = main_cached_addresses
@@ -200,12 +197,16 @@ class InheritanceGraph(AbjadObject):
         immediate_classes = set([])
         visited_modules = set([])
         assert 0 < len(addresses)
+        try:
+            InstanceType = types.InstanceType
+        except AttributeError:
+            InstanceType = object
         for x in addresses:
-            if isinstance(x, (types.TypeType, types.InstanceType)) or \
+            if isinstance(x, (types.TypeType, InstanceType)) or \
                 (isinstance(x, tuple) and len(x) == 2):
                 if isinstance(x, types.TypeType):
                     current_class = x
-                elif isinstance(x, types.InstanceType):
+                elif isinstance(x, InstanceType):
                     current_class = x.__class__
                 else:
                     module_name, class_name = x
@@ -251,7 +252,7 @@ class InheritanceGraph(AbjadObject):
             recurse_downward(current_class)
         return distance_mapping
 
-    def _strip_nonlineage_classes(self, 
+    def _strip_nonlineage_classes(self,
         child_parents_mapping, parent_children_mapping):
         if not self.lineage_classes:
             return
