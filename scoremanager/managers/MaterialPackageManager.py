@@ -698,22 +698,14 @@ class MaterialPackageManager(PackageManager):
         if not self._has_output_material_editor():
             return
         output_material = self._execute_output_module()
-        if not hasattr(self, '_make_output_material'):
-            editor = self._get_output_material_editor(
-                target=output_material,
-                )
-        elif (
+        if (hasattr(self, '_make_output_material') and
             output_material is None and 
             self._make_output_material() and
             isinstance(self._make_output_material(), wizards.Wizard)
             ):
-            editor = self._make_output_material(
-                target=output_material,
-                )
+            editor = self._make_output_material(target=output_material)
         else:
-            editor = self._get_output_material_editor(
-                target=output_material,
-                )
+            editor = self._get_output_material_editor(target=output_material)
         editor._run()
         if self._should_backtrack():
             return
