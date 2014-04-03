@@ -1061,10 +1061,3 @@ class MaterialPackageManager(PackageManager):
                 self._add_metadatum('generic_output_name', generic_output_name)
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
-
-#    def write_output_module_boilerplate(self):
-#        r'''Writes output module boilerplate.
-#
-#        Returns none.
-#        '''
-#        self._output_module_manager.write_boilerplate()
