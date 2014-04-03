@@ -36,5 +36,8 @@ class MarkupInventoryMaterialManager(MaterialPackageManager):
             )
         return editor
 
+    def _has_output_material_editor(self):
+        return True
+
     def _make_output_material(self):
         return markuptools.MarkupInventory

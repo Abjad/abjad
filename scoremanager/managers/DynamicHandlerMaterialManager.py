@@ -39,6 +39,9 @@ class DynamicHandlerMaterialManager(MaterialPackageManager):
         else:
             return True
 
+    def _has_output_material_editor(self):
+        return True
+
     def _make_output_material(self, target=None):
         from scoremanager import wizards
         wizard = wizards.DynamicHandlerCreationWizard(

@@ -254,9 +254,6 @@ class MaterialPackageManager(PackageManager):
             output_material = result[0]
             return output_material
 
-#    def _output_material_is_editable(self):
-#        pass
-
     def _has_output_material_editor(self):
         return False
 
