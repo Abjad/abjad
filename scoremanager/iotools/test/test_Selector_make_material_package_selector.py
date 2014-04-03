@@ -7,7 +7,7 @@ def test_Selector_make_material_package_selector_01():
 
     selector = scoremanager.iotools.Selector()
     selector = selector.make_material_package_selector(
-        generic_output_name='articulation handler',
+        output_class_name='ArticulationHandler',
         )
     selector._session._is_test = True
     input_ = 'scoremanager.materials.example_articulation_handler'

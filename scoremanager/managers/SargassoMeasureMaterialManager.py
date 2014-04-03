@@ -17,7 +17,6 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
     def __init__(self, path, session=None):
         superclass = super(SargassoMeasureMaterialManager, self)
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'sargasso measures'
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]

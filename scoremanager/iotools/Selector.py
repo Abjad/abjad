@@ -263,7 +263,6 @@ class Selector(ScoreManagerObject):
 
     def make_material_package_selector(
         self,
-        generic_output_name='',
         output_class_name='',
         ):
         r'''Makes material package selector.
@@ -273,7 +272,6 @@ class Selector(ScoreManagerObject):
         from scoremanager import wranglers
         wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
-            generic_output_name=generic_output_name,
             output_class_name=output_class_name,
             )
         package_paths = []

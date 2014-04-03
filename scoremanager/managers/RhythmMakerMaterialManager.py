@@ -18,7 +18,6 @@ class RhythmMakerMaterialManager(MaterialPackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(RhythmMakerMaterialManager, self)
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'rhythm-maker'
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]

@@ -3,6 +3,6 @@ import collections
 
 
 metadata = collections.OrderedDict([
-    ('generic_output_name', 'pitch range inventory'),
     ('material_manager_class_name', 'PitchRangeInventoryMaterialManager'),
+    ('output_class_name', 'PitchRangeInventory'),
     ])

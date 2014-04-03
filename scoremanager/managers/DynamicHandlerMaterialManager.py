@@ -16,7 +16,6 @@ class DynamicHandlerMaterialManager(MaterialPackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(DynamicHandlerMaterialManager, self)
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'dynamic handler'
         self._output_module_import_statements = [
             self._abjad_import_statement,
             'from experimental.tools import handlertools',

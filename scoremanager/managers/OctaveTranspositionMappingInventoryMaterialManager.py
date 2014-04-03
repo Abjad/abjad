@@ -20,7 +20,6 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialPackageManager)
             self,
             )
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'octave transposition mapping inventory'
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]

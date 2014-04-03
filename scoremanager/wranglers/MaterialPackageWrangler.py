@@ -159,7 +159,6 @@ class MaterialPackageWrangler(Wrangler):
         user_library=True,
         abjad_score_packages=True,
         user_score_packages=True,
-        generic_output_name='',
         output_class_name='',
         ):
         from scoremanager import managers
@@ -170,7 +169,7 @@ class MaterialPackageWrangler(Wrangler):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
-        if not generic_output_name and not output_class_name:
+        if not output_class_name:
             return paths
         result = []
         for path in paths:
@@ -178,14 +177,9 @@ class MaterialPackageWrangler(Wrangler):
                 path=path,
                 session=self._session,
                 )
-            metadatum = manager._get_metadatum('generic_output_name')
-            if metadatum and metadatum == generic_output_name:
-                result.append(path)
-                continue
             metadatum = manager._get_metadatum('output_class_name')
             if metadatum and metadatum == output_class_name:
                 result.append(path)
-                continue
         return result
 
     def _make_data_package(self, path, metadata=None):

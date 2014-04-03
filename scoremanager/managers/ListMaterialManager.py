@@ -18,7 +18,6 @@ class ListMaterialManager(MaterialPackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(ListMaterialManager, self)
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'list'
 
     ### PUBLIC METHODS ###
 

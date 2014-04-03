@@ -36,7 +36,6 @@ class MaterialPackageManager(PackageManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_generic_output_name',
         '_generic_class_name',
         '_output_module_import_statements',
         '_user_input_wrapper_in_memory',
@@ -52,7 +51,6 @@ class MaterialPackageManager(PackageManager):
             path=path,
             session=session,
             )
-        self._generic_output_name = None
         self._generic_class_name = 'material manager'
         self._output_module_import_statements = []
         self._user_input_wrapper_in_memory = None

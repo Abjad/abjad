@@ -17,7 +17,6 @@ class MarkupInventoryMaterialManager(MaterialPackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(MarkupInventoryMaterialManager, self)
         superclass.__init__(path=path, session=session)
-        self._generic_output_name = 'markup inventory'
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]
