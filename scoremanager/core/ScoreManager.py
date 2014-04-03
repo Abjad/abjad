@@ -153,8 +153,7 @@ class ScoreManager(Controller):
         import scoremanager
         session = scoremanager.core.Session()
         manager = manager_class(session=session)
-        suffix = getattr(manager, '_score_directory_suffix', None)
-        suffix = suffix or ()
+        suffix = ()
         if isinstance(suffix, str):
             suffix = (suffix,)
         assert isinstance(suffix, tuple)
