@@ -457,17 +457,7 @@ class MaterialPackageManager(PackageManager):
             output_material), repr(output_material)
         return output_material
 
-    def _make_output_module_body_lines(self, output_material):
-        if hasattr(output_material, '_storage_format_specification'):
-            lines = format(output_material, 'storage').splitlines()
-        else:
-            lines = [repr(output_material)]
-        lines = list(lines)
-        lines[0] = '{} = {}'.format(self._material_package_name, lines[0])
-        lines = [line + '\n' for line in lines]
-        return lines
-
-    def _make_output_module_import_statements_and_body_string(self):
+    def _make_output_material_triple(self):
         if os.path.isfile(self._definition_module_path):
             result = self._retrieve_import_statements_and_output_material()
             import_statements, output_material = result
@@ -483,7 +473,17 @@ class MaterialPackageManager(PackageManager):
             output_material_name,
             output_material,
             )
-        return (import_statements, body_string)
+        return (import_statements, body_string, output_material)
+
+    def _make_output_module_body_lines(self, output_material):
+        if hasattr(output_material, '_storage_format_specification'):
+            lines = format(output_material, 'storage').splitlines()
+        else:
+            lines = [repr(output_material)]
+        lines = list(lines)
+        lines[0] = '{} = {}'.format(self._material_package_name, lines[0])
+        lines = [line + '\n' for line in lines]
+        return lines
 
     def _make_output_module_menu_section(self, menu):
         if not os.path.isfile(self._initializer_file_path):
@@ -692,8 +692,11 @@ class MaterialPackageManager(PackageManager):
             output_material_handler = self._get_output_material_editor(
                 target=output_material,
                 )
-        elif output_material is None and self._make_output_material() and \
-            isinstance(self._make_output_material(), wizards.Wizard):
+        elif (
+            output_material is None and 
+            self._make_output_material() and
+            isinstance(self._make_output_material(), wizards.Wizard)
+            ):
             output_material_handler = self._make_output_material(
                 target=output_material,
                 )
@@ -704,11 +707,9 @@ class MaterialPackageManager(PackageManager):
         output_material_handler._run()
         if self._should_backtrack():
             return
-        output_module_import_statements = \
-            self._output_module_import_statements
+        output_module_import_statements = self._output_module_import_statements
         if hasattr(self, '_make_output_module_body_lines'):
-            output_module_body_lines = \
-                self._make_output_module_body_lines(
+            output_module_body_lines = self._make_output_module_body_lines(
                     output_material_handler.target)
         else:
             line = '{} = {}'
@@ -722,6 +723,7 @@ class MaterialPackageManager(PackageManager):
         self.write_output_material(
             import_statements=output_module_import_statements,
             body_lines=output_module_body_lines,
+            output_material=output_material_handler.target,
             )
 
     def illustrate_material(self, prompt=True):
@@ -1020,6 +1022,7 @@ class MaterialPackageManager(PackageManager):
         self,
         import_statements=None,
         body_lines=None,
+        output_material=None,
         prompt=True,
         ):
         r'''Writes output material.
@@ -1032,8 +1035,11 @@ class MaterialPackageManager(PackageManager):
             assert isinstance(import_statements, list), repr(import_statements)
         if body_lines is None:
             assert import_statements is None
+            assert output_material is None
         else:
             assert isinstance(body_lines, list), repr(body_lines)
+            assert output_material
+        # TODO: remove the is_static branch?
         if self._get_metadatum('is_static'):
             source_path = self._definition_module_path
             target_path = self._output_module_path
@@ -1042,20 +1048,19 @@ class MaterialPackageManager(PackageManager):
         lines = []
         lines.append(self._unicode_directive + '\n')
         if body_lines is None:
-            pair = self._make_output_module_import_statements_and_body_string()
-            import_statements = pair[0]
-            output_module_body_string = pair[1]
+            triple = self._make_output_material_triple()
+            import_statements = triple[0]
+            output_module_body_string = triple[1]
+            output_material = triple[2]
             body_lines = [output_module_body_string]
         import_statements = import_statements or []
         import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)
-        string = ''.join(lines)
-        self._output_module_manager._write(string)
-        if hasattr(self, '_generic_output_name'):
-            generic_output_name = self._generic_output_name
-            if generic_output_name is not None:
-                self._add_metadatum('generic_output_name', generic_output_name)
+        contents = ''.join(lines)
+        self._output_module_manager._write(contents)
+        output_class_name = type(output_material).__name__
+        self._add_metadatum('output_class_name', output_class_name)
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
