@@ -145,3 +145,6 @@
 
 29. Remove 'material_manager_class_name' key from all metadata modules.
     Do this after collapsing all material package manager classes.
+
+30. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
+    to ScoreManagerConfiguration.example_score_packages_directory_path.
