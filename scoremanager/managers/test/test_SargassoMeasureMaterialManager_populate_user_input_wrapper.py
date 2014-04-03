@@ -45,7 +45,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
-            os.path.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 

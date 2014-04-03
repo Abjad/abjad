@@ -3,6 +3,7 @@ import copy
 import os
 import shutil
 import traceback
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools import topleveltools
@@ -50,7 +51,9 @@ class MaterialPackageManager(PackageManager):
             path=path,
             session=session,
             )
-        self._output_module_import_statements = []
+        self._output_module_import_statements = [
+            self._abjad_import_statement,
+            ]
         self._user_input_wrapper_in_memory = None
 
     ### PRIVATE PROPERTIES ###
@@ -258,21 +261,17 @@ class MaterialPackageManager(PackageManager):
         return False
 
     def _get_output_material_editor(self, target=None):
-        message = 'how did we get here?'
-        raise Exception(message)
-#        if target is None:
-#            return
-#        from scoremanager import iotools
-#        prototype = (datastructuretools.TypedList, list)
-#        if isinstance(target, prototype):
-#            editor_class = iotools.ListEditor     
-#        else:
-#            editor_class = iotools.Editor
-#        editor = editor_class(
-#            session=self._session,
-#            target=target,
-#            )
-#        return editor
+        #message = 'how did we get here?'
+        #raise Exception((message, target))
+        assert target is not None
+        from scoremanager import iotools
+        prototype = (datastructuretools.TypedList, list)
+        if isinstance(target, prototype):
+            class_ = iotools.ListEditor     
+        else:
+            class_ = iotools.Editor
+        editor = class_(session=self._session, target=target)
+        return editor
 
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -431,8 +430,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_material_menu_section(self, menu):
         section = menu.make_command_section(name='material')
-        if self._has_output_material_editor():
-            section.append(('material - edit', 'me'))
+        section.append(('material - edit', 'me'))
         section.append(('material - illustrate', 'mi'))
         return section
 
@@ -495,7 +493,9 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         commands = []
-        if self._should_have_output_material_section():
+        # TODO: unindent
+        #if self._should_have_output_material_section():
+        if True:
             if os.path.isfile(self._output_module_path):
                 commands.append(('output module - remove', 'omrm'))
                 commands.append(('output module - read only', 'omro'))
@@ -686,8 +686,6 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not self._has_output_material_editor():
-            return
         output_material = self._execute_output_module()
         if (hasattr(self, '_make_output_material') and
             output_material is None and 

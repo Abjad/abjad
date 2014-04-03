@@ -302,3 +302,12 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
             ('measures_are_split', predicates.is_boolean),
             ('measures_are_shuffled', predicates.is_boolean),
         ]
+
+    ### PUBLIC METHODS ###
+
+    def edit_output_material(self):
+        r'''Dummy method to avoid trying to edit output material.
+
+        Returns none.
+        '''
+        pass
