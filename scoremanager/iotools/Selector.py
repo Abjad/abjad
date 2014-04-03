@@ -311,8 +311,7 @@ class Selector(ScoreManagerObject):
             return result
         def list_current_material_directory_paths():
             result = []
-            tmp_selector = Selector(session=session)
-            path = tmp_selector._session.current_materials_directory_path
+            path = self._session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
                 manager = managers.DirectoryManager(
