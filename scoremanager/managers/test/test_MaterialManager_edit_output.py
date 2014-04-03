@@ -31,7 +31,7 @@ def test_MaterialManager_edit_output_01():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.TempoInventoryMaterialManager
+        manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
