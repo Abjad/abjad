@@ -270,45 +270,15 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
-        from scoremanager import managers
-        configuration = self._configuration
-        def list_public_directory_paths(subtree_path):
-            result = []
-            for triple in os.walk(subtree_path):
-                subtree_path = triple[0]
-                directory_names = triple[1]
-                if '.svn' not in subtree_path:
-                    for directory_name in directory_names:
-                        if '.svn' not in directory_name:
-                            if directory_name[0].isalpha():
-                                directory_path = os.path.join(
-                                    subtree_path, 
-                                    directory_name,
-                                    )
-                                result.append(directory_path)
-            return result
-        def list_current_material_directory_paths():
-            result = []
-            path = self._session.current_materials_directory_path
-            paths = list_public_directory_paths(path)
-            for directory_path in paths:
-                manager = managers.DirectoryManager(
-                    path=directory_path,
-                    session=self._session,
-                    )
-                metadatum = manager._get_metadatum('generic_output_name')
-                if metadatum and metadatum == generic_output_name:
-                    result.append(directory_path)
-                    continue
-                metadatum = manager._get_metadatum('output_class_name')
-                if metadatum and metadatum == output_class_name:
-                    result.append(directory_path)
-                    continue
-            return result
-        #wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+        from scoremanager import wranglers
+        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+        paths = wrangler._list_asset_paths(
+            generic_output_name=generic_output_name,
+            output_class_name=output_class_name,
+            )
         package_paths = []
-        for path in list_current_material_directory_paths():
-            package_path = configuration.path_to_package_path(path)
+        for path in paths:
+            package_path = self._configuration.path_to_package_path(path)
             package_paths.append(package_path)
         selector = Selector(
             session=self._session,

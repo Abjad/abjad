@@ -153,6 +153,41 @@ class MaterialPackageWrangler(Wrangler):
                 return True
         return False
 
+    def _list_asset_paths(
+        self, 
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
+        generic_output_name='',
+        output_class_name='',
+        ):
+        from scoremanager import managers
+        superclass = super(MaterialPackageWrangler, self)
+        paths = superclass._list_asset_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            )
+        if not generic_output_name and not output_class_name:
+            return paths
+        result = []
+        for path in paths:
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            metadatum = manager._get_metadatum('generic_output_name')
+            if metadatum and metadatum == generic_output_name:
+                result.append(path)
+                continue
+            metadatum = manager._get_metadatum('output_class_name')
+            if metadatum and metadatum == output_class_name:
+                result.append(path)
+                continue
+        return result
+
     def _make_data_package(self, path, metadata=None):
         metadata = metadata or {}
         self._make_material_package(path, metadata=metadata)
