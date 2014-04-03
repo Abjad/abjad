@@ -145,3 +145,5 @@
 
 29. Remove 'material_manager_class_name' key from all metadata modules.
     Do this after collapsing all material package manager classes.
+
+30. Possibly remove 'generic_class_name' from system?
