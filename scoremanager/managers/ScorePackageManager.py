@@ -28,7 +28,7 @@ class ScorePackageManager(PackageManager):
 
     @property
     def _breadcrumb(self):
-        annotated_title = self._get_annotated_title()
+        annotated_title = self._get_title(year=True)
         if self._session.is_in_score_setup_menu:
             return '{} - setup'.format(annotated_title)
         else:
@@ -158,12 +158,6 @@ class ScorePackageManager(PackageManager):
             result = False
         return result
 
-    def _get_annotated_title(self):
-        if isinstance(self._get_metadatum('year_of_completion'), int):
-            return self._get_title_with_year()
-        else:
-            return self._get_title()
-
     def _get_build_directory_path(self):
         return os.path.join(
             self._path, 
@@ -215,20 +209,13 @@ class ScorePackageManager(PackageManager):
         paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_asset_manager(path)
-            #string = 'material_manager_class_name'
-            #class_name = manager._get_metadatum(string)
-            #if class_name == 'TempoInventoryMaterialManager':
             output_class = manager._get_metadatum('output_class')
             if output_class is indicatortools.TempoInventory:
                 output_material = manager._execute_output_module()
                 return output_material
 
-    def _get_title(self):
-        return self._get_metadatum('title') or '(untitled score)'
-
-    # TODO: merge into with self._get_title()
-    def _get_title_with_year(self):
-        if self._get_metadatum('year_of_completion'):
+    def _get_title(self, year=False):
+        if year and self._get_metadatum('year_of_completion'):
             result = '{} ({})'
             result = result.format(
                 self._get_title(), 
@@ -236,7 +223,7 @@ class ScorePackageManager(PackageManager):
                 )
             return result
         else:
-            return self._get_title()
+            return self._get_metadatum('title') or '(untitled score)'
 
     def _get_top_level_directory_paths(self):
         return (
@@ -437,7 +424,7 @@ class ScorePackageManager(PackageManager):
         self._session._is_navigating_to_score_setup = False
         self._session._is_in_score_setup_menu = True
         while True:
-            annotated_title = self._get_annotated_title()
+            annotated_title = self._get_title(year=True)
             menu = self._make_setup_menu()
             result = menu._run()
             if self._should_backtrack():
