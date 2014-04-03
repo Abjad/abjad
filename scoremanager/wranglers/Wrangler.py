@@ -876,13 +876,6 @@ class Wrangler(Controller):
         '''
         self._views_module_manager.edit()
 
-#    def write_initializer_boilerplate(self):
-#        r'''Writes boilerplate initializer module.
-#
-#        Returns none.
-#        '''
-#        self._current_package_manager.write_initializer_boilerplate()
-
     def write_initializer_stub(self):
         r'''Writes stub initializer module.
 

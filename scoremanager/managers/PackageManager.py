@@ -187,18 +187,6 @@ class PackageManager(DirectoryManager):
             )
         manager.view()
 
-#    def write_initializer_boilerplate(self, prompt=True):
-#        r'''Writes boilerplate initializer module.
-#
-#        Returns none.
-#        '''
-#        from scoremanager import managers
-#        manager = managers.FileManager(
-#            self._initializer_file_path,
-#            session=self._session,
-#            )
-#        manager.write_boilerplate(prompt=prompt)
-
     def write_initializer_stub(self, prompt=True):
         r'''Wrties stub initializer module.
 

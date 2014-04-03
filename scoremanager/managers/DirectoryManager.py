@@ -192,15 +192,15 @@ class DirectoryManager(Manager):
             )
         manager._run()
 
-    # TODO: change to self._write_metadata_module()
-    def _write_metadata(self, metadata):
+    def _write_metadata_module(self, metadata):
         lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append('import collections\n')
-        lines.append('\n\n')
+        lines.append(self._unicode_directive)
+        lines.append('import collections')
+        lines.append('')
+        lines.append('')
+        lines = '\n'.join(lines)
         metadata_lines = self._make_metadata_lines(metadata) 
-        lines.extend(metadata_lines)
-        lines = ''.join(lines)
+        lines = lines + '\n' + metadata_lines
         with file(self._metadata_module_path, 'w') as file_pointer:
             file_pointer.write(lines)
 
@@ -286,7 +286,7 @@ class DirectoryManager(Manager):
         '''
         if metadata is None:
             metadata = self._get_metadata()
-        self._write_metadata(metadata)
+        self._write_metadata_module(metadata)
         if prompt:
             message = 'rewrote metadata module.'
             self._io_manager.proceed(message)
