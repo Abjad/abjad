@@ -256,14 +256,10 @@ class MaterialPackageManager(PackageManager):
 
     def _has_output_material_editor(self):
         return False
-        #metadata = self._get_metadata()
-        #if 'output_class_name' in metadata:
-        #    return True
-        #return False
 
     def _get_output_material_editor(self, target=None):
-        #assert target is None, repr(target)
-        return
+        message = 'how did we get here?'
+        raise Exception(message)
 #        if target is None:
 #            return
 #        from scoremanager import iotools
@@ -448,9 +444,7 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._output_module_path):
             return
         output_material = self._execute_output_module()
-        editor = self._get_output_material_editor(
-            target=output_material,
-            )
+        editor = self._get_output_material_editor(target=output_material)
         target_summary_lines = editor._get_target_summary_lines()
         if not target_summary_lines:
             return
