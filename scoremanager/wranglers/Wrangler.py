@@ -381,8 +381,10 @@ class Wrangler(Controller):
         ):
         if human_readable_target_name is None:
             manager = self._asset_manager_class(session=self._session)
-            generic_class_name = manager._generic_class_name
-            human_readable_target_name = generic_class_name
+            name = type(manager).__name__
+            name = stringtools.upper_camel_case_to_space_delimited_lowercase(
+                name)
+            human_readable_target_name = name
         if infinitival_phrase:
             return 'select {} {}:'.format(
                 human_readable_target_name,

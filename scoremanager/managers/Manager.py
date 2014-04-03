@@ -17,7 +17,6 @@ class Manager(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_generic_class_name',
         '_main_menu',
         '_path',
         )
@@ -29,7 +28,6 @@ class Manager(Controller):
         Controller.__init__(self, session=session)
         assert path is None or os.path.sep in path, repr(path)
         self._path = path
-        self._generic_class_name = 'asset'
 
     ### SPECIAL METHODS ###
 
@@ -51,10 +49,6 @@ class Manager(Controller):
     @property
     def _is_visible(self):
         raise NotImplementedError
-
-    @property
-    def _plural_generic_class_name(self):
-        return stringtools.pluralize_string(self._generic_class_name)
 
     @property
     def _repository_add_command(self):
