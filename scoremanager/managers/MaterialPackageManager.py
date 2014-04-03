@@ -254,8 +254,27 @@ class MaterialPackageManager(PackageManager):
             output_material = result[0]
             return output_material
 
+#    def _output_material_is_editable(self):
+#        pass
+
+    def _has_output_material_editor(self):
+        return False
+
     def _get_output_material_editor(self, target=None):
-        return
+        assert target is None
+#        if target is None:
+#            return
+#        from scoremanager import iotools
+#        prototype = (datastructuretools.TypedList, list)
+#        if isinstance(target, prototype):
+#            editor_class = iotools.ListEditor     
+#        else:
+#            editor_class = iotools.Editor
+#        editor = editor_class(
+#            session=self._session,
+#            target=target,
+#            )
+#        return editor
 
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
