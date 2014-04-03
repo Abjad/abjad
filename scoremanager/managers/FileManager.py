@@ -13,8 +13,6 @@ class FileManager(Manager):
 
     ### CLASS VARIABLES ###
 
-    extension = ''
-
     __slots__ = (
         )
 

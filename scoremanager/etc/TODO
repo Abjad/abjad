@@ -145,6 +145,3 @@
 
 29. Remove 'material_manager_class_name' key from all metadata modules.
     Do this after collapsing all material package manager classes.
-
-30. Remove FileManager.extension class variables.
-    Or else make into a properly documented property.
