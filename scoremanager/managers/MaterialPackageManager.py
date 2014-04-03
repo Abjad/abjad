@@ -493,14 +493,11 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         commands = []
-        # TODO: unindent
-        #if self._should_have_output_material_section():
-        if True:
-            if os.path.isfile(self._output_module_path):
-                commands.append(('output module - remove', 'omrm'))
-                commands.append(('output module - read only', 'omro'))
-            if self._can_make_output_material():
-                commands.append(('output module - write', 'omw'))
+        if os.path.isfile(self._output_module_path):
+            commands.append(('output module - remove', 'omrm'))
+            commands.append(('output module - read only', 'omro'))
+        if self._can_make_output_material():
+            commands.append(('output module - write', 'omw'))
         if commands:
             section = menu.make_command_section(name='output module')
             for command in commands:

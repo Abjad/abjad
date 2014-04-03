@@ -81,8 +81,8 @@ class MaterialManagerWrangler(Wrangler):
             session=self._session,
             )
         class_name = manager._get_metadatum('material_manager_class_name')
-        #if class_name == 'TempoInventoryMaterialManager':
-        #    return manager
+        if class_name == 'TempoInventoryMaterialManager':
+            return manager
         if class_name is None:
             return manager
         class_ = None

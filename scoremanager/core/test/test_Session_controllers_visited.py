@@ -87,7 +87,7 @@ def test_Session_controllers_visited_05():
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
-        scoremanager.managers.TempoInventoryMaterialManager(session=session),
+        scoremanager.managers.MaterialPackageManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
