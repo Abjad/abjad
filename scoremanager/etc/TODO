@@ -142,3 +142,6 @@
 
 28. Remove AttributeManifest._target_class after removing PerformerEditor and
     ListEditor.
+
+29. Remove 'material_manager_class_name' key from all metadata modules.
+    Do this after collapsing all material package manager classes.
