@@ -21,6 +21,7 @@ class Selector(ScoreManagerObject):
 
     ### INITIALIZER ###
 
+    # TODO: force session to be not none on input
     def __init__(
         self, 
         is_numbered=True,

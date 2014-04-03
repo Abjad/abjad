@@ -83,6 +83,7 @@ class MaterialPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'd': self.make_data_package,
+            'nmc': self.make_material_package_for_editable_mainline_class,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,
             })
@@ -203,6 +204,7 @@ class MaterialPackageWrangler(Wrangler):
                 section.append(menu_entry)
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
+        section.append(('material - new for editable mainline class', 'nmc'))
         section.append(('material - new with manager', 'nmm'))
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -305,6 +307,7 @@ class MaterialPackageWrangler(Wrangler):
         if self._should_backtrack():
             return
         material_manager_package_path = result
+        # TODO: use os.path.splitext() here instead
         material_manager_class_name = \
             material_manager_package_path.split('.')[-1]
         if self._session.is_in_score:
@@ -317,6 +320,37 @@ class MaterialPackageWrangler(Wrangler):
         self._make_managermade_material_package(
             path, 
             material_manager_class_name,
+            )
+        manager = self._get_appropriate_material_manager(
+            material_manager_class_name, 
+            path,
+            )
+        manager._run_first_time()
+
+    def make_material_package_for_editable_mainline_class(self):
+        r'''Make material package from editable class.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+        return
+        from scoremanager import iotools
+        selector = iotools.Selector(session=self._session)
+        selector = selector.make_mainline_class_selector()
+        result = selector._run()
+        if self._should_backtrack():
+            return
+        class_name, extension = os.path.splitext(result)
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
+        path = self.get_available_path(storehouse_path=storehouse_path)
+        if self._should_backtrack():
+            return
+        self._make_material_package_for_editable_mainline_class(
+            class_name,
+            path,
             )
         manager = self._get_appropriate_material_manager(
             material_manager_class_name, 
