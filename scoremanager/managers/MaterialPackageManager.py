@@ -406,15 +406,11 @@ class MaterialPackageManager(PackageManager):
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        editor = self._get_output_material_editor()
-        if not editor:
+        if not self._has_output_material_editor():
             self._make_user_input_module_menu_section(menu)
         self._make_material_menu_section(menu)
 
-    def _make_material_definition_menu_section(
-        self,
-        menu, 
-        ):
+    def _make_material_definition_menu_section(self, menu):
         name = 'definition module'
         if not os.path.isfile(self._initializer_file_path):
             return
@@ -434,8 +430,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_material_menu_section(self, menu):
         section = menu.make_command_section(name='material')
-        editor = self._get_output_material_editor()
-        if editor:
+        if self._has_output_material_editor():
             section.append(('material - edit', 'me'))
         section.append(('material - illustrate', 'mi'))
         return section
@@ -443,8 +438,7 @@ class MaterialPackageManager(PackageManager):
     def _make_material_summary_menu_section(self, menu):
         if not self._should_have_output_material_section():
             return
-        editor = self._get_output_material_editor()
-        if not editor:
+        if not self._has_output_material_editor():
             return
         if not os.path.isfile(self._output_module_path):
             return
@@ -605,8 +599,7 @@ class MaterialPackageManager(PackageManager):
             self._user_input_wrapper_in_memory.is_complete
             ):
             return True
-        editor = self._get_output_material_editor()
-        if editor:
+        if self._has_output_material_editor():
             return True
         return False
 
@@ -697,12 +690,11 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        editor = self._get_output_material_editor()
-        if not editor:
+        if not self._has_output_material_editor():
             return
         output_material = self._execute_output_module()
         if not hasattr(self, '_make_output_material'):
-            output_material_handler = self._get_output_material_editor(
+            editor = self._get_output_material_editor(
                 target=output_material,
                 )
         elif (
@@ -710,33 +702,32 @@ class MaterialPackageManager(PackageManager):
             self._make_output_material() and
             isinstance(self._make_output_material(), wizards.Wizard)
             ):
-            output_material_handler = self._make_output_material(
+            editor = self._make_output_material(
                 target=output_material,
                 )
         else:
-            output_material_handler = self._get_output_material_editor(
+            editor = self._get_output_material_editor(
                 target=output_material,
                 )
-        output_material_handler._run()
+        editor._run()
         if self._should_backtrack():
             return
         output_module_import_statements = self._output_module_import_statements
         if hasattr(self, '_make_output_module_body_lines'):
-            output_module_body_lines = self._make_output_module_body_lines(
-                    output_material_handler.target)
+            body_lines = self._make_output_module_body_lines(editor.target)
         else:
             line = '{} = {}'
             target_repr = self._get_storage_format(
-                output_material_handler.target)
+                editor.target)
             line = line.format(
                 self._material_package_name,
                 target_repr,
                 )
-            output_module_body_lines = [line]
+            body_lines = [line]
         self.write_output_material(
             import_statements=output_module_import_statements,
-            body_lines=output_module_body_lines,
-            output_material=output_material_handler.target,
+            body_lines=body_lines,
+            output_material=editor.target,
             )
 
     def illustrate_material(self, prompt=True):
