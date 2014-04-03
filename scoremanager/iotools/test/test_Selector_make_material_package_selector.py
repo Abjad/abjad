@@ -3,10 +3,12 @@ from abjad import *
 import scoremanager
 
 
-def test_Selector_make_articulation_handler_selector_01():
+def test_Selector_make_material_package_selector_01():
 
     selector = scoremanager.iotools.Selector()
-    selector = selector.make_articulation_handler_selector()
+    selector = selector.make_material_package_selector(
+        generic_output_name='articulation handler',
+        )
     selector._session._is_test = True
     input_ = 'scoremanager.materials.example_articulation_handler'
     result = selector._run(pending_user_input=input_) 

@@ -198,20 +198,6 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_articulation_handler_selector(
-        self,
-        session=None,
-        ):
-        r'''Makes articulation handler selector.
-
-        Returns selector.
-        '''
-        selector = self.make_material_package_selector(
-            session=session,
-            generic_output_name='articulation handler',
-            )
-        return selector
-
     def make_clef_name_selector(
         self,
         session=None, 
@@ -276,20 +262,6 @@ class Selector(ScoreManagerObject):
             session=session,
             base_class_names=('DynamicHandler', 'DynamicsHandler'),
             forbidden_class_names=('DynamicHandler',)
-            )
-        return selector
-
-    def make_dynamic_handler_package_selector(
-        self,
-        session=None,
-        ):
-        r'''Makes dynamic handler package selector.
-
-        Returns selector.
-        '''
-        selector = self.make_material_package_selector(
-            session=session,
-            generic_output_name='dynamic handler',
             )
         return selector
 
@@ -395,20 +367,6 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_pitch_class_reservoir_selector(
-        self,
-        session=None,
-        ):
-        r'''Makes pitch-class reservoir selector.
-
-        Returns selector.
-        '''
-        selector = self.make_material_package_selector(
-            session=session,
-            generic_output_name='pitch class reservoir',
-            )
-        return selector
-
     def make_rhythm_maker_class_name_selector(
         self,
         session=None,
@@ -428,20 +386,6 @@ class Selector(ScoreManagerObject):
             storehouse_paths=[rhythm_maker_tools_directory_path],
             endswith='RhythmMaker',
             strip_file_extensions=True,
-            )
-        return selector
-
-    def make_rhythm_maker_package_selector(
-        self,
-        session=None,
-        ):
-        r'''Makes rhythm-maker package selector.
-
-        Returns selector.
-        '''
-        selector = self.make_material_package_selector(
-            session=session,
-            generic_output_name='rhythm-maker',
             )
         return selector
 
