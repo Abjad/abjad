@@ -53,23 +53,6 @@ class Selector(ScoreManagerObject):
             expr,
             )
 
-    def _get_metadata_from_directory_path(
-        self, 
-        directory_path, 
-        metadatum_name,
-        ):
-        metadata_module_path = os.path.join(directory_path, '__metadata__.py')
-        if os.path.isfile(metadata_module_path):
-            metadata_module = open(metadata_module_path, 'r')
-            metadata_module_string = metadata_module.read()
-            metadata_module.close()
-            try:
-                exec(metadata_module_string)
-            except:
-                pass
-            result = locals().get('metadata') or collections.OrderedDict([])
-            return result.get(metadatum_name)
-
     def _list_items(self):
         result = []
         return result
@@ -303,6 +286,7 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
+        from scoremanager import managers
         configuration = self._configuration
         def list_public_directory_paths(subtree_path):
             result = []
@@ -331,10 +315,11 @@ class Selector(ScoreManagerObject):
             path = tmp_selector._session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
-                metadatum = tmp_selector._get_metadata_from_directory_path(
-                    directory_path, 
-                    'generic_output_name',
+                manager = managers.DirectoryManager(
+                    path=directory_path,
+                    session=self._session,
                     )
+                metadatum = manager._get_metadatum('generic_output_name')
                 if metadatum == generic_output_name:
                     result.append(directory_path)
             return result
