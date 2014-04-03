@@ -281,6 +281,7 @@ class Selector(ScoreManagerObject):
         self,
         session=None,
         generic_output_name='',
+        output_class_name='',
         ):
         r'''Makes material package selector.
 
@@ -303,32 +304,31 @@ class Selector(ScoreManagerObject):
                                     )
                                 result.append(directory_path)
             return result
-        def list_public_directory_paths_with_initializers(subtree_path):
-            result = []
-            for directory_path in list_public_directory_paths(subtree_path):
-                if '__init__.py' in os.listdir(directory_path):
-                    result.append(directory_path)
-            return result
         def list_current_material_directory_paths():
             result = []
             path = self._session.current_materials_directory_path
-            paths = list_public_directory_paths_with_initializers(path)
+            paths = list_public_directory_paths(path)
             for directory_path in paths:
                 manager = managers.DirectoryManager(
                     path=directory_path,
                     session=self._session,
                     )
                 metadatum = manager._get_metadatum('generic_output_name')
-                if metadatum == generic_output_name:
+                if metadatum and metadatum == generic_output_name:
                     result.append(directory_path)
+                    continue
+                metadatum = manager._get_metadatum('output_class_name')
+                if metadatum and metadatum == output_class_name:
+                    result.append(directory_path)
+                    continue
             return result
-        items = []
-        for directory_path in list_current_material_directory_paths():
-            package_path = configuration.path_to_package_path(directory_path)
-            items.append(package_path)
+        package_paths = []
+        for path in list_current_material_directory_paths():
+            package_path = configuration.path_to_package_path(path)
+            package_paths.append(package_path)
         selector = Selector(
             session=session,
-            items=items,
+            items=package_paths,
             )
         return selector
 
