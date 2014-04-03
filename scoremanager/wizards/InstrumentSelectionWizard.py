@@ -28,9 +28,7 @@ class InstrumentSelectionWizard(Wizard):
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
         selector = iotools.Selector(session=self._session)
-        selector = selector.make_score_instrument_selector(
-            session=self._session,
-            )
+        selector = selector.make_score_instrument_selector()
         with context:
             if self._session.is_in_score:
                 result = selector._run()

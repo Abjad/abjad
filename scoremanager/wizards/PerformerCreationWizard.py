@@ -114,7 +114,6 @@ class PerformerCreationWizard(Wizard):
         context = iotools.ControllerContext(self)
         selector = iotools.Selector(session=self._session)
         selector = selector.make_score_tools_performer_name_selector(
-            session=self._session,
             is_ranged=self._is_ranged,
             )
         with context:

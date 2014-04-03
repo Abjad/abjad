@@ -45,18 +45,6 @@ class Selector(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _change_expr_to_menu_entry(self, expr):
-        return (
-            self._io_manager._get_one_line_menu_summary(expr),
-            None,
-            None,
-            expr,
-            )
-
-    def _list_items(self):
-        result = []
-        return result
-
     def _make_asset_menu_section(self, menu):
         if hasattr(self, 'menu_entries'):
             menu_entries = self.menu_entries
@@ -84,7 +72,16 @@ class Selector(ScoreManagerObject):
         return menu
 
     def _make_menu_entries(self):
-        return [self._change_expr_to_menu_entry(item) for item in self.items]
+        entries = []
+        for item in self.items:
+            entry = (
+                self._io_manager._get_one_line_menu_summary(item),
+                None,
+                None,
+                item,
+                )
+            entries.append(entry)
+        return entries
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools
@@ -166,25 +163,18 @@ class Selector(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def make_articulation_handler_class_name_selector(
-        self,
-        session=None, 
-        ):
+    def make_articulation_handler_class_name_selector(self):
         r'''Makes articulation handler class name selector.
 
         Returns selector.
         '''
         selector = self.make_handler_class_name_selector(
-            session=session,
             base_class_names=('ArticulationHandler',),
             forbidden_class_names=('ArticulationHandler',),
             )
         return selector
 
-    def make_clef_name_selector(
-        self,
-        session=None, 
-        ):
+    def make_clef_name_selector(self):
         r'''Makes clef name selector.
 
         Returns selector.
@@ -192,14 +182,13 @@ class Selector(ScoreManagerObject):
         from abjad.tools import indicatortools
         items = indicatortools.Clef._list_clef_names()
         selector = Selector(
-            session=session,
+            session=self._session,
             items=items,
             )
         return selector
 
     def make_directory_content_selector(
         self,
-        session=None, 
         storehouse_paths=None,
         forbidden_directory_entries=None,
         endswith=None,
@@ -216,7 +205,7 @@ class Selector(ScoreManagerObject):
         for directory_path in storehouse_paths:
             manager = managers.DirectoryManager(
                 path=directory_path,
-                session=session,
+                session=self._session,
                 )
             entries = manager._list(public_entries_only=True)
             for entry in entries:
@@ -228,21 +217,17 @@ class Selector(ScoreManagerObject):
                     elif entry.endswith(endswith):
                         items.append(entry)
         selector = Selector(
-            session=session,
+            session=self._session,
             items=items,
             )
         return selector
 
-    def make_dynamic_handler_class_name_selector(
-        self,
-        session=None, 
-        ):
+    def make_dynamic_handler_class_name_selector(self):
         r'''Makes dynamic handler class name selector.
 
         Returns selector.
         '''
         selector = self.make_handler_class_name_selector(
-            session=session,
             base_class_names=('DynamicHandler', 'DynamicsHandler'),
             forbidden_class_names=('DynamicHandler',)
             )
@@ -250,7 +235,6 @@ class Selector(ScoreManagerObject):
 
     def make_handler_class_name_selector(
         self,
-        session=None, 
         base_class_names=None,
         forbidden_class_names=None,
         ):
@@ -272,14 +256,13 @@ class Selector(ScoreManagerObject):
                             class_names.append(class_name)
                         continue
         selector = Selector(
-            session=session,
+            session=self._session,
             items=class_names,
             )
         return selector
 
     def make_material_package_selector(
         self,
-        session=None,
         generic_output_name='',
         output_class_name='',
         ):
@@ -322,39 +305,34 @@ class Selector(ScoreManagerObject):
                     result.append(directory_path)
                     continue
             return result
+        #wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         package_paths = []
         for path in list_current_material_directory_paths():
             package_path = configuration.path_to_package_path(path)
             package_paths.append(package_path)
         selector = Selector(
-            session=session,
+            session=self._session,
             items=package_paths,
             )
         return selector
 
-    def make_performer_selector(
-        self,
-        session=None,
-        ):
+    def make_performer_selector(self):
         r'''Makes performer selector.
 
         Returns selector.
         '''
         items = []
-        manager = session.current_score_package_manager
+        manager = self._session.current_score_package_manager
         if hasattr(manager, '_get_instrumentation'):
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.performers)
         selector = Selector(
-            session=session,
+            session=self._session,
             items=items,
             )
         return selector
 
-    def make_rhythm_maker_class_name_selector(
-        self,
-        session=None,
-        ):
+    def make_rhythm_maker_class_name_selector(self):
         r'''Makes rhythm-maker class name selector.
 
         Returns selector.
@@ -366,38 +344,30 @@ class Selector(ScoreManagerObject):
             'rhythmmakertools',
             )
         selector = self.make_directory_content_selector(
-            session=session,
             storehouse_paths=[rhythm_maker_tools_directory_path],
             endswith='RhythmMaker',
             strip_file_extensions=True,
             )
         return selector
 
-    def make_score_instrument_selector(
-        self,
-        session=None,
-        ):
+    def make_score_instrument_selector(self):
         r'''Makes score instrument selector.
 
         Returns selector.
         '''
         items = []
-        if session.is_in_score:
-            manager = session.current_score_package_manager
+        if self._session.is_in_score:
+            manager = self._session.current_score_package_manager
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.instruments)
             items.append('other')
         selector = Selector(
-            session=session,
+            session=self._session,
             items=items,
             )
         return selector
 
-    def make_score_tools_performer_name_selector(
-        self,
-        session=None,
-        is_ranged=False,
-        ):
+    def make_score_tools_performer_name_selector(self, is_ranged=False):
         r'''Makes scoretools performer name selector.
 
         Returns selector.
@@ -414,27 +384,24 @@ class Selector(ScoreManagerObject):
             performer_abbreviation = performer_abbreviation.strip('.')
             menu_entries.append((performer_name, performer_abbreviation)) 
         selector = Selector(
-            session=session,
+            session=self._session,
             is_ranged=is_ranged,
             return_value_attribute='display_string',
             )
         selector._menu_entries = menu_entries
         return selector
 
-    def make_tempo_selector(
-        self,
-        session=None,
-        ):
+    def make_tempo_selector(self):
         r'''Makes tempo selector.
 
         Returns selector.
         '''
         items = []
-        manager = session.current_score_package_manager
+        manager = self._session.current_score_package_manager
         if hasattr(manager, '_get_tempo_inventory'):
             items = manager._get_tempo_inventory()
         selector = type(self)(
-            session=session,
+            session=self._session,
             items=items,
             )
         return selector
