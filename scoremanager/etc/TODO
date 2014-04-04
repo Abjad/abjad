@@ -145,3 +145,6 @@
 
 29. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
+
+30. Make (rrv) work for Subversion-managed directories.
+    Use (bet > rst) and then (bet > rrv) to reproduce the bug.
