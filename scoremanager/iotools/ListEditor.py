@@ -81,9 +81,7 @@ class ListEditor(Editor):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.AttributeManifest(
-            list,
-            )
+        return systemtools.AttributeManifest()
 
     @property
     def _target_name(self):

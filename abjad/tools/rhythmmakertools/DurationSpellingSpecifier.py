@@ -116,7 +116,6 @@ class DurationSpellingSpecifier(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='decrease_durations_monotonically',
                 menu_key='ddm',

@@ -174,7 +174,6 @@ class InstrumentationSpecifier(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='performers',
                 menu_key='ps',

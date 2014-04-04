@@ -154,7 +154,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='source_pitch_range', 
                 menu_key='pr', 

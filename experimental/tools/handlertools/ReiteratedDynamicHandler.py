@@ -34,7 +34,6 @@ class ReiteratedDynamicHandler(DynamicHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='dynamic_name', 
                 menu_key='dy', 

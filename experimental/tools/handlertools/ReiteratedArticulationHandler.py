@@ -80,7 +80,6 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='articulation_list', 
                 menu_key='al', 

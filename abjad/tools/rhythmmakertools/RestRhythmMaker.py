@@ -103,7 +103,6 @@ class RestRhythmMaker(RhythmMaker):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
                 menu_key='dss',

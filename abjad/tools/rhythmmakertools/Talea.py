@@ -66,7 +66,6 @@ class Talea(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='counts',
                 menu_key='c',

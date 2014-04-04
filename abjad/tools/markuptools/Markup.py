@@ -243,7 +243,6 @@ class Markup(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='contents', 
                 display_string='arg', 

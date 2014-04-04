@@ -216,7 +216,6 @@ class Clef(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='name', 
                 menu_key='nm', 

@@ -52,7 +52,6 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='hairpin_token', 
                 menu_key='ht', 

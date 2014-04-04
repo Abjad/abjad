@@ -63,7 +63,6 @@ class TieSpecifier(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='tie_across_divisions',
                 menu_key='tad',

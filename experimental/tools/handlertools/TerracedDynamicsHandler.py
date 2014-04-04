@@ -37,7 +37,6 @@ class TerracedDynamicsHandler(DynamicHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='dynamics', 
                 menu_key='dy', 

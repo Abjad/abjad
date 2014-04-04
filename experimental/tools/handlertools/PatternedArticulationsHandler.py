@@ -79,7 +79,6 @@ class PatternedArticulationsHandler(ArticulationHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='articulation_lists', 
                 menu_key='al', 
