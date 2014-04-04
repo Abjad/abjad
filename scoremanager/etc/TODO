@@ -15,7 +15,7 @@
     red_example_score.materials.time_signatures.
     This will implement an intrapackage material import.
 
-8.  Implement MaterialPackageWrangler method to a material package 
+8.  Implement MaterialPackageWrangler method to move a material package 
     from one location to another.
 
 9.  Move score/instrumentation.py module to score/materials packages.
@@ -41,10 +41,10 @@
 
 14. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-15. Add (lytr) for 'lilypond ly - trash'. This will work together
-    with (lyrm) for 'lilypond ly - remove'. The difference will be
-    that (lyrm) will (try to) act on the repository where (lytr) will
-    only ever work on the filesystem.
+15. Add (lyrm!) for 'lilypond ly - remove from repository'.
+    This will work together with (lyrm) for 'lilypond ly - remove'.
+    The difference will be that (lyrm!) will (try to) act on the repository 
+    where (lyrm) will only ever work on the filesystem.
 
 16. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
@@ -145,6 +145,3 @@
 
 29. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
-
-30. Add 'illustration ly - remove from repository' (lyrm!) to work with
-    'illustration ly - remove' (lyrm).
