@@ -110,5 +110,12 @@ class PitchRangeInventory(TypedList):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest(
+            type(self),
+            )
+
+    @property
     def _item_callable(self):
         return PitchRange

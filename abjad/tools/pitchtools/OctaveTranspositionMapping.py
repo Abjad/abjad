@@ -79,25 +79,14 @@ class OctaveTranspositionMapping(TypedList):
         superclass = super(OctaveTranspositionMapping, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _transpose_pitch(self, pitch):
-        from abjad.tools import pitchtools
-        pitch = pitchtools.NamedPitch(pitch)
-        target_pitch_class_number = pitch.pitch_class_number
-        for component in self:
-            if pitch in component.source_pitch_range:
-                target_octave = range(
-                    component.target_octave_start_pitch.pitch_number,
-                    component.target_octave_start_pitch.pitch_number
-                    + 12)
-                for candidate_pitch in target_octave:
-                    if candidate_pitch % 12 == \
-                        pitch.pitch_class_number:
-                        return candidate_pitch
-        return pitch
-
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest(
+            type(self),
+            )
 
     @property
     def _item_callable(self):
@@ -131,3 +120,21 @@ class OctaveTranspositionMapping(TypedList):
                 input_argument_tokens,
                 ),
             )
+
+    ### PRIVATE METHODS ###
+
+    def _transpose_pitch(self, pitch):
+        from abjad.tools import pitchtools
+        pitch = pitchtools.NamedPitch(pitch)
+        target_pitch_class_number = pitch.pitch_class_number
+        for component in self:
+            if pitch in component.source_pitch_range:
+                target_octave = range(
+                    component.target_octave_start_pitch.pitch_number,
+                    component.target_octave_start_pitch.pitch_number
+                    + 12)
+                for candidate_pitch in target_octave:
+                    if candidate_pitch % 12 == \
+                        pitch.pitch_class_number:
+                        return candidate_pitch
+        return pitch

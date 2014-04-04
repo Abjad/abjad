@@ -16,6 +16,13 @@ class PerformerInventory(TypedList):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest(
+            type(self),
+            )
+
+    @property
     def _item_creator_class(self):
         from scoremanager import wizards
         return wizards.PerformerCreationWizard

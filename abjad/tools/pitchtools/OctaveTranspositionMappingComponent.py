@@ -105,7 +105,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     def _input_argument_token(self):
         return '({!r}, {:d})'.format(
             self.source_pitch_range.one_line_named_pitch_repr,
-            self.target_octave_start_pitch)
+            self.target_octave_start_pitch,
+            )
 
     @property
     def _keyword_argument_names(self):
