@@ -149,22 +149,5 @@
 30. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
 
-31. Use this for MaterialPackageManager._get_output_material_editor():
-        def _get_output_material_editor(self, target=None):
-            from scoremanager import iotools
-            if not self._output_material_is_editable():
-                return
-            output_material = self._execute_output_module()
-            if output_material in (None, 'corrupt'):
-                return
-            prototype = (datastructuretools.TypedList, list)
-            if isinstance(output_material, prototype):
-                editor_class = iotools.ListEditor     
-            else:
-                editor_class = iotools.Editor
-            editor = editor_class(
-                session=self._session,
-                target=output_material,
-                )
-            return editor
-    Also check target.
+31. Add 'illustration ly - remove from repository' (lyrm!) to work with
+    'illustration ly - remove' (lyrm).
