@@ -5,7 +5,6 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 class Wizard(ScoreManagerObject):
     r'''Wizard.
-
     '''
 
     ### CLASS VARIABLES ###
