@@ -193,11 +193,13 @@ class MaterialPackageWrangler(Wrangler):
         section.append(('material - new for editable mainline class', 'nmc'))
         section.append(('material - new with manager', 'nmm'))
 
+    # TODO: migrate to MaterialPackageManager
     def _make_material_package(
         self, 
         path,
         prompt=False, 
         metadata=None,
+        definition_module_stub=True,
         ):
         from scoremanager import managers
         assert os.path.sep in path
@@ -210,8 +212,9 @@ class MaterialPackageWrangler(Wrangler):
             )
         manager._initializer_file_manager._write_stub()
         manager.rewrite_metadata_module(metadata, prompt=False)
-        if not manager._get_metadatum('material_manager_class_name'):
-            manager._write_definition_module_stub(prompt=False)
+        if definition_module_stub:
+            if not manager._get_metadatum('material_manager_class_name'):
+                manager._write_definition_module_stub(prompt=False)
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -280,10 +283,24 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_material_package(path)
+        self._make_material_package(path, definition_module_stub=False)
         manager = managers.MaterialPackageManager(
             path=path,
             session=self._session,
             )
         manager._add_metadatum('output_class_name', class_.__name__)
         empty_target = class_()
+        storage_format = format(empty_target, 'storage')
+        body_lines = '{} = {}'.format(
+            manager._package_name,
+            storage_format,
+            )
+        body_lines = body_lines.split('\n')
+        body_lines = [_ + '\n' for _ in body_lines]
+        import_statements = [self._abjad_import_statement]
+        manager.write_output_material(
+            body_lines=body_lines,
+            import_statements=import_statements,
+            output_material=empty_target,
+            prompt=False,
+            )

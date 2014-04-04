@@ -1025,7 +1025,7 @@ class MaterialPackageManager(PackageManager):
             assert output_material is None
         else:
             assert isinstance(body_lines, list), repr(body_lines)
-            assert output_material
+            assert output_material is not None
         lines = []
         lines.append(self._unicode_directive + '\n')
         if body_lines is None:
