@@ -15,7 +15,6 @@ def test_MaterialManagerWrangler__list_asset_paths_01():
         'ListMaterialManager.py',
         'MarkupInventoryMaterialManager.py',
         'OctaveTranspositionMappingInventoryMaterialManager.py',
-        'PitchRangeInventoryMaterialManager.py',
         'RhythmMakerMaterialManager.py',
         'SargassoMeasureMaterialManager.py',
         ]
