@@ -92,12 +92,12 @@ class Tempo(AbjadObject):
                 duration = durationtools.Duration(duration)
             except TypeError:
                 duration = durationtools.Duration(*duration)
-        assert isinstance(units_per_minute, (int, long, float, 
+        assert isinstance(units_per_minute, (int, long, float,
             durationtools.Duration, list, tuple, type(None)))
         if isinstance(units_per_minute, (list, tuple)):
             assert len(units_per_minute) == 2
             assert all(
-                isinstance(x, (int, long, float, durationtools.Duration)) 
+                isinstance(x, (int, long, float, durationtools.Duration))
                 for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
         self._duration = duration
@@ -136,8 +136,8 @@ class Tempo(AbjadObject):
         Returns new tempo.
         '''
         return type(self)(
-            self.textual_indication, 
-            self.duration, 
+            self.textual_indication,
+            self.duration,
             self.units_per_minute,
             )
 
@@ -290,6 +290,13 @@ class Tempo(AbjadObject):
                 type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
+    def __truediv__(self, expr):
+        r'''Divides tempo by `expr`. Operator for Python 3.
+
+        Returns new tempo.
+        '''
+        return self.__div__(expr)
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -299,14 +306,14 @@ class Tempo(AbjadObject):
         return systemtools.AttributeManifest(
             type(self),
             systemtools.AttributeDetail(
-                name='duration', 
-                menu_key='d', 
+                name='duration',
+                menu_key='d',
                 editor=getters.get_duration,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
-                name='units_per_minute', 
-                menu_key='pm', 
+                name='units_per_minute',
+                menu_key='pm',
                 editor=getters.get_integer,
                 is_keyword=False,
                 ),
@@ -322,8 +329,8 @@ class Tempo(AbjadObject):
             return
         if isinstance(self.units_per_minute, tuple):
             return '{}={}-{}'.format(
-                self._dotted, 
-                self.units_per_minute[0], 
+                self._dotted,
+                self.units_per_minute[0],
                 self.units_per_minute[1],
                 )
         return '{}={}'.format(self._dotted, self.units_per_minute)
@@ -494,11 +501,11 @@ class Tempo(AbjadObject):
         duration = durationtools.Duration(duration)
         whole_note_duration = 1000 \
             * durationtools.Multiplier(
-                self.duration.denominator, 
+                self.duration.denominator,
                 self.duration.numerator,
                 ) \
             * durationtools.Multiplier(
-                60, 
+                60,
                 self.units_per_minute,
                 )
         return durationtools.Duration(duration * whole_note_duration)
@@ -528,8 +535,8 @@ class Tempo(AbjadObject):
             return False
 
     def list_related_tempos(
-        self, 
-        maximum_numerator=None, 
+        self,
+        maximum_numerator=None,
         maximum_denominator=None,
         ):
         r'''Lists tempos related to this tempo.
@@ -541,7 +548,7 @@ class Tempo(AbjadObject):
 
         ..  container:: example
 
-            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that 
+            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
             ``1 <= n <= 8`` and ``1 <= d <= 8``:
             ...
 
@@ -549,7 +556,7 @@ class Tempo(AbjadObject):
 
                 >>> tempo = Tempo(Duration(1, 4), 58)
                 >>> pairs = tempo.list_related_tempos(
-                ...     maximum_numerator=8, 
+                ...     maximum_numerator=8,
                 ...     maximum_denominator=8,
                 ...     )
 
@@ -572,7 +579,7 @@ class Tempo(AbjadObject):
 
                 >>> tempo = Tempo(Duration(1, 4), 58)
                 >>> pairs = tempo.list_related_tempos(
-                ...     maximum_numerator=30, 
+                ...     maximum_numerator=30,
                 ...     maximum_denominator=30,
                 ...     )
 
@@ -615,7 +622,7 @@ class Tempo(AbjadObject):
             numerators = range(start, stop + 1)
             if maximum_numerator is not None:
                     numerators = [
-                        x for x in numerators 
+                        x for x in numerators
                         if x <= maximum_numerator
                         ]
         for numerator in numerators:
@@ -645,8 +652,8 @@ class Tempo(AbjadObject):
 
         ..  container:: example
 
-            Consider the two tempo indications below. 
-            
+            Consider the two tempo indications below.
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 4), 60)
@@ -663,7 +670,7 @@ class Tempo(AbjadObject):
                 >>> new_tempo / tempo
                 Multiplier(3, 2)
 
-            Note that a triplet eighth note under `tempo` equals a regular 
+            Note that a triplet eighth note under `tempo` equals a regular
             eighth note under `new_tempo`:
 
             ::
