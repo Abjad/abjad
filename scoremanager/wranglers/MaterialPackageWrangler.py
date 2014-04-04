@@ -304,3 +304,5 @@ class MaterialPackageWrangler(Wrangler):
             output_material=empty_target,
             prompt=False,
             )
+        manager.edit_output_material()
+        manager._run()

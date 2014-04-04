@@ -435,9 +435,13 @@ class MaterialPackageManager(PackageManager):
         return section
 
     def _make_material_summary_menu_section(self, menu):
-        if not self._should_have_output_material_section():
+        #if not self._should_have_output_material_section():
+        #    return
+        #if not self._has_output_material_editor():
+        #    return
+        if os.path.isfile(self._definition_module_path):
             return
-        if not self._has_output_material_editor():
+        if os.path.isfile(self._user_input_module_path):
             return
         if not os.path.isfile(self._output_module_path):
             return
