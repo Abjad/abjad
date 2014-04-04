@@ -11,7 +11,6 @@ from scoremanager.core.Controller import Controller
 
 class Manager(Controller):
     r'''Manager.
-
     '''
 
     ### CLASS VARIABLES ###
