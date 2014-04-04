@@ -12,7 +12,7 @@ from scoremanager.managers.PackageManager import PackageManager
 
 
 class MaterialPackageManager(PackageManager):
-    r'''Material manager.
+    r'''Material package manager.
 
     ..  container:: example
 

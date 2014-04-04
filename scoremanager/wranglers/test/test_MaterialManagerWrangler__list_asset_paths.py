@@ -18,7 +18,6 @@ def test_MaterialManagerWrangler__list_asset_paths_01():
         'PitchRangeInventoryMaterialManager.py',
         'RhythmMakerMaterialManager.py',
         'SargassoMeasureMaterialManager.py',
-        'TempoInventoryMaterialManager.py',
         ]
     paths = []
     for file_name in file_names:
