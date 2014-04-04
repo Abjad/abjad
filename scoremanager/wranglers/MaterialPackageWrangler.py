@@ -91,43 +91,39 @@ class MaterialPackageWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_materials = False
 
-    def _get_appropriate_material_manager(
-        self,
-        material_manager_class_name, 
-        path,
-        ):
+    def _get_appropriate_material_manager(self, class_name, path):
         import scoremanager
         from scoremanager import managers
         assert os.path.sep in path
-        material_package_path = self._configuration.path_to_package_path(
-            path)
-        if material_manager_class_name is None:
+        if class_name is None:
             manager = managers.MaterialPackageManager(
                 path=path,
                 session=self._session,
                 )
-        else:
-            command = 'manager = '
-            command += 'scoremanager.managers.{}'
-            command += '(path=path, session=self._session)'
-            command = command.format(material_manager_class_name)
-            try:
-                exec(command)
-            except AttributeError:
-                command = 'from {0}.{1}.{1}'
-                command += ' import {1} as material_manager_class'
-                configuration = self._configuration
-                path = configuration.user_library_material_packages_directory_path
-                package_path = self._configuration.path_to_package_path(path)
-                command = command.format(
-                    package_path,
-                    material_manager_class_name,
-                    )
-                exec(command)
-                manager = material_manager_class(
-                    material_package_path, 
-                    session=self._session,
-                    )
+            return manager
+        command = 'manager = scoremanager.managers.{}'
+        command += '(path=path, session=self._session)'
+        command = command.format(class_name)
+        try:
+            exec(command)
+            return manager
+        except AttributeError:
+            pass
+        command = 'from {0}.{1}.{1} import {1} as class_'
+        configuration = self._configuration
+        library_path = \
+            configuration.user_library_material_packages_directory_path
+        package_path = self._configuration.path_to_package_path(library_path)
+        command = command.format(
+            package_path,
+            class_name,
+            )
+        try:
+            exec(command)
+        except ImportError:
+            return
+        package_path = self._configuration.path_to_package_path(path)
+        manager = class_(package_path, session=self._session)
         return manager
 
     def _handle_main_menu_result(self, result):
