@@ -11,6 +11,7 @@ from scoremanager.core.Controller import Controller
 
 class Wrangler(Controller):
     r'''Wrangler.
+
     '''
 
     ### CLASS VARIABLES ###

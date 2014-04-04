@@ -37,7 +37,6 @@ class MaterialPackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_material_manager_wrangler',
         )
 
     ### INITIALIZER ###
@@ -65,12 +64,6 @@ class MaterialPackageWrangler(Wrangler):
             return 'materials'
         else:
             return 'material library'
-
-    @property
-    @systemtools.Memoize
-    def _material_manager_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MaterialManagerWrangler(session=self._session)
 
     @property
     def _user_input_to_action(self):
@@ -130,11 +123,6 @@ class MaterialPackageWrangler(Wrangler):
             material_manager = self._initialize_asset_manager(result)
             if os.path.exists(material_manager._path):
                 material_manager._run()
-
-    def _initialize_asset_manager(self, package_path):
-        wrangler = self._material_manager_wrangler
-        manager = wrangler._initialize_asset_manager(package_path)
-        return manager
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(MaterialPackageWrangler, self)
@@ -242,6 +230,7 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
+        raise Exception('deprecated')
         wrangler = self._material_manager_wrangler
         result = wrangler.select_asset_package_path()
         if self._should_backtrack():

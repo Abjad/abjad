@@ -67,12 +67,6 @@ class ScoreManager(Controller):
 
     @property
     @systemtools.Memoize
-    def _material_manager_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MaterialManagerWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
     def _material_package_wrangler(self):
         from scoremanager import wranglers
         return wranglers.MaterialPackageWrangler(session=self._session)

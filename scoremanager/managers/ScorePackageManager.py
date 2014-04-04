@@ -75,15 +75,6 @@ class ScorePackageManager(PackageManager):
 
     @property
     @systemtools.Memoize
-    def _material_manager_wrangler(self):
-        from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
-        return wrangler
-
-    @property
-    @systemtools.Memoize
     def _material_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
