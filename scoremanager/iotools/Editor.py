@@ -25,11 +25,12 @@ class Editor(Controller):
     def __init__(
         self, 
         session=None, 
+        target=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
-        target=None,
         ):
+        assert target is not None
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._is_autoadding = is_autoadding
@@ -44,23 +45,16 @@ class Editor(Controller):
 
         Returns string.
         '''
-        if self.target is None:
-            summary = ''
-        else:
-            class_name = type(self.target).__name__
-            summary = 'target={}'.format(class_name)
+        class_name = type(self.target).__name__
+        summary = 'target={}'.format(class_name)
         return '<{}({})>'.format(type(self).__name__, summary)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        class_name = self._target_class.__name__
+        class_name = type(self.target).__name__
         return stringtools.string_to_space_delimited_lowercase(class_name)
-
-    @property
-    def _target_class(self):
-        return self._attribute_manifest._target_class
 
     @property
     def _attribute_manifest(self):
@@ -188,12 +182,6 @@ class Editor(Controller):
             attribute_value = result
         self._set_target_attribute(attribute_name, attribute_value)
 
-    def _initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self._target = self._target_class()
-
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
         manifest = self._attribute_manifest
@@ -210,7 +198,7 @@ class Editor(Controller):
             if name in self._attributes_in_memory:
                 value = self._attributes_in_memory.get(name)
                 kwargs[name] = value
-        self._target = self._target_class(*args, **kwargs)
+        self._target = type(self.target)(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
         menu = self._io_manager.make_menu(
@@ -233,21 +221,14 @@ class Editor(Controller):
         for attribute_detail in self._attribute_manifest.attribute_details:
             key = attribute_detail.menu_key
             display_string = attribute_detail.display_string
-            if self.target is not None:
+            attribute_value = getattr(
+                self.target, 
+                attribute_detail.name, 
+                None,
+                )
+            if attribute_value is None:
                 attribute_value = getattr(
-                    self.target, 
-                    attribute_detail.name, 
-                    None,
-                    )
-                if attribute_value is None:
-                    attribute_value = getattr(
-                        self.target, attribute_detail.name, None)
-            else:
-                name = attribute_detail.name
-                attribute_value = self._attributes_in_memory.get(name)
-                if attribute_value is None:
-                    name = attribute_detail.name
-                    attribute_value = self._attributes_in_memory.get(name)
+                    self.target, attribute_detail.name, None)
             if (hasattr(attribute_value, '__len__') and 
                 not len(attribute_value)):
                 attribute_value = None
@@ -289,7 +270,6 @@ class Editor(Controller):
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
         with context:
-            self._initialize_target()
             if self._should_backtrack():
                 return
             result = None
@@ -332,9 +312,6 @@ class Editor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
-        if self.target is None:
-            self._attributes_in_memory[attribute_name] = attribute_value
-            return
         if self._session.is_complete:
             return
         # TODO: see GitHub #366:
