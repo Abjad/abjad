@@ -25,24 +25,16 @@ class Editor(Controller):
     def __init__(
         self, 
         session=None, 
-        target=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
+        target=None,
         ):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
-        if not type(self).__name__ in ('Editor', 'ListEditor'):
-            target_manifest = self._attribute_manifest
-            if not target_manifest:
-                message = 'can not find target manifest for {!r}.'
-                message = message.format(self)
-                raise Exception(message)
-            if target is not None:
-                assert isinstance(target, self._target_class)
         self._target = target
 
     ### SPECIAL METHODS ###
