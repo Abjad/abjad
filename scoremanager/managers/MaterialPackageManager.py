@@ -1026,12 +1026,6 @@ class MaterialPackageManager(PackageManager):
         else:
             assert isinstance(body_lines, list), repr(body_lines)
             assert output_material
-        # TODO: remove the is_static branch?
-        if self._get_metadatum('is_static'):
-            source_path = self._definition_module_path
-            target_path = self._output_module_path
-            shutil.copy(source_path, target_path)
-            return
         lines = []
         lines.append(self._unicode_directive + '\n')
         if body_lines is None:

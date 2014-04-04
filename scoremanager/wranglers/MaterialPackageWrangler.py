@@ -267,12 +267,12 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import iotools
+        from scoremanager import managers
         selector = iotools.Selector(session=self._session)
         selector = selector.make_inventory_class_selector()
         class_ = selector._run()
         if self._should_backtrack():
             return
-        class_name = class_.__name__
         if self._session.is_in_score:
             storehouse_path = self._current_storehouse_path
         else:
@@ -281,3 +281,9 @@ class MaterialPackageWrangler(Wrangler):
         if self._should_backtrack():
             return
         self._make_material_package(path)
+        manager = managers.MaterialPackageManager(
+            path=path,
+            session=self._session,
+            )
+        manager._add_metadatum('output_class_name', class_.__name__)
+        empty_target = class_()
