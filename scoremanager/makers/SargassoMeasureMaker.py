@@ -10,14 +10,14 @@ class SargassoMeasureMaker(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        'measure_denominator',
-        'measure_numerator_talea',
-        'measure_division_denominator',
-        'measure_division_talea',
-        'total_duration',
-        'measures_are_scaled',
-        'measures_are_split',
-        'measures_are_shuffled',
+        '_measure_denominator',
+        '_measure_numerator_talea',
+        '_measure_division_denominator',
+        '_measure_division_talea',
+        '_total_duration',
+        '_measures_are_scaled',
+        '_measures_are_split',
+        '_measures_are_shuffled',
         )
 
     ### INITIALIZER ###
@@ -33,7 +33,14 @@ class SargassoMeasureMaker(AbjadObject):
         measures_are_split=False,
         measures_are_shuffled=False,
         ):
-        pass
+        self._measure_denominator = measure_denominator
+        self._measure_numerator_talea = measure_numerator_talea
+        self._measure_division_denominator = measure_division_denominator
+        self._measure_division_talea = measure_division_talea
+        self._total_duration = total_duration
+        self._measures_are_scaled = measures_are_scaled
+        self._measures_are_split = measures_are_split
+        self._measures_are_shuffled = measures_are_shuffled
 
     ### SPECIAL METHODS ###
 

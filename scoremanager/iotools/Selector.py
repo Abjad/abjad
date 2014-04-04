@@ -271,6 +271,7 @@ class Selector(ScoreManagerObject):
         Returns selector.
         '''
         from experimental.tools import handlertools
+        from scoremanager import makers
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
             if issubclass(class_, datastructuretools.TypedList):
@@ -281,6 +282,11 @@ class Selector(ScoreManagerObject):
                     classes.append(class_)
         modules = (handlertools,)
         for class_ in documentationtools.list_all_experimental_classes(
+            modules=modules):
+            if hasattr(class_, '_attribute_manifest'):
+                classes.append(class_)
+        modules = (makers,)
+        for class_ in documentationtools.list_all_scoremanager_classes(
             modules=modules):
             if hasattr(class_, '_attribute_manifest'):
                 classes.append(class_)
