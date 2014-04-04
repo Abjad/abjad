@@ -10,7 +10,6 @@ def test_MaterialManagerWrangler__list_asset_paths_01():
     wrangler = scoremanager.wranglers.MaterialManagerWrangler(session=session)
 
     file_names = [
-        'DynamicHandlerMaterialManager.py',
         'SargassoMeasureMaterialManager.py',
         ]
     paths = []

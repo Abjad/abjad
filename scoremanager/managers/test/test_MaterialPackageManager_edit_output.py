@@ -430,3 +430,44 @@ def test_MaterialPackageManager_edit_output_11():
         if os.path.exists(path):
             shutil.rmtree(path)
     assert not os.path.exists(path)
+
+
+def test_MaterialPackageManager_edit_output_12():
+    r'''Edits dynamic handler.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    configuration = score_manager._configuration
+    path = os.path.join(
+        configuration.user_library_material_packages_directory_path,
+        'testdynamichandler',
+        )
+    assert not os.path.exists(path)
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'output.py',
+        ]
+    handler = handlertools.ReiteratedDynamicHandler(
+        dynamic_name='f',
+        minimum_duration=Duration(1, 16),
+        )
+
+    try:
+        input_ = 'm nmc ReiteratedDynamicHandler testdynamichandler'
+        input_ += ' dy f md (1, 16) done default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(path)
+        session = scoremanager.core.Session(is_test=True)
+        manager = scoremanager.managers.MaterialPackageManager
+        manager = manager(path=path, session=session)
+        assert manager._list() == directory_entries
+        output_material = manager._execute_output_module()
+        assert output_material == handler
+        input_ = 'm testdynamichandler rm remove q'
+        score_manager._run(pending_user_input=input_)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+
+    assert not os.path.exists(path)
