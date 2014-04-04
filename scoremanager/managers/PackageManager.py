@@ -85,7 +85,7 @@ class PackageManager(DirectoryManager):
             os.remove(self._initializer_file_path)
             line = 'initializer deleted.'
             self._io_manager.proceed(
-                line, 
+                line,
                 prompt=prompt,
                 )
 

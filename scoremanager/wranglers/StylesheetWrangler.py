@@ -67,7 +67,7 @@ class StylesheetWrangler(Wrangler):
 
     def _edit_stylesheet(self):
         manager = self._asset_manager_class(
-            path=path, 
+            path=path,
             session=self._session,
             )
         manager.edit()
@@ -151,7 +151,7 @@ class StylesheetWrangler(Wrangler):
             file_path = file_path + '.ily'
         file_path = os.path.join(storehouse_path, file_path)
         manager = managers.FileManager(
-            file_path, 
+            file_path,
             session=self._session,
             )
         if self._session.is_test:

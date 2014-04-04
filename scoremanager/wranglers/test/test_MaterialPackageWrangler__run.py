@@ -65,7 +65,7 @@ def test_MaterialPackageWrangler__run_04():
         if 'example articulation handler' in line:
             found_example_articulation_handler = True
 
-    assert found_example_articulation_handler 
+    assert found_example_articulation_handler
 
 
 def test_MaterialPackageWrangler__run_05():
@@ -75,6 +75,6 @@ def test_MaterialPackageWrangler__run_05():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score b m q'
     score_manager._run(pending_user_input=input_)
-    
+
     input_ = 'Score manager - material library'
     assert score_manager._transcript.entries[-2].title == input_

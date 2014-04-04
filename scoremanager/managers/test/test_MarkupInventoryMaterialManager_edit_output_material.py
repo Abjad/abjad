@@ -24,7 +24,7 @@ def test_MarkupInventoryMaterialManager_edit_output_material_01():
             ],
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]

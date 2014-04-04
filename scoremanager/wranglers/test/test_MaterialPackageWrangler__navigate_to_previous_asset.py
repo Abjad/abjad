@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler__navigate_to_previous_asset_01():
         'Red Example Score (2013) - materials - magic numbers',
         'Red Example Score (2013) - materials - tempo inventory',
         ]
-    assert score_manager._transcript.titles == titles      
+    assert score_manager._transcript.titles == titles
 
 
 def test_MaterialPackageWrangler__navigate_to_previous_asset_02():
@@ -40,4 +40,4 @@ def test_MaterialPackageWrangler__navigate_to_previous_asset_02():
         'Red Example Score (2013) - segments - segment 03',
         'Red Example Score (2013) - segments - segment 02',
         ]
-    assert score_manager._transcript.titles == titles      
+    assert score_manager._transcript.titles == titles

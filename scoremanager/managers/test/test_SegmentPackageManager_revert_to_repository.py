@@ -11,13 +11,13 @@ def test_SegmentPackageManager_revert_to_repository_01():
     manager = wrangler._find_git_manager(must_have_file=True)
 
     assert manager._test_revert_to_repository()
-    
+
 
 def test_SegmentPackageManager_revert_to_repository_02():
 
     wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_svn_manager(must_have_file=True)
-            
+
     if not manager:
         return
 

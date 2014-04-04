@@ -13,13 +13,13 @@ def test_MaterialManager_commit_to_repository_01():
     manager._session._is_repository_test = True
     manager.commit_to_repository(prompt=False)
     assert manager._session._attempted_to_commit_to_repository
-    
+
 
 def test_MaterialManager_commit_to_repository_02():
 
     wrangler = score_manager._material_package_wrangler
     manager = wrangler._find_svn_manager()
-            
+
     if not manager:
         return
 

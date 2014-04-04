@@ -172,7 +172,7 @@ class ListEditor(Editor):
             else:
                 target = None
             item_creator = item_creator_class(
-                session=self._session, 
+                session=self._session,
                 target=target,
                 **self._item_creator_class_kwargs
                 )
@@ -186,7 +186,7 @@ class ListEditor(Editor):
         elif self._item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
             self._item_getter_configuration_method(
-                getter, 
+                getter,
                 self._item_identifier,
                 )
             item_initialization_token = getter._run()
@@ -228,7 +228,7 @@ class ListEditor(Editor):
             return
         item_editor_class = self._item_editor_class or iotools.Editor
         item_editor = item_editor_class(
-            session=self._session, 
+            session=self._session,
             target=item,
             )
         item_editor._run()

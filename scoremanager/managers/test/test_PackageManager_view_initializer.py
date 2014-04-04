@@ -9,9 +9,9 @@ def test_PackageManager_view_initializer_01():
     input_ = 'm example~numbers inro q'
     score_manager._run(pending_user_input=input_)
     titles = [
-        'Score manager - example scores', 
+        'Score manager - example scores',
         'Score manager - material library',
-        'Score manager - material library - example numbers (Abjad)', 
+        'Score manager - material library - example numbers (Abjad)',
         'Score manager - material library - example numbers (Abjad)',
         ]
     assert score_manager._transcript.titles == titles

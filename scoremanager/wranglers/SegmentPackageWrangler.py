@@ -92,9 +92,9 @@ class SegmentPackageWrangler(Wrangler):
         return section
 
     def _make_asset(
-        self, 
-        path, 
-        prompt=False, 
+        self,
+        path,
+        prompt=False,
         metadata=None,
         ):
         metadata = collections.OrderedDict(metadata or {})
@@ -124,7 +124,7 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_main_menu(self, name='segment wrangler'):
         menu = self._io_manager.make_menu(
-            where=self._where, 
+            where=self._where,
             name=name,
             )
         self._make_asset_menu_section(menu)

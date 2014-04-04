@@ -4,7 +4,7 @@ import scoremanager
 
 
 def test_ScoreManager_manage_maker_library_01():
-    
+
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'k q'
     score_manager._run(pending_user_input=input_)

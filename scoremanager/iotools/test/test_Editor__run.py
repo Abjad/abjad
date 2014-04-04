@@ -212,7 +212,7 @@ def test_Editor__run_11():
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinHandler()
     editor = scoremanager.iotools.Editor(
-        session=session, 
+        session=session,
         is_autoadvancing=True,
         target=target,
         )
@@ -234,7 +234,7 @@ def test_Editor__run_12():
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinsHandler()
     editor = scoremanager.iotools.Editor(
-        session=session, 
+        session=session,
         is_autoadvancing=True,
         target=target,
         )
@@ -256,7 +256,7 @@ def test_Editor__run_13():
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
     editor = scoremanager.iotools.Editor(
-        session=session, 
+        session=session,
         is_autoadvancing=True,
         target=target,
         )
@@ -282,7 +282,7 @@ def test_Editor__run_14():
     target = handlertools.ReiteratedArticulationHandler()
     editor = scoremanager.iotools.Editor(
         session=session,
-        is_autoadvancing=True, 
+        is_autoadvancing=True,
         is_autostarting=True,
         target=target,
         )
@@ -308,7 +308,7 @@ def test_Editor__run_15():
     target = handlertools.ReiteratedArticulationHandler()
     editor = scoremanager.iotools.Editor(
         session=session,
-        is_autoadvancing=True, 
+        is_autoadvancing=True,
         is_autostarting=True,
         target=target,
         )
@@ -329,7 +329,7 @@ def test_Editor__run_16():
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedDynamicHandler()
     editor = scoremanager.iotools.Editor(
-        session=session, 
+        session=session,
         is_autoadvancing=True,
         target=target
         )
@@ -351,7 +351,7 @@ def test_Editor__run_17():
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.TerracedDynamicsHandler()
     editor = scoremanager.iotools.Editor(
-        session=session, 
+        session=session,
         is_autoadvancing=True,
         target=target,
         )
@@ -380,7 +380,7 @@ def test_Editor__run_18():
     editor._run(pending_user_input=input_)
 
     talea = rhythmmakertools.Talea(
-        counts=(-1, 2, -3, 4), 
+        counts=(-1, 2, -3, 4),
         denominator=16,
         )
 
@@ -483,15 +483,15 @@ def test_Editor__run_22():
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
-            name='accordionist', 
+            name='accordionist',
             instruments=[instrumenttools.Accordion()],
             ),
         instrumenttools.Performer(
-            name='bassoonist', 
+            name='bassoonist',
             instruments=[instrumenttools.Bassoon()],
             ),
         instrumenttools.Performer(
-            name='cellist', 
+            name='cellist',
             instruments=[instrumenttools.Cello()],
             )])
 
@@ -500,7 +500,7 @@ def test_Editor__run_22():
 
 def test_Editor__run_23():
     r'''Adds three performers to instrumentation specifier.
-    
+
     Tests range handling.
     '''
 
@@ -515,13 +515,13 @@ def test_Editor__run_23():
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
-            name='accordionist', 
+            name='accordionist',
             instruments=[instrumenttools.Accordion()]),
         instrumenttools.Performer(
-            name='alto', 
+            name='alto',
             instruments=[instrumenttools.AltoVoice()]),
         instrumenttools.Performer(
-            name='baritone', 
+            name='baritone',
             instruments=[instrumenttools.BaritoneVoice()]),
             ])
 
@@ -545,7 +545,7 @@ def test_Editor__run_24():
     specifier = instrumenttools.InstrumentationSpecifier(
         [
             instrumenttools.Performer(
-                'accordionist', 
+                'accordionist',
                 instruments=[instrumenttools.Accordion()],
                 ),
             ]
@@ -572,7 +572,7 @@ def test_Editor__run_25():
     specifier = instrumenttools.InstrumentationSpecifier(
         [
             instrumenttools.Performer(
-                'accordionist', 
+                'accordionist',
                 instruments=[instrumenttools.Accordion()],
                 )
             ]
@@ -582,7 +582,7 @@ def test_Editor__run_25():
 
 
 def test_Editor__run_26():
-    r'''Edits instrumentation specifier. Adds three performers. 
+    r'''Edits instrumentation specifier. Adds three performers.
     Makes two moves.
     '''
 
@@ -598,15 +598,15 @@ def test_Editor__run_26():
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
-            name='bassist', 
+            name='bassist',
             instruments=[instrumenttools.Contrabass()],
             ),
         instrumenttools.Performer(
-            name='bassoonist', 
+            name='bassoonist',
             instruments=[instrumenttools.Bassoon()],
             ),
         instrumenttools.Performer(
-            name='accordionist', 
+            name='accordionist',
             instruments=[instrumenttools.Accordion()],
             ),
         ])

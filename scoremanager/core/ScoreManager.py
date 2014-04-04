@@ -145,7 +145,7 @@ class ScoreManager(Controller):
             return title
 
     def _find_up_to_date_manager(
-        self, 
+        self,
         manager_class,
         repository='git',
         system=True,
@@ -165,8 +165,8 @@ class ScoreManager(Controller):
                 self._configuration.user_score_packages_directory_path
         for score_package_name in os.listdir(scores_directory):
             path = os.path.join(
-                scores_directory, 
-                score_package_name, 
+                scores_directory,
+                score_package_name,
                 *suffix
                 )
             if not os.path.isdir(path):
@@ -454,7 +454,7 @@ class ScoreManager(Controller):
         if lines:
             lines.append('')
             self._io_manager.display(
-                lines, 
+                lines,
                 capitalize_first_character=False,
                 )
         self._io_manager.proceed(prompt=prompt)
@@ -583,22 +583,22 @@ class ScoreManager(Controller):
         command = 'py.test -rf {}'
         command = command.format(path)
         process = subprocess.Popen(
-            command, 
-            shell=True, 
+            command,
+            shell=True,
             stdout=subprocess.PIPE,
             )
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
             self._io_manager.display(
-                lines, 
+                lines,
                 capitalize_first_character=False,
                 )
         self._io_manager.proceed(prompt=prompt)
 
     def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
-        
+
         Returns none.
         '''
         self._score_package_wrangler.repository_status(prompt=prompt)
@@ -621,7 +621,7 @@ class ScoreManager(Controller):
         directories = self._list_all_directories_with_metadata_modules()
         for directory in directories:
             manager = managers.PackageManager(
-                path=directory, 
+                path=directory,
                 session=self._session,
                 )
             manager.rewrite_metadata_module(prompt=False)

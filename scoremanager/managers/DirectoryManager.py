@@ -209,7 +209,7 @@ class DirectoryManager(Manager):
         lines.append('')
         lines.append('')
         lines = '\n'.join(lines)
-        metadata_lines = self._make_metadata_lines(metadata) 
+        metadata_lines = self._make_metadata_lines(metadata)
         lines = lines + '\n' + metadata_lines
         with file(self._metadata_module_path, 'w') as file_pointer:
             file_pointer.write(lines)
@@ -267,7 +267,7 @@ class DirectoryManager(Manager):
             os.remove(self._metadata_module_path)
             line = 'metadata module removed.'
             self._io_manager.proceed(
-                line, 
+                line,
                 prompt=prompt,
                 )
 
@@ -298,7 +298,7 @@ class DirectoryManager(Manager):
             os.remove(self._views_module_path)
             line = 'views module removed.'
             self._io_manager.proceed(
-                line, 
+                line,
                 prompt=prompt,
                 )
 
@@ -356,8 +356,8 @@ class DirectoryManager(Manager):
         self._session._is_backtracking_locally = True
 
     def rewrite_metadata_module(
-        self, 
-        metadata=None, 
+        self,
+        metadata=None,
         prompt=True,
         ):
         r'''Rewrites metadata module.

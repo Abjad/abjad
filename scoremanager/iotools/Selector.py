@@ -25,10 +25,10 @@ class Selector(ScoreManagerObject):
 
     # TODO: force session to be not none on input
     def __init__(
-        self, 
+        self,
         is_numbered=True,
-        is_ranged=False, 
-        items=None, 
+        is_ranged=False,
+        items=None,
         return_value_attribute='explicit',
         session=None,
         where=None,
@@ -324,8 +324,8 @@ class Selector(ScoreManagerObject):
         '''
         configuration = self._configuration
         rhythm_maker_tools_directory_path = os.path.join(
-            configuration.abjad_directory_path, 
-            'tools', 
+            configuration.abjad_directory_path,
+            'tools',
             'rhythmmakertools',
             )
         selector = self.make_directory_content_selector(
@@ -367,7 +367,7 @@ class Selector(ScoreManagerObject):
             performer_name, performer_abbreviation = performer_pair
             performer_abbreviation = performer_abbreviation.split()[-1]
             performer_abbreviation = performer_abbreviation.strip('.')
-            menu_entries.append((performer_name, performer_abbreviation)) 
+            menu_entries.append((performer_name, performer_abbreviation))
         selector = Selector(
             session=self._session,
             is_ranged=is_ranged,

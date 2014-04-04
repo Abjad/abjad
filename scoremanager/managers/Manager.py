@@ -597,7 +597,7 @@ class Manager(Controller):
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
-    
+
     ### PUBLIC METHODS ###
 
     def add_to_repository(self, prompt=True):
@@ -657,7 +657,7 @@ class Manager(Controller):
         lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
         self._io_manager.display(
-            lines, 
+            lines,
             capitalize_first_character=False,
             )
         self._io_manager.proceed(prompt=prompt)
@@ -692,8 +692,8 @@ class Manager(Controller):
             return
         command = 'ajv doctest {}'.format(self._path)
         process = subprocess.Popen(
-            command, 
-            shell=True, 
+            command,
+            shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             )
@@ -736,8 +736,8 @@ class Manager(Controller):
         command = command.format(self._path)
         lines = []
         process = subprocess.Popen(
-            command, 
-            shell=True, 
+            command,
+            shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             )
@@ -758,8 +758,8 @@ class Manager(Controller):
             return
         command = 'py.test -rf {}'.format(self._path)
         process = subprocess.Popen(
-            command, 
-            shell=True, 
+            command,
+            shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             )
@@ -817,7 +817,7 @@ class Manager(Controller):
             clean_lines.append(clean_line)
         clean_lines.append('')
         self._io_manager.display(
-            clean_lines, 
+            clean_lines,
             capitalize_first_character=False,
             )
         self._io_manager.proceed(prompt=prompt)
@@ -843,7 +843,7 @@ class Manager(Controller):
 
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.
-    
+
         Returns none.
         '''
         line = self._get_score_package_directory_name()
@@ -865,7 +865,7 @@ class Manager(Controller):
             clean_lines.append(clean_line)
         clean_lines.append('')
         self._io_manager.display(
-            clean_lines, 
+            clean_lines,
             capitalize_first_character=False,
             )
         self._io_manager.proceed(prompt=prompt)

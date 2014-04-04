@@ -77,7 +77,7 @@ class MaterialManagerWrangler(Wrangler):
         from scoremanager import managers
         assert os.path.sep in path, repr(path)
         manager = managers.MaterialPackageManager(
-            path=path, 
+            path=path,
             session=self._session,
             )
         class_name = manager._get_metadatum('material_manager_class_name')

@@ -15,7 +15,7 @@ def test_SegmentPackageManager_commit_to_repository_01():
     manager._session._is_repository_test = True
     manager.commit_to_repository(prompt=False)
     assert manager._session._attempted_to_commit_to_repository
-    
+
 
 def test_SegmentPackageManager_commit_to_repository_02():
     r'''Flow control reaches Subversion-managed segment package.
@@ -23,7 +23,7 @@ def test_SegmentPackageManager_commit_to_repository_02():
 
     wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_svn_manager()
-            
+
     if not manager:
         return
 

@@ -23,8 +23,8 @@ class Editor(Controller):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        session=None, 
+        self,
+        session=None,
         target=None,
         is_autoadding=False,
         is_autoadvancing=False,
@@ -99,10 +99,10 @@ class Editor(Controller):
                 self._attributes_in_memory[name] = attribute_value
 
     def _get_attribute_editor(
-        self, 
+        self,
         attribute_detail,
-        space_delimited_attribute_name, 
-        prepopulated_value, 
+        space_delimited_attribute_name,
+        prepopulated_value,
         ):
         from scoremanager import iotools
         from scoremanager import iotools
@@ -110,14 +110,14 @@ class Editor(Controller):
         if isinstance(attribute_detail.editor, types.FunctionType):
             editor = attribute_detail.editor(
                 space_delimited_attribute_name,
-                session=self._session, 
-                prepopulated_value=prepopulated_value, 
+                session=self._session,
+                prepopulated_value=prepopulated_value,
                 allow_none=True,
                 )
         elif issubclass(attribute_detail.editor, Editor):
             editor = attribute_detail.editor(
-                session=self._session, 
-                target=prepopulated_value, 
+                session=self._session,
+                target=prepopulated_value,
                 )
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
@@ -137,8 +137,8 @@ class Editor(Controller):
             editor = attribute_detail.editor(session=self._session)
         elif issubclass(attribute_detail.editor, wizards.Wizard):
             editor = attribute_detail.editor(
-                session=self._session, 
-                target=prepopulated_value, 
+                session=self._session,
+                target=prepopulated_value,
                 )
         else:
             message = 'what is {!r}?'
@@ -150,7 +150,7 @@ class Editor(Controller):
         result = []
         if self.target is not None:
             for attribute_detail in self._attribute_manifest:
-                target_attribute_name = attribute_detail.name 
+                target_attribute_name = attribute_detail.name
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
                 value = self._io_manager._get_one_line_menu_summary(
@@ -166,9 +166,9 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         attribute_editor = self._menu_key_to_attribute_editor(
-            result, 
-            session=self._session, 
-            prepopulated_value=prepopulated_value, 
+            result,
+            session=self._session,
+            prepopulated_value=prepopulated_value,
             )
         if attribute_editor is None:
             return
@@ -210,7 +210,7 @@ class Editor(Controller):
             section = menu.make_keyed_attribute_section(
                 name='keyed attributes',
                 is_numbered=True,
-                ) 
+                )
             for menu_entry in menu_entries:
                 section.append(menu_entry)
         self._make_done_menu_section(menu)
@@ -222,14 +222,14 @@ class Editor(Controller):
             key = attribute_detail.menu_key
             display_string = attribute_detail.display_string
             attribute_value = getattr(
-                self.target, 
-                attribute_detail.name, 
+                self.target,
+                attribute_detail.name,
                 None,
                 )
             if attribute_value is None:
                 attribute_value = getattr(
                     self.target, attribute_detail.name, None)
-            if (hasattr(attribute_value, '__len__') and 
+            if (hasattr(attribute_value, '__len__') and
                 not len(attribute_value)):
                 attribute_value = None
             prepopulated_value = self._io_manager._get_one_line_menu_summary(
@@ -239,10 +239,10 @@ class Editor(Controller):
         return result
 
     def _menu_key_to_attribute_editor(
-        self, 
-        menu_key, 
-        prepopulated_value, 
-        session=None, 
+        self,
+        menu_key,
+        prepopulated_value,
+        session=None,
         ):
         manifest = self._attribute_manifest
         assert manifest

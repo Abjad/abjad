@@ -57,7 +57,7 @@ def test_Menu__run_02():
         breadcrumb_callback='name',
         )
     section = menu._make_section(
-        name='test', 
+        name='test',
         is_hidden=True,
         title='section',
         )
@@ -100,7 +100,7 @@ def test_Menu__run_03():
         )
     section = menu._make_section(
         is_numbered=True,
-        name='test', 
+        name='test',
         title='section',
         )
     section.append('apple')
@@ -151,7 +151,7 @@ def test_Menu__run_04():
         )
     section = menu._make_section(
         is_ranged=True,
-        name='test', 
+        name='test',
         title='section',
         )
     section.append('apple')
@@ -375,7 +375,7 @@ def test_Menu__run_08():
         )
     section = menu._make_section(
         is_hidden=True,
-        name='test', 
+        name='test',
         title='section',
         )
     section.append(('first command', 'add'))
@@ -556,7 +556,7 @@ def test_Menu__run_11():
         )
     section = menu._make_section(
         is_ranged=True,
-        name='test', 
+        name='test',
         title='section',
         )
     section.append(('first command', 'add'))

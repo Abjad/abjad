@@ -16,7 +16,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
         'testpir',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         ]
     input_ = 'm nmm pitch testpir default q'
@@ -50,12 +50,12 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
         'testpir',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]
     inventory = pitchtools.PitchRangeInventory([
-        pitchtools.PitchRange('[C2, G5]'), 
+        pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm nmm pitch testpir default'

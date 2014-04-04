@@ -16,12 +16,12 @@ def test_MaterialManager_edit_output_01():
         'testtempoinventory',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'output.py', 
+        'output.py',
         ]
     inventory = indicatortools.TempoInventory([
-        ((1, 4), 60), 
+        ((1, 4), 60),
         ((1, 4), 90),
         ])
 
@@ -57,7 +57,7 @@ def test_MaterialManager_edit_output_02():
         'testpri',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]
@@ -93,12 +93,12 @@ def test_MaterialManager_edit_output_03():
         'testpri',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]
     inventory = pitchtools.PitchRangeInventory([
-        pitchtools.PitchRange('[C2, G5]'), 
+        pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm nmc PitchRangeInventory testpri default'

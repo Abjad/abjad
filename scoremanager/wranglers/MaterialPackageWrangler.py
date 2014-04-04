@@ -37,7 +37,7 @@ class MaterialPackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_material_manager_wrangler', 
+        '_material_manager_wrangler',
         )
 
     ### INITIALIZER ###
@@ -144,7 +144,7 @@ class MaterialPackageWrangler(Wrangler):
         return False
 
     def _list_asset_paths(
-        self, 
+        self,
         abjad_library=True,
         user_library=True,
         abjad_score_packages=True,
@@ -195,9 +195,9 @@ class MaterialPackageWrangler(Wrangler):
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(
-        self, 
+        self,
         path,
-        prompt=False, 
+        prompt=False,
         metadata=None,
         definition_module_stub=True,
         ):

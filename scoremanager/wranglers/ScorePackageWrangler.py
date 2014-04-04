@@ -100,10 +100,10 @@ class ScorePackageWrangler(Wrangler):
 
     def _list_visible_asset_paths(
         self,
-        abjad_library=True, 
+        abjad_library=True,
         user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
+        abjad_score_packages=True,
+        user_score_packages=True,
         ):
         visible_paths = []
         paths = self._list_asset_paths(

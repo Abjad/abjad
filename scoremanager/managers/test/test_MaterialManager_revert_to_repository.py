@@ -14,7 +14,7 @@ def test_MaterialManager_revert_to_repository_01():
         )
 
     assert manager._test_revert_to_repository()
-    
+
 
 def test_MaterialManager_revert_to_repository_02():
 
@@ -23,7 +23,7 @@ def test_MaterialManager_revert_to_repository_02():
         repository='svn',
         system=False,
         )
-            
+
     if not manager:
         return
 

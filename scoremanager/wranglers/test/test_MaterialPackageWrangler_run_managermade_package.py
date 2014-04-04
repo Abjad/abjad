@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
     '''
 
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -55,7 +55,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     '''
 
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -116,7 +116,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         'testsargasso',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]

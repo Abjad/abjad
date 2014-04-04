@@ -9,9 +9,9 @@ def test_MaterialManager_view_illustration_ly_01():
     input_ = 'm example~notes lyro q'
     score_manager._run(pending_user_input=input_)
     titles = [
-        'Score manager - example scores', 
-        'Score manager - material library', 
-        'Score manager - material library - example notes (Abjad)', 
+        'Score manager - example scores',
+        'Score manager - material library',
+        'Score manager - material library - example notes (Abjad)',
         'Score manager - material library - example notes (Abjad)',
         ]
 

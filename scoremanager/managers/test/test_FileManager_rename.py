@@ -10,11 +10,11 @@ def test_FileManager_rename_01():
     '''
 
     path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'test-file.txt',
         )
     new_path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'new-test-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)
@@ -46,11 +46,11 @@ def test_FileManager_rename_02():
     '''
 
     path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'test-file.txt',
         )
     new_path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'new-test-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)

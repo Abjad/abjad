@@ -16,7 +16,7 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialPackageManager)
 
     def __init__(self, path=None, session=None):
         superclass = super(
-            OctaveTranspositionMappingInventoryMaterialManager, 
+            OctaveTranspositionMappingInventoryMaterialManager,
             self,
             )
         superclass.__init__(path=path, session=session)
@@ -25,11 +25,11 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialPackageManager)
             ]
 
     ### PUBLIC METHODS ###
-        
+
     @staticmethod
     def _check_output_material(material):
         return isinstance(
-            material, 
+            material,
             pitchtools.OctaveTranspositionMappingInventory,
             )
 

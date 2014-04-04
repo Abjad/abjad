@@ -230,7 +230,7 @@ class MaterialPackageManager(PackageManager):
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         setup_statements =(
-            self._abjad_import_statement, 
+            self._abjad_import_statement,
             setup_statement,
             )
         getter._make_prompt(
@@ -268,7 +268,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import iotools
         prototype = (datastructuretools.TypedList, list)
         if isinstance(target, prototype):
-            class_ = iotools.ListEditor     
+            class_ = iotools.ListEditor
         else:
             class_ = iotools.Editor
         editor = class_(session=self._session, target=target)
@@ -287,7 +287,7 @@ class MaterialPackageManager(PackageManager):
             self._user_input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             self._edit_user_input_wrapper_at_number(
-                result, 
+                result,
                 include_newline=False,
                 )
         elif result == 'user entered lone return':
@@ -382,7 +382,7 @@ class MaterialPackageManager(PackageManager):
         self._make_illustrate_module_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._make_initializer_menu_section(
-            menu, 
+            menu,
             has_initializer=has_initializer,
             )
         self._make_material_definition_menu_section(menu)
@@ -671,7 +671,7 @@ class MaterialPackageManager(PackageManager):
         '''
         output_material = self._execute_output_module()
         if (hasattr(self, '_make_output_material') and
-            output_material is None and 
+            output_material is None and
             self._make_output_material() and
             isinstance(self._make_output_material(), wizards.Wizard)
             ):
@@ -772,9 +772,9 @@ class MaterialPackageManager(PackageManager):
         total_elements = len(self._user_input_wrapper_in_memory)
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
-            'start at element number', 
-            1, 
-            total_elements, 
+            'start at element number',
+            1,
+            total_elements,
             default_value=1,
             )
         start_element_number = getter._run()
@@ -784,7 +784,7 @@ class MaterialPackageManager(PackageManager):
         current_element_index = current_element_number - 1
         while True:
             self._edit_user_input_wrapper_at_number(
-                current_element_number, 
+                current_element_number,
                 include_newline=False,
                 )
             if self._should_backtrack():
@@ -898,7 +898,7 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.spawn_subprocess(command)
             command = 'git commit -m "{}" {} {}'
             command = command.format(
-                commit_message, 
+                commit_message,
                 new_directory_path,
                 old_directory_path,
                 )

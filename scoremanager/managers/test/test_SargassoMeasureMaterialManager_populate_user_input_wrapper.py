@@ -27,7 +27,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         ('measures_are_shuffled', None),
         ])
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -61,7 +61,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
         )
     input_ = 'm nmm sargasso testsargasso default testsargasso uil q'
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -105,7 +105,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
         )
     input_ = 'm nmm sargasso testsargasso default testsargasso uil uic q'
     directory_entries = [
-            '__init__.py', 
+            '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -149,7 +149,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
         )
     input_ = 'm nmm sargasso testsargasso default testsargasso 3 16 q'
     directory_entries = [
-            '__init__.py', 
+            '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -195,7 +195,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
     input_ += ' testsargasso uip 5 Duration(11, 2) False True True'
     input_ += ' 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] q'
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -241,7 +241,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
     input_ += ' testsargasso uip 1'
     input_ += ' 4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b q'
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -286,7 +286,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
     input_ = 'm nmm sargasso testsargasso default'
     input_ += ' testsargasso uil 6 None 7 None 8 None q'
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'user_input.py',
         ]
@@ -329,9 +329,9 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
         'testsargasso',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'output.py', 
+        'output.py',
         'user_input.py',
         ]
     measures = [

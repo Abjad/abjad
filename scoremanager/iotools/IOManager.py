@@ -135,7 +135,7 @@ class IOManager(IOManager):
     def _handle_home_navigation_directive(self):
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
-        
+
     def _handle_next_score_directive(self):
         self._session._is_navigating_to_next_score = True
         self._session._is_backtracking_to_score_manager = True
@@ -259,8 +259,8 @@ class IOManager(IOManager):
                 superclass.clear_terminal()
 
     def confirm(
-        self, 
-        prompt_string='ok?', 
+        self,
+        prompt_string='ok?',
         include_chevron=False,
         ):
         r'''Prompts user to confirm.
@@ -268,7 +268,7 @@ class IOManager(IOManager):
         Returns boolean.
         '''
         getter = self.make_getter(
-            where=None, 
+            where=None,
             include_chevron=include_chevron,
             include_newlines=False,
             )
@@ -279,8 +279,8 @@ class IOManager(IOManager):
                 return True
 
     def display(
-        self, 
-        lines, 
+        self,
+        lines,
         capitalize_first_character=True,
         ):
         r'''Displays `lines`.
@@ -296,7 +296,7 @@ class IOManager(IOManager):
             return
         if capitalize_first_character:
             lines = [
-                stringtools.capitalize_string_start(line) 
+                stringtools.capitalize_string_start(line)
                 for line in lines
                 ]
         if lines:
@@ -338,7 +338,7 @@ class IOManager(IOManager):
         self.display([message, ''])
         controller = self._session.get_controller_with(ui='pyd')
         controller.doctest()
-        
+
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.
 
@@ -395,12 +395,12 @@ class IOManager(IOManager):
             self.proceed(message)
 
     def handle_user_input(
-        self, 
-        prompt_string, 
-        default_value=None, 
-        include_chevron=True, 
+        self,
+        prompt_string,
+        default_value=None,
+        include_chevron=True,
         include_newline=True,
-        prompt_character='>', 
+        prompt_character='>',
         capitalize_prompt=True,
         ):
         r'''Handles user input.
@@ -497,7 +497,7 @@ class IOManager(IOManager):
         prompt = True
         if statement is None:
             statement = self.handle_user_input(
-                '$', 
+                '$',
                 include_chevron=False,
                 include_newline=False,
                 )
@@ -520,8 +520,8 @@ class IOManager(IOManager):
         self._session._hide_next_redraw = True
 
     def make_getter(
-        self, 
-        where=None, 
+        self,
+        where=None,
         allow_none=False,
         include_chevron=True,
         include_newlines=False,
@@ -532,7 +532,7 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         getter = iotools.UserInputGetter(
-            where=where, 
+            where=where,
             session=self._session,
             allow_none=allow_none,
             include_chevron=include_chevron,
@@ -541,8 +541,8 @@ class IOManager(IOManager):
         return getter
 
     def make_menu(
-        self, 
-        where=None, 
+        self,
+        where=None,
         breadcrumb_callback=None,
         name=None,
         include_default_hidden_sections=True,
@@ -553,7 +553,7 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         menu = iotools.Menu(
-            where=where, 
+            where=where,
             session=self._session,
             breadcrumb_callback=breadcrumb_callback,
             name=name,
@@ -562,7 +562,7 @@ class IOManager(IOManager):
         return menu
 
     def make_selector(
-        self, 
+        self,
         where=None,
         items=None,
         ):
@@ -695,7 +695,7 @@ class IOManager(IOManager):
         menu_entries = wrangler._make_asset_menu_entries(
             include_asset_name=False,
             include_year=True,
-            sort_by_annotation=True, 
+            sort_by_annotation=True,
             )
         for menu_entry in menu_entries:
             lines.append('{},\n'.format(menu_entry))

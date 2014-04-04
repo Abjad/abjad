@@ -3,9 +3,9 @@ from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 def get_articulation(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -13,9 +13,9 @@ def get_articulation(
     return getter
 
 def get_articulations(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -23,9 +23,9 @@ def get_articulations(
     return getter
 
 def get_boolean(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -33,9 +33,9 @@ def get_boolean(
     return getter
 
 def get_direction_string(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -43,9 +43,9 @@ def get_direction_string(
     return getter
 
 def get_duration(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -53,9 +53,9 @@ def get_duration(
     return getter
 
 def get_dynamic(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -63,9 +63,9 @@ def get_dynamic(
     return getter
 
 def get_dynamics(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -73,9 +73,9 @@ def get_dynamics(
     return getter
 
 def get_hairpin_token(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -83,9 +83,9 @@ def get_hairpin_token(
     return getter
 
 def get_hairpin_tokens(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -93,9 +93,9 @@ def get_hairpin_tokens(
     return getter
 
 def get_integer(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -103,9 +103,9 @@ def get_integer(
     return getter
 
 def get_integers(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -113,9 +113,9 @@ def get_integers(
     return getter
 
 def get_lists(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -123,9 +123,9 @@ def get_lists(
     return getter
 
 def get_markup(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -133,9 +133,9 @@ def get_markup(
     return getter
 
 def get_named_pitch(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -143,9 +143,9 @@ def get_named_pitch(
     return getter
 
 def get_nonnegative_integers(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -153,9 +153,9 @@ def get_nonnegative_integers(
     return getter
 
 def get_nonzero_integers(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -163,9 +163,9 @@ def get_nonzero_integers(
     return getter
 
 def get_positive_integer_power_of_two(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -173,9 +173,9 @@ def get_positive_integer_power_of_two(
     return getter
 
 def get_positive_integers(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -183,9 +183,9 @@ def get_positive_integers(
     return getter
 
 def get_string(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -193,9 +193,9 @@ def get_string(
     return getter
 
 def get_strings(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
@@ -203,9 +203,9 @@ def get_strings(
     return getter
 
 def get_symbolic_pitch_range_string(
-    space_delimited_attribute_name, 
-    session=None, 
-    prepopulated_value=None, 
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
