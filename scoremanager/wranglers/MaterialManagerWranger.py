@@ -93,6 +93,8 @@ class MaterialManagerWrangler(Wrangler):
             )
         if class_name in prototype:
             return manager
+        if class_name.endswith('Handler'):
+            return manager
         class_ = None
         command = 'from scoremanager.managers import {} as class_'
         command = command.format(class_name)

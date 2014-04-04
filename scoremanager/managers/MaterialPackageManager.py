@@ -14,6 +14,7 @@ from scoremanager.managers.PackageManager import PackageManager
 class MaterialPackageManager(PackageManager):
     r'''Material package manager.
 
+
     ..  container:: example
 
         ::
@@ -1024,6 +1025,9 @@ class MaterialPackageManager(PackageManager):
             body_lines = [output_module_body_string]
         import_statements = import_statements or []
         import_statements = [x + '\n' for x in import_statements]
+        if any('handlertools' in _ for _ in body_lines):
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)

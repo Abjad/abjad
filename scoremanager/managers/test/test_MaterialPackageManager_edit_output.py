@@ -3,6 +3,7 @@ import os
 import pytest
 import shutil
 from abjad import *
+from experimental import *
 import scoremanager
 
 
@@ -387,10 +388,9 @@ def test_MaterialPackageManager_edit_output_10():
     assert not os.path.exists(path)
 
 
-def test_ArticulationHandlerMaterialManager_edit_output_material_01():
+def test_MaterialPackageManager_edit_output_11():
     r'''Edits retierated articulation handler.
     '''
-    pytest.skip('port me forward.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
@@ -413,9 +413,9 @@ def test_ArticulationHandlerMaterialManager_edit_output_material_01():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc ReiteratedArticulationHandler'
-        input_ += " ['^', '.'] (1, 64) (1, 4) c c'''' done default"
-        input_ += ' q'
+        input_ = "m nmc ReiteratedArticulationHandler testarticulationhandler"
+        input_ += " al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
+        input_ += " done default q"
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)

@@ -301,6 +301,9 @@ class MaterialPackageWrangler(Wrangler):
         body_lines = body_lines.split('\n')
         body_lines = [_ + '\n' for _ in body_lines]
         import_statements = [self._abjad_import_statement]
+        if 'handlertools' in storage_format:
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
         manager.write_output_material(
             body_lines=body_lines,
             import_statements=import_statements,
