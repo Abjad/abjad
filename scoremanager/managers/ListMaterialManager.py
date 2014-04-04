@@ -33,9 +33,6 @@ class ListMaterialManager(MaterialPackageManager):
             )
         return editor
 
-    def _has_output_material_editor(self):
-        return True
-
     def _run_first_time(self):
         self._session._is_autoadding = True
         if self._session.pending_user_input:

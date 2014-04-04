@@ -63,9 +63,6 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
             possible_meter_multipliers.append(possible_meter_multiplier)
         return possible_meter_multipliers
 
-    def _has_output_material_editor(self):
-        return False
-
     @staticmethod
     def _make_output_material(
         measure_denominator, 

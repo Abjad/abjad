@@ -258,6 +258,9 @@ class MaterialPackageManager(PackageManager):
             return output_material
 
     def _has_output_material_editor(self):
+        if not os.path.isfile(self._definition_module_path):
+            if not os.path.isfile(self._user_input_module_path):
+                True
         return False
 
     def _get_output_material_editor(self, target):
