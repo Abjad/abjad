@@ -148,3 +148,7 @@
 
 30. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
+
+31. Make 'n' user input work in confirmation dialogue.
+    Carefully use (m > example pitch range inventory > mdmrm > n)
+    to reproduce the bug.
