@@ -20,6 +20,7 @@ appear on your filesystem after checkout:
     getters/
     iotools/
     latex/
+    makers/
     managers/
     materials/
     predicates/
@@ -61,6 +62,7 @@ import core
 import exceptions
 import getters
 import iotools
+import makers
 import managers
 import predicates
 import wizards

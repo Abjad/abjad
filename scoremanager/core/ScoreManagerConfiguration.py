@@ -155,8 +155,27 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def abjad_makers_directory_path(self):
+        r'''Gets Abjad makers directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.abjad_makers_directory_path
+                '.../scoremanager/makers'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'makers',
+            )
+        return path
+
+    @property
     def abjad_material_managers_directory_path(self):
-        r'''Gets abjad material managers directory path.
+        r'''Gets Abjad material managers directory path.
 
         ..  container:: example
 
@@ -175,7 +194,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_material_packages_directory_path(self):
-        r'''Gets abjad material packages directory path.
+        r'''Gets Abjad material packages directory path.
 
         ..  container:: example
 
@@ -194,7 +213,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_score_package_names(self):
-        r'''Gets abjad score package names.
+        r'''Gets Abjad score package names.
 
         ..  container:: example
 
@@ -216,7 +235,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_score_packages_directory_path(self):
-        r'''Gets abjad score packages directory path.
+        r'''Gets Abjad score packages directory path.
 
         ..  container:: example
 
@@ -235,7 +254,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_stylesheets_directory_path(self):
-        r'''Gets abjad stylesheets directory path.
+        r'''Gets Abjad stylesheets directory path.
 
         ..  container:: example
 
@@ -555,7 +574,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         ..  container:: example
 
-            Lists abjad score directory paths:
+            Lists Abjad score directory paths:
 
             ::
 
