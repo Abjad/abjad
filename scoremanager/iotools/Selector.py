@@ -3,6 +3,7 @@ import collections
 import os
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
+from abjad.tools import rhythmmakertools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -272,6 +273,9 @@ class Selector(ScoreManagerObject):
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
             if issubclass(class_, datastructuretools.TypedList):
+                if hasattr(class_, '_attribute_manifest'):
+                    classes.append(class_)
+            elif issubclass(class_, rhythmmakertools.RhythmMaker):
                 if hasattr(class_, '_attribute_manifest'):
                     classes.append(class_)
         classes.append(list)

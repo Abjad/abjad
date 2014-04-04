@@ -337,3 +337,51 @@ def test_MaterialPackageManager_edit_output_09():
         if os.path.exists(path):
             shutil.rmtree(path)
     assert not os.path.exists(path)
+
+
+def test_MaterialPackageManager_edit_output_10():
+    r'''Edits talea rhythm-maker.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    configuration = score_manager._configuration
+    path = os.path.join(
+        configuration.user_library_material_packages_directory_path,
+        'testrhythmmaker',
+        )
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'output.py',
+        ]
+    talea = rhythmmakertools.Talea(
+        counts=(-1, 2, -3, 4),
+        denominator=16,
+        )
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=talea,
+        split_divisions_by_counts=(6,),
+        extra_counts_per_division=(2, 3),
+        )
+
+    assert not os.path.exists(path)
+    try:
+        input_ = 'm nmc TaleaRhythmMaker testrhythmmaker'
+        input_ += ' talea counts (-1, 2, -3, 4) denominator 16 done'
+        input_ += ' split (6,)'
+        input_ += ' extra (2, 3)'
+        input_ += ' done default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(path)
+        session = scoremanager.core.Session(is_test=True)
+        manager = scoremanager.managers.MaterialPackageManager
+        manager = manager(path=path, session=session)
+        assert manager._list() == directory_entries
+        output_material = manager._execute_output_module()
+        assert output_material == maker
+        input_ = 'm testrhythmmaker rm remove q'
+        score_manager._run(pending_user_input=input_)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)

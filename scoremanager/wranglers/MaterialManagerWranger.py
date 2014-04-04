@@ -88,6 +88,7 @@ class MaterialManagerWrangler(Wrangler):
             'MarkupInventoryMaterialManager',
             'OctaveTranspositionMappingInventoryMaterialManager',
             'PitchRangeInventoryMaterialManager',
+            'RhythmMakerMaterialManager',
             'TempoInventoryMaterialManager',
             )
         if class_name in prototype:

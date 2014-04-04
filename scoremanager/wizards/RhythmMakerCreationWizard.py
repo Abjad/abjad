@@ -22,9 +22,7 @@ class RhythmMakerCreationWizard(Wizard):
             target=target,
             )
         selector = iotools.Selector(session=self._session)
-        selector = selector.make_rhythm_maker_class_name_selector(
-            session=self._session,
-            )
+        selector = selector.make_rhythm_maker_class_name_selector()
         self._selector = selector
         self._handler_editor_class_name_suffix = 'Editor'
 
