@@ -252,8 +252,7 @@ class MaterialPackageManager(PackageManager):
         result = self._output_module_manager._execute(
             attribute_names=attribute_names,
             )
-        if result:
-            assert len(result) == 1
+        if result and len(result) == 1:
             output_material = result[0]
             return output_material
 
@@ -264,7 +263,8 @@ class MaterialPackageManager(PackageManager):
         return False
 
     def _get_output_material_editor(self, target):
-        assert target is not None
+        if target is None:
+            return
         from scoremanager import iotools
         prototype = (datastructuretools.TypedList, list)
         if isinstance(target, prototype):
@@ -444,6 +444,8 @@ class MaterialPackageManager(PackageManager):
             return
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(target=output_material)
+        if not editor:
+            return
         lines = editor._get_target_summary_lines()
         lines = lines or ['(empty)']
         section = menu.make_material_summary_section(lines=lines)

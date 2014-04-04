@@ -413,8 +413,7 @@ def test_ArticulationHandlerMaterialManager_edit_output_material_01():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc articulation testarticulationhandler default'
-        input_ += ' reiterated'
+        input_ = 'm nmc ReiteratedArticulationHandler'
         input_ += " ['^', '.'] (1, 64) (1, 4) c c'''' done default"
         input_ += ' q'
         score_manager._run(pending_user_input=input_)

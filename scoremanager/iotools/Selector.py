@@ -270,6 +270,7 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
+        from experimental.tools import handlertools
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
             if issubclass(class_, datastructuretools.TypedList):
@@ -278,6 +279,11 @@ class Selector(ScoreManagerObject):
             elif issubclass(class_, rhythmmakertools.RhythmMaker):
                 if hasattr(class_, '_attribute_manifest'):
                     classes.append(class_)
+        modules = (handlertools,)
+        for class_ in documentationtools.list_all_experimental_classes(
+            modules=modules):
+            if hasattr(class_, '_attribute_manifest'):
+                classes.append(class_)
         classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(
