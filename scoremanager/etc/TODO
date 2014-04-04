@@ -148,5 +148,3 @@
 
 31. Remove MaterialManagerWrangler after only MaterialPackageManager remains.
     (Odd that the class doesn't currently appear in the API.)
-
-32. Remove RhythmMakerCreationWizard entirely already?
