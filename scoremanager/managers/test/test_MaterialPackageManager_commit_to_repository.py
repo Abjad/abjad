@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialManager_commit_to_repository_01():
+def test_MaterialPackageManager_commit_to_repository_01():
 
     wrangler = score_manager._material_package_wrangler
     manager = wrangler._find_git_manager()
@@ -15,7 +15,7 @@ def test_MaterialManager_commit_to_repository_01():
     assert manager._session._attempted_to_commit_to_repository
 
 
-def test_MaterialManager_commit_to_repository_02():
+def test_MaterialPackageManager_commit_to_repository_02():
 
     wrangler = score_manager._material_package_wrangler
     manager = wrangler._find_svn_manager()

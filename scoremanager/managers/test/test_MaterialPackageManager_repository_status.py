@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialManager_repository_status_01():
+def test_MaterialPackageManager_repository_status_01():
     r'''Works with Git.
     '''
 
@@ -15,7 +15,7 @@ def test_MaterialManager_repository_status_01():
     assert string in score_manager._transcript.titles
 
 
-def test_MaterialManager_repository_status_02():
+def test_MaterialPackageManager_repository_status_02():
     r'''Works with Subversion.
     '''
 

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialManager_doctest_01():
+def test_MaterialPackageManager_doctest_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m tempo~inventory pyd default q'

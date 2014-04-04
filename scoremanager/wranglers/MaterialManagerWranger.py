@@ -85,6 +85,7 @@ class MaterialManagerWrangler(Wrangler):
             return manager
         prototype = (
             'MarkupInventoryMaterialManager',
+            'OctaveTranspositionMappingInventoryMaterialManager',
             'PitchRangeInventoryMaterialManager',
             'TempoInventoryMaterialManager',
             )

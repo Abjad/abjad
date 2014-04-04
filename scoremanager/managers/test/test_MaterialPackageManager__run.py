@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialManager__run_01():
+def test_MaterialPackageManager__run_01():
     r'''Global materials: quit, back, home, score & junk all work.
     '''
 
@@ -29,7 +29,7 @@ def test_MaterialManager__run_01():
     assert score_manager._transcript.signature == (8, (4, 6))
 
 
-def test_MaterialManager__run_02():
+def test_MaterialPackageManager__run_02():
     r'''Global materials: breadcrumbs work.
     '''
 
@@ -41,7 +41,7 @@ def test_MaterialManager__run_02():
     assert score_manager._transcript.last_title == string
 
 
-def test_MaterialManager__run_03():
+def test_MaterialPackageManager__run_03():
     r'''Score materials: quit, back, home, score & junk all work.
     '''
 
@@ -67,7 +67,7 @@ def test_MaterialManager__run_03():
     assert score_manager._transcript.signature == (10, (6, 8))
 
 
-def test_MaterialManager__run_04():
+def test_MaterialPackageManager__run_04():
     r'''Score materials: breadcrumbs work.
     '''
 
@@ -78,7 +78,7 @@ def test_MaterialManager__run_04():
     assert score_manager._transcript.last_title == string
 
 
-def test_MaterialManager__run_05():
+def test_MaterialPackageManager__run_05():
     r'''Segment navigation works.
     '''
 

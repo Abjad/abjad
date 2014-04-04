@@ -13,7 +13,6 @@ def test_MaterialManagerWrangler__list_asset_paths_01():
         'ArticulationHandlerMaterialManager.py',
         'DynamicHandlerMaterialManager.py',
         'ListMaterialManager.py',
-        'OctaveTranspositionMappingInventoryMaterialManager.py',
         'RhythmMakerMaterialManager.py',
         'SargassoMeasureMaterialManager.py',
         ]

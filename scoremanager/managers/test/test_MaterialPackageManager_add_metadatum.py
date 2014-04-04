@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialManager_add_metadatum_01():
+def test_MaterialPackageManager_add_metadatum_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
 
