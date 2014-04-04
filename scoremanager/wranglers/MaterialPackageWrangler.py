@@ -181,21 +181,18 @@ class MaterialPackageWrangler(Wrangler):
                 result.append(path)
         return result
 
-    # TODO: encapsulate in separate methods
+    def _make_asset_menu_section(self, menu):
+        entries = self._make_asset_menu_entries()
+        if not entries:
+            return
+        section = menu.make_asset_section(name='assets')
+        for entry in entries:
+            section.append(entry)
+
     def _make_main_menu(self, name='material package wrangler'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
-        asset_menu_entries = self._make_asset_menu_entries()
-        if asset_menu_entries:
-            section = menu.make_asset_section(name='assets')
-            for menu_entry in asset_menu_entries:
-                section.append(menu_entry)
-        section = menu.make_command_section(name='material')
-        section.append(('material - new by hand', 'nmh'))
-        section.append(('material - new for editable mainline class', 'nmc'))
-        section.append(('material - new with manager', 'nmm'))
+        menu = self._io_manager.make_menu(where=self._where, name=name)
+        self._make_asset_menu_section(menu)
+        self._make_material_command_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
@@ -222,6 +219,12 @@ class MaterialPackageWrangler(Wrangler):
         if class_name is not None:
             metadata['material_manager_class_name'] = class_name
         self._make_material_package(path, metadata=metadata)
+
+    def _make_material_command_menu_section(self, menu):
+        section = menu.make_command_section(name='material')
+        section.append(('material - new by hand', 'nmh'))
+        section.append(('material - new for editable mainline class', 'nmc'))
+        section.append(('material - new with manager', 'nmm'))
 
     def _make_material_package(
         self, 
