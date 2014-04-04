@@ -1,11 +1,26 @@
 # -*- encoding: utf-8 -*-
 import os
+import pytest
 import shutil
 from abjad import *
 import scoremanager
 
 
 def test_MaterialPackageManager_edit_output_01():
+    '''Edit menu has correct header.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    input_ = 'm example~markup~inventory me q'
+    score_manager._run(pending_user_input=input_)
+    transcript = score_manager._transcript
+
+    string = 'Score manager - material library -'
+    string += ' example markup inventory (Abjad) - markup inventory'
+    assert transcript.last_title == string
+
+
+def test_MaterialPackageManager_edit_output_02():
     r'''Edits tempo inventory.
     '''
 
@@ -46,7 +61,7 @@ def test_MaterialPackageManager_edit_output_01():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageManager_edit_output_02():
+def test_MaterialPackageManager_edit_output_03():
     r'''Edits empty pitch range inventory.
     '''
 
@@ -82,7 +97,7 @@ def test_MaterialPackageManager_edit_output_02():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageManager_edit_output_03():
+def test_MaterialPackageManager_edit_output_04():
     r'''Edits populated pitch range inventory.
     '''
 
@@ -125,7 +140,7 @@ def test_MaterialPackageManager_edit_output_03():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageManager_edit_output_04():
+def test_MaterialPackageManager_edit_output_05():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
@@ -170,7 +185,7 @@ def test_MaterialPackageManager_edit_output_04():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageManager_edit_output_05():
+def test_MaterialPackageManager_edit_output_06():
     r'''Edits empty octave transposition mapping inventory.
     '''
 
@@ -207,7 +222,7 @@ def test_MaterialPackageManager_edit_output_05():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageManager_edit_output_06():
+def test_MaterialPackageManager_edit_output_07():
     r'''Edits populated octave transposition mapping inventory.
     '''
 
@@ -250,6 +265,73 @@ def test_MaterialPackageManager_edit_output_06():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm testoctavetrans rm remove q'
+        score_manager._run(pending_user_input=input_)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
+
+
+def test_MaterialPackageManager_edit_output_08():
+    pytest.skip('make autoadding work again.')
+
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    configuration = score_manager._configuration
+    path = os.path.join(
+        configuration.user_library_material_packages_directory_path,
+        'testlist',
+        )
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'output.py',
+        ]
+
+    assert not os.path.exists(path)
+    try:
+        input_ = 'm nmm list testlist 17 foo done b default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(path)
+        session = scoremanager.core.Session(is_test=True)
+        manager = scoremanager.managers.MaterialPackageManager
+        manager = manager(path=path, session=session)
+        assert manager._list() == directory_entries
+        output_material = manager._execute_output_module()
+        assert output_material == [17, 'foo']
+        input_ = 'm testlist rm remove q'
+        score_manager._run(pending_user_input=input_)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
+
+
+def test_MaterialPackageManager_edit_output_09():
+
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    configuration = score_manager._configuration
+    path = os.path.join(
+        configuration.user_library_material_packages_directory_path,
+        'testlist',
+        )
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'output.py',
+        ]
+
+    assert not os.path.exists(path)
+    try:
+        input_ = 'm nmc list testlist add 17 add foo done default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(path)
+        session = scoremanager.core.Session(is_test=True)
+        manager = scoremanager.managers.MaterialPackageManager
+        manager = manager(path=path, session=session)
+        assert manager._list() == directory_entries
+        output_material = manager._execute_output_module()
+        assert output_material == [17, 'foo']
+        input_ = 'm testlist rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

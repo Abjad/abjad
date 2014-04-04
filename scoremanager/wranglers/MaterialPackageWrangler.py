@@ -290,7 +290,10 @@ class MaterialPackageWrangler(Wrangler):
             )
         manager._add_metadatum('output_class_name', class_.__name__)
         empty_target = class_()
-        storage_format = format(empty_target, 'storage')
+        if type(empty_target) is list:
+            storage_format = repr(empty_target)
+        else:
+            storage_format = format(empty_target, 'storage')
         body_lines = '{} = {}'.format(
             manager._package_name,
             storage_format,

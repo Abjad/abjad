@@ -152,3 +152,6 @@
 31. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
+
+32. Remove MaterialManagerWrangler after only MaterialPackageManager remains.
+    (Odd that the class doesn't currently appear in the API.)

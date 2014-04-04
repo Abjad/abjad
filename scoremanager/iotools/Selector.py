@@ -274,6 +274,7 @@ class Selector(ScoreManagerObject):
             if issubclass(class_, datastructuretools.TypedList):
                 if hasattr(class_, '_attribute_manifest'):
                     classes.append(class_)
+        classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(
             session=self._session,

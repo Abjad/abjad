@@ -12,7 +12,6 @@ def test_MaterialManagerWrangler__list_asset_paths_01():
     file_names = [
         'ArticulationHandlerMaterialManager.py',
         'DynamicHandlerMaterialManager.py',
-        'ListMaterialManager.py',
         'RhythmMakerMaterialManager.py',
         'SargassoMeasureMaterialManager.py',
         ]
