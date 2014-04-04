@@ -140,14 +140,11 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-28. Remove AttributeManifest._target_class after removing PerformerEditor and
-    ListEditor.
-
-29. Remove 'material_manager_class_name' key from all metadata modules.
+28. Remove 'material_manager_class_name' key from all metadata modules.
     Do this after collapsing all material package manager classes.
 
-30. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
+29. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
 
-31. Add 'illustration ly - remove from repository' (lyrm!) to work with
+30. Add 'illustration ly - remove from repository' (lyrm!) to work with
     'illustration ly - remove' (lyrm).
