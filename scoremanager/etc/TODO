@@ -23,7 +23,6 @@
     InstrumentationSpecifierMaterialManager.
 
 10. These four classes can all be collapsed into one:
-        wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
