@@ -196,30 +196,6 @@ class MaterialPackageWrangler(Wrangler):
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
-    def _make_managermade_material_package(self, path, class_name):
-        command = 'from scoremanager.managers'
-        command += ' import {} as material_manager_class'
-        command = command.format(class_name)
-        try:
-            exec(command)
-        except ImportError:
-            command = 'from {} import {} as material_manager_class'
-            configuration = self._configuration
-            path = configuration.user_library_material_packages_directory_path
-            package_path = self._configuration.path_to_package_path(path)
-            command = command.format(
-                package_path,
-                class_name,
-                )
-            try:
-                exec(command)
-            except:
-                traceback.print_exc()
-        metadata = {}
-        if class_name is not None:
-            metadata['material_manager_class_name'] = class_name
-        self._make_material_package(path, metadata=metadata)
-
     def _make_material_command_menu_section(self, menu):
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
@@ -241,10 +217,7 @@ class MaterialPackageWrangler(Wrangler):
         pair = (material_manager_class_name, path)
         manager = self._get_appropriate_material_manager(*pair)
         manager._initializer_file_manager._write_stub()
-        manager.rewrite_metadata_module(
-            metadata, 
-            prompt=False,
-            )
+        manager.rewrite_metadata_module(metadata, prompt=False)
         if not manager._get_metadatum('material_manager_class_name'):
             manager._write_definition_module_stub(prompt=False)
         if manager._user_input_wrapper_in_memory:
@@ -289,7 +262,10 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_managermade_material_package(path, class_name)
+        metadata = {}
+        assert class_name is not None
+        metadata['material_manager_class_name'] = class_name
+        self._make_material_package(path, metadata=metadata)
         manager = self._get_appropriate_material_manager(class_name, path)
         manager._run_first_time()
 
@@ -312,9 +288,6 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_material_package_for_editable_mainline_class(
-            class_name,
-            path,
-            )
-        manager = self._get_appropriate_material_manager(class_name, path)
-        manager._run_first_time()
+        self._make_material_package(path)
+        #manager = self._get_appropriate_material_manager(class_name, path)
+        #manager._run_first_time()
