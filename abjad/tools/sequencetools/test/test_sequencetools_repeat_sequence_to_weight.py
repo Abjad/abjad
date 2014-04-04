@@ -13,7 +13,7 @@ def test_sequencetools_repeat_sequence_to_weight_02():
 
     sequence = [mathtools.NonreducedFraction(3, 16)]
     sequence = sequencetools.repeat_sequence_to_weight(
-        sequence, 
+        sequence,
         mathtools.NonreducedFraction(5, 4),
         )
 

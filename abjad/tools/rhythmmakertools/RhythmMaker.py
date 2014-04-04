@@ -142,7 +142,7 @@ class RhythmMaker(AbjadObject):
             divisions,
             )
         return lilypond_file
-        
+
     ### PRIVATE METHODS ###
 
     @staticmethod

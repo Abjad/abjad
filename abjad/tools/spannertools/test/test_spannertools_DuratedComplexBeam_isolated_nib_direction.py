@@ -25,7 +25,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
-    r'''Do not span isolated_nib_direction note when isolated_nib_direction 
+    r'''Do not span isolated_nib_direction note when isolated_nib_direction
     is set to false.
     '''
 

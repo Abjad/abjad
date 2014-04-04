@@ -135,7 +135,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def is_pitched(self):
-        r'''Gets and sets boolean equal to  true if leaf is pitched. 
+        r'''Gets and sets boolean equal to  true if leaf is pitched.
         Otherwise false.
 
         ::

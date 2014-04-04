@@ -83,7 +83,7 @@ def test_scoretools_make_notes_08():
     r'''Decrease durations monotonically.
     '''
 
-    true = scoretools.make_notes(1, (5, 16), 
+    true = scoretools.make_notes(1, (5, 16),
         decrease_durations_monotonically=True)
     assert len(true) == 2
     assert true[0].written_duration == Duration(4, 16)
@@ -94,7 +94,7 @@ def test_scoretools_make_notes_09():
     r'''Increase durations monotonically.
     '''
 
-    false = scoretools.make_notes(1, (5, 16), 
+    false = scoretools.make_notes(1, (5, 16),
         decrease_durations_monotonically=False)
     assert len(false) == 2
     assert false[0].written_duration == Duration(1, 16)
@@ -142,7 +142,7 @@ def test_scoretools_make_notes_11():
 
 def test_scoretools_make_notes_12():
 
-    t = scoretools.make_notes(1, [(5, 12), (1, 6), (1, 8)], 
+    t = scoretools.make_notes(1, [(5, 12), (1, 6), (1, 8)],
         decrease_durations_monotonically=False)
     assert len(t) == 2
     assert isinstance(t[0], Tuplet)

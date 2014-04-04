@@ -4,9 +4,9 @@ from abjad.tools import selectiontools
 
 
 def make_leaves_from_talea(
-    talea, 
+    talea,
     talea_denominator,
-    decrease_durations_monotonically=True, 
+    decrease_durations_monotonically=True,
     tie_rests=False,
     forbidden_written_duration=None,
     ):
@@ -19,7 +19,7 @@ def make_leaves_from_talea(
     Set the pitch of all notes to middle C.
 
     ..  container:: example
-    
+
         **Example 1.** Make leaves from talea:
 
         ::
@@ -45,7 +45,7 @@ def make_leaves_from_talea(
             }
 
     ..  container:: example
-    
+
         **Example 2.** Increase durations monotonically:
 
         ::
@@ -73,8 +73,8 @@ def make_leaves_from_talea(
             }
 
     ..  container:: example
-    
-        **Example 3.** Forbid written durations greater than or equal 
+
+        **Example 3.** Forbid written durations greater than or equal
         to a half note:
 
         ::
@@ -116,10 +116,10 @@ def make_leaves_from_talea(
         else:
             pitches = [None]
         leaves = scoretools.make_leaves(
-            pitches, 
+            pitches,
             [durationtools.Duration(abs(note_value), talea_denominator)],
             decrease_durations_monotonically=decrease_durations_monotonically,
-            tie_rests=tie_rests, 
+            tie_rests=tie_rests,
             forbidden_written_duration=forbidden_written_duration,
             )
         result.extend(leaves)

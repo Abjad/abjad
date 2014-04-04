@@ -109,7 +109,7 @@ class RootedChordClass(PitchClassSet):
         return super(RootedChordClass, self).__hash__()
 
     def __ne__(self, arg):
-        r'''Is true when rooted chord-class does not equal `arg`. Otherwise 
+        r'''Is true when rooted chord-class does not equal `arg`. Otherwise
         false.
 
         Returns boolean.

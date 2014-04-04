@@ -786,7 +786,7 @@ def test_agenttools_MutationAgent_copy_15():
 
 
 def test_agenttools_MutationAgent_copy_16():
-    r'''Copy consecutive leaves from tuplet in measure with power-of-two 
+    r'''Copy consecutive leaves from tuplet in measure with power-of-two
     denominator. Measure without power-of-two denominator results.
     Includes enclosing containers.
     '''
@@ -1095,7 +1095,7 @@ def test_agenttools_MutationAgent_copy_21():
 
 
 def test_agenttools_MutationAgent_copy_22():
-    r'''Copy consecutive leaves from in-staff measure without 
+    r'''Copy consecutive leaves from in-staff measure without
     power-of-two denominator. Pass start and stop indices local to measure.
     Includes enclosing containers.
     '''

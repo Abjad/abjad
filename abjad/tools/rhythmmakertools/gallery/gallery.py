@@ -16,7 +16,7 @@ gallery_division_lists = (
     ],
     [
         (3, 15), (3, 15), (3, 16),
-        (5, 24), (5, 24), (5, 16), 
+        (5, 24), (5, 24), (5, 16),
         (2, 12), (2, 12), (2, 8),
         (3, 28), (3, 28), (3, 16),
         (1, 9), (1, 9), (1, 8),
@@ -247,7 +247,7 @@ def make_configurations_by_class():
         )
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
-        
+
     maker = EvenRunRhythmMaker(
         exponent=1,
         )

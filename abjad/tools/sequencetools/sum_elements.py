@@ -3,9 +3,9 @@ import fractions
 
 
 def sum_elements(
-    sequence, 
-    pairs, 
-    period=None, 
+    sequence,
+    pairs,
+    period=None,
     overhang=True,
     ):
     '''Sums `sequence` elements at indices according to `pairs`.
@@ -15,7 +15,7 @@ def sum_elements(
         >>> sequencetools.sum_elements(range(10), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
-    Sums `sequence` elements cyclically at indices according to `pairs` 
+    Sums `sequence` elements cyclically at indices according to `pairs`
     and `period`:
 
     ::
@@ -23,7 +23,7 @@ def sum_elements(
         >>> sequencetools.sum_elements(range(10), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]
 
-    Sums `sequence` elements cyclically at indices according to `pairs` 
+    Sums `sequence` elements cyclically at indices according to `pairs`
     and `period` and do not return incomplete final sum:
 
     ::

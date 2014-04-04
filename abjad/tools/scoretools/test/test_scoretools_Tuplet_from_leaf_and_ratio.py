@@ -31,8 +31,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        [1, 2, 2, 3], 
+        note,
+        [1, 2, 2, 3],
         is_diminution=False,
         )
 
@@ -50,8 +50,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        [1, 2, 2, 3, 3], 
+        note,
+        [1, 2, 2, 3, 3],
         is_diminution=False,
         )
 
@@ -70,8 +70,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        [1, 2, 2, 3, 3, 4], 
+        note,
+        [1, 2, 2, 3, 3, 4],
         is_diminution=False,
         )
 
@@ -134,8 +134,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        [1, 2, 2, 3, 3], 
+        note,
+        [1, 2, 2, 3, 3],
         is_diminution=True,
         )
 
@@ -154,8 +154,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        [1, 2, 2, 3, 3, 4], 
+        note,
+        [1, 2, 2, 3, 3, 4],
         is_diminution=True,
         )
 
@@ -181,8 +181,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
     note = Note("c'8.")
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        1 * [1], 
+        note,
+        1 * [1],
         is_diminution=False,
         )
 
@@ -196,8 +196,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        2 * [1], 
+        note,
+        2 * [1],
         is_diminution=False,
         )
 
@@ -212,8 +212,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        3 * [1], 
+        note,
+        3 * [1],
         is_diminution=False,
         )
 
@@ -229,8 +229,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        4 * [1], 
+        note,
+        4 * [1],
         is_diminution=False,
         )
 
@@ -247,8 +247,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        5 * [1], 
+        note,
+        5 * [1],
         is_diminution=False,
         )
 
@@ -274,8 +274,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
     note = Note("c'8.")
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        1 * [1], 
+        note,
+        1 * [1],
         is_diminution=True,
         )
 
@@ -289,8 +289,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        2 * [1], 
+        note,
+        2 * [1],
         is_diminution=True,
         )
 
@@ -305,8 +305,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        3 * [1], 
+        note,
+        3 * [1],
         is_diminution=True,
         )
 
@@ -322,8 +322,8 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 
-        4 * [1], 
+        note,
+        4 * [1],
         is_diminution=True,
         )
 

@@ -8,7 +8,7 @@ class InstrumentInventory(TypedList):
     ::
 
         >>> inventory = instrumenttools.InstrumentInventory([
-        ...     instrumenttools.Flute(), 
+        ...     instrumenttools.Flute(),
         ...     instrumenttools.Guitar()
         ...     ])
 

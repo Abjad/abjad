@@ -25,7 +25,7 @@ class GraphvizEdge(GraphvizObject):
         if args:
             assert len(args) == 2
             assert all(isinstance(x,
-                (documentationtools.GraphvizSubgraph, 
+                (documentationtools.GraphvizSubgraph,
                     documentationtools.GraphvizNode))
                 for x in args)
             tail, head = args
@@ -79,7 +79,7 @@ class GraphvizEdge(GraphvizObject):
     @property
     def is_directed(self):
         r'''Is true when Graphviz edge is directed. Otherwise false.
-        
+
         Returns boolean.
         '''
         return self._is_directed

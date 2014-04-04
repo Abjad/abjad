@@ -4,10 +4,10 @@ from abjad.tools.topleveltools import iterate
 
 
 def color_measures_with_non_power_of_two_denominators_in_expr(
-    expr, 
+    expr,
     color='red',
     ):
-    r'''Colors measures with non-power-of-two denominators in `expr` 
+    r'''Colors measures with non-power-of-two denominators in `expr`
     with `color`.
 
     ::

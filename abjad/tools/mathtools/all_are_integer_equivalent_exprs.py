@@ -2,7 +2,7 @@
 
 
 def all_are_integer_equivalent_exprs(expr):
-    '''Is true when `expr` is a sequence and all elements in `expr` are 
+    '''Is true when `expr` is a sequence and all elements in `expr` are
     integer-equivalent expressions.
 
     ::

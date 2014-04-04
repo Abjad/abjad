@@ -50,7 +50,7 @@ def make_ligeti_example_lilypond_file(music=None):
         source_context_name='Staff',
         )
     lilypond_file.layout_block.items.append(context_block)
-    # LilyPond CAUTION: Timing_translator must appear 
+    # LilyPond CAUTION: Timing_translator must appear
     #                   before Default_bar_line_engraver!
     context_block.consists_commands.append('Timing_translator')
     context_block.consists_commands.append('Default_bar_line_engraver')
@@ -61,7 +61,7 @@ def make_ligeti_example_lilypond_file(music=None):
         source_context_name='RhythmicStaff',
         )
     lilypond_file.layout_block.items.append(context_block)
-    # LilyPond CAUTION: Timing_translator must appear 
+    # LilyPond CAUTION: Timing_translator must appear
     #                   before Default_bar_line_engraver!
     context_block.consists_commands.append('Timing_translator')
     context_block.consists_commands.append('Default_bar_line_engraver')

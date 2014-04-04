@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_scoretools_Staff___copy___01():
-    r'''Staves (shallow) copy grob overrides and context settings 
+    r'''Staves (shallow) copy grob overrides and context settings
     but not musical content.
     '''
 

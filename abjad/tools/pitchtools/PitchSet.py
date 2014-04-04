@@ -43,7 +43,7 @@ class PitchSet(Set):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitch
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -74,9 +74,9 @@ class PitchSet(Set):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes pitch set from `selection`.
 
@@ -87,7 +87,7 @@ class PitchSet(Set):
             >>> selection = select((staff_1, staff_2))
             >>> pitchtools.PitchSet.from_selection(selection)
             PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
-        
+
         Returns pitch set.
         '''
         from abjad.tools import pitchtools
@@ -108,7 +108,7 @@ class PitchSet(Set):
     def is_equivalent_under_transposition(self, expr):
         r'''True if pitch set is equivalent to `expr` under transposition.
         Otherwise false.
-        
+
         Returns boolean.
         '''
         from abjad.tools import pitchtools

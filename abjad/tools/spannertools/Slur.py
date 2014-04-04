@@ -25,7 +25,7 @@ class Slur(Spanner):
                 e'8
                 f'8 )
             }
-            
+
     Formats LilyPond ``(`` command on first leaf in spanner.
 
     Formats LilyPond ``)`` command on last leaf in spanner.

@@ -5,7 +5,7 @@ from abjad import *
 def test_scoretools_MultimeasureRest___init___01():
     r'''Initializes multimeasure rest from empty input.
     '''
-    
+
     multimeasure_rest = scoretools.MultimeasureRest()
 
     assert systemtools.TestManager.compare(

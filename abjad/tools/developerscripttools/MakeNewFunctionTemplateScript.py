@@ -108,7 +108,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
-        
+
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -119,7 +119,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
         path_group.add_argument('-X', '--experimental',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_experimental_directory_path, 
+                abjad_configuration.abjad_experimental_directory_path,
                 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',

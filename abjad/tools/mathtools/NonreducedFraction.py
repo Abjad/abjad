@@ -32,7 +32,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         >>> mathtools.NonreducedFraction((3,))
         NonreducedFraction(3, 1)
 
-    Similar to built-in fraction except that numerator and denominator 
+    Similar to built-in fraction except that numerator and denominator
     do not reduce.
 
     Nonreduced fractions inherit from built-in fraction:
@@ -53,7 +53,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         >>> isinstance(mathtools.NonreducedFraction(3, 6), numbers.Number)
         True
 
-    Nonreduced fraction initialization requires more function calls that 
+    Nonreduced fraction initialization requires more function calls that
     fraction initialization.
     But nonreduced fraction initialization is reasonably fast anyway:
 
@@ -76,7 +76,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_numerator', 
+        '_numerator',
         '_denominator',
         )
 
@@ -625,7 +625,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return NonreducedFraction(result_numerator, result_denominator)
 
     def multiply_with_numerator_preservation(self, multiplier):
-        r'''Multiplies nonreduced fraction by `multiplier` with numerator 
+        r'''Multiplies nonreduced fraction by `multiplier` with numerator
         preservation where possible.
 
         ::
@@ -745,7 +745,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             return type(self)(n, d)
 
     def with_multiple_of_denominator(self, denominator):
-        r'''Returns new nonreduced fraction with multiple of integer 
+        r'''Returns new nonreduced fraction with multiple of integer
         `denominator`.
 
         ::

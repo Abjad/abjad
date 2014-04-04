@@ -13,7 +13,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
     clef = Clef('bass')
     attach(clef, staff_group[1])
     score.append(staff_group)
-        
+
     assert systemtools.TestManager.compare(
         score,
         r'''
@@ -102,28 +102,28 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
 
     moment = inspect_(staff_group[1][0]).get_vertical_moment()
     assert moment.leaves == (
-        score[0][0][0], 
-        staff_group[0][0], 
+        score[0][0][0],
+        staff_group[0][0],
         staff_group[1][0],
         )
 
     moment = inspect_(staff_group[1][1]).get_vertical_moment()
     assert moment.leaves == (
-        score[0][0][0], 
-        staff_group[0][0], 
+        score[0][0][0],
+        staff_group[0][0],
         staff_group[1][1],
         )
 
     moment = inspect_(staff_group[1][2]).get_vertical_moment()
     assert moment.leaves == (
-        score[0][0][1], 
-        staff_group[0][1], 
+        score[0][0][1],
+        staff_group[0][1],
         staff_group[1][2],
         )
 
     moment = inspect_(staff_group[1][3]).get_vertical_moment()
     assert moment.leaves == (
-        score[0][0][2], 
-        staff_group[0][1], 
+        score[0][0][2],
+        staff_group[0][1],
         staff_group[1][3],
         )

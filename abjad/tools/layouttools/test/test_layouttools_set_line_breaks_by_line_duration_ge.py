@@ -13,7 +13,7 @@ def test_layouttools_set_line_breaks_by_line_duration_ge_01():
     staff.append(Measure((2, 8), "g'8 a'8"))
     staff.append(Measure((2, 8), "b'8 c''8"))
     layouttools.set_line_breaks_by_line_duration_ge(
-        staff, 
+        staff,
         Duration(4, 8),
         )
 
@@ -58,8 +58,8 @@ def test_layouttools_set_line_breaks_by_line_duration_ge_02():
     staff.append(Measure((2, 8), "g'8 a'8"))
     staff.append(Measure((2, 8), "b'8 c''8"))
     layouttools.set_line_breaks_by_line_duration_ge(
-        staff, 
-        Duration(1, 8), 
+        staff,
+        Duration(1, 8),
         line_break_class=scoretools.Leaf,
         )
 

@@ -68,7 +68,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         # make RH voice and staff
         rh_voice = scoretools.Voice(name='RH Voice')
         rh_staff = scoretools.Staff(
-            [rh_voice], 
+            [rh_voice],
             name='RH Staff',
             )
         clef = indicatortools.Clef('treble')
@@ -77,7 +77,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         # make LH voice and staff
         lh_voice = scoretools.Voice(name='LH Voice')
         lh_staff = scoretools.Staff(
-            [lh_voice], 
+            [lh_voice],
             name='LH Staff',
             )
         clef = indicatortools.Clef('bass')
@@ -85,7 +85,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
         # make piano staff
         staff_group = scoretools.StaffGroup(
-            [rh_staff, lh_staff], 
+            [rh_staff, lh_staff],
             context_name='PianoStaff',
             name='Piano Staff',
             )
@@ -94,7 +94,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
         # make two-staf piano score
         two_staff_piano_score = scoretools.Score(
-            [staff_group], 
+            [staff_group],
             name='Two-Staff Piano Score',
             )
 

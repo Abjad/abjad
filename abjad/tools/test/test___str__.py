@@ -23,7 +23,7 @@ classes = documentationtools.list_all_abjad_classes()
 def test___str___01(class_):
     r'''All concrete classes have a string representation.
 
-    With the exception of the exception classes. And those classes listed 
+    With the exception of the exception classes. And those classes listed
     explicitly here.
     '''
 

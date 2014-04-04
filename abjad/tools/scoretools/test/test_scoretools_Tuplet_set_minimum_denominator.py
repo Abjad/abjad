@@ -27,7 +27,7 @@ def test_scoretools_Tuplet_set_minimum_denominator_01():
 def test_scoretools_Tuplet_set_minimum_denominator_02():
 
     tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
-    tuplet.set_minimum_denominator(16) 
+    tuplet.set_minimum_denominator(16)
 
     assert systemtools.TestManager.compare(
         tuplet,

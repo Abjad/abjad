@@ -26,7 +26,7 @@ def test_indicatortools_TimeSignature___init___02():
 
 
 def test_indicatortools_TimeSignature___init___03():
-    r'''Initializes time signature from other time signature 
+    r'''Initializes time signature from other time signature
     instance with partial.
     '''
 

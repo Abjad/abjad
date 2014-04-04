@@ -158,8 +158,8 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {'**': [
-#    'relations.html', 
-#    'localtoc.html', 
+#    'relations.html',
+#    'localtoc.html',
 #    'globaltoc.html',
 #    'sourcelink.html',
 #    'searchbox.html',
@@ -228,15 +228,15 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   (
-  'index', 
-  'Abjad.tex', 
+  'index',
+  'Abjad.tex',
   u'Abjad Documentation',
-  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán', 
+  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán',
   'manual',
   ),
   (
-  'api/index', 
-  'AbjadAPI.tex', 
+  'api/index',
+  'AbjadAPI.tex',
   u'Abjad API',
   u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán',
   'manual',
@@ -270,8 +270,8 @@ latex_domain_indices = False
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (
-    'index', 
-    'abjad', 
+    'index',
+    'abjad',
     u'Abjad Documentation',
     [u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer'],
     1,
@@ -289,11 +289,11 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (
-    'index', 
-    'Abjad', 
+    'index',
+    'Abjad',
     u'Abjad Documentation',
-    u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer', 
-    'Abjad', 
+    u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer',
+    'Abjad',
     'One line description of project.',
     'Miscellaneous',
     ),

@@ -27,7 +27,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
             c'16
         }
 
-    Make ad hoc tuplet holding `count` repeated notes with 
+    Make ad hoc tuplet holding `count` repeated notes with
     non-power-of-two `duration`:
 
     ::
@@ -37,7 +37,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
 
     Set pitch of all notes created to middle C.
 
-    Returns list of zero or more newly constructed notes or list 
+    Returns list of zero or more newly constructed notes or list
     of one newly constructed tuplet.
     '''
     from abjad.tools import scoretools

@@ -2,11 +2,11 @@
 
 
 def timespan_2_intersects_timespan_1(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` 
+    r'''Makes time relation indicating that `timespan_2`
     intersects `timespan_1`.
 
     ::

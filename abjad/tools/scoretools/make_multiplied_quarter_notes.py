@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import attach
 
 
 def make_multiplied_quarter_notes(
-    pitches, 
+    pitches,
     multiplied_durations,
     ):
     r'''Make quarter notes with `pitches` and `multiplied_durations`:

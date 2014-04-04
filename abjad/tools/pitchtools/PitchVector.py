@@ -11,7 +11,7 @@ class PitchVector(Vector):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitch
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -26,9 +26,9 @@ class PitchVector(Vector):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes pitch vector from `selection`.
 

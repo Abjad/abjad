@@ -11,8 +11,8 @@ def test_datastructuretools_TreeContainer___len___01():
     leaf_d = datastructuretools.TreeNode()
 
     container = datastructuretools.TreeContainer([
-        leaf_a, 
-        subcontainer, 
+        leaf_a,
+        subcontainer,
         leaf_d,
         ])
 

@@ -29,7 +29,7 @@ def make_floating_time_signature_lilypond_file(music=None):
             ...     lilypondfiletools.make_floating_time_signature_lilypond_file(
             ...     score
             ...     )
-            
+
         ::
 
             >>> print format(lilypond_file) # doctest: +SKIP
@@ -206,7 +206,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Staff',
         )
-        
+
     lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Time_signature_engraver')
 
@@ -220,8 +220,8 @@ def make_floating_time_signature_lilypond_file(music=None):
 
 
 def _make_time_signature_context_block(
-    font_size=3, 
-    minimum_distance=10, 
+    font_size=3,
+    minimum_distance=10,
     padding=4,
     ):
     from abjad.tools import layouttools
@@ -229,7 +229,7 @@ def _make_time_signature_context_block(
     assert isinstance(font_size, (int, float))
     assert isinstance(padding, (int, float))
     context_block = lilypondfiletools.ContextBlock(
-        type_='Engraver_group', 
+        type_='Engraver_group',
         name='TimeSignatureContext',
         )
     context_block.consists_commands.append('Axis_group_engraver')
@@ -245,9 +245,9 @@ def _make_time_signature_context_block(
     override(context_block).time_signature.self_alignment_X = \
         schemetools.Scheme('center')
     spacing_vector = layouttools.make_spacing_vector(
-        0, 
-        minimum_distance, 
-        padding, 
+        0,
+        minimum_distance,
+        padding,
         0,
         )
     override(context_block).vertical_axis_group.default_staff_staff_spacing = \

@@ -48,7 +48,7 @@ class IntervalVector(Vector):
     def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
         if isinstance(items, (
-            pitchtools.PitchSegment, 
+            pitchtools.PitchSegment,
             pitchtools.PitchSet,
             pitchtools.PitchClassSegment,
             pitchtools.PitchClassSet,
@@ -71,7 +71,7 @@ class IntervalVector(Vector):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedInterval
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -86,9 +86,9 @@ class IntervalVector(Vector):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes interval vector from `selection`.
 

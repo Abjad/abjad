@@ -39,11 +39,11 @@ class HiddenStaffSpanner(Spanner):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         overrides=None,
         ):
         Spanner.__init__(
-            self, 
+            self,
             overrides=overrides,
             )
 

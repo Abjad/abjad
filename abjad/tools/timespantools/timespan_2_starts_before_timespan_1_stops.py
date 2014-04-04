@@ -2,11 +2,11 @@
 
 
 def timespan_2_starts_before_timespan_1_stops(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` starts 
+    r'''Makes time relation indicating that `timespan_2` starts
     before `timespan_1` stops.
 
     ::

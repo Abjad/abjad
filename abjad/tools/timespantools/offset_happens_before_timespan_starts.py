@@ -2,16 +2,16 @@
 
 
 def offset_happens_before_timespan_starts(
-    timespan=None, 
-    offset=None, 
+    timespan=None,
+    offset=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `offset` happens 
+    r'''Makes time relation indicating that `offset` happens
     before `timespan` starts.
 
     ..  container:: example
 
-        **Example 1.** Makes time relation indicating that `offset` 
+        **Example 1.** Makes time relation indicating that `offset`
         happens before `timespan` starts:
 
         ::
@@ -29,7 +29,7 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 2.** Makes time relation indicating that offset ``1/2`` 
+        **Example 2.** Makes time relation indicating that offset ``1/2``
         happens before `timespan` starts:
 
         ::
@@ -57,7 +57,7 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 3.** Makes time relation indicating that `offset` happens 
+        **Example 3.** Makes time relation indicating that `offset` happens
         before timespan ``[2, 8)`` starts:
 
         ::
@@ -88,14 +88,14 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 4.** Makes time relation indicating that offset ``1/2`` 
+        **Example 4.** Makes time relation indicating that offset ``1/2``
         happens before timespan ``[2, 8)`` starts:
 
         ::
 
             >>> relation = timespantools.offset_happens_before_timespan_starts(
-            ...     timespan=timespan, 
-            ...     offset=offset, 
+            ...     timespan=timespan,
+            ...     offset=offset,
             ...     hold=True,
             ...     )
 
@@ -118,14 +118,14 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 5.** Evaluates time relation indicating that offset ``1/2`` 
+        **Example 5.** Evaluates time relation indicating that offset ``1/2``
         happens before timespan ``[2, 8)`` starts:
 
         ::
 
             >>> timespantools.offset_happens_before_timespan_starts(
-            ...     timespan=timespan, 
-            ...     offset=offset, 
+            ...     timespan=timespan,
+            ...     offset=offset,
             ...     hold=False,
             ...     )
             True

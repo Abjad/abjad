@@ -42,7 +42,7 @@ class Talea(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a talea with `counts` and `denominator` 
+        r'''Is true when `expr` is a talea with `counts` and `denominator`
         equal to those of this talea. Otherwise false.
 
         Returns boolean.

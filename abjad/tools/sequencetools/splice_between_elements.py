@@ -2,11 +2,11 @@
 
 
 def splice_between_elements(
-    sequence, 
-    new_elements, 
+    sequence,
+    new_elements,
     overhang=(0, 0),
     ):
-    '''Splices copies of `new_elements` between each of the elements 
+    '''Splices copies of `new_elements` between each of the elements
     of `sequence`.
 
     ::
@@ -19,7 +19,7 @@ def splice_between_elements(
         >>> sequencetools.splice_between_elements(sequence, new_elements)
         [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
-    Splices copies of `new_elements` between each of the elements of `sequence` 
+    Splices copies of `new_elements` between each of the elements of `sequence`
     and after the last element of `sequence`:
 
     ::
@@ -38,7 +38,7 @@ def splice_between_elements(
         ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
     Splices copies of `new_elements` before the first element of `sequence`,
-    after the last element of `sequence` and between each of the other 
+    after the last element of `sequence` and between each of the other
     elements of `sequence`:
 
     ::

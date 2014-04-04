@@ -116,7 +116,7 @@ class Instrument(AbjadObject):
         '''
         return hash((
             type(self).__name__,
-            self.instrument_name, 
+            self.instrument_name,
             self.short_instrument_name,
             ))
 
@@ -136,35 +136,35 @@ class Instrument(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='allowable_clefs', 
-                display_string='clefs', 
-                menu_key='cf', 
+                name='allowable_clefs',
+                display_string='clefs',
+                menu_key='cf',
                 editor=indicatortools.ClefInventory,
                 ),
             systemtools.AttributeDetail(
-                name='instrument_name', 
-                menu_key='in', 
-                editor=getters.get_string, 
-                ),
-            systemtools.AttributeDetail(
-                name='instrument_name_markup', 
-                menu_key='im', 
-                editor=getters.get_markup,
-                ),
-            systemtools.AttributeDetail(
-                name='pitch_range', 
-                display_string='range', 
-                menu_key='rg', 
-                editor=getters.get_symbolic_pitch_range_string,
-                ),
-            systemtools.AttributeDetail(
-                name='short_instrument_name', 
-                menu_key='sn', 
+                name='instrument_name',
+                menu_key='in',
                 editor=getters.get_string,
                 ),
             systemtools.AttributeDetail(
-                name='short_instrument_name_markup', 
-                menu_key='sm', 
+                name='instrument_name_markup',
+                menu_key='im',
+                editor=getters.get_markup,
+                ),
+            systemtools.AttributeDetail(
+                name='pitch_range',
+                display_string='range',
+                menu_key='rg',
+                editor=getters.get_symbolic_pitch_range_string,
+                ),
+            systemtools.AttributeDetail(
+                name='short_instrument_name',
+                menu_key='sn',
+                editor=getters.get_string,
+                ),
+            systemtools.AttributeDetail(
+                name='short_instrument_name_markup',
+                menu_key='sm',
                 editor=getters.get_markup,
                 ),
             systemtools.AttributeDetail(
@@ -189,13 +189,13 @@ class Instrument(AbjadObject):
         result = []
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
-            self._scope_name, 
+            self._scope_name,
             self.instrument_name_markup,
             )
         result.append(line)
         line = r'\set {!s}.shortInstrumentName = {!s}'
         line = line.format(
-            self._scope_name, 
+            self._scope_name,
             self.short_instrument_name_markup,
             )
         result.append(line)

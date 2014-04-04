@@ -13,7 +13,7 @@ class LilyPondDuration(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        'duration', 
+        'duration',
         'multiplier',
         )
 

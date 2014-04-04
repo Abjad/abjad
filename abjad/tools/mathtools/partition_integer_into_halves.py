@@ -7,7 +7,7 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
     r'''Writes positive integer `n` as the pair ``t = (left, right)``
     such that ``n == left + right``.
 
-    When `n` is odd the greater part of ``t`` corresponds 
+    When `n` is odd the greater part of ``t`` corresponds
     to the value of `bigger`:
 
     ::
@@ -26,7 +26,7 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
         >>> mathtools.partition_integer_into_halves(8, bigger='right', even='disallowed')
         (3, 5)
 
-    But when `n` is even and ``even = 'allowed'`` 
+    But when `n` is even and ``even = 'allowed'``
     then ``left == right`` and `bigger` is ignored:
 
     ::

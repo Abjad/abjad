@@ -103,8 +103,8 @@ def _flatten_at_indices_helper(sequence, indices, classes, depth):
         if i in indices:
             try:
                 flattened = sequencetools.flatten_sequence(
-                    element, 
-                    classes=classes, 
+                    element,
+                    classes=classes,
                     depth=depth,
                     )
                 result.extend(flattened)

@@ -244,15 +244,15 @@ class Markup(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='contents', 
-                display_string='arg', 
-                menu_key='ag', 
-                editor=getters.get_string, 
+                name='contents',
+                display_string='arg',
+                menu_key='ag',
+                editor=getters.get_string,
                 ),
             systemtools.AttributeDetail(
-                name='direction', 
-                menu_key='dr', 
-                editor=getters.get_direction_string, 
+                name='direction',
+                menu_key='dr',
+                editor=getters.get_direction_string,
                 ),
             )
 

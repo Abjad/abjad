@@ -14,7 +14,7 @@ def set_line_breaks_by_line_duration(
     kind='prolated',
     add_empty_bars=False,
     ):
-    r'''Iterate `line_break_class` instances in `expr` 
+    r'''Iterate `line_break_class` instances in `expr`
     and accumulate `kind` duration.
 
     Add line break after every total less than or equal to `line_duration`.
@@ -28,7 +28,7 @@ def set_line_breaks_by_line_duration(
     previous = None
     cumulative_duration = durationtools.Duration(0)
     for current in iterate(expr).by_class(line_break_class):
-        # TODO: compress these 4 lines to only the 4th line 
+        # TODO: compress these 4 lines to only the 4th line
         #       after duration migration
         if kind == 'seconds':
             current_duration = current._get_duration(in_seconds=True)

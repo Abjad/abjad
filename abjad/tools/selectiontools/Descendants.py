@@ -50,7 +50,7 @@ class Descendants(SimultaneousSelection):
         Voice('b,4')
         Note('b,4')
 
-    Descendants is treated as the selection of the component's 
+    Descendants is treated as the selection of the component's
     improper descendants.
 
     Returns descendants.
@@ -84,7 +84,7 @@ class Descendants(SimultaneousSelection):
         else:
             for x in music:
                 append_x = True
-                if not (x._get_timespan().start_offset < cross_offset and 
+                if not (x._get_timespan().start_offset < cross_offset and
                     cross_offset < x._get_timespan().stop_offset):
                     append_x = False
                 if append_x:

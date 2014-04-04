@@ -68,16 +68,16 @@ class RenameModulesScript(DeveloperScript):
         if codebase == 'mainline':
             return os.path.join(
                 abjad_configuration.abjad_directory_path,
-                'docs', 
-                'source', 
-                'api', 
+                'docs',
+                'source',
+                'api',
                 'tools',
                 )
         elif codebase == 'experimental':
             return os.path.join(
                 abjad_configuration.abjad_experimental_directory_path,
-                'docs', 
-                'source', 
+                'docs',
+                'source',
                 'tools',
                 )
         message = 'bad codebase name: {!r}.'

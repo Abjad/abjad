@@ -8,7 +8,7 @@ def test_mathtools_Ratio___init___01():
     '''
 
     ratio = mathtools.Ratio()
-    
+
     assert ratio == mathtools.Ratio(1, 1)
 
 

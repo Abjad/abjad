@@ -98,9 +98,9 @@ class Vector(TypedCounter):
 
     @abc.abstractmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes vector from `selection`.
 

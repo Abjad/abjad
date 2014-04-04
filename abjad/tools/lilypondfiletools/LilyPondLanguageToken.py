@@ -64,7 +64,7 @@ class LilyPondLanguageToken(AbjadObject):
         Returns string.
         '''
         return '{}({!r})'.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._lilypond_language,
             )
 

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_mathtools_all_are_nonnegative_integer_powers_of_two_01():
-    r'''Is true when all elements in sequence are nonnegative integer 
+    r'''Is true when all elements in sequence are nonnegative integer
     powers of two.
     '''
 

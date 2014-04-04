@@ -53,4 +53,3 @@ class ExampleWrapper(AbjadObject):
         Returns tuple.
         '''
         return self._division_lists
-

@@ -2,8 +2,8 @@
 
 
 def timespan_2_curtails_timespan_1(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
     r'''Makes time relation indicating that `timespan_2` curtails `timespan_1`.

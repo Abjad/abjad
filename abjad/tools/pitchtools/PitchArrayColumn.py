@@ -90,7 +90,7 @@ class PitchArrayColumn(AbjadObject):
         Returns string.
         '''
         return '{}({})'.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._format_contents_string,
             )
 

@@ -8,7 +8,7 @@ class TypedFrozenset(TypedCollection):
     r'''A typed fozen set.
     '''
 
-    ### CLASS VARIABLES ### 
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         )
@@ -17,8 +17,8 @@ class TypedFrozenset(TypedCollection):
 
     def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(
-            self, 
-            item_class=item_class, 
+            self,
+            item_class=item_class,
             items=items,
             )
         items = items or []
@@ -60,7 +60,7 @@ class TypedFrozenset(TypedCollection):
         Returns integer.
         '''
         return hash((
-            type(self), 
+            type(self),
             self._collection,
             self.item_class,
             ))
@@ -83,7 +83,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.__lt__(expr._collection)
 
     def __ne__(self, expr):
-        r'''Is true when typed frozen set is not equal to `expr`. Otherwise 
+        r'''Is true when typed frozen set is not equal to `expr`. Otherwise
         false.
 
         Returns boolean.
@@ -160,7 +160,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.isdisjoint(expr._collection)
 
     def issubset(self, expr):
-        r'''Is true when typed frozen set is a subset of `expr`. Otherwise 
+        r'''Is true when typed frozen set is a subset of `expr`. Otherwise
         false.
 
         Returns boolean.

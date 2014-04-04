@@ -8,7 +8,7 @@ def test_scoretools_fuse_measures_01():
     r'''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
-    
+
     measure_1 = Measure((1, 8), "c'16 d'16")
     beam = Beam()
     attach(beam, measure_1[:])
@@ -57,7 +57,7 @@ def test_scoretools_fuse_measures_01():
 
 
 def test_scoretools_fuse_measures_02():
-    r'''Fuse measures carrying time signatures with differing 
+    r'''Fuse measures carrying time signatures with differing
     power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''
@@ -315,7 +315,7 @@ def test_scoretools_fuse_measures_08():
         )
 
     assert pytest.raises(
-        AssertionError, 
+        AssertionError,
         'scoretools.fuse_measures([voice[0][1], voice[1][0]])',
         )
 

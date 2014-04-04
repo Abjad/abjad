@@ -62,17 +62,17 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
                 r8
             }
 
-    Returns list of newly constructed note followed by zero or 
+    Returns list of newly constructed note followed by zero or
     more newly constructed rests.
 
     Durations of note and rests returned will sum to `total_duration`.
 
     Duration of note returned will be no greater than `max_note_duration`.
 
-    Duration of rests returned will sum to note duration taken 
+    Duration of rests returned will sum to note duration taken
     from `total_duration`.
 
-    Useful for percussion music where attack duration is negligible 
+    Useful for percussion music where attack duration is negligible
     and tied notes undesirable.
     '''
     from abjad.tools import scoretools

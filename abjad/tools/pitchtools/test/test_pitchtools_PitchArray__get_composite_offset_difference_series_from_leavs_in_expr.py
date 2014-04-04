@@ -33,10 +33,10 @@ def test_pitchtools_PitchArray__get_composite_offset_difference_series_from_leav
     result = pitchtools.PitchArray._get_composite_offset_difference_series_from_leaves_in_expr(score)
 
     assert result == [
-        Duration(1, 8), 
-        Duration(1, 24), 
-        Duration(1, 12), 
-        Duration(1, 12), 
-        Duration(1, 24), 
+        Duration(1, 8),
+        Duration(1, 24),
+        Duration(1, 12),
+        Duration(1, 12),
+        Duration(1, 24),
         Duration(1, 8),
         ]

@@ -1004,7 +1004,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 2), [])
     inner_tuplet = scoretools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
     tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
-    
+
     assert systemtools.TestManager.compare(
         tuplet,
         r'''

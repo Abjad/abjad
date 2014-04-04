@@ -92,7 +92,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return super(OctaveTranspositionMappingComponent, self).__hash__()
 
     def __ne__(self, expr):
-        r'''Is true when octave transposition mapping component does not equal 
+        r'''Is true when octave transposition mapping component does not equal
         `expr`. Otherwise false.
 
         Returns boolean.
@@ -155,14 +155,14 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='source_pitch_range', 
-                menu_key='pr', 
+                name='source_pitch_range',
+                menu_key='pr',
                 editor=getters.get_symbolic_pitch_range_string,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
-                name='target_octave_start_pitch', 
-                menu_key='sp', 
+                name='target_octave_start_pitch',
+                menu_key='sp',
                 editor=getters.get_integer,
                 is_keyword=False,
                 ),

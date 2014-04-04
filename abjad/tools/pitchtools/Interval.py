@@ -54,7 +54,7 @@ class Interval(AbjadObject):
         return type(self)(abs(self.number))
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is an interval with number and direction 
+        r'''Is true when `arg` is an interval with number and direction
         equal to those of this interval. Otherwise false.
 
         Returns boolean.

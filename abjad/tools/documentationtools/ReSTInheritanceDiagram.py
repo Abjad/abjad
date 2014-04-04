@@ -34,10 +34,10 @@ class ReSTInheritanceDiagram(ReSTDirective):
         if options is not None:
             new_options.update(options)
         ReSTDirective.__init__(
-            self, 
-            argument=argument, 
-            children=children, 
-            name=name, 
+            self,
+            argument=argument,
+            children=children,
+            name=name,
             options=new_options,
             )
 

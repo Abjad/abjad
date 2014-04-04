@@ -6,8 +6,8 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(
-    expr, 
-    number=True, 
+    expr,
+    number=True,
     color=False,
     markup_direction=Down,
     ):

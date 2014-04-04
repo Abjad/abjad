@@ -8,7 +8,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class GroupedRhythmicStavesScoreTemplate(AbjadObject):
     r'''Grouped rhythmic staves score template.
-    
+
     ::
 
             >>> from abjad.tools.templatetools import *
@@ -23,7 +23,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             >>> template_1 = template_class(staff_count=4)
 
     ..  container:: example
-    
+
         **Example 2.** More than one voice per staff:
 
         ::
@@ -144,11 +144,11 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
                     self.context_name_abbreviations[key] = voice.name
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
-            staves, 
+            staves,
             name='Grouped Rhythmic Staves Staff Group',
             )
         grouped_rhythmic_staves_score = scoretools.Score(
-            [grouped_rhythmic_staves_staff_group], 
+            [grouped_rhythmic_staves_staff_group],
             name='Grouped Rhythmic Staves Score',
             )
         return grouped_rhythmic_staves_score

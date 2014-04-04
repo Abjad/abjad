@@ -2,9 +2,9 @@
 
 
 def retain_elements(
-    sequence, 
+    sequence,
     indices=None,
-    period=None, 
+    period=None,
     ):
     '''Retains `sequence` elements.
 
@@ -24,7 +24,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[2, 3],
             ...     )
             [2, 3]
@@ -36,7 +36,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[-2, -3],
             ...     )
             [12, 13]
@@ -48,7 +48,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[2, 3],
             ...     period=4,
             ...     )
@@ -61,7 +61,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[-2, -3],
             ...     period=4,
             ...     )
@@ -74,7 +74,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[],
             ...     )
             []
@@ -86,7 +86,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[97, 98, 99],
             ...     )
             []
@@ -98,7 +98,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15), 
+            ...     range(15),
             ...     indices=[-97, -98, -99],
             ...     )
             []

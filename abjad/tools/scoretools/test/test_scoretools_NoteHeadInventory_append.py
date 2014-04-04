@@ -22,5 +22,5 @@ def test_scoretools_NoteHeadInventory_append_01():
         >4
         '''
         )
-        
+
     assert note_head._client is chord

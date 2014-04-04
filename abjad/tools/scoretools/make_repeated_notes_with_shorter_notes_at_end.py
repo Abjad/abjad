@@ -5,9 +5,9 @@ from abjad.tools import selectiontools
 
 
 def make_repeated_notes_with_shorter_notes_at_end(
-    pitch, 
-    written_duration, 
-    total_duration, 
+    pitch,
+    written_duration,
+    total_duration,
     prolation=1,
     ):
     r'''Makes repeated notes with `pitch` and `written_duration` summing to

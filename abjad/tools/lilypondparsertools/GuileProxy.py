@@ -256,7 +256,7 @@ class GuileProxy(AbjadObject):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
         elif isinstance(leaf, scoretools.Chord):
-            # TODO: This is not ideal w/r/t post events as LilyPond does 
+            # TODO: This is not ideal w/r/t post events as LilyPond does
             # not sort chord contents
             chord_pitches = self.client._chord_pitch_orders[leaf]
             for i, chord_pitch in enumerate(chord_pitches):
@@ -288,16 +288,16 @@ class GuileProxy(AbjadObject):
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
         if abs(
-                float(up_pitch.diatonic_pitch_number) - 
+                float(up_pitch.diatonic_pitch_number) -
                 float(reference.diatonic_pitch_number)) < \
             abs(
-                float(down_pitch.diatonic_pitch_number) - 
+                float(down_pitch.diatonic_pitch_number) -
                 float(reference.diatonic_pitch_number)):
             pitch = pitchtools.NamedPitch(
-                up_pitch.named_pitch_class, 
+                up_pitch.named_pitch_class,
                 up_octave + pitch.octave_number - 3)
         else:
             pitch = pitchtools.NamedPitch(
-                down_pitch.named_pitch_class, 
+                down_pitch.named_pitch_class,
                 down_octave + pitch.octave_number - 3)
         return pitch

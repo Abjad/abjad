@@ -112,29 +112,29 @@ def test_agenttools_InspectionAgent__select_vertical_moment_at_02():
 
     moment = scorewide_vertical_moment(Offset(0, 8))
     assert moment.leaves == (
-        score[0][0][0], 
-        staff_group[0][0], 
+        score[0][0][0],
+        staff_group[0][0],
         staff_group[1][0],
         )
 
     moment = scorewide_vertical_moment(Offset(1, 8))
     assert moment.leaves == (
-        score[0][0][0], 
-        staff_group[0][0], 
+        score[0][0][0],
+        staff_group[0][0],
         staff_group[1][1],
         )
 
     moment = scorewide_vertical_moment(Offset(2, 8))
     assert moment.leaves == (
-        score[0][0][1], 
-        staff_group[0][1], 
+        score[0][0][1],
+        staff_group[0][1],
         staff_group[1][2],
         )
 
     moment = scorewide_vertical_moment(Offset(3, 8))
     assert moment.leaves == (
-        score[0][0][2], 
-        staff_group[0][1], 
+        score[0][0][2],
+        staff_group[0][1],
         staff_group[1][3],
         )
 

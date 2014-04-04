@@ -2,7 +2,7 @@
 
 
 def all_are_nonnegative_integer_equivalent_numbers(expr):
-    '''True `expr` is a sequence and when all elements in `expr` are 
+    '''True `expr` is a sequence and when all elements in `expr` are
     nonnegative integer-equivalent numbers. Otherwise false:
 
     ::
@@ -18,7 +18,7 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
 
     try:
         return all(
-            mathtools.is_nonnegative_integer_equivalent_number(x) 
+            mathtools.is_nonnegative_integer_equivalent_number(x)
             for x in expr
             )
     except TypeError:

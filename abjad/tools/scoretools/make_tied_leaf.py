@@ -16,14 +16,14 @@ def make_tied_leaf(
     r'''Make tied `kind` with `duration`.
 
     ..  container:: example
-    
+
         **Example 1.** Make note:
 
         ::
 
             >>> leaves = scoretools.make_tied_leaf(
-            ...     Note, 
-            ...     Duration(1, 2), 
+            ...     Note,
+            ...     Duration(1, 2),
             ...     pitches='C#5',
             ...     )
             >>> staff = Staff(leaves)
@@ -40,14 +40,14 @@ def make_tied_leaf(
             }
 
     ..  container:: example
-    
+
         **Example 2.** Make note and forbid half notes:
 
         ::
 
             >>> leaves = scoretools.make_tied_leaf(
-            ...     Note, 
-            ...     Duration(1, 2), 
+            ...     Note,
+            ...     Duration(1, 2),
             ...     pitches='C#5',
             ...     forbidden_written_duration=Duration(1, 2),
             ...     )
@@ -66,15 +66,15 @@ def make_tied_leaf(
             }
 
     ..  container:: example
-    
-        **Example 3.** Make tied note with half notes forbidden and 
+
+        **Example 3.** Make tied note with half notes forbidden and
         durations decreasing monotonically:
 
         ::
 
             >>> leaves = scoretools.make_tied_leaf(
-            ...     Note, 
-            ...     Duration(9, 8), 
+            ...     Note,
+            ...     Duration(9, 8),
             ...     pitches='C#5',
             ...     forbidden_written_duration=Duration(1, 2),
             ...     decrease_durations_monotonically=True,
@@ -97,15 +97,15 @@ def make_tied_leaf(
             }
 
     ..  container:: example
-    
-        **Example 4.** Make tied note with half notes forbidden and 
+
+        **Example 4.** Make tied note with half notes forbidden and
         durations increasing monotonically:
 
         ::
 
             >>> leaves = scoretools.make_tied_leaf(
-            ...     Note, 
-            ...     Duration(9, 8), 
+            ...     Note,
+            ...     Duration(9, 8),
             ...     pitches='C#5',
             ...     forbidden_written_duration=Duration(1, 2),
             ...     decrease_durations_monotonically=False,
@@ -143,7 +143,7 @@ def make_tied_leaf(
     if forbidden_written_duration is not None and \
         forbidden_written_duration <= duration:
         denominators = [
-            2 * forbidden_written_duration.denominator, 
+            2 * forbidden_written_duration.denominator,
             duration.denominator,
             ]
         denominator = mathtools.least_common_multiple(*denominators)

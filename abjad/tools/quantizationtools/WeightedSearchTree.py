@@ -26,9 +26,9 @@ class WeightedSearchTree(SearchTree):
 
         * ``divisors`` controls the sum of the parts of the ratio a node
           may be divided into,
-        * ``max_depth`` controls how many levels of tuplet nesting 
+        * ``max_depth`` controls how many levels of tuplet nesting
           are permitted, and
-        * ``max_divisions`` controls the maximum permitted length of the 
+        * ``max_divisions`` controls the maximum permitted length of the
           weights in the ratio.
 
     Thus, the default ``WeightedSearchTree`` permits the following ratios:

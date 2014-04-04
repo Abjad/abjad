@@ -32,7 +32,7 @@ class Spanner(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         overrides=None,
         ):
         overrides = overrides or {}

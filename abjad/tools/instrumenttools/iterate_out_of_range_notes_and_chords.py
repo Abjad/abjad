@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def iterate_out_of_range_notes_and_chords(expr):
-    '''Iterates notes and chords in `expr` 
+    '''Iterates notes and chords in `expr`
     outside traditional instrument ranges:
 
     ::

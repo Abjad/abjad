@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_fill_measures_in_expr_with_time_signature_denominator_notes_01():
-    r'''Populates non-power-of-two measure with time signature denominator 
+    r'''Populates non-power-of-two measure with time signature denominator
     notes.
     '''
 

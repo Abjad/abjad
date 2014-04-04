@@ -11,10 +11,10 @@ class OutputFormat(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_code_block_closing', 
-        '_code_block_opening', 
-        '_code_indent', 
-        '_image_block', 
+        '_code_block_closing',
+        '_code_block_opening',
+        '_code_indent',
+        '_image_block',
         '_image_format',
         )
 
@@ -22,11 +22,11 @@ class OutputFormat(abctools.AbjadObject):
 
     @abc.abstractmethod
     def __init__(
-        self, 
-        code_block_opening, 
-        code_block_closing, 
-        code_indent, 
-        image_block, 
+        self,
+        code_block_opening,
+        code_block_closing,
+        code_indent,
+        image_block,
         image_format,
         ):
         self._code_block_opening = code_block_opening

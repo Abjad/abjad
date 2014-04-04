@@ -31,7 +31,7 @@ class Annotation(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_name', 
+        '_name',
         '_value',
         )
 

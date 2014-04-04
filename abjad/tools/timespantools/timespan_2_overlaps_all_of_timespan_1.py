@@ -2,11 +2,11 @@
 
 
 def timespan_2_overlaps_all_of_timespan_1(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` overlaps 
+    r'''Makes time relation indicating that `timespan_2` overlaps
     all of `timespan_1`.
 
     ::

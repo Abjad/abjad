@@ -20,7 +20,7 @@ class DuratedComplexBeam(ComplexBeam):
 
             >>> durations = [Duration(1, 8), Duration(1, 8)]
             >>> beam = spannertools.DuratedComplexBeam(
-            ...     durations=durations, 
+            ...     durations=durations,
             ...     span_beam_count=1,
             ...     )
             >>> attach(beam, staff[:])
@@ -65,16 +65,16 @@ class DuratedComplexBeam(ComplexBeam):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         direction=None,
-        durations=None, 
-        isolated_nib_direction=False, 
+        durations=None,
+        isolated_nib_direction=False,
         nibs_towards_nonbeamable_components=True,
         overrides=None,
-        span_beam_count=1, 
+        span_beam_count=1,
         ):
         ComplexBeam.__init__(
-            self, 
+            self,
             direction=direction,
             isolated_nib_direction=isolated_nib_direction,
             overrides=overrides,
@@ -145,14 +145,14 @@ class DuratedComplexBeam(ComplexBeam):
     def _fracture_left(self, i):
         self, left, right = ComplexBeam._fracture_left(self, i)
         weights = [
-            inspect_(left).get_duration(), 
+            inspect_(left).get_duration(),
             inspect_(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence(
-            self.durations, 
-            weights, 
-            cyclic=False, 
+            self.durations,
+            weights,
+            cyclic=False,
             overhang=False,
             )
         left_durations, right_durations = split_durations
@@ -163,14 +163,14 @@ class DuratedComplexBeam(ComplexBeam):
     def _fracture_right(self, i):
         self, left, right = ComplexBeam._fracture_right(self, i)
         weights = [
-            inspect_(left).get_duration(), 
+            inspect_(left).get_duration(),
             inspect_(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence(
-            self.durations, 
-            weights, 
-            cyclic=False, 
+            self.durations,
+            weights,
+            cyclic=False,
             overhang=False,
             )
         left_durations, right_durations = split_durations
@@ -350,7 +350,7 @@ class DuratedComplexBeam(ComplexBeam):
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
                 >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations, 
+                ...     durations=durations,
                 ...     span_beam_count=1,
                 ...     )
                 >>> attach(beam, staff[:])
@@ -388,7 +388,7 @@ class DuratedComplexBeam(ComplexBeam):
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
                 >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations, 
+                ...     durations=durations,
                 ...     span_beam_count=2,
                 ...     )
                 >>> attach(beam, staff[:])
@@ -426,7 +426,7 @@ class DuratedComplexBeam(ComplexBeam):
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
                 >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations, 
+                ...     durations=durations,
                 ...     span_beam_count=0,
                 ...     )
                 >>> attach(beam, staff[:])

@@ -3,8 +3,8 @@ from abjad.tools.topleveltools import iterate
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(
-    expr, 
-    decrease_durations_monotonically=True, 
+    expr,
+    decrease_durations_monotonically=True,
     iterctrl=None,
     ):
     '''Fills measures in `expr` with minimal number of notes that decrease

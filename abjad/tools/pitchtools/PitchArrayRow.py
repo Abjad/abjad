@@ -416,7 +416,7 @@ class PitchArrayRow(AbjadObject):
             self.append(cell_token)
 
     def has_spanning_cell_over_index(self, i):
-        r'''Is true when pitch array row has one or more cells spanning over 
+        r'''Is true when pitch array row has one or more cells spanning over
         index `i`. Otherwise false.
 
         Returns boolean.

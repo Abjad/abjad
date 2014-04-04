@@ -130,7 +130,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         )
 
     scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(
-        staff, 
+        staff,
         lambda m, i: 2 < len(m),
         )
 

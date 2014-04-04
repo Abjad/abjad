@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_selectiontools_Parentage__get_spanners_01():
-    '''Get spanners in proper parentage.    
+    '''Get spanners in proper parentage.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")

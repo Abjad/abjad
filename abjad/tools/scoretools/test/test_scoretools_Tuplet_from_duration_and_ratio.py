@@ -8,8 +8,8 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration,
-        [1], 
-        avoid_dots=True, 
+        [1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -25,8 +25,8 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration,
-        [1, 1], 
-        avoid_dots=True, 
+        [1, 1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -42,9 +42,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -60,9 +60,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1, 1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -80,9 +80,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1, 1, 1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -106,9 +106,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=True, 
+        duration,
+        [1],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -123,9 +123,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2], 
-        avoid_dots=True, 
+        duration,
+        [1, 2],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -140,9 +140,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -159,12 +159,12 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2, 3],
+        avoid_dots=True,
         is_diminution=False,
         )
-        
+
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
@@ -179,9 +179,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2, 3, 3],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -207,9 +207,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_03():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, -2, -2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, -2, -2, 3, 3],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -235,25 +235,25 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
     duration = Duration(3, 16)
 
     tuplet_1 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, -2, -2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, -2, -2, 3, 3],
+        avoid_dots=True,
         is_diminution=False,
         )
 
     tuplet_2 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [2, -4, -4, 6, 6], 
-        avoid_dots=True, 
+        duration,
+        [2, -4, -4, 6, 6],
+        avoid_dots=True,
         is_diminution=False,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Duration(1, 8), 
-        [27], 
-        avoid_dots=True, 
+        Duration(1, 8),
+        [27],
+        avoid_dots=True,
         is_diminution=False,
         )
 
@@ -272,9 +272,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=False, 
+        duration,
+        [1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -288,9 +288,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -305,9 +305,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -323,9 +323,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1, 1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -342,9 +342,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1, 1, 1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -368,9 +368,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=False, 
+        duration,
+        [1],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -384,9 +384,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2], 
-        avoid_dots=False, 
+        duration,
+        [1, 2],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -401,9 +401,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -420,9 +420,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2, 3],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -440,9 +440,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2, 3, 3],
+        avoid_dots=False,
         is_diminution=False,
         )
 
@@ -468,24 +468,24 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
     duration = Duration(3, 16)
 
     tuplet_1 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2, 3, 3],
+        avoid_dots=False,
         is_diminution=False,
         )
 
     tuplet_2 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [2, 4, 4, 6, 6], 
-        avoid_dots=False, 
+        duration,
+        [2, 4, 4, 6, 6],
+        avoid_dots=False,
         is_diminution=False,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Duration(1, 8), 
-        [27], avoid_dots=False, 
+        Duration(1, 8),
+        [27], avoid_dots=False,
         is_diminution=False,
         )
 
@@ -504,9 +504,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=True, 
+        duration,
+        [1],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -521,9 +521,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -539,9 +539,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -557,9 +557,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1, 1],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -577,12 +577,12 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1, 1], 
-        avoid_dots=True, 
+        duration,
+        [1, 1, 1, 1, 1],
+        avoid_dots=True,
         is_diminution=True,
         )
-        
+
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
@@ -603,9 +603,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=True, 
+        duration,
+        [1],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -620,9 +620,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2], 
-        avoid_dots=True, 
+        duration,
+        [1, 2],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -637,9 +637,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -656,9 +656,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2, 3],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -676,9 +676,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, 2, 2, 3, 3],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -704,9 +704,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_10():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, -2, -2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, -2, -2, 3, 3],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -732,16 +732,16 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
     duration = Duration(3, 16)
 
     tuplet_1 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, -2, -2, 3, 3], 
-        avoid_dots=True, 
+        duration,
+        [1, -2, -2, 3, 3],
+        avoid_dots=True,
         is_diminution=True,
         )
 
     tuplet_2 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [2, -4, -4, 6, 6], 
-        avoid_dots=True, 
+        duration,
+        [2, -4, -4, 6, 6],
+        avoid_dots=True,
         is_diminution=True,
         )
 
@@ -764,9 +764,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=False, 
+        duration,
+        [1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -780,9 +780,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -797,9 +797,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -815,9 +815,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1, 1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -834,9 +834,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 1, 1, 1, 1], 
-        avoid_dots=False, 
+        duration,
+        [1, 1, 1, 1, 1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -859,9 +859,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
     duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1], 
-        avoid_dots=False, 
+        duration,
+        [1],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -875,9 +875,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2], 
-        avoid_dots=False, 
+        duration,
+        [1, 2],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -892,9 +892,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -910,9 +910,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2, 3],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -930,9 +930,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         )
 
     tuplet = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, 2, 2, 3, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, 2, 2, 3, 3],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -958,25 +958,25 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
     duration = Duration(3, 16)
 
     tuplet_1 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [1, -2, -2, 3, 3], 
-        avoid_dots=False, 
+        duration,
+        [1, -2, -2, 3, 3],
+        avoid_dots=False,
         is_diminution=True,
         )
 
     tuplet_2 = Tuplet.from_duration_and_ratio(
-        duration, 
-        [2, -4, -4, 6, 6], 
-        avoid_dots=False, 
+        duration,
+        [2, -4, -4, 6, 6],
+        avoid_dots=False,
         is_diminution=True,
         )
 
     assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Duration(1, 8), 
-        [27], 
-        avoid_dots=False, 
+        Duration(1, 8),
+        [27],
+        avoid_dots=False,
         is_diminution=True,
         )
 
@@ -995,9 +995,9 @@ def test_scoretools_Tuplet_from_duration_and_ratio_15():
     '''
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Duration(1, 4), 
-        [1, -1, 1], 
-        avoid_dots=True, 
+        Duration(1, 4),
+        [1, -1, 1],
+        avoid_dots=True,
         is_diminution=True,
         )
 

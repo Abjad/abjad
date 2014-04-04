@@ -16,7 +16,7 @@ def make_rests(
     ::
 
         >>> scoretools.make_rests(
-        ...     [(5, 16), (9, 16)], 
+        ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=True,
         ...     )
         Selection(Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16'))
@@ -26,7 +26,7 @@ def make_rests(
     ::
 
         >>> scoretools.make_rests(
-        ...     [(5, 16), (9, 16)], 
+        ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=False,
         ...     )
         Selection(Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2'))
@@ -36,7 +36,7 @@ def make_rests(
     ::
 
         >>> voice = Voice(scoretools.make_rests(
-        ...     [(5, 16), (9, 16)], 
+        ...     [(5, 16), (9, 16)],
         ...     tie_parts=True,
         ...     ))
 

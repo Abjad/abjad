@@ -129,7 +129,7 @@ class NumberedIntervalClass(IntervalClass):
         ::
 
             >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2), 
+            ...     NamedPitch(-2),
             ...     NamedPitch(12),
             ...     )
             NumberedIntervalClass(2)

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NumberedInterval___cmp___01():
-    
+
     numbered_interval_1 = pitchtools.NumberedInterval(12)
     numbered_interval_2 = pitchtools.NumberedInterval(12)
     numbered_interval_3 = pitchtools.NumberedInterval(13)

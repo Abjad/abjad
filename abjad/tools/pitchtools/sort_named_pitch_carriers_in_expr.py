@@ -2,7 +2,7 @@
 
 
 def sort_named_pitch_carriers_in_expr(pitch_carriers):
-    '''List named pitch carriers in `expr` sorted by 
+    '''List named pitch carriers in `expr` sorted by
     numbered pitch-class:
 
     ::

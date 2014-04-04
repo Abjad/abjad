@@ -42,7 +42,7 @@ class AltoSaxophone(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[Db3, A5]', 
+        pitch_range='[Db3, A5]',
         sounding_pitch_of_written_middle_c='Eb3',
         ):
         Instrument.__init__(

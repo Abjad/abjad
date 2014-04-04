@@ -276,7 +276,7 @@ class CyclicPayloadTree(PayloadTree):
             >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ..  container:: example
-        
+
             **Example 1.** Iterates from left to right:
 
             ::

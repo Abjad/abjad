@@ -27,7 +27,7 @@ class WellformednessManager(AbjadObject):
             if self.allow_empty_containers:
                 if current_check_name == 'check_empty_containers':
                     continue
-            current_check = getattr(self, current_check_name) 
+            current_check = getattr(self, current_check_name)
             current_violators, current_total = current_check()
             triple = (current_violators, current_total, current_check_name)
             triples.append(triple)
@@ -64,8 +64,8 @@ class WellformednessManager(AbjadObject):
     def check_discontiguous_spanners(self):
         r'''There are now two different types of spanner.
         Most spanners demand that spanner components be
-        logical-voice-contiguous. But a few special spanners (like Tempo) 
-        do not make such a demand. The check here consults the experimental 
+        logical-voice-contiguous. But a few special spanners (like Tempo)
+        do not make such a demand. The check here consults the experimental
         `_contiguity_constraint`.
 
         Returns violators and total.
@@ -277,7 +277,7 @@ class WellformednessManager(AbjadObject):
                         violators.append(beam)
         total = len(all_beams)
         return violators, total
-        
+
     def check_overlapping_glissandi(self):
         r'''Checks to make sure there are no overlapping glissandi in score.
 

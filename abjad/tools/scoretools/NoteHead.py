@@ -72,7 +72,7 @@ class NoteHead(AbjadObject):
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a note-head with written pitch equal to 
+        r'''Is true when `expr` is a note-head with written pitch equal to
         that of this note-head. Otherwise false.
 
         Returns boolean.

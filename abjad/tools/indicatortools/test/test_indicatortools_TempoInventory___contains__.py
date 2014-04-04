@@ -5,7 +5,7 @@ from abjad import *
 def test_indicatortools_TempoInventory___contains___01():
 
     tempo_inventory = indicatortools.TempoInventory([
-        (Duration(1, 8), 72), 
+        (Duration(1, 8), 72),
         ('Allegro', (1, 8), 84),
         ])
 

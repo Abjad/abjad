@@ -16,7 +16,7 @@ class TupletSpellingSpecifier(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         avoid_dots=False,
         is_diminution=True,
         ):

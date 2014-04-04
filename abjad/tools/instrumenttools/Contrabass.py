@@ -64,7 +64,7 @@ class Contrabass(Instrument):
             )
         self._performer_names.extend([
             'string player',
-            'contrabassist', 
+            'contrabassist',
             'bassist',
             ])
         self._is_primary_instrument = True
@@ -102,7 +102,7 @@ class Contrabass(Instrument):
             Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
 
         Returns tuning.
-        ''' 
+        '''
         return self._default_tuning
 
     @property

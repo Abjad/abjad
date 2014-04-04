@@ -93,7 +93,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
         if not pitches:
             continue
         pitch_numbers = [
-            pitch.numbered_pitch.pitch_number 
+            pitch.numbered_pitch.pitch_number
             for pitch in pitches
             ]
         pitch_numbers = ' '.join([str(x) for x in pitch_numbers])

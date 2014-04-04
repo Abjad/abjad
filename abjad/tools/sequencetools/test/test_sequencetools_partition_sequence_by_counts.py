@@ -7,9 +7,9 @@ def test_sequencetools_partition_sequence_by_counts_01():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16), 
-        [4, 6], 
-        cyclic=True, 
+        range(16),
+        [4, 6],
+        cyclic=True,
         overhang=True,
         )
     assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [10, 11, 12, 13], [14, 15]]
@@ -21,9 +21,9 @@ def test_sequencetools_partition_sequence_by_counts_02():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10), 
-        counts, 
-        cyclic=True, 
+        range(10),
+        counts,
+        cyclic=True,
         overhang=True,
         )
     assert parts == [[], [0, 1], [], [], [2, 3, 4, 5], [], [6, 7], [], [], [8, 9]]
@@ -35,9 +35,9 @@ def test_sequencetools_partition_sequence_by_counts_03():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16), 
-        [4, 6], 
-        cyclic=True, 
+        range(16),
+        [4, 6],
+        cyclic=True,
         overhang=False,
         )
     assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [10, 11, 12, 13]]
@@ -49,9 +49,9 @@ def test_sequencetools_partition_sequence_by_counts_04():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10), 
-        counts, 
-        cyclic=True, 
+        range(10),
+        counts,
+        cyclic=True,
         overhang=False,
         )
     assert parts == [[], [0, 1], [], [], [2, 3, 4, 5], [], [6, 7], [], []]
@@ -63,9 +63,9 @@ def test_sequencetools_partition_sequence_by_counts_05():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16), 
-        [4, 6], 
-        cyclic=False, 
+        range(16),
+        [4, 6],
+        cyclic=False,
         overhang=True,
         )
     assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14, 15]]
@@ -77,9 +77,9 @@ def test_sequencetools_partition_sequence_by_counts_06():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10), 
-        counts, 
-        cyclic=False, 
+        range(10),
+        counts,
+        cyclic=False,
         overhang=True,
         )
     assert parts == [[], [0, 1], [], [], [2, 3, 4, 5], [6, 7, 8, 9]]
@@ -90,9 +90,9 @@ def test_sequencetools_partition_sequence_by_counts_07():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16), 
-        [4, 6], 
-        cyclic=False, 
+        range(16),
+        [4, 6],
+        cyclic=False,
         overhang=False,
         )
     assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9]]
@@ -104,9 +104,9 @@ def test_sequencetools_partition_sequence_by_counts_08():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10), 
-        counts, 
-        cyclic=False, 
+        range(10),
+        counts,
+        cyclic=False,
         overhang=False,
         )
     assert parts == [[], [0, 1], [], [], [2, 3, 4, 5]]
@@ -118,9 +118,9 @@ def test_sequencetools_partition_sequence_by_counts_09():
 
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8")
     parts = sequencetools.partition_sequence_by_counts(
-        container, 
-        [1, 2], 
-        cyclic=False, 
+        container,
+        [1, 2],
+        cyclic=False,
         overhang=False,
         )
 
@@ -139,9 +139,9 @@ def test_sequencetools_partition_sequence_by_counts_10():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        'this is text', 
-        [1, 3], 
-        cyclic=True, 
+        'this is text',
+        [1, 3],
+        cyclic=True,
         overhang=True,
         )
     assert parts == ['t', 'his', ' ', 'is ', 't', 'ext']

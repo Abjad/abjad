@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_durationtools_Duration___sub___01():
-    r'''Subtracting nonreduced fraction from duration 
+    r'''Subtracting nonreduced fraction from duration
     returns nonreduced fraction.
     '''
 
@@ -13,7 +13,7 @@ def test_durationtools_Duration___sub___01():
 
 
 def test_durationtools_Duration___sub___02():
-    r'''Subtracting duration from nonreduced fraction 
+    r'''Subtracting duration from nonreduced fraction
     returns nonreduced fraction.
     '''
 

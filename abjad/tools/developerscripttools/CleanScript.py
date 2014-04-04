@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CleanScript(DirectoryScript):
-    r'''Removes *.pyc, *.swp files and __pycache__ and tmp* directories 
+    r'''Removes *.pyc, *.swp files and __pycache__ and tmp* directories
     recursively in a path.
 
     ..  shell::

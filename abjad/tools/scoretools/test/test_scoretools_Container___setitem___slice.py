@@ -57,7 +57,7 @@ def test_scoretools_Container___setitem___slice_03():
     '''
 
     notes = [
-        Note("c'8"), Note("d'8"), Note("e'8"), 
+        Note("c'8"), Note("d'8"), Note("e'8"),
         Note("f'8"), Note("g'8"), Note("a'8"),
         ]
 
@@ -134,7 +134,7 @@ def test_scoretools_Container___setitem___slice_05():
     attach(beam, staff[:])
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
     staff[1:3] = notes
-        
+
     assert systemtools.TestManager.compare(
         staff,
         r'''

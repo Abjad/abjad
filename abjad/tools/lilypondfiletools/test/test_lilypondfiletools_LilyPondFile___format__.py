@@ -93,7 +93,7 @@ def test_lilypondfiletools_LilyPondFile___format___02():
 
 
 def test_lilypondfiletools_LilyPondFile___format___03():
-    r'''LilyPondFile implements default paper size and global 
+    r'''LilyPondFile implements default paper size and global
     staff size attributes.
     '''
 

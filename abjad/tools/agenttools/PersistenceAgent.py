@@ -146,7 +146,7 @@ class PersistenceAgent(abctools.AbjadObject):
             ...     timespantools.Timespan(6, 8),
             ...     ])
             >>> persist(inventory).as_module( # doctest: +SKIP
-            ...     '~/example.py', 
+            ...     '~/example.py',
             ...     'inventory',
             ...     )
 
@@ -181,9 +181,9 @@ class PersistenceAgent(abctools.AbjadObject):
             f.write(result)
 
     def as_pdf(
-        self, 
-        pdf_file_path=None, 
-        remove_ly=False, 
+        self,
+        pdf_file_path=None,
+        remove_ly=False,
         illustrate_function=None,
         **kwargs
         ):
@@ -212,7 +212,7 @@ class PersistenceAgent(abctools.AbjadObject):
         else:
             ly_file_path = None
         result = self.as_ly(
-            ly_file_path, 
+            ly_file_path,
             illustrate_function=illustrate_function,
             **kwargs
             )

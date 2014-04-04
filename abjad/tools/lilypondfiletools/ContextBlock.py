@@ -52,7 +52,7 @@ class ContextBlock(Block):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         source_context_name=None,
         name=None,
         type_=None,
@@ -76,7 +76,7 @@ class ContextBlock(Block):
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
         manager = systemtools.LilyPondFormatManager
-        # CAUTION: source context name must come before type_ to allow 
+        # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_context_name is not None:
             string = '\t' + r'\{}'.format(self.source_context_name)
