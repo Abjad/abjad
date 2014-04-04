@@ -260,9 +260,7 @@ class MaterialPackageManager(PackageManager):
     def _has_output_material_editor(self):
         return False
 
-    def _get_output_material_editor(self, target=None):
-        #message = 'how did we get here?'
-        #raise Exception((message, target))
+    def _get_output_material_editor(self, target):
         assert target is not None
         from scoremanager import iotools
         prototype = (datastructuretools.TypedList, list)
@@ -435,10 +433,6 @@ class MaterialPackageManager(PackageManager):
         return section
 
     def _make_material_summary_menu_section(self, menu):
-        #if not self._should_have_output_material_section():
-        #    return
-        #if not self._has_output_material_editor():
-        #    return
         if os.path.isfile(self._definition_module_path):
             return
         if os.path.isfile(self._user_input_module_path):
@@ -447,12 +441,8 @@ class MaterialPackageManager(PackageManager):
             return
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(target=output_material)
-        target_summary_lines = editor._get_target_summary_lines()
-        if not target_summary_lines:
-            return
-        section = menu.make_material_summary_section()
-        for line in target_summary_lines:
-            section.append(line)
+        lines = editor._get_target_summary_lines()
+        section = menu.make_material_summary_section(lines=lines)
         return section
 
     def _make_output_material(self):
@@ -587,18 +577,6 @@ class MaterialPackageManager(PackageManager):
         else:
             self._session._pending_user_input = 'me'
         self._run()
-
-    def _should_have_output_material_section(self):
-        if os.path.isfile(self._definition_module_path):
-            return True
-        if (
-            bool(self._user_input_wrapper_in_memory) and
-            self._user_input_wrapper_in_memory.is_complete
-            ):
-            return True
-        if self._has_output_material_editor():
-            return True
-        return False
 
     def _write_definition_module_stub(self, prompt=True):
         self.write_definition_module_stub()

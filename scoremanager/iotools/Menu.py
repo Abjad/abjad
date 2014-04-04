@@ -741,7 +741,7 @@ class Menu(ScoreManagerObject):
 
     def make_material_summary_section(
         self, 
-        menu_entries=None, 
+        lines=None, 
         name='material summary',
         ):
         r'''Makes asset section.
@@ -760,6 +760,9 @@ class Menu(ScoreManagerObject):
             name=name,
             return_value_attribute='explicit',
             )
+        lines = lines or ()
+        for line in lines:
+            section.append(line)
         return section
 
     def make_navigation_section(
