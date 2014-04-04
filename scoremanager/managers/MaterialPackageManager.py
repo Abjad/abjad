@@ -1023,10 +1023,13 @@ class MaterialPackageManager(PackageManager):
             output_material = triple[2]
             body_lines = [output_module_body_string]
         import_statements = import_statements or []
-        import_statements = [x + '\n' for x in import_statements]
         if any('handlertools' in _ for _ in body_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
+        if any(' makers.' in _ for _ in body_lines):
+            statement = 'from scoremanager import makers'
+            import_statements.append(statement)
+        import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)

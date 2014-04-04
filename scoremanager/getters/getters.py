@@ -142,6 +142,16 @@ def get_named_pitch(
     getter.append_named_pitch(space_delimited_attribute_name)
     return getter
 
+def get_nonnegative_integer(
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
+    allow_none=True,
+    ):
+    getter = UserInputGetter(session=session, allow_none=allow_none)
+    getter.append_nonnegative_integer(space_delimited_attribute_name)
+    return getter
+
 def get_nonnegative_integers(
     space_delimited_attribute_name,
     session=None,

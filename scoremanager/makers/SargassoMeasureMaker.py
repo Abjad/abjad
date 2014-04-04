@@ -238,7 +238,7 @@ class SargassoMeasureMaker(AbjadObject):
             systemtools.AttributeDetail(
                 name='measure_division_denominator',
                 menu_key='mdd',
-                editor=getters.get_nonnegative_integers,
+                editor=getters.get_nonnegative_integer,
                 ),
              systemtools.AttributeDetail(
                 name='measure_division_talea',

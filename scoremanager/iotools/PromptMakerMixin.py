@@ -499,6 +499,24 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
+    def append_nonnegative_integer(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends nonnegative integer.
+
+        Returns prompt.
+        '''
+        help_template = 'value for {!r} must be nonnegative integer.'
+        function = lambda x: 0 < x
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=function,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_nonnegative_integers(
         self,
         spaced_attribute_name,
