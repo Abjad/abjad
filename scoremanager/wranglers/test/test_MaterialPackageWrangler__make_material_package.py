@@ -6,7 +6,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler__make_data_package_01():
+def test_MaterialPackageWrangler__make_material_package_01():
 
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
 
     assert not os.path.exists(path)
     try:
-        wrangler._make_data_package(path)
+        wrangler._make_material_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -38,27 +38,31 @@ def test_MaterialPackageWrangler__make_data_package_01():
     assert not os.path.exists(path)
 
 
-def test_MaterialPackageWrangler__make_data_package_02():
-    r'''With custom metadata.
-    '''
+def test_MaterialPackageWrangler__make_material_package_02():
 
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.user_library_material_packages_directory_path,
-        'testnumbers',
+        'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'definition.py', 
+        ]
 
     assert not os.path.exists(path)
     try:
-        metadata = {'color': 'red', 'is_colored': True}
-        wrangler._make_data_package(path, metadata=metadata)
+        wrangler._make_material_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
-        assert manager._get_metadatum('color') == 'red'
-        assert manager._get_metadatum('is_colored')
+        assert manager._list() == directory_entries
+        assert manager._interpret_definition_module() is None
+        output_material = manager._execute_output_module()
+        assert output_material is None
         manager._remove()
     finally:
         if os.path.exists(path):
