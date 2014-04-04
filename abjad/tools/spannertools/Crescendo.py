@@ -36,14 +36,14 @@ class Crescendo(Hairpin):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         direction=None,
-        include_rests=False, 
+        include_rests=False,
         overrides=None,
         ):
         Hairpin.__init__(
-            self, 
-            descriptor='<', 
+            self,
+            descriptor='<',
             direction=direction,
             include_rests=include_rests,
             overrides=overrides,

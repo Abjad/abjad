@@ -144,8 +144,8 @@ class ReplaceInFilesScript(DirectoryScript):
                 return match.start(), match.end() - match.start()
 
         return RegexSearch(
-            args.old, 
-            escaped=not args.regex, 
+            args.old,
+            escaped=not args.regex,
             whole_words_only=args.whole_words_only,
             )
 
@@ -173,13 +173,13 @@ class ReplaceInFilesScript(DirectoryScript):
         return changed_lines, changed_items
 
     def _process_line(
-        self, 
-        line, 
-        line_number, 
-        file_name, 
-        search, 
-        replacement, 
-        force, 
+        self,
+        line,
+        line_number,
+        file_name,
+        search,
+        replacement,
+        force,
         verbose,
         ):
         index, changes = 0, 0

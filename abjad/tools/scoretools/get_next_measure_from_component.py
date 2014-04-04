@@ -8,7 +8,7 @@ def get_next_measure_from_component(component):
     When `component` is a voice, staff or other sequential context,
     and when `component` contains a measure, return first measure
     in `component`. This starts the process of forwards measure iteration.
-    
+
     ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -21,7 +21,7 @@ def get_next_measure_from_component(component):
 
     When `component` is a measure and there is a measure immediately
     following `component`, return measure immediately following component.
-    
+
     ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -30,7 +30,7 @@ def get_next_measure_from_component(component):
 
     When `component` is a measure and there is no measure immediately
     following `component`, return ``None``.
-    
+
     ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -39,7 +39,7 @@ def get_next_measure_from_component(component):
 
     When `component` is a leaf and there is a measure in the parentage
     of `component`, return the measure in the parentage of `component`.
-    
+
     ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")

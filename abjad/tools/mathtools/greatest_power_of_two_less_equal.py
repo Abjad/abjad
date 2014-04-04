@@ -22,7 +22,7 @@ def greatest_power_of_two_less_equal(n, i=0):
             18 16
             19 16
 
-    Greatest-but-``i`` integer power of ``2`` less than or 
+    Greatest-but-``i`` integer power of ``2`` less than or
     equal to positive `n`:
 
     ::

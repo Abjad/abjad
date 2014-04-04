@@ -26,7 +26,7 @@ class BeamSpecifier(AbjadObject):
             ...     beam_each_division=True,
             ...     beam_divisions_together=True
             ...     )
-            
+
     ..  container:: example
 
         Beam nothing:

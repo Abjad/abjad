@@ -2,11 +2,11 @@
 
 
 def timespan_2_happens_during_timespan_1(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens 
+    r'''Makes time relation indicating that `timespan_2` happens
     during `timespan_1`.
 
     ::
@@ -25,7 +25,7 @@ def timespan_2_happens_during_timespan_1(
 
     ..  container:: example
 
-        Evaluates whether timespan ``[7/8, 8/8)`` happens 
+        Evaluates whether timespan ``[7/8, 8/8)`` happens
         during timespan ``[1/2, 3/2)``:
 
         ::
@@ -33,7 +33,7 @@ def timespan_2_happens_during_timespan_1(
             >>> timespan_1 = timespantools.Timespan(Offset(1, 2), Offset(3, 2))
             >>> timespan_2 = timespantools.Timespan(Offset(7, 8), Offset(8, 8))
             >>> timespantools.timespan_2_happens_during_timespan_1(
-            ...     timespan_1=timespan_1, 
+            ...     timespan_1=timespan_1,
             ...     timespan_2=timespan_2,
             ...     )
             True

@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class AbjDevScript(DeveloperScript):
-    '''`AbjDevScript` is the commandline entry-point to the Abjad 
+    '''`AbjDevScript` is the commandline entry-point to the Abjad
     developer scripts catalog.
 
     Can be accessed on the commandline via `abj-dev` or `ajv`:
@@ -60,7 +60,7 @@ class AbjDevScript(DeveloperScript):
                         message = 'alias conflict between scripting group'
                         message += ' {!r} and {}'
                         message = message.format(
-                            instance.scripting_group, 
+                            instance.scripting_group,
                             aliases[(instance.scripting_group,)].__name__,
                             )
                         raise Exception(message)
@@ -79,14 +79,14 @@ class AbjDevScript(DeveloperScript):
                         message = 'alias conflict between {}'
                         message += ' and scripting group {!r}'
                         message = message.format(
-                            developer_script_class.__name__, 
+                            developer_script_class.__name__,
                             instance.alias,
                             )
                         raise Exception(message)
                     if entry in aliases:
                         message = 'alias conflict be {} and {}'
                         message = message.format(
-                            developer_script_class.__name__, 
+                            developer_script_class.__name__,
                             aliases[entry],
                             )
                         raise Exception(message)
@@ -97,7 +97,7 @@ class AbjDevScript(DeveloperScript):
                     message = 'Alias conflict between {}'
                     message += ' and scripting group {!r}'
                     message = message.format(
-                        developer_script_class.__name__, 
+                        developer_script_class.__name__,
                         instance.program_name,
                         )
                     raise Exception(message)

@@ -240,7 +240,7 @@ def render_graphviz_image(self, code, paths, file_format='png',
         os.path.basename(os.path.splitext(primary_path)[0])) + '.dot'
     # if we pickled a documentationtools.GraphvizGraph instance
     # in order to support conditional reformatting for LaTeX vs HTML...
-    
+
     if is_pickled:
         graph = pickle.loads(code)
         alt = graph.graphviz_format

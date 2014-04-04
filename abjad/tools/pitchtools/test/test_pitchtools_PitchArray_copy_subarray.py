@@ -24,6 +24,6 @@ def test_pitchtools_PitchArray_copy_subarray_01():
     assert subarray.dimensions == (2, 2)
     assert subarray.cell_widths_by_row == ((1, 1), (2,))
     assert subarray.pitches_by_row == (
-        (NamedPitch(0), NamedPitch(2)), 
+        (NamedPitch(0), NamedPitch(2)),
         (),
         )

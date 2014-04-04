@@ -12,7 +12,7 @@ def partition_sequence_by_ratio_of_lengths(sequence, lengths):
     ::
 
         >>> sequencetools.partition_sequence_by_ratio_of_lengths(
-        ...     sequence, 
+        ...     sequence,
         ...     [1, 1, 2],
         ...     )
         [(0, 1, 2), (3, 4), (5, 6, 7, 8, 9)]
@@ -25,8 +25,8 @@ def partition_sequence_by_ratio_of_lengths(sequence, lengths):
 
     lengths = mathtools.partition_integer_by_ratio(len(sequence), lengths)
     return sequencetools.partition_sequence_by_counts(
-        sequence, 
-        lengths, 
-        cyclic=False, 
+        sequence,
+        lengths,
+        cyclic=False,
         overhang=False,
         )

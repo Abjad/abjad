@@ -102,7 +102,7 @@ def label_vertical_moments_in_expr_with_numbered_intervals(
             intervals.append(interval)
         markup = markuptools.Markup(
             r'\small \column {{ {} }}'.format(
-                ' '.join(str(interval) 
+                ' '.join(str(interval)
                     for interval in intervals)),
             markup_direction,
             )

@@ -31,7 +31,7 @@ class Infinity(AbjadObject):
         >>> NegativeInfinity < Infinity
         True
 
-    Infinity is initialized at start-up and is available in the 
+    Infinity is initialized at start-up and is available in the
     global Abjad namespace.
     '''
 

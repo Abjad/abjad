@@ -6,7 +6,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_durations_01():
     r'''Test basic functionality.
     '''
 
-    durations = [durationtools.Duration(x) for x in 
+    durations = [durationtools.Duration(x) for x in
         [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
     tempo = Tempo((1, 4), 55)
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_durations(

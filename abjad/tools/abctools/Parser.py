@@ -19,9 +19,9 @@ class Parser(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_debug', 
-        '_lexer', 
-        '_logger', 
+        '_debug',
+        '_lexer',
+        '_logger',
         '_parser',
         )
 

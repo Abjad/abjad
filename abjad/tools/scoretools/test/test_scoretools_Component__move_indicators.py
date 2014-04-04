@@ -23,7 +23,7 @@ def test_scoretools_Component__move_indicators_01():
     assert len(inspect_(staff[1]).get_indicators()) == 0
     assert len(inspect_(staff[2]).get_indicators()) == 0
     assert len(inspect_(staff[3]).get_indicators()) == 0
-    
+
     staff[0]._move_indicators(staff[2])
 
     assert systemtools.TestManager.compare(

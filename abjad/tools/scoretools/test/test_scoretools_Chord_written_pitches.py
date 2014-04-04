@@ -47,7 +47,7 @@ def test_scoretools_Chord_written_pitches_03():
         ''')
 
     assert staff[0].written_pitches == (
-        NamedPitch("c'"), 
+        NamedPitch("c'"),
         NamedPitch("e'"),
         )
 
@@ -70,7 +70,7 @@ def test_scoretools_Chord_written_pitches_05():
 
     chord = Chord([], (1, 4))
     chord.written_pitches = [
-        NamedPitch(4), 
+        NamedPitch(4),
         NamedPitch(3),
         NamedPitch(2),
         ]
@@ -84,8 +84,8 @@ def test_scoretools_Chord_written_pitches_06():
 
     chord = Chord([], (1, 4))
     chord.written_pitches = [
-        4, 
-        NamedPitch(3), 
+        4,
+        NamedPitch(3),
         NamedPitch(2),
         ]
 

@@ -24,7 +24,7 @@ def test_scoretools_GraceContainer_parentage_02():
 
 
 def test_scoretools_GraceContainer_parentage_03():
-    r'''Grace containers bound to leaf have their correct carrier 
+    r'''Grace containers bound to leaf have their correct carrier
     after assignment.
     '''
 

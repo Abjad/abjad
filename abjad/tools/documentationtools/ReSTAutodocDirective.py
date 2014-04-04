@@ -33,18 +33,18 @@ class ReSTAutodocDirective(ReSTDirective):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        argument=None, 
-        children=None, 
-        directive='automodule', 
-        name=None, 
+        self,
+        argument=None,
+        children=None,
+        directive='automodule',
+        name=None,
         options=None,
         ):
         ReSTDirective.__init__(
-            self, 
-            argument=argument, 
-            children=children, 
-            name=name, 
+            self,
+            argument=argument,
+            children=children,
+            name=name,
             options=options,
             )
         self.directive = directive

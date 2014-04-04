@@ -95,7 +95,7 @@ def test_agenttools_MutationAgent_split_02():
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
-        [Duration(3, 32)], 
+        [Duration(3, 32)],
         cyclic=True,
         fracture_spanners=False,
         )
@@ -157,8 +157,8 @@ def test_agenttools_MutationAgent_split_03():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -192,7 +192,7 @@ def test_agenttools_MutationAgent_split_03():
 
 
 def test_agenttools_MutationAgent_split_04():
-    r'''Cyclically splits consecutive measures in score. 
+    r'''Cyclically splits consecutive measures in score.
     Doesn't fracture spanners.
     '''
 
@@ -224,8 +224,8 @@ def test_agenttools_MutationAgent_split_04():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -280,8 +280,8 @@ def test_agenttools_MutationAgent_split_05():
 
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -359,8 +359,8 @@ def test_agenttools_MutationAgent_split_06():
     notes = staff[0][1:]
     result = mutate(notes).split(
         [Duration(1, 32)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -420,8 +420,8 @@ def test_agenttools_MutationAgent_split_07():
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(1, 16)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -482,8 +482,8 @@ def test_agenttools_MutationAgent_split_08():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(1, 16)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -518,7 +518,7 @@ def test_agenttools_MutationAgent_split_08():
 
 
 def test_agenttools_MutationAgent_split_09():
-    r'''Cyclically splits consecutive measures in score. 
+    r'''Cyclically splits consecutive measures in score.
     Doesn't fracture spanners.
     '''
 
@@ -550,8 +550,8 @@ def test_agenttools_MutationAgent_split_09():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=False, 
+        cyclic=True,
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -625,7 +625,7 @@ def test_agenttools_MutationAgent_split_10():
 
     notes = staff[0][1:2]
     result = mutate(notes).split(
-        [Duration(3, 64)], 
+        [Duration(3, 64)],
         cyclic=True,
         fracture_spanners=True,
         )
@@ -684,8 +684,8 @@ def test_agenttools_MutationAgent_split_11():
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
-        [Duration(3, 32)], 
-        cyclic=True, 
+        [Duration(3, 32)],
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -746,8 +746,8 @@ def test_agenttools_MutationAgent_split_12():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -812,8 +812,8 @@ def test_agenttools_MutationAgent_split_13():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -863,8 +863,8 @@ def test_agenttools_MutationAgent_split_14():
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     result = mutate(notes).split(
-        [Duration(3, 32)], 
-        cyclic=True, 
+        [Duration(3, 32)],
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -903,8 +903,8 @@ def test_agenttools_MutationAgent_split_15():
 
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -982,8 +982,8 @@ def test_agenttools_MutationAgent_split_16():
     notes = staff[0][1:]
     result = mutate(notes).split(
         [Duration(1, 32)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -1043,8 +1043,8 @@ def test_agenttools_MutationAgent_split_17():
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(1, 16)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -1105,8 +1105,8 @@ def test_agenttools_MutationAgent_split_18():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(1, 16)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -1172,8 +1172,8 @@ def test_agenttools_MutationAgent_split_19():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(3, 32)],
-        cyclic=True, 
-        fracture_spanners=True, 
+        cyclic=True,
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -1248,8 +1248,8 @@ def test_agenttools_MutationAgent_split_20():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
-        cyclic=False, 
-        fracture_spanners=False, 
+        cyclic=False,
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -1314,8 +1314,8 @@ def test_agenttools_MutationAgent_split_21():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
-        cyclic=False, 
-        fracture_spanners=False, 
+        cyclic=False,
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -1384,8 +1384,8 @@ def test_agenttools_MutationAgent_split_22():
     measures = staff[:1]
     result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
-        cyclic=False, 
-        fracture_spanners=True, 
+        cyclic=False,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1450,8 +1450,8 @@ def test_agenttools_MutationAgent_split_23():
     measures = staff[:]
     result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
-        cyclic=False, 
-        fracture_spanners=True, 
+        cyclic=False,
+        fracture_spanners=True,
         tie_split_notes=False)
 
     assert inspect_(staff).is_well_formed()
@@ -1495,8 +1495,8 @@ def test_agenttools_MutationAgent_split_24():
 
     result = mutate(note).split(
         [(1, 32), (5, 32)],
-        cyclic=False, 
-        fracture_spanners=True, 
+        cyclic=False,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1537,8 +1537,8 @@ def test_agenttools_MutationAgent_split_25():
     notes = staff[:]
     result = mutate(notes).split(
         [Duration(1, 64), Duration(5, 64)],
-        cyclic=False, 
-        fracture_spanners=True, 
+        cyclic=False,
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1599,7 +1599,7 @@ def test_agenttools_MutationAgent_split_26():
 
 
 def test_agenttools_MutationAgent_split_27():
-    r'''Splits in-score measure with power-of-two denominator and 
+    r'''Splits in-score measure with power-of-two denominator and
     do not fracture spanners.
     '''
 
@@ -1611,7 +1611,7 @@ def test_agenttools_MutationAgent_split_27():
 
     measures = voice[1:2]
     result = mutate(measures).split(
-        [Duration(1, 8)], 
+        [Duration(1, 8)],
         fracture_spanners=False,
         )
 
@@ -1642,7 +1642,7 @@ def test_agenttools_MutationAgent_split_27():
 
 
 def test_agenttools_MutationAgent_split_28():
-    r'''Splits in-score measure without power-of-two denominator 
+    r'''Splits in-score measure without power-of-two denominator
     and do not frature spanners.
     '''
 
@@ -1654,7 +1654,7 @@ def test_agenttools_MutationAgent_split_28():
 
     measures = voice[1:2]
     result = mutate(measures).split(
-        [Duration(1, 9)], 
+        [Duration(1, 9)],
         fracture_spanners=False,
         )
 
@@ -1697,7 +1697,7 @@ def test_agenttools_MutationAgent_split_29():
     voice = Voice("c'8 d'8 e'8 f'8")
 
     result = mutate([voice]).split(
-        [Duration(1, 4)], 
+        [Duration(1, 4)],
         fracture_spanners=False,
         )
 
@@ -2445,7 +2445,7 @@ def test_agenttools_MutationAgent_split_39():
     note = voice[0]
     result = mutate(note).split(
         [Duration(1, 8), Duration(3, 8)],
-        cyclic=True, 
+        cyclic=True,
         fracture_spanners=False,
         )
 
@@ -2503,7 +2503,7 @@ def test_agenttools_MutationAgent_split_40():
     container = voice[0]
     result = mutate(container).split(
         [Duration(1, 8)],
-        cyclic=True, 
+        cyclic=True,
         fracture_spanners=False,
         )
 
@@ -2563,7 +2563,7 @@ def test_agenttools_MutationAgent_split_41():
     container = voice[0]
     result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
-        cyclic=True, 
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -2622,7 +2622,7 @@ def test_agenttools_MutationAgent_split_42():
     container = voice[0]
     result = mutate(container).split(
         [Duration(1, 8)],
-        cyclic=True, 
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -2678,7 +2678,7 @@ def test_agenttools_MutationAgent_split_43():
     container = voice[0]
     result = mutate(container).split(
         5 * [Duration(2, 8)],
-        cyclic=True, 
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -2729,8 +2729,8 @@ def test_agenttools_MutationAgent_split_44():
 
     container = voice[0]
     result = mutate(container).split(
-        [], 
-        cyclic=True, 
+        [],
+        cyclic=True,
         fracture_spanners=True,
         )
 
@@ -2785,7 +2785,7 @@ def test_agenttools_MutationAgent_split_45():
     container = voice[0]
     result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
-        cyclic=False, 
+        cyclic=False,
         fracture_spanners=False,
         )
 
@@ -2848,7 +2848,7 @@ def test_agenttools_MutationAgent_split_46():
     container = voice[0]
     result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
-        cyclic=False, 
+        cyclic=False,
         fracture_spanners=True,
         )
 
@@ -2906,7 +2906,7 @@ def test_agenttools_MutationAgent_split_47():
     container = voice[0]
     result = mutate(container).split(
         5 * [Duration(2, 8)],
-        cyclic=False, 
+        cyclic=False,
         fracture_spanners=True,
         )
 
@@ -2966,8 +2966,8 @@ def test_agenttools_MutationAgent_split_48():
 # scoretools.split() doesn't work here.
 # eventually make scoretools.split() work here.
 def test_agenttools_MutationAgent_split_49():
-    r'''Splits in-score measure without power-of-two time 
-    signature denominator. Fractured spanners but do not tie 
+    r'''Splits in-score measure without power-of-two time
+    signature denominator. Fractured spanners but do not tie
     over splits locus. Measure contents necessitate denominator change.
     '''
     pytest.skip('TODO: make this work.')

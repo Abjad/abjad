@@ -30,7 +30,7 @@ class Flute(Instrument):
     '''
 
     ### CLASS VARIABLES ###
-    
+
     __slots__ = ()
 
     ### INITIALIZER ###
@@ -58,7 +58,7 @@ class Flute(Instrument):
             )
         self._performer_names.extend([
             'wind player',
-            'flautist', 
+            'flautist',
             'flutist',
             ])
         self._is_primary_instrument = True

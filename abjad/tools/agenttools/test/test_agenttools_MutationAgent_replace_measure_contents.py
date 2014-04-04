@@ -92,7 +92,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_04():
 
     measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
     staff = Staff(measures)
-    notes = [Note("c'16"), Note("d'16"), Note("e'16"), 
+    notes = [Note("c'16"), Note("d'16"), Note("e'16"),
         Note("f'16"), Note("g'16"), Note("a'16")]
     statement = 'mutate(staff).replace_measure_contents(notes)'
     assert pytest.raises(StopIteration, statement)
@@ -104,7 +104,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
 
     measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
     staff = Staff(measures)
-    notes = [Note("c'16"), Note("d'16"), Note("e'16"), 
+    notes = [Note("c'16"), Note("d'16"), Note("e'16"),
         Note("f'16"), Note("g'16"), Note("a'16")]
 
     try:

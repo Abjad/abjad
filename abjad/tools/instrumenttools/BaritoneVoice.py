@@ -31,11 +31,11 @@ class BaritoneVoice(Instrument):
         }
 
     '''
-    
+
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-    
+
     performer_abbreviation = 'bar.'
 
     ### INITIALIZER ###

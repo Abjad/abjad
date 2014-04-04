@@ -2,11 +2,11 @@
 
 
 def timespan_2_overlaps_only_start_of_timespan_1(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens 
+    r'''Makes time relation indicating that `timespan_2` happens
     during `timespan_1`.
 
     ::

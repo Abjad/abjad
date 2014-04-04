@@ -32,7 +32,7 @@ class Scale(PitchClassSegment):
 
     def __init__(self, *args):
         if len(args) == 0:
-            key_signature = indicatortools.KeySignature('c', 'major')       
+            key_signature = indicatortools.KeySignature('c', 'major')
         elif len(args) == 1 and isinstance(
             args[0], indicatortools.KeySignature):
             key_signature = args[0]
@@ -47,7 +47,7 @@ class Scale(PitchClassSegment):
             named_pitch_class = npcs[-1] + mdi
             npcs.append(named_pitch_class)
         PitchClassSegment.__init__(
-            self, 
+            self,
             items=npcs,
             item_class=pitchtools.NamedPitchClass,
             )

@@ -148,7 +148,7 @@ class NamedPitchClass(PitchClass):
         return float(self.numbered_pitch_class)
 
     def __hash__(self):
-        r'''Hashes named pitch-class. 
+        r'''Hashes named pitch-class.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 

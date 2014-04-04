@@ -63,13 +63,13 @@ class ComplexBeam(Beam):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         direction=None,
-        isolated_nib_direction=False, 
+        isolated_nib_direction=False,
         overrides=None,
         ):
         Beam.__init__(
-            self, 
+            self,
             direction=direction,
             overrides=overrides,
             )

@@ -97,7 +97,7 @@ def test_agenttools_InspectionAgent_get_timespan_10():
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
     for i, leaf in enumerate(voice_2):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
 
 
@@ -109,7 +109,7 @@ def test_agenttools_InspectionAgent_get_timespan_11():
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
     leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     for i, leaf in enumerate(leaves):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
     for i, leaf in enumerate(voice.select_leaves()):
         start_offset = inspect_(leaf).get_timespan().start_offset
@@ -124,7 +124,7 @@ def test_agenttools_InspectionAgent_get_timespan_12():
     voice_2 = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([voice_1, voice_2])
     for i, leaf in enumerate(voice_1.select_leaves()):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
     for i, leaf in enumerate(voice_2.select_leaves()):
         start_offset = inspect_(leaf).get_timespan().start_offset
@@ -140,10 +140,10 @@ def test_agenttools_InspectionAgent_get_timespan_13():
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
     for i, leaf in enumerate(voice_1.select_leaves()):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
     for i, leaf in enumerate(voice_2.select_leaves()):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
 
 
@@ -171,7 +171,7 @@ def test_agenttools_InspectionAgent_get_timespan_15():
     staff = Staff([voice_3, Container([voice_1, voice_2])])
     staff[1].is_simultaneous = True
     for i, leaf in enumerate(voice_1.select_leaves()):
-        start_offset = inspect_(leaf).get_timespan().start_offset 
+        start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 2)
     for i, leaf in enumerate(voice_2.select_leaves()):
         start_offset = inspect_(leaf).get_timespan().start_offset
@@ -185,7 +185,7 @@ def test_agenttools_InspectionAgent_get_timespan_16():
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("c'8 d'8 e'8 f'8")])
     staff[0].name = staff[1].name = 'voice'
     for i, voice in enumerate(staff):
-        start_offset = inspect_(voice).get_timespan().start_offset 
+        start_offset = inspect_(voice).get_timespan().start_offset
         assert start_offset == i * Offset(4, 8)
 
 
@@ -195,9 +195,9 @@ def test_agenttools_InspectionAgent_get_timespan_17():
 
     container = Container([Staff("c'8 d'8 e'8 f'8"), Staff("c'8 d'8 e'8 f'8")])
     container[0].name = container[1].name = 'staff'
-    start_offset = inspect_(container[0]).get_timespan().start_offset 
+    start_offset = inspect_(container[0]).get_timespan().start_offset
     assert start_offset == Offset(0)
-    start_offset = inspect_(container[1]).get_timespan().start_offset 
+    start_offset = inspect_(container[1]).get_timespan().start_offset
     assert start_offset == Offset(1, 2)
 
 
@@ -207,7 +207,7 @@ def test_agenttools_InspectionAgent_get_timespan_18():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("c'8 d'8 e'8 f'8")])
     for i, voice in enumerate(staff):
-        start_offset = inspect_(voice).get_timespan().start_offset 
+        start_offset = inspect_(voice).get_timespan().start_offset
         assert start_offset == i * Offset(4, 8)
 
 

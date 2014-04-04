@@ -396,7 +396,7 @@ def test_scoretools_Container___setitem___integer_09():
     '''
 
     notes = [
-        Note("c'8"), Note("d'8"), Note("e'8"), 
+        Note("c'8"), Note("d'8"), Note("e'8"),
         Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"),
         ]
     voice = Voice(notes[:3])

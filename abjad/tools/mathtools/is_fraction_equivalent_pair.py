@@ -2,7 +2,7 @@
 
 
 def is_fraction_equivalent_pair(expr):
-    r'''Is true when `expr` is an integer-equivalent pair of numbers 
+    r'''Is true when `expr` is an integer-equivalent pair of numbers
     excluding ``0`` as the second term.
 
     ::

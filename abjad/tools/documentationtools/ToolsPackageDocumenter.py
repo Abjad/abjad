@@ -25,7 +25,7 @@ class ToolsPackageDocumenter(Documenter):
 
     def __call__(self):
         r'''Calls tools package documenter.
-        
+
         Generates documentation:
 
         ::

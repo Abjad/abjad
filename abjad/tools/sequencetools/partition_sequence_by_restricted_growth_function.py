@@ -2,7 +2,7 @@
 
 
 def partition_sequence_by_restricted_growth_function(
-    sequence, 
+    sequence,
     restricted_growth_function,
     ):
     '''Partitions `sequence` by `restricted_growth_function`.

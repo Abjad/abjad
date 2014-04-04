@@ -5,7 +5,7 @@ from abjad.tools import sequencetools
 
 # TODO: remove from public API altogether
 def insert_and_transpose_nested_subruns_in_pitch_class_number_list(
-    notes, 
+    notes,
     subrun_tokens,
     ):
     '''Insert and transpose nested subruns in `pitch_class_number_list`

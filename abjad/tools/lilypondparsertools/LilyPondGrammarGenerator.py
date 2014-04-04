@@ -9,10 +9,10 @@ class LilyPondGrammarGenerator(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(
-        self,                                                                   
-        skeleton_path,                                                          
-        parser_output_path,                                                     
-        parser_tab_hh_path,                                                     
+        self,
+        skeleton_path,
+        parser_output_path,
+        parser_tab_hh_path,
         ):
         r'''Calls LilyPond grammar generator.
         '''
@@ -26,7 +26,7 @@ class LilyPondGrammarGenerator(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _extract_productions_from_parser_output(
-        self, 
+        self,
         file_path,
         ):
         with open(file_path, 'r') as f:
@@ -87,9 +87,9 @@ class LilyPondGrammarGenerator(AbjadObject):
             if text == 'enum yytokentype {':
                 in_enum = True
         return token_names
-    
+
     def _extract_token_values_from_parser_output(
-        self, 
+        self,
         file_path,
         ):
         with open(file_path, 'r') as f:
@@ -119,7 +119,7 @@ class LilyPondGrammarGenerator(AbjadObject):
 
     def _generate_production_map(
         self,
-        output_path, 
+        output_path,
         tab_hh_path,
         ):
         productions = self._extract_productions_from_parser_output(
@@ -145,8 +145,8 @@ class LilyPondGrammarGenerator(AbjadObject):
         return rewrites
 
     def _match_token_names_with_token_values(
-        self, 
-        names, 
+        self,
+        names,
         values,
         ):
         matches = { }
@@ -157,9 +157,9 @@ class LilyPondGrammarGenerator(AbjadObject):
         return matches
 
     def _write_parser_syntax_skeleton(
-        self, 
-        skeleton_path, 
-        parser_output_path, 
+        self,
+        skeleton_path,
+        parser_output_path,
         parser_tab_hh_path,
         ):
         productions = self._generate_production_map(
@@ -186,7 +186,7 @@ class LilyPondGrammarGenerator(AbjadObject):
             f.write("    )\n\n\n")
             f.write('    ### SYNTACTICAL RULES (ALPHABETICAL) ###\n\n\n')
             current_nonterminal = 'start_symbol'
-            ly_keys = sorted(key for key in productions 
+            ly_keys = sorted(key for key in productions
                 if key.startswith('p_start_symbol'))
             for key in ly_keys:
                 funcname = key

@@ -39,9 +39,9 @@ class ReSTOnlyDirective(ReSTDirective):
 
     def __init__(self, argument=None, children=None, name=None):
         ReSTDirective.__init__(
-            self, 
-            argument=argument, 
-            children=children, 
+            self,
+            argument=argument,
+            children=children,
             name=name,
             )
 

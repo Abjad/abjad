@@ -52,8 +52,8 @@ class SyntaxNode(AbjadObject):
         Returns string.
         '''
         return '{}({}, {})'.format(
-            type(self).__name__, 
-            self.type, 
+            type(self).__name__,
+            self.type,
             type(self.value),
             )
 

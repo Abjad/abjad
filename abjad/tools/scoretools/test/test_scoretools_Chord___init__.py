@@ -145,7 +145,7 @@ def test_scoretools_Chord___init___14():
 
     note = Note("d'8")
     chord = Chord(note)
-    
+
     assert format(note) == "d'8"
     assert format(chord) == "<d'>8"
     assert inspect_(note).is_well_formed()
@@ -187,7 +187,7 @@ def test_scoretools_Chord___init___17():
 
 
 def test_scoretools_Chord___init___18():
-    r'''Initialize chord from LilyPond input string with forced and 
+    r'''Initialize chord from LilyPond input string with forced and
     cautionary accidentals.
     '''
 

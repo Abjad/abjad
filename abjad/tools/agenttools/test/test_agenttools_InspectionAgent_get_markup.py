@@ -45,7 +45,7 @@ def test_agenttools_InspectionAgent_get_markup_02():
     down_markup = markuptools.Markup('DOWN', Down)
     attach(down_markup, chord)
     found_markup = inspect_(chord).get_markup(direction=Down)
-    assert found_markup == (down_markup,) 
+    assert found_markup == (down_markup,)
 
 
 def test_agenttools_InspectionAgent_get_markup_03():

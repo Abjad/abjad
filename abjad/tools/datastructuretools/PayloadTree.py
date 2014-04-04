@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class PayloadTree(AbjadObject):
     r'''A payload tree.
-    
+
     Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of containment.
 
@@ -106,7 +106,7 @@ class PayloadTree(AbjadObject):
 
     Only leaf nodes carry payload. Internal nodes carry no payload.
 
-    Negative levels are available to work with trees bottom-up 
+    Negative levels are available to work with trees bottom-up
     instead of top-down.
 
     Trees do not yet implement append or extend methods.
@@ -454,7 +454,7 @@ class PayloadTree(AbjadObject):
                 node_7 -> node_8;
                 node_7 -> node_9;
             }
-            
+
         Returns string.
         '''
         return self.graphviz_graph.graphviz_format
@@ -717,9 +717,9 @@ class PayloadTree(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_next_n_nodes_at_level_helper(
-        self, 
-        n, 
-        level, 
+        self,
+        n,
+        level,
         nodes_must_be_complete=False,
         ):
         if not self._is_valid_level(level):
@@ -748,7 +748,7 @@ class PayloadTree(AbjadObject):
             if node is self:
                 self_is_found = True
                 # test whether node to return is higher in tree than self;
-                # or-clause allows for test of either nonnegative 
+                # or-clause allows for test of either nonnegative
                 # or negative level
                 if ((0 <= level) and level < self.level) or \
                     ((level < 0) and level < self.negative_level):
@@ -1079,7 +1079,7 @@ class PayloadTree(AbjadObject):
         return result
 
     def get_position_of_descendant(self, descendant):
-        r'''Gets position of `descendent` relative to node 
+        r'''Gets position of `descendent` relative to node
         rather than relative to root.
 
         ::

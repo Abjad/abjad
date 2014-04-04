@@ -360,8 +360,8 @@ class Component(AbjadObject):
         return effective_staff
 
     def _get_format_contributions_for_slot(
-        self, 
-        slot_identifier, 
+        self,
+        slot_identifier,
         bundle=None
         ):
         result = []

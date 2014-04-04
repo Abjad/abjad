@@ -34,9 +34,9 @@ class TypedCounter(TypedCollection):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        items=None, 
-        item_class=None, 
+        self,
+        items=None,
+        item_class=None,
         **kwargs
         ):
         TypedCollection.__init__(
@@ -218,7 +218,7 @@ class TypedCounter(TypedCollection):
 
     def iteritems(self):
         r'''Iterates items in typed counter.
-        
+
         Yields items.
         '''
         return self._collection.iteritems()

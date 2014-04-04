@@ -8,8 +8,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Memoize(AbjadObject):
-    r'''Memoize decorator. 
-   
+    r'''Memoize decorator.
+
     Caches a function's return value.
     '''
 

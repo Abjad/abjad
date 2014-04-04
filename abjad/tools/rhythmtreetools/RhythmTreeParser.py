@@ -169,7 +169,7 @@ class RhythmTreeParser(Parser):
         p[0] = p[1]
 
     def p_toplevel__EMPTY(self, p):
-        r'''toplevel : 
+        r'''toplevel :
         '''
         p[0] = []
 

@@ -103,7 +103,7 @@ class UntunedPercussion(Instrument):
         'wind machine',
         'wood block',
         ])))
-        
+
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -28,10 +28,10 @@ class ReSTLineageDirective(ReSTDirective):
         if isinstance(argument, types.TypeType):
             argument = argument.__module__ + '.' + argument.__name__
         ReSTDirective.__init__(
-            self, 
-            argument=argument, 
-            children=children, 
-            name=name, 
+            self,
+            argument=argument,
+            children=children,
+            name=name,
             options=options,
             )
 

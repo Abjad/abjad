@@ -12,7 +12,7 @@ class Note(Leaf):
     r'''A note.
 
     ..  container:: example
-        
+
         ::
 
             >>> note = Note("cs''8.")

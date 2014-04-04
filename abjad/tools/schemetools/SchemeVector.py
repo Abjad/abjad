@@ -10,7 +10,7 @@ class SchemeVector(Scheme):
         >>> schemetools.SchemeVector(True, True, False)
         SchemeVector(True, True, False)
 
-    Scheme vectors and Scheme vector constants differ in only 
+    Scheme vectors and Scheme vector constants differ in only
     their LilyPond input format.
 
     Scheme vectors are immutable.

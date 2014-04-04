@@ -196,7 +196,7 @@ class LilyPondGrobOverride(AbjadObject):
 
         Returns tuple of strings.
         '''
-        result = r'\revert {}'.format(self._revert_property_path_string) 
+        result = r'\revert {}'.format(self._revert_property_path_string)
         return [result]
 
     @property

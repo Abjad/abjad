@@ -2,11 +2,11 @@
 
 
 def timespan_2_stops_before_timespan_1_starts(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens 
+    r'''Makes time relation indicating that `timespan_2` happens
     during `timespan_1`.
 
     ::
@@ -29,7 +29,7 @@ def timespan_2_stops_before_timespan_1_starts(
     inequality = timespantools.CompoundInequality([
         'timespan_2.stop_offset < timespan_1.start_offset',
         ])
-        
+
     time_relation = timespantools.TimespanTimespanTimeRelation(
         inequality,
         timespan_1=timespan_1,

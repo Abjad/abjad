@@ -8,7 +8,7 @@ class TypedTuple(TypedCollection):
     r'''A typed tuple.
     '''
 
-    ### CLASS VARIABLES ### 
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         )
@@ -16,8 +16,8 @@ class TypedTuple(TypedCollection):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(self, 
-            item_class=item_class, 
+        TypedCollection.__init__(self,
+            item_class=item_class,
             items=items,
             )
         items = items or []
@@ -72,7 +72,7 @@ class TypedTuple(TypedCollection):
         Returns integer.
         '''
         return hash((
-            type(self), 
+            type(self),
             self._collection,
             self.item_class,
             ))
@@ -96,7 +96,7 @@ class TypedTuple(TypedCollection):
 
     def count(self, item):
         r'''Changes `item` to item.
-        
+
         Returns count in collection.
         '''
         item = self._item_callable(item)
@@ -104,7 +104,7 @@ class TypedTuple(TypedCollection):
 
     def index(self, item):
         r'''Changes `item` to item.
-        
+
         Returns index in collection.
         '''
         item = self._item_callable(item)

@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_spannertools_StaffLinesSpanner_format_01():
-    r'''StaffLinesSpanner with int argument overrides StaffSymbol's 
+    r'''StaffLinesSpanner with int argument overrides StaffSymbol's
     line-count property.
     '''
 
@@ -35,7 +35,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
 
 
 def test_spannertools_StaffLinesSpanner_format_02():
-    r'''StaffLinesSpanner with list argument overrides 
+    r'''StaffLinesSpanner with list argument overrides
     StaffSymbol's line-positions property.
     '''
 

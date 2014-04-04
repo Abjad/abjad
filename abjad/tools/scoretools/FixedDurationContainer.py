@@ -52,8 +52,8 @@ class FixedDurationContainer(Container):
         '''
         result = '{}({!r}, {})'
         result = result.format(
-            type(self).__name__, 
-            self.target_duration, 
+            type(self).__name__,
+            self.target_duration,
             list(self[:]),
             )
         return result

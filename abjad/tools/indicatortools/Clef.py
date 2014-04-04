@@ -217,8 +217,8 @@ class Clef(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='name', 
-                menu_key='nm', 
+                name='name',
+                menu_key='nm',
                 editor=getters.get_string,
                 ),
             )

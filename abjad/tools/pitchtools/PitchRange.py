@@ -389,8 +389,8 @@ class PitchRange(AbjadObject):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='range', 
-                menu_key='rp', 
+                name='range',
+                menu_key='rp',
                 editor=getters.get_symbolic_pitch_range_string,
                 ),
             )

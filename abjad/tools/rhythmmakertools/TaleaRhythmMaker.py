@@ -341,19 +341,19 @@ class TaleaRhythmMaker(RhythmMaker):
         from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='talea', 
-                menu_key='t', 
+                name='talea',
+                menu_key='t',
                 editor=rhythmmakertools.Talea,
                 ),
             systemtools.AttributeDetail(
-                name='split_divisions_by_counts', 
-                menu_key='sdc', 
-                editor=getters.get_integers, 
+                name='split_divisions_by_counts',
+                menu_key='sdc',
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
-                name='extra_counts_per_division', 
-                menu_key='xcd', 
-                editor=getters.get_integers, 
+                name='extra_counts_per_division',
+                menu_key='xcd',
+                editor=getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='beam_specifier',

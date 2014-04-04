@@ -25,8 +25,8 @@ class MultimeasureRest(Leaf):
             args = ((1, 4),)
         rest = scoretools.Rest(*args)
         Leaf.__init__(
-            self, 
-            rest.written_duration, 
+            self,
+            rest.written_duration,
             )
 
     ### PRIVATE PROPERTIES ###

@@ -69,9 +69,9 @@ class Octave(AbjadObject):
             else:
                 octave_number = 3 - len(group)
         elif isinstance(expr, pitchtools.Pitch):
-            octave_number = expr.octave_number 
+            octave_number = expr.octave_number
         elif isinstance(expr, type(self)):
-            octave_number = expr.octave_number 
+            octave_number = expr.octave_number
         elif expr is None:
             octave_number = 4
         else:
@@ -106,7 +106,7 @@ class Octave(AbjadObject):
         try:
             other = type(self)(other)
             return self.octave_number == other.octave_number
-        except: 
+        except:
             return False
 
     def __float__(self):

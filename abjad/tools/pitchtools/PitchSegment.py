@@ -111,9 +111,9 @@ class PitchSegment(Segment):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes pitch segment from `selection`.
 
@@ -267,7 +267,7 @@ class PitchSegment(Segment):
         ::
 
             >>> show(result) # doctest: +SKIP
-        
+
         ::
 
             >>> result = named_pitch_segment.rotate(-2)
@@ -277,7 +277,7 @@ class PitchSegment(Segment):
         ::
 
             >>> show(result) # doctest: +SKIP
-        
+
         Returns new pitch segment.
         '''
         from abjad.tools import sequencetools

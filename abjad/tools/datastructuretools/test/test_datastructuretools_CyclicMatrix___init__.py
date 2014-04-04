@@ -7,8 +7,8 @@ def test_datastructuretools_CyclicMatrix___init___01():
     '''
 
     cyclic_matrix = datastructuretools.CyclicMatrix((
-        (0, 1, 2, 3), 
-        (10, 11, 12, 13), 
+        (0, 1, 2, 3),
+        (10, 11, 12, 13),
         (20, 21, 22, 23),
         ))
 
@@ -23,9 +23,9 @@ def test_datastructuretools_CyclicMatrix___init___02():
     '''
 
     cyclic_matrix = datastructuretools.CyclicMatrix(columns=(
-        (0, 10, 20), 
-        (1, 11, 21), 
-        (2, 12, 22), 
+        (0, 10, 20),
+        (1, 11, 21),
+        (2, 12, 22),
         (3, 13, 23),
         ))
 
@@ -40,8 +40,8 @@ def test_datastructuretools_CyclicMatrix___init___03():
     '''
 
     cyclic_matrix = datastructuretools.CyclicMatrix((
-        (0, 1, 2, 3), 
-        (10, 11, 12, 13), 
+        (0, 1, 2, 3),
+        (10, 11, 12, 13),
         (20, 21),
         ))
 
@@ -53,9 +53,9 @@ def test_datastructuretools_CyclicMatrix___init___04():
     '''
 
     cyclic_matrix = datastructuretools.CyclicMatrix(columns=(
-        (0, 10, 20), 
-        (1, 11, 21), 
-        (2, 12), 
+        (0, 10, 20),
+        (1, 11, 21),
+        (2, 12),
         (3, 13),
         ))
 

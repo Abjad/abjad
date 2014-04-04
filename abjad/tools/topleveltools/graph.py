@@ -4,7 +4,7 @@ import subprocess
 
 
 def graph(expr, image_format='pdf', layout='dot'):
-    r'''Graphs `expr` with graphviz and opens resulting image in 
+    r'''Graphs `expr` with graphviz and opens resulting image in
     the default image viewer.
 
     ::

@@ -17,7 +17,7 @@ def test_schemetools_Scheme_01():
 
 
 def test_schemetools_Scheme_02():
-    r'''Scheme takes an optional `quoting` keyword, for prepending 
+    r'''Scheme takes an optional `quoting` keyword, for prepending
     quote/unquote ticks.
     '''
 
@@ -26,7 +26,7 @@ def test_schemetools_Scheme_02():
 
 
 def test_schemetools_Scheme_03():
-    r'''__str__ of Scheme returns the Scheme formatted value without the hash 
+    r'''__str__ of Scheme returns the Scheme formatted value without the hash
     mark, while format(Scheme) returns the formatted value with the hash mark,
     allowing for nested Scheme expressions.
     '''

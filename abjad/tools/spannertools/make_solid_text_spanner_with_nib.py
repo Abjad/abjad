@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import override
 
 
 def make_solid_text_spanner_with_nib(
-    left_text, 
+    left_text,
     direction=Up,
     ):
     r'''Makes solid text spanner with nib at right.
@@ -19,7 +19,7 @@ def make_solid_text_spanner_with_nib(
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.make_solid_text_spanner_with_nib(
-            ...     'foo', 
+            ...     'foo',
             ...     direction=Up,
             ...     )
             >>> attach(spanner, staff[:])
@@ -50,7 +50,7 @@ def make_solid_text_spanner_with_nib(
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.make_solid_text_spanner_with_nib(
-            ...     'foo', 
+            ...     'foo',
             ...     direction=Down,
             ...     )
             >>> attach(spanner, staff[:])

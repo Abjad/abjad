@@ -9,7 +9,7 @@ def test_agenttools_MutationAgent_splice_01():
     attach(beam, voice[:])
 
     result = mutate(voice[-1]).splice(
-        [Note("c'8"), Note("d'8"), Note("e'8")], 
+        [Note("c'8"), Note("d'8"), Note("e'8")],
         grow_spanners=True,
         )
 
@@ -136,7 +136,7 @@ def test_agenttools_MutationAgent_splice_05():
     attach(beam, voice[:])
 
     result = mutate(voice[-1]).splice(
-        [Note("c'8"), Note("d'8"), Note("e'8")], 
+        [Note("c'8"), Note("d'8"), Note("e'8")],
         grow_spanners=False,
         )
 
@@ -196,8 +196,8 @@ def test_agenttools_MutationAgent_splice_07():
     attach(beam, voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = mutate(voice[0]).splice(
-        notes, 
-        direction=Left, 
+        notes,
+        direction=Left,
         grow_spanners=True,
         )
 
@@ -228,7 +228,7 @@ def test_agenttools_MutationAgent_splice_08():
     attach(beam, voice[:])
     result = mutate(voice[1]).splice(
         [Note("dqf'8")],
-        direction=Left, 
+        direction=Left,
         grow_spanners=True,
         )
 
@@ -293,7 +293,7 @@ def test_agenttools_MutationAgent_splice_10():
     beam = Beam()
     attach(beam, voice.select_leaves())
     result = mutate(voice[1]).splice(
-        [Note("dqs'8")], 
+        [Note("dqs'8")],
         direction=Left,
         grow_spanners=True,
         )

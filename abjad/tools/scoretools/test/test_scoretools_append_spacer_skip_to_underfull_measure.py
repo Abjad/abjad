@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_append_spacer_skip_to_underfull_measure_01():
-    r'''Handles measure prolation from time signature 
+    r'''Handles measure prolation from time signature
     non-power-of-two denominator.
     '''
 

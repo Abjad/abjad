@@ -11,7 +11,7 @@ def test_durationtools_Duration___add___01():
 
 
 def test_durationtools_Duration___add___02():
-    r'''Adding a duration and nonreduced fraction 
+    r'''Adding a duration and nonreduced fraction
     returns a nonreduced fraction.
     '''
 

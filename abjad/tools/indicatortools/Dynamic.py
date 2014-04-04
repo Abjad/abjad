@@ -6,7 +6,7 @@ class Dynamic(AbjadObject):
     r'''A dynamic.
 
     ..  container:: example
-    
+
         **Example 1.** Initializes from dynamic name:
 
         ::
@@ -55,66 +55,66 @@ class Dynamic(AbjadObject):
     _format_slot = 'right'
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
-        'fp': 'p', 
-        'sf': 'f', 
+        'fp': 'p',
+        'sf': 'f',
         'sff': 'ff',
-        'sp': 'p', 
+        'sp': 'p',
         'spp': 'pp',
-        'sfz': 'f', 
-        'sfp': 'p', 
+        'sfz': 'f',
+        'sfp': 'p',
         'rfz': 'f',
     }
 
     _dynamic_name_to_dynamic_ordinal = {
-        'ppppp': -6, 
-        'pppp': -5, 
-        'ppp': -4, 
-        'pp': -3, 
+        'ppppp': -6,
+        'pppp': -5,
+        'ppp': -4,
+        'pp': -3,
         'p': -2,
         'mp': -1,
         'mf': 1,
-        'f': 2, 
-        'ff': 3, 
-        'fff': 4, 
-        'ffff': 5, 
+        'f': 2,
+        'ff': 3,
+        'fff': 4,
+        'ffff': 5,
         'fffff': 6,
         }
 
     _dynamic_names = (
-        'ppppp', 
-        'pppp', 
-        'ppp', 
-        'pp', 
+        'ppppp',
+        'pppp',
+        'ppp',
+        'pp',
         'p',
-        'mp', 
+        'mp',
         'mf',
-        'f', 
-        'ff', 
-        'fff', 
-        'ffff', 
+        'f',
+        'ff',
+        'fff',
+        'ffff',
         'fffff',
-        'fp', 
-        'sf', 
-        'sff', 
-        'sp', 
+        'fp',
+        'sf',
+        'sff',
+        'sp',
         'spp',
-        'sfz', 
-        'sfp', 
+        'sfz',
+        'sfp',
         'rfz',
         )
 
     _dynamic_ordinal_to_dynamic_name = {
-        -6: 'ppppp', 
-        -5: 'pppp', 
-        -4: 'ppp', 
-        -3: 'pp', 
+        -6: 'ppppp',
+        -5: 'pppp',
+        -4: 'ppp',
+        -3: 'pp',
         -2: 'p',
         -1: 'mp',
         1: 'mf',
-        2: 'f', 
-        3: 'ff', 
-        4: 'fff', 
-        5: 'ffff', 
+        2: 'f',
+        3: 'ff',
+        4: 'fff',
+        5: 'ffff',
         6: 'fffff',
         }
 

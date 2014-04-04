@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_swap_01():
-    r'''Moves parentage, children and spanners from multiple containers 
+    r'''Moves parentage, children and spanners from multiple containers
     to empty tuplet.
     '''
 
@@ -174,7 +174,7 @@ def test_agenttools_MutationAgent_swap_03():
 
 
 def test_agenttools_MutationAgent_swap_04():
-    r'''Trying to move parentage, children and spanners to noncontainer 
+    r'''Trying to move parentage, children and spanners to noncontainer
     raises exception.
     '''
 
@@ -187,7 +187,7 @@ def test_agenttools_MutationAgent_swap_04():
 
 
 def test_agenttools_MutationAgent_swap_05():
-    r'''Trying to move parentage, children and spanners from 
+    r'''Trying to move parentage, children and spanners from
     nonempty container to nonempty container raises exception.
     '''
 
@@ -200,7 +200,7 @@ def test_agenttools_MutationAgent_swap_05():
 
 
 def test_agenttools_MutationAgent_swap_06():
-    r'''Trying to move parentage, children and spanners from components 
+    r'''Trying to move parentage, children and spanners from components
     that are not parent-contiguous raises exception.
     '''
 

@@ -5,8 +5,8 @@ from abjad import *
 def test_datastructuretools_CyclicMatrix___getitem___01():
 
     matrix = datastructuretools.CyclicMatrix([
-        [0, 1, 2, 3], 
-        [10, 11, 12, 13], 
+        [0, 1, 2, 3],
+        [10, 11, 12, 13],
         [20, 21, 22, 23],
         ])
 
@@ -17,8 +17,8 @@ def test_datastructuretools_CyclicMatrix___getitem___01():
 def test_datastructuretools_CyclicMatrix___getitem___02():
 
     matrix = datastructuretools.CyclicMatrix([
-        [0, 1, 2, 3], 
-        [10, 11, 12, 13], 
+        [0, 1, 2, 3],
+        [10, 11, 12, 13],
         [20, 21, 22, 23],
         ])
 

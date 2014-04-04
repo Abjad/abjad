@@ -54,7 +54,7 @@ class IndicatorExpression(AbjadObject):
             scope=self.scope,
             )
         return new
-            
+
     def __eq__(self, arg):
         r'''Is true when arg is an indicator expression with indicator and
         scope equal to those of this indicator expression. Otherwise false.

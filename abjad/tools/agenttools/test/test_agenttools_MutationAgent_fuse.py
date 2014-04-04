@@ -328,7 +328,7 @@ def test_agenttools_MutationAgent_fuse_12():
     r'''Fuses unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
-    
+
     measure_1 = Measure((1, 8), "c'16 d'16")
     beam = Beam()
     attach(beam, measure_1[:])
@@ -378,7 +378,7 @@ def test_agenttools_MutationAgent_fuse_12():
 
 
 def test_agenttools_MutationAgent_fuse_13():
-    r'''Fuses measures carrying time signatures with differing 
+    r'''Fuses measures carrying time signatures with differing
     power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''

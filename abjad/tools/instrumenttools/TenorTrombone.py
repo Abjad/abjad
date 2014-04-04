@@ -33,7 +33,7 @@ class TenorTrombone(Instrument):
     '''
 
     ### CLASS VARIABLES ###
-    
+
     __slots__ = ()
 
     ### INITIALIZER ###

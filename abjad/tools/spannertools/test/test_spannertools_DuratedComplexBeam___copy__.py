@@ -12,8 +12,8 @@ def test_spannertools_DuratedComplexBeam___copy___01():
     durations = [inspect_(x).get_duration() for x in staff]
 
     beam = spannertools.DuratedComplexBeam(
-        durations=durations, 
-        span_beam_count=2, 
+        durations=durations,
+        span_beam_count=2,
         direction=Down,
         )
     attach(beam, staff[:])

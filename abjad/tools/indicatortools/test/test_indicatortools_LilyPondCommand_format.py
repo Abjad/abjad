@@ -238,7 +238,7 @@ def test_indicatortools_LilyPondCommand_format_10():
 
 
 def test_indicatortools_LilyPondCommand_format_11():
-    r'''Voice number can be set on a Voice container and on one of the 
+    r'''Voice number can be set on a Voice container and on one of the
     leaves contained in it.
     '''
 

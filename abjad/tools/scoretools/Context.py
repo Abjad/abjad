@@ -11,7 +11,7 @@ class Context(Container):
     ::
 
         >>> context = scoretools.Context(
-        ...     name='MeterVoice', 
+        ...     name='MeterVoice',
         ...     context_name='TimeSignatureContext',
         ...     )
 
@@ -172,7 +172,7 @@ class Context(Container):
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
         else:
-            contribution = context._format_invocation() 
+            contribution = context._format_invocation()
             contribution += ' {}'.format(brackets_open[0])
             contributions = [contribution]
             contributions = tuple(contributions)
@@ -198,7 +198,7 @@ class Context(Container):
 
     @property
     def consists_commands(self):
-        r'''Unordered set of LilyPond engravers to include 
+        r'''Unordered set of LilyPond engravers to include
         in context definition.
 
         Manage with add, update, other standard set commands:

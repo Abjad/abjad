@@ -157,10 +157,10 @@ class SimpleInequality(AbjadObject):
     ### PUBLIC METHODS ###
 
     def evaluate(
-        self, 
-        timespan_1_start_offset, 
+        self,
+        timespan_1_start_offset,
         timespan_1_stop_offset,
-        timespan_2_start_offset, 
+        timespan_2_start_offset,
         timespan_2_stop_offset,
         ):
         r'''Evalutes simple inequality.
@@ -180,9 +180,9 @@ class SimpleInequality(AbjadObject):
         return truth_value
 
     def evaluate_offset_inequality(
-        self, 
-        timespan_start, 
-        timespan_stop, 
+        self,
+        timespan_start,
+        timespan_stop,
         offset,
         ):
         r'''Evalutes offset inequality.
@@ -197,9 +197,9 @@ class SimpleInequality(AbjadObject):
         return truth_value
 
     def get_offset_indices(
-        self, 
-        timespan_1, 
-        timespan_2_start_offsets, 
+        self,
+        timespan_1,
+        timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
         r'''Gets offset indices of simple inequality.

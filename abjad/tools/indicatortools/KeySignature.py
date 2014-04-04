@@ -49,7 +49,7 @@ class KeySignature(AbjadObject):
         Returns new key signature.
         '''
         return type(self)(
-            self.tonic, 
+            self.tonic,
             self.mode,
             )
 

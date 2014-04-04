@@ -129,7 +129,7 @@ class NoteRhythmMaker(RhythmMaker):
         Returns boolean.
         '''
         return RhythmMaker.__eq__(self, arg)
-        
+
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
 
@@ -223,7 +223,7 @@ class NoteRhythmMaker(RhythmMaker):
             beam = spannertools.MultipartBeam()
             leaves = iterate(selections).by_class(scoretools.Leaf)
             leaves = list(leaves)
-            attach(beam, leaves) 
+            attach(beam, leaves)
         elif beam_specifier.beam_each_division:
             for selection in selections:
                 beam = spannertools.MultipartBeam()
@@ -238,7 +238,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Forbids notes with written duration greater than or equal to 
+            Forbids notes with written duration greater than or equal to
             ``1/2`` of a whole note:
 
             ::

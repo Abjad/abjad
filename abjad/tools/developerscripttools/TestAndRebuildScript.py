@@ -55,7 +55,7 @@ class TestAndRebuildScript(DeveloperScript):
 
     def get_terminal_width(self):
         r'''Borrowed from the py lib.
-        ''' 
+        '''
         try:
             import termios, fcntl, struct
             call = fcntl.ioctl(0, termios.TIOCGWINSZ,

@@ -33,26 +33,26 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         >>> scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         Selection(Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8"))
 
-    Set ``decrease_durations_monotonically=True`` to express tied values 
+    Set ``decrease_durations_monotonically=True`` to express tied values
     in decreasing duration:
 
     ::
 
         >>> scoretools.make_notes(
-        ...     [0], 
-        ...     [(13, 16)], 
+        ...     [0],
+        ...     [(13, 16)],
         ...     decrease_durations_monotonically=True,
         ...     )
         Selection(Note("c'2."), Note("c'16"))
 
-    Set ``decrease_durations_monotonically=False`` to express tied 
+    Set ``decrease_durations_monotonically=False`` to express tied
     values in increasing duration:
 
     ::
 
         >>> scoretools.make_notes(
-        ...     [0], 
-        ...     [(13, 16)], 
+        ...     [0],
+        ...     [(13, 16)],
         ...     decrease_durations_monotonically=False,
         ...     )
         Selection(Note("c'16"), Note("c'2."))
@@ -75,7 +75,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    duration_pairs = [durationtools.Duration(duration) 
+    duration_pairs = [durationtools.Duration(duration)
         for duration in durations]
 
     # set lists of pitches and duration pairs to the same length

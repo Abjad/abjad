@@ -13,7 +13,7 @@ class LilyPondFraction(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        'numerator', 
+        'numerator',
         'denominator',
         )
 

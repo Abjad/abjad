@@ -47,8 +47,8 @@ class Measure(FixedDurationContainer):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        time_signature=None, 
+        self,
+        time_signature=None,
         music=None,
         implicit_scaling=False,
         ):
@@ -80,7 +80,7 @@ class Measure(FixedDurationContainer):
                 >>> del(measure[1])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest:: 
+            ..  doctest::
 
                 {
                     \time 3/8
@@ -130,15 +130,15 @@ class Measure(FixedDurationContainer):
             if self.implicit_scaling:
                 result = '{}({!s}, {!r}, implicit_scaling=True)'
                 result = result.format(
-                    class_name, 
-                    forced_time_signature, 
+                    class_name,
+                    forced_time_signature,
                     summary,
                     )
             else:
                 result = '{}({!s}, {!r})'
                 result = result.format(
-                    class_name, 
-                    forced_time_signature, 
+                    class_name,
+                    forced_time_signature,
                     summary,
                     )
             return result
@@ -202,8 +202,8 @@ class Measure(FixedDurationContainer):
         contents_string = ' '.join([str(x) for x in self])
         result = '{}({}, {!r}, implicit_scaling={})'
         result = result.format(
-            type(self).__name__, 
-            pair, 
+            type(self).__name__,
+            pair,
             contents_string,
             self.implicit_scaling,
             )
@@ -559,7 +559,7 @@ class Measure(FixedDurationContainer):
 
         ..  container:: example
 
-            Measures without implicit scaling turned on do not 
+            Measures without implicit scaling turned on do not
             scale the duration of their contents:
 
             ::
@@ -633,7 +633,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''Is true when measure duration is greater than time signature 
+        '''Is true when measure duration is greater than time signature
         duration.
 
         ..  container:: example
@@ -722,7 +722,7 @@ class Measure(FixedDurationContainer):
     @property
     def target_duration(self):
         r'''Gets target duration of measure.
-        
+
         Target duration of measure is always equal to duration
         of effective time signature.
 
@@ -745,7 +745,7 @@ class Measure(FixedDurationContainer):
         ..  container:: example
 
             ::
-                
+
                 >>> measure.time_signature
                 TimeSignature((3, 4))
 

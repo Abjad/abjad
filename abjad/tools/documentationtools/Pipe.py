@@ -26,7 +26,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         if arguments != None:
             argv = argv + list(arguments)
         subprocess.Popen.__init__(
-            self, 
+            self,
             argv,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
@@ -83,7 +83,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         return string
 
     def read_wait(self, seconds=0.01):
-        r'''Tries to read from pipe.  Wait `seconds` 
+        r'''Tries to read from pipe.  Wait `seconds`
         if nothing comes out and the repeats.
 
         Should be used with caution, as this may loop forever.

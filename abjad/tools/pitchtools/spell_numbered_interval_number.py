@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def spell_numbered_interval_number(
-    named_interval_number, 
+    named_interval_number,
     numbered_interval_number,
     ):
     '''Spell `numbered_interval_number` according to `named_interval_number`:

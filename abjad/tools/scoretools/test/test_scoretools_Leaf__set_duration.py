@@ -202,8 +202,8 @@ def test_scoretools_Leaf__set_duration_05():
 
 
 def test_scoretools_Leaf__set_duration_06():
-    r'''Change leaf with LilyPond multiplier to untied duration with 
-    power-of-two denominator. LilyPond multiplier changes but leaf written 
+    r'''Change leaf with LilyPond multiplier to untied duration with
+    power-of-two denominator. LilyPond multiplier changes but leaf written
     duration does not.
     '''
 
@@ -219,8 +219,8 @@ def test_scoretools_Leaf__set_duration_06():
 
 
 def test_scoretools_Leaf__set_duration_07():
-    r'''Change leaf with LilyPond multiplier to untied duration with 
-    power-of-two denominator. LilyPond multiplier changes but leaf 
+    r'''Change leaf with LilyPond multiplier to untied duration with
+    power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     '''
 
@@ -236,8 +236,8 @@ def test_scoretools_Leaf__set_duration_07():
 
 
 def test_scoretools_Leaf__set_duration_08():
-    r'''Change leaf with LilyPond multiplier to tied duration with 
-    power-of-two denominator. LilyPond multiplier changes but leaf 
+    r'''Change leaf with LilyPond multiplier to tied duration with
+    power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     '''
 
@@ -253,8 +253,8 @@ def test_scoretools_Leaf__set_duration_08():
 
 
 def test_scoretools_Leaf__set_duration_09():
-    r'''Change leaf with LilyPond multiplier to duration without 
-    power-of-two denominator. LilyPond multiplier changes but leaf 
+    r'''Change leaf with LilyPond multiplier to duration without
+    power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     '''
 

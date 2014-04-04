@@ -59,7 +59,7 @@ class PitchClassSet(Set):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitchClass
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -75,7 +75,7 @@ class PitchClassSet(Set):
         items = []
         if self.item_class.__name__.startswith('Named'):
             items = [
-                str(x) 
+                str(x)
                 for x in sorted(self, key=lambda x: x.pitch_class_number)
                 ]
         elif hasattr(self.item_class, 'pitch_number'):
@@ -100,9 +100,9 @@ class PitchClassSet(Set):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes pitch-class set from `selection`.
 
@@ -113,7 +113,7 @@ class PitchClassSet(Set):
             >>> selection = select((staff_1, staff_2))
             >>> pitchtools.PitchClassSet.from_selection(selection)
             PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
-        
+
         Returns pitch-class set.
         '''
         from abjad.tools import pitchtools

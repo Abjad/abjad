@@ -131,7 +131,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_08():
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
-    
+
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -163,7 +163,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_09():
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
     staff[0].name = 'foo'
     staff[1].name = 'bar'
-    
+
     assert systemtools.TestManager.compare(
         staff,
         r'''

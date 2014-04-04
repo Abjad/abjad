@@ -191,9 +191,9 @@ class WoodwindFingering(AbjadObject):
 
     def __init__(
         self,
-        instrument_name=None, 
-        center_column=None, 
-        left_hand=None, 
+        instrument_name=None,
+        center_column=None,
+        left_hand=None,
         right_hand=None,
         ):
         assert isinstance(center_column, (type(None), list, tuple))
@@ -248,8 +248,8 @@ class WoodwindFingering(AbjadObject):
         instrument_as_scheme = schemetools.Scheme(
             self._instrument_name, quoting="'")
         return markuptools.MarkupCommand(
-            'woodwind-diagram', 
-            instrument_as_scheme, 
+            'woodwind-diagram',
+            instrument_as_scheme,
             key_groups_as_scheme,
             )
 

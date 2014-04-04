@@ -401,8 +401,8 @@ def test_spannertools_Beam___init___15():
     '''
 
     staff = Staff([
-        Voice("c'8 cs'8 d'8"), 
-        Note("ef'8"), 
+        Voice("c'8 cs'8 d'8"),
+        Note("ef'8"),
         Voice("e'8 f' fs' g'")]
         )
 
@@ -631,7 +631,7 @@ def test_spannertools_Beam___init___19():
 
 
 def test_spannertools_Beam___init___20():
-    r'''Notes in voice accept spanner even lodged within 
+    r'''Notes in voice accept spanner even lodged within
     simultaneous parent container.
     '''
 

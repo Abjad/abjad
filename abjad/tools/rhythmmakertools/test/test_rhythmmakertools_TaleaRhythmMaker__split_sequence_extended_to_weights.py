@@ -6,8 +6,8 @@ def test_rhythmmakertools_TaleaRhythmMaker__split_sequence_extended_to_weights_0
 
     maker = rhythmmakertools.TaleaRhythmMaker
     parts = maker._split_sequence_extended_to_weights(
-        [1, 2, 3, 4, 5], 
-        [7, 7, 7], 
+        [1, 2, 3, 4, 5],
+        [7, 7, 7],
         overhang=True,
         )
 
@@ -18,8 +18,8 @@ def test_rhythmmakertools_TaleaRhythmMaker__split_sequence_extended_to_weights_0
 
     maker = rhythmmakertools.TaleaRhythmMaker
     parts = maker._split_sequence_extended_to_weights(
-        [1, 2, 3, 4, 5], 
-        [7, 7, 7], 
+        [1, 2, 3, 4, 5],
+        [7, 7, 7],
         overhang=False,
         )
 

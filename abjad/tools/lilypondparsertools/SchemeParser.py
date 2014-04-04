@@ -283,7 +283,7 @@ class SchemeParser(abctools.Parser):
         p[0] = p[1]
 
     def p_forms__EMPTY(self, p):
-        r'''forms : 
+        r'''forms :
         '''
         p[0] = []
 
@@ -523,7 +523,7 @@ class SchemeParser(abctools.Parser):
         p[0] = p[1]
 
     def p_data__EMPTY(self, p):
-        r'''data : 
+        r'''data :
         '''
         p[0] = []
 

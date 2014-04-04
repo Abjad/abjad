@@ -9,7 +9,7 @@ def test_durationtools_Duration_durations_to_nonreduced_fractions_01():
     result = Duration.durations_to_nonreduced_fractions(durations)
 
     pairs = [
-        mathtools.NonreducedFraction(x) 
+        mathtools.NonreducedFraction(x)
         for x in [(8, 16), (48, 16), (5, 16)]
         ]
 

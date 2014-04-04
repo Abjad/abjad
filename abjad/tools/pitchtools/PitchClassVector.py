@@ -26,9 +26,9 @@ class PitchClassVector(Vector):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes pitch-class vector from `selection`.
 

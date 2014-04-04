@@ -12,23 +12,23 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
         ::
 
             >>> sequencetools.split_sequence(
-            ...     (10, -10, 10, -10), 
-            ...     (3, 15, 3), 
-            ...     cyclic=True, 
+            ...     (10, -10, 10, -10),
+            ...     (3, 15, 3),
+            ...     cyclic=True,
             ...     overhang=True,
             ...     )
             [(3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,)]
 
     ..  container:: example
-    
+
         **Example 2.** Split sequence cyclically by weights without overhang:
 
         ::
 
             >>> sequencetools.split_sequence(
-            ...     (10, -10, 10, -10), 
-            ...     (3, 15, 3), 
-            ...     cyclic=True, 
+            ...     (10, -10, 10, -10),
+            ...     (3, 15, 3),
+            ...     cyclic=True,
             ...     overhang=False,
             ...     )
             [(3,), (7, -8), (-2, 1), (3,), (6, -9)]
@@ -40,9 +40,9 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
         ::
 
             >>> sequencetools.split_sequence(
-            ...     (10, -10, 10, -10), 
-            ...     (3, 15, 3), 
-            ...     cyclic=False, 
+            ...     (10, -10, 10, -10),
+            ...     (3, 15, 3),
+            ...     cyclic=False,
             ...     overhang=True,
             ...     )
             [(3,), (7, -8), (-2, 1), (9, -10)]
@@ -54,9 +54,9 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
         ::
 
             >>> sequencetools.split_sequence(
-            ...     (10, -10, 10, -10), 
-            ...     (3, 15, 3), 
-            ...     cyclic=False, 
+            ...     (10, -10, 10, -10),
+            ...     (3, 15, 3),
+            ...     cyclic=False,
             ...     overhang=False,
             ...     )
             [(3,), (7, -8), (-2, 1)]

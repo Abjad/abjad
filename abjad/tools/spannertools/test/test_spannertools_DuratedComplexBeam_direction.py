@@ -7,8 +7,8 @@ def test_spannertools_DuratedComplexBeam_direction_01():
     container = Container("c'16 d'16 e'16 f'16")
 
     beam = spannertools.DuratedComplexBeam(
-        durations=[(1, 8), (1, 8)], 
-        span_beam_count=1, 
+        durations=[(1, 8), (1, 8)],
+        span_beam_count=1,
         direction=Up,
         )
 

@@ -91,7 +91,7 @@ def test_agenttools_InspectionAgent_get_indicator_09():
     command = indicatortools.LilyPondCommand('stemUp')
     attach(command, note)
 
-    result = inspect_(note).get_indicator(indicatortools.LilyPondCommand) 
+    result = inspect_(note).get_indicator(indicatortools.LilyPondCommand)
     assert result is command
 
 
@@ -153,7 +153,7 @@ def test_agenttools_InspectionAgent_get_indicator_13():
     comment = indicatortools.LilyPondComment('comment')
     attach(comment, note)
 
-    indicator = inspect_(note).get_indicator(indicatortools.LilyPondComment) 
+    indicator = inspect_(note).get_indicator(indicatortools.LilyPondComment)
     assert indicator is comment
 
 

@@ -21,7 +21,7 @@ def show(expr, return_timing=False, **kwargs):
     the Abjad ``config.py`` file.
 
     Returns none when `return_timing` is false.
-    
+
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`
     when `return_timing` is true.
     '''

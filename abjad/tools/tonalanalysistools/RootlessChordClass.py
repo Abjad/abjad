@@ -62,9 +62,9 @@ class RootlessChordClass(IntervalSegment):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        quality_string='major', 
-        extent='triad', 
+        self,
+        quality_string='major',
+        extent='triad',
         inversion='root',
         ):
         if extent in ('triad', 5):
@@ -167,33 +167,33 @@ class RootlessChordClass(IntervalSegment):
         if quality_string == 'French':
             intervals = [
                 pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('major', 2), 
-                pitchtools.NamedInterval('major', 3), 
+                pitchtools.NamedInterval('major', 2),
+                pitchtools.NamedInterval('major', 3),
                 ]
         elif quality_string == 'German':
             intervals = [
-                pitchtools.NamedInterval('major', 3), 
-                pitchtools.NamedInterval('minor', 3), 
-                pitchtools.NamedInterval('augmented', 2), 
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('augmented', 2),
                 ]
         elif quality_string == 'Italian':
             intervals = [
-                pitchtools.NamedInterval('major', 3), 
-                pitchtools.NamedInterval('perfect', 1), 
-                pitchtools.NamedInterval('augmented', 4), 
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('perfect', 1),
+                pitchtools.NamedInterval('augmented', 4),
                 ]
         elif quality_string == 'Swiss':
             intervals = [
-                pitchtools.NamedInterval('major', 3), 
-                pitchtools.NamedInterval('augmented', 2), 
-                pitchtools.NamedInterval('minor', 3), 
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('augmented', 2),
+                pitchtools.NamedInterval('minor', 3),
                 ]
         else:
             message = 'unaccpetable quality string.'
             raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
-        
+
     @staticmethod
     def _initialize_ninth(quality_string):
         if quality_string == 'dominant':

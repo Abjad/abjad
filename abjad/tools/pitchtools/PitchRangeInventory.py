@@ -9,7 +9,7 @@ class PitchRangeInventory(TypedList):
     ::
 
         >>> inventory = pitchtools.PitchRangeInventory([
-        ...     '[C3, C6]', 
+        ...     '[C3, C6]',
         ...     '[C4, C6]',
         ...     ])
         >>> inventory

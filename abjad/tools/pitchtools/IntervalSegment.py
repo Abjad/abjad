@@ -58,9 +58,9 @@ class IntervalSegment(Segment):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes interval segment from component `selection`.
 
@@ -116,7 +116,7 @@ class IntervalSegment(Segment):
     @property
     def slope(self):
         r'''Slope of interval segment.
-        
+
         The slope of a interval segment is the sum of its
         intervals divided by its length:
 
@@ -133,7 +133,7 @@ class IntervalSegment(Segment):
     @property
     def spread(self):
         r'''Spread of interval segment.
-        
+
         The maximum interval spanned by any combination of
         the intervals within a numbered interval segment.
 
