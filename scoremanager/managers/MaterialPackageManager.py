@@ -445,6 +445,7 @@ class MaterialPackageManager(PackageManager):
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(target=output_material)
         lines = editor._get_target_summary_lines()
+        lines = lines or ['(empty)']
         section = menu.make_material_summary_section(lines=lines)
         return section
 

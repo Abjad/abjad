@@ -84,6 +84,7 @@ class MaterialManagerWrangler(Wrangler):
         if class_name is None:
             return manager
         prototype = (
+            'PitchRangeInventoryMaterialManager',
             'TempoInventoryMaterialManager',
             )
         if class_name in prototype:
