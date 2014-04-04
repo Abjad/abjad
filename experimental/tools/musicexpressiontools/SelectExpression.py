@@ -14,9 +14,9 @@ from experimental.tools.musicexpressiontools.SetMethodMixin \
 
 
 class SelectExpression(
-    AnchoredExpression, 
-    IterablePayloadCallbackMixin, 
-    SelectMethodMixin, 
+    AnchoredExpression,
+    IterablePayloadCallbackMixin,
+    SelectMethodMixin,
     SetMethodMixin):
     r'''Select expression.
     '''
@@ -28,9 +28,9 @@ class SelectExpression(
     ### INTIALIZER ###
 
     def __init__(
-        self, anchor=None, 
-        voice_name=None, 
-        time_relation=None, 
+        self, anchor=None,
+        voice_name=None,
+        time_relation=None,
         callbacks=None,
         ):
         assert isinstance(voice_name, (str, type(None)))

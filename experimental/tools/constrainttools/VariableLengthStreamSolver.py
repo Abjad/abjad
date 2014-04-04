@@ -9,17 +9,17 @@ from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
 class VariableLengthStreamSolver(_Solver):
-    r'''A solver which behaves similarly to the ``FiniteStreamSolver`` 
-    except that it can produce solutions of variable rather than fixed 
+    r'''A solver which behaves similarly to the ``FiniteStreamSolver``
+    except that it can produce solutions of variable rather than fixed
     lengths.
 
     Instantiated from a Domain, a list of Constraints, and list of terminating
     constraints, which signal when to begin yielding solutions.
 
-    This solver is best suited for generating solutions which sum to a 
+    This solver is best suited for generating solutions which sum to a
     fixed value, or whose solutions fall within a range of lengths.
 
-    A poorly defined set of constraints can trigger infinite recursion, 
+    A poorly defined set of constraints can trigger infinite recursion,
     so care must be taken when constructing the problem to be explored.
 
     ::
@@ -113,7 +113,7 @@ class VariableLengthStreamSolver(_Solver):
                         break
 
                 if valid and node.children is None:
-                    node.children = [_SolutionNode(x, parent=node) 
+                    node.children = [_SolutionNode(x, parent=node)
                         for x in domain[0]]
                     return solution
 
@@ -122,7 +122,7 @@ class VariableLengthStreamSolver(_Solver):
 
                 else:
                     if node.children is None:
-                        node.children = [_SolutionNode(x, parent=node) 
+                        node.children = [_SolutionNode(x, parent=node)
                             for x in domain[0]]
                     result = random_recurse(
                         random.choice(node.children),

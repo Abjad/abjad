@@ -18,11 +18,11 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, 
-        attribute=None, 
-        source_expression=None, 
+    def __init__(self,
+        attribute=None,
+        source_expression=None,
         target_timespan=None,
-        persist=True, 
+        persist=True,
         truncate=None,
         ):
         from experimental.tools import musicexpressiontools
@@ -31,8 +31,8 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
         assert isinstance(truncate, (bool, type(None)))
         SetExpression.__init__(
             self,
-            attribute=attribute, 
-            source_expression=source_expression, 
+            attribute=attribute,
+            source_expression=source_expression,
             target_timespan=target_timespan,
             )
         AnchoredExpression.__init__(self, anchor=target_timespan)

@@ -264,10 +264,10 @@ class Specification(AbjadObject):
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):
-        r'''Get single-context set expressions rooted to specification 
+        r'''Get single-context set expressions rooted to specification
         that govern `context_name`.
 
-        Returns list such that highest level (most general) context 
+        Returns list such that highest level (most general) context
         set expressions appear first.
 
         Lowest level (most specific) context set expressions appear last.

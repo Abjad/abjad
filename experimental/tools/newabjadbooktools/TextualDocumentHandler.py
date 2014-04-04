@@ -8,7 +8,7 @@ from experimental.tools.newabjadbooktools.DocumentHandler \
 class TextualDocumentHandler(DocumentHandler):
     r"""Abstract base class for handlers of text-based documents containing
     <abjad></abjad> tags:
-    
+
     ::
 
         >>> document = '''Let's print something:
@@ -35,7 +35,7 @@ class TextualDocumentHandler(DocumentHandler):
         ...     output_directory_path='.',
         ...     )
         >>> source_to_code_block_mapping = \
-        ...     document_handler.extract_code_blocks() 
+        ...     document_handler.extract_code_blocks()
         >>> for location, code_block in source_to_code_block_mapping.items():
         ...     print location, code_block.displayed_lines
         ...
@@ -48,13 +48,13 @@ class TextualDocumentHandler(DocumentHandler):
     ::
 
         >>> document = '''This code block is hidden:
-        ... 
+        ...
         ... <abjad>[hide=True]
         ... You can't see me!
         ... </abjad>
         ...
         ... ... and this code block isn't:
-        ... 
+        ...
         ... <abjad>[hide=False]
         ... Here I am!
         ... </abjad>
@@ -88,7 +88,7 @@ class TextualDocumentHandler(DocumentHandler):
         DocumentHandler.__init__(self,
             document,
             output_directory_path=output_directory_path,
-            ) 
+            )
         self._document_file_name=document_file_name
 
     ### PUBLIC PROPERTIES ###
@@ -101,7 +101,7 @@ class TextualDocumentHandler(DocumentHandler):
 
             >>> document_handler.asset_output_directory_name
             'assets'
-            
+
         Returns string.
         '''
         return 'assets'
@@ -135,7 +135,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> source_line = '<abjad>[hide=True]'
             >>> document_handler.extract_code_block_options(source_line)
             {'hide': True}
-            
+
         ::
 
             >>> source_line = '<abjad>[strip_prompt=true, hide=false]'
@@ -197,7 +197,7 @@ class TextualDocumentHandler(DocumentHandler):
             ...     output_directory_path='.',
             ...     )
             >>> source_to_code_block_mapping = \
-            ...     document_handler.extract_code_blocks() 
+            ...     document_handler.extract_code_blocks()
 
         ::
 
@@ -239,18 +239,18 @@ class TextualDocumentHandler(DocumentHandler):
         current_block_lines = None
         current_block_options = None
 
-        for i, line in enumerate(self.document.splitlines()): 
+        for i, line in enumerate(self.document.splitlines()):
             if line.startswith('<abjad'):
                 if in_block:
                     raise Exception('Extra opening tag at line {}.'.format(i))
-                    
+
                 current_block_options = self.extract_code_block_options(line)
 
                 if line.startswith('<abjad>'):
                     in_block = True
                     current_block_lines = []
                     starting_line_number = i
-                
+
                 elif line.startswith('<abjadextract '):
                     starting_line_number = stopping_line_number = i
                     code_address = line.partition(
@@ -331,7 +331,7 @@ class TextualDocumentHandler(DocumentHandler):
                 old_lines[previous_last_line_number:len(old_lines)])
 
         return new_lines
-    
+
     def write_rebuilt_document(self):
         assert isinstance(self.document_file_name, str) and \
             self.document_file_name
@@ -348,4 +348,3 @@ class TextualDocumentHandler(DocumentHandler):
         if previous_document != rebuilt_document:
             with open(document_file_path, 'w') as f:
                 f.write(rebuilt_document)
-         

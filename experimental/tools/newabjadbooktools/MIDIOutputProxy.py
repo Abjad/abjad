@@ -38,7 +38,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             lilypond_file.score_block.items.append(midi_block)
             lilypond_format = format(lilypond_file)
             self._payload = lilypond_format
-             
+
     ### PUBLIC METHODS ###
 
     def get_asset_output_absolute_file_path(self, document_handler):

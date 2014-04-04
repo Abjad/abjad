@@ -10,7 +10,7 @@ class GlobalConstraint(_GlobalConstraint):
 
         >>> from experimental.tools.constrainttools import GlobalConstraint
 
-    Instantiated from a function which takes a single argument, 
+    Instantiated from a function which takes a single argument,
     representing an entire solution.
 
     ::

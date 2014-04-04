@@ -24,7 +24,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_01():
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_02():
-    r'''From-future rhythm set expression lookup expression with 
+    r'''From-future rhythm set expression lookup expression with
     reverse callback.
     '''
 
@@ -47,7 +47,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_02():
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_03():
-    r'''From-future rhythm set expression lookup expression with 
+    r'''From-future rhythm set expression lookup expression with
     reverse callback.
     '''
 
@@ -70,7 +70,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_03():
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_04():
-    r'''From-future rhythm set expression lookup expression with 
+    r'''From-future rhythm set expression lookup expression with
     reverse callbacks.
     '''
 

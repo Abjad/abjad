@@ -76,7 +76,7 @@ class BeatSelectExpression(SelectExpression):
 
         Returns none when nonevaluable.
 
-        Returns start-positioned division payload expression 
+        Returns start-positioned division payload expression
         when evaluable.
         '''
         from experimental.tools import musicexpressiontools

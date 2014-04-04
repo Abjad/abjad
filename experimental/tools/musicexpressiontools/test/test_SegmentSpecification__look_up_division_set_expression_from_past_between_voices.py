@@ -27,7 +27,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_02():
-    '''From-past division set expression lookup expression between voices 
+    '''From-past division set expression lookup expression between voices
     with reverse callback.
     '''
 
@@ -51,7 +51,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_03():
-    '''From-past division set expression lookup expression between voices 
+    '''From-past division set expression lookup expression between voices
     with reverse callback.
     '''
 
@@ -75,7 +75,7 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_04():
-    '''From-past division set expression lookup expression between voices 
+    '''From-past division set expression lookup expression between voices
     with reverse callbacks.
     '''
 

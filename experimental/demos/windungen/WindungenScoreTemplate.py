@@ -34,12 +34,12 @@ class WindungenScoreTemplate(AbjadObject):
             staves.append(staff)
 
         windungen_staff_group = scoretools.StaffGroup(
-            staves, 
+            staves,
             name='Windungen Staff Group',
             )
 
         windungen_score = scoretools.Score(
-            [windungen_staff_group], 
+            [windungen_staff_group],
             name='Windungen Score',
             )
 

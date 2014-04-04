@@ -22,7 +22,7 @@ class CodeOutputProxy(OutputProxy):
 
     def __init__(self, payload):
         self._payload = tuple(payload)
-    
+
     ### PRIVATE ATTRIBUTES ###
 
     @property
@@ -65,7 +65,7 @@ class CodeOutputProxy(OutputProxy):
         r'''Handle a LaTeX document environment:
 
         ::
-        
+
             >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
             >>> result = output_proxy.handle_latex_document_environment(
             ...     document_handler)

@@ -23,7 +23,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     ::
 
-        >>> musicexpressiontools.Division((5, 8), 
+        >>> musicexpressiontools.Division((5, 8),
         ...     is_right_open=True, start_offset=Offset(1, 8))
         Division('[5, 8)', start_offset=Offset(1, 8))
 
@@ -44,9 +44,9 @@ class Division(NonreducedFraction, BoundedObject):
     # slots definition does nothing here because multiple inheritance
     # breaks with multiple slots base classes
     __slots__ = (
-        '_is_left_closed', 
-        '_is_left_open', 
-        '_is_right_closed', 
+        '_is_left_closed',
+        '_is_left_open',
+        '_is_right_closed',
         '_is_right_open',
         '_start_offset',
         )
@@ -195,7 +195,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     @staticmethod
     def parse_interval_range_string(interval_range_string):
-        r'''Parses `interval_range_string` into interval pair, boolean start 
+        r'''Parses `interval_range_string` into interval pair, boolean start
         and boolean stop.
 
         ::

@@ -37,7 +37,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        r'''Subtract `timespan` from timespan-delimited single-context 
+        r'''Subtract `timespan` from timespan-delimited single-context
         rhythm set expression.
 
             >>> source_expression = \
@@ -141,7 +141,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                     )
         # TODO: remove the double indentation of the following branch
         elif isinstance(
-            self.source_expression, 
+            self.source_expression,
             musicexpressiontools.RhythmSetExpressionLookupExpression):
             expression = self.source_expression.evaluate()
             if isinstance(

@@ -25,7 +25,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_01():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_02():
-    r'''From-future rhythm select expression between voices with 
+    r'''From-future rhythm select expression between voices with
     reverse callback.
     '''
 
@@ -49,7 +49,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_03():
-    r'''From-future rhythm select expression between voices with 
+    r'''From-future rhythm select expression between voices with
     reverse callback.
     '''
 
@@ -73,7 +73,7 @@ def test_SegmentSpecification__select_rhythm_from_future_between_voices_03():
 
 
 def test_SegmentSpecification__select_rhythm_from_future_between_voices_04():
-    r'''From-future rhythm select expression between voices with 
+    r'''From-future rhythm select expression between voices with
     reverse callbacks.
     '''
 

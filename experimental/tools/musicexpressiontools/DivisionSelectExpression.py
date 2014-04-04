@@ -37,7 +37,7 @@ class DivisionSelectExpression(SelectExpression):
                 ),
             )
 
-    Example 2. Select voice ``1`` divisions that start during segment 
+    Example 2. Select voice ``1`` divisions that start during segment
     ``'red'``:
 
     ::

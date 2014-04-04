@@ -9,9 +9,9 @@ def test_VariableLengthStreamSolver_01():
     target_sum = GlobalConstraint(lambda x: sum(x) == 5)
 
     ordered_solver = VariableLengthStreamSolver(
-        domain, 
-        [boundary_sum], 
-        [target_sum], 
+        domain,
+        [boundary_sum],
+        [target_sum],
         randomized=False,
         )
 
@@ -35,9 +35,9 @@ def test_VariableLengthStreamSolver_01():
     ]
 
     random_solver = VariableLengthStreamSolver(
-        domain, 
-        [boundary_sum], 
-        [target_sum], 
+        domain,
+        [boundary_sum],
+        [target_sum],
         randomized=True,
         )
     random_solutions = [x for x in random_solver]

@@ -37,7 +37,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             lilypond_file.file_initial_system_includes[0] = token
             lilypond_format = format(lilypond_file)
             self._payload = lilypond_format
-             
+
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):

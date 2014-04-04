@@ -7,7 +7,7 @@ from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 class AssetOutputProxy(OutputProxy):
     r'''Abstract base class for all abjad-book asset output managers.
 
-    An asset output proxy is an output proxy with both a textual 
+    An asset output proxy is an output proxy with both a textual
     representation in a document, and a filesystem representation on disk.
 
     Examples include notation, charts and graphs.

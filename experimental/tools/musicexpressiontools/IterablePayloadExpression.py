@@ -45,7 +45,7 @@ class IterablePayloadExpression(PayloadExpression):
         assert not isinstance(payload, rhythmmakertools.RhythmMaker)
         assert not isinstance(payload, datastructuretools.StatalServerCursor)
         assert isinstance(payload, (
-            str, tuple, list, 
+            str, tuple, list,
             scoretools.Container,
             datastructuretools.TypedList,
             musicexpressiontools.DivisionList,
@@ -186,11 +186,11 @@ class IterablePayloadExpression(PayloadExpression):
         common_denominator = nonreduced_fractions[0].denominator
         # change to integers
         nonreduced_fractions = [
-            common_denominator * nonreduced_fraction 
+            common_denominator * nonreduced_fraction
             for nonreduced_fraction in nonreduced_fractions
             ]
         fractions = [
-            nonreduced_fraction.reduce() 
+            nonreduced_fraction.reduce()
             for nonreduced_fraction in nonreduced_fractions
             ]
         assert all(fraction.denominator == 1 for fraction in fractions)

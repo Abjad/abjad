@@ -73,4 +73,3 @@ class ImageOutputProxy(AssetOutputProxy):
         if image_format in image_formats:
             image_formats[image_format](document_handler)
         raise Exception('Unsupported image format {!r}'.format(image_format))
-        

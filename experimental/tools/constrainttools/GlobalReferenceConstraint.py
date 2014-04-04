@@ -32,7 +32,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
 
     Returns ``GlobalReferenceConstraint`` instance.
     '''
-    
+
     ### CLASS VARIABLES ###
 
     __slots__ = ('_kind', '_predicate', '_reference')

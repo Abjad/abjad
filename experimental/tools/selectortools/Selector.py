@@ -358,7 +358,7 @@ class Selector(AbjadObject):
                 >>> prototype = (Note, Chord)
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(prototype)
-            
+
             ::
 
                 >>> for x in selector(staff):
