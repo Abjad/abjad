@@ -81,7 +81,6 @@ def test_MaterialPackageWrangler__make_material_package_03():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'user_input.py',
         ]
 
     assert not os.path.exists(path)

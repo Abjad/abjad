@@ -91,16 +91,11 @@ class MaterialPackageWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_materials = False
 
-    def _get_appropriate_material_manager(self, class_name, path):
+    def _get_material_package_manager(self, class_name, path):
         import scoremanager
         from scoremanager import managers
         assert os.path.sep in path
-        if class_name is None:
-            manager = managers.MaterialPackageManager(
-                path=path,
-                session=self._session,
-                )
-            return manager
+        assert class_name is not None
         command = 'manager = scoremanager.managers.{}'
         command += '(path=path, session=self._session)'
         command = command.format(class_name)
@@ -204,20 +199,19 @@ class MaterialPackageWrangler(Wrangler):
         prompt=False, 
         metadata=None,
         ):
+        from scoremanager import managers
         assert os.path.sep in path
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(path)
         os.mkdir(path)
-        string = 'material_manager_class_name'
-        material_manager_class_name = metadata.get(string)
-        pair = (material_manager_class_name, path)
-        manager = self._get_appropriate_material_manager(*pair)
+        manager = managers.MaterialPackageManager(
+            path=path,
+            session=self._session,
+            )
         manager._initializer_file_manager._write_stub()
         manager.rewrite_metadata_module(metadata, prompt=False)
         if not manager._get_metadatum('material_manager_class_name'):
             manager._write_definition_module_stub(prompt=False)
-        if manager._user_input_wrapper_in_memory:
-            manager._write_user_input_module_stub()
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -262,7 +256,9 @@ class MaterialPackageWrangler(Wrangler):
         assert class_name is not None
         metadata['material_manager_class_name'] = class_name
         self._make_material_package(path, metadata=metadata)
-        manager = self._get_appropriate_material_manager(class_name, path)
+        manager = self._get_material_package_manager(class_name, path)
+        if manager._user_input_wrapper_in_memory:
+            manager._write_user_input_module_stub()
         manager._run_first_time()
 
     def make_material_package_for_editable_mainline_class(self):
@@ -285,5 +281,3 @@ class MaterialPackageWrangler(Wrangler):
         if self._should_backtrack():
             return
         self._make_material_package(path)
-        #manager = self._get_appropriate_material_manager(class_name, path)
-        #manager._run_first_time()
