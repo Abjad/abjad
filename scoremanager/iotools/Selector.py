@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
@@ -263,20 +264,16 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_mainline_class_selector(self, instruments=False, editable=True):
-        r'''Makes mainline class selector.
+    def make_inventory_class_selector(self):
+        r'''Makes inventory class selector.
 
         Returns selector.
         '''
-        from abjad.tools import instrumenttools
-        assert editable
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
-            if not instruments:
-                if issubclass(class_, instrumenttools.Instrument):
-                    continue
-            if hasattr(class_, '_attribute_manifest'):
-                classes.append(class_)
+            if issubclass(class_, datastructuretools.TypedList):
+                if hasattr(class_, '_attribute_manifest'):
+                    classes.append(class_)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(
             session=self._session,
