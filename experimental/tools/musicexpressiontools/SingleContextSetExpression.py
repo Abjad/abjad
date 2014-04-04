@@ -8,7 +8,7 @@ from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression
 class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Single-context set expression.
 
-    Set `attribute` to `source_expression` for `target_timespan` in 
+    Set `attribute` to `source_expression` for `target_timespan` in
     `scope_name`.
 
     Example specification:
@@ -38,7 +38,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
         >>> score = score_specification.interpret()
 
-    Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan 
+    Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan
     in score context:
 
     ::
@@ -114,7 +114,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def fresh(self):
-        r'''Is true when single-context set expression results 
+        r'''Is true when single-context set expression results
         from explicit composer input.
         Otherwise false.
 
@@ -141,7 +141,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         pass
 
     def store_in_root_specification_by_context_and_attribute(self):
-        r'''Store single-context set expression in root specification 
+        r'''Store single-context set expression in root specification
         by context and attribute.
         '''
         scope_name = self.scope_name or \

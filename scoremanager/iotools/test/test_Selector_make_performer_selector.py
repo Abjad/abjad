@@ -14,7 +14,7 @@ def test_Selector_make_performer_selector_01():
     result = selector._run(pending_user_input=input_)
 
     performer = instrumenttools.Performer(
-        name='hornist', 
+        name='hornist',
         instruments=[instrumenttools.FrenchHorn()]
         )
     assert result == performer

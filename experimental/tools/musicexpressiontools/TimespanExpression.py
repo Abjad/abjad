@@ -11,8 +11,8 @@ from experimental.tools.musicexpressiontools.TimespanCallbackMixin \
 
 
 class TimespanExpression(
-    AnchoredExpression, 
-    TimespanCallbackMixin, 
+    AnchoredExpression,
+    TimespanCallbackMixin,
     SelectMethodMixin,
     TimeContiguousSetMethodMixin):
     r'''Timespan expression.

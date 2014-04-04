@@ -23,10 +23,10 @@ class UserInputGetterPrompt(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        prompt_string, 
-        additional_help_template_arguments=None, 
-        default_value=None, 
+    def __init__(self,
+        prompt_string,
+        additional_help_template_arguments=None,
+        default_value=None,
         help_template=None,
         include_chevron=True,
         setup_statements=None,

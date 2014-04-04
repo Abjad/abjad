@@ -67,7 +67,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.home_directory_path, 
+                        self.home_directory_path,
                         'scores',
                         )
                     ),
@@ -283,7 +283,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         file_path = self._cache_file_path = os.path.join(
-            self.configuration_directory_path, 
+            self.configuration_directory_path,
             'cache.py',
             )
         return file_path
@@ -391,7 +391,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'handlertools',
             )
         return path
-        
+
     @property
     def home_directory_path(self):
         r'''Gets home directory path.
@@ -547,9 +547,9 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     ### PUBLIC METHODS ###
 
     def list_score_directory_paths(
-        self, 
-        abjad=False, 
-        user=False, 
+        self,
+        abjad=False,
+        user=False,
         ):
         r'''Lists score directory paths.
 
@@ -622,7 +622,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
-                    self._user_library_directory_name, 
+                    self._user_library_directory_name,
                     'material_packages',
                     remainder,
                     )

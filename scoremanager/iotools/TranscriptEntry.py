@@ -17,7 +17,7 @@ class TranscriptEntry(AbjadObject):
         )
 
     ### INITIALIZER ###
-    
+
     def __init__(self, lines, terminal_was_cleared=None):
         assert isinstance(terminal_was_cleared, (bool, type(None)))
         current_time = datetime.datetime.fromtimestamp(time.time())

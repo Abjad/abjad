@@ -41,7 +41,7 @@ class MenuEntry(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         menu_section,
         display_string,
         key=None,
@@ -134,7 +134,7 @@ class MenuEntry(AbjadObject):
 
             >>> entry.number is None
             True
-    
+
         Returns nonnegative integer or none.
         '''
         if self.menu_section.is_numbered:
@@ -210,4 +210,4 @@ class MenuEntry(AbjadObject):
                 normalized_display_string = normalized_display_string.lower()
                 if normalized_display_string.startswith(user_input):
                     return True
-        return False 
+        return False

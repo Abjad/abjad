@@ -46,8 +46,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         payload = scoretools.Container(music=payload)
         StartPositionedPayloadExpression.__init__(
             self,
-            payload=payload, 
-            start_offset=start_offset, 
+            payload=payload,
+            start_offset=start_offset,
             voice_name=voice_name,
             )
 

@@ -50,9 +50,9 @@ class MenuSection(AbjadObject):
         )
 
     return_value_attributes = (
-        'display_string', 
-        'key', 
-        'number', 
+        'display_string',
+        'key',
+        'number',
         'explicit',
         )
 
@@ -122,14 +122,14 @@ class MenuSection(AbjadObject):
             right_parenthesis = ']'
         if self.name:
             return '<{} {!r} {}{}{}>'.format(
-                type(self).__name__, 
+                type(self).__name__,
                 self.name,
                 left_parenthesis,
                 len(self),
                 right_parenthesis,
                 )
         return '<{} {}{}{}>'.format(
-            type(self).__name__, 
+            type(self).__name__,
             left_parenthesis,
             len(self),
             right_parenthesis,
@@ -333,7 +333,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_hidden(self):
-        r'''Is true when menu section is hidden. 
+        r'''Is true when menu section is hidden.
         Otherwise false:
 
         ::
@@ -347,7 +347,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_informational_section(self):
-        r'''Is true when menu section is informational. 
+        r'''Is true when menu section is informational.
         Otherwise false:
 
         ::
@@ -361,7 +361,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_material_summary_section(self):
-        r'''Is true when menu section is material summary section. 
+        r'''Is true when menu section is material summary section.
         Otherwise false:
 
         ::
@@ -375,7 +375,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_navigation_section(self):
-        r'''Is true when menu section is navigation section. 
+        r'''Is true when menu section is navigation section.
         Otherwise false:
 
         ::
@@ -389,7 +389,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_numbered(self):
-        r'''Is true when menu section is numbered. 
+        r'''Is true when menu section is numbered.
         Otherwise false:
 
         ::
@@ -403,7 +403,7 @@ class MenuSection(AbjadObject):
 
     @property
     def is_ranged(self):
-        r'''Is true when menu section is ranged. 
+        r'''Is true when menu section is ranged.
         Otherwise false:
 
         ::
@@ -475,15 +475,15 @@ class MenuSection(AbjadObject):
 
         ::
 
-            'display_string' 
-            'key' 
-            'number' 
+            'display_string'
+            'key'
+            'number'
             'explicit'
 
         Returns string.
         '''
         return self._return_value_attribute
-    
+
     @property
     def title(self):
         r'''Gets menu section title.

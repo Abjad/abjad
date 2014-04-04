@@ -66,7 +66,7 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         '... show(Nothing!)'
         "... '''"
         '</pre>'
-        '' 
+        ''
         "And let's show some music too:"
         ''
         '<pre class="abjad">'

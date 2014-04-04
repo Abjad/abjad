@@ -7,8 +7,8 @@ def test_MenuSection__menu_entry_return_values_01():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
-        is_numbered=True, 
+        name='test',
+        is_numbered=True,
         title='section',
         )
     section.append('apple')
@@ -33,7 +33,7 @@ def test_MenuSection__menu_entry_return_values_01():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
+        name='test',
         title='section',
         return_value_attribute='display_string',
         is_numbered=True,
@@ -60,16 +60,16 @@ def test_MenuSection__menu_entry_return_values_01():
 
 
 def test_MenuSection__menu_entry_return_values_02():
-    r'''Menu entry return values vary when menu entry 
+    r'''Menu entry return values vary when menu entry
     menu_entries are tuples.
-    You can explicitly demand a return value equal 
+    You can explicitly demand a return value equal
     either to the menu entry key or display_string.
     Note that section numbering plays no role in this.
     '''
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
+        name='test',
         title='section',
         return_value_attribute='key',
         is_numbered=True,
@@ -84,7 +84,7 @@ def test_MenuSection__menu_entry_return_values_02():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
+        name='test',
         title='section',
         return_value_attribute='key',
         )
@@ -99,8 +99,8 @@ def test_MenuSection__menu_entry_return_values_02():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
-        is_numbered=True, 
+        name='test',
+        is_numbered=True,
         title='section',
         )
     section.append(('something - add', 'add'))
@@ -131,7 +131,7 @@ def test_MenuSection__menu_entry_return_values_03():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
+        name='test',
         title='section',
         return_value_attribute='explicit',
         )

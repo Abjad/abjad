@@ -18,7 +18,7 @@ def test_MaterialManager_add_to_repository_01():
         )
 
     assert manager._test_add_to_repository()
-    
+
 
 def test_MaterialManager_add_to_repository_02():
     r'''Add two files to Subversioned-managed score package.
@@ -31,7 +31,7 @@ def test_MaterialManager_add_to_repository_02():
         repository='svn',
         system=False,
         )
-            
+
     if not manager:
         return
 

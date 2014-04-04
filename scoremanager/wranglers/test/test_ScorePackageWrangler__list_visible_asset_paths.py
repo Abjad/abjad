@@ -7,10 +7,10 @@ import scoremanager
 def test_ScorePackageWrangler__list_visible_asset_paths_01():
     r'''Abjad score packages directory.
     '''
-    
+
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
-    
+
     package_names = [
         'blue_example_score',
         'etude_example_score',

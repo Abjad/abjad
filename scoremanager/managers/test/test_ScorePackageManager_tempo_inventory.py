@@ -11,7 +11,7 @@ def test_ScorePackageManager_tempo_inventory_01():
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
-        
+
     session = scoremanager.core.Session(is_test=True)
     score_package_manager = scoremanager.managers.ScorePackageManager(
         path=path,

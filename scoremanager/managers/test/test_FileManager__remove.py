@@ -10,7 +10,7 @@ def test_FileManager__remove_01():
     '''
 
     path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)
@@ -33,7 +33,7 @@ def test_FileManager__remove_02():
     '''
 
     path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)

@@ -23,7 +23,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_02():
-    r'''From-future time signature set expression lookup expression 
+    r'''From-future time signature set expression lookup expression
     with reverse callback.
     '''
 
@@ -45,7 +45,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_03():
-    r'''From-future time signature set expression lookup expression 
+    r'''From-future time signature set expression lookup expression
     with reverse callback.
     '''
 
@@ -67,7 +67,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_future_04():
-    r'''From-future time signature set expression lookup expression 
+    r'''From-future time signature set expression lookup expression
     with reverse callbacks.
     '''
 

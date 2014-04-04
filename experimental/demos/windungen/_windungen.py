@@ -42,8 +42,8 @@ def mirror_base_list_of_rotation_tuples(rotations):
 def make_mirrored_base_list_of_rotation_tuples(
     staffIndexBoundsTuple, rotationBandwidth, compressedReflections):
     rotations = make_base_list_of_rotation_tuples(
-        staffIndexBoundsTuple, 
-        rotationBandwidth, 
+        staffIndexBoundsTuple,
+        rotationBandwidth,
         compressedReflections,
         )
     rotations = mirror_base_list_of_rotation_tuples(rotations)
@@ -51,15 +51,15 @@ def make_mirrored_base_list_of_rotation_tuples(
 
 
 def make_cyclic_matrix_for_rotation_by_bandwidth(
-    staffIndexBoundsTuple, 
-    rotationBandwidth, 
+    staffIndexBoundsTuple,
+    rotationBandwidth,
     compressedReflections=True,
     ):
     #generalized to any number of staffs and any bandwidth of rotation.
     #if compression is true, range is 0 to 7; then pop off first and last.
     rotations = make_mirrored_base_list_of_rotation_tuples(
-        staffIndexBoundsTuple, 
-        rotationBandwidth, 
+        staffIndexBoundsTuple,
+        rotationBandwidth,
         compressedReflections,
         )
     matrix = datastructuretools.CyclicMatrix(rotations)
@@ -139,8 +139,8 @@ def apply_beam_spanner_to_non_rest_beats(beats):
 
 
 def beam_and_fuse_beats_in_score_by_durations(
-    score, 
-    durations, 
+    score,
+    durations,
     cyclic=False,
     ):
     for staff in score:
@@ -151,8 +151,8 @@ def beam_and_fuse_beats_in_score_by_durations(
 
 
 def fuse_consecutive_rests_of_duration_by_duration_threshold(
-    run, 
-    duration, 
+    run,
+    duration,
     durationThreshold,
     ):
     toFuse = [x for x in run[:] if x.written_duration == duration]
@@ -162,34 +162,34 @@ def fuse_consecutive_rests_of_duration_by_duration_threshold(
 
 
 def fuse_large_rests_of_duration_in_bar_by_duration_threshold(
-    bar, 
-    duration, 
+    bar,
+    duration,
     durationThreshold,
     ):
     for run in bar[:].group_by(type):
         fuse_consecutive_rests_of_duration_by_duration_threshold(
-            run, 
-            duration, 
+            run,
+            duration,
             durationThreshold,
             )
 
 
 def fuse_large_rests_of_duration_in_bars_by_duration_threshold(
-    bars, 
-    duration, 
+    bars,
+    duration,
     durationThreshold,
     ):
     for bar in bars:
         fuse_large_rests_of_duration_in_bar_by_duration_threshold(
-            bar, 
-            duration, 
+            bar,
+            duration,
             durationThreshold,
             )
 
 
 def fuse_large_rests_of_duration_in_score_by_duration_threshold(
-    score, 
-    duration, 
+    score,
+    duration,
     durationThreshold,
     ):
     for staff in score:

@@ -64,7 +64,7 @@ class DistributionFileWrangler(Wrangler):
 
     def _edit_file(self, path):
         manager = self._asset_manager_class(
-            path=path, 
+            path=path,
             session=self._session,
             )
         manager.edit()

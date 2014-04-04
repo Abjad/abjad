@@ -16,9 +16,9 @@ def test_StylesheetWrangler_rename_01():
         configuration.abjad_stylesheets_directory_path,
         'very-clean-letter-14.ily',
         )
-        
+
     assert os.path.exists(path)
-    
+
     input_ = 'y ren clean-letter-14.ily very-clean-letter-14.ily y q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)

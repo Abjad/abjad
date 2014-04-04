@@ -18,8 +18,8 @@ def test_MenuSection__menu_entry_keys_01():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
-        is_numbered=True, 
+        name='test',
+        is_numbered=True,
         title='section',
         )
     section.append('apple')
@@ -30,7 +30,7 @@ def test_MenuSection__menu_entry_keys_01():
 
 
 def test_MenuSection__menu_entry_keys_02():
-    r'''Menu entry keys equal index 0 of menu entry 
+    r'''Menu entry keys equal index 0 of menu entry
     menu_entries when menu entry menu_entries are tuples.
     True whether section is numbered or not.
     '''
@@ -48,8 +48,8 @@ def test_MenuSection__menu_entry_keys_02():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
-        is_numbered=True, 
+        name='test',
+        is_numbered=True,
         title='section title',
         )
     section.append(('something - add', 'add'))

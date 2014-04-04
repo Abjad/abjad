@@ -17,12 +17,12 @@ class SegmentPackageManager(PackageManager):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        path=None, 
+        self,
+        path=None,
         session=None,
         ):
         PackageManager.__init__(
-            self, 
+            self,
             path=path,
             session=session,
             )
@@ -64,7 +64,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def _output_lilypond_file_path(self):
         return os.path.join(self._path, 'output.ly')
-        
+
     @property
     def _output_pdf_file_path(self):
         return os.path.join(self._path, 'output.pdf')
@@ -95,7 +95,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def _versions_directory_path(self):
         return os.path.join(self._path, 'versions')
-        
+
     ### PRIVATE METHODS ###
 
     def _get_last_version_number(self):
@@ -233,7 +233,7 @@ class SegmentPackageManager(PackageManager):
             )
         if os.path.isfile(file_path):
             self._io_manager.view(file_path)
-        
+
     ### PUBLIC METHODS ###
 
     def edit_definition_module(self):
@@ -257,7 +257,7 @@ class SegmentPackageManager(PackageManager):
         manager.edit(line_number=1)
 
     def interpret_current_lilypond_file(
-        self, 
+        self,
         view_output_pdf=True,
         prompt=True,
         ):

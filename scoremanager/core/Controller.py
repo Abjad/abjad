@@ -72,21 +72,21 @@ class Controller(ScoreManagerObject):
         return paths
 
     def _make_asset_menu_entries(
-        self, 
+        self,
         include_annotation=True,
-        include_extensions=False, 
+        include_extensions=False,
         include_asset_name=True,
         include_year=False,
         human_readable=True,
         packages_instead_of_paths=False,
-        sort_by_annotation=False, 
+        sort_by_annotation=False,
         ):
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:
             if human_readable:
                 string = self._path_to_human_readable_name(
-                    path, 
+                    path,
                     include_extension=include_extensions,
                     )
             else:
@@ -197,7 +197,7 @@ class Controller(ScoreManagerObject):
         section.append(('views module - remove', 'vmrm'))
         section.append(('views module - read only', 'vmro'))
         return section
-        
+
     def _path_to_annotation(self, path, year=False):
         from scoremanager import managers
         score_storehouses = (
@@ -250,7 +250,7 @@ class Controller(ScoreManagerObject):
             else:
                 entries_not_found_in_view.append(entry)
         entries_found_in_view = [
-            x for x in entries_found_in_view 
+            x for x in entries_found_in_view
             if not x is None
             ]
         sorted_entries = entries_found_in_view + entries_not_found_in_view

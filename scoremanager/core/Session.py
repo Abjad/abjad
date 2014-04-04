@@ -216,8 +216,8 @@ class Session(abctools.AbjadObject):
         return result_lines
 
     def _print_transcript(
-        self, 
-        include_user_input=True, 
+        self,
+        include_user_input=True,
         include_system_display=True,
         ):
         for entry in self.transcript:
@@ -578,7 +578,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_backtracking_locally(self):
-        r'''Is true when session is backtracking locally. 
+        r'''Is true when session is backtracking locally.
         Otherwise false.
 
         ..  container:: example
@@ -594,7 +594,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_backtracking_to_score(self):
-        r'''Is true when session is backtracking to score. 
+        r'''Is true when session is backtracking to score.
         Otherwise false.
 
         ..  container:: example
@@ -610,7 +610,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_backtracking_to_score_manager(self):
-        r'''Is true when session is backtracking to score manager. 
+        r'''Is true when session is backtracking to score manager.
         Otherwise false.
 
         ..  container:: example
@@ -641,7 +641,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_in_confirmation_environment(self):
-        r'''Is true when session is in confirmation environment. 
+        r'''Is true when session is in confirmation environment.
         Otherwise false:
 
         ..  container:: example
@@ -708,7 +708,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_next_asset(self):
-        r'''Is true when session is navigating to next material. 
+        r'''Is true when session is navigating to next material.
         Otherwise false.
 
         ..  container:: example
@@ -739,7 +739,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_previous_asset(self):
-        r'''Is true when session is navigating to previous material. 
+        r'''Is true when session is navigating to previous material.
         Otherwise false.
 
         ..  container:: example
@@ -755,7 +755,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_previous_score(self):
-        r'''Is true when session is navigating to previous score. 
+        r'''Is true when session is navigating to previous score.
         Otherwise false.
 
         ..  container:: example
@@ -1258,7 +1258,7 @@ class Session(abctools.AbjadObject):
             if not ui:
                 return controller
             user_input_to_action = getattr(
-                controller, 
+                controller,
                 '_user_input_to_action',
                 None,
                 )

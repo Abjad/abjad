@@ -74,10 +74,10 @@ class ConcreteInterpreter(Interpreter):
 
     @staticmethod
     def _pair_duration_sequence_elements_with_input_pair_values(
-        duration_sequence, 
+        duration_sequence,
         input_pairs,
         ):
-        r'''Pairs `duration_sequence` elements with the values of 
+        r'''Pairs `duration_sequence` elements with the values of
         `input_pairs`.
 
         ::
@@ -317,7 +317,7 @@ class ConcreteInterpreter(Interpreter):
             segment_offset_pairs = \
                 mathtools.cumulative_sums_pairwise(segment_durations)
             segment_offset_pairs = [
-                (durationtools.Offset(x[0]), durationtools.Offset(x[1])) 
+                (durationtools.Offset(x[0]), durationtools.Offset(x[1]))
                 for x in segment_offset_pairs]
             for segment_offset_pair, segment_specification in zip(
                 segment_offset_pairs,
@@ -428,7 +428,7 @@ class ConcreteInterpreter(Interpreter):
         division_region_durations = \
             [x.timespan.duration for x in division_payload_expressions]
         timespan_delimited_single_context_rhythm_set_expression_durations = [
-            x.target_timespan.duration 
+            x.target_timespan.duration
             for x in timespan_delimited_single_context_rhythm_set_expressions]
         assert sum(division_region_durations) == \
             sum(timespan_delimited_single_context_rhythm_set_expression_durations)
@@ -456,7 +456,7 @@ class ConcreteInterpreter(Interpreter):
             cyclic=False,
             overhang=False)
         rhythm_region_division_lists = [
-            musicexpressiontools.DivisionList(x, voice_name=voice_name) 
+            musicexpressiontools.DivisionList(x, voice_name=voice_name)
             for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == \
             len(timespan_delimited_single_context_rhythm_set_expression_merged_durations)
@@ -470,7 +470,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_start_offsets = \
             [durationtools.Offset(x) for x in rhythm_region_start_offsets]
         timespan_delimited_single_context_rhythm_set_expression_duration_pairs = [
-            (x, x.target_timespan.duration) 
+            (x, x.target_timespan.duration)
             for x in timespan_delimited_single_context_rhythm_set_expressions]
         #self._debug_values(timespan_delimited_single_context_rhythm_set_expression_duration_pairs,
         #    'rhythm expression / duration pairs')

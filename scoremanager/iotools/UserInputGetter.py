@@ -32,8 +32,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        session=None, 
+        self,
+        session=None,
         where=None,
         allow_none=False,
         capitalize_prompts=True,
@@ -68,7 +68,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         Returns nonnegative integer.
         '''
         return len(self.prompts)
-        
+
     def __repr__(self):
         r'''Gets interpreter representation of user input getter.
 
@@ -160,11 +160,11 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             include_chevron = self._current_prompt.include_chevron
             user_input = \
                 self._io_manager.handle_user_input(
-                prompt_string, 
+                prompt_string,
                 default_value=default_value,
-                include_chevron=include_chevron, 
+                include_chevron=include_chevron,
                 include_newline=self.include_newlines,
-                prompt_character=self.prompt_character, 
+                prompt_character=self.prompt_character,
                 capitalize_prompt=self.capitalize_prompts,
                 )
             if user_input is None:
@@ -190,7 +190,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 self._io_manager.print_not_yet_implemented()
 
     def _present_prompts_and_evaluate_user_input(
-        self, 
+        self,
         include_chevron=True,
         ):
         self._prompt_index = 0
@@ -261,7 +261,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         Returns boolean.
         '''
         return self._capitalize_prompts
-        
+
 
     @property
     def include_newlines(self):

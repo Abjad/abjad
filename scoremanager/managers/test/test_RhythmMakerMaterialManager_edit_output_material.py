@@ -16,7 +16,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
         'testrhythmmaker',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]

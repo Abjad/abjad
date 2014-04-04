@@ -11,7 +11,7 @@ Do the following to install the score manager on your system:
     6. rebuild the Abjad score manager API.
     7. run doctest on the scoremanager/ directory.
 
-1. Verify the score manager directories. The following 14 directories should 
+1. Verify the score manager directories. The following 14 directories should
 appear on your filesystem after checkout:
 
     boilerplate/
@@ -28,13 +28,13 @@ appear on your filesystem after checkout:
     wizards/
     wranglers/
 
-2. Add the scoremanager/scr/ directory to your PATH. This tells your shell 
+2. Add the scoremanager/scr/ directory to your PATH. This tells your shell
 where the start-score-manager script is housed:
 
     export PATH=$ABJAD/scoremanager/scr:$PATH
 
-3. Create a scores directory. You can do this anywhere on your filesystem 
-you wish. Then create a scores environment variable in your profile. Set the 
+3. Create a scores directory. You can do this anywhere on your filesystem
+you wish. Then create a scores environment variable in your profile. Set the
 scores environment variable to your scores directory:
 
     export scores=$DOCUMENTS/scores

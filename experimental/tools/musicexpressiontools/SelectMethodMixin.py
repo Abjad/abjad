@@ -149,7 +149,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_notes_and_chords(self, voice_name, time_relation=None):
-        r'''Select voice ``1`` notes and chords that start during segment 
+        r'''Select voice ``1`` notes and chords that start during segment
         ``'red'``:
 
         ::
@@ -208,7 +208,7 @@ class SelectMethodMixin(AbjadObject):
 #        return select_expression
 
     def select_time_signatures(self, voice_name, time_relation=None):
-        r'''Select voice ``1`` time signatures that start during segment 
+        r'''Select voice ``1`` time signatures that start during segment
         ``'red'``:
 
         ::

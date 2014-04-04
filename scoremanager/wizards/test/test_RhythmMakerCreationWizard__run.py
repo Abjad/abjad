@@ -15,7 +15,7 @@ def test_RhythmMakerCreationWizard__run_01():
         counts=(-1, 2, -3, 4),
         denominator=16,
         )
-        
+
     maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         extra_counts_per_division=(2, 3),

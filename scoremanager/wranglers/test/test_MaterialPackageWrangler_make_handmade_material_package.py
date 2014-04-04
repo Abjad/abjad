@@ -18,9 +18,9 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         'testnotes',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'definition.py', 
+        'definition.py',
         ]
 
     assert not os.path.exists(path)

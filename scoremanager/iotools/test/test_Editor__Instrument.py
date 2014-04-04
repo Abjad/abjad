@@ -58,7 +58,7 @@ def test_Editor__Instrument_02():
 
 
 def test_Editor__Instrument_03():
-    r'''While editing instrument name: instrument name does not 
+    r'''While editing instrument name: instrument name does not
     change instrument name markup.
     '''
 

@@ -9,7 +9,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
     ::
 
         >>> bpf = interpolationtools.BreakPointFunction({
-        ...     0.:   0.,  
+        ...     0.:   0.,
         ...     0.75: (-1, 1.),
         ...     1.:   0.25,
         ...     })
@@ -31,7 +31,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
             self._payload = gnuplot_format
 
     ### PUBLIC METHODS ###
-             
+
     def handle_html_document_environment(self, document_handler):
         r'''Handle an HTML document environment:
 

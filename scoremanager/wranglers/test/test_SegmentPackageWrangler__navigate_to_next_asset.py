@@ -19,4 +19,4 @@ def test_SegmentPackageWrangler__navigate_to_next_asset_01():
         'Red Example Score (2013) - segments - segment 03',
         'Red Example Score (2013) - segments - segment 01',
         ]
-    assert score_manager._transcript.titles == titles      
+    assert score_manager._transcript.titles == titles

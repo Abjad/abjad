@@ -22,7 +22,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_02():
-    r'''From-past time signature set expression lookup expression 
+    r'''From-past time signature set expression lookup expression
     with reverse callback.
     '''
 
@@ -43,7 +43,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_03():
-    r'''From-past time signature set expression lookup expression 
+    r'''From-past time signature set expression lookup expression
     with reverse callback.
     '''
 
@@ -64,7 +64,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_04():
-    r'''From-past time signature set expression lookup expression 
+    r'''From-past time signature set expression lookup expression
     with reverse callbacks.
     '''
 

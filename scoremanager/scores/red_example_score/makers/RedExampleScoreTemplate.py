@@ -37,7 +37,7 @@ class RedExampleScoreTemplate(ScoreTemplate):
         # maker piano staff group
         piano_staff_group = scoretools.StaffGroup(
             [
-                rh_staff, 
+                rh_staff,
                 lh_staff,
                 ],
             name='Piano Staff Group',

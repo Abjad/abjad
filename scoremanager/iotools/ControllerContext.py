@@ -21,7 +21,7 @@ class ControllerContext(ContextManager):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         controller=None,
         is_in_confirmation_environment=False,
         on_enter_callbacks=None,

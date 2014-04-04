@@ -56,7 +56,7 @@ class MeasureSelectExpression(SelectExpression):
                 ),
             )
 
-    Example 3. Select voice ``1`` measures that start during three contiguous 
+    Example 3. Select voice ``1`` measures that start during three contiguous
     segments:
 
     ::

@@ -16,7 +16,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         'testoctavetrans',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         ]
     input_ = 'm nmm octave testoctavetrans default q'
@@ -50,19 +50,19 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         'testoctavetrans',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]
     mapping_1 = pitchtools.OctaveTranspositionMapping([
-        ('[A0, C4)', 15), 
+        ('[A0, C4)', 15),
         ('[C4, C8)', 27),
         ])
     mapping_2 = pitchtools.OctaveTranspositionMapping([
         ('[A0, C8]', -18),
         ])
     inventory = pitchtools.OctaveTranspositionMappingInventory([
-        mapping_1, 
+        mapping_1,
         mapping_2
         ])
     input_ = 'm nmm octave testoctavetrans'

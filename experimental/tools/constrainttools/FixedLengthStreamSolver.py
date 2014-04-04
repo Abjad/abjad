@@ -70,7 +70,7 @@ class FixedLengthStreamSolver(_Solver):
 
     Returns ``FixedLengthStreamSolver`` instance.
     '''
-    
+
     ### CLASS VARIABLES ###
 
     __slots__ = (
@@ -112,7 +112,7 @@ class FixedLengthStreamSolver(_Solver):
                     return solution, node
                 else:
                     if node.children is None:
-                        node.children = [_SolutionNode(x, parent=node) 
+                        node.children = [_SolutionNode(x, parent=node)
                             for x in domain[depth]]
                     elif node.children == []:
                         return node

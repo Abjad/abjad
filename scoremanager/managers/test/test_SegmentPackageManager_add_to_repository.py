@@ -15,7 +15,7 @@ def test_SegmentPackageManager_add_to_repository_01():
     manager = wrangler._find_git_manager()
 
     assert manager._test_add_to_repository()
-    
+
 
 def test_SegmentPackageManager_add_to_repository_02():
     r'''Add two files to Subversioned-managed segment package.
@@ -25,7 +25,7 @@ def test_SegmentPackageManager_add_to_repository_02():
 
     wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_svn_manager()
-            
+
     if not manager:
         return
 

@@ -27,8 +27,8 @@ __all__.append('unbeam_specifier')
 ### MAKERS ###
 
 talea = rhythmmakertools.Talea(
-    counts=(3, 1), 
-    denominator=16, 
+    counts=(3, 1),
+    denominator=16,
     )
 dotted_eighths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -37,8 +37,8 @@ __all__.append('dotted_eighths')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(3, 1), 
-    denominator=32, 
+    counts=(3, 1),
+    denominator=32,
     )
 dotted_sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -47,8 +47,8 @@ __all__.append('dotted_sixteenths')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(3, 1), 
-    denominator=64, 
+    counts=(3, 1),
+    denominator=64,
     )
 dotted_thirty_seconds = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -57,8 +57,8 @@ __all__.append('dotted_thirty_seconds')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=8, 
+    counts=(1,),
+    denominator=8,
     )
 eighths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -72,8 +72,8 @@ __all__.append('even_runs')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=2, 
+    counts=(1,),
+    denominator=2,
     )
 halves = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -83,8 +83,8 @@ __all__.append('halves')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(3, 1), 
-    denominator=32, 
+    counts=(3, 1),
+    denominator=32,
     )
 joined_dotted_sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -94,8 +94,8 @@ __all__.append('joined_dotted_sixteenths')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=8, 
+    counts=(1,),
+    denominator=8,
     )
 joined_eighths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -111,8 +111,8 @@ __all__.append('joined_note_tokens')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=16, 
+    counts=(1,),
+    denominator=16,
     )
 joined_sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -122,8 +122,8 @@ __all__.append('joined_sixteenths')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=32, 
+    counts=(1,),
+    denominator=32,
     )
 joined_thirty_seconds = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -137,8 +137,8 @@ __all__.append('note_tokens')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=4, 
+    counts=(1,),
+    denominator=4,
     )
 quarters = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -152,8 +152,8 @@ __all__.append('rest_tokens')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=16, 
+    counts=(1,),
+    denominator=16,
     )
 sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -163,8 +163,8 @@ __all__.append('sixteenths')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
-    denominator=64, 
+    counts=(1,),
+    denominator=64,
     )
 sixty_fourths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
@@ -178,7 +178,7 @@ __all__.append('skip_tokens')
 
 
 talea = rhythmmakertools.Talea(
-    counts=(1,), 
+    counts=(1,),
     denominator=32,
     )
 thirty_seconds = rhythmmakertools.TaleaRhythmMaker(

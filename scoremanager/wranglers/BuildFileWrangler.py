@@ -96,7 +96,7 @@ class BuildFileWrangler(Wrangler):
 
     def _edit_file(self, path):
         manager = self._asset_manager_class(
-            path=path, 
+            path=path,
             session=self._session,
             )
         manager.edit()
@@ -435,7 +435,7 @@ class BuildFileWrangler(Wrangler):
 
     def view_back_cover_pdf(self):
         r'''Views back cover PDF.
-        
+
         Returns none.
         '''
         self._open_file_ending_with('back-cover.pdf')

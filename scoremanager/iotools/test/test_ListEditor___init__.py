@@ -6,7 +6,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_ListEditor___init___01():
-    r'''Initializes correctly when current working directory is the score 
+    r'''Initializes correctly when current working directory is the score
     manager directory.
     '''
 

@@ -15,9 +15,9 @@ def test_MaterialPackageWrangler__make_material_package_01():
         'testnumbers',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'definition.py', 
+        'definition.py',
         ]
 
     assert not os.path.exists(path)
@@ -47,9 +47,9 @@ def test_MaterialPackageWrangler__make_material_package_02():
         'testnotes',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'definition.py', 
+        'definition.py',
         ]
 
     assert not os.path.exists(path)
@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler__make_material_package_03():
         'testsargasso',
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         ]
 
@@ -88,10 +88,10 @@ def test_MaterialPackageWrangler__make_material_package_03():
         key = 'material_manager_class_name'
         metadata = {key: 'SargassoMeasureMaterialManager'}
         wrangler._make_material_package(
-            path, 
+            path,
             metadata=metadata,
             )
-        
+
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager

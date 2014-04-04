@@ -44,7 +44,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         else:
             graphviz_format = payload.graphviz_format
             self._payload = graphviz_format
-             
+
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):

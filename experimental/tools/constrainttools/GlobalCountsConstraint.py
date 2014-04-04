@@ -11,7 +11,7 @@ class GlobalCountsConstraint(_GlobalConstraint):
 
         >>> from experimental.tools.constrainttools import GlobalCountsConstraint
 
-    Instantiated from a lambda or function which takes a dictionary as 
+    Instantiated from a lambda or function which takes a dictionary as
     its one and only argument:
 
     ::

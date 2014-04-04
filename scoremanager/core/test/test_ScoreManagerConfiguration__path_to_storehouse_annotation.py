@@ -12,11 +12,11 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_01():
     path = configuration.user_library_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
-    
+
     path = configuration.user_library_makers_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
-    
+
     path = configuration.user_library_material_managers_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name

@@ -13,10 +13,10 @@ def test_Selector_make_dynamic_handler_class_name_selector_01():
     transcript = selector._transcript
 
     assert transcript.last_menu_lines == [
-        'Select:', 
-        '', 
-        '    1: ReiteratedDynamicHandler', 
-        '    2: TerracedDynamicsHandler', 
+        'Select:',
+        '',
+        '    1: ReiteratedDynamicHandler',
+        '    2: TerracedDynamicsHandler',
         '',
         ]
 

@@ -56,7 +56,7 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
     def _get_possible_meter_multipliers(multiplied_measure_numerator):
         possible_meter_multipliers = []
         for denominator in range(
-                multiplied_measure_numerator, 
+                multiplied_measure_numerator,
                 2 * multiplied_measure_numerator):
             possible_meter_multiplier = \
                 Multiplier(multiplied_measure_numerator, denominator)
@@ -65,13 +65,13 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
 
     @staticmethod
     def _make_output_material(
-        measure_denominator, 
+        measure_denominator,
         measure_numerator_talea,
-        measure_division_denominator, 
-        measure_division_talea, 
+        measure_division_denominator,
+        measure_division_talea,
         total_duration,
-        measures_are_scaled, 
-        measures_are_split, 
+        measures_are_scaled,
+        measures_are_split,
         measures_are_shuffled,
         ):
 
@@ -90,9 +90,9 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
             measure_division_denominator)
         assert measure_denominator <= measure_division_denominator
 
-        assert all(mathtools.is_positive_integer(x) 
+        assert all(mathtools.is_positive_integer(x)
             for x in measure_numerator_talea)
-        assert all(mathtools.is_positive_integer(x) 
+        assert all(mathtools.is_positive_integer(x)
             for x in measure_division_talea)
         total_duration = durationtools.Duration(total_duration)
 
@@ -112,9 +112,9 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
         #print multiplied_measure_numerators
 
         measure_divisions_by_measure = sequencetools.split_sequence(
-            measure_divisions, 
-            multiplied_measure_numerators, 
-            cyclic=True, 
+            measure_divisions,
+            multiplied_measure_numerators,
+            cyclic=True,
             overhang=True,
             )
         #print measure_divisions_by_measure
@@ -208,7 +208,7 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
             leaves = scoretools.make_leaves_from_talea(
                 division_token, measure_division_denominator)
             measure = scoretools.Measure(
-                meter_token, 
+                meter_token,
                 leaves,
                 implicit_scaling=True,
                 )
@@ -235,7 +235,7 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
         len_divided_measure_tokens = len(divided_measure_tokens)
         assert mathtools.are_relatively_prime(
             [modulus_of_permutation, len_divided_measure_tokens])
-        permutation = [(5 * x) % len_divided_measure_tokens 
+        permutation = [(5 * x) % len_divided_measure_tokens
             for x in range(len_divided_measure_tokens)]
         divided_measure_tokens = \
             sequencetools.permute_sequence(
@@ -261,7 +261,7 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
             ('measure_division_denominator', 16),
-            ('measure_division_talea', 
+            ('measure_division_talea',
                 [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
             ('total_duration', durationtools.Duration(44, 8)),
             ('measures_are_scaled', True),
@@ -285,13 +285,13 @@ class SargassoMeasureMaterialManager(MaterialPackageManager):
         '''
         from scoremanager import predicates
         return [
-            ('measure_denominator', 
+            ('measure_denominator',
                 mathtools.is_positive_integer_power_of_two),
-            ('measure_numerator_talea', 
+            ('measure_numerator_talea',
                 mathtools.all_are_nonnegative_integers),
-            ('measure_division_denominator', 
+            ('measure_division_denominator',
                 mathtools.is_nonnegative_integer_power_of_two),
-            ('measure_division_talea', 
+            ('measure_division_talea',
                 mathtools.all_are_nonnegative_integers),
             ('total_duration', predicates.is_duration_token,
                 'evaluated_user_input = Duration({})'),

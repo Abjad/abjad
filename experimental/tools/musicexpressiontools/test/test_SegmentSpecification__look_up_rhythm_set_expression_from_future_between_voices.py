@@ -25,7 +25,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between_voices_02():
-    r'''From-future rhythm set expression lookup expression between voices 
+    r'''From-future rhythm set expression lookup expression between voices
     with reverse callback.
     '''
 
@@ -49,7 +49,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between_voices_03():
-    r'''From-future rhythm set expression lookup expression between voices 
+    r'''From-future rhythm set expression lookup expression between voices
     with reverse callback.
     '''
 
@@ -73,7 +73,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
 
 
 def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between_voices_04():
-    r'''From-future rhythm set expression lookup expression between voices 
+    r'''From-future rhythm set expression lookup expression between voices
     with reverse callbacks.
     '''
 

@@ -55,7 +55,7 @@ def test_ScorePackageManager__run_02():
 
 
 def test_ScorePackageManager__run_03():
-    r'''User 'home' input terminates execution (when score not managed 
+    r'''User 'home' input terminates execution (when score not managed
     from home).
     '''
 

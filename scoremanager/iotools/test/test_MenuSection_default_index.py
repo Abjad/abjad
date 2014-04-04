@@ -19,7 +19,7 @@ def test_MenuSection_default_index_02():
 
     menu = scoremanager.iotools.Menu()
     section = menu._make_section(
-        name='test', 
+        name='test',
         title='section',
         default_index=2,
         )
