@@ -219,7 +219,7 @@ class IterationAgent(abctools.AbjadObject):
                 # skip the first few elements, up to 'start' of them:
                 for i in xrange(start):
                     # no yield to swallow the results
-                    iter.next()
+                    next(iter)
 
                 # now generate (stop-start) elements
                 # (or all elements if stop is none)
@@ -228,7 +228,7 @@ class IterationAgent(abctools.AbjadObject):
                         yield x
                 else:
                     for i in xrange(stop - start):
-                        yield iter.next()
+                        yield next(iter)
             except StopIteration:
                 # this happens if we exhaust the list before
                 # we generate a total of 'stop' elements

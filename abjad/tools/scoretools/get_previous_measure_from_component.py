@@ -65,7 +65,7 @@ def get_previous_measure_from_component(component):
         measure_generator = iterate(component).by_class(
             scoretools.Measure, reverse=True)
         try:
-            measure = measure_generator.next()
+            measure = next(measure_generator)
             return measure
         except StopIteration:
             raise MissingMeasureError

@@ -85,13 +85,11 @@ class TieSpecifier(AbjadObject):
     def _make_ties_across_divisions(music):
         for division_one, division_two in \
             sequencetools.iterate_sequence_nwise(music):
-            leaf_one = iterate(division_one).by_class(
+            leaf_one = next(iterate(division_one).by_class(
                 prototype=scoretools.Leaf,
-                reverse=True,
-                ).next()
-            leaf_two = iterate(division_two).by_class(
-                prototype=scoretools.Leaf,
-                ).next()
+                reverse=True))
+            leaf_two = next(iterate(division_two).by_class(
+                prototype=scoretools.Leaf))
             leaves = [leaf_one, leaf_two]
             prototype = (scoretools.Note, scoretools.Chord)
             if not all(isinstance(x, prototype) for x in leaves):

@@ -64,7 +64,7 @@ def get_next_measure_from_component(component):
     elif isinstance(component, (list, tuple)):
         measure_generator = iterate(component).by_class(scoretools.Measure)
         try:
-            measure = measure_generator.next()
+            measure = next(measure_generator)
             return measure
         except StopIteration:
             raise MissingMeasureError

@@ -50,8 +50,8 @@ def label_leaves_in_expr_with_numbered_interval_classes(
             scoretools.Leaf,
             )
         try:
-            logical_voice_iterator.next()
-            next_leaf = logical_voice_iterator.next()
+            next(logical_voice_iterator)
+            next_leaf = next(logical_voice_iterator)
             if isinstance(next_leaf, scoretools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
                 mci = pitchtools.NumberedInterval(mdi)

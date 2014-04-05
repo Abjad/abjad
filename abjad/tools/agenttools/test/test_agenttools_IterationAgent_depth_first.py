@@ -36,14 +36,14 @@ def test_agenttools_IterationAgent_depth_first_01():
 
     iterator = iterate(staff[2]).depth_first()
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1][1]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1][1]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -61,14 +61,14 @@ def test_agenttools_IterationAgent_depth_first_01():
         direction=Right,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0][0]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0][0]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -92,17 +92,17 @@ def test_agenttools_IterationAgent_depth_first_02():
         capped=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff[4]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff[4]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -124,17 +124,17 @@ def test_agenttools_IterationAgent_depth_first_02():
         direction=Right,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff[0]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff[0]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -160,20 +160,20 @@ def test_agenttools_IterationAgent_depth_first_03():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -198,20 +198,20 @@ def test_agenttools_IterationAgent_depth_first_03():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -241,13 +241,13 @@ def test_agenttools_IterationAgent_depth_first_04():
         forbid='simultaneous',
         )
 
-    assert iterator.next() is staff
-    assert iterator.next() is staff[0]
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff[4]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff
+    assert next(iterator) is staff[0]
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff[4]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Staff{5}
@@ -265,13 +265,13 @@ def test_agenttools_IterationAgent_depth_first_04():
         forbid='simultaneous',
         )
 
-    assert iterator.next() is staff
-    assert iterator.next() is staff[4]
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff[0]
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff
+    assert next(iterator) is staff[4]
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff[0]
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Staff{5}
@@ -294,25 +294,25 @@ def test_agenttools_IterationAgent_depth_first_05():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[4]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[4]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -343,25 +343,25 @@ def test_agenttools_IterationAgent_depth_first_05():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][1]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2][1][0]
-    assert iterator.next() is staff[2][1]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][1]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2][0][0]
-    assert iterator.next() is staff[2][0]
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[0]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][1]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2][1][0]
+    assert next(iterator) is staff[2][1]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][1]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2][0][0]
+    assert next(iterator) is staff[2][0]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[0]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -396,10 +396,10 @@ def test_agenttools_IterationAgent_depth_first_06():
         forbid='simultaneous',
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff[4]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff[4]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -416,10 +416,10 @@ def test_agenttools_IterationAgent_depth_first_06():
         forbid='simultaneous',
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff[0]
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff[0]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -440,18 +440,18 @@ def test_agenttools_IterationAgent_depth_first_07():
         unique=False,
         )
 
-    assert iterator.next() is staff
-    assert iterator.next() is staff[0]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[4]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff
+    assert next(iterator) is staff[0]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[4]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Staff{5}
@@ -475,18 +475,18 @@ def test_agenttools_IterationAgent_depth_first_07():
         unique=False,
         )
 
-    assert iterator.next() is staff
-    assert iterator.next() is staff[4]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[0]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff
+    assert next(iterator) is staff[4]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[0]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Staff{5}
@@ -515,13 +515,13 @@ def test_agenttools_IterationAgent_depth_first_08():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[3]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[4]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[3]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[4]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -541,13 +541,13 @@ def test_agenttools_IterationAgent_depth_first_08():
         unique=False,
         )
 
-    assert iterator.next() is staff[2]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[1]
-    assert iterator.next() is staff
-    assert iterator.next() is staff[0]
-    assert iterator.next() is staff
-    assert pytest.raises(StopIteration, 'iterator.next()')
+    assert next(iterator) is staff[2]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[1]
+    assert next(iterator) is staff
+    assert next(iterator) is staff[0]
+    assert next(iterator) is staff
+    assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))

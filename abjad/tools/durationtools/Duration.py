@@ -907,7 +907,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
             >>> generator = Duration.yield_durations(unique=True)
             >>> for n in range(16):
-            ...     duration = generator.next()
+            ...     duration = next(generator)
             ...     string = '{!s}\t{}'
             ...     string = string.format(duration, duration.prolation_string)
             ...     print string
@@ -1081,7 +1081,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
                 >>> generator = Duration.yield_durations()
                 >>> for n in range(16):
-                ...     generator.next()
+                ...     next(generator)
                 ...
                 Duration(1, 1)
                 Duration(2, 1)
@@ -1109,7 +1109,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
                 >>> generator = Duration.yield_durations(unique=True)
                 >>> for n in range(16):
-                ...     generator.next()
+                ...     next(generator)
                 ...
                 Duration(1, 1)
                 Duration(2, 1)
@@ -1132,7 +1132,7 @@ class Duration(AbjadObject, fractions.Fraction):
         '''
         generator = mathtools.yield_nonreduced_fractions()
         while True:
-            integer_pair = generator.next()
+            integer_pair = next(generator)
             duration = Duration(integer_pair)
             if not unique:
                 yield duration
@@ -1209,7 +1209,7 @@ class Duration(AbjadObject, fractions.Fraction):
         generator = type(self).yield_durations(unique=True)
         pairs = []
         while True:
-            written_duration = generator.next()
+            written_duration = next(generator)
             if not written_duration.is_assignable:
                 continue
             if written_duration < minimum_written_duration:
