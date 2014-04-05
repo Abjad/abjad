@@ -27,7 +27,7 @@ def test_indicatortools_TimeSignature_suppress_01():
 
 
 def test_indicatortools_TimeSignature_suppress_02():
-    r'''Suppressing time signature without power-of-two denominator 
+    r'''Suppressing time signature without power-of-two denominator
     raises exception.
     '''
 

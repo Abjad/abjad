@@ -20,7 +20,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         clef = indicatortools.Clef('treble')
         attach(clef, bell_staff)
         bells = instrumenttools.Instrument(
-            instrument_name='Campana in La', 
+            instrument_name='Campana in La',
             short_instrument_name='Camp.',
             pitch_range='[C4, C6]',
             )

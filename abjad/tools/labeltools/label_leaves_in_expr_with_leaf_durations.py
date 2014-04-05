@@ -14,7 +14,7 @@ def label_leaves_in_expr_with_leaf_durations(
     markup_direction=Down,
     ):
     r'''Label leaves in expression with leaf durations.
-    
+
     ..  container:: example
 
         **Example 1.** Label leaves with written durations:
@@ -27,7 +27,7 @@ def label_leaves_in_expr_with_leaf_durations(
             >>> override(staff).text_script.staff_padding = 2.5
             >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-            ...     tuplet, 
+            ...     tuplet,
             ...     label_durations=False,
             ...     label_written_durations=True)
 
@@ -50,7 +50,7 @@ def label_leaves_in_expr_with_leaf_durations(
             }
 
     ..  container:: example
-    
+
         **Example 2.** Label leaves with actual durations:
 
         ::
@@ -61,7 +61,7 @@ def label_leaves_in_expr_with_leaf_durations(
             >>> override(staff).text_script.staff_padding = 2.5
             >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-            ...     tuplet, 
+            ...     tuplet,
             ...     label_durations=True,
             ...     label_written_durations=False)
 
@@ -96,7 +96,7 @@ def label_leaves_in_expr_with_leaf_durations(
             >>> override(staff).text_script.staff_padding = 2.5
             >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-            ...     tuplet, 
+            ...     tuplet,
             ...     label_durations=True,
             ...     label_written_durations=True)
 

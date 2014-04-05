@@ -8,7 +8,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
 
     container = Container("c'16 d'16 e'16 f'16")
     beam = spannertools.DuratedComplexBeam(
-        durations=[(1, 8), (1, 8)], 
+        durations=[(1, 8), (1, 8)],
         span_beam_count=1,
         )
     attach(beam, container)
@@ -42,7 +42,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
 
     container = Container("c'16 d'16 e'16 f'16")
     beam = spannertools.DuratedComplexBeam(
-        durations=[(1, 8), (1, 8)], 
+        durations=[(1, 8), (1, 8)],
         span_beam_count=2,
         )
     attach(beam, container)

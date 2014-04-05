@@ -4,7 +4,7 @@ import math
 
 
 def least_power_of_two_greater_equal(n, i=0):
-    r'''Returns least integer power of two greater than 
+    r'''Returns least integer power of two greater than
     or equal to positive `n`.
 
     ::

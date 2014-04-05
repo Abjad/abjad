@@ -17,19 +17,19 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, 
-        attribute=None, 
-        source_expression=None, 
-        target_timespan=None, 
+    def __init__(self,
+        attribute=None,
+        source_expression=None,
+        target_timespan=None,
         scope_name=None,
         fresh=None,
         ):
         assert isinstance(scope_name, (str, type(None)))
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         SetExpression.__init__(
-            self, 
-            attribute=attribute, 
-            source_expression=source_expression, 
+            self,
+            attribute=attribute,
+            source_expression=source_expression,
             target_timespan=target_timespan,
             )
         self._scope_name = scope_name
@@ -52,7 +52,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __lt__(self, expr):
-        r'''Is true when timespan-delimited single-context set expression 
+        r'''Is true when timespan-delimited single-context set expression
         target timespan is less than `expr` target_timespan.
         Otherwise false.
 
@@ -65,10 +65,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __or__(self, set_expression):
-        r'''Logical OR of timespan-delimited single-context set expression 
+        r'''Logical OR of timespan-delimited single-context set expression
         and `set_expression`.
 
-        Raises exception when timespan-delimited single-context set expression 
+        Raises exception when timespan-delimited single-context set expression
         can not fuse with `set_expression`.
 
         Returns timespan inventory.
@@ -81,10 +81,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        r'''Subtract `timespan` from timespan-delimited single-context 
+        r'''Subtract `timespan` from timespan-delimited single-context
         set expression.
 
-        Operates in place and returns timespan-delimited single-context 
+        Operates in place and returns timespan-delimited single-context
         set expression inventory.
         '''
         from experimental.tools import musicexpressiontools

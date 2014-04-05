@@ -4,7 +4,7 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
-    '''`BeatwiseQSchemaItem` represents a change of state in the timeline 
+    '''`BeatwiseQSchemaItem` represents a change of state in the timeline
     of an unmetered quantization process.
 
     ::
@@ -48,9 +48,9 @@ class BeatwiseQSchemaItem(QSchemaItem):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        beatspan=None, 
-        search_tree=None, 
+        self,
+        beatspan=None,
+        search_tree=None,
         tempo=None,
         ):
         from abjad.tools import quantizationtools

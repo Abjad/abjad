@@ -2,7 +2,7 @@
 
 
 def all_are_pairs(expr):
-    r'''Is true when `expr` is a sequence whose members are all sequences 
+    r'''Is true when `expr` is a sequence whose members are all sequences
     of length 2.
 
     ::

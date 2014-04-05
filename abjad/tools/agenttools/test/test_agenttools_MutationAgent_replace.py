@@ -169,7 +169,7 @@ def test_agenttools_MutationAgent_replace_04():
         '''
         ), format(staff)
 
-    old_notes = staff[:3] 
+    old_notes = staff[:3]
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 

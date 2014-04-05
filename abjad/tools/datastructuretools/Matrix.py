@@ -10,8 +10,8 @@ class Matrix(AbjadObject):
     ::
 
         >>> matrix = datastructuretools.Matrix([
-        ...     [0, 1, 2, 3], 
-        ...     [10, 11, 12, 13], 
+        ...     [0, 1, 2, 3],
+        ...     [10, 11, 12, 13],
         ...     [20, 21, 22, 23],
         ...     ])
 
@@ -40,9 +40,9 @@ class Matrix(AbjadObject):
     ::
 
         >>> matrix = datastructuretools.Matrix(columns=[
-        ...     [0, 10, 20], 
-        ...     [1, 11, 21], 
-        ...     [2, 12, 22], 
+        ...     [0, 10, 20],
+        ...     [1, 11, 21],
+        ...     [2, 12, 22],
         ...     [3, 13, 23],
         ...     ])
 
@@ -118,8 +118,8 @@ class Matrix(AbjadObject):
         Returns string.
         '''
         return '{}({}x{})'.format(
-            type(self).__name__, 
-            self._n_rows, 
+            type(self).__name__,
+            self._n_rows,
             self._n_columns,
             )
 
@@ -154,8 +154,8 @@ class Matrix(AbjadObject):
         ::
 
             >>> matrix = datastructuretools.Matrix(
-            ...     [[0, 1, 2, 3], 
-            ...     [10, 11, 12, 13], 
+            ...     [[0, 1, 2, 3],
+            ...     [10, 11, 12, 13],
             ...     [20, 21, 22, 23],
             ...     ])
 
@@ -175,8 +175,8 @@ class Matrix(AbjadObject):
         ::
 
             >>> matrix = datastructuretools.Matrix(
-            ...     [[0, 1, 2, 3], 
-            ...     [10, 11, 12, 13], 
+            ...     [[0, 1, 2, 3],
+            ...     [10, 11, 12, 13],
             ...     [20, 21, 22, 23],
             ...     ])
 

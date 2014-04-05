@@ -4,14 +4,14 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_counts(
-    sequence, 
-    counts, 
-    cyclic=False, 
-    overhang=False, 
+    sequence,
+    counts,
+    cyclic=False,
+    overhang=False,
     copy_elements=False,
     ):
     r'''Partitions sequence by counts.
-    
+
     ..  container:: example
 
         **Example 1a.** Partition sequence once by counts without overhang:
@@ -19,9 +19,9 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(10), 
-            ...     [3], 
-            ...     cyclic=False, 
+            ...     range(10),
+            ...     [3],
+            ...     cyclic=False,
             ...     overhang=False,
             ...     )
             [[0, 1, 2]]
@@ -33,39 +33,39 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(16), 
-            ...     [4, 3], 
-            ...     cyclic=False, 
+            ...     range(16),
+            ...     [4, 3],
+            ...     cyclic=False,
             ...     overhang=False,
             ...     )
             [[0, 1, 2, 3], [4, 5, 6]]
 
     ..  container:: example
 
-        **Example 2a.** Partition sequence cyclically by counts without 
+        **Example 2a.** Partition sequence cyclically by counts without
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(10), 
-            ...     [3], 
-            ...     cyclic=True, 
+            ...     range(10),
+            ...     [3],
+            ...     cyclic=True,
             ...     overhang=False,
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
     ..  container:: example
 
-        **Example 2b.** Partition sequence cyclically by counts without 
+        **Example 2b.** Partition sequence cyclically by counts without
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(16), 
-            ...     [4, 3], 
-            ...     cyclic=True, 
+            ...     range(16),
+            ...     [4, 3],
+            ...     cyclic=True,
             ...     overhang=False,
             ...     )
             [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13]]
@@ -77,9 +77,9 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(10), 
-            ...     [3], 
-            ...     cyclic=False, 
+            ...     range(10),
+            ...     [3],
+            ...     cyclic=False,
             ...     overhang=True,
             ...     )
             [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
@@ -91,9 +91,9 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(16), 
-            ...     [4, 3], 
-            ...     cyclic=False, 
+            ...     range(16),
+            ...     [4, 3],
+            ...     cyclic=False,
             ...     overhang=True,
             ...     )
             [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11, 12, 13, 14, 15]]
@@ -105,9 +105,9 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(10), 
-            ...     [3], 
-            ...     cyclic=True, 
+            ...     range(10),
+            ...     [3],
+            ...     cyclic=True,
             ...     overhang=True,
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
@@ -119,9 +119,9 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(16), 
-            ...     [4, 3], 
-            ...     cyclic=True, 
+            ...     range(16),
+            ...     [4, 3],
+            ...     cyclic=True,
             ...     overhang=True,
             ...     )
             [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]

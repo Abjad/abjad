@@ -12,7 +12,7 @@ def increase_elements(sequence, addenda, indices=None):
 
             >>> sequencetools.increase_elements(range(10), [10, -10])
             [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
-    
+
     ..  container:: example
 
         Increases elements by ``0.5`` at indices 0, 4 and 8 and at one element

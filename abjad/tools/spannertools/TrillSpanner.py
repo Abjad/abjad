@@ -30,7 +30,7 @@ class TrillSpanner(Spanner):
 
     Formats LilyPond ``\stopTrillSpan`` on last leaf in spanner.
     '''
-    
+
     ### CLASS VARIABLES ###
 
     __slots__ = (
@@ -40,12 +40,12 @@ class TrillSpanner(Spanner):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         overrides=None,
         pitch=None,
         ):
         Spanner.__init__(
-            self, 
+            self,
             overrides=overrides,
             )
         if pitch is not None:

@@ -95,7 +95,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 #        ],
 #        [
 #            (3, 15), (3, 15), (3, 16),
-#            (5, 24), (5, 24), (5, 16), 
+#            (5, 24), (5, 24), (5, 16),
 #            (2, 12), (2, 12), (2, 8),
 #            (3, 28), (3, 28), (3, 16),
 #            (1, 9), (1, 9), (1, 8),
@@ -420,7 +420,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             Ties across divisions:
 
             ::
-            
+
                 >>> tie_specifier = rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=True,
                 ...     )
@@ -479,7 +479,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         r'''Reverses even-run rhythm-maker.
 
         ..  container:: example
-        
+
             ::
 
                 >>> maker = rhythmmakertools.EvenRunRhythmMaker()

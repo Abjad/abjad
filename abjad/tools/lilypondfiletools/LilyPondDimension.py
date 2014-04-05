@@ -19,14 +19,14 @@ class LilyPondDimension(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_unit', 
+        '_unit',
         '_value',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, value=0, unit='cm'):
-        assert isinstance(value, numbers.Number) and 0 <= value 
+        assert isinstance(value, numbers.Number) and 0 <= value
         assert unit in ('cm', 'in', 'mm', 'pt')
         self._value = value
         self._unit = unit

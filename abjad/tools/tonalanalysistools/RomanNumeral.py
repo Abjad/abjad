@@ -22,22 +22,22 @@ class RomanNumeral(AbjadObject):
         )
 
     _figured_bass_string_to_extent = {
-        '': 5, 
-        '6': 5, 
+        '': 5,
+        '6': 5,
         '6/4': 5,
-        '7': 7, 
-        '6/5': 7, 
-        '4/3': 7, 
+        '7': 7,
+        '6/5': 7,
+        '4/3': 7,
         '4/2': 7,
         }
 
     _figured_bass_string_to_inversion = {
-        '': 0, 
-        '6': 1, 
+        '': 0,
+        '6': 1,
         '6/4': 2,
-        '7': 0, 
-        '6/5': 1, 
-        '4/3': 2, 
+        '7': 0,
+        '6/5': 1,
+        '4/3': 2,
         '4/2': 3,
         }
 
@@ -324,7 +324,7 @@ class RomanNumeral(AbjadObject):
     @property
     def inversion(self):
         r'''Inversion of roman numeral.
-        
+
         Returns nonnegative integer.
         '''
         return self._inversion

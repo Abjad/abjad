@@ -16,22 +16,22 @@ def test_pitchtools_NumberedPitchClassColorMap_01():
 
     assert pcm.colors == ['red', 'green', 'blue']
     assert pcm.pairs == [
-        (0, 'green'), 
-        (1, 'blue'), 
-        (2, 'red'), 
-        (3, 'blue'), 
-        (4, 'red'), 
-        (5, 'green'), 
-        (6, 'blue'), 
-        (7, 'blue'), 
-        (8, 'green'), 
-        (9, 'red'), 
-        (10, 'red'), 
+        (0, 'green'),
+        (1, 'blue'),
+        (2, 'red'),
+        (3, 'blue'),
+        (4, 'red'),
+        (5, 'green'),
+        (6, 'blue'),
+        (7, 'blue'),
+        (8, 'green'),
+        (9, 'red'),
+        (10, 'red'),
         (11, 'green'),
         ]
     assert pcm.pitch_iterables == [
-        [-8, 2, 10, 21], 
-        [0, 11, 32, 41], 
+        [-8, 2, 10, 21],
+        [0, 11, 32, 41],
         [15, 25, 42, 43],
         ]
     assert pcm.is_twelve_tone_complete

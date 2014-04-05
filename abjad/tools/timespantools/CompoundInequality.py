@@ -61,12 +61,12 @@ class CompoundInequality(TypedList):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        items=None, 
-        logical_operator='and', 
+        self,
+        items=None,
+        logical_operator='and',
         ):
-        TypedList.__init__(self, 
-            items=items, 
+        TypedList.__init__(self,
+            items=items,
             )
         self._logical_operator = logical_operator
 
@@ -97,10 +97,10 @@ class CompoundInequality(TypedList):
     ### PUBLIC METHODS ###
 
     def evaluate(
-        self, 
-        timespan_1_start_offset, 
+        self,
+        timespan_1_start_offset,
         timespan_1_stop_offset,
-        timespan_2_start_offset, 
+        timespan_2_start_offset,
         timespan_2_stop_offset,
         ):
         r'''Evalutes compound inequality.
@@ -134,9 +134,9 @@ class CompoundInequality(TypedList):
         return truth_value
 
     def evaluate_offset_inequality(
-        self, 
-        timespan_start, 
-        timespan_stop, 
+        self,
+        timespan_start,
+        timespan_stop,
         offset,
         ):
         r'''Evalutes offset inequality.
@@ -172,9 +172,9 @@ class CompoundInequality(TypedList):
         return truth_value
 
     def get_offset_indices(
-        self, 
-        timespan_1, 
-        timespan_2_start_offsets, 
+        self,
+        timespan_1,
+        timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
         r'''Gets offset indices of compound inequality.

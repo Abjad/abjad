@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import detach
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
-    r'''Scales power-of-two `measure` to non-power-of-two measure 
+    r'''Scales power-of-two `measure` to non-power-of-two measure
     with new denominator `factor`:
 
     ..  container:: example
@@ -65,7 +65,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     # find new time signature
     new_time_signature = \
         measure._duration_and_possible_denominators_to_time_signature(
-        old_time_signature_duration, 
+        old_time_signature_duration,
         factor=factor,
         )
 

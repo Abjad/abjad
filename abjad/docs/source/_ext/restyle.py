@@ -75,7 +75,7 @@ def doctree_read(app, doctree):
 
         elif object_type in ('method', 'attribute', 'staticmethod', 'classmethod'):
             object_parts = object_name.split('.')
-            cls_name, attr_name = object_name.split('.') 
+            cls_name, attr_name = object_name.split('.')
             cls = getattr(module, cls_name, None)
             if cls is None:
                 continue

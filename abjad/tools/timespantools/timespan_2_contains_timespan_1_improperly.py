@@ -2,11 +2,11 @@
 
 
 def timespan_2_contains_timespan_1_improperly(
-    timespan_1=None, 
-    timespan_2=None, 
+    timespan_1=None,
+    timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` contains 
+    r'''Makes time relation indicating that `timespan_2` contains
     `timespan_1` improperly.
 
     ::

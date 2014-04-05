@@ -500,7 +500,7 @@ def test_agenttools_InspectionAgent_get_leaf_13():
 
 
 def test_agenttools_InspectionAgent_get_leaf_14():
-    r'''Tautological parentage asymmetries result in symmetric (balanced) 
+    r'''Tautological parentage asymmetries result in symmetric (balanced)
     logical voice parentage.
     '''
 
@@ -546,7 +546,7 @@ def test_agenttools_InspectionAgent_get_leaf_14():
 
 
 def test_agenttools_InspectionAgent_get_leaf_15():
-    r'''Tautological parentage asymmetries result in symmetric (balanced) 
+    r'''Tautological parentage asymmetries result in symmetric (balanced)
     lgoical voice parentage.
     '''
 

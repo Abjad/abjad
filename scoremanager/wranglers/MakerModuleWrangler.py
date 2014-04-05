@@ -66,7 +66,7 @@ class MakerModuleWrangler(Wrangler):
 
     def _edit_maker_module(self, path):
         manager = self._asset_manager_class(
-            path=path, 
+            path=path,
             session=self._session,
             )
         manager.edit()
@@ -143,7 +143,7 @@ class MakerModuleWrangler(Wrangler):
             file_path = file_path + '.py'
         file_path = os.path.join(storehouse_path, file_path)
         manager = managers.FileManager(
-            file_path, 
+            file_path,
             session=self._session,
             )
         if self._session.is_test:

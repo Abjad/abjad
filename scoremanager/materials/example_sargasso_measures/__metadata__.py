@@ -3,5 +3,5 @@ import collections
 
 
 metadata = collections.OrderedDict([
-    ('material_manager_class_name', 'SargassoMeasureMaterialManager'),
+    ('output_class_name', 'SargassoMeasureMaker'),
     ])

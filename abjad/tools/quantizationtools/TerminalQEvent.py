@@ -46,4 +46,3 @@ class TerminalQEvent(QEvent):
         Returns integer.
         '''
         return super(TerminalQEvent, self).__hash__()
-

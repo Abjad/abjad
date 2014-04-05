@@ -13,7 +13,7 @@ def test_agenttools_MutationAgent_rewrite_meter_01():
 
 
 def test_agenttools_MutationAgent_rewrite_meter_02():
-    r'''Establishes meter when first component's score offset greater 
+    r'''Establishes meter when first component's score offset greater
     than zero.
     '''
 

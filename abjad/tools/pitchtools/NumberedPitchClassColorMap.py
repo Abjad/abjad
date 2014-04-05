@@ -22,8 +22,8 @@ class NumberedPitchClassColorMap(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_color_dictionary', 
-        '_colors', 
+        '_color_dictionary',
+        '_colors',
         '_pitch_iterables',
         )
 

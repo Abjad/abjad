@@ -22,15 +22,15 @@ class TwelveToneRow(PitchClassSegment):
     '''
 
     ### CLASS VARIABLES ###
-        
+
     __slots__ = (
         )
 
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        items=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8), 
+        self,
+        items=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8),
         ):
         from abjad.tools import pitchtools
         assert items is not None
@@ -90,9 +90,9 @@ class TwelveToneRow(PitchClassSegment):
 
     @classmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes twelve-tone row from `selection`.
 

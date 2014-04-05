@@ -2,7 +2,7 @@
 
 
 def all_are_nonnegative_integers(expr):
-    '''Is true when `expr` is a sequence and all elements  in `expr` 
+    '''Is true when `expr` is a sequence and all elements  in `expr`
     are nonnegative integers.
 
     ::

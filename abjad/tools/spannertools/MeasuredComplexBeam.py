@@ -64,16 +64,16 @@ class MeasuredComplexBeam(ComplexBeam):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         direction=None,
-        isolated_nib_direction=False, 
+        isolated_nib_direction=False,
         overrides=None,
-        span_beam_count=1, 
+        span_beam_count=1,
         ):
         ComplexBeam.__init__(
-            self, 
+            self,
             direction=direction,
-            isolated_nib_direction=isolated_nib_direction, 
+            isolated_nib_direction=isolated_nib_direction,
             overrides=overrides,
             )
         assert isinstance(span_beam_count, (int, type(None)))

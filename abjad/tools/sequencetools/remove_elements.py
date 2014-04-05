@@ -2,9 +2,9 @@
 
 
 def remove_elements(
-    sequence, 
+    sequence,
     indices=None,
-    period=None, 
+    period=None,
     ):
     '''Removes `sequence` elements at `indices`.
 

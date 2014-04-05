@@ -8,7 +8,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
 
     time_signature = \
         Measure._duration_and_possible_denominators_to_time_signature(
-        Duration(3, 2), 
+        Duration(3, 2),
         [5, 6, 7, 8, 9],
         )
 
@@ -21,7 +21,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
 
     time_signature = \
         Measure._duration_and_possible_denominators_to_time_signature(
-        Duration(3, 2), 
+        Duration(3, 2),
         [4, 8, 16, 32],
         )
 
@@ -47,7 +47,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
 
     time_signature = \
         Measure._duration_and_possible_denominators_to_time_signature(
-        Duration(3, 2), 
+        Duration(3, 2),
         [7, 11, 13, 19],
         )
 

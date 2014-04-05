@@ -66,7 +66,7 @@ class NonreducedRatio(AbjadObject, tuple):
 
     def __hash__(self):
         r'''Hashes non-reduced ratio.
-        
+
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 
         Returns integer.

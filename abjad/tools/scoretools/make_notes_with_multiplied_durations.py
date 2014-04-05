@@ -4,8 +4,8 @@ from abjad.tools.topleveltools import attach
 
 
 def make_notes_with_multiplied_durations(
-    pitch, 
-    written_duration, 
+    pitch,
+    written_duration,
     multiplied_durations,
     ):
     '''Make `written_duration` notes with `pitch` and `multiplied_durations`:

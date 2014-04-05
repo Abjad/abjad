@@ -3,9 +3,9 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_weights(
-    sequence, 
-    weights, 
-    cyclic=False, 
+    sequence,
+    weights,
+    cyclic=False,
     overhang=False,
     allow_part_weights=Exact,
     ):
@@ -17,60 +17,60 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 1.** Partition sequence once by weights exactly without 
+        **Example 1.** Partition sequence once by weights exactly without
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [3, 9], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [3, 9],
+            ...     cyclic=False,
             ...     overhang=False,
             ...     )
             [[3], [3, 3, 3]]
 
     ..  container:: example
 
-        **Example 2.** Partition sequence once by weights exactly with 
+        **Example 2.** Partition sequence once by weights exactly with
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [3, 9], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [3, 9],
+            ...     cyclic=False,
             ...     overhang=True,
             ...     )
             [[3], [3, 3, 3], [4, 4, 4, 4, 5]]
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights exactly 
+        **Example 3.** Partition sequence cyclically by weights exactly
         without overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [12], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [12],
+            ...     cyclic=True,
             ...     overhang=False,
             ...     )
             [[3, 3, 3, 3], [4, 4, 4]]
 
     ..  container:: example
 
-        **Example 4.** Partition sequence cyclically by weights exactly with 
+        **Example 4.** Partition sequence cyclically by weights exactly with
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [12], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [12],
+            ...     cyclic=True,
             ...     overhang=True,
             ...     )
             [[3, 3, 3, 3], [4, 4, 4], [4, 5]]
@@ -80,64 +80,64 @@ def partition_sequence_by_weights(
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
 
     ..  container:: example
-    
-        **Example 1.** Partition sequence once by weights at most without 
+
+        **Example 1.** Partition sequence once by weights at most without
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=False,
             ...     overhang=False,
             ...     allow_part_weights=Less,
             ...     )
             [[3, 3, 3], [3]]
 
     ..  container:: example
-    
-        **Example 2.** Partition sequence once by weights at most with 
+
+        **Example 2.** Partition sequence once by weights at most with
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=False,
             ...     overhang=True,
             ...     allow_part_weights=Less,
             ...     )
             [[3, 3, 3], [3], [4, 4, 4, 4, 5, 5]]
 
     ..  container:: example
-    
-        **Example 3.** Partition sequence cyclically by weights at most 
+
+        **Example 3.** Partition sequence cyclically by weights at most
         without overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 5], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [10, 5],
+            ...     cyclic=True,
             ...     overhang=False,
             ...     allow_part_weights=Less,
             ...     )
             [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
 
     ..  container:: example
-    
-        **Example 4.** Partition sequence cyclically by weights at most 
+
+        **Example 4.** Partition sequence cyclically by weights at most
         with overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 5], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [10, 5],
+            ...     cyclic=True,
             ...     overhang=True,
             ...     allow_part_weights=Less,
             ...     )
@@ -146,18 +146,18 @@ def partition_sequence_by_weights(
     ::
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-    
+
     ..  container:: example
 
-        **Example 1.** Partition sequence once by weights at least without 
+        **Example 1.** Partition sequence once by weights at least without
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=False,
             ...     overhang=False,
             ...     allow_part_weights=More,
             ...     )
@@ -165,15 +165,15 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 2.** Partition sequence once by weights at least with 
+        **Example 2.** Partition sequence once by weights at least with
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=False, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=False,
             ...     overhang=True,
             ...     allow_part_weights=More,
             ...     )
@@ -181,15 +181,15 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights at least 
+        **Example 3.** Partition sequence cyclically by weights at least
         without overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=True,
             ...     overhang=False,
             ...     allow_part_weights=More,
             ...     )
@@ -197,15 +197,15 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 4.** Partition sequence cyclically by weights at least with 
+        **Example 4.** Partition sequence cyclically by weights at least with
         overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights(
-            ...     sequence, 
-            ...     [10, 4], 
-            ...     cyclic=True, 
+            ...     sequence,
+            ...     [10, 4],
+            ...     cyclic=True,
             ...     overhang=True,
             ...     allow_part_weights=More,
             ...     )
@@ -217,9 +217,9 @@ def partition_sequence_by_weights(
 
     if allow_part_weights == Exact:
         candidate = sequencetools.split_sequence(
-            sequence, 
-            weights, 
-            cyclic=cyclic, 
+            sequence,
+            weights,
+            cyclic=cyclic,
             overhang=overhang,
             )
         flattened_candidate = sequencetools.flatten_sequence(candidate)
@@ -238,14 +238,14 @@ def partition_sequence_by_weights(
     elif allow_part_weights == Less:
         if not cyclic:
             return _partition_sequence_once_by_weights_at_most(
-                sequence, 
-                weights, 
+                sequence,
+                weights,
                 overhang=overhang,
                 )
         else:
             return _partition_sequence_cyclically_by_weights_at_most(
-                sequence, 
-                weights, 
+                sequence,
+                weights,
                 overhang=overhang,
                 )
     else:
@@ -255,8 +255,8 @@ def partition_sequence_by_weights(
 
 
 def _partition_sequence_once_by_weights_at_least(
-    sequence, 
-    weights, 
+    sequence,
+    weights,
     overhang=False,
     ):
     result = []
@@ -285,8 +285,8 @@ def _partition_sequence_once_by_weights_at_least(
 
 
 def _partition_sequence_cyclically_by_weights_at_least(
-    sequence, 
-    weights, 
+    sequence,
+    weights,
     overhang=False,
     ):
     l_copy = sequence[:]
@@ -310,8 +310,8 @@ def _partition_sequence_cyclically_by_weights_at_least(
 
 
 def _partition_sequence_once_by_weights_at_most(
-    sequence, 
-    weights, 
+    sequence,
+    weights,
     overhang=False,
     ):
     l_copy = sequence[:]
@@ -353,8 +353,8 @@ def _partition_sequence_once_by_weights_at_most(
 
 
 def _partition_sequence_cyclically_by_weights_at_most(
-    sequence, 
-    weights, 
+    sequence,
+    weights,
     overhang=False,
     ):
     result = []

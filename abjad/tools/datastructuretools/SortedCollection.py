@@ -4,12 +4,12 @@ import bisect
 
 class SortedCollection(object):
     r'''A sorted collection.
-    
+
     Sequence sorted by a key function.
 
-    SortedCollection() is much easier to work with than using bisect() 
-    directly. It supports key functions like those use in sorted(), min(), 
-    and max(). The result of the key function call is saved so that keys 
+    SortedCollection() is much easier to work with than using bisect()
+    directly. It supports key functions like those use in sorted(), min(),
+    and max(). The result of the key function call is saved so that keys
     can be searched efficiently.
 
     Instead of returning an insertion-point which can be hard to interpret, the
@@ -17,8 +17,8 @@ class SortedCollection(object):
     exact matches, the last item less-than-or-equal to a key, or the first item
     greater-than-or-equal to a key.
 
-    Once found, an item's ordinal position can be located with the index() 
-    method. New items can be added with the insert() and insert_right() 
+    Once found, an item's ordinal position can be located with the index()
+    method. New items can be added with the insert() and insert_right()
     methods. Old items can be deleted with the remove() method.
 
     The usual sequence methods are provided to support indexing, slicing,
@@ -29,7 +29,7 @@ class SortedCollection(object):
     are O(n).  The initial sort is O(n log n).
 
     The key function is stored in the 'key' attibute for easy introspection or
-    so that you can assign a new key function 
+    so that you can assign a new key function
     (triggering an automatic re-sort).
 
     In short, the class was designed to handle all of the common use cases for
@@ -188,7 +188,7 @@ class SortedCollection(object):
         raise ValueError(message)
 
     def find_ge(self, k):
-        r'''Returns first item with a key >= equal to k. Raise ValueError 
+        r'''Returns first item with a key >= equal to k. Raise ValueError
         if not found.
         '''
         i = bisect.bisect_left(self._keys, k)

@@ -2,7 +2,7 @@
 
 
 def is_nonnegative_integer_equivalent_number(expr):
-    '''Is true when `expr` is a nonnegative integer-equivalent number. 
+    '''Is true when `expr` is a nonnegative integer-equivalent number.
     Otherwise false:
 
     ::

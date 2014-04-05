@@ -13,7 +13,7 @@ class SetExpressionLookupExpression(
 
     Look up `attribute` set expression active at `offset` in `voice_name`.
 
-    Lookup expression is assumed to resolve to a list or other iterable 
+    Lookup expression is assumed to resolve to a list or other iterable
     payload.
 
     Because of this lookup expressions afford payload callbacks.
@@ -29,10 +29,10 @@ class SetExpressionLookupExpression(
 
     @abc.abstractmethod
     def __init__(
-        self, 
-        attribute=None, 
-        offset=None, 
-        voice_name=None, 
+        self,
+        attribute=None,
+        offset=None,
+        voice_name=None,
         callbacks=None,
         ):
         from experimental.tools import musicexpressiontools

@@ -16,11 +16,11 @@ def test_custom_contexts_01():
 
         def __call__(self):
             custom_voice = scoretools.Voice(
-                context_name='CustomVoice', 
+                context_name='CustomVoice',
                 name='Custom Voice',
                 )
             custom_staff = scoretools.Staff(
-                context_name='CustomStaff', 
+                context_name='CustomStaff',
                 name='Custom Staff',
                 )
             custom_score = scoretools.Score(

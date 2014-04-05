@@ -19,7 +19,7 @@ class AttributeDetail(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         display_string=None,
         editor=None,
         is_keyword=True,

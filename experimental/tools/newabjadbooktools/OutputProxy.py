@@ -43,7 +43,7 @@ class OutputProxy(AbjadObject):
     @abc.abstractmethod
     def __init__(self, payload):
         raise NotImplemented
-        
+
     ### PRIVATE ATTRIBUTES ###
 
     @property

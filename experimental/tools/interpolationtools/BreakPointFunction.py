@@ -39,9 +39,9 @@ class BreakPointFunction(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_bpf', 
-        '_dc_bias', 
-        '_x_values', 
+        '_bpf',
+        '_dc_bias',
+        '_x_values',
         '_y_range',
         )
 
@@ -595,7 +595,7 @@ class BreakPointFunction(AbjadObject):
                 1.0: (0.0,)
             })
 
-        If `x_center` is not None, reflection will take `x_center` 
+        If `x_center` is not None, reflection will take `x_center`
         as the axis of reflection:
 
         ::
@@ -751,13 +751,13 @@ class BreakPointFunction(AbjadObject):
             raise ValueError
         self._update_caches()
 
-    def tessalate_by_ratio(self, 
-        ratio, 
-        invert_on_negative=False, 
+    def tessalate_by_ratio(self,
+        ratio,
+        invert_on_negative=False,
         reflect_on_negative=False,
         y_center=None,
         ):
-        r'''Concatenate copies of a BreakPointFunction, stretched by 
+        r'''Concatenate copies of a BreakPointFunction, stretched by
         the weights in `ratio`:
 
         ::
@@ -780,7 +780,7 @@ class BreakPointFunction(AbjadObject):
 
         Negative ratio values are still treated as weights.
 
-        If `invert_on_negative` is True, copies corresponding to 
+        If `invert_on_negative` is True, copies corresponding to
         negative ratio values will be inverted:
 
         ::
@@ -796,12 +796,12 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        If `y_center` is not None, inversion will take `y_center` as 
+        If `y_center` is not None, inversion will take `y_center` as
         the axis of inversion:
 
         ::
 
-            >>> bpf.tessalate_by_ratio((1, -2, 3), 
+            >>> bpf.tessalate_by_ratio((1, -2, 3),
             ...     invert_on_negative=True, y_center=0)
             BreakPointFunction({
                 0.0: (0.0,),
@@ -813,7 +813,7 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        If `reflect_on_negative` is True, copies corresponding to 
+        If `reflect_on_negative` is True, copies corresponding to
         negative ratio values will be reflectd:
 
         ::

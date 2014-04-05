@@ -23,26 +23,19 @@ class Editor(Controller):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        session=None, 
+        self,
+        session=None,
         target=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
         ):
+        assert target is not None
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
-        if not type(self).__name__ in ('Editor', 'ListEditor'):
-            target_manifest = self._attribute_manifest
-            if not target_manifest:
-                message = 'can not find target manifest for {!r}.'
-                message = message.format(self)
-                raise Exception(message)
-            if target is not None:
-                assert isinstance(target, self._target_class)
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -52,23 +45,16 @@ class Editor(Controller):
 
         Returns string.
         '''
-        if self.target is None:
-            summary = ''
-        else:
-            class_name = type(self.target).__name__
-            summary = 'target={}'.format(class_name)
+        class_name = type(self.target).__name__
+        summary = 'target={}'.format(class_name)
         return '<{}({})>'.format(type(self).__name__, summary)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        class_name = self._target_class.__name__
+        class_name = type(self.target).__name__
         return stringtools.string_to_space_delimited_lowercase(class_name)
-
-    @property
-    def _target_class(self):
-        return self._attribute_manifest._target_class
 
     @property
     def _attribute_manifest(self):
@@ -113,10 +99,10 @@ class Editor(Controller):
                 self._attributes_in_memory[name] = attribute_value
 
     def _get_attribute_editor(
-        self, 
+        self,
         attribute_detail,
-        space_delimited_attribute_name, 
-        prepopulated_value, 
+        space_delimited_attribute_name,
+        prepopulated_value,
         ):
         from scoremanager import iotools
         from scoremanager import iotools
@@ -124,14 +110,14 @@ class Editor(Controller):
         if isinstance(attribute_detail.editor, types.FunctionType):
             editor = attribute_detail.editor(
                 space_delimited_attribute_name,
-                session=self._session, 
-                prepopulated_value=prepopulated_value, 
+                session=self._session,
+                prepopulated_value=prepopulated_value,
                 allow_none=True,
                 )
         elif issubclass(attribute_detail.editor, Editor):
             editor = attribute_detail.editor(
-                session=self._session, 
-                target=prepopulated_value, 
+                session=self._session,
+                target=prepopulated_value,
                 )
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
@@ -151,8 +137,8 @@ class Editor(Controller):
             editor = attribute_detail.editor(session=self._session)
         elif issubclass(attribute_detail.editor, wizards.Wizard):
             editor = attribute_detail.editor(
-                session=self._session, 
-                target=prepopulated_value, 
+                session=self._session,
+                target=prepopulated_value,
                 )
         else:
             message = 'what is {!r}?'
@@ -164,7 +150,7 @@ class Editor(Controller):
         result = []
         if self.target is not None:
             for attribute_detail in self._attribute_manifest:
-                target_attribute_name = attribute_detail.name 
+                target_attribute_name = attribute_detail.name
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
                 value = self._io_manager._get_one_line_menu_summary(
@@ -180,9 +166,9 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         attribute_editor = self._menu_key_to_attribute_editor(
-            result, 
-            session=self._session, 
-            prepopulated_value=prepopulated_value, 
+            result,
+            session=self._session,
+            prepopulated_value=prepopulated_value,
             )
         if attribute_editor is None:
             return
@@ -195,12 +181,6 @@ class Editor(Controller):
         else:
             attribute_value = result
         self._set_target_attribute(attribute_name, attribute_value)
-
-    def _initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self._target = self._target_class()
 
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
@@ -218,7 +198,7 @@ class Editor(Controller):
             if name in self._attributes_in_memory:
                 value = self._attributes_in_memory.get(name)
                 kwargs[name] = value
-        self._target = self._target_class(*args, **kwargs)
+        self._target = type(self.target)(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
         menu = self._io_manager.make_menu(
@@ -230,7 +210,7 @@ class Editor(Controller):
             section = menu.make_keyed_attribute_section(
                 name='keyed attributes',
                 is_numbered=True,
-                ) 
+                )
             for menu_entry in menu_entries:
                 section.append(menu_entry)
         self._make_done_menu_section(menu)
@@ -241,22 +221,15 @@ class Editor(Controller):
         for attribute_detail in self._attribute_manifest.attribute_details:
             key = attribute_detail.menu_key
             display_string = attribute_detail.display_string
-            if self.target is not None:
+            attribute_value = getattr(
+                self.target,
+                attribute_detail.name,
+                None,
+                )
+            if attribute_value is None:
                 attribute_value = getattr(
-                    self.target, 
-                    attribute_detail.name, 
-                    None,
-                    )
-                if attribute_value is None:
-                    attribute_value = getattr(
-                        self.target, attribute_detail.name, None)
-            else:
-                name = attribute_detail.name
-                attribute_value = self._attributes_in_memory.get(name)
-                if attribute_value is None:
-                    name = attribute_detail.name
-                    attribute_value = self._attributes_in_memory.get(name)
-            if (hasattr(attribute_value, '__len__') and 
+                    self.target, attribute_detail.name, None)
+            if (hasattr(attribute_value, '__len__') and
                 not len(attribute_value)):
                 attribute_value = None
             prepopulated_value = self._io_manager._get_one_line_menu_summary(
@@ -266,10 +239,10 @@ class Editor(Controller):
         return result
 
     def _menu_key_to_attribute_editor(
-        self, 
-        menu_key, 
-        prepopulated_value, 
-        session=None, 
+        self,
+        menu_key,
+        prepopulated_value,
+        session=None,
         ):
         manifest = self._attribute_manifest
         assert manifest
@@ -297,7 +270,6 @@ class Editor(Controller):
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
         with context:
-            self._initialize_target()
             if self._should_backtrack():
                 return
             result = None
@@ -340,9 +312,6 @@ class Editor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
-        if self.target is None:
-            self._attributes_in_memory[attribute_name] = attribute_value
-            return
         if self._session.is_complete:
             return
         # TODO: see GitHub #366:

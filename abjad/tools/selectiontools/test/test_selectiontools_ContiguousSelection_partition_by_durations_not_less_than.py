@@ -35,12 +35,12 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_not_less_than
 
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_less_than(
-        [Duration(3, 16), Duration(1, 16)], 
-        cyclic=True, 
-        in_seconds=False, 
+        [Duration(3, 16), Duration(1, 16)],
+        cyclic=True,
+        in_seconds=False,
         overhang=True,
         )
-    
+
     r'''
     [
         [Note(c', 8), Note(d', 8)],

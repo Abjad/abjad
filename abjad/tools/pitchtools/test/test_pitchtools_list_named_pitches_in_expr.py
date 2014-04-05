@@ -10,8 +10,8 @@ def test_pitchtools_list_named_pitches_in_expr_01():
     named_pitches = pitchtools.list_named_pitches_in_expr(tuplet)
 
     assert named_pitches == (
-        NamedPitch('c', 4), 
-        NamedPitch('d', 4), 
+        NamedPitch('c', 4),
+        NamedPitch('d', 4),
         NamedPitch('e', 4),
         )
 
@@ -26,9 +26,9 @@ def test_pitchtools_list_named_pitches_in_expr_02():
     named_pitches = pitchtools.list_named_pitches_in_expr(beam)
 
     assert named_pitches == (
-        NamedPitch('c', 4), 
-        NamedPitch('d', 4), 
-        NamedPitch('e', 4), 
+        NamedPitch('c', 4),
+        NamedPitch('d', 4),
+        NamedPitch('e', 4),
         NamedPitch('f', 4),
         )
 
@@ -41,9 +41,9 @@ def test_pitchtools_list_named_pitches_in_expr_03():
     named_pitches = pitchtools.list_named_pitches_in_expr(pitch_set)
 
     assert named_pitches == (
-        NamedPitch('c', 4), 
-        NamedPitch('d', 4), 
-        NamedPitch('e', 4), 
+        NamedPitch('c', 4),
+        NamedPitch('d', 4),
+        NamedPitch('e', 4),
         NamedPitch('f', 4),
         )
 
@@ -58,9 +58,9 @@ def test_pitchtools_list_named_pitches_in_expr_04():
         ])
 
     assert pitchtools.list_named_pitches_in_expr(array) == (
-        NamedPitch('d', 4), 
-        NamedPitch('bqf', 3), 
-        NamedPitch('g', 4), 
+        NamedPitch('d', 4),
+        NamedPitch('bqf', 3),
+        NamedPitch('g', 4),
         NamedPitch('fs', 4),
         )
 
@@ -70,14 +70,14 @@ def test_pitchtools_list_named_pitches_in_expr_05():
     '''
 
     named_pitches = (
-        NamedPitch(0), 
-        Note(2, (1, 4)), 
+        NamedPitch(0),
+        Note(2, (1, 4)),
         Chord([4, 6, 7], (1, 4)),
         )
     assert pitchtools.list_named_pitches_in_expr(named_pitches) == (
-        NamedPitch('c', 4), 
-        NamedPitch('d', 4), 
-        NamedPitch('e', 4), 
-        NamedPitch('fs', 4), 
+        NamedPitch('c', 4),
+        NamedPitch('d', 4),
+        NamedPitch('e', 4),
+        NamedPitch('fs', 4),
         NamedPitch('g', 4),
         )

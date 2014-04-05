@@ -10,5 +10,5 @@ def test_pitchtools_PitchClassSet___slots___01():
     named_pitch_classes = ['gs', 'a', 'as', 'c', 'cs']
     named_pitch_class_set = pitchtools.PitchClassSet(named_pitch_classes)
 
-    assert pytest.raises(AttributeError, 
+    assert pytest.raises(AttributeError,
         "named_pitch_class_set.foo = 'bar'")

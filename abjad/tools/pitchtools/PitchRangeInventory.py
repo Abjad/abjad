@@ -9,7 +9,7 @@ class PitchRangeInventory(TypedList):
     ::
 
         >>> inventory = pitchtools.PitchRangeInventory([
-        ...     '[C3, C6]', 
+        ...     '[C3, C6]',
         ...     '[C4, C6]',
         ...     ])
         >>> inventory
@@ -108,6 +108,11 @@ class PitchRangeInventory(TypedList):
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest()
 
     @property
     def _item_callable(self):

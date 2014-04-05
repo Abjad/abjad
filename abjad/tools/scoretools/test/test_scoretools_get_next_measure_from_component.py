@@ -66,5 +66,5 @@ def test_scoretools_get_next_measure_from_component_02():
 
     components = [Note("c'4"), Measure((2, 8), "c'8 d'8")]
 
-    result = scoretools.get_next_measure_from_component(components) 
+    result = scoretools.get_next_measure_from_component(components)
     assert result is components[1]

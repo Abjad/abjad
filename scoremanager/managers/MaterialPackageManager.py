@@ -12,7 +12,8 @@ from scoremanager.managers.PackageManager import PackageManager
 
 
 class MaterialPackageManager(PackageManager):
-    r'''Material manager.
+    r'''Material package manager.
+
 
     ..  container:: example
 
@@ -230,7 +231,7 @@ class MaterialPackageManager(PackageManager):
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         setup_statements =(
-            self._abjad_import_statement, 
+            self._abjad_import_statement,
             setup_statement,
             )
         getter._make_prompt(
@@ -252,22 +253,23 @@ class MaterialPackageManager(PackageManager):
         result = self._output_module_manager._execute(
             attribute_names=attribute_names,
             )
-        if result:
-            assert len(result) == 1
+        if result and len(result) == 1:
             output_material = result[0]
             return output_material
 
     def _has_output_material_editor(self):
+        if not os.path.isfile(self._definition_module_path):
+            if not os.path.isfile(self._user_input_module_path):
+                True
         return False
 
-    def _get_output_material_editor(self, target=None):
-        #message = 'how did we get here?'
-        #raise Exception((message, target))
-        assert target is not None
+    def _get_output_material_editor(self, target):
+        if target is None:
+            return
         from scoremanager import iotools
         prototype = (datastructuretools.TypedList, list)
         if isinstance(target, prototype):
-            class_ = iotools.ListEditor     
+            class_ = iotools.ListEditor
         else:
             class_ = iotools.Editor
         editor = class_(session=self._session, target=target)
@@ -286,7 +288,7 @@ class MaterialPackageManager(PackageManager):
             self._user_input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             self._edit_user_input_wrapper_at_number(
-                result, 
+                result,
                 include_newline=False,
                 )
         elif result == 'user entered lone return':
@@ -381,7 +383,7 @@ class MaterialPackageManager(PackageManager):
         self._make_illustrate_module_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._make_initializer_menu_section(
-            menu, 
+            menu,
             has_initializer=has_initializer,
             )
         self._make_material_definition_menu_section(menu)
@@ -435,20 +437,19 @@ class MaterialPackageManager(PackageManager):
         return section
 
     def _make_material_summary_menu_section(self, menu):
-        if not self._should_have_output_material_section():
+        if os.path.isfile(self._definition_module_path):
             return
-        if not self._has_output_material_editor():
+        if os.path.isfile(self._user_input_module_path):
             return
         if not os.path.isfile(self._output_module_path):
             return
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(target=output_material)
-        target_summary_lines = editor._get_target_summary_lines()
-        if not target_summary_lines:
+        if not editor:
             return
-        section = menu.make_material_summary_section()
-        for line in target_summary_lines:
-            section.append(line)
+        lines = editor._get_target_summary_lines()
+        lines = lines or ['(empty)']
+        section = menu.make_material_summary_section(lines=lines)
         return section
 
     def _make_output_material(self):
@@ -584,18 +585,6 @@ class MaterialPackageManager(PackageManager):
             self._session._pending_user_input = 'me'
         self._run()
 
-    def _should_have_output_material_section(self):
-        if os.path.isfile(self._definition_module_path):
-            return True
-        if (
-            bool(self._user_input_wrapper_in_memory) and
-            self._user_input_wrapper_in_memory.is_complete
-            ):
-            return True
-        if self._has_output_material_editor():
-            return True
-        return False
-
     def _write_definition_module_stub(self, prompt=True):
         self.write_definition_module_stub()
         message = 'stub material definition written to disk.'
@@ -685,7 +674,7 @@ class MaterialPackageManager(PackageManager):
         '''
         output_material = self._execute_output_module()
         if (hasattr(self, '_make_output_material') and
-            output_material is None and 
+            output_material is None and
             self._make_output_material() and
             isinstance(self._make_output_material(), wizards.Wizard)
             ):
@@ -786,9 +775,9 @@ class MaterialPackageManager(PackageManager):
         total_elements = len(self._user_input_wrapper_in_memory)
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
-            'start at element number', 
-            1, 
-            total_elements, 
+            'start at element number',
+            1,
+            total_elements,
             default_value=1,
             )
         start_element_number = getter._run()
@@ -798,7 +787,7 @@ class MaterialPackageManager(PackageManager):
         current_element_index = current_element_number - 1
         while True:
             self._edit_user_input_wrapper_at_number(
-                current_element_number, 
+                current_element_number,
                 include_newline=False,
                 )
             if self._should_backtrack():
@@ -912,7 +901,7 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.spawn_subprocess(command)
             command = 'git commit -m "{}" {} {}'
             command = command.format(
-                commit_message, 
+                commit_message,
                 new_directory_path,
                 old_directory_path,
                 )
@@ -1025,13 +1014,7 @@ class MaterialPackageManager(PackageManager):
             assert output_material is None
         else:
             assert isinstance(body_lines, list), repr(body_lines)
-            assert output_material
-        # TODO: remove the is_static branch?
-        if self._get_metadatum('is_static'):
-            source_path = self._definition_module_path
-            target_path = self._output_module_path
-            shutil.copy(source_path, target_path)
-            return
+            assert output_material is not None
         lines = []
         lines.append(self._unicode_directive + '\n')
         if body_lines is None:
@@ -1041,6 +1024,12 @@ class MaterialPackageManager(PackageManager):
             output_material = triple[2]
             body_lines = [output_module_body_string]
         import_statements = import_statements or []
+        if any('handlertools' in _ for _ in body_lines):
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
+        if any(' makers.' in _ for _ in body_lines):
+            statement = 'from scoremanager import makers'
+            import_statements.append(statement)
         import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])

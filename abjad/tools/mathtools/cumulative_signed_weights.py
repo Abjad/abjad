@@ -13,7 +13,7 @@ def cumulative_signed_weights(sequence):
     Raises type error when `sequence` is not a list.
 
     Use ``mathtools.cumulative_sums([abs(x) for x in l])``
-    for cumulative (unsigned) weights 
+    for cumulative (unsigned) weights
 
     Returns list.
     '''

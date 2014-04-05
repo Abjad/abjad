@@ -16,8 +16,8 @@ class Domain(AbjadObject):
 
         >>> domain = Domain([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
 
-    May also be instantiated from one non-empty sequence and an integer 
-    greater than zero, indicating how many "columns" to create from the 
+    May also be instantiated from one non-empty sequence and an integer
+    greater than zero, indicating how many "columns" to create from the
     first sequence:
 
     ::

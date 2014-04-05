@@ -66,5 +66,5 @@ def test_scoretools_get_previous_measure_from_component_02():
 
     components = [Measure((2, 8), "c'8 d'8"), Note("c'4")]
 
-    result = scoretools.get_previous_measure_from_component(components) 
+    result = scoretools.get_previous_measure_from_component(components)
     assert result is components[0]

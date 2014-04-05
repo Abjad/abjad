@@ -16,15 +16,15 @@ class SetExpression(Expression):
 
     @abc.abstractmethod
     def __init__(
-        self, 
-        attribute=None, 
-        source_expression=None, 
+        self,
+        attribute=None,
+        source_expression=None,
         target_timespan=None,
         ):
         from experimental.tools import musicexpressiontools
         assert isinstance(attribute, str)
         assert isinstance(source_expression, musicexpressiontools.Expression)
-        assert isinstance(target_timespan, 
+        assert isinstance(target_timespan,
             (timespantools.Timespan, musicexpressiontools.TimespanExpression,
             str, type(None)))
         self._attribute = attribute

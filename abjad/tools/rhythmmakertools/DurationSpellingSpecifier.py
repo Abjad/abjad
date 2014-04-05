@@ -25,7 +25,7 @@ class DurationSpellingSpecifier(AbjadObject):
         if forbidden_written_duration is not None:
             forbidden_written_duration = durationtools.Duration(
                 forbidden_written_duration)
-        self._decrease_durations_monotonically = decrease_durations_monotonically 
+        self._decrease_durations_monotonically = decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
 
     ### SPECIAL METHODS ###
@@ -116,7 +116,6 @@ class DurationSpellingSpecifier(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='decrease_durations_monotonically',
                 menu_key='ddm',

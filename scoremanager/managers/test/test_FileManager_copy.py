@@ -8,11 +8,11 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 def test_FileManager_copy_01():
 
     path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'temporary-file.txt',
         )
     new_path = os.path.join(
-        configuration.score_manager_directory_path, 
+        configuration.score_manager_directory_path,
         'new-temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)

@@ -33,7 +33,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import musicexpressiontools
         if isinstance(expr, (tuple, list, datastructuretools.TypedList)):
             if all(
-                isinstance(x, musicexpressiontools.Expression) 
+                isinstance(x, musicexpressiontools.Expression)
                 for x in expr
                 ):
                 return True
@@ -177,7 +177,7 @@ class SetMethodMixin(AbjadObject):
         attribute = 'markup'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_pitch(self, source_expression, 
+    def set_pitch(self, source_expression,
         node_count=None, level=None, trope=None):
         r'''Set pitches to `source_expression`.
 

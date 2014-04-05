@@ -13,19 +13,19 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_expression=None, 
+        self,
+        source_expression=None,
         division_list=None,
-        region_start_offset=None, 
-        start_offset=None, 
-        total_duration=None, 
+        region_start_offset=None,
+        start_offset=None,
+        total_duration=None,
         voice_name=None,
         ):
         RhythmRegionExpression.__init__(
-            self, 
+            self,
             source_expression=source_expression,
-            start_offset=start_offset, 
-            total_duration=total_duration, 
+            start_offset=start_offset,
+            total_duration=total_duration,
             voice_name=voice_name,
             )
         self._division_list = division_list

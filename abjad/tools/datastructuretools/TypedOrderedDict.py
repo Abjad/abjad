@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import new
 class TypedOrderedDict(TypedCollection):
     r'''A typed ordered dictionary.
 
-    ..  note:: Doctests not included because class is used as a 
+    ..  note:: Doctests not included because class is used as a
         base class. Doctests here would put weird examples in child classes.
         See child classes for doctests.
 
@@ -65,7 +65,7 @@ class TypedOrderedDict(TypedCollection):
         del(self._collection[i])
 
     def __ge__(self, expr):
-        r'''Is true when typed ordered dictionary is greater than or equal 
+        r'''Is true when typed ordered dictionary is greater than or equal
         to `expr`. Otherwise false.
 
         Returns boolean.
@@ -81,7 +81,7 @@ class TypedOrderedDict(TypedCollection):
         return self._collection[i]
 
     def __gt__(self, expr):
-        r'''Is true when typed ordered dictionary is greater than `expr`. 
+        r'''Is true when typed ordered dictionary is greater than `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -90,7 +90,7 @@ class TypedOrderedDict(TypedCollection):
         return self._collection.__gt__(expr._collection)
 
     def __le__(self, expr):
-        r'''Is true when typed ordered dictionary is less than or equal 
+        r'''Is true when typed ordered dictionary is less than or equal
         to `expr`. Otherwise false.
 
         Returns boolean.
@@ -99,7 +99,7 @@ class TypedOrderedDict(TypedCollection):
         return self._collection.__le__(expr._collection)
 
     def __lt__(self, expr):
-        r'''Is true when typed ordered dictionary is less than `expr`. 
+        r'''Is true when typed ordered dictionary is less than `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -108,7 +108,7 @@ class TypedOrderedDict(TypedCollection):
         return self._collection.__lt__(expr._collection)
 
     def __ne__(self, expr):
-        r'''Is true when typed ordered dictionary is not equal to `expr`. 
+        r'''Is true when typed ordered dictionary is not equal to `expr`.
         Otherwise false.
 
         Returns boolean.

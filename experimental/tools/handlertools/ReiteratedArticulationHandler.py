@@ -80,31 +80,30 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
-                name='articulation_list', 
-                menu_key='al', 
-                editor=getters.get_articulations, 
+                name='articulation_list',
+                menu_key='al',
+                editor=getters.get_articulations,
                 ),
             systemtools.AttributeDetail(
-                name='minimum_duration', 
-                menu_key='nd', 
-                editor=getters.get_duration, 
+                name='minimum_duration',
+                menu_key='nd',
+                editor=getters.get_duration,
                 ),
             systemtools.AttributeDetail(
-                name='maximum_duration', 
-                menu_key='xd', 
-                editor=getters.get_duration, 
+                name='maximum_duration',
+                menu_key='xd',
+                editor=getters.get_duration,
                 ),
             systemtools.AttributeDetail(
-                name='minimum_written_pitch', 
-                menu_key='np', 
-                editor=getters.get_named_pitch, 
+                name='minimum_written_pitch',
+                menu_key='np',
+                editor=getters.get_named_pitch,
                 ),
             systemtools.AttributeDetail(
-                name='maximum_written_pitch', 
-                menu_key='xp', 
-                editor=getters.get_named_pitch, 
+                name='maximum_written_pitch',
+                menu_key='xp',
+                editor=getters.get_named_pitch,
                 ),
             )
 

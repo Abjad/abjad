@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_single_segment_solo__fancy_rhythm_and_divisions_01():
-    r'''Rhythm and divisions carve out same partial time signature 
+    r'''Rhythm and divisions carve out same partial time signature
     select expression.
     '''
 

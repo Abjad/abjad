@@ -95,7 +95,7 @@ class Violin(Instrument):
             Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
 
         Returns tuning.
-        ''' 
+        '''
         return self._default_tuning
 
     @property

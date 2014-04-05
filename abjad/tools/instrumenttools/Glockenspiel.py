@@ -184,5 +184,5 @@ class Glockenspiel(Instrument):
                 >>> show(glockenspiel.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
         Returns named pitch.
-        """ 
+        """
         return Instrument.sounding_pitch_of_written_middle_c.fget(self)

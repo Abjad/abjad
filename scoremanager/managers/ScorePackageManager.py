@@ -19,8 +19,8 @@ class ScorePackageManager(PackageManager):
 
     def __init__(self, path=None, session=None):
         PackageManager.__init__(
-            self, 
-            path=path, 
+            self,
+            path=path,
             session=session,
             )
 
@@ -71,15 +71,6 @@ class ScorePackageManager(PackageManager):
         if self._path is None:
             return
         wrangler = wranglers.MakerModuleWrangler(session=self._session)
-        return wrangler
-
-    @property
-    @systemtools.Memoize
-    def _material_manager_wrangler(self):
-        from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
         return wrangler
 
     @property
@@ -160,13 +151,13 @@ class ScorePackageManager(PackageManager):
 
     def _get_build_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'build',
             )
 
     def _get_distribution_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'distribution',
             )
 
@@ -182,25 +173,25 @@ class ScorePackageManager(PackageManager):
 
     def _get_makers_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'makers',
             )
 
     def _get_materials_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'materials',
             )
 
     def _get_segments_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'segments',
             )
 
     def _get_stylesheets_directory_path(self):
         return os.path.join(
-            self._path, 
+            self._path,
             'stylesheets',
             )
 
@@ -218,7 +209,7 @@ class ScorePackageManager(PackageManager):
         if year and self._get_metadatum('year_of_completion'):
             result = '{} ({})'
             result = result.format(
-                self._get_title(), 
+                self._get_title(),
                 self._get_metadatum('year_of_completion')
                 )
             return result
@@ -265,7 +256,7 @@ class ScorePackageManager(PackageManager):
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'catalog number':
-            self.edit_catalog_number()   
+            self.edit_catalog_number()
         elif result == 'instr':
             self.edit_instrumentation_specifier()
         elif result == 'tagline':
@@ -490,7 +481,7 @@ class ScorePackageManager(PackageManager):
         from scoremanager import iotools
         target = self._get_instrumentation()
         editor = iotools.Editor(
-            session=self._session, 
+            session=self._session,
             target=target,
             )
         editor._run()
@@ -516,8 +507,8 @@ class ScorePackageManager(PackageManager):
         '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
-            'year of completion', 
-            start=1, 
+            'year of completion',
+            start=1,
             allow_none=True,
             )
         result = getter._run()

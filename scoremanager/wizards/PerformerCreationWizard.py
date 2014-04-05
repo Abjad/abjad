@@ -42,7 +42,7 @@ class PerformerCreationWizard(Wizard):
                 break
             elif result in ('more', ['more']):
                 wizard = wizards.InstrumentCreationWizard(
-                    session=self._session, 
+                    session=self._session,
                     is_ranged=True,
                     )
                 instruments = wizard._run()

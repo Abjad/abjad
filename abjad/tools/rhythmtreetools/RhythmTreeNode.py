@@ -114,9 +114,9 @@ class RhythmTreeNode(TreeNode):
         r'''A sequence describing the relative durations of the nodes in a
         node's improper parentage.
 
-        The first item in the sequence is the preprolated_duration of 
-        the root node, and subsequent items are pairs of the 
-        preprolated duration of the next node in the parentage and 
+        The first item in the sequence is the preprolated_duration of
+        the root node, and subsequent items are pairs of the
+        preprolated duration of the next node in the parentage and
         the total preprolated_duration of that node and its siblings:
 
 

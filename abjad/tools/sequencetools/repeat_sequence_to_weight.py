@@ -25,7 +25,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
         ::
 
             >>> sequencetools.repeat_sequence_to_weight(
-            ...     (5, -5, -5), 
+            ...     (5, -5, -5),
             ...     23,
             ...     allow_total=More,
             ...     )
@@ -40,7 +40,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
         ::
 
             >>> sequencetools.repeat_sequence_to_weight(
-            ...     (5, -5, -5), 
+            ...     (5, -5, -5),
             ...     23,
             ...     allow_total=Less,
             ...     )

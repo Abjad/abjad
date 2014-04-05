@@ -100,11 +100,11 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
     '''
 
     measure = Measure(
-        (5, 18), 
+        (5, 18),
         scoretools.make_repeated_notes_with_shorter_notes_at_end(
-            0, 
-            Duration(1, 16), 
-            Duration(5, 18), 
+            0,
+            Duration(1, 16),
+            Duration(5, 18),
             prolation=Duration(16, 18)),
         implicit_scaling=True,
         )

@@ -65,7 +65,7 @@ def test_ListEditor__run_04():
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
-            '\\italic { serenamente possibile }', 
+            '\\italic { serenamente possibile }',
             )
         ])
 
@@ -119,8 +119,8 @@ def test_ListEditor__run_06():
     input_ += ' add d (1, 4) units 84 done done'
     editor._run(pending_user_input=input_)
     inventory = indicatortools.TempoInventory([
-        Tempo(Duration(1, 4), 60), 
-        Tempo(Duration(1, 4), 72), 
+        Tempo(Duration(1, 4), 60),
+        Tempo(Duration(1, 4), 72),
         Tempo(Duration(1, 4), 84),
         ])
     assert editor.target == inventory
@@ -143,8 +143,8 @@ def test_ListEditor__run_07():
     input_ += ' add d Duration(1, 4) units 84 done done'
     editor._run(pending_user_input=input_)
     inventory = indicatortools.TempoInventory([
-        Tempo(Duration(1, 4), 60), 
-        Tempo(Duration(1, 4), 72), 
+        Tempo(Duration(1, 4), 60),
+        Tempo(Duration(1, 4), 72),
         Tempo(Duration(1, 4), 84),
         ])
     assert editor.target == inventory
@@ -166,7 +166,7 @@ def test_ListEditor__run_08():
     input_ += ' rm 1 mv 1 2 q'
     editor._run(pending_user_input=input_)
     assert editor.target == pitchtools.PitchRangeInventory([
-        pitchtools.PitchRange('[C2, C8]'), 
+        pitchtools.PitchRange('[C2, C8]'),
         pitchtools.PitchRange('[C1, C7]'),
         ])
 
@@ -227,7 +227,7 @@ def test_ListEditor__run_11():
     editor._run(pending_user_input=input_)
 
     inventory = instrumenttools.InstrumentInventory([
-        instrumenttools.Flute(), 
+        instrumenttools.Flute(),
         instrumenttools.Piccolo(),
         ])
 

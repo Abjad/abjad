@@ -47,8 +47,8 @@ class Menu(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        session=None, 
+        self,
+        session=None,
         where=None,
         breadcrumb_callback=None,
         # TODO: maybe remove include_default_hidden_sections?
@@ -193,7 +193,7 @@ class Menu(ScoreManagerObject):
         menu_lines.append('')
         self._clear_terminal()
         self._io_manager.display(
-            menu_lines, 
+            menu_lines,
             capitalize_first_character=False,
             )
         self._session._hide_hidden_commands = True
@@ -316,7 +316,7 @@ class Menu(ScoreManagerObject):
 
     def _make_go_menu_section(self):
         section = self.make_command_section(
-            name='go', 
+            name='go',
             is_hidden=True,
             )
         section.append(('go - back', 'b'))
@@ -366,7 +366,7 @@ class Menu(ScoreManagerObject):
 
     def _make_python_menu_section(self):
         section = self.make_command_section(
-            name='python', 
+            name='python',
             is_hidden=True,
             match_on_display_string=False,
             )
@@ -377,7 +377,7 @@ class Menu(ScoreManagerObject):
 
     def _make_repository_menu_section(self):
         section = self.make_command_section(
-            name='repository', 
+            name='repository',
             is_hidden=True,
             )
         section.append(('repository - add', 'rad'))
@@ -388,17 +388,17 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_section(
-        self, 
+        self,
         is_alphabetized=False,
         is_asset_section=False,
         is_attribute_section=False,
         is_command_section=False,
-        is_hidden=False, 
+        is_hidden=False,
         is_informational_section=False,
         is_material_summary_section=False,
         is_navigation_section=False,
-        is_numbered=False, 
-        is_ranged=False, 
+        is_numbered=False,
+        is_ranged=False,
         display_prepopulated_values=False,
         default_index=None,
         match_on_display_string=True,
@@ -538,7 +538,7 @@ class Menu(ScoreManagerObject):
                 else:
                     return result
 
-    # TODO: apply default notice at display time 
+    # TODO: apply default notice at display time
     #       so this can be completely removed
     def _strip_default_notice_from_strings(self, expr):
         if isinstance(expr, list):
@@ -617,8 +617,8 @@ class Menu(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def make_asset_section(
-        self, 
-        menu_entries=None, 
+        self,
+        menu_entries=None,
         name='assets',
         ):
         r'''Makes asset section.
@@ -718,8 +718,8 @@ class Menu(ScoreManagerObject):
         return section
 
     def make_keyed_attribute_section(
-        self, 
-        is_numbered=False, 
+        self,
+        is_numbered=False,
         menu_entries=None,
         name=None,
         ):
@@ -740,8 +740,8 @@ class Menu(ScoreManagerObject):
         return section
 
     def make_material_summary_section(
-        self, 
-        menu_entries=None, 
+        self,
+        lines=None,
         name='material summary',
         ):
         r'''Makes asset section.
@@ -760,6 +760,9 @@ class Menu(ScoreManagerObject):
             name=name,
             return_value_attribute='explicit',
             )
+        lines = lines or ()
+        for line in lines:
+            section.append(line)
         return section
 
     def make_navigation_section(
@@ -790,8 +793,8 @@ class Menu(ScoreManagerObject):
         return section
 
     def make_numbered_list_section(
-        self, 
-        menu_entries=None, 
+        self,
+        menu_entries=None,
         name=None,
         title=None,
         default_index=None,

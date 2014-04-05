@@ -87,8 +87,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
         "Like a majestic swan, alive with youth and vigour!",
-        (1, 4), 
-        60, 
+        (1, 4),
+        60,
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
@@ -117,7 +117,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
         "Faster than a thousand suns",
-        (1, 16), (34, 55), 
+        (1, 16), (34, 55),
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 

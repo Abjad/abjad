@@ -28,7 +28,7 @@ class DocumentHandler(AbjadObject):
             self.document,
             self.source_to_code_block_mapping,
             )
- 
+
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -68,7 +68,7 @@ class DocumentHandler(AbjadObject):
     def has_asset_output_proxies(self):
         for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
-                if isinstance(output_proxy, 
+                if isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):
                     return True
         return False
@@ -80,7 +80,7 @@ class DocumentHandler(AbjadObject):
     @property
     def output_directory_path(self):
         return self._output_directory_path
-   
+
     @property
     def source_to_code_block_mapping(self):
         return self._code_blocks
@@ -114,7 +114,7 @@ class DocumentHandler(AbjadObject):
     @abc.abstractmethod
     def extract_code_block_options(self, source):
         raise NotImplemented
-    
+
     @abc.abstractmethod
     def extract_code_blocks(self):
         raise NotImplemented
@@ -135,7 +135,7 @@ class DocumentHandler(AbjadObject):
                 os.mkdir(asset_output_directory_path)
         for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
-                if not isinstance(output_proxy, 
+                if not isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):
                     continue
                 output_proxy.write_asset(self)

@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
+from abjad.tools import rhythmmakertools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -24,10 +26,10 @@ class Selector(ScoreManagerObject):
 
     # TODO: force session to be not none on input
     def __init__(
-        self, 
+        self,
         is_numbered=True,
-        is_ranged=False, 
-        items=None, 
+        is_ranged=False,
+        items=None,
         return_value_attribute='explicit',
         session=None,
         where=None,
@@ -263,20 +265,32 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_mainline_class_selector(self, instruments=False, editable=True):
-        r'''Makes mainline class selector.
+    def make_inventory_class_selector(self):
+        r'''Makes inventory class selector.
 
         Returns selector.
         '''
-        from abjad.tools import instrumenttools
-        assert editable
+        from experimental.tools import handlertools
+        from scoremanager import makers
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
-            if not instruments:
-                if issubclass(class_, instrumenttools.Instrument):
-                    continue
+            if issubclass(class_, datastructuretools.TypedList):
+                if hasattr(class_, '_attribute_manifest'):
+                    classes.append(class_)
+            elif issubclass(class_, rhythmmakertools.RhythmMaker):
+                if hasattr(class_, '_attribute_manifest'):
+                    classes.append(class_)
+        modules = (handlertools,)
+        for class_ in documentationtools.list_all_experimental_classes(
+            modules=modules):
             if hasattr(class_, '_attribute_manifest'):
                 classes.append(class_)
+        modules = (makers,)
+        for class_ in documentationtools.list_all_scoremanager_classes(
+            modules=modules):
+            if hasattr(class_, '_attribute_manifest'):
+                classes.append(class_)
+        classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(
             session=self._session,
@@ -327,8 +341,8 @@ class Selector(ScoreManagerObject):
         '''
         configuration = self._configuration
         rhythm_maker_tools_directory_path = os.path.join(
-            configuration.abjad_directory_path, 
-            'tools', 
+            configuration.abjad_directory_path,
+            'tools',
             'rhythmmakertools',
             )
         selector = self.make_directory_content_selector(
@@ -370,7 +384,7 @@ class Selector(ScoreManagerObject):
             performer_name, performer_abbreviation = performer_pair
             performer_abbreviation = performer_abbreviation.split()[-1]
             performer_abbreviation = performer_abbreviation.strip('.')
-            menu_entries.append((performer_name, performer_abbreviation)) 
+            menu_entries.append((performer_name, performer_abbreviation))
         selector = Selector(
             session=self._session,
             is_ranged=is_ranged,

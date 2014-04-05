@@ -82,7 +82,7 @@ class Scheme(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a scheme object with a value equal to that 
+        r'''Is true when `expr` is a scheme object with a value equal to that
         of this scheme object. Otherwise false.
 
         Returns boolean.

@@ -16,7 +16,7 @@ from abjad.tools.scoretools.Component import Component
 
 class Leaf(Component):
     r'''Abstract base class from which leaves inherit.
-    
+
     Leaves include notes, rests, chords and skips.
     '''
 
@@ -446,7 +446,7 @@ class Leaf(Component):
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
         sequencetools.truncate_sequence(
-            durations, 
+            durations,
             weight=self._get_duration(),
             )
         result = []

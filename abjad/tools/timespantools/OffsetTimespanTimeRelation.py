@@ -12,8 +12,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         >>> offset = Offset(5)
         >>> timespan = timespantools.Timespan(0, 10)
         >>> time_relation = timespantools.offset_happens_during_timespan(
-        ...     offset=offset, 
-        ...     timespan=timespan, 
+        ...     offset=offset,
+        ...     timespan=timespan,
         ...     hold=True,
         ...     )
 

@@ -17,7 +17,7 @@ def test_systemtools_WellformednessManager_check_beamed_quarter_notes_01():
 
 def test_systemtools_WellformednessManager_check_beamed_quarter_notes_02():
     r'''Beamed quarter notes are not well-formed.
-    
+
     Here the beam attaches to the staff containing the quarter notes.
     '''
 

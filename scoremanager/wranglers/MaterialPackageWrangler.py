@@ -2,9 +2,7 @@
 import collections
 import os
 import traceback
-from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager import predicates
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
@@ -39,7 +37,6 @@ class MaterialPackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_material_manager_wrangler', 
         )
 
     ### INITIALIZER ###
@@ -47,10 +44,10 @@ class MaterialPackageWrangler(Wrangler):
     def __init__(self, session=None):
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
-        path = self._configuration.abjad_material_packages_directory_path
+        configuration = self._configuration
+        path = configuration.abjad_material_packages_directory_path
         self._abjad_storehouse_path = path
-        path = \
-            self._configuration.user_library_material_packages_directory_path
+        path = configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
 
@@ -69,12 +66,6 @@ class MaterialPackageWrangler(Wrangler):
             return 'material library'
 
     @property
-    @systemtools.Memoize
-    def _material_manager_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MaterialManagerWrangler(session=self._session)
-
-    @property
     def _user_input_to_action(self):
         superclass = super(MaterialPackageWrangler, self)
         result = superclass._user_input_to_action
@@ -82,7 +73,6 @@ class MaterialPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
-            'd': self.make_data_package,
             'nmc': self.make_material_package_for_editable_mainline_class,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,
@@ -94,42 +84,34 @@ class MaterialPackageWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_materials = False
 
-    def _get_appropriate_material_manager(
-        self,
-        material_manager_class_name, 
-        path,
-        ):
+    def _get_material_package_manager(self, class_name, path):
         import scoremanager
         from scoremanager import managers
         assert os.path.sep in path
-        material_package_path = self._configuration.path_to_package_path(
-            path)
-        if material_manager_class_name is None:
-            manager = managers.MaterialPackageManager(
-                path=path,
-                session=self._session,
-                )
-        else:
-            command = 'manager = '
-            command += 'scoremanager.managers.{}'
-            command += '(path=path, session=self._session)'
-            command = command.format(material_manager_class_name)
-            try:
-                exec(command)
-            except AttributeError:
-                command = 'from {0}.{1}.{1}'
-                command += ' import {1} as material_manager_class'
-                path = self._configuration.user_library_material_packages_directory_path
-                package_path = self._configuration.path_to_package_path(path)
-                command = command.format(
-                    package_path,
-                    material_manager_class_name,
-                    )
-                exec(command)
-                manager = material_manager_class(
-                    material_package_path, 
-                    session=self._session,
-                    )
+        assert class_name is not None
+        command = 'manager = scoremanager.managers.{}'
+        command += '(path=path, session=self._session)'
+        command = command.format(class_name)
+        try:
+            exec(command)
+            return manager
+        except AttributeError:
+            pass
+        command = 'from {0}.{1}.{1} import {1} as class_'
+        configuration = self._configuration
+        library_path = \
+            configuration.user_library_material_packages_directory_path
+        package_path = self._configuration.path_to_package_path(library_path)
+        command = command.format(
+            package_path,
+            class_name,
+            )
+        try:
+            exec(command)
+        except ImportError:
+            return
+        package_path = self._configuration.path_to_package_path(path)
+        manager = class_(package_path, session=self._session)
         return manager
 
     def _handle_main_menu_result(self, result):
@@ -142,11 +124,6 @@ class MaterialPackageWrangler(Wrangler):
             if os.path.exists(material_manager._path):
                 material_manager._run()
 
-    def _initialize_asset_manager(self, package_path):
-        wrangler = self._material_manager_wrangler
-        manager = wrangler._initialize_asset_manager(package_path)
-        return manager
-
     def _is_valid_directory_entry(self, expr):
         superclass = super(MaterialPackageWrangler, self)
         if superclass._is_valid_directory_entry(expr):
@@ -155,7 +132,7 @@ class MaterialPackageWrangler(Wrangler):
         return False
 
     def _list_asset_paths(
-        self, 
+        self,
         abjad_library=True,
         user_library=True,
         abjad_score_packages=True,
@@ -183,84 +160,49 @@ class MaterialPackageWrangler(Wrangler):
                 result.append(path)
         return result
 
-    def _make_data_package(self, path, metadata=None):
-        metadata = metadata or {}
-        self._make_material_package(path, metadata=metadata)
+    def _make_asset_menu_section(self, menu):
+        entries = self._make_asset_menu_entries()
+        if not entries:
+            return
+        section = menu.make_asset_section(name='assets')
+        for entry in entries:
+            section.append(entry)
 
-    def _make_handmade_material_package(self, path, metadata=None):
-        metadata = metadata or {}
-        self._make_material_package(path, metadata=metadata)
-
-    # TODO: encapsulate in separate methods
     def _make_main_menu(self, name='material package wrangler'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
-        asset_menu_entries = self._make_asset_menu_entries()
-        if asset_menu_entries:
-            section = menu.make_asset_section(name='assets')
-            for menu_entry in asset_menu_entries:
-                section.append(menu_entry)
+        menu = self._io_manager.make_menu(where=self._where, name=name)
+        self._make_asset_menu_section(menu)
+        self._make_material_command_menu_section(menu)
+        self._make_sibling_asset_tour_menu_section(menu)
+        return menu
+
+    def _make_material_command_menu_section(self, menu):
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
         section.append(('material - new for editable mainline class', 'nmc'))
         section.append(('material - new with manager', 'nmm'))
-        self._make_sibling_asset_tour_menu_section(menu)
-        return menu
 
-    def _make_managermade_material_package(
-        self,
-        path, 
-        material_manager_class_name, 
-        metadata=None,
-        ):
-        metadata = metadata or {}
-        command = 'from scoremanager.managers '
-        command += 'import {} as material_manager_class'
-        command = command.format(material_manager_class_name)
-        try:
-            exec(command)
-        except ImportError:
-            command = 'from {} import {} as material_manager_class'
-            path = self._configuration.user_library_material_packages_directory_path
-            package_path = self._configuration.path_to_package_path(path)
-            command = command.format(
-                package_path,
-                material_manager_class_name,
-                )
-            try:
-                exec(command)
-            except:
-                traceback.print_exc()
-        if material_manager_class_name is not None:
-            metadata['material_manager_class_name'] = \
-                material_manager_class_name
-        self._make_material_package(path, metadata=metadata)
-
+    # TODO: migrate to MaterialPackageManager
     def _make_material_package(
-        self, 
+        self,
         path,
-        prompt=False, 
+        prompt=False,
         metadata=None,
+        definition_module_stub=True,
         ):
+        from scoremanager import managers
         assert os.path.sep in path
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(path)
         os.mkdir(path)
-        string = 'material_manager_class_name'
-        material_manager_class_name = metadata.get(string)
-        pair = (material_manager_class_name, path)
-        manager = self._get_appropriate_material_manager(*pair)
-        manager._initializer_file_manager._write_stub()
-        manager.rewrite_metadata_module(
-            metadata, 
-            prompt=False,
+        manager = managers.MaterialPackageManager(
+            path=path,
+            session=self._session,
             )
-        if not manager._get_metadatum('material_manager_class_name'):
-            manager._write_definition_module_stub(prompt=False)
-        if manager._user_input_wrapper_in_memory:
-            manager._write_user_input_module_stub()
+        manager._initializer_file_manager._write_stub()
+        manager.rewrite_metadata_module(metadata, prompt=False)
+        if definition_module_stub:
+            if not manager._get_metadatum('material_manager_class_name'):
+                manager._write_definition_module_stub(prompt=False)
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -268,20 +210,6 @@ class MaterialPackageWrangler(Wrangler):
         self._session._is_navigating_to_score_materials = True
 
     ### PUBLIC METHODS ###
-
-    def make_data_package(self, metadata=None):
-        r'''Makes data package.
-
-        Returns none.
-        '''
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._user_storehouse_path
-        path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._should_backtrack():
-            return
-        self._make_data_package(path, metadata=metadata)
 
     def make_handmade_material_package(self):
         r'''Makes handmade material package.
@@ -295,21 +223,20 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_handmade_material_package(path)
+        self._make_material_package(path)
 
     def make_managermade_material_package(self):
         r'''Makes managermade material package.
 
         Returns none.
         '''
+        raise Exception('deprecated')
         wrangler = self._material_manager_wrangler
         result = wrangler.select_asset_package_path()
         if self._should_backtrack():
             return
         material_manager_package_path = result
-        # TODO: use os.path.splitext() here instead
-        material_manager_class_name = \
-            material_manager_package_path.split('.')[-1]
+        class_name = material_manager_package_path.split('.')[-1]
         if self._session.is_in_score:
             storehouse_path = self._current_storehouse_path
         else:
@@ -317,14 +244,13 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_managermade_material_package(
-            path, 
-            material_manager_class_name,
-            )
-        manager = self._get_appropriate_material_manager(
-            material_manager_class_name, 
-            path,
-            )
+        metadata = {}
+        assert class_name is not None
+        metadata['material_manager_class_name'] = class_name
+        self._make_material_package(path, metadata=metadata)
+        manager = self._get_material_package_manager(class_name, path)
+        if manager._user_input_wrapper_in_memory:
+            manager._write_user_input_module_stub()
         manager._run_first_time()
 
     def make_material_package_for_editable_mainline_class(self):
@@ -332,15 +258,13 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
-        return
         from scoremanager import iotools
+        from scoremanager import managers
         selector = iotools.Selector(session=self._session)
-        selector = selector.make_mainline_class_selector()
-        result = selector._run()
+        selector = selector.make_inventory_class_selector()
+        class_ = selector._run()
         if self._should_backtrack():
             return
-        class_name, extension = os.path.splitext(result)
         if self._session.is_in_score:
             storehouse_path = self._current_storehouse_path
         else:
@@ -348,12 +272,35 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_material_package_for_editable_mainline_class(
-            class_name,
-            path,
+        self._make_material_package(path, definition_module_stub=False)
+        manager = managers.MaterialPackageManager(
+            path=path,
+            session=self._session,
             )
-        manager = self._get_appropriate_material_manager(
-            material_manager_class_name, 
-            path,
+        manager._add_metadatum('output_class_name', class_.__name__)
+        empty_target = class_()
+        if type(empty_target) is list:
+            storage_format = repr(empty_target)
+        else:
+            storage_format = format(empty_target, 'storage')
+        body_lines = '{} = {}'.format(
+            manager._package_name,
+            storage_format,
             )
-        manager._run_first_time()
+        body_lines = body_lines.split('\n')
+        body_lines = [_ + '\n' for _ in body_lines]
+        import_statements = [self._abjad_import_statement]
+        if 'handlertools.' in storage_format:
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
+        if ' makers.' in storage_format:
+            statement = 'from scoremanager import makers'
+            import_statements.append(statement)
+        manager.write_output_material(
+            body_lines=body_lines,
+            import_statements=import_statements,
+            output_material=empty_target,
+            prompt=False,
+            )
+        manager.edit_output_material()
+        manager._run()

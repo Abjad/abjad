@@ -4,7 +4,7 @@ import types
 def attach(indicator, component_expression, scope=None):
     r'''Attaches `indicator` to `component_expression`.
 
-    Derives scope from the default scope of `indicator` 
+    Derives scope from the default scope of `indicator`
     when `scope` is none.
 
     Returns none.
@@ -34,7 +34,7 @@ def attach(indicator, component_expression, scope=None):
         scope = scope or indicator._default_scope
 
     expression = indicatortools.IndicatorExpression(
-        indicator, 
+        indicator,
         component,
         scope,
         )

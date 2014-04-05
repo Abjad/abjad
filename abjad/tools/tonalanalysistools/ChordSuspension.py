@@ -19,7 +19,7 @@ class ChordSuspension(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_start', 
+        '_start',
         '_stop',
         )
 
@@ -50,7 +50,7 @@ class ChordSuspension(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a chord suspension when start and stop equal 
+        r'''Is true when `arg` is a chord suspension when start and stop equal
         to those of this chord suspension. Otherwise false.
 
         Returns boolean.
@@ -71,7 +71,7 @@ class ChordSuspension(AbjadObject):
         return super(ChordSuspension, self).__hash__()
 
     def __ne__(self, arg):
-        r'''Is true when `arg` does not equal chord suspension. Otherwise 
+        r'''Is true when `arg` does not equal chord suspension. Otherwise
         false.
 
         Returns boolean.
@@ -211,7 +211,7 @@ class ChordSuspension(AbjadObject):
         Returns scale degree.
         '''
         return self._stop
-        
+
 
     @property
     def title_string(self):

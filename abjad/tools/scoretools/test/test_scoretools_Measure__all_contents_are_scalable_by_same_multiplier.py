@@ -15,7 +15,7 @@ def test_scoretools_Measure__all_contents_are_scalable_by_same_multiplier_02():
 
 
 def test_scoretools_Measure__all_contents_are_scalable_by_same_multiplier_03():
-    
+
     measure = Measure((1, 4), "c'4")
     assert not measure._all_contents_are_scalable_by_multiplier(
         Multiplier(2, 3))

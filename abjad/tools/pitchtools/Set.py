@@ -104,9 +104,9 @@ class Set(TypedFrozenset):
 
     @abc.abstractmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes set from `selection`.
 

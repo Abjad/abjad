@@ -77,7 +77,7 @@ class GraceContainer(Container):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_carrier', 
+        '_carrier',
         '_kind',
         )
 
@@ -174,7 +174,7 @@ class GraceContainer(Container):
             >>> grace.kind
             'acciaccatura'
 
-        Valid options include ``'after'``, ``'grace'``, 
+        Valid options include ``'after'``, ``'grace'``,
         ``'acciaccatura'``, ``'appoggiatura'``.
 
         Returns string.

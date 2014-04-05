@@ -16,7 +16,7 @@ def test_scoretools_Container_reverse_01():
 
 
 def test_scoretools_Container_reverse_02():
-    r'''Retrograde works on a depth-0 container with one spanner 
+    r'''Retrograde works on a depth-0 container with one spanner
     attached and no parent.
     '''
 
@@ -67,7 +67,7 @@ def test_scoretools_Container_reverse_05():
     attached to its leaves and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] +
         scoretools.make_repeated_notes(2))
     beam = Beam()
     attach(beam, staff[0].select_leaves())
@@ -79,7 +79,7 @@ def test_scoretools_Container_reverse_05():
 
 
 def test_scoretools_Container_reverse_06():
-    r'''Retrograde works on a depth-0 container with one spanner 
+    r'''Retrograde works on a depth-0 container with one spanner
     attached to its parent.
     '''
 
@@ -168,7 +168,7 @@ def test_scoretools_Container_reverse_08():
 
 
 def test_scoretools_Container_reverse_09():
-    r'''Retrograde works on a depth-2 container with no parent 
+    r'''Retrograde works on a depth-2 container with no parent
     and with spanners at all levels.
     '''
 

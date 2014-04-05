@@ -15,11 +15,11 @@ class PitchSetExpression(LeafSetExpression):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_expression=None, 
+        self,
+        source_expression=None,
         target_select_expression_inventory=None,
-        node_count=None, 
-        level=None, 
+        node_count=None,
+        level=None,
         trope=None,
         ):
         LeafSetExpression.__init__(
@@ -64,7 +64,7 @@ class PitchSetExpression(LeafSetExpression):
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = list(self._iterate_selected_leaves_in_score(score))
-        assert all(isinstance(leaf, (scoretools.Note, scoretools.Chord)) 
+        assert all(isinstance(leaf, (scoretools.Note, scoretools.Chord))
             for leaf in leaves)
         if self.level is None:
             level = -1

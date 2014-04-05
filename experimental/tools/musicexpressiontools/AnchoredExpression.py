@@ -13,7 +13,7 @@ class AnchoredExpression(Expression):
 
     def __init__(self, anchor=None):
         from experimental.tools import musicexpressiontools
-        assert isinstance(anchor, 
+        assert isinstance(anchor,
             (musicexpressiontools.AnchoredExpression, str, type(None)))
         self._anchor = anchor
         self._score_specification = None
@@ -36,7 +36,7 @@ class AnchoredExpression(Expression):
 
     @property
     def _expression_abbreviation(self):
-        r'''Form of anchored expression suitable for inclusion in 
+        r'''Form of anchored expression suitable for inclusion in
         storage format.
         '''
         return self
@@ -96,10 +96,10 @@ class AnchoredExpression(Expression):
 
         Returns none when anchored expression anchors to the entire score.
 
-        Returns string name of segment when anchored expression anchors 
+        Returns string name of segment when anchored expression anchors
         to a single segment.
 
-        Returns expression when anchored expression anchors 
+        Returns expression when anchored expression anchors
         to another expression.
         '''
         return self._anchor

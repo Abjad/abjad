@@ -238,7 +238,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_class_octave_number_string(expr):
-        '''Is true when `expr` is a pitch-class / octave number string. Otherwise 
+        '''Is true when `expr` is a pitch-class / octave number string. Otherwise
         false:
 
         ::
@@ -394,7 +394,7 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def octave_number(self):
         r'''Octave number of pitch.
-        
+
         Returns integer.
         '''
         raise NotImplementedError
@@ -402,7 +402,7 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def pitch_class_name(self):
         r'''Pitch-class name corresponding to pitch.
-        
+
         Returns string.
         '''
         raise NotImplementedError
@@ -410,7 +410,7 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def pitch_class_number(self):
         r'''Pitch-class number of pitch.
-        
+
         Returns number
         '''
         raise NotImplementedError
@@ -424,7 +424,7 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def pitch_name(self):
         r'''Pitch name of pitch.
-        
+
         Returns string.
         '''
         raise NotImplementedError
@@ -432,7 +432,7 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def pitch_number(self):
         r'''Pitch number of pitch.
-        
+
         Returns number.
         '''
         raise NotImplementedError

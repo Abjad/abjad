@@ -84,7 +84,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         from abjad.tools import tonalanalysistools
         pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
-            pitches, 
+            pitches,
             item_class=pitchtools.NamedPitchClass,
             )
         ordered_npcs = []
@@ -350,8 +350,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def analyze_neighbor_notes(self):
-        r'''Is true when `note` in selection is preceeded by a stepwise interval 
-        in one direction and followed by a stepwise interval in 
+        r'''Is true when `note` in selection is preceeded by a stepwise interval
+        in one direction and followed by a stepwise interval in
         the other direction. Otherwise false.
 
         ..  container:: example
@@ -372,7 +372,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def analyze_passing_tones(self):
-        r'''Is true when note in selection is both preceeded and followed 
+        r'''Is true when note in selection is both preceeded and followed
         by scalewise notes. Otherwise false.
 
         ..  container:: example
@@ -393,7 +393,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def analyze_tonal_functions(self, key_signature):
-        r'''Analyzes tonal function of chords in selection 
+        r'''Analyzes tonal function of chords in selection
         according to `key_signature`.
 
         ..  container:: example

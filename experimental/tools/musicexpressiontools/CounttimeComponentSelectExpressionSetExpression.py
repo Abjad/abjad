@@ -9,12 +9,12 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_expression=None, 
+        self,
+        source_expression=None,
         target_counttime_component_select_expression=None,
         ):
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, 
+        assert isinstance(source_expression,
             musicexpressiontools.Expression), repr(source_expression)
         assert isinstance(target_counttime_component_select_expression,
             musicexpressiontools.CounttimeComponentSelectExpression), repr(
@@ -28,7 +28,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
 
     @property
     def source_expression(self):
-        r'''Counttime component select expression set expression 
+        r'''Counttime component select expression set expression
         source expression.
 
         Returns expression.

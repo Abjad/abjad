@@ -2,11 +2,11 @@
 
 
 def offset_happens_when_timespan_starts(
-    timespan=None, 
-    offset=None, 
+    timespan=None,
+    offset=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `offset` happens 
+    r'''Makes time relation indicating that `offset` happens
     when `timespan` starts.
 
     ::

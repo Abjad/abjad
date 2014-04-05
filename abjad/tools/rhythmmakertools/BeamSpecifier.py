@@ -26,7 +26,7 @@ class BeamSpecifier(AbjadObject):
             ...     beam_each_division=True,
             ...     beam_divisions_together=True
             ...     )
-            
+
     ..  container:: example
 
         Beam nothing:
@@ -148,7 +148,6 @@ class BeamSpecifier(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
                 name='beam_divisions_together',
                 menu_key='bdt',

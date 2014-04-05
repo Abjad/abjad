@@ -336,7 +336,7 @@ def test_agenttools_IterationAgent_depth_first_05():
     '''
 
     # RIGHT-TO-LEFT #
- 
+
     iterator = iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,

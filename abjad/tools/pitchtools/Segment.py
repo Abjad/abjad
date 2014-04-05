@@ -18,12 +18,12 @@ class Segment(TypedTuple):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        items=None, 
-        item_class=None, 
+        self,
+        items=None,
+        item_class=None,
         ):
         from abjad.tools import datastructuretools
-        from abjad.tools import pitchtools 
+        from abjad.tools import pitchtools
         if isinstance(items, str):
             items = items.split()
         elif isinstance(items, (
@@ -62,13 +62,13 @@ class Segment(TypedTuple):
         '''
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
-        
+
     ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
-    
+
     @abc.abstractproperty
     def _numbered_item_class(self):
         raise NotImplementedError
@@ -103,9 +103,9 @@ class Segment(TypedTuple):
 
     @abc.abstractmethod
     def from_selection(
-        cls, 
-        selection, 
-        item_class=None, 
+        cls,
+        selection,
+        item_class=None,
         ):
         r'''Makes segment from `selection`.
 
@@ -121,4 +121,4 @@ class Segment(TypedTuple):
 
         Returns boolean.
         '''
-        raise NotImplementedError 
+        raise NotImplementedError

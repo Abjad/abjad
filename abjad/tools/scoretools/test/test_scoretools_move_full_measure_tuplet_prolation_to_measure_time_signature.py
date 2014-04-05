@@ -29,7 +29,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_02():
-    r'''Move prolation of full-measure non-power-of-two tuplet to 
+    r'''Move prolation of full-measure non-power-of-two tuplet to
     time signature.
     '''
 

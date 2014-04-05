@@ -175,7 +175,7 @@ def test_spannertools_Hairpin_07():
     rest = Rest(staff[-1])
     staff[-1] = rest
     hairpin = Hairpin(
-        descriptor='p < f', 
+        descriptor='p < f',
         include_rests=False,
         )
     attach(hairpin, staff.select_leaves())

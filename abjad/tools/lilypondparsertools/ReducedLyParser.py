@@ -31,7 +31,7 @@ class ReducedLyParser(abctools.Parser):
             <b d' fs'>16
         }
 
-    Also parses bare duration as notes on middle-C, and negative bare 
+    Also parses bare duration as notes on middle-C, and negative bare
     durations as rests:
 
     ::
@@ -291,7 +291,7 @@ class ReducedLyParser(abctools.Parser):
         p[0] = p[1]
 
     def p_component_list__EMPTY(self, p):
-        r'''component_list : 
+        r'''component_list :
         '''
         p[0] = []
 
@@ -308,7 +308,7 @@ class ReducedLyParser(abctools.Parser):
             p[0].append(component)
 
     def p_dots__EMPTY(self, p):
-        r'''dots : 
+        r'''dots :
         '''
         p[0] = 0
 
@@ -435,7 +435,7 @@ class ReducedLyParser(abctools.Parser):
         p[0] = p[1]
 
     def p_post_events__EMPTY(self, p):
-        r'''post_events : 
+        r'''post_events :
         '''
         p[0] = {}
 
@@ -475,7 +475,7 @@ class ReducedLyParser(abctools.Parser):
         p[0] = (spannertools.Slur, Right)
 
     def p_start__EMPTY(self, p):
-        r'''start : 
+        r'''start :
         '''
         self._toplevel_component_count = 0
         p[0] = []
@@ -547,7 +547,7 @@ class ReducedLyParser(abctools.Parser):
                     else:
                         stopping.append(Right)
 
-                # apply undirected events immediately, 
+                # apply undirected events immediately,
                 # and do not maintain a reference to them
                 if current_class is spannertools.Tie:
                     if next_leaf is first_leaf:
@@ -555,7 +555,7 @@ class ReducedLyParser(abctools.Parser):
                         message = message.format(current_class.__name__, leaf)
                         raise Exception(message)
                     previous_tie = [
-                        x for x in leaf._get_spanners() 
+                        x for x in leaf._get_spanners()
                         if isinstance(x, spannertools.Tie)
                         ]
                     if previous_tie:

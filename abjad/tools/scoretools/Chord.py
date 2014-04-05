@@ -93,7 +93,7 @@ class Chord(Leaf):
 
     def __getnewargs__(self):
         r'''Gets new arguments.
-    
+
         Returns tuple.
         '''
         return (self.written_pitches, self.written_duration)

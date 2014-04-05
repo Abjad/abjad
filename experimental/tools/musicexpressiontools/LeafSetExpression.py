@@ -9,8 +9,8 @@ class LeafSetExpression(Expression):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_expression=None, 
+        self,
+        source_expression=None,
         target_select_expression_inventory=None,
         ):
         from experimental.tools import musicexpressiontools

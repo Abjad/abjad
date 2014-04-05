@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import attach
 
 
 def make_skips_with_multiplied_durations(
-    written_duration, 
+    written_duration,
     multiplied_durations,
     ):
     '''Make `written_duration` skips with `multiplied_durations`:

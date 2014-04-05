@@ -223,7 +223,7 @@ class LogicalTie(ContiguousSelection):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                
+
             ..  doctest::
 
                 >>> print format(staff)
@@ -279,7 +279,7 @@ class LogicalTie(ContiguousSelection):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                
+
             ..  doctest::
 
                 >>> print format(staff)
@@ -365,7 +365,7 @@ class LogicalTie(ContiguousSelection):
             notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
-            note_durations = [durationtools.Duration(x, denominator) 
+            note_durations = [durationtools.Duration(x, denominator)
                 for x in proportions]
             notes = scoretools.make_notes(0, note_durations)
 

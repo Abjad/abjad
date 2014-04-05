@@ -44,6 +44,8 @@ class ListEditor(Editor):
 
     def __init__(self, session=None, target=None):
         from scoremanager import iotools
+        if target is None:
+            target = []
         superclass = super(ListEditor, self)
         superclass.__init__(session=session, target=target)
         self._item_class = None
@@ -53,11 +55,11 @@ class ListEditor(Editor):
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
         self._item_identifier = 'element'
-        if target is not None and hasattr(target, '_item_creator_class'):
+        if hasattr(target, '_item_creator_class'):
             self._item_creator_class = target._item_creator_class
             kwargs = getattr(target, '_item_creator_class_kwargs', None)
             self._item_creator_class_kwargs = kwargs
-        elif target is not None and getattr(target, '_item_callable', None):
+        elif getattr(target, '_item_callable', None):
             assert self.target._item_callable
             self._item_class = self.target._item_callable
             dummy_item = self.target._item_callable()
@@ -79,9 +81,7 @@ class ListEditor(Editor):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        return systemtools.AttributeManifest(
-            list,
-            )
+        return systemtools.AttributeManifest()
 
     @property
     def _target_name(self):
@@ -172,7 +172,7 @@ class ListEditor(Editor):
             else:
                 target = None
             item_creator = item_creator_class(
-                session=self._session, 
+                session=self._session,
                 target=target,
                 **self._item_creator_class_kwargs
                 )
@@ -186,7 +186,7 @@ class ListEditor(Editor):
         elif self._item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
             self._item_getter_configuration_method(
-                getter, 
+                getter,
                 self._item_identifier,
                 )
             item_initialization_token = getter._run()
@@ -228,7 +228,7 @@ class ListEditor(Editor):
             return
         item_editor_class = self._item_editor_class or iotools.Editor
         item_editor = item_editor_class(
-            session=self._session, 
+            session=self._session,
             target=item,
             )
         item_editor._run()

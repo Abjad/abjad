@@ -30,7 +30,7 @@ def yield_all_unordered_pairs_of_sequence(sequence):
         >>> list(sequencetools.yield_all_unordered_pairs_of_sequence([1, 1, 1]))
         [(1, 1), (1, 1), (1, 1)]
 
-    Pairs are tuples instead of sets to accommodate duplicate `sequence` 
+    Pairs are tuples instead of sets to accommodate duplicate `sequence`
     elements.
 
     Returns generator.

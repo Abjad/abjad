@@ -11,6 +11,7 @@ from scoremanager.core.Controller import Controller
 
 class Wrangler(Controller):
     r'''Wrangler.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -145,7 +146,7 @@ class Wrangler(Controller):
         return manager
 
     def _find_up_to_date_manager(
-        self, 
+        self,
         inside_score=True,
         must_have_file=False,
         system=True,
@@ -179,7 +180,7 @@ class Wrangler(Controller):
                 session=session,
                 )
             if (repository == 'git' and
-                manager._is_git_versioned() and 
+                manager._is_git_versioned() and
                 manager._is_up_to_date() and
                 (not must_have_file or manager._find_first_file_name())):
                 return manager
@@ -213,7 +214,7 @@ class Wrangler(Controller):
         next_index = (index + 1) % len(paths)
         next_path = paths[next_index]
         return next_path
-        
+
     def _get_previous_asset_path(self):
         last_path = self._session.last_asset_path
         menu_entries = self._make_asset_menu_entries()
@@ -252,7 +253,7 @@ class Wrangler(Controller):
     def _initialize_asset_manager(self, path):
         assert os.path.sep in path, repr(path)
         return self._asset_manager_class(
-            path=path, 
+            path=path,
             session=self._session,
             )
 
@@ -282,10 +283,10 @@ class Wrangler(Controller):
 
     def _list_asset_paths(
         self,
-        abjad_library=True, 
+        abjad_library=True,
         user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
+        abjad_score_packages=True,
+        user_score_packages=True,
         ):
         result = []
         directory_paths = self._list_storehouse_paths(
@@ -309,9 +310,9 @@ class Wrangler(Controller):
 
     def _list_storehouse_paths(
         self,
-        abjad_library=True, 
+        abjad_library=True,
         user_library=True,
-        abjad_score_packages=True, 
+        abjad_score_packages=True,
         user_score_packages=True,
         ):
         result = []
@@ -341,10 +342,10 @@ class Wrangler(Controller):
 
     def _list_visible_asset_paths(
         self,
-        abjad_library=True, 
+        abjad_library=True,
         user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
+        abjad_score_packages=True,
+        user_score_packages=True,
         ):
         visible_paths = []
         paths = self._list_asset_paths(
@@ -352,7 +353,7 @@ class Wrangler(Controller):
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            ) 
+            )
         current_path = self._get_current_directory_path_of_interest()
         for path in paths:
             if current_path is None or path.startswith(current_path):
@@ -364,7 +365,7 @@ class Wrangler(Controller):
             asset_name = os.path.basename(asset_name)
         assert stringtools.is_snake_case_string(asset_name)
         path = os.path.join(
-            self._current_storehouse_path, 
+            self._current_storehouse_path,
             asset_name,
             )
         manager = self._initialize_asset_manager(path)
@@ -374,9 +375,9 @@ class Wrangler(Controller):
             manager.fix(prompt=False)
 
     def _make_asset_selection_breadcrumb(
-        self, 
+        self,
         human_readable_target_name=None,
-        infinitival_phrase=None, 
+        infinitival_phrase=None,
         is_storehouse=False,
         ):
         if human_readable_target_name is None:
@@ -573,7 +574,7 @@ class Wrangler(Controller):
         for path in paths:
             manager = self._initialize_asset_manager(path)
             manager.commit_to_repository(
-                commit_message=commit_message, 
+                commit_message=commit_message,
                 prompt=False,
                 )
         self._io_manager.proceed(prompt=prompt)
@@ -586,7 +587,7 @@ class Wrangler(Controller):
         self._current_package_manager.doctest(prompt=prompt)
 
     def get_available_path(
-        self, 
+        self,
         storehouse_path=None,
         prompt_string=None,
         ):
@@ -622,14 +623,14 @@ class Wrangler(Controller):
 
     def list(self):
         r'''List directory of current package manager.
-        
+
         Returns none.
         '''
         self._current_package_manager.list()
 
     def list_long(self):
         r'''List directory of current package manager with ``ls -l``.
-        
+
         Returns none.
         '''
         self._current_package_manager.list_long()
@@ -695,7 +696,7 @@ class Wrangler(Controller):
         tokens = editor.target
         self._io_manager.display('')
         view = self._io_manager.make_view(
-            tokens, 
+            tokens,
             )
         self.write_view(view_name, view)
 

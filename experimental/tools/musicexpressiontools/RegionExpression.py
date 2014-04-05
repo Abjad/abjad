@@ -15,10 +15,10 @@ class RegionExpression(Expression):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        source_expression=None, 
-        start_offset=None, 
-        total_duration=None, 
+        self,
+        source_expression=None,
+        start_offset=None,
+        total_duration=None,
         voice_name=None,
         ):
         assert isinstance(voice_name, str), repr(voice_name)

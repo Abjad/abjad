@@ -565,7 +565,7 @@ class PitchArray(AbjadObject):
             ::
 
                 >>> show(score) # doctest: +SKIP
-                
+
             ::
 
                 >>> array = pitchtools.PitchArray.from_score(
@@ -577,7 +577,7 @@ class PitchArray(AbjadObject):
                 [c'     ] [d'     ] [e'     ] [f'     ]
                 [c'                   ] [d'                   ]
                 [c'] [d'     ] [e'] [c'] [d'     ] [e']
-    
+
         Returns pitch array.
         '''
         from abjad.tools import pitchtools

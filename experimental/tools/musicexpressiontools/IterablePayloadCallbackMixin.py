@@ -189,7 +189,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         Returns copy of expression with callback.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(index, (int, 
+        assert isinstance(index, (int,
             durationtools.Duration, musicexpressiontools.RotationExpression))
         callback = 'result = self._rotate(payload_expression, {!r})'
         callback = callback.format(index)

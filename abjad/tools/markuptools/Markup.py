@@ -243,17 +243,16 @@ class Markup(AbjadObject):
         from abjad.tools import systemtools
         from scoremanager import getters
         return systemtools.AttributeManifest(
-            type(self),
             systemtools.AttributeDetail(
-                name='contents', 
-                display_string='arg', 
-                menu_key='ag', 
-                editor=getters.get_string, 
+                name='contents',
+                display_string='arg',
+                menu_key='ag',
+                editor=getters.get_string,
                 ),
             systemtools.AttributeDetail(
-                name='direction', 
-                menu_key='dr', 
-                editor=getters.get_direction_string, 
+                name='direction',
+                menu_key='dr',
+                editor=getters.get_direction_string,
                 ),
             )
 

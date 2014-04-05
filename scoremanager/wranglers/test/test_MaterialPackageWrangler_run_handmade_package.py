@@ -162,9 +162,9 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     '''
 
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
-        'definition.py', 
+        'definition.py',
         ]
 
     assert not os.path.exists(package_path)
@@ -187,7 +187,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_07():
-    r'''Makes handmade package. Copies canned material definition. 
+    r'''Makes handmade package. Copies canned material definition.
     Makes output module. Removes output material. Removes package.
     '''
 
@@ -199,7 +199,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert os.path.exists(definition_module_path)
         assert not os.path.exists(output_module_path)
         shutil.copyfile(
-            boilerplate_definition_module_path, 
+            boilerplate_definition_module_path,
             definition_module_path,
             )
         input_ = 'm testnotes omw default q'
@@ -242,8 +242,8 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_09():
-    r'''Makes handmade package. Copies canned material definition module. 
-    Makes output module. Corrupts output module. Makes sure score manager 
+    r'''Makes handmade package. Copies canned material definition module.
+    Makes output module. Corrupts output module. Makes sure score manager
     starts when output module is corrupt. Removes package.
     '''
 
@@ -255,7 +255,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert os.path.exists(definition_module_path)
         assert not os.path.exists(output_module_path)
         shutil.copyfile(
-            boilerplate_definition_module_path, 
+            boilerplate_definition_module_path,
             definition_module_path,
             )
         assert filecmp.cmp(

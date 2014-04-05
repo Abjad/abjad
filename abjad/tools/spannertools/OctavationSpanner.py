@@ -44,13 +44,13 @@ class OctavationSpanner(Spanner):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         overrides=None,
-        start=1, 
+        start=1,
         stop=0,
         ):
         Spanner.__init__(
-            self, 
+            self,
             overrides=overrides,
             )
         assert isinstance(start, (int, type(None)))

@@ -11,7 +11,7 @@ def test_FixedLengthStreamSolver_01():
         [0, 1], lambda x, y: abs(x - y) < 3)
 
     ordered_solver = FixedLengthStreamSolver(
-        domain, 
+        domain,
         [all_unique, max_interval]
         )
 
@@ -32,8 +32,8 @@ def test_FixedLengthStreamSolver_01():
     ]
 
     random_solver = FixedLengthStreamSolver(
-        domain, 
-        [all_unique, max_interval], 
+        domain,
+        [all_unique, max_interval],
         randomized=True,
         )
     random_solutions = [x for x in random_solver]

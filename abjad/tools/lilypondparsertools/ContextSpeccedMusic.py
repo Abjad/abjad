@@ -9,20 +9,20 @@ class ContextSpeccedMusic(Music):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        #'context', 
-        'context_name', 
-        'music', 
-        'optional_id', 
+        #'context',
+        'context_name',
+        'music',
+        'optional_id',
         'optional_context_mod',
         )
 
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        context_name=None, 
-        optional_id=None, 
-        optional_context_mod=None, 
+        self,
+        context_name=None,
+        optional_id=None,
+        optional_context_mod=None,
         music=None,
         ):
         from abjad.tools import lilypondparsertools

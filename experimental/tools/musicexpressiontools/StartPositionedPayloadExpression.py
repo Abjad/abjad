@@ -33,7 +33,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        r'''Keep intersection of start-positioned payload expression 
+        r'''Keep intersection of start-positioned payload expression
         and `timespan`.
 
         Operates in place and returns timespan inventory.
@@ -255,7 +255,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
     @property
     def elements_are_time_contiguous(self):
-        r'''Is true when start-positioned payload expression elements 
+        r'''Is true when start-positioned payload expression elements
         are time-contiguous.
         Otherwise false.
 
@@ -315,11 +315,11 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     ### PUBLIC METHODS ###
 
     def get_elements_that_satisfy_time_relation(
-        self, 
-        time_relation, 
+        self,
+        time_relation,
         callback_cache,
         ):
-        r'''Get start-positioned payload expression elements that satisfy 
+        r'''Get start-positioned payload expression elements that satisfy
         `time_relation`.
 
         Returns newly constructed start-positioned payload expression.
@@ -340,7 +340,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         start_offset = elements[0].start_offset
         expression = new(
             self,
-            payload=elements, 
+            payload=elements,
             start_offset=start_offset,
             )
         return expression
@@ -357,7 +357,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums(durations)[:-1]
         start_offsets = [
-            self.start_offset + start_offset 
+            self.start_offset + start_offset
             for start_offset in start_offsets]
         payload_expressions = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
@@ -373,7 +373,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         return payload_expressions
 
     def partition_by_ratio_of_durations(self, ratio):
-        r'''Partition start-positioned payload expression 
+        r'''Partition start-positioned payload expression
         by ratio of durations.
 
         Operates in place and returns newly constructed inventory.
@@ -391,7 +391,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums(durations)[:-1]
         start_offsets = [
-            self.start_offset + start_offset 
+            self.start_offset + start_offset
             for start_offset in start_offsets]
         payload_expressions = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()

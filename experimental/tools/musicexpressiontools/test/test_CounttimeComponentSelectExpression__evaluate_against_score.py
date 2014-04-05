@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_CounttimeComponentSelectExpression__evaluate_against_score_01():
-    r'''Score-evaluate counttime component select expression anchored to 
+    r'''Score-evaluate counttime component select expression anchored to
     division select expression.
     '''
 

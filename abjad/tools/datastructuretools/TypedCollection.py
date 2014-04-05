@@ -91,7 +91,7 @@ class TypedCollection(AbjadObject):
         return len(self._collection)
 
     def __ne__(self, expr):
-        r'''Is true when `expr` is not a typed collection with items equal to 
+        r'''Is true when `expr` is not a typed collection with items equal to
         this typed collection. Otherwise false.
 
         Returns boolean.

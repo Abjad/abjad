@@ -26,7 +26,7 @@ class IntervalClassSegment(Segment):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedIntervalClass
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -49,7 +49,7 @@ class IntervalClassSegment(Segment):
             >>> staff_2 = Staff("c4. r8 g2")
             >>> selection = select((staff_1, staff_2))
             >>> pitchtools.IntervalClassSegment.from_selection(selection)
-            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])        
+            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
 
         Returns interval-class segment.
         '''

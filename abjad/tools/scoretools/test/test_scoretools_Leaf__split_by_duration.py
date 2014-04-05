@@ -22,7 +22,7 @@ def test_scoretools_Leaf__split_by_duration_01():
         )
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        Duration(1, 32), 
+        Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=False,
         )
@@ -100,7 +100,7 @@ def test_scoretools_Leaf__split_by_duration_03():
         )
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        Duration(1, 32), 
+        Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=True,
         )
@@ -128,8 +128,8 @@ def test_scoretools_Leaf__split_by_duration_04():
     staff = Staff("c'8 [ d'8 e'8 ]")
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -156,7 +156,7 @@ def test_scoretools_Leaf__split_by_duration_05():
     staff = Staff("c'8 [ d'8 e'8 ]")
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        Duration(1, 24), 
+        Duration(1, 24),
         tie_split_notes=False,
         )
 
@@ -205,7 +205,7 @@ def test_scoretools_Leaf__split_by_duration_06():
         )
 
     halves = voice.select_leaves()[1]._split_by_duration(
-        Duration(1, 24), 
+        Duration(1, 24),
         tie_split_notes=False,
         )
 
@@ -266,7 +266,7 @@ def test_scoretools_Leaf__split_by_duration_09():
     note = Note("c'4")
 
     halves = note._split_by_duration(
-        Duration(1, 8), 
+        Duration(1, 8),
         tie_split_notes=False,
         )
 
@@ -311,7 +311,7 @@ def test_scoretools_Leaf__split_by_duration_11():
     note = Note("c'4")
 
     halves = note._split_by_duration(
-        Duration(5, 32), 
+        Duration(5, 32),
         tie_split_notes=False,
         )
 
@@ -357,7 +357,7 @@ def test_scoretools_Leaf__split_by_duration_13():
     attach(beam, staff.select_leaves())
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 16), 
+        Duration(1, 16),
         tie_split_notes=False,
         )
 
@@ -390,7 +390,7 @@ def test_scoretools_Leaf__split_by_duration_14():
 
 
 def test_scoretools_Leaf__split_by_duration_15():
-    r'''Split leaf is not tied again when a container containing it 
+    r'''Split leaf is not tied again when a container containing it
     is already tie-spanned.
     '''
 
@@ -408,7 +408,7 @@ def test_scoretools_Leaf__split_by_duration_15():
 
 
 def test_scoretools_Leaf__split_by_duration_16():
-    r'''Split leaf is not tied again when a container containing it 
+    r'''Split leaf is not tied again when a container containing it
     is already tie-spanned.
     '''
 

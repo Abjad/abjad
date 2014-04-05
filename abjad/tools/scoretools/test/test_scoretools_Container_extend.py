@@ -78,7 +78,7 @@ def test_scoretools_Container_extend_03():
 
 
 def test_scoretools_Container_extend_04():
-    r'''Extending one container with empty second container leaves both 
+    r'''Extending one container with empty second container leaves both
     containers unchanged.
     '''
 

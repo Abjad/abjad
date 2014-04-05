@@ -47,8 +47,8 @@ def zip_sequences(sequences, cyclic=False, truncate=True):
 
     Returns list.
     '''
-    
-    if cyclic: 
+
+    if cyclic:
         max_length = max([len(x) for x in sequences])
         result = []
         for i in range(max_length):

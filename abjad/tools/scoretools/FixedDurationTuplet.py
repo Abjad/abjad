@@ -48,8 +48,8 @@ class FixedDurationTuplet(Tuplet):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        duration=durationtools.Duration(1, 4), 
+        self,
+        duration=durationtools.Duration(1, 4),
         music="c'8 c'8 c'8",
         ):
         dummy_multiplier = durationtools.Multiplier(1)
@@ -75,7 +75,7 @@ class FixedDurationTuplet(Tuplet):
         '''
         result = '{}({!r}, {!r})'
         result = result.format(
-            type(self).__name__, 
+            type(self).__name__,
             self.target_duration,
             self._contents_summary,
             )
@@ -106,7 +106,7 @@ class FixedDurationTuplet(Tuplet):
         new_target_duration = multiplier * old_target_duration
         # change tuplet target duration
         self.target_duration = new_target_duration
-        # if multiplier is note head assignable, 
+        # if multiplier is note head assignable,
         # scale contents graphically
         if multiplier.is_assignable:
             for component in self[:]:

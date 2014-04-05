@@ -3,15 +3,15 @@ import sys
 
 
 def replace_elements(
-    sequence, 
-    indices, 
+    sequence,
+    indices,
     new_material,
     ):
     '''Replaces `sequence` elements.
-    
+
     ..  container:: example
 
-        Replaces elements at indices 0, 2, 4, 6 with ``'A'``, ``'B'``, 
+        Replaces elements at indices 0, 2, 4, 6 with ``'A'``, ``'B'``,
         ``'C'``, ``'D'``, respectively:
 
         ::
@@ -22,7 +22,7 @@ def replace_elements(
 
     ..  container:: example
 
-        Replaces elements at indices 0, 1, 8, 13 with ``'A'``, ``'B'``, 
+        Replaces elements at indices 0, 1, 8, 13 with ``'A'``, ``'B'``,
         ``'C'``, ``'D'``, respectively:
 
         ::

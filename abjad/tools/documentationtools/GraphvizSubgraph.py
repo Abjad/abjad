@@ -39,7 +39,7 @@ class GraphvizSubgraph(GraphvizGraph):
     def _node_class(self):
         from abjad.tools import documentationtools
         return (
-            documentationtools.GraphvizSubgraph, 
+            documentationtools.GraphvizSubgraph,
             documentationtools.GraphvizNode,
             )
 
@@ -63,7 +63,7 @@ class GraphvizSubgraph(GraphvizGraph):
     @property
     def edges(self):
         r'''Edges of Graphviz subgraph.
-        
+
         Returns tuple.
         '''
         return tuple(self._edges)

@@ -140,7 +140,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
         path_group.add_argument('-X', '--experimental',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_experimental_directory_path, 
+                abjad_configuration.abjad_experimental_directory_path,
                 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',

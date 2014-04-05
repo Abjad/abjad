@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTargetMeasure(AbjadObject):
-    r'''Representation of a single "measure" in a measure-wise 
+    r'''Representation of a single "measure" in a measure-wise
     quantization target:
 
     ::
@@ -48,7 +48,7 @@ class QTargetMeasure(AbjadObject):
         3000 1000
         4000 1000
 
-    If ``use_full_measure`` is set, the ``QTargetMeasure`` will only 
+    If ``use_full_measure`` is set, the ``QTargetMeasure`` will only
     ever contain a single ``QTargetBeat`` instance:
 
     ::
@@ -77,10 +77,10 @@ class QTargetMeasure(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beats', 
-        '_offset_in_ms', 
-        '_search_tree', 
-        '_tempo', 
+        '_beats',
+        '_offset_in_ms',
+        '_search_tree',
+        '_tempo',
         '_time_signature',
         '_use_full_measure',
         )
@@ -88,11 +88,11 @@ class QTargetMeasure(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        offset_in_ms=None, 
-        search_tree=None, 
+        self,
+        offset_in_ms=None,
+        search_tree=None,
         time_signature=None,
-        tempo=None, 
+        tempo=None,
         use_full_measure=False,
         ):
 

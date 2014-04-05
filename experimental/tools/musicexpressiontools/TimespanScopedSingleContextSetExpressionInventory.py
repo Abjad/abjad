@@ -45,9 +45,9 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                     set_expression_to_delay.target_timespan.stop_offset)
                 set_expression_to_delay._target_timespan = timespan
                 set_expression_was_delayed = True
-            # TODO: branch inside and implement a method to split 
+            # TODO: branch inside and implement a method to split
             # while treating cyclic payload smartly.
-            # or, alternatively, special-case for set_expressions 
+            # or, alternatively, special-case for set_expressions
             # that cover the entire duration of score.
             for set_expression_to_split in set_expressions_to_split:
                 left_set_expression = set_expression_to_split

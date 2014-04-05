@@ -64,7 +64,7 @@ class ChordInversion(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a chord inversion with number equal to that 
+        r'''Is true when `arg` is a chord inversion with number equal to that
         of this chord inversion. Otherwise false.
 
         Returns boolean.

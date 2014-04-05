@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def notes_and_chords_are_on_expected_clefs(
-    expr, 
+    expr,
     percussion_clef_is_allowed=True,
     ):
     r'''Is true when notes and chords in `expr` are on expected clefs.

@@ -55,7 +55,7 @@ def test_ScorePackageManager__run_02():
 
 
 def test_ScorePackageManager__run_03():
-    r'''User 'home' input terminates execution (when score not managed 
+    r'''User 'home' input terminates execution (when score not managed
     from home).
     '''
 
@@ -112,7 +112,6 @@ def test_ScorePackageManager__run_05():
 
     assert manager._session is manager._build_directory_manager._session
     assert manager._session is manager._distribution_file_wrangler._session
-    assert manager._session is manager._material_manager_wrangler._session
     assert manager._session is manager._material_package_wrangler._session
     assert manager._session is manager._segment_package_wrangler._session
     assert manager._session is manager._stylesheet_wrangler._session

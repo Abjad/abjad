@@ -81,7 +81,7 @@ def test_spannertools_PianoPedalSpanner_04():
 
     staff = Staff("c'8 c'8 c'8 c'8")
     piano_pedal_spanner = spannertools.PianoPedalSpanner(
-        kind='sustain', 
+        kind='sustain',
         style='text',
         )
     attach(piano_pedal_spanner, staff[:])

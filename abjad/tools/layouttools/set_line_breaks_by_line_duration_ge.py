@@ -9,7 +9,7 @@ def set_line_breaks_by_line_duration_ge(
     line_break_class=None,
     add_empty_bars=False,
     ):
-    r'''Iterate `line_break_class` instances in `expr` and 
+    r'''Iterate `line_break_class` instances in `expr` and
     accumulate duration.
 
     Add line break after every total less than or equal to `line_duration`:
@@ -49,7 +49,7 @@ def set_line_breaks_by_line_duration_ge(
     ::
 
         >>> layouttools.set_line_breaks_by_line_duration_ge(
-        ...     staff, 
+        ...     staff,
         ...     Duration(4, 8),
         ...     )
         >>> show(staff) # doctest: +SKIP

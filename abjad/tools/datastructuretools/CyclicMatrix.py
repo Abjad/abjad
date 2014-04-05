@@ -11,7 +11,7 @@ class CyclicMatrix(Matrix):
     ::
 
         >>> cyclic_matrix = datastructuretools.CyclicMatrix([
-        ...     [0, 1, 2, 3], 
+        ...     [0, 1, 2, 3],
         ...     [10, 11, 12, 13],
         ...     [20, 21, 22, 23],
         ...     ])
@@ -119,8 +119,8 @@ class CyclicMatrix(Matrix):
         Returns string.
         '''
         return '{}({}x{})'.format(
-            type(self).__name__, 
-            self._n_rows, 
+            type(self).__name__,
+            self._n_rows,
             self._n_columns,
             )
 
@@ -129,7 +129,7 @@ class CyclicMatrix(Matrix):
     def _initialize_from_columns(self, columns):
         from abjad.tools import datastructuretools
         columns = datastructuretools.CyclicTuple([
-            datastructuretools.CyclicTuple(column) 
+            datastructuretools.CyclicTuple(column)
             for column in columns
             ])
         rows = []
@@ -164,7 +164,7 @@ class CyclicMatrix(Matrix):
         ::
 
             >>> cyclic_matrix = datastructuretools.CyclicMatrix([
-            ...     [0, 1, 2, 3], 
+            ...     [0, 1, 2, 3],
             ...     [10, 11, 12, 13],
             ...     [20, 21, 22, 23],
             ...     ])

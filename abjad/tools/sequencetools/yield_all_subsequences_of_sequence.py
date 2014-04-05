@@ -2,8 +2,8 @@
 
 
 def yield_all_subsequences_of_sequence(
-    sequence, 
-    min_length=0, 
+    sequence,
+    min_length=0,
     max_length=None,
     ):
     '''Yields all subsequences of `sequence`.

@@ -18,7 +18,7 @@ from abjad.tools.topleveltools import set_
 class GalleryMaker(AbjadObject):
     r'''Gallery maker.
     '''
-        
+
     ### SPECIAL METHODS ###
 
     def __call__(self, configurations_by_class):
@@ -69,8 +69,8 @@ class GalleryMaker(AbjadObject):
         attach(command, last_leaf)
 
     def _attach_configuration_markup(
-        self, 
-        rhythm_maker, 
+        self,
+        rhythm_maker,
         first_score,
         ):
         markup = self._make_configuration_markup(rhythm_maker)
@@ -92,8 +92,8 @@ class GalleryMaker(AbjadObject):
         raise Exception(message)
 
     def _configuration_to_score_blocks(
-        self, 
-        configuration, 
+        self,
+        configuration,
         configuration_number,
         ):
         assert isinstance(configuration, tuple) and len(configuration) == 2
@@ -107,7 +107,7 @@ class GalleryMaker(AbjadObject):
                 score_number,
                 )
             score = self._make_score(
-                rhythm_maker, 
+                rhythm_maker,
                 division_list,
                 score_number_markup,
                 )
@@ -145,8 +145,8 @@ class GalleryMaker(AbjadObject):
         return markup
 
     def _make_score(
-        self, 
-        rhythm_maker, 
+        self,
+        rhythm_maker,
         division_list,
         score_number_markup,
         ):

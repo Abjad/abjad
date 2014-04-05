@@ -20,7 +20,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
 
-    Example. Mixed-source timespan starting at the left edge of the last 
+    Example. Mixed-source timespan starting at the left edge of the last
     measure that starts during segment ``'red'``
     and stoppding at the right edge of the first measure
     that starts during segment ``'blue'``:
@@ -87,10 +87,10 @@ class MixedSourceTimespanExpression(TimespanExpression):
     def __init__(self, start_offset=None, stop_offset=None, callbacks=None):
         from experimental.tools import musicexpressiontools
         assert isinstance(
-            start_offset, 
+            start_offset,
             (musicexpressiontools.OffsetExpression, type(None)))
         assert isinstance(
-            stop_offset, 
+            stop_offset,
             (musicexpressiontools.OffsetExpression, type(None)))
         TimespanExpression.__init__(self, callbacks=callbacks)
         self._start_offset = start_offset

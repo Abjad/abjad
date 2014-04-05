@@ -47,7 +47,7 @@ def test_indicatortools_LilyPondComment___init___03():
 
 
 def test_indicatortools_LilyPondComment___init___04():
-    r'''Initializes LilyPond comment from other LilyPond comment 
+    r'''Initializes LilyPond comment from other LilyPond comment
     and format slot.
     '''
 

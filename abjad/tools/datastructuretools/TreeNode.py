@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 class TreeNode(AbjadObject):
     r'''A node.
-    
+
     Node in a generalized tree.
     '''
 
@@ -237,7 +237,7 @@ class TreeNode(AbjadObject):
     @property
     def graph_order(self):
         r'''Graph order of tree node.
-        
+
         Returns tuple.
         '''
         from abjad.tools import sequencetools
@@ -395,7 +395,7 @@ class TreeNode(AbjadObject):
     @property
     def name(self):
         r'''Named of tree node.
-        
+
         Returns string.
         '''
         return self._name

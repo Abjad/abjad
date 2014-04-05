@@ -63,10 +63,10 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         persist=True,
         truncate=None,
         ):
-        r'''Set divisions to `source_expression` for target timespan over 
+        r'''Set divisions to `source_expression` for target timespan over
         all `contexts`:
 
-        Example. Set divisions to ``3/16`` for red segment timespan over 
+        Example. Set divisions to ``3/16`` for red segment timespan over
         contexts ``'Voice 1'`` and ``'Voice 3'``:
 
         ::
@@ -106,7 +106,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         contexts=None,
         persist=True,
         ):
-        r'''Set rhythm to `source_expression` for target timespan 
+        r'''Set rhythm to `source_expression` for target timespan
         over all `contexts`.
 
         Example. Set rhythm to sixteenths for red segment target timespan
@@ -153,10 +153,10 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         contexts=None,
         persist=True,
         ):
-        r'''Set time signatures to `source_expression` for target timespan 
+        r'''Set time signatures to `source_expression` for target timespan
         over all `contexts`.
 
-        Example. Set time signatures to ``3/8``, ``4/8`` for red 
+        Example. Set time signatures to ``3/8``, ``4/8`` for red
         segment timespan over all contexts:
 
         ::
