@@ -283,7 +283,7 @@ class CyclicPayloadTree(PayloadTree):
 
                 >>> generator = tree.iterate_forever_depth_first()
                 >>> for i in range(20):
-                ...     generator.next()
+                ...     next(generator)
                 CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
                 CyclicPayloadTree([0, 1])
                 CyclicPayloadTree(0)
@@ -314,7 +314,7 @@ class CyclicPayloadTree(PayloadTree):
                 >>> generator = tree.iterate_forever_depth_first(
                 ...     reverse=True)
                 >>> for i in range(20):
-                ...     generator.next()
+                ...     next(generator)
                 CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
                 CyclicPayloadTree([6, 7])
                 CyclicPayloadTree(7)

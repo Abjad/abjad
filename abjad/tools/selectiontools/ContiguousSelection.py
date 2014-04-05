@@ -293,7 +293,7 @@ class ContiguousSelection(Selection):
         # trim governor copy forwards from first leaf
         found_start_leaf = False
         while not found_start_leaf:
-            leaf = iterate(governor_copy).by_class(scoretools.Leaf).next()
+            leaf = next(iterate(governor_copy).by_class(scoretools.Leaf))
             if leaf is start_leaf:
                 found_start_leaf = True
             else:
@@ -303,7 +303,7 @@ class ContiguousSelection(Selection):
         while not found_stop_leaf:
             reverse_iterator = iterate(governor_copy).by_class(
                 scoretools.Leaf, reverse=True)
-            leaf = reverse_iterator.next()
+            leaf = next(reverse_iterator)
             if leaf is stop_leaf:
                 found_stop_leaf = True
             else:

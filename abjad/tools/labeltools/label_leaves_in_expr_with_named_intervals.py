@@ -45,8 +45,8 @@ def label_leaves_in_expr_with_named_intervals(expr, markup_direction=Up):
             scoretools.Leaf,
             )
         try:
-            logical_voice_iterator.next()
-            next_leaf = logical_voice_iterator.next()
+            next(logical_voice_iterator)
+            next_leaf = next(logical_voice_iterator)
             if isinstance(next_leaf, scoretools.Note):
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
                     note, next_leaf)

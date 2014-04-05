@@ -93,7 +93,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
             >>> pairs = sequencetools.iterate_sequence_nwise(
             ...     range(10), n=2, cyclic=True)
             >>> for _ in range(15):
-            ...     pairs.next()
+            ...     next(pairs)
             (0, 1)
             (1, 2)
             (2, 3)
@@ -122,7 +122,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
             ...     range(10), n=3, cyclic=True)
             ...
             >>> for _ in range(15):
-            ...     triples.next()
+            ...     next(triples)
             (0, 1, 2)
             (1, 2, 3)
             (2, 3, 4)
