@@ -290,6 +290,13 @@ class Tempo(AbjadObject):
                 type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
+    def __truediv__(self, expr):
+        r'''Divides tempo by `expr`. Operator for Python 3.
+
+        Returns new tempo.
+        '''
+        return self.__div__(expr)
+
     ### PRIVATE PROPERTIES ###
 
     @property
