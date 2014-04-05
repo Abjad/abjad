@@ -160,7 +160,7 @@ def test_MaterialPackageManager_edit_output_05():
             ],
         )
     directory_entries = [
-        '__init__.py', 
+        '__init__.py',
         '__metadata__.py',
         'output.py',
         ]
