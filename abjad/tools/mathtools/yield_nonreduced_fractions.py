@@ -10,7 +10,7 @@ def yield_nonreduced_fractions():
 
         >>> generator = mathtools.yield_nonreduced_fractions()
         >>> for n in range(16):
-        ...     generator.next()
+        ...     next(generator)
         ...
         (1, 1)
         (2, 1)
