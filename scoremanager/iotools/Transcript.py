@@ -80,6 +80,14 @@ class Transcript(AbjadObject):
         return self._entries
 
     @property
+    def first_lines(self):
+        r'''Gets transcript first lines.
+
+        Returns list of strings.
+        '''
+        return [_[0] for _ in self]
+
+    @property
     def last_menu_lines(self):
         r'''Gets last menu lines.
 

@@ -25,6 +25,15 @@ class TranscriptEntry(AbjadObject):
         self._lines = lines[:]
         self._terminal_was_cleared = terminal_was_cleared
 
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, expr):
+        r'''Gets line in transcript entry.
+
+        Returns line.
+        '''
+        return self.lines.__getitem__(expr)
+
     ### PRIVATE METHODS ###
 
     def _format(self):
