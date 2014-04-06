@@ -1268,7 +1268,8 @@ class Session(abctools.AbjadObject):
                 lines.append(line)
         lines.append('')
         self.io_manager.display(lines, capitalize_first_character=False)
-        #if self.is_in_confirmation
+        if self.is_in_user_input_getter:
+            self._hide_next_redraw = True
         self.io_manager.proceed()
 
     def get_controller_with(self, ui=None):
