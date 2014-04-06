@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPakcageWrangler_commit_to_repository_01():
+def test_MaterialPackageWrangler_commit_to_repository_01():
     r'''Works in score.
     '''
 
@@ -14,7 +14,7 @@ def test_MaterialPakcageWrangler_commit_to_repository_01():
     assert score_manager._session._attempted_to_commit_to_repository
 
 
-def test_MaterialPakcageWrangler_commit_to_repository_02():
+def test_MaterialPackageWrangler_commit_to_repository_02():
     r'''Works in library.
     '''
 

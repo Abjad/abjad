@@ -221,7 +221,8 @@ class MaterialPackageWrangler(Wrangler):
         path = self.get_available_path(storehouse_path=storehouse_path)
         if self._should_backtrack():
             return
-        self._make_material_package(path)
+        if path:
+            self._make_material_package(path)
 
     def make_material_package_for_editable_mainline_class(self):
         r'''Make material package from editable class.

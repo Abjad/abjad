@@ -158,8 +158,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_string)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            user_input = \
-                self._io_manager.handle_user_input(
+            user_input = self._io_manager.handle_user_input(
                 prompt_string,
                 default_value=default_value,
                 include_chevron=include_chevron,
@@ -197,8 +196,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self._prompt_strings = []
         self._evaluated_user_input = []
         self._all_prompts_are_done = False
-        while self._prompt_index < len(self) and \
-            not self._all_prompts_are_done:
+        while (self._prompt_index < len(self) and
+            not self._all_prompts_are_done):
             self._present_prompt_and_evaluate_user_input(
                 include_chevron=include_chevron)
 

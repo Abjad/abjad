@@ -614,6 +614,7 @@ class Wrangler(Controller):
                 self._io_manager.display([line, ''])
             else:
                 return path
+
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 
