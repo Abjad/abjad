@@ -145,5 +145,4 @@
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
 
-31. Remove MaterialManagerWrangler after only MaterialPackageManager remains.
-    (Odd that the class doesn't currently appear in the API.)
+31. Bug: (m > nmh > b) causes TypeError.
