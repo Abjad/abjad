@@ -144,5 +144,3 @@
 30. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
-
-31. Bug: (m > nmh > b) causes TypeError.
