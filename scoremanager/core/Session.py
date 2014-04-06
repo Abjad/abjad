@@ -51,6 +51,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
+        '_is_in_user_input_getter',
         '_is_navigating_to_score_build_files',
         '_is_navigating_to_score_distribution_files',
         '_is_navigating_to_next_asset',
@@ -85,7 +86,9 @@ class Session(abctools.AbjadObject):
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_autoadding',
+        'is_in_confirmation_environment',
         'is_in_editor',
+        'is_in_user_input_getter',
         'last_asset_path',
         'scores_to_display',
         )
@@ -707,6 +710,25 @@ class Session(abctools.AbjadObject):
         return self._is_in_score_setup_menu
 
     @property
+    def is_in_user_input_getter(self):
+        r'''Is true when session is in user input getter. Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_user_input_getter
+                False
+
+        Returns boolean.
+        '''
+        from scoremanager import iotools
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, iotools.UserInputGetter):
+                return True
+        return False
+
+    @property
     def is_navigating_to_next_asset(self):
         r'''Is true when session is navigating to next material.
         Otherwise false.
@@ -1246,6 +1268,7 @@ class Session(abctools.AbjadObject):
                 lines.append(line)
         lines.append('')
         self.io_manager.display(lines, capitalize_first_character=False)
+        #if self.is_in_confirmation
         self.io_manager.proceed()
 
     def get_controller_with(self, ui=None):
