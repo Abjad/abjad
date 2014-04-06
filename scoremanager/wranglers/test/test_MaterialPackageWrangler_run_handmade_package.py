@@ -39,7 +39,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -60,7 +60,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -83,7 +83,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -111,7 +111,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -138,7 +138,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -169,7 +169,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes default testnotes dms default q'
+        input_ = 'm new testnotes default testnotes dms default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
@@ -193,7 +193,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -226,7 +226,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -249,7 +249,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'm nmh testnotes q'
+        input_ = 'm new testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)

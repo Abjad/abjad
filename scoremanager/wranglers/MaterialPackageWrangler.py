@@ -73,8 +73,8 @@ class MaterialPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
+            'new': self.make_handmade_material_package,
             'nmc': self.make_material_package_for_editable_mainline_class,
-            'nmh': self.make_handmade_material_package,
             })
         return result
 
@@ -176,8 +176,8 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_material_command_menu_section(self, menu):
         section = menu.make_command_section(name='material')
-        section.append(('material - new by hand', 'nmh'))
-        section.append(('material - new for editable mainline class', 'nmc'))
+        section.append(('materials - new', 'new'))
+        section.append(('materials - new for editable mainline class', 'nmc'))
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(
