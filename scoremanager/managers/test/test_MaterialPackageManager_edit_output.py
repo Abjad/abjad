@@ -290,7 +290,7 @@ def test_MaterialPackageManager_edit_output_08():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmm list testlist 17 foo done b default q'
+        input_ = 'm nmc list testlist 17 foo done b default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)

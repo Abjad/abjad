@@ -75,7 +75,6 @@ class MaterialPackageWrangler(Wrangler):
             '<': self._navigate_to_previous_asset,
             'nmc': self.make_material_package_for_editable_mainline_class,
             'nmh': self.make_handmade_material_package,
-            'nmm': self.make_managermade_material_package,
             })
         return result
 
@@ -179,7 +178,6 @@ class MaterialPackageWrangler(Wrangler):
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
         section.append(('material - new for editable mainline class', 'nmc'))
-        section.append(('material - new with manager', 'nmm'))
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(
@@ -224,34 +222,6 @@ class MaterialPackageWrangler(Wrangler):
         if self._should_backtrack():
             return
         self._make_material_package(path)
-
-    def make_managermade_material_package(self):
-        r'''Makes managermade material package.
-
-        Returns none.
-        '''
-        raise Exception('deprecated')
-        wrangler = self._material_manager_wrangler
-        result = wrangler.select_asset_package_path()
-        if self._should_backtrack():
-            return
-        material_manager_package_path = result
-        class_name = material_manager_package_path.split('.')[-1]
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._user_storehouse_path
-        path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._should_backtrack():
-            return
-        metadata = {}
-        assert class_name is not None
-        metadata['material_manager_class_name'] = class_name
-        self._make_material_package(path, metadata=metadata)
-        manager = self._get_material_package_manager(class_name, path)
-        if manager._user_input_wrapper_in_memory:
-            manager._write_user_input_module_stub()
-        manager._run_first_time()
 
     def make_material_package_for_editable_mainline_class(self):
         r'''Make material package from editable class.
