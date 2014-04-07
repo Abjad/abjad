@@ -385,7 +385,7 @@ class Leaf(Component):
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self._get_indicators(durationtools.Multiplier):
             detach(durationtools.Multiplier, self)
-            multiplier = new_duration / self.written_duration
+            multiplier = new_duration.__div__(self.written_duration)
             attach(multiplier, self)
             return [self]
         # change written duration if new duration is assignable
