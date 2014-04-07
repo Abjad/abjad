@@ -123,18 +123,17 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-26. Remove 'material_manager_class_name' key from all metadata modules.
-    Do this after collapsing all material package manager classes.
-
-27. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
+26. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
 
-28. Make (rrv) work for Subversion-managed directories.
+27. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-29. Make 'n' user input work in confirmation dialogue.
+28. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
 
-30. Make '?' during user input getter.
+29. Make '?' during user input getter.
     Should show local help message.
+
+30. Change output_class_name to output_material_class_name.

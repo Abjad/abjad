@@ -426,7 +426,7 @@ class MaterialPackageManager(PackageManager):
             string = 'definition module - remove'
             section.append((string, 'dmrm'))
             section.append(('definition module - stub', 'dms'))
-        elif self._get_metadatum('material_manager_class_name') is None:
+        else:
             section = menu.make_command_section(name=name)
             section.append(('definition module - stub', 'dms'))
 

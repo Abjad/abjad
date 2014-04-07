@@ -437,27 +437,6 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    def append_material_manager_class_name(
-        self,
-        spaced_attribute_name,
-        default_value=None,
-        ):
-        r'''Appends materia manager class name.
-
-        Returns prompt.
-        '''
-        help_template = 'value for {!r} must be '
-        help_template += 'uppercamelcase string ending in -Maker.'
-        function = lambda x: \
-            stringtools.is_upper_camel_case_string(x) and \
-            x.endswith('Maker')
-        self._make_prompt(
-            spaced_attribute_name,
-            validation_function=function,
-            help_template=help_template,
-            default_value=default_value,
-            )
-
     def append_menu_section_range(
         self,
         spaced_attribute_name,

@@ -199,8 +199,7 @@ class MaterialPackageWrangler(Wrangler):
         manager._initializer_file_manager._write_stub()
         manager.rewrite_metadata_module(metadata, prompt=False)
         if definition_module_stub:
-            if not manager._get_metadatum('material_manager_class_name'):
-                manager._write_definition_module_stub(prompt=False)
+            manager._write_definition_module_stub(prompt=False)
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
