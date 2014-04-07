@@ -100,7 +100,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def _make_missing_directories(self):
         directory_paths = (
             self.user_library_directory_path,
-            self.user_library_material_managers_directory_path,
             self.user_library_material_packages_directory_path,
             self.user_library_makers_directory_path,
             )
@@ -486,24 +485,24 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
         return path
 
-    @property
-    def user_library_material_managers_directory_path(self):
-        r'''Gets user library material managers directory path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.user_library_material_managers_directory_path
-                '.../managers'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.user_library_directory_path,
-            'managers',
-            )
-        return path
+#    @property
+#    def user_library_material_managers_directory_path(self):
+#        r'''Gets user library material managers directory path.
+#
+#        ..  container:: example
+#
+#            ::
+#
+#                >>> configuration.user_library_material_managers_directory_path
+#                '.../managers'
+#
+#        Returns string.
+#        '''
+#        path = os.path.join(
+#            self.user_library_directory_path,
+#            'managers',
+#            )
+#        return path
 
     @property
     def user_library_material_packages_directory_path(self):
@@ -651,13 +650,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif path.startswith(
-            self.user_library_material_managers_directory_path):
-            return '.'.join([
-                self._user_library_directory_name,
-                'material_packages',
-                os.path.basename(path),
-                ])
+#        elif path.startswith(
+#            self.user_library_material_managers_directory_path):
+#            return '.'.join([
+#                self._user_library_directory_name,
+#                'material_packages',
+#                os.path.basename(path),
+#                ])
         elif path.startswith(
             self.abjad_material_managers_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1

@@ -119,9 +119,9 @@ class MaterialPackageWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            material_manager = self._initialize_asset_manager(result)
-            if os.path.exists(material_manager._path):
-                material_manager._run()
+            manager = self._initialize_asset_manager(result)
+            if os.path.exists(manager._path):
+                manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(MaterialPackageWrangler, self)
