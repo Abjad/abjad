@@ -73,7 +73,7 @@ class MaterialPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
-            'new': self.make_handmade_material_package,
+            'new': self.make_new_material_package,
             'nmc': self.make_material_package_for_editable_mainline_class,
             })
         return result
@@ -209,21 +209,6 @@ class MaterialPackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_handmade_material_package(self):
-        r'''Makes handmade material package.
-
-        Returns none.
-        '''
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._user_storehouse_path
-        path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._should_backtrack():
-            return
-        if path:
-            self._make_material_package(path)
-
     def make_material_package_for_editable_mainline_class(self):
         r'''Make material package from editable class.
 
@@ -244,10 +229,7 @@ class MaterialPackageWrangler(Wrangler):
         if self._should_backtrack():
             return
         self._make_material_package(path, definition_module_stub=False)
-        manager = managers.MaterialPackageManager(
-            path=path,
-            session=self._session,
-            )
+        manager = self._get_manager(path)
         manager._add_metadatum('output_class_name', class_.__name__)
         empty_target = class_()
         if type(empty_target) is list:
@@ -274,4 +256,26 @@ class MaterialPackageWrangler(Wrangler):
             prompt=False,
             )
         manager.edit_output_material()
+        manager._run()
+
+    def make_new_material_package(self):
+        r'''Makes new material package.
+
+        Returns none.
+        '''
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
+        prompt_string = 'Enter material package name'
+        path = self.get_available_path(
+            prompt_string=prompt_string,
+            storehouse_path=storehouse_path,
+            )
+        if self._should_backtrack():
+            return
+        if not path:
+            return
+        self._make_material_package(path)
+        manager = self._get_manager(path)
         manager._run()

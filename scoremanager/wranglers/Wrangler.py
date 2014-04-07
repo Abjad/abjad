@@ -199,6 +199,13 @@ class Wrangler(Controller):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
+    def _get_manager(self, path):
+        manager = self._asset_manager_class(
+            path=path,
+            session=self._session,
+            )
+        return manager
+
     def _get_next_asset_path(self):
         last_path = self._session.last_asset_path
         menu_entries = self._make_asset_menu_entries()
@@ -588,8 +595,8 @@ class Wrangler(Controller):
 
     def get_available_path(
         self,
-        storehouse_path=None,
         prompt_string=None,
+        storehouse_path=None,
         ):
         r'''Gets available path in `storehouse_path`.
 
@@ -600,7 +607,7 @@ class Wrangler(Controller):
         '''
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
-            prompt_string = prompt_string or 'package name'
+            prompt_string = prompt_string or 'enter package name'
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string(prompt_string)
             name = getter._run()
