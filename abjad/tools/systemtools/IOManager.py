@@ -258,6 +258,39 @@ class IOManager(object):
         return next_output_file_name
 
     @staticmethod
+    def make_subprocess(command):
+        r'''Makes Popen instance.
+
+        ..  container:: example
+
+            ::
+
+                >>> command = 'echo "hellow world"'
+                >>> systemtools.IOManager.make_subprocess(command)
+                <subprocess.Popen object at 0x...>
+
+        Defined equal to
+
+            ::
+
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    )
+
+
+        Redirects stderr to stdout.
+        '''
+        return subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+
+    @staticmethod
     def open_file(file_path, application=None, line_number=None):
         r'''Opens `file_path`.
 
