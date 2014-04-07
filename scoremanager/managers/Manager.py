@@ -140,12 +140,7 @@ class Manager(Controller):
         if self._is_git_versioned():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith('A'):
@@ -157,12 +152,7 @@ class Manager(Controller):
         elif self._is_svn_versioned():
             command = 'svn st {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith('A'):
@@ -177,12 +167,7 @@ class Manager(Controller):
         if self._is_git_versioned():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith(('M', ' M')):
@@ -194,12 +179,7 @@ class Manager(Controller):
         elif self._is_svn_versioned():
             command = 'svn st {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith('M'):
@@ -213,12 +193,7 @@ class Manager(Controller):
     def _get_repository_root_directory(self):
         if self._is_git_versioned():
             command = 'git rev-parse --show-toplevel'
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             line = process.stdout.readline()
             line = line.strip()
             return line
@@ -240,12 +215,7 @@ class Manager(Controller):
         if self._is_git_versioned():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith('?'):
@@ -257,12 +227,7 @@ class Manager(Controller):
         elif self._is_svn_versioned():
             command = 'svn st {}'
             command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
                 if line.startswith('?'):
@@ -289,12 +254,7 @@ class Manager(Controller):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         first_line = first_line.strip()
         if first_line.startswith('A'):
@@ -309,12 +269,7 @@ class Manager(Controller):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         first_line = first_line.strip()
         if first_line.startswith('??'):
@@ -326,12 +281,7 @@ class Manager(Controller):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         first_line = first_line.strip()
         if first_line == '':
@@ -349,12 +299,7 @@ class Manager(Controller):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         if first_line.startswith('fatal:'):
             return False
@@ -387,12 +332,7 @@ class Manager(Controller):
             return False
         command = 'svn st {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         if first_line.startswith('svn: warning:'):
             return False
@@ -407,12 +347,7 @@ class Manager(Controller):
         else:
             raise ValueError(self)
         command = command.format(self._path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         return first_line == ''
 
@@ -444,12 +379,7 @@ class Manager(Controller):
         else:
             command = 'rm -rf {}'
         command = command.format(self._path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         process.stdout.readline()
         return True
 
@@ -464,12 +394,7 @@ class Manager(Controller):
         else:
             command = 'mv {} {}'
         command = command.format(self._path, new_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         process.stdout.readline()
         self._path = new_path
 
@@ -612,12 +537,7 @@ class Manager(Controller):
         self._io_manager.display(line, capitalize_first_character=False)
         command = self._repository_add_command
         assert isinstance(command, str)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self._io_manager.display(lines)
@@ -647,12 +567,7 @@ class Manager(Controller):
         lines.append(line)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
         self._io_manager.display(
@@ -690,12 +605,7 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'ajv doctest {}'.format(self._path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             if lines[0] == '':
@@ -734,12 +644,7 @@ class Manager(Controller):
         command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
         lines = []
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self._io_manager.display(
@@ -756,12 +661,7 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'py.test -rf {}'.format(self._path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
@@ -804,12 +704,7 @@ class Manager(Controller):
         paths = ' '.join(paths)
         command = '{} {}'
         command = command.format(remove_command, paths)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         clean_lines = []
         for line in process.stdout.readlines():
             clean_line = line.strip()
@@ -849,12 +744,7 @@ class Manager(Controller):
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
         command = self._repository_status_command
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         path = self._path
         path = path + os.path.sep
         clean_lines = []
@@ -895,12 +785,7 @@ class Manager(Controller):
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
         command = self._repository_update_command
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        process = self._io_manager.make_subprocess(command)
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self._io_manager.display(lines)
