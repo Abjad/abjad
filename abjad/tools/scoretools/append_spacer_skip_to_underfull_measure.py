@@ -50,7 +50,8 @@ def append_spacer_skip_to_underfull_measure(measure):
         skip = scoretools.Skip((1, 1))
         time_signature_multiplier = \
             measure.time_signature.implied_prolation
-        new_multiplier = (target_duration - duration) / time_signature_multiplier
+        new_multiplier = (target_duration -
+                          duration).__div__(time_signature_multiplier)
         attach(new_multiplier, skip)
         measure.append(skip)
 
