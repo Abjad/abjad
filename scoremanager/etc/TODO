@@ -66,29 +66,20 @@
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-20. Encapsulate ...
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-    ... in an IOManager method.
-
-21. Do something to put an empty .gitignore file in every directory everywhere.
+20. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-22. Eventually implement a Score Manager start-up behavior that will
+21. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-23: Bug:
+22: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-24. Bug:
+23. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
         in _get_next_score_directory_path
         index = paths.index(score_path)
@@ -96,7 +87,7 @@
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-25. Implement an Editor method to allow an none-allowing attribute to be 
+24. Implement an Editor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -124,7 +115,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-26. Bug:
+25. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -132,18 +123,18 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-27. Remove 'material_manager_class_name' key from all metadata modules.
+26. Remove 'material_manager_class_name' key from all metadata modules.
     Do this after collapsing all material package manager classes.
 
-28. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
+27. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
     to ScoreManagerConfiguration.example_score_packages_directory_path.
 
-29. Make (rrv) work for Subversion-managed directories.
+28. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-30. Make 'n' user input work in confirmation dialogue.
+29. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
 
-31. Make '?' during user input getter.
+30. Make '?' during user input getter.
     Should show local help message.
