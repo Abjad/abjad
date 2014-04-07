@@ -173,25 +173,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def abjad_material_managers_directory_path(self):
-        r'''Gets Abjad material managers directory path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.abjad_material_managers_directory_path
-                '.../scoremanager/managers'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.score_manager_directory_path,
-            'managers',
-            )
-        return path
-
-    @property
     def abjad_material_packages_directory_path(self):
         r'''Gets Abjad material packages directory path.
 
@@ -485,25 +466,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
         return path
 
-#    @property
-#    def user_library_material_managers_directory_path(self):
-#        r'''Gets user library material managers directory path.
-#
-#        ..  container:: example
-#
-#            ::
-#
-#                >>> configuration.user_library_material_managers_directory_path
-#                '.../managers'
-#
-#        Returns string.
-#        '''
-#        path = os.path.join(
-#            self.user_library_directory_path,
-#            'managers',
-#            )
-#        return path
-
     @property
     def user_library_material_packages_directory_path(self):
         r'''Gets user library material packages directory path.
@@ -650,16 +612,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-#        elif path.startswith(
-#            self.user_library_material_managers_directory_path):
-#            return '.'.join([
-#                self._user_library_directory_name,
-#                'material_packages',
-#                os.path.basename(path),
-#                ])
-        elif path.startswith(
-            self.abjad_material_managers_directory_path):
-            prefix_length = len(self.abjad_root_directory_path) + 1
         elif path.startswith(
             self.abjad_material_packages_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1

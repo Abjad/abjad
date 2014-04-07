@@ -30,10 +30,6 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_02():
     r'''Abjad library paths annotate 'Abjad'.
     '''
 
-    path = configuration.abjad_material_managers_directory_path
-    annotation = configuration._path_to_storehouse_annotation(path)
-    assert annotation == 'Abjad'
-
     path = configuration.abjad_material_packages_directory_path
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == 'Abjad'
