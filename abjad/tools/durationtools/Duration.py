@@ -205,7 +205,7 @@ class Duration(AbjadObject, fractions.Fraction):
         '''
         from abjad.tools import durationtools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            fraction = fractions.Fraction.__div__(self, *args)
+            fraction = fractions.Fraction.__truediv__(self, *args)
             result = durationtools.Multiplier(fraction)
         elif len(args) == 1 and isinstance(
             args[0], mathtools.NonreducedFraction):
