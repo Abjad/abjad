@@ -39,7 +39,6 @@ class MaterialPackageManager(PackageManager):
 
     __slots__ = (
         '_output_module_import_statements',
-        '_user_input_wrapper_in_memory',
         )
 
     ### INTIALIZER ###
@@ -55,7 +54,6 @@ class MaterialPackageManager(PackageManager):
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]
-        self._user_input_wrapper_in_memory = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -182,9 +180,6 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.view_illustration_pdf,
             'ren': self.rename,
             'uid': self.remove_user_input_module,
-            'uic': self.clear_user_input_wrapper,
-            'uil': self.load_user_input_wrapper_demo_values,
-            'uip': self.populate_user_input_wrapper,
             'uis': self.display_user_input_demo_values,
             'uit': self.toggle_user_input_values_default_status,
             'uimro': self.view_user_input_module,
@@ -196,57 +191,11 @@ class MaterialPackageManager(PackageManager):
     def _can_make_output_material(self):
         if os.path.isfile(self._definition_module_path):
             return True
-        if bool(self._user_input_wrapper_in_memory) and \
-            self._user_input_wrapper_in_memory.is_complete:
-            return True
         return False
 
     @staticmethod
     def _check_output_material(material):
         return True
-
-    def _edit_user_input_wrapper_at_number(self, number, include_newline=True):
-        number = int(number)
-        if self._user_input_wrapper_in_memory is None:
-            return
-        if len(self._user_input_wrapper_in_memory) < number:
-            return
-        index = number - 1
-        key, current_value = \
-            self._user_input_wrapper_in_memory.list_items()[index]
-        test_tuple = type(self).user_input_tests.fget(self)[index]
-        test = test_tuple[1]
-        if len(test_tuple) == 3:
-            setup_statement = test_tuple[2]
-        else:
-            setup_statement = 'evaluated_user_input = {}'
-        if self._session.use_current_user_input_values_as_default:
-            default_value = current_value
-        else:
-            default_value = None
-        getter = self._io_manager.make_getter(
-            allow_none=True,
-            include_newlines=include_newline,
-            )
-        spaced_attribute_name = key.replace('_', ' ')
-        message = "value for '{}' must satisfy " + test.__name__ + '().'
-        setup_statements =(
-            self._abjad_import_statement,
-            setup_statement,
-            )
-        getter._make_prompt(
-            spaced_attribute_name,
-            help_template=message,
-            validation_function=test,
-            setup_statements=setup_statements,
-            default_value=default_value,
-            )
-        new_value = getter._run()
-        if self._should_backtrack():
-            return
-        self._user_input_wrapper_in_memory[key] = new_value
-        wrapper = self._user_input_wrapper_in_memory
-        self._write_user_input_wrapper(wrapper)
 
     def _execute_output_module(self):
         attribute_names = (self._material_package_name,)
@@ -286,37 +235,10 @@ class MaterialPackageManager(PackageManager):
         assert isinstance(result, str)
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
-        elif mathtools.is_integer_equivalent_expr(result):
-            self._edit_user_input_wrapper_at_number(
-                result,
-                include_newline=False,
-                )
         elif result == 'user entered lone return':
             pass
         else:
             raise ValueError(result)
-
-    def _initialize_empty_user_input_wrapper(self):
-        from scoremanager import iotools
-        user_input_wrapper = iotools.UserInputWrapper()
-        user_input_wrapper._user_input_module_import_statements = \
-            getattr(self, 'user_input_module_import_statements', [])[:]
-        names = tuple([x[0] for x in self.user_input_demo_values])
-        for user_input_attribute_name in names:
-            user_input_wrapper[user_input_attribute_name] = None
-        return user_input_wrapper
-
-    def _initialize_user_input_wrapper_in_memory(self):
-        from scoremanager import managers
-        user_input_module_path = self._user_input_module_path
-        if os.path.exists(self._user_input_module_path):
-            user_input_wrapper = self._read_user_input_wrapper_from_disk()
-            if user_input_wrapper:
-                user_input_wrapper._user_input_module_import_statements = \
-                    getattr(self, 'user_input_module_import_statements', [])[:]
-        else:
-            user_input_wrapper = self._initialize_empty_user_input_wrapper()
-        self._user_input_wrapper_in_memory = user_input_wrapper
 
     def _interpret_definition_module(self):
         if not os.path.isfile(self._definition_module_path):
@@ -395,9 +317,6 @@ class MaterialPackageManager(PackageManager):
         self._make_output_module_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
-        if self._user_input_wrapper_in_memory:
-            if not self._has_output_material_editor():
-                self._make_user_input_module_menu_section(menu)
         try:
             section = menu['material summary']
             menu.menu_sections.remove(section)
@@ -406,11 +325,6 @@ class MaterialPackageManager(PackageManager):
             pass
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
-
-    def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        if not self._has_output_material_editor():
-            self._make_user_input_module_menu_section(menu)
-        self._make_material_menu_section(menu)
 
     def _make_material_definition_menu_section(self, menu):
         name = 'definition module'
@@ -455,22 +369,9 @@ class MaterialPackageManager(PackageManager):
     def _make_output_material(self):
         return
 
-    def _make_output_material_from_user_input_wrapper_in_memory(self):
-        output_material = self._make_output_material(
-            *self._user_input_wrapper_in_memory.list_values())
-        assert type(self)._check_output_material(
-            output_material), repr(output_material)
-        return output_material
-
     def _make_output_material_triple(self):
-        if os.path.isfile(self._definition_module_path):
-            result = self._retrieve_import_statements_and_output_material()
-            import_statements, output_material = result
-        else:
-            assert self._user_input_wrapper_in_memory
-            import_statements = self._output_module_import_statements
-            output_material = \
-                self._make_output_material_from_user_input_wrapper_in_memory()
+        result = self._retrieve_import_statements_and_output_material()
+        import_statements, output_material = result
         body_string = '{} = {}'
         output_material_name = self._material_package_name
         output_material = self._get_storage_format(output_material)
@@ -529,34 +430,6 @@ class MaterialPackageManager(PackageManager):
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
-    # TODO: break into three methods
-    def _make_user_input_module_menu_section(self, menu):
-        menu_entries = self._user_input_wrapper_in_memory.editable_lines
-        if menu_entries:
-            section = menu.make_numbered_section(
-                name='material summary',
-                )
-            for menu_entry in menu_entries:
-                section.append(menu_entry)
-        section = menu.make_command_section(name='user input')
-        section.append(('user input - clear', 'uic'))
-        section.append(('user input - load demo values', 'uil'))
-        section.append(('user input - populate', 'uip'))
-        section.append(('user input - show demo values', 'uis'))
-        section.append(('user input - toggle default mode', 'uit'))
-        section = menu.make_command_section(name='user input module')
-        section.append(('user input module - remove', 'uimrm'))
-        section.append(('user input module - read only', 'uimro'))
-
-    def _read_user_input_wrapper_from_disk(self):
-        result = self._user_input_module_manager._execute(
-            path=self._user_input_module_path,
-            attribute_names=('user_input_wrapper',),
-            )
-        assert len(result) == 1
-        result = result[0]
-        return result
-
     @staticmethod
     def _replace_in_file(file_path, old, new):
         with file(file_path, 'r') as file_pointer:
@@ -590,46 +463,7 @@ class MaterialPackageManager(PackageManager):
         message = 'stub material definition written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
-    def _write_user_input_module_stub(self, prompt=False):
-        wrapper = self._initialize_empty_user_input_wrapper()
-        self._write_user_input_wrapper(wrapper)
-        self._io_manager.proceed(
-            'stub user input module written to disk.',
-            prompt=prompt,
-            )
-
-    def _write_user_input_wrapper(self, wrapper):
-        lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append(self._abjad_import_statement + '\n')
-        import_statements = wrapper.user_input_module_import_statements[:]
-        import_statements = \
-            stringtools.add_terminal_newlines(import_statements)
-        lines.extend(import_statements)
-        lines.append('\n\n')
-        formatted_lines = wrapper.formatted_lines
-        formatted_lines = stringtools.add_terminal_newlines(formatted_lines)
-        lines.extend(formatted_lines)
-        lines = ''.join(lines)
-        with file(self._user_input_module_path, 'w') as file_pointer:
-            file_pointer.write(lines)
-
     ### PUBLIC METHODS ###
-
-    def clear_user_input_wrapper(self, prompt=False):
-        r'''Clears user input wrapper.
-
-        Returns none.
-        '''
-        if self._user_input_wrapper_in_memory.is_empty:
-            message = 'user input already empty.'
-            self._io_manager.proceed(message, prompt=prompt)
-        else:
-            self._user_input_wrapper_in_memory.clear()
-            wrapper = self._user_input_wrapper_in_memory
-            self._write_user_input_wrapper(wrapper)
-            message = 'user input wrapper cleared and written to disk.'
-            self._io_manager.proceed(message, prompt=prompt)
 
     def display_user_input_demo_values(self, prompt=True):
         r'''Displays user input demo values.
@@ -750,53 +584,6 @@ class MaterialPackageManager(PackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager.proceed(message)
-
-    def load_user_input_wrapper_demo_values(self, prompt=False):
-        r'''Loads user input wrapper demo values.
-
-        Returns none.
-        '''
-        user_input_demo_values = type(self).user_input_demo_values.fget(self)
-        user_input_demo_values = copy.deepcopy(user_input_demo_values)
-        for key, value in user_input_demo_values:
-            self._user_input_wrapper_in_memory[key] = value
-        wrapper = self._user_input_wrapper_in_memory
-        self._write_user_input_wrapper(wrapper)
-        self._io_manager.proceed(
-            'demo values loaded and written to disk.',
-            prompt=prompt,
-            )
-
-    def populate_user_input_wrapper(self, prompt=False):
-        r'''Populates user input wrapper.
-
-        Returns none.
-        '''
-        total_elements = len(self._user_input_wrapper_in_memory)
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_integer_in_range(
-            'start at element number',
-            1,
-            total_elements,
-            default_value=1,
-            )
-        start_element_number = getter._run()
-        if self._should_backtrack():
-            return
-        current_element_number = start_element_number
-        current_element_index = current_element_number - 1
-        while True:
-            self._edit_user_input_wrapper_at_number(
-                current_element_number,
-                include_newline=False,
-                )
-            if self._should_backtrack():
-                return
-            current_element_index += 1
-            current_element_index %= total_elements
-            current_element_number = current_element_index + 1
-            if current_element_number == start_element_number:
-                break
 
     def remove_definition_module(self, prompt=True):
         r'''Removes material definition module.
