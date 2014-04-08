@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session(is_test=True)
 
 
 def test_Selector_make_performer_selector_01():
 
-    session = scoremanager.core.Session(is_test=True)
     session._set_test_score('red_example_score')
     selector = scoremanager.iotools.Selector(session=session)
     selector = selector.make_performer_selector()

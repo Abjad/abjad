@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session(is_test=True)
 
 
 def test_Selector_make_material_package_selector_01():
 
-    selector = scoremanager.iotools.Selector()
+    selector = scoremanager.iotools.Selector(session=session)
     selector = selector.make_material_package_selector(
         output_class_name='ArticulationHandler',
         )

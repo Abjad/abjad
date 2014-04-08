@@ -24,7 +24,6 @@ class Selector(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    # TODO: force session to be not none on input
     def __init__(
         self,
         is_numbered=True,
@@ -34,6 +33,7 @@ class Selector(ScoreManagerObject):
         session=None,
         where=None,
         ):
+        assert session is not None
         ScoreManagerObject.__init__(self, session=session)
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged

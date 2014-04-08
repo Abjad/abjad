@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session(is_test=True)
 
 
 def test_Selector_make_score_tools_performer_name_selector_01():
 
-    selector = scoremanager.iotools.Selector()
+    selector = scoremanager.iotools.Selector(session=session)
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
     input_ = 'q'
@@ -24,7 +25,8 @@ def test_Selector_make_score_tools_performer_name_selector_01():
 
 def test_Selector_make_score_tools_performer_name_selector_02():
 
-    selector = scoremanager.iotools.Selector()
+    session._reinitialize()
+    selector = scoremanager.iotools.Selector(session=session)
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
     input_ = 'vn'
@@ -33,7 +35,8 @@ def test_Selector_make_score_tools_performer_name_selector_02():
 
 def test_Selector_make_score_tools_performer_name_selector_03():
 
-    selector = scoremanager.iotools.Selector()
+    session._reinitialize()
+    selector = scoremanager.iotools.Selector(session=session)
     selector = selector.make_score_tools_performer_name_selector(
         is_ranged=True)
     selector._session._is_test = True
