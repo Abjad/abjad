@@ -136,7 +136,7 @@ class MaterialPackageWrangler(Wrangler):
         user_library=True,
         abjad_score_packages=True,
         user_score_packages=True,
-        output_class_name='',
+        output_material_class_name='',
         ):
         from scoremanager import managers
         superclass = super(MaterialPackageWrangler, self)
@@ -146,7 +146,7 @@ class MaterialPackageWrangler(Wrangler):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
-        if not output_class_name:
+        if not output_material_class_name:
             return paths
         result = []
         for path in paths:
@@ -154,8 +154,8 @@ class MaterialPackageWrangler(Wrangler):
                 path=path,
                 session=self._session,
                 )
-            metadatum = manager._get_metadatum('output_class_name')
-            if metadatum and metadatum == output_class_name:
+            metadatum = manager._get_metadatum('output_material_class_name')
+            if metadatum and metadatum == output_material_class_name:
                 result.append(path)
         return result
 
@@ -229,7 +229,7 @@ class MaterialPackageWrangler(Wrangler):
             return
         self._make_material_package(path, definition_module_stub=False)
         manager = self._get_manager(path)
-        manager._add_metadatum('output_class_name', class_.__name__)
+        manager._add_metadatum('output_material_class_name', class_.__name__)
         empty_target = class_()
         if type(empty_target) is list:
             storage_format = repr(empty_target)

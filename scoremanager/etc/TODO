@@ -135,5 +135,3 @@
 
 29. Make '?' during user input getter.
     Should show local help message.
-
-30. Change output_class_name to output_material_class_name.

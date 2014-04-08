@@ -309,7 +309,7 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_material_package_selector(self, output_class_name=''):
+    def make_material_package_selector(self, output_material_class_name=''):
         r'''Makes material package selector.
 
         Returns selector.
@@ -317,7 +317,7 @@ class Selector(ScoreManagerObject):
         from scoremanager import wranglers
         wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
-            output_class_name=output_class_name,
+            output_material_class_name=output_material_class_name,
             )
         package_paths = []
         for path in paths:

@@ -819,7 +819,7 @@ class MaterialPackageManager(PackageManager):
         lines.extend(body_lines)
         contents = ''.join(lines)
         self._output_module_manager._write(contents)
-        output_class_name = type(output_material).__name__
-        self._add_metadatum('output_class_name', output_class_name)
+        output_material_class_name = type(output_material).__name__
+        self._add_metadatum('output_material_class_name', output_material_class_name)
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
