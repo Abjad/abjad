@@ -167,8 +167,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             else:
                 denominator = mathtools.least_common_multiple(
                     self.denominator, expr.denominator)
-                self_multiplier = denominator / self.denominator
-                expr_multiplier = denominator / expr.denominator
+                self_multiplier = denominator // self.denominator
+                expr_multiplier = denominator // expr.denominator
                 self_numerator = self_multiplier * self.numerator
                 expr_numerator = expr_multiplier * expr.numerator
                 return NonreducedFraction(
