@@ -13,17 +13,14 @@ class TranscriptEntry(AbjadObject):
     __slots__ = (
         '_current_time',
         '_lines',
-        '_terminal_was_cleared',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, lines, terminal_was_cleared=None):
-        assert isinstance(terminal_was_cleared, (bool, type(None)))
+    def __init__(self, lines):
         current_time = datetime.datetime.fromtimestamp(time.time())
         self._current_time = current_time
         self._lines = lines[:]
-        self._terminal_was_cleared = terminal_was_cleared
 
     ### SPECIAL METHODS ###
 
@@ -39,8 +36,6 @@ class TranscriptEntry(AbjadObject):
     def _format(self):
         result = []
         result.append(str(self.current_time))
-        if self.terminal_was_cleared:
-            result.append('terminal_was_cleared=True')
         for line in self.lines:
             result.append(line)
         return '\n'.join(result)
@@ -78,14 +73,6 @@ class TranscriptEntry(AbjadObject):
         Returns list.
         '''
         return self._lines
-
-    @property
-    def terminal_was_cleared(self):
-        r'''Is true when terminal was cleared. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._terminal_was_cleared
 
     @property
     def title(self):

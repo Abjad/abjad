@@ -37,12 +37,9 @@ class Transcript(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _append_entry(self, lines, terminal_was_cleared=None):
+    def _append_entry(self, lines):
         from scoremanager import iotools
-        entry = iotools.TranscriptEntry(
-            lines,
-            terminal_was_cleared=terminal_was_cleared,
-            )
+        entry = iotools.TranscriptEntry(lines)
         self.entries.append(entry)
 
     def _write(self, transcripts_directory=None):
