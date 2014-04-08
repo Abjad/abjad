@@ -8,16 +8,19 @@ from abjad.tools import lilypondparsertools
 from abjad.tools import quantizationtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
+from abjad.tools import systemtools
 
 
 # TODO: make these work
 _classes_to_fix = (
     documentationtools.ClassDocumenter,
+    documentationtools.Pipe,
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
     quantizationtools.ParallelJobHandlerWorker,
     rhythmtreetools.RhythmTreeParser,
+    systemtools.RedirectedStreams,
     )
 
 classes = documentationtools.list_all_abjad_classes()
