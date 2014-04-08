@@ -14,6 +14,7 @@ class Selector(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_breadcrumb',
         '_is_numbered',
         '_is_ranged',
         '_items',
@@ -26,6 +27,7 @@ class Selector(ScoreManagerObject):
 
     def __init__(
         self,
+        breadcrumb=None,
         is_numbered=True,
         is_ranged=False,
         items=None,
@@ -35,6 +37,7 @@ class Selector(ScoreManagerObject):
         ):
         assert session is not None
         ScoreManagerObject.__init__(self, session=session)
+        self._breadcrumb = breadcrumb
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._items = items or []
@@ -44,8 +47,15 @@ class Selector(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _breadcrumb(self):
-        return 'select:'
+    def breadcrumb(self):
+        r'''Gets selector breadcrumb.
+
+        Returns string or none.
+        '''
+        if self._breadcrumb is None:
+            return 'select:'
+        else:
+            return 'select {}:'.format(self._breadcrumb)
 
     ### PRIVATE METHODS ###
 
@@ -295,6 +305,7 @@ class Selector(ScoreManagerObject):
         selector = type(self)(
             session=self._session,
             items=classes,
+            breadcrumb='class',
             )
         return selector
 

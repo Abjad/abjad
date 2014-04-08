@@ -192,16 +192,19 @@ class Session(abctools.AbjadObject):
         self.transcript._write()
 
     def _format_controller_breadcrumbs(self):
-        #assert self.controller_stack
         if not self.controller_stack:
-            return ['(Test)']
+            return ['']
         result_lines = []
-        breadcrumb = self.controller_stack[0]._breadcrumb
+        first_controller = self.controller_stack[0]
+        breadcrumb = getattr(first_controller, 'breadcrumb', None)
+        breadcrumb = breadcrumb or first_controller._breadcrumb
+        #breadcrumb = self.controller_stack[0]._breadcrumb
         if breadcrumb:
             result_lines.append(breadcrumb)
         hanging_indent_width = 5
         for controller in self.controller_stack[1:]:
-            breadcrumb = controller._breadcrumb
+            breadcrumb = getattr(controller, 'breadcrumb', None)
+            breadcrumb = breadcrumb or controller._breadcrumb
             if not breadcrumb:
                 continue
             if result_lines:
@@ -1068,7 +1071,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.menu_header
-                '(Test)'
+                ''
 
         Returns string.
         '''
