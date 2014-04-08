@@ -137,5 +137,3 @@
     Should show local help message.
 
 30. Change output_class_name to output_material_class_name.
-
-31. Remove all references to user input wrapper.
