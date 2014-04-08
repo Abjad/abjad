@@ -779,7 +779,7 @@ class Wrangler(Controller):
                 session=self._session,
                 )
             manager.repository_status(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._session._hide_next_redraw = True
 
     def revert_to_repository(self, prompt=True):
         r'''Reverts assets from repository.

@@ -8,11 +8,12 @@ def test_ScorePackageManager_repository_status_01():
     r'''Works with Git.
     '''
 
-    input_ = 'red~example~score rst default q'
+    input_ = 'red~example~score rst q'
     score_manager._run(pending_user_input=input_)
     string = '# On branch master'
 
     assert string in score_manager._transcript.titles
+    assert score_manager._session.proceed_count == 0
 
 
 def test_ScorePackageManager_repository_status_02():
@@ -23,8 +24,9 @@ def test_ScorePackageManager_repository_status_02():
     if not name:
         return
 
-    input_ = 'ssl {} rst default q'.format(name)
+    input_ = 'ssl {} rst q'.format(name)
     score_manager._run(pending_user_input=input_)
-    string = 'Press return to continue.'
+    string = '...'
 
-    assert string in score_manager._transcript.titles
+    assert string in score_manager._transcript.contents
+    assert score_manager._session.proceed_count == 0

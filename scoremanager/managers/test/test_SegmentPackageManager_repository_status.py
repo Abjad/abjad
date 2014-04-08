@@ -8,11 +8,12 @@ def test_SegmentPackageManager_repository_status_01():
     r'''Works with Git.
     '''
 
-    input_ = 'red~example~score g rst default q'
+    input_ = 'red~example~score g rst q'
     score_manager._run(pending_user_input=input_)
     string = '# On branch master'
 
     assert string in score_manager._transcript.titles
+    assert score_manager._session.proceed_count == 0
 
 
 def test_SegmentPackageManager_repository_status_02():
@@ -30,3 +31,4 @@ def test_SegmentPackageManager_repository_status_02():
     assert titles[0].endswith('...')
     assert titles[1] == ''
     assert len(titles) == 2
+    assert score_manager._session.proceed_count == 0

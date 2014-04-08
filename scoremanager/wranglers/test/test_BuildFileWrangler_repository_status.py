@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -9,22 +8,24 @@ def test_BuildFileWrangler_repository_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'u rst default q'
+    input_ = 'u rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
+    assert score_manager._session.proceed_count == 0
 
 
 def test_BuildFileWrangler_repository_status_02():
     r'''Works with Git-managed score.
     '''
 
-    input_ = 'red~example~score u rst default q'
+    input_ = 'red~example~score u rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
+    assert score_manager._session.proceed_count == 0
 
 
 def test_BuildFileWrangler_repository_status_03():
@@ -35,8 +36,8 @@ def test_BuildFileWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = 'ssl {} u rst default q'.format(score_name)
+    input_ = 'ssl {} u rst q'.format(score_name)
     score_manager._run(pending_user_input=input_)
 
-    string = 'Press return to continue.'
-    assert string in score_manager._transcript.titles
+    assert '...' in score_manager._transcript.contents
+    assert score_manager._session.proceed_count == 0

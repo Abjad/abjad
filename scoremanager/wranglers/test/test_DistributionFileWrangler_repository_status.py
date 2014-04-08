@@ -10,7 +10,7 @@ def test_DistributionFileWrangler_repository_status_01():
     '''
     pytest.skip('add some distribution files to red example score.')
 
-    input_ = 'd rst default q'
+    input_ = 'd rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -21,7 +21,7 @@ def test_DistributionFileWrangler_repository_status_02():
     r'''Works with Git-managed score.
     '''
 
-    input_ = 'red~example~score d rst default q'
+    input_ = 'red~example~score d rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -36,8 +36,7 @@ def test_DistributionFileWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = 'ssl {} d rst default q'.format(score_name)
+    input_ = 'ssl {} d rst q'.format(score_name)
     score_manager._run(pending_user_input=input_)
 
-    string = 'Press return to continue.'
-    assert string in score_manager._transcript.titles
+    assert '> rst' in score_manager._transcript.first_lines

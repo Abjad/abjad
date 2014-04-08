@@ -8,7 +8,7 @@ def test_MakerModuleWrangler_repository_status_01():
     r'''Works with library.
     '''
 
-    input_ = 'k rst default q'
+    input_ = 'k rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -19,7 +19,7 @@ def test_MakerModuleWrangler_repository_status_02():
     r'''Works with Git-managed makers directory.
     '''
 
-    input_ = 'red~example~score k rst default q'
+    input_ = 'red~example~score k rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -34,8 +34,7 @@ def test_MakerModuleWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = 'ssl {} k rst default q'.format(score_name)
+    input_ = 'ssl {} k rst q'.format(score_name)
     score_manager._run(pending_user_input=input_)
 
-    string = 'Press return to continue.'
-    assert string in score_manager._transcript.titles
+    assert '> rst' in score_manager._transcript.first_lines

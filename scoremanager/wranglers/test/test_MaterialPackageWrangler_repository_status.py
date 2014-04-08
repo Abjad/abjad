@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_repository_status_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'm rst default q'
+    input_ = 'm rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_repository_status_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score m rst default q'
+    input_ = 'red~example~score m rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 

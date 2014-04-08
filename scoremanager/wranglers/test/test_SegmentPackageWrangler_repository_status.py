@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_repository_status_01():
     r'''Works with library.
     '''
 
-    input_ = 'g rst default q'
+    input_ = 'g rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
@@ -19,7 +19,7 @@ def test_SegmentPackageWrangler_repository_status_02():
     r'''Works with Git-managed segment package.
     '''
 
-    input_ = 'red~example~score g rst default q'
+    input_ = 'red~example~score g rst q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
