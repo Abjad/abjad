@@ -61,7 +61,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must successfully initialize articulation.'
         self._make_prompt(
             spaced_attribute_name,
@@ -79,7 +79,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} '
+        help_template = 'value '
         help_template += ' must successfully initialize articulations.'
         self._make_prompt(
             spaced_attribute_name,
@@ -97,7 +97,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be available '
+        help_template = 'value must be available '
         help_template += 'underscore-delimited lowercase package name.'
         validation_function = predicates.is_available_snake_case_package_name
         self._make_prompt(
@@ -116,7 +116,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be boolean.'
+        help_template = 'value must be boolean.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_boolean,
@@ -133,7 +133,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must successfully initialize clef.'
         self._make_prompt(
             spaced_attribute_name,
@@ -151,7 +151,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must be valid constellation circuit id pair.'
         self._make_prompt(
             spaced_attribute_name,
@@ -169,7 +169,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be dash case file name.'
+        help_template = 'value must be dash case file name.'
         self._make_prompt(
             spaced_attribute_name,
             help_template,
@@ -186,7 +186,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = "value for {!r} must be 'up or 'down'."
+        help_template = "value must be 'up or 'down'."
         self._make_prompt(
             spaced_attribute_name,
             help_template=help_template,
@@ -203,7 +203,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be duration.'
+        help_template = 'value must be duration.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
         setup_statements.append('evaluated_user_input = Duration({})')
@@ -224,7 +224,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must successfully initialize dynamic.'
         self._make_prompt(
             spaced_attribute_name,
@@ -242,7 +242,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must be list of dynamic initializers.'
         self._make_prompt(
             spaced_attribute_name,
@@ -260,7 +260,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be existing package name.'
+        help_template = 'value must be existing package name.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_existing_package_name,
@@ -277,7 +277,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} may be anything.'
+        help_template = 'value may be anything.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=lambda expr: True,
@@ -294,7 +294,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be hairpin menu_entry.'
+        help_template = 'value must be hairpin menu_entry.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_hairpin_token,
@@ -311,7 +311,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be hairpin menu_entries.'
+        help_template = 'value must be hairpin menu_entries.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.are_hairpin_tokens,
@@ -328,7 +328,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be integer.'
+        help_template = 'value must be integer.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_integer,
@@ -354,7 +354,7 @@ class PromptMakerMixin(AbjadObject):
             stop=stop,
             allow_none=allow_none,
             )
-        help_template = 'value for {!r} must be '
+        help_template = 'value must be '
         help_template += 'integer between {} and {}, inclusive.'
         self._make_prompt(
             spaced_attribute_name,
@@ -373,7 +373,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be integers.'
+        help_template = 'value must be integers.'
         function = lambda x: all(predicates.is_integer(y) for y in x)
         self._make_prompt(
             spaced_attribute_name,
@@ -391,7 +391,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be list.'
+        help_template = 'value must be list.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_list,
@@ -408,7 +408,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be lists.'
+        help_template = 'value must be lists.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.are_lists,
@@ -425,7 +425,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be markup.'
+        help_template = 'value must be markup.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
         setup_statements.append('evaluated_user_input = markuptools.Markup({})')
@@ -447,7 +447,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be argument range.'
+        help_template = 'value must be argument range.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_list,
@@ -465,7 +465,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be named chromatic pitch.'
+        help_template = 'value must be named chromatic pitch.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
         string = 'evaluated_user_input = pitchtools.NamedPitch({!r})'
@@ -487,7 +487,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be nonnegative integer.'
+        help_template = 'value must be nonnegative integer.'
         function = lambda x: 0 < x
         self._make_prompt(
             spaced_attribute_name,
@@ -505,7 +505,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be nonnegative integers.'
+        help_template = 'value must be nonnegative integers.'
         function = lambda x: all(isinstance(y, int) and 0 <= y for y in x)
         self._make_prompt(
             spaced_attribute_name,
@@ -523,7 +523,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be nonzero integers.'
+        help_template = 'value must be nonzero integers.'
         function = lambda x: all(isinstance(y, int) and not y == 0 for y in x)
         self._make_prompt(
             spaced_attribute_name,
@@ -541,7 +541,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be pitch range.'
+        help_template = 'value must be pitch range.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
         setup_statements.append(
@@ -564,7 +564,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r}'
+        help_template = 'value'
         help_template += ' must be positive integer power of two.'
         self._make_prompt(
             spaced_attribute_name,
@@ -582,7 +582,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be positive integers.'
+        help_template = 'value must be positive integers.'
         function = lambda expr: all(
             mathtools.is_positive_integer(x) for x in expr)
         self._make_prompt(
@@ -601,7 +601,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be '
+        help_template = 'value must be '
         help_template += 'underscore-delimited lowercase file name.'
         self._make_prompt(
             spaced_attribute_name,
@@ -619,7 +619,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be '
+        help_template = 'value must be '
         help_template += 'snake case file name with extension.'
         self._make_prompt(
             spaced_attribute_name,
@@ -638,7 +638,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be '
+        help_template = 'value must be '
         help_template += 'underscore-delimited lowercase package name '
         help_template += 'of length at least 3.'
         self._make_prompt(
@@ -663,11 +663,11 @@ class PromptMakerMixin(AbjadObject):
                 return bool(expr)
             return False
         if allow_empty:
-            help_template = 'value for {!r} must be'
+            help_template = 'value must be'
             help_template += ' snake-case string.'
             validation_function = stringtools.is_snake_case_string
         else:
-            help_template = 'value for {!r} must be nonempty'
+            help_template = 'value must be nonempty'
             help_template += ' snake-case string.'
             validation_function = is_nonempty_snake_case_string
         self._make_prompt(
@@ -686,7 +686,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} '
+        help_template = 'value '
         help_template += ' must be space-delimited lowercase string.'
         self._make_prompt(
             spaced_attribute_name,
@@ -707,10 +707,10 @@ class PromptMakerMixin(AbjadObject):
         '''
         if allow_empty:
             validation_function = predicates.is_string
-            help_template = 'value for {!r} must be string.'
+            help_template = 'value must be string.'
         else:
             validation_function = predicates.is_nonempty_string
-            help_template = 'value for {!r} must be nonempty string.'
+            help_template = 'value must be nonempty string.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=validation_function,
@@ -727,7 +727,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be string or none.'
+        help_template = 'value must be string or none.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_string_or_none,
@@ -744,7 +744,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be strings.'
+        help_template = 'value must be strings.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.are_strings,
@@ -761,8 +761,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} '
-        help_template += ' must be symbolic pitch range string.'
+        help_template = 'value must be symbolic pitch range string.'
         help_template += ' Ex: [A0, C8].'
         self._make_prompt(
             spaced_attribute_name,
@@ -782,7 +781,7 @@ class PromptMakerMixin(AbjadObject):
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must successfully initialize tempo.'
+        help_template = 'value must successfully initialize tempo.'
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_tempo_token,
