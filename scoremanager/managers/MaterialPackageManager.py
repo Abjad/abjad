@@ -331,14 +331,10 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         if os.path.isfile(self._definition_module_path):
-            section = menu.make_command_section(
-                name=name,
-                default_index=0
-                )
+            section = menu.make_command_section(name=name)
             section.append(('definition module - edit', 'dme'))
             section.append(('definition module - interpret', 'dmi'))
-            string = 'definition module - remove'
-            section.append((string, 'dmrm'))
+            section.append(('definition module - remove', 'dmrm'))
             section.append(('definition module - stub', 'dms'))
         else:
             section = menu.make_command_section(name=name)
