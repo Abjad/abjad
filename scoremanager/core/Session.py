@@ -71,6 +71,7 @@ class Session(abctools.AbjadObject):
         '_last_asset_path',
         '_menu_header_width',
         '_pending_user_input',
+        '_proceed_count',
         '_rewrite_cache',
         '_score_manager',
         '_scores_to_display',
@@ -137,6 +138,7 @@ class Session(abctools.AbjadObject):
         self._last_asset_path = None
         self._menu_header_width = 160
         self._pending_user_input = pending_user_input
+        self._proceed_count = 0
         self._rewrite_cache = False
         self._score_manager = None
         if is_test:
@@ -1106,6 +1108,22 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         return self._pending_user_input
+
+    @property
+    def proceed_count(self):
+        r'''Gets the number of times IOManager.proceed()
+        has been called in session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.proceed_count
+                0
+
+        Returns nonnegative integer.
+        '''
+        return self._proceed_count
 
     @property
     def rewrite_cache(self):

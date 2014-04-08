@@ -623,6 +623,7 @@ class IOManager(IOManager):
 
         Returns none.
         '''
+        self._session._proceed_count += 1
         message = message or 'press return to continue.'
         assert isinstance(message, str)
         if not prompt:
