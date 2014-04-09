@@ -307,7 +307,7 @@ class MaterialPackageManager(PackageManager):
         self._make_illustration_pdf_menu_section(menu)
         self._make_initializer_menu_section(menu)
         self._make_material_definition_menu_section(menu)
-        self._make_material_summary_menu_section(menu)
+        self._make_autoeditor_summary_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_material_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
@@ -351,13 +351,14 @@ class MaterialPackageManager(PackageManager):
         for command in commands:
             section.append(command)
 
-    def _make_material_summary_menu_section(self, menu):
-        if os.path.isfile(self._definition_module_path):
-            return
-        if os.path.isfile(self._user_input_module_path):
-            return
-        if not os.path.isfile(self._output_module_path):
-            return
+    def _make_autoeditor_summary_menu_section(self, menu):
+        if not self._get_metadatum('use_autoeditor'):
+            if os.path.isfile(self._definition_module_path):
+                return
+            if os.path.isfile(self._user_input_module_path):
+                return
+            if not os.path.isfile(self._output_module_path):
+                return
         output_material = self._execute_output_module()
         editor = self._get_output_material_editor(target=output_material)
         if not editor:

@@ -74,7 +74,6 @@ class MaterialPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'new': self.make_new_material_package,
-            'nmc': self.make_material_package_for_editable_mainline_class,
             })
         return result
 
@@ -177,7 +176,6 @@ class MaterialPackageWrangler(Wrangler):
     def _make_material_command_menu_section(self, menu):
         section = menu.make_command_section(name='material')
         section.append(('materials - new', 'new'))
-        section.append(('materials - new for editable mainline class', 'nmc'))
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(
@@ -207,55 +205,6 @@ class MaterialPackageWrangler(Wrangler):
         self._session._is_navigating_to_score_materials = True
 
     ### PUBLIC METHODS ###
-
-    def make_material_package_for_editable_mainline_class(self):
-        r'''Make material package from editable class.
-
-        Returns none.
-        '''
-        from scoremanager import iotools
-        from scoremanager import managers
-        selector = iotools.Selector(session=self._session)
-        selector = selector.make_inventory_class_selector()
-        class_ = selector._run()
-        if self._should_backtrack():
-            return
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._user_storehouse_path
-        path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._should_backtrack():
-            return
-        self._make_material_package(path, definition_module_stub=False)
-        manager = self._get_manager(path)
-        manager._add_metadatum('output_material_class_name', class_.__name__)
-        empty_target = class_()
-        if type(empty_target) is list:
-            storage_format = repr(empty_target)
-        else:
-            storage_format = format(empty_target, 'storage')
-        body_lines = '{} = {}'.format(
-            manager._package_name,
-            storage_format,
-            )
-        body_lines = body_lines.split('\n')
-        body_lines = [_ + '\n' for _ in body_lines]
-        import_statements = [self._abjad_import_statement]
-        if 'handlertools.' in storage_format:
-            statement = 'from experimental.tools import handlertools'
-            import_statements.append(statement)
-        if ' makers.' in storage_format:
-            statement = 'from scoremanager import makers'
-            import_statements.append(statement)
-        manager.write_output_material(
-            body_lines=body_lines,
-            import_statements=import_statements,
-            output_material=empty_target,
-            prompt=False,
-            )
-        manager.autoedit_output_material()
-        manager._run()
 
     def make_new_material_package(self):
         r'''Makes new material package.

@@ -184,15 +184,9 @@ class DirectoryManager(Manager):
             del(metadata[metadatum_name])
             was_removed = True
         except KeyError:
-            #message = 'metadatum not found: {!r}.'
-            #message = message.format(metadatum_name)
-            #self._io_manager.proceed(message)
             pass
         if was_removed:
             self.rewrite_metadata_module(metadata, prompt=False)
-            #message = 'metadatum removed: {!r}.'
-            #message = message.format(metadatum_name)
-            #self._io_manager.proceed(message)
 
     def _run_asset_manager(
         self,

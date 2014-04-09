@@ -34,6 +34,7 @@ def test_MaterialPackageManager_autoedit_output_02():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     inventory = indicatortools.TempoInventory([
@@ -43,8 +44,8 @@ def test_MaterialPackageManager_autoedit_output_02():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc TempoInventory testtempoinventory'
-        input_ += ' add d (1, 4) units 60 done add d (1, 4) units 90 done'
+        input_ = 'm new testtempoinventory pca TempoInventory default'
+        input_ += ' ma add d (1, 4) units 60 done add d (1, 4) units 90 done'
         input_ += ' done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
@@ -75,13 +76,15 @@ def test_MaterialPackageManager_autoedit_output_03():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     inventory = pitchtools.PitchRangeInventory()
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc PitchRangeInventory testpri done default q'
+        input_ = 'm new testpri'
+        input_ += ' pca PitchRangeInventory default done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -111,14 +114,15 @@ def test_MaterialPackageManager_autoedit_output_04():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     inventory = pitchtools.PitchRangeInventory([
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm nmc PitchRangeInventory testpri default'
-    input_ += ' testpri ma add range [A0, C8] done'
+    input_ = 'm new testpri pca PitchRangeInventory default'
+    input_ += ' ma add range [A0, C8] done'
     input_ += ' add range [C2, F#5] done'
     input_ += ' add range [C2, G5] done'
     input_ += ' rm 1 mv 1 2 b default q'
@@ -162,13 +166,14 @@ def test_MaterialPackageManager_autoedit_output_05():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
 
     assert not os.path.exists(path)
     try:
-        input_ = "m nmc markup testmarkupinventory"
-        input_ += " add arg r'\\italic~{~serenamente~}' done"
+        input_ = "m new testmarkupinventory pca markup default"
+        input_ += " ma add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done default q"
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
@@ -199,14 +204,16 @@ def test_MaterialPackageManager_autoedit_output_06():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc OctaveTranspositionMappingInventory'
-        input_ += ' testoctavetrans done default q'
+        input_ = 'm new testoctavetrans'
+        input_ += ' pca OctaveTranspositionMappingInventory default'
+        input_ += ' done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -236,6 +243,7 @@ def test_MaterialPackageManager_autoedit_output_07():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     mapping_1 = pitchtools.OctaveTranspositionMapping([
@@ -252,8 +260,9 @@ def test_MaterialPackageManager_autoedit_output_07():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc OctaveTranspositionMappingInventory testoctavetrans'
-        input_ += ' add add source [A0, C4) target 15 done'
+        input_ = 'm new testoctavetrans'
+        input_ += ' pca OctaveTranspositionMappingInventory default'
+        input_ += ' ma add add source [A0, C4) target 15 done'
         input_ += ' add source [C4, C8) target 27 done done'
         input_ += ' add add source [A0, C8] target -18 done'
         input_ += ' done done default q'
@@ -285,12 +294,13 @@ def test_MaterialPackageManager_autoedit_output_08():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc list testlist 17 foo done b default q'
+        input_ = 'm new testlist pca list default ma 17 foo done b default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -318,12 +328,14 @@ def test_MaterialPackageManager_autoedit_output_09():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc list testlist add 17 add foo done default q'
+        input_ = 'm new testlist pca list default'
+        input_ += ' ma add 17 add foo done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -353,6 +365,7 @@ def test_MaterialPackageManager_autoedit_output_10():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     talea = rhythmmakertools.Talea(
@@ -367,8 +380,8 @@ def test_MaterialPackageManager_autoedit_output_10():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm nmc TaleaRhythmMaker testrhythmmaker'
-        input_ += ' talea counts (-1, 2, -3, 4) denominator 16 done'
+        input_ = 'm new testrhythmmaker pca TaleaRhythmMaker default'
+        input_ += ' ma talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
         input_ += ' done default q'
@@ -401,6 +414,7 @@ def test_MaterialPackageManager_autoedit_output_11():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     handler = handlertools.ReiteratedArticulationHandler(
@@ -413,8 +427,9 @@ def test_MaterialPackageManager_autoedit_output_11():
 
     assert not os.path.exists(path)
     try:
-        input_ = "m nmc ReiteratedArticulationHandler testarticulationhandler"
-        input_ += " al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
+        input_ = "m new testarticulationhandler"
+        input_ += " pca ReiteratedArticulationHandler default"
+        input_ += " ma al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done default q"
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
@@ -446,6 +461,7 @@ def test_MaterialPackageManager_autoedit_output_12():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
+        'definition.py',
         'output.py',
         ]
     handler = handlertools.ReiteratedDynamicHandler(
@@ -454,8 +470,9 @@ def test_MaterialPackageManager_autoedit_output_12():
         )
 
     try:
-        input_ = 'm nmc ReiteratedDynamicHandler testdynamichandler'
-        input_ += ' dy f md (1, 16) done default q'
+        input_ = 'm new testdynamichandler'
+        input_ += ' pca ReiteratedDynamicHandler default'
+        input_ += ' ma dy f md (1, 16) done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
