@@ -4,9 +4,6 @@ import scoremanager
 
 
 def test_ScoreManager__make_main_menu_01():
-    r'''Performance. Sets is_test=True to run with source code tracking
-    turned off.
-    '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_test = True

@@ -142,32 +142,29 @@ class Menu(ScoreManagerObject):
 
     def _display(self):
         from scoremanager import iotools
-        #context = iotools.SourceCodeContext(self)
-        #with context:
-        if True:
-            self._clear_terminal()
-            if not self._session.hide_hidden_commands:
-                self._display_all_commands()
-            menu_lines = self._make_menu_lines()
-            self._io_manager.display(
-                menu_lines,
-                capitalize_first_character=False,
-                )
-            user_entered_lone_return = False
-            user_input = self._io_manager.handle_user_input('')
-            if user_input == '':
-                user_entered_lone_return = True
-            directive = self._change_user_input_to_directive(user_input)
-            directive = self._strip_default_notice_from_strings(directive)
-            self._session._hide_next_redraw = False
-            directive = self._io_manager._handle_directive(directive)
-            if directive is None and user_entered_lone_return:
-                result = 'user entered lone return'
-            elif directive is None and not user_entered_lone_return:
-                result = None
-            else:
-                result = directive
-            return result
+        self._clear_terminal()
+        if not self._session.hide_hidden_commands:
+            self._display_all_commands()
+        menu_lines = self._make_menu_lines()
+        self._io_manager.display(
+            menu_lines,
+            capitalize_first_character=False,
+            )
+        user_entered_lone_return = False
+        user_input = self._io_manager.handle_user_input('')
+        if user_input == '':
+            user_entered_lone_return = True
+        directive = self._change_user_input_to_directive(user_input)
+        directive = self._strip_default_notice_from_strings(directive)
+        self._session._hide_next_redraw = False
+        directive = self._io_manager._handle_directive(directive)
+        if directive is None and user_entered_lone_return:
+            result = 'user entered lone return'
+        elif directive is None and not user_entered_lone_return:
+            result = None
+        else:
+            result = directive
+        return result
 
     def _display_all_commands(self):
         menu_lines = []

@@ -66,7 +66,6 @@ class Session(abctools.AbjadObject):
         '_is_quitting',
         '_is_repository_test',
         '_is_test',
-        '_is_tracking_source_code',
         '_last_command_was_composite',
         '_last_asset_path',
         '_menu_header_width',
@@ -132,7 +131,6 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
         self._is_test = is_test
-        self._is_tracking_source_code = None
         self._last_command_was_composite = False
         self._last_asset_path = None
         self._menu_header_width = 160
@@ -990,27 +988,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_test
-
-    @property
-    def is_tracking_source_code(self):
-        r'''Is true when session should enable source code tracking. Otherwise
-        false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_tracking_source_code
-                True
-
-        Returns boolean.
-        '''
-        if self._is_tracking_source_code is not None:
-            return self._is_tracking_source_code
-        if self.is_test:
-            return False
-        else:
-            return True
 
     @property
     def last_asset_path(self):
