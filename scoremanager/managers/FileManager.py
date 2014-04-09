@@ -97,18 +97,21 @@ class FileManager(Manager):
         self._io_manager.proceed(prompt=prompt)
 
     def _make_file_menu_section(self, menu):
-        section = menu.make_command_section(default_index=0)
+        commands = []
         if self._is_editable():
-            section.append(('file - edit', 'dme'))
-        section.append(('file - rename', 'ren'))
-        section.append(('file - remove', 'rm'))
+            commands.append(('file - edit', 'dme'))
+        commands.append(('file - rename', 'ren'))
+        commands.append(('file - remove', 'rm'))
         if self._path.endswith('.py'):
-            section.append(('file - run', 'run'))
+            commands.append(('file - run', 'run'))
         if self._path.endswith('.tex'):
-            section.append(('file - typeset', 'ts'))
+            commands.append(('file - typeset', 'ts'))
         if self._path.endswith('.pdf'):
-            section.append(('file - read only', 'v'))
-        return section
+            commands.append(('file - read only', 'v'))
+        menu.make_command_section(
+            default_index=0,
+            menu_entries=commands,
+            )
 
     def _make_main_menu(self, name='file manager'):
         menu = self._io_manager.make_menu(name=name)

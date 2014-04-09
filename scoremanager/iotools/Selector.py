@@ -63,16 +63,14 @@ class Selector(ScoreManagerObject):
             menu_entries = self._make_menu_entries()
         if not menu_entries:
             return
-        section = menu._make_section(
+        menu._make_section(
             name='assets',
             is_asset_section=True,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
+            menu_entries=menu_entries,
             return_value_attribute=self.return_value_attribute,
             )
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
-        return section
 
     def _make_main_menu(self, name='selector'):
         menu = self._io_manager.make_menu(name=name)

@@ -282,8 +282,13 @@ class Menu(ScoreManagerObject):
         return massaged_lines
 
     def _make_commands_menu_section(self):
-        section = self.make_command_section(name='commands', is_hidden=True)
-        section.append(('commands - all', '?'))
+        commands = []
+        commands.append(('commands - all', '?'))
+        self.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='commands', 
+            )
 
     def _make_default_hidden_sections(self):
         sections = []
@@ -301,52 +306,60 @@ class Menu(ScoreManagerObject):
         return sections
 
     def _make_edit_menu_section(self):
-        section = self.make_command_section(
-            name='edit',
+        commands = []
+        commands.append(('edit - current stylesheet', 'Y'))
+        self.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
+            name='edit',
             )
-        section.append(('edit - current stylesheet', 'Y'))
-        return section
 
     def _make_go_menu_section(self):
-        section = self.make_command_section(
-            name='go',
+        commands = []
+        commands.append(('go - back', 'b'))
+        commands.append(('go - home', 'h'))
+        commands.append(('go - score', 's'))
+        self.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
+            name='go',
             )
-        section.append(('go - back', 'b'))
-        section.append(('go - home', 'h'))
-        section.append(('go - score', 's'))
-        return section
 
     def _make_go_scores_menu_section(self):
-        section = self.make_command_section(
-            name='go - scores',
+        commands = []
+        commands.append(('go - next score', '>>'))
+        commands.append(('go - previous score', '<<'))
+        self.make_command_section(
             is_alphabetized=False,
             is_hidden=True,
+            menu_entries=commands,
+            name='go - scores',
             )
-        section.append(('go - next score', '>>'))
-        section.append(('go - previous score', '<<'))
-        return section
 
     def _make_go_wranglers_menu_section(self):
-        section = self.make_command_section(
-            name='go - wranglers',
-            is_hidden=True,
-            )
-        section.append(('go - build', 'u'))
-        section.append(('go - distribution', 'd'))
-        section.append(('go - makers', 'k'))
-        section.append(('go - materials', 'm'))
-        section.append(('go - segments', 'g'))
+        commands = []
+        commands.append(('go - build', 'u'))
+        commands.append(('go - distribution', 'd'))
+        commands.append(('go - makers', 'k'))
+        commands.append(('go - materials', 'm'))
+        commands.append(('go - segments', 'g'))
         if self._session.is_in_score:
-            section.append(('go - setup', 'p'))
-        section.append(('go - stylesheets', 'y'))
-        return section
+            commands.append(('go - setup', 'p'))
+        commands.append(('go - stylesheets', 'y'))
+        self.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='go - wranglers',
+            )
 
     def _make_lilypond_menu_section(self):
-        section = self.make_command_section(name='lilypond', is_hidden=True)
-        section.append(('LilyPond log - read only', 'llro'))
-        return section
+        commands = []
+        commands.append(('LilyPond log - read only', 'llro'))
+        section = self.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='lilypond', 
+            )
 
     def _make_menu_lines(self):
         result = []
@@ -359,27 +372,29 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_python_menu_section(self):
-        section = self.make_command_section(
-            name='python',
+        commands = []
+        commands.append(('Python - doctest', 'pyd'))
+        commands.append(('Python - invoke', 'pyi'))
+        commands.append(('Python - test', 'pyt'))
+        self.make_command_section(
             is_hidden=True,
             match_on_display_string=False,
+            menu_entries=commands,
+            name='python',
             )
-        section.append(('Python - doctest', 'pyd'))
-        section.append(('Python - invoke', 'pyi'))
-        section.append(('Python - test', 'pyt'))
-        return section
 
     def _make_repository_menu_section(self):
+        commands = []
+        commands.append(('repository - add', 'rad'))
+        commands.append(('repository - commit', 'rci'))
+        commands.append(('repository - revert', 'rrv'))
+        commands.append(('repository - status', 'rst'))
+        commands.append(('repository - update', 'rup'))
         section = self.make_command_section(
-            name='repository',
             is_hidden=True,
+            menu_entries=commands,
+            name='repository',
             )
-        section.append(('repository - add', 'rad'))
-        section.append(('repository - commit', 'rci'))
-        section.append(('repository - revert', 'rrv'))
-        section.append(('repository - status', 'rst'))
-        section.append(('repository - update', 'rup'))
-        return section
 
     def _make_section(
         self,
@@ -465,14 +480,23 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_session_menu_section(self):
-        section = self.make_command_section(name='session', is_hidden=True)
-        section.append(('session - display variables', 'sdv'))
+        commands = []
+        commands.append(('session - display variables', 'sdv'))
+        self.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='session', 
+            )
 
     def _make_system_menu_section(self):
-        section = self.make_command_section(name='system', is_hidden=True)
-        section.append(('system - quit', 'q'))
-        section.append(('system - shell', '!'))
-        return section
+        commands = []
+        commands.append(('system - quit', 'q'))
+        commands.append(('system - shell', '!'))
+        section = self.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='system', 
+            )
 
     def _make_tab(self, n=1):
         return 4 * n * ' '
