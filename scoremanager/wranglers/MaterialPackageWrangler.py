@@ -73,7 +73,10 @@ class MaterialPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
+            'cp': self.copy_material_package,
             'new': self.make_new_material_package,
+            'ren': self.rename_material_package,
+            'rm': self.remove_material_package,
             })
         return result
 
@@ -175,7 +178,10 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_material_command_menu_section(self, menu):
         section = menu.make_command_section(name='material')
+        section.append(('materials - copy', 'cp'))
         section.append(('materials - new', 'new'))
+        section.append(('materials - remove', 'rm'))
+        section.append(('materials - rename', 'ren'))
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(
@@ -206,6 +212,13 @@ class MaterialPackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
+    def copy_material_package(self):
+        r'''Copies material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
     def make_new_material_package(self):
         r'''Makes new material package.
 
@@ -227,3 +240,17 @@ class MaterialPackageWrangler(Wrangler):
         self._make_material_package(path)
         manager = self._get_manager(path)
         manager._run()
+
+    def remove_material_package(self):
+        r'''Removes material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def rename_material_package(self):
+        r'''Renames material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
