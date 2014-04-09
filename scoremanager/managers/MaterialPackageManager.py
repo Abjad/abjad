@@ -254,34 +254,40 @@ class MaterialPackageManager(PackageManager):
             return result
 
     def _make_illustrate_module_menu_section(self, menu):
+        commands = []
         if os.path.isfile(self._illustrate_module_path):
-            section = menu.make_command_section(
-                name='illustrate module',
-                )
+            is_hidden = False
             string = 'illustrate module - edit'
-            section.append((string, 'ime'))
+            commands.append((string, 'ime'))
             string = 'illustrate module - edit & interpret'
-            section.append((string, 'imei'))
+            commands.append((string, 'imei'))
             string = 'illustrate module - interpret'
-            section.append((string, 'imi'))
+            commands.append((string, 'imi'))
             string = 'illustrate module - remove'
-            section.append((string, 'imrm'))
+            commands.append((string, 'imrm'))
             string = 'illustrate module - stub'
-            section.append((string, 'ims'))
+            commands.append((string, 'ims'))
         else:
-            section = menu.make_command_section(
-                name='illustrate module',
-                is_hidden=True,
-                )
+            is_hidden = True
             string = 'illustrate module - stub'
-            section.append((string, 'ims'))
+            commands.append((string, 'ims'))
+        menu.make_command_section(
+            is_hidden=is_hidden,
+            menu_entries=commands,
+            name='illustrate module',
+            )
 
     def _make_illustration_ly_menu_section(self, menu):
-        if os.path.isfile(self._illustration_ly_file_path):
-            section = menu.make_command_section(name='illustration ly')
-            section.append(('illustration ly - interpret', 'lyi'))
-            section.append(('illustration ly - remove', 'lyrm'))
-            section.append(('illustration ly - read only', 'lyro'))
+        if not os.path.isfile(self._illustration_ly_file_path):
+            return
+        commands = []
+        commands.append(('illustration ly - interpret', 'lyi'))
+        commands.append(('illustration ly - remove', 'lyrm'))
+        commands.append(('illustration ly - read only', 'lyro'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='illustration ly',
+            )
 
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
@@ -289,10 +295,10 @@ class MaterialPackageManager(PackageManager):
             commands.append(('illustration pdf - remove', 'pdfrm'))
             commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
-            section = menu.make_command_section(name='illustration pdf')
-            for command in commands:
-                section.append(command)
-            return section
+            section = menu.make_command_section(
+                menu_entries=commands,
+                name='illustration pdf',
+                )
 
     def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialPackageManager, self)
@@ -329,12 +335,11 @@ class MaterialPackageManager(PackageManager):
             commands.append(('definition module - stub', 'dms'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
-            section = menu.make_command_section(
-                name='definition module',
+            menu.make_command_section(
                 is_hidden=use_autoeditor,
+                menu_entries=commands,
+                name='definition module',
                 )
-            for command in commands:
-                section.append(command)
 
     def _make_material_menu_section(self, menu):
         commands = []         
@@ -343,9 +348,10 @@ class MaterialPackageManager(PackageManager):
         if os.path.isfile(self._output_module_path):
             commands.append(('material - illustrate', 'mi'))
         if commands:
-            section = menu.make_command_section(name='material')
-        for command in commands:
-            section.append(command)
+            menu.make_command_section(
+                menu_entries=commands,
+                name='material',
+                )
 
     def _make_autoeditor_summary_menu_section(self, menu):
         if not self._get_metadatum('use_autoeditor'):
@@ -399,9 +405,10 @@ class MaterialPackageManager(PackageManager):
         if self._can_make_output_material():
             commands.append(('output module - write', 'omw'))
         if commands:
-            section = menu.make_command_section(name='output module')
-            for command in commands:
-                section.append(command)
+            menu.make_command_section(
+                menu_entries=commands,
+                name='output module',
+                )
 
     def _make_package_configuration_menu_section(self, menu):
         commands = []
@@ -413,12 +420,11 @@ class MaterialPackageManager(PackageManager):
         if commands:
             path = self._definition_module_path
             has_definition_module = os.path.isfile(path)
-            section = menu.make_command_section(
-                name='package configuration',
+            menu.make_command_section(
                 is_hidden=has_definition_module,
+                menu_entries=commands,
+                name='package configuration',
                 )
-            for command in commands:
-                section.append(command)
 
     def _make_temporary_illustrate_module_lines(self):
         lines = []

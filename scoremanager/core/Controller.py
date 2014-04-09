@@ -114,23 +114,25 @@ class Controller(ScoreManagerObject):
         return entries
 
     def _make_directory_menu_section(self, menu, is_permanent=False):
+        commands = []
+        commands.append(('directory - list', 'ls'))
+        commands.append(('directory - list long', 'll'))
+        if not is_permanent:
+            commands.append(('directory - remove', 'rm'))
+            commands.append(('directory - rename', 'ren'))
         section = menu.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
             name='directory',
             )
-        section.append(('directory - list', 'ls'))
-        section.append(('directory - list long', 'll'))
-        if not is_permanent:
-            section.append(('directory - remove', 'rm'))
-            section.append(('directory - rename', 'ren'))
-        return section
 
     def _make_done_menu_section(self, menu):
-        section = menu.make_navigation_section(
+        commands = []
+        commands.append(('done', 'done'))
+        menu.make_navigation_section(
+            menu_entries=commands,
             name='zzz - done',
             )
-        section.append(('done', 'done'))
-        return section
 
     def _make_initializer_menu_section(self, menu):
         commands = []
@@ -142,33 +144,33 @@ class Controller(ScoreManagerObject):
             commands.append(('initializer - stub', 'ins'))
         section = menu.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
             name='initializer',
             )
-        for command in commands:
-            section.append(command)
 
     def _make_metadata_menu_section(self, menu):
+        commands = []
+        commands.append(('metadatum - add', 'mda'))
+        commands.append(('metadatum - get', 'mdg'))
+        commands.append(('metadatum - remove', 'mdrm'))
         section = menu.make_command_section(
             is_hidden=True,
-            match_on_display_string=False,
+            menu_entries=commands,
             name='metadatum',
             )
-        section.append(('metadatum - add', 'mda'))
-        section.append(('metadatum - get', 'mdg'))
-        section.append(('metadatum - remove', 'mdrm'))
-        return section
 
     def _make_metadata_module_menu_section(self, menu):
+        commands = []
+        commands.append(('metadata module - remove', 'mdmrm'))
+        commands.append(('metadata module - rewrite', 'mdmrw'))
+        commands.append(('metadata module - read only', 'mdmro'))
         section = menu.make_command_section(
             is_hidden=True,
-            match_on_display_string=False,
+            menu_entries=commands,
             name='metadata module',
             )
-        section.append(('metadata module - remove', 'mdmrm'))
-        section.append(('metadata module - rewrite', 'mdmrw'))
-        section.append(('metadata module - read only', 'mdmro'))
-        return section
 
+    # TODO: reimplement to initialize all menu entries at initialization
     def _make_sibling_asset_tour_menu_section(self, menu):
         section = menu['go - scores']
         section.menu_entries[:] = []
@@ -179,25 +181,25 @@ class Controller(ScoreManagerObject):
         return section
 
     def _make_views_menu_section(self, menu):
+        commands = []
+        commands.append(('views - list', 'vl'))
+        commands.append(('views - new', 'vn'))
+        commands.append(('views - select', 'vs'))
         section = menu.make_command_section(
             is_hidden=True,
-            match_on_display_string=False,
+            menu_entries=commands,
             name='views',
             )
-        section.append(('views - list', 'vl'))
-        section.append(('views - new', 'vn'))
-        section.append(('views - select', 'vs'))
-        return section
 
     def _make_views_module_menu_section(self, menu):
+        commands = []
+        commands.append(('views module - remove', 'vmrm'))
+        commands.append(('views module - read only', 'vmro'))
         section = menu.make_command_section(
             is_hidden=True,
-            match_on_display_string=False,
+            menu_entries=commands,
             name='views module',
             )
-        section.append(('views module - remove', 'vmrm'))
-        section.append(('views module - read only', 'vmro'))
-        return section
 
     def _path_to_annotation(self, path, year=False):
         from scoremanager import managers

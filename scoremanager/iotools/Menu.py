@@ -418,11 +418,13 @@ class Menu(ScoreManagerObject):
             display_prepopulated_values=display_prepopulated_values,
             default_index=default_index,
             match_on_display_string=match_on_display_string,
-            menu_entries=menu_entries,
             name=name,
             return_value_attribute=return_value_attribute,
             title=title,
             )
+        menu_entries = menu_entries or ()
+        for entry in menu_entries:
+            section.append(entry)
         self.menu_sections.append(section)
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [
@@ -619,12 +621,18 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_asset_section=True,
             is_numbered=True,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='explicit',
             )
         return section
 
-    def make_attribute_section(self, menu_entries=None, name=None, title=None):
+    def make_attribute_section(
+        self, 
+        menu_entries=None, 
+        name=None, 
+        title=None,
+        ):
         r'''Makes attribute section.
 
         With these attributes:
@@ -640,6 +648,7 @@ class Menu(ScoreManagerObject):
             display_prepopulated_values=True,
             is_attribute_section=True,
             is_numbered=True,
+            menu_entries=menu_entries,
             return_value_attribute='explicit',
             name=name,
             title=title,
@@ -673,6 +682,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             default_index=default_index,
             match_on_display_string=match_on_display_string,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='key',
             )
@@ -697,6 +707,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=False,
             is_informational_section=True,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='key',
             )
@@ -719,6 +730,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             display_prepopulated_values=True,
             is_numbered=is_numbered,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='key',
             )
@@ -742,12 +754,10 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_material_summary_section=True,
             is_numbered=False,
+            menu_entries=lines,
             name=name,
             return_value_attribute='explicit',
             )
-        lines = lines or ()
-        for line in lines:
-            section.append(line)
         return section
 
     def make_navigation_section(
@@ -772,6 +782,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             is_navigation_section=True,
             match_on_display_string=match_on_display_string,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='key',
             )
@@ -800,6 +811,7 @@ class Menu(ScoreManagerObject):
             is_numbered=True,
             is_ranged=True,
             default_index=default_index,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute='display_string',
             title=title,
@@ -821,6 +833,7 @@ class Menu(ScoreManagerObject):
             name=name,
             is_asset_section=True,
             is_numbered=True,
+            menu_entries=menu_entries,
             return_value_attribute='number',
             )
         return section

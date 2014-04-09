@@ -253,48 +253,51 @@ class ScoreManager(Controller):
         return directories
 
     def _make_all_directories_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='all dirs',
-            is_hidden=True,
-            )
+        commands = []
         string = 'all dirs - metadata module - edit'
-        section.append((string, 'mdme'))
+        commands.append((string, 'mdme'))
         string = 'all dirs - metadata module - list'
-        section.append((string, 'mdmls'))
+        commands.append((string, 'mdmls'))
         string = 'all dirs - metadata module - rewrite'
-        section.append((string, 'mdmrw'))
-        return section
+        commands.append((string, 'mdmrw'))
+        menu.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='all dirs',
+            )
 
     def _make_all_score_packages_menu_section(self, menu):
+        commands = []
+        commands.append(('all score packages - fix', 'fix'))
         section = menu.make_command_section(
-            name='all score packages',
             is_hidden=True,
+            menu_entries=commands,
+            name='all score packages',
             )
-        string = 'all score packages - fix'
-        section.append((string, 'fix'))
-        return section
 
     def _make_cache_menu_section(self, menu):
+        commands = []
+        commands.append(('cache - read only', 'cro'))
+        commands.append(('cache - write', 'cw'))
         section = menu.make_command_section(
-            name='cache',
             is_hidden=True,
+            menu_entries=commands,
+            name='cache',
             )
-        section.append(('cache - read only', 'cro'))
-        section.append(('cache - write', 'cw'))
-        return menu
 
     def _make_library_menu_section(self, menu):
+        commands = []
+        commands.append(('library - build files', 'u'))
+        commands.append(('library - distribution files', 'd'))
+        commands.append(('library - makers', 'k'))
+        commands.append(('library - materials', 'm'))
+        commands.append(('library - segments', 'g'))
+        commands.append(('library - stylesheets', 'y'))
         section = menu.make_command_section(
-            name='library',
             is_hidden=True,
+            menu_entries=commands,
+            name='library',
             )
-        section.append(('library - build files', 'u'))
-        section.append(('library - distribution files', 'd'))
-        section.append(('library - makers', 'k'))
-        section.append(('library - materials', 'm'))
-        section.append(('library - segments', 'g'))
-        section.append(('library - stylesheets', 'y'))
-        return section
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
@@ -321,29 +324,31 @@ class ScoreManager(Controller):
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )
-        section = menu.make_asset_section()
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
+        section = menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
         return menu
 
     def _make_scores_menu_section(self, menu):
+        commands = []
+        commands.append(('scores - new', 'new'))
         section = menu.make_command_section(
+            menu_entries=commands,
             name='scores - new',
             )
-        section.append(('scores - new', 'new'))
-        return section
 
     def _make_scores_show_menu_section(self, menu):
+        commands = []
+        commands.append(('scores - show all', 'ssl'))
+        commands.append(('scores - show active', 'ssv'))
+        commands.append(('scores - show examples', 'ssx'))
+        commands.append(('scores - show mothballed', 'ssmb'))
+        commands.append(('scores - show user', 'ssu'))
         section = menu.make_command_section(
-            name='scores - show',
             is_hidden=True,
+            menu_entries=commands,
+            name='scores - show',
             )
-        section.append(('scores - show all', 'ssl'))
-        section.append(('scores - show active', 'ssv'))
-        section.append(('scores - show examples', 'ssx'))
-        section.append(('scores - show mothballed', 'ssmb'))
-        section.append(('scores - show user', 'ssu'))
-        return section
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools
