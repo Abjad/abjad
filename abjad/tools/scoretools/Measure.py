@@ -364,7 +364,7 @@ class Measure(FixedDurationContainer):
             1 <= multiplier:
             old_numerator = old_time_signature.numerator
             old_denominator = old_time_signature.denominator
-            new_denominator = old_denominator / multiplier.numerator
+            new_denominator = old_denominator // multiplier.numerator
             pair = (old_numerator, new_denominator)
             new_time_signature = indicatortools.TimeSignature(pair)
         else:
