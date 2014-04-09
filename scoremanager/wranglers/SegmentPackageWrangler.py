@@ -131,7 +131,7 @@ class SegmentPackageWrangler(Wrangler):
         self._make_all_segments_menu_section(menu)
         self._make_segments_menu_section(menu)
         self._make_directory_menu_section(menu, is_permanent=True)
-        self._make_initializer_menu_section(menu, has_initializer=True)
+        self._make_initializer_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
         self._make_views_menu_section(menu)

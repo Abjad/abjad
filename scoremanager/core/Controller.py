@@ -132,19 +132,19 @@ class Controller(ScoreManagerObject):
         section.append(('done', 'done'))
         return section
 
-    def _make_initializer_menu_section(self, menu, has_initializer=True):
-        if not has_initializer:
-            section = menu.make_command_section(name='initializer')
-            section.title = "package has no initializer: use 'ins'."
+    def _make_initializer_menu_section(self, menu):
+        commands = []
+        commands.append(('initializer - stub', 'ins'))
+        if (self._initializer_file_path and
+            os.path.isfile(self._initializer_file_path)):
+            commands.append(('initializer - remove', 'inrm'))
+            commands.append(('initializer - read only', 'inro'))
         section = menu.make_command_section(
             is_hidden=True,
-            match_on_display_string=False,
             name='initializer',
             )
-        section.append(('initializer - remove', 'inrm'))
-        section.append(('initializer - stub', 'ins'))
-        section.append(('initializer - read only', 'inro'))
-        return section
+        for command in commands:
+            section.append(command)
 
     def _make_metadata_menu_section(self, menu):
         section = menu.make_command_section(

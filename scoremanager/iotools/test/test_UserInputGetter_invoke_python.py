@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_UserInputGetter_exec_01():
+def test_UserInputGetter_invoke_python_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score p instr ps mv pyi 2**30 q'

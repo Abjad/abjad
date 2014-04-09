@@ -11,7 +11,6 @@ from scoremanager.core.Controller import Controller
 
 class Wrangler(Controller):
     r'''Wrangler.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -62,6 +61,12 @@ class Wrangler(Controller):
             return os.path.join(*parts)
         else:
             return self._abjad_storehouse_path
+
+    @property
+    def _initializer_file_path(self):
+        path = self._get_current_directory_path_of_interest()
+        if path:
+            return os.path.join(path, '__init__.py')
 
     @property
     def _user_input_to_action(self):

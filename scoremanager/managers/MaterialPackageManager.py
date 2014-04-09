@@ -171,8 +171,8 @@ class MaterialPackageManager(PackageManager):
             'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyro': self.view_illustration_ly,
+            'ma': self.autoedit_output_material,
             'mi': self.illustrate_material,
-            'me': self.edit_output_material,
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
             'omro': self.view_output_module,
@@ -303,11 +303,7 @@ class MaterialPackageManager(PackageManager):
             name=name,
             )
         self._make_illustrate_module_menu_section(menu)
-        has_initializer = os.path.isfile(self._initializer_file_path)
-        self._make_initializer_menu_section(
-            menu,
-            has_initializer=has_initializer,
-            )
+        self._make_initializer_menu_section(menu)
         self._make_material_definition_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
@@ -328,23 +324,29 @@ class MaterialPackageManager(PackageManager):
 
     def _make_material_definition_menu_section(self, menu):
         name = 'definition module'
-        if not os.path.isfile(self._initializer_file_path):
-            return
+        commands = []
         if os.path.isfile(self._definition_module_path):
-            section = menu.make_command_section(name=name)
-            section.append(('definition module - edit', 'dme'))
-            section.append(('definition module - interpret', 'dmi'))
-            section.append(('definition module - remove', 'dmrm'))
-            section.append(('definition module - stub', 'dms'))
+            commands.append(('definition module - edit', 'dme'))
+            commands.append(('definition module - interpret', 'dmi'))
+            commands.append(('definition module - remove', 'dmrm'))
+            commands.append(('definition module - stub', 'dms'))
         else:
-            section = menu.make_command_section(name=name)
-            section.append(('definition module - stub', 'dms'))
+            #commands.append(('package - autoedit', 'dma'))
+            commands.append(('definition module - stub', 'dms'))
+        section = menu.make_command_section(name='definition module')
+        for command in commands:
+            section.append(command)
 
     def _make_material_menu_section(self, menu):
-        section = menu.make_command_section(name='material')
-        section.append(('material - edit', 'me'))
-        section.append(('material - illustrate', 'mi'))
-        return section
+        commands = []         
+        if os.path.isfile(self._output_module_path):
+            commands.append(('material - autoedit', 'ma'))
+        if os.path.isfile(self._output_module_path):
+            commands.append(('material - illustrate', 'mi'))
+        if commands:
+            section = menu.make_command_section(name='material')
+        for command in commands:
+            section.append(command)
 
     def _make_material_summary_menu_section(self, menu):
         if os.path.isfile(self._definition_module_path):
@@ -448,10 +450,10 @@ class MaterialPackageManager(PackageManager):
 
     def _run_first_time(self):
         if self._session.pending_user_input:
-            pending_user_input = 'me ' + self._session.pending_user_input
+            pending_user_input = 'ma ' + self._session.pending_user_input
             self._session._pending_user_input = pending_user_input
         else:
-            self._session._pending_user_input = 'me'
+            self._session._pending_user_input = 'ma'
         self._run()
 
     def _write_definition_module_stub(self, prompt=True):
@@ -460,6 +462,43 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.proceed(message, prompt=prompt)
 
     ### PUBLIC METHODS ###
+
+    def autoedit_output_material(self):
+        r'''Autoedits output material.
+
+        Returns none.
+        '''
+        output_material = self._execute_output_module()
+        if (hasattr(self, '_make_output_material') and
+            output_material is None and
+            self._make_output_material() and
+            isinstance(self._make_output_material(), wizards.Wizard)
+            ):
+            editor = self._make_output_material(target=output_material)
+        else:
+            editor = self._get_output_material_editor(target=output_material)
+        if not editor:
+            return
+        editor._run()
+        if self._should_backtrack():
+            return
+        output_module_import_statements = self._output_module_import_statements
+        if hasattr(self, '_make_output_module_body_lines'):
+            body_lines = self._make_output_module_body_lines(editor.target)
+        else:
+            line = '{} = {}'
+            target_repr = self._get_storage_format(
+                editor.target)
+            line = line.format(
+                self._material_package_name,
+                target_repr,
+                )
+            body_lines = [line]
+        self.write_output_material(
+            import_statements=output_module_import_statements,
+            body_lines=body_lines,
+            output_material=editor.target,
+            )
 
     def display_user_input_demo_values(self, prompt=True):
         r'''Displays user input demo values.
@@ -497,41 +536,6 @@ class MaterialPackageManager(PackageManager):
         '''
         self._illustrate_module_manager.edit()
 
-    def edit_output_material(self):
-        r'''Edits output material.
-
-        Returns none.
-        '''
-        output_material = self._execute_output_module()
-        if (hasattr(self, '_make_output_material') and
-            output_material is None and
-            self._make_output_material() and
-            isinstance(self._make_output_material(), wizards.Wizard)
-            ):
-            editor = self._make_output_material(target=output_material)
-        else:
-            editor = self._get_output_material_editor(target=output_material)
-        editor._run()
-        if self._should_backtrack():
-            return
-        output_module_import_statements = self._output_module_import_statements
-        if hasattr(self, '_make_output_module_body_lines'):
-            body_lines = self._make_output_module_body_lines(editor.target)
-        else:
-            line = '{} = {}'
-            target_repr = self._get_storage_format(
-                editor.target)
-            line = line.format(
-                self._material_package_name,
-                target_repr,
-                )
-            body_lines = [line]
-        self.write_output_material(
-            import_statements=output_module_import_statements,
-            body_lines=body_lines,
-            output_material=editor.target,
-            )
-
     def illustrate_material(self, prompt=True):
         r'''Illustrates material.
 
@@ -545,13 +549,12 @@ class MaterialPackageManager(PackageManager):
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
         manager = managers.FileManager(path=path, session=self._session)
-        # TODO: probably a way to combine these three methods
         manager._write(contents)
-        # TODO: test success and message accordingly
-        manager._interpret(prompt=False)
+        result = manager._interpret(prompt=False)
         manager._remove()
-        message = 'created illustration.pdf and illustration.ly files.'
-        self._io_manager.proceed(message, prompt=prompt)
+        if result:
+            message = 'created illustration.pdf and illustration.ly files.'
+            self._io_manager.proceed(message, prompt=prompt)
 
     def interpret_definition_module(self):
         r'''Runs Python on material definition module.

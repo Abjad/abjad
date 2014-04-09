@@ -254,7 +254,7 @@ class MaterialPackageWrangler(Wrangler):
             output_material=empty_target,
             prompt=False,
             )
-        manager.edit_output_material()
+        manager.autoedit_output_material()
         manager._run()
 
     def make_new_material_package(self):
