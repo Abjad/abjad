@@ -133,5 +133,12 @@
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
 
-29. Make '?' during user input getter.
-    Should show local help message.
+29. No reason to return menu sections from _make_*_menu_section() methods.
+
+30. Remove _*_asset_*_() methods from public interface of wranglers.
+    For example, SegmentPackageWrangler.make_asset() and
+    SegmentPackageWrangler.select_asset_package_path() should be
+    SegmentPackageWrangler.make_segment_package() and
+    SegmentPackageWrangler.select_segment_package_path() instead.
+    Actually it looks like it is just those two methods that need to
+    be renamed on all wranglers.
