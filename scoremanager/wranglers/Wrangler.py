@@ -795,31 +795,6 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.rewrite_metadata_module(prompt=prompt)
 
-    def select_asset_package_path(self, infinitival_phrase=None):
-        '''Selects asset package path.
-
-        Returns string.
-        '''
-        with self._controller_context:
-            while True:
-                name = '_human_readable_target_name'
-                human_readable_target_name = getattr(self, name, None)
-                breadcrumb = self._make_asset_selection_breadcrumb(
-                    human_readable_target_name=human_readable_target_name,
-                    infinitival_phrase=infinitival_phrase,
-                    )
-                menu = self._make_asset_selection_menu(
-                    packages_instead_of_paths=True,
-                    )
-                result = menu._run()
-                if self._should_backtrack():
-                    break
-                elif not result:
-                    continue
-                else:
-                    break
-            return result
-
     def select_view(self):
         r'''Selects view.
 
