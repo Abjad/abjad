@@ -1,7 +1,23 @@
 # -*- encoding: utf-8 -*-
+import os
 import pytest
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
+
+score_package_path = os.path.join(
+    configuration.abjad_score_packages_directory_path,
+    'red_example_score',
+    )
+tempo_inventory_package_path = os.path.join(
+    score_package_path,
+    'tempo_inventory',
+    )
+segment_package_path = os.path.join(
+    score_package_path,
+    'segments',
+    'segment_01',
+    )
 
 
 def test_Session_controllers_visited_01():
@@ -32,7 +48,10 @@ def test_Session_controllers_visited_02():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -49,7 +68,10 @@ def test_Session_controllers_visited_03():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            session=session,
+            path=score_package_path,
+            ),
         scoremanager.wranglers.BuildFileWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -67,7 +89,10 @@ def test_Session_controllers_visited_04():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -85,9 +110,15 @@ def test_Session_controllers_visited_05():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
-        scoremanager.managers.MaterialPackageManager(session=session),
+        scoremanager.managers.MaterialPackageManager(
+            path=tempo_inventory_package_path,
+            session=session,
+            ),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -104,7 +135,10 @@ def test_Session_controllers_visited_06():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         scoremanager.wranglers.SegmentPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -122,9 +156,15 @@ def test_Session_controllers_visited_07():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         scoremanager.wranglers.SegmentPackageWrangler(session=session),
-        scoremanager.managers.SegmentPackageManager(session=session),
+        scoremanager.managers.SegmentPackageManager(
+            path=segment_package_path,
+            session=session,
+            ),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -141,7 +181,10 @@ def test_Session_controllers_visited_08():
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.ScorePackageManager(
+            path=score_package_path,
+            session=session,
+            ),
         scoremanager.wranglers.StylesheetWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers

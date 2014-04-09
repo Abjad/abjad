@@ -392,8 +392,7 @@ class Wrangler(Controller):
         is_storehouse=False,
         ):
         if human_readable_target_name is None:
-            manager = self._asset_manager_class(session=self._session)
-            name = type(manager).__name__
+            name = self._asset_manager_class.__name__
             name = stringtools.upper_camel_case_to_space_delimited_lowercase(
                 name)
             human_readable_target_name = name

@@ -146,7 +146,8 @@ class ScoreManager(Controller):
         ):
         import scoremanager
         session = scoremanager.core.Session()
-        manager = manager_class(session=session)
+        dummy_path = os.path.sep
+        manager = manager_class(path=dummy_path, session=session)
         suffix = ()
         if isinstance(suffix, str):
             suffix = (suffix,)
@@ -167,13 +168,13 @@ class ScoreManager(Controller):
                 continue
             session = scoremanager.core.Session(is_test=True)
             manager = manager_class(path=path, session=session)
-            if repository == 'git' and \
-                manager._is_git_versioned() and \
-                manager._is_up_to_date():
+            if (repository == 'git' and
+                manager._is_git_versioned() and
+                manager._is_up_to_date()):
                 return manager
-            elif repository == 'svn' and \
-                manager._is_svn_versioned() and \
-                manager._is_up_to_date():
+            elif (repository == 'svn' and
+                manager._is_svn_versioned() and
+                manager._is_up_to_date()):
                 return manager
 
     # TODO: combine paired methods

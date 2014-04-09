@@ -24,8 +24,8 @@ class Manager(Controller):
 
     def __init__(self, path=None, session=None):
         assert session is not None
+        assert path is not None and os.path.sep in path
         Controller.__init__(self, session=session)
-        assert path is None or os.path.sep in path, repr(path)
         self._path = path
 
     ### SPECIAL METHODS ###
