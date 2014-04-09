@@ -106,7 +106,7 @@ class ScoreManager(Controller):
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
-            'new': self.make_new_score,
+            'new': self.make_score_package,
             'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
@@ -506,12 +506,12 @@ class ScoreManager(Controller):
         message = message.format(len(paths))
         self._io_manager.proceed(message, prompt=prompt)
 
-    def make_new_score(self):
+    def make_score_package(self):
         r'''Makes new score.
 
         Returns none.
         '''
-        self._score_package_wrangler.make_new_score()
+        self._score_package_wrangler.make_score_package()
 
     def manage_build_file_library(self):
         r'''Manages build file library.

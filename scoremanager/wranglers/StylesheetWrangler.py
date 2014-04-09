@@ -59,7 +59,7 @@ class StylesheetWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'new': self.make_asset,
+            'new': self.make_stylesheet,
             })
         return result
 
@@ -113,17 +113,19 @@ class StylesheetWrangler(Wrangler):
         return menu
 
     def _make_stylesheets_menu_section(self, menu):
+        commands = []
+        commands.append(('stylesheets - copy', 'cp'))
+        commands.append(('stylesheets - new', 'new'))
+        commands.append(('stylesheets - rename', 'ren'))
+        commands.append(('stylesheets - remove', 'rm'))
         section = menu.make_command_section(name='stylesheets')
-        section.append(('stylesheets - copy', 'cp'))
-        section.append(('stylesheets - new', 'new'))
-        section.append(('stylesheets - rename', 'ren'))
-        section.append(('stylesheets - remove', 'rm'))
-        return section
+        for command in commands:
+            section.append(command)
 
     ### PUBLIC METHODS ###
 
-    def make_asset(self):
-        r'''Makes asset.
+    def make_stylesheet(self):
+        r'''Makes stylesheet.
 
         Returns none.
         '''

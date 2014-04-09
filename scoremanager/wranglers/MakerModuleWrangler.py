@@ -59,6 +59,7 @@ class MakerModuleWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'new': self.make_maker_module,
             })
         return result
 
@@ -105,16 +106,19 @@ class MakerModuleWrangler(Wrangler):
         return menu
 
     def _make_maker_modules_menu_section(self, menu):
+        commands = []
+        commands.append(('maker modules - copy', 'cp'))
+        commands.append(('maker modules - new', 'new'))
+        commands.append(('maker modules - rename', 'ren'))
+        commands.append(('maker modules - remove', 'rm'))
         section = menu.make_command_section(name='maker modules')
-        section.append(('maker modules - copy', 'cp'))
-        section.append(('maker modules - new', 'new'))
-        section.append(('maker modules - rename', 'ren'))
-        section.append(('maker modules - remove', 'rm'))
+        for command in commands:
+            section.append(command)
         return section
 
     ### PUBLIC METHODS ###
 
-    def make_asset(self):
+    def make_maker_module(self):
         r'''Makes asset.
 
         Returns none.

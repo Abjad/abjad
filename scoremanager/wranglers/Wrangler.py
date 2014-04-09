@@ -85,7 +85,6 @@ class Wrangler(Controller):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'mdmro': self.view_metadata_module,
-            'new': self.make_asset,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -669,16 +668,6 @@ class Wrangler(Controller):
         lines.append('')
         self._io_manager.display(lines)
         self._io_manager.proceed()
-
-    def make_asset(self):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        path = self.get_available_path()
-        if self._should_backtrack():
-            return
-        self._make_asset(path)
 
     def make_view(self):
         r'''Makes view.

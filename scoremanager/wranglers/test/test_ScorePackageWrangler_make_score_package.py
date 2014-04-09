@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScorePackageWrangler_make_new_score_01():
+def test_ScorePackageWrangler_make_score_package_01():
     r'''Create score package.
     '''
 
