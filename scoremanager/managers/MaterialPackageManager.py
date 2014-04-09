@@ -176,6 +176,7 @@ class MaterialPackageManager(PackageManager):
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
             'omro': self.view_output_module,
+            'pca': self.configure_autoeditor,
             'pdfrm': self.remove_illustration_pdf,
             'pdfo': self.view_illustration_pdf,
             'ren': self.rename,
@@ -251,10 +252,7 @@ class MaterialPackageManager(PackageManager):
             result = result[0]
             return result
 
-    def _make_illustrate_module_menu_section(
-        self,
-        menu,
-        ):
+    def _make_illustrate_module_menu_section(self, menu):
         if os.path.isfile(self._illustrate_module_path):
             section = menu.make_command_section(
                 name='illustrate module',
@@ -302,24 +300,25 @@ class MaterialPackageManager(PackageManager):
             where=where,
             name=name,
             )
+        self._make_directory_menu_section(menu)
         self._make_illustrate_module_menu_section(menu)
+        self._make_illustration_ly_menu_section(menu)
+        self._make_illustration_pdf_menu_section(menu)
         self._make_initializer_menu_section(menu)
         self._make_material_definition_menu_section(menu)
-        self._make_metadata_menu_section(menu)
-        self._make_metadata_module_menu_section(menu)
-        self._make_illustration_ly_menu_section(menu)
-        self._make_material_menu_section(menu)
         self._make_material_summary_menu_section(menu)
+        self._make_metadata_menu_section(menu)
+        self._make_material_menu_section(menu)
+        self._make_metadata_module_menu_section(menu)
         self._make_output_module_menu_section(menu)
-        self._make_illustration_pdf_menu_section(menu)
-        self._make_directory_menu_section(menu)
+        self._make_package_configuration_menu_section(menu)
+        self._make_sibling_asset_tour_menu_section(menu)
         try:
             section = menu['material summary']
             menu.menu_sections.remove(section)
             menu.menu_sections.insert(0, section)
         except KeyError:
             pass
-        self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
     def _make_material_definition_menu_section(self, menu):
@@ -329,9 +328,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('definition module - edit', 'dme'))
             commands.append(('definition module - interpret', 'dmi'))
             commands.append(('definition module - remove', 'dmrm'))
-            commands.append(('definition module - stub', 'dms'))
         else:
-            #commands.append(('package - autoedit', 'dma'))
             commands.append(('definition module - stub', 'dms'))
         section = menu.make_command_section(name='definition module')
         for command in commands:
@@ -400,6 +397,14 @@ class MaterialPackageManager(PackageManager):
             commands.append(('output module - write', 'omw'))
         if commands:
             section = menu.make_command_section(name='output module')
+            for command in commands:
+                section.append(command)
+
+    def _make_package_configuration_menu_section(self, menu):
+        commands = []
+        commands.append(('package - configure autoeditor', 'pca'))
+        if commands:
+            section = menu.make_command_section(name='package configuration')
             for command in commands:
                 section.append(command)
 
@@ -499,6 +504,13 @@ class MaterialPackageManager(PackageManager):
             body_lines=body_lines,
             output_material=editor.target,
             )
+
+    def configure_autoeditor(self, prompt=True):
+        r'''Configures autoeditor.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def display_user_input_demo_values(self, prompt=True):
         r'''Displays user input demo values.
