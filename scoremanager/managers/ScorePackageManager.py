@@ -324,10 +324,7 @@ class ScorePackageManager(PackageManager):
         return section
 
     def _make_main_menu(self, name='score package manager'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)
         self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
@@ -370,10 +367,7 @@ class ScorePackageManager(PackageManager):
             section.append(('score pdf - open', 'pdfo'))
 
     def _make_setup_menu(self):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name='setup',
-            )
+        menu = self._io_manager.make_menu(name='setup')
         self._make_setup_menu_section(menu)
         self._make_instrumentation_menu_section(menu)
         return menu
@@ -453,7 +447,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('catalog number')
         result = getter._run()
         if self._should_backtrack():
@@ -465,7 +459,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('Forces tagline')
         assert getter._session is self._session
         result = getter._run()
@@ -492,7 +486,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('new title')
         result = getter._run()
         if self._should_backtrack():
@@ -505,7 +499,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_integer_in_range(
             'year of completion',
             start=1,
@@ -560,7 +554,7 @@ class ScorePackageManager(PackageManager):
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self._package_name)
         self._io_manager.display([line, ''])
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string("type 'clobber' to proceed")
         should_clobber = getter._run()
         if self._should_backtrack():

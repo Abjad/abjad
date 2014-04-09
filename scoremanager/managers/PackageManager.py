@@ -63,12 +63,8 @@ class PackageManager(DirectoryManager):
         self._session._is_navigating_to_previous_asset = False
         self._session._last_asset_path = self._path
 
-    def _make_main_menu(self, where=None, name='package manager'):
-        where = where or self._where
-        menu = self._io_manager.make_menu(
-            where=where,
-            name=name,
-            )
+    def _make_main_menu(self, name='package manager'):
+        menu = self._io_manager.make_menu(name=name)
         return menu
 
     def _run_first_time(self, **kwargs):

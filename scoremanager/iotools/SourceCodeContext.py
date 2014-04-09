@@ -2,6 +2,7 @@
 from abjad.tools.abctools.ContextManager import ContextManager
 
 
+# TODO: remove class
 class SourceCodeContext(ContextManager):
     r'''Source code context manager.
     '''
@@ -26,14 +27,16 @@ class SourceCodeContext(ContextManager):
 
         Returns none.
         '''
-        self._session._where = self._menu._client_source_code_location
+        #self._session._where = self._menu._client_source_code_location
+        pass
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits source code context manager.
 
         Returns none.
         '''
-        self._session._where = None
+        #self._session._where = None
+        pass
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.

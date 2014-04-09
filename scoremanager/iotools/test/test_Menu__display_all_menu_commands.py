@@ -175,16 +175,3 @@ def test_Menu__display_all_menu_commands_13():
 
     title = 'Red Example Score (2013)'
     assert transcript.last_title == title
-
-
-def test_Menu__display_all_menu_commands_14():
-    r'''Hidden menu persists after showing source code location.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score ? scl redraw q'
-    score_manager._run(pending_user_input=input_)
-    transcript = score_manager._transcript
-
-    title = 'Red Example Score (2013)'
-    assert transcript.last_title == title

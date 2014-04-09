@@ -296,11 +296,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialPackageManager, self)
-        where = self._where
-        menu = superclass._make_main_menu(
-            where=where,
-            name=name,
-            )
+        menu = superclass._make_main_menu(name=name)
         self._make_directory_menu_section(menu)
         self._make_illustrate_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
@@ -712,7 +708,7 @@ class MaterialPackageManager(PackageManager):
         base_name = os.path.basename(self._path)
         line = 'current name: {}'.format(base_name)
         self._io_manager.display(line)
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
         if self._should_backtrack():

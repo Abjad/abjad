@@ -35,7 +35,6 @@ class Menu(ScoreManagerObject):
     __slots__ = (
         '_asset_section',
         '_breadcrumb_callback',
-        '_client_source_code_location',
         '_hide_current_run',
         '_menu_sections',
         '_name',
@@ -49,7 +48,6 @@ class Menu(ScoreManagerObject):
     def __init__(
         self,
         session=None,
-        where=None,
         breadcrumb_callback=None,
         # TODO: maybe remove include_default_hidden_sections?
         include_default_hidden_sections=False,
@@ -58,7 +56,6 @@ class Menu(ScoreManagerObject):
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._breadcrumb_callback = breadcrumb_callback
-        self._client_source_code_location = where
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
@@ -145,8 +142,9 @@ class Menu(ScoreManagerObject):
 
     def _display(self):
         from scoremanager import iotools
-        context = iotools.SourceCodeContext(self)
-        with context:
+        #context = iotools.SourceCodeContext(self)
+        #with context:
+        if True:
             self._clear_terminal()
             if not self._session.hide_hidden_commands:
                 self._display_all_commands()
@@ -302,7 +300,6 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_go_wranglers_menu_section())
         sections.append(self._make_go_scores_menu_section())
         sections.append(self._make_session_menu_section())
-        sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
 
@@ -357,8 +354,8 @@ class Menu(ScoreManagerObject):
     def _make_menu_lines(self):
         result = []
         if not self.name:
-            message = '{!r} has no name.'
-            message = message.format(self)
+            message = '{!r} has no name: {!r}.'
+            message = message.format(self, self.menu_sections)
             raise Exception(message)
         result.extend(self._make_title_lines())
         result.extend(self._make_section_lines())
@@ -471,15 +468,6 @@ class Menu(ScoreManagerObject):
     def _make_session_menu_section(self):
         section = self.make_command_section(name='session', is_hidden=True)
         section.append(('session - display variables', 'sdv'))
-
-    def _make_source_code_menu_section(self):
-        section = self.make_command_section(
-            name='source code',
-            is_hidden=True,
-            )
-        section.append(('source code - edit', 'sce'))
-        section.append(('source code - location', 'scl'))
-        return section
 
     def _make_system_menu_section(self):
         section = self.make_command_section(name='system', is_hidden=True)

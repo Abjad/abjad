@@ -409,10 +409,7 @@ class Wrangler(Controller):
             return 'select {}:'.format(human_readable_target_name)
 
     def _make_asset_selection_menu(self, packages_instead_of_paths=False):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name='asset selection',
-            )
+        menu = self._io_manager.make_menu(name='asset selection')
         section = menu.make_asset_section()
         include_extensions = getattr(self, '_include_extensions', False)
         asset_menu_entries = self._make_asset_menu_entries(
@@ -514,10 +511,7 @@ class Wrangler(Controller):
         abjad_score_packages=True,
         user_score_packages=True,
         ):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name='storehouse selection',
-            )
+        menu = self._io_manager.make_menu(name='storehouse selection')
         section = menu.make_asset_section()
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
@@ -573,7 +567,7 @@ class Wrangler(Controller):
         self._session._attempted_to_commit_to_repository = True
         if self._session.is_repository_test:
             return
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('commit message')
         commit_message = getter._run()
         if self._should_backtrack():
@@ -613,7 +607,7 @@ class Wrangler(Controller):
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
             prompt_string = prompt_string or 'enter package name'
-            getter = self._io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter()
             getter.append_space_delimited_lowercase_string(prompt_string)
             name = getter._run()
             if self._should_backtrack():
@@ -692,7 +686,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         from scoremanager import iotools
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('view name')
         view_name = getter._run()
         if self._should_backtrack():
@@ -851,10 +845,7 @@ class Wrangler(Controller):
             return
         lines = []
         view_names = view_inventory.keys()
-        selector = self._io_manager.make_selector(
-            where=self._where,
-            items=view_names,
-            )
+        selector = self._io_manager.make_selector(items=view_names)
         view_name = selector._run()
         if self._should_backtrack():
             return

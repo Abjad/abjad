@@ -136,10 +136,7 @@ class DirectoryManager(Manager):
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self, name='directory manager'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         return menu
@@ -217,7 +214,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_snake_case_string('metadatum name', allow_empty=False)
         getter.append_expr('metadatum value')
         result = getter._run()
@@ -241,7 +238,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('metadatum name')
         result = getter._run()
         if self._should_backtrack():
@@ -272,7 +269,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('metadatum name')
         result = getter._run()
         if self._should_backtrack():
@@ -306,7 +303,7 @@ class DirectoryManager(Manager):
         base_name = os.path.basename(self._path)
         line = 'current name: {}'.format(base_name)
         self._io_manager.display(line)
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
         if self._should_backtrack():

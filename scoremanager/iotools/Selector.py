@@ -19,7 +19,6 @@ class Selector(ScoreManagerObject):
         '_is_ranged',
         '_items',
         '_menu_entries',
-        '_my_where',
         '_return_value_attribute',
         )
 
@@ -33,7 +32,6 @@ class Selector(ScoreManagerObject):
         items=None,
         return_value_attribute='explicit',
         session=None,
-        where=None,
         ):
         assert session is not None
         ScoreManagerObject.__init__(self, session=session)
@@ -42,7 +40,6 @@ class Selector(ScoreManagerObject):
         self._is_ranged = is_ranged
         self._items = items or []
         self._return_value_attribute = return_value_attribute
-        self._my_where = where
 
     ### PRIVATE PROPERTIES ###
 
@@ -78,10 +75,7 @@ class Selector(ScoreManagerObject):
         return section
 
     def _make_main_menu(self, name='selector'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)
         return menu
 
@@ -166,14 +160,6 @@ class Selector(ScoreManagerObject):
         Returns string.
         '''
         return self._return_value_attribute
-
-    @property
-    def where(self):
-        r'''Gets where of selector.
-
-        Returns stack or none.
-        '''
-        return self._my_where
 
     ### PUBLIC METHODS ###
 

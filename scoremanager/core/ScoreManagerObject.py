@@ -69,11 +69,6 @@ class ScoreManagerObject(object):
         return stringtools.string_to_space_delimited_lowercase(
             type(self).__name__)
 
-    @property
-    def _where(self):
-        if self._session.is_tracking_source_code:
-            return inspect.stack()[1]
-
     ### PRIVATE METHODS ###
 
     def _should_backtrack(self):

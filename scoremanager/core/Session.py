@@ -77,7 +77,6 @@ class Session(abctools.AbjadObject):
         '_scores_to_display',
         '_transcript',
         '_use_current_user_input_values_as_default',
-        '_where',
         )
 
     _variables_to_display = (
@@ -147,7 +146,6 @@ class Session(abctools.AbjadObject):
             self._scores_to_display = 'active'
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
-        self._where = None
 
     ### SPECIAL METHODS ###
 
@@ -1218,12 +1216,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._use_current_user_input_values_as_default
-
-    @property
-    def where(self):
-        r'''Gets source code location of current menu.
-        '''
-        return self._where
 
     ### PUBLIC METHODS ###
 

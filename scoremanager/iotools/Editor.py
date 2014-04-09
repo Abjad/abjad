@@ -201,10 +201,7 @@ class Editor(Controller):
         self._target = type(self.target)(*args, **kwargs)
 
     def _make_main_menu(self, name='editor'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(

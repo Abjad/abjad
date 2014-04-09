@@ -123,10 +123,7 @@ class SegmentPackageWrangler(Wrangler):
         return section
 
     def _make_main_menu(self, name='segment wrangler'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)
         self._make_all_segments_menu_section(menu)
         self._make_segments_menu_section(menu)

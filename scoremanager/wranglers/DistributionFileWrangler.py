@@ -104,10 +104,7 @@ class DistributionFileWrangler(Wrangler):
         return section
 
     def _make_main_menu(self, name='distribution wrangler'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_files_menu_section(menu)

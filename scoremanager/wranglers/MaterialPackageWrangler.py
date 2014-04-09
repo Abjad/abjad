@@ -170,7 +170,7 @@ class MaterialPackageWrangler(Wrangler):
             section.append(entry)
 
     def _make_main_menu(self, name='material package wrangler'):
-        menu = self._io_manager.make_menu(where=self._where, name=name)
+        menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)
         self._make_material_command_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)

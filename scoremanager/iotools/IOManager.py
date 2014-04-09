@@ -71,8 +71,6 @@ class IOManager(IOManager):
             'pyd': self.doctest,
             'pyi': self.invoke_python,
             'pyt': self.pytest,
-            'sce': self.edit_calling_code,
-            'scl': self.display_calling_code_line_number,
             'sdv': self._session.display_variables,
             'Y': self.edit_score_stylesheet,
             '>>': self._handle_next_score_directive,
@@ -268,7 +266,6 @@ class IOManager(IOManager):
         Returns boolean.
         '''
         getter = self.make_getter(
-            where=None,
             include_chevron=include_chevron,
             include_newlines=False,
             )
@@ -305,29 +302,6 @@ class IOManager(IOManager):
             for line in lines:
                 print line
 
-    def display_calling_code_line_number(self):
-        r'''Displays calling code line number.
-
-        Returns none.
-        '''
-        lines = []
-        where = self._session.where
-        if where is not None:
-            file_path = where[1]
-            file_name = os.path.basename(file_path)
-            line = '{}   file: {}'.format(self._make_tab(1), file_name)
-            lines.append(line)
-            line = '{} method: {}'.format(self._make_tab(1), where[3])
-            lines.append(line)
-            line = '{}   line: {}'.format(self._make_tab(1), where[2])
-            lines.append(line)
-            lines.append('')
-            self.display(lines, capitalize_first_character=False)
-            self._session._hide_next_redraw = True
-        else:
-            message = 'source code tracking is not on.'
-            self.display([message, ''])
-
     def doctest(self):
         r'''Runs doctest on most recent doctestable controller in controller
         stack.
@@ -354,24 +328,6 @@ class IOManager(IOManager):
         if self._session.is_test:
             return
         self.spawn_subprocess(command)
-
-    def edit_calling_code(self):
-        r'''Edits calling code.
-
-        Returns none.
-        '''
-        where = self._session.where
-        if where is not None:
-            file_path = where[1]
-            line_number = where[2]
-            self.open_file(
-                file_path,
-                line_number=line_number,
-                )
-        else:
-            message = 'source code tracking is not on.'
-            self.display([message, ''])
-            self._session._hide_next_redraw = True
 
     def edit_score_stylesheet(self):
         r'''Edits current stylesheet.
@@ -521,7 +477,6 @@ class IOManager(IOManager):
 
     def make_getter(
         self,
-        where=None,
         allow_none=False,
         include_chevron=True,
         include_newlines=False,
@@ -532,7 +487,6 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         getter = iotools.UserInputGetter(
-            where=where,
             session=self._session,
             allow_none=allow_none,
             include_chevron=include_chevron,
@@ -542,7 +496,6 @@ class IOManager(IOManager):
 
     def make_menu(
         self,
-        where=None,
         breadcrumb_callback=None,
         name=None,
         include_default_hidden_sections=True,
@@ -553,7 +506,6 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         menu = iotools.Menu(
-            where=where,
             session=self._session,
             breadcrumb_callback=breadcrumb_callback,
             name=name,
@@ -563,7 +515,6 @@ class IOManager(IOManager):
 
     def make_selector(
         self,
-        where=None,
         items=None,
         ):
         r'''Makes selector.
@@ -572,7 +523,6 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         selector = iotools.Selector(
-            where=where,
             session=self._session,
             items=items,
             )

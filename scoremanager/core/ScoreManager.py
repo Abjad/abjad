@@ -317,7 +317,6 @@ class ScoreManager(Controller):
             self._io_manager.write_cache(prompt=False)
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
-            where=self._where,
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )

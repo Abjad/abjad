@@ -129,10 +129,7 @@ class ListEditor(Editor):
 
     # TODO: encapsulate section-making code into separate methods
     def _make_main_menu(self, name='list editor'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(
@@ -184,7 +181,7 @@ class ListEditor(Editor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
-            getter = self._io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter()
             self._item_getter_configuration_method(
                 getter,
                 self._item_identifier,
@@ -240,7 +237,7 @@ class ListEditor(Editor):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_integer_in_range('old number', 1, len(self._items))
         getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
@@ -257,7 +254,7 @@ class ListEditor(Editor):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         items_identifier = stringtools.pluralize_string(self._item_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)

@@ -98,10 +98,7 @@ class MakerModuleWrangler(Wrangler):
         return section
 
     def _make_main_menu(self, name='make module wrangler'):
-        menu = self._io_manager.make_menu(
-            where=self._where,
-            name=name,
-            )
+        menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_maker_modules_menu_section(menu)
@@ -133,7 +130,7 @@ class MakerModuleWrangler(Wrangler):
                 )
             if self._should_backtrack():
                 return
-        getter = self._io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter()
         getter.append_string('maker name')
         file_path = getter._run()
         if self._should_backtrack():

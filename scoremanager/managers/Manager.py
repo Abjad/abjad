@@ -552,7 +552,7 @@ class Manager(Controller):
         if self._session.is_repository_test:
             return
         if commit_message is None:
-            getter = self._io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter()
             getter.append_string('commit message')
             commit_message = getter._run()
             if self._should_backtrack():
@@ -679,7 +679,7 @@ class Manager(Controller):
         message = message.format(self._path)
         if prompt:
             self._io_manager.display([message, ''])
-            getter = self._io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter()
             getter.append_string("type 'remove' to proceed")
             result = getter._run()
             if self._should_backtrack():
