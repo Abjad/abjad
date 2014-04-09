@@ -135,20 +135,10 @@
 
 29. No reason to return menu sections from _make_*_menu_section() methods.
 
-30. Remove _*_asset_*_() methods from public interface of wranglers.
-    For example, SegmentPackageWrangler.make_asset() and
-    SegmentPackageWrangler.select_asset_package_path() should be
-    SegmentPackageWrangler.make_segment_package() and
-    SegmentPackageWrangler.select_segment_package_path() instead.
-    Actually it looks like it is just those two methods that need to
-    be renamed on all wranglers.
-
-31. Make sure path=None is not none at initialization time for all
+30. Make sure path=None is not none at initialization time for all
     wranglers and all managers. This will remove many ...
         if self._path is not None:
     ... statements in manager and wrangler classfiles.
 
-32. Change Wrangler._get_current_directory_path_of_interest()
+30. Change Wrangler._get_current_directory_path_of_interest()
     to Wrangler._get_current_directory_path().
-
-33. Remove where tracking.
