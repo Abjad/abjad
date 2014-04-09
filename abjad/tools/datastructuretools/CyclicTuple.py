@@ -92,7 +92,8 @@ class CyclicTuple(AbjadObject, tuple):
         if 1000000 < stop_index:
             stop_index = len(self)
         result = []
-        start_index = 0 if start_index is None else start_index
+        if start_index is None:
+            start_index = 0
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
 
