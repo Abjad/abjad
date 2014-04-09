@@ -12,7 +12,7 @@ def test_Wrangler__read_view_inventory_from_disk_01():
     '''
 
     views_module_path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'blue_example_score',
         'segments',
         '__views__.py',

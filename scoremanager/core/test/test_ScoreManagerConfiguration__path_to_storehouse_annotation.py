@@ -44,7 +44,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_03():
     '''
 
     path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'red_example_score',
         )
     annotation = configuration._path_to_storehouse_annotation(path)

@@ -204,7 +204,7 @@ class Manager(Controller):
 
     def _get_score_package_directory_name(self):
         line = self._path
-        path = self._configuration.abjad_score_packages_directory_path
+        path = self._configuration.example_score_packages_directory_path
         line = line.replace(path, '')
         path = self._configuration.user_score_packages_directory_path
         line = line.replace(path, '')

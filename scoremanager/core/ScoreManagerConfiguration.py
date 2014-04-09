@@ -121,8 +121,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def _path_to_score_path(self, path):
         if path.startswith(self.user_score_packages_directory_path):
             prefix_length = len(self.user_score_packages_directory_path)
-        elif path.startswith(self.abjad_score_packages_directory_path):
-            prefix_length = len(self.abjad_score_packages_directory_path)
+        elif path.startswith(self.example_score_packages_directory_path):
+            prefix_length = len(self.example_score_packages_directory_path)
         else:
             return
         path_prefix = path[:prefix_length]
@@ -214,14 +214,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
 
     @property
-    def abjad_score_packages_directory_path(self):
+    def example_score_packages_directory_path(self):
         r'''Gets Abjad score packages directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_score_packages_directory_path
+                >>> configuration.example_score_packages_directory_path
                 '.../scoremanager/scores'
 
         Returns string.
@@ -551,7 +551,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         '''
         result = []
         if abjad:
-            scores_directory_path = self.abjad_score_packages_directory_path
+            scores_directory_path = self.example_score_packages_directory_path
             directory_entries = sorted(os.listdir(scores_directory_path))
             for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
@@ -563,7 +563,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         directory_path,
                         )
                     path = os.path.join(
-                        self.abjad_score_packages_directory_path,
+                        self.example_score_packages_directory_path,
                         directory_entry,
                         )
                     result.append(path)
@@ -592,8 +592,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         if path.endswith('.py'):
             path = path[:-3]
         if path.startswith(
-            self.abjad_score_packages_directory_path):
-            prefix_length = len(self.abjad_score_packages_directory_path) + 1
+            self.example_score_packages_directory_path):
+            prefix_length = len(self.example_score_packages_directory_path) + 1
         elif path.startswith(
             self.user_library_material_packages_directory_path):
             prefix_length = \

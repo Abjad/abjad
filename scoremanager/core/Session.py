@@ -244,7 +244,7 @@ class Session(abctools.AbjadObject):
         from scoremanager import managers
         assert not self.controller_stack
         path = os.path.join(
-            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.example_score_packages_directory_path,
             score_package_name,
             )
         assert os.path.exists(path)

@@ -154,7 +154,7 @@ class ScoreManager(Controller):
         assert isinstance(suffix, tuple)
         if system:
             scores_directory = \
-                self._configuration.abjad_score_packages_directory_path
+                self._configuration.example_score_packages_directory_path
         else:
             scores_directory = \
                 self._configuration.user_score_packages_directory_path
@@ -242,7 +242,7 @@ class ScoreManager(Controller):
     def _list_all_directories_with_metadata_modules(self):
         storehouses = (
             self._configuration.abjad_material_packages_directory_path,
-            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.example_score_packages_directory_path,
             self._configuration.user_library_directory_path,
             self._configuration.user_score_packages_directory_path,
             )

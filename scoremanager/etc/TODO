@@ -123,14 +123,9 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-26. Change ScoreManagerConfiguration.abjad_score_packages_directory_path
-    to ScoreManagerConfiguration.example_score_packages_directory_path.
-
-27. Make (rrv) work for Subversion-managed directories.
+26. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-28. Make 'n' user input work in confirmation dialogue.
+27. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
-
-29. No reason to return menu sections from _make_*_menu_section() methods.

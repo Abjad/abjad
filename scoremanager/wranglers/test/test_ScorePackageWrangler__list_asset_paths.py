@@ -20,7 +20,7 @@ def test_ScorePackageWrangler__list_asset_paths_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            wrangler._configuration.abjad_score_packages_directory_path,
+            wrangler._configuration.example_score_packages_directory_path,
             package_name,
             )
         paths.append(path)

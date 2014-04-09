@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler__list_storehouse_paths_02():
     paths = []
     for score_package_name in score_package_names:
         path = os.path.join(
-            wrangler._configuration.abjad_score_packages_directory_path,
+            wrangler._configuration.example_score_packages_directory_path,
             score_package_name,
             'materials',
             )

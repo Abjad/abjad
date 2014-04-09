@@ -211,7 +211,7 @@ class Controller(ScoreManagerObject):
     def _path_to_annotation(self, path, year=False):
         from scoremanager import managers
         score_storehouses = (
-            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.example_score_packages_directory_path,
             self._configuration.user_score_packages_directory_path,
             )
         if path.startswith(score_storehouses):

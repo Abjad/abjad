@@ -43,7 +43,7 @@ class ScorePackageWrangler(Wrangler):
     def __init__(self, session=None):
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
-        path = self._configuration.abjad_score_packages_directory_path
+        path = self._configuration.example_score_packages_directory_path
         self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
@@ -62,7 +62,7 @@ class ScorePackageWrangler(Wrangler):
     @property
     def _current_storehouse_path(self):
         if self._session.is_in_score:
-            path = self._configuration.abjad_score_packages_directory_path
+            path = self._configuration.example_score_packages_directory_path
             directory_entries = sorted(os.listdir(path))
             manager = self._session.current_score_package_manager
             score_name = manager._package_name

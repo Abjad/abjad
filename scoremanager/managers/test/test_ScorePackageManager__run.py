@@ -11,7 +11,7 @@ def test_ScorePackageManager__run_01():
 
     string = 'scoremanager.scores.red_example_score'
     path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'red_example_score',
         )
     session = scoremanager.core.Session(is_test=True)
@@ -61,7 +61,7 @@ def test_ScorePackageManager__run_03():
 
     string = 'scoremanager.scores.red_example_score'
     path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'red_example_score',
         )
     session = scoremanager.core.Session(is_test=True)
@@ -101,7 +101,7 @@ def test_ScorePackageManager__run_05():
 
     string = 'scoremanager.scores.red_example_score'
     path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'red_example_score',
         )
     session = scoremanager.core.Session(is_test=True)

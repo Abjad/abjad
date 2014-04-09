@@ -18,7 +18,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_01():
         repository='git',
         )
 
-    storehouse = configuration.abjad_score_packages_directory_path
+    storehouse = configuration.example_score_packages_directory_path
 
     assert isinstance(manager, scoremanager.managers.ScorePackageManager)
     assert manager._is_git_versioned()

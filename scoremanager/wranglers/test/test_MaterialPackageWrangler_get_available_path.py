@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_get_available_path_02():
     wrangler._session._pending_user_input = input_
     result = wrangler.get_available_path()
     path = os.path.join(
-        configuration.abjad_score_packages_directory_path,
+        configuration.example_score_packages_directory_path,
         'red_example_score',
         'materials',
         'foo',
