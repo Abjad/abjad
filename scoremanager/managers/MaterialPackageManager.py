@@ -179,6 +179,7 @@ class MaterialPackageManager(PackageManager):
             'pca': self.configure_autoeditor,
             'pdfrm': self.remove_illustration_pdf,
             'pdfo': self.view_illustration_pdf,
+            'pra': self.remove_autoeditor,
             'ren': self.rename,
             'uid': self.remove_user_input_module,
             'uis': self.display_user_input_demo_values,
@@ -330,9 +331,14 @@ class MaterialPackageManager(PackageManager):
             commands.append(('definition module - remove', 'dmrm'))
         else:
             commands.append(('definition module - stub', 'dms'))
-        section = menu.make_command_section(name='definition module')
-        for command in commands:
-            section.append(command)
+        if commands:
+            use_autoeditor = self._get_metadatum('use_autoeditor')
+            section = menu.make_command_section(
+                name='definition module',
+                is_hidden=use_autoeditor,
+                )
+            for command in commands:
+                section.append(command)
 
     def _make_material_menu_section(self, menu):
         commands = []         
@@ -402,9 +408,18 @@ class MaterialPackageManager(PackageManager):
 
     def _make_package_configuration_menu_section(self, menu):
         commands = []
-        commands.append(('package - configure autoeditor', 'pca'))
+        use_autoeditor = self._get_metadatum('use_autoeditor')
+        if use_autoeditor:
+            commands.append(('package - remove autoeditor', 'pra'))
+        else:
+            commands.append(('package - configure autoeditor', 'pca'))
         if commands:
-            section = menu.make_command_section(name='package configuration')
+            path = self._definition_module_path
+            has_definition_module = os.path.isfile(path)
+            section = menu.make_command_section(
+                name='package configuration',
+                is_hidden=has_definition_module,
+                )
             for command in commands:
                 section.append(command)
 
@@ -510,7 +525,42 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        from scoremanager import iotools
+        from scoremanager import managers
+        selector = iotools.Selector(session=self._session)
+        selector = selector.make_inventory_class_selector()
+        class_ = selector._run()
+        if not class_:
+            return
+        self._add_metadatum('use_autoeditor', True)
+        self._add_metadatum('output_material_class_name', class_.__name__)
+        empty_target = class_()
+        if type(empty_target) is list:
+            storage_format = repr(empty_target)
+        else:
+            storage_format = format(empty_target, 'storage')
+        body_lines = '{} = {}'.format(
+            self._package_name,
+            storage_format,
+            )
+        body_lines = body_lines.split('\n')
+        body_lines = [_ + '\n' for _ in body_lines]
+        import_statements = [self._abjad_import_statement]
+        if 'handlertools.' in storage_format:
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
+        if ' makers.' in storage_format:
+            statement = 'from scoremanager import makers'
+            import_statements.append(statement)
+        self.write_output_material(
+            body_lines=body_lines,
+            import_statements=import_statements,
+            output_material=empty_target,
+            prompt=False,
+            )
+        message = 'package configured for {} autoeditor.'
+        message = message.format(class_.__name__)
+        self._io_manager.proceed(message, prompt=prompt)
 
     def display_user_input_demo_values(self, prompt=True):
         r'''Displays user input demo values.
@@ -595,6 +645,15 @@ class MaterialPackageManager(PackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager.proceed(message)
+
+    def remove_autoeditor(self, prompt=True):
+        r'''Removes autoeditor.
+
+        Returns none.
+        '''
+        self._remove_metadatum('use_autoeditor')
+        message = 'Removed autoeditor from package.'
+        self._io_manager.proceed(message, prompt=prompt)
 
     def remove_definition_module(self, prompt=True):
         r'''Removes material definition module.

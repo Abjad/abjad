@@ -176,6 +176,7 @@ class DirectoryManager(Manager):
             result.append((display_string, None, metadata[key], key))
         return result
 
+    # TODO: remove prompt messaging
     def _remove_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
         was_removed = False
@@ -183,14 +184,15 @@ class DirectoryManager(Manager):
             del(metadata[metadatum_name])
             was_removed = True
         except KeyError:
-            message = 'metadatum not found: {!r}.'
-            message = message.format(metadatum_name)
-            self._io_manager.proceed(message)
+            #message = 'metadatum not found: {!r}.'
+            #message = message.format(metadatum_name)
+            #self._io_manager.proceed(message)
+            pass
         if was_removed:
             self.rewrite_metadata_module(metadata, prompt=False)
-            message = 'metadatum removed: {!r}.'
-            message = message.format(metadatum_name)
-            self._io_manager.proceed(message)
+            #message = 'metadatum removed: {!r}.'
+            #message = message.format(metadatum_name)
+            #self._io_manager.proceed(message)
 
     def _run_asset_manager(
         self,
