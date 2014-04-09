@@ -170,15 +170,22 @@ class Controller(ScoreManagerObject):
             name='metadata module',
             )
 
-    # TODO: reimplement to initialize all menu entries at initialization
     def _make_sibling_asset_tour_menu_section(self, menu):
         section = menu['go - scores']
-        section.menu_entries[:] = []
-        section.append(('go - next score', '>>'))
-        section.append(('go - next asset', '>'))
-        section.append(('go - previous score', '<<'))
-        section.append(('go - previous asset', '<'))
-        return section
+        menu.menu_sections.remove(section)
+        commands = []
+        commands.append(('go - next score', '>>'))
+        commands.append(('go - previous score', '<<'))
+        commands.append(('go - next score', '>>'))
+        commands.append(('go - next asset', '>'))
+        commands.append(('go - previous score', '<<'))
+        commands.append(('go - previous asset', '<'))
+        menu.make_command_section(
+            is_alphabetized=False,
+            is_hidden=True,
+            menu_entries=commands,
+            name='go - scores',
+            )
 
     def _make_views_menu_section(self, menu):
         commands = []
