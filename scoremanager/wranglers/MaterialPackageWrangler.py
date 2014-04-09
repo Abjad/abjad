@@ -165,9 +165,10 @@ class MaterialPackageWrangler(Wrangler):
         entries = self._make_asset_menu_entries()
         if not entries:
             return
-        section = menu.make_asset_section(name='assets')
-        for entry in entries:
-            section.append(entry)
+        menu.make_asset_section(
+            menu_entries=entries,
+            name='assets',
+            )
 
     def _make_main_menu(self, name='material package wrangler'):
         menu = self._io_manager.make_menu(name=name)
@@ -177,11 +178,15 @@ class MaterialPackageWrangler(Wrangler):
         return menu
 
     def _make_material_command_menu_section(self, menu):
-        section = menu.make_command_section(name='material')
-        section.append(('materials - copy', 'cp'))
-        section.append(('materials - new', 'new'))
-        section.append(('materials - remove', 'rm'))
-        section.append(('materials - rename', 'ren'))
+        commands = []
+        commands.append(('materials - copy', 'cp'))
+        commands.append(('materials - new', 'new'))
+        commands.append(('materials - remove', 'rm'))
+        commands.append(('materials - rename', 'ren'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='material',
+            )
 
     # TODO: migrate to MaterialPackageManager
     def _make_material_package(

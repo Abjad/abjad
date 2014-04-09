@@ -82,14 +82,17 @@ class SegmentPackageWrangler(Wrangler):
         return False
 
     def _make_all_segments_menu_section(self, menu):
-        section = menu.make_command_section(name='all segments')
+        commands = []
         string = 'all segments - make module - interpret'
-        section.append((string, 'mmi'))
+        commands.append((string, 'mmi'))
         string = 'all segments - lilypond file - interpret'
-        section.append((string, 'lyi'))
-        section.append(('all segments - pdf - version', 'pdfs'))
-        section.append(('all segments - pdf - open', 'pdfo'))
-        return section
+        commands.append((string, 'lyi'))
+        commands.append(('all segments - pdf - version', 'pdfs'))
+        commands.append(('all segments - pdf - open', 'pdfo'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='all segments',
+            )
 
     def _make_asset(
         self,
@@ -117,10 +120,9 @@ class SegmentPackageWrangler(Wrangler):
             )
         if not entries:
             return
-        section = menu.make_asset_section()
-        for entry in entries:
-            section.append(entry)
-        return section
+        menu.make_asset_section(
+            menu_entries=entries,
+            )
 
     def _make_main_menu(self, name='segment wrangler'):
         menu = self._io_manager.make_menu(name=name)
@@ -137,9 +139,12 @@ class SegmentPackageWrangler(Wrangler):
         return menu
 
     def _make_segments_menu_section(self, menu):
-        section = menu.make_command_section(name='segments')
-        section.append(('segments - new', 'new'))
-        return section
+        commands = []
+        commands.append(('segments - new', 'new'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='segments',
+            )
 
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_segments = True

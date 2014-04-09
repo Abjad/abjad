@@ -138,35 +138,43 @@ class BuildFileWrangler(Wrangler):
             )
         if not menu_entries:
             return
-        section = menu.make_asset_section()
+        section = menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
         menu._asset_section = section
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
-        return section
 
     def _make_back_cover_menu_section(self, menu):
-        section = menu.make_command_section(name='back cover')
-        section.append(('back cover latex - edit', 'bce'))
-        section.append(('back cover latex - generate', 'bcg'))
-        section.append(('back cover latex - typeset', 'bct'))
-        section.append(('back cover pdf - open', 'bco'))
-        return menu
+        commands = []
+        commands.append(('back cover latex - edit', 'bce'))
+        commands.append(('back cover latex - generate', 'bcg'))
+        commands.append(('back cover latex - typeset', 'bct'))
+        commands.append(('back cover pdf - open', 'bco'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='back cover',
+            )
 
     def _make_files_menu_section(self, menu):
-        section = menu.make_command_section(name='files')
-        section.append(('files - copy', 'cp'))
-        section.append(('files - new', 'new'))
-        section.append(('files - rename', 'ren'))
-        section.append(('files - remove', 'rm'))
-        return section
+        commands = []
+        commands.append(('files - copy', 'cp'))
+        commands.append(('files - new', 'new'))
+        commands.append(('files - rename', 'ren'))
+        commands.append(('files - remove', 'rm'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='files',
+            )
 
     def _make_front_cover_menu_section(self, menu):
-        section = menu.make_command_section(name='front cover')
-        section.append(('front cover latex - edit', 'fce'))
-        section.append(('front cover latex - generate', 'fcg'))
-        section.append(('front cover latex - typeset', 'fct'))
-        section.append(('front cover pdf - open', 'fco'))
-        return section
+        commands = []
+        commands.append(('front cover latex - edit', 'fce'))
+        commands.append(('front cover latex - generate', 'fcg'))
+        commands.append(('front cover latex - typeset', 'fct'))
+        commands.append(('front cover pdf - open', 'fco'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='front cover',
+            )
 
     def _make_main_menu(self, name='build wrangler'):
         menu = self._io_manager.make_menu(name=name)
@@ -182,27 +190,42 @@ class BuildFileWrangler(Wrangler):
         return menu
 
     def _make_preface_menu_section(self, menu):
-        section = menu.make_command_section(name='preface')
-        section.append(('preface latex - edit', 'pfe'))
-        section.append(('preface latex - generate', 'pfg'))
-        section.append(('preface latex - typeset', 'pft'))
-        section.append(('preface pdf - open', 'pfo'))
-        return menu
+        commands = []
+        commands.append(('preface latex - edit', 'pfe'))
+        commands.append(('preface latex - generate', 'pfg'))
+        commands.append(('preface latex - typeset', 'pft'))
+        commands.append(('preface pdf - open', 'pfo'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='preface',
+            )
 
+    # TODO: divide into three methods
     def _make_score_menu_sections(self, menu):
-        section = menu.make_command_section(name='segments?')
-        section.append(('segment lys - copy', 'lycp'))
-        section.append(('segment pdfs - copy', 'pdfcp'))
-        section = menu.make_command_section(name='segment assembly?')
-        section.append(('segment assembly ly - edit', 'sege'))
-        section.append(('segment assembly ly - lilypond', 'segly'))
-        section.append(('segment assembly pdf - open', 'sego'))
-        section = menu.make_command_section(name='score')
-        section.append(('score latex - edit', 'se'))
-        section.append(('score latex - generate', 'sg'))
-        section.append(('score latex - typeset', 'st'))
-        section.append(('score pdf - open', 'so'))
-        return menu
+        commands = []
+        commands.append(('segment lys - copy', 'lycp'))
+        commands.append(('segment pdfs - copy', 'pdfcp'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='segments?',
+            )
+        commands = []
+        commands.append(('segment assembly ly - edit', 'sege'))
+        commands.append(('segment assembly ly - lilypond', 'segly'))
+        commands.append(('segment assembly pdf - open', 'sego'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='segment assembly?',
+            )
+        commands = []
+        commands.append(('score latex - edit', 'se'))
+        commands.append(('score latex - generate', 'sg'))
+        commands.append(('score latex - typeset', 'st'))
+        commands.append(('score pdf - open', 'so'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='score',
+            )
 
     def _open_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)

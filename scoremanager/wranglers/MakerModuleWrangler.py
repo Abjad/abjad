@@ -92,11 +92,10 @@ class MakerModuleWrangler(Wrangler):
             )
         if not menu_entries:
             return
-        section = menu.make_asset_section()
+        section = menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
         menu._asset_section = section
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
-        return section
 
     def _make_main_menu(self, name='make module wrangler'):
         menu = self._io_manager.make_menu(name=name)
@@ -111,10 +110,10 @@ class MakerModuleWrangler(Wrangler):
         commands.append(('maker modules - new', 'new'))
         commands.append(('maker modules - rename', 'ren'))
         commands.append(('maker modules - remove', 'rm'))
-        section = menu.make_command_section(name='maker modules')
-        for command in commands:
-            section.append(command)
-        return section
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='maker modules',
+            )
 
     ### PUBLIC METHODS ###
 
