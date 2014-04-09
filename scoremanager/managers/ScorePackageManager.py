@@ -289,17 +289,21 @@ class ScorePackageManager(PackageManager):
         return False
 
     def _make_instrumentation_menu_section(self, menu):
-        section = menu.make_navigation_section(name='instrumentation')
-        section.append(('instrumentation', 'instr'))
-        return section
+        commands = []
+        commands.append(('instrumentation', 'instr'))
+        menu.make_navigation_section(
+            menu_entries=commands,
+            name='instrumentation',
+            )
 
     def _make_instrumentation_module_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='instrumentation',
+        commands = []
+        commands.append(('instrumentation module - read only', 'imro'))
+        menu.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
+            name='instrumentation',
             )
-        section.append(('instrumentation module - read only', 'imro'))
-        return section
 
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
@@ -314,35 +318,41 @@ class ScorePackageManager(PackageManager):
         return menu
 
     def _make_main_menu_section(self, menu):
-        section = menu.make_navigation_section(name='main')
-        section.append(('build', 'u'))
-        section.append(('distribution', 'd'))
-        section.append(('makers', 'k'))
-        section.append(('materials', 'm'))
-        section.append(('segments', 'g'))
-        section.append(('setup', 'p'))
-        section.append(('stylesheets', 'y'))
-        return section
+        commands = []
+        commands.append(('build', 'u'))
+        commands.append(('distribution', 'd'))
+        commands.append(('makers', 'k'))
+        commands.append(('materials', 'm'))
+        commands.append(('segments', 'g'))
+        commands.append(('setup', 'p'))
+        commands.append(('stylesheets', 'y'))
+        menu.make_navigation_section(
+            menu_entries=commands,
+            name='main',
+            )
 
     def _make_score_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='score',
+        commands = []
+        commands.append(('score package - fix', 'fix'))
+        commands.append(('score package - remove', 'rm'))
+        commands.append(('score package - remove unadded assets', 'rua'))
+        commands.append(('score package - rename', 'ren'))
+        menu.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
+            name='score',
             )
-        section.append(('score package - fix', 'fix'))
-        section.append(('score package - remove', 'rm'))
-        section.append(('score package - remove unadded assets', 'rua'))
-        section.append(('score package - rename', 'ren'))
-        return section
 
     def _make_score_pdf_menu_section(self, menu):
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
+            commands = []
+            commands.append(('score pdf - open', 'pdfo'))
             section = menu.make_command_section(
-                name='score pdf',
                 default_index=0,
+                menu_entries=commands,
+                name='score pdf',
                 )
-            section.append(('score pdf - open', 'pdfo'))
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(name='setup')
@@ -377,11 +387,11 @@ class ScorePackageManager(PackageManager):
         return result
 
     def _make_setup_menu_section(self, menu):
-        section = menu.make_attribute_section(name='setup')
         menu_entries = self._make_setup_menu_entries()
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
-        return section
+        section = menu.make_attribute_section(
+            menu_entries=menu_entries,
+            name='setup',
+            )
 
     def _manage_setup(self):
         self._session._is_navigating_to_score_setup = False

@@ -120,15 +120,16 @@ class SegmentPackageManager(PackageManager):
 
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
-            section = menu.make_command_section(
-                name='lilypond file',
-                is_hidden=True,
-                )
+            commands = []
             string = 'lilypond file - interpret'
-            section.append((string, 'lyi'))
+            commands.append((string, 'lyi'))
             string = 'lilypond file - read only'
-            section.append((string, 'lyro'))
-            return section
+            commands.append((string, 'lyro'))
+            menu.make_command_section(
+                is_hidden=True,
+                menu_entries=commands,
+                name='lilypond file',
+                )
 
     def _make_current_pdf_menu_section(self, menu):
         commands = []
@@ -137,25 +138,31 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(self._output_pdf_file_path):
             commands.append(('pdf - open', 'pdfo'))
         if commands:
-            section = menu.make_command_section(name='pdf')
-            for command in commands:
-                section.append(command)
-            return section
+            section = menu.make_command_section(
+                menu_entries=commands,
+                name='pdf',
+                )
 
     def _make_definition_module_menu_section(self, menu):
+        commands = []
         if os.path.isfile(self._definition_module_path):
-            section = menu.make_command_section(name='definition module')
-            section.append(('definition module - edit', 'dme'))
-            section.append(('definition module - edit at top', 'dmE'))
-            return section
+            commands.append(('definition module - edit', 'dme'))
+            commands.append(('definition module - edit at top', 'dmE'))
+            section = menu.make_command_section(
+                menu_entries=commands,
+                name='definition module',
+                )
         else:
-            section = menu.make_informational_section()
             message = 'No definition.py module found;'
             message += ' use (dms) to create a stub.'
-            section.append(message)
-            section = menu.make_command_section(name='definition module')
-            section.append(('definition module - stub', 'dms'))
-            return section
+            section = menu.make_informational_section(
+                menu_entries=[message],
+                )
+            commands.append(('definition module - stub', 'dms'))
+            menu.make_command_section(
+                menu_entries=commands,
+                name='definition module',
+                )
 
     def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)
@@ -171,33 +178,40 @@ class SegmentPackageManager(PackageManager):
         return menu
 
     def _make_make_module_menu_section(self, menu):
-        section = menu.make_command_section(name='make module')
+        commands = []
         if os.path.isfile(self._make_module_path):
-            section.append(('make module - interpret', 'mmi'))
-            section.append(('make module - read only', 'mmro'))
+            commands.append(('make module - interpret', 'mmi'))
+            commands.append(('make module - read only', 'mmro'))
         else:
-            section.append(('make module - stub', 'mms'))
-        return section
+            commands.append(('make module - stub', 'mms'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='make module',
+            )
 
     def _make_versioned_pdfs_menu_section(self, menu):
         versions_directory_path = self._versions_directory_path
         if not self._is_populated_directory(versions_directory_path):
             return
-        section = menu.make_command_section(name='versioned pdfs')
-        section.append(('versioned pdfs - read only', 'vv'))
-        return section
+        commands = []
+        commands.append(('versioned pdfs - read only', 'vv'))
+        menu.make_command_section(
+            menu_entries=commands,
+            name='versioned pdfs',
+            )
 
     def _make_versions_directory_menu_section(self, menu):
-        section = menu.make_command_section(
+        commands = []
+        commands.append(('versioned output ly - read only', 'lyver'))
+        commands.append(('versioned output pdf - open', 'pdfo'))
+        string = 'versioned definition module - read only'
+        commands.append((string, 'pyver'))
+        commands.append(('versions directory - list', 'vrl'))
+        menu.make_command_section(
             is_hidden=True,
+            menu_entries=commands,
             name='versions directory',
             )
-        section.append(('versioned output ly - read only', 'lyver'))
-        section.append(('versioned output pdf - open', 'pdfo'))
-        string = 'versioned definition module - read only'
-        section.append((string, 'pyver'))
-        section.append(('versions directory - list', 'vrl'))
-        return section
 
     def _view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
