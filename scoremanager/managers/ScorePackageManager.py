@@ -38,8 +38,6 @@ class ScorePackageManager(PackageManager):
     @systemtools.Memoize
     def _build_directory_manager(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
         path = os.path.join(self._path, 'build')
         return wranglers.BuildFileWrangler(session=self._session)
 
@@ -47,67 +45,47 @@ class ScorePackageManager(PackageManager):
     @systemtools.Memoize
     def _distribution_file_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
         return wranglers.DistributionFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _instrumentation_module_manager(self):
         from scoremanager import managers
-        if self._path is None:
-            return
         path = os.path.join(self._path, 'instrumentation.py')
-        manager = managers.FileManager(
+        return managers.FileManager(
             path,
             session=self._session,
             )
-        return manager
 
     @property
     @systemtools.Memoize
     def _maker_module_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.MakerModuleWrangler(session=self._session)
-        return wrangler
+        return wranglers.MakerModuleWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _material_package_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
-        return wrangler
+        return wranglers.MaterialPackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _score_package_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.ScorePackageWrangler(session=self._session)
-        return wrangler
+        return wranglers.ScorePackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _segment_package_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
-        return wrangler
+        return wranglers.SegmentPackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _stylesheet_wrangler(self):
         from scoremanager import wranglers
-        if self._path is None:
-            return
-        wrangler = wranglers.StylesheetWrangler(session=self._session)
-        return wrangler
+        return wranglers.StylesheetWrangler(session=self._session)
 
     @property
     def _user_input_to_action(self):

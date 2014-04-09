@@ -134,8 +134,3 @@
     to reproduce the bug.
 
 29. No reason to return menu sections from _make_*_menu_section() methods.
-
-30. Make sure path=None is not none at initialization time for all
-    wranglers and all managers. This will remove many ...
-        if self._path is not None:
-    ... statements in manager and wrangler classfiles.

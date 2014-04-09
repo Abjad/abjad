@@ -41,8 +41,7 @@ class PackageManager(DirectoryManager):
 
     @property
     def _initializer_file_path(self):
-        if self._path is not None:
-            return os.path.join(self._path, '__init__.py')
+        return os.path.join(self._path, '__init__.py')
 
     @property
     def _user_input_to_action(self):
