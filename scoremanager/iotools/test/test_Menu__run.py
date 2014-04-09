@@ -11,10 +11,15 @@ def test_Menu__run_01():
         name='test',
         breadcrumb_callback='name',
         )
-    section = menu._make_section(name='test', title='section')
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
 
     result = menu._run(pending_user_input='foo')
     assert menu._transcript.last_menu_lines == \
@@ -56,14 +61,16 @@ def test_Menu__run_02():
         name='test',
         breadcrumb_callback='name',
         )
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
-        name='test',
         is_hidden=True,
+        menu_entries=commands,
+        name='test',
         title='section',
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
     strings = ['Test', '']
@@ -98,14 +105,16 @@ def test_Menu__run_03():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
         is_numbered=True,
+        menu_entries=commands,
         name='test',
         title='section',
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
     strings = [
@@ -149,14 +158,16 @@ def test_Menu__run_04():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
         is_ranged=True,
+        menu_entries=commands,
         name='test',
         title='section',
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
     strings = [
@@ -201,14 +212,16 @@ def test_Menu__run_05():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
+        menu_entries=commands,
         name='test',
-        return_value_attribute='key',
         title='section',
+        return_value_attribute='key',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
 
     result = menu._run(pending_user_input='foo')
 
@@ -265,12 +278,14 @@ def test_Menu__run_06():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
+        menu_entries=commands,
         name='test',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
     menu._session._reinitialize()
@@ -317,15 +332,17 @@ def test_Menu__run_07():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
         is_hidden=True,
+        menu_entries=commands,
         name='test',
         return_value_attribute='key',
         title='section',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
     strings = ['Test', '']
@@ -373,14 +390,16 @@ def test_Menu__run_08():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
         is_hidden=True,
+        menu_entries=commands,
         name='test',
         title='section',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
 
     menu._session._reinitialize()
     result = menu._run(pending_user_input='foo')
@@ -426,15 +445,17 @@ def test_Menu__run_09():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
         is_numbered=True,
+        menu_entries=commands,
         name='test',
         return_value_attribute='key',
         title='section',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
     strings = [
@@ -490,15 +511,17 @@ def test_Menu__run_10():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
         is_ranged=True,
+        menu_entries=commands,
         name='test',
         return_value_attribute='key',
         title='section',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
     strings = [
@@ -554,14 +577,16 @@ def test_Menu__run_11():
         breadcrumb_callback='name',
         name='test',
         )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
     section = menu._make_section(
         is_ranged=True,
+        menu_entries=commands,
         name='test',
         title='section',
         )
-    section.append(('first command', 'add'))
-    section.append(('second command', 'rm'))
-    section.append(('third command', 'mod'))
 
     menu._session._reinitialize()
     result = menu._run(pending_user_input='foo')

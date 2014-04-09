@@ -10,23 +10,30 @@ def test_MenuSection__menu_entry_display_strings_01():
     '''
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section')
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
     assert not section.is_numbered
     assert section._menu_entry_display_strings == \
         ['apple', 'banana', 'cherry']
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
-        name='test',
         is_numbered=True,
+        menu_entries=commands,
+        name='test',
         title='section',
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     assert section.is_numbered
     assert section._menu_entry_display_strings == \
         ['apple', 'banana', 'cherry']
@@ -39,10 +46,15 @@ def test_MenuSection__menu_entry_display_strings_02():
     '''
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section title')
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    commands = []
+    commands.append(('add something', 'add'))
+    commands.append(('delete something', 'rm'))
+    commands.append(('modify something', 'mod'))
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section title',
+        )
     assert not section.is_numbered
     assert section._menu_entry_display_strings == \
         ['add something', 'delete something', 'modify something']
@@ -50,14 +62,16 @@ def test_MenuSection__menu_entry_display_strings_02():
         [x.display_string for x in section.menu_entries]
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append(('add something', 'add'))
+    commands.append(('delete something', 'rm'))
+    commands.append(('modify something', 'mod'))
     section = menu._make_section(
-        name='test',
         is_numbered=True,
+        menu_entries=commands,
+        name='test',
         title='section title',
         )
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
     assert section.is_numbered
     assert section._menu_entry_display_strings == \
         ['add something', 'delete something', 'modify something']

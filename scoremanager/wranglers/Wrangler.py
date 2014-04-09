@@ -408,14 +408,14 @@ class Wrangler(Controller):
 
     def _make_asset_selection_menu(self, packages_instead_of_paths=False):
         menu = self._io_manager.make_menu(name='asset selection')
-        section = menu.make_asset_section()
         include_extensions = getattr(self, '_include_extensions', False)
-        asset_menu_entries = self._make_asset_menu_entries(
+        menu_entries = self._make_asset_menu_entries(
             include_extensions=include_extensions,
             packages_instead_of_paths=packages_instead_of_paths,
             )
-        for menu_entry in asset_menu_entries:
-            section.append(menu_entry)
+        section = menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
         return menu
 
     def _make_storehouse_menu_entries(
@@ -510,14 +510,14 @@ class Wrangler(Controller):
         user_score_packages=True,
         ):
         menu = self._io_manager.make_menu(name='storehouse selection')
-        section = menu.make_asset_section()
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
             user_library=True,
             abjad_score_packages=False,
             user_score_packages=False)
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
+        section = menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)

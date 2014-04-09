@@ -133,24 +133,30 @@ class ListEditor(Editor):
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(
+                menu_entries=menu_entries,
                 name='keyed attribute section',
                 )
-            for menu_entry in menu_entries:
-                section.append(menu_entry)
+            #for menu_entry in menu_entries:
+            #    section.append(menu_entry)
         menu_entries = self._get_target_summary_lines()
         if menu_entries:
             section = menu.make_numbered_section(
+                menu_entries=menu_entries,
                 name='numbered section',
                 )
-            for menu_entry in menu_entries:
-                section.append(menu_entry)
+            #for menu_entry in menu_entries:
+            #    section.append(menu_entry)
             self._numbered_section = section
-        section = menu.make_command_section(name='add, move, remove')
-        section.append(('elements - add', 'add'))
+        commands = []
+        commands.append(('elements - add', 'add'))
         if 1 < len(self._items):
-            section.append(('elements - move', 'mv'))
+            commands.append(('elements - move', 'mv'))
         if 0 < len(self._items):
-            section.append(('elements - remove', 'rm'))
+            commands.append(('elements - remove', 'rm'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='add, move, remove',
+            )
         self._make_done_menu_section(menu)
         return menu
 

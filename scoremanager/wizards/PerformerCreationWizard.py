@@ -65,7 +65,7 @@ class PerformerCreationWizard(Wizard):
 
     def _make_performer_configuration_menu(self, performer):
         menu = self._io_manager.make_menu(name='performer configuration')
-        section = menu.make_command_section(name='instrument commands')
+        commands = []
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [
@@ -87,19 +87,22 @@ class PerformerCreationWizard(Wizard):
             default_index = most_likely_index
         if likely_instruments:
             numbered_menu_entries = likely_instrument_names
-            section.append(('instruments - more', 'more'))
+            commands.append(('instruments - more', 'more'))
         else:
             instrument_names = \
                 instrumenttools.Instrument._list_instrument_names()
             numbered_menu_entries = instrument_names
         numbered_list_section = menu.make_numbered_list_section(
+            default_index=default_index,
+            menu_entries=numbered_menu_entries,
             name='select instruments',
             title='select instruments',
-            default_index=default_index,
             )
-        for menu_entry in numbered_menu_entries:
-            numbered_list_section.append(menu_entry)
-        section.append(('instruments - skip', 'skip'))
+        commands.append(('instruments - skip', 'skip'))
+        section = menu.make_command_section(
+            menu_entries=commands,
+            name='instrument commands',
+            )
         return menu
 
     def _run(self, pending_user_input=None):

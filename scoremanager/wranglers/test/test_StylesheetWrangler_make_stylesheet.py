@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_StylesheetWrangler_make_asset_01():
+def test_StylesheetWrangler_make_stylesheet_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration

@@ -7,10 +7,15 @@ import scoremanager
 def test_MenuSection_default_index_01():
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section')
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
 
     assert section.default_index is None
 
@@ -18,13 +23,15 @@ def test_MenuSection_default_index_01():
 def test_MenuSection_default_index_02():
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
+        default_index=2,
+        menu_entries=commands,
         name='test',
         title='section',
-        default_index=2,
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
 
     assert section.default_index == 2

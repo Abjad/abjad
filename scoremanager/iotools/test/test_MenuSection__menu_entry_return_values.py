@@ -6,14 +6,16 @@ import scoremanager
 def test_MenuSection__menu_entry_return_values_01():
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
-        name='test',
         is_numbered=True,
+        menu_entries=commands,
+        name='test',
         title='section',
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     assert section.is_numbered
     assert section._menu_entry_return_values == \
         ['apple', 'banana', 'cherry']
@@ -21,10 +23,15 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section')
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
         ['apple', 'banana', 'cherry']
@@ -32,15 +39,17 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
     section = menu._make_section(
+        is_numbered=True,
+        menu_entries=commands,
         name='test',
         title='section',
         return_value_attribute='display_string',
-        is_numbered=True,
         )
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
     assert section.is_numbered
     assert section._menu_entry_return_values == \
         ['apple', 'banana', 'cherry']
@@ -48,10 +57,15 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section')
-    section.append('apple')
-    section.append('banana')
-    section.append('cherry')
+    commands = []
+    commands.append('apple')
+    commands.append('banana')
+    commands.append('cherry')
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
         ['apple', 'banana', 'cherry']
@@ -68,29 +82,33 @@ def test_MenuSection__menu_entry_return_values_02():
     '''
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append(('something - add', 'add'))
+    commands.append(('something - delete', 'rm'))
+    commands.append(('something - modify', 'mod'))
     section = menu._make_section(
-        name='test',
-        title='section',
-        return_value_attribute='key',
         is_numbered=True,
+        menu_entries=commands,
+        name='test',
+        return_value_attribute='key',
+        title='section',
         )
-    section.append(('something - add', 'add'))
-    section.append(('something - delete', 'rm'))
-    section.append(('something - modify', 'mod'))
     assert section.is_numbered
     assert section._menu_entry_return_values == ['add', 'rm', 'mod']
     assert section._menu_entry_return_values == \
         section._menu_entry_keys
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append(('something - add', 'add'))
+    commands.append(('something - delete', 'rm'))
+    commands.append(('something - modify', 'mod'))
     section = menu._make_section(
+        menu_entries=commands,
         name='test',
-        title='section',
         return_value_attribute='key',
+        title='section',
         )
-    section.append(('something - add', 'add'))
-    section.append(('something - delete', 'rm'))
-    section.append(('something - modify', 'mod'))
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
         ['add', 'rm', 'mod']
@@ -98,14 +116,16 @@ def test_MenuSection__menu_entry_return_values_02():
         section._menu_entry_keys
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append(('something - add', 'add'))
+    commands.append(('something - delete', 'rm'))
+    commands.append(('something - modify', 'mod'))
     section = menu._make_section(
-        name='test',
         is_numbered=True,
+        menu_entries=commands,
+        name='test',
         title='section',
         )
-    section.append(('something - add', 'add'))
-    section.append(('something - delete', 'rm'))
-    section.append(('something - modify', 'mod'))
     assert section.is_numbered
     assert section._menu_entry_return_values == \
         ['something - add', 'something - delete', 'something - modify']
@@ -113,10 +133,15 @@ def test_MenuSection__menu_entry_return_values_02():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    section = menu._make_section(name='test', title='section')
-    section.append(('something - add', 'add'))
-    section.append(('something - delete', 'rm'))
-    section.append(('something - modify', 'mod'))
+    commands = []
+    commands.append(('something - add', 'add'))
+    commands.append(('something - delete', 'rm'))
+    commands.append(('something - modify', 'mod'))
+    section = menu._make_section(
+        menu_entries=commands,
+        name='test', 
+        title='section',
+        )
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
         ['something - add', 'something - delete', 'something - modify']
@@ -130,14 +155,16 @@ def test_MenuSection__menu_entry_return_values_03():
     '''
 
     menu = scoremanager.iotools.Menu()
+    commands = []
+    commands.append(('something - add', 'add', None, 'return value A'))
+    commands.append(('something - delete', 'rm', None, 'return value B'))
+    commands.append(('something - modify', 'mod', None, 'return value C'))
     section = menu._make_section(
+        menu_entries=commands,
         name='test',
-        title='section',
         return_value_attribute='explicit',
+        title='section',
         )
-    section.append(('something - add', 'add', None, 'return value A'))
-    section.append(('something - delete', 'rm', None, 'return value B'))
-    section.append(('something - modify', 'mod', None, 'return value C'))
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
         ['return value A', 'return value B', 'return value C']

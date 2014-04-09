@@ -16,13 +16,13 @@ def test_UserInputGetter_append_values_01():
     assert getter._run(pending_user_input=input_) == 7
 
     getter = scoremanager.iotools.UserInputGetter()
-    section = scoremanager.iotools.MenuSection(
-        name='test',
-        is_numbered=True,
-        )
     menu_entries = ['apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
+    section = scoremanager.iotools.MenuSection(
+        is_numbered=True,
+        name='test',
+        )
     for menu_entry in menu_entries:
-        section.append(menu_entry)
+        section._append(menu_entry)
     getter.append_menu_section_range('attribute', section)
     result = [6, 5, 4, 1, 3]
     input_ = 'fen-dur, app, che'

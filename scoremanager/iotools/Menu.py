@@ -443,7 +443,7 @@ class Menu(ScoreManagerObject):
             )
         menu_entries = menu_entries or ()
         for entry in menu_entries:
-            section.append(entry)
+            section._append(entry)
         self.menu_sections.append(section)
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [
