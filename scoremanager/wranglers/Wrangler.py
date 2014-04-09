@@ -44,7 +44,7 @@ class Wrangler(Controller):
     @property
     def _current_package_manager(self):
         from scoremanager import managers
-        directory_path = self._get_current_directory_path_of_interest()
+        directory_path = self._get_current_directory_path()
         if directory_path is None:
             return
         return managers.PackageManager(
@@ -64,7 +64,7 @@ class Wrangler(Controller):
 
     @property
     def _initializer_file_path(self):
-        path = self._get_current_directory_path_of_interest()
+        path = self._get_current_directory_path()
         if path:
             return os.path.join(path, '__init__.py')
 
@@ -110,7 +110,7 @@ class Wrangler(Controller):
 
     @property
     def _views_module_path(self):
-        directory_path = self._get_current_directory_path_of_interest()
+        directory_path = self._get_current_directory_path()
         file_path = os.path.join(directory_path, '__views__.py')
         return file_path
 
@@ -194,7 +194,7 @@ class Wrangler(Controller):
                 (not must_have_file or manager._find_first_file_name())):
                 return manager
 
-    def _get_current_directory_path_of_interest(self):
+    def _get_current_directory_path(self):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
             parts = (score_directory_path,)
@@ -276,7 +276,7 @@ class Wrangler(Controller):
 
     def _list(self, public_entries_only=False):
         result = []
-        path = self._get_current_directory_path_of_interest()
+        path = self._get_current_directory_path()
         if not os.path.exists(path):
             return result
         if public_entries_only:
@@ -365,7 +365,7 @@ class Wrangler(Controller):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
-        current_path = self._get_current_directory_path_of_interest()
+        current_path = self._get_current_directory_path()
         for path in paths:
             if current_path is None or path.startswith(current_path):
                 visible_paths.append(path)

@@ -115,7 +115,7 @@ class BuildFileWrangler(Wrangler):
         self._session._is_navigating_to_score_build_files = False
 
     def _get_file_path_ending_with(self, string):
-        path = self._get_current_directory_path_of_interest()
+        path = self._get_current_directory_path()
         for file_name in self._list():
             if file_name.endswith(string):
                 file_path = os.path.join(path, file_name)
@@ -254,7 +254,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory_path_of_interest()
+        build_directory_path = self._get_current_directory_path()
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -300,7 +300,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory_path_of_interest()
+        build_directory_path = self._get_current_directory_path()
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,

@@ -139,6 +139,3 @@
     wranglers and all managers. This will remove many ...
         if self._path is not None:
     ... statements in manager and wrangler classfiles.
-
-30. Change Wrangler._get_current_directory_path_of_interest()
-    to Wrangler._get_current_directory_path().
