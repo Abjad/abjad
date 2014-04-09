@@ -22,23 +22,18 @@
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-10. These four classes can all be collapsed into one:
-        wizards.ArticulationHandlerCreationWizard
-        wizards.DynamicHandlerCreationWizard
-        wizards.RhythmMakerCreationWizard
+10. Implement an 'all whatever - edit' command.
 
-11. Implement an 'all whatever - edit' command.
+11. Write view tests. Start with segment wrangler.
 
-12. Write view tests. Start with segment wrangler.
+12. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-13. Make (ls) work in stylesheets menu. So (score > y > ls).
-
-14. Add (lyrm!) for 'lilypond ly - remove from repository'.
+13. Add (lyrm!) for 'lilypond ly - remove from repository'.
     This will work together with (lyrm) for 'lilypond ly - remove'.
     The difference will be that (lyrm!) will (try to) act on the repository 
     where (lyrm) will only ever work on the filesystem.
 
-15. Write py.test tests for the following properties and methods:
+14. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -46,7 +41,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-16. Add 'output module - check (omc)' command.
+15. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -56,30 +51,30 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-17. Make 'vmro' provide a message when no __views__ module is found.
+16. Make 'vmro' provide a message when no __views__ module is found.
 
-18. Implement a 'views module - rewrite' (vmrw) command.
+17. Implement a 'views module - rewrite' (vmrw) command.
 
-19. Implement DirectoryManager.check_contents().
+18. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-20. Do something to put an empty .gitignore file in every directory everywhere.
+19. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-21. Eventually implement a Score Manager start-up behavior that will
+20. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-22: Bug:
+21: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-23. Bug:
+22. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
         in _get_next_score_directory_path
         index = paths.index(score_path)
@@ -87,7 +82,7 @@
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-24. Implement an Editor method to allow an none-allowing attribute to be 
+23. Implement an Editor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -115,7 +110,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-25. Bug:
+24. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -123,9 +118,9 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-26. Make (rrv) work for Subversion-managed directories.
+25. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-27. Make 'n' user input work in confirmation dialogue.
+26. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
