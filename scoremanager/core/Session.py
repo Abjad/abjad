@@ -61,7 +61,6 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_maker_modules',
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
-        '_is_navigating_to_score_setup',
         '_is_navigating_to_score_stylesheets',
         '_is_quitting',
         '_is_repository_test',
@@ -127,7 +126,6 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_maker_modules = False
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
-        self._is_navigating_to_score_setup = False
         self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
         self._is_test = is_test
@@ -573,8 +571,6 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_score_segments:
             return True
-        elif self.is_navigating_to_score_setup:
-            return True
         elif self.is_navigating_to_score_stylesheets:
             return True
         else:
@@ -871,22 +867,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_score_segments
-
-    @property
-    def is_navigating_to_score_setup(self):
-        r'''Is true when session is navigating to score setup.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_score_setup
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_score_setup
 
     @property
     def is_navigating_to_score_stylesheets(self):

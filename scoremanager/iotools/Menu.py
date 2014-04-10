@@ -348,8 +348,8 @@ class Menu(ScoreManagerObject):
         commands.append(('go - makers', 'k'))
         commands.append(('go - materials', 'm'))
         commands.append(('go - segments', 'g'))
-        if self._session.is_in_score:
-            commands.append(('go - setup', 'p'))
+#        if self._session.is_in_score:
+#            commands.append(('go - setup', 'p'))
         commands.append(('go - stylesheets', 'y'))
         self.make_command_section(
             is_hidden=True,

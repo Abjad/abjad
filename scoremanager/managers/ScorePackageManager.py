@@ -215,8 +215,6 @@ class ScorePackageManager(PackageManager):
             return 'm'
         elif self._session.is_navigating_to_score_segments:
             return 'g'
-        elif self._session.is_navigating_to_score_setup:
-            return 'p'
         elif self._session.is_navigating_to_score_stylesheets:
             return 'y'
 
@@ -394,7 +392,6 @@ class ScorePackageManager(PackageManager):
             )
 
     def _manage_setup(self):
-        self._session._is_navigating_to_score_setup = False
         self._session._is_in_score_setup_menu = True
         while True:
             annotated_title = self._get_title(year=True)
