@@ -129,33 +129,12 @@ class StylesheetWrangler(Wrangler):
 
         Returns none.
         '''
-        from scoremanager import managers
-        storehouse_path = self._select_storehouse_path(
-            abjad_library=False,
-            user_library=True,
-            abjad_score_packages=False,
-            user_score_packages=False,
+        def callback(file_name):
+            file_name = file_name.replace(' ', '-')
+            file_name = file_name.replace('_', '-')
+            return file_name
+        self._make_file(
+            extension='.ily',
+            file_name_callback=callback,
+            prompt_string='stylesheet name', 
             )
-        if self._should_backtrack():
-            return
-        if not storehouse_path:
-            return
-        getter = self._io_manager.make_getter()
-        getter.append_string('stylesheet name')
-        file_path = getter._run()
-        if self._should_backtrack():
-            return
-        file_path = stringtools.string_to_accent_free_snake_case(file_path)
-        if not file_path.endswith('.ily'):
-            file_path = file_path + '.ily'
-        file_path = os.path.join(storehouse_path, file_path)
-        manager = managers.FileManager(
-            path=file_path,
-            session=self._session,
-            )
-        #if self._session.is_test:
-        #    manager._make_empty_asset()
-        #else:
-        #    manager.edit()
-        manager._make_empty_asset()
-        manager.edit()

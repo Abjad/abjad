@@ -121,12 +121,14 @@ class ScorePackageWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def make_score_package(self, prompt=True):
-        r'''Makes new score.
+        r'''Makes score package.
 
         Returns none.
         '''
         path = self.get_available_path()
         if self._should_backtrack():
+            return
+        if not path:
             return
         self._make_asset(path)
         self._io_manager.write_cache(prompt=False)

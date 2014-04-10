@@ -418,6 +418,35 @@ class Wrangler(Controller):
             )
         return menu
 
+    def _make_file(
+        self, 
+        extension='', 
+        file_name_callback=None,
+        prompt_string='file name', 
+        ):
+        from scoremanager import managers
+        path = self._select_storehouse_path()
+        if self._should_backtrack():
+            return
+        if not path:
+            return
+        getter = self._io_manager.make_getter()
+        getter.append_string(prompt_string)
+        name = getter._run()
+        if self._should_backtrack():
+            return
+        if not name:
+            return
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = stringtools.string_to_accent_free_snake_case(name)
+        if not name.endswith(extension):
+            name = name + extension
+        path = os.path.join(path, name)
+        manager = self._initialize_asset_manager(path=path)
+        manager._make_empty_asset()
+        manager.edit()
+
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,
@@ -495,20 +524,17 @@ class Wrangler(Controller):
             breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run()
             if self._should_backtrack():
-                break
+                #break
+                return
             elif not result:
                 continue
+            elif result == 'user entered lone return':
+                return
             else:
                 break
         return result
 
-    def _select_storehouse_path(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        ):
+    def _select_storehouse_path(self):
         from scoremanager import iotools
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
@@ -703,11 +729,14 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        asset_path = self._select_asset_path()
+        path = self._select_asset_path()
         if self._should_backtrack():
             return
-        asset_manager = self._initialize_asset_manager(asset_path)
-        asset_manager.remove()
+        if not path:
+            return
+        manager = self._initialize_asset_manager(path)
+        manager.remove()
+        self._session._is_backtracking_locally = False
 
     def remove_initializer(self):
         r'''Removes initializer module.

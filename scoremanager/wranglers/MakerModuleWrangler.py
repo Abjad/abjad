@@ -118,35 +118,11 @@ class MakerModuleWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def make_maker_module(self):
-        r'''Makes asset.
+        r'''Makes maker module.
 
         Returns none.
         '''
-        from scoremanager import managers
-        with self._controller_context:
-            # TODO: extend to allow creation in current score
-            storehouse_path = self._select_storehouse_path(
-                abjad_library=False,
-                user_library=True,
-                abjad_score_packages=False,
-                user_score_packages=False,
-                )
-            if self._should_backtrack():
-                return
-        getter = self._io_manager.make_getter()
-        getter.append_string('maker name')
-        file_path = getter._run()
-        if self._should_backtrack():
-            return
-        file_path = stringtools.string_to_accent_free_snake_case(file_path)
-        if not file_path.endswith('.py'):
-            file_path = file_path + '.py'
-        file_path = os.path.join(storehouse_path, file_path)
-        manager = managers.FileManager(
-            file_path,
-            session=self._session,
+        self._make_file(
+            extension='.py',
+            prompt_string='maker name', 
             )
-        if self._session.is_test:
-            manager._make_empty_asset()
-        else:
-            manager.edit()
