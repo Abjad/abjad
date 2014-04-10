@@ -259,6 +259,45 @@ class Wrangler(Controller):
         view = view_inventory.get(view_name)
         return view
 
+    def _get_visible_asset_path(self, item_identifier='asset'):
+        getter = self._io_manager.make_getter()
+        prompt_string = 'enter {} to rename'
+        prompt_string = prompt_string.format(item_identifier)
+        menu = self._make_asset_selection_menu()
+        asset_section = menu['assets']
+        getter.append_menu_section_item(
+            prompt_string, 
+            asset_section,
+            )
+        numbers = getter._run()
+        if self._should_backtrack():
+            return
+        assert len(numbers) == 1
+        number = numbers[0]
+        index = number - 1
+        paths = [_.return_value for _ in asset_section.menu_entries]
+        path = paths[index]
+        return path
+
+    def _get_visible_asset_paths(self, item_identifier='asset'):
+        getter = self._io_manager.make_getter()
+        plural_identifier = stringtools.pluralize_string(item_identifier)
+        prompt_string = 'enter {} to remove'
+        prompt_string = prompt_string.format(plural_identifier)
+        menu = self._make_asset_selection_menu()
+        section = menu['assets']
+        getter.append_menu_section_range(
+            prompt_string, 
+            section,
+            )
+        numbers = getter._run()
+        if self._should_backtrack():
+            return
+        indices = [_ - 1 for _ in numbers]
+        paths = [_.return_value for _ in section.menu_entries]
+        paths = sequencetools.retain_elements(paths, indices)
+        return paths
+
     def _initialize_manager(self, path):
         assert os.path.sep in path, repr(path)
         return self._asset_manager_class(
@@ -502,31 +541,15 @@ class Wrangler(Controller):
         view_inventory = result[0]
         return view_inventory
 
-    def _remove(self, item_identifier='asset', prompt=True):
-        ### TODO: ENCAPSULATE on Wrangler ###
-        getter = self._io_manager.make_getter()
-        plural_identifier = stringtools.pluralize_string(item_identifier)
-        prompt_string = 'enter {} to remove'
-        prompt_string = prompt_string.format(plural_identifier)
-        menu = self._make_asset_selection_menu()
-        section = menu['assets']
-        getter.append_menu_section_range(
-            prompt_string, 
-            section,
-            )
-        numbers = getter._run()
-        if self._should_backtrack():
-            return
-        indices = [_ - 1 for _ in numbers]
-        paths = [_.return_value for _ in section.menu_entries]
-        paths = sequencetools.retain_elements(paths, indices)
-        ### END ECAPSULATION ###
+    def _remove_asset(self, item_identifier='asset', prompt=True):
+        paths = self._get_visible_asset_paths(item_identifier=item_identifier)
         self._io_manager.display('')
-        if len(indices) == 1:
+        count = len(paths)
+        if count == 1:
             confirmation_string = 'remove'
         else:
             confirmation_string = 'remove {}'
-            confirmation_string = confirmation_string.format(len(indices))
+            confirmation_string = confirmation_string.format(count)
         prompt_string = "type {!r} to proceed"
         prompt_string = prompt_string.format(confirmation_string)
         if prompt:
@@ -541,26 +564,10 @@ class Wrangler(Controller):
             manager = self._initialize_manager(path)
             manager._remove()
 
-    def _rename(self, item_identifier='asset'):
-        ### TODO: ENCAPSULATE on Wrangler ###
-        getter = self._io_manager.make_getter()
-        prompt_string = 'enter {} to rename'
-        prompt_string = prompt_string.format(item_identifier)
-        menu = self._make_asset_selection_menu()
-        asset_section = menu['assets']
-        getter.append_menu_section_item(
-            prompt_string, 
-            asset_section,
-            )
-        numbers = getter._run()
-        if self._should_backtrack():
+    def _rename_asset(self, item_identifier='asset'):
+        path = self._get_visible_asset_path(item_identifier=item_identifier)
+        if not path:
             return
-        assert len(numbers) == 1
-        number = numbers[0]
-        index = number - 1
-        paths = [_.return_value for _ in asset_section.menu_entries]
-        path = paths[index]
-        ### END ENCAPSULATION ###
         self._io_manager.display('')
         manager = self._initialize_manager(path)
         manager.rename()

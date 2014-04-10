@@ -146,7 +146,7 @@ class StylesheetWrangler(Wrangler):
 
         Returns none.
         '''
-        self._remove(
+        self._remove_asset(
             item_identifier='stylesheet', 
             )
 
@@ -155,6 +155,6 @@ class StylesheetWrangler(Wrangler):
 
         Returns none.
         '''
-        self._rename(
+        self._rename_asset(
             item_identifier='stylesheet',
             )

@@ -74,7 +74,7 @@ class MaterialPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_material_package,
-            'new': self.make_new_material_package,
+            'new': self.make_material_package,
             'ren': self.rename_material_package,
             'rm': self.remove_material_package,
             })
@@ -224,8 +224,8 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def make_new_material_package(self):
-        r'''Makes new material package.
+    def make_material_package(self):
+        r'''Makes material package.
 
         Returns none.
         '''
