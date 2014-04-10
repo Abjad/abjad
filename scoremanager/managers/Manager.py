@@ -684,9 +684,6 @@ class Manager(Controller):
             result = getter._run()
             if self._should_backtrack():
                 return
-        # TODO: remove this branch?
-        else:
-            result = True
         if not result == 'remove':
             return
         self._remove()
