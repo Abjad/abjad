@@ -130,16 +130,16 @@ class StylesheetWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import managers
-        with self._controller_context:
-            # TODO: extend to allow creation in current score
-            storehouse_path = self._select_storehouse_path(
-                abjad_library=False,
-                user_library=True,
-                abjad_score_packages=False,
-                user_score_packages=False,
-                )
-            if self._should_backtrack():
-                return
+        storehouse_path = self._select_storehouse_path(
+            abjad_library=False,
+            user_library=True,
+            abjad_score_packages=False,
+            user_score_packages=False,
+            )
+        if self._should_backtrack():
+            return
+        if not storehouse_path:
+            return
         getter = self._io_manager.make_getter()
         getter.append_string('stylesheet name')
         file_path = getter._run()
@@ -150,10 +150,12 @@ class StylesheetWrangler(Wrangler):
             file_path = file_path + '.ily'
         file_path = os.path.join(storehouse_path, file_path)
         manager = managers.FileManager(
-            file_path,
+            path=file_path,
             session=self._session,
             )
-        if self._session.is_test:
-            manager._make_empty_asset()
-        else:
-            manager.edit()
+        #if self._session.is_test:
+        #    manager._make_empty_asset()
+        #else:
+        #    manager.edit()
+        manager._make_empty_asset()
+        manager.edit()

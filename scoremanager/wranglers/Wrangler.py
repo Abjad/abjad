@@ -426,7 +426,7 @@ class Wrangler(Controller):
         user_score_packages=True,
         ):
         from scoremanager import wranglers
-        keys, display_strings = [], []
+        display_strings, keys = [], []
         keys.append(self._user_storehouse_path)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
@@ -509,25 +509,21 @@ class Wrangler(Controller):
         abjad_score_packages=True,
         user_score_packages=True,
         ):
-        menu = self._io_manager.make_menu(name='storehouse selection')
+        from scoremanager import iotools
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
             user_library=True,
             abjad_score_packages=False,
-            user_score_packages=False)
-        section = menu.make_asset_section(
-            menu_entries=menu_entries,
+            user_score_packages=False,
             )
-        while True:
-            breadcrumb = self._make_asset_selection_breadcrumb(
-                is_storehouse=True)
-            result = menu._run()
-            if self._should_backtrack():
-                break
-            elif not result:
-                continue
-            else:
-                break
+        selector = iotools.Selector(
+            breadcrumb='storehouse',
+            session=self._session,
+            )
+        selector._menu_entries = menu_entries
+        result = selector._run()
+        if self._should_backtrack():
+            return
         return result
 
     def _set_is_navigating_to_sibling_asset(self):

@@ -24,6 +24,8 @@ class Selector(ScoreManagerObject):
 
     ### INITIALIZER ###
 
+    # TODO: add menu_entries=None keyword;
+    #       harmonize items=None and menu_entries=None
     def __init__(
         self,
         breadcrumb=None,
