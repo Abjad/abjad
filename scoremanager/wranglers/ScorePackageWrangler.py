@@ -149,6 +149,6 @@ class ScorePackageWrangler(Wrangler):
         
         Returns none.
         '''
-        self._remove(
+        self._remove_asset(
             item_identifier='score package',
             )

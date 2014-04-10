@@ -6,7 +6,7 @@ import scoremanager
 
 
 def test_ScorePackageWrangler_make_score_package_01():
-    r'''Create score package.
+    r'''Makes score package.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -14,7 +14,6 @@ def test_ScorePackageWrangler_make_score_package_01():
         score_manager._configuration.user_score_packages_directory_path,
         'test_score',
         )
-    input_ = 'new test~score q'
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
@@ -28,6 +27,7 @@ def test_ScorePackageWrangler_make_score_package_01():
 
     assert not os.path.exists(path)
     try:
+        input_ = 'new test~score q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
