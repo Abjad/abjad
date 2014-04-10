@@ -101,7 +101,7 @@ class Selector(ScoreManagerObject):
                 result = menu._run()
                 if self._should_backtrack():
                     return
-                if result:
+                if result and not result == 'user entered lone return':
                     return result
 
     def _should_backtrack(self):
