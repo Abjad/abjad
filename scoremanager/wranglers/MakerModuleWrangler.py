@@ -60,6 +60,7 @@ class MakerModuleWrangler(Wrangler):
         result = result.copy()
         result.update({
             'new': self.make_maker_module,
+            'rm': self.remove_maker_module,
             })
         return result
 
@@ -126,4 +127,13 @@ class MakerModuleWrangler(Wrangler):
             extension='.py',
             force_lowercase=False,
             prompt_string='maker name', 
+            )
+
+    def remove_maker_module(self):
+        r'''Removes one or more maker modules.
+
+        Returns none.
+        '''
+        self._remove(
+            item_identifier='maker module',
             )

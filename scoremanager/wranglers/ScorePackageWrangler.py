@@ -73,6 +73,17 @@ class ScorePackageWrangler(Wrangler):
         else:
             return self._configuration.user_score_packages_directory_path
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(ScorePackageWrangler, self)
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
+            'new': self.make_score_package,
+            'rm': self.remove_score_package,
+            })
+        return result
+
     ### PRIVATE METHODS ###
 
     def _find_git_manager(self, must_have_file=False):
@@ -120,7 +131,7 @@ class ScorePackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_score_package(self, prompt=True):
+    def make_score_package(self):
         r'''Makes score package.
 
         Returns none.
@@ -132,3 +143,12 @@ class ScorePackageWrangler(Wrangler):
             return
         self._make_asset(path)
         self._io_manager.write_cache(prompt=False)
+
+    def remove_score_package(self):
+        r'''Removes one or more score packages.
+        
+        Returns none.
+        '''
+        self._remove(
+            item_identifier='score package',
+            )
