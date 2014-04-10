@@ -54,10 +54,10 @@ class CyclicTuple(AbjadObject, tuple):
 
         Returns item.
         '''
-        if not self:
-            raise IndexError
         if type(i) == slice:
             return self.__getslice__(i.start, i.stop)
+        if not self:
+            raise IndexError
         i = i % len(self)
         return tuple.__getitem__(self, i)
 
