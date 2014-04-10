@@ -107,6 +107,13 @@ class MenuSection(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __getitem__(self, expr):
+        r'''Gets menu entry indexed by `expr`.
+
+        Returns menu entry.
+        '''
+        return self.menu_entries.__getitem__(expr)
+
     def __len__(self):
         r'''Number of menu entries in menu section.
 
@@ -160,15 +167,15 @@ class MenuSection(AbjadObject):
 
     @property
     def _menu_entry_display_strings(self):
-        return [menu_entry.display_string for menu_entry in self.menu_entries]
+        return [_.display_string for _ in self]
 
     @property
     def _menu_entry_keys(self):
-        return [menu_entry.key for menu_entry in self.menu_entries]
+        return [_.key for _ in self]
 
     @property
     def _menu_entry_return_values(self):
-        return [menu_entry.return_value for menu_entry in self.menu_entries]
+        return [_.return_value for _ in self]
 
     ### PRIVATE METHODS ###
 
@@ -179,7 +186,7 @@ class MenuSection(AbjadObject):
         range_parts = argument_range_string.split(',')
         for range_part in range_parts:
             matches_entry = False
-            for menu_entry in self.menu_entries:
+            for menu_entry in self:
                 if menu_entry.matches(range_part):
                     number = self._argument_string_to_number(range_part)
                     numbers.append(number)
@@ -209,7 +216,7 @@ class MenuSection(AbjadObject):
         return numbers
 
     def _argument_string_to_number(self, argument_string):
-        for menu_entry_index, menu_entry in enumerate(self.menu_entries):
+        for menu_entry_index, menu_entry in enumerate(self):
             if menu_entry.matches(argument_string):
                 menu_entry_number = menu_entry_index + 1
                 return menu_entry_number
@@ -217,7 +224,7 @@ class MenuSection(AbjadObject):
     def _make_menu_lines(self):
         menu_lines = []
         menu_lines.extend(self._make_title_lines())
-        for i, menu_entry in enumerate(self.menu_entries):
+        for i, menu_entry in enumerate(self):
             menu_line = self._make_tab(self.indent_level)
             display_string = menu_entry.display_string
             key = menu_entry.key
@@ -450,7 +457,7 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> for menu_entry in section.menu_entries:
+            >>> for menu_entry in section:
             ...     menu_entry
             <MenuEntry: 'foo - add'>
             <MenuEntry: 'foo - delete'>
@@ -522,7 +529,7 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> for menu_entry in section.menu_entries:
+            >>> for menu_entry in section:
             ...     menu_entry
             <MenuEntry: 'foo - add'>
             <MenuEntry: 'foo - delete'>

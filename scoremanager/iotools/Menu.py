@@ -71,18 +71,19 @@ class Menu(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
-        r'''Gets menu section with name equal to `expr`.
+        r'''Gets menu section indexed by `expr`.
 
-        Raises key error when no menu section with name equal to `expr` is
-        found in menu.
+        Returns menu section with name equal to `expr` when `expr` is a string.
 
-        Returns menu section.
+        Returns menu section at index `expr` when `expr` is an integer.
         '''
-        assert isinstance(expr, str)
-        for section in self.menu_sections:
-            if section.name == expr:
-                return section
-        raise KeyError(expr)
+        if isinstance(expr, str):
+            for section in self.menu_sections:
+                if section.name == expr:
+                    return section
+            raise KeyError(expr)
+        else:
+            return self.menu_sections.__getitem__(expr)
 
     def __len__(self):
         r'''Gets number of menu sections in menu.
@@ -130,11 +131,11 @@ class Menu(ScoreManagerObject):
         elif user_input.startswith('!'):
             return user_input
         for section in self.menu_sections:
-            for menu_entry in section.menu_entries:
+            for menu_entry in section:
                 if menu_entry.matches(user_input):
                     return self._enclose_in_list(menu_entry.return_value)
         for section in self.menu_sections:
-            for menu_entry in section.menu_entries:
+            for menu_entry in section:
                 if menu_entry.matches(user_input.lower()):
                     return self._enclose_in_list(menu_entry.return_value)
         if self._user_enters_argument_range(user_input):
@@ -176,7 +177,7 @@ class Menu(ScoreManagerObject):
             #print repr(section), 'SECTION'
             if not section.is_command_section:
                 continue
-            for menu_entry in section.menu_entries:
+            for menu_entry in section:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
                 menu_line = self._make_tab(1)
