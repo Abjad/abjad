@@ -162,12 +162,14 @@ class MaterialPackageWrangler(Wrangler):
         return result
 
     def _make_asset_menu_section(self, menu):
-        entries = self._make_asset_menu_entries()
+        include_annotation = not self._session.is_in_score
+        entries = self._make_asset_menu_entries(
+            include_annotation=include_annotation,
+            )
         if not entries:
             return
         menu.make_asset_section(
             menu_entries=entries,
-            name='assets',
             )
 
     def _make_main_menu(self, name='material package wrangler'):
