@@ -422,14 +422,18 @@ class Wrangler(Controller):
         self, 
         extension='', 
         file_name_callback=None,
+        force_lowercase=True,
         prompt_string='file name', 
         ):
         from scoremanager import managers
-        path = self._select_storehouse_path()
-        if self._should_backtrack():
-            return
-        if not path:
-            return
+        if self._session.is_in_score:
+            path = self._get_current_directory_path()
+        else:
+            path = self._select_storehouse_path()
+            if self._should_backtrack():
+                return
+            if not path:
+                return
         getter = self._io_manager.make_getter()
         getter.append_string(prompt_string)
         name = getter._run()
@@ -437,9 +441,12 @@ class Wrangler(Controller):
             return
         if not name:
             return
+        name = stringtools.strip_diacritics_from_binary_string(name)
         if file_name_callback:
             name = file_name_callback(name)
-        name = stringtools.string_to_accent_free_snake_case(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
         if not name.endswith(extension):
             name = name + extension
         path = os.path.join(path, name)
@@ -524,7 +531,6 @@ class Wrangler(Controller):
             breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run()
             if self._should_backtrack():
-                #break
                 return
             elif not result:
                 continue

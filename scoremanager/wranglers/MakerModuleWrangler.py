@@ -124,5 +124,6 @@ class MakerModuleWrangler(Wrangler):
         '''
         self._make_file(
             extension='.py',
+            force_lowercase=False,
             prompt_string='maker name', 
             )
