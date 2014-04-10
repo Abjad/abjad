@@ -71,7 +71,7 @@ class SegmentPackageWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            segment_package_manager = self._initialize_asset_manager(result)
+            segment_package_manager = self._initialize_manager(result)
             segment_package_manager._run()
 
     def _is_valid_directory_entry(self, expr):

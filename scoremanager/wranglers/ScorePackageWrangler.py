@@ -124,7 +124,7 @@ class ScorePackageWrangler(Wrangler):
             user_score_packages=user_score_packages,
             )
         for path in paths:
-            manager = self._initialize_asset_manager(path)
+            manager = self._initialize_manager(path)
             if manager._is_visible() != False:
                 visible_paths.append(path)
         return visible_paths

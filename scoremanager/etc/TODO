@@ -128,14 +128,11 @@
 27. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-28. Change _initialize_asset_manager() to _initialize_manager().
-    Change _asset_manager_class to _manager_class.
+28. Implement __contains__ on Menu and MenuSection.
 
-29. Implement __contains__ on Menu and MenuSection.
-
-30. When in (new) score, change 'Enter package name>' to
+29. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-31. Block (new) score when view is hiding user scores.
+30. Block (new) score when view is hiding user scores.
     This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.

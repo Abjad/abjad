@@ -60,6 +60,7 @@ class StylesheetWrangler(Wrangler):
         result = result.copy()
         result.update({
             'new': self.make_stylesheet,
+            'ren': self.rename_stylesheet,
             'rm': self.remove_stylesheet,
             })
         return result
@@ -140,12 +141,20 @@ class StylesheetWrangler(Wrangler):
             prompt_string='stylesheet name', 
             )
 
-    def remove_stylesheet(self, prompt=True):
+    def remove_stylesheet(self):
         r'''Removes one or more stylesheets.
 
         Returns none.
         '''
         self._remove(
             item_identifier='stylesheet', 
-            prompt=prompt,
+            )
+
+    def rename_stylesheet(self):
+        r'''Renames stylesheet.
+
+        Returns none.
+        '''
+        self._rename(
+            item_identifier='stylesheet',
             )

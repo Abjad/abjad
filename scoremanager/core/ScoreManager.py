@@ -565,7 +565,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        manager = self._score_package_wrangler._initialize_asset_manager(path)
+        manager = self._score_package_wrangler._initialize_manager(path)
         package_name = os.path.basename(path)
         manager.fix(prompt=True)
         manager._run()

@@ -121,7 +121,7 @@ class MaterialPackageWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            manager = self._initialize_asset_manager(result)
+            manager = self._initialize_manager(result)
             if os.path.exists(manager._path):
                 manager._run()
 

@@ -87,7 +87,6 @@ class Wrangler(Controller):
             'mdmro': self.view_metadata_module,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
@@ -260,7 +259,7 @@ class Wrangler(Controller):
         view = view_inventory.get(view_name)
         return view
 
-    def _initialize_asset_manager(self, path):
+    def _initialize_manager(self, path):
         assert os.path.sep in path, repr(path)
         return self._asset_manager_class(
             path=path,
@@ -378,7 +377,7 @@ class Wrangler(Controller):
             self._current_storehouse_path,
             asset_name,
             )
-        manager = self._initialize_asset_manager(path)
+        manager = self._initialize_manager(path)
         if hasattr(manager, '_write_stub'):
             manager._write_stub()
         elif hasattr(manager, 'fix'):
@@ -449,7 +448,7 @@ class Wrangler(Controller):
         if not name.endswith(extension):
             name = name + extension
         path = os.path.join(path, name)
-        manager = self._initialize_asset_manager(path=path)
+        manager = self._initialize_manager(path=path)
         manager._make_empty_asset()
         manager.edit()
 
@@ -472,7 +471,7 @@ class Wrangler(Controller):
             user_score_packages=user_score_packages,
             )
         for path in paths:
-            manager = wrangler._initialize_asset_manager(path)
+            manager = wrangler._initialize_manager(path)
             display_strings.append(manager._get_title())
             path_parts = (manager._path,)
             path_parts = path_parts + self._score_storehouse_path_infix_parts
@@ -537,8 +536,17 @@ class Wrangler(Controller):
             if not result == confirmation_string:
                 return
         for path in paths:
-            manager = self._initialize_asset_manager(path)
+            manager = self._initialize_manager(path)
             manager._remove()
+
+    def _rename(self, item_identifier='asset'):
+        path = self._select_asset_path()
+        if self._should_backtrack():
+            return
+        if not path:
+            return
+        manager = self._initialize_manager(path)
+        manager.rename()
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools
@@ -617,7 +625,7 @@ class Wrangler(Controller):
             return
         paths = self._list_visible_asset_paths()
         for path in paths:
-            manager = self._initialize_asset_manager(path)
+            manager = self._initialize_manager(path)
             manager.add_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
@@ -640,7 +648,7 @@ class Wrangler(Controller):
             return
         paths = self._list_visible_asset_paths()
         for path in paths:
-            manager = self._initialize_asset_manager(path)
+            manager = self._initialize_manager(path)
             manager.commit_to_repository(
                 commit_message=commit_message,
                 prompt=False,
@@ -794,17 +802,6 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.remove_views_module()
 
-    def rename(self):
-        r'''Renames asset.
-
-        Returns none.
-        '''
-        asset_path = self._select_asset_path()
-        if self._should_backtrack():
-            return
-        asset_manager = self._initialize_asset_manager(asset_path)
-        asset_manager.rename()
-
     def repository_status(self, prompt=True):
         r'''Display asset status in repository.
 
@@ -874,7 +871,7 @@ class Wrangler(Controller):
         '''
         paths = self._list_visible_asset_paths()
         for path in paths:
-            manager = self._initialize_asset_manager(path)
+            manager = self._initialize_manager(path)
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 

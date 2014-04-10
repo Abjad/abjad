@@ -177,7 +177,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self._material_package_wrangler
         paths = wrangler._list_asset_paths()
         for path in paths:
-            manager = wrangler._initialize_asset_manager(path)
+            manager = wrangler._initialize_manager(path)
             output_material_class_name = manager._get_metadatum('output_material_class_name')
             if output_material_class_name == 'TempoInventory':
                 output_material = manager._execute_output_module()
