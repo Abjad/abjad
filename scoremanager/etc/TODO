@@ -124,3 +124,11 @@
 26. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
+
+27. Make sure new-style.ily doesn't alias (new).
+    This blocks the creation of new stylesheets.
+
+28. Change _initialize_asset_manager() to _initialize_manager().
+    Change _asset_manager_class to _manager_class.
+
+29. Implement __contains__ on Menu and MenuSection.
