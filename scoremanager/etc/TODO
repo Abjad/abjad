@@ -132,3 +132,10 @@
     Change _asset_manager_class to _manager_class.
 
 29. Implement __contains__ on Menu and MenuSection.
+
+30. When in (new) score, change 'Enter package name>' to
+    'Enter score package name>'.
+
+31. Block (new) score when view is hiding user scores.
+    This is true when (ssx) is the current view.
+    Otherwise the score package gets created but is hidden.
