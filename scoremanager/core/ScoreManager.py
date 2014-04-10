@@ -96,6 +96,7 @@ class ScoreManager(Controller):
     @property
     def _user_input_to_action(self):
         result = {
+            'cp': self.copy_score,
             'cro': self.view_cache,
             'cw': self.write_cache,
             'd': self.manage_distribution_artifact_library,
@@ -111,6 +112,8 @@ class ScoreManager(Controller):
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
+            'ren': self.rename_score,
+            'rm': self.remove_score,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
@@ -331,7 +334,10 @@ class ScoreManager(Controller):
 
     def _make_scores_menu_section(self, menu):
         commands = []
+        commands.append(('scores - copy', 'cp'))
         commands.append(('scores - new', 'new'))
+        commands.append(('scores - remove', 'rm'))
+        commands.append(('scores - rename', 'ren'))
         section = menu.make_command_section(
             menu_entries=commands,
             name='scores - new',
@@ -403,6 +409,13 @@ class ScoreManager(Controller):
         Returns none.
         '''
         self._score_package_wrangler.commit_to_repository()
+
+    def copy_score(self):
+        r'''Copies score package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def display_active_scores(self):
         r'''Displays active scores.
@@ -594,6 +607,20 @@ class ScoreManager(Controller):
                 capitalize_first_character=False,
                 )
         self._io_manager.proceed(prompt=prompt)
+
+    def remove_score(self, prompt=True):
+        r'''Removes score.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def rename_score(self, prompt=True):
+        r'''Renames score.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
