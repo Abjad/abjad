@@ -136,7 +136,7 @@ class MaterialPackageWrangler(Wrangler):
         self,
         abjad_library=True,
         user_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_score_packages=True,
         output_material_class_name='',
         ):
@@ -145,7 +145,7 @@ class MaterialPackageWrangler(Wrangler):
         paths = superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
+            example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
         if not output_material_class_name:

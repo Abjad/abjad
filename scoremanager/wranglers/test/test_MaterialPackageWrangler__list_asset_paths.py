@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
 
     result = wrangler._list_asset_paths(
         abjad_library=True,
-        abjad_score_packages=False,
+        example_score_packages=False,
         user_library=False,
         user_score_packages=False,
         )
@@ -64,7 +64,7 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
 
     result = wrangler._list_asset_paths(
         abjad_library=False,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_library=False,
         user_score_packages=False,
         )

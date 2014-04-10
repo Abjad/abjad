@@ -158,11 +158,11 @@ class Wrangler(Controller):
         ):
         import scoremanager
         abjad_library = False
-        abjad_score_packages = False
+        example_score_packages = False
         user_library = False
         user_score_packages = False
         if system and inside_score:
-            abjad_score_packages = True
+            example_score_packages = True
         elif system and not inside_score:
             abjad_library = True
         elif not system and inside_score:
@@ -173,7 +173,7 @@ class Wrangler(Controller):
             Exception
         asset_paths = self._list_asset_paths(
             abjad_library=abjad_library,
-            abjad_score_packages=abjad_score_packages,
+            example_score_packages=example_score_packages,
             user_library=user_library,
             user_score_packages=user_score_packages,
             )
@@ -296,14 +296,14 @@ class Wrangler(Controller):
         self,
         abjad_library=True,
         user_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_score_packages=True,
         ):
         result = []
         directory_paths = self._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
+            example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
         for directory_path in directory_paths:
@@ -323,7 +323,7 @@ class Wrangler(Controller):
         self,
         abjad_library=True,
         user_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_score_packages=True,
         ):
         result = []
@@ -332,7 +332,7 @@ class Wrangler(Controller):
             result.append(self._abjad_storehouse_path)
         if user_library and self._user_storehouse_path is not None:
             result.append(self._user_storehouse_path)
-        if abjad_score_packages and \
+        if example_score_packages and \
             self._score_storehouse_path_infix_parts:
             for score_directory_path in \
                 self._configuration.list_score_directory_paths(abjad=True):
@@ -355,14 +355,14 @@ class Wrangler(Controller):
         self,
         abjad_library=True,
         user_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_score_packages=True,
         ):
         visible_paths = []
         paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
+            example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
         current_path = self._get_current_directory_path()
@@ -451,7 +451,7 @@ class Wrangler(Controller):
         self,
         abjad_library=True,
         user_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_score_packages=True,
         ):
         from scoremanager import wranglers
@@ -462,7 +462,7 @@ class Wrangler(Controller):
         paths = wrangler._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
+            example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
         for path in paths:
@@ -539,7 +539,7 @@ class Wrangler(Controller):
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,
             user_library=True,
-            abjad_score_packages=False,
+            example_score_packages=False,
             user_score_packages=False,
             )
         selector = iotools.Selector(

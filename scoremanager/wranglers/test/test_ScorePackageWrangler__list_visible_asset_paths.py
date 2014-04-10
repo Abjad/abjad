@@ -28,7 +28,7 @@ def test_ScorePackageWrangler__list_visible_asset_paths_01():
     # TODO: should be possible to set abjad_library=False
     result = wrangler._list_visible_asset_paths(
         abjad_library=True,
-        abjad_score_packages=True,
+        example_score_packages=True,
         user_library=False,
         user_score_packages=False,
         )
