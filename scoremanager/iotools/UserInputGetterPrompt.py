@@ -4,18 +4,17 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class UserInputGetterPrompt(AbjadObject):
     r'''User input getter prompt.
-
-    Returns user input getter prompt.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_prompt_string',
         '_additional_help_template_arguments',
         '_default_value',
+        '_disallow_range',
         '_help_template',
         '_include_chevron',
+        '_prompt_string',
         '_setup_statements',
         '_target_menu_section',
         '_validation_function',
@@ -27,6 +26,7 @@ class UserInputGetterPrompt(AbjadObject):
         prompt_string,
         additional_help_template_arguments=None,
         default_value=None,
+        disallow_range=False,
         help_template=None,
         include_chevron=True,
         setup_statements=None,
@@ -40,6 +40,7 @@ class UserInputGetterPrompt(AbjadObject):
         self._additional_help_template_arguments = \
             additional_help_template_arguments or []
         self._default_value = default_value
+        self._disallow_range = disallow_range
         self._help_template = help_template
         self._include_chevron = include_chevron
         self._setup_statements = setup_statements or []
@@ -63,6 +64,14 @@ class UserInputGetterPrompt(AbjadObject):
         Returns object.
         '''
         return self._default_value
+
+    @property
+    def disallow_range(self):
+        r'''Is true when prompt disallows argument range.
+
+        Returns boolean.
+        '''
+        return self._disallow_range
 
     @property
     def help_string(self):

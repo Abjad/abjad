@@ -102,6 +102,9 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         elif section is not None:
             evaluated_user_input = section._argument_range_string_to_numbers(
                 user_input)
+            if (1 < len(evaluated_user_input) and
+                self._current_prompt.disallow_range):
+                evaluated_user_input = None
         elif setup_statements:
             for setup_statement in self._current_prompt.setup_statements:
                 try:

@@ -503,6 +503,7 @@ class Wrangler(Controller):
         return view_inventory
 
     def _remove(self, item_identifier='asset', prompt=True):
+        ### TODO: ENCAPSULATE on Wrangler ###
         getter = self._io_manager.make_getter()
         plural_identifier = stringtools.pluralize_string(item_identifier)
         prompt_string = 'enter {} to remove'
@@ -519,6 +520,7 @@ class Wrangler(Controller):
         indices = [_ - 1 for _ in numbers]
         paths = [_.return_value for _ in section.menu_entries]
         paths = sequencetools.retain_elements(paths, indices)
+        ### END ECAPSULATION ###
         self._io_manager.display('')
         if len(indices) == 1:
             confirmation_string = 'remove'
@@ -540,11 +542,26 @@ class Wrangler(Controller):
             manager._remove()
 
     def _rename(self, item_identifier='asset'):
-        path = self._select_asset_path()
+        ### TODO: ENCAPSULATE on Wrangler ###
+        getter = self._io_manager.make_getter()
+        prompt_string = 'enter {} to rename'
+        prompt_string = prompt_string.format(item_identifier)
+        menu = self._make_asset_selection_menu()
+        asset_section = menu['assets']
+        getter.append_menu_section_item(
+            prompt_string, 
+            asset_section,
+            )
+        numbers = getter._run()
         if self._should_backtrack():
             return
-        if not path:
-            return
+        assert len(numbers) == 1
+        number = numbers[0]
+        index = number - 1
+        paths = [_.return_value for _ in asset_section.menu_entries]
+        path = paths[index]
+        ### END ENCAPSULATION ###
+        self._io_manager.display('')
         manager = self._initialize_manager(path)
         manager.rename()
 

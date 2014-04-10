@@ -28,25 +28,27 @@ class PromptMakerMixin(AbjadObject):
     def _make_prompt(
         self,
         spaced_attribute_name,
-        help_template=None,
-        validation_function=None,
         additional_help_template_arguments=None,
-        setup_statements=None,
         default_value=None,
+        disallow_range=False,
+        help_template=None,
         include_chevron=True,
+        setup_statements=None,
         target_menu_section=None,
+        validation_function=None,
         ):
         from scoremanager import iotools
         prompt = iotools.UserInputGetterPrompt(
             spaced_attribute_name,
-            help_template=help_template,
-            validation_function=validation_function,
             additional_help_template_arguments=\
                 additional_help_template_arguments,
-            setup_statements=setup_statements,
             default_value=default_value,
+            disallow_range=disallow_range,
+            help_template=help_template,
             include_chevron=include_chevron,
+            setup_statements=setup_statements,
             target_menu_section=target_menu_section,
+            validation_function=validation_function,
             )
         self._prompts.append(prompt)
 
@@ -172,7 +174,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be dash case file name.'
         self._make_prompt(
             spaced_attribute_name,
-            help_template,
+            help_template=help_template,
             validation_function=stringtools.is_dash_case_file_name,
             default_value=default_value,
             )
@@ -428,12 +430,52 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be markup.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        setup_statements.append('evaluated_user_input = markuptools.Markup({})')
+        statement = 'evaluated_user_input = markuptools.Markup({})'
+        setup_statements.append(statement)
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_markup,
             help_template=help_template,
             setup_statements=setup_statements,
+            default_value=default_value,
+            )
+
+    def append_menu_section_item(
+        self,
+        spaced_attribute_name,
+        target_menu_section,
+        default_value=None,
+        ):
+        r'''Appends menu section item.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be menu item.'
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=predicates.is_list,
+            help_template=help_template,
+            target_menu_section=target_menu_section,
+            default_value=default_value,
+            disallow_range=True,
+            )
+
+    def append_menu_section_range(
+        self,
+        spaced_attribute_name,
+        target_menu_section,
+        default_value=None,
+        ):
+        r'''Appends menu section range.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be argument range.'
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=predicates.is_list,
+            help_template=help_template,
+            target_menu_section=target_menu_section,
             default_value=default_value,
             )
 
