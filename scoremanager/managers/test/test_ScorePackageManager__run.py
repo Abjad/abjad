@@ -30,7 +30,6 @@ def test_ScorePackageManager__run_01():
         '    makers (k)',
         '    materials (m)',
         '    segments (g)',
-        '    setup (p)',
         '    stylesheets (y)',
         '',
         ]

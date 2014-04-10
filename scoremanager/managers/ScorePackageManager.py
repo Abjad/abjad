@@ -324,7 +324,6 @@ class ScorePackageManager(PackageManager):
         commands.append(('makers', 'k'))
         commands.append(('materials', 'm'))
         commands.append(('segments', 'g'))
-        commands.append(('setup', 'p'))
         commands.append(('stylesheets', 'y'))
         menu.make_navigation_section(
             menu_entries=commands,
@@ -337,6 +336,7 @@ class ScorePackageManager(PackageManager):
         commands.append(('score package - remove', 'rm'))
         commands.append(('score package - remove unadded assets', 'rua'))
         commands.append(('score package - rename', 'ren'))
+        commands.append(('score package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
