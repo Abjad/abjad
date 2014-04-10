@@ -14,4 +14,7 @@ def is_positive_integer_equivalent_number(expr):
     '''
     from abjad.tools import mathtools
 
-    return 0 < expr and mathtools.is_integer_equivalent_number(expr)
+    try:
+        return 0 < expr and mathtools.is_integer_equivalent_number(expr)
+    except TypeError:  # Python 3 comparisons with non-numbers
+        return False
