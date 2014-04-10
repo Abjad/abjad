@@ -134,3 +134,20 @@
 29. Block (new) score when view is hiding user scores.
     This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.
+
+30. Allow more flexible input for score (new).
+    Space-delimited, underscore-delimited, hyphen-delimited should
+    all be fine. Use stringtools.delimite_words().
+
+31. Implement stringtools.delimit_words(delimitor=' ').
+    This will take any of the usual string forms as input (space-,
+    hyphen- and underscore-delimited together with upper- and lower-
+    camelcase) and (find and) change the delimitor between
+    words according to the keyword.
+
+32. Remove 'score package - remove' (rm) and 'score package - rename' (ren)
+    commands from ScorePackageManager. Use the corresponding
+    ScorePackageWrangler commands instead.
+    Likewise with the (rm) and (ren) commands on the other managers.
+
+33. Make 'Test Score 1' match 'Test Score 1' in score (rm).
