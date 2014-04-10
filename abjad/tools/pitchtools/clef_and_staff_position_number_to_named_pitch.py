@@ -35,7 +35,10 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
     position_residue = n % 7
     pitch_name = position_residue_to_pitch_name[position_residue]
     #octave = 4 + int(staff_position_number / 7) + 1
-    octave = 4 + int(n / 7) + 1
+    if type(n) == int:
+        octave = 4 + int(n // 7) + 1
+    else:
+        octave = 4 + int(n / 7) + 1
     if pitch_name == 'b':
         octave -= 1
     pitch = pitchtools.NamedPitch(pitch_name, octave)
