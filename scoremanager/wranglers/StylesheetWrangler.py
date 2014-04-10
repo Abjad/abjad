@@ -138,3 +138,11 @@ class StylesheetWrangler(Wrangler):
             file_name_callback=callback,
             prompt_string='stylesheet name', 
             )
+
+    def remove(self, prompt=True):
+        r'''Removes one or more stylesheets.
+
+        Returns none.
+        '''
+        superclass = super(StylesheetWrangler, self)
+        superclass.remove(item_identifier='stylesheet', prompt=prompt)

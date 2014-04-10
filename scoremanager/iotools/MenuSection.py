@@ -178,7 +178,16 @@ class MenuSection(AbjadObject):
         argument_range_string = argument_range_string.replace(' ', '')
         range_parts = argument_range_string.split(',')
         for range_part in range_parts:
-            if range_part == 'all':
+            matches_entry = False
+            for menu_entry in self.menu_entries:
+                if menu_entry.matches(range_part):
+                    number = self._argument_string_to_number(range_part)
+                    numbers.append(number)
+                    matches_entry = True
+                    break
+            if matches_entry:
+                pass
+            elif range_part == 'all':
                 numbers.extend(range(1, len(self.menu_entries) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')

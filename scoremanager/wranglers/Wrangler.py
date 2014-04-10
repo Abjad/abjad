@@ -730,19 +730,46 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.pytest(prompt=prompt)
 
-    def remove(self):
-        r'''Removes asset.
+    def remove(self, item_identifier='asset', prompt=True):
+        r'''Removes one or more assets.
 
         Returns none.
         '''
-        path = self._select_asset_path()
+        getter = self._io_manager.make_getter()
+        plural_identifier = stringtools.pluralize_string(item_identifier)
+        prompt_string = 'enter {} to remove'
+        prompt_string = prompt_string.format(plural_identifier)
+        menu = self._make_asset_selection_menu()
+        section = menu['assets']
+        getter.append_menu_section_range(
+            prompt_string, 
+            section,
+            )
+        numbers = getter._run()
         if self._should_backtrack():
             return
-        if not path:
-            return
-        manager = self._initialize_asset_manager(path)
-        manager.remove()
-        self._session._is_backtracking_locally = False
+        indices = [_ - 1 for _ in numbers]
+        paths = [_.return_value for _ in section.menu_entries]
+        paths = sequencetools.retain_elements(paths, indices)
+        self._io_manager.display('')
+        if len(indices) == 1:
+            confirmation_string = 'remove'
+        else:
+            confirmation_string = 'remove {}'
+            confirmation_string = confirmation_string.format(len(indices))
+        prompt_string = "type {!r} to proceed"
+        prompt_string = prompt_string.format(confirmation_string)
+        if prompt:
+            getter = self._io_manager.make_getter()
+            getter.append_string(prompt_string)
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            if not result == confirmation_string:
+                return
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            manager._remove()
 
     def remove_initializer(self):
         r'''Removes initializer module.
