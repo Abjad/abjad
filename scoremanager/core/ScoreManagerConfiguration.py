@@ -150,8 +150,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         path_prefix = path[:prefix_length]
         remainder = path[prefix_length+1:]
         path_parts = remainder.split(os.path.sep)
+        assert 1 <= len(path_parts)
         if is_in_score:
-            assert 2 <= len(path_parts)
             path_parts = path_parts[:2]
         else:
             assert 1 <= len(path_parts)

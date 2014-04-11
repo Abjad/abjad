@@ -102,6 +102,7 @@ class ScoreManager(Controller):
             'd': self.manage_distribution_artifact_library,
             'fix': self.fix_score_packages,
             'g': self.manage_segment_library,
+            'hls': self.list_storehouses,
             'k': self.manage_maker_library,
             'm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
@@ -295,6 +296,8 @@ class ScoreManager(Controller):
         self._make_scores_menu_section(menu)
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
+        wrangler = self._score_package_wrangler
+        wrangler._make_storehouse_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):
@@ -509,6 +512,13 @@ class ScoreManager(Controller):
         message = '{} metadata modules found.'
         message = message.format(len(paths))
         self._io_manager.proceed(message, prompt=prompt)
+
+    def list_storehouses(self):
+        r'''Lists storehouses.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.list_storehouses()
 
     def make_score_package(self):
         r'''Makes new score.

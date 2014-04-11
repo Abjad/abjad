@@ -77,13 +77,12 @@ class Wrangler(Controller):
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
-            'ls': self.list,
-            'll': self.list_long,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
+            'hls': self.list_storehouses,
             'vl': self.list_views,
             'vn': self.make_view,
             'vs': self.select_view,
@@ -518,6 +517,13 @@ class Wrangler(Controller):
         manager._make_empty_asset()
         manager.edit()
 
+    def _make_main_menu(self, name=None):
+        menu = self._io_manager.make_menu(name=name)
+        self._main_menu = menu
+        self._make_asset_menu_section(menu)
+        self._make_storehouse_menu_section(menu)
+        return menu
+
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,
@@ -545,6 +551,15 @@ class Wrangler(Controller):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
+
+    def _make_storehouse_menu_section(self, menu):
+        commands = []
+        commands.append(('storhouses - list', 'hls'))
+        section = menu.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='storehouses',
+            )
 
     def _navigate_to_next_asset(self):
         pass
@@ -708,23 +723,25 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.doctest(prompt=prompt)
 
-    def list(self):
-        r'''List directory of current package manager.
+    def list_storehouses(self):
+        r'''Lists storehouses.
 
         Returns none.
         '''
         lines = []
-        lines.extend(self._get_visible_storehouses())
+        storehouses = self._get_visible_storehouses()
+        count = len(storehouses)
+        if count == 1:
+            identifier = 'storehouse'
+        else:
+            identifier = 'storehouses'
+        line = '{} {} visible:'.format(count, identifier)
+        lines.append(line)
+        lines.append('')
+        lines.extend(storehouses)
         lines.append('')
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
-
-    def list_long(self):
-        r'''List directory of current package manager with ``ls -l``.
-
-        Returns none.
-        '''
-        self._current_package_manager.list_long()
 
     def list_views(self):
         r'''List views in views module.
