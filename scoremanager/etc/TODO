@@ -150,4 +150,17 @@
     ScorePackageWrangler commands instead.
     Likewise with the (rm) and (ren) commands on the other managers.
 
-33. Make 'Test Score 1' match 'Test Score 1' in score (rm).
+33. Remove one of these two sections from main menu (?):
+        go - build (u)
+        go - distribution (d)
+        go - makers (k)
+        go - materials (m)
+        go - segments (g)
+        go - stylesheets (y)
+
+        library - build files (u)
+        library - distribution files (d)
+        library - makers (k)
+        library - materials (m)
+        library - segments (g)
+        library - stylesheets (y)
