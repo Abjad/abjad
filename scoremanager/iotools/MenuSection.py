@@ -178,14 +178,15 @@ class MenuSection(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _argument_range_string_to_numbers(self, argument_range_string):
+        argument_range_string = argument_range_string.strip()
         assert self.menu_entries
         numbers = []
-        if ',' in argument_range_string or '-' in argument_range_string:
-            argument_range_string = argument_range_string.replace(' ', '')
+        if ',' in argument_range_string:
             range_parts = argument_range_string.split(',')
         else:
             range_parts = [argument_range_string]
         for range_part in range_parts:
+            range_part = range_part.strip()
             matches_entry = False
             for menu_entry in self:
                 if menu_entry.matches(range_part):
@@ -208,6 +209,8 @@ class MenuSection(AbjadObject):
                 numbers.extend(range(1, len(self.menu_entries) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
+                start = start.strip()
+                stop = stop.strip()
                 start = self._argument_string_to_number(start)
                 stop = self._argument_string_to_number(stop)
                 if start is None or stop is None:

@@ -54,13 +54,13 @@ def test_ScorePackageWrangler_remove_score_package_02():
         assert os.path.exists(path_101)
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path_100, session=score_manager._session)
-        title = 'TestScore100'
+        title = 'Test Score 100'
         manager._add_metadatum('title', title)
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path_101, session=score_manager._session)
-        title = 'TestScore101'
+        title = 'Test Score 101'
         manager._add_metadatum('title', title)
-        input_ = 'ssv rm TestScore100-TestScore101 remove~2 q'
+        input_ = 'ssv rm Test~Score~100~-~Test~Score~101 remove~2 q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path_100)
         assert not os.path.exists(path_101)
