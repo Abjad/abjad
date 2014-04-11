@@ -62,11 +62,10 @@ class MenuSection(AbjadObject):
 
     ### INITIALIZER ###
 
-    # TODO: alphabetize keywords
     def __init__(
         self,
-        return_value_attribute='display_string',
         default_index=None,
+        display_prepopulated_values=False,
         indent_level=1,
         is_alphabetized=True,
         is_asset_section=False,
@@ -78,10 +77,10 @@ class MenuSection(AbjadObject):
         is_navigation_section=False,
         is_numbered=False,
         is_ranged=False,
-        display_prepopulated_values=False,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
+        return_value_attribute='display_string',
         title=None,
         ):
         AbjadObject.__init__(self)
