@@ -57,6 +57,8 @@ class TypedTuple(TypedCollection):
 
         Returns item.
         '''
+        if type(i) == slice:
+            return self.__getslice__(i.start, i.stop)
         return self._collection[i]
 
     def __getslice__(self, start, stop):

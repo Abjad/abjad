@@ -21,7 +21,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
             duration = time_signature.duration
             if measure.implicit_scaling:
                 implied_prolation = time_signature.implied_prolation
-                multiplier = duration / implied_prolation
+                multiplier = duration.__div__(implied_prolation)
             else:
                 multiplier = durationtools.Multiplier(duration)
             attach(multiplier, skip)

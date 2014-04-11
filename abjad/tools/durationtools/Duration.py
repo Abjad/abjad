@@ -211,7 +211,7 @@ class Duration(AbjadObject, fractions.Fraction):
             args[0], mathtools.NonreducedFraction):
             result =  args[0].__rdiv__(self)
         else:
-            result = type(self)(fractions.Fraction.__div__(self, *args))
+            result = type(self)(fractions.Fraction.__truediv__(self, *args))
         return result
 
     def __divmod__(self, *args):
@@ -428,7 +428,7 @@ class Duration(AbjadObject, fractions.Fraction):
     def __truediv__(self, *args):
         r'''Documentation required.
         '''
-        return type(self)(fractions.Fraction.__truediv__(self, *args))
+        return self.__div__(*args)
 
     ### PRIVATE PROPERTIES ###
 
