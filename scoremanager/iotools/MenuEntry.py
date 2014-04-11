@@ -10,9 +10,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu = scoremanager.iotools.Menu(
-            ...     include_default_hidden_sections=False,
-            ...     )
+            >>> menu = scoremanager.iotools.Menu()
             >>> commands = []
             >>> commands.append(('foo - add', 'add'))
             >>> commands.append(('foo - delete', 'delete'))

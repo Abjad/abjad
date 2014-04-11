@@ -494,7 +494,6 @@ class IOManager(IOManager):
         self,
         breadcrumb_callback=None,
         name=None,
-        include_default_hidden_sections=True,
         ):
         r'''Makes menu.
 
@@ -502,11 +501,11 @@ class IOManager(IOManager):
         '''
         from scoremanager import iotools
         menu = iotools.Menu(
-            session=self._session,
             breadcrumb_callback=breadcrumb_callback,
             name=name,
-            include_default_hidden_sections=include_default_hidden_sections,
+            session=self._session,
             )
+        menu._make_default_hidden_sections()
         return menu
 
     def make_selector(

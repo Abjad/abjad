@@ -15,9 +15,7 @@ class Menu(ScoreManagerObject):
 
         ::
 
-            >>> menu = scoremanager.iotools.Menu(
-            ...     include_default_hidden_sections=False,
-            ...     )
+            >>> menu = scoremanager.iotools.Menu()
             >>> commands = []
             >>> commands.append(('foo - add', 'add'))
             >>> commands.append(('foo - delete', 'delete'))
@@ -53,16 +51,12 @@ class Menu(ScoreManagerObject):
         self,
         session=None,
         breadcrumb_callback=None,
-        # TODO: maybe remove include_default_hidden_sections?
-        include_default_hidden_sections=False,
         name=None,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._breadcrumb_callback = breadcrumb_callback
         self._menu_sections = []
-        if include_default_hidden_sections:
-            self._make_default_hidden_sections()
         self._name = name
         self._predetermined_user_input = None
         self._should_clear_terminal = False

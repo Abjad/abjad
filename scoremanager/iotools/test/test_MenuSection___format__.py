@@ -7,9 +7,7 @@ def test_MenuSection___format___01():
     r'''Formats menu section without raising exception.
     '''
 
-    menu = scoremanager.iotools.Menu(
-        include_default_hidden_sections=False,
-        )
+    menu = scoremanager.iotools.Menu()
 
     commands = []
     commands.append(('foo - add', 'add'))
