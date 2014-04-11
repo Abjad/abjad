@@ -52,13 +52,13 @@ class Editor(Controller):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        return self.target._attribute_manifest
+
+    @property
     def _breadcrumb(self):
         class_name = type(self.target).__name__
         return stringtools.string_to_space_delimited_lowercase(class_name)
-
-    @property
-    def _attribute_manifest(self):
-        return self.target._attribute_manifest
 
     ### PRIVATE METHODS ###
 

@@ -192,6 +192,28 @@ class Wrangler(Controller):
                 (not must_have_file or manager._find_first_file_name())):
                 return manager
 
+    def _get_available_path(
+        self,
+        prompt_string=None,
+        storehouse_path=None,
+        ):
+        storehouse_path = storehouse_path or self._current_storehouse_path
+        while True:
+            prompt_string = prompt_string or 'enter package name'
+            getter = self._io_manager.make_getter()
+            getter.append_space_delimited_lowercase_string(prompt_string)
+            name = getter._run()
+            if self._should_backtrack():
+                return
+            name = stringtools.string_to_accent_free_snake_case(name)
+            path = os.path.join(storehouse_path, name)
+            if os.path.exists(path):
+                line = 'path already exists: {!r}.'
+                line = line.format(path)
+                self._io_manager.display([line, ''])
+            else:
+                return path
+
     def _get_current_directory_path(self):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
@@ -258,18 +280,6 @@ class Wrangler(Controller):
             return
         view = view_inventory.get(view_name)
         return view
-
-    def _make_debug_getter(self):
-        getter = self._io_manager.make_getter()
-        prompt_string = 'enter {} to rename'
-        prompt_string = prompt_string.format('asset')
-        menu = self._make_asset_selection_menu()
-        asset_section = menu['assets']
-        getter.append_menu_section_item(
-            prompt_string, 
-            asset_section,
-            )
-        return getter, asset_section
 
     def _get_visible_asset_path(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
@@ -699,35 +709,6 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.doctest(prompt=prompt)
-
-    def get_available_path(
-        self,
-        prompt_string=None,
-        storehouse_path=None,
-        ):
-        r'''Gets available path in `storehouse_path`.
-
-        Sets `storehouse_path` equal to current storehouse path when
-        `storehouse_path` is none.
-
-        Returns string.
-        '''
-        storehouse_path = storehouse_path or self._current_storehouse_path
-        while True:
-            prompt_string = prompt_string or 'enter package name'
-            getter = self._io_manager.make_getter()
-            getter.append_space_delimited_lowercase_string(prompt_string)
-            name = getter._run()
-            if self._should_backtrack():
-                return
-            name = stringtools.string_to_accent_free_snake_case(name)
-            path = os.path.join(storehouse_path, name)
-            if os.path.exists(path):
-                line = 'path already exists: {!r}.'
-                line = line.format(path)
-                self._io_manager.display([line, ''])
-            else:
-                return path
 
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.

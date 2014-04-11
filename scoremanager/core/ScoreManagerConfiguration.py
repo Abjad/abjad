@@ -214,25 +214,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
 
     @property
-    def example_score_packages_directory_path(self):
-        r'''Gets Abjad score packages directory path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.example_score_packages_directory_path
-                '.../scoremanager/scores'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.score_manager_directory_path,
-            'scores',
-            )
-        return path
-
-    @property
     def abjad_stylesheets_directory_path(self):
         r'''Gets Abjad stylesheets directory path.
 
@@ -370,6 +351,25 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         '''
         superclass = super(ScoreManagerConfiguration, self)
         return superclass.configuration_file_path
+
+    @property
+    def example_score_packages_directory_path(self):
+        r'''Gets Abjad score packages directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.example_score_packages_directory_path
+                '.../scoremanager/scores'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'scores',
+            )
+        return path
 
     @property
     def handler_tools_directory_path(self):

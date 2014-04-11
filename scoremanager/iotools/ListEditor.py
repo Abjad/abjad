@@ -75,13 +75,13 @@ class ListEditor(Editor):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _items(self):
-        return self.target
-
-    @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
+
+    @property
+    def _items(self):
+        return self.target
 
     @property
     def _target_name(self):

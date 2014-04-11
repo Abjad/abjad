@@ -236,7 +236,7 @@ class MaterialPackageWrangler(Wrangler):
         else:
             storehouse_path = self._user_storehouse_path
         prompt_string = 'Enter material package name'
-        path = self.get_available_path(
+        path = self._get_available_path(
             prompt_string=prompt_string,
             storehouse_path=storehouse_path,
             )

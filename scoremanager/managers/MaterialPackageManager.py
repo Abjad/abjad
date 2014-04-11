@@ -208,12 +208,6 @@ class MaterialPackageManager(PackageManager):
             output_material = result[0]
             return output_material
 
-    def _has_output_material_editor(self):
-        if not os.path.isfile(self._definition_module_path):
-            if not os.path.isfile(self._user_input_module_path):
-                True
-        return False
-
     def _get_output_material_editor(self, target):
         if target is None:
             return
@@ -242,6 +236,12 @@ class MaterialPackageManager(PackageManager):
         else:
             raise ValueError(result)
 
+    def _has_output_material_editor(self):
+        if not os.path.isfile(self._definition_module_path):
+            if not os.path.isfile(self._user_input_module_path):
+                True
+        return False
+
     def _interpret_definition_module(self):
         if not os.path.isfile(self._definition_module_path):
             return
@@ -252,6 +252,23 @@ class MaterialPackageManager(PackageManager):
             assert len(result) == 1
             result = result[0]
             return result
+
+    def _make_autoeditor_summary_menu_section(self, menu):
+        if not self._get_metadatum('use_autoeditor'):
+            if os.path.isfile(self._definition_module_path):
+                return
+            if os.path.isfile(self._user_input_module_path):
+                return
+            if not os.path.isfile(self._output_module_path):
+                return
+        output_material = self._execute_output_module()
+        editor = self._get_output_material_editor(target=output_material)
+        if not editor:
+            return
+        lines = editor._get_target_summary_lines()
+        lines = lines or ['(empty)']
+        section = menu.make_material_summary_section(lines=lines)
+        return section
 
     def _make_illustrate_module_menu_section(self, menu):
         commands = []
@@ -352,23 +369,6 @@ class MaterialPackageManager(PackageManager):
                 menu_entries=commands,
                 name='material',
                 )
-
-    def _make_autoeditor_summary_menu_section(self, menu):
-        if not self._get_metadatum('use_autoeditor'):
-            if os.path.isfile(self._definition_module_path):
-                return
-            if os.path.isfile(self._user_input_module_path):
-                return
-            if not os.path.isfile(self._output_module_path):
-                return
-        output_material = self._execute_output_module()
-        editor = self._get_output_material_editor(target=output_material)
-        if not editor:
-            return
-        lines = editor._get_target_summary_lines()
-        lines = lines or ['(empty)']
-        section = menu.make_material_summary_section(lines=lines)
-        return section
 
     def _make_output_material(self):
         return

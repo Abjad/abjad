@@ -557,7 +557,7 @@ class ScorePackageManager(PackageManager):
         '''
         pass
         prompt_string = 'new package name'
-        new_path = self._score_package_wrangler.get_available_path(
+        new_path = self._score_package_wrangler._get_available_path(
             prompt_string=prompt_string)
         if self._should_backtrack():
             return

@@ -158,7 +158,7 @@ class ScorePackageWrangler(Wrangler):
 
         Returns none.
         '''
-        path = self.get_available_path()
+        path = self._get_available_path()
         if self._should_backtrack():
             return
         if not path:

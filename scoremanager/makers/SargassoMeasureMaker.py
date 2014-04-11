@@ -337,14 +337,6 @@ class SargassoMeasureMaker(AbjadObject):
         return self._measure_denominator
 
     @property
-    def measure_numerator_talea(self):
-        r'''Gets measure numerator talea of sargasso measure maker.
-
-        Returns tuple.
-        '''
-        return self._measure_numerator_talea
-
-    @property
     def measure_division_denominator(self):
         r'''Gets mesaure division denominator of sargasso measure maker.
 
@@ -361,12 +353,12 @@ class SargassoMeasureMaker(AbjadObject):
         return self._measure_division_talea
 
     @property
-    def total_duration(self):
-        r'''Gets total duration of sargasso measure maker.
+    def measure_numerator_talea(self):
+        r'''Gets measure numerator talea of sargasso measure maker.
 
-        Returns duration.
+        Returns tuple.
         '''
-        return self._total_duration
+        return self._measure_numerator_talea
 
     @property
     def measures_are_scaled(self):
@@ -377,6 +369,14 @@ class SargassoMeasureMaker(AbjadObject):
         return self._measures_are_scaled
 
     @property
+    def measures_are_shuffled(self):
+        r'''Is true when measures are shuffled. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._measures_are_shuffled
+
+    @property
     def measures_are_split(self):
         r'''Is true when measures are split. Otherwise false.
 
@@ -385,9 +385,9 @@ class SargassoMeasureMaker(AbjadObject):
         return self._measures_are_split
 
     @property
-    def measures_are_shuffled(self):
-        r'''Is true when measures are shuffled. Otherwise false.
+    def total_duration(self):
+        r'''Gets total duration of sargasso measure maker.
 
-        Returns boolean.
+        Returns duration.
         '''
-        return self._measures_are_shuffled
+        return self._total_duration
