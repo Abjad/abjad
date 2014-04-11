@@ -288,25 +288,10 @@ class ScoreManager(Controller):
             name='cache',
             )
 
-    def _make_library_menu_section(self, menu):
-        commands = []
-        commands.append(('library - build files', 'u'))
-        commands.append(('library - distribution files', 'd'))
-        commands.append(('library - makers', 'k'))
-        commands.append(('library - materials', 'm'))
-        commands.append(('library - segments', 'g'))
-        commands.append(('library - stylesheets', 'y'))
-        section = menu.make_command_section(
-            is_hidden=True,
-            menu_entries=commands,
-            name='library',
-            )
-
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
         self._make_all_directories_menu_section(menu)
         self._make_all_score_packages_menu_section(menu)
-        self._make_library_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)

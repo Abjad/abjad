@@ -11,7 +11,6 @@ def test_Menu__display_all_menu_commands_01():
     contents = score_manager._transcript.contents
 
     assert 'commands - all' in contents
-    assert 'library - build files' in contents
     assert 'scores - new' in contents
 
 
