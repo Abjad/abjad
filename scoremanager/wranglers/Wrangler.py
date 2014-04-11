@@ -79,12 +79,6 @@ class Wrangler(Controller):
             'inro': self.view_initializer,
             'ls': self.list,
             'll': self.list_long,
-            'mda': self.add_metadatum,
-            'mdg': self.get_metadatum,
-            'mdrm': self.remove_metadatum,
-            'mdmrm': self.remove_metadata_module,
-            'mdmrw': self.rewrite_metadata_module,
-            'mdmro': self.view_metadata_module,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
@@ -656,13 +650,6 @@ class Wrangler(Controller):
 
     ### PUBLIC METHODS ###
 
-    def add_metadatum(self):
-        r'''Adds metadatum to metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.add_metadatum()
-
     def add_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
@@ -709,13 +696,6 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.doctest(prompt=prompt)
-
-    def get_metadatum(self):
-        r'''Gets metadatum from metadata module.
-
-        Returns object.
-        '''
-        self._current_package_manager.get_metadatum()
 
     def list(self):
         r'''List directory of current package manager.
@@ -800,20 +780,6 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.remove_initializer()
 
-    def remove_metadata_module(self):
-        r'''Removes metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.remove_metadata_module()
-
-    def remove_metadatum(self):
-        r'''Removes metadatum from metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.remove_metadatum()
-
     def remove_views_module(self):
         r'''Removes views module.
 
@@ -856,13 +822,6 @@ class Wrangler(Controller):
             manager.revert_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def rewrite_metadata_module(self, prompt=True):
-        r'''Rewrites metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.rewrite_metadata_module(prompt=prompt)
-
     def select_view(self):
         r'''Selects view.
 
@@ -900,13 +859,6 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.view_initializer()
-
-    def view_metadata_module(self):
-        r'''Views metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.view_metadata_module()
 
     def view_views_module(self):
         r'''Views views module.
