@@ -28,10 +28,10 @@ class PromptMakerMixin(AbjadObject):
     def _make_prompt(
         self,
         spaced_attribute_name,
-        additional_help_template_arguments=None,
         default_value=None,
         disallow_range=False,
         help_template=None,
+        help_template_arguments=None,
         include_chevron=True,
         setup_statements=None,
         target_menu_section=None,
@@ -39,13 +39,12 @@ class PromptMakerMixin(AbjadObject):
         ):
         from scoremanager import iotools
         prompt = iotools.UserInputGetterPrompt(
-            spaced_attribute_name,
-            additional_help_template_arguments=\
-                additional_help_template_arguments,
             default_value=default_value,
             disallow_range=disallow_range,
             help_template=help_template,
+            help_template_arguments=help_template_arguments,
             include_chevron=include_chevron,
+            prompt_string=spaced_attribute_name,
             setup_statements=setup_statements,
             target_menu_section=target_menu_section,
             validation_function=validation_function,
@@ -362,7 +361,7 @@ class PromptMakerMixin(AbjadObject):
             spaced_attribute_name,
             help_template=help_template,
             validation_function=validation_function,
-            additional_help_template_arguments=(start, stop),
+            help_template_arguments=(start, stop),
             default_value=default_value,
             )
 

@@ -9,10 +9,10 @@ class UserInputGetterPrompt(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_additional_help_template_arguments',
         '_default_value',
         '_disallow_range',
         '_help_template',
+        '_help_template_arguments',
         '_include_chevron',
         '_prompt_string',
         '_setup_statements',
@@ -24,12 +24,12 @@ class UserInputGetterPrompt(AbjadObject):
 
     def __init__(
         self,
-        prompt_string,
-        additional_help_template_arguments=None,
         default_value=None,
         disallow_range=False,
         help_template=None,
+        help_template_arguments=None,
         include_chevron=True,
+        prompt_string=None,
         setup_statements=None,
         target_menu_section=None,
         validation_function=None,
@@ -37,26 +37,17 @@ class UserInputGetterPrompt(AbjadObject):
         AbjadObject.__init__(self)
         assert isinstance(prompt_string, str)
         assert isinstance(help_template, str)
-        self._prompt_string = prompt_string
-        self._additional_help_template_arguments = \
-            additional_help_template_arguments or []
         self._default_value = default_value
         self._disallow_range = disallow_range
         self._help_template = help_template
+        self._help_template_arguments = help_template_arguments or []
         self._include_chevron = include_chevron
+        self._prompt_string = prompt_string
         self._setup_statements = setup_statements or []
         self._target_menu_section = target_menu_section
         self._validation_function = validation_function
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def additional_help_template_arguments(self):
-        r'''Gets additional help template arugments of prompt.
-
-        Returns list.
-        '''
-        return self._additional_help_template_arguments
 
     @property
     def default_value(self):
@@ -82,7 +73,7 @@ class UserInputGetterPrompt(AbjadObject):
         '''
         result = self.help_template.format(
             self.prompt_string,
-            *self.additional_help_template_arguments
+            *self.help_template_arguments
             )
         return result
 
@@ -93,6 +84,14 @@ class UserInputGetterPrompt(AbjadObject):
         Returns something.
         '''
         return self._help_template
+
+    @property
+    def help_template_arguments(self):
+        r'''Gets help template arugments of prompt.
+
+        Returns list.
+        '''
+        return self._help_template_arguments
 
     @property
     def include_chevron(self):
