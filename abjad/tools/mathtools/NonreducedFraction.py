@@ -439,7 +439,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __truediv__(self, expr):
-        r'''Divides in Python 3
+        r'''Divides nonreduced fraction in Python 3.
 
         Returns nonreduced fraction.
         '''
