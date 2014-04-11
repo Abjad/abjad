@@ -65,7 +65,7 @@ class DirectoryManager(Manager):
     ### PRIVATE METHODS ###
 
     def _add_metadatum(self, metadatum_name, metadatum_value):
-        assert stringtools.is_snake_case_string(metadatum_name)
+        assert ' ' not in metadatum_name, repr(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
         self.rewrite_metadata_module(metadata, prompt=False)

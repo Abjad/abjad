@@ -533,6 +533,25 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
+    def user_library_views_directory_path(self):
+        r'''Gets user library views directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_views_directory_path
+                '.../views'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'views',
+            )
+        return path
+
+    @property
     def user_score_packages_directory_path(self):
         r'''Gets user score packages directory path.
 

@@ -101,9 +101,14 @@ class Wrangler(Controller):
 
     @property
     def _views_module_path(self):
-        directory_path = self._get_current_directory_path()
-        file_path = os.path.join(directory_path, '__views__.py')
-        return file_path
+        if self._session.is_in_score:
+            directory = self._get_current_directory_path()
+            return os.path.join(directory, '__views__.py')
+        else:
+            directory = self._configuration.user_library_views_directory_path
+            class_name = type(self).__name__
+            file_name = '__{}_views__.py'.format(class_name)
+            return os.path.join(directory, file_name)
 
     ### PRIVATE METHODS ###
 
@@ -862,6 +867,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        from scoremanager import managers
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
             message = 'no views found.'
@@ -873,7 +879,18 @@ class Wrangler(Controller):
         view_name = selector._run()
         if self._should_backtrack():
             return
-        self._current_package_manager._add_metadatum('view_name', view_name)
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            manager._add_metadatum('view_name', view_name)
+        else:
+            path = self._configuration.user_library_views_directory_path
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            class_name = type(self).__name__
+            metadatum_name = '{}_view_name'.format(class_name)
+            manager._add_metadatum(metadatum_name, view_name)
 
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
