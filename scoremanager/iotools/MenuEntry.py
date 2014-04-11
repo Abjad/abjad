@@ -81,6 +81,19 @@ class MenuEntry(AbjadObject):
         '''
         return '<{}: {!r}>'.format(type(self).__name__, self.display_string)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.display_string,
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

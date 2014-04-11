@@ -264,6 +264,15 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
 
     @property
+    def include_chevron(self):
+        r'''Is true when user input getter incldues chevron.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._include_chevron
+
+    @property
     def include_newlines(self):
         r'''Is true when user input getter incldues newlines.
         Otherwise false.

@@ -62,6 +62,7 @@ class MenuSection(AbjadObject):
 
     ### INITIALIZER ###
 
+    # TODO: alphabetize keywords
     def __init__(
         self,
         return_value_attribute='display_string',

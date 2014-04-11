@@ -259,6 +259,18 @@ class Wrangler(Controller):
         view = view_inventory.get(view_name)
         return view
 
+    def _make_debug_getter(self):
+        getter = self._io_manager.make_getter()
+        prompt_string = 'enter {} to rename'
+        prompt_string = prompt_string.format('asset')
+        menu = self._make_asset_selection_menu()
+        asset_section = menu['assets']
+        getter.append_menu_section_item(
+            prompt_string, 
+            asset_section,
+            )
+        return getter
+
     def _get_visible_asset_path(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
         prompt_string = 'enter {} to rename'
