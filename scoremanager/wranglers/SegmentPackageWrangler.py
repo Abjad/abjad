@@ -34,7 +34,7 @@ class SegmentPackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _asset_manager_class(self):
+    def _manager_class(self):
         from scoremanager import managers
         return managers.SegmentPackageManager
 
@@ -103,7 +103,7 @@ class SegmentPackageWrangler(Wrangler):
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(path)
         os.mkdir(path)
-        manager = self._asset_manager_class(
+        manager = self._manager_class(
             path=path,
             session=self._session,
             )
@@ -174,7 +174,7 @@ class SegmentPackageWrangler(Wrangler):
             segment_package_path = \
                 self._configuration.path_to_package_path(
                 segment_package_directory_path)
-            manager = self._asset_manager_class(
+            manager = self._manager_class(
                 segment_package_path,
                 session=self._session,
                 )
@@ -203,7 +203,7 @@ class SegmentPackageWrangler(Wrangler):
                 segments_directory_path,
                 segment_package_name,
                 )
-            manager = self._asset_manager_class(
+            manager = self._manager_class(
                 path=segment_package_directory_path,
                 session=self._session,
                 )
@@ -237,7 +237,7 @@ class SegmentPackageWrangler(Wrangler):
             segment_package_path = \
                 self._configuration.path_to_package_path(
                 segment_package_directory_path)
-            manager = self._asset_manager_class(
+            manager = self._manager_class(
                 segment_package_path,
                 session=self._session,
                 )

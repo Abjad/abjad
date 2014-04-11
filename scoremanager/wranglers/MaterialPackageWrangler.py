@@ -54,7 +54,7 @@ class MaterialPackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _asset_manager_class(self):
+    def _manager_class(self):
         from scoremanager import managers
         return managers.MaterialPackageManager
 

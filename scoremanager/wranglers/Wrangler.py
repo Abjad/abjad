@@ -38,7 +38,7 @@ class Wrangler(Controller):
     ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
-    def _asset_manager_class(self):
+    def _manager_class(self):
         pass
 
     @property
@@ -171,7 +171,7 @@ class Wrangler(Controller):
             )
         session = scoremanager.core.Session()
         for asset_path in asset_paths:
-            manager = self._asset_manager_class(
+            manager = self._manager_class(
                 path=asset_path,
                 session=session,
                 )
@@ -218,7 +218,7 @@ class Wrangler(Controller):
             return directory_path
 
     def _get_manager(self, path):
-        manager = self._asset_manager_class(
+        manager = self._manager_class(
             path=path,
             session=self._session,
             )
@@ -316,7 +316,7 @@ class Wrangler(Controller):
 
     def _initialize_manager(self, path):
         assert os.path.sep in path, repr(path)
-        return self._asset_manager_class(
+        return self._manager_class(
             path=path,
             session=self._session,
             )
@@ -445,7 +445,7 @@ class Wrangler(Controller):
         is_storehouse=False,
         ):
         if human_readable_target_name is None:
-            name = self._asset_manager_class.__name__
+            name = self._manager_class.__name__
             name = stringtools.upper_camel_case_to_space_delimited_lowercase(
                 name)
             human_readable_target_name = name
@@ -702,6 +702,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        print 'LISTING'
         self._current_package_manager.list()
 
     def list_long(self):

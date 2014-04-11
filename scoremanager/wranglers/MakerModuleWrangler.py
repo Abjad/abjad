@@ -42,7 +42,7 @@ class MakerModuleWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _asset_manager_class(self):
+    def _manager_class(self):
         from scoremanager import managers
         return managers.FileManager
 
@@ -68,7 +68,7 @@ class MakerModuleWrangler(Wrangler):
     ### PRIVATE METHODS ###
 
     def _edit_maker_module(self, path):
-        manager = self._asset_manager_class(
+        manager = self._manager_class(
             path=path,
             session=self._session,
             )

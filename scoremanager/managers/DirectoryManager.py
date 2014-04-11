@@ -12,7 +12,7 @@ class DirectoryManager(Manager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_asset_manager_class',
+        '_manager_class',
         )
 
     ### INITIALIZER ###
@@ -24,7 +24,7 @@ class DirectoryManager(Manager):
             path=path,
             session=session,
             )
-        self._asset_manager_class = managers.FileManager
+        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
@@ -188,7 +188,7 @@ class DirectoryManager(Manager):
         self,
         path,
         ):
-        manager = self._asset_manager_class(
+        manager = self._manager_class(
             path=path,
             session=self._session,
             )
