@@ -177,9 +177,8 @@ class BuildFileWrangler(Wrangler):
             )
 
     def _make_main_menu(self, name='build wrangler'):
-        menu = self._io_manager.make_menu(name=name)
-        self._main_menu = menu
-        self._make_asset_menu_section(menu)
+        superclass = super(BuildFileWrangler, self)
+        menu = superclass._make_main_menu(name=name)
         self._make_files_menu_section(menu)
         if self._session.is_in_score:
             self._make_back_cover_menu_section(menu)

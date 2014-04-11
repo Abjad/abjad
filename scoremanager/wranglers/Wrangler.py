@@ -522,6 +522,7 @@ class Wrangler(Controller):
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_storehouse_menu_section(menu)
+        self._make_views_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(

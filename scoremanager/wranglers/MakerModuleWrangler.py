@@ -100,9 +100,8 @@ class MakerModuleWrangler(Wrangler):
         menu._asset_section = section
 
     def _make_main_menu(self, name='make module wrangler'):
-        menu = self._io_manager.make_menu(name=name)
-        self._main_menu = menu
-        self._make_asset_menu_section(menu)
+        superclass = super(MakerModuleWrangler, self)
+        menu = superclass._make_main_menu(name=name)
         self._make_maker_modules_menu_section(menu)
         return menu
 
