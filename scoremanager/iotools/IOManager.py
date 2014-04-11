@@ -88,7 +88,6 @@ class IOManager(IOManager):
             'g': self._handle_to_segment_package_wrangler_directive,
             'k': self._handle_to_maker_module_wrangler_directive,
             'm': self._handle_to_material_package_wrangler_directive,
-#            'p': self._handle_to_score_setup_directive,
             'u': self._handle_to_build_file_wrangler_directive,
             'y': self._handle_to_stylesheet_wrangler_directive,
         }

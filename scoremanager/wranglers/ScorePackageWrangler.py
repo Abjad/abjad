@@ -129,6 +129,28 @@ class ScorePackageWrangler(Wrangler):
                 visible_paths.append(path)
         return visible_paths
 
+    def _make_asset_menu_entries(
+        self,
+        include_annotation=True,
+        include_extensions=False,
+        include_asset_name=False,
+        include_year=True,
+        human_readable=True,
+        packages_instead_of_paths=False,
+        sort_by_annotation=True,
+        ):
+        superclass = super(ScorePackageWrangler, self)
+        menu_entries = superclass._make_asset_menu_entries(
+            include_annotation=include_annotation,
+            include_extensions=include_extensions,
+            include_asset_name=include_asset_name,
+            include_year=include_year,
+            human_readable=human_readable,
+            packages_instead_of_paths=packages_instead_of_paths,
+            sort_by_annotation=sort_by_annotation,
+            )
+        return menu_entries
+
     ### PUBLIC METHODS ###
 
     def make_score_package(self):

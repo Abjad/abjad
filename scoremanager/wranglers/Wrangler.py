@@ -269,7 +269,7 @@ class Wrangler(Controller):
             prompt_string, 
             asset_section,
             )
-        return getter
+        return getter, asset_section
 
     def _get_visible_asset_path(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
