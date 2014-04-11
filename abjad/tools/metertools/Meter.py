@@ -142,7 +142,7 @@ class Meter(AbjadObject):
             node, factors, denominator, decrease_durations_monotonically):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = node.preprolated_duration / factor
+                preprolated_duration = node.preprolated_duration.__div__(factor)
                 if factor in (2, 3, 4, 5):
                     if factors:
                         for _ in range(factor):
