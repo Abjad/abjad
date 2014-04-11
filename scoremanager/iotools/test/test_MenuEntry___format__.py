@@ -25,7 +25,7 @@ def test_MenuEntry___format___01():
         format(section[0]),
         r'''
         iotools.MenuEntry(
-            'foo - add',
+            display_string='foo - add',
             key='add',
             )
         '''
