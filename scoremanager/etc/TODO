@@ -149,3 +149,6 @@
     commands from ScorePackageManager. Use the corresponding
     ScorePackageWrangler commands instead.
     Likewise with the (rm) and (ren) commands on the other managers.
+
+33. Change Menu.make_command_section(menu_entries=...) to
+    Menu.make_command_section(commands=...) instead.
