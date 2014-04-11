@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
-pytest.skip("make 'Test Score 1' match 'Test Score 1'.")
 import shutil
 from abjad import *
 import scoremanager
