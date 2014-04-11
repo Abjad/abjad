@@ -31,15 +31,11 @@ class Wrangler(Controller):
         assert session is not None
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
-        self._user_storehouse_path = None
-        self._score_storehouse_path_infix_parts = ()
         self._forbidden_directory_entries = ()
+        self._score_storehouse_path_infix_parts = ()
+        self._user_storehouse_path = None
 
     ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _manager_class(self):
-        pass
 
     @property
     def _current_package_manager(self):
@@ -67,6 +63,10 @@ class Wrangler(Controller):
         path = self._get_current_directory_path()
         if path:
             return os.path.join(path, '__init__.py')
+
+    @abc.abstractproperty
+    def _manager_class(self):
+        pass
 
     @property
     def _user_input_to_action(self):
@@ -301,18 +301,29 @@ class Wrangler(Controller):
         prompt_string = 'enter {} to remove'
         prompt_string = prompt_string.format(plural_identifier)
         menu = self._make_asset_selection_menu()
-        section = menu['assets']
+        asset_section = menu['assets']
         getter.append_menu_section_range(
             prompt_string, 
-            section,
+            asset_section,
             )
         numbers = getter._run()
         if self._should_backtrack():
             return
         indices = [_ - 1 for _ in numbers]
-        paths = [_.return_value for _ in section.menu_entries]
+        paths = [_.return_value for _ in asset_section.menu_entries]
         paths = sequencetools.retain_elements(paths, indices)
         return paths
+
+    def _get_visible_storehouses(self):
+        menu = self._make_asset_selection_menu()
+        asset_section = menu['assets']
+        storehouses = set()
+        for menu_entry in asset_section:
+            path = menu_entry.return_value
+            storehouse = self._configuration._path_to_storehouse(path)
+            storehouses.add(storehouse)
+        storehouses = list(sorted(storehouses))
+        return storehouses
 
     def _initialize_manager(self, path):
         assert os.path.sep in path, repr(path)
@@ -702,8 +713,11 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        print 'LISTING'
-        self._current_package_manager.list()
+        lines = []
+        lines.extend(self._get_visible_storehouses())
+        lines.append('')
+        self._io_manager.display(lines)
+        self._session._hide_next_redraw = True
 
     def list_long(self):
         r'''List directory of current package manager with ``ls -l``.

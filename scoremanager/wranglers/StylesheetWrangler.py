@@ -110,8 +110,18 @@ class StylesheetWrangler(Wrangler):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
+        self._make_storehouse_menu_section(menu)
         self._make_stylesheets_menu_section(menu)
         return menu
+
+    def _make_storehouse_menu_section(self, menu):
+        commands = []
+        commands.append(('storhouses - list', 'ls'))
+        section = menu.make_command_section(
+            is_hidden=True,
+            menu_entries=commands,
+            name='storehouses',
+            )
 
     def _make_stylesheets_menu_section(self, menu):
         commands = []

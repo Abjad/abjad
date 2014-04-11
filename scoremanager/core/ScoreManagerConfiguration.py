@@ -131,6 +131,34 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         score_path = os.path.join(path_prefix, score_name)
         return score_path
 
+    def _path_to_storehouse(self, path):
+        is_in_score = False
+        if path.startswith(self.user_score_packages_directory_path):
+            is_in_score = True
+            prefix_length = len(self.user_score_packages_directory_path)
+        elif path.startswith(self.example_score_packages_directory_path):
+            is_in_score = True
+            prefix_length = len(self.example_score_packages_directory_path)
+        elif path.startswith(self.user_library_directory_path):
+            prefix_length = len(self.user_library_directory_path)
+        elif path.startswith(self.abjad_stylesheets_directory_path):
+            return self.abjad_stylesheets_directory_path
+        else:
+            message = 'unidentifiable path: {!r}.'
+            message = message.format(path)
+            raise Exception(message)
+        path_prefix = path[:prefix_length]
+        remainder = path[prefix_length+1:]
+        path_parts = remainder.split(os.path.sep)
+        if is_in_score:
+            assert 2 <= len(path_parts)
+            path_parts = path_parts[:2]
+        else:
+            assert 1 <= len(path_parts)
+            path_parts = path_parts[:1]
+        storehouse_path = os.path.join(path_prefix, *path_parts)
+        return storehouse_path
+
     def _path_to_storehouse_annotation(self, path):
         import scoremanager
         score_path = self._path_to_score_path(path)
