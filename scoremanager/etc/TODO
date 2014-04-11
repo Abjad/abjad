@@ -152,3 +152,42 @@
 
 33. Change Menu.make_command_section(menu_entries=...) to
     Menu.make_command_section(commands=...) instead.
+
+34. Consider (y - vn) for making a new view:
+
+        Score manager - stylesheet library - list
+
+            1: clean-letter-14 (Abjad)
+            2: clean-letter-16 (Abjad)
+            3: rhythm-letter-16 (Abjad)
+            4: time-signature-context (Abjad)
+            5: baca-letter-14 (Bača)
+            6: red-example-score-stylesheet (Red Example Score)
+            7: gebiete-miscellaneous (Gebiete)
+            8: meters (Manifolds)
+            9: traiettorie-header (Traiettorie inargentate)
+            10: traiettorie-layout (Traiettorie inargentate)
+            11: traiettorie-miscellaneous (Traiettorie inargentate)
+            12: traiettorie-paper (Traiettorie inargentate)
+
+            elements - add (add)
+            elements - move (mv)
+            elements - remove (rm)
+
+            done (done)
+
+        > 
+
+    The stylesheet names should be listed with extensions.
+
+35. Remove confirmation (and hide next redraw) after (vl):
+        > vl
+
+        1 view found:
+
+            flamingo
+
+        Press return to continue. 
+
+36. Maybe change Wrangler._current_package_manager to
+    Wrangler._current_manager?
