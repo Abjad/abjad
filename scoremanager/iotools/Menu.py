@@ -49,9 +49,9 @@ class Menu(ScoreManagerObject):
 
     def __init__(
         self,
-        session=None,
         breadcrumb_callback=None,
         name=None,
+        session=None,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
