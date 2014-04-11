@@ -204,7 +204,7 @@ class MenuSection(AbjadObject):
                     break
             if matches_entry:
                 continue
-            elif range_part == 'all':
+            if range_part == 'all':
                 numbers.extend(range(1, len(self.menu_entries) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
@@ -226,9 +226,9 @@ class MenuSection(AbjadObject):
         return numbers
 
     def _argument_string_to_number(self, argument_string):
-        for menu_entry_index, menu_entry in enumerate(self):
+        for index, menu_entry in enumerate(self):
             if menu_entry.matches(argument_string):
-                menu_entry_number = menu_entry_index + 1
+                menu_entry_number = index + 1
                 return menu_entry_number
 
     def _make_menu_lines(self):

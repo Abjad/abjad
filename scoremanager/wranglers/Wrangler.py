@@ -556,6 +556,8 @@ class Wrangler(Controller):
     def _remove_asset(self, item_identifier='asset', prompt=True):
         paths = self._get_visible_asset_paths(item_identifier=item_identifier)
         self._io_manager.display('')
+        if not paths:
+            return
         count = len(paths)
         if count == 1:
             confirmation_string = 'remove'

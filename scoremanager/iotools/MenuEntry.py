@@ -96,10 +96,12 @@ class MenuEntry(AbjadObject):
     def display_string(self):
         r'''Menu entry display string.
 
-        ::
+        ..  container:: example
 
-            >>> entry.display_string
-            'foo - modify'
+            ::
+
+                >>> entry.display_string
+                'foo - modify'
 
         Returns string.
         '''
@@ -109,10 +111,12 @@ class MenuEntry(AbjadObject):
     def explicit_return_value(self):
         r'''Menu entry prepopulated return value.
 
-        ::
+        ..  container:: example
 
-            >>> entry.explicit_return_value is None
-            True
+            ::
+
+                >>> entry.explicit_return_value is None
+                True
 
         Returns arbitrary value or none.
         '''
@@ -122,10 +126,12 @@ class MenuEntry(AbjadObject):
     def key(self):
         r'''Menu entry key.
 
-        ::
+        ..  container:: example
 
-            >>> entry.key
-            'modify'
+            ::
+
+                >>> entry.key
+                'modify'
 
         Returns string without spaces or none.
         '''
@@ -143,10 +149,12 @@ class MenuEntry(AbjadObject):
     def number(self):
         r'''Menu entry number.
 
-        ::
+        ..  container:: example
 
-            >>> entry.number is None
-            True
+            ::
+
+                >>> entry.number is None
+                True
 
         Returns nonnegative integer or none.
         '''
@@ -157,10 +165,12 @@ class MenuEntry(AbjadObject):
     def prepopulated_value(self):
         r'''Menu entry existing value.
 
-        ::
+        ..  container:: example
 
-            >>> entry.prepopulated_value is None
-            True
+            ::
+
+                >>> entry.prepopulated_value is None
+                True
 
         Returns arbitrary value or none.
         '''
@@ -170,10 +180,12 @@ class MenuEntry(AbjadObject):
     def return_value(self):
         r'''Menu entry return value.
 
-        ::
+        ..  container:: example
 
-            >>> entry.return_value
-            'modify'
+            ::
+
+                >>> entry.return_value
+                'modify'
 
         Returns arbitrary value.
         '''
@@ -197,17 +209,21 @@ class MenuEntry(AbjadObject):
     def matches(self, user_input):
         r'''Is true when menu entry matches `user_input` string.
 
-        ::
+        ..  container:: example
 
-            >>> entry.matches('modify')
-            True
+            ::
+
+                >>> entry.matches('modify')
+                True
 
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> entry.matches('asdf')
-            False
+            ::
+
+                >>> entry.matches('asdf')
+                False
 
         Returns boolean.
         '''
@@ -215,12 +231,11 @@ class MenuEntry(AbjadObject):
             return True
         if self.menu_section.is_numbered and user_input == str(self.number):
             return True
-        if self.menu_section.match_on_display_string:
-            if 3 <= len(user_input):
-                normalized_display_string = \
-                    stringtools.strip_diacritics_from_binary_string(
-                    self.display_string)
-                normalized_display_string = normalized_display_string.lower()
-                if normalized_display_string.startswith(user_input):
-                    return True
+        if (self.menu_section.match_on_display_string and 
+            3 <= len(user_input)):
+            helper = stringtools.strip_diacritics_from_binary_string
+            normalized_display_string = helper(self.display_string)
+            normalized_display_string = normalized_display_string.lower()
+            if normalized_display_string.startswith(user_input.lower()):
+                return True
         return False
