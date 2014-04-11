@@ -83,7 +83,7 @@ def sum_elements(
             else:
                 result.append(x)
 
-    if 0 < slice_total:
+    if slice_total is not None and 0 < slice_total:
         if overhang:
             result.append(slice_total)
 
