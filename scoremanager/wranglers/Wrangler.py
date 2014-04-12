@@ -6,6 +6,7 @@ import subprocess
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.core.Controller import Controller
 
 
@@ -92,6 +93,17 @@ class Wrangler(Controller):
         return result
 
     @property
+    @systemtools.Memoize
+    def _views_directory_manager(self):
+        from scoremanager import managers
+        path = self._configuration.user_library_views_directory_path
+        return managers.DirectoryManager(
+            path=path,
+            session=self._session,
+            )
+
+    @property
+    @systemtools.Memoize
     def _views_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
@@ -267,10 +279,15 @@ class Wrangler(Controller):
             return self._get_previous_asset_path()
 
     def _get_view_from_disk(self):
-        package_manager = self._current_package_manager
-        if not package_manager:
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_directory_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        if not manager:
             return
-        view_name = package_manager._get_metadatum('view_name')
+        view_name = manager._get_metadatum(metadatum_name)
         if not view_name:
             return
         view_inventory = self._read_view_inventory_from_disk()
@@ -871,22 +888,20 @@ class Wrangler(Controller):
             return
         lines = []
         view_names = view_inventory.keys()
-        selector = self._io_manager.make_selector(items=view_names)
+        selector = self._io_manager.make_selector(
+            breadcrumb='view',
+            items=view_names,
+            )
         view_name = selector._run()
         if self._should_backtrack():
             return
         if self._session.is_in_score:
             manager = self._current_package_manager
-            manager._add_metadatum('view_name', view_name)
+            metadatum_name = 'view_name'
         else:
-            path = self._configuration.user_library_views_directory_path
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-                )
-            class_name = type(self).__name__
-            metadatum_name = '{}_view_name'.format(class_name)
-            manager._add_metadatum(metadatum_name, view_name)
+            manager = self._views_directory_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        manager._add_metadatum(metadatum_name, view_name)
 
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.

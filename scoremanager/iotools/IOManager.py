@@ -509,6 +509,7 @@ class IOManager(IOManager):
 
     def make_selector(
         self,
+        breadcrumb=None,
         items=None,
         ):
         r'''Makes selector.
@@ -516,11 +517,11 @@ class IOManager(IOManager):
         Returns selector.
         '''
         from scoremanager import iotools
-        selector = iotools.Selector(
-            session=self._session,
+        return iotools.Selector(
+            breadcrumb=breadcrumb,
             items=items,
+            session=self._session,
             )
-        return selector
 
     def make_view(self, items):
         r'''Makes view.

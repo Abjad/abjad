@@ -38,9 +38,6 @@ class Controller(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_view_from_disk(self):
-        pass
-
     @staticmethod
     def _is_directory_with_metadata_module(path):
         if os.path.isdir(path):
