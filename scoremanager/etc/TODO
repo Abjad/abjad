@@ -180,14 +180,5 @@
 
     The stylesheet names should be listed with extensions.
 
-35. Remove confirmation (and hide next redraw) after (vl):
-        > vl
-
-        1 view found:
-
-            flamingo
-
-        Press return to continue. 
-
-36. Maybe change Wrangler._current_package_manager to
+35. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?

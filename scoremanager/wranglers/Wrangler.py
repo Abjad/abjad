@@ -768,14 +768,10 @@ class Wrangler(Controller):
         message = '{} {} found:'
         message = message.format(view_count, view_string)
         lines.append(message)
-        lines.append('')
-        tab_width = self._configuration.get_tab_width()
-        tab = tab_width * ' '
-        names = [tab + x for x in names]
         lines.extend(names)
         lines.append('')
-        self._io_manager.display(lines)
-        self._io_manager.proceed()
+        self._io_manager.display(lines, capitalize_first_character=False)
+        self._session._hide_next_redraw = True
 
     def make_view(self):
         r'''Makes view.
