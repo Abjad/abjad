@@ -289,7 +289,7 @@ class MaterialPackageManager(PackageManager):
             commands.append((string, 'ims'))
         menu.make_command_section(
             is_hidden=is_hidden,
-            menu_entries=commands,
+            commands=commands,
             name='illustrate module',
             )
 
@@ -301,7 +301,7 @@ class MaterialPackageManager(PackageManager):
         commands.append(('illustration ly - remove', 'lyrm'))
         commands.append(('illustration ly - read only', 'lyro'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='illustration ly',
             )
 
@@ -312,7 +312,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='illustration pdf',
                 )
 
@@ -353,7 +353,7 @@ class MaterialPackageManager(PackageManager):
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
                 is_hidden=use_autoeditor,
-                menu_entries=commands,
+                commands=commands,
                 name='definition module',
                 )
 
@@ -365,7 +365,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('material - illustrate', 'mi'))
         if commands:
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='material',
                 )
 
@@ -405,7 +405,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('output module - write', 'omw'))
         if commands:
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='output module',
                 )
 
@@ -421,7 +421,7 @@ class MaterialPackageManager(PackageManager):
             has_definition_module = os.path.isfile(path)
             menu.make_command_section(
                 is_hidden=has_definition_module,
-                menu_entries=commands,
+                commands=commands,
                 name='package configuration',
                 )
 

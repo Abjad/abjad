@@ -110,7 +110,7 @@ class FileManager(Manager):
             commands.append(('file - read only', 'v'))
         menu.make_command_section(
             default_index=0,
-            menu_entries=commands,
+            commands=commands,
             )
 
     def _make_main_menu(self, name='file manager'):

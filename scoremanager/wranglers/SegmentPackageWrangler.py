@@ -90,7 +90,7 @@ class SegmentPackageWrangler(Wrangler):
         commands.append(('all segments - pdf - version', 'pdfs'))
         commands.append(('all segments - pdf - open', 'pdfo'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='all segments',
             )
 
@@ -140,7 +140,7 @@ class SegmentPackageWrangler(Wrangler):
         commands = []
         commands.append(('segments - new', 'new'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='segments',
             )
 

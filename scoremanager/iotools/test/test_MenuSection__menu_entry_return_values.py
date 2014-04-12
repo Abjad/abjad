@@ -94,9 +94,10 @@ def test_MenuSection__menu_entry_return_values_02():
         title='section',
         )
     assert section.is_numbered
-    assert section._menu_entry_return_values == ['add', 'rm', 'mod']
-    assert section._menu_entry_return_values == \
-        section._menu_entry_keys
+    values = ['add', 'rm', 'mod']
+    assert section._menu_entry_return_values == values
+    keys = section._menu_entry_keys
+    assert section._menu_entry_return_values == keys
 
     menu = scoremanager.iotools.Menu()
     commands = []
@@ -110,10 +111,10 @@ def test_MenuSection__menu_entry_return_values_02():
         title='section',
         )
     assert not section.is_numbered
-    assert section._menu_entry_return_values == \
-        ['add', 'rm', 'mod']
-    assert section._menu_entry_return_values == \
-        section._menu_entry_keys
+    values = ['add', 'rm', 'mod']
+    assert section._menu_entry_return_values == values
+    keys = section._menu_entry_keys
+    assert section._menu_entry_return_values == keys
 
     menu = scoremanager.iotools.Menu()
     commands = []
@@ -127,10 +128,10 @@ def test_MenuSection__menu_entry_return_values_02():
         title='section',
         )
     assert section.is_numbered
-    assert section._menu_entry_return_values == \
-        ['something - add', 'something - delete', 'something - modify']
-    assert section._menu_entry_return_values == \
-        section._menu_entry_display_strings
+    values = ['something - add', 'something - delete', 'something - modify']
+    assert section._menu_entry_return_values == values
+    strings = section._menu_entry_display_strings
+    assert section._menu_entry_return_values == strings
 
     menu = scoremanager.iotools.Menu()
     commands = []
@@ -143,10 +144,10 @@ def test_MenuSection__menu_entry_return_values_02():
         title='section',
         )
     assert not section.is_numbered
-    assert section._menu_entry_return_values == \
-        ['something - add', 'something - delete', 'something - modify']
-    assert section._menu_entry_return_values == \
-        section._menu_entry_display_strings
+    values = ['something - add', 'something - delete', 'something - modify']
+    assert section._menu_entry_return_values == values
+    strings = section._menu_entry_display_strings
+    assert section._menu_entry_return_values == strings
 
 
 def test_MenuSection__menu_entry_return_values_03():
@@ -166,5 +167,5 @@ def test_MenuSection__menu_entry_return_values_03():
         title='section',
         )
     assert not section.is_numbered
-    assert section._menu_entry_return_values == \
-        ['return value A', 'return value B', 'return value C']
+    return_values = ['return value A', 'return value B', 'return value C']
+    assert section._menu_entry_return_values == return_values

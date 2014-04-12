@@ -290,7 +290,7 @@ class ScorePackageManager(PackageManager):
         commands = []
         commands.append(('instrumentation', 'instr'))
         menu.make_navigation_section(
-            menu_entries=commands,
+            commands=commands,
             name='instrumentation',
             )
 
@@ -299,7 +299,7 @@ class ScorePackageManager(PackageManager):
         commands.append(('instrumentation module - read only', 'imro'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='instrumentation',
             )
 
@@ -324,7 +324,7 @@ class ScorePackageManager(PackageManager):
         commands.append(('segments', 'g'))
         commands.append(('stylesheets', 'y'))
         menu.make_navigation_section(
-            menu_entries=commands,
+            commands=commands,
             name='main',
             )
 
@@ -337,7 +337,7 @@ class ScorePackageManager(PackageManager):
         commands.append(('score package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='score',
             )
 
@@ -348,7 +348,7 @@ class ScorePackageManager(PackageManager):
             commands.append(('score pdf - open', 'pdfo'))
             menu.make_command_section(
                 default_index=0,
-                menu_entries=commands,
+                commands=commands,
                 name='score pdf',
                 )
 

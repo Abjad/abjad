@@ -127,7 +127,7 @@ class SegmentPackageManager(PackageManager):
             commands.append((string, 'lyro'))
             menu.make_command_section(
                 is_hidden=True,
-                menu_entries=commands,
+                commands=commands,
                 name='lilypond file',
                 )
 
@@ -139,7 +139,7 @@ class SegmentPackageManager(PackageManager):
             commands.append(('pdf - open', 'pdfo'))
         if commands:
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='pdf',
                 )
 
@@ -149,7 +149,7 @@ class SegmentPackageManager(PackageManager):
             commands.append(('definition module - edit', 'dme'))
             commands.append(('definition module - edit at top', 'dmE'))
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='definition module',
                 )
         else:
@@ -160,7 +160,7 @@ class SegmentPackageManager(PackageManager):
                 )
             commands.append(('definition module - stub', 'dms'))
             menu.make_command_section(
-                menu_entries=commands,
+                commands=commands,
                 name='definition module',
                 )
 
@@ -185,7 +185,7 @@ class SegmentPackageManager(PackageManager):
         else:
             commands.append(('make module - stub', 'mms'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='make module',
             )
 
@@ -196,7 +196,7 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('versioned pdfs - read only', 'vv'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='versioned pdfs',
             )
 
@@ -209,7 +209,7 @@ class SegmentPackageManager(PackageManager):
         commands.append(('versions directory - list', 'vrl'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='versions directory',
             )
 

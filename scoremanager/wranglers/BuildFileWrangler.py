@@ -150,7 +150,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('back cover latex - typeset', 'bct'))
         commands.append(('back cover pdf - open', 'bco'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='back cover',
             )
 
@@ -161,7 +161,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('files - rename', 'ren'))
         commands.append(('files - remove', 'rm'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='files',
             )
 
@@ -172,7 +172,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('front cover latex - typeset', 'fct'))
         commands.append(('front cover pdf - open', 'fco'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='front cover',
             )
 
@@ -195,7 +195,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('preface latex - typeset', 'pft'))
         commands.append(('preface pdf - open', 'pfo'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='preface',
             )
 
@@ -205,7 +205,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('segment lys - copy', 'lycp'))
         commands.append(('segment pdfs - copy', 'pdfcp'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='segments?',
             )
         commands = []
@@ -213,7 +213,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('segment assembly ly - lilypond', 'segly'))
         commands.append(('segment assembly pdf - open', 'sego'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='segment assembly?',
             )
         commands = []
@@ -222,7 +222,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('score latex - typeset', 'st'))
         commands.append(('score pdf - open', 'so'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='score',
             )
 

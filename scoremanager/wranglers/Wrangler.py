@@ -581,7 +581,7 @@ class Wrangler(Controller):
         commands.append(('storhouses - list', 'hls'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='storehouses',
             )
 

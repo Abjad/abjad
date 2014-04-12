@@ -53,10 +53,8 @@ def test_MenuSection__menu_entry_keys_02():
         title='section title',
         )
     assert not section.is_numbered
-    assert section._menu_entry_keys == \
-        ['add', 'rm', 'mod']
-    assert section._menu_entry_keys == \
-        [x.key for x in section.menu_entries]
+    assert section._menu_entry_keys == ['add', 'rm', 'mod']
+    assert section._menu_entry_keys == [_.key for _ in section.menu_entries]
 
     menu = scoremanager.iotools.Menu()
     commands = []
@@ -70,7 +68,7 @@ def test_MenuSection__menu_entry_keys_02():
         title='section title',
         )
     assert section.is_numbered
-    assert section._menu_entry_keys == \
-        ['add', 'rm', 'mod']
-    assert section._menu_entry_keys == \
-        [x.key for x in section.menu_entries]
+    keys = ['add', 'rm', 'mod']
+    assert section._menu_entry_keys == keys
+    keys = [_.key for _ in section.menu_entries]
+    assert section._menu_entry_keys == keys

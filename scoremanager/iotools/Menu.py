@@ -21,7 +21,7 @@ class Menu(ScoreManagerObject):
             >>> commands.append(('foo - delete', 'delete'))
             >>> commands.append(('foo - modify', 'modify'))
             >>> section = menu.make_command_section(
-            ...     menu_entries=commands,
+            ...     commands=commands,
             ...     name='test',
             ...     )
 
@@ -285,7 +285,7 @@ class Menu(ScoreManagerObject):
         commands.append(('commands - all', '?'))
         self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='commands', 
             )
 
@@ -309,7 +309,7 @@ class Menu(ScoreManagerObject):
         commands.append(('edit - current stylesheet', 'Y'))
         self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='edit',
             )
 
@@ -320,7 +320,7 @@ class Menu(ScoreManagerObject):
         commands.append(('go - score', 's'))
         self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='go',
             )
 
@@ -331,7 +331,7 @@ class Menu(ScoreManagerObject):
         self.make_command_section(
             is_alphabetized=False,
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='go - scores',
             )
 
@@ -347,7 +347,7 @@ class Menu(ScoreManagerObject):
         commands.append(('go - stylesheets', 'y'))
         self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='go - wranglers',
             )
 
@@ -356,7 +356,7 @@ class Menu(ScoreManagerObject):
         commands.append(('LilyPond log - read only', 'llro'))
         section = self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='lilypond', 
             )
 
@@ -378,7 +378,7 @@ class Menu(ScoreManagerObject):
         self.make_command_section(
             is_hidden=True,
             match_on_display_string=False,
-            menu_entries=commands,
+            commands=commands,
             name='python',
             )
 
@@ -391,7 +391,7 @@ class Menu(ScoreManagerObject):
         commands.append(('repository - update', 'rup'))
         section = self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='repository',
             )
 
@@ -483,7 +483,7 @@ class Menu(ScoreManagerObject):
         commands.append(('session - display variables', 'sdv'))
         self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='session', 
             )
 
@@ -493,7 +493,7 @@ class Menu(ScoreManagerObject):
         commands.append(('system - shell', '!'))
         section = self.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='system', 
             )
 
@@ -684,7 +684,7 @@ class Menu(ScoreManagerObject):
         is_hidden=False,
         default_index=None,
         match_on_display_string=False,
-        menu_entries=None,
+        commands=None,
         name=None,
         ):
         r'''Makes command section.
@@ -705,7 +705,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             default_index=default_index,
             match_on_display_string=match_on_display_string,
-            menu_entries=menu_entries,
+            menu_entries=commands,
             name=name,
             return_value_attribute='key',
             )
@@ -787,7 +787,7 @@ class Menu(ScoreManagerObject):
         self,
         is_hidden=False,
         match_on_display_string=True,
-        menu_entries=None,
+        commands=None,
         name=None,
         ):
         r'''Makes navigation section.
@@ -805,7 +805,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             is_navigation_section=True,
             match_on_display_string=match_on_display_string,
-            menu_entries=menu_entries,
+            menu_entries=commands,
             name=name,
             return_value_attribute='key',
             )

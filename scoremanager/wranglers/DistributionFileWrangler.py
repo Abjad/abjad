@@ -101,7 +101,7 @@ class DistributionFileWrangler(Wrangler):
         commands.append(('files - rename', 'ren'))
         commands.append(('files - remove', 'rm'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='files',
             )
 

@@ -154,7 +154,7 @@ class ListEditor(Editor):
         if 0 < len(self._items):
             commands.append(('elements - remove', 'rm'))
         section = menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='add, move, remove',
             )
         self._make_done_menu_section(menu)

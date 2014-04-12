@@ -134,7 +134,7 @@ class Controller(ScoreManagerObject):
             commands.append(('directory - rename', 'ren'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='directory',
             )
 
@@ -142,7 +142,7 @@ class Controller(ScoreManagerObject):
         commands = []
         commands.append(('done', 'done'))
         menu.make_navigation_section(
-            menu_entries=commands,
+            commands=commands,
             name='zzz - done',
             )
 
@@ -156,7 +156,7 @@ class Controller(ScoreManagerObject):
             commands.append(('initializer - stub', 'ins'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='initializer',
             )
 
@@ -167,7 +167,7 @@ class Controller(ScoreManagerObject):
         commands.append(('metadatum - remove', 'mdrm'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='metadatum',
             )
 
@@ -178,7 +178,7 @@ class Controller(ScoreManagerObject):
         commands.append(('metadata module - read only', 'mdmro'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='metadata module',
             )
 
@@ -195,7 +195,7 @@ class Controller(ScoreManagerObject):
         menu.make_command_section(
             is_alphabetized=False,
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='go - scores',
             )
 
@@ -206,7 +206,7 @@ class Controller(ScoreManagerObject):
         commands.append(('views - select', 'vs'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='views',
             )
 
@@ -216,7 +216,7 @@ class Controller(ScoreManagerObject):
         commands.append(('views module - read only', 'vmro'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='views module',
             )
 

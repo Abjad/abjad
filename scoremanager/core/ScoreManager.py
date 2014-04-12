@@ -266,7 +266,7 @@ class ScoreManager(Controller):
         commands.append((string, 'mdmrw'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='all dirs',
             )
 
@@ -275,7 +275,7 @@ class ScoreManager(Controller):
         commands.append(('all score packages - fix', 'fix'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='all score packages',
             )
 
@@ -285,7 +285,7 @@ class ScoreManager(Controller):
         commands.append(('cache - write', 'cw'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='cache',
             )
 
@@ -328,7 +328,7 @@ class ScoreManager(Controller):
         commands.append(('scores - remove', 'rm'))
         commands.append(('scores - rename', 'ren'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='scores - new',
             )
 
@@ -341,7 +341,7 @@ class ScoreManager(Controller):
         commands.append(('scores - show user', 'ssu'))
         menu.make_command_section(
             is_hidden=True,
-            menu_entries=commands,
+            commands=commands,
             name='scores - show',
             )
 

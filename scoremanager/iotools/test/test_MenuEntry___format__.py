@@ -15,7 +15,7 @@ def test_MenuEntry___format___01():
     commands.append(('foo - modify', 'modify'))
 
     section = menu.make_command_section(
-        menu_entries=commands,
+        commands=commands,
         name='test',
         )
 

@@ -186,7 +186,7 @@ class MaterialPackageWrangler(Wrangler):
         commands.append(('materials - remove', 'rm'))
         commands.append(('materials - rename', 'ren'))
         menu.make_command_section(
-            menu_entries=commands,
+            commands=commands,
             name='material',
             )
 

@@ -17,7 +17,7 @@ class MenuSection(AbjadObject):
             >>> commands.append(('foo - delete', 'delete'))
             >>> commands.append(('foo - modify', 'modify'))
             >>> section = menu.make_command_section(
-            ...     menu_entries=commands,
+            ...     commands=commands,
             ...     name='test',
             ...     )
 
