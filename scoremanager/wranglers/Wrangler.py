@@ -773,9 +773,10 @@ class Wrangler(Controller):
         Returns none.
         '''
         view_inventory = self._read_view_inventory_from_disk()
-        if view_inventory is None:
+        if not view_inventory:
             message = 'no views found.'
-            self._io_manager.proceed(message)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
             return
         lines = []
         names = view_inventory.keys()

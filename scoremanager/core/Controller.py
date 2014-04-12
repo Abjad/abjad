@@ -43,14 +43,13 @@ class Controller(ScoreManagerObject):
         entries = entries[:]
         filtered_entries = []
         for item in view:
-            #print repr(item), 'ITEM'
             for entry in entries:
                 display_string, _, _, path = entry
                 if item == display_string:
                     filtered_entries.append(entry)
                     entries.remove(entry)
                     break
-        return entries
+        return filtered_entries
 
     @staticmethod
     def _is_directory_with_metadata_module(path):
@@ -119,10 +118,11 @@ class Controller(ScoreManagerObject):
                 path = self._configuration.path_to_package_path(path)
             entry = (string, None, None, path)
             entries.append(entry)
+        if self._session.is_test:
+            return entries
         view = self._get_view_from_disk()
         if view is not None:
-            entries = self._sort_asset_menu_entries_by_view(entries, view)
-            #entries = self._filter_asset_menu_entries_by_view(entries, view)
+            entries = self._filter_asset_menu_entries_by_view(entries, view)
         return entries
 
     def _make_directory_menu_section(self, menu, is_permanent=False):
