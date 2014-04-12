@@ -498,7 +498,7 @@ class Wrangler(Controller):
             include_extensions=include_extensions,
             packages_instead_of_paths=packages_instead_of_paths,
             )
-        section = menu.make_asset_section(
+        menu.make_asset_section(
             menu_entries=menu_entries,
             )
         return menu
@@ -545,6 +545,7 @@ class Wrangler(Controller):
         self._make_asset_menu_section(menu)
         self._make_storehouse_menu_section(menu)
         self._make_views_menu_section(menu)
+        self._make_views_module_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -578,7 +579,7 @@ class Wrangler(Controller):
     def _make_storehouse_menu_section(self, menu):
         commands = []
         commands.append(('storhouses - list', 'hls'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='storehouses',

@@ -273,7 +273,7 @@ class ScoreManager(Controller):
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
         commands.append(('all score packages - fix', 'fix'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='all score packages',
@@ -283,7 +283,7 @@ class ScoreManager(Controller):
         commands = []
         commands.append(('cache - read only', 'cro'))
         commands.append(('cache - write', 'cw'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='cache',
@@ -316,7 +316,7 @@ class ScoreManager(Controller):
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )
-        section = menu.make_asset_section(
+        menu.make_asset_section(
             menu_entries=menu_entries,
             )
         return menu
@@ -327,7 +327,7 @@ class ScoreManager(Controller):
         commands.append(('scores - new', 'new'))
         commands.append(('scores - remove', 'rm'))
         commands.append(('scores - rename', 'ren'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='scores - new',
             )
@@ -339,7 +339,7 @@ class ScoreManager(Controller):
         commands.append(('scores - show examples', 'ssx'))
         commands.append(('scores - show mothballed', 'ssmb'))
         commands.append(('scores - show user', 'ssu'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='scores - show',

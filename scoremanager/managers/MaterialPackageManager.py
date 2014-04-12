@@ -267,8 +267,7 @@ class MaterialPackageManager(PackageManager):
             return
         lines = editor._get_target_summary_lines()
         lines = lines or ['(empty)']
-        section = menu.make_material_summary_section(lines=lines)
-        return section
+        return menu.make_material_summary_section(lines=lines)
 
     def _make_illustrate_module_menu_section(self, menu):
         commands = []
@@ -312,7 +311,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('illustration pdf - remove', 'pdfrm'))
             commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
-            section = menu.make_command_section(
+            menu.make_command_section(
                 menu_entries=commands,
                 name='illustration pdf',
                 )

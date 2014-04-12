@@ -118,7 +118,7 @@ class StylesheetWrangler(Wrangler):
         commands.append(('stylesheets - new', 'new'))
         commands.append(('stylesheets - rename', 'ren'))
         commands.append(('stylesheets - remove', 'rm'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='stylesheets',
             )

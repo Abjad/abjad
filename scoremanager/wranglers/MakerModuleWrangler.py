@@ -111,7 +111,7 @@ class MakerModuleWrangler(Wrangler):
         commands.append(('maker modules - new', 'new'))
         commands.append(('maker modules - rename', 'ren'))
         commands.append(('maker modules - remove', 'rm'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='maker modules',
             )

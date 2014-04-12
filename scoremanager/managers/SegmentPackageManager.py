@@ -138,7 +138,7 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(self._output_pdf_file_path):
             commands.append(('pdf - open', 'pdfo'))
         if commands:
-            section = menu.make_command_section(
+            menu.make_command_section(
                 menu_entries=commands,
                 name='pdf',
                 )
@@ -148,14 +148,14 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(self._definition_module_path):
             commands.append(('definition module - edit', 'dme'))
             commands.append(('definition module - edit at top', 'dmE'))
-            section = menu.make_command_section(
+            menu.make_command_section(
                 menu_entries=commands,
                 name='definition module',
                 )
         else:
             message = 'No definition.py module found;'
             message += ' use (dms) to create a stub.'
-            section = menu.make_informational_section(
+            menu.make_informational_section(
                 menu_entries=[message],
                 )
             commands.append(('definition module - stub', 'dms'))
@@ -184,7 +184,7 @@ class SegmentPackageManager(PackageManager):
             commands.append(('make module - read only', 'mmro'))
         else:
             commands.append(('make module - stub', 'mms'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='make module',
             )

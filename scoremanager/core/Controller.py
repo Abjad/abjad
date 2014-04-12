@@ -117,7 +117,7 @@ class Controller(ScoreManagerObject):
         if not is_permanent:
             commands.append(('directory - remove', 'rm'))
             commands.append(('directory - rename', 'ren'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='directory',
@@ -139,7 +139,7 @@ class Controller(ScoreManagerObject):
             commands.append(('initializer - read only', 'inro'))
         else:
             commands.append(('initializer - stub', 'ins'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='initializer',
@@ -150,7 +150,7 @@ class Controller(ScoreManagerObject):
         commands.append(('metadatum - add', 'mda'))
         commands.append(('metadatum - get', 'mdg'))
         commands.append(('metadatum - remove', 'mdrm'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='metadatum',
@@ -161,7 +161,7 @@ class Controller(ScoreManagerObject):
         commands.append(('metadata module - remove', 'mdmrm'))
         commands.append(('metadata module - rewrite', 'mdmrw'))
         commands.append(('metadata module - read only', 'mdmro'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='metadata module',
@@ -189,7 +189,7 @@ class Controller(ScoreManagerObject):
         commands.append(('views - list', 'vl'))
         commands.append(('views - new', 'vn'))
         commands.append(('views - select', 'vs'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='views',
@@ -199,7 +199,7 @@ class Controller(ScoreManagerObject):
         commands = []
         commands.append(('views module - remove', 'vmrm'))
         commands.append(('views module - read only', 'vmro'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             is_hidden=True,
             menu_entries=commands,
             name='views module',

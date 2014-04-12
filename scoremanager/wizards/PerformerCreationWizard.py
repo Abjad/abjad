@@ -99,7 +99,7 @@ class PerformerCreationWizard(Wizard):
             title='select instruments',
             )
         commands.append(('instruments - skip', 'skip'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='instrument commands',
             )

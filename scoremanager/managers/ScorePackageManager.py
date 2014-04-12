@@ -346,7 +346,7 @@ class ScorePackageManager(PackageManager):
         if manager._get_file_path_ending_with('score.pdf'):
             commands = []
             commands.append(('score pdf - open', 'pdfo'))
-            section = menu.make_command_section(
+            menu.make_command_section(
                 default_index=0,
                 menu_entries=commands,
                 name='score pdf',
@@ -386,7 +386,7 @@ class ScorePackageManager(PackageManager):
 
     def _make_setup_menu_section(self, menu):
         menu_entries = self._make_setup_menu_entries()
-        section = menu.make_attribute_section(
+        menu.make_attribute_section(
             menu_entries=menu_entries,
             name='setup',
             )

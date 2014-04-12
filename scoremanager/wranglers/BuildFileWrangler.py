@@ -149,7 +149,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('back cover latex - generate', 'bcg'))
         commands.append(('back cover latex - typeset', 'bct'))
         commands.append(('back cover pdf - open', 'bco'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='back cover',
             )
@@ -160,7 +160,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('files - new', 'new'))
         commands.append(('files - rename', 'ren'))
         commands.append(('files - remove', 'rm'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='files',
             )
@@ -171,7 +171,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('front cover latex - generate', 'fcg'))
         commands.append(('front cover latex - typeset', 'fct'))
         commands.append(('front cover pdf - open', 'fco'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='front cover',
             )
@@ -194,7 +194,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('preface latex - generate', 'pfg'))
         commands.append(('preface latex - typeset', 'pft'))
         commands.append(('preface pdf - open', 'pfo'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='preface',
             )
@@ -221,7 +221,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('score latex - generate', 'sg'))
         commands.append(('score latex - typeset', 'st'))
         commands.append(('score pdf - open', 'so'))
-        section = menu.make_command_section(
+        menu.make_command_section(
             menu_entries=commands,
             name='score',
             )
