@@ -668,9 +668,9 @@ class Wrangler(Controller):
             )
         selector = iotools.Selector(
             breadcrumb='storehouse',
+            menu_entries=menu_entries,
             session=self._session,
             )
-        selector._menu_entries = menu_entries
         result = selector._run()
         if self._should_backtrack():
             return

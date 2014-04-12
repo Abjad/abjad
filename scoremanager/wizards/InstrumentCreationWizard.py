@@ -30,7 +30,7 @@ class InstrumentCreationWizard(Wizard):
 
     @property
     def _breadcrumb(self):
-        return 'instrument creation wiard'
+        return 'instrument creation wizard'
 
     ### PRIVATE METHODS ###
 

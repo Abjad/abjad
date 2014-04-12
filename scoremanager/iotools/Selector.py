@@ -24,23 +24,24 @@ class Selector(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    # TODO: add menu_entries=None keyword;
-    #       harmonize items=None and menu_entries=None
     def __init__(
         self,
         breadcrumb=None,
         is_numbered=True,
         is_ranged=False,
         items=None,
+        menu_entries=None,
         return_value_attribute='explicit',
         session=None,
         ):
         assert session is not None
+        assert not (menu_entries and items)
         ScoreManagerObject.__init__(self, session=session)
         self._breadcrumb = breadcrumb
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._items = items or []
+        self._menu_entries = menu_entries or []
         self._return_value_attribute = return_value_attribute
 
     ### PRIVATE PROPERTIES ###
@@ -59,10 +60,8 @@ class Selector(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _make_asset_menu_section(self, menu):
-        if hasattr(self, 'menu_entries'):
-            menu_entries = self.menu_entries
-        else:
-            menu_entries = self._make_menu_entries()
+        menu_entries = self.menu_entries
+        menu_entries = menu_entries or self._make_menu_entries()
         if not menu_entries:
             return
         menu._make_section(
@@ -383,11 +382,11 @@ class Selector(ScoreManagerObject):
             performer_abbreviation = performer_abbreviation.strip('.')
             menu_entries.append((performer_name, performer_abbreviation))
         selector = Selector(
-            session=self._session,
             is_ranged=is_ranged,
+            menu_entries=menu_entries,
             return_value_attribute='display_string',
+            session=self._session,
             )
-        selector._menu_entries = menu_entries
         return selector
 
     def make_tempo_selector(self):
