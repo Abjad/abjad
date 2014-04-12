@@ -92,12 +92,32 @@ class StylesheetWrangler(Wrangler):
                 return True
         return False
 
+    def _make_asset_menu_entries(
+        self,
+        include_annotation=True,
+        include_extensions=True,
+        include_asset_name=True,
+        include_year=False,
+        human_readable=False,
+        packages_instead_of_paths=False,
+        sort_by_annotation=True,
+        ):
+        superclass = super(StylesheetWrangler, self)
+        menu_entries = superclass._make_asset_menu_entries(
+            include_annotation=include_annotation,
+            include_extensions=include_extensions,
+            include_asset_name=include_asset_name,
+            include_year=include_year,
+            human_readable=human_readable,
+            packages_instead_of_paths=packages_instead_of_paths,
+            sort_by_annotation=sort_by_annotation,
+            )
+        return menu_entries
+
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
         menu_entries = self._make_asset_menu_entries(
-            human_readable=False,
             include_annotation=include_annotation,
-            include_extensions=True,
             )
         if not menu_entries:
             return

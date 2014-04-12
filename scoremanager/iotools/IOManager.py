@@ -489,6 +489,17 @@ class IOManager(IOManager):
             )
         return getter
 
+    def make_list_editor(self, target=None):
+        r'''Makes list editor with optional `target`.
+
+        Returns list editor.
+        '''
+        from scoremanager import iotools
+        return iotools.ListEditor(
+            session=self._session,
+            target=target,
+            )
+
     def make_menu(
         self,
         breadcrumb_callback=None,

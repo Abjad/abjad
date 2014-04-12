@@ -10,5 +10,6 @@ def test_StylesheetWrangler__run_01():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'y q'
     score_manager._run(pending_user_input=input_)
-    line = '    1: clean-letter-14.ily (Abjad)'
-    assert line in score_manager._transcript.last_menu_lines
+
+    string = 'clean-letter-14.ily (Abjad)'
+    assert string in score_manager._transcript.contents

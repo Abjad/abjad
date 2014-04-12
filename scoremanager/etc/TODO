@@ -182,3 +182,5 @@
 
 35. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
+
+36. Implement 'views - remove' (vrm).

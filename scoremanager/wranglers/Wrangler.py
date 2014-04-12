@@ -804,10 +804,7 @@ class Wrangler(Controller):
             return
         menu_entries = self._make_asset_menu_entries()
         display_strings = [x[0] for x in menu_entries]
-        editor = iotools.ListEditor(
-            session=self._session,
-            target=display_strings,
-            )
+        editor = self._io_manager.make_list_editor(target=display_strings)
         editor._run()
         if self._should_backtrack():
             return
