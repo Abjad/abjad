@@ -142,7 +142,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def _load_prompt_string(self):
         prompt_string = self._current_prompt.prompt_string
         if self.capitalize_prompts:
-            prompt_string = stringtools.capitalize_string_start(prompt_string)
+            prompt_string = stringtools.capitalize_start(prompt_string)
         self._prompt_strings.append(prompt_string)
 
     def _move_to_previous_prompt(self):

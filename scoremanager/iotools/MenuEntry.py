@@ -233,7 +233,7 @@ class MenuEntry(AbjadObject):
             return True
         if (self.menu_section.match_on_display_string and 
             3 <= len(user_input)):
-            helper = stringtools.strip_diacritics_from_binary_string
+            helper = stringtools.strip_diacritics
             normalized_display_string = helper(self.display_string)
             normalized_display_string = normalized_display_string.lower()
             if normalized_display_string.startswith(user_input.lower()):

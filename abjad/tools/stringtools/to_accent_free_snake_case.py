@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.stringtools.strip_diacritics_from_binary_string \
-	import strip_diacritics_from_binary_string
+from abjad.tools.stringtools.strip_diacritics \
+	import strip_diacritics
 
 
-def string_to_accent_free_snake_case(string):
+def to_accent_free_snake_case(string):
     '''Change `string` to strict directory name:
 
     ::
 
-        >>> stringtools.string_to_accent_free_snake_case('Déja vu')
+        >>> stringtools.to_accent_free_snake_case('Déja vu')
         'deja_vu'
 
     Strip accents from accented characters.
@@ -20,7 +20,7 @@ def string_to_accent_free_snake_case(string):
 
     assert isinstance(string, str)
 
-    result = strip_diacritics_from_binary_string(string)
+    result = strip_diacritics(string)
     result = result.replace(' ', '_')
     result = result.replace("'", '_')
     result = result.lower()

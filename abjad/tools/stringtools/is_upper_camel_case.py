@@ -4,19 +4,19 @@ import re
 
 uppercamelcase_regex = re.compile('^([A-Z,0-9]+[a-z,0-9]*)*$')
 
-def is_upper_camel_case_string(expr):
+def is_upper_camel_case(expr):
     r'''Is true when `expr` is a string and is uppercamelcase:
 
     ::
 
-        >>> stringtools.is_upper_camel_case_string('FooBar')
+        >>> stringtools.is_upper_camel_case('FooBar')
         True
 
     Otherwise false:
 
     ::
 
-        >>> stringtools.is_upper_camel_case_string('fooBar')
+        >>> stringtools.is_upper_camel_case('fooBar')
         False
 
     Returns boolean.

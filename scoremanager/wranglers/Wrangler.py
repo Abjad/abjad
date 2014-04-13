@@ -215,7 +215,7 @@ class Wrangler(Controller):
             name = getter._run()
             if self._should_backtrack():
                 return
-            name = stringtools.string_to_accent_free_snake_case(name)
+            name = stringtools.to_accent_free_snake_case(name)
             path = os.path.join(storehouse_path, name)
             if os.path.exists(path):
                 line = 'path already exists: {!r}.'
@@ -318,7 +318,7 @@ class Wrangler(Controller):
 
     def _get_visible_asset_paths(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
-        plural_identifier = stringtools.pluralize_string(item_identifier)
+        plural_identifier = stringtools.pluralize(item_identifier)
         prompt_string = 'enter {} to remove'
         prompt_string = prompt_string.format(plural_identifier)
         menu = self._make_asset_selection_menu()
@@ -459,7 +459,7 @@ class Wrangler(Controller):
     def _make_asset(self, asset_name):
         if os.path.sep in asset_name:
             asset_name = os.path.basename(asset_name)
-        assert stringtools.is_snake_case_string(asset_name)
+        assert stringtools.is_snake_case(asset_name)
         path = os.path.join(
             self._current_storehouse_path,
             asset_name,
@@ -526,7 +526,7 @@ class Wrangler(Controller):
             return
         if not name:
             return
-        name = stringtools.strip_diacritics_from_binary_string(name)
+        name = stringtools.strip_diacritics(name)
         if file_name_callback:
             name = file_name_callback(name)
         name = name.replace(' ', '_')
@@ -783,7 +783,7 @@ class Wrangler(Controller):
         view_count = len(view_inventory)
         view_string = 'view'
         if view_count != 1:
-            view_string = stringtools.pluralize_string(view_string)
+            view_string = stringtools.pluralize(view_string)
         message = '{} {} found:'
         message = message.format(view_count, view_string)
         lines.append(message)

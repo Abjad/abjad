@@ -700,13 +700,13 @@ class PromptMakerMixin(AbjadObject):
         Returns prompt.
         '''
         def is_nonempty_snake_case_string(expr):
-            if stringtools.is_snake_case_string(expr):
+            if stringtools.is_snake_case(expr):
                 return bool(expr)
             return False
         if allow_empty:
             help_template = 'value must be'
             help_template += ' snake-case string.'
-            validation_function = stringtools.is_snake_case_string
+            validation_function = stringtools.is_snake_case
         else:
             help_template = 'value must be nonempty'
             help_template += ' snake-case string.'
@@ -731,7 +731,7 @@ class PromptMakerMixin(AbjadObject):
         help_template += ' must be space-delimited lowercase string.'
         self._make_prompt(
             spaced_attribute_name,
-            validation_function=stringtools.is_space_delimited_lowercase_string,
+            validation_function=stringtools.is_space_delimited_lowercase,
             help_template=help_template,
             default_value=default_value,
             )

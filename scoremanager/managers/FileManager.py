@@ -65,7 +65,7 @@ class FileManager(Manager):
         if self._path:
             base_name = os.path.basename(self._path)
             name = base_name.strip('.py')
-            name = stringtools.string_to_space_delimited_lowercase(name)
+            name = stringtools.to_space_delimited_lowercase(name)
             return name
 
     def _handle_main_menu_result(self, result):

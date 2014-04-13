@@ -233,14 +233,14 @@ class Instrument(AbjadObject):
     def _initialize_default_name_markups(self):
         if self.instrument_name:
             string = self.instrument_name
-            string = stringtools.capitalize_string_start(string)
+            string = stringtools.capitalize_start(string)
             markup = markuptools.Markup(contents=string)
             self._instrument_name_markup = markup
         else:
             self._instrument_name_markup = None
         if self.short_instrument_name:
             string = self.short_instrument_name
-            string = stringtools.capitalize_string_start(string)
+            string = stringtools.capitalize_start(string)
             markup = markuptools.Markup(contents=string)
             self._short_instrument_name_markup = markup
         else:

@@ -21,7 +21,7 @@ def is_boolean(expr):
     return isinstance(expr, bool)
 
 def is_class_name_or_none(expr):
-    return expr is None or stringtools.is_upper_camel_case_string(expr)
+    return expr is None or stringtools.is_upper_camel_case(expr)
 
 def is_clef_token(expr):
     try:

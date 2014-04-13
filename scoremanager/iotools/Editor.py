@@ -58,7 +58,7 @@ class Editor(Controller):
     @property
     def _breadcrumb(self):
         class_name = type(self.target).__name__
-        return stringtools.string_to_space_delimited_lowercase(class_name)
+        return stringtools.to_space_delimited_lowercase(class_name)
 
     ### PRIVATE METHODS ###
 
@@ -151,7 +151,7 @@ class Editor(Controller):
         if self.target is not None:
             for attribute_detail in self._attribute_manifest:
                 target_attribute_name = attribute_detail.name
-                name = stringtools.string_to_space_delimited_lowercase(
+                name = stringtools.to_space_delimited_lowercase(
                     target_attribute_name)
                 value = self._io_manager._get_one_line_menu_summary(
                     getattr(self.target, target_attribute_name))
@@ -338,7 +338,7 @@ class Editor(Controller):
     def _target_args_to_target_summary_lines(self, target):
         result = []
         for arg in getattr(target, 'args', []):
-            name = stringtools.string_to_space_delimited_lowercase(arg)
+            name = stringtools.to_space_delimited_lowercase(arg)
             attribute = getattr(target, arg)
             value = self._io_manager._get_one_line_menu_summary(attribute)
             result.append('{}: {}'.format(name, value))
@@ -347,7 +347,7 @@ class Editor(Controller):
     def _target_kwargs_to_target_summary_lines(self, target):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
-            name = stringtools.string_to_space_delimited_lowercase(kwarg)
+            name = stringtools.to_space_delimited_lowercase(kwarg)
             value = self._io_manager._get_one_line_menu_summary(
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.stringtools.is_dash_case_string \
+from abjad.tools.stringtools.is_dash_case \
 	import hyphen_delimited_lowercase_regex_body
 import re
 

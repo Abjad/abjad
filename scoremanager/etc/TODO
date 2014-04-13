@@ -186,8 +186,8 @@
 36. Implement 'views - remove' (vrm).
 
 37. Clean up stringtools. Rename many functions.
-    Change stringtools.pluralize_string() to stringtools.pluralize().
-    Change stringtools.is_dash_case_string() to stringtools.is_dash_case().
+    Change stringtools.pluralize() to stringtools.pluralize().
+    Change stringtools.is_dash_case() to stringtools.is_dash_case().
     And so on.
 
 38. Add current view (if any) to menu title. Possibly via breadcrumbs.

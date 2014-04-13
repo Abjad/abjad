@@ -274,7 +274,7 @@ class MenuSection(AbjadObject):
     def _make_title_lines(self):
         menu_lines = []
         if isinstance(self.title, str):
-            title_lines = [stringtools.capitalize_string_start(self.title)]
+            title_lines = [stringtools.capitalize_start(self.title)]
         elif isinstance(self.title, list):
             title_lines = self.title
         else:

@@ -111,7 +111,7 @@ class Menu(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _change_user_input_to_directive(self, user_input):
-        user_input = stringtools.strip_diacritics_from_binary_string(
+        user_input = stringtools.strip_diacritics(
             user_input)
         if self._user_enters_nothing(user_input):
             default_value = None
@@ -182,7 +182,7 @@ class Menu(ScoreManagerObject):
             menu_lines.pop()
         menu_lines = self._make_bicolumnar(menu_lines)
         title = self._session.menu_header
-        title = stringtools.capitalize_string_start(title)
+        title = stringtools.capitalize_start(title)
         menu_lines[0:0] = [title, '']
         menu_lines.append('')
         self._clear_terminal()
@@ -507,7 +507,7 @@ class Menu(ScoreManagerObject):
                 title = self.title
             else:
                 title = self._session.menu_header
-            result.append(stringtools.capitalize_string_start(title))
+            result.append(stringtools.capitalize_start(title))
             result.append('')
         return result
 

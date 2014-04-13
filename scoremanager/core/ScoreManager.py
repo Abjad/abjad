@@ -139,7 +139,7 @@ class ScoreManager(Controller):
             )
         if manager:
             title = manager._get_title()
-            title = stringtools.string_to_accent_free_snake_case(title)
+            title = stringtools.to_accent_free_snake_case(title)
             return title
 
     def _find_up_to_date_manager(

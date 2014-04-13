@@ -110,7 +110,7 @@ class Controller(ScoreManagerObject):
             strings.append(string)
         pairs = zip(strings, paths)
         if sort_by_annotation:
-            tmp = stringtools.strip_diacritics_from_binary_string
+            tmp = stringtools.strip_diacritics
             pairs.sort(key=lambda x: tmp(x[0]))
         entries = []
         for string, path in pairs:
@@ -258,7 +258,7 @@ class Controller(ScoreManagerObject):
         name = os.path.basename(path)
         if not include_extension:
             name, extension = os.path.splitext(name)
-        return stringtools.string_to_space_delimited_lowercase(name)
+        return stringtools.to_space_delimited_lowercase(name)
 
     @staticmethod
     def _sort_asset_menu_entries_by_view(entries, view):

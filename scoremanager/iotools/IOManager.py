@@ -288,7 +288,7 @@ class IOManager(IOManager):
             return
         if capitalize_first_character:
             lines = [
-                stringtools.capitalize_string_start(line)
+                stringtools.capitalize_start(line)
                 for line in lines
                 ]
         if lines:
@@ -368,7 +368,7 @@ class IOManager(IOManager):
         found_default_token = False
         try:
             if capitalize_prompt:
-                prompt_string = stringtools.capitalize_string_start(
+                prompt_string = stringtools.capitalize_start(
                     prompt_string)
             if include_chevron:
                 prompt_string = prompt_string + prompt_character + ' '

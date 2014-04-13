@@ -61,12 +61,12 @@ class ScoreManagerObject(object):
 
     @property
     def _space_delimited_lowercase_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(
+        return stringtools.to_space_delimited_lowercase(
             type(self).__name__)
 
     @property
     def _spaced_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(
+        return stringtools.to_space_delimited_lowercase(
             type(self).__name__)
 
     ### PRIVATE METHODS ###

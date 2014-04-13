@@ -2,7 +2,7 @@
 import unicodedata
 
 
-def strip_diacritics_from_binary_string(binary_string):
+def strip_diacritics(binary_string):
     r'''Strip diacritics from `binary_string`:
 
     ::
@@ -16,7 +16,7 @@ def strip_diacritics_from_binary_string(binary_string):
 
     ::
 
-        >>> stringtools.strip_diacritics_from_binary_string(binary_string)
+        >>> stringtools.strip_diacritics(binary_string)
         'Dvorak'
 
     Returns ASCII string.

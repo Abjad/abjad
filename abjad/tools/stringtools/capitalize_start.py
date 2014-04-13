@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def capitalize_string_start(string):
+def capitalize_start(string):
     r'''Capitalize `string`:
 
     ::
@@ -10,7 +10,7 @@ def capitalize_string_start(string):
 
     ::
 
-        >>> stringtools.capitalize_string_start(string)
+        >>> stringtools.capitalize_start(string)
         'Violin I'
 
     Function differs from built-in ``string.capitalize()``.
