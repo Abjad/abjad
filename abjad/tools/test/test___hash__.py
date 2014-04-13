@@ -11,7 +11,7 @@ def test___hash___01(class_):
     '''
 
     if not inspect.isabstract(class_):
-        if hasattr(class_, '__hash__'):
+        if getattr(class_, '__hash__', None):
             instance = class_()
             value = hash(instance)
             assert isinstance(value, int)
