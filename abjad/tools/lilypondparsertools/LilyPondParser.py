@@ -179,7 +179,6 @@ class LilyPondParser(abctools.Parser):
     ### PUBLIC PROPERTIES ###
 
     @property
-    @systemtools.Memoize
     def available_languages(self):
         r'''Tuple of pitch-name languages supported by LilyPondParser.
 
@@ -592,7 +591,6 @@ class LilyPondParser(abctools.Parser):
         return container
 
     @classmethod
-    @systemtools.Memoize
     def _get_scheme_predicates(cls):
         from abjad.tools import lilypondparsertools
         return {
@@ -754,8 +752,6 @@ class LilyPondParser(abctools.Parser):
                 return scope[identifier]
         return None
 
-    # decorator appears not to work with input arguments
-    #@systemtools.Memoize
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
             'BeamEvent': spannertools.Beam,
@@ -775,8 +771,6 @@ class LilyPondParser(abctools.Parser):
         message = message.format(name)
         raise Exception(message)
 
-    # decorator appears not to work with input arguments
-    #@systemtools.Memoize
     def _test_scheme_predicate(self, predicate, value):
         predicates = self._get_scheme_predicates()
         if predicate in predicates:
@@ -864,7 +858,6 @@ class LilyPondParser(abctools.Parser):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    @systemtools.Memoize
     def list_known_contexts():
         r'''Lists all LilyPond contexts recognized by LilyPond parser.
 
@@ -911,7 +904,6 @@ class LilyPondParser(abctools.Parser):
         return sorted(contexts.keys())
 
     @staticmethod
-    @systemtools.Memoize
     def list_known_dynamics():
         r'''Lists all dynamics recognized by LilyPond parser.
 
@@ -956,7 +948,6 @@ class LilyPondParser(abctools.Parser):
         return result
 
     @staticmethod
-    @systemtools.Memoize
     def list_known_grobs():
         r'''Lists all LilyPond grobs recognized by LilyPond parser.
 
@@ -1111,7 +1102,6 @@ class LilyPondParser(abctools.Parser):
         return sorted(grob_interfaces.keys())
 
     @staticmethod
-    @systemtools.Memoize
     def list_known_languages():
         r'''Lists all note-input languages recognized by LilyPond parser.
 

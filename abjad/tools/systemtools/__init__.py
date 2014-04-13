@@ -19,7 +19,6 @@ from TemporaryDirectoryChange import TemporaryDirectoryChange
 from Timer import Timer
 from UpdateManager import UpdateManager
 from WellformednessManager import WellformednessManager
-from blue_memoize import blue_memoize
 from requires import requires
 
 _documentation_section = 'internals'
