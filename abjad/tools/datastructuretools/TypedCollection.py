@@ -114,13 +114,13 @@ class TypedCollection(AbjadObject):
 
     @property
     def _item_callable(self):
-        def coerce(x):
+        def coerce_(x):
             if isinstance(x, self._item_class):
                 return x
             return self._item_class(x)
         if self._item_class is None:
             return lambda x: x
-        return coerce
+        return coerce_
 
     @property
     def _repr_specification(self):
