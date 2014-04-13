@@ -191,3 +191,5 @@
     And so on.
 
 38. Add current view (if any) to menu title. Possibly via breadcrumbs.
+
+39. Change _build_directory_manager to _build_file_wrangler.
