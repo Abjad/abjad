@@ -471,6 +471,17 @@ class IOManager(IOManager):
             self.display(lines, capitalize_first_character=False)
         self._session._hide_next_redraw = True
 
+    def make_directory_manager(self, path):
+        r'''Makes directory manager.
+
+        Returns directory manager.
+        '''
+        from scoremanager import managers
+        return managers.DirectoryManager(
+            path=path,
+            session=self._session,
+            )
+
     def make_editor(
         self, 
         breadcrumb=None,
@@ -493,6 +504,17 @@ class IOManager(IOManager):
             breadcrumb=breadcrumb,
             session=self._session,
             target=target,
+            )
+
+    def make_file_manager(self, path):
+        r'''Makes file manager.
+
+        Returns file manager.
+        '''
+        from scoremanager import managers
+        return managers.FileManager(
+            path=path,
+            session=self._session,
             )
 
     def make_getter(
@@ -531,6 +553,17 @@ class IOManager(IOManager):
             )
         menu._make_default_hidden_sections()
         return menu
+
+    def make_package_manager(self, path):
+        r'''Makes package manager.
+
+        Returns package manager.
+        '''
+        from scoremanager import managers
+        return managers.PackageManager(
+            path=path,
+            session=self._session,
+            )
 
     def make_selector(
         self,

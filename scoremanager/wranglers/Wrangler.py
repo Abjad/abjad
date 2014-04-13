@@ -40,14 +40,10 @@ class Wrangler(Controller):
 
     @property
     def _current_package_manager(self):
-        from scoremanager import managers
-        directory_path = self._get_current_directory_path()
-        if directory_path is None:
+        path = self._get_current_directory_path()
+        if path is None:
             return
-        return managers.PackageManager(
-            directory_path,
-            session=self._session,
-            )
+        return self._io_manager.make_package_manager(path)
 
     @property
     def _current_storehouse_path(self):
@@ -95,21 +91,13 @@ class Wrangler(Controller):
     @property
     @systemtools.Memoize
     def _views_directory_manager(self):
-        from scoremanager import managers
         path = self._configuration.user_library_views_directory_path
-        return managers.DirectoryManager(
-            path=path,
-            session=self._session,
-            )
+        return self._io_manager.make_directory_manager(path)
 
     @property
     @systemtools.Memoize
     def _views_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self._views_module_path,
-            session=self._session,
-            )
+        return self._io_manager.make_file_manager(self._views_module_path)
 
     @property
     def _views_module_path(self):
@@ -847,14 +835,10 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        from scoremanager import managers
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-                )
+            manager = self._io_manager.make_directory_manager(path)
             manager.repository_status(prompt=False)
         self._session._hide_next_redraw = True
 
@@ -863,17 +847,13 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        from scoremanager import managers
         self._session._attempted_to_revert_to_repository = True
         if self._session.is_repository_test:
             return
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-                )
+            manager = self._io_manager.make_directory_manager(path)
             manager.revert_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
