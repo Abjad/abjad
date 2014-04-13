@@ -232,3 +232,24 @@ def test_ListEditor__run_11():
         ])
 
     assert editor.target == inventory
+
+
+def test_ListEditor__run_12():
+    r'''Edits view.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    target = scoremanager.iotools.View()
+    editor = scoremanager.iotools.ListEditor(
+        session=session,
+        target=target,
+        )
+    input_ = 'add first~pattern default add second~pattern default done'
+    editor._run(pending_user_input=input_)
+
+    view = scoremanager.iotools.View([
+        'first pattern',
+        'second pattern',
+        ])
+
+    assert editor.target == view
