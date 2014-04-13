@@ -131,6 +131,7 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_asset_menu_entries(
         self,
+        apply_view=True,
         include_annotation=True,
         include_extensions=False,
         include_asset_name=False,
@@ -141,6 +142,7 @@ class ScorePackageWrangler(Wrangler):
         ):
         superclass = super(ScorePackageWrangler, self)
         menu_entries = superclass._make_asset_menu_entries(
+            apply_view=apply_view,
             include_annotation=include_annotation,
             include_extensions=include_extensions,
             include_asset_name=include_asset_name,

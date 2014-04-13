@@ -4,6 +4,7 @@ import os
 import subprocess
 import readline
 import types
+from abjad.tools import datastructuretools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.systemtools.IOManager import IOManager
@@ -470,6 +471,25 @@ class IOManager(IOManager):
             self.display(lines, capitalize_first_character=False)
         self._session._hide_next_redraw = True
 
+    def make_editor(self, target=None):
+        r'''Makes editor with optional `target`.
+
+        Returns editor or list editor.
+        '''
+        from scoremanager import iotools
+        prototype = (
+            list,
+            datastructuretools.TypedList,
+            )
+        if isinstance(target, prototype):
+            class_ = iotools.ListEditor
+        else:
+            class_ = iotools.Editor
+        return class_(
+            session=self._session,
+            target=target,
+            )
+
     def make_getter(
         self,
         allow_none=False,
@@ -488,17 +508,6 @@ class IOManager(IOManager):
             include_newlines=include_newlines,
             )
         return getter
-
-    def make_list_editor(self, target=None):
-        r'''Makes list editor with optional `target`.
-
-        Returns list editor.
-        '''
-        from scoremanager import iotools
-        return iotools.ListEditor(
-            session=self._session,
-            target=target,
-            )
 
     def make_menu(
         self,
@@ -533,17 +542,6 @@ class IOManager(IOManager):
             items=items,
             session=self._session,
             )
-
-    def make_view(self, items):
-        r'''Makes view.
-
-        Returns view.
-        '''
-        from scoremanager import iotools
-        view = iotools.View(
-            items=items,
-            )
-        return view
 
     def open_file(self, file_path, application=None, line_number=None):
         r'''Opens `file_path`.

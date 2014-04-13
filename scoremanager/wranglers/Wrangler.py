@@ -803,17 +803,19 @@ class Wrangler(Controller):
         view_name = getter._run()
         if self._should_backtrack():
             return
-        menu_entries = self._make_asset_menu_entries()
-        display_strings = [x[0] for x in menu_entries]
-        editor = self._io_manager.make_list_editor(target=display_strings)
+        menu_entries = self._make_asset_menu_entries(apply_view=False)
+        display_strings = [_[0] for _ in menu_entries]
+        view = iotools.View(
+            items=display_strings,
+            )
+        editor = self._io_manager.make_editor(
+            target=view,
+            )
         editor._run()
         if self._should_backtrack():
             return
-        tokens = editor.target
         self._io_manager.display('')
-        view = self._io_manager.make_view(
-            tokens,
-            )
+        view = editor.target
         self.write_view(view_name, view)
 
     def pytest(self, prompt=True):

@@ -4,7 +4,7 @@ import scoremanager
 
 
 def test_ListEditor__run_01():
-    r'''Edits buil-in list.
+    r'''Edits built-in list.
     '''
 
     session = scoremanager.core.Session(is_test=True)

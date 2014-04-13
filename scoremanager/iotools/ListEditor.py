@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -61,12 +62,12 @@ class ListEditor(Editor):
             self._item_creator_class_kwargs = kwargs
         elif getattr(target, '_item_callable', None):
             assert self.target._item_callable
+            if not isinstance(self.target._item_callable, types.TypeType):
+                return
             self._item_class = self.target._item_callable
             dummy_item = self.target._item_callable()
-            item_identifier = \
-                stringtools.upper_camel_case_to_space_delimited_lowercase(
-                    type(dummy_item).__name__)
-            self._item_identifier = item_identifier
+            helper = stringtools.upper_camel_case_to_space_delimited_lowercase
+            item_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
                 self._item_creator_class = iotools.ListEditor
             else:

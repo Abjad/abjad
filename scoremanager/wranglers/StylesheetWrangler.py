@@ -94,6 +94,7 @@ class StylesheetWrangler(Wrangler):
 
     def _make_asset_menu_entries(
         self,
+        apply_view=True,
         include_annotation=True,
         include_extensions=True,
         include_asset_name=True,
@@ -104,6 +105,7 @@ class StylesheetWrangler(Wrangler):
         ):
         superclass = super(StylesheetWrangler, self)
         menu_entries = superclass._make_asset_menu_entries(
+            apply_view=apply_view,
             include_annotation=include_annotation,
             include_extensions=include_extensions,
             include_asset_name=include_asset_name,

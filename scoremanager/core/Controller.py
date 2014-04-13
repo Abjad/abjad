@@ -83,6 +83,7 @@ class Controller(ScoreManagerObject):
 
     def _make_asset_menu_entries(
         self,
+        apply_view=True,
         include_annotation=True,
         include_extensions=False,
         include_asset_name=True,
@@ -119,6 +120,8 @@ class Controller(ScoreManagerObject):
             entry = (string, None, None, path)
             entries.append(entry)
         if self._session.is_test:
+            return entries
+        if not apply_view:
             return entries
         view = self._get_view_from_disk()
         if view is not None:
