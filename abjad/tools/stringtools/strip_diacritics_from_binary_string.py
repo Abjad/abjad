@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import sys
 import unicodedata
 
 
@@ -22,8 +23,14 @@ def strip_diacritics_from_binary_string(binary_string):
     Returns ASCII string.
     '''
 
-    unicode_string = unicode(binary_string, 'utf-8')
+    if sys.version_info[0] < 3:
+        unicode_string = unicode(binary_string, 'utf-8')
+    else:
+        unicode_string = binary_string
     normalized_unicode_string = unicodedata.normalize('NFKD', unicode_string)
     ascii_string = normalized_unicode_string.encode('ascii', 'ignore')
 
-    return ascii_string
+    if sys.version_info[0] < 3:
+        return ascii_string
+    else:
+        return ascii_string.decode('utf-8')
