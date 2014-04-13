@@ -14,6 +14,7 @@ class Editor(Controller):
 
     __slots__ = (
         '_attributes_in_memory',
+        '_breadcrumb',
         '_is_autoadding',
         '_is_autoadvancing',
         '_is_autostarting',
@@ -24,15 +25,17 @@ class Editor(Controller):
 
     def __init__(
         self,
-        session=None,
-        target=None,
+        breadcrumb=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
+        session=None,
+        target=None,
         ):
         assert target is not None
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
+        self._breadcrumb = breadcrumb
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
@@ -54,11 +57,6 @@ class Editor(Controller):
     @property
     def _attribute_manifest(self):
         return self.target._attribute_manifest
-
-    @property
-    def _breadcrumb(self):
-        class_name = type(self.target).__name__
-        return stringtools.to_space_delimited_lowercase(class_name)
 
     ### PRIVATE METHODS ###
 
@@ -209,8 +207,6 @@ class Editor(Controller):
                 menu_entries=menu_entries,
                 name='keyed attributes',
                 )
-            #for menu_entry in menu_entries:
-            #    section.append(menu_entry)
         self._make_done_menu_section(menu)
         return menu
 
@@ -354,6 +350,18 @@ class Editor(Controller):
         return result
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def breadcrumb(self):
+        r'''Gets editor breadcrumb.
+
+        Returns string.
+        '''
+        if self._breadcrumb is None:
+            class_name = type(self.target).__name__
+            return stringtools.to_space_delimited_lowercase(class_name)
+        else:
+            return self._breadcrumb
 
     @property
     def is_autoadding(self):

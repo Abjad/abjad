@@ -808,7 +808,10 @@ class Wrangler(Controller):
         view = iotools.View(
             items=display_strings,
             )
+        breadcrumb = 'views - {} - edit'
+        breadcrumb = breadcrumb.format(view_name)
         editor = self._io_manager.make_editor(
+            breadcrumb=breadcrumb,
             target=view,
             )
         editor._run()

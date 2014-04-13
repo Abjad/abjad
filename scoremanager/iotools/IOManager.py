@@ -471,7 +471,11 @@ class IOManager(IOManager):
             self.display(lines, capitalize_first_character=False)
         self._session._hide_next_redraw = True
 
-    def make_editor(self, target=None):
+    def make_editor(
+        self, 
+        breadcrumb=None,
+        target=None,
+        ):
         r'''Makes editor with optional `target`.
 
         Returns editor or list editor.
@@ -486,6 +490,7 @@ class IOManager(IOManager):
         else:
             class_ = iotools.Editor
         return class_(
+            breadcrumb=breadcrumb,
             session=self._session,
             target=target,
             )

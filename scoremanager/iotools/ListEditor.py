@@ -43,12 +43,21 @@ class ListEditor(Editor):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, target=None):
+    def __init__(
+        self, 
+        breadcrumb=None,
+        session=None, 
+        target=None,
+        ):
         from scoremanager import iotools
         if target is None:
             target = []
         superclass = super(ListEditor, self)
-        superclass.__init__(session=session, target=target)
+        superclass.__init__(
+            breadcrumb=breadcrumb,
+            session=session, 
+            target=target,
+            )
         self._item_class = None
         self._item_creator_class = None
         self._item_creator_class_kwargs = {}
@@ -137,16 +146,12 @@ class ListEditor(Editor):
                 menu_entries=menu_entries,
                 name='keyed attribute section',
                 )
-            #for menu_entry in menu_entries:
-            #    section.append(menu_entry)
         menu_entries = self._get_target_summary_lines()
         if menu_entries:
             section = menu.make_numbered_section(
                 menu_entries=menu_entries,
                 name='numbered section',
                 )
-            #for menu_entry in menu_entries:
-            #    section.append(menu_entry)
             self._numbered_section = section
         commands = []
         commands.append(('elements - add', 'add'))

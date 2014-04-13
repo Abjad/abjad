@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -8,13 +7,12 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_StylesheetWrangler_make_view_01():
     r'''Title is correct.
     '''
-    pytest.skip('make breadcrumbs work.')
 
-    input_ = 'y vn test_view q' 
+    input_ = 'y vn test~view q' 
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - stylesheet library - test_view - edit'
+    string = 'Score manager - stylesheet library - views - test view - edit'
     assert transcript.last_title == string
 
 
