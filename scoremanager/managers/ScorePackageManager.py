@@ -36,7 +36,7 @@ class ScorePackageManager(PackageManager):
 
     @property
     @systemtools.Memoize
-    def _build_directory_manager(self):
+    def _build_file_wrangler(self):
         from scoremanager import wranglers
         path = os.path.join(self._path, 'build')
         return wranglers.BuildFileWrangler(session=self._session)
@@ -109,7 +109,7 @@ class ScorePackageManager(PackageManager):
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
-            'u': self._build_directory_manager._run,
+            'u': self._build_file_wrangler._run,
             'y': self._stylesheet_wrangler._run,
             'Y': self._io_manager.edit_score_stylesheet,
             })
@@ -342,7 +342,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _make_score_pdf_menu_section(self, menu):
-        manager = self._build_directory_manager
+        manager = self._build_file_wrangler
         if manager._get_file_path_ending_with('score.pdf'):
             commands = []
             commands.append(('score pdf - open', 'pdfo'))
@@ -581,4 +581,4 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        self._build_directory_manager._open_file_ending_with('score.pdf')
+        self._build_file_wrangler._open_file_ending_with('score.pdf')
