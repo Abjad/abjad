@@ -754,7 +754,8 @@ class LilyPondParser(abctools.Parser):
                 return scope[identifier]
         return None
 
-    @systemtools.Memoize
+    # decorator appears not to work with input arguments
+    #@systemtools.Memoize
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
             'BeamEvent': spannertools.Beam,
@@ -774,7 +775,8 @@ class LilyPondParser(abctools.Parser):
         message = message.format(name)
         raise Exception(message)
 
-    @systemtools.Memoize
+    # decorator appears not to work with input arguments
+    #@systemtools.Memoize
     def _test_scheme_predicate(self, predicate, value):
         predicates = self._get_scheme_predicates()
         if predicate in predicates:
