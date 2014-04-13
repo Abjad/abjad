@@ -80,9 +80,10 @@ class Wrangler(Controller):
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'hls': self.list_storehouses,
+            'va': self.apply_view,
             'vl': self.list_views,
             'vn': self.make_view,
-            'vs': self.select_view,
+            'vrm': self.remove_view,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             })
@@ -278,7 +279,7 @@ class Wrangler(Controller):
         view_name = manager._get_metadatum(metadatum_name)
         if not view_name:
             return
-        view_inventory = self._read_view_inventory_from_disk()
+        view_inventory = self._read_view_inventory()
         if not view_inventory:
             return
         view = view_inventory.get(view_name)
@@ -579,7 +580,7 @@ class Wrangler(Controller):
     def _navigate_to_previous_asset(self):
         pass
 
-    def _read_view_inventory_from_disk(self):
+    def _read_view_inventory(self):
         if self._views_module_path is None:
             return
         result = self._views_module_manager._execute(
@@ -682,6 +683,27 @@ class Wrangler(Controller):
             return
         return result
 
+    def _select_view(self, infinitive_phrase=None):
+        from scoremanager import managers
+        view_inventory = self._read_view_inventory()
+        if view_inventory is None:
+            message = 'no views found.'
+            self._io_manager.proceed(message)
+            return
+        lines = []
+        view_names = view_inventory.keys()
+        breadcrumb = 'view'
+        if infinitive_phrase:
+            breadcrumb = 'view {}'.format(infinitive_phrase)
+        selector = self._io_manager.make_selector(
+            breadcrumb=breadcrumb,
+            items=view_names,
+            )
+        result = selector._run()
+        if self._should_backtrack():
+            return
+        return result
+
     def _set_is_navigating_to_sibling_asset(self):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
@@ -701,6 +723,25 @@ class Wrangler(Controller):
             manager = self._initialize_manager(path)
             manager.add_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
+
+    def apply_view(self):
+        r'''Applies view.
+
+        Writes view name to metadata module.
+
+        Returns none.
+        '''
+        infinitive_phrase = 'to apply'
+        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        if self._should_backtrack():
+            return
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_directory_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        manager._add_metadatum(metadatum_name, view_name)
 
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
@@ -760,7 +801,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        view_inventory = self._read_view_inventory_from_disk()
+        view_inventory = self._read_view_inventory()
         if not view_inventory:
             message = 'no views found.'
             self._io_manager.display([message, ''])
@@ -807,7 +848,13 @@ class Wrangler(Controller):
             return
         self._io_manager.display('')
         view = editor.target
-        self.write_view(view_name, view)
+        view_inventory = self._read_view_inventory()
+        if view_inventory is None:
+            view_inventory = datastructuretools.TypedOrderedDict(
+                item_class=iotools.View,
+                )
+        view_inventory[view_name] = view
+        self._write_view_inventory(view_inventory)
 
     def pytest(self, prompt=True):
         r'''Runs py.test.
@@ -822,6 +869,22 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.remove_initializer()
+
+    def remove_view(self):
+        r'''Removes view from views module.
+
+        Returns none.
+        '''
+        infinitive_phrase = 'to remove'
+        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        if self._should_backtrack():
+            return
+        view_inventory = self._read_view_inventory()
+        if not view_inventory:
+            return
+        if view_name in view_inventory:
+            del(view_inventory[view_name])
+        self._write_view_inventory(view_inventory)
 
     def remove_views_module(self):
         r'''Removes views module.
@@ -857,36 +920,6 @@ class Wrangler(Controller):
             manager.revert_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def select_view(self):
-        r'''Selects view.
-
-        Writes view name to metadata module.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        view_inventory = self._read_view_inventory_from_disk()
-        if view_inventory is None:
-            message = 'no views found.'
-            self._io_manager.proceed(message)
-            return
-        lines = []
-        view_names = view_inventory.keys()
-        selector = self._io_manager.make_selector(
-            breadcrumb='view',
-            items=view_names,
-            )
-        view_name = selector._run()
-        if self._should_backtrack():
-            return
-        if self._session.is_in_score:
-            manager = self._current_package_manager
-            metadatum_name = 'view_name'
-        else:
-            manager = self._views_directory_manager
-            metadatum_name = '{}_view_name'.format(type(self).__name__)
-        manager._add_metadatum(metadatum_name, view_name)
-
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
 
@@ -919,18 +952,7 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.write_initializer_stub()
 
-    def write_view(self, view_name, new_view, prompt=True):
-        r'''Writes view to views module.
-
-        Returns none.
-        '''
-        from scoremanager import iotools
-        view_inventory = self._read_view_inventory_from_disk()
-        if view_inventory is None:
-            view_inventory = datastructuretools.TypedOrderedDict(
-                item_class=iotools.View,
-                )
-        view_inventory[view_name] = new_view
+    def _write_view_inventory(self, view_inventory, prompt=True):
         lines = []
         lines.append(self._unicode_directive + '\n')
         lines.append(self._abjad_import_statement + '\n')
@@ -940,8 +962,9 @@ class Wrangler(Controller):
         line = 'view_inventory={}'.format(format(view_inventory))
         lines.append(line)
         lines = ''.join(lines)
+        # TODO: maybe replace the following with file manager?
         view_file_path = self._views_module_path
         with file(view_file_path, 'w') as file_pointer:
             file_pointer.write(lines)
-        message = 'view written to disk.'
+        message = 'view inventory written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
