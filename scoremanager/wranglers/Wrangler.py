@@ -708,6 +708,21 @@ class Wrangler(Controller):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
 
+    def _write_view_inventory(self, view_inventory, prompt=True):
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append(self._abjad_import_statement)
+        lines.append('from scoremanager import iotools')
+        lines.append('')
+        lines.append('')
+        line = 'view_inventory={}'.format(format(view_inventory))
+        lines.append(line)
+        contents = '\n'.join(lines)
+        manager = self._views_module_manager
+        manager._write(contents)
+        message = 'view inventory written to disk.'
+        self._io_manager.proceed(message, prompt=prompt)
+
     ### PUBLIC METHODS ###
 
     def add_to_repository(self, prompt=True):
@@ -943,7 +958,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        self._views_module_manager.edit()
+        self._views_module_manager.view()
 
     def write_initializer_stub(self):
         r'''Writes stub initializer module.
@@ -951,20 +966,3 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.write_initializer_stub()
-
-    def _write_view_inventory(self, view_inventory, prompt=True):
-        lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append(self._abjad_import_statement + '\n')
-        line = 'from scoremanager import iotools\n'
-        lines.append(line)
-        lines.append('\n\n')
-        line = 'view_inventory={}'.format(format(view_inventory))
-        lines.append(line)
-        lines = ''.join(lines)
-        # TODO: maybe replace the following with file manager?
-        view_file_path = self._views_module_path
-        with file(view_file_path, 'w') as file_pointer:
-            file_pointer.write(lines)
-        message = 'view inventory written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)

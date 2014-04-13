@@ -127,9 +127,9 @@ class FileManager(Manager):
                     result.extend(file_pointer.readlines())
         return result
 
-    def _write(self, string):
+    def _write(self, contents):
         with file(self._path, 'w') as file_pointer:
-            file_pointer.write(string)
+            file_pointer.write(contents)
 
     def _write_stub(self):
         self._write(self._unicode_directive)
