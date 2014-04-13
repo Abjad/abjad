@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import sys
 
 
 def partition_integer_by_ratio(n, ratio):
@@ -58,6 +59,11 @@ def partition_integer_by_ratio(n, ratio):
 
     for division in cumulative_divisions:
         rounded_division = int(round(division)) - sum(result)
+        #This makes rounding behave like python 2. Would be good to remove
+        # in the long run
+        if sys.version_info[0] == 3:
+            if division - round(division) == 0.5:
+                rounded_division += 1
         result.append(rounded_division)
 
     result = result[1:]
@@ -67,6 +73,8 @@ def partition_integer_by_ratio(n, ratio):
         result = [-x for x in result]
     ratio_signs = [mathtools.sign(x) for x in ratio]
     result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
+
+
 
     # return result
     return result
