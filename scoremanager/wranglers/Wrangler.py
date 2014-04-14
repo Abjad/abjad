@@ -83,6 +83,7 @@ class Wrangler(Controller):
             'vrm': self.remove_view,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
+            'V': self.clear_view,
             })
         return result
 
@@ -514,6 +515,7 @@ class Wrangler(Controller):
         self._make_storehouse_menu_section(menu)
         self._make_views_menu_section(menu)
         self._make_views_module_menu_section(menu)
+        self._make_go_wrangler_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -551,6 +553,15 @@ class Wrangler(Controller):
             is_hidden=True,
             commands=commands,
             name='storehouses',
+            )
+
+    def _make_go_wrangler_menu_section(self, menu):
+        commands = []
+        commands.append(('go - clear view', 'V'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='go wrangler',
             )
 
     def _navigate_to_next_asset(self):
@@ -758,6 +769,21 @@ class Wrangler(Controller):
             manager = self._views_directory_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, view_name)
+
+    def clear_view(self):
+        r'''Clears view.
+
+        Set 'view_name' to none in metadata module.
+
+        Returns none.
+        '''
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_directory_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        manager._add_metadatum(metadatum_name, None)
 
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
