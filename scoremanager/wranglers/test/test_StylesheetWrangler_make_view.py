@@ -8,7 +8,7 @@ def test_StylesheetWrangler_make_view_01():
     r'''Title is correct.
     '''
 
-    input_ = 'y vn test~view q' 
+    input_ = 'y vnew test~view q' 
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
@@ -22,7 +22,7 @@ def test_StylesheetWrangler_make_view_02():
     Test checks to make sure at least one Abjad stylesheet appears.
     '''
 
-    input_ = 'y vn test_view q' 
+    input_ = 'y vnew test_view q' 
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
