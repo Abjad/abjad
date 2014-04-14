@@ -30,6 +30,7 @@ class StylesheetWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = \
@@ -38,20 +39,20 @@ class StylesheetWrangler(Wrangler):
             self._configuration.user_library_stylesheets_directory_path
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._include_extensions = True
+        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.FileManager
-
-    @property
     def _breadcrumb(self):
         if self._session.is_in_score:
-            return 'stylesheets'
+            breadcrumb = 'stylesheets'
         else:
-            return 'stylesheet library'
+            breadcrumb = 'stylesheet library'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _user_input_to_action(self):
@@ -66,13 +67,6 @@ class StylesheetWrangler(Wrangler):
         return result
 
     ### PRIVATE METHODS ###
-
-    def _edit_stylesheet(self):
-        manager = self._manager_class(
-            path=path,
-            session=self._session,
-            )
-        manager.edit()
 
     def _enter_run(self):
         self._session._is_navigating_to_score_stylesheets = False

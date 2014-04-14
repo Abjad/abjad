@@ -41,23 +41,24 @@ class ScorePackageWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         path = self._configuration.example_score_packages_directory_path
         self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
+        self._manager_class = managers.ScorePackageManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.ScorePackageManager
-
-    @property
     def _breadcrumb(self):
-        return 'scores'
+        breadcrumb = 'scores'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _current_storehouse_path(self):

@@ -27,23 +27,24 @@ class SegmentPackageWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
         self._score_storehouse_path_infix_parts = ('segments',)
+        self._manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.SegmentPackageManager
-
-    @property
     def _breadcrumb(self):
         if self._session.is_in_score:
-            return 'segments'
+            breadcrumb = 'segments'
         else:
-            return 'segment library'
+            breadcrumb = 'segment library'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _user_input_to_action(self):

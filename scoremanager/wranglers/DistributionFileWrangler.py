@@ -30,26 +30,27 @@ class DistributionFileWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(DistributionFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('distribution',)
         self._include_extensions = True
+        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.FileManager
-
-    @property
     def _breadcrumb(self):
         if self._session.is_in_score:
-            return 'distribution directory'
+            breadcrumb = 'distribution directory'
         else:
-            return 'distribution file library'
+            breadcrumb = 'distribution file library'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _user_input_to_action(self):

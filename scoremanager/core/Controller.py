@@ -123,7 +123,7 @@ class Controller(ScoreManagerObject):
             return entries
         if not apply_view:
             return entries
-        view = self._get_view_from_disk()
+        view = self._read_view()
         if view is not None:
             entries = self._filter_asset_menu_entries_by_view(entries, view)
         return entries

@@ -42,6 +42,7 @@ class MaterialPackageWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
         configuration = self._configuration
@@ -50,20 +51,20 @@ class MaterialPackageWrangler(Wrangler):
         path = configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
+        self._manager_class = managers.MaterialPackageManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.MaterialPackageManager
-
-    @property
     def _breadcrumb(self):
         if self._session.is_in_score:
-            return 'materials'
+            breadcrumb = 'materials'
         else:
-            return 'material library'
+            breadcrumb = 'material library'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _user_input_to_action(self):

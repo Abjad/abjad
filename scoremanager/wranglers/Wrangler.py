@@ -22,6 +22,7 @@ class Wrangler(Controller):
         '_abjad_storehouse_path',
         '_forbidden_directory_entries',
         '_main_menu',
+        '_manager_class',
         '_score_storehouse_path_infix_parts',
         '_user_storehouse_path',
         )
@@ -60,10 +61,6 @@ class Wrangler(Controller):
         path = self._get_current_directory_path()
         if path:
             return os.path.join(path, '__init__.py')
-
-    @abc.abstractproperty
-    def _manager_class(self):
-        pass
 
     @property
     def _user_input_to_action(self):
@@ -266,24 +263,6 @@ class Wrangler(Controller):
             return self._get_next_asset_path()
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
-
-    def _get_view_from_disk(self):
-        if self._session.is_in_score:
-            manager = self._current_package_manager
-            metadatum_name = 'view_name'
-        else:
-            manager = self._views_directory_manager
-            metadatum_name = '{}_view_name'.format(type(self).__name__)
-        if not manager:
-            return
-        view_name = manager._get_metadatum(metadatum_name)
-        if not view_name:
-            return
-        view_inventory = self._read_view_inventory()
-        if not view_inventory:
-            return
-        view = view_inventory.get(view_name)
-        return view
 
     def _get_visible_asset_path(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
@@ -580,6 +559,15 @@ class Wrangler(Controller):
     def _navigate_to_previous_asset(self):
         pass
 
+    def _read_view(self):
+        view_name = self._read_view_name()
+        if not view_name:
+            return
+        view_inventory = self._read_view_inventory()
+        if not view_inventory:
+            return
+        return view_inventory.get(view_name)
+
     def _read_view_inventory(self):
         if self._views_module_path is None:
             return
@@ -595,6 +583,19 @@ class Wrangler(Controller):
         assert len(result) == 1
         view_inventory = result[0]
         return view_inventory
+
+    def _read_view_name(self):
+        if self._session.is_test:
+            return
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_directory_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        if not manager:
+            return
+        return manager._get_metadatum(metadatum_name)
 
     def _remove_asset(self, item_identifier='asset', prompt=True):
         paths = self._get_visible_asset_paths(item_identifier=item_identifier)

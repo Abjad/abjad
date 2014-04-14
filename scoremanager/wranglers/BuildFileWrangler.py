@@ -31,26 +31,27 @@ class BuildFileWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         superclass = super(BuildFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('build',)
         self._include_extensions = True
+        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _manager_class(self):
-        from scoremanager import managers
-        return managers.FileManager
-
-    @property
     def _breadcrumb(self):
         if self._session.is_in_score:
-            return 'build directory'
+            breadcrumb = 'build directory'
         else:
-            return 'build file library'
+            breadcrumb = 'build file library'
+        view_name = self._read_view_name()
+        if view_name:
+            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _user_input_to_action(self):
@@ -128,6 +129,30 @@ class BuildFileWrangler(Wrangler):
             pass
         else:
             self._edit_file(result)
+
+    def _make_asset_menu_entries(
+        self,
+        apply_view=True,
+        include_annotation=True,
+        include_extensions=True,
+        include_asset_name=True,
+        include_year=False,
+        human_readable=False,
+        packages_instead_of_paths=False,
+        sort_by_annotation=True,
+        ):
+        superclass = super(BuildFileWrangler, self)
+        menu_entries = superclass._make_asset_menu_entries(
+            apply_view=apply_view,
+            include_annotation=include_annotation,
+            include_extensions=include_extensions,
+            include_asset_name=include_asset_name,
+            include_year=include_year,
+            human_readable=human_readable,
+            packages_instead_of_paths=packages_instead_of_paths,
+            sort_by_annotation=sort_by_annotation,
+            )
+        return menu_entries
 
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
