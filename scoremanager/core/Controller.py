@@ -1,5 +1,6 @@
 # -*- encoding: utf -*-
 import os
+import re
 from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
@@ -38,17 +39,24 @@ class Controller(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _filter_asset_menu_entries_by_view(entries, view):
+    def _filter_asset_menu_entries_by_view(self, entries, view):
         entries = entries[:]
         filtered_entries = []
         for item in view:
+            try:
+                pattern = re.compile(item)
+            except:
+                pattern = None
+                message = 'invalid regular expression: {!r}.'
+                message  = message.format(item)
+                self._io_manager.proceed(message)
             for entry in entries:
                 display_string, _, _, path = entry
-                if item == display_string:
+                file_name = display_string.split()[0]
+                if item == file_name:
                     filtered_entries.append(entry)
-                    entries.remove(entry)
-                    break
+                elif pattern and pattern.match(file_name):
+                    filtered_entries.append(entry)
         return filtered_entries
 
     @staticmethod
@@ -264,25 +272,6 @@ class Controller(ScoreManagerObject):
         if not include_extension:
             name, extension = os.path.splitext(name)
         return stringtools.to_space_delimited_lowercase(name)
-
-    @staticmethod
-    def _sort_asset_menu_entries_by_view(entries, view):
-        entries_found_in_view = len(entries) * [None]
-        entries_not_found_in_view = []
-        for entry in entries:
-            name = entry[0]
-            if name in view:
-                index = view.index(name)
-                entries_found_in_view[index] = entry
-            else:
-                entries_not_found_in_view.append(entry)
-        entries_found_in_view = [
-            x for x in entries_found_in_view
-            if not x is None
-            ]
-        sorted_entries = entries_found_in_view + entries_not_found_in_view
-        assert len(sorted_entries) == len(entries)
-        return sorted_entries
 
     @staticmethod
     def _sort_ordered_dictionary(dictionary):
