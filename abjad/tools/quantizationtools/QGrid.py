@@ -123,7 +123,8 @@ class QGrid(AbjadObject):
             if q_grid_leaf.q_event_proxies:
                 q_events = [q_event_proxy.q_event
                     for q_event_proxy in q_grid_leaf.q_event_proxies]
-                q_events.sort(key=lambda x: x.index)
+                q_events.sort(
+                    key=lambda x: 0 if x.index is None else x.index)
                 annotation = indicatortools.Annotation(
                     'q_events', tuple(q_events))
                 attach(annotation, result_leaf)

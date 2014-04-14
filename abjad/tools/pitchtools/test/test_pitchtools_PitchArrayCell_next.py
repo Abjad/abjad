@@ -12,7 +12,7 @@ def test_pitchtools_PitchArrayCell_next_01():
     [      ] [] []
     '''
 
-    assert array[0][1].next is array[0][3]
+    assert getattr(array[0][1], 'next') is array[0][3]
 
 
 def test_pitchtools_PitchArrayCell_next_02():
