@@ -283,3 +283,10 @@ class Controller(ScoreManagerObject):
         sorted_entries = entries_found_in_view + entries_not_found_in_view
         assert len(sorted_entries) == len(entries)
         return sorted_entries
+
+    @staticmethod
+    def _sort_ordered_dictionary(dictionary):
+        new_dictionary = type(dictionary)()
+        for key in sorted(dictionary):
+            new_dictionary[key] = dictionary[key]
+        return new_dictionary

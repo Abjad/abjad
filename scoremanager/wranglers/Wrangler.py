@@ -728,6 +728,7 @@ class Wrangler(Controller):
         lines.append('from scoremanager import iotools')
         lines.append('')
         lines.append('')
+        view_inventory = self._sort_ordered_dictionary(view_inventory)
         line = 'view_inventory={}'.format(format(view_inventory))
         lines.append(line)
         contents = '\n'.join(lines)

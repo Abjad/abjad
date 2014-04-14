@@ -158,7 +158,5 @@
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-35. Alphabetize view inventory on write.
-
-36. Make menu title breadcrumbs correctly reflect changes in view
+35. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
