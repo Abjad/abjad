@@ -171,3 +171,7 @@
     Refuse to write invalid regular expression.
 
 40. Allow arbitrary metadata in view patterns.
+
+41. Change '... - views - front cover - edit' to
+    '... views - front cover view - edit:'.
+    Note both 'front cover *view*' and the colon.
