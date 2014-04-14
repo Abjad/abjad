@@ -165,4 +165,9 @@
 
 37. Imlement 'views - autoedit' (vae) command.
 
-38. Change 'material - autoedito' (ma) alias to (mae).
+38. Change 'material - autoedit' (ma) alias to (mae).
+
+39. Compile regular expressions at view entry add time.
+    Refuse to write invalid regular expression.
+
+40. Allow arbitrary metadata in view patterns.
