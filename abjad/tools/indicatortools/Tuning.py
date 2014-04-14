@@ -107,15 +107,15 @@ class Tuning(AbjadObject):
             >>> for voicing in voicings:
             ...     voicing
             ...
-            [None, NamedPitch("a'"), None, None]
-            [None, NamedPitch("a''"), None, None]
-            [None, None, NamedPitch("a'"), None]
-            [None, None, NamedPitch("a''"), None]
-            [None, None, NamedPitch("a'''"), None]
-            [NamedPitch('a'), None, None, None]
-            [NamedPitch("a'"), None, None, None]
-            [None, None, None, NamedPitch("a''")]
-            [None, None, None, NamedPitch("a'''")]
+            (NamedPitch('a'), None, None, None)
+            (NamedPitch("a'"), None, None, None)
+            (None, NamedPitch("a'"), None, None)
+            (None, NamedPitch("a''"), None, None)
+            (None, None, NamedPitch("a'"), None)
+            (None, None, NamedPitch("a''"), None)
+            (None, None, NamedPitch("a'''"), None)
+            (None, None, None, NamedPitch("a''"))
+            (None, None, None, NamedPitch("a'''"))
 
         ::
 
@@ -126,54 +126,54 @@ class Tuning(AbjadObject):
             >>> for voicing in voicings:
             ...     voicing
             ...
-            [NamedPitch('a'), None, NamedPitch("d''"), None]
-            [NamedPitch('a'), None, NamedPitch("d'''"), None]
-            [NamedPitch("a'"), None, NamedPitch("d''"), None]
-            [NamedPitch("a'"), None, NamedPitch("d'''"), None]
-            [None, None, NamedPitch("a''"), NamedPitch("d'''")]
-            [None, None, NamedPitch("a''"), NamedPitch("d''''")]
-            [None, None, NamedPitch("a'''"), NamedPitch("d'''")]
-            [None, None, NamedPitch("a'''"), NamedPitch("d''''")]
-            [None, None, NamedPitch("d''"), NamedPitch("a''")]
-            [None, None, NamedPitch("d''"), NamedPitch("a'''")]
-            [None, None, NamedPitch("d'''"), NamedPitch("a''")]
-            [None, None, NamedPitch("d'''"), NamedPitch("a'''")]
-            [None, NamedPitch("a'"), None, NamedPitch("d'''")]
-            [None, NamedPitch("a'"), None, NamedPitch("d''''")]
-            [None, NamedPitch("a''"), None, NamedPitch("d'''")]
-            [None, NamedPitch("a''"), None, NamedPitch("d''''")]
-            [NamedPitch('a'), NamedPitch("d''"), None, None]
-            [NamedPitch('a'), NamedPitch("d'''"), None, None]
-            [NamedPitch("a'"), NamedPitch("d''"), None, None]
-            [NamedPitch("a'"), NamedPitch("d'''"), None, None]
-            [NamedPitch("d'"), None, None, NamedPitch("a''")]
-            [NamedPitch("d'"), None, None, NamedPitch("a'''")]
-            [NamedPitch("d''"), None, None, NamedPitch("a''")]
-            [NamedPitch("d''"), None, None, NamedPitch("a'''")]
-            [NamedPitch("d'"), NamedPitch("a'"), None, None]
-            [NamedPitch("d'"), NamedPitch("a''"), None, None]
-            [NamedPitch("d''"), NamedPitch("a'"), None, None]
-            [NamedPitch("d''"), NamedPitch("a''"), None, None]
-            [None, NamedPitch("d''"), None, NamedPitch("a''")]
-            [None, NamedPitch("d''"), None, NamedPitch("a'''")]
-            [None, NamedPitch("d'''"), None, NamedPitch("a''")]
-            [None, NamedPitch("d'''"), None, NamedPitch("a'''")]
-            [NamedPitch('a'), None, None, NamedPitch("d'''")]
-            [NamedPitch('a'), None, None, NamedPitch("d''''")]
-            [NamedPitch("a'"), None, None, NamedPitch("d'''")]
-            [NamedPitch("a'"), None, None, NamedPitch("d''''")]
-            [None, NamedPitch("a'"), NamedPitch("d''"), None]
-            [None, NamedPitch("a'"), NamedPitch("d'''"), None]
-            [None, NamedPitch("a''"), NamedPitch("d''"), None]
-            [None, NamedPitch("a''"), NamedPitch("d'''"), None]
-            [None, NamedPitch("d''"), NamedPitch("a''"), None]
-            [None, NamedPitch("d''"), NamedPitch("a'''"), None]
-            [None, NamedPitch("d'''"), NamedPitch("a''"), None]
-            [None, NamedPitch("d'''"), NamedPitch("a'''"), None]
-            [NamedPitch("d'"), None, NamedPitch("a''"), None]
-            [NamedPitch("d'"), None, NamedPitch("a'''"), None]
-            [NamedPitch("d''"), None, NamedPitch("a''"), None]
-            [NamedPitch("d''"), None, NamedPitch("a'''"), None]
+            (NamedPitch('a'), NamedPitch("d''"), None, None)
+            (NamedPitch('a'), NamedPitch("d'''"), None, None)
+            (NamedPitch('a'), None, NamedPitch("d''"), None)
+            (NamedPitch('a'), None, NamedPitch("d'''"), None)
+            (NamedPitch('a'), None, None, NamedPitch("d'''"))
+            (NamedPitch('a'), None, None, NamedPitch("d''''"))
+            (NamedPitch("d'"), NamedPitch("a'"), None, None)
+            (NamedPitch("d'"), NamedPitch("a''"), None, None)
+            (NamedPitch("d'"), None, NamedPitch("a''"), None)
+            (NamedPitch("d'"), None, NamedPitch("a'''"), None)
+            (NamedPitch("d'"), None, None, NamedPitch("a''"))
+            (NamedPitch("d'"), None, None, NamedPitch("a'''"))
+            (NamedPitch("a'"), NamedPitch("d''"), None, None)
+            (NamedPitch("a'"), NamedPitch("d'''"), None, None)
+            (NamedPitch("a'"), None, NamedPitch("d''"), None)
+            (NamedPitch("a'"), None, NamedPitch("d'''"), None)
+            (NamedPitch("a'"), None, None, NamedPitch("d'''"))
+            (NamedPitch("a'"), None, None, NamedPitch("d''''"))
+            (NamedPitch("d''"), NamedPitch("a'"), None, None)
+            (NamedPitch("d''"), NamedPitch("a''"), None, None)
+            (NamedPitch("d''"), None, NamedPitch("a''"), None)
+            (NamedPitch("d''"), None, NamedPitch("a'''"), None)
+            (NamedPitch("d''"), None, None, NamedPitch("a''"))
+            (NamedPitch("d''"), None, None, NamedPitch("a'''"))
+            (None, NamedPitch("a'"), NamedPitch("d''"), None)
+            (None, NamedPitch("a'"), NamedPitch("d'''"), None)
+            (None, NamedPitch("a'"), None, NamedPitch("d'''"))
+            (None, NamedPitch("a'"), None, NamedPitch("d''''"))
+            (None, NamedPitch("d''"), NamedPitch("a''"), None)
+            (None, NamedPitch("d''"), NamedPitch("a'''"), None)
+            (None, NamedPitch("d''"), None, NamedPitch("a''"))
+            (None, NamedPitch("d''"), None, NamedPitch("a'''"))
+            (None, NamedPitch("a''"), NamedPitch("d''"), None)
+            (None, NamedPitch("a''"), NamedPitch("d'''"), None)
+            (None, NamedPitch("a''"), None, NamedPitch("d'''"))
+            (None, NamedPitch("a''"), None, NamedPitch("d''''"))
+            (None, NamedPitch("d'''"), NamedPitch("a''"), None)
+            (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
+            (None, NamedPitch("d'''"), None, NamedPitch("a''"))
+            (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
+            (None, None, NamedPitch("d''"), NamedPitch("a''"))
+            (None, None, NamedPitch("d''"), NamedPitch("a'''"))
+            (None, None, NamedPitch("a''"), NamedPitch("d'''"))
+            (None, None, NamedPitch("a''"), NamedPitch("d''''"))
+            (None, None, NamedPitch("d'''"), NamedPitch("a''"))
+            (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
+            (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
+            (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
 
         Returns tuple of sequences.
         """
@@ -200,10 +200,12 @@ class Tuning(AbjadObject):
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            subresult = tuple(sequencetools.yield_outer_product_of_sequences(
-                sequences))
+            subresult = sequencetools.yield_outer_product_of_sequences(
+                sequences)
+            subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
-        return result
+        result.sort()
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 
