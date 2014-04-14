@@ -913,6 +913,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        self._session._attempted_repository_status = True
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:

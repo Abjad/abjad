@@ -737,6 +737,7 @@ class Manager(Controller):
 
         Returns none.
         '''
+        self._session._attempted_repository_status = True
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)

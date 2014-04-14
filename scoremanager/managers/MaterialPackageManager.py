@@ -814,15 +814,16 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append(self._abjad_import_statement + '\n')
+        lines.append(self._unicode_directive)
+        lines.append(self._abjad_import_statement)
         lines.append('output_module_import_statements = []')
-        lines.append('\n\n\n')
+        lines.append('')
+        lines.append('')
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
-        lines = ''.join(lines)
+        contents = '\n'.join(lines)
         with file(self._definition_module_path, 'w') as file_pointer:
-            file_pointer.write(lines)
+            file_pointer.write(contents)
 
     def write_illustrate_module_stub(self, prompt=True):
         r'''Writes stub illustrate module module.
@@ -831,25 +832,26 @@ class MaterialPackageManager(PackageManager):
         '''
         material_package_name = self._package_name
         lines = []
-        lines.append(self._abjad_import_statement + '\n')
-        line = 'from {}.output import {}\n'
+        lines.append(self._abjad_import_statement)
+        line = 'from {}.output import {}'
         line = line.format(material_package_path, material_package_name)
         lines.append(line)
-        lines.append('\n')
-        lines.append('\n')
+        lines.append('')
+        lines.append('')
         line = 'score, treble_staff, bass_staff ='
-        line += ' scoretools.make_piano_score_from_leaves({})\n'
+        line += ' scoretools.make_piano_score_from_leaves({})'
         line = line.format(material_package_name)
         lines.append(line)
         line = 'illustration = lilypondfiletools.'
-        line += 'make_basic_lilypond_file(score)\n'
+        line += 'make_basic_lilypond_file(score)'
         lines.append(line)
+        contents = '\n'.join(lines)
         file_path = os.path.join(
             self._path,
             '__illustrate__.py',
             )
         with file(file_path, 'w') as file_pointer:
-            file_pointer.write(''.join(lines))
+            file_pointer.write(contents)
         message = 'stub illustrate module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 

@@ -508,9 +508,13 @@ class SegmentPackageManager(PackageManager):
         '''
         if not os.path.exists(self._definition_module_path):
             with file(self._definition_module_path, 'w') as file_pointer:
-                file_pointer.write(self._unicode_directive + '\n')
-                file_pointer.write(self._abjad_import_statement + '\n')
-                file_pointer.write('\n\n')
+                lines = []
+                lines.append(self._unicode_directive)
+                lines.append(self._abjad_import_statement)
+                lines.append('')
+                lines.append('')
+                contents = '\n'.join(lines)
+                file_pointer.write(contents)
 
     def write_initializer(self):
         r'''Writes initializer to disk.

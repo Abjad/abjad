@@ -200,11 +200,11 @@ class DirectoryManager(Manager):
         lines.append('import collections')
         lines.append('')
         lines.append('')
-        lines = '\n'.join(lines)
+        contents = '\n'.join(lines)
         metadata_lines = self._make_metadata_lines(metadata)
-        lines = lines + '\n' + metadata_lines
+        contents = contents + '\n' + metadata_lines
         with file(self._metadata_module_path, 'w') as file_pointer:
-            file_pointer.write(lines)
+            file_pointer.write(contents)
 
     ### PUBLIC METHODS ###
 

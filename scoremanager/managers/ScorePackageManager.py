@@ -414,14 +414,15 @@ class ScorePackageManager(PackageManager):
     def _write_instrumentation(self, instrumentation):
         assert instrumentation is not None
         lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append(self._abjad_import_statement + '\n')
-        lines.append('\n\n')
+        lines.append(self._unicode_directive)
+        lines.append(self._abjad_import_statement)
+        lines.append('')
+        lines.append('')
         line = 'instrumentation={}'
         line = line.format(format(instrumentation))
         lines.append(line)
         file_path = self._get_instrumentation_module_path()
-        contents = ''.join(lines)
+        contents = '\n'.join(lines)
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(contents)
 
@@ -521,14 +522,17 @@ class ScorePackageManager(PackageManager):
             package_needed_to_be_fixed = True
             message = 'create {}?'.format(self._metadata_module_path)
             if not prompt or self._io_manager.confirm(message):
+                lines = []
+                lines.append(self._unicode_directive)
+                lines.append(self._abjad_import_statement)
+                lines.append('import collections')
+                lines.append('')
+                lines.append('')
+                line = 'metadata = collections.OrderedDict([])'
+                lines.append(line)
+                contents = '\n'.join(lines)
                 with file(self._metadata_module_path, 'w') as file_pointer:
-                    file_pointer.write(self._unicode_directive + '\n')
-                    file_pointer.write(self._abjad_import_statement + '\n')
-                    file_pointer.write('import collections\n')
-                    file_pointer.write('\n')
-                    file_pointer.write('\n')
-                    string = 'metadata = collections.OrderedDict([])\n'
-                    file_pointer.write(string)
+                    file_pointer.write(contents)
         return package_needed_to_be_fixed
 
     def remove_score_package(self):

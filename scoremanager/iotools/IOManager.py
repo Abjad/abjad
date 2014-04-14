@@ -681,9 +681,10 @@ class IOManager(IOManager):
         Returns none.
         '''
         lines = []
-        lines.append(self._unicode_directive + '\n')
-        lines.append('\n\n')
-        lines.append('start_menu_entries = [\n')
+        lines.append(self._unicode_directive)
+        lines.append('')
+        lines.append('')
+        lines.append('start_menu_entries = [')
         wrangler = self._session.score_manager._score_package_wrangler
         menu_entries = wrangler._make_asset_menu_entries(
             include_asset_name=False,
@@ -691,12 +692,12 @@ class IOManager(IOManager):
             sort_by_annotation=True,
             )
         for menu_entry in menu_entries:
-            lines.append('{},\n'.format(menu_entry))
-        lines.append(']\n')
+            lines.append('{},'.format(menu_entry))
+        lines.append(']')
+        contents = '\n'.join(lines)
         cache_file_path = self._configuration.cache_file_path
         with file(cache_file_path, 'w') as cache_file_pointer:
-            lines = ''.join(lines)
-            cache_file_pointer.write(lines)
+            cache_file_pointer.write(contents)
         if prompt:
             message = 'cache written.'
             self.proceed(message)
