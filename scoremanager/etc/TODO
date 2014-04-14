@@ -153,12 +153,9 @@
 33. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-34. Add current view (if any) to menu title. Possibly via breadcrumbs.
-
-35. Make (mdmro) work for wranglers.
+34. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-36. Implement 'views - clear' (vc).
-    The command will set 'current_view' to none.
+35. Implement 'views - rename' (vren).
