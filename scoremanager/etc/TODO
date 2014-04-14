@@ -160,3 +160,9 @@
 
 35. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
+
+36. Refuse to apply view when invalid regular expression is found.
+
+37. Imlement 'views - autoedit' (vae) command.
+
+38. Change 'material - autoedito' (ma) alias to (mae).
