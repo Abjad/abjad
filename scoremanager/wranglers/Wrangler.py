@@ -80,6 +80,7 @@ class Wrangler(Controller):
             'va': self.apply_view,
             'vl': self.list_views,
             'vn': self.make_view,
+            'vren': self.rename_view,
             'vrm': self.remove_view,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
@@ -934,6 +935,30 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.remove_views_module()
+
+    def rename_view(self):
+        r'''Renames view.
+
+        Returns none.
+        '''
+        infinitive_phrase = 'to rename'
+        old_view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        if self._should_backtrack():
+            return
+        view_inventory = self._read_view_inventory()
+        if not view_inventory:
+            return
+        view = view_inventory.get(old_view_name)
+        if not view:
+            return
+        getter = self._io_manager.make_getter()
+        getter.append_string('view name')
+        new_view_name = getter._run()
+        if self._should_backtrack():
+            return
+        del(view_inventory[old_view_name])
+        view_inventory[new_view_name] = view
+        self._write_view_inventory(view_inventory)
 
     def repository_status(self, prompt=True):
         r'''Display asset status in repository.

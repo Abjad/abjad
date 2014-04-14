@@ -208,6 +208,7 @@ class Controller(ScoreManagerObject):
         commands.append(('views - list', 'vl'))
         commands.append(('views - new', 'vn'))
         commands.append(('views - remove', 'vrm'))
+        commands.append(('views - rename', 'vren'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
