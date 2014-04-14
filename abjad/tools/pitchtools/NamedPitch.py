@@ -153,14 +153,12 @@ class NamedPitch(Pitch):
         Returns boolean.
         '''
         from abjad.tools import pitchtools
-        try:
-            arg = type(self)(arg)
+        if isinstance(arg, type(self)):
             return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
                 (self.diatonic_pitch_number == arg.diatonic_pitch_number and
                 self.alteration_in_semitones >= arg.alteration_in_semitones)
-        except (TypeError, ValueError):
-            if isinstance(arg, pitchtools.PitchRange):
-                return self >= arg.stop_pitch
+        elif isinstance(arg, pitchtools.PitchRange):
+            return self >= arg.stop_pitch
         return False
 
     def __getnewargs__(self):
@@ -236,6 +234,8 @@ class NamedPitch(Pitch):
                 self.alteration_in_semitones < arg.alteration_in_semitones)
         elif isinstance(arg, pitchtools.PitchRange):
             return self < arg.start_pitch
+        elif arg is None:
+            return True
         return False
 
     def __ne__(self, arg):
