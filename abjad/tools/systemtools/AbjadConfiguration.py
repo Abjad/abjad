@@ -317,7 +317,7 @@ class AbjadConfiguration(Configuration):
         try:
             import configobj
             dependencies['configobj'] = configobj.__version__
-        except ImportError:
+        except (AttributeError, ImportError):
             pass
         dependencies['ply'] = None
         try:
