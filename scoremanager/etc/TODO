@@ -183,3 +183,7 @@
 
 42. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
+
+43. Change 'remove_asset()' to 'remove_assets()'.
+    Change 'remove_stylesheet()' to 'remove_stylesheets()'.
+    And so on.
