@@ -187,3 +187,7 @@
 43. Change 'remove_asset()' to 'remove_assets()'.
     Change 'remove_stylesheet()' to 'remove_stylesheets()'.
     And so on.
+
+44. Write test for editing stylesheet.
+    Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
+    Reproduce with (y > 1).
