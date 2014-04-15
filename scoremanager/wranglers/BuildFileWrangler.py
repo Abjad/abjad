@@ -449,6 +449,24 @@ class BuildFileWrangler(Wrangler):
         '''
         self._call_lilypond_on_file_ending_with('score-segments.ly')
 
+    def remove_build_file(self):
+        r'''Removes build file.
+
+        Returns none.
+        '''
+        self._remove_asset(
+            item_identifier='build file',
+            )
+
+    def rename_build_file(self):
+        r'''Renames build file.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='build file',
+            )
+
     def typeset_back_cover_latex(self):
         r'''Typesets back cover LaTeX file.
 

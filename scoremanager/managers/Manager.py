@@ -110,7 +110,6 @@ class Manager(Controller):
             'cp': self.copy,
             'ls': self.list,
             'll': self.list_long,
-            'rm': self.remove,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -368,7 +367,21 @@ class Manager(Controller):
                         result.append(directory_entry)
         return result
 
-    def _remove(self):
+    # TODO: eventually change prompt=False to prompt=True
+    def _remove(self, prompt=False):
+
+        if prompt:
+            message = '{} will be removed.'
+            message = message.format(self._path)
+            self._io_manager.display([message, ''])
+            getter = self._io_manager.make_getter()
+            getter.append_string("type 'remove' to proceed")
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            if not result == 'remove':
+                return
+
         if self._is_in_git_repository():
             if self._is_git_unknown():
                 command = 'rm -rf {}'
@@ -667,27 +680,6 @@ class Manager(Controller):
             lines.append('')
             self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
-
-    def remove(self, prompt=True):
-        r'''Removes asset.
-
-        Backtracks up one level from previous location of asset.
-
-        Returns none.
-        '''
-        message = '{} will be removed.'
-        message = message.format(self._path)
-        if prompt:
-            self._io_manager.display([message, ''])
-            getter = self._io_manager.make_getter()
-            getter.append_string("type 'remove' to proceed")
-            result = getter._run()
-            if self._should_backtrack():
-                return
-        if not result == 'remove':
-            return
-        self._remove()
-        self._session._is_backtracking_locally = True
 
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.

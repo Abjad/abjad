@@ -53,7 +53,7 @@ class DirectoryManager(Manager):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,
-            'rm': self.remove,
+            #'rm': self.remove,
             })
         return result
 

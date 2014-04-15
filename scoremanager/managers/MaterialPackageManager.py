@@ -645,7 +645,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._definition_module_manager.remove(prompt=prompt)
+        self._definition_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustrate_module(self, prompt=True):
@@ -653,7 +653,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustrate_module_manager.remove(prompt=prompt)
+        self._illustrate_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustration_ly(self, prompt=True):
@@ -661,7 +661,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_ly_file_manager.remove(prompt=prompt)
+        self._illustration_ly_file_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustration_pdf(self, prompt=True):
@@ -669,7 +669,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_pdf_file_manager.remove(prompt=prompt)
+        self._illustration_pdf_file_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_output_module(self, prompt=True):
@@ -677,7 +677,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._output_module_manager.remove(prompt=prompt)
+        self._output_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def rename(self):

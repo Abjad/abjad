@@ -155,7 +155,7 @@ def test_MaterialPackageWrangler_make_material_package_05():
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -181,7 +181,7 @@ def test_MaterialPackageWrangler_make_material_package_06():
         input_ = 'm testnotes inrm remove ins default q'
         score_manager._run(pending_user_input=input_)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
         assert not os.path.exists(initializer_file_path)
@@ -211,7 +211,7 @@ def test_MaterialPackageWrangler_make_material_package_07():
         input_ = 'm testnotes omw default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_make_material_package_08():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert not os.path.exists(definition_module_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
         assert not os.path.exists(definition_module_path)
@@ -266,7 +266,7 @@ def test_MaterialPackageWrangler_make_material_package_09():
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(package_path):
@@ -298,7 +298,7 @@ def test_MaterialPackageWrangler_make_material_package_10():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(definition_module_path)
         assert not os.path.exists(output_module_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -320,7 +320,7 @@ def test_MaterialPackageWrangler_make_material_package_11():
         assert os.path.exists(definition_module_path)
         shutil.copyfile(exception_file_path, definition_module_path)
         assert filecmp.cmp(definition_module_path, exception_file_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -356,7 +356,7 @@ def test_MaterialPackageWrangler_make_material_package_12():
         assert not filecmp.cmp(output_module_path, exception_file_path)
         shutil.copyfile(exception_file_path, output_module_path)
         assert filecmp.cmp(output_module_path, exception_file_path)
-        input_ = 'm testnotes rm remove q'
+        input_ = 'm rm testnotes remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:

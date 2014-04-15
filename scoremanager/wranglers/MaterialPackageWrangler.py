@@ -254,11 +254,15 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._remove_asset(
+            item_identifier='material package',
+            )
 
     def rename_material_package(self):
         r'''Renames material package.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._rename_asset(
+            item_identifier='material package',
+            )

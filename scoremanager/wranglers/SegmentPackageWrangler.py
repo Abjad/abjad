@@ -217,6 +217,24 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
+    def remove_segment_package(self):
+        r'''Removes one or more segment packages.
+        
+        Returns none.
+        '''
+        self._remove_asset(
+            item_identifier='segment package',
+            )
+
+    def rename_segment_package(self):
+        r'''Renames segment package.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='segment package',
+            )
+
     def version_segment_packages(self):
         r'''Versions all assets.
 

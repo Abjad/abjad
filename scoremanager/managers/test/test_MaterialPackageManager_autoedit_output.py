@@ -55,7 +55,7 @@ def test_MaterialPackageManager_autoedit_output_02():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testtempoinventory rm remove q'
+        input_ = 'm rm testtempoinventory remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -93,7 +93,7 @@ def test_MaterialPackageManager_autoedit_output_03():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testpri rm remove q'
+        input_ = 'm rm testpri remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -137,7 +137,7 @@ def test_MaterialPackageManager_autoedit_output_04():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testpri rm remove q'
+        input_ = 'm rm testpri remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -183,7 +183,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testmarkupinventory rm remove q'
+        input_ = 'm rm testmarkupinventory remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -222,7 +222,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testoctavetrans rm remove q'
+        input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -274,7 +274,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'm testoctavetrans rm remove q'
+        input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -309,7 +309,7 @@ def test_MaterialPackageManager_autoedit_output_08():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == [17, 'foo']
-        input_ = 'm testlist rm remove q'
+        input_ = 'm rm testlist remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -344,7 +344,7 @@ def test_MaterialPackageManager_autoedit_output_09():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == [17, 'foo']
-        input_ = 'm testlist rm remove q'
+        input_ = 'm rm testlist remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -393,7 +393,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == maker
-        input_ = 'm testrhythmmaker rm remove q'
+        input_ = 'm rm testrhythmmaker remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -439,7 +439,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == handler
-        input_ = 'm testarticulationhandler rm remove q'
+        input_ = 'm rm testarticulationhandler remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -481,7 +481,7 @@ def test_MaterialPackageManager_autoedit_output_12():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == handler
-        input_ = 'm testdynamichandler rm remove q'
+        input_ = 'm rm testdynamichandler remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
