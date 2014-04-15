@@ -104,7 +104,6 @@ class ScorePackageManager(PackageManager):
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename_score_package,
-            'rm': self.remove_score_package,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
@@ -331,7 +330,6 @@ class ScorePackageManager(PackageManager):
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('score package - fix', 'fix'))
-        commands.append(('score package - remove', 'rm'))
         commands.append(('score package - remove unadded assets', 'rua'))
         commands.append(('score package - rename', 'ren'))
         commands.append(('score package - setup', 'p'))
@@ -534,25 +532,6 @@ class ScorePackageManager(PackageManager):
                 with file(self._metadata_module_path, 'w') as file_pointer:
                     file_pointer.write(contents)
         return package_needed_to_be_fixed
-
-    def remove_score_package(self):
-        r'''Removes score package.
-
-        Returns none.
-        '''
-        line = 'WARNING! Score package {!r} will be completely removed.'
-        line = line.format(self._package_name)
-        self._io_manager.display([line, ''])
-        getter = self._io_manager.make_getter()
-        getter.append_string("type 'clobber' to proceed")
-        should_clobber = getter._run()
-        if self._should_backtrack():
-            return
-        if should_clobber == 'clobber':
-            self._remove()
-            if self._should_backtrack():
-                return
-            self._session._is_backtracking_locally = True
 
     def rename_score_package(self):
         r'''Renames score package.
