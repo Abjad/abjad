@@ -71,6 +71,7 @@ class Wrangler(Controller):
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
+            'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
@@ -513,7 +514,6 @@ class Wrangler(Controller):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
-        self._make_storehouse_menu_section(menu)
         self._make_views_menu_section(menu)
         self._make_views_module_menu_section(menu)
         self._make_go_wrangler_menu_section(menu)
@@ -546,15 +546,6 @@ class Wrangler(Controller):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
-
-    def _make_storehouse_menu_section(self, menu):
-        commands = []
-        commands.append(('storhouses - list', 'hls'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='storehouses',
-            )
 
     def _make_go_wrangler_menu_section(self, menu):
         commands = []
@@ -881,11 +872,17 @@ class Wrangler(Controller):
         self._write_view_inventory(view_inventory)
 
     def pytest(self, prompt=True):
-        r'''Runs py.test.
+        r'''Visits visible storehouses. Run pytest on each in turn.
 
         Returns none.
         '''
-        self._current_package_manager.pytest(prompt=prompt)
+        storehouses = self._get_visible_storehouses()
+        for storehouse in storehouses:
+            message = '{} ...'.format(storehouse)
+            self._io_manager.display(message)
+            manager = self._io_manager.make_directory_manager(storehouse)
+            manager.pytest(prompt=False)
+        self._session._hide_next_redraw = True
 
     def remove_initializer(self):
         r'''Removes initializer module.

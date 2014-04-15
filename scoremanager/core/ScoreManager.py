@@ -296,7 +296,6 @@ class ScoreManager(Controller):
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
         wrangler = self._score_package_wrangler
-        wrangler._make_storehouse_menu_section(menu)
         wrangler._make_views_menu_section(menu)
         return menu
 
