@@ -143,36 +143,33 @@
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-31. Remove the (rm) and (ren) commands from mangers.
-    Use the (rm) and (ren) commands on wranglers instead.
-
-32. Maybe change Wrangler._current_package_manager to
+31. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-33. Make (mdmro) work for wranglers.
+32. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-34. Make menu title breadcrumbs correctly reflect changes in view
+33. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-35. Refuse to apply view when invalid regular expression is found.
+34. Refuse to apply view when invalid regular expression is found.
 
-36. Imlement 'views - autoedit' (vae) command.
+35. Imlement 'views - autoedit' (vae) command.
 
-37. Change 'material - autoedit' (ma) alias to (mae).
+36. Change 'material - autoedit' (ma) alias to (mae).
 
-38. Compile regular expressions at view entry add time.
+37. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-39. Allow arbitrary metadata in view patterns.
+38. Allow arbitrary metadata in view patterns.
 
-40. Change '... - views - front cover - edit' to
+39. Change '... - views - front cover - edit' to
     '... views - front cover view - edit:'.
     Note both 'front cover *view*' and the colon.
 
-41. Change ...
+40. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
