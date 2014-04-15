@@ -50,7 +50,10 @@ class StylesheetWrangler(Wrangler):
         else:
             breadcrumb = 'stylesheet library'
         view_name = self._read_view_name()
-        if view_name:
+        if not view_name:
+            return breadcrumb
+        view_inventory = self._read_view_inventory()
+        if view_name in view_inventory:
             breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
         return breadcrumb
 
