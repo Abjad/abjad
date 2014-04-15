@@ -143,10 +143,8 @@
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-31. Remove 'score package - remove' (rm) and 'score package - rename' (ren)
-    commands from ScorePackageManager. Use the corresponding
-    ScorePackageWrangler commands instead.
-    Likewise with the (rm) and (ren) commands on the other managers.
+31. Remove the (rm) and (ren) commands from mangers.
+    Use the (rm) and (ren) commands on wranglers instead.
 
 32. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
