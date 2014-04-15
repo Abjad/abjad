@@ -76,7 +76,6 @@ class Wrangler(Controller):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'hls': self.list_storehouses,
             'va': self.apply_view,
             'vls': self.list_views,
             'vnew': self.make_view,
@@ -820,26 +819,6 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._current_package_manager.doctest(prompt=prompt)
-
-    def list_storehouses(self):
-        r'''Lists storehouses.
-
-        Returns none.
-        '''
-        lines = []
-        storehouses = self._get_visible_storehouses()
-        count = len(storehouses)
-        if count == 1:
-            identifier = 'storehouse'
-        else:
-            identifier = 'storehouses'
-        line = '{} {} visible:'.format(count, identifier)
-        lines.append(line)
-        lines.append('')
-        lines.extend(storehouses)
-        lines.append('')
-        self._io_manager.display(lines)
-        self._session._hide_next_redraw = True
 
     def list_views(self):
         r'''List views in views module.
