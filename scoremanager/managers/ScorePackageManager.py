@@ -103,7 +103,6 @@ class ScorePackageManager(PackageManager):
             'pdfo': self.view_score_pdf,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename_score_package,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
@@ -331,7 +330,6 @@ class ScorePackageManager(PackageManager):
         commands = []
         commands.append(('score package - fix', 'fix'))
         commands.append(('score package - remove unadded assets', 'rua'))
-        commands.append(('score package - rename', 'ren'))
         commands.append(('score package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,
@@ -532,32 +530,6 @@ class ScorePackageManager(PackageManager):
                 with file(self._metadata_module_path, 'w') as file_pointer:
                     file_pointer.write(contents)
         return package_needed_to_be_fixed
-
-    def rename_score_package(self):
-        r'''Renames score package.
-
-        Returns none.
-        '''
-        pass
-        prompt_string = 'new package name'
-        new_path = self._score_package_wrangler._get_available_path(
-            prompt_string=prompt_string)
-        if self._should_backtrack():
-            return
-        lines = ['']
-        line = 'current path: {!r}.'.format(self._path)
-        lines.append(line)
-        line = 'new path: {!r}.'.format(new_path)
-        lines.append(line)
-        lines.append('')
-        self._io_manager.display(lines)
-        confirm = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not confirm:
-            return
-        self._rename(new_path)
-        self._io_manager.proceed()
 
     def view_score_pdf(self):
         r'''Views score PDF.

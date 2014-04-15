@@ -177,3 +177,12 @@ class ScorePackageWrangler(Wrangler):
         self._remove_asset(
             item_identifier='score package',
             )
+
+    def rename_score_package(self):
+        r'''Renames score package.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='score package',
+            )

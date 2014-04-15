@@ -279,7 +279,8 @@ class Wrangler(Controller):
         numbers = getter._run()
         if self._should_backtrack():
             return
-        assert len(numbers) == 1
+        if not len(numbers) == 1:
+            return
         number = numbers[0]
         index = number - 1
         paths = [_.return_value for _ in asset_section.menu_entries]

@@ -173,3 +173,9 @@
 40. Change '... - views - front cover - edit' to
     '... views - front cover view - edit:'.
     Note both 'front cover *view*' and the colon.
+
+41. Change ...
+        Untitled (test_score)
+    ... to just ...
+        test_score
+    ... in Score Manager main menu.

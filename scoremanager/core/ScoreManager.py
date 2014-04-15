@@ -113,7 +113,7 @@ class ScoreManager(Controller):
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename_score,
+            'ren': self.rename_score_package,
             'rm': self.remove_score_package,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
@@ -611,12 +611,12 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.remove_score_package()
 
-    def rename_score(self, prompt=True):
-        r'''Renames score.
+    def rename_score_package(self):
+        r'''Renames score package.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._score_package_wrangler.rename_score_package()
 
     def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
