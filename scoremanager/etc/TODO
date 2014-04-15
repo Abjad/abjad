@@ -174,3 +174,12 @@
     ... to just ...
         test_score
     ... in Score Manager main menu.
+
+41. Change ...
+        Score manager - stylesheet library (_test view) - select view to remove:
+    ... to ...
+        Score manager - stylesheet library - select view to remove:
+    ... instead.
+
+42. Change 'default' to '<return>' in test input strings.
+    Makes test more readable.
