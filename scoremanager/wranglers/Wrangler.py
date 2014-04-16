@@ -872,16 +872,20 @@ class Wrangler(Controller):
         self._write_view_inventory(view_inventory)
 
     def pytest(self, prompt=True):
-        r'''Visits visible storehouses. Run pytest on each in turn.
+        r'''Run pytest on visible storehouses.
 
         Returns none.
         '''
         storehouses = self._get_visible_storehouses()
-        for storehouse in storehouses:
-            message = '{} ...'.format(storehouse)
-            self._io_manager.display(message)
-            manager = self._io_manager.make_directory_manager(storehouse)
-            manager.pytest(prompt=False)
+        if not storehouses:
+            return
+        storehouses = ' '.join(storehouses)
+        command = 'py.test {}'.format(storehouses)
+        process = self._io_manager.make_subprocess(command)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
     def remove_initializer(self):
