@@ -123,6 +123,14 @@ class ScoreManager(Controller):
             'ssx': self.display_example_scores,
             'ssu': self.display_user_scores,
             'u': self.manage_build_file_library,
+            'va': self.apply_view,
+            'vls': self.list_views,
+            'vnew': self.make_view,
+            'vren': self.rename_view,
+            'vrm': self.remove_view,
+            'vmrm': self.remove_views_module,
+            'vmro': self.view_views_module,
+            'V': self.clear_view,
             'y': self.manage_stylesheet_library,
             }
         return result
@@ -297,6 +305,7 @@ class ScoreManager(Controller):
         self._make_cache_menu_section(menu)
         wrangler = self._score_package_wrangler
         wrangler._make_views_menu_section(menu)
+        wrangler._make_views_module_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):
@@ -389,6 +398,20 @@ class ScoreManager(Controller):
         Returns none.
         '''
         self._score_package_wrangler.add_to_repository(prompt=prompt)
+
+    def apply_view(self):
+        r'''Applies view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.apply_view()
+
+    def clear_view(self):
+        r'''Clears view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.clear_view()
 
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
@@ -505,12 +528,26 @@ class ScoreManager(Controller):
         message = message.format(len(paths))
         self._io_manager.proceed(message, prompt=prompt)
 
+    def list_views(self):
+        r'''Lists views.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.list_views()
+
     def make_score_package(self):
         r'''Makes new score.
 
         Returns none.
         '''
         self._score_package_wrangler.make_score_package()
+
+    def make_view(self):
+        r'''Makes view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.make_view()
 
     def manage_build_file_library(self):
         r'''Manages build file library.
@@ -584,12 +621,33 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.remove_score_package()
 
+    def remove_view(self):
+        r'''Removes view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.remove_view()
+
+    def remove_views_module(self):
+        r'''Removes views module.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.remove_views_module()
+
     def rename_score_package(self):
         r'''Renames score package.
 
         Returns none.
         '''
         self._score_package_wrangler.rename_score_package()
+
+    def rename_view(self):
+        r'''Renames view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.rename_view()
 
     def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
@@ -639,6 +697,14 @@ class ScoreManager(Controller):
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
+
+    def view_views_module(self):
+        r'''View views module.
+
+        Return none.
+        '''
+        print 'FOO'
+        self._score_package_wrangler.view_views_module()
 
     def write_cache(self, prompt=True):
         r'''Writes cache.
