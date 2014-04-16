@@ -191,3 +191,8 @@
 44. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
+
+45. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+
+46. Make (rst) work again. Right now runs on archipel and then quits.
+    Maybe add private Subversion tests.
