@@ -881,11 +881,7 @@ class Wrangler(Controller):
             return
         storehouses = ' '.join(storehouses)
         command = 'py.test {}'.format(storehouses)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(lines)
+        self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
     def remove_initializer(self):

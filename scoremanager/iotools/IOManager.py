@@ -637,6 +637,22 @@ class IOManager(IOManager):
         controller = self._session.get_controller_with(ui='pyt')
         controller.pytest()
 
+    def run_command(self, command, capitalize_first_character=True):
+        r'''Makes subprocess with `command` and then runs and displays
+        output of subprocess.
+
+        Returns none.
+        '''
+        process = self.make_subprocess(command)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if not lines:
+            return
+        lines.append('')
+        self.display(
+            lines,
+            capitalize_first_character=capitalize_first_character,
+            )
+
     def view(self, file_path):
         r'''Views `file_path`.
 

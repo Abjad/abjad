@@ -550,10 +550,7 @@ class Manager(Controller):
         self._io_manager.display(line, capitalize_first_character=False)
         command = self._repository_add_command
         assert isinstance(command, str)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(lines)
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
     def commit_to_repository(self, commit_message=None, prompt=True):
@@ -580,13 +577,7 @@ class Manager(Controller):
         lines.append(line)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines.extend([line.strip() for line in process.stdout.readlines()])
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command, capitalize_first_character=False)
         self._io_manager.proceed(prompt=prompt)
 
     def copy(self):
@@ -618,13 +609,7 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'ajv doctest {}'.format(self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            if lines[0] == '':
-                lines.remove('')
-            lines.append('')
-            self._io_manager.display(lines)
+        self._io_manager.run_command(command, capitalize_first_character=False)
         self._io_manager.proceed(prompt=prompt)
 
     def list(self):
@@ -656,14 +641,7 @@ class Manager(Controller):
         '''
         command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
-        lines = []
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command, capitalize_first_character=False)
         self._session._hide_next_redraw = True
 
     def pytest(self, prompt=True):
@@ -674,12 +652,8 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'py.test -rf {}'.format(self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.run_command(command)
+        self._session._hide_next_redraw = True
 
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.
@@ -693,16 +667,7 @@ class Manager(Controller):
         paths = ' '.join(paths)
         command = '{} {}'
         command = command.format(remove_command, paths)
-        process = self._io_manager.make_subprocess(command)
-        clean_lines = []
-        for line in process.stdout.readlines():
-            clean_line = line.strip()
-            clean_lines.append(clean_line)
-        clean_lines.append('')
-        self._io_manager.display(
-            clean_lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
     def rename(self):
@@ -775,8 +740,5 @@ class Manager(Controller):
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
         command = self._repository_update_command
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(lines)
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
