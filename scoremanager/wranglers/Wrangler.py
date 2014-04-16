@@ -876,12 +876,23 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        storehouses = self._get_visible_storehouses()
-        if not storehouses:
-            return
-        storehouses = ' '.join(storehouses)
-        command = 'py.test {}'.format(storehouses)
-        self._io_manager.run_command(command)
+        assets = []
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            if os.path.isdir(path):
+                assets.append(path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        if not assets:
+            message = 'no testable assets found.'
+            self._io_manager.display([message, ''])
+        else:
+            message = '{} testable assets found ...'
+            message = message.format(len(assets))
+            self._io_manager.display([message, ''])
+            assets = ' '.join(assets)
+            command = 'py.test -rf {}'.format(assets)
+            self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
     def remove_initializer(self):

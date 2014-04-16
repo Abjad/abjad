@@ -12,8 +12,7 @@ def test_StylesheetWrangler_pytest_01():
 
     strings = [
         'Running py.test ...',
-        '=== test session starts ===',
-        'Collected 0 items',
+        'No testable assets found.',
         ]
 
     for string in strings:
