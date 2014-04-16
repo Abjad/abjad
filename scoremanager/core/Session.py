@@ -1239,7 +1239,7 @@ class Session(abctools.AbjadObject):
                 line = line.format(variable_name, variable_value)
                 lines.append(line)
         lines.append('')
-        self.io_manager.display(lines, capitalize_first_character=False)
+        self.io_manager.display(lines, capitalize=False)
         if self.is_in_user_input_getter:
             self._hide_next_redraw = True
         self.io_manager.proceed()

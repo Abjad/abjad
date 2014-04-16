@@ -191,5 +191,3 @@
 44. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
-
-45. Change 'capitalize_first_character' to just 'capitalize'.

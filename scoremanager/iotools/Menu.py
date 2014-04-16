@@ -147,7 +147,7 @@ class Menu(ScoreManagerObject):
         menu_lines = self._make_menu_lines()
         self._io_manager.display(
             menu_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         user_entered_lone_return = False
         user_input = self._io_manager.handle_user_input('')
@@ -188,7 +188,7 @@ class Menu(ScoreManagerObject):
         self._clear_terminal()
         self._io_manager.display(
             menu_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True

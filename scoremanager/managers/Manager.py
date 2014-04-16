@@ -547,7 +547,7 @@ class Manager(Controller):
             return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_add_command
         assert isinstance(command, str)
         self._io_manager.run_command(command)
@@ -577,7 +577,7 @@ class Manager(Controller):
         lines.append(line)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
-        self._io_manager.run_command(command, capitalize_first_character=False)
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def copy(self):
@@ -609,7 +609,7 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'ajv doctest {}'.format(self._path)
-        self._io_manager.run_command(command, capitalize_first_character=False)
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def list(self):
@@ -630,7 +630,7 @@ class Manager(Controller):
         lines.append('')
         self._io_manager.display(
             lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_next_redraw = True
 
@@ -641,7 +641,7 @@ class Manager(Controller):
         '''
         command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
-        self._io_manager.run_command(command, capitalize_first_character=False)
+        self._io_manager.run_command(command, capitalize=False)
         self._session._hide_next_redraw = True
 
     def pytest(self, prompt=True):
@@ -697,7 +697,7 @@ class Manager(Controller):
         self._session._attempted_repository_status = True
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_status_command
         process = self._io_manager.make_subprocess(command)
         path = self._path
@@ -710,7 +710,7 @@ class Manager(Controller):
         clean_lines.append('')
         self._io_manager.display(
             clean_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_next_redraw = True
 
@@ -738,7 +738,7 @@ class Manager(Controller):
             return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_update_command
         self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)

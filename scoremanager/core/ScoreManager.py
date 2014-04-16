@@ -448,14 +448,7 @@ class ScoreManager(Controller):
             return
         path = self._configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines,
-                capitalize_first_character=False,
-                )
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def edit_metadata_modules(self):
@@ -581,18 +574,7 @@ class ScoreManager(Controller):
         path = self._configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            )
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines,
-                capitalize_first_character=False,
-                )
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def remove_score_package(self):

@@ -833,7 +833,7 @@ class Wrangler(Controller):
         lines.append(message)
         lines.extend(names)
         lines.append('')
-        self._io_manager.display(lines, capitalize_first_character=False)
+        self._io_manager.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
     def make_view(self):
