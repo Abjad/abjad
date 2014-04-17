@@ -197,3 +197,6 @@
 
 47. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
+
+48. Change 'vmrm' to 'vmtrash'.
+    No reason to remove views modules from repository.
