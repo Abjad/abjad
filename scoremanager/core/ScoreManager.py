@@ -472,7 +472,8 @@ class ScoreManager(Controller):
         path = self._configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
         self._io_manager.run_command(command, capitalize=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._session._hide_next_redraw = True
+        #self._score_package_wrangler.doctest(prompt=prompt)
 
     def edit_metadata_modules(self):
         r'''Edits all metadata modules everywhere.

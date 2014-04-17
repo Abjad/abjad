@@ -610,7 +610,8 @@ class Manager(Controller):
             return
         command = 'ajv doctest {}'.format(self._path)
         self._io_manager.run_command(command, capitalize=False)
-        self._io_manager.proceed(prompt=prompt)
+        #self._io_manager.proceed(prompt=prompt)
+        self._session._hide_next_redraw = True
 
     def list(self):
         r'''Lists directory.

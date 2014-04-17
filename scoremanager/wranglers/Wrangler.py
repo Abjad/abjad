@@ -817,6 +817,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        raise Exception
         self._current_package_manager.doctest(prompt=prompt)
 
     def list_views(self):
