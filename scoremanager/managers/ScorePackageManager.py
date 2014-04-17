@@ -338,12 +338,11 @@ class ScorePackageManager(PackageManager):
             )
 
     def _make_score_pdf_menu_section(self, menu):
-        manager = self._build_file_wrangler
-        if manager._get_file_path_ending_with('score.pdf'):
+        wrangler = self._distribution_file_wrangler
+        if wrangler._get_file_path_ending_with('score.pdf'):
             commands = []
             commands.append(('score pdf - open', 'pdfo'))
             menu.make_command_section(
-                default_index=0,
                 commands=commands,
                 name='score pdf',
                 )

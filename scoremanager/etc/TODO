@@ -196,3 +196,8 @@
 
 46. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
+
+47. Make sure that (red~example~score d red-example-score.pdf)
+    opens with PDF viewier insted of text editor.
+
+48. Make MenuSection assert nonzero contents at initialization.

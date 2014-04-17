@@ -68,7 +68,7 @@ class Wrangler(Controller):
         result = superclass._user_input_to_action
         result = copy.deepcopy(result)
         result.update({
-            'inrm': self.remove_initializer,
+            #'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
             'pyt': self.pytest,
@@ -220,6 +220,13 @@ class Wrangler(Controller):
             directory_path = os.path.join(*parts)
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
+
+    def _get_file_path_ending_with(self, string):
+        path = self._get_current_directory_path()
+        for file_name in self._list():
+            if file_name.endswith(string):
+                file_path = os.path.join(path, file_name)
+                return file_path
 
     def _get_manager(self, path):
         manager = self._manager_class(
@@ -895,12 +902,12 @@ class Wrangler(Controller):
             self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
-    def remove_initializer(self):
-        r'''Removes initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.remove_initializer()
+#    def remove_initializer(self):
+#        r'''Removes initializer module.
+#
+#        Returns none.
+#        '''
+#        self._current_package_manager.remove_initializer()
 
     def remove_view(self):
         r'''Removes view from views module.
