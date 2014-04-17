@@ -31,11 +31,20 @@ def test_StylesheetWrangler_make_view_02():
 
 def test_StylesheetWrangler_make_view_03():
     r'''Makes view. Removes view.
+
+    Makes sure no extra new lines appear before or after 
+    'written to disk' message.
     '''
 
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default q' 
     score_manager._run(pending_user_input=input_)
 
+    lines =['> done', '']
+    assert score_manager._transcript[-5].lines == lines
+
+    lines = ['View inventory written to disk.', '']
+    assert score_manager._transcript[-4].lines == lines
+        
     input_ = 'y vls vrm _test default q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents

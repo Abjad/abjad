@@ -126,7 +126,7 @@ class FileManager(Manager):
                 with file(self._path) as file_pointer:
                     result.extend(file_pointer.readlines())
         return result
-
+    
     def _write(self, contents):
         with file(self._path, 'w') as file_pointer:
             file_pointer.write(contents)

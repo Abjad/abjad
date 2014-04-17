@@ -191,3 +191,6 @@
 
 45. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.
+
+46. Allow 5-99 (or any other large number) to work when removing items.
+    Example (y > vnew > foo > rm > 5-99).

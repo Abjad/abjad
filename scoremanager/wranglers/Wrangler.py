@@ -869,7 +869,6 @@ class Wrangler(Controller):
         editor._run()
         if self._should_backtrack():
             return
-        self._io_manager.display('')
         view = editor.target
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
@@ -930,7 +929,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        self._current_package_manager.remove_views_module()
+        self._views_module_manager._remove(prompt=True)
 
     def rename_view(self):
         r'''Renames view.
