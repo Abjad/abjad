@@ -194,3 +194,6 @@
 
 46. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
+
+47. Move score_manager_library/views/*_views__.py files to
+    ~/.score_manager/ directory.
