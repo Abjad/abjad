@@ -127,7 +127,7 @@ class ScoreManager(Controller):
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
-            'vrm': self.remove_view,
+            'vrm': self.remove_views,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             'V': self.clear_view,
@@ -621,12 +621,12 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.remove_score_package()
 
-    def remove_view(self):
-        r'''Removes view.
+    def remove_views(self):
+        r'''Removes view(s) from views module.
 
         Returns none.
         '''
-        self._score_package_wrangler.remove_view()
+        self._score_package_wrangler.remove_views()
 
     def remove_views_module(self):
         r'''Removes views module.

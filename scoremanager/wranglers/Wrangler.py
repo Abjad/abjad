@@ -78,7 +78,7 @@ class Wrangler(Controller):
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
-            'vrm': self.remove_view,
+            'vrm': self.remove_views,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             'V': self.clear_view,
@@ -903,8 +903,8 @@ class Wrangler(Controller):
             self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
-    def remove_view(self):
-        r'''Removes view from views module.
+    def remove_views(self):
+        r'''Removes view(s) from views module.
 
         Returns none.
         '''
