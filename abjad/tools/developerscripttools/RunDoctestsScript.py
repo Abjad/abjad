@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import doctest
 import importlib
 import os
 import StringIO
@@ -64,7 +65,6 @@ class RunDoctestsScript(DirectoryScript):
 
         Returns none.
         '''
-        import doctest
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             experimental_module = importlib.import_module('experimental')
@@ -84,7 +84,6 @@ class RunDoctestsScript(DirectoryScript):
             )
         if args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
-        #systemtools.IOManager.clear_terminal()
         total_failures = 0
         total_modules = 0
         total_tests = 0
@@ -92,9 +91,9 @@ class RunDoctestsScript(DirectoryScript):
         error_messages = []
         for dir_path, dir_names, file_names in os.walk(args.path):
             for file_name in sorted(file_names):
-                if file_name.endswith('.py') and \
-                    not file_name.startswith('test_') and \
-                    not file_name == '__init__.py':
+                if (file_name.endswith('.py') and
+                    not file_name.startswith('test_') and
+                    not file_name == '__init__.py'):
                     total_modules += 1
                     file_path = os.path.abspath(
                         os.path.join(dir_path, file_name))
@@ -142,12 +141,14 @@ class RunDoctestsScript(DirectoryScript):
 
         Returns none.
         '''
-        parser.add_argument('path',
+        parser.add_argument(
+            'path',
             default=os.getcwd(),
             help='directory tree to be recursed over',
             nargs='?',
             )
-        parser.add_argument('--diff',
+        parser.add_argument(
+            '--diff',
             action='store_true',
             help='print diff-like output on failed tests.',
             )
