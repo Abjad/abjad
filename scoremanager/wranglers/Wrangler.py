@@ -902,13 +902,6 @@ class Wrangler(Controller):
             self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
-#    def remove_initializer(self):
-#        r'''Removes initializer module.
-#
-#        Returns none.
-#        '''
-#        self._current_package_manager.remove_initializer()
-
     def remove_view(self):
         r'''Removes view from views module.
 
@@ -995,23 +988,9 @@ class Wrangler(Controller):
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-#    def view_initializer(self):
-#        r'''Views initializer module.
-#
-#        Returns none.
-#        '''
-#        self._current_package_manager.view_initializer()
-
     def view_views_module(self):
         r'''Views views module.
 
         Returns none.
         '''
         self._views_module_manager.view()
-
-#    def write_initializer_stub(self):
-#        r'''Writes stub initializer module.
-#
-#        Returns none.
-#        '''
-#        self._current_package_manager.write_initializer_stub()
