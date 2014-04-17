@@ -3,15 +3,15 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_StylesheetWrangler_remove_stylesheets_01():
+def test_StylesheetWrangler_remove_views_module_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
-        configuration.abjad_stylesheets_directory_path,
-        'clean-letter-14.ily',
+        score_manager._configuration.user_library_directory_path,
+        'views',
+        '__StylesheetWrangler_views__.py',
         )
     backup_path = path + '.backup'
 
@@ -20,7 +20,7 @@ def test_StylesheetWrangler_remove_stylesheets_01():
     shutil.copyfile(path, backup_path)
     assert os.path.exists(backup_path)
 
-    input_ = 'y rm clean-letter-14.ily remove q'
+    input_ = 'y vmrm remove q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(backup_path)
