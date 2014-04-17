@@ -314,9 +314,9 @@ class ScoreManager(Controller):
             self._io_manager.write_cache(prompt=False)
             self._session._rewrite_cache = False
         menu_entries = self._io_manager._read_cache()
-        if not menu_entries or \
+        if (not menu_entries or
             (self._session._scores_to_display == 'example' and
-            not menu_entries[0][0] == 'Blue Example Score (2013)'):
+            not menu_entries[0][0] == 'Blue Example Score (2013)')):
             self._io_manager.write_cache(prompt=False)
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(

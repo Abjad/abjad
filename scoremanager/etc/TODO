@@ -199,5 +199,3 @@
 
 47. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.
-
-48. Make MenuSection assert nonzero contents at initialization.
