@@ -180,18 +180,14 @@
 41. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-42. Change 'remove_asset()' to 'remove_assets()'.
-    Change 'remove_stylesheet()' to 'remove_stylesheets()'.
-    And so on.
-
-43. Write test for editing stylesheet.
+42. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-44. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+43. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-45. Make (rst) work again. Right now runs on archipel and then quits.
+44. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-46. Make sure that (red~example~score d red-example-score.pdf)
+45. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.

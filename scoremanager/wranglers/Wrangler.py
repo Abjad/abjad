@@ -604,7 +604,7 @@ class Wrangler(Controller):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _remove_asset(self, item_identifier='asset', prompt=True):
+    def _remove_assets(self, item_identifier='asset', prompt=True):
         paths = self._get_visible_asset_paths(item_identifier=item_identifier)
         self._io_manager.display('')
         if not paths:

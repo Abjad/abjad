@@ -114,12 +114,12 @@ class DistributionFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def remove_distribution_file(self):
+    def remove_distribution_files(self):
         r'''Removes one or more distribution files.
         
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='distribution file',
             )
 

@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScorePackageWrangler_remove_score_package_01():
+def test_ScorePackageWrangler_remove_score_packages_01():
     r'''Removes one score package.
     '''
 
@@ -33,7 +33,7 @@ def test_ScorePackageWrangler_remove_score_package_01():
     assert not os.path.exists(path)
 
 
-def test_ScorePackageWrangler_remove_score_package_02():
+def test_ScorePackageWrangler_remove_score_packages_02():
     r'''Removes range of score packages.
     '''
 

@@ -6,7 +6,7 @@ import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
-def test_StylesheetWrangler_remove_stylesheet_01():
+def test_StylesheetWrangler_remove_stylesheets_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(

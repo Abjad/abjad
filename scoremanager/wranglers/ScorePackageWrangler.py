@@ -81,7 +81,7 @@ class ScorePackageWrangler(Wrangler):
         result = result.copy()
         result.update({
             'new': self.make_score_package,
-            'rm': self.remove_score_package,
+            'rm': self.remove_score_packages,
             })
         return result
 
@@ -169,12 +169,12 @@ class ScorePackageWrangler(Wrangler):
         self._make_asset(path)
         self._io_manager.write_cache(prompt=False)
 
-    def remove_score_package(self):
+    def remove_score_packages(self):
         r'''Removes one or more score packages.
         
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='score package',
             )
 

@@ -442,12 +442,12 @@ class BuildFileWrangler(Wrangler):
         '''
         self._call_lilypond_on_file_ending_with('score-segments.ly')
 
-    def remove_build_file(self):
+    def remove_build_files(self):
         r'''Removes build file.
 
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='build file',
             )
 

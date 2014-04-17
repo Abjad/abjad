@@ -113,7 +113,7 @@ class ScoreManager(Controller):
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename_score_package,
-            'rm': self.remove_score_package,
+            'rm': self.remove_score_packages,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
@@ -614,12 +614,12 @@ class ScoreManager(Controller):
         self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def remove_score_package(self):
+    def remove_score_packages(self):
         r'''Removes score package.
 
         Returns none.
         '''
-        self._score_package_wrangler.remove_score_package()
+        self._score_package_wrangler.remove_score_packages()
 
     def remove_views(self):
         r'''Removes view(s) from views module.

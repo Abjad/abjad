@@ -220,12 +220,12 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def remove_segment_package(self):
+    def remove_segment_packages(self):
         r'''Removes one or more segment packages.
         
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='segment package',
             )
 
