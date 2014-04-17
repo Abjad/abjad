@@ -69,8 +69,8 @@ class Wrangler(Controller):
         result = copy.deepcopy(result)
         result.update({
             #'inrm': self.remove_initializer,
-            'ins': self.write_initializer_stub,
-            'inro': self.view_initializer,
+            #'ins': self.write_initializer_stub,
+            #'inro': self.view_initializer,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -995,12 +995,12 @@ class Wrangler(Controller):
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def view_initializer(self):
-        r'''Views initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.view_initializer()
+#    def view_initializer(self):
+#        r'''Views initializer module.
+#
+#        Returns none.
+#        '''
+#        self._current_package_manager.view_initializer()
 
     def view_views_module(self):
         r'''Views views module.
@@ -1009,9 +1009,9 @@ class Wrangler(Controller):
         '''
         self._views_module_manager.view()
 
-    def write_initializer_stub(self):
-        r'''Writes stub initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.write_initializer_stub()
+#    def write_initializer_stub(self):
+#        r'''Writes stub initializer module.
+#
+#        Returns none.
+#        '''
+#        self._current_package_manager.write_initializer_stub()
