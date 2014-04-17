@@ -1,9 +1,8 @@
 import collections
 from abjad import *
-from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
-class RedExampleScoreTemplate(ScoreTemplate):
+class RedExampleScoreTemplate(abctools.AbjadObject):
 
     ### INITIALIZER ###
 

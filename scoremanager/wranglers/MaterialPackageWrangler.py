@@ -77,7 +77,7 @@ class MaterialPackageWrangler(Wrangler):
             'cp': self.copy_material_package,
             'new': self.make_material_package,
             'ren': self.rename_material_package,
-            'rm': self.remove_material_package,
+            'rm': self.remove_material_packages,
             })
         return result
 
@@ -249,16 +249,20 @@ class MaterialPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
-    def remove_material_package(self):
+    def remove_material_packages(self):
         r'''Removes material package.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._remove_assets(
+            item_identifier='material package',
+            )
 
     def rename_material_package(self):
         r'''Renames material package.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._rename_asset(
+            item_identifier='material package',
+            )

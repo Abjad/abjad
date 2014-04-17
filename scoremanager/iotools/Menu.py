@@ -147,7 +147,7 @@ class Menu(ScoreManagerObject):
         menu_lines = self._make_menu_lines()
         self._io_manager.display(
             menu_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         user_entered_lone_return = False
         user_input = self._io_manager.handle_user_input('')
@@ -188,7 +188,7 @@ class Menu(ScoreManagerObject):
         self._clear_terminal()
         self._io_manager.display(
             menu_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
@@ -397,6 +397,8 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self,
+        default_index=None,
+        display_prepopulated_values=False,
         is_alphabetized=False,
         is_asset_section=False,
         is_attribute_section=False,
@@ -407,8 +409,6 @@ class Menu(ScoreManagerObject):
         is_navigation_section=False,
         is_numbered=False,
         is_ranged=False,
-        display_prepopulated_values=False,
-        default_index=None,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
@@ -419,6 +419,8 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         section = iotools.MenuSection(
+            default_index=default_index,
+            display_prepopulated_values=display_prepopulated_values,
             is_alphabetized=is_alphabetized,
             is_asset_section=is_asset_section,
             is_attribute_section=is_attribute_section,
@@ -429,16 +431,12 @@ class Menu(ScoreManagerObject):
             is_navigation_section=is_navigation_section,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            display_prepopulated_values=display_prepopulated_values,
-            default_index=default_index,
             match_on_display_string=match_on_display_string,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute=return_value_attribute,
             title=title,
             )
-        menu_entries = menu_entries or ()
-        for entry in menu_entries:
-            section._append(entry)
         self.menu_sections.append(section)
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [

@@ -274,7 +274,7 @@ class IOManager(IOManager):
     def display(
         self,
         lines,
-        capitalize_first_character=True,
+        capitalize=True,
         ):
         r'''Displays `lines`.
 
@@ -287,7 +287,7 @@ class IOManager(IOManager):
             lines = [lines]
         if self._session.hide_next_redraw:
             return
-        if capitalize_first_character:
+        if capitalize:
             lines = [
                 stringtools.capitalize_start(line)
                 for line in lines
@@ -468,7 +468,7 @@ class IOManager(IOManager):
         lines = [_.strip() for _ in lines]
         lines.append('')
         if prompt:
-            self.display(lines, capitalize_first_character=False)
+            self.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
     def make_directory_manager(self, path):
@@ -568,6 +568,7 @@ class IOManager(IOManager):
     def make_selector(
         self,
         breadcrumb=None,
+        is_ranged=False,
         items=None,
         ):
         r'''Makes selector.
@@ -577,6 +578,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         return iotools.Selector(
             breadcrumb=breadcrumb,
+            is_ranged=is_ranged,
             items=items,
             session=self._session,
             )
@@ -636,6 +638,22 @@ class IOManager(IOManager):
         self.display([message, ''])
         controller = self._session.get_controller_with(ui='pyt')
         controller.pytest()
+
+    def run_command(self, command, capitalize=True):
+        r'''Makes subprocess with `command` and then runs and displays
+        output of subprocess.
+
+        Returns none.
+        '''
+        process = self.make_subprocess(command)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if not lines:
+            return
+        lines.append('')
+        self.display(
+            lines,
+            capitalize=capitalize,
+            )
 
     def view(self, file_path):
         r'''Views `file_path`.

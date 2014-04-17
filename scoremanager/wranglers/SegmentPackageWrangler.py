@@ -54,10 +54,13 @@ class SegmentPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
+            'inrm': self.remove_initializer,
+            'ins': self.write_initializer_stub,
+            'inro': self.view_initializer,
             'lyi': self.interpret_current_lilypond_files,
+            'mmi': self.interpret_make_modules,
             'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,
-            'mmi': self.interpret_make_modules,
             })
         return result
 
@@ -72,8 +75,8 @@ class SegmentPackageWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            segment_package_manager = self._initialize_manager(result)
-            segment_package_manager._run()
+            manager = self._initialize_manager(result)
+            manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(SegmentPackageWrangler, self)
@@ -217,6 +220,38 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
+    def remove_segment_packages(self):
+        r'''Removes one or more segment packages.
+        
+        Returns none.
+        '''
+        self._remove_assets(
+            item_identifier='segment package',
+            )
+
+    def remove_initializer(self):
+        r'''Removes initializer module.
+
+        Returns none.
+        '''
+        self._current_package_manager.remove_initializer()
+
+    def rename_segment_package(self):
+        r'''Renames segment package.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='segment package',
+            )
+
+    def view_initializer(self):
+        r'''Views initializer module.
+
+        Returns none.
+        '''
+        self._current_package_manager.view_initializer()
+
     def version_segment_packages(self):
         r'''Versions all assets.
 
@@ -271,3 +306,10 @@ class SegmentPackageWrangler(Wrangler):
             if os.path.isfile(output_pdf_file_path):
                 output_pdf_file_paths.append(output_pdf_file_path)
         self._io_manager.view(output_pdf_file_paths)
+
+    def write_initializer_stub(self):
+        r'''Writes stub initializer module.
+
+        Returns none.
+        '''
+        self._current_package_manager.write_initializer_stub()

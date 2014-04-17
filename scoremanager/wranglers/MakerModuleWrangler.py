@@ -61,7 +61,7 @@ class MakerModuleWrangler(Wrangler):
         result.update({
             'new': self.make_maker_module,
             'ren': self.rename_maker_module,
-            'rm': self.remove_maker_module,
+            'rm': self.remove_maker_modules,
             })
         return result
 
@@ -129,12 +129,12 @@ class MakerModuleWrangler(Wrangler):
             prompt_string='maker name', 
             )
 
-    def remove_maker_module(self):
+    def remove_maker_modules(self):
         r'''Removes one or more maker modules.
 
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='maker module',
             )
 

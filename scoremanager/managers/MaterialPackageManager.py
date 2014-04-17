@@ -142,18 +142,6 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def _user_input_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._user_input_module_path,
-            session=self._session,
-            )
-
-    @property
-    def _user_input_module_path(self):
-        return os.path.join(self._path, 'user_input.py')
-
-    @property
     def _user_input_to_action(self):
         superclass = super(MaterialPackageManager, self)
         result = superclass._user_input_to_action
@@ -181,10 +169,8 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.view_illustration_pdf,
             'pra': self.remove_autoeditor,
             'ren': self.rename,
-            'uid': self.remove_user_input_module,
             'uis': self.display_user_input_demo_values,
             'uit': self.toggle_user_input_values_default_status,
-            'uimro': self.view_user_input_module,
             })
         return result
 
@@ -238,8 +224,7 @@ class MaterialPackageManager(PackageManager):
 
     def _has_output_material_editor(self):
         if not os.path.isfile(self._definition_module_path):
-            if not os.path.isfile(self._user_input_module_path):
-                True
+            return True
         return False
 
     def _interpret_definition_module(self):
@@ -256,8 +241,6 @@ class MaterialPackageManager(PackageManager):
     def _make_autoeditor_summary_menu_section(self, menu):
         if not self._get_metadatum('use_autoeditor'):
             if os.path.isfile(self._definition_module_path):
-                return
-            if os.path.isfile(self._user_input_module_path):
                 return
             if not os.path.isfile(self._output_module_path):
                 return
@@ -662,7 +645,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._definition_module_manager.remove(prompt=prompt)
+        self._definition_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustrate_module(self, prompt=True):
@@ -670,7 +653,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustrate_module_manager.remove(prompt=prompt)
+        self._illustrate_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustration_ly(self, prompt=True):
@@ -678,7 +661,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_ly_file_manager.remove(prompt=prompt)
+        self._illustration_ly_file_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustration_pdf(self, prompt=True):
@@ -686,7 +669,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_pdf_file_manager.remove(prompt=prompt)
+        self._illustration_pdf_file_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_output_module(self, prompt=True):
@@ -694,15 +677,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._output_module_manager.remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
-
-    def remove_user_input_module(self, prompt=True):
-        r'''Removes user input module.
-
-        Returns none.
-        '''
-        self._user_input_module_manager.remove(prompt=prompt)
+        self._output_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def rename(self):
@@ -799,14 +774,6 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         self._output_module_manager.view()
-
-    def view_user_input_module(self):
-        r'''Views user input module.
-
-        Returns none.
-        '''
-        file_path = self._user_input_module_path
-        self._io_manager.view(file_path)
 
     def write_definition_module_stub(self):
         r'''Writes stub material definition module.

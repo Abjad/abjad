@@ -43,6 +43,14 @@ class TranscriptEntry(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def contents(self):
+        r'''Gets contents of transcript entry as a single string.
+
+        Use for tests.
+        '''
+        return ''.join(self.lines)
+
+    @property
     def current_time(self):
         r'''Gets current time of entry.
 

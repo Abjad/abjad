@@ -143,33 +143,60 @@
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-31. Remove 'score package - remove' (rm) and 'score package - rename' (ren)
-    commands from ScorePackageManager. Use the corresponding
-    ScorePackageWrangler commands instead.
-    Likewise with the (rm) and (ren) commands on the other managers.
-
-32. Maybe change Wrangler._current_package_manager to
+31. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-33. Make (mdmro) work for wranglers.
+32. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-34. Make menu title breadcrumbs correctly reflect changes in view
+33. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-35. Refuse to apply view when invalid regular expression is found.
+34. Refuse to apply view when invalid regular expression is found.
 
-36. Imlement 'views - autoedit' (vae) command.
+35. Imlement 'views - autoedit' (vae) command.
 
-37. Change 'material - autoedit' (ma) alias to (mae).
+36. Change 'material - autoedit' (ma) alias to (mae).
 
-38. Compile regular expressions at view entry add time.
+37. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-39. Allow arbitrary metadata in view patterns.
+38. Allow arbitrary metadata in view patterns.
 
-40. Change '... - views - front cover - edit' to
-    '... views - front cover view - edit:'.
-    Note both 'front cover *view*' and the colon.
+39. Change ...
+        Untitled (test_score)
+    ... to just ...
+        test_score
+    ... in Score Manager main menu.
+
+40. Change ...
+        Score manager - stylesheet library (_test view) - select view to remove:
+    ... to ...
+        Score manager - stylesheet library - select view to remove:
+    ... instead.
+
+41. Change 'default' to '<return>' in test input strings.
+    Makes test more readable.
+
+42. Write test for editing stylesheet.
+    Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
+    Reproduce with (y > 1).
+
+43. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+
+44. Make (rst) work again. Right now runs on archipel and then quits.
+    Maybe add private Subversion tests.
+
+45. Make sure that (red~example~score d red-example-score.pdf)
+    opens with PDF viewier insted of text editor.
+
+46. Allow 5-99 (or any other large number) to work when removing items.
+    Example (y > vnew > foo > rm > 5-99).
+
+47. Move score_manager_library/views/*_views__.py files to
+    ~/.score_manager/ directory.
+
+48. Change 'vmrm' to 'vmtrash'.
+    No reason to remove views modules from repository.

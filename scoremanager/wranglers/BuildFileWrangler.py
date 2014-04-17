@@ -115,13 +115,6 @@ class BuildFileWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_build_files = False
 
-    def _get_file_path_ending_with(self, string):
-        path = self._get_current_directory_path()
-        for file_name in self._list():
-            if file_name.endswith(string):
-                file_path = os.path.join(path, file_name)
-                return file_path
-
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -252,10 +245,10 @@ class BuildFileWrangler(Wrangler):
             )
 
     def _open_file_ending_with(self, string):
-        file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._get_file_manager(file_path)
-            file_manager.open()
+        path = self._get_file_path_ending_with(string)
+        if path:
+            manager = self._io_manager.make_file_manager(path)
+            manager.open()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
@@ -448,6 +441,24 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._call_lilypond_on_file_ending_with('score-segments.ly')
+
+    def remove_build_files(self):
+        r'''Removes build file.
+
+        Returns none.
+        '''
+        self._remove_assets(
+            item_identifier='build file',
+            )
+
+    def rename_build_file(self):
+        r'''Renames build file.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='build file',
+            )
 
     def typeset_back_cover_latex(self):
         r'''Typesets back cover LaTeX file.

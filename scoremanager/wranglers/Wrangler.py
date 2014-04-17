@@ -68,20 +68,17 @@ class Wrangler(Controller):
         result = superclass._user_input_to_action
         result = copy.deepcopy(result)
         result.update({
-            'inrm': self.remove_initializer,
-            'ins': self.write_initializer_stub,
-            'inro': self.view_initializer,
+            'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'hls': self.list_storehouses,
             'va': self.apply_view,
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
-            'vrm': self.remove_view,
+            'vrm': self.remove_views,
             'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             'V': self.clear_view,
@@ -221,6 +218,13 @@ class Wrangler(Controller):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
+    def _get_file_path_ending_with(self, string):
+        path = self._get_current_directory_path()
+        for file_name in self._list():
+            if file_name.endswith(string):
+                file_path = os.path.join(path, file_name)
+                return file_path
+
     def _get_manager(self, path):
         manager = self._manager_class(
             path=path,
@@ -279,7 +283,8 @@ class Wrangler(Controller):
         numbers = getter._run()
         if self._should_backtrack():
             return
-        assert len(numbers) == 1
+        if not len(numbers) == 1:
+            return
         number = numbers[0]
         index = number - 1
         paths = [_.return_value for _ in asset_section.menu_entries]
@@ -513,7 +518,6 @@ class Wrangler(Controller):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
-        self._make_storehouse_menu_section(menu)
         self._make_views_menu_section(menu)
         self._make_views_module_menu_section(menu)
         self._make_go_wrangler_menu_section(menu)
@@ -546,15 +550,6 @@ class Wrangler(Controller):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
-
-    def _make_storehouse_menu_section(self, menu):
-        commands = []
-        commands.append(('storhouses - list', 'hls'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='storehouses',
-            )
 
     def _make_go_wrangler_menu_section(self, menu):
         commands = []
@@ -609,7 +604,7 @@ class Wrangler(Controller):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _remove_asset(self, item_identifier='asset', prompt=True):
+    def _remove_assets(self, item_identifier='asset', prompt=True):
         paths = self._get_visible_asset_paths(item_identifier=item_identifier)
         self._io_manager.display('')
         if not paths:
@@ -696,7 +691,7 @@ class Wrangler(Controller):
             return
         return result
 
-    def _select_view(self, infinitive_phrase=None):
+    def _select_view(self, infinitive_phrase=None, is_ranged=False):
         from scoremanager import managers
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
@@ -705,11 +700,15 @@ class Wrangler(Controller):
             return
         lines = []
         view_names = view_inventory.keys()
-        breadcrumb = 'view'
+        if is_ranged:
+            breadcrumb = 'view(s)'
+        else:
+            breadcrumb = 'view'
         if infinitive_phrase:
-            breadcrumb = 'view {}'.format(infinitive_phrase)
+            breadcrumb = '{} {}'.format(breadcrumb, infinitive_phrase)
         selector = self._io_manager.make_selector(
             breadcrumb=breadcrumb,
+            is_ranged=is_ranged,
             items=view_names,
             )
         result = selector._run()
@@ -820,26 +819,6 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.doctest(prompt=prompt)
 
-    def list_storehouses(self):
-        r'''Lists storehouses.
-
-        Returns none.
-        '''
-        lines = []
-        storehouses = self._get_visible_storehouses()
-        count = len(storehouses)
-        if count == 1:
-            identifier = 'storehouse'
-        else:
-            identifier = 'storehouses'
-        line = '{} {} visible:'.format(count, identifier)
-        lines.append(line)
-        lines.append('')
-        lines.extend(storehouses)
-        lines.append('')
-        self._io_manager.display(lines)
-        self._session._hide_next_redraw = True
-
     def list_views(self):
         r'''List views in views module.
 
@@ -862,7 +841,7 @@ class Wrangler(Controller):
         lines.append(message)
         lines.extend(names)
         lines.append('')
-        self._io_manager.display(lines, capitalize_first_character=False)
+        self._io_manager.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
     def make_view(self):
@@ -881,7 +860,7 @@ class Wrangler(Controller):
         view = iotools.View(
             items=display_strings,
             )
-        breadcrumb = 'views - {} - edit'
+        breadcrumb = 'views - {} view - edit:'
         breadcrumb = breadcrumb.format(view_name)
         editor = self._io_manager.make_editor(
             breadcrumb=breadcrumb,
@@ -890,7 +869,6 @@ class Wrangler(Controller):
         editor._run()
         if self._should_backtrack():
             return
-        self._io_manager.display('')
         view = editor.target
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
@@ -901,33 +879,49 @@ class Wrangler(Controller):
         self._write_view_inventory(view_inventory)
 
     def pytest(self, prompt=True):
-        r'''Runs py.test.
+        r'''Run pytest on visible storehouses.
 
         Returns none.
         '''
-        self._current_package_manager.pytest(prompt=prompt)
+        assets = []
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            if os.path.isdir(path):
+                assets.append(path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        if not assets:
+            message = 'no testable assets found.'
+            self._io_manager.display([message, ''])
+        else:
+            message = '{} testable assets found ...'
+            message = message.format(len(assets))
+            self._io_manager.display([message, ''])
+            assets = ' '.join(assets)
+            command = 'py.test -rf {}'.format(assets)
+            self._io_manager.run_command(command)
+        self._session._hide_next_redraw = True
 
-    def remove_initializer(self):
-        r'''Removes initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.remove_initializer()
-
-    def remove_view(self):
-        r'''Removes view from views module.
+    def remove_views(self):
+        r'''Removes view(s) from views module.
 
         Returns none.
         '''
         infinitive_phrase = 'to remove'
-        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        view_names = self._select_view(
+            infinitive_phrase=infinitive_phrase,
+            is_ranged=True,
+            )
         if self._should_backtrack():
+            return
+        if not view_names:
             return
         view_inventory = self._read_view_inventory()
         if not view_inventory:
             return
-        if view_name in view_inventory:
-            del(view_inventory[view_name])
+        for view_name in view_names:
+            if view_name in view_inventory:
+                del(view_inventory[view_name])
         self._write_view_inventory(view_inventory)
 
     def remove_views_module(self):
@@ -935,7 +929,7 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        self._current_package_manager.remove_views_module()
+        self._views_module_manager._remove(prompt=True)
 
     def rename_view(self):
         r'''Renames view.
@@ -1000,23 +994,9 @@ class Wrangler(Controller):
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def view_initializer(self):
-        r'''Views initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.view_initializer()
-
     def view_views_module(self):
         r'''Views views module.
 
         Returns none.
         '''
         self._views_module_manager.view()
-
-    def write_initializer_stub(self):
-        r'''Writes stub initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.write_initializer_stub()

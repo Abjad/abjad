@@ -82,10 +82,11 @@ class MenuSection(AbjadObject):
         title=None,
         ):
         AbjadObject.__init__(self)
+        assert menu_entries, repr(name)
         assert name, repr(name)
-        self._name = name
         assert return_value_attribute in self.return_value_attributes
-        self._return_value_attribute = return_value_attribute
+        self._default_index = default_index
+        self._display_prepopulated_values = display_prepopulated_values
         self._indent_level = indent_level
         self._is_alphabetized = is_alphabetized
         self._is_asset_section = is_asset_section
@@ -97,11 +98,13 @@ class MenuSection(AbjadObject):
         self._is_navigation_section = is_navigation_section
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
-        self._display_prepopulated_values = display_prepopulated_values
-        self._menu_entries = menu_entries or []
-        self._title = title
-        self._default_index = default_index
         self._match_on_display_string = match_on_display_string
+        self._name = name
+        self._menu_entries = []
+        for menu_entry in menu_entries:
+            self._append(menu_entry)
+        self._return_value_attribute = return_value_attribute
+        self._title = title
 
     ### SPECIAL METHODS ###
 

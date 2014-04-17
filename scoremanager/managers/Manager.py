@@ -110,7 +110,6 @@ class Manager(Controller):
             'cp': self.copy,
             'ls': self.list,
             'll': self.list_long,
-            'rm': self.remove,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -368,7 +367,21 @@ class Manager(Controller):
                         result.append(directory_entry)
         return result
 
-    def _remove(self):
+    # TODO: eventually change prompt=False to prompt=True
+    def _remove(self, prompt=False):
+
+        if prompt:
+            message = '{} will be removed.'
+            message = message.format(self._path)
+            self._io_manager.display([message, ''])
+            getter = self._io_manager.make_getter()
+            getter.append_string("type 'remove' to proceed")
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            if not result == 'remove':
+                return
+
         if self._is_in_git_repository():
             if self._is_git_unknown():
                 command = 'rm -rf {}'
@@ -534,13 +547,10 @@ class Manager(Controller):
             return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_add_command
         assert isinstance(command, str)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(lines)
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
     def commit_to_repository(self, commit_message=None, prompt=True):
@@ -567,13 +577,7 @@ class Manager(Controller):
         lines.append(line)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines.extend([line.strip() for line in process.stdout.readlines()])
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def copy(self):
@@ -605,13 +609,7 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'ajv doctest {}'.format(self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            if lines[0] == '':
-                lines.remove('')
-            lines.append('')
-            self._io_manager.display(lines)
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def list(self):
@@ -632,7 +630,7 @@ class Manager(Controller):
         lines.append('')
         self._io_manager.display(
             lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_next_redraw = True
 
@@ -643,14 +641,7 @@ class Manager(Controller):
         '''
         command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
-        lines = []
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command, capitalize=False)
         self._session._hide_next_redraw = True
 
     def pytest(self, prompt=True):
@@ -661,33 +652,8 @@ class Manager(Controller):
         if self._session.is_test:
             return
         command = 'py.test -rf {}'.format(self._path)
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
-
-    def remove(self, prompt=True):
-        r'''Removes asset.
-
-        Backtracks up one level from previous location of asset.
-
-        Returns none.
-        '''
-        message = '{} will be removed.'
-        message = message.format(self._path)
-        if prompt:
-            self._io_manager.display([message, ''])
-            getter = self._io_manager.make_getter()
-            getter.append_string("type 'remove' to proceed")
-            result = getter._run()
-            if self._should_backtrack():
-                return
-        if not result == 'remove':
-            return
-        self._remove()
-        self._session._is_backtracking_locally = True
+        self._io_manager.run_command(command)
+        self._session._hide_next_redraw = True
 
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.
@@ -701,16 +667,7 @@ class Manager(Controller):
         paths = ' '.join(paths)
         command = '{} {}'
         command = command.format(remove_command, paths)
-        process = self._io_manager.make_subprocess(command)
-        clean_lines = []
-        for line in process.stdout.readlines():
-            clean_line = line.strip()
-            clean_lines.append(clean_line)
-        clean_lines.append('')
-        self._io_manager.display(
-            clean_lines,
-            capitalize_first_character=False,
-            )
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
     def rename(self):
@@ -740,7 +697,7 @@ class Manager(Controller):
         self._session._attempted_repository_status = True
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_status_command
         process = self._io_manager.make_subprocess(command)
         path = self._path
@@ -753,7 +710,7 @@ class Manager(Controller):
         clean_lines.append('')
         self._io_manager.display(
             clean_lines,
-            capitalize_first_character=False,
+            capitalize=False,
             )
         self._session._hide_next_redraw = True
 
@@ -781,10 +738,7 @@ class Manager(Controller):
             return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
+        self._io_manager.display(line, capitalize=False)
         command = self._repository_update_command
-        process = self._io_manager.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(lines)
+        self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)

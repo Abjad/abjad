@@ -111,3 +111,23 @@ class DistributionFileWrangler(Wrangler):
         menu = superclass._make_main_menu(name=name)
         self._make_files_menu_section(menu)
         return menu
+
+    ### PUBLIC METHODS ###
+
+    def remove_distribution_files(self):
+        r'''Removes one or more distribution files.
+        
+        Returns none.
+        '''
+        self._remove_assets(
+            item_identifier='distribution file',
+            )
+
+    def rename_distribution_file(self):
+        r'''Renames distribution file.
+
+        Returns none.
+        '''
+        self._rename_asset(
+            item_identifier='distribution file',
+            )

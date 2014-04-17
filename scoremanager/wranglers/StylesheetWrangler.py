@@ -50,7 +50,10 @@ class StylesheetWrangler(Wrangler):
         else:
             breadcrumb = 'stylesheet library'
         view_name = self._read_view_name()
-        if view_name:
+        if not view_name:
+            return breadcrumb
+        view_inventory = self._read_view_inventory()
+        if view_name in view_inventory:
             breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
         return breadcrumb
 
@@ -62,7 +65,7 @@ class StylesheetWrangler(Wrangler):
         result.update({
             'new': self.make_stylesheet,
             'ren': self.rename_stylesheet,
-            'rm': self.remove_stylesheet,
+            'rm': self.remove_stylesheets,
             })
         return result
 
@@ -156,12 +159,12 @@ class StylesheetWrangler(Wrangler):
             prompt_string='stylesheet name', 
             )
 
-    def remove_stylesheet(self):
+    def remove_stylesheets(self):
         r'''Removes one or more stylesheets.
 
         Returns none.
         '''
-        self._remove_asset(
+        self._remove_assets(
             item_identifier='stylesheet', 
             )
 

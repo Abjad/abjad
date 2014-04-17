@@ -102,7 +102,6 @@ class ScoreManager(Controller):
             'd': self.manage_distribution_artifact_library,
             'fix': self.fix_score_packages,
             'g': self.manage_segment_library,
-            'hls': self.list_storehouses,
             'k': self.manage_maker_library,
             'm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
@@ -113,8 +112,8 @@ class ScoreManager(Controller):
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename_score,
-            'rm': self.remove_score_package,
+            'ren': self.rename_score_package,
+            'rm': self.remove_score_packages,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
@@ -124,6 +123,14 @@ class ScoreManager(Controller):
             'ssx': self.display_example_scores,
             'ssu': self.display_user_scores,
             'u': self.manage_build_file_library,
+            'va': self.apply_view,
+            'vls': self.list_views,
+            'vnew': self.make_view,
+            'vren': self.rename_view,
+            'vrm': self.remove_views,
+            'vmrm': self.remove_views_module,
+            'vmro': self.view_views_module,
+            'V': self.clear_view,
             'y': self.manage_stylesheet_library,
             }
         return result
@@ -297,8 +304,8 @@ class ScoreManager(Controller):
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
         wrangler = self._score_package_wrangler
-        wrangler._make_storehouse_menu_section(menu)
         wrangler._make_views_menu_section(menu)
+        wrangler._make_views_module_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):
@@ -307,9 +314,9 @@ class ScoreManager(Controller):
             self._io_manager.write_cache(prompt=False)
             self._session._rewrite_cache = False
         menu_entries = self._io_manager._read_cache()
-        if not menu_entries or \
+        if (not menu_entries or
             (self._session._scores_to_display == 'example' and
-            not menu_entries[0][0] == 'Blue Example Score (2013)'):
+            not menu_entries[0][0] == 'Blue Example Score (2013)')):
             self._io_manager.write_cache(prompt=False)
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
@@ -392,6 +399,20 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.add_to_repository(prompt=prompt)
 
+    def apply_view(self):
+        r'''Applies view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.apply_view()
+
+    def clear_view(self):
+        r'''Clears view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.clear_view()
+
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
 
@@ -450,14 +471,7 @@ class ScoreManager(Controller):
             return
         path = self._configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines,
-                capitalize_first_character=False,
-                )
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
     def edit_metadata_modules(self):
@@ -514,12 +528,12 @@ class ScoreManager(Controller):
         message = message.format(len(paths))
         self._io_manager.proceed(message, prompt=prompt)
 
-    def list_storehouses(self):
-        r'''Lists storehouses.
+    def list_views(self):
+        r'''Lists views.
 
         Returns none.
         '''
-        self._score_package_wrangler.list_storehouses()
+        self._score_package_wrangler.list_views()
 
     def make_score_package(self):
         r'''Makes new score.
@@ -527,6 +541,13 @@ class ScoreManager(Controller):
         Returns none.
         '''
         self._score_package_wrangler.make_score_package()
+
+    def make_view(self):
+        r'''Makes view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.make_view()
 
     def manage_build_file_library(self):
         r'''Manages build file library.
@@ -590,33 +611,43 @@ class ScoreManager(Controller):
         path = self._configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'
         command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            )
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines,
-                capitalize_first_character=False,
-                )
+        self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def remove_score_package(self):
+    def remove_score_packages(self):
         r'''Removes score package.
 
         Returns none.
         '''
-        self._score_package_wrangler.remove_score_package()
+        self._score_package_wrangler.remove_score_packages()
 
-    def rename_score(self, prompt=True):
-        r'''Renames score.
+    def remove_views(self):
+        r'''Removes view(s) from views module.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._score_package_wrangler.remove_views()
+
+    def remove_views_module(self):
+        r'''Removes views module.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.remove_views_module()
+
+    def rename_score_package(self):
+        r'''Renames score package.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.rename_score_package()
+
+    def rename_view(self):
+        r'''Renames view.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.rename_view()
 
     def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
@@ -666,6 +697,14 @@ class ScoreManager(Controller):
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
+
+    def view_views_module(self):
+        r'''View views module.
+
+        Return none.
+        '''
+        print 'FOO'
+        self._score_package_wrangler.view_views_module()
 
     def write_cache(self, prompt=True):
         r'''Writes cache.
