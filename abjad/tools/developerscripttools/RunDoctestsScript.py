@@ -60,11 +60,12 @@ class RunDoctestsScript(DirectoryScript):
 
     ### PUBLIC PROPERTIES ###
 
-    def process_args(self, args):
+    def process_args(self, args=None, file_paths=None):
         r'''Processes `args`.
 
         Returns none.
         '''
+        assert not (args and file_paths)
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             experimental_module = importlib.import_module('experimental')
@@ -82,46 +83,51 @@ class RunDoctestsScript(DirectoryScript):
             doctest.NORMALIZE_WHITESPACE |
             doctest.ELLIPSIS
             )
-        if args.diff:
+        print repr(args), 'ARGS'
+        if args and args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
         total_failures = 0
         total_modules = 0
         total_tests = 0
         failed_file_paths = []
         error_messages = []
-        for dir_path, dir_names, file_names in os.walk(args.path):
-            for file_name in sorted(file_names):
-                if (file_name.endswith('.py') and
-                    not file_name.startswith('test_') and
-                    not file_name == '__init__.py'):
-                    total_modules += 1
-                    file_path = os.path.abspath(
-                        os.path.join(dir_path, file_name))
-                    print os.path.relpath(file_path),
-                    string_buffer = StringIO.StringIO()
-                    with systemtools.RedirectedStreams(stdout=string_buffer):
-                        failure_count, test_count = doctest.testfile(
-                            file_path,
-                            module_relative=False,
-                            globs=globs,
-                            optionflags=optionflags,
-                            )
-                    if failure_count:
-                        failed_file_paths.append(os.path.relpath(file_path))
-                        error_messages.append(string_buffer.getvalue())
-                        print ''.join((
-                            self.colors['RED'],
-                            'FAILED',
-                            self.colors['END'],
-                            ))
-                    else:
-                        print ''.join((
-                            self.colors['BLUE'],
-                            'OK',
-                            self.colors['END'],
-                            ))
-                    total_failures += failure_count
-                    total_tests += test_count
+        if not file_paths:
+            file_paths = []
+            for dir_path, dir_names, file_names in os.walk(args.path):
+                for file_name in sorted(file_names):
+                    if (file_name.endswith('.py') and
+                        not file_name.startswith('test_') and
+                        not file_name == '__init__.py'):
+                        file_path = os.path.abspath(
+                            os.path.join(dir_path, file_name))
+                        file_paths.append(file_path)
+        for file_path in file_paths:
+            total_modules += 1
+            print os.path.relpath(file_path),
+            string_buffer = StringIO.StringIO()
+            with systemtools.RedirectedStreams(stdout=string_buffer):
+                failure_count, test_count = doctest.testfile(
+                    file_path,
+                    module_relative=False,
+                    globs=globs,
+                    optionflags=optionflags,
+                    )
+            if failure_count:
+                failed_file_paths.append(os.path.relpath(file_path))
+                error_messages.append(string_buffer.getvalue())
+                print ''.join((
+                    self.colors['RED'],
+                    'FAILED',
+                    self.colors['END'],
+                    ))
+            else:
+                print ''.join((
+                    self.colors['BLUE'],
+                    'OK',
+                    self.colors['END'],
+                    ))
+            total_failures += failure_count
+            total_tests += test_count
         if failed_file_paths:
             print
             for error_message in error_messages:
