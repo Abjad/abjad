@@ -879,8 +879,8 @@ class Wrangler(Controller):
         view_inventory[view_name] = view
         self._write_view_inventory(view_inventory)
 
-    def pytest(self, prompt=True):
-        r'''Run pytest on visible storehouses.
+    def pytest(self):
+        r'''Runs py.test on visible assets.
 
         Returns none.
         '''

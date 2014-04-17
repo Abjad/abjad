@@ -602,18 +602,12 @@ class ScoreManager(Controller):
         '''
         self._stylesheet_wrangler._run()
 
-    def pytest(self, prompt=True):
+    def pytest(self):
         r'''Runs py.test.
 
         Returns none.
         '''
-        if self._session.is_test:
-            return
-        path = self._configuration.user_score_packages_directory_path
-        command = 'py.test -rf {}'
-        command = command.format(path)
-        self._io_manager.run_command(command, capitalize=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._score_package_wrangler.pytest()
 
     def remove_score_packages(self):
         r'''Removes score package.

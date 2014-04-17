@@ -645,7 +645,7 @@ class Manager(Controller):
         self._io_manager.run_command(command, capitalize=False)
         self._session._hide_next_redraw = True
 
-    def pytest(self, prompt=True):
+    def pytest(self):
         r'''Runs py.test on asset.
 
         Returns none.
