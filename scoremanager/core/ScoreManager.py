@@ -462,18 +462,12 @@ class ScoreManager(Controller):
         '''
         self._session.display_user_scores()
 
-    def doctest(self, prompt=True):
-        r'''Runs doctest.
+    def doctest(self):
+        r'''Runs doctest on visible score packages.
 
         Returns none.
         '''
-        if self._session.is_test:
-            return
-        path = self._configuration.user_score_packages_directory_path
-        command = 'ajv doctest {}'.format(path)
-        self._io_manager.run_command(command, capitalize=False)
-        self._session._hide_next_redraw = True
-        #self._score_package_wrangler.doctest(prompt=prompt)
+        self._score_package_wrangler.doctest()
 
     def edit_metadata_modules(self):
         r'''Edits all metadata modules everywhere.

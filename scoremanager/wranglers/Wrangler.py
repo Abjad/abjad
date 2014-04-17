@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
+import doctest
 import os
 import subprocess
 from abjad.tools import datastructuretools
+from abjad.tools import developerscripttools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -15,8 +16,6 @@ class Wrangler(Controller):
     '''
 
     ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
 
     __slots__ = (
         '_abjad_storehouse_path',
@@ -812,13 +811,38 @@ class Wrangler(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def doctest(self, prompt=True):
-        r'''Runs doctest.
+    def _list_python_files_in_visible_assets(self):
+        assets = []
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            if os.path.isdir(path):
+                triples = os.walk(path)
+                for directory_path, subdirectory_names, file_names in triples:
+                    for file_name in file_names:
+                        if file_name.endswith('.py'):
+                            file_path = os.path.join(directory_path, file_name)
+                            assets.append(file_path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        return assets
+        
+    def doctest(self):
+        r'''Runs doctest on Python files in visible assets.
 
         Returns none.
         '''
-        raise Exception
-        self._current_package_manager.doctest(prompt=prompt)
+        file_paths = self._list_python_files_in_visible_assets()
+        if not file_paths:
+            message = 'no testable assets found.'
+            self._io_manager.display([message, ''])
+        else:
+            message = '{} testable assets found ...'
+            message = message.format(len(file_paths))
+            self._io_manager.display([message, ''])
+            script = developerscripttools.RunDoctestsScript()
+            script.process_args(file_paths=file_paths)
+            self._io_manager.display('')
+        self._session._hide_next_redraw = True
 
     def list_views(self):
         r'''List views in views module.
