@@ -915,6 +915,8 @@ class Wrangler(Controller):
             )
         if self._should_backtrack():
             return
+        if not view_names:
+            return
         view_inventory = self._read_view_inventory()
         if not view_inventory:
             return
