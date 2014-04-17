@@ -39,11 +39,11 @@ def test_StylesheetWrangler_make_view_03():
     input_ = 'y vls vrm _test default q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
-    assert 'views found:' in contents
+    assert 'view found:' in contents or 'views found:' in contents
     assert '_test' in contents
 
     input_ = 'y vls q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
-    assert 'views found:' in contents
+    assert 'view found:' in contents or 'views found:' in contents
     assert '_test' not in contents

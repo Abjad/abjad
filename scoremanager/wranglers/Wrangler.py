@@ -68,9 +68,6 @@ class Wrangler(Controller):
         result = superclass._user_input_to_action
         result = copy.deepcopy(result)
         result.update({
-            #'inrm': self.remove_initializer,
-            #'ins': self.write_initializer_stub,
-            #'inro': self.view_initializer,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -694,7 +691,7 @@ class Wrangler(Controller):
             return
         return result
 
-    def _select_view(self, infinitive_phrase=None):
+    def _select_view(self, infinitive_phrase=None, is_ranged=False):
         from scoremanager import managers
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
@@ -703,11 +700,15 @@ class Wrangler(Controller):
             return
         lines = []
         view_names = view_inventory.keys()
-        breadcrumb = 'view'
+        if is_ranged:
+            breadcrumb = 'view(s)'
+        else:
+            breadcrumb = 'view'
         if infinitive_phrase:
-            breadcrumb = 'view {}'.format(infinitive_phrase)
+            breadcrumb = '{} {}'.format(breadcrumb, infinitive_phrase)
         selector = self._io_manager.make_selector(
             breadcrumb=breadcrumb,
+            is_ranged=is_ranged,
             items=view_names,
             )
         result = selector._run()
@@ -908,14 +909,18 @@ class Wrangler(Controller):
         Returns none.
         '''
         infinitive_phrase = 'to remove'
-        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        view_names = self._select_view(
+            infinitive_phrase=infinitive_phrase,
+            is_ranged=True,
+            )
         if self._should_backtrack():
             return
         view_inventory = self._read_view_inventory()
         if not view_inventory:
             return
-        if view_name in view_inventory:
-            del(view_inventory[view_name])
+        for view_name in view_names:
+            if view_name in view_inventory:
+                del(view_inventory[view_name])
         self._write_view_inventory(view_inventory)
 
     def remove_views_module(self):

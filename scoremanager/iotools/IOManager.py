@@ -568,6 +568,7 @@ class IOManager(IOManager):
     def make_selector(
         self,
         breadcrumb=None,
+        is_ranged=False,
         items=None,
         ):
         r'''Makes selector.
@@ -577,6 +578,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         return iotools.Selector(
             breadcrumb=breadcrumb,
+            is_ranged=is_ranged,
             items=items,
             session=self._session,
             )
