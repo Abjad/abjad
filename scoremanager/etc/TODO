@@ -165,37 +165,33 @@
 
 38. Allow arbitrary metadata in view patterns.
 
-39. Change '... - views - front cover - edit' to
-    '... views - front cover view - edit:'.
-    Note both 'front cover *view*' and the colon.
-
-40. Change ...
+39. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-41. Change ...
+40. Change ...
         Score manager - stylesheet library (_test view) - select view to remove:
     ... to ...
         Score manager - stylesheet library - select view to remove:
     ... instead.
 
-42. Change 'default' to '<return>' in test input strings.
+41. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-43. Change 'remove_asset()' to 'remove_assets()'.
+42. Change 'remove_asset()' to 'remove_assets()'.
     Change 'remove_stylesheet()' to 'remove_stylesheets()'.
     And so on.
 
-44. Write test for editing stylesheet.
+43. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-45. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+44. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-46. Make (rst) work again. Right now runs on archipel and then quits.
+45. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-47. Make sure that (red~example~score d red-example-score.pdf)
+46. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.

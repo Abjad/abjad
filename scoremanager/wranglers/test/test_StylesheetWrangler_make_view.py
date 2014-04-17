@@ -12,7 +12,7 @@ def test_StylesheetWrangler_make_view_01():
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - stylesheet library - views - _test view - edit'
+    string = 'Score manager - stylesheet library - views - _test view - edit:'
     assert transcript.last_title == string
 
 
