@@ -83,7 +83,6 @@ class RunDoctestsScript(DirectoryScript):
             doctest.NORMALIZE_WHITESPACE |
             doctest.ELLIPSIS
             )
-        print repr(args), 'ARGS'
         if args and args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
         total_failures = 0
