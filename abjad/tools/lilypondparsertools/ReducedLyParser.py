@@ -216,7 +216,7 @@ class ReducedLyParser(abctools.Parser):
         return t
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        print(("Illegal character '%s'" % t.value[0]))
         t.lexer.skip(1)
 
     def t_newline(self, t):
@@ -319,7 +319,7 @@ class ReducedLyParser(abctools.Parser):
 
     def p_error(self, p):
         if p:
-            print("Syntax error at '%s'" % p.value)
+            print(("Syntax error at '%s'" % p.value))
         else:
             print("Syntax error at EOF")
 

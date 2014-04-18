@@ -106,19 +106,19 @@ class AbjadObject(object):
 
     def _debug(self, value, annotation=None, blank=False):
         if annotation is None:
-            print 'debug: {!r}'.format(value)
+            print('debug: {!r}'.format(value))
         else:
-            print 'debug ({}): {!r}'.format(annotation, value)
+            print('debug ({}): {!r}'.format(annotation, value))
         if blank:
-            print ''
+            print('')
 
     def _debug_values(self, values, annotation=None, blank=True):
         if values:
             for value in values:
                 self._debug(value, annotation=annotation)
             if blank:
-                print ''
+                print('')
         else:
             self._debug(repr(values), annotation=annotation)
             if blank:
-                print ''
+                print('')

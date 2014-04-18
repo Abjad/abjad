@@ -112,7 +112,7 @@ EXAMPLES
     def _process_file_name(self, args, file_name):
         from abjad.tools import abjadbooktools
         input_file_name = file_name
-        print 'Processing {!r} ...'.format(os.path.relpath(input_file_name))
+        print('Processing {!r} ...'.format(os.path.relpath(input_file_name)))
         try:
             directory = os.path.dirname(input_file_name)
             output_file_name = input_file_name.rpartition('.raw')[0]
@@ -126,11 +126,11 @@ EXAMPLES
                 skip_rendering=args.skip_rendering, image_prefix=image_prefix,
                 verbose=args.verbose)
             processed_lines = abjad_book_processor(verbose=args.verbose)
-            print 'Writing output to {!r} ...'.format(
-                os.path.relpath(output_file_name))
+            print('Writing output to {!r} ...'.format(
+                os.path.relpath(output_file_name)))
             with open(output_file_name, 'w') as f:
                 f.write(processed_lines)
-            print '... Done!'
+            print('... Done!')
         except:
             exc_type, exc_value, exc_traceback = sys.exc_info()
             traceback.print_exc()

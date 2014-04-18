@@ -48,8 +48,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         from abjad.tools import documentationtools
 
         if verbose:
-            print 'Now writing restructured text files ...'
-            print
+            print('Now writing restructured text files ...')
+            print()
 
         ignored_directory_names = [
             '__pycache__',
@@ -139,8 +139,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         if verbose:
             #print ''
-            print '... done.'
-            print ''
+            print('... done.')
+            print('')
 
     ### PRIVATE METHODS ###
 
@@ -161,7 +161,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                         file_name,
                         )
                     os.remove(docs_file_path)
-                    print 'PRUNING', os.path.relpath(docs_file_path)
+                    print('PRUNING', os.path.relpath(docs_file_path))
             for directory_name in directory_names:
                 code_directory_path = os.path.join(
                     code_path,
@@ -183,7 +183,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                         directory_name,
                         )
                     shutil.rmtree(docs_directory_path)
-                    print 'PRUNING', os.path.relpath(docs_directory_path)
+                    print('PRUNING', os.path.relpath(docs_directory_path))
 
     def _write_document(self, documenter, code_path, docs_path, package_prefix):
         from abjad.tools import documentationtools

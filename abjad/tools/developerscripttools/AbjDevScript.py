@@ -178,9 +178,9 @@ class AbjDevScript(DeveloperScript):
 
             if developer_script_class:
                 instance = developer_script_class()
-                print instance.formatted_help
+                print(instance.formatted_help)
             else:
-                print 'Cannot resolve {} to subcommand.'.format(unknown_args)
+                print('Cannot resolve {} to subcommand.'.format(unknown_args))
 
         elif args.subparser_name == 'list':
             entries = []
@@ -195,9 +195,9 @@ class AbjDevScript(DeveloperScript):
                         alias = '\n[{}]'.format(instance.alias)
                 entries.append('{}{}\n\t{}'.format(
                     instance.program_name, alias, instance.short_description))
-            print ''
-            print '\n\n'.join(entries)
-            print ''
+            print('')
+            print('\n\n'.join(entries))
+            print('')
 
         else:
             if hasattr(args, 'subsubparser_name'):

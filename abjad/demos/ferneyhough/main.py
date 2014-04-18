@@ -8,8 +8,8 @@ if __name__ == '__main__':
 
     args = sys.argv[1:]
     if len(args) != 3:
-        print 'USAGE: [tuplet_duration, row_count, column_count]:'
-        print '\ti.e.: /main.py 1/4 11 6'
+        print('USAGE: [tuplet_duration, row_count, column_count]:')
+        print('\ti.e.: /main.py 1/4 11 6')
         sys.exit(0)
 
     tuplet_duration = Duration(args[0])

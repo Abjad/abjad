@@ -76,7 +76,7 @@ class Documenter(AbjadObject):
                 if f.read() == restructured_text:
                     should_write = False
         if should_write:
-            print 'WRITING {}'.format(os.path.relpath(file_path))
+            print('WRITING {}'.format(os.path.relpath(file_path)))
             with open(file_path, 'w') as f:
                 f.write(restructured_text)
 

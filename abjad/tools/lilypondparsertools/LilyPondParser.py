@@ -504,7 +504,7 @@ class LilyPondParser(abctools.Parser):
             context.name = optional_id
         if optional_context_mod is not None:
             for x in optional_context_mod:
-                print x
+                print(x)
             # TODO: impelement context mods on contexts
             pass
         context.is_simultaneous = music.is_simultaneous

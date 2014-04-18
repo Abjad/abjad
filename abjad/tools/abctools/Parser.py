@@ -150,4 +150,4 @@ class Parser(AbjadObject):
         '''
         self.lexer.input(input_string)
         for token in self.lexer:
-            print token
+            print(token)

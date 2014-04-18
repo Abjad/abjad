@@ -64,10 +64,10 @@ class CodeBlock(AbjadObject):
         assert isinstance(pipe, documentationtools.Pipe)
 
         if verbose:
-            print '\nCODEBLOCK: {}:{}'.format(
+            print('\nCODEBLOCK: {}:{}'.format(
                 self.starting_line_number,
                 self.stopping_line_number
-                )
+                ))
 
         grouped_results = []
         result = []
@@ -106,7 +106,7 @@ class CodeBlock(AbjadObject):
 
             if verbose:
                 for x in current:
-                    print x
+                    print(x)
 
             if line.startswith('show('):
                 image_count += 1

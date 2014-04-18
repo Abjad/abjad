@@ -296,7 +296,7 @@ class IOManager(IOManager):
             self._session.transcript._append_entry(lines)
         if not self._session.pending_user_input:
             for line in lines:
-                print line
+                print(line)
 
     def doctest(self):
         r'''Runs doctest on most recent doctestable controller in controller
@@ -379,7 +379,7 @@ class IOManager(IOManager):
                 user_input = raw_input(prompt_string)
                 if include_newline:
                     if not user_input == 'help':
-                        print ''
+                        print('')
             else:
                 user_input = self._pop_from_pending_user_input()
                 if user_input == 'default':

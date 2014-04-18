@@ -23,9 +23,9 @@ class Presentation(object):
         return False
 
     def _print_header(self):
-        print "\n\t* * * *    %s    * * * *" % self.title
-        print "\n%s" % self.subtitle
-        print "\n%s" % self.abstract
+        print("\n\t* * * *    %s    * * * *" % self.title)
+        print("\n%s" % self.subtitle)
+        print("\n%s" % self.abstract)
 
     ### PUBLIC METHODS ###
 
@@ -45,12 +45,12 @@ class Presentation(object):
         for i, statement in enumerate(self.statements):
             raw_input('\n\n%d. %s\n' % (i+1, statement.text))
             for expr in statement.code:
-                print '   >>> ' + expr
+                print('   >>> ' + expr)
                 if not live:
                     if self._is_executable(expr):
                         exec(expr)
                     else:
                         result = eval(expr)
                         if result:
-                            print '   %s' % result
-        print "\n\t* * * End of presentation. * * *\n"
+                            print('   %s' % result)
+        print("\n\t* * * End of presentation. * * *\n")

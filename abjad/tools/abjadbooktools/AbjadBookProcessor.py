@@ -146,16 +146,16 @@ class AbjadBookProcessor(AbjadObject):
                     not documentationtools.compare_images(source, target):
                     os.rename(source, target)
                     if self.verbose:
-                        print '\tMoving {}.'.format(x)
+                        print('\tMoving {}.'.format(x))
                 else:
                     if self.verbose:
-                        print '\tKeeping old {}.'.format(x)
+                        print('\tKeeping old {}.'.format(x))
             elif x.endswith('.pdf'):
                 source = os.path.join(tmp_directory, x)
                 target = os.path.join(image_directory, x)
                 os.rename(source, target)
                 if self.verbose:
-                    print '\tMoving {}.'.format(x)
+                    print('\tMoving {}.'.format(x))
 
     def _cleanup_pipe(self, pipe):
         #print 'CLEANUP PIPE'
@@ -329,23 +329,23 @@ class AbjadBookProcessor(AbjadObject):
         #print 'RENDER LY FILES'
         for file_name in file_names:
             if self.verbose:
-                print '\tRendering {}.ly ...'.format(file_name)
+                print('\tRendering {}.ly ...'.format(file_name))
             try:
                 if output_format.image_format == 'pdf':
                     command = 'lilypond {}.ly'.format(file_name)
                     if self.verbose:
-                        print '\t\t{}'.format(command)
+                        print('\t\t{}'.format(command))
                     self._run_command(command, verbose)
                     command = 'pdfcrop {}.pdf {}.pdf'.format(
                         file_name, file_name)
                     if self.verbose:
-                        print '\t\t{}'.format(command)
+                        print('\t\t{}'.format(command))
                     self._run_command(command, verbose)
                 elif output_format.image_format == 'png':
                     command = 'lilypond --png -dresolution=300 {}.ly'.format(
                         file_name)
                     if self.verbose:
-                        print '\t\t{}'.format(command)
+                        print('\t\t{}'.format(command))
                     assert os.path.exists('{}.ly'.format(file_name))
                     self._run_command(command, verbose)
                     for file in os.listdir('.'):
@@ -354,10 +354,10 @@ class AbjadBookProcessor(AbjadObject):
                                 convert {} -trim -resample 40%% {}'.format(
                                     file, file)
                             if self.verbose:
-                                print '\t\t{}'.format(command)
+                                print('\t\t{}'.format(command))
                             self._run_command(command, verbose)
             except AssertionError, e:
-                print e
+                print(e)
 
     def _run_command(self, command, verbose):
         if verbose:
@@ -396,4 +396,4 @@ class AbjadBookProcessor(AbjadObject):
         message = '[{:4.0%}] {}'
         message = message.format(percentage, line)
         if self.verbose:
-            print message
+            print(message)

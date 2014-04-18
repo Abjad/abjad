@@ -18,7 +18,7 @@ def test_pitchtools_insert_and_transpose_nested_subruns_in_pitch_class_number_li
         except AttributeError:
             t.append([y.written_pitch.pitch_class_number for y in x])
 
-    print t
+    print(t)
 
     assert t == [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 

@@ -94,20 +94,20 @@ class CountToolsScript(DirectoryScript):
                         else:
                             public_classes.append(payload)
 
-        print 'PUBLIC FUNCTIONS:  {}'.format(len(public_functions))
-        print 'PUBLIC CLASSES:    {}'.format(len(public_classes))
-        print 'PRIVATE FUNCTIONS: {}'.format(len(private_functions))
+        print('PUBLIC FUNCTIONS:  {}'.format(len(public_functions)))
+        print('PUBLIC CLASSES:    {}'.format(len(public_classes)))
+        print('PRIVATE FUNCTIONS: {}'.format(len(private_functions)))
         if args.verbose:
             for x in private_functions:
                 name, file_name = x
-                print '\t{}:'.format(file_name)
-                print '\t\t{}'.format(name)
-        print 'PRIVATE CLASSES:   {}'.format(len(private_classes))
+                print('\t{}:'.format(file_name))
+                print('\t\t{}'.format(name))
+        print('PRIVATE CLASSES:   {}'.format(len(private_classes)))
         if args.verbose:
             for x in private_classes:
                 name, file_name = x
-                print '\t{}:'.format(file_name)
-                print '\t\t{}'.format(name)
+                print('\t{}:'.format(file_name))
+                print('\t\t{}'.format(name))
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.

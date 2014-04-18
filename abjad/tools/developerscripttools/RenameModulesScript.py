@@ -107,17 +107,17 @@ class RenameModulesScript(DeveloperScript):
         max_codebase = max(len(old_codebase), len(new_codebase))
         old_codebase = old_codebase.ljust(max_codebase)
         new_codebase = new_codebase.ljust(max_codebase)
-        print ''
-        print 'Is ...'
-        print ''
-        print '    [{}] {}.{}()'.format(
-            old_codebase, old_tools_package_name, old_module_name)
-        print '    ===>'
-        print '    [{}] {}.{}()'.format(
-            new_codebase, new_tools_package_name, new_module_name)
-        print ''
+        print('')
+        print('Is ...')
+        print('')
+        print('    [{}] {}.{}()'.format(
+            old_codebase, old_tools_package_name, old_module_name))
+        print('    ===>')
+        print('    [{}] {}.{}()'.format(
+            new_codebase, new_tools_package_name, new_module_name))
+        print('')
         string = raw_input('... correct [yes, no, abort]? ').lower()
-        print ''
+        print('')
         if string in ('y', 'yes'):
             return True
         elif string in ('a', 'abort', 'q', 'quit'):
@@ -186,7 +186,7 @@ class RenameModulesScript(DeveloperScript):
         new_tools_package_name,
         new_module_name,
         ):
-        print 'Renaming old API page ...'
+        print('Renaming old API page ...')
         old_docs_path = self._codebase_name_to_codebase_docs_path(old_codebase)
         new_docs_path = self._codebase_name_to_codebase_docs_path(new_codebase)
         old_rst_file_name = old_module_name + '.rst'
@@ -198,7 +198,7 @@ class RenameModulesScript(DeveloperScript):
         command = 'mv {} {}'.format(
             old_api_path, new_api_path)
         systemtools.IOManager.spawn_subprocess(command)
-        print ''
+        print('')
 
     def _rename_old_module(self,
         old_codebase,
@@ -208,7 +208,7 @@ class RenameModulesScript(DeveloperScript):
         new_tools_package_name,
         new_module_name,
         ):
-        print 'Renaming old module ...'
+        print('Renaming old module ...')
         old_tools_path = self._codebase_name_to_codebase_tools_path(
             old_codebase)
         new_tools_path = self._codebase_name_to_codebase_tools_path(
@@ -222,7 +222,7 @@ class RenameModulesScript(DeveloperScript):
         command = 'git mv -f {} {}'.format(
             old_path, new_path)
         systemtools.IOManager.spawn_subprocess(command)
-        print ''
+        print('')
 
     def _rename_old_test_files(self,
         old_codebase,
@@ -232,7 +232,7 @@ class RenameModulesScript(DeveloperScript):
         new_tools_package_name,
         new_module_name,
         ):
-        print 'Renaming old test file(s) ...'
+        print('Renaming old test file(s) ...')
         old_tools_path = self._codebase_name_to_codebase_tools_path(
             old_codebase)
         old_test_path = os.path.join(
@@ -259,7 +259,7 @@ class RenameModulesScript(DeveloperScript):
             command = 'git mv -f {} {}'.format(
                 old_test_file_path, new_test_file_path)
             systemtools.IOManager.spawn_subprocess(command)
-        print ''
+        print('')
 
     def _update_codebase(self,
         old_codebase,
@@ -272,8 +272,8 @@ class RenameModulesScript(DeveloperScript):
         from abjad import abjad_configuration
         without_dirs = ['--without-dirs', 'build', '--without-dirs', '_build']
         directory = abjad_configuration.abjad_root_directory_path
-        print 'Updating codebase ...'
-        print ''
+        print('Updating codebase ...')
+        print('')
         old_text = '{}.{}'.format(old_tools_package_name, old_module_name)
         new_text = '{}.{}'.format(new_tools_package_name, new_module_name)
         command = [
@@ -286,7 +286,7 @@ class RenameModulesScript(DeveloperScript):
             ]
         command.extend(without_dirs)
         ReplaceInFilesScript()(command)
-        print ''
+        print('')
         old_text = 'test_{}_{}_'.format(
             old_tools_package_name, old_module_name)
         new_text = 'test_{}_{}_'.format(
@@ -294,7 +294,7 @@ class RenameModulesScript(DeveloperScript):
         command = [directory, old_text, new_text, '--force', '--verbose']
         command.extend(without_dirs)
         ReplaceInFilesScript()(command)
-        print ''
+        print('')
         old_text = old_module_name
         new_text = new_module_name
         command = [
@@ -307,7 +307,7 @@ class RenameModulesScript(DeveloperScript):
             ]
         command.extend(without_dirs)
         ReplaceInFilesScript()(command)
-        print ''
+        print('')
 
     ### PUBLIC METHODS ###
 

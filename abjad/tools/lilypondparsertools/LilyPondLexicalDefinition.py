@@ -305,7 +305,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     # <version>{ANY_CHAR}
     @lex.TOKEN(ANY_CHAR)
     def t_version_278(self, t):
-        print("LilyPondParser: Illegal character '%s'" % t.value[0])
+        print(("LilyPondParser: Illegal character '%s'" % t.value[0]))
         t.lexer.skip(1)
 
     # lexer.ll:282
@@ -762,7 +762,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         t.lexer.lineno += t.value.count("\n")
 
     def t_error(self, t):
-        print("LilyPondParser: Illegal character '%s'" % t.value[0])
+        print(("LilyPondParser: Illegal character '%s'" % t.value[0]))
         t.lexer.skip(1)
 
     #    t_extratoken_error = t_error
