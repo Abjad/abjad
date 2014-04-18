@@ -217,6 +217,10 @@ class Wrangler(Controller):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
+    def _get_directory_of_focus(self):
+        path = os.path.abspath('.')
+        return path
+
     def _get_file_path_ending_with(self, string):
         path = self._get_current_directory_path()
         for file_name in self._list():
@@ -378,6 +382,24 @@ class Wrangler(Controller):
                 result.append(path)
         return result
 
+    def _list_python_files_in_visible_assets(self):
+        assets = []
+        if self._session.is_in_score:
+            paths = [self._get_directory_of_focus()]
+        else:
+            paths = self._list_visible_asset_paths()
+        for path in paths:
+            if os.path.isdir(path):
+                triples = os.walk(path)
+                for directory_path, subdirectory_names, file_names in triples:
+                    for file_name in file_names:
+                        if file_name.endswith('.py'):
+                            file_path = os.path.join(directory_path, file_name)
+                            assets.append(file_path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        return assets
+        
     def _list_storehouse_paths(
         self,
         abjad_library=True,
@@ -811,21 +833,6 @@ class Wrangler(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def _list_python_files_in_visible_assets(self):
-        assets = []
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            if os.path.isdir(path):
-                triples = os.walk(path)
-                for directory_path, subdirectory_names, file_names in triples:
-                    for file_name in file_names:
-                        if file_name.endswith('.py'):
-                            file_path = os.path.join(directory_path, file_name)
-                            assets.append(file_path)
-            elif os.path.isfile(path) and path.endswith('.py'):
-                assets.append(path)
-        return assets
-        
     def doctest(self):
         r'''Runs doctest on Python files in visible assets.
 
@@ -846,7 +853,7 @@ class Wrangler(Controller):
                 )
             if strings:
                 strings.append('')
-            self._io_manager.display(strings)
+            self._io_manager.display(strings, capitalize=False)
         self._session._hide_next_redraw = True
 
     def list_views(self):
