@@ -12,7 +12,7 @@ class CodeOutputProxy(OutputProxy):
         ...     'hello, world!',
         ...     ]
         >>> output_proxy = newabjadbooktools.CodeOutputProxy(payload)
-        >>> print output_proxy
+        >>> print(output_proxy)
         CodeOutputProxy(('>>> print "hello, world!"', 'hello, world!'))
 
     Returns output proxy.

@@ -56,7 +56,7 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> print format(division_list)
+        >>> print(format(division_list))
         musicexpressiontools.DivisionList(
             [
                 musicexpressiontools.Division(
@@ -175,7 +175,7 @@ class DivisionList(BoundedObject):
 
         ::
 
-            >>> print format(division_list)
+            >>> print(format(division_list))
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
@@ -469,7 +469,7 @@ class DivisionList(BoundedObject):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
@@ -512,7 +512,7 @@ class DivisionList(BoundedObject):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(

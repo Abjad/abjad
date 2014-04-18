@@ -27,7 +27,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     ::
 
-        >>> print format(payload_expression)
+        >>> print(format(payload_expression))
         musicexpressiontools.IterablePayloadExpression(
             payload=(
                 (4, 16),
@@ -69,7 +69,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.IterablePayloadExpression(
@@ -113,7 +113,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(payload_expression)
+            >>> print(format(payload_expression))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (4, 16),
@@ -135,7 +135,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (4, 16),
@@ -248,7 +248,7 @@ class IterablePayloadExpression(PayloadExpression):
         ::
 
             >>> for element in result:
-            ...     print format(element)
+            ...     print(format(element))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (4, 16),
@@ -281,7 +281,7 @@ class IterablePayloadExpression(PayloadExpression):
         ::
 
             >>> for element in result:
-            ...     print format(element)
+            ...     print(format(element))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (4, 16),
@@ -319,7 +319,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (2, 16),
@@ -344,7 +344,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     mathtools.NonreducedFraction(4, 16),
@@ -375,7 +375,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (4, 16),
@@ -401,7 +401,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
                     (2, 16),

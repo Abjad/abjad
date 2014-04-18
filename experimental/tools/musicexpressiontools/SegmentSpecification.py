@@ -66,7 +66,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> print format(red_segment)
+            >>> print(format(red_segment))
             musicexpressiontools.SegmentSpecification(
                 templatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2,
@@ -119,7 +119,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> print format(red_segment.fresh_single_context_set_expressions)
+            >>> print(format(red_segment.fresh_single_context_set_expressions))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.SingleContextTimeSignatureSetExpression(

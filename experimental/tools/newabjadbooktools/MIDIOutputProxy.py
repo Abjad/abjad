@@ -14,7 +14,7 @@ class MIDIOutputProxy(AssetOutputProxy):
 
         >>> payload = Staff("c'4 d'4 e'4 f'4")
         >>> output_proxy = newabjadbooktools.MIDIOutputProxy(payload)
-        >>> print output_proxy
+        >>> print(output_proxy)
         MIDIOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\header {}\n\n\\layout {}\n\n\\paper {}\n\n\\score {\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t}\n\t\\midi {}\n}')
 
     '''
@@ -88,7 +88,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
             >>> result = output_proxy.handle_latex_document_environment(
             ...     document_handler)
-            >>> print result
+            >>> print(result)
             []
 
         Returns list.

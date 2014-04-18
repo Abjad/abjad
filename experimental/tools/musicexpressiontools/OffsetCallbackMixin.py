@@ -27,7 +27,7 @@ class OffsetCallbackMixin(CallbackMixin):
 
     ::
 
-        >>> print format(offset)
+        >>> print(format(offset))
         musicexpressiontools.OffsetExpression(
             anchor=musicexpressiontools.TimespanExpression(
                 anchor='red',
@@ -79,7 +79,7 @@ class OffsetCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
                     anchor='red',
@@ -109,7 +109,7 @@ class OffsetCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
                     anchor='red',

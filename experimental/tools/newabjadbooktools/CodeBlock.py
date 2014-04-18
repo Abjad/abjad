@@ -24,7 +24,7 @@ class CodeBlock(AbjadObject):
     ::
 
         >>> output_proxies = code_block.execute(console)
-        >>> print output_proxies
+        >>> print(output_proxies)
         [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print message', 'hello, world!'))]
 
     Multiple code block interpretations can be chained together by using a
