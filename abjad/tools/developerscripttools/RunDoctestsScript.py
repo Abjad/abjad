@@ -62,9 +62,9 @@ class RunDoctestsScript(DirectoryScript):
     ### PUBLIC PROPERTIES ###
 
     def process_args(
-        self, 
-        args=None, 
-        file_paths=None, 
+        self,
+        args=None,
+        file_paths=None,
         print_to_terminal=True,
         ):
         r'''Processes `args`.
@@ -90,6 +90,7 @@ class RunDoctestsScript(DirectoryScript):
             globs['scoremanager'] = scoremanager_module
         except:
             pass
+        globs['print_function'] = print_function
         optionflags = (
             doctest.NORMALIZE_WHITESPACE |
             doctest.ELLIPSIS
