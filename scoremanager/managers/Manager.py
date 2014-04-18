@@ -606,6 +606,7 @@ class Manager(Controller):
 
         Returns none.
         '''
+        raise Exception
         if self._session.is_test:
             return
         command = 'ajv doctest {}'.format(self._path)
