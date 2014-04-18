@@ -159,7 +159,7 @@ class MaterialPackageManager(PackageManager):
             'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyro': self.view_illustration_ly,
-            'ma': self.autoedit_output_material,
+            'mae': self.autoedit_output_material,
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
@@ -343,7 +343,7 @@ class MaterialPackageManager(PackageManager):
     def _make_material_menu_section(self, menu):
         commands = []         
         if os.path.isfile(self._output_module_path):
-            commands.append(('material - autoedit', 'ma'))
+            commands.append(('material - autoedit', 'mae'))
         if os.path.isfile(self._output_module_path):
             commands.append(('material - illustrate', 'mi'))
         if commands:
@@ -455,10 +455,10 @@ class MaterialPackageManager(PackageManager):
 
     def _run_first_time(self):
         if self._session.pending_user_input:
-            pending_user_input = 'ma ' + self._session.pending_user_input
+            pending_user_input = 'mae ' + self._session.pending_user_input
             self._session._pending_user_input = pending_user_input
         else:
-            self._session._pending_user_input = 'ma'
+            self._session._pending_user_input = 'mae'
         self._run()
 
     def _write_definition_module_stub(self, prompt=True):

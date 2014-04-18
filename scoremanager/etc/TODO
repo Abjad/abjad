@@ -158,45 +158,43 @@
 
 35. Imlement 'views - autoedit' (vae) command.
 
-36. Change 'material - autoedit' (ma) alias to (mae).
-
-37. Compile regular expressions at view entry add time.
+36. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-38. Allow arbitrary metadata in view patterns.
+37. Allow arbitrary metadata in view patterns.
 
-39. Change ...
+38. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-40. Change ...
+39. Change ...
         Score manager - stylesheet library (_test view) - select view to remove:
     ... to ...
         Score manager - stylesheet library - select view to remove:
     ... instead.
 
-41. Change 'default' to '<return>' in test input strings.
+40. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-42. Write test for editing stylesheet.
+41. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-43. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+42. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-44. Make (rst) work again. Right now runs on archipel and then quits.
+43. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-45. Make sure that (red~example~score d red-example-score.pdf)
+44. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.
 
-46. Allow 5-99 (or any other large number) to work when removing items.
+45. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-47. Move score_manager_library/views/*_views__.py files to
+46. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-48. Change 'vmrm' to 'vmtrash'.
+47. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.

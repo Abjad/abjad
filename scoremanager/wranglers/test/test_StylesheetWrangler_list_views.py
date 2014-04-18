@@ -13,10 +13,9 @@ def test_StylesheetWrangler_list_views_01():
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'views found:'
     view_list_entries = [
         _ for _ in transcript
-        if ('view found:' in _.contents or 'views found:' in _.contents)
+        if ('view found' in _.contents or 'views found' in _.contents)
         ]
     assert len(view_list_entries) == 3
 
