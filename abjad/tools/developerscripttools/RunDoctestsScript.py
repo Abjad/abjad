@@ -60,12 +60,22 @@ class RunDoctestsScript(DirectoryScript):
 
     ### PUBLIC PROPERTIES ###
 
-    def process_args(self, args=None, file_paths=None):
+    def process_args(
+        self, 
+        args=None, 
+        file_paths=None, 
+        print_to_terminal=True,
+        ):
         r'''Processes `args`.
+
+        Returns none when `print_to_terminal` is false.
+
+        Returns string(s) when `print_to_terminal` is true.
 
         Returns none.
         '''
         assert not (args and file_paths)
+        result = []
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             experimental_module = importlib.import_module('experimental')
@@ -102,7 +112,7 @@ class RunDoctestsScript(DirectoryScript):
                         file_paths.append(file_path)
         for file_path in file_paths:
             total_modules += 1
-            print os.path.relpath(file_path),
+            relative_path = os.path.relpath(file_path)
             string_buffer = StringIO.StringIO()
             with systemtools.RedirectedStreams(stdout=string_buffer):
                 failure_count, test_count = doctest.testfile(
@@ -114,32 +124,64 @@ class RunDoctestsScript(DirectoryScript):
             if failure_count:
                 failed_file_paths.append(os.path.relpath(file_path))
                 error_messages.append(string_buffer.getvalue())
-                print ''.join((
-                    self.colors['RED'],
-                    'FAILED',
-                    self.colors['END'],
-                    ))
+                if print_to_terminal:
+                    result_code = ''.join((
+                        self.colors['RED'],
+                        'FAILED',
+                        self.colors['END'],
+                        ))
+                    print relative_path, result_code
+                else:
+                    result_code = 'FAILED'
+                    string = '{} {}'.format(relative_path, result_code)
+                    result.append(string)
             else:
-                print ''.join((
-                    self.colors['BLUE'],
-                    'OK',
-                    self.colors['END'],
-                    ))
+                if print_to_terminal:
+                    result_code = ''.join((
+                        self.colors['BLUE'],
+                        'OK',
+                        self.colors['END'],
+                        ))
+                    print relative_path, result_code
+                else:
+                    result_code = 'OK'
+                    string = '{} {}'.format(relative_path, result_code)
+                    result.append(string)
             total_failures += failure_count
             total_tests += test_count
         if failed_file_paths:
-            print
+            if print_to_terminal:
+                print
+            else:
+                result.append('')
             for error_message in error_messages:
-                print error_message
+                if print_to_terminal:
+                    print error_message
+                else:
+                    result.append(error_message)
         for file_path in failed_file_paths:
-            print 'FAILED: {}'.format(file_path)
+            string = 'FAILED: {}'.format(file_path)
+            if print_to_terminal:
+                print string
+            else:
+                result.append(string)
         total_successes = total_tests - total_failures
-        print
-        print '{} of {} tests passed in {} modules.'.format(
+        if print_to_terminal:
+            print
+        else:
+            result.append('')
+        string = '{} of {} tests passed in {} modules.'
+        string = string.format(
             total_successes,
             total_tests,
             total_modules,
             )
+        if print_to_terminal:
+            print string
+        else:
+            result.append(string)
+        if not print_to_terminal:
+            return result
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
