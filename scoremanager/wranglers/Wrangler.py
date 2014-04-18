@@ -840,8 +840,13 @@ class Wrangler(Controller):
             message = message.format(len(file_paths))
             self._io_manager.display([message, ''])
             script = developerscripttools.RunDoctestsScript()
-            script.process_args(file_paths=file_paths)
-            self._io_manager.display('')
+            strings = script.process_args(
+                file_paths=file_paths,
+                print_to_terminal=False,
+                )
+            if strings:
+                strings.append('')
+            self._io_manager.display(strings)
         self._session._hide_next_redraw = True
 
     def list_views(self):
