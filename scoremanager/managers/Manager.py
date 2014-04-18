@@ -601,18 +601,6 @@ class Manager(Controller):
         shutil.copyfile(self._path, new_path)
         self._io_manager.proceed('asset copied.')
 
-    def doctest(self):
-        r'''Runs doctest on asset.
-
-        Returns none.
-        '''
-        raise Exception
-        if self._session.is_test:
-            return
-        command = 'ajv doctest {}'.format(self._path)
-        self._io_manager.run_command(command, capitalize=False)
-        self._session._hide_next_redraw = True
-
     def list(self):
         r'''Lists directory.
 
@@ -643,17 +631,6 @@ class Manager(Controller):
         command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
         self._io_manager.run_command(command, capitalize=False)
-        self._session._hide_next_redraw = True
-
-    def pytest(self):
-        r'''Runs py.test on asset.
-
-        Returns none.
-        '''
-        if self._session.is_test:
-            return
-        command = 'py.test -rf {}'.format(self._path)
-        self._io_manager.run_command(command)
         self._session._hide_next_redraw = True
 
     def remove_unadded_assets(self, prompt=True):
