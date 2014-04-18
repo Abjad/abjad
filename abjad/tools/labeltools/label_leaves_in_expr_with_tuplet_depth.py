@@ -18,7 +18,7 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
 
     ::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 0 }

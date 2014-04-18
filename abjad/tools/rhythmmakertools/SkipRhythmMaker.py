@@ -87,7 +87,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(maker)
+                >>> print(format(maker))
                 rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
@@ -120,7 +120,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(reversed_maker)
+                >>> print(format(reversed_maker))
                 rhythmmakertools.SkipRhythmMaker()
 
             ::

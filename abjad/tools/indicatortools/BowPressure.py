@@ -8,7 +8,7 @@ class BowPressure(AbjadObject):
     ::
 
         >>> indicator = indicatortools.BowPressure('overpressure')
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.BowPressure(
             pressure='overpressure',
             )
@@ -42,3 +42,4 @@ class BowPressure(AbjadObject):
 
         '''
         return self._pressure
+

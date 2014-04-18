@@ -17,7 +17,7 @@ class AltoSaxophone(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \set Staff.instrumentName = \markup { Alto saxophone }
             \set Staff.shortInstrumentName = \markup { Alt. sax. }
@@ -77,7 +77,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_sax = instrumenttools.AltoSaxophone()
-                >>> print format(alto_sax)
+                >>> print(format(alto_sax))
                 instrumenttools.AltoSaxophone(
                     instrument_name='alto saxophone',
                     short_instrument_name='alt. sax.',

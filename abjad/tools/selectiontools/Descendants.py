@@ -17,7 +17,7 @@ class Descendants(SimultaneousSelection):
 
     ..  doctest::
 
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \context Staff = "Treble Staff" {
                 \context Voice = "Treble Voice" {

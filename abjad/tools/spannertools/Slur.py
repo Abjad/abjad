@@ -18,7 +18,7 @@ class Slur(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8 (
                 d'8
@@ -91,7 +91,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 ^ (
                     d'8
@@ -112,7 +112,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 _ (
                     d'8
@@ -133,7 +133,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 (
                     d'8

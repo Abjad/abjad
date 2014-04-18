@@ -24,7 +24,7 @@ class ReSTAutodocDirective(ReSTDirective):
 
     ::
 
-        >>> print autodoc.rest_format
+        >>> print(autodoc.rest_format)
         .. autoclass:: abjad.tools.spannertools.Beam.Beam
            :noindex:
 

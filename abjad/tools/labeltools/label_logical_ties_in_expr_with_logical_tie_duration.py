@@ -12,7 +12,7 @@ def label_logical_ties_in_expr_with_logical_tie_duration(
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \times 2/3 {
                 c'8 ~ _ \markup { \small 1/6 }

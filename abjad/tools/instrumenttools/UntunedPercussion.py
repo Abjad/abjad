@@ -17,7 +17,7 @@ class UntunedPercussion(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \set Staff.instrumentName = \markup { Untuned percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }

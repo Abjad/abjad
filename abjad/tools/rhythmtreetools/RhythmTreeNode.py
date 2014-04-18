@@ -206,7 +206,7 @@ class RhythmTreeNode(TreeNode):
 
             >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
             >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-            >>> print tree.pretty_rtm_format
+            >>> print(tree.pretty_rtm_format)
             (1 (
                 (1 (
                     1

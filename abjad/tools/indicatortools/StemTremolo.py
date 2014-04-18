@@ -15,7 +15,7 @@ class StemTremolo(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(note)
+        >>> print(format(note))
         c'4 :16
 
     '''
@@ -115,7 +115,7 @@ class StemTremolo(AbjadObject):
 
         ::
 
-            >>> print format(stem_tremolo)
+            >>> print(format(stem_tremolo))
             :16
 
         Returns string.

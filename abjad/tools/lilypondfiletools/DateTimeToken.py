@@ -35,7 +35,7 @@ class DateTimeToken(AbjadObject):
             ::
 
                 >>> token = lilypondfiletools.DateTimeToken()
-                >>> print format(token) # doctest: +SKIP
+                >>> print(format(token)) # doctest: +SKIP
                 2014-01-04 14:42
 
         Returns string.

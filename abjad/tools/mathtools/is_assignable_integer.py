@@ -8,8 +8,8 @@ def is_assignable_integer(expr):
     ::
 
         >>> for n in range(0, 16 + 1):
-        ...     print '%s\t%s' % (n, mathtools.is_assignable_integer(n))
-        ...
+        ...     print('%s\t%s' % (n, mathtools.is_assignable_integer(n)))
+        ... 
         0  False
         1  True
         2  True

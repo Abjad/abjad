@@ -17,8 +17,8 @@ class IntervalVector(Vector):
         ...     )
         >>> for interval, count in sorted(numbered_interval_vector.items(),
         ...     key=lambda x: (x[0].direction_number, x[0].number)):
-        ...     print interval, count
-        ...
+        ...     print(interval, count)
+        ... 
         -11 1
         -10 1
         -9 1

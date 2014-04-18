@@ -41,7 +41,7 @@ class LilyPondDimension(abctools.AbjadObject):
             ::
 
                 >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
-                >>> print format(dimension)
+                >>> print(format(dimension))
                 2\in
 
         Returns string.

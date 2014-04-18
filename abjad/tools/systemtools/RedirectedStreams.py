@@ -11,11 +11,11 @@ class RedirectedStreams(ContextManager):
         >>> import StringIO
         >>> string_io = StringIO.StringIO()
         >>> with systemtools.RedirectedStreams(stdout=string_io):
-        ...     print "hello, world!"
-        ...
+        ...     print("hello, world!")
+        ... 
         >>> result = string_io.getvalue()
         >>> string_io.close()
-        >>> print result
+        >>> print(result)
         hello, world!
 
     Redirected streams context manager is immutable.

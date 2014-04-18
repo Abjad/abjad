@@ -22,7 +22,7 @@ class ContextMap(AbjadObject):
 
     ::
 
-        >>> print format(context_map)
+        >>> print(format(context_map))
         datastructuretools.ContextMap(
             score_template=templatetools.StringOrchestraScoreTemplate(
                 violin_count=6,
@@ -133,7 +133,7 @@ class ContextMap(AbjadObject):
         ::
 
             >>> copied_context_map = context_map.copy()
-            >>> print format(copied_context_map)
+            >>> print(format(copied_context_map))
             datastructuretools.ContextMap(
                 score_template=templatetools.StringOrchestraScoreTemplate(
                     violin_count=6,
@@ -193,7 +193,7 @@ class ContextMap(AbjadObject):
 
         ::
 
-            >>> print format(context_map_one)
+            >>> print(format(context_map_one))
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
                 settings=[
@@ -214,7 +214,7 @@ class ContextMap(AbjadObject):
 
         ::
 
-            >>> print format(context_map_two)
+            >>> print(format(context_map_two))
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
                 settings=[
@@ -239,7 +239,7 @@ class ContextMap(AbjadObject):
         ::
 
             >>> context_map_one.update(context_map_two)
-            >>> print format(context_map_one)
+            >>> print(format(context_map_one))
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
                 settings=[
@@ -288,7 +288,7 @@ class ContextMap(AbjadObject):
 
             ::
 
-                >>> print format(context_map.score_template)
+                >>> print(format(context_map.score_template))
                 templatetools.StringOrchestraScoreTemplate(
                     violin_count=6,
                     viola_count=4,

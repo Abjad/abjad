@@ -19,7 +19,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ::
 
-        >>> print format(time_relation)
+        >>> print(format(time_relation))
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
@@ -109,7 +109,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> print format(time_relation)
+            >>> print(format(time_relation))
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [

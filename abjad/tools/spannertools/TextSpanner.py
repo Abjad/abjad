@@ -27,7 +27,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 \override TextSpanner #'bound-details #'left #'text = \markup {
                     \bold \italic foo }

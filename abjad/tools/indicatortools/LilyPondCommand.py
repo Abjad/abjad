@@ -20,7 +20,7 @@ class LilyPondCommand(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \slurDotted
             c'8 (

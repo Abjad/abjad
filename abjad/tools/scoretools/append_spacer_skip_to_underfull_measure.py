@@ -23,7 +23,7 @@ def append_spacer_skip_to_underfull_measure(measure):
 
     ..  doctest::
 
-        >>> print format(measure)
+        >>> print(format(measure))
         {
             \time 5/12
             \scaleDurations #'(2 . 3) {
@@ -55,3 +55,4 @@ def append_spacer_skip_to_underfull_measure(measure):
         measure.append(skip)
 
     return measure
+

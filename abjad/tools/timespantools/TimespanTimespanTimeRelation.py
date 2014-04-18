@@ -17,7 +17,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  doctest::
 
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 \times 2/3 {
@@ -178,7 +178,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> print format(time_relation)
+                >>> print(format(time_relation))
                 timespantools.TimespanTimespanTimeRelation(
                     inequality=timespantools.CompoundInequality(
                         [

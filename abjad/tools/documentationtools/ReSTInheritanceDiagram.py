@@ -19,7 +19,7 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     ::
 
-        >>> print _.rest_format
+        >>> print(_.rest_format)
         .. inheritance-diagram:: abjad.tools.spannertools.Beam.Beam
            :private-bases:
 

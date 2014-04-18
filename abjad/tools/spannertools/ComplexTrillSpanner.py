@@ -17,7 +17,7 @@ class ComplexTrillSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'4 ~
                 c'8
@@ -38,7 +38,7 @@ class ComplexTrillSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 \pitchedTrill
                 c'4 ~ \startTrillSpan f'
@@ -164,7 +164,7 @@ class ComplexTrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'4
                     \pitchedTrill

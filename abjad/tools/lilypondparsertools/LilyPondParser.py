@@ -30,7 +30,7 @@ class LilyPondParser(abctools.Parser):
         >>> parser = lilypondparsertools.LilyPondParser()
         >>> string = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         \new Staff {
             c'4 (
             d'8
@@ -46,7 +46,7 @@ class LilyPondParser(abctools.Parser):
         >>> parser = lilypondparsertools.LilyPondParser('nederlands')
         >>> string = '{ c des e fis }'
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c4
             df4
@@ -186,7 +186,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> parser = lilypondparsertools.LilyPondParser()
             >>> for language in parser.available_languages:
-            ...     print language
+            ...     print(language)
             catalan
             deutsch
             english
@@ -864,8 +864,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_contexts():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             ChoirStaff
             ChordNames
             CueVoice
@@ -910,8 +910,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_dynamics():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             f
             ff
             fff
@@ -954,8 +954,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_grobs():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             Accidental
             AccidentalCautionary
             AccidentalPlacement
@@ -1108,8 +1108,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_languages():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             catalan
             deutsch
             english
@@ -1136,8 +1136,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_markup_functions():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             abs-fontsize
             arrow-head
             auto-footnote
@@ -1302,8 +1302,8 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_music_functions():
-            ...     print x
-            ...
+            ...     print(x)
+            ... 
             acciaccatura
             appoggiatura
             bar

@@ -38,7 +38,7 @@ class Clef(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \clef "treble"
             c'8
@@ -165,7 +165,7 @@ class Clef(AbjadObject):
         ::
 
             >>> clef = Clef('treble')
-            >>> print format(clef)
+            >>> print(format(clef))
             indicatortools.Clef(
                 name='treble',
                 )

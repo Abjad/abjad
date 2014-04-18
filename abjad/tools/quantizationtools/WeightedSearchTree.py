@@ -13,7 +13,7 @@ class WeightedSearchTree(SearchTree):
 
     ::
 
-        >>> print format(search_tree)
+        >>> print(format(search_tree))
         quantizationtools.WeightedSearchTree(
             definition={
                 'divisors': (2, 3, 5, 7),

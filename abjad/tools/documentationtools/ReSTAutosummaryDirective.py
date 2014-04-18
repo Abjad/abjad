@@ -29,7 +29,7 @@ class ReSTAutosummaryDirective(ReSTDirective):
 
     ::
 
-        >>> print toc.rest_format
+        >>> print(toc.rest_format)
         .. autosummary::
         <BLANKLINE>
            foo.Foo

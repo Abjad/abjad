@@ -24,7 +24,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> print format(instrumentation_specifier)
+        >>> print(format(instrumentation_specifier))
         instrumenttools.InstrumentationSpecifier(
             performers=instrumenttools.PerformerInventory(
                 [
@@ -248,7 +248,7 @@ class InstrumentationSpecifier(AbjadObject):
 
         ::
 
-            >>> print format(instrumentation_specifier.performers)
+            >>> print(format(instrumentation_specifier.performers))
             instrumenttools.PerformerInventory(
                 [
                     instrumenttools.Performer(

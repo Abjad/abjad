@@ -74,7 +74,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> print graph.graphviz_format
+        >>> print(graph.graphviz_format)
         digraph G {
             subgraph cluster_0 {
                 graph [color=lightgrey,
@@ -138,7 +138,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> print graph.graphviz_format
+        >>> print(graph.graphviz_format)
         digraph Graph {
             subgraph cluster_0 {
                 node_0_0;

@@ -16,7 +16,7 @@ class PitchRange(AbjadObject):
     ::
 
         >>> pitch_range = pitchtools.PitchRange(-12, 36)
-        >>> print format(pitch_range)
+        >>> print(format(pitch_range))
         pitchtools.PitchRange(
             '[C3, C7]'
             )

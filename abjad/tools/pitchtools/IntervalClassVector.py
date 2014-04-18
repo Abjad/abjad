@@ -16,8 +16,8 @@ class IntervalClassVector(Vector):
         ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
         ...     )
         >>> for interval, count in numbered_interval_class_vector.iteritems():
-        ...     print interval, count
-        ...
+        ...     print(interval, count)
+        ... 
         2 12
         3 12
         5 12

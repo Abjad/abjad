@@ -25,7 +25,7 @@ class QTargetBeat(AbjadObject):
 
     ::
 
-        >>> print format(q_target_beat)
+        >>> print(format(q_target_beat))
         quantizationtools.QTargetBeat(
             beatspan=durationtools.Duration(1, 8),
             offset_in_ms=durationtools.Offset(1500, 1),

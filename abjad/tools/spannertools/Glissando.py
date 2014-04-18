@@ -17,7 +17,7 @@ class Glissando(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8 \glissando
                 d'8 \glissando

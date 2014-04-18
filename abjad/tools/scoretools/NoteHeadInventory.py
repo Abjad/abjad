@@ -15,7 +15,7 @@ class NoteHeadInventory(TypedList):
 
     ::
 
-        >>> print format(inventory)
+        >>> print(format(inventory))
         scoretools.NoteHeadInventory(
             [
                 scoretools.NoteHead(
@@ -123,7 +123,7 @@ class NoteHeadInventory(TypedList):
 
             ..  doctest::
 
-                >>> print format(chord)
+                >>> print(format(chord))
                 <
                     \tweak #'color #red
                     e'
@@ -148,7 +148,7 @@ class NoteHeadInventory(TypedList):
 
             ..  doctest::
 
-                >>> print format(chord)
+                >>> print(format(chord))
                 <
                     \tweak #'color #red
                     e'

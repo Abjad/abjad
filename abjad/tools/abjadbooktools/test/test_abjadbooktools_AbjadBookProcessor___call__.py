@@ -55,7 +55,7 @@ def test_abjadbooktools_AbjadBookProcessor___call___01():
 
         >>> spannertools.TrillSpanner(voice[4:])
         TrillSpanner()
-        >>> print format(voice)
+        >>> print(format(voice))
         \new Voice {
             c'8 [
             d'8

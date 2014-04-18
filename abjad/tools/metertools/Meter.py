@@ -35,7 +35,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (4/4 (
             1/4
             1/4
@@ -45,7 +45,7 @@ class Meter(AbjadObject):
     ::
 
         >>> meter = metertools.Meter((3, 4))
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (3/4 (
             1/4
             1/4
@@ -54,7 +54,7 @@ class Meter(AbjadObject):
     ::
 
         >>> meter = metertools.Meter((6, 8))
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (6/8 (
             (3/8 (
                 1/8
@@ -68,7 +68,7 @@ class Meter(AbjadObject):
     ::
 
         >>> meter = metertools.Meter((7, 4))
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (7/4 (
             (3/4 (
                 1/4
@@ -85,7 +85,7 @@ class Meter(AbjadObject):
 
         >>> meter = metertools.Meter(
         ...     (7, 4), decrease_durations_monotonically=False)
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (7/4 (
             (2/4 (
                 1/4
@@ -101,7 +101,7 @@ class Meter(AbjadObject):
     ::
 
         >>> meter = metertools.Meter((12, 8))
-        >>> print meter.pretty_rtm_format
+        >>> print(meter.pretty_rtm_format)
         (12/8 (
             (3/8 (
                 1/8
@@ -272,7 +272,7 @@ class Meter(AbjadObject):
         Interprets `''` equal to `'storage'`.
 
             >>> meter = metertools.Meter((7, 4))
-            >>> print format(meter)
+            >>> print(format(meter))
             metertools.Meter(
                 '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
@@ -366,7 +366,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> print meter.pretty_rtm_format
+                >>> print(meter.pretty_rtm_format)
                 (7/4 (
                     (2/4 (
                         1/4
@@ -397,7 +397,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> print meter.pretty_rtm_format
+                >>> print(meter.pretty_rtm_format)
                 (7/4 (
                     (3/4 (
                         1/4
@@ -435,7 +435,7 @@ class Meter(AbjadObject):
 
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
-            ...     print depth, offsets
+            ...     print(depth, offsets)
             0 (Offset(0, 1), Offset(7, 4))
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4), Offset(7, 4))
             2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
@@ -459,7 +459,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> print meter.graphviz_format
+            >>> print(meter.graphviz_format)
             digraph G {
                 node_0 [label="7/4",
                     shape=triangle];
@@ -549,7 +549,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> print meter.pretty_rtm_format
+            >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
                     1/4
@@ -662,8 +662,8 @@ class Meter(AbjadObject):
                 ...     notes = Meter._make_gridded_test_rhythm(
                 ...         4, rhythm_number, denominator=4)
                 ...     measure = Measure((4, 4), notes)
-                ...     print '{}\t{}'.format(rhythm_number, str(measure))
-                ...
+                ...     print('{}\t{}'.format(rhythm_number, str(measure)))
+                ... 
                 0	Measure((4, 4), "c'1")
                 1	Measure((4, 4), "c'2. c'4")
                 2	Measure((4, 4), "c'2 c'4 c'4")
@@ -684,8 +684,8 @@ class Meter(AbjadObject):
                 ...     notes = Meter._make_gridded_test_rhythm(
                 ...         5, rhythm_number, denominator=4)
                 ...     measure = Measure((5, 4), notes)
-                ...     print '{}\t{}'.format(rhythm_number, str(measure))
-                ...
+                ...     print('{}\t{}'.format(rhythm_number, str(measure)))
+                ... 
                 0	Measure((5, 4), "c'1 ~ c'4")
                 1	Measure((5, 4), "c'1 c'4")
                 2	Measure((5, 4), "c'2. c'4 c'4")
@@ -761,8 +761,8 @@ class Meter(AbjadObject):
                 >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
                 >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
-                ...     print x.implied_time_signature
-                ...
+                ...     print(x.implied_time_signature)
+                ... 
                 4/4
                 4/4
                 4/4
@@ -777,8 +777,8 @@ class Meter(AbjadObject):
                 >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
                 >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
-                ...     print x.implied_time_signature
-                ...
+                ...     print(x.implied_time_signature)
+                ... 
                 3/4
                 3/4
                 4/4
@@ -875,8 +875,8 @@ class Meter(AbjadObject):
             >>> kernel = \
             ...     meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
-            ...     print '{!s}\t{!s}'.format(offset, weight)
-            ...
+            ...     print('{!s}\t{!s}'.format(offset, weight))
+            ... 
             0       3/16
             1/8     1/16
             1/4     1/8
@@ -924,3 +924,4 @@ class Meter(AbjadObject):
                 kernel[offset] = durationtools.Multiplier(response, total)
 
         return metertools.MetricAccentKernel(kernel)
+

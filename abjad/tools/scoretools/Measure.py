@@ -22,7 +22,7 @@ class Measure(FixedDurationContainer):
 
     ..  doctest::
 
-        >>> print format(measure)
+        >>> print(format(measure))
         {
             \time 4/8
             c'8
@@ -689,7 +689,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 3/4
@@ -773,7 +773,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/8
                     c'8
@@ -788,7 +788,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/12
                     \scaleDurations #'(2 . 3) {
@@ -862,3 +862,4 @@ class Measure(FixedDurationContainer):
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):
                 self._scale_contents(remaining_multiplier)
+

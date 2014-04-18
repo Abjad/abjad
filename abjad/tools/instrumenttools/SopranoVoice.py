@@ -17,7 +17,7 @@ class SopranoVoice(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \set Staff.instrumentName = \markup { Soprano }
             \set Staff.shortInstrumentName = \markup { Sop. }

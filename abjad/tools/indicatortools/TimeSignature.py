@@ -19,7 +19,7 @@ class TimeSignature(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \time 4/8
             c'8
@@ -138,7 +138,7 @@ class TimeSignature(AbjadObject):
 
         ::
 
-            >>> print format(TimeSignature((3, 8)))
+            >>> print(format(TimeSignature((3, 8))))
             indicatortools.TimeSignature((3, 8))
 
         Returns string.

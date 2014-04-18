@@ -64,7 +64,7 @@ class MeterManager(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 {
                     \time 2/4

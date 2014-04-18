@@ -8,7 +8,7 @@ class StringContactPoint(AbjadObject):
     ::
 
         >>> indicator = indicatortools.StringContactPoint('pont')
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.StringContactPoint(
             contact_point='pont',
             )
@@ -42,3 +42,4 @@ class StringContactPoint(AbjadObject):
 
         '''
         return self._contact_point
+

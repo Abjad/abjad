@@ -54,7 +54,7 @@ class ReSTDocument(TreeContainer):
 
     ::
 
-        >>> print document.rest_format
+        >>> print(document.rest_format)
         ############
         Hello World!
         ############

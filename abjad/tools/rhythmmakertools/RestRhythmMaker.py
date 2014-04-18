@@ -87,7 +87,7 @@ class RestRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(maker)
+                >>> print(format(maker))
                 rhythmmakertools.RestRhythmMaker()
 
         Returns string.
@@ -198,7 +198,7 @@ class RestRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(reversed_maker)
+                >>> print(format(reversed_maker))
                 rhythmmakertools.RestRhythmMaker(
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,

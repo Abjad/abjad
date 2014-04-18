@@ -25,7 +25,7 @@ class Quantizer(AbjadObject):
 
         >>> result = quantizer(q_event_sequence)
         >>> score = Score([Staff([result])])
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 \new Voice {
@@ -70,7 +70,7 @@ class Quantizer(AbjadObject):
 
         >>> result = quantizer(q_event_sequence, q_schema=measurewise_q_schema)
         >>> score = Score([Staff([result])])
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 \new Voice {
@@ -145,7 +145,7 @@ class Quantizer(AbjadObject):
         ...     q_schema=beatwise_q_schema,
         ...     )
         >>> score = Score([Staff([result])])
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 \new Voice {

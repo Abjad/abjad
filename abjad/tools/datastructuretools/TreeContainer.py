@@ -371,8 +371,8 @@ class TreeContainer(TreeNode):
         ::
 
             >>> for leaf in a.leaves:
-            ...     print leaf.name
-            ...
+            ...     print(leaf.name)
+            ... 
             d
             e
             c

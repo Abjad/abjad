@@ -25,7 +25,7 @@ class QTargetMeasure(AbjadObject):
 
     ::
 
-        >>> print format(q_target_measure, 'storage')
+        >>> print(format(q_target_measure, 'storage'))
         quantizationtools.QTargetMeasure(
             offset_in_ms=durationtools.Offset(1000, 1),
             search_tree=quantizationtools.UnweightedSearchTree(
@@ -42,7 +42,7 @@ class QTargetMeasure(AbjadObject):
     ::
 
         >>> for q_target_beat in q_target_measure.beats:
-        ...     print q_target_beat.offset_in_ms, q_target_beat.duration_in_ms
+        ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
         1000 1000
         2000 1000
         3000 1000
@@ -64,7 +64,7 @@ class QTargetMeasure(AbjadObject):
     ::
 
         >>> for q_target_beat in another_q_target_measure.beats:
-        ...     print q_target_beat.offset_in_ms, q_target_beat.duration_in_ms
+        ...     print(q_target_beat.offset_in_ms, q_target_beat.duration_in_ms)
         1000 4000
 
     Not composer-safe.
@@ -168,8 +168,8 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> for q_target_beat in q_target_measure.beats:
-            ...     print format(q_target_beat, 'storage')
-            ...
+            ...     print(format(q_target_beat, 'storage'))
+            ... 
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(1000, 1),

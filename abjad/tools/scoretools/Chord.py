@@ -20,7 +20,7 @@ class Chord(Leaf):
 
         ..  doctest::
 
-            >>> print format(chord)
+            >>> print(format(chord))
             <e' cs'' f''>4
 
     '''
@@ -219,7 +219,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> print format(chord.note_heads)
+                >>> print(format(chord.note_heads))
                 scoretools.NoteHeadInventory(
                     [
                         scoretools.NoteHead(
@@ -256,7 +256,7 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print format(chord)
+                >>> print(format(chord))
                 <c' d' fs'>4
 
         ..  container:: example
@@ -273,7 +273,7 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print format(chord)
+                >>> print(format(chord))
                 <e'' f'' g''>4
 
         Set note heads with any iterable.
@@ -366,7 +366,7 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print format(chord)
+                >>> print(format(chord))
                 <f' b' d''>4
 
         Set written pitches with any iterable.

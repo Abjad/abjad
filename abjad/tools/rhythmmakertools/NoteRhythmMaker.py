@@ -140,7 +140,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> print format(maker)
+                >>> print(format(maker))
                 rhythmmakertools.NoteRhythmMaker()
 
         Returns string.
@@ -296,7 +296,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(reversed_maker)
+                >>> print(format(reversed_maker))
                 rhythmmakertools.NoteRhythmMaker(
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,

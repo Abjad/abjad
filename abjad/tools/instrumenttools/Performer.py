@@ -15,7 +15,7 @@ class Performer(AbjadObject):
 
     ::
 
-        >>> print format(performer)
+        >>> print(format(performer))
         instrumenttools.Performer(
             name='flutist',
             instruments=instrumenttools.InstrumentInventory(
@@ -369,9 +369,9 @@ class Performer(AbjadObject):
             >>> dictionary = \
             ...     performer.make_performer_name_instrument_dictionary()
             >>> for key, value in sorted(dictionary.iteritems()):
-            ...     print key + ':'
+            ...     print(key + ':')
             ...     for x in value:
-            ...         print '\t{}'.format(x.__name__)
+            ...         print('\t{}'.format(x.__name__))
             accordionist:
                 Accordion
             alto:

@@ -16,7 +16,7 @@ def color_contents_of_container(container, color):
 
     ..  doctest::
 
-        >>> print format(measure)
+        >>> print(format(measure))
         {
             \override Accidental #'color = #red
             \override Beam #'color = #red

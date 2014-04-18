@@ -20,7 +20,7 @@ class MarkupCommand(AbjadObject):
 
         ::
 
-            >>> print format(combine, 'lilypond')
+            >>> print(format(combine, 'lilypond'))
             \combine
                 \rotate
                     #60
@@ -47,7 +47,7 @@ class MarkupCommand(AbjadObject):
 
         ..  doctest::
 
-            >>> print format(note)
+            >>> print(format(note))
             c'4
                 - \markup {
                     \combine

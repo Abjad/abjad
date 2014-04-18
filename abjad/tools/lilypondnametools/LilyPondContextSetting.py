@@ -15,7 +15,7 @@ class LilyPondContextSetting(AbjadObject):
 
     ::
 
-        >>> print '\n'.join(context_setting.format_pieces)
+        >>> print('\n'.join(context_setting.format_pieces))
         \set Score.autoBeaming = ##f
 
     '''

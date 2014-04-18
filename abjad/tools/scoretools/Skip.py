@@ -17,7 +17,7 @@ class Skip(Leaf):
 
         ..  doctest::
 
-            >>> print format(skip)
+            >>> print(format(skip))
             s8.
 
     '''

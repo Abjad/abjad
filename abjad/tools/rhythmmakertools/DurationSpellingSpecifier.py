@@ -74,7 +74,7 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> print format(specifier)
+                >>> print(format(specifier))
                 rhythmmakertools.DurationSpellingSpecifier(
                     decrease_durations_monotonically=True,
                     )
@@ -177,7 +177,7 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> print format(specifier)
+                >>> print(format(specifier))
                 rhythmmakertools.DurationSpellingSpecifier(
                     decrease_durations_monotonically=True,
                     )
@@ -185,7 +185,7 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> reversed_specifier = specifier.reverse()
-                >>> print format(reversed_specifier)
+                >>> print(format(reversed_specifier))
                 rhythmmakertools.DurationSpellingSpecifier(
                     decrease_durations_monotonically=False,
                     )

@@ -22,7 +22,7 @@ class CompoundInequality(TypedList):
 
     ::
 
-        >>> print format(compound_inequality)
+        >>> print(format(compound_inequality))
         timespantools.CompoundInequality(
             [
                 timespantools.CompoundInequality(

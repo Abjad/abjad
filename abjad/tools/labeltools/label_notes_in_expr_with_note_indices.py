@@ -18,7 +18,7 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 1 }

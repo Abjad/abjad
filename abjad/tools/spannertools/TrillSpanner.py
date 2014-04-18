@@ -18,7 +18,7 @@ class TrillSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8 \startTrillSpan
                 d'8
@@ -100,7 +100,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -135,7 +135,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan

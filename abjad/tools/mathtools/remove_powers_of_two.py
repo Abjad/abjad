@@ -7,8 +7,8 @@ def remove_powers_of_two(n):
     ::
 
         >>> for n in range(10, 100, 10):
-        ...     print '\t%s\t%s' % (n, mathtools.remove_powers_of_two(n))
-        ...
+        ...     print('\t%s\t%s' % (n, mathtools.remove_powers_of_two(n)))
+        ... 
             10 5
             20 5
             30 15

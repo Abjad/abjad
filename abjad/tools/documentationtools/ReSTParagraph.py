@@ -18,7 +18,7 @@ class ReSTParagraph(TreeNode):
 
     ::
 
-        >>> print _.rest_format
+        >>> print(_.rest_format)
         blah blah blah
 
     Handles automatic linewrapping.

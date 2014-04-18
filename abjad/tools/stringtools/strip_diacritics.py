@@ -12,7 +12,7 @@ def strip_diacritics(binary_string):
 
     ::
 
-        >>> print binary_string
+        >>> print(binary_string)
         Dvořák
 
     ::
@@ -34,3 +34,4 @@ def strip_diacritics(binary_string):
         return ascii_string
     else:
         return ascii_string.decode('utf-8')
+

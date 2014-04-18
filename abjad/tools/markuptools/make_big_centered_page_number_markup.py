@@ -10,7 +10,7 @@ def make_big_centered_page_number_markup(text=None):
 
     ::
 
-        >>> print format(markup, 'lilypond')
+        >>> print(format(markup, 'lilypond'))
         \markup {
             \fill-line
                 {

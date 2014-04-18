@@ -16,7 +16,7 @@ def make_vertically_adjusted_composer_markup(
 
     ::
 
-        >>> print format(markup, 'lilypond')
+        >>> print(format(markup, 'lilypond'))
         \markup {
             \override
                 #'(font-name . "Times")

@@ -135,7 +135,7 @@ class MetricAccentKernel(AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score <<
                     \new Staff {
                         c'4.

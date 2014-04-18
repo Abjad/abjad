@@ -20,7 +20,7 @@ class Container(Component):
 
         ..  doctest::
 
-            >>> print format(container)
+            >>> print(format(container))
             {
                 c'4
                 e'4
@@ -469,7 +469,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     \new Voice {
                         c'8
@@ -499,7 +499,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     \new Voice {
                         c'8
@@ -518,7 +518,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 <<
                     \new Voice {
                         c'8
@@ -871,7 +871,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -885,7 +885,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -909,7 +909,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -924,7 +924,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -953,7 +953,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4
                     d'4
@@ -1001,7 +1001,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     fs16 _ (
                     cs'16
@@ -1024,7 +1024,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     fs16 _ (
                     cs'16
@@ -1057,7 +1057,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     fs16 _ (
                     cs'16
@@ -1080,7 +1080,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     fs16 _ (
                     cs'16
@@ -1133,7 +1133,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -1149,7 +1149,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -1174,7 +1174,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4
@@ -1195,7 +1195,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'4 (
                     d'4 )
@@ -1219,7 +1219,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 [
                     d'8 ]
@@ -1234,7 +1234,7 @@ class Container(Component):
 
             ..  doctest::
 
-                >>> print format(staff) # doctest: +SKIP
+                >>> print(format(staff)) # doctest: +SKIP
                 \new Staff {
                     f'8 (
                     e'8 )

@@ -75,7 +75,7 @@ class SimpleInequality(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats simple inequality.
 
-            >>> print format(simple_inequality)
+            >>> print(format(simple_inequality))
             timespantools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.

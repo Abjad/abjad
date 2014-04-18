@@ -138,7 +138,7 @@ class Sieve(BaseResidueClass):
         ::
 
             >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
-            >>> print format(sieve)
+            >>> print(format(sieve))
             sievetools.Sieve(
                 rcs=[
                     sievetools.ResidueClass(6, 0),

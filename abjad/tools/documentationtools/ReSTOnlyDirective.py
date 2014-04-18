@@ -27,7 +27,7 @@ class ReSTOnlyDirective(ReSTDirective):
 
     ::
 
-        >>> print only.rest_format
+        >>> print(only.rest_format)
         .. only:: latex
         <BLANKLINE>
            A LaTeX-Only Heading

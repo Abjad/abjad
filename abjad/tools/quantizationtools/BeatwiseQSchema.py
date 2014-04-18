@@ -16,7 +16,7 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> print format(q_schema, 'storage')
+        >>> print(format(q_schema, 'storage'))
         quantizationtools.BeatwiseQSchema(
             beatspan=durationtools.Duration(1, 4),
             search_tree=quantizationtools.UnweightedSearchTree(
@@ -79,8 +79,8 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> index = 0
-        >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ...
+        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
+        ... 
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -88,8 +88,8 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> index = 1000
-        >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ...
+        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
+        ... 
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -154,7 +154,7 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> print format(q_schema[0]['search_tree'])
+        >>> print(format(q_schema[0]['search_tree']))
         quantizationtools.UnweightedSearchTree(
             definition={
                 2: {
@@ -189,7 +189,7 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> print format(q_schema[1]['search_tree'])
+        >>> print(format(q_schema[1]['search_tree']))
         quantizationtools.UnweightedSearchTree(
             definition={
                 2: {

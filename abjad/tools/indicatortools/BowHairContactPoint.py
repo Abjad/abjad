@@ -12,7 +12,7 @@ class BowHairContactPoint(AbjadObject):
     ::
 
         >>> indicator = indicatortools.BowHairContactPoint((1, 2))
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.BowHairContactPoint(
             contact_point=durationtools.Multiplier(1, 2),
             )
@@ -44,7 +44,7 @@ class BowHairContactPoint(AbjadObject):
         ::
 
             >>> indicator = indicatortools.BowHairContactPoint((3, 4))
-            >>> print format(indicator.markup, 'lilypond')
+            >>> print(format(indicator.markup, 'lilypond'))
             ^ \markup {
                 \vcenter
                     \fraction
@@ -73,3 +73,4 @@ class BowHairContactPoint(AbjadObject):
         Returns multiplier.
         '''
         return self._contact_point
+

@@ -44,7 +44,7 @@ class Scheme(AbjadObject):
     ::
 
         >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
-        >>> print format(scheme)
+        >>> print(format(scheme))
         #"nospaces"
 
     The above is useful in certain \override situations,
@@ -106,7 +106,7 @@ class Scheme(AbjadObject):
 
         ::
 
-            >>> print format(scheme, 'storage')
+            >>> print(format(scheme, 'storage'))
             schemetools.Scheme(
                 'foo'
                 )

@@ -17,7 +17,7 @@ class Beam(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -38,7 +38,7 @@ class Beam(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -121,8 +121,8 @@ class Beam(Spanner):
             >>> for leaf in staff.select_leaves():
             ...     beam = spannertools.Beam
             ...     result = beam._is_beamable_component(leaf)
-            ...     print '{:<8}\t{}'.format(leaf, result)
-            ...
+            ...     print('{:<8}\t{}'.format(leaf, result))
+            ... 
             r32     False
             a'32    True
             gs'32   True

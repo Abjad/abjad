@@ -23,7 +23,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 r4
                 c'8 \< \p
@@ -294,7 +294,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 r4
                 c'8 ^ \< ^ \p
@@ -331,7 +331,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 r4 \< \p
                 c'8

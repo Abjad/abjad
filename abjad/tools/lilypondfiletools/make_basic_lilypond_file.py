@@ -20,7 +20,7 @@ def make_basic_lilypond_file(music=None):
 
         ::
 
-            >>> print format(lilypond_file) # doctest: +SKIP
+            >>> print(format(lilypond_file)) # doctest: +SKIP
             \header {
                 composer = \markup { Josquin }
                 title = \markup { Missa sexti tonus }

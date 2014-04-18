@@ -383,7 +383,7 @@ class LilyPondFormatManager(object):
         ::
 
             >>> manager = systemtools.LilyPondFormatManager
-            >>> print manager.report_component_format_contributions(staff[0])
+            >>> print(manager.report_component_format_contributions(staff[0]))
             slot 1:
                 grob overrides:
                     \once \override NoteHead #'color = #red
@@ -410,7 +410,7 @@ class LilyPondFormatManager(object):
         ::
 
             >>> manager = systemtools.LilyPondFormatManager
-            >>> print manager.report_spanner_format_contributions(spanner)
+            >>> print(manager.report_spanner_format_contributions(spanner))
             c8	systemtools.LilyPondFormatBundle(
                     right=LilyPondFormatBundle.SlotContributions(
                         spanner_starts=['['],

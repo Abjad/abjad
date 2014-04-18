@@ -15,7 +15,7 @@ class ReSTTOCItem(TreeNode):
 
     ::
 
-        >>> print item.rest_format
+        >>> print(item.rest_format)
         api/index
 
     '''

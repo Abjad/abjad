@@ -56,7 +56,7 @@ class OctaveTranspositionMapping(TypedList):
 
         ::
 
-            >>> print format(mapping)
+            >>> print(format(mapping))
             pitchtools.OctaveTranspositionMapping(
                 [
                     pitchtools.OctaveTranspositionMappingComponent(

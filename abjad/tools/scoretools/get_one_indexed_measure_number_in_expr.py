@@ -12,7 +12,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             {
                 \time 2/8

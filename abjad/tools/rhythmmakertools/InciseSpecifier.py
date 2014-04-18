@@ -280,7 +280,7 @@ class InciseSpecifier(AbjadObject):
 
             ::
 
-                >>> print format(incise_specifier.rotate(1))
+                >>> print(format(incise_specifier.rotate(1)))
                 rhythmmakertools.InciseSpecifier(
                     incise_divisions=True,
                     incise_output=False,

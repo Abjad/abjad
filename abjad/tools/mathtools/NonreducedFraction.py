@@ -214,7 +214,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         ::
 
             >>> fraction = mathtools.NonreducedFraction(-6, 3)
-            >>> print format(fraction)
+            >>> print(format(fraction))
             mathtools.NonreducedFraction(-6, 3)
 
         Returns string.
@@ -771,3 +771,4 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator *= 2
             result = result.with_denominator(denominator)
         return result
+

@@ -17,7 +17,7 @@ class AltoVoice(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \set Staff.instrumentName = \markup { Alto }
             \set Staff.shortInstrumentName = \markup { Alto }

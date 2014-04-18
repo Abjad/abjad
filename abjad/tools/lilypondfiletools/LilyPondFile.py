@@ -30,7 +30,7 @@ class LilyPondFile(AbjadObject):
 
         ::
 
-            >>> print format(lilypond_file) # doctest: +SKIP
+            >>> print(format(lilypond_file)) # doctest: +SKIP
             % 2004-01-14 17:29
 
             % File construct as an example.

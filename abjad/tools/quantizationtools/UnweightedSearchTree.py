@@ -11,7 +11,7 @@ class UnweightedSearchTree(SearchTree):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree()
-        >>> print format(search_tree)
+        >>> print(format(search_tree))
         quantizationtools.UnweightedSearchTree(
             definition={
                 2: {
@@ -77,7 +77,7 @@ class UnweightedSearchTree(SearchTree):
 
         >>> q_grids = search_tree(q_grid)
         >>> for grid in q_grids:
-        ...     print grid.rtm_format
+        ...     print(grid.rtm_format)
         (1 (1 1))
         (1 (1 1 1))
         (1 (1 1 1 1 1))
@@ -100,7 +100,7 @@ class UnweightedSearchTree(SearchTree):
 
         >>> q_grids = search_tree(q_grid)
         >>> for grid in q_grids:
-        ...     print grid.rtm_format
+        ...     print(grid.rtm_format)
         (1 (1 1))
         (1 (1 1 1))
 

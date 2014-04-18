@@ -37,7 +37,7 @@ class LilyPondVersionToken(AbjadObject):
         ..  container:: example
 
             >>> token = lilypondfiletools.LilyPondVersionToken()
-            >>> print format(token) # doctest: +SKIP
+            >>> print(format(token)) # doctest: +SKIP
             \version "2.19.0"
 
         Return string.

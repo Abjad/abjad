@@ -11,7 +11,7 @@ def graph(expr, image_format='pdf', layout='dot'):
 
         >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
         >>> rhythm_tree = rhythmtreetools.RhythmTreeParser()(rtm_syntax)[0]
-        >>> print rhythm_tree.pretty_rtm_format
+        >>> print(rhythm_tree.pretty_rtm_format)
         (3 (
             (2 (
                 2

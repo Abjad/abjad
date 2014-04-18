@@ -24,8 +24,8 @@ class Timer(ContextManager):
         ...     for _ in range(5):
         ...         for _ in xrange(1000000):
         ...             x = 1 + 1
-        ...         print timer.elapsed_time
-        ...
+        ...         print(timer.elapsed_time)
+        ... 
         0.101150989532
         0.203935861588
         0.304930925369

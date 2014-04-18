@@ -14,7 +14,7 @@ class Arpeggio(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(chord)
+        >>> print(format(chord))
         <c' e' g' c''>4 \arpeggio
 
     An arpeggio arrow direction can be specified:
@@ -28,7 +28,7 @@ class Arpeggio(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(chord)
+        >>> print(format(chord))
         \arpeggioArrowDown
         <c' e' g' c''>4 \arpeggio
 

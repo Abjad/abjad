@@ -12,7 +12,7 @@ def timespan_2_contains_timespan_1_improperly(
     ::
 
         >>> relation = timespantools.timespan_2_contains_timespan_1_improperly()
-        >>> print format(relation)
+        >>> print(format(relation))
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [

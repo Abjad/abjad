@@ -9,8 +9,8 @@ def is_dotted_integer(expr):
     ::
 
         >>> for expr in range(16):
-        ...     print '%s\t%s' % (expr, mathtools.is_dotted_integer(expr))
-        ...
+        ...     print('%s\t%s' % (expr, mathtools.is_dotted_integer(expr)))
+        ... 
         0         False
         1         False
         2         False

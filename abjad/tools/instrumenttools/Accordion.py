@@ -21,7 +21,7 @@ class Accordion(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff_group)
+        >>> print(format(staff_group))
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }
@@ -89,7 +89,7 @@ class Accordion(Instrument):
 
                 >>> accordion = instrumenttools.Accordion()
 
-                >>> print format(accordion)
+                >>> print(format(accordion))
                 instrumenttools.Accordion(
                     instrument_name='accordion',
                     short_instrument_name='acc.',

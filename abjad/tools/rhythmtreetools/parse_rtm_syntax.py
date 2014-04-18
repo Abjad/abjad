@@ -21,7 +21,7 @@ def parse_rtm_syntax(rtm):
 
     ::
 
-        >>> print format(_)
+        >>> print(format(_))
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 9/17 {
             c'8

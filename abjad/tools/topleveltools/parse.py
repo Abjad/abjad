@@ -15,7 +15,7 @@ def parse(arg, language='english'):
 
     ::
 
-        >>> print format(container)
+        >>> print(format(container))
         {
             c'4
             d'4

@@ -66,7 +66,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 {
                     \time 2/8
@@ -128,7 +128,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 {
                     \time 2/8
@@ -271,7 +271,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(voice)
+            >>> print(format(voice))
             \new Voice {
                 c'8 [
                 \grace {
@@ -354,7 +354,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'8
@@ -424,7 +424,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'4 ~
                 \times 2/3 {
@@ -527,7 +527,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 <<
                     \context Voice = "voice 1" {
@@ -626,7 +626,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 <<
                     \context Voice = "voice 1" {
@@ -759,7 +759,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'8
@@ -841,7 +841,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff <<
                 \context Voice = "TimeSignatuerVoice" {
                     {
@@ -906,7 +906,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'4
@@ -993,7 +993,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'4
@@ -1068,7 +1068,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8 ~
                 c'32
@@ -1150,7 +1150,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -1416,3 +1416,4 @@ class IterationAgent(abctools.AbjadObject):
             else:
                 node, rank = _advance_node_depth_first(node, rank, direction)
         queue.clear()
+
