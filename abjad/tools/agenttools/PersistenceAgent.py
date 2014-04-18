@@ -195,6 +195,8 @@ class PersistenceAgent(abctools.AbjadObject):
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
             >>> for x in persist(staff).as_pdf(): # doctest: +SKIP
+            ...     x
+            ...
             '/Users/josiah/.abjad/output/1416.pdf'
             0.047142982482910156
             0.7839350700378418
