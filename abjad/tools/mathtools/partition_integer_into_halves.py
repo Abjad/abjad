@@ -54,7 +54,7 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
     Returns pair of positive integers.
     '''
 
-    if not isinstance(n, (int, long)):
+    if not isinstance(n, int):
         raise TypeError
 
     if n < 0:

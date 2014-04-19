@@ -15,7 +15,7 @@ def spell_pitch_number(pitch_number, diatonic_pitch_class_name):
     from abjad.tools import pitchtools
 
     # check input
-    if not isinstance(pitch_number, (int, long, float)):
+    if not isinstance(pitch_number, (int, float)):
         raise TypeError
 
     if not isinstance(diatonic_pitch_class_name, str):

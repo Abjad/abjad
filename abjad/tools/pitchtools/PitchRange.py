@@ -101,7 +101,7 @@ class PitchRange(AbjadObject):
             elif isinstance(start, (
                 pitchtools.Pitch,
                 int,
-                long,
+                int,
                 float,
                 str,
                 )):
@@ -120,7 +120,7 @@ class PitchRange(AbjadObject):
             elif isinstance(stop, (
                 pitchtools.Pitch,
                 int,
-                long,
+                int,
                 float,
                 str,
                 )):
@@ -147,7 +147,7 @@ class PitchRange(AbjadObject):
         if hasattr(arg, '_has_effective_indicator') and \
             arg._has_effective_indicator(indicatortools.IsUnpitched):
             return True
-        elif isinstance(arg, (int, long, float)):
+        elif isinstance(arg, (int, float)):
             pitch = pitchtools.NamedPitch(arg)
             return self._contains_pitch(pitch)
         elif isinstance(arg, pitchtools.NamedPitch):

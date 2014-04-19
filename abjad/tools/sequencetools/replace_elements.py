@@ -64,13 +64,13 @@ def replace_elements(
     index_values, index_period = indices
 
     assert isinstance(index_values, list)
-    assert isinstance(index_period, (int, long, type(None)))
+    assert isinstance(index_period, (int, type(None)))
 
     assert isinstance(new_material, tuple) and len(new_material) == 2
     material_values, material_period = new_material
 
     assert isinstance(material_values, list)
-    assert isinstance(material_period, (int, long, type(None)))
+    assert isinstance(material_period, (int, type(None)))
 
     if index_period is None:
         index_period = sys.maxint

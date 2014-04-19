@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import collections
+import sys
 import types
 
 
@@ -339,8 +340,12 @@ class StorageFormatManager(object):
         '''
         if hasattr(subject.__init__, '__func__'):
             initializer = subject.__init__.__func__
-            defaults = initializer.func_defaults
-            initializer_code = initializer.func_code
+            if sys.version_info[0] == 2:
+                defaults = initializer.func_defaults
+                initializer_code = initializer.func_code
+            else:
+                defaults = initializer.__defaults__
+                initializer_code = initializer.__code__
         elif hasattr(subject.__init__, '__defaults__'):
             defaults = subject.__init__.__defaults__
             initializer_code = subject.__init__.__code__
@@ -362,11 +367,15 @@ class StorageFormatManager(object):
         '''
         if hasattr(subject.__init__, '__func__'):
             initializer = subject.__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
+            keyword_argument_count = 0
+            if sys.version_info[0] == 2:
+                if initializer.func_defaults:
+                    keyword_argument_count = len(initializer.func_defaults)
+                initializer_code = initializer.func_code
             else:
-                keyword_argument_count = 0
-            initializer_code = initializer.func_code
+                if initializer.__defaults__:
+                    keyword_argument_count = len(initializer.__defaults__)
+                initializer_code = initializer.__code__
             positional_argument_count = (
                 initializer_code.co_argcount - keyword_argument_count - 1)
             start_index, stop_index = 1, 1 + positional_argument_count
@@ -437,7 +446,7 @@ class StorageFormatManager(object):
 
         Returns boolean.
         '''
-        if isinstance(subject, types.TypeType):
+        if isinstance(subject, type):
             return False
         elif type(subject) is subject.__class__:
             return True

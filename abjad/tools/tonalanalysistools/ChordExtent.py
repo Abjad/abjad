@@ -29,7 +29,7 @@ class ChordExtent(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, number=5):
-        if isinstance(number, (int, long)):
+        if isinstance(number, int):
             if number not in self._acceptable_number:
                 message = 'can not initialize extent: {}.'
                 raise ValueError(message.format(number))

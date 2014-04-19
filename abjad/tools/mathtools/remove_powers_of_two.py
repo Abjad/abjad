@@ -26,7 +26,7 @@ def remove_powers_of_two(n):
     Returns positive integer.
     '''
 
-    if not isinstance(n, (int, long)):
+    if not isinstance(n, int):
         raise TypeError
 
     if n <= 0:

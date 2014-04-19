@@ -26,7 +26,7 @@ def is_nonnegative_integer_power_of_two(expr):
     Returns boolean.
     '''
 
-    if isinstance(expr, (int, long)):
+    if isinstance(expr, int):
         return not bool(expr & (expr - 1))
     elif isinstance(expr, fractions.Fraction):
         return is_nonnegative_integer_power_of_two(expr.numerator * expr.denominator)

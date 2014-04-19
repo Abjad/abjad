@@ -50,7 +50,7 @@ def divisors(n):
     Returns list of positive integers.
     '''
 
-    if not isinstance(n, (int, long)):
+    if not isinstance(n, int):
         message = 'must be integer: {!r}.'
         message = message.format(n)
         raise TypeError(message)

@@ -67,7 +67,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     '''
     from abjad.tools import mathtools
 
-    if not isinstance(n, (int, long)):
+    if not isinstance(n, int):
         raise TypeError
 
     if not isinstance(decrease_parts_monotonically, bool):

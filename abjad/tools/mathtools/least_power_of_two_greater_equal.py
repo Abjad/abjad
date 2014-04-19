@@ -54,7 +54,7 @@ def least_power_of_two_greater_equal(n, i=0):
     Returns integer.
     '''
 
-    if not isinstance(n, (int, long, float, fractions.Fraction)):
+    if not isinstance(n, (int, float, fractions.Fraction)):
         raise TypeError
 
     if n <= 0:

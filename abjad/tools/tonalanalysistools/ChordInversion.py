@@ -52,7 +52,7 @@ class ChordInversion(AbjadObject):
 
     def __init__(self, number=0):
         arg = number
-        if isinstance(arg, (int, long)):
+        if isinstance(arg, int):
             number = arg
         elif isinstance(arg, str):
             number = self._inversion_name_to_inversion_number[arg]

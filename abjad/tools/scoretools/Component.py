@@ -450,7 +450,7 @@ class Component(AbjadObject):
             prototype = (prototype,)
         prototype_objects, prototype_classes = [], []
         for indicator_prototype in prototype:
-            if isinstance(indicator_prototype, types.TypeType):
+            if isinstance(indicator_prototype, type):
                 prototype_classes.append(indicator_prototype)
             else:
                 prototype_objects.append(indicator_prototype)

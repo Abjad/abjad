@@ -209,7 +209,7 @@ class Pitch(AbjadObject):
 
         Returns boolean.
         '''
-        return isinstance(expr, (int, long))
+        return isinstance(expr, int)
 
     @staticmethod
     def is_pitch_carrier(expr):
@@ -289,7 +289,7 @@ class Pitch(AbjadObject):
 
         Returns boolean.
         '''
-        if isinstance(expr, (int, long, float)):
+        if isinstance(expr, (int, float)):
             return expr % 0.5 == 0
         return False
 

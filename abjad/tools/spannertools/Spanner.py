@@ -402,7 +402,7 @@ class Spanner(AbjadObject):
 
     def _get_my_nth_leaf(self, n):
         from abjad.tools import scoretools
-        if not isinstance(n, (int, long)):
+        if not isinstance(n, int):
             raise TypeError
         if 0 <= n:
             leaves = iterate(self).by_class(scoretools.Leaf)

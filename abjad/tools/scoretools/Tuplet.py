@@ -668,7 +668,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, expr):
-        if isinstance(expr, (int, long, fractions.Fraction)):
+        if isinstance(expr, (int, fractions.Fraction)):
             rational = durationtools.Multiplier(expr)
         elif isinstance(expr, tuple):
             rational = durationtools.Multiplier(expr)
@@ -745,7 +745,7 @@ class Tuplet(Container):
 
     @preferred_denominator.setter
     def preferred_denominator(self, arg):
-        if isinstance(arg, (int, long)):
+        if isinstance(arg, int):
             if not 0 < arg:
                 raise ValueError(arg)
         elif not isinstance(arg, type(None)):

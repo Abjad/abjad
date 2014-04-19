@@ -371,7 +371,7 @@ class LilyPondFile(AbjadObject):
 
     @global_staff_size.setter
     def global_staff_size(self, arg):
-        assert isinstance(arg, (int, float, long, type(None)))
+        assert isinstance(arg, (int, float, int, type(None)))
         self._global_staff_size = arg
 
     @property

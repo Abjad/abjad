@@ -88,7 +88,7 @@ class NamedInterval(Interval):
             elif isinstance(args[0], (
                 int,
                 float,
-                long,
+                int,
                 pitchtools.NumberedInterval,
                 pitchtools.NumberedIntervalClass,
                 )):
@@ -261,7 +261,7 @@ class NamedInterval(Interval):
         Returns new named interval.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(arg, (int, long)):
+        if not isinstance(arg, int):
             message = 'must be integer: {!r}.'
             message = message.format(arg)
             raise TypeError(message)

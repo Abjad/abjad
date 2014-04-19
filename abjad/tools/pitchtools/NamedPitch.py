@@ -33,7 +33,7 @@ class NamedPitch(Pitch):
             len(args) == 1:
             args = args[0]
         if len(args) == 1:
-            if isinstance(args[0], (int, long, float)):
+            if isinstance(args[0], (int, float)):
                 arg = mathtools.integer_equivalent_number_to_integer(
                     float(args[0]))
                 self._initialize_by_pitch_number(arg)
@@ -60,7 +60,7 @@ class NamedPitch(Pitch):
                 self._initialize_by_pitch_class_name_and_octave_number(*args)
             elif isinstance(args[0], pitchtools.NamedPitchClass):
                 self._initialize_by_named_pitch_class_and_octave_number(*args)
-            elif isinstance(args[0], (int, long, float)):
+            elif isinstance(args[0], (int, float)):
                 if isinstance(args[1], str):
                     self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
                         *args)

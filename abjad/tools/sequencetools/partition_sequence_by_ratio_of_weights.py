@@ -59,7 +59,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     result.append(sublist)
     current_cumulative_weight = cumulative_weights.pop(0)
     for n in sequence:
-        if not isinstance(n, (int, long, float, fractions.Fraction)):
+        if not isinstance(n, (int, float, fractions.Fraction)):
             message = 'must be number: {!r}.'
             message = message.format(n)
             raise TypeError(message)

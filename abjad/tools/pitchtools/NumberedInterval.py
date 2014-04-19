@@ -27,7 +27,7 @@ class NumberedInterval(Interval):
 
     def __init__(self, arg=None):
         from abjad.tools import pitchtools
-        if isinstance(arg, (int, float, long)):
+        if isinstance(arg, (int, float, int)):
             number = arg
         elif isinstance(arg, pitchtools.Interval):
             number = arg.semitones

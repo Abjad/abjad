@@ -39,7 +39,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
         raise TypeError(message)
 
     if isinstance(pitch_carrier, collections.Iterable):
-        if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
+        if all(isinstance(x, (int, float)) for x in pitch_carrier):
             return _pitch_number_list_octave_transpositions(
                 pitch_carrier, pitch_range)
 
