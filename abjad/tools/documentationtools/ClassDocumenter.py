@@ -53,6 +53,8 @@ class ClassDocumenter(Documenter):
         <BLANKLINE>
         - :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject>`
         <BLANKLINE>
+        - :py:class:`abctools.AbjadObject.AbstractBase <abjad.tools.abctools.AbjadObject.AbstractBase>`
+        <BLANKLINE>
         - :py:class:`__builtin__.object <object>`
         <BLANKLINE>
         Read-only properties
