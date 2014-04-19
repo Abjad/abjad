@@ -3,9 +3,12 @@ from __future__ import print_function
 import doctest
 import importlib
 import os
-import StringIO
 from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+try:
+    import StringIO
+except ImportError:
+    from io import StringIO
 
 
 class RunDoctestsScript(DirectoryScript):
