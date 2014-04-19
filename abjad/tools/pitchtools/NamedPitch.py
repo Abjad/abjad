@@ -2,6 +2,7 @@
 import collections
 import re
 from abjad.tools import mathtools
+from abjad.tools import stringtools
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
@@ -29,7 +30,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         if args and \
             isinstance(args[0], collections.Iterable) and \
-            not isinstance(args[0], basestring) and \
+            not stringtools.is_string(args[0]) and \
             len(args) == 1:
             args = args[0]
         if len(args) == 1:

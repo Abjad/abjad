@@ -10,7 +10,7 @@ class Timer(ContextManager):
 
         >>> timer = systemtools.Timer()
         >>> with timer:
-        ...     for _ in xrange(1000000):
+        ...     for _ in range(1000000):
         ...         x = 1 + 1
         ...
         >>> timer.elapsed_time # doctest: +SKIP
@@ -22,7 +22,7 @@ class Timer(ContextManager):
 
         >>> with systemtools.Timer() as timer: # doctest: +SKIP
         ...     for _ in range(5):
-        ...         for _ in xrange(1000000):
+        ...         for _ in range(1000000):
         ...             x = 1 + 1
         ...         print(timer.elapsed_time)
         ... 

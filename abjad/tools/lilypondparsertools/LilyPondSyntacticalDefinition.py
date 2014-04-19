@@ -567,39 +567,40 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_complex_music_prefix__CONTEXT__simple_string__optional_id__optional_context_mod(self, p):
         'complex_music_prefix : CONTEXT simple_string optional_id optional_context_mod'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('complex_music_prefix', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'complex_music_prefix',
+            p.__getslice__(1, None),
+            )
 
     def p_complex_music_prefix__NEWCONTEXT__simple_string__optional_id__optional_context_mod(self, p):
         'complex_music_prefix : NEWCONTEXT simple_string optional_id optional_context_mod'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('complex_music_prefix', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'complex_music_prefix',
+            p.__getslice__(1, None),
+            )
 
     ### composite_music ###
-
 
     def p_composite_music__complex_music(self, p):
         'composite_music : complex_music'
         p[0] = p[1]
 
-
     def p_composite_music__music_bare(self, p):
         'composite_music : music_bare'
         p[0] = p[1]
 
-
     ### context_change ###
-
 
     def p_context_change__CHANGE__STRING__Chr61__STRING(self, p):
         "context_change : CHANGE STRING '=' STRING"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_change', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_change',
+            p.__getslice__(1, None),
+            )
 
     ### context_def_mod ###
-
 
 #    def p_context_def_mod__ACCEPTS(self, p):
 #        'context_def_mod : ACCEPTS'
@@ -654,48 +655,57 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
 
-
     ### context_def_spec_block ###
-
 
     def p_context_def_spec_block__CONTEXT__Chr123__context_def_spec_body__Chr125(self, p):
         "context_def_spec_block : CONTEXT '{' context_def_spec_body '}'"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_block', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_block',
+            p.__getslice__(1, None),
+            )
 
     ### context_def_spec_body ###
-
 
     def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
         'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_body',
+            p.__getslice__(1, None),
+            )
 
     def p_context_def_spec_body__Empty(self, p):
         'context_def_spec_body : '
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_body',
+            p.__getslice__(1, None),
+            )
 
     def p_context_def_spec_body__context_def_spec_body__context_mod(self, p):
         'context_def_spec_body : context_def_spec_body context_mod'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_body',
+            p.__getslice__(1, None),
+            )
 
     def p_context_def_spec_body__context_def_spec_body__context_modification(self, p):
         'context_def_spec_body : context_def_spec_body context_modification'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_body',
+            p.__getslice__(1, None),
+            )
 
     def p_context_def_spec_body__context_def_spec_body__embedded_scm(self, p):
         'context_def_spec_body : context_def_spec_body embedded_scm'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_def_spec_body',
+            p.__getslice__(1, None),
+            )
 
     ### context_mod ###
 
@@ -711,47 +721,37 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_mod', p[1:])
 
-
     def p_context_mod__property_operation(self, p):
         'context_mod : property_operation'
         p[0] = p[1]
 
-
     ### context_mod_list ###
-
 
     def p_context_mod_list__Empty(self, p):
         'context_mod_list : '
         p[0] = []
 
-
     def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_mod_list : context_mod_list CONTEXT_MOD_IDENTIFIER'
         p[0] = p[1] + [p[2]]
-
 
     def p_context_mod_list__context_mod_list__context_mod(self, p):
         'context_mod_list : context_mod_list context_mod'
         p[0] = p[1] + [p[2]]
 
-
     def p_context_mod_list__context_mod_list__embedded_scm(self, p):
         'context_mod_list : context_mod_list embedded_scm'
         p[0] = p[1] + [p[2]]
 
-
     ### context_modification ###
-
 
     def p_context_modification__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_modification : CONTEXT_MOD_IDENTIFIER'
         p[0] = [p[1]]
 
-
     def p_context_modification__WITH__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_modification : WITH CONTEXT_MOD_IDENTIFIER'
         p[0] = [p[2]]
-
 
     def p_context_modification__WITH__Chr123__context_mod_list__Chr125(self, p):
         "context_modification : WITH '{' context_mod_list '}'"
@@ -759,26 +759,27 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
-
     def p_context_modification__WITH__embedded_scm_closed(self, p):
         'context_modification : WITH embedded_scm_closed'
         p[0] = [p[2]]
 
-
     ### context_prop_spec ###
-
 
     def p_context_prop_spec__simple_string(self, p):
         'context_prop_spec : simple_string'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_prop_spec', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_prop_spec',
+            p.__getslice__(1, None),
+            )
 
     def p_context_prop_spec__simple_string__Chr46__simple_string(self, p):
         "context_prop_spec : simple_string '.' simple_string"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('context_prop_spec', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'context_prop_spec',
+            p.__getslice__(1, None),
+            )
 
     ### direction_less_char ###
 
@@ -835,7 +836,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### direction_less_event ###
 
-
     def p_direction_less_event__EVENT_IDENTIFIER(self, p):
         'direction_less_event : EVENT_IDENTIFIER'
         identifier = p[1]
@@ -843,50 +843,43 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             identifier = identifier[1:]
         p[0] = self.client._resolve_event_identifier(identifier)
 
-
     def p_direction_less_event__direction_less_char(self, p):
         'direction_less_event : direction_less_char'
         p[0] = p[1]
 
-
     def p_direction_less_event__event_function_event(self, p):
         'direction_less_event : event_function_event'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('direction_less_event', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'direction_less_event',
+            p.__getslice__(1, None),
+            )
 
     def p_direction_less_event__tremolo_type(self, p):
         'direction_less_event : tremolo_type'
         p[0] = p[1]
 
-
     ### direction_reqd_event ###
-
 
     def p_direction_reqd_event__gen_text_def(self, p):
         'direction_reqd_event : gen_text_def'
         p[0] = p[1]
 
-
     def p_direction_reqd_event__script_abbreviation(self, p):
         'direction_reqd_event : script_abbreviation'
         p[0] = p[1]
 
-
     ### dots ###
-
 
     def p_dots__Empty(self, p):
         'dots : '
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('dots', 0)
 
-
     def p_dots__dots__Chr46(self, p):
         "dots : dots '.'"
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('dots', p[1].value + 1)
-
 
     ### duration_length ###
 
@@ -1266,7 +1259,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_full_markup__MARKUP_IDENTIFIER(self, p):
         'full_markup : MARKUP_IDENTIFIER'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('full_markup', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'full_markup',
+            p.__getslice__(1, None),
+            )
 
 
     def p_full_markup__MARKUP__markup_top(self, p):
@@ -2121,7 +2117,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : markup_scm MARKUPLIST_IDENTIFIER'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('markup_list', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'markup_list',
+            p.__getslice__(1, None),
+            )
 
 
     ### markup_scm ###
@@ -2335,7 +2334,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_music_function_chord_body__MUSIC_FUNCTION__music_function_chord_body_arglist(self, p):
         'music_function_chord_body : MUSIC_FUNCTION music_function_chord_body_arglist'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('music_function_chord_body', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'music_function_chord_body',
+            p.__getslice__(1, None),
+            )
 
 
     ### music_function_chord_body_arglist ###
@@ -2357,7 +2359,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_music_function_event__MUSIC_FUNCTION__function_arglist_closed(self, p):
         'music_function_event : MUSIC_FUNCTION function_arglist_closed'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('music_function_event', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'music_function_event',
+            p.__getslice__(1, None),
+            )
 
 
     ### music_list ###
@@ -2389,7 +2394,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_music_property_def__simple_music_property_def(self, p):
         'music_property_def : simple_music_property_def'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('music_property_def', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'music_property_def',
+            p.__getslice__(1, None),
+            )
 
 
     ### new_chord ###
@@ -2494,85 +2502,79 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### octave_check ###
 
-
     def p_octave_check__Chr61(self, p):
         "octave_check : '='"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'octave_check',
+            p.__getslice__(1, None),
+            )
 
     def p_octave_check__Chr61__sub_quotes(self, p):
         "octave_check : '=' sub_quotes"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'octave_check',
+            p.__getslice__(1, None),
+            )
 
     def p_octave_check__Chr61__sup_quotes(self, p):
         "octave_check : '=' sup_quotes"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'octave_check',
+            p.__getslice__(1, None),
+            )
 
     def p_octave_check__Empty(self, p):
         'octave_check : '
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'octave_check',
+            p.__getslice__(1, None),
+            )
 
     ### optional_context_mod ###
-
 
     def p_optional_context_mod__Empty(self, p):
         'optional_context_mod : '
         p[0] = []
 
-
     def p_optional_context_mod__context_modification(self, p):
         'optional_context_mod : context_modification'
         p[0] = p[1]
 
-
     ### optional_id ###
-
 
     def p_optional_id__Chr61__simple_string(self, p):
         "optional_id : '=' simple_string"
         p[0] = p[2]
 
-
     def p_optional_id__Empty(self, p):
         'optional_id : '
         p[0] = None
 
-
     ### optional_notemode_duration ###
-
 
     def p_optional_notemode_duration__Empty(self, p):
         'optional_notemode_duration : '
         p[0] = self.client._default_duration
 
-
     def p_optional_notemode_duration__multiplied_duration(self, p):
         'optional_notemode_duration : multiplied_duration'
         p[0] = p[1]
         self.client._default_duration = p[1]
-
     ### optional_rest ###
-
 
     def p_optional_rest__Empty(self, p):
         'optional_rest : '
         p[0] = False
 
-
     def p_optional_rest__REST(self, p):
         'optional_rest : REST'
         p[0] = True
 
-
     ### output_def ###
-
 
     def p_output_def__output_def_body__Chr125(self, p):
         "output_def : output_def_body '}'"
@@ -2581,9 +2583,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
-
     ### output_def_body ###
-
 
     def p_output_def_body__output_def_body__assignment(self, p):
         'output_def_body : output_def_body assignment'
@@ -2591,49 +2591,40 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         setattr(p[1], p[2][0], p[2][1].value)
         p[0] = p[1]
 
-
 #    def p_output_def_body__output_def_body__context_def_spec_block(self, p):
 #        'output_def_body : output_def_body context_def_spec_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('output_def_body', p[1:])
-
 
 #    def p_output_def_body__output_def_body__error(self, p):
 #        'output_def_body : output_def_body error'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('output_def_body', p[1:])
 
-
     def p_output_def_body__output_def_head_with_mode_switch__Chr123(self, p):
         "output_def_body : output_def_head_with_mode_switch '{'"
         p[0] = p[1]
-
 
     def p_output_def_body__output_def_head_with_mode_switch__Chr123__output_DEF_IDENTIFIER(self, p):
         "output_def_body : output_def_head_with_mode_switch '{' output_DEF_IDENTIFIER"
         p[0] = p[2]
 
-
     ### output_def_head ###
-
 
     def p_output_def_head__LAYOUT(self, p):
         'output_def_head : LAYOUT'
         p[0] = lilypondfiletools.Block(name='layout')
         self.client._push_variable_scope()
 
-
     def p_output_def_head__MIDI(self, p):
         'output_def_head : MIDI'
         p[0] = lilypondfiletools.Block(name='midi')
         self.client._push_variable_scope()
 
-
     def p_output_def_head__PAPER(self, p):
         'output_def_head : PAPER'
         p[0] = lilypondfiletools.Block(name='paper')
         self.client._push_variable_scope()
-
 
     ### output_def_head_with_mode_switch ###
 
@@ -3123,7 +3114,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_markup__SCORE__Chr123__score_body__Chr125(self, p):
         "simple_markup : SCORE '{' score_body '}'"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('simple_markup', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'simple_markup',
+            p.__getslice__(1, None),
+            )
 
 
     def p_simple_markup__STRING(self, p):
@@ -3169,18 +3163,26 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm(self, p):
         'simple_music_property_def : REVERT context_prop_spec embedded_scm'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('simple_music_property_def', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'simple_music_property_def',
+            p.__getslice__(1, None),
+            )
 
     def p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar(self, p):
         "simple_music_property_def : SET context_prop_spec '=' scalar"
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('simple_music_property_def', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'simple_music_property_def',
+            p.__getslice__(1, None),
+            )
 
     def p_simple_music_property_def__UNSET__context_prop_spec(self, p):
         'simple_music_property_def : UNSET context_prop_spec'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('simple_music_property_def', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'simple_music_property_def',
+            p.__getslice__(1, None),
+            )
 
     ### simple_string ###
 
@@ -3248,24 +3250,31 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'steno_pitch : NOTENAME_PITCH sup_quotes'
         p[0] = pitchtools.NamedPitch(str(p[1]) + '\'' * p[2])
 
-
     ### steno_tonic_pitch ###
 
     def p_steno_tonic_pitch__TONICNAME_PITCH(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('steno_tonic_pitch', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'steno_tonic_pitch',
+            p.__getslice__(1, None),
+            )
 
     def p_steno_tonic_pitch__TONICNAME_PITCH__sub_quotes(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH sub_quotes'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('steno_tonic_pitch', p[1:])
+        p[0] = lilypondparsertools.SyntaxNode(
+            'steno_tonic_pitch',
+            p.__getslice__(1, None),
+            )
 
     def p_steno_tonic_pitch__TONICNAME_PITCH__sup_quotes(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH sup_quotes'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('steno_tonic_pitch', p[1:])
-
+        p[0] = lilypondparsertools.SyntaxNode(
+            'steno_tonic_pitch',
+            p.__getslice__(1, None),
+            )
 
     ### step_number ###
 

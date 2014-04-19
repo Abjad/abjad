@@ -212,12 +212,12 @@ class IterationAgent(abctools.AbjadObject):
         def subrange(iter, start=0, stop=None):
             # if start<0, then 'stop-start' gives a funny result
             # don not have to check stop>=start
-            # because xrange(stop-start) already handles that
+            # because range(stop-start) already handles that
             assert 0 <= start
 
             try:
                 # skip the first few elements, up to 'start' of them:
-                for i in xrange(start):
+                for i in range(start):
                     # no yield to swallow the results
                     next(iter)
 
@@ -227,7 +227,7 @@ class IterationAgent(abctools.AbjadObject):
                     for x in iter:
                         yield x
                 else:
-                    for i in xrange(stop - start):
+                    for i in range(stop - start):
                         yield next(iter)
             except StopIteration:
                 # this happens if we exhaust the list before

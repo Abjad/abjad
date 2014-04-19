@@ -16,5 +16,5 @@ def yield_all_permutations_of_sequence(sequence):
     '''
     from abjad.tools import sequencetools
 
-    for permutation in itertools.permutations(range(len(sequence))):
+    for permutation in itertools.permutations(tuple(range(len(sequence)))):
         yield sequencetools.permute_sequence(sequence, permutation)

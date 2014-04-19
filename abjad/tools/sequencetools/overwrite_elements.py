@@ -14,7 +14,7 @@ def overwrite_elements(sequence, pairs):
     Returns new list.
     '''
 
-    result = sequence[:]
+    result = list(sequence)
 
     for anchor_index, length in pairs:
         anchor = result[anchor_index]

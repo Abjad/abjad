@@ -50,7 +50,7 @@ class ClassCrawler(abctools.AbjadObject):
             if not hasattr(module, name):
                 continue
             obj = getattr(module, name)
-            if isinstance(obj, types.TypeType):
+            if isinstance(obj, type):
                 objects.append(obj)
         return tuple(sorted(objects, key=lambda x: x.__name__))
 

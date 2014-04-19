@@ -27,7 +27,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
             }
         }
         '''
-        )
+        ), format(measure)
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
@@ -47,7 +47,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -84,7 +84,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
             }
         }
         '''
-        )
+        ), format(measure)
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
@@ -104,6 +104,6 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()

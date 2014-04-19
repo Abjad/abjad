@@ -28,7 +28,7 @@ class IndicatorExpression(AbjadObject):
             prototype = (scoretools.Component, spannertools.Spanner)
             assert isinstance(component, prototype)
         if scope is not None:
-            if isinstance(scope, types.TypeType):
+            if isinstance(scope, type):
                 assert issubclass(scope, scoretools.Component)
             else:
                 assert isinstance(scope, (scoretools.Component, str))

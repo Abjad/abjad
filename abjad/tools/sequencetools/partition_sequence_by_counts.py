@@ -105,7 +105,7 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(10),
+            ...     list(range(10)),
             ...     [3],
             ...     cyclic=True,
             ...     overhang=True,
@@ -119,7 +119,7 @@ def partition_sequence_by_counts(
         ::
 
             >>> sequencetools.partition_sequence_by_counts(
-            ...     range(16),
+            ...     list(range(16)),
             ...     [4, 3],
             ...     cyclic=True,
             ...     overhang=True,

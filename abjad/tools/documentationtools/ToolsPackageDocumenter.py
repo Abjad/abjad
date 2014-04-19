@@ -101,7 +101,7 @@ class ToolsPackageDocumenter(Documenter):
             if not hasattr(module, obj_name) or obj_name.startswith('_'):
                 continue
             obj = getattr(module, obj_name)
-            if isinstance(obj, types.TypeType):
+            if isinstance(obj, type):
                 documenter = documentationtools.ClassDocumenter(
                     obj,
                     prefix=self.prefix,

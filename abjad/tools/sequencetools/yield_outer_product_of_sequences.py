@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import sys
 
 
 def yield_outer_product_of_sequences(sequences):
@@ -37,7 +38,12 @@ def yield_outer_product_of_sequences(sequences):
         return result
 
     sequences[0] = [[x] for x in sequences[0]]
-    result = reduce(_helper, sequences)
+
+    if sys.version_info[0] == 2:
+        result = reduce(_helper, sequences)
+    else:
+        import functools
+        result = functools.reduce(_helper, sequences)
 
     for element in result:
         yield element

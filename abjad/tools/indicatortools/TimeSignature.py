@@ -221,13 +221,19 @@ class TimeSignature(AbjadObject):
         if self.suppress:
             return []
         elif self.partial is None:
-            return r'\time {}/{}'.format(self.numerator, self.denominator)
+            return r'\time {}/{}'.format(
+                int(self.numerator),
+                int(self.denominator),
+                )
         else:
             result = []
             duration_string = self.partial.lilypond_duration_string
             partial_directive = r'\partial {}'.format(duration_string)
             result.append(partial_directive)
-            string =r'\time {}/{}'.format(self.numerator, self.denominator)
+            string = r'\time {}/{}'.format(
+                int(self.numerator),
+                int(self.denominator),
+                )
             result.append(string)
             return result
 

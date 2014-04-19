@@ -25,7 +25,7 @@ class ReSTLineageDirective(ReSTDirective):
     ### INITIALIZER ###
 
     def __init__(self, argument=None, children=None, name=None, options=None):
-        if isinstance(argument, types.TypeType):
+        if isinstance(argument, type):
             argument = argument.__module__ + '.' + argument.__name__
         ReSTDirective.__init__(
             self,

@@ -7,7 +7,7 @@ def test_sequencetools_partition_sequence_by_counts_01():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16),
+        list(range(16)),
         [4, 6],
         cyclic=True,
         overhang=True,
@@ -21,7 +21,7 @@ def test_sequencetools_partition_sequence_by_counts_02():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10),
+        list(range(10)),
         counts,
         cyclic=True,
         overhang=True,
@@ -35,7 +35,7 @@ def test_sequencetools_partition_sequence_by_counts_03():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16),
+        list(range(16)),
         [4, 6],
         cyclic=True,
         overhang=False,
@@ -49,7 +49,7 @@ def test_sequencetools_partition_sequence_by_counts_04():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10),
+        list(range(10)),
         counts,
         cyclic=True,
         overhang=False,
@@ -63,7 +63,7 @@ def test_sequencetools_partition_sequence_by_counts_05():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16),
+        list(range(16)),
         [4, 6],
         cyclic=False,
         overhang=True,
@@ -77,7 +77,7 @@ def test_sequencetools_partition_sequence_by_counts_06():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10),
+        list(range(10)),
         counts,
         cyclic=False,
         overhang=True,
@@ -90,7 +90,7 @@ def test_sequencetools_partition_sequence_by_counts_07():
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
-        range(16),
+        list(range(16)),
         [4, 6],
         cyclic=False,
         overhang=False,
@@ -104,7 +104,7 @@ def test_sequencetools_partition_sequence_by_counts_08():
 
     counts = (0, 2, 0, 0, 4)
     parts = sequencetools.partition_sequence_by_counts(
-        range(10),
+        list(range(10)),
         counts,
         cyclic=False,
         overhang=False,

@@ -557,7 +557,7 @@ class Component(AbjadObject):
         spanner_items = prototype[:]
         prototype, spanner_objects = [], []
         for spanner_item in spanner_items:
-            if isinstance(spanner_item, types.TypeType):
+            if isinstance(spanner_item, type):
                 prototype.append(spanner_item)
             elif isinstance(spanner_item, spannertools.Spanner):
                 spanner_objects.append(spanner_item)

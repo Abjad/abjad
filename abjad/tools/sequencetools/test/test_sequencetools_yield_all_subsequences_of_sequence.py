@@ -4,7 +4,7 @@ from abjad import *
 
 def test_sequencetools_yield_all_subsequences_of_sequence_01():
 
-    l = range(10)
+    l = list(range(10))
     sublists = list(sequencetools.yield_all_subsequences_of_sequence(l, 4, 5))
 
     assert len(sublists) == 13

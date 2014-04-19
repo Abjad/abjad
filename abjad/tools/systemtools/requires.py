@@ -61,7 +61,7 @@ def requires(*tests):
                     error_message = 'isinstance({!r}, {}) does not return true.'
                     error_message = error_message.format(arg, tuple_repr)
                     assert isinstance(arg, test), error_message
-                elif isinstance(test, types.TypeType):
+                elif isinstance(test, type):
                     error_message = 'isinstance({!r}, {}) does not return true.'
                     error_message = error_message.format(arg, test.__name__)
                     assert isinstance(arg, test), error_message

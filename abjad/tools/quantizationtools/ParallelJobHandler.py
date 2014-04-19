@@ -25,7 +25,7 @@ class ParallelJobHandler(JobHandler):
             worker.start( )
         for job in jobs:
             job_queue.put(pickle.dumps(job, protocol=0))
-        for i in xrange(len(jobs)):
+        for i in range(len(jobs)):
             finished_jobs.append(pickle.loads(result_queue.get()))
         for worker in workers:
             job_queue.put(None)

@@ -23,7 +23,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -53,7 +53,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -84,7 +84,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -120,7 +120,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -148,7 +148,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
@@ -169,7 +169,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)
 
     assert inspect_(measure).is_well_formed()
 
@@ -225,4 +225,4 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
             }
         }
         '''
-        )
+        ), format(measure)

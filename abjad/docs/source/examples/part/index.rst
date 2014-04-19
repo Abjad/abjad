@@ -256,7 +256,7 @@ overall scale:
            pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
            pitches = sorted(pitch_set, reverse=True)
            pitch_descents = []
-           for i in xrange(len(pitches)):
+           for i in range(len(pitches)):
                descent = tuple(pitches[:i + 1])
                pitch_descents.append(descent)
            reservoir[instrument_name] = tuple(pitch_descents)

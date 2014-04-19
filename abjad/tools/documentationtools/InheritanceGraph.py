@@ -202,9 +202,9 @@ class InheritanceGraph(AbjadObject):
         except AttributeError:
             InstanceType = object
         for x in addresses:
-            if isinstance(x, (types.TypeType, InstanceType)) or \
+            if isinstance(x, (type, InstanceType)) or \
                 (isinstance(x, tuple) and len(x) == 2):
-                if isinstance(x, types.TypeType):
+                if isinstance(x, type):
                     current_class = x
                 elif isinstance(x, InstanceType):
                     current_class = x.__class__
@@ -221,7 +221,7 @@ class InheritanceGraph(AbjadObject):
                 else:
                     module = importlib.import_module(x)
                 for y in module.__dict__.values():
-                    if isinstance(y, types.TypeType):
+                    if isinstance(y, type):
                         all_classes.add(y)
                         immediate_classes.add(y)
                     elif isinstance(y, types.ModuleType) and \
@@ -289,7 +289,7 @@ class InheritanceGraph(AbjadObject):
     def _submodule_recurse(self, module, visited_modules):
         result = []
         for obj in list(module.__dict__.values()):
-            if isinstance(obj, types.TypeType):
+            if isinstance(obj, type):
                 result.append(obj)
             elif isinstance(obj, types.ModuleType) and \
                 obj not in visited_modules:

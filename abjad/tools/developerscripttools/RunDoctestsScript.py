@@ -6,7 +6,7 @@ import os
 from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 try:
-    import StringIO
+    from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
@@ -118,7 +118,7 @@ class RunDoctestsScript(DirectoryScript):
         for file_path in file_paths:
             total_modules += 1
             relative_path = os.path.relpath(file_path)
-            string_buffer = StringIO.StringIO()
+            string_buffer = StringIO()
             with systemtools.RedirectedStreams(stdout=string_buffer):
                 failure_count, test_count = doctest.testfile(
                     file_path,

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import collections
+import types
 
 
 def increase_elements(sequence, addenda, indices=None):
@@ -29,8 +31,9 @@ def increase_elements(sequence, addenda, indices=None):
     '''
     from abjad.tools import sequencetools
 
-    if not isinstance(sequence, (list, tuple)):
-        raise TypeError
+    prototype = (collections.Sequence, types.GeneratorType)
+    if not isinstance(sequence, prototype):
+        raise TypeError(sequence)
 
     if indices is None:
         result = []
@@ -39,12 +42,12 @@ def increase_elements(sequence, addenda, indices=None):
             result.append(new)
     else:
         # assert no overlaps
-        tmp = [range(i, len(addenda)) for i in indices]
+        tmp = [tuple(range(i, len(addenda))) for i in indices]
         tmp = sequencetools.flatten_sequence(tmp)
         assert len(tmp) == len(set(tmp))
         result = sequence[:]
         for i in indices:
             for j in range(len(addenda)):
-                result[i+j] += addenda[j]
+                result[i + j] += addenda[j]
 
     return result

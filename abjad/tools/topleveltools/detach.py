@@ -15,7 +15,7 @@ def detach(prototype, component_expression):
     spanners = []
     grace_containers = []
     inspector = topleveltools.inspect_(component_expression)
-    if isinstance(prototype, types.TypeType):
+    if isinstance(prototype, type):
         if issubclass(prototype, spannertools.Spanner):
             spanners = inspector.get_spanners(prototype)
         elif issubclass(prototype, scoretools.GraceContainer):
