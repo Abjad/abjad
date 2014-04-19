@@ -3,24 +3,15 @@ import os
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScorePackageManager__run_01():
-    r'''Main menu.
+    r'''Main menu looks like this.
     '''
 
-    string = 'scoremanager.scores.red_example_score'
-    path = os.path.join(
-        configuration.example_score_packages_directory_path,
-        'red_example_score',
-        )
-    session = scoremanager.core.Session(is_test=True)
-    manager = scoremanager.managers.ScorePackageManager(
-        path=path,
-        session=session,
-        )
-    input_ = 'q'
-    manager._run(pending_user_input=input_)
+    input_ = 'red~example~score q'
+    score_manager._run(pending_user_input=input_)
 
     lines = [
         'Red Example Score (2013)',
@@ -35,84 +26,34 @@ def test_ScorePackageManager__run_01():
         '    score pdf - open (pdfo)',
         '',
         ]
-    assert manager._transcript.last_menu_lines == lines
+    assert score_manager._transcript.last_menu_lines == lines
 
 
 def test_ScorePackageManager__run_02():
-    r'''User 'home' input results in return home.
+    r'''Home works.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score h q'
     score_manager._run(pending_user_input=input_)
 
-    assert score_manager._transcript.signature == (6, (0, 4))
-    string = 'Score manager - example scores'
-    assert score_manager._transcript[0].title == string
-    string = 'Red Example Score (2013)'
-    assert score_manager._transcript[2].title == string
-    string = 'Score manager - example scores'
-    assert score_manager._transcript[4].title == string
+    titles = [
+        'Score manager - example scores',
+        'Red Example Score (2013)',
+        'Score manager - example scores',
+        ]
+    assert score_manager._transcript.titles == titles
 
 
 def test_ScorePackageManager__run_03():
-    r'''User 'home' input terminates execution (when score not managed
-    from home).
-    '''
-
-    string = 'scoremanager.scores.red_example_score'
-    path = os.path.join(
-        configuration.example_score_packages_directory_path,
-        'red_example_score',
-        )
-    session = scoremanager.core.Session(is_test=True)
-    manager = scoremanager.managers.ScorePackageManager(
-        path=path,
-        session=session,
-        )
-    input_ = 'h'
-    manager._run(pending_user_input=input_)
-
-    assert manager._transcript.signature == (2,)
-    string = "Red Example Score (2013)"
-    assert manager._transcript[0].title == string
-    assert manager._transcript[1].title == '> h'
-
-
-def test_ScorePackageManager__run_04():
     r'''User 'b' input returns home.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score b q'
     score_manager._run(pending_user_input=input_)
 
-    assert score_manager._transcript.signature == (6, (0, 4))
-    string = 'Score manager - example scores'
-    assert score_manager._transcript[0].title == string
-    string = 'Red Example Score (2013)'
-    assert score_manager._transcript[2].title == string
-    string = 'Score manager - example scores'
-    assert score_manager._transcript[4].title == string
-
-
-def test_ScorePackageManager__run_05():
-    r'''Shared session.
-    '''
-
-    string = 'scoremanager.scores.red_example_score'
-    path = os.path.join(
-        configuration.example_score_packages_directory_path,
-        'red_example_score',
-        )
-    session = scoremanager.core.Session(is_test=True)
-    manager = scoremanager.managers.ScorePackageManager(
-        path=path,
-        session=session,
-        )
-
-    assert manager._session is manager._build_file_wrangler._session
-    assert manager._session is manager._distribution_file_wrangler._session
-    assert manager._session is manager._material_package_wrangler._session
-    assert manager._session is manager._segment_package_wrangler._session
-    assert manager._session is manager._stylesheet_wrangler._session
+    titles = [
+        'Score manager - example scores',
+        'Red Example Score (2013)',
+        'Score manager - example scores',
+        ]
+    assert score_manager._transcript.titles == titles
