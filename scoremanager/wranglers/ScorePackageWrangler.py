@@ -180,6 +180,96 @@ class ScorePackageWrangler(Wrangler):
             )
         return menu_entries
 
+    def _get_scores_to_display_string(self):
+        return '{} scores'.format(self._session.scores_to_display)
+
+    def _make_all_directories_menu_section(self, menu):
+        commands = []
+        string = 'all dirs - metadata module - edit'
+        commands.append((string, 'mdme'))
+        string = 'all dirs - metadata module - list'
+        commands.append((string, 'mdmls'))
+        string = 'all dirs - metadata module - rewrite'
+        commands.append((string, 'mdmrw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='all dirs',
+            )
+
+    def _make_all_score_packages_menu_section(self, menu):
+        commands = []
+        commands.append(('all score packages - fix', 'fix'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='all score packages',
+            )
+
+    def _make_cache_menu_section(self, menu):
+        commands = []
+        commands.append(('cache - read only', 'cro'))
+        commands.append(('cache - write', 'cw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='cache',
+            )
+
+    def _make_main_menu(self):
+        menu = self._make_score_selection_menu()
+        self._make_all_directories_menu_section(menu)
+        self._make_all_score_packages_menu_section(menu)
+        self._make_scores_menu_section(menu)
+        self._make_scores_show_menu_section(menu)
+        self._make_cache_menu_section(menu)
+        self._make_views_menu_section(menu)
+        self._make_views_module_menu_section(menu)
+        return menu
+
+    def _make_score_selection_menu(self):
+        if self._session.rewrite_cache:
+            self._io_manager.write_cache(prompt=False)
+            self._session._rewrite_cache = False
+        menu_entries = self._io_manager._read_cache()
+        if (not menu_entries or
+            (self._session._scores_to_display == 'example' and
+            not menu_entries[0][0] == 'Blue Example Score (2013)')):
+            self._io_manager.write_cache(prompt=False)
+            menu_entries = self._io_manager._read_cache()
+        menu = self._io_manager.make_menu(
+            name='main',
+            breadcrumb_callback=self._get_scores_to_display_string,
+            )
+        menu.make_asset_section(
+            menu_entries=menu_entries,
+            )
+        return menu
+
+    def _make_scores_menu_section(self, menu):
+        commands = []
+        commands.append(('scores - copy', 'cp'))
+        commands.append(('scores - new', 'new'))
+        commands.append(('scores - remove', 'rm'))
+        commands.append(('scores - rename', 'ren'))
+        menu.make_command_section(
+            commands=commands,
+            name='scores',
+            )
+
+    def _make_scores_show_menu_section(self, menu):
+        commands = []
+        commands.append(('scores - show all', 'ssl'))
+        commands.append(('scores - show active', 'ssv'))
+        commands.append(('scores - show examples', 'ssx'))
+        commands.append(('scores - show mothballed', 'ssmb'))
+        commands.append(('scores - show user', 'ssu'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='scores - show',
+            )
+
     ### PUBLIC METHODS ###
 
     def make_score_package(self):
