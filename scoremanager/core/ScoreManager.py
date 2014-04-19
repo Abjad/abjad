@@ -191,33 +191,6 @@ class ScoreManager(Controller):
     def _get_scores_to_display_string(self):
         return '{} scores'.format(self._session.scores_to_display)
 
-    def _get_sibling_score_directory_path(self, next_=True):
-        wrangler = self._score_package_wrangler
-        paths = wrangler._list_visible_asset_paths()
-        if self._session.last_asset_path is None:
-            if next_:
-                return paths[0]
-            else:
-                return paths[-1]
-        score_path = self._session.last_asset_path
-        index = paths.index(score_path)
-        if next_:
-            sibling_index = (index + 1) % len(paths)
-        else:
-            sibling_index = (index - 1) % len(paths)
-        sibling_path = paths[sibling_index]
-        return sibling_path
-
-    def _get_sibling_score_path(self):
-        if self._session.is_navigating_to_next_score:
-            self._session._is_navigating_to_next_score = False
-            self._session._is_backtracking_to_score_manager = False
-            return self._get_sibling_score_directory_path(next_=True)
-        if self._session.is_navigating_to_previous_score:
-            self._session._is_navigating_to_previous_score = False
-            self._session._is_backtracking_to_score_manager = False
-            return self._get_sibling_score_directory_path(next_=False)
-
     def _get_wrangler_navigation_directive(self):
         if self._session.is_navigating_to_score_build_files:
             return 'u'
@@ -355,9 +328,10 @@ class ScoreManager(Controller):
             self,
             on_exit_callbacks=(self._session._clean_up,)
             )
+        wrangler = self._score_package_wrangler
         with context:
             while True:
-                result = self._get_sibling_score_path()
+                result = wrangler._get_sibling_score_path()
                 if not result:
                     result = self._get_wrangler_navigation_directive()
                 if not result:

@@ -103,6 +103,32 @@ class ScorePackageWrangler(Wrangler):
             )
         return manager
 
+    def _get_sibling_score_directory_path(self, next_=True):
+        paths = self._list_visible_asset_paths()
+        if self._session.last_asset_path is None:
+            if next_:
+                return paths[0]
+            else:
+                return paths[-1]
+        score_path = self._session.last_asset_path
+        index = paths.index(score_path)
+        if next_:
+            sibling_index = (index + 1) % len(paths)
+        else:
+            sibling_index = (index - 1) % len(paths)
+        sibling_path = paths[sibling_index]
+        return sibling_path
+        
+    def _get_sibling_score_path(self):
+        if self._session.is_navigating_to_next_score:
+            self._session._is_navigating_to_next_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_sibling_score_directory_path(next_=True)
+        if self._session.is_navigating_to_previous_score:
+            self._session._is_navigating_to_previous_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_sibling_score_directory_path(next_=False)
+
     def _is_valid_directory_entry(self, expr):
         superclass = super(ScorePackageWrangler, self)
         if superclass._is_valid_directory_entry(expr):
