@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import StringIO
 import datetime
 import os
 import platform
@@ -8,7 +7,11 @@ import shutil
 import subprocess
 import sys
 import time
-
+try:
+    import StringIO
+except ImportError:
+    from io import StringIO
+    
 
 class IOManager(object):
     r'''Manages Abjad IO.
