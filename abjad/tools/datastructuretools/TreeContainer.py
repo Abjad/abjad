@@ -198,7 +198,7 @@ class TreeContainer(TreeNode):
             children = self._named_children[i]
             if 1 == len(children):
                 return tuple(children)[0]
-        raise ValueError, repr(i)
+        raise ValueError(repr(i))
 
     def __hash__(self):
         r'''Hashes tree container.
