@@ -39,3 +39,6 @@ nosetests.xml
 
 # LaTeX intermediate files
 *.synctex.gz
+
+# Misc.
+*.bak
