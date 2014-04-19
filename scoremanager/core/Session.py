@@ -1250,7 +1250,10 @@ class Session(abctools.AbjadObject):
 
         Returns controller.
         '''
+        from scoremanager import core
         for controller in reversed(self.controller_stack):
+            if isinstance(controller, core.ScoreManager):
+                controller = controller._score_package_wrangler
             if not ui:
                 return controller
             user_input_to_action = getattr(
