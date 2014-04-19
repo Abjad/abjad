@@ -73,8 +73,7 @@
     IndexError: list index out of range
 
 21. Bug:
-    File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
-        in _get_next_score_directory_path
+    File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory_path
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
