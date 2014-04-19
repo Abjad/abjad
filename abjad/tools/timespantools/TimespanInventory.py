@@ -1214,7 +1214,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> mapping = timespan_inventory.compute_overlap_factor_mapping()
-            >>> for timespan, overlap_factor in mapping.iteritems():
+            >>> for timespan, overlap_factor in mapping.items():
             ...     timespan.start_offset, timespan.stop_offset, overlap_factor
             ...
             (Offset(0, 1), Offset(5, 1), Multiplier(1, 1))
@@ -1266,7 +1266,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for offset, count in sorted(
-                ...     timespan_inventory_1.count_offsets().iteritems()):
+                ...     timespan_inventory_1.count_offsets().items()):
                 ...     offset, count
                 ...
                 (Offset(0, 1), 1)
@@ -1301,7 +1301,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for offset, count in sorted(
-                ...     timespan_inventory_2.count_offsets().iteritems()):
+                ...     timespan_inventory_2.count_offsets().items()):
                 ...     offset, count
                 ...
                 (Offset(0, 1), 1)
@@ -1323,7 +1323,7 @@ class TimespanInventory(TypedList):
                 ...     timespantools.Timespan(0, 9),
                 ...     ])
                 >>> for offset, count in sorted(
-                ...     timespan_inventory.count_offsets().iteritems()):
+                ...     timespan_inventory.count_offsets().items()):
                 ...     offset, count
                 ...
                 (Offset(0, 1), 3)

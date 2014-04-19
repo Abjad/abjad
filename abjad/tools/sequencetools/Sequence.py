@@ -492,7 +492,7 @@ class Sequence(AbjadObject):
 
         Returns boolean.
         '''
-        return sorted(self) == range(len(self))
+        return tuple(sorted(self)) == tuple(range(len(self)))
 
     def is_repetition_free(self):
         '''Is true when sequence is repetition-free.

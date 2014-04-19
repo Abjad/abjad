@@ -172,22 +172,22 @@ class TypedOrderedDict(TypedCollection):
         '''
         return list(self._collection.items())
 
-    def iteritems(self):
-        r'''Aliases OrderedDict.iteritems().
+    def items(self):
+        r'''Aliases OrderedDict.items().
 
         Returns generator.
         '''
         return iter(self._collection.items())
 
-    def iterkeys(self):
-        r'''Aliases OrderedDict.iterkeys().
+    def keys(self):
+        r'''Aliases OrderedDict.keys().
 
         Returns generator.
         '''
         return iter(self._collection.keys())
 
-    def itervalues(self):
-        r'''Aliases OrderedDict.itervalues().
+    def values(self):
+        r'''Aliases OrderedDict.values().
 
         Returns generator.
         '''

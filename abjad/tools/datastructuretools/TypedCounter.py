@@ -216,19 +216,19 @@ class TypedCounter(TypedCollection):
         '''
         return list(self._collection.items())
 
-    def iteritems(self):
+    def items(self):
         r'''Iterates items in typed counter.
 
         Yields items.
         '''
         return iter(self._collection.items())
 
-    def iterkeys(self):
+    def keys(self):
         r'''Iterates keys in typed counter.
         '''
         return iter(self._collection.keys())
 
-    def itervalues(self):
+    def values(self):
         r'''Iterates values in typed counter.
         '''
         return iter(self._collection.values())
