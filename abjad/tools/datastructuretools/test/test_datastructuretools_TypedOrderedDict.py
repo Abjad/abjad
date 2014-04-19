@@ -2,28 +2,28 @@
 from abjad import *
 
 
-def test_datastructuretools_TypedOrderedDict_01():
-    r'''Implements __cmp__().
-    '''
-
-    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
-    dictionary_1['soprano'] = 'treble'
-
-    dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)
-    dictionary_2['soprano'] = 'treble'
-
-    dictionary_3 = datastructuretools.TypedOrderedDict(item_class=Clef)
-    dictionary_3['bass'] = 'bass'
-
-    assert cmp(dictionary_1, dictionary_1) == 0
-    assert cmp(dictionary_1, dictionary_2) == 0
-    assert cmp(dictionary_1, dictionary_3) == 1
-    assert cmp(dictionary_2, dictionary_1) == 0
-    assert cmp(dictionary_2, dictionary_2) == 0
-    assert cmp(dictionary_2, dictionary_3) == 1
-    assert cmp(dictionary_3, dictionary_1) == -1
-    assert cmp(dictionary_3, dictionary_2) == -1
-    assert cmp(dictionary_3, dictionary_3) == 0
+#def test_datastructuretools_TypedOrderedDict_01():
+#    r'''Implements __cmp__().
+#    '''
+#
+#    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
+#    dictionary_1['soprano'] = 'treble'
+#
+#    dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)
+#    dictionary_2['soprano'] = 'treble'
+#
+#    dictionary_3 = datastructuretools.TypedOrderedDict(item_class=Clef)
+#    dictionary_3['bass'] = 'bass'
+#
+#    assert cmp(dictionary_1, dictionary_1) == 0
+#    assert cmp(dictionary_1, dictionary_2) == 0
+#    assert cmp(dictionary_1, dictionary_3) == 1
+#    assert cmp(dictionary_2, dictionary_1) == 0
+#    assert cmp(dictionary_2, dictionary_2) == 0
+#    assert cmp(dictionary_2, dictionary_3) == 1
+#    assert cmp(dictionary_3, dictionary_1) == -1
+#    assert cmp(dictionary_3, dictionary_2) == -1
+#    assert cmp(dictionary_3, dictionary_3) == 0
 
 
 def test_datastructuretools_TypedOrderedDict_02():

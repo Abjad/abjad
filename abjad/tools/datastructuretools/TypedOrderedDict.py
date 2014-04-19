@@ -29,6 +29,8 @@ class TypedOrderedDict(TypedCollection):
             item_class=item_class,
             items=items,
             )
+        if isinstance(items, collections.Mapping):
+            items = items.items()
         items = items or []
         the_items = []
         for item in items:
@@ -163,7 +165,7 @@ class TypedOrderedDict(TypedCollection):
 
         Returns boolean.
         '''
-        return self._collection.has_key(key)
+        return key in self._collection
 
     def items(self):
         r'''Aliases OrderedDict.items().

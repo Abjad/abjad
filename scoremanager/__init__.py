@@ -58,12 +58,25 @@ break.
 scoremanager/ directory to do this. You're ready to use the score manager when
 all tests pass.
 '''
-import core
-import exceptions
-import getters
-import iotools
-import makers
-import managers
-import predicates
-import wizards
-import wranglers
+import sys
+if sys.version_info[0] == 2:
+    import core
+    import exceptions
+    import getters
+    import iotools
+    import makers
+    import managers
+    import predicates
+    import wizards
+    import wranglers
+else:
+    from scoremanager import core
+    from scoremanager import exceptions
+    from scoremanager import getters
+    from scoremanager import iotools
+    from scoremanager import makers
+    from scoremanager import managers
+    from scoremanager import predicates
+    from scoremanager import wizards
+    from scoremanager import wranglers
+del sys

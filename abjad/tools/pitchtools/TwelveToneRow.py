@@ -81,7 +81,7 @@ class TwelveToneRow(PitchClassSegment):
     def _validate_pitch_classes(pitch_classes):
         numbers = [pc.pitch_class_number for pc in pitch_classes]
         numbers.sort()
-        if not numbers == range(12):
+        if not numbers == list(range(12)):
             message = 'must contain all twelve pitch-classes: {!r}.'
             message = message.format(pitch_classes)
             raise ValueError(message)

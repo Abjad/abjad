@@ -274,7 +274,7 @@ class StorageFormatManager(object):
         names = StorageFormatManager.get_keyword_argument_names(subject)
         values = StorageFormatManager.get_keyword_argument_values(subject)
         assert len(names) == len(values)
-        result = dict(zip(names, values))
+        result = dict(list(zip(names, values)))
         return result
 
     @staticmethod
@@ -300,7 +300,7 @@ class StorageFormatManager(object):
         names = StorageFormatManager.get_positional_argument_names(subject)
         values = StorageFormatManager.get_positional_argument_values(subject)
         assert len(names) == len(values)
-        result = dict(zip(names, values))
+        result = dict(list(zip(names, values)))
         return result
 
     @staticmethod

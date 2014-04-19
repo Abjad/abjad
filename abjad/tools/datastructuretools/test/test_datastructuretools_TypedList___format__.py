@@ -22,7 +22,7 @@ def test_datastructuretools_TypedList___format___01():
         )
 
 
-def test_datastructuretools_TypedList___format___03():
+def test_datastructuretools_TypedList___format___02():
     r'''Populated inventory. Without keywords.
     '''
 
@@ -72,7 +72,7 @@ def test_datastructuretools_TypedList___format___03():
         )
 
 
-def test_datastructuretools_TypedList___format___04():
+def test_datastructuretools_TypedList___format___03():
     r'''Populated inventory. With keywords.
     '''
 

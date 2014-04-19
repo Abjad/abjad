@@ -247,8 +247,7 @@ class PitchArrayCell(AbjadObject):
                 if cell is self:
                     start = cumulative_width
                     stop = start + self.width
-                    indices = range(start, stop)
-                    indices = tuple(indices)
+                    indices = tuple(range(start, stop))
                     return indices
                 cumulative_width += cell.width
         message = 'cell has no parent row.'

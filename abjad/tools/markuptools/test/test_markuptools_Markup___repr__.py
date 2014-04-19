@@ -14,7 +14,7 @@ def test_markuptools_Markup___repr___02():
     assert repr(markup) == "Markup(contents=('foo bar',), direction=Up)"
 
 
-def test_markuptools_Markup___repr___04():
+def test_markuptools_Markup___repr___03():
 
     markup = markuptools.Markup(contents=('foo', 'bar'), direction=Up)
     assert repr(markup) == "Markup(contents=('foo', 'bar'), direction=Up)"

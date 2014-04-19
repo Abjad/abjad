@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import desordre
-import ferneyhough
-import mozart
-import part
+from abjad.demos import desordre
+from abjad.demos import ferneyhough
+from abjad.demos import mozart
+from abjad.demos import part

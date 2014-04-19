@@ -454,7 +454,7 @@ class PitchArrayRow(AbjadObject):
             width += cell.width
         start = min(column_indices)
         stop = start + len(column_indices)
-        strict_series = range(start, stop)
+        strict_series = list(range(start, stop))
         if not column_indices == strict_series:
             message = 'cells must be contiguous.'
             raise ValueError(message)
