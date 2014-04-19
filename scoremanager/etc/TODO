@@ -212,3 +212,5 @@
         core/test/test_ScoreManager_view_cache.py
         core/test/test_ScoreManager_write_cache.py
     All should go to wranglers/test/ directory with appropriate changes.
+
+49. Make (red m ls) work.
