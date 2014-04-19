@@ -30,7 +30,7 @@ def test_StylesheetWrangler_repository_status_03():
     r'''Works with Subversion-managed score.
     '''
 
-    score_name = score_manager._find_svn_score_name()
+    score_name = score_manager._score_package_wrangler._find_svn_score_name()
     if not score_name:
         return
 

@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import subprocess
-from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.core.Controller import Controller
 
@@ -90,57 +88,6 @@ class ScoreManager(Controller):
         return wranglers.StylesheetWrangler(session=self._session)
 
     ### PRIVATE METHODS ###
-
-    def _find_svn_score_name(self):
-        from scoremanager import managers
-        manager = self._find_up_to_date_manager(
-            managers.ScorePackageManager,
-            repository='svn',
-            system=False,
-            )
-        if manager:
-            title = manager._get_title()
-            title = stringtools.to_accent_free_snake_case(title)
-            return title
-
-    def _find_up_to_date_manager(
-        self,
-        manager_class,
-        repository='git',
-        system=True,
-        ):
-        import scoremanager
-        session = scoremanager.core.Session()
-        dummy_path = os.path.sep
-        manager = manager_class(path=dummy_path, session=session)
-        suffix = ()
-        if isinstance(suffix, str):
-            suffix = (suffix,)
-        assert isinstance(suffix, tuple)
-        if system:
-            scores_directory = \
-                self._configuration.example_score_packages_directory_path
-        else:
-            scores_directory = \
-                self._configuration.user_score_packages_directory_path
-        for score_package_name in os.listdir(scores_directory):
-            path = os.path.join(
-                scores_directory,
-                score_package_name,
-                *suffix
-                )
-            if not os.path.isdir(path):
-                continue
-            session = scoremanager.core.Session(is_test=True)
-            manager = manager_class(path=path, session=session)
-            if (repository == 'git' and
-                manager._is_git_versioned() and
-                manager._is_up_to_date()):
-                return manager
-            elif (repository == 'svn' and
-                manager._is_svn_versioned() and
-                manager._is_up_to_date()):
-                return manager
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools

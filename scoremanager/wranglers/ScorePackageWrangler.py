@@ -74,17 +74,6 @@ class ScorePackageWrangler(Wrangler):
         else:
             return self._configuration.user_score_packages_directory_path
 
-#    @property
-#    def _user_input_to_action(self):
-#        superclass = super(ScorePackageWrangler, self)
-#        result = superclass._user_input_to_action
-#        result = result.copy()
-#        result.update({
-#            'new': self.make_score_package,
-#            'rm': self.remove_score_packages,
-#            })
-#        return result
-
     @property
     def _user_input_to_action(self):
         result = {
@@ -144,6 +133,18 @@ class ScorePackageWrangler(Wrangler):
             must_have_file=must_have_file,
             )
         return manager
+
+    def _find_svn_score_name(self):
+        from scoremanager import managers
+        manager = self._find_up_to_date_manager(
+            managers.ScorePackageManager,
+            repository='svn',
+            system=False,
+            )
+        if manager:
+            title = manager._get_title()
+            title = stringtools.to_accent_free_snake_case(title)
+            return title
 
     def _get_sibling_score_directory_path(self, next_=True):
         paths = self._list_visible_asset_paths()

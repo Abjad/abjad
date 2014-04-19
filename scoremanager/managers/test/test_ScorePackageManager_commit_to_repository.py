@@ -9,7 +9,7 @@ def test_ScorePackageManager_commit_to_repository_01():
     r'''Flow control reaches Git-managed score package.
     '''
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='git',
         system=True,
@@ -24,7 +24,7 @@ def test_ScorePackageManager_commit_to_repository_02():
     r'''Flow control reaches Subversion-managed score package.
     '''
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='svn',
         system=False,

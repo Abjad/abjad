@@ -11,7 +11,7 @@ def test_ScorePackageManager_add_to_repository_01():
     Then unadd the files and leave the score package as found.
     '''
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='git',
         system=True,
@@ -26,7 +26,7 @@ def test_ScorePackageManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='svn',
         system=False,

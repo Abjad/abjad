@@ -148,7 +148,8 @@ class Wrangler(Controller):
         system=True,
         repository='git',
         ):
-        import scoremanager
+        from scoremanager import core
+        from scoremanager import wranglers
         abjad_library = False
         example_score_packages = False
         user_library = False
@@ -169,7 +170,19 @@ class Wrangler(Controller):
             user_library=user_library,
             user_score_packages=user_score_packages,
             )
-        session = scoremanager.core.Session()
+        if type(self) is wranglers.ScorePackageWrangler:
+            if system:
+                scores_directory = \
+                    self._configuration.example_score_packages_directory_path
+            else:
+                scores_directory = \
+                    self._configuration.user_score_packages_directory_path
+            asset_paths = []
+            for directory_entry in  os.listdir(scores_directory):
+                path = os.path.join(scores_directory, directory_entry)
+                if os.path.isdir(path):
+                    asset_paths.append(path)
+        session = core.Session()
         for asset_path in asset_paths:
             manager = self._manager_class(
                 path=asset_path,

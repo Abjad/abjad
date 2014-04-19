@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageManager_revert_to_repository_01():
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='git',
         system=True,
@@ -18,7 +18,7 @@ def test_ScorePackageManager_revert_to_repository_01():
 
 def test_ScorePackageManager_revert_to_repository_02():
 
-    manager = score_manager._find_up_to_date_manager(
+    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
         scoremanager.managers.ScorePackageManager,
         repository='svn',
         system=False,
