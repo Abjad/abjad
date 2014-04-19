@@ -49,7 +49,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         if verbose:
             print('Now writing restructured text files ...')
-            print()
+            print('')
 
         ignored_directory_names = [
             '__pycache__',

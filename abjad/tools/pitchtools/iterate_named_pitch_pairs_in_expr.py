@@ -74,7 +74,8 @@ def iterate_named_pitch_pairs_in_expr(expr):
     ::
 
         >>> for pair in pitchtools.iterate_named_pitch_pairs_in_expr(staff):
-        ...   print(pair)
+        ...     pair
+        ...
         (NamedPitch("c'"), NamedPitch("d'"))
         (NamedPitch("c'"), NamedPitch("e'"))
         (NamedPitch("d'"), NamedPitch("e'"))

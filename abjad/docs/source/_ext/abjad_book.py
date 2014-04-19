@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import docutils
 import hashlib
 import os
@@ -11,6 +12,11 @@ import tempfile
 import traceback
 from abjad import abjad_configuration
 from abjad.tools import documentationtools
+from abjad.tools import systemtools
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 
 class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
@@ -145,54 +151,59 @@ def scan_doctree_for_abjad_literal_blocks(doctree):
 
 
 def process_literal_block_pairs(literal_block_pairs):
-    environment = {'__builtins__': __builtins__}
-    exec('from abjad import *\n', environment)
-    for literal_block, all_lines in literal_block_pairs:
-        original_lines = literal_block[0].splitlines()
-        replacement_blocks = []
-        lines_to_execute = []
-        previous_line_number = 0
-        for i, line in all_lines:
-            lines_to_execute.append(line)
-            if line.startswith('__abjad_book__ ='):
-                if '__abjad_book__' in environment:
-                    del(environment['__abjad_book__'])
+    environment = {
+        '__builtins__': __builtins__,
+        'print_function': print_function,
+        }
+    string_io = StringIO()
+    with systemtools.RedirectedStreams(stdout=string_io):
+        exec('from abjad import *\n', environment)
+        for literal_block, all_lines in literal_block_pairs:
+            original_lines = literal_block[0].splitlines()
+            replacement_blocks = []
+            lines_to_execute = []
+            previous_line_number = 0
+            for i, line in all_lines:
+                lines_to_execute.append(line)
+                if line.startswith('__abjad_book__ ='):
+                    if '__abjad_book__' in environment:
+                        del(environment['__abjad_book__'])
+                    try:
+                        exec('\n'.join(lines_to_execute), environment)
+                    except Exception as e:
+                        traceback.print_exc()
+                    kind, obj = environment['__abjad_book__']
+                    new_abjad_book_block = abjad_book_block()
+                    new_abjad_book_block['kind'] = kind
+                    if kind == 'lilypond':
+                        lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
+                        new_abjad_book_block['code'] = format(lilypond_file)
+                        new_abjad_book_block['raw_code'] = format(obj)
+                    elif kind == 'graphviz':
+                        graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
+                        new_abjad_book_block['code'] = graphviz_graph.graphviz_format
+                    text = '\n'.join(original_lines[previous_line_number:i + 1])
+                    new_literal_block = literal_block.deepcopy()
+                    new_literal_block.rawsource = text
+                    new_literal_block[0].rawsource = text
+                    new_literal_block[0].text = text
+                    replacement_blocks.extend([new_literal_block, new_abjad_book_block])
+                    lines_to_execute = []
+                    previous_line_number = i + 1
+            if lines_to_execute:
                 try:
                     exec('\n'.join(lines_to_execute), environment)
-                except Exception as e:
-                    traceback.print_exc()
-                kind, obj = environment['__abjad_book__']
-                new_abjad_book_block = abjad_book_block()
-                new_abjad_book_block['kind'] = kind
-                if kind == 'lilypond':
-                    lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
-                    new_abjad_book_block['code'] = format(lilypond_file)
-                    new_abjad_book_block['raw_code'] = format(obj)
-                elif kind == 'graphviz':
-                    graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
-                    new_abjad_book_block['code'] = graphviz_graph.graphviz_format
-                text = '\n'.join(original_lines[previous_line_number:i + 1])
-                new_literal_block = literal_block.deepcopy()
-                new_literal_block.rawsource = text
-                new_literal_block[0].rawsource = text
-                new_literal_block[0].text = text
-                replacement_blocks.extend([new_literal_block, new_abjad_book_block])
-                lines_to_execute = []
-                previous_line_number = i + 1
-        if lines_to_execute:
-            try:
-                exec('\n'.join(lines_to_execute), environment)
-            except:
-                pass
+                except:
+                    pass
+                if replacement_blocks:
+                    text = '\n'.join(original_lines[previous_line_number:])
+                    new_literal_block = literal_block.deepcopy()
+                    new_literal_block.rawsource = text
+                    new_literal_block[0].rawsource = text
+                    new_literal_block[0].text = text
+                    replacement_blocks.append(new_literal_block)
             if replacement_blocks:
-                text = '\n'.join(original_lines[previous_line_number:])
-                new_literal_block = literal_block.deepcopy()
-                new_literal_block.rawsource = text
-                new_literal_block[0].rawsource = text
-                new_literal_block[0].text = text
-                replacement_blocks.append(new_literal_block)
-        if replacement_blocks:
-            literal_block.replace_self(replacement_blocks)
+                literal_block.replace_self(replacement_blocks)
 
 
 def process_abjad_literal_blocks(abjad_literal_blocks):

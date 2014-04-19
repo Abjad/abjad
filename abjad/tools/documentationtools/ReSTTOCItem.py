@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import stringtools
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
@@ -52,7 +53,6 @@ class ReSTTOCItem(TreeNode):
 
     @text.setter
     def text(self, arg):
-        assert isinstance(arg, str)
+        assert stringtools.is_string(arg)
         arg = arg.strip()
-        assert len(arg)
         self._text = arg
