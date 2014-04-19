@@ -59,7 +59,7 @@ class AbjadLineage(Directive):
                 )
             graph = lineage.graphviz_graph
 
-        except InheritanceException, err:
+        except InheritanceException as err:
             return [node.document.reporter.warning(err.args[0],
                                                    line=self.lineno)]
 

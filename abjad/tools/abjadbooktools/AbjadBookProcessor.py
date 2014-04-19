@@ -356,7 +356,7 @@ class AbjadBookProcessor(AbjadObject):
                             if self.verbose:
                                 print('\t\t{}'.format(command))
                             self._run_command(command, verbose)
-            except AssertionError, e:
+            except AssertionError as e:
                 print(e)
 
     def _run_command(self, command, verbose):
