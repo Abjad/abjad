@@ -191,20 +191,6 @@ class ScoreManager(Controller):
     def _get_scores_to_display_string(self):
         return '{} scores'.format(self._session.scores_to_display)
 
-    def _get_wrangler_navigation_directive(self):
-        if self._session.is_navigating_to_score_build_files:
-            return 'u'
-        elif self._session.is_navigating_to_score_distribution_files:
-            return 'd'
-        elif self._session.is_navigating_to_score_maker_modules:
-            return 'k'
-        elif self._session.is_navigating_to_score_materials:
-            return 'm'
-        elif self._session.is_navigating_to_score_segments:
-            return 'g'
-        elif self._session.is_navigating_to_score_stylesheets:
-            return 'y'
-
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -329,11 +315,12 @@ class ScoreManager(Controller):
             on_exit_callbacks=(self._session._clean_up,)
             )
         wrangler = self._score_package_wrangler
+        io_manager = self._io_manager
         with context:
             while True:
                 result = wrangler._get_sibling_score_path()
                 if not result:
-                    result = self._get_wrangler_navigation_directive()
+                    result = io_manager._get_wrangler_navigation_directive()
                 if not result:
                     menu = self._make_main_menu()
                     result = menu._run()

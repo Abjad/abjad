@@ -202,20 +202,6 @@ class ScorePackageManager(PackageManager):
             self._get_stylesheets_directory_path(),
             )
 
-    def _get_wrangler_navigation_directive(self):
-        if self._session.is_navigating_to_score_build_files:
-            return 'u'
-        elif self._session.is_navigating_to_score_distribution_files:
-            return 'd'
-        elif self._session.is_navigating_to_score_maker_modules:
-            return 'k'
-        elif self._session.is_navigating_to_score_materials:
-            return 'm'
-        elif self._session.is_navigating_to_score_segments:
-            return 'g'
-        elif self._session.is_navigating_to_score_stylesheets:
-            return 'y'
-
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result in self._user_input_to_action:

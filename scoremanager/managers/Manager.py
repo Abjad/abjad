@@ -237,9 +237,6 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
-    def _get_wrangler_navigation_directive(self):
-        pass
-
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
         getter.append_dash_case_file_name('new name')
@@ -436,10 +433,11 @@ class Manager(Controller):
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
         directory_change = systemtools.TemporaryDirectoryChange(self._path)
+        io_manager = self._io_manager
         with context, directory_change:
                 self._enter_run()
                 while True:
-                    result = self._get_wrangler_navigation_directive()
+                    result = io_manager._get_wrangler_navigation_directive()
                     if not result:
                         menu = self._make_main_menu()
                         result = menu._run()
