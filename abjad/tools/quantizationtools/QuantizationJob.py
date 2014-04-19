@@ -169,7 +169,7 @@ class QuantizationJob(AbjadObject):
 
         Returns none.
         '''
-        for key, value in state.iteritems():
+        for key, value in state.items():
             setattr(self, key, value)
 
     ### PUBLIC PROPERTIES ###

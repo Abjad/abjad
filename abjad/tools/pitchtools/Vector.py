@@ -30,7 +30,7 @@ class Vector(TypedCounter):
             items = [item for item in items]
         if isinstance(items, (TypedCounter, collections.Counter)):
             new_tokens = []
-            for item, count in items.iteritems():
+            for item, count in items.items():
                 new_tokens.extend(count * [item])
             items = new_tokens
         if item_class is None:
@@ -63,7 +63,7 @@ class Vector(TypedCounter):
         Returns string.
         '''
         parts = ['{}: {}'.format(key, value)
-            for key, value in self.iteritems()]
+            for key, value in self.items()]
         return '<{}>'.format(', '.join(parts))
 
     ### PRIVATE PROPERTIES ###

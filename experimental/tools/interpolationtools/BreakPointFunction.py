@@ -53,7 +53,7 @@ class BreakPointFunction(AbjadObject):
             new_bpf = bpf._bpf.copy()
         elif isinstance(bpf, dict):
             new_bpf = bpf.copy()
-            for x, ys in new_bpf.iteritems():
+            for x, ys in new_bpf.items():
                 assert isinstance(x, numbers.Real)
                 if isinstance(ys, (list, tuple)):
                     assert len(ys) in (1, 2)
@@ -228,7 +228,7 @@ class BreakPointFunction(AbjadObject):
             "unset key",
             "plot '-' using 1:2 with linespoints ls 1",
         ]
-        for x, ys in sorted(self._bpf.iteritems()):
+        for x, ys in sorted(self._bpf.items()):
             if len(ys) == 2:
                 result.append('\t{} {}'.format(float(x), float(ys[0])))
                 result.append('')
@@ -350,7 +350,7 @@ class BreakPointFunction(AbjadObject):
     def _update_caches(self):
         x_values = []
         y_values = []
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             x_values.append(x)
             y_values.extend(ys)
         self._dc_bias = sum(y_values) / len(y_values)
@@ -407,7 +407,7 @@ class BreakPointFunction(AbjadObject):
         assert isinstance(maximum, numbers.Real)
         assert minimum < maximum
         bpf = {}
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             new_ys = []
             for y in ys:
                 if y < minimum:
@@ -561,7 +561,7 @@ class BreakPointFunction(AbjadObject):
         else:
             assert isinstance(y_center, numbers.Real)
         bpf = {}
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             new_ys = [((y_center - y) + y_center) for y in ys]
             bpf[x] = tuple(new_ys)
         return type(self)(bpf)
@@ -615,7 +615,7 @@ class BreakPointFunction(AbjadObject):
             x_center = self.x_center
         else:
             assert isinstance(x_center, numbers.Real)
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             new_x = (x_center - x) + x_center
             bpf[new_x] = tuple(reversed(ys))
         return type(self)(bpf)
@@ -657,7 +657,7 @@ class BreakPointFunction(AbjadObject):
         assert minimum < maximum
         bpf = {}
         x_min, x_max = self.x_range
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             bpf[self._scale(x, x_min, x_max, minimum, maximum)] = ys
         return type(self)(bpf)
 
@@ -682,7 +682,7 @@ class BreakPointFunction(AbjadObject):
         assert minimum < maximum
         bpf = {}
         y_min, y_max = self.y_range
-        for x, ys in self._bpf.iteritems():
+        for x, ys in self._bpf.items():
             bpf[x] = tuple(
                 [self._scale(y, y_min, y_max, minimum, maximum) for y in ys])
         return type(self)(bpf)

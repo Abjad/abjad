@@ -59,7 +59,7 @@ class QEvent(AbjadObject):
     def __setstate__(self, state):
         r'''Sets state.
         '''
-        for key, value in state.iteritems():
+        for key, value in state.items():
             setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###

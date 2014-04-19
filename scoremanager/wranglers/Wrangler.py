@@ -730,7 +730,7 @@ class Wrangler(Controller):
             self._io_manager.proceed(message)
             return
         lines = []
-        view_names = view_inventory.keys()
+        view_names = list(view_inventory.keys())
         if is_ranged:
             breadcrumb = 'view(s)'
         else:
@@ -880,7 +880,7 @@ class Wrangler(Controller):
             self._session._hide_next_redraw = True
             return
         lines = []
-        names = view_inventory.keys()
+        names = list(view_inventory.keys())
         view_count = len(view_inventory)
         view_string = 'view'
         if view_count != 1:

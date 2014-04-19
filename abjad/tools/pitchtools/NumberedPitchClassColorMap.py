@@ -62,8 +62,8 @@ class NumberedPitchClassColorMap(AbjadObject):
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
                 pc = pitchtools.NumberedPitchClass(pitch)
-                if pc.pitch_class_number in self._color_dictionary.keys():
-                    print(pc, self._color_dictionary.keys())
+                if pc.pitch_class_number in list(self._color_dictionary.keys()):
+                    print(pc, list(self._color_dictionary.keys()))
                     message = 'duplicated pitch-class in color map: {!r}.'
                     message = message.format(pc)
                     raise KeyError(message)
@@ -136,7 +136,7 @@ class NumberedPitchClassColorMap(AbjadObject):
 
         Returns list.
         '''
-        items = self._color_dictionary.items()
+        items = list(self._color_dictionary.items())
         return list(sorted(items))
 
     @property

@@ -243,13 +243,13 @@ class ContiguousSelection(Selection):
         # make schema of spanners contained by components
         schema = self._make_spanner_schema()
         # copy spanners covered by components
-        for covered_spanner, component_indices in schema.items():
+        for covered_spanner, component_indices in list(schema.items()):
             new_covered_spanner = copy.copy(covered_spanner)
             del(schema[covered_spanner])
             schema[new_covered_spanner] = component_indices
         # reverse schema
         reversed_schema = {}
-        for new_covered_spanner, component_indices in schema.items():
+        for new_covered_spanner, component_indices in list(schema.items()):
             for component_index in component_indices:
                 try:
                     reversed_schema[component_index].append(

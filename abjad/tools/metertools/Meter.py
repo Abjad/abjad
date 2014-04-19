@@ -920,7 +920,7 @@ class Meter(AbjadObject):
                 total += 1
 
         if normalize:
-            for offset, response in kernel.iteritems():
+            for offset, response in kernel.items():
                 kernel[offset] = durationtools.Multiplier(response, total)
 
         return metertools.MetricAccentKernel(kernel)

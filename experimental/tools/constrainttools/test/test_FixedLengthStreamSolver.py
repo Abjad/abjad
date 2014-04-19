@@ -6,7 +6,7 @@ def test_FixedLengthStreamSolver_01():
 
     domain = Domain([1, 2, 3, 4], 4)
     all_unique = GlobalCountsConstraint(
-        lambda x: all(y == 1 for y in x.values()))
+        lambda x: all(y == 1 for y in list(x.values())))
     max_interval = RelativeIndexConstraint(
         [0, 1], lambda x, y: abs(x - y) < 3)
 

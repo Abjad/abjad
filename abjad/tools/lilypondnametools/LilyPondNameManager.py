@@ -49,13 +49,13 @@ class LilyPondNameManager(AbjadObject):
     def __setstate__(self, state):
         r'''Sets object state.
         '''
-        for key, value in state.iteritems():
+        for key, value in state.items():
             self.__dict__[key] = value
 
     ### PRIVATE METHODS ###
 
     def _get_attribute_pairs(self):
-        return tuple(vars(self).iteritems())
+        return tuple(vars(self).items())
 
     def _get_skeleton_strings(self):
         result = []

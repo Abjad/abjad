@@ -95,7 +95,7 @@ class StorageFormatManager(object):
             result.append('{}{}'.format(prefix, braces[1]))
         elif isinstance(value, collections.OrderedDict):
             result.append('[{}'.format(infix))
-            for item in value.items():
+            for item in list(value.items()):
                 item_pieces = StorageFormatManager.format_one_value(
                     item,
                     as_storage_format=as_storage_format,
@@ -109,7 +109,7 @@ class StorageFormatManager(object):
             result.append('{}]'.format(prefix))
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
-            items = value.items()
+            items = list(value.items())
             if not isinstance(value, collections.OrderedDict):
                 items = sorted(items)
             for key, value in items:

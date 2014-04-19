@@ -893,10 +893,10 @@ class ScoreSpecification(Specification):
         for segment_specification in self.segment_specifications:
             print('### {} ### '.format(segment_specification))
             for context_proxy_name, context_proxy in \
-                segment_specification.single_context_set_expressions_by_context.items():
+                list(segment_specification.single_context_set_expressions_by_context.items()):
                 printed_context_proxy_name = False
                 for key, value in \
-                    context_proxy.single_context_set_expressions_by_attribute.items():
+                    list(context_proxy.single_context_set_expressions_by_attribute.items()):
                     if value:
                         if not printed_context_proxy_name:
                             print(context_proxy_name)
@@ -906,10 +906,10 @@ class ScoreSpecification(Specification):
         print('### SCORE ###')
         print(self)
         for context_proxy_name, context_proxy in \
-            self.single_context_set_expressions_by_context.items():
+            list(self.single_context_set_expressions_by_context.items()):
             printed_context_proxy_name = False
             for key, value in \
-                context_proxy.single_context_set_expressions_by_attribute.items():
+                list(context_proxy.single_context_set_expressions_by_attribute.items()):
                 if value:
                     if not printed_context_proxy_name:
                         print(context_proxy_name)
@@ -918,10 +918,10 @@ class ScoreSpecification(Specification):
         print('')
         print('### SCORE-ROOTED ###')
         for context_proxy_name, context_proxy in \
-            self.single_context_set_expressions_by_context.items():
+            list(self.single_context_set_expressions_by_context.items()):
             printed_context_proxy_name = False
             for key, value in \
-                context_proxy.single_context_set_expressions_by_attribute.items():
+                list(context_proxy.single_context_set_expressions_by_attribute.items()):
                 if value:
                     if not printed_context_proxy_name:
                         print(context_proxy_name)

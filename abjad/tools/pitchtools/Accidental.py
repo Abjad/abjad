@@ -296,15 +296,15 @@ class Accidental(AbjadObject):
 
     @property
     def _all_accidental_abbreviations(self):
-        return self._abbreviation_to_symbolic_string.keys()
+        return list(self._abbreviation_to_symbolic_string.keys())
 
     @property
     def _all_accidental_names(self):
-        return self._name_to_abbreviation.keys()
+        return list(self._name_to_abbreviation.keys())
 
     @property
     def _all_accidental_semitone_values(self):
-        return self._semitones_to_abbreviation.keys()
+        return list(self._semitones_to_abbreviation.keys())
 
     @property
     def _lilypond_format(self):

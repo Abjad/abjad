@@ -64,17 +64,17 @@ class LilyPondGrobNameManager(LilyPondNameManager):
     def _get_attribute_tuples(self):
         from abjad.tools import lilypondnametools
         result = []
-        for name, value in vars(self).iteritems():
+        for name, value in vars(self).items():
             if type(value) is lilypondnametools.LilyPondNameManager:
                 grob_name, grob_proxy = name, value
-                pairs = vars(grob_proxy).iteritems()
+                pairs = iter(vars(grob_proxy).items())
                 for attribute_name, attribute_value in pairs:
                     triple = (grob_name, attribute_name, attribute_value)
                     result.append(triple)
             else:
                 context_name, context_proxy = name.strip('_'), value
-                for grob_name, grob_proxy in vars(context_proxy).iteritems():
-                    pairs = vars(grob_proxy).iteritems()
+                for grob_name, grob_proxy in vars(context_proxy).items():
+                    pairs = iter(vars(grob_proxy).items())
                     for attribute_name, attribute_value in pairs:
                         quadruple = (
                             context_name,

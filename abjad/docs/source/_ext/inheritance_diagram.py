@@ -122,7 +122,7 @@ class InheritanceGraph(object):
             return [todoc]
         elif inspect.ismodule(todoc):
             classes = []
-            for cls in todoc.__dict__.values():
+            for cls in list(todoc.__dict__.values()):
                 if inspect.isclass(cls) and cls.__module__ == todoc.__name__:
                     classes.append(cls)
             return classes
@@ -144,7 +144,7 @@ class InheritanceGraph(object):
         displayed node names.
         """
         all_classes = {}
-        builtins = __builtins__.values()
+        builtins = list(__builtins__.values())
 
         def recurse(cls):
 
@@ -170,7 +170,7 @@ class InheritanceGraph(object):
         for cls in classes:
             recurse(cls)
 
-        return all_classes.values()
+        return list(all_classes.values())
 
     def class_name(self, cls, parts=0):
         """Given a class object, return a fully-qualified name.
@@ -220,10 +220,10 @@ class InheritanceGraph(object):
     }
 
     def _format_node_attrs(self, attrs):
-        return ','.join(['%s=%s' % x for x in attrs.items()])
+        return ','.join(['%s=%s' % x for x in list(attrs.items())])
 
     def _format_graph_attrs(self, attrs):
-        return ''.join(['%s=%s;\n' % x for x in attrs.items()])
+        return ''.join(['%s=%s;\n' % x for x in list(attrs.items())])
 
     def generate_dot(self, name, urls={}, env=None,
                      graph_attrs={}, node_attrs={}, edge_attrs={}):

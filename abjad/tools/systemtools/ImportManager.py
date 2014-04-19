@@ -17,7 +17,7 @@ class ImportManager(object):
         result = []
         module_file = module_file.replace(os.sep, '.')
         mod = __import__(module_file, fromlist=['*'])
-        for key, value in vars(mod).items():
+        for key, value in list(vars(mod).items()):
             if not key.startswith('_'):
                 # handle public function decorated with @require
                 if getattr(value, 'func_closure', None):

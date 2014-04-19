@@ -64,9 +64,9 @@ class PianoPedalSpanner(Spanner):
             self,
             overrides=overrides,
             )
-        if not kind in self._kinds.keys():
+        if not kind in list(self._kinds.keys()):
             message = 'kind must be in {!r}.'
-            message = message.format(self._kinds.keys())
+            message = message.format(list(self._kinds.keys()))
             raise ValueError(message)
         self._kind = kind
         if not style in self._styles:

@@ -68,7 +68,7 @@ class WeightedSearchTree(SearchTree):
         SearchTree.__init__(self, definition)
         self._compositions = self._precompute_compositions()
         all_compositions = []
-        for value in self._compositions.values():
+        for value in list(self._compositions.values()):
             all_compositions.extend(value)
         self._all_compositions = tuple(all_compositions)
 

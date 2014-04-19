@@ -47,7 +47,7 @@ class DocumentHandler(AbjadObject):
         r'''All asset output managers.
         '''
         result = []
-        for code_block in self.source_to_code_block_mapping.iteritems():
+        for code_block in self.source_to_code_block_mapping.items():
             for output_proxy in code_block.output_proxies:
                 if isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):
@@ -66,7 +66,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def has_asset_output_proxies(self):
-        for code_block in self.source_to_code_block_mapping.iteritems():
+        for code_block in self.source_to_code_block_mapping.items():
             for output_proxy in code_block.output_proxies:
                 if isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):
@@ -108,7 +108,7 @@ class DocumentHandler(AbjadObject):
         except ImportError:
             pass
         for source_location, code_block in \
-            self.source_to_code_block_mapping.iteritems():
+            self.source_to_code_block_mapping.items():
             output_proxies = code_block.execute(console)
 
     @abc.abstractmethod
@@ -133,7 +133,7 @@ class DocumentHandler(AbjadObject):
                 )
             if not os.path.exists(asset_output_directory_path):
                 os.mkdir(asset_output_directory_path)
-        for code_block in self.source_to_code_block_mapping.iteritems():
+        for code_block in self.source_to_code_block_mapping.items():
             for output_proxy in code_block.output_proxies:
                 if not isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):

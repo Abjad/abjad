@@ -167,7 +167,7 @@ class Component(AbjadObject):
     def _cache_named_children(self):
         name_dictionary = {}
         if hasattr(self, '_named_children'):
-            for name, children in self._named_children.iteritems():
+            for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
         if hasattr(self, 'name') and self.name is not None:
             if self.name not in name_dictionary:

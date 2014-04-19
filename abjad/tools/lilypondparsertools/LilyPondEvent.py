@@ -14,7 +14,7 @@ class LilyPondEvent(AbjadObject):
 
     def __init__(self, name=None, **kwargs):
         self.name = name
-        for k, v in kwargs.iteritems():
+        for k, v in kwargs.items():
             if k != 'name':
                 setattr(self, k, v)
 

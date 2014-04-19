@@ -63,7 +63,7 @@ consonant_treatments = {
 def preprocess_input_text(input_text):
     input_text = input_text.lower()
     result = []
-    alphabet = consonant_treatments.keys() + vowel_treatments.keys()
+    alphabet = list(consonant_treatments.keys()) + list(vowel_treatments.keys())
     permissible_characters = alphabet + [',', '.', ' ']
     for input_character in input_text:
         if input_character in permissible_characters:

@@ -68,9 +68,9 @@ class Interpreter(AbjadObject):
             # get persistent single-context set expressions
             persistent_single_context_set_expressions = []
             for context_proxy in \
-                persistent_single_context_set_expressions_by_context.itervalues():
+                persistent_single_context_set_expressions_by_context.values():
                 for attribute, settings in \
-                    context_proxy.single_context_set_expressions_by_attribute.items():
+                    list(context_proxy.single_context_set_expressions_by_attribute.items()):
                     persistent_single_context_set_expressions.extend(settings)
             # store persistent single-context set expressions in current segment specification
             for persistent_single_context_set_expression in \

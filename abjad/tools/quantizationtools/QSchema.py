@@ -39,7 +39,7 @@ class QSchema(AbjadObject):
         if 1 == len(args) and isinstance(args[0], type(self)):
             items = copy.copy(args[0].items)
         elif 1 == len(args) and isinstance(args[0], dict):
-            items = args[0].items()
+            items = list(args[0].items())
             if mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
             assert mathtools.all_are_pairs_of_types(
@@ -120,7 +120,7 @@ class QSchema(AbjadObject):
         lookups = {}
         for field in fields:
             lookups[field] = {0: getattr(self, field)}
-            for position, item in self.items.iteritems():
+            for position, item in self.items.items():
                 value = getattr(item, field)
                 if value is not None:
                     lookups[field][position] = value

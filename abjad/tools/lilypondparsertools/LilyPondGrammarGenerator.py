@@ -150,7 +150,7 @@ class LilyPondGrammarGenerator(AbjadObject):
         values,
         ):
         matches = { }
-        for number, value in values.iteritems():
+        for number, value in values.items():
             if number in names:
                 name = names[number]
                 matches[value] = name
@@ -195,7 +195,7 @@ class LilyPondGrammarGenerator(AbjadObject):
                 f.write("        {!r}\n".format(docstring))
                 f.write("        p[0] = Node('{}', p[1:])\n\n\n".format(
                     current_nonterminal))
-            for funcname, docstring in sorted(productions.iteritems()):
+            for funcname, docstring in sorted(productions.items()):
                 nonterminal = funcname.split('__')[0][2:]
                 if nonterminal == 'start_symbol':
                     continue

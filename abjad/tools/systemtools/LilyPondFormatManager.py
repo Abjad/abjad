@@ -41,10 +41,10 @@ class LilyPondFormatManager(object):
         if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
             contextualizer = set_(component)
             variables = vars(contextualizer)
-            for name, value in variables.iteritems():
+            for name, value in variables.items():
                 # if we've found a leaf context namespace
                 if name.startswith('_'):
-                    for x, y in vars(value).iteritems():
+                    for x, y in vars(value).items():
                         if not x.startswith('_'):
                             string = \
                                 manager.format_lilypond_context_setting_inline(
@@ -57,7 +57,7 @@ class LilyPondFormatManager(object):
                         name, value)
                     result.append(string)
         else:
-            for name, value in vars(set_(component)).iteritems():
+            for name, value in vars(set_(component)).items():
                 string = manager.format_lilypond_context_setting_in_with_block(
                     name, value)
                 result.append(string)

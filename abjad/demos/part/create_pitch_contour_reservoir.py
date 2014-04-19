@@ -16,7 +16,7 @@ def create_pitch_contour_reservoir():
     }
 
     reservoir = {}
-    for instrument_name, pitch_range in pitch_ranges.iteritems():
+    for instrument_name, pitch_range in pitch_ranges.items():
         pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
         pitches = sorted(pitch_set, reverse=True)
         pitch_descents = []

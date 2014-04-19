@@ -269,7 +269,7 @@ def test_datastructuretools_TypedOrderedDict_14():
     dictionary['tenor'] = 'tenor'
     dictionary['bass'] = 'bass'
 
-    assert dictionary.items() == [
+    assert list(dictionary.items()) == [
         ('soprano', Clef('treble')),
         ('alto', Clef('alto')),
         ('tenor', Clef('tenor')),
@@ -287,7 +287,7 @@ def test_datastructuretools_TypedOrderedDict_15():
     dictionary['tenor'] = 'tenor'
     dictionary['bass'] = 'bass'
 
-    assert dictionary.keys() == ['soprano', 'alto', 'tenor', 'bass']
+    assert list(dictionary.keys()) == ['soprano', 'alto', 'tenor', 'bass']
 
 
 def test_datastructuretools_TypedOrderedDict_16():

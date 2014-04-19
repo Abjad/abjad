@@ -520,7 +520,7 @@ class Spanner(AbjadObject):
             )
         lines.append(line)
         lines.append('\toverrides = {')
-        for key, value in override_dictionary.iteritems():
+        for key, value in override_dictionary.items():
             value = value.replace('\t', '')
             line = '\t\t{!r}: {!r},'.format(key, value)
             lines.append(line)

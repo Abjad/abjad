@@ -145,7 +145,7 @@ class TypedOrderedDict(TypedCollection):
         Returns new typed ordered dictionary.
         '''
         ordered_dictionary = self._collection.copy()
-        items = ordered_dictionary.items()
+        items = list(ordered_dictionary.items())
         return type(self)(
             item_class=self.item_class,
             items=items,
@@ -170,35 +170,35 @@ class TypedOrderedDict(TypedCollection):
 
         Returns list.
         '''
-        return self._collection.items()
+        return list(self._collection.items())
 
     def iteritems(self):
         r'''Aliases OrderedDict.iteritems().
 
         Returns generator.
         '''
-        return self._collection.iteritems()
+        return iter(self._collection.items())
 
     def iterkeys(self):
         r'''Aliases OrderedDict.iterkeys().
 
         Returns generator.
         '''
-        return self._collection.iterkeys()
+        return iter(self._collection.keys())
 
     def itervalues(self):
         r'''Aliases OrderedDict.itervalues().
 
         Returns generator.
         '''
-        return self._collection.itervalues()
+        return iter(self._collection.values())
 
     def keys(self):
         r'''Aliases OrderedDict.keys().
 
         Returns list.
         '''
-        return self._collection.keys()
+        return list(self._collection.keys())
 
     def pop(self, key, default=None):
         r'''Aliases OrderedDict.pop().
@@ -233,7 +233,7 @@ class TypedOrderedDict(TypedCollection):
 
         Returns list.
         '''
-        return self._collection.values()
+        return list(self._collection.values())
 
 
 collections.MutableMapping.register(TypedOrderedDict)

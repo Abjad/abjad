@@ -15,7 +15,7 @@ def new(expr, **kwargs):
     positional_argument_dictionary = \
         manager.get_positional_argument_dictionary(expr)
     recursive_arguments = {}
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         if '__' in key:
             key, divider, subkey = key.partition('__')
             if key not in recursive_arguments:
@@ -29,7 +29,7 @@ def new(expr, **kwargs):
             keyword_argument_dictionary[key] = value
         else:
             raise KeyError(key)
-    for key, pairs in recursive_arguments.iteritems():
+    for key, pairs in recursive_arguments.items():
         recursed_object = getattr(expr, key)
         if recursed_object is None:
             continue

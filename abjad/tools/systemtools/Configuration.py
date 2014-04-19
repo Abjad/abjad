@@ -34,7 +34,7 @@ class Configuration(AbjadObject):
         validation = config.validate(validator, copy=True)
         # replace failing key:value pairs with default values
         if validation is not True:
-            for key, valid in validation.iteritems():
+            for key, valid in validation.items():
                 if not valid:
                     default = config.default_values[key]
                     message = 'Warning: config key {!r} failed validation,'
@@ -73,7 +73,7 @@ class Configuration(AbjadObject):
         # and replace its empty string values with Nones,
         # caching the result on this AbjadConfiguration instance.
         self._settings = dict(config)
-        for key, value in self._settings.iteritems():
+        for key, value in self._settings.items():
             if value == '' or value == 'None':
                 self._settings[key] = None
 

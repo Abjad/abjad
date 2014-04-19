@@ -109,8 +109,8 @@ class ContextMap(AbjadObject):
             self._components[context.name] = component
         assert isinstance(settings, (dict, type(None)))
         if isinstance(settings, dict):
-            for context_name, context_settings in settings.iteritems():
-                for key, value in context_settings.iteritems():
+            for context_name, context_settings in settings.items():
+                for key, value in context_settings.items():
                     self[context_name][key] = value
 
     ### SPECIAL METHODS ###
@@ -275,7 +275,7 @@ class ContextMap(AbjadObject):
         for context_name in self._components:
             self_component = self._components[context_name]
             expr_component = expr._components[context_name]
-            for key, value in expr_component._context_settings.iteritems():
+            for key, value in expr_component._context_settings.items():
                 self_component[key] = value
 
     ### PUBLIC PROPERTIES ###

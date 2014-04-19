@@ -151,7 +151,7 @@ class TypedCounter(TypedCollection):
     def _coerce_arguments(self, items=None, **kwargs):
         def _coerce_mapping(items):
             the_items = {}
-            for item, count in items.iteritems():
+            for item, count in items.items():
                 item = self._item_callable(item)
                 if item not in the_items:
                     the_items[item] = 0
@@ -214,29 +214,29 @@ class TypedCounter(TypedCollection):
 
         Returns tuple.
         '''
-        return self._collection.items()
+        return list(self._collection.items())
 
     def iteritems(self):
         r'''Iterates items in typed counter.
 
         Yields items.
         '''
-        return self._collection.iteritems()
+        return iter(self._collection.items())
 
     def iterkeys(self):
         r'''Iterates keys in typed counter.
         '''
-        return self._collection.iterkeys()
+        return iter(self._collection.keys())
 
     def itervalues(self):
         r'''Iterates values in typed counter.
         '''
-        return self._collection.itervalues()
+        return iter(self._collection.values())
 
     def keys(self):
         r'''Keys in typed counter.
         '''
-        return self._collection.keys()
+        return list(self._collection.keys())
 
     def most_common(self, n=None):
         r'''Please document.
@@ -258,22 +258,22 @@ class TypedCounter(TypedCollection):
     def values(self):
         r'''Values of typed counter.
         '''
-        return self._collection.values()
+        return list(self._collection.values())
 
     def viewitems(self):
         r'''Please document.
         '''
-        return self._collection.viewitems()
+        return self._collection.items()
 
     def viewkeys(self):
         r'''Please document.
         '''
-        return self._collection.viewkeys()
+        return self._collection.keys()
 
     def viewvalues(self):
         r'''Please document.
         '''
-        return self._collection.viewvalues()
+        return self._collection.values()
 
 
 collections.MutableMapping.register(TypedCounter)

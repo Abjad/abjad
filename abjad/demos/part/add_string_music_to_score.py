@@ -29,7 +29,7 @@ def add_string_music_to_score(score):
         shadowed_contour_reservoir)
 
     # add six dotted-whole notes and the durated contours to each string voice
-    for instrument_name, descents in durated_reservoir.iteritems():
+    for instrument_name, descents in durated_reservoir.items():
         instrument_voice = score['%s Voice' % instrument_name]
         instrument_voice.extend("R1. R1. R1. R1. R1. R1.")
         for descent in descents:

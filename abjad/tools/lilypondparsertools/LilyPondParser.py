@@ -326,7 +326,7 @@ class LilyPondParser(abctools.Parser):
                 all_spanners[spannertools.Hairpin].pop()
 
             # loop through directed events, handling each as necessary
-            for spanner_class, events in directed_events.iteritems():
+            for spanner_class, events in directed_events.items():
 
                 starting_events, stopping_events = [], []
                 for x in events:
@@ -438,12 +438,12 @@ class LilyPondParser(abctools.Parser):
                             raise Exception(message)
 
             # append leaf to all tracked spanners,
-            for spanner_class, instances in all_spanners.iteritems():
+            for spanner_class, instances in all_spanners.items():
                 for instance in instances:
                     instance._append(leaf)
 
         # check for unterminated spanners
-        for spanner_class, instances in all_spanners.iteritems():
+        for spanner_class, instances in all_spanners.items():
             if instances:
                 message = 'unterminated {}.'
                 message = message.format(spanner_class.__name__)
@@ -938,7 +938,7 @@ class LilyPondParser(abctools.Parser):
         '''
         from abjad.ly import current_module
         result = []
-        for key, value in current_module.iteritems():
+        for key, value in current_module.items():
             if not isinstance(value, dict):
                 continue
             if 'dynamic-event' in value.get('types', ()):
@@ -1293,7 +1293,7 @@ class LilyPondParser(abctools.Parser):
         '''
         from abjad.ly import markup_functions
         from abjad.ly import markup_list_functions
-        return sorted(markup_functions.keys() + markup_list_functions.keys())
+        return sorted(list(markup_functions.keys()) + list(markup_list_functions.keys()))
 
     @staticmethod
     def list_known_music_functions():

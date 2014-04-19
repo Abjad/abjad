@@ -105,7 +105,7 @@ class AbjDevScript(DeveloperScript):
 
         aliasdict = {}
 
-        for key, value in aliases.iteritems():
+        for key, value in aliases.items():
             if len(key) == 1:
                 aliasdict[key[0]] = value
             else:

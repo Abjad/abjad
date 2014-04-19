@@ -49,7 +49,7 @@ class MetricAccentKernel(AbjadObject):
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         #assert 1 < len(kernel)
-        for key, value in kernel.iteritems():
+        for key, value in kernel.items():
             assert isinstance(key, durationtools.Offset)
             assert isinstance(value, durationtools.Multiplier)
         self._kernel = kernel.copy()
@@ -64,7 +64,7 @@ class MetricAccentKernel(AbjadObject):
         '''
         offset_count = self.count_offsets_in_expr(expr)
         response = 0.
-        for offset, count in offset_count.iteritems():
+        for offset, count in offset_count.items():
             if offset in self._kernel:
                 response += (self._kernel[offset] * count)
         return float(response)

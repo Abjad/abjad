@@ -607,6 +607,6 @@ class Performer(AbjadObject):
                     result[performer_name].append(instrument_class)
                 else:
                     result[performer_name] = [instrument_class]
-        for instruments in result.itervalues():
+        for instruments in result.values():
             instruments.sort(key=lambda x: x.__name__.lower())
         return result

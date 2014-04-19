@@ -18,7 +18,7 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
 
     shadowed_reservoir = {}
 
-    for instrument_name, pitch_contours in pitch_contour_reservoir.iteritems():
+    for instrument_name, pitch_contours in pitch_contour_reservoir.items():
         # The viola does not receive any diads
         if instrument_name == 'Viola':
             shadowed_reservoir['Viola'] = pitch_contours

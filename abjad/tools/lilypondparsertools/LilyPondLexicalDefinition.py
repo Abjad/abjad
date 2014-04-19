@@ -203,7 +203,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         'STRING',
         'STRING_IDENTIFIER',
         'TONICNAME_PITCH',
-    ] + keywords.values()
+    ] + list(keywords.values())
 
     literals = (
         '!', "'", '(', ')', '*', '+', ',', '-',

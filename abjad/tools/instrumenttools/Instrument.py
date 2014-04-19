@@ -295,7 +295,7 @@ class Instrument(AbjadObject):
         if classes is None:
             classes = (instrumenttools.Instrument,)
         instruments = []
-        for value in instrumenttools.__dict__.itervalues():
+        for value in instrumenttools.__dict__.values():
             try:
                 if issubclass(value, classes):
                     if not value is instrumenttools.Instrument:

@@ -144,7 +144,7 @@ class DirectoryManager(Manager):
     def _make_metadata_lines(metadata):
         if metadata:
             lines = []
-            for key, value in sorted(metadata.iteritems()):
+            for key, value in sorted(metadata.items()):
                 key = repr(key)
                 if hasattr(value, '_get_multiline_repr'):
                     repr_lines = \

@@ -538,7 +538,7 @@ class ReducedLyParser(abctools.Parser):
             sequencetools.iterate_sequence_nwise(leaves, wrapped=True):
 
             span_events = self._get_span_events(leaf)
-            for current_class, directions in span_events.iteritems():
+            for current_class, directions in span_events.items():
 
                 starting, stopping = [], []
                 for direction in directions:
@@ -600,12 +600,12 @@ class ReducedLyParser(abctools.Parser):
                             raise Exception(message)
 
             # append leaf to all tracked spanners,
-            for current_class, instance in spanner_references.iteritems():
+            for current_class, instance in spanner_references.items():
                 if instance is not None:
                     instance._append(leaf)
 
         # check for unterminated spanners
-        for current_class, instance in spanner_references.iteritems():
+        for current_class, instance in spanner_references.items():
             if instance is not None:
                 message = 'unterminated {}.'
                 message = message.format(current_class.__name__)

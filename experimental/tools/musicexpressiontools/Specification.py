@@ -99,7 +99,7 @@ class Specification(AbjadObject):
         context_name_abbreviations = getattr(
             self.score_template, 'context_name_abbreviations', {})
         for context_name_abbreviation, context_name in \
-            context_name_abbreviations.iteritems():
+            context_name_abbreviations.items():
             setattr(self, context_name_abbreviation, context_name)
             self._context_name_abbreviations.append(context_name)
         score = self.score_template()

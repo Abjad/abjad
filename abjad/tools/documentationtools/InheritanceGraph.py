@@ -160,7 +160,7 @@ class InheritanceGraph(AbjadObject):
         self._parent_children_mapping = parent_children_mapping
 
         self._immediate_classes = main_immediate_classes.intersection(
-            self._parent_children_mapping.viewkeys())
+            self._parent_children_mapping.keys())
 
         self._lineage_distance_mapping = self._find_lineage_distances()
 
@@ -220,7 +220,7 @@ class InheritanceGraph(AbjadObject):
                     module = x
                 else:
                     module = importlib.import_module(x)
-                for y in module.__dict__.itervalues():
+                for y in module.__dict__.values():
                     if isinstance(y, types.TypeType):
                         all_classes.add(y)
                         immediate_classes.add(y)
@@ -272,7 +272,7 @@ class InheritanceGraph(AbjadObject):
                     invalid_classes.remove(child)
                     recurse_downward(child, invalid_classes)
         invalid_classes = set(
-            child_parents_mapping.keys() + parent_children_mapping.keys())
+            list(child_parents_mapping.keys()) + list(parent_children_mapping.keys()))
         for current_class in self.lineage_classes:
             if current_class in invalid_classes:
                 invalid_classes.remove(current_class)
@@ -288,7 +288,7 @@ class InheritanceGraph(AbjadObject):
 
     def _submodule_recurse(self, module, visited_modules):
         result = []
-        for obj in module.__dict__.values():
+        for obj in list(module.__dict__.values()):
             if isinstance(obj, types.TypeType):
                 result.append(obj)
             elif isinstance(obj, types.ModuleType) and \
@@ -418,7 +418,7 @@ class InheritanceGraph(AbjadObject):
                     pass
 
         distances = self.lineage_distance_mapping
-        for parent, children in self.parent_children_mapping.iteritems():
+        for parent, children in self.parent_children_mapping.items():
             for child in children:
                 ok_to_join = False
                 if self.lineage_prune_distance is None:

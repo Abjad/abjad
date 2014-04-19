@@ -147,7 +147,7 @@ class Block(AbjadObject):
 
     @property
     def _user_attributes(self):
-        all_attributes = vars(self).keys()
+        all_attributes = list(vars(self).keys())
         user_attributes = [x for x in all_attributes if not x.startswith('_')]
         user_attributes.sort()
         return user_attributes

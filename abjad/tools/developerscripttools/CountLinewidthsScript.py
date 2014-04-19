@@ -124,9 +124,9 @@ class CountLinewidthsScript(DirectoryScript):
             order_by = lambda x: (x[1], x[0])
 
         if args.sort == 'descending':
-            modules = sorted(modules.items(), key=order_by, reverse=True)
+            modules = sorted(list(modules.items()), key=order_by, reverse=True)
         else:
-            modules = sorted(modules.items(), key=order_by)
+            modules = sorted(list(modules.items()), key=order_by)
 
         if args.greater_than is not None and 0 < args.greater_than:
             modules = [pair for pair in modules if args.greater_than < pair[1]]

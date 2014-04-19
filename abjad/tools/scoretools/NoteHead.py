@@ -193,7 +193,7 @@ class NoteHead(AbjadObject):
         result = []
         # format chord note head with optional tweaks
         if isinstance(self._client, scoretools.Chord):
-            for key, value in vars(self.tweak).iteritems():
+            for key, value in vars(self.tweak).items():
                 if not key.startswith('_'):
                     result.append(
                         r'\tweak %s %s' % (
