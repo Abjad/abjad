@@ -15,7 +15,7 @@ class TypedCounter(TypedCollection):
 
     ::
 
-        >>> print format(counter)
+        >>> print(format(counter))
         datastructuretools.TypedCounter(
             {
                 pitchtools.NumberedPitch(0): 2,

@@ -69,15 +69,15 @@ class CleanScript(DirectoryScript):
             not args.swp and not args.tmp:
             args.pyc, args.pycache, args.swp, args.tmp = True, True, True, True
 
-        print 'Cleaning...'
+        print('Cleaning...')
         if args.pyc:
-            print '\t*.pyc files'
+            print('\t*.pyc files')
         if args.swp:
-            print '\t*.swp files'
+            print('\t*.swp files')
         if args.pycache:
-            print '\t__pycache__ directories'
+            print('\t__pycache__ directories')
         if args.tmp:
-            print '\ttmp* directories'
+            print('\ttmp* directories')
 
         for root_directory, directory_names, file_names in os.walk(args.path):
             if '.svn' in directory_names:

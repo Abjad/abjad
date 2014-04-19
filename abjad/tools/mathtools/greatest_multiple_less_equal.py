@@ -14,8 +14,8 @@ def greatest_multiple_less_equal(m, n):
     ::
 
         >>> for m in range(1, 10):
-        ...     print m, mathtools.greatest_multiple_less_equal(m, 47)
-        ...
+        ...     print(m, mathtools.greatest_multiple_less_equal(m, 47))
+        ... 
         1 47
         2 46
         3 45
@@ -29,8 +29,8 @@ def greatest_multiple_less_equal(m, n):
     ::
 
         >>> for n in range(10, 100, 10):
-        ...     print mathtools.greatest_multiple_less_equal(7, n), n
-        ...
+        ...     print(mathtools.greatest_multiple_less_equal(7, n), n)
+        ... 
         7 10
         14 20
         28 30

@@ -14,7 +14,7 @@ class KeyCluster(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(chord)
+        >>> print(format(chord))
         \once \override Accidental.stencil = ##f
         \once \override AccidentalCautionary.stencil = ##f
         \once \override Arpeggio.X-offset = #-2

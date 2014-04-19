@@ -8,8 +8,8 @@ def is_nonnegative_integer_power_of_two(expr):
     ::
 
         >>> for n in range(10):
-        ...     print n, mathtools.is_nonnegative_integer_power_of_two(n)
-        ...
+        ...     print(n, mathtools.is_nonnegative_integer_power_of_two(n))
+        ... 
         0 True
         1 True
         2 True

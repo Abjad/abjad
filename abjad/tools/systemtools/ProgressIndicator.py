@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import sys
 from abjad.tools.abctools import ContextManager
 
@@ -18,13 +19,13 @@ class ProgressIndicator(ContextManager):
     def __enter__(self):
         r'''Enters progress indicator.
         '''
-        print '{}: {}'.format(self._message, self._progress),
+        print('{}: {}'.format(self._message, self._progress), end=' ')
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         r'''Exits progress indicator.
         '''
-        print
+        print()
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
@@ -60,5 +61,5 @@ class ProgressIndicator(ContextManager):
         '''
         self._progress += 1
         sys.stdout.flush()
-        print '\r',
-        print '{}: {}'.format(self._message, self._progress),
+        print('\r', end=' ')
+        print('{}: {}'.format(self._message, self._progress), end=' ')

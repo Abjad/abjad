@@ -19,7 +19,7 @@ class Contrabassoon(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabassoon }

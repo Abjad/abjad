@@ -15,7 +15,7 @@ class LilyPondComment(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(note)
+        >>> print(format(note))
         % this is a comment
         c'4
 

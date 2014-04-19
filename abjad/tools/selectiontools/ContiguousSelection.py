@@ -113,7 +113,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 2/4
                     c'8 (
@@ -135,7 +135,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> print format(new_staff)
+                >>> print(format(new_staff))
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -161,7 +161,7 @@ class ContiguousSelection(Selection):
 
             ::
 
-                >>> print format(new_staff)
+                >>> print(format(new_staff))
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -184,7 +184,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \new Voice {
                         \times 2/3 {
@@ -208,7 +208,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> print format(new_staff)
+                >>> print(format(new_staff))
                 \new Staff {
                     \new Voice {
                         \tweak #'edge-height #'(0.7 . 0)
@@ -722,3 +722,4 @@ class ContiguousSelection(Selection):
             in_seconds=in_seconds,
             overhang=overhang,
             )
+

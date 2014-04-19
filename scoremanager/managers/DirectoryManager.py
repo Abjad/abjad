@@ -89,7 +89,7 @@ class DirectoryManager(Manager):
             except:
                 message = 'Can not interpret metadata module: {!r}.'
                 message = message.format(self)
-                print message
+                print(message)
             metadata = locals().get('metadata')
         metadata = metadata or collections.OrderedDict()
         return metadata

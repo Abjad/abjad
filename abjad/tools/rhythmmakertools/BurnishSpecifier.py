@@ -207,7 +207,7 @@ class BurnishSpecifier(AbjadObject):
 
             ::
 
-                >>> print format(burnish_specifier)
+                >>> print(format(burnish_specifier))
                 rhythmmakertools.BurnishSpecifier(
                     burnish_divisions=False,
                     burnish_output=False,
@@ -533,7 +533,7 @@ class BurnishSpecifier(AbjadObject):
 
             ::
 
-                >>> print format(burnish_specifier.reverse())
+                >>> print(format(burnish_specifier.reverse()))
                 rhythmmakertools.BurnishSpecifier(
                     burnish_divisions=True,
                     burnish_output=False,
@@ -586,7 +586,7 @@ class BurnishSpecifier(AbjadObject):
 
             ::
 
-                >>> print format(burnish_specifier.rotate(1))
+                >>> print(format(burnish_specifier.rotate(1)))
                 rhythmmakertools.BurnishSpecifier(
                     burnish_divisions=True,
                     burnish_output=False,

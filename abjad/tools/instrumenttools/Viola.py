@@ -19,7 +19,7 @@ class Viola(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \clef "alto"
             \set Staff.instrumentName = \markup { Viola }

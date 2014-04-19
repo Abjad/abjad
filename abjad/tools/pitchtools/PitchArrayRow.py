@@ -14,7 +14,7 @@ class PitchArrayRow(AbjadObject):
         >>> array[0].cells[0].pitches.append(0)
         >>> array[0].cells[1].pitches.append(2)
         >>> array[1].cells[2].pitches.append(4)
-        >>> print array
+        >>> print(array)
         [c'] [d'    ] [  ]
         [       ] [ ] [e']
 
@@ -513,7 +513,7 @@ class PitchArrayRow(AbjadObject):
 
         ::
 
-            >>> print array
+            >>> print(array)
             [  ] [d'] [bf bqf    ]
             [g'     ] [fs'   ] [ ]
 
@@ -523,7 +523,7 @@ class PitchArrayRow(AbjadObject):
 
         ..  doctest::
 
-            >>> print format(measure)
+            >>> print(format(measure))
             {
                 \time 4/8
                 r8

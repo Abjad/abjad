@@ -22,7 +22,7 @@ class PitchArrayInventory(TypedList):
 
     ::
 
-        >>> print format(inventory)
+        >>> print(format(inventory))
         pitchtools.PitchArrayInventory(
             [
                 pitchtools.PitchArray(),
@@ -65,7 +65,7 @@ class PitchArrayInventory(TypedList):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new StaffGroup <<
                     \new Staff {

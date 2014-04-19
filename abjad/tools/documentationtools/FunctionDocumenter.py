@@ -9,7 +9,7 @@ class FunctionDocumenter(Documenter):
     ::
 
         >>> documenter = documentationtools.FunctionDocumenter(scoretools.make_notes)
-        >>> print documenter()
+        >>> print(documenter())
         scoretools.make_notes
         =====================
         <BLANKLINE>

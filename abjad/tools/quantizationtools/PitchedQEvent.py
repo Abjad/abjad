@@ -11,7 +11,7 @@ class PitchedQEvent(QEvent):
 
         >>> pitches = [0, 1, 4]
         >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
-        >>> print format(q_event, 'storage')
+        >>> print(format(q_event, 'storage'))
         quantizationtools.PitchedQEvent(
             offset=durationtools.Offset(1000, 1),
             pitches=(

@@ -10,7 +10,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
     ::
 
         >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem()
-        >>> print format(q_schema_item)
+        >>> print(format(q_schema_item))
         quantizationtools.BeatwiseQSchemaItem()
 
     Define a change in tempo:
@@ -20,7 +20,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
         ...     tempo=((1, 4), 60),
         ...     )
-        >>> print format(q_schema_item)
+        >>> print(format(q_schema_item))
         quantizationtools.BeatwiseQSchemaItem(
             tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
             )
@@ -32,7 +32,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
         ...     beatspan=(1, 8),
         ...     )
-        >>> print format(q_schema_item)
+        >>> print(format(q_schema_item))
         quantizationtools.BeatwiseQSchemaItem(
             beatspan=durationtools.Duration(1, 8),
             )

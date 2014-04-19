@@ -38,7 +38,7 @@ def test_BuildFileWrangler_copy_segment_lilypond_files_01():
     # move segment files from build directory to temporary directory
     pairs = zip(file_paths, temporary_file_paths)
     for file_path, temporary_file_path in pairs:
-        print file_path, temporary_file_path
+        print(file_path, temporary_file_path)
         shutil.move(file_path, temporary_file_path)
 
     # make sure segment files are no longer in build directory

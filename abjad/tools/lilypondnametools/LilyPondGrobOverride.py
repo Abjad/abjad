@@ -21,7 +21,7 @@ class LilyPondGrobOverride(AbjadObject):
 
     ::
 
-        >>> print '\n'.join(override.override_format_pieces)
+        >>> print('\n'.join(override.override_format_pieces))
         \once \override Staff.TextSpanner.bound-details.left.text = \markup {
             \bold
                 {

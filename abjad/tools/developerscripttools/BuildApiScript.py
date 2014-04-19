@@ -180,14 +180,14 @@ class BuildApiScript(DeveloperScript):
         clean=False,
         ):
         api_generator(verbose=True)
-        print 'Now building the {} {} docs ...'.format(
+        print('Now building the {} {} docs ...'.format(
             api_title,
             api_format.upper(),
-            )
-        print ''
+            ))
+        print('')
         os.chdir(docs_directory)
         if clean:
-            print 'Cleaning build directory ...'
+            print('Cleaning build directory ...')
             command = 'make clean'
             systemtools.IOManager.spawn_subprocess(command)
         if format == 'coverage':

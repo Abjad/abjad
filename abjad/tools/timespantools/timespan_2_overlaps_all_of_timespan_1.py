@@ -12,7 +12,7 @@ def timespan_2_overlaps_all_of_timespan_1(
     ::
 
         >>> relation = timespantools.timespan_2_overlaps_all_of_timespan_1()
-        >>> print format(relation)
+        >>> print(format(relation))
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [

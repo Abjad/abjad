@@ -43,7 +43,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ::
 
-        >>> print format(timespan)
+        >>> print(format(timespan))
         musicexpressiontools.MixedSourceTimespanExpression(
             start_offset=musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.MeasureSelectExpression(

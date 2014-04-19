@@ -25,7 +25,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
 
     ..  doctest::
 
-        >>> print format(chord)
+        >>> print(format(chord))
         <
             \tweak #'color #red
             c''
@@ -56,7 +56,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
 
     ..  doctest::
 
-        >>> print format(note)
+        >>> print(format(note))
         \once \override NoteHead #'color = #red
         c'4
 

@@ -206,10 +206,10 @@ class TreeNode(AbjadObject):
 
             >>> inventory = a.depthwise_inventory
             >>> for depth in sorted(inventory):
-            ...     print 'DEPTH: {}'.format(depth)
+            ...     print('DEPTH: {}'.format(depth))
             ...     for node in inventory[depth]:
-            ...         print node.name
-            ...
+            ...         print(node.name)
+            ... 
             DEPTH: 0
             a
             DEPTH: 1

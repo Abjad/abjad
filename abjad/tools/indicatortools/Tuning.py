@@ -11,7 +11,7 @@ class Tuning(AbjadObject):
         >>> indicator = indicatortools.Tuning(
         ...     pitches=('G3', 'D4', 'A4', 'E5'),
         ...     )
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.Tuning(
             pitches=pitchtools.PitchSegment(
                 (
@@ -216,7 +216,7 @@ class Tuning(AbjadObject):
         ::
 
             >>> pitches = indicator.pitches
-            >>> print format(pitches)
+            >>> print(format(pitches))
             pitchtools.PitchSegment(
                 (
                     pitchtools.NamedPitch('g'),
@@ -238,7 +238,7 @@ class Tuning(AbjadObject):
         ::
 
             >>> pitch_ranges = indicator.pitch_ranges
-            >>> print format(pitch_ranges)
+            >>> print(format(pitch_ranges))
             pitchtools.PitchRangeInventory(
                 [
                     pitchtools.PitchRange(
@@ -265,3 +265,4 @@ class Tuning(AbjadObject):
             result.append(pitch_range)
         result = pitchtools.PitchRangeInventory(result)
         return result
+

@@ -126,7 +126,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> print format(timespan_1)
+            >>> print(format(timespan_1))
             timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(10, 1),
@@ -303,7 +303,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_1 | timespan_2
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -316,7 +316,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_1 | timespan_3
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -330,7 +330,7 @@ class Timespan(BoundedObject):
 
 
             >>> new_timespan = timespan_1 | timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -343,7 +343,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_2 | timespan_3
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -360,7 +360,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_2 | timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -373,7 +373,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_3 | timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -567,7 +567,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_1 ^ timespan_2
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -584,7 +584,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_1 ^ timespan_3
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -601,7 +601,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_1 ^ timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -618,7 +618,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_2 ^ timespan_3
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -635,7 +635,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_2 ^ timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -652,7 +652,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> new_timespan = timespan_3 ^ timespan_4
-            >>> print format(new_timespan)
+            >>> print(format(new_timespan))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(

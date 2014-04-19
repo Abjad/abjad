@@ -12,7 +12,7 @@ class QEventProxy(AbjadObject):
 
         >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
         >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
-        >>> print format(proxy, 'storage')
+        >>> print(format(proxy, 'storage'))
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(130, 1),

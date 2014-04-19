@@ -26,7 +26,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \context Staff = "Treble Staff" {
                     \context Voice = "Treble Voice" {
@@ -156,7 +156,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \context Score = "CustomScore" <<
                 \context Staff = "CustomStaff" {
                     \context Voice = "CustomVoice" {
@@ -177,8 +177,8 @@ class Parentage(SimultaneousSelection):
         ::
 
             >>> for key, value in logical_voice.iteritems():
-            ...     print '%12s: %s' % (key, value)
-            ...
+            ...     print('%12s: %s' % (key, value))
+            ... 
                      score: Score-'CustomScore'
                staff group:
                      staff: Staff-'CustomStaff'
@@ -255,7 +255,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     \times 2/3 {

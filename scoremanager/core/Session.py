@@ -226,13 +226,13 @@ class Session(abctools.AbjadObject):
         ):
         for entry in self.transcript:
             if entry.is_user_input and include_user_input:
-                print entry
+                print(entry)
             elif entry.is_system_display and include_system_display:
-                print entry
+                print(entry)
 
     def _print_transcript_titles(self):
         for title in self.transcript.titles:
-            print repr(title)
+            print(repr(title))
 
     def _reinitialize(self):
         is_test = self._is_test

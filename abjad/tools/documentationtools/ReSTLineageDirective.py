@@ -17,7 +17,7 @@ class ReSTLineageDirective(ReSTDirective):
 
     ::
 
-        >>> print _.rest_format
+        >>> print(_.rest_format)
         .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
 
     '''

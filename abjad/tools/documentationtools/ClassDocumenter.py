@@ -11,7 +11,7 @@ class ClassDocumenter(Documenter):
         >>> cls = documentationtools.ClassDocumenter
         >>> documenter = documentationtools.ClassDocumenter(cls)
         >>> restructured_text = documenter()
-        >>> print restructured_text
+        >>> print(restructured_text)
         documentationtools.ClassDocumenter
         ==================================
         <BLANKLINE>

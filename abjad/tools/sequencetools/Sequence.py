@@ -85,7 +85,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> print format(Sequence(1, 2, 3, 4, 5, 6))
+                >>> print(format(Sequence(1, 2, 3, 4, 5, 6)))
                 sequencetools.Sequence(1, 2, 3, 4, 5, 6)
 
         Returns string.

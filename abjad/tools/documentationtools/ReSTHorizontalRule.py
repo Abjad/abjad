@@ -13,7 +13,7 @@ class ReSTHorizontalRule(TreeNode):
 
     ::
 
-        >>> print rule.rest_format
+        >>> print(rule.rest_format)
         --------
 
     '''

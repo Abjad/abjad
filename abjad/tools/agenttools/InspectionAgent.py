@@ -87,7 +87,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 [
                     d'4
@@ -234,7 +234,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8
                     \grace {
@@ -327,7 +327,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \new Voice {
                         c'8
@@ -346,8 +346,8 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(8):
-                ...     print n, inspect_(staff[0][0]).get_leaf(n)
-                ...
+                ...     print(n, inspect_(staff[0][0]).get_leaf(n))
+                ... 
                 0 c'8
                 1 d'8
                 2 e'8
@@ -418,7 +418,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.instrumentName = \markup { Piccolo }
                     \set Staff.shortInstrumentName = \markup { Picc. }
@@ -450,7 +450,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.instrumentName = \markup { Glockenspiel }
                     \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -561,7 +561,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/8
                     c'4
@@ -573,8 +573,8 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> for note in staff:
                 ...     result = inspect_(note).is_bar_line_crossing()
-                ...     print note, result
-                ...
+                ...     print(note, result)
+                ... 
                 c'4 False
                 d'4 True
                 e'4 False
@@ -633,7 +633,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     \override NoteHead #'color = #red
                     \override NoteHead #'style = #'harmonic
@@ -651,7 +651,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> print report
+                >>> print(report)
                 {
                     \override NoteHead #'color = #red
                     \override NoteHead #'style = #'harmonic
@@ -698,7 +698,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 [
                     d'4
@@ -712,7 +712,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> print result
+                >>> print(result)
                 1 / 4 beamed quarter notes
                 0 / 1 discontiguous spanners
                 0 / 5 duplicate ids

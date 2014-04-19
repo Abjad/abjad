@@ -110,35 +110,35 @@ class PitchArray(AbjadObject):
         r'''Adds `arg` to pitch array in place.
 
             >>> array_1 = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-            >>> print array_1
+            >>> print(array_1)
             [ ] [     ] [ ]
             [     ] [ ] [ ]
 
         ::
 
             >>> array_2 = pitchtools.PitchArray([[3, 4], [4, 3]])
-            >>> print array_2
+            >>> print(array_2)
             [     ] [           ]
             [           ] [     ]
 
         ::
 
             >>> array_3 = pitchtools.PitchArray([[1, 1], [1, 1]])
-            >>> print array_3
+            >>> print(array_3)
             [ ] [ ]
             [ ] [ ]
 
         ::
 
             >>> array_1 += array_2
-            >>> print array_1
+            >>> print(array_1)
             [ ] [     ] [ ] [     ] [         ]
             [     ] [ ] [ ] [         ] [     ]
 
         ::
 
             >>> array_1 += array_3
-            >>> print array_1
+            >>> print(array_1)
             [ ] [     ] [ ] [     ] [         ] [ ] [ ]
             [     ] [ ] [ ] [         ] [     ] [ ] [ ]
 
@@ -478,7 +478,7 @@ class PitchArray(AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score <<
                     \new Staff {
                         c'8
@@ -515,7 +515,7 @@ class PitchArray(AbjadObject):
 
             ::
 
-                >>> print array
+                >>> print(array)
                 [     ] [     ] [     ] [     ]
                 [                 ] [                 ]
                 [ ] [     ] [ ] [ ] [     ] [ ]
@@ -536,7 +536,7 @@ class PitchArray(AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score <<
                     \new Staff {
                         c'8
@@ -573,7 +573,7 @@ class PitchArray(AbjadObject):
 
             ::
 
-                >>> print array
+                >>> print(array)
                 [c'     ] [d'     ] [e'     ] [f'     ]
                 [c'                   ] [d'                   ]
                 [c'] [d'     ] [e'] [c'] [d'     ] [e']
@@ -635,7 +635,7 @@ class PitchArray(AbjadObject):
             ...     [2, 2, 3, 1],
             ...     [1, 2, 1, 1, 2, 1],
             ...     [1, 1, 1, 1, 1, 1, 1, 1]])
-            >>> print array
+            >>> print(array)
             [     ] [     ] [         ] [ ]
             [ ] [     ] [ ] [ ] [     ] [ ]
             [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
@@ -648,21 +648,21 @@ class PitchArray(AbjadObject):
 
         ::
 
-            >>> print subarrays[0]
+            >>> print(subarrays[0])
             [     ] [     ]
             [ ] [     ] [ ]
             [ ] [ ] [ ] [ ]
 
         ::
 
-            >>> print subarrays[1]
+            >>> print(subarrays[1])
             [         ]
             [ ] [     ]
             [ ] [ ] [ ]
 
         ::
 
-            >>> print subarrays[2]
+            >>> print(subarrays[2])
             [ ]
             [ ]
             [ ]
@@ -756,7 +756,7 @@ class PitchArray(AbjadObject):
 
         ::
 
-            >>> print array
+            >>> print(array)
             [  ] [d'] [bf bqf    ]
             [g'     ] [fs'   ] [ ]
 

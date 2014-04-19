@@ -17,7 +17,7 @@ class PianoPedalSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 \set Staff.pedalSustainStyle = #'mixed
                 c'8 \sustainOn
@@ -130,7 +130,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sustainOn
@@ -157,7 +157,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sostenutoOn
@@ -184,7 +184,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \unaCorda
@@ -219,7 +219,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'mixed
                     c'8 \sustainOn
@@ -246,7 +246,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'bracket
                     c'8 \sustainOn
@@ -273,7 +273,7 @@ class PianoPedalSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \set Staff.pedalSustainStyle = #'text
                     c'8 \sustainOn

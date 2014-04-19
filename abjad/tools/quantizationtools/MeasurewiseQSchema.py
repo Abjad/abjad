@@ -16,7 +16,7 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> print format(q_schema, 'storage')
+        >>> print(format(q_schema, 'storage'))
         quantizationtools.MeasurewiseQSchema(
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={
@@ -95,8 +95,8 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 0
-        >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ...
+        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
+        ... 
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
@@ -105,8 +105,8 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 1000
-        >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
-        ...
+        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
+        ... 
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4

@@ -25,7 +25,7 @@ def make_spacing_vector(
 
     ..  doctest::
 
-        >>> print format(lilypond_file) # doctest: +SKIP
+        >>> print(format(lilypond_file)) # doctest: +SKIP
         % Abjad revision 4229
         % 2011-04-07 15:19
 

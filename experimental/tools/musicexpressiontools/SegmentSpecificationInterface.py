@@ -44,7 +44,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> print format(red_segment)
+            >>> print(format(red_segment))
             musicexpressiontools.SegmentSpecificationInterface(
                 musicexpressiontools.ScoreSpecification(
                     templatetools.GroupedRhythmicStavesScoreTemplate(
@@ -77,7 +77,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> print format(red_segment.score_specification)
+            >>> print(format(red_segment.score_specification))
             musicexpressiontools.ScoreSpecification(
                 templatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4,

@@ -19,7 +19,7 @@ class Markup(AbjadObject):
 
         ..  doctest::
 
-            >>> print format(markup)
+            >>> print(format(markup))
             \markup { \bold { "This is markup text." } }
 
     ..  container:: example
@@ -34,12 +34,12 @@ class Markup(AbjadObject):
 
         ..  doctest::
 
-            >>> print format(markup_1)
+            >>> print(format(markup_1))
             ^ \markup { foo }
 
         ..  doctest::
 
-            >>> print format(markup_2)
+            >>> print(format(markup_2))
             _ \markup { foo }
 
     ..  container:: example
@@ -56,7 +56,7 @@ class Markup(AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                     ^ \markup {
@@ -161,7 +161,7 @@ class Markup(AbjadObject):
 
                 >>> string = r'\bold { allegro ma non troppo }'
                 >>> markup = Markup(string)
-                >>> print format(markup)
+                >>> print(format(markup))
                 \markup {
                     \bold
                         {
@@ -221,7 +221,7 @@ class Markup(AbjadObject):
 
                 >>> string = r'\bold { allegro ma non troppo }'
                 >>> markup = Markup(string)
-                >>> print str(markup)
+                >>> print(str(markup))
                 \markup {
                     \bold
                         {

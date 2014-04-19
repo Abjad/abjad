@@ -19,7 +19,7 @@ class StartPositionedDivisionPayloadExpression(
 
     ::
 
-        >>> print format(expression)
+        >>> print(format(expression))
         musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=musicexpressiontools.DivisionList(
                 [
@@ -77,7 +77,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -106,7 +106,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -135,7 +135,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -172,7 +172,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 []
                 )
@@ -189,7 +189,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(expression)
+            >>> print(format(expression))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -225,7 +225,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -287,7 +287,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -336,7 +336,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -373,7 +373,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -410,7 +410,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -451,7 +451,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -611,7 +611,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -677,7 +677,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -742,7 +742,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(expression)
+            >>> print(format(expression))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -783,7 +783,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -834,7 +834,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -885,7 +885,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(expression)
+            >>> print(format(expression))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
@@ -926,7 +926,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print format(result)
+            >>> print(format(result))
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [

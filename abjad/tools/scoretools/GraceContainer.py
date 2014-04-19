@@ -14,7 +14,7 @@ class GraceContainer(Container):
 
     ..  doctest::
 
-        >>> print format(voice)
+        >>> print(format(voice))
         \new Voice {
             c'8 [
             d'8
@@ -31,7 +31,7 @@ class GraceContainer(Container):
 
     ..  doctest::
 
-        >>> print format(voice)
+        >>> print(format(voice))
         \new Voice {
             c'8 [
             \grace {
@@ -52,7 +52,7 @@ class GraceContainer(Container):
 
     ..  doctest::
 
-        >>> print format(voice)
+        >>> print(format(voice))
         \new Voice {
             c'8 [
             \grace {

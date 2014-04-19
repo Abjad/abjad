@@ -17,7 +17,7 @@ def offset_happens_before_timespan_starts(
         ::
 
             >>> relation = timespantools.offset_happens_before_timespan_starts()
-            >>> print format(relation)
+            >>> print(format(relation))
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [
@@ -44,7 +44,7 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print format(relation)
+            >>> print(format(relation))
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [
@@ -72,7 +72,7 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print format(relation)
+            >>> print(format(relation))
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [
@@ -101,7 +101,7 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print format(relation)
+            >>> print(format(relation))
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [

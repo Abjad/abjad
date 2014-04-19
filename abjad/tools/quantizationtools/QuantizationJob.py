@@ -35,7 +35,7 @@ class QuantizationJob(AbjadObject):
 
         >>> job()
         >>> for q_grid in job.q_grids:
-        ...     print q_grid.rtm_format
+        ...     print(q_grid.rtm_format)
         1
         (1 (1 1 1 1 1))
         (1 (1 1 1))
@@ -198,8 +198,8 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> for q_event_proxy in job.q_event_proxies:
-            ...     print format(q_event_proxy, 'storage')
-            ...
+            ...     print(format(q_event_proxy, 'storage'))
+            ... 
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
                     offset=durationtools.Offset(250, 1),
@@ -238,7 +238,7 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> for q_grid in job.q_grids:
-            ...     print q_grid.rtm_format
+            ...     print(q_grid.rtm_format)
             1
             (1 (1 1 1 1 1))
             (1 (1 1 1))

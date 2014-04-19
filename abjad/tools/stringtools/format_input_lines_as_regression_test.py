@@ -65,25 +65,25 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
     most = ''
     for i, line in enumerate(lines):
         if line == '':
-            print ''
+            print('')
         elif line.startswith('f('):
             last_format_line = line
-            print ''
-            print tab + "r'''"
-            print _replace_line_with_tabbed_format(tab, most, line)
-            print tab + "'''"
+            print('')
+            print(tab + "r'''")
+            print(_replace_line_with_tabbed_format(tab, most, line))
+            print(tab + "'''")
         elif line.endswith('#'):
             line = line.replace('#', '')
             most += line + '\n'
-            print start + line
+            print(start + line)
         else:
             most += line + '\n'
-            print start + line
+            print(start + line)
     last_variable = last_format_line[2:-1]
-    print tab + 'assert select(%s).is_well_formed()' % last_variable
+    print(tab + 'assert select(%s).is_well_formed()' % last_variable)
     format_string = _replace_line_with_format(most, last_format_line)
     format_string = repr(format_string)
-    print tab + 'assert format(%s) == %s' % (last_variable, format_string)
+    print(tab + 'assert format(%s) == %s' % (last_variable, format_string))
 
 
 def _replace_line_with_format(most_lines, last_line):

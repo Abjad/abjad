@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import doctest
 import importlib
 import os
@@ -61,9 +62,9 @@ class RunDoctestsScript(DirectoryScript):
     ### PUBLIC PROPERTIES ###
 
     def process_args(
-        self, 
-        args=None, 
-        file_paths=None, 
+        self,
+        args=None,
+        file_paths=None,
         print_to_terminal=True,
         ):
         r'''Processes `args`.
@@ -89,6 +90,7 @@ class RunDoctestsScript(DirectoryScript):
             globs['scoremanager'] = scoremanager_module
         except:
             pass
+        globs['print_function'] = print_function
         optionflags = (
             doctest.NORMALIZE_WHITESPACE |
             doctest.ELLIPSIS
@@ -130,7 +132,7 @@ class RunDoctestsScript(DirectoryScript):
                         'FAILED',
                         self.colors['END'],
                         ))
-                    print relative_path, result_code
+                    print(relative_path, result_code)
                 else:
                     result_code = 'FAILED'
                     string = '{} {}'.format(relative_path, result_code)
@@ -142,7 +144,7 @@ class RunDoctestsScript(DirectoryScript):
                         'OK',
                         self.colors['END'],
                         ))
-                    print relative_path, result_code
+                    print(relative_path, result_code)
                 else:
                     result_code = 'OK'
                     string = '{} {}'.format(relative_path, result_code)
@@ -151,23 +153,23 @@ class RunDoctestsScript(DirectoryScript):
             total_tests += test_count
         if failed_file_paths:
             if print_to_terminal:
-                print
+                print()
             else:
                 result.append('')
             for error_message in error_messages:
                 if print_to_terminal:
-                    print error_message
+                    print(error_message)
                 else:
                     result.append(error_message)
         for file_path in failed_file_paths:
             string = 'FAILED: {}'.format(file_path)
             if print_to_terminal:
-                print string
+                print(string)
             else:
                 result.append(string)
         total_successes = total_tests - total_failures
         if print_to_terminal:
-            print
+            print()
         else:
             result.append('')
         string = '{} of {} tests passed in {} modules.'
@@ -177,7 +179,7 @@ class RunDoctestsScript(DirectoryScript):
             total_modules,
             )
         if print_to_terminal:
-            print string
+            print(string)
         else:
             result.append(string)
         if not print_to_terminal:

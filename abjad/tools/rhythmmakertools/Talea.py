@@ -114,7 +114,7 @@ class Talea(AbjadObject):
             ::
 
                 >>> reversed_talea = talea.reverse()
-                >>> print format(reversed_talea)
+                >>> print(format(reversed_talea))
                 rhythmmakertools.Talea(
                     counts=(1, 1, 4, 2, 3, 1, 2),
                     denominator=16,
@@ -137,7 +137,7 @@ class Talea(AbjadObject):
             ::
 
                 >>> rotated_talea = talea.rotate(1)
-                >>> print format(rotated_talea)
+                >>> print(format(rotated_talea))
                 rhythmmakertools.Talea(
                     counts=(1, 2, 1, 3, 2, 4, 1),
                     denominator=16,

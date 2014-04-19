@@ -87,7 +87,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/4
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -110,7 +110,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/4
                     c'4 \< \p
@@ -136,7 +136,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/4
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -161,7 +161,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/4
                     c'4. \< \p
@@ -194,7 +194,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8
                     d'4.
@@ -222,7 +222,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -245,7 +245,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -284,7 +284,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 1/4
@@ -307,7 +307,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 2/4
@@ -351,7 +351,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'4 \< \p (
@@ -376,7 +376,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'16 \< \p (
                     d'16
@@ -430,7 +430,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 1/8
@@ -451,7 +451,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 1/8
@@ -540,7 +540,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                 cs'8
@@ -557,7 +557,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                 df'8
@@ -588,7 +588,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                 cs'8
@@ -605,7 +605,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                 cs'8
@@ -650,7 +650,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 2/4
@@ -676,7 +676,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> meter = metertools.Meter((4, 4))
-                >>> print meter.pretty_rtm_format
+                >>> print(meter.pretty_rtm_format)
                 (4/4 (
                     1/4
                     1/4
@@ -689,7 +689,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 2/4
@@ -724,7 +724,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 2/4
@@ -751,7 +751,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                 >>> meter = metertools.Meter(rtm)
-                >>> print meter.pretty_rtm_format # doctest: +SKIP
+                >>> print(meter.pretty_rtm_format) # doctest: +SKIP
                 (4/4 (
                     (2/4 (
                         1/4
@@ -766,7 +766,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 2/4
@@ -801,7 +801,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/4
                     c'32
@@ -822,7 +822,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/4
                     c'32
@@ -849,7 +849,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/4
                     c'32
@@ -877,7 +877,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/4
                     c'32
@@ -906,7 +906,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 3/4
                     c'32
@@ -937,7 +937,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> meter = metertools.Meter((9, 8))
-                >>> print meter.pretty_rtm_format
+                >>> print(meter.pretty_rtm_format)
                 (9/8 (
                     (3/8 (
                         1/8
@@ -962,7 +962,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 9/8
                     c'2
@@ -980,7 +980,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 9/8
                     c'2
@@ -1008,7 +1008,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 9/8
                     c'4. ~
@@ -1036,7 +1036,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 9/8
                     c'2
@@ -1079,7 +1079,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1159,7 +1159,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1242,7 +1242,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(score)
+                >>> print(format(score))
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1333,7 +1333,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 4/4
                     c'16 ~
@@ -1371,7 +1371,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(measure)
+                >>> print(format(measure))
                 {
                     \time 4/4
                     c'4 ~
@@ -1428,7 +1428,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 (
                     d'8.
@@ -1450,7 +1450,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/8
                     c'8 -\accent ~
@@ -1466,7 +1466,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 3/8
                     c'4. -\accent
@@ -1484,7 +1484,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'8 (
                     d'8
@@ -1499,7 +1499,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'8. (
                     d'8.
@@ -1523,7 +1523,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 (
                     d'8 ~
@@ -1546,7 +1546,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 5/16
                     c'8 -\accent ~
@@ -1562,7 +1562,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 5/16
                     c'4 -\accent ~
@@ -1581,7 +1581,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'8 (
                     d'8
@@ -1596,7 +1596,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'8 ~ (
                     c'32
@@ -1624,7 +1624,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 (
                     \tweak #'edge-height #'(0.7 . 0)
@@ -1647,7 +1647,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 -\accent
                 }
@@ -1660,7 +1660,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -1679,7 +1679,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     c'8 (
                     d'8
@@ -1694,7 +1694,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(container)
+                >>> print(format(container))
                 {
                     \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -1731,7 +1731,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 (
                     \tweak #'edge-height #'(0.7 . 0)
@@ -1755,7 +1755,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(note)
+                >>> print(format(note))
                 c'8 * 1/2
 
             ::
@@ -1765,7 +1765,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(note)
+                >>> print(format(note))
                 c'8 * 5/6
 
         ..  container:: example
@@ -1784,7 +1784,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1803,7 +1803,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1831,7 +1831,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1850,7 +1850,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1917,7 +1917,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1942,7 +1942,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1973,7 +1973,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1999,7 +1999,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2030,7 +2030,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2056,7 +2056,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2089,7 +2089,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2116,7 +2116,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2151,7 +2151,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2177,7 +2177,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2344,7 +2344,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 3/4
@@ -2369,7 +2369,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     \times 4/6 {
                         c'4 \< \p (
@@ -2409,7 +2409,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     {
                         \time 4/4
@@ -2433,7 +2433,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 {
                     \time 4/4

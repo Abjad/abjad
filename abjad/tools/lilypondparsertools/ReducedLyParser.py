@@ -24,7 +24,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "c'4 r8. <b d' fs'>16"
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c'4
             r8.
@@ -38,7 +38,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = '4 -8 16. -32'
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c'4
             r8
@@ -54,7 +54,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "4 d' 4"
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c'4
             d'4
@@ -66,7 +66,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "c'4 d' e' f'"
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c'4
             d'4
@@ -82,7 +82,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
@@ -124,7 +124,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = 'c16 [ ( d ~ d ) f ]'
         >>> result = parser(string)
-        >>> print format(result)
+        >>> print(format(result))
         {
             c16 [ (
             d16 ~
@@ -216,7 +216,7 @@ class ReducedLyParser(abctools.Parser):
         return t
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        print(("Illegal character '%s'" % t.value[0]))
         t.lexer.skip(1)
 
     def t_newline(self, t):
@@ -319,7 +319,7 @@ class ReducedLyParser(abctools.Parser):
 
     def p_error(self, p):
         if p:
-            print("Syntax error at '%s'" % p.value)
+            print(("Syntax error at '%s'" % p.value))
         else:
             print("Syntax error at EOF")
 

@@ -10,7 +10,7 @@ class MusicGlyph(MarkupCommand):
 
         >>> markuptools.MusicGlyph('accidentals.sharp')
         MusicGlyph('accidentals.sharp')
-        >>> print _
+        >>> print(_)
         \musicglyph #"accidentals.sharp"
 
     '''

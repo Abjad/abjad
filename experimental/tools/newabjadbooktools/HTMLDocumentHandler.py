@@ -46,8 +46,8 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         >>> document_handler.execute_code_blocks()
         >>> rebuilt_document = document_handler.rebuild_document()
         >>> for line in rebuilt_document:
-        ...     print repr(line)
-        ...
+        ...     print(repr(line))
+        ... 
         '<html>'
         '<head>'
         '</head>'

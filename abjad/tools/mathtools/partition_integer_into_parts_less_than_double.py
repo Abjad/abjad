@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 
 
 def partition_integer_into_parts_less_than_double(n, m):
@@ -9,7 +10,7 @@ def partition_integer_into_parts_less_than_double(n, m):
         ::
 
             >>> for n in range(1, 24+1):
-            ...     print n, mathtools.partition_integer_into_parts_less_than_double(n, 4)
+            ...     print(n, mathtools.partition_integer_into_parts_less_than_double(n, 4))
             1 (1,)
             2 (2,)
             3 (3,)

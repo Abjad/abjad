@@ -17,7 +17,7 @@ class Oboe(Instrument):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \set Staff.instrumentName = \markup { Oboe }
             \set Staff.shortInstrumentName = \markup { Ob. }

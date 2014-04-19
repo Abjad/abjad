@@ -692,7 +692,7 @@ class ScoreManager(Controller):
 
         Return none.
         '''
-        print 'FOO'
+        print('FOO')
         self._score_package_wrangler.view_views_module()
 
     def write_cache(self, prompt=True):

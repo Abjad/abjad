@@ -8,8 +8,8 @@ def binomial_coefficient(n, k):
     ::
 
         >>> for k in range(8):
-        ...     print k, '\t', mathtools.binomial_coefficient(8, k)
-        ...
+        ...     print(k, '\t', mathtools.binomial_coefficient(8, k))
+        ... 
         0  1
         1  8
         2  28

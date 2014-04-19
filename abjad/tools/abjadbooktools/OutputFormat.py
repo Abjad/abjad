@@ -50,8 +50,8 @@ class OutputFormat(abctools.AbjadObject):
                     self.code_block_closing)
                 for x in result:
                     if 'Error:' in x or 'Exception:' in x:
-                        print '\nAbjadBookError:\n\n{}'.format(
-                            '\n'.join(reformatted))
+                        print('\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(reformatted)))
                         break
 
             elif isinstance(result, dict):
@@ -75,8 +75,8 @@ class OutputFormat(abctools.AbjadObject):
                                 )
                             reformatted.append(image_block)
                     except KeyError:
-                        print '\nAbjadBookError:\n\n{}'.format(
-                            '\n'.join(reformatted))
+                        print('\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(reformatted)))
 
                 else:
                     try:
@@ -93,8 +93,8 @@ class OutputFormat(abctools.AbjadObject):
                             else:
                                 os.remove(image_file_name)
                     except KeyError:
-                        print '\nAbjadBookError:\n\n{}'.format(
-                            '\n'.join(reformatted))
+                        print('\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(reformatted)))
 
         return tuple(reformatted)
 

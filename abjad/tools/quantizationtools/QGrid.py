@@ -19,7 +19,7 @@ class QGrid(AbjadObject):
 
     ::
 
-        >>> print format(q_grid, 'storage')
+        >>> print(format(q_grid, 'storage'))
         quantizationtools.QGrid(
             root_node=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
@@ -53,8 +53,8 @@ class QGrid(AbjadObject):
     ::
 
         >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
-        ...     print format(q_event_proxy, 'storage')
-        ...
+        ...     print(format(q_event_proxy, 'storage'))
+        ... 
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(250, 1),
@@ -68,8 +68,8 @@ class QGrid(AbjadObject):
     ::
 
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
-        ...     print format(q_event_proxy, 'storage')
-        ...
+        ...     print(format(q_event_proxy, 'storage'))
+        ... 
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(750, 1),
@@ -359,3 +359,4 @@ class QGrid(AbjadObject):
                     q_event_proxies.append(next_leaf.q_event_proxies.pop(idx))
 
         return q_event_proxies
+

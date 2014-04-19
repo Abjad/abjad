@@ -22,7 +22,7 @@ def label_leaves_in_expr_with_numbered_intervals(expr, markup_direction=Up):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             c'8 ^ \markup { +25 }
             cs'''8 ^ \markup { -14 }
@@ -57,3 +57,4 @@ def label_leaves_in_expr_with_numbered_intervals(expr, markup_direction=Up):
                 attach(markup, note)
         except StopIteration:
             pass
+

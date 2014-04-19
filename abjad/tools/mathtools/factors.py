@@ -12,8 +12,8 @@ def factors(n):
     ::
 
         >>> for n in range(10, 20):
-        ...   print n, mathtools.factors(n)
-        ...
+        ...   print(n, mathtools.factors(n))
+        ... 
         10 [1, 2, 5]
         11 [1, 11]
         12 [1, 2, 2, 3]

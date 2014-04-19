@@ -7,10 +7,10 @@ if not (
     distutils.version.LooseVersion('2.7.2') <
     distutils.version.LooseVersion(platform.python_version())
     ):
-    print 'WARNING: Abjad no longer supports' + \
-        ' versions of Python less than 2.7.3!'
-    print 'WARNING: Please upgrade your' + \
-        ' version of Python to 2.7.3 or higher!'
+    print('WARNING: Abjad no longer supports' + \
+        ' versions of Python less than 2.7.3!')
+    print('WARNING: Please upgrade your' + \
+        ' version of Python to 2.7.3 or higher!')
 del platform
 del distutils
 
@@ -99,4 +99,4 @@ from abjad._version import __version_info__, __version__
 del _version
 
 def f(expr):
-    print format(expr, 'lilypond')
+    print(format(expr, 'lilypond'))

@@ -18,7 +18,7 @@ def make_colored_text_spanner_with_nibs():
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 \override TextSpanner #'bound-details #'left #'text = \markup {
                     \draw-line #'(0 . -1) }

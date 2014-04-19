@@ -85,7 +85,7 @@ class TestManager(object):
 
             >>> def foo():
             ...        function_name = systemtools.TestManager.get_current_function_name()
-            ...        print 'Function name is {!r}.'.format(function_name)
+            ...        print('Function name is {!r}.'.format(function_name))
 
         ::
 

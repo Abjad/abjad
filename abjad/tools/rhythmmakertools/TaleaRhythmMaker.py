@@ -246,7 +246,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(maker)
+                >>> print(format(maker))
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
                         counts=(1, 2, 3, 4),
@@ -1936,7 +1936,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> reversed_maker = maker.reverse()
-                >>> print format(reversed_maker)
+                >>> print(format(reversed_maker))
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
                         counts=(4, 3, 2, 1),

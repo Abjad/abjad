@@ -74,10 +74,10 @@ class PyTestScript(DirectoryScript):
         report = ''
         if args.report:
             report = '-r {}'.format(args.report)
-        print 'TESTING:'
+        print('TESTING:')
         for path in args.path:
-            print '\t{}'.format(path)
-        print ''
+            print('\t{}'.format(path))
+        print('')
         path = ' '.join(args.path)
         command = '{} {} {} {}'.format(parallel, exitfirst, report, path)
         return pytest.main(command.split())

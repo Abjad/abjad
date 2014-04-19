@@ -70,7 +70,7 @@ class IOManager(object):
         lines.append(line)
         lines.append('')
         for line in lines:
-            print line.center(80)
+            print(line.center(80))
 
     ### PUBLIC METHODS ###
 
@@ -411,7 +411,7 @@ class IOManager(object):
         result = now_string + '\n\n' + stats_stream.getvalue()
         stats_stream.close()
         if print_to_terminal:
-            print result
+            print(result)
         else:
             return result
 
@@ -449,7 +449,7 @@ class IOManager(object):
                 )
             if os.path.exists(log_path):
                 with open(log_path, 'r') as f:
-                    print f.read()
+                    print(f.read())
             message = 'LilyPond rendering failed. Press any key to continue.'
             raw_input(message)
             return False
@@ -614,7 +614,7 @@ class IOManager(object):
                 target_str = '%04d' % target_number
                 target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
             else:
-                print 'Target LilyPond input file does not exist.'
+                print('Target LilyPond input file does not exist.')
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
             target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
@@ -630,7 +630,7 @@ class IOManager(object):
         else:
             message = 'Target LilyPond input file {} does not exist.'
             message = message.format(target_ly)
-            print message
+            print(message)
 
     @staticmethod
     def view_last_pdf(target=-1):
@@ -659,7 +659,7 @@ class IOManager(object):
                 target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
             else:
                 message = 'Target PDF does not exist.'
-                print message
+                print(message)
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
             target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
@@ -675,4 +675,4 @@ class IOManager(object):
         else:
             message = 'target PDF {} does not exist.'
             message = message.format(target_pdf)
-            print message
+            print(message)

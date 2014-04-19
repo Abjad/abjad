@@ -9,7 +9,7 @@ class PitchArrayCell(AbjadObject):
     ::
 
         >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-        >>> print array
+        >>> print(array)
         [ ] [     ] [ ]
         [     ] [ ] [ ]
         >>> cell = array[0][1]

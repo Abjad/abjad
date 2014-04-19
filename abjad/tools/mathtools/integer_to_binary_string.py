@@ -7,8 +7,8 @@ def integer_to_binary_string(n):
     ::
 
         >>> for n in range(1, 16 + 1):
-        ...     print '{}\t{}'.format(n, mathtools.integer_to_binary_string(n))
-        ...
+        ...     print('{}\t{}'.format(n, mathtools.integer_to_binary_string(n)))
+        ... 
         1  1
         2  10
         3  11

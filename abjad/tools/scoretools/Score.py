@@ -17,7 +17,7 @@ class Score(Context):
 
     ..  doctest::
 
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 c'8
@@ -62,7 +62,7 @@ class Score(Context):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'4
@@ -83,7 +83,7 @@ class Score(Context):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'4
@@ -121,7 +121,7 @@ class Score(Context):
 
         ::
 
-            >>> print format(markup, 'storage')
+            >>> print(format(markup, 'storage'))
             markuptools.Markup(
                 contents=(
                     markuptools.MarkupCommand(
@@ -137,7 +137,7 @@ class Score(Context):
 
         ..  doctest::
 
-            >>> print format(score)
+            >>> print(format(score))
             \new Score <<
                 \new Staff {
                     c'4

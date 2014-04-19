@@ -70,7 +70,7 @@ class CountLinewidthsScript(DirectoryScript):
         modules = {}
 
         if args.mode == 'docstrings':
-            print 'DOCS:\tMODULE:'
+            print('DOCS:\tMODULE:')
             for obj in documentationtools.FunctionCrawler(args.path)():
                 docstring = obj.__doc__
                 if not docstring:
@@ -96,7 +96,7 @@ class CountLinewidthsScript(DirectoryScript):
                 modules[obj.__module__] = width
 
         elif args.mode == 'code':
-            print 'CODE:\tMODULE:'
+            print('CODE:\tMODULE:')
             for obj in documentationtools.FunctionCrawler(args.path)():
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
@@ -139,7 +139,7 @@ class CountLinewidthsScript(DirectoryScript):
             modules = modules[-args.limit:]
 
         for pair in modules:
-            print '{}\t{}'.format(pair[1], pair[0])
+            print('{}\t{}'.format(pair[1], pair[0]))
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.

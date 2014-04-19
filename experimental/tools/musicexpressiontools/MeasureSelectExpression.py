@@ -31,7 +31,7 @@ class MeasureSelectExpression(SelectExpression):
 
     ::
 
-        >>> print format(measures)
+        >>> print(format(measures))
         musicexpressiontools.MeasureSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory(
@@ -47,7 +47,7 @@ class MeasureSelectExpression(SelectExpression):
 
     ::
 
-        >>> print format(measures)
+        >>> print(format(measures))
         musicexpressiontools.MeasureSelectExpression(
             anchor='red',
             voice_name='Voice 1',
@@ -66,7 +66,7 @@ class MeasureSelectExpression(SelectExpression):
 
     ::
 
-        >>> print format(measures)
+        >>> print(format(measures))
         musicexpressiontools.MeasureSelectExpression(
             anchor=musicexpressiontools.TimespanExpression(
                 anchor=musicexpressiontools.SegmentSelectExpression(

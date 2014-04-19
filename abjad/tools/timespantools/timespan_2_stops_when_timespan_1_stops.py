@@ -12,7 +12,7 @@ def timespan_2_stops_when_timespan_1_stops(
     ::
 
         >>> inequality = timespantools.timespan_2_stops_when_timespan_1_stops()
-        >>> print format(inequality)
+        >>> print(format(inequality))
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [

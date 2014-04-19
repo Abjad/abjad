@@ -27,7 +27,7 @@ def set_line_breaks_by_line_duration_in_seconds_ge(
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \tempo 8=44
             {
@@ -57,7 +57,7 @@ def set_line_breaks_by_line_duration_in_seconds_ge(
 
     ::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \tempo 8=44
             {

@@ -12,7 +12,7 @@ class RotationExpression(abctools.AbjadObject):
 
     ::
 
-        >>> print format(rotation_expression)
+        >>> print(format(rotation_expression))
         musicexpressiontools.RotationExpression(
             index=-1,
             level=2,
@@ -43,7 +43,7 @@ class RotationExpression(abctools.AbjadObject):
 
         ::
 
-            >>> print format(rotation_expression)
+            >>> print(format(rotation_expression))
             musicexpressiontools.RotationExpression(
                 index=-1,
                 level=2,

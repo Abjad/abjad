@@ -43,7 +43,7 @@ class Selector(AbjadObject):
 
     ::
 
-        >>> print format(selector)
+        >>> print(format(selector))
         selectortools.Selector(
             callbacks=(
                 selectortools.PrototypeSelectorCallback(

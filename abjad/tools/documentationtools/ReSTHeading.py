@@ -17,7 +17,7 @@ class ReSTHeading(TreeNode):
 
     ::
 
-        >>> print heading.rest_format
+        >>> print(heading.rest_format)
         Section A
         =========
 

@@ -9,7 +9,7 @@ class PayloadExpression(Expression):
 
     ::
 
-        >>> print format(payload_expression)
+        >>> print(format(payload_expression))
         musicexpressiontools.PayloadExpression(
             'foo'
             )

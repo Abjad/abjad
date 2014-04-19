@@ -23,17 +23,17 @@ def format_input_lines_as_doc_string(input_lines):
     for i, line in enumerate(lines):
         if line == '':
             if i not in (0, last_line_index):
-                print tab + tab
-                print tab + '::'
-                print tab + tab
+                print(tab + tab)
+                print(tab + '::')
+                print(tab + tab)
         elif line.startswith('f('):
-            print _replace_line_with_format(tab, most, line)
+            print(_replace_line_with_format(tab, most, line))
         elif line.endswith('###'):
             _handle_repr_line(tab, most, line)
             most += line + '\n'
         else:
             most += line + '\n'
-            print start + line
+            print(start + line)
 
 
 def _handle_repr_line(tab, most_lines, line):
@@ -41,10 +41,10 @@ def _handle_repr_line(tab, most_lines, line):
     most_lines = header + most_lines
     exec(most_lines)
     line = line.replace('#', '')
-    print tab + tab + '>>> ' + line
+    print(tab + tab + '>>> ' + line)
     exec('__x = %s' % line)
     if __x is not None:
-        print tab + tab + repr(__x)
+        print(tab + tab + repr(__x))
 
 
 def _replace_line_with_format(tab, most_lines, last_line):
@@ -52,7 +52,7 @@ def _replace_line_with_format(tab, most_lines, last_line):
     most_lines = header + most_lines
     exec(most_lines)
     last_variable = last_line[2:-1]
-    print tab + tab + '>>> ' + 'f(%s)' % last_variable
+    print(tab + tab + '>>> ' + 'f(%s)' % last_variable)
     exec(most_lines)
     exec('__x = %s.format' % last_variable)
     format_lines = __x.split('\n')

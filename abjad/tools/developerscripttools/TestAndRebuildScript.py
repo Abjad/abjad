@@ -76,9 +76,9 @@ class TestAndRebuildScript(DeveloperScript):
         '''
         systemtools.IOManager.clear_terminal()
         if not self.run_doctest(args):
-            print
+            print()
             if not self.run_pytest(args):
-                print
+                print()
                 self.rebuild_docs(args)
 
     def rebuild_docs(self, args):
@@ -95,8 +95,8 @@ class TestAndRebuildScript(DeveloperScript):
         start_message = ' doctest session starts '
         stop_message = ' {} of {} tests passed, in {} modules '
 
-        print start_message.center(self.get_terminal_width(), '=')
-        print
+        print(start_message.center(self.get_terminal_width(), '='))
+        print()
 
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
@@ -121,7 +121,7 @@ class TestAndRebuildScript(DeveloperScript):
                     not file_name == '__init__.py':
                     full_file_name = os.path.abspath(
                         os.path.join(dir_path, file_name))
-                    print os.path.relpath(full_file_name)
+                    print(os.path.relpath(full_file_name))
                     failure_count, test_count = doctest.testfile(
                         full_file_name,
                         module_relative=False,
@@ -134,11 +134,11 @@ class TestAndRebuildScript(DeveloperScript):
                     passed_modules += 1
                     passed_tests += test_count
 
-        print
-        print stop_message.format(
+        print()
+        print(stop_message.format(
             passed_tests - failed_tests,
             passed_tests,
-            passed_modules).center(self.get_terminal_width(), '=')
+            passed_modules).center(self.get_terminal_width(), '='))
 
         return False
 

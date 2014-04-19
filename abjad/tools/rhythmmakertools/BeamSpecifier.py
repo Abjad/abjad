@@ -105,7 +105,7 @@ class BeamSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> print format(specifier)
+                >>> print(format(specifier))
                 rhythmmakertools.BeamSpecifier(
                     beam_each_division=True,
                     beam_divisions_together=False,

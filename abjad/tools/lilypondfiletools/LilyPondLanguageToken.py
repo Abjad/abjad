@@ -37,7 +37,7 @@ class LilyPondLanguageToken(AbjadObject):
             ::
 
                 >>> token = lilypondfiletools.LilyPondLanguageToken()
-                >>> print format(token)
+                >>> print(format(token))
                 \language "english"
 
         Returns string.

@@ -16,7 +16,7 @@ class ReSTAutosummaryItem(TreeNode):
 
     ::
 
-        >>> print item.rest_format
+        >>> print(item.rest_format)
         abjad.tools.scoretools.Note
 
     '''

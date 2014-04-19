@@ -226,7 +226,7 @@ class LogicalTie(ContiguousSelection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -248,7 +248,7 @@ class LogicalTie(ContiguousSelection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -282,7 +282,7 @@ class LogicalTie(ContiguousSelection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -304,7 +304,7 @@ class LogicalTie(ContiguousSelection):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {

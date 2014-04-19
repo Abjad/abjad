@@ -57,7 +57,7 @@ class SchemePair(Scheme):
 
         ::
 
-            >>> print format(scheme_pair, 'storage')
+            >>> print(format(scheme_pair, 'storage'))
             schemetools.SchemePair(
                 -1,
                 1

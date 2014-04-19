@@ -366,4 +366,4 @@ if __name__ == '__main__':
 
     import doctest
     from operator import itemgetter
-    print(doctest.testmod())
+    print((doctest.testmod()))

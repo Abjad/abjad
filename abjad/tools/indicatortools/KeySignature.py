@@ -14,7 +14,7 @@ class KeySignature(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \key e \major
             e'8

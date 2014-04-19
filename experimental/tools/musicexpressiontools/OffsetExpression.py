@@ -33,7 +33,7 @@ class OffsetExpression(
 
     ::
 
-        >>> print format(offset)
+        >>> print(format(offset))
         musicexpressiontools.OffsetExpression(
             anchor=musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',

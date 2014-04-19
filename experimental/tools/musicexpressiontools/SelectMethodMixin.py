@@ -32,7 +32,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(beats)
+            >>> print(format(beats))
             musicexpressiontools.BeatSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
@@ -61,7 +61,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(divisions)
+            >>> print(format(divisions))
             musicexpressiontools.DivisionSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
@@ -91,7 +91,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(leaves)
+            >>> print(format(leaves))
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory(
@@ -127,7 +127,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(measures)
+            >>> print(format(measures))
             musicexpressiontools.MeasureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
@@ -158,7 +158,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(notes_and_chords)
+            >>> print(format(notes_and_chords))
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory(
@@ -217,7 +217,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print format(time_signatures)
+            >>> print(format(time_signatures))
             musicexpressiontools.TimeSignatureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',

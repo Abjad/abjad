@@ -9,7 +9,7 @@ class StringNumber(AbjadObject):
     ::
 
         >>> indicator = indicatortools.StringNumber(1)
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.StringNumber(
             numbers=(1,),
             )
@@ -17,7 +17,7 @@ class StringNumber(AbjadObject):
     ::
 
         >>> indicator = indicatortools.StringNumber((2, 3))
-        >>> print format(indicator)
+        >>> print(format(indicator))
         indicatortools.StringNumber(
             numbers=(2, 3),
             )

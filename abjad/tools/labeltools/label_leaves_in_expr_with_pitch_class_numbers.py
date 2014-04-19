@@ -17,7 +17,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 2 }
@@ -37,7 +37,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(
         ...     staff, color=True, number=False)
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             \once \override NoteHead #'color = #(x11-color 'red)
             c'8

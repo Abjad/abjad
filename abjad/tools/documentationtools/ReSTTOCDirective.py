@@ -35,7 +35,7 @@ class ReSTTOCDirective(ReSTDirective):
 
     ::
 
-        >>> print toc.rest_format
+        >>> print(toc.rest_format)
         .. toctree::
            :hidden:
            :maxdepth: 1

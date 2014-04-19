@@ -7,7 +7,7 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     ::
 
         >>> relation = timespantools.offset_happens_during_timespan()
-        >>> print format(relation)
+        >>> print(format(relation))
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [

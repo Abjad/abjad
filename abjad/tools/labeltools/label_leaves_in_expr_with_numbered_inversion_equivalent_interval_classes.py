@@ -22,7 +22,7 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
 
     ..  doctest::
 
-        >>> print format(staff)
+        >>> print(format(staff))
         \new Staff {
             c'8 ^ \markup { 1 }
             cs'''8 ^ \markup { 2 }
@@ -58,3 +58,4 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
                 attach(markup, note)
         except StopIteration:
             pass
+

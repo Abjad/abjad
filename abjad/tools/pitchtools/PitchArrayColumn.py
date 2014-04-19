@@ -15,7 +15,7 @@ class PitchArrayColumn(AbjadObject):
 
     ::
 
-        >>> print array
+        >>> print(array)
         [  ] [d'] [bqf    ]
         [g'     ] [fs'] [ ]
 
@@ -26,7 +26,7 @@ class PitchArrayColumn(AbjadObject):
 
     ::
 
-        >>> print array.columns[0]
+        >>> print(array.columns[0])
         [  ]
         [g'     ]
 

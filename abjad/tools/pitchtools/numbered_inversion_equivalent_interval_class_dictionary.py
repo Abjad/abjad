@@ -12,8 +12,8 @@ def numbered_inversion_equivalent_interval_class_dictionary(pitches):
         >>> vector = pitchtools.numbered_inversion_equivalent_interval_class_dictionary(
         ... chord.written_pitches)
         >>> for i in range(7):
-        ...     print '\t%s\t%s' % (i, vector[i])
-        ...
+        ...     print('\t%s\t%s' % (i, vector[i]))
+        ... 
             0  0
             1  1
             2  1

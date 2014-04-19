@@ -33,7 +33,7 @@ class ConcreteInterpreter(Interpreter):
         total_time = stop_time - start_time
         if 2 <= total_time:
             message = 'Abjad interpretation time equal to {} seconds ...'
-            print message.format(int(total_time))
+            print(message.format(int(total_time)))
         return self.score
 
     ### PRIVATE METHODS ###

@@ -34,8 +34,8 @@ class QEventSequence(AbjadObject):
     ::
 
         >>> for q_event in sequence:
-        ...     print format(q_event, 'storage')
-        ...
+        ...     print(format(q_event, 'storage'))
+        ... 
         quantizationtools.PitchedQEvent(
             offset=durationtools.Offset(0, 1),
             pitches=(
@@ -120,7 +120,7 @@ class QEventSequence(AbjadObject):
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-            >>> print format(sequence)
+            >>> print(format(sequence))
             quantizationtools.QEventSequence(
                 (
                     quantizationtools.PitchedQEvent(
@@ -229,8 +229,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence.sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -283,8 +283,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.SilentQEvent(
                 offset=durationtools.Offset(0, 1),
                 )
@@ -350,8 +350,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -414,8 +414,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -504,8 +504,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -572,8 +572,8 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     print format(q_event, 'storage')
-            ...
+            ...     print(format(q_event, 'storage'))
+            ... 
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(

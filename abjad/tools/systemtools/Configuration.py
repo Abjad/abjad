@@ -40,7 +40,7 @@ class Configuration(AbjadObject):
                     message = 'Warning: config key {!r} failed validation,'
                     message += ' setting to default: {!r}.'
                     message = message.format(key, default)
-                    print message
+                    print(message)
                     config[key] = default
         # setup output formatting
         config.write_empty_values = True

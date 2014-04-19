@@ -37,8 +37,8 @@ class TextualDocumentHandler(DocumentHandler):
         >>> source_to_code_block_mapping = \
         ...     document_handler.extract_code_blocks()
         >>> for location, code_block in source_to_code_block_mapping.items():
-        ...     print location, code_block.displayed_lines
-        ...
+        ...     print(location, code_block.displayed_lines)
+        ... 
         (2, 4) ('print "hello, world!"',)
         (8, 11) ('note = Note("c\'4"))', 'show(Note("c\'4"))')
 
@@ -70,8 +70,8 @@ class TextualDocumentHandler(DocumentHandler):
         >>> source_to_code_block_mapping = \
         ...     document_handler.extract_code_blocks()
         >>> for code_block in source_to_code_block_mapping.values():
-        ...     print code_block.hide
-        ...
+        ...     print(code_block.hide)
+        ... 
         True
         False
 
@@ -202,8 +202,8 @@ class TextualDocumentHandler(DocumentHandler):
         ::
 
             >>> for location in source_to_code_block_mapping.iterkeys():
-            ...     print location
-            ...
+            ...     print(location)
+            ... 
             (2, 4)
             (8, 12)
             (16, 18)
@@ -211,8 +211,8 @@ class TextualDocumentHandler(DocumentHandler):
         ::
 
             >>> for code_block in source_to_code_block_mapping.itervalues():
-            ...     print format(code_block)
-            ...
+            ...     print(format(code_block))
+            ... 
             newabjadbooktools.CodeBlock(
                 ('print "hello, world!"',),
                 allow_exceptions=False,

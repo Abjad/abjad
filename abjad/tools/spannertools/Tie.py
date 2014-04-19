@@ -17,7 +17,7 @@ class Tie(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8 ~
                 c'8 ~
@@ -95,7 +95,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 ^ ~
                     c'8 ^ ~
@@ -121,7 +121,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 _ ~
                     c'8 _ ~
@@ -147,7 +147,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print format(staff)
+                >>> print(format(staff))
                 \new Staff {
                     c'8 ~
                     c'8 ~

@@ -17,7 +17,7 @@ class Block(AbjadObject):
 
         ::
 
-            >>> print format(block)
+            >>> print(format(block))
             \paper {
                 left-margin = 2\cm
                 right-margin = 2\cm
@@ -35,7 +35,7 @@ class Block(AbjadObject):
 
         ::
 
-            >>> print format(block)
+            >>> print(format(block))
             \score {
                 {
                     \markup { foo }

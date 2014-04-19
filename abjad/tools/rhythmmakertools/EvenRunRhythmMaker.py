@@ -197,7 +197,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(maker)
+                >>> print(format(maker))
                 rhythmmakertools.EvenRunRhythmMaker()
 
         Set `format_specification` to `''` or `'storage'`.
@@ -487,7 +487,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print format(reversed_maker)
+                >>> print(format(reversed_maker))
                 rhythmmakertools.EvenRunRhythmMaker(
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,

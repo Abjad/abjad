@@ -171,7 +171,7 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> print format(cyclic_matrix.columns)
+            >>> print(format(cyclic_matrix.columns))
             datastructuretools.CyclicTuple(
                 [
                     datastructuretools.CyclicTuple(
@@ -207,7 +207,7 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> print format(cyclic_matrix.rows)
+            >>> print(format(cyclic_matrix.rows))
             datastructuretools.CyclicTuple(
                 [
                     datastructuretools.CyclicTuple(

@@ -21,8 +21,8 @@ def truncate_sequence(sequence, sum_=None, weight=None):
 
             >>> for n in range(1, 11):
             ...     result = sequencetools.truncate_sequence(sequence, weight=n)
-            ...     print n, result
-            ...
+            ...     print(n, result)
+            ... 
             1 [-1]
             2 [-1, 1]
             3 [-1, 2]
@@ -42,8 +42,8 @@ def truncate_sequence(sequence, sum_=None, weight=None):
 
             >>> for n in range(1, 11):
             ...     result = sequencetools.truncate_sequence(sequence, sum_=n)
-            ...     print n, result
-            ...
+            ...     print(n, result)
+            ... 
             1 [-1, 2]
             2 [-1, 2, -3, 4]
             3 [-1, 2, -3, 4, -5, 6]

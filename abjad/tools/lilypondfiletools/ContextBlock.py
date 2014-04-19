@@ -31,7 +31,7 @@ class ContextBlock(Block):
 
         ::
 
-            >>> print format(block)
+            >>> print(format(block))
             \context {
                 \Staff
                 \name FluteStaff

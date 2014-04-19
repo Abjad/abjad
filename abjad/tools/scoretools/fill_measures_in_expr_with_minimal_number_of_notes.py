@@ -21,7 +21,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(
 
     ..  doctest::
 
-        >>> print format(measure)
+        >>> print(format(measure))
         {
             \time 5/18
             \scaleDurations #'(8 . 9) {
@@ -45,7 +45,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(
 
     ..  doctest::
 
-        >>> print format(measure)
+        >>> print(format(measure))
         {
             \time 5/18
             \scaleDurations #'(8 . 9) {

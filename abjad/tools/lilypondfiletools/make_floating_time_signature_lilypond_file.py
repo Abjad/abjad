@@ -32,7 +32,7 @@ def make_floating_time_signature_lilypond_file(music=None):
 
         ::
 
-            >>> print format(lilypond_file) # doctest: +SKIP
+            >>> print(format(lilypond_file)) # doctest: +SKIP
             % 2014-01-07 18:22
 
             \version "2.19.0"

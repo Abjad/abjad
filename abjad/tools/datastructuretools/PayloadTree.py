@@ -213,7 +213,7 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> print format(tree)
+            >>> print(format(tree))
             datastructuretools.PayloadTree(
                 [
                     [0, 1],
@@ -413,7 +413,7 @@ class PayloadTree(AbjadObject):
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.PayloadTree(sequence)
-            >>> print tree.graphviz_format
+            >>> print(tree.graphviz_format)
             digraph G {
                 node_0 [label="",
                     shape=circle];

@@ -19,8 +19,8 @@ class CyclicTuple(AbjadObject, tuple):
     ::
 
         >>> for x in range(8):
-        ...     print x, cyclic_tuple[x]
-        ...
+        ...     print(x, cyclic_tuple[x])
+        ... 
         0 a
         1 b
         2 c
@@ -129,3 +129,4 @@ class CyclicTuple(AbjadObject, tuple):
                 list(self),
                 ),
             )
+

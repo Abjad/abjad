@@ -9,8 +9,8 @@ def greatest_power_of_two_less_equal(n, i=0):
     ::
 
         >>> for n in range(10, 20):
-        ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n))
-        ...
+        ...     print('\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n)))
+        ... 
             10 8
             11 8
             12 8
@@ -28,8 +28,8 @@ def greatest_power_of_two_less_equal(n, i=0):
     ::
 
         >>> for n in range(10, 20):
-        ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i=1))
-        ...
+        ...     print('\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i=1)))
+        ... 
             10 4
             11 4
             12 4

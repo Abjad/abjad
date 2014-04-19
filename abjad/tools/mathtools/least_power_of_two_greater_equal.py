@@ -10,8 +10,8 @@ def least_power_of_two_greater_equal(n, i=0):
     ::
 
         >>> for n in range(10, 20):
-        ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n))
-        ...
+        ...     print('\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n)))
+        ... 
             10 16
             11 16
             12 16
@@ -29,8 +29,8 @@ def least_power_of_two_greater_equal(n, i=0):
     ::
 
         >>> for n in range(10, 20):
-        ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n, i=1))
-        ...
+        ...     print('\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n, i=1)))
+        ... 
             10 32
             11 32
             12 32

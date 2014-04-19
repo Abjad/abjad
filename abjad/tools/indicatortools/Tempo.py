@@ -25,7 +25,7 @@ class Tempo(AbjadObject):
 
     ..  doctest::
 
-        >>> print format(score)
+        >>> print(format(score))
         \new Score <<
             \new Staff {
                 \tempo 8=52
@@ -176,7 +176,7 @@ class Tempo(AbjadObject):
         ::
 
             >>> tempo = Tempo('Allegro', (1, 4), 84)
-            >>> print format(tempo)
+            >>> print(format(tempo))
             indicatortools.Tempo(
                 'Allegro',
                 durationtools.Duration(1, 4),
@@ -563,7 +563,7 @@ class Tempo(AbjadObject):
 
                 >>> for tempo, ratio in pairs:
                 ...     string = '{!s}\t{!s}'.format(tempo, ratio)
-                ...     print string
+                ...     print(string)
                 4=29    1:2
                 4=58    1:1
                 4=87    3:2
@@ -586,8 +586,8 @@ class Tempo(AbjadObject):
 
                 >>> for tempo, ratio in pairs:
                 ...     string = '{!s}\t{!s}'.format(tempo, ratio)
-                ...     print string
-                ...
+                ...     print(string)
+                ... 
                 4=30    15:29
                 4=32    16:29
                 4=34    17:29

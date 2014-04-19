@@ -204,7 +204,7 @@ class Octave(AbjadObject):
         ::
 
             >>> for i in range(-1, 9):
-            ...     print i, pitchtools.Octave(i).octave_tick_string
+            ...     print(i, pitchtools.Octave(i).octave_tick_string)
             -1 ,,,,
             0  ,,,
             1  ,,

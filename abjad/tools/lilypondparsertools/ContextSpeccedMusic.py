@@ -54,7 +54,7 @@ class ContextSpeccedMusic(Music):
 
         if self.optional_context_mod is not None:
             for x in self.optional_context_mod:
-                print x
+                print(x)
             # TODO: implement context modifications on contexts
             pass
 

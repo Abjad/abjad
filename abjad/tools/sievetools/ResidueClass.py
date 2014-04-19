@@ -226,7 +226,7 @@ class ResidueClass(BaseResidueClass):
 
 
 if __name__ == '__main__':
-    print 'Psappha B2[0:40]'
+    print('Psappha B2[0:40]')
     RC = ResidueClass
     s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
     s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
@@ -237,6 +237,6 @@ if __name__ == '__main__':
     s7 = (RC(8, 6) & RC(5, 1))
 
     y = s1 | s2 | s3 | s4 | s5 | s6 | s7
-    print y
-    print 'congruent bases:\n', y.get_congruent_bases(40)
-    print 'boolen train:\n', y.get_boolean_train(40)
+    print(y)
+    print('congruent bases:\n', y.get_congruent_bases(40))
+    print('boolen train:\n', y.get_boolean_train(40))

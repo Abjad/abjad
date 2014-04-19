@@ -76,7 +76,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print format(score_specification)
+            >>> print(format(score_specification))
             musicexpressiontools.ScoreSpecification(
                 templatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2,
@@ -152,7 +152,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print format(score_specification.fresh_single_context_set_expressions)
+            >>> print(format(score_specification.fresh_single_context_set_expressions))
             timespantools.TimespanInventory(
                 []
                 )
@@ -180,7 +180,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print format(score_specification.multiple_context_set_expressions)
+            >>> print(format(score_specification.multiple_context_set_expressions))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.MultipleContextSetExpression(
@@ -247,7 +247,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print format(score_specification.postrhythm_set_expressions)
+            >>> print(format(score_specification.postrhythm_set_expressions))
             musicexpressiontools.ExpressionInventory(
                 []
                 )
@@ -265,7 +265,7 @@ class ScoreSpecification(Specification):
             >>> for timespan_inventory in \
             ...     score_specification.region_expressions_by_attribute.itervalues():
             ...     if timespan_inventory:
-            ...         print format(timespan_inventory)
+            ...         print(format(timespan_inventory))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.LiteralDivisionRegionExpression(
@@ -514,7 +514,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print format(score_specification.single_context_time_signature_set_expressions)
+            >>> print(format(score_specification.single_context_time_signature_set_expressions))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.SingleContextTimeSignatureSetExpression(
@@ -621,7 +621,7 @@ class ScoreSpecification(Specification):
             ...     for timespan_inventory in \
             ...         voice_proxy.payload_expressions_by_attribute.itervalues():
             ...         if timespan_inventory:
-            ...             print format(timespan_inventory)
+            ...             print(format(timespan_inventory))
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -891,7 +891,7 @@ class ScoreSpecification(Specification):
 
     def report_settings(self):
         for segment_specification in self.segment_specifications:
-            print '### {} ### '.format(segment_specification)
+            print('### {} ### '.format(segment_specification))
             for context_proxy_name, context_proxy in \
                 segment_specification.single_context_set_expressions_by_context.items():
                 printed_context_proxy_name = False
@@ -899,12 +899,12 @@ class ScoreSpecification(Specification):
                     context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
                         if not printed_context_proxy_name:
-                            print context_proxy_name
+                            print(context_proxy_name)
                             printed_context_proxy_name = True
-                        print key, format(value)
-            print ''
-        print '### SCORE ###'
-        print self
+                        print(key, format(value))
+            print('')
+        print('### SCORE ###')
+        print(self)
         for context_proxy_name, context_proxy in \
             self.single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
@@ -912,11 +912,11 @@ class ScoreSpecification(Specification):
                 context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
                     if not printed_context_proxy_name:
-                        print context_proxy_name
+                        print(context_proxy_name)
                         printed_context_proxy_name = True
-                    print key, format(value)
-        print ''
-        print '### SCORE-ROOTED ###'
+                    print(key, format(value))
+        print('')
+        print('### SCORE-ROOTED ###')
         for context_proxy_name, context_proxy in \
             self.single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
@@ -924,6 +924,6 @@ class ScoreSpecification(Specification):
                 context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
                     if not printed_context_proxy_name:
-                        print context_proxy_name
+                        print(context_proxy_name)
                         printed_context_proxy_name = True
-                    print key, format(value)
+                    print(key, format(value))

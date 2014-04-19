@@ -17,7 +17,7 @@ class StaffLinesSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print format(staff)
+            >>> print(format(staff))
             \new Staff {
                 c'8
                 \stopStaff
