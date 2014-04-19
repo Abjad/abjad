@@ -368,7 +368,7 @@ class Performer(AbjadObject):
 
             >>> dictionary = \
             ...     performer.make_performer_name_instrument_dictionary()
-            >>> for key, value in sorted(dictionary.iteritems()):
+            >>> for key, value in sorted(dictionary.items()):
             ...     print(key + ':')
             ...     for x in value:
             ...         print('\t{}'.format(x.__name__))

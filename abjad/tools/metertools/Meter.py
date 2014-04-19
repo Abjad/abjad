@@ -874,7 +874,7 @@ class Meter(AbjadObject):
             ...     metertools.Meter((4, 4))
             >>> kernel = \
             ...     meter.generate_offset_kernel_to_denominator(8)
-            >>> for offset, weight in sorted(kernel.kernel.iteritems()):
+            >>> for offset, weight in sorted(kernel.kernel.items()):
             ...     print('{!s}\t{!s}'.format(offset, weight))
             ... 
             0       3/16
@@ -894,7 +894,7 @@ class Meter(AbjadObject):
         '''
         from abjad.tools import metertools
         assert mathtools.is_positive_integer_power_of_two(
-            denominator / self.denominator)
+            denominator // self.denominator)
 
         inventory = list(self.depthwise_offset_inventory)
         old_flag_count = durationtools.Duration(1, self.denominator).flag_count

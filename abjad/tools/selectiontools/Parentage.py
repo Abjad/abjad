@@ -176,7 +176,7 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> for key, value in logical_voice.iteritems():
+            >>> for key, value in logical_voice.items():
             ...     print('%12s: %s' % (key, value))
             ... 
                      score: Score-'CustomScore'

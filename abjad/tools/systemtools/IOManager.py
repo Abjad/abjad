@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 try:
-    import StringIO
+    from StringIO import StringIO
 except ImportError:
     from io import StringIO
     
@@ -398,7 +398,7 @@ class IOManager(object):
                 global_context,
                 local_context,
                 )
-        stats_stream = StringIO.StringIO()
+        stats_stream = StringIO()
         stats = pstats.Stats(profile, stream=stats_stream)
         if sort_by == 'cum':
             if platform.python_version() == '2.7.5':

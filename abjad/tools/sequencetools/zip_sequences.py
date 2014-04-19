@@ -71,6 +71,6 @@ def zip_sequences(sequences, cyclic=False, truncate=True):
                     pass
             result.append(tuple(part))
     elif truncate:
-        result = zip(*sequences)
+        result = list(zip(*sequences))
 
     return result

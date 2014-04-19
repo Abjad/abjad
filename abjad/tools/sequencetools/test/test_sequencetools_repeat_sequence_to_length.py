@@ -7,7 +7,7 @@ def test_sequencetools_repeat_sequence_to_length_01():
     r'''Repeat list to length.
     '''
 
-    assert sequencetools.repeat_sequence_to_length(range(5), 11) == [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
+    assert sequencetools.repeat_sequence_to_length(list(range(5)), 11) == [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
 
 def test_sequencetools_repeat_sequence_to_length_02():
@@ -23,7 +23,7 @@ def test_sequencetools_repeat_sequence_to_length_03():
     return only the first length elements of list.
     '''
 
-    when = sequencetools.repeat_sequence_to_length(range(5), 3)
+    when = sequencetools.repeat_sequence_to_length(list(range(5)), 3)
     assert when == [0, 1, 2]
 
 
@@ -31,7 +31,7 @@ def test_sequencetools_repeat_sequence_to_length_04():
     r'''When length is zero, return an empty list.
     '''
 
-    sequence_2 = sequencetools.repeat_sequence_to_length(range(5), 0)
+    sequence_2 = sequencetools.repeat_sequence_to_length(list(range(5)), 0)
     assert sequence_2 == []
 
 
