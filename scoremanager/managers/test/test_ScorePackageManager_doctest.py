@@ -12,8 +12,8 @@ def test_ScorePackageManager_doctest_01():
 
     strings = [
         'Running doctest ...',
-        '27 testable assets found ...',
-        '0 of 0 tests passed in 27 modules.',
+        '30 testable assets found ...',
+        '0 of 0 tests passed in 30 modules.',
         ]
 
     for string in strings:
