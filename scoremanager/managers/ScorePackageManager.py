@@ -35,59 +35,16 @@ class ScorePackageManager(PackageManager):
             return annotated_title
 
     @property
-    @systemtools.Memoize
-    def _build_file_wrangler(self):
-        from scoremanager import wranglers
-        path = os.path.join(self._path, 'build')
-        return wranglers.BuildFileWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _distribution_file_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.DistributionFileWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _maker_module_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MakerModuleWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _material_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MaterialPackageWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _score_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.ScorePackageWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _segment_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.SegmentPackageWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
-    def _stylesheet_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.StylesheetWrangler(session=self._session)
-
-    @property
     def _user_input_to_action(self):
         superclass = super(ScorePackageManager, self)
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'd': self._distribution_file_wrangler._run,
-            'g': self._segment_package_wrangler._run,
+            'd': self._session._score_manager._distribution_file_wrangler._run,
+            'g': self._session._score_manager._segment_package_wrangler._run,
             'fix': self.fix,
-            'k': self._maker_module_wrangler._run,
-            'm': self._material_package_wrangler._run,
+            'k': self._session._score_manager._maker_module_wrangler._run,
+            'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
             'pdfo': self.view_score_pdf,
             'rad': self.add_to_repository,
@@ -96,8 +53,8 @@ class ScorePackageManager(PackageManager):
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
-            'u': self._build_file_wrangler._run,
-            'y': self._stylesheet_wrangler._run,
+            'u': self._session._score_manager._build_file_wrangler._run,
+            'y': self._session._score_manager._stylesheet_wrangler._run,
             'Y': self._io_manager.edit_score_stylesheet,
             })
         return result
@@ -151,7 +108,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _get_tempo_inventory(self):
-        wrangler = self._material_package_wrangler
+        wrangler = self._session._score_manager._material_package_wrangler
         paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_manager(path)
@@ -266,7 +223,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _make_score_pdf_menu_section(self, menu):
-        wrangler = self._distribution_file_wrangler
+        wrangler = self._session._score_manager._distribution_file_wrangler
         if wrangler._get_file_path_ending_with('score.pdf'):
             commands = []
             commands.append(('score pdf - open', 'pdfo'))
@@ -433,4 +390,5 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        self._build_file_wrangler._open_file_ending_with('score.pdf')
+        wrangler = self._session._score_manager._build_file_wrangler
+        wrangler._open_file_ending_with('score.pdf')
