@@ -205,3 +205,6 @@
     ... becomes ...
         'Score manager - score packages (active scores view)'
     ... instead.
+
+50. Sort stylesheet library entries first by annotation and then
+    by asset name.
