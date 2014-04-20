@@ -63,6 +63,7 @@ class StylesheetWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'cp': self.copy_stylesheet,
             'new': self.make_stylesheet,
             'ren': self.rename_stylesheet,
             'rm': self.remove_stylesheets,
@@ -143,6 +144,13 @@ class StylesheetWrangler(Wrangler):
             )
 
     ### PUBLIC METHODS ###
+
+    def copy_stylesheet(self):
+        r'''Copies stylesheet.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def make_stylesheet(self):
         r'''Makes stylesheet.

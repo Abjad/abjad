@@ -58,6 +58,7 @@ class DistributionFileWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'cp': self.copy_distribution_file,
             })
         return result
 
@@ -113,6 +114,13 @@ class DistributionFileWrangler(Wrangler):
         return menu
 
     ### PUBLIC METHODS ###
+
+    def copy_distribution_file(self):
+        r'''Copies distribution file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def remove_distribution_files(self):
         r'''Removes one or more distribution files.

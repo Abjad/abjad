@@ -63,6 +63,7 @@ class BuildFileWrangler(Wrangler):
             'bcg': self.generate_back_cover_latex,
             'bct': self.typeset_back_cover_latex,
             'bco': self.view_back_cover_pdf,
+            'cp': self.copy_build_file,
             'fce': self.edit_front_cover_latex,
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
@@ -279,6 +280,13 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.proceed(message)
 
     ### PUBLIC METHODS ###
+
+    def copy_build_file(self):
+        r'''Copies build file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def copy_segment_lilypond_files(self):
         r'''Copies segment LilyPond files from segment

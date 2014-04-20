@@ -54,6 +54,7 @@ class SegmentPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
+            'cp': self.copy_segment_package,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
@@ -142,7 +143,10 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_segments_menu_section(self, menu):
         commands = []
+        commands.append(('segments - copy', 'cp'))
         commands.append(('segments - new', 'new'))
+        commands.append(('segments - rename', 'ren'))
+        commands.append(('segments - remove', 'rm'))
         menu.make_command_section(
             commands=commands,
             name='segments',
@@ -152,6 +156,13 @@ class SegmentPackageWrangler(Wrangler):
         self._session._is_navigating_to_score_segments = True
 
     ### PUBLIC METHODS ###
+
+    def copy_segment_package(self):
+        r'''Copies segment package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def interpret_current_lilypond_files(
         self,

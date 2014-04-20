@@ -59,6 +59,7 @@ class MakerModuleWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'cp': self.copy_maker_module,
             'new': self.make_maker_module,
             'ren': self.rename_maker_module,
             'rm': self.remove_maker_modules,
@@ -117,6 +118,13 @@ class MakerModuleWrangler(Wrangler):
             )
 
     ### PUBLIC METHODS ###
+
+    def copy_maker_module(self):
+        r'''Copies maker module.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def make_maker_module(self):
         r'''Makes maker module.
