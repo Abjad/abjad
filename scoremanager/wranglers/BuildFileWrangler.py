@@ -86,6 +86,7 @@ class BuildFileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    # TODO: migrate to IOManager
     def _call_lilypond_on_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
@@ -96,13 +97,7 @@ class BuildFileWrangler(Wrangler):
             message = message.format(string)
             self._io_manager.proceed(message)
 
-    def _edit_file(self, path):
-        manager = self._manager_class(
-            path=path,
-            session=self._session,
-            )
-        manager.edit()
-
+    # TODO: migrate to IOManager
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
@@ -122,7 +117,7 @@ class BuildFileWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self._edit_file(result)
+            self.edit_file(result)
 
     def _make_asset_menu_entries(
         self,
@@ -386,6 +381,13 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._edit_file_ending_with('back-cover.tex')
+
+    def edit_file(self, result):
+        r'''Edits build file.
+
+        Returns none.
+        '''
+        self._io_manager.edit(result)
 
     def edit_front_cover_latex(self):
         r'''Edits front cover LaTeX file.

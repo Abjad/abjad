@@ -87,7 +87,7 @@ class StylesheetWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self._edit_stylesheet(result)
+            self.edit_stylesheet(result)
 
     def _is_valid_directory_entry(self, directory_entry):
         superclass = super(StylesheetWrangler, self)
@@ -161,6 +161,13 @@ class StylesheetWrangler(Wrangler):
             file_name_callback=self._file_name_callback,
             item_identifier='stylesheet',
             )
+
+    def edit_stylesheet(self, path):
+        r'''Edits stylesheet.
+
+        Returns none.
+        '''
+        self._io_manager.edit(path)
 
     def make_stylesheet(self):
         r'''Makes stylesheet.
