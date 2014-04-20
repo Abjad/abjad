@@ -63,7 +63,7 @@ class BuildFileWrangler(Wrangler):
             'bcg': self.generate_back_cover_latex,
             'bct': self.typeset_back_cover_latex,
             'bco': self.view_back_cover_pdf,
-            'cp': self.copy_build_file,
+            'cp': self.copy_file,
             'fce': self.edit_front_cover_latex,
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
@@ -117,7 +117,7 @@ class BuildFileWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self.edit_file(result)
+            self.open_file(result)
 
     def _make_asset_menu_entries(
         self,
@@ -276,12 +276,15 @@ class BuildFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def copy_build_file(self):
+    def copy_file(self):
         r'''Copies build file.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._copy_asset(
+            force_lowercase=False,
+            item_identifier='file',
+            )
 
     def copy_segment_lilypond_files(self):
         r'''Copies segment LilyPond files from segment
@@ -382,12 +385,15 @@ class BuildFileWrangler(Wrangler):
         '''
         self._edit_file_ending_with('back-cover.tex')
 
-    def edit_file(self, result):
-        r'''Edits build file.
+    def open_file(self, result):
+        r'''Opens build file.
 
         Returns none.
         '''
-        self._io_manager.edit(result)
+        if result.endswith('.pdf'):
+            self._io_manager.open_file(result)
+        else:
+            self._io_manager.edit(result)
 
     def edit_front_cover_latex(self):
         r'''Edits front cover LaTeX file.
