@@ -18,20 +18,16 @@
 8.  Implement MaterialPackageWrangler method to move a material package 
     from one location to another.
 
-9.  Move score/instrumentation.py module to score/materials packages.
-    Maybe easiest to do this by creating an
-    InstrumentationSpecifierMaterialManager.
+9.  Implement an 'all whatever - edit' command.
 
-10. Implement an 'all whatever - edit' command.
+10. Write view tests. Start with segment wrangler.
 
-11. Write view tests. Start with segment wrangler.
-
-12. Add (lyrm!) for 'lilypond ly - remove from repository'.
+11. Add (lyrm!) for 'lilypond ly - remove from repository'.
     This will work together with (lyrm) for 'lilypond ly - remove'.
     The difference will be that (lyrm!) will (try to) act on the repository 
     where (lyrm) will only ever work on the filesystem.
 
-13. Write py.test tests for the following properties and methods:
+12. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -39,7 +35,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-14. Add 'output module - check (omc)' command.
+13. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -49,37 +45,37 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-15. Make 'vmro' provide a message when no __views__ module is found.
+14. Make 'vmro' provide a message when no __views__ module is found.
 
-16. Implement a 'views module - rewrite' (vmrw) command.
+15. Implement a 'views module - rewrite' (vmrw) command.
 
-17. Implement DirectoryManager.check_contents().
+16. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-18. Do something to put an empty .gitignore file in every directory everywhere.
+17. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-19. Eventually implement a Score Manager start-up behavior that will
+18. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-20: Bug:
+19: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-21. Bug:
+20. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory_path
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-22. Implement an Editor method to allow an none-allowing attribute to be 
+21. Implement an Editor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -107,7 +103,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-23. Bug:
+22. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -115,90 +111,90 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-24. Make (rrv) work for Subversion-managed directories.
+23. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-25. Make 'n' user input work in confirmation dialogue.
+24. Make 'n' user input work in confirmation dialogue.
     Carefully use (m > example pitch range inventory > mdmrm > n)
     to reproduce the bug.
 
-26. Make sure new-style.ily doesn't alias (new).
+25. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-27. When in (new) score, change 'Enter package name>' to
+26. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-28. Block (new) score when view is hiding user scores.
+27. Block (new) score when view is hiding user scores.
     This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.
 
-29. Allow more flexible input for score (new).
+28. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-30. Implement stringtools.delimit_words(delimitor=' ').
+29. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-31. Maybe change Wrangler._current_package_manager to
+30. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-32. Make (mdmro) work for wranglers.
+31. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-33. Make menu title breadcrumbs correctly reflect changes in view
+32. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-34. Refuse to apply view when invalid regular expression is found.
+33. Refuse to apply view when invalid regular expression is found.
 
-35. Imlement 'views - autoedit' (vae) command.
+34. Imlement 'views - autoedit' (vae) command.
 
-36. Compile regular expressions at view entry add time.
+35. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-37. Allow arbitrary metadata in view patterns.
+36. Allow arbitrary metadata in view patterns.
 
-38. Change ...
+37. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-39. Change ...
+38. Change ...
         Score manager - stylesheet library (_test view) - select view to remove:
     ... to ...
         Score manager - stylesheet library - select view to remove:
     ... instead.
 
-40. Change 'default' to '<return>' in test input strings.
+39. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-41. Write test for editing stylesheet.
+40. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-42. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+41. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-43. Make (rst) work again. Right now runs on archipel and then quits.
+42. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-44. Make sure that (red~example~score d red-example-score.pdf)
+43. Make sure that (red~example~score d red-example-score.pdf)
     opens with PDF viewier insted of text editor.
 
-45. Allow 5-99 (or any other large number) to work when removing items.
+44. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-46. Move score_manager_library/views/*_views__.py files to
+45. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-47. Change 'vmrm' to 'vmtrash'.
+46. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-48. Migrate ScoreManager test collateral to ScorePackageWrangler:
+47. Migrate ScoreManager test collateral to ScorePackageWrangler:
         core/test/test_ScoreManager_display_active_scores.py
         core/test/test_ScoreManager_display_all_scores.py
         core/test/test_ScoreManager_display_example_scores.py
@@ -213,7 +209,7 @@
         core/test/test_ScoreManager_write_cache.py
     All should go to wranglers/test/ directory with appropriate changes.
 
-49. Make (red m ls) work.
+48. Make (red m ls) work.
 
-50. Fix menu title that results from the following:
+49. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
