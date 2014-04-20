@@ -776,7 +776,11 @@ class Wrangler(Controller):
             self,
             on_enter_callbacks=(self._enter_run,),
             )
-        with context:
+        directory_change = systemtools.NullContextManager()
+        if self._session.is_in_score:
+            path = self._get_current_directory_path()
+            directory_change = systemtools.TemporaryDirectoryChange(path)
+        with context, directory_change:
             while True:
                 result = self._get_sibling_asset_path()
                 if not result:
