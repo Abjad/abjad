@@ -75,6 +75,12 @@ class StylesheetWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_stylesheets = False
 
+    @staticmethod
+    def _file_name_callback(file_name):
+        file_name = file_name.replace(' ', '-')
+        file_name = file_name.replace('_', '-')
+        return file_name
+
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -150,20 +156,20 @@ class StylesheetWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._copy_asset(
+            extension='.ily',
+            file_name_callback=self._file_name_callback,
+            item_identifier='stylesheet',
+            )
 
     def make_stylesheet(self):
         r'''Makes stylesheet.
 
         Returns none.
         '''
-        def callback(file_name):
-            file_name = file_name.replace(' ', '-')
-            file_name = file_name.replace('_', '-')
-            return file_name
         self._make_file(
             extension='.ily',
-            file_name_callback=callback,
+            file_name_callback=self._file_name_callback,
             prompt_string='stylesheet name', 
             )
 

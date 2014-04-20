@@ -2,6 +2,7 @@
 import copy
 import doctest
 import os
+import shutil
 import subprocess
 from abjad.tools import datastructuretools
 from abjad.tools import developerscripttools
@@ -107,6 +108,71 @@ class Wrangler(Controller):
             return os.path.join(directory, file_name)
 
     ### PRIVATE METHODS ###
+
+    def _copy_asset(
+        self, 
+        extension=None,
+        file_name_callback=None, 
+        force_lowercase=True,
+        item_identifier='asset',
+        ):
+        old_path = self._get_visible_asset_path(
+            infinitive_phrase='to copy',
+            item_identifier=item_identifier,
+            )
+        if not old_path:
+            return
+        old_name = os.path.basename(old_path)
+        self._io_manager.display('')
+        if self._session.is_in_score:
+            new_storehouse = self._get_current_directory_path()
+        else:
+            new_storehouse = self._select_storehouse_path()
+            if self._should_backtrack():
+                return
+            if not new_storehouse:
+                return
+        prompt_string = 'new {} name'
+        prompt_string = prompt_string.format(item_identifier)
+        # TODO: add additional help string: "leave blank to keep name"
+        getter = self._io_manager.make_getter()
+        getter.append_string(prompt_string)
+        name = getter._run()
+        if self._should_backtrack():
+            return
+        if not name:
+            name = old_name
+        name = stringtools.strip_diacritics(name)
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
+        if extension and not name.endswith(extension):
+            name = name + extension
+        new_path = os.path.join(new_storehouse, name)
+        if os.path.exists(new_path):
+            message = 'already exists: {}'.format(new_path)
+            return
+        lines = []
+        lines.append('')
+        lines.append('will copy ...')
+        lines.append('')
+        lines.append(' FROM: {}'.format(old_path))
+        lines.append('   TO: {}'.format(new_path))
+        lines.append('')
+        self._io_manager.display(lines)
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        if os.path.isfile(old_path):
+            shutil.copyfile(old_path, new_path)
+        elif os.path.isdir(old_path):
+            shutil.copytree(old_path, new_path)
+        else:
+            raise TypeError(old_path)
 
     def _enter_run(self):
         pass
@@ -286,10 +352,17 @@ class Wrangler(Controller):
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
 
-    def _get_visible_asset_path(self, item_identifier='asset'):
+    def _get_visible_asset_path(
+        self, 
+        infinitive_phrase=None,
+        item_identifier='asset',
+        ):
         getter = self._io_manager.make_getter()
-        prompt_string = 'enter {} to rename'
-        prompt_string = prompt_string.format(item_identifier)
+        #prompt_string = 'enter {} to rename'
+        #prompt_string = prompt_string.format(item_identifier)
+        prompt_string = 'enter {}'.format(item_identifier)
+        if infinitive_phrase:
+            prompt_string = prompt_string + ' ' + infinitive_phrase
         menu = self._make_asset_selection_menu()
         asset_section = menu['assets']
         getter.append_menu_section_item(
@@ -674,7 +747,10 @@ class Wrangler(Controller):
             manager._remove()
 
     def _rename_asset(self, item_identifier='asset'):
-        path = self._get_visible_asset_path(item_identifier=item_identifier)
+        path = self._get_visible_asset_path(
+            infinitive_phrase='to rename',
+            item_identifier=item_identifier,
+            )
         if not path:
             return
         self._io_manager.display('')
