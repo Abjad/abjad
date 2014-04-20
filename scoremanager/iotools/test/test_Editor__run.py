@@ -467,6 +467,7 @@ def test_Editor__run_21():
     assert editor.target == performer
 
 
+# TODO: migrate to PerformerInventory test
 def test_Editor__run_22():
     r'''Adds three performers to instrumentation specifier.
     '''
@@ -498,6 +499,7 @@ def test_Editor__run_22():
     assert editor.target == specifier
 
 
+# TODO: migrate to PerformerInventory test
 def test_Editor__run_23():
     r'''Adds three performers to instrumentation specifier.
 
@@ -528,6 +530,7 @@ def test_Editor__run_23():
     assert editor.target == specifier
 
 
+# TODO: migrate to PerformerInventory test
 def test_Editor__run_24():
     r'''Edits instrumentation specifier. Adds three performers. Removes two.
     '''
@@ -554,6 +557,7 @@ def test_Editor__run_24():
     assert editor.target == specifier
 
 
+# TODO: migrate to PerformerInventory test
 def test_Editor__run_25():
     r'''Edits instrumentation specifier. Adds and removes.
 
@@ -581,6 +585,7 @@ def test_Editor__run_25():
     assert editor.target == specifier
 
 
+# TODO: migrate to PerformerInventory test
 def test_Editor__run_26():
     r'''Edits instrumentation specifier. Adds three performers.
     Makes two moves.

@@ -49,16 +49,6 @@ class ScorePackageManager(PackageManager):
 
     @property
     @systemtools.Memoize
-    def _instrumentation_module_manager(self):
-        from scoremanager import managers
-        path = os.path.join(self._path, 'instrumentation.py')
-        return managers.FileManager(
-            path,
-            session=self._session,
-            )
-
-    @property
-    @systemtools.Memoize
     def _maker_module_wrangler(self):
         from scoremanager import wranglers
         return wranglers.MakerModuleWrangler(session=self._session)
@@ -96,7 +86,6 @@ class ScorePackageManager(PackageManager):
             'd': self._distribution_file_wrangler._run,
             'g': self._segment_package_wrangler._run,
             'fix': self.fix,
-            'imro': self._instrumentation_module_manager.view,
             'k': self._maker_module_wrangler._run,
             'm': self._material_package_wrangler._run,
             'p': self._manage_setup,
@@ -136,16 +125,6 @@ class ScorePackageManager(PackageManager):
             self._path,
             'distribution',
             )
-
-    def _get_instrumentation(self):
-        return self._import_instrumentation_from_instrumentation_module()
-
-    def _get_instrumentation_module_path(self):
-        file_path = os.path.join(
-            self._path,
-            'instrumentation.py',
-            )
-        return file_path
 
     def _get_makers_directory_path(self):
         return os.path.join(
@@ -217,8 +196,6 @@ class ScorePackageManager(PackageManager):
         assert isinstance(result, str)
         if result == 'catalog number':
             self.edit_catalog_number()
-        elif result == 'instr':
-            self.edit_instrumentation_specifier()
         elif result == 'tagline':
             self.edit_forces_tagline()
         elif result == 'title':
@@ -229,23 +206,6 @@ class ScorePackageManager(PackageManager):
             pass
         else:
             raise ValueError(result)
-
-    def _import_instrumentation_from_instrumentation_module(self):
-        from scoremanager import managers
-        file_path = os.path.join(
-            self._path,
-            'instrumentation.py',
-            )
-        manager = managers.FileManager(
-            file_path,
-            session=self._session,
-            )
-        result = manager._execute(
-            attribute_names=('instrumentation',),
-            )
-        assert len(result) == 1
-        instrumentation = result[0]
-        return instrumentation
 
     def _is_visible(self):
         scores_to_display = self._session.scores_to_display
@@ -270,29 +230,11 @@ class ScorePackageManager(PackageManager):
                 return metadata
         return False
 
-    def _make_instrumentation_menu_section(self, menu):
-        commands = []
-        commands.append(('instrumentation', 'instr'))
-        menu.make_navigation_section(
-            commands=commands,
-            name='instrumentation',
-            )
-
-    def _make_instrumentation_module_menu_section(self, menu):
-        commands = []
-        commands.append(('instrumentation module - read only', 'imro'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='instrumentation',
-            )
-
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)
         self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
-        self._make_instrumentation_module_menu_section(menu)
         self._make_score_pdf_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
         self._make_metadata_menu_section(menu)
@@ -336,7 +278,6 @@ class ScorePackageManager(PackageManager):
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(name='setup')
         self._make_setup_menu_section(menu)
-        self._make_instrumentation_menu_section(menu)
         return menu
 
     def _make_setup_menu_entries(self):
@@ -392,21 +333,6 @@ class ScorePackageManager(PackageManager):
         superclass._remove()
         self._io_manager.write_cache(prompt=False)
 
-    def _write_instrumentation(self, instrumentation):
-        assert instrumentation is not None
-        lines = []
-        lines.append(self._unicode_directive)
-        lines.append(self._abjad_import_statement)
-        lines.append('')
-        lines.append('')
-        line = 'instrumentation={}'
-        line = line.format(format(instrumentation))
-        lines.append(line)
-        file_path = self._get_instrumentation_module_path()
-        contents = '\n'.join(lines)
-        with file(file_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-
     ### PUBLIC METHODS ###
 
     def edit_catalog_number(self):
@@ -433,20 +359,6 @@ class ScorePackageManager(PackageManager):
         if self._should_backtrack():
             return
         self._add_metadatum('forces_tagline', result)
-
-    def edit_instrumentation_specifier(self):
-        r'''Edits instrumentation specifier of score.
-
-        Returns none.
-        '''
-        from scoremanager import iotools
-        target = self._get_instrumentation()
-        editor = iotools.Editor(
-            session=self._session,
-            target=target,
-            )
-        editor._run()
-        self._write_instrumentation(editor.target)
 
     def edit_title(self):
         r'''Edits title of score.
