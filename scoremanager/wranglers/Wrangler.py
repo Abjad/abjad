@@ -358,13 +358,16 @@ class Wrangler(Controller):
         item_identifier='asset',
         ):
         getter = self._io_manager.make_getter()
-        #prompt_string = 'enter {} to rename'
-        #prompt_string = prompt_string.format(item_identifier)
         prompt_string = 'enter {}'.format(item_identifier)
         if infinitive_phrase:
             prompt_string = prompt_string + ' ' + infinitive_phrase
-        menu = self._make_asset_selection_menu()
-        asset_section = menu['assets']
+        if hasattr(self, '_make_asset_menu_section'):
+            dummy_menu = self._io_manager.make_menu()
+            self._make_asset_menu_section(dummy_menu)
+            asset_section = dummy_menu._asset_section
+        else:
+            menu = self._make_asset_selection_menu()
+            asset_section = menu['assets']
         getter.append_menu_section_item(
             prompt_string, 
             asset_section,
