@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+
+# must be is_test=False to test views
 score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
