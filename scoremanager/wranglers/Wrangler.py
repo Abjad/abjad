@@ -21,6 +21,7 @@ class Wrangler(Controller):
     __slots__ = (
         '_abjad_storehouse_path',
         '_forbidden_directory_entries',
+        '_item_identifier',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -34,6 +35,7 @@ class Wrangler(Controller):
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
         self._forbidden_directory_entries = ()
+        self._item_identifier = None
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
 
@@ -413,12 +415,15 @@ class Wrangler(Controller):
         storehouses = list(sorted(storehouses))
         return storehouses
 
-    def _initialize_manager(self, path):
+    def _initialize_manager(self, path, item_identifier=None):
         assert os.path.sep in path, repr(path)
-        return self._manager_class(
+        manager = self._manager_class(
             path=path,
             session=self._session,
             )
+        if item_identifier:
+            manager._item_identifier = item_identifier
+        return manager
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry not in self._forbidden_directory_entries:
@@ -757,7 +762,10 @@ class Wrangler(Controller):
         if not path:
             return
         self._io_manager.display('')
-        manager = self._initialize_manager(path)
+        manager = self._initialize_manager(
+            path,
+            item_identifier=self._item_identifier,
+            )
         manager.rename()
 
     def _run(self, pending_user_input=None):
