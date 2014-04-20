@@ -194,22 +194,14 @@
 46. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-47. Migrate ScoreManager test collateral to ScorePackageWrangler:
-        core/test/test_ScoreManager_display_active_scores.py
-        core/test/test_ScoreManager_display_all_scores.py
-        core/test/test_ScoreManager_display_example_scores.py
-        core/test/test_ScoreManager_display_mothballed_scores.py
-        core/test/test_ScoreManager_display_user_scores.py
-        core/test/test_ScoreManager_invoke_shell.py
-        core/test/test_ScoreManager_manage_maker_library.py
-        core/test/test_ScoreManager_manage_material_library.py
-        core/test/test_ScoreManager_manage_stylesheet_library.py
-        core/test/test_ScoreManager_repository_status.py
-        core/test/test_ScoreManager_view_cache.py
-        core/test/test_ScoreManager_write_cache.py
-    All should go to wranglers/test/ directory with appropriate changes.
+47. Make (red m ls) work.
 
-48. Make (red m ls) work.
-
-49. Fix menu title that results from the following:
+48. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
+
+49. Change breadcrumbs so that ...
+        'Score manager - active scores'
+
+    ... becomes ...
+        'Score manager - score packages (active scores view)'
+    ... instead.
