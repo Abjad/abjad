@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScoreManager_repository_status_01():
+def test_ScorePackageWrangler_repository_status_01():
     r'''Works with all scores.
     '''
 
@@ -15,7 +15,7 @@ def test_ScoreManager_repository_status_01():
     assert titles[-1] == '# On branch master'
 
 
-def test_ScoreManager_repository_status_02():
+def test_ScorePackageWrangler_repository_status_02():
     r'''Works with active scores.
     '''
 
@@ -25,7 +25,7 @@ def test_ScoreManager_repository_status_02():
     assert '...' in score_manager._transcript.contents
 
 
-def test_ScoreManager_repository_status_03():
+def test_ScorePackageWrangler_repository_status_03():
     r'''Works with example scores.
     '''
 

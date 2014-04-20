@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScoreManager_write_cache_01():
+def test_ScorePackageWrangler_write_cache_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'cw default q'
