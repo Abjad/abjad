@@ -98,7 +98,7 @@ class Controller(ScoreManagerObject):
         include_year=False,
         human_readable=True,
         packages_instead_of_paths=False,
-        sort_by_annotation=False,
+        sort_by_annotation=True,
         ):
         paths = self._list_visible_asset_paths()
         strings = []
@@ -119,8 +119,17 @@ class Controller(ScoreManagerObject):
             strings.append(string)
         pairs = zip(strings, paths)
         if sort_by_annotation:
-            tmp = stringtools.strip_diacritics
-            pairs.sort(key=lambda x: tmp(x[0]))
+            def sort_function(pair):
+                string = pair[0]
+                if '(' not in string:
+                    return string
+                open_parenthesis_index = string.find('(')
+                assert string.endswith(')')
+                annotation = string[open_parenthesis_index:]
+                annotation = annotation.replace("'", '')
+                annotation = stringtools.strip_diacritics(annotation)
+                return annotation
+            pairs.sort(key=lambda _: sort_function(_))
         entries = []
         for string, path in pairs:
             if packages_instead_of_paths:

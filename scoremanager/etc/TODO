@@ -201,13 +201,9 @@
 
 49. Change breadcrumbs so that ...
         'Score manager - active scores'
-
     ... becomes ...
         'Score manager - score packages (active scores view)'
     ... instead.
 
-50. Sort stylesheet library entries first by annotation and then
-    by asset name.
-
-51. Maybe change 'Score manager - stylesheet library' to
+50. Maybe change 'Score manager - stylesheet library' to
     just 'Score manager - stylesheets'.
