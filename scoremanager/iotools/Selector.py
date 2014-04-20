@@ -314,22 +314,6 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_performer_selector(self):
-        r'''Makes performer selector.
-
-        Returns selector.
-        '''
-        items = []
-        manager = self._session.current_score_package_manager
-        if hasattr(manager, '_get_instrumentation'):
-            instrumentation = manager._get_instrumentation()
-            items.extend(instrumentation.performers)
-        selector = Selector(
-            session=self._session,
-            items=items,
-            )
-        return selector
-
     def make_rhythm_maker_class_name_selector(self):
         r'''Makes rhythm-maker class name selector.
 
@@ -345,23 +329,6 @@ class Selector(ScoreManagerObject):
             storehouse_paths=[rhythm_maker_tools_directory_path],
             endswith='RhythmMaker',
             strip_file_extensions=True,
-            )
-        return selector
-
-    def make_score_instrument_selector(self):
-        r'''Makes score instrument selector.
-
-        Returns selector.
-        '''
-        items = []
-        if self._session.is_in_score:
-            manager = self._session.current_score_package_manager
-            instrumentation = manager._get_instrumentation()
-            items.extend(instrumentation.instruments)
-            items.append('other')
-        selector = Selector(
-            session=self._session,
-            items=items,
             )
         return selector
 

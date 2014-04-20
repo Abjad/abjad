@@ -214,3 +214,6 @@
     All should go to wranglers/test/ directory with appropriate changes.
 
 49. Make (red m ls) work.
+
+50. Fix menu title that results from the following:
+    (red~example~score m tempo~inventory mae 1 d b q).
