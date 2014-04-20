@@ -68,6 +68,7 @@ class BuildFileWrangler(Wrangler):
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
             'fco': self.view_front_cover_pdf,
+            'new': self.make_file,
             'pfe': self.edit_preface_latex,
             'pfg': self.generate_preface_latex,
             'pft': self.typeset_preface_latex,
@@ -78,6 +79,8 @@ class BuildFileWrangler(Wrangler):
             'so': self.view_score_pdf,
             'lycp': self.copy_segment_lilypond_files,
             'pdfcp': self.copy_segment_pdfs,
+            'ren': self.rename_file,
+            'rm': self.remove_files,
             'sege': self.edit_segment_assembly_lilypond_file,
             'segly': self.interpret_segment_assembly_lilypond_file,
             'sego': self.view_segment_assembly_pdf,
@@ -328,8 +331,6 @@ class BuildFileWrangler(Wrangler):
                 build_directory_path,
                 target_file_name,
                 )
-            #if not os.path.exists(self._current_build_directory_path):
-            #    os.mkdir(self._current_build_directory_path)
             if not os.path.exists(build_directory_path):
                 os.mkdir(build_directory_path)
             shutil.copyfile(source_file_path, target_file_path)
@@ -362,12 +363,12 @@ class BuildFileWrangler(Wrangler):
                 continue
             manager = self._session.current_score_package_manager
             score_name = manager._package_name
-            directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
                 score_name,
                 directory_entry,
                 )
+            target_file_name = target_file_name.replace('_', '-')
             target_file_path = os.path.join(
                 build_directory_path,
                 target_file_name,
@@ -458,7 +459,14 @@ class BuildFileWrangler(Wrangler):
         '''
         self._call_lilypond_on_file_ending_with('score-segments.ly')
 
-    def remove_build_files(self):
+    def make_file(self):
+        r'''Makes build file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def remove_files(self):
         r'''Removes build file.
 
         Returns none.
@@ -467,7 +475,7 @@ class BuildFileWrangler(Wrangler):
             item_identifier='build file',
             )
 
-    def rename_build_file(self):
+    def rename_file(self):
         r'''Renames build file.
 
         Returns none.

@@ -388,7 +388,7 @@ class Wrangler(Controller):
     def _get_visible_asset_paths(self, item_identifier='asset'):
         getter = self._io_manager.make_getter()
         plural_identifier = stringtools.pluralize(item_identifier)
-        prompt_string = 'enter {} to remove'
+        prompt_string = 'enter {}(s) to remove'
         prompt_string = prompt_string.format(plural_identifier)
         menu = self._make_asset_selection_menu()
         asset_section = menu['assets']
