@@ -213,3 +213,5 @@
 
 52. Make (red~example~score > u > rm > foo-file.pdf) work.
     Right now (rm) is not recognized.
+
+53. Write 'pwd' tests for everything.
