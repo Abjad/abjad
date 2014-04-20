@@ -213,6 +213,3 @@
 
 49. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
-
-50. Remove ScorePackageManager._get_tempo_inventory().
-    And all other special handling for ScorePackageManager tempo inventory
