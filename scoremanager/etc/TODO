@@ -210,6 +210,3 @@
 
 51. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
-
-52. Make (red~example~score > u > rm > foo-file.pdf) work.
-    Right now (rm) is not recognized.
