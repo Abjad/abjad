@@ -31,7 +31,7 @@ class SegmentPackageWrangler(Wrangler):
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
         self._score_storehouse_path_infix_parts = ('segments',)
-        self._item_identifier = 'segment package'
+        self._asset_identifier = 'segment package'
         self._manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -237,13 +237,6 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def remove_segment_packages(self):
-        r'''Removes one or more segment packages.
-        
-        Returns none.
-        '''
-        self._remove_assets()
-
     def remove_initializer(self):
         r'''Removes initializer module.
 
@@ -251,19 +244,19 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._current_package_manager.remove_initializer()
 
+    def remove_segment_packages(self):
+        r'''Removes one or more segment packages.
+        
+        Returns none.
+        '''
+        self._remove_assets()
+
     def rename_segment_package(self):
         r'''Renames segment package.
 
         Returns none.
         '''
         self._rename_asset()
-
-    def view_initializer(self):
-        r'''Views initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.view_initializer()
 
     def version_segment_packages(self):
         r'''Versions all assets.
@@ -297,6 +290,13 @@ class SegmentPackageWrangler(Wrangler):
                 self._io_manager.display(message)
         self._io_manager.display('')
         self._io_manager.proceed()
+
+    def view_initializer(self):
+        r'''Views initializer module.
+
+        Returns none.
+        '''
+        self._current_package_manager.view_initializer()
 
     def view_segment_pdfs(self):
         r'''Views all asset PDFs.

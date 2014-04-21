@@ -51,7 +51,7 @@ class MaterialPackageWrangler(Wrangler):
         path = configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
-        self._item_identifier = 'material package'
+        self._asset_identifier = 'material package'
         self._manager_class = managers.MaterialPackageManager
 
     ### PRIVATE PROPERTIES ###

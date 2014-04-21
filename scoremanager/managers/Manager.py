@@ -16,7 +16,7 @@ class Manager(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_item_identifier',
+        '_asset_identifier',
         '_main_menu',
         '_path',
         )
@@ -27,7 +27,7 @@ class Manager(Controller):
         assert session is not None
         assert path is not None and os.path.sep in path
         Controller.__init__(self, session=session)
-        self._item_identifier = None
+        self._asset_identifier = None
         self._path = path
 
     ### SPECIAL METHODS ###
@@ -241,9 +241,9 @@ class Manager(Controller):
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
-        item_identifier = getattr(self, '_item_identifier', None)
-        if item_identifier:
-            prompt = 'new {} name'.format(item_identifier)
+        asset_identifier = getattr(self, '_asset_identifier', None)
+        if asset_identifier:
+            prompt = 'new {} name'.format(asset_identifier)
         else:
             prompt = 'new name'
         getter.append_dash_case_file_name(prompt)

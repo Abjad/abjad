@@ -21,7 +21,7 @@ class Wrangler(Controller):
     __slots__ = (
         '_abjad_storehouse_path',
         '_forbidden_directory_entries',
-        '_item_identifier',
+        '_asset_identifier',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -35,7 +35,7 @@ class Wrangler(Controller):
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
         self._forbidden_directory_entries = ()
-        self._item_identifier = None
+        self._asset_identifier = None
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
 
@@ -131,7 +131,7 @@ class Wrangler(Controller):
             if not new_storehouse:
                 return
         prompt_string = 'new {} name'
-        prompt_string = prompt_string.format(self._item_identifier)
+        prompt_string = prompt_string.format(self._asset_identifier)
         # TODO: add additional help string: "leave blank to keep name"
         getter = self._io_manager.make_getter()
         getter.append_string(prompt_string)
@@ -352,7 +352,7 @@ class Wrangler(Controller):
 
     def _get_visible_asset_path(self, infinitive_phrase=None):
         getter = self._io_manager.make_getter()
-        prompt_string = 'enter {}'.format(self._item_identifier)
+        prompt_string = 'enter {}'.format(self._asset_identifier)
         if infinitive_phrase:
             prompt_string = prompt_string + ' ' + infinitive_phrase
         if hasattr(self, '_make_asset_menu_section'):
@@ -379,7 +379,7 @@ class Wrangler(Controller):
 
     def _get_visible_asset_paths(self):
         getter = self._io_manager.make_getter()
-        plural_identifier = stringtools.pluralize(self._item_identifier)
+        plural_identifier = stringtools.pluralize(self._asset_identifier)
         prompt_string = 'enter {}(s) to remove'
         prompt_string = prompt_string.format(plural_identifier)
         menu = self._make_asset_selection_menu()
@@ -407,14 +407,14 @@ class Wrangler(Controller):
         storehouses = list(sorted(storehouses))
         return storehouses
 
-    def _initialize_manager(self, path, item_identifier=None):
+    def _initialize_manager(self, path, asset_identifier=None):
         assert os.path.sep in path, repr(path)
         manager = self._manager_class(
             path=path,
             session=self._session,
             )
-        if item_identifier:
-            manager._item_identifier = item_identifier
+        if asset_identifier:
+            manager._asset_identifier = asset_identifier
         return manager
 
     def _is_valid_directory_entry(self, directory_entry):
@@ -631,6 +631,15 @@ class Wrangler(Controller):
         manager._make_empty_asset()
         manager.edit()
 
+    def _make_go_wrangler_menu_section(self, menu):
+        commands = []
+        commands.append(('go - clear view', 'V'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='go wrangler',
+            )
+
     def _make_main_menu(self, name=None):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
@@ -667,15 +676,6 @@ class Wrangler(Controller):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
-
-    def _make_go_wrangler_menu_section(self, menu):
-        commands = []
-        commands.append(('go - clear view', 'V'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go wrangler',
-            )
 
     def _navigate_to_next_asset(self):
         pass
@@ -753,7 +753,7 @@ class Wrangler(Controller):
         self._io_manager.display('')
         manager = self._initialize_manager(
             path,
-            item_identifier=self._item_identifier,
+            asset_identifier=self._asset_identifier,
             )
         manager.rename()
 

@@ -48,7 +48,7 @@ class ScorePackageWrangler(Wrangler):
         self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
-        self._item_identifier = 'score package'
+        self._asset_identifier = 'score package'
         self._manager_class = managers.ScorePackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -147,6 +147,9 @@ class ScorePackageWrangler(Wrangler):
             title = stringtools.to_accent_free_snake_case(title)
             return title
 
+    def _get_scores_to_display_string(self):
+        return '{} scores'.format(self._session.scores_to_display)
+
     def _get_sibling_score_directory_path(self, next_=True):
         paths = self._list_visible_asset_paths()
         if self._session.last_asset_path is None:
@@ -223,6 +226,29 @@ class ScorePackageWrangler(Wrangler):
                 visible_paths.append(path)
         return visible_paths
 
+    def _make_all_directories_menu_section(self, menu):
+        commands = []
+        string = 'all dirs - metadata module - edit'
+        commands.append((string, 'mdme'))
+        string = 'all dirs - metadata module - list'
+        commands.append((string, 'mdmls'))
+        string = 'all dirs - metadata module - rewrite'
+        commands.append((string, 'mdmrw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='all dirs',
+            )
+
+    def _make_all_score_packages_menu_section(self, menu):
+        commands = []
+        commands.append(('all score packages - fix', 'fix'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='all score packages',
+            )
+
     def _make_asset_menu_entries(
         self,
         apply_view=True,
@@ -246,32 +272,6 @@ class ScorePackageWrangler(Wrangler):
             sort_by_annotation=sort_by_annotation,
             )
         return menu_entries
-
-    def _get_scores_to_display_string(self):
-        return '{} scores'.format(self._session.scores_to_display)
-
-    def _make_all_directories_menu_section(self, menu):
-        commands = []
-        string = 'all dirs - metadata module - edit'
-        commands.append((string, 'mdme'))
-        string = 'all dirs - metadata module - list'
-        commands.append((string, 'mdmls'))
-        string = 'all dirs - metadata module - rewrite'
-        commands.append((string, 'mdmrw'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='all dirs',
-            )
-
-    def _make_all_score_packages_menu_section(self, menu):
-        commands = []
-        commands.append(('all score packages - fix', 'fix'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='all score packages',
-            )
 
     def _make_cache_menu_section(self, menu):
         commands = []

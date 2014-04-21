@@ -38,7 +38,7 @@ class BuildFileWrangler(Wrangler):
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('build',)
         self._include_extensions = True
-        self._item_identifier = 'file'
+        self._asset_identifier = 'file'
         self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
@@ -387,16 +387,6 @@ class BuildFileWrangler(Wrangler):
         '''
         self._edit_file_ending_with('back-cover.tex')
 
-    def open_file(self, result):
-        r'''Opens build file.
-
-        Returns none.
-        '''
-        if result.endswith('.pdf'):
-            self._io_manager.open_file(result)
-        else:
-            self._io_manager.edit(result)
-
     def edit_front_cover_latex(self):
         r'''Edits front cover LaTeX file.
 
@@ -466,6 +456,16 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
+
+    def open_file(self, result):
+        r'''Opens build file.
+
+        Returns none.
+        '''
+        if result.endswith('.pdf'):
+            self._io_manager.open_file(result)
+        else:
+            self._io_manager.edit(result)
 
     def remove_files(self):
         r'''Removes build file.

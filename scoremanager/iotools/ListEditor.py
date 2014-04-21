@@ -37,7 +37,7 @@ class ListEditor(Editor):
         '_item_creator_class_kwargs',
         '_item_editor_class',
         '_item_getter_configuration_method',
-        '_item_identifier',
+        '_asset_identifier',
         '_numbered_section',
         )
 
@@ -64,7 +64,7 @@ class ListEditor(Editor):
         self._item_editor_class = None
         self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
-        self._item_identifier = 'element'
+        self._asset_identifier = 'element'
         if hasattr(target, '_item_creator_class'):
             self._item_creator_class = target._item_creator_class
             kwargs = getattr(target, '_item_creator_class_kwargs', None)
@@ -76,7 +76,7 @@ class ListEditor(Editor):
             self._item_class = self.target._item_callable
             dummy_item = self.target._item_callable()
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
-            item_identifier = helper(type(dummy_item).__name__)
+            asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
                 self._item_creator_class = iotools.ListEditor
             else:
@@ -196,7 +196,7 @@ class ListEditor(Editor):
             getter = self._io_manager.make_getter()
             self._item_getter_configuration_method(
                 getter,
-                self._item_identifier,
+                self._asset_identifier,
                 )
             item_initialization_token = getter._run()
             if self._should_backtrack():
@@ -267,7 +267,7 @@ class ListEditor(Editor):
         Returns none.
         '''
         getter = self._io_manager.make_getter()
-        items_identifier = stringtools.pluralize(self._item_identifier)
+        items_identifier = stringtools.pluralize(self._asset_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()

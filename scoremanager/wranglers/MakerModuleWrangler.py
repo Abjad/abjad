@@ -38,7 +38,7 @@ class MakerModuleWrangler(Wrangler):
             self._configuration.user_library_makers_directory_path
         self._score_storehouse_path_infix_parts = ('makers',)
         self._include_extensions = True
-        self._item_identifier = 'maker module'
+        self._asset_identifier = 'maker module'
         self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
