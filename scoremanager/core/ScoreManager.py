@@ -95,13 +95,15 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        context =  iotools.ControllerContext(
+        context = iotools.ControllerContext(
             self,
             on_exit_callbacks=(self._session._clean_up,)
             )
-        wrangler = self._score_package_wrangler
-        io_manager = self._io_manager
-        with context:
+        path = self._configuration.score_manager_directory_path
+        directory_change = systemtools.TemporaryDirectoryChange(path)
+        with context, directory_change:
+            wrangler = self._score_package_wrangler
+            io_manager = self._io_manager
             while True:
                 result = wrangler._get_sibling_score_path()
                 if not result:
