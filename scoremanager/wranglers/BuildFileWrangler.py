@@ -94,7 +94,7 @@ class BuildFileWrangler(Wrangler):
     def _call_lilypond_on_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
-            file_manager = self._get_file_manager(file_path)
+            file_manager = self._initialize_manager(file_path)
             file_manager.call_lilypond()
         else:
             message = 'file ending in {!r} not found.'
@@ -105,7 +105,7 @@ class BuildFileWrangler(Wrangler):
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
-            file_manager = self._get_file_manager(file_path)
+            file_manager = self._initialize_manager(file_path)
             file_manager.edit()
         else:
             message = 'file ending in {!r} not found.'
@@ -271,7 +271,7 @@ class BuildFileWrangler(Wrangler):
     def _typeset_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
-            file_manager = self._get_file_manager(file_path)
+            file_manager = self._initialize_manager(file_path)
             file_manager.typeset_tex_file()
         else:
             message = 'file ending in {!r} not found.'
