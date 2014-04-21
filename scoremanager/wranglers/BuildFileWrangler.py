@@ -363,7 +363,10 @@ class BuildFileWrangler(Wrangler):
                 continue
             manager = self._session.current_score_package_manager
             score_name = manager._package_name
-            target_file_name = '{}-segment-{}.pdf'
+            if 'segment' in directory_entry:
+                target_file_name = '{}-{}.pdf'
+            else:
+                target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
                 score_name,
                 directory_entry,
