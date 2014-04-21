@@ -116,12 +116,8 @@ class Wrangler(Controller):
         extension=None,
         file_name_callback=None, 
         force_lowercase=True,
-        item_identifier='asset',
         ):
-        old_path = self._get_visible_asset_path(
-            infinitive_phrase='to copy',
-            item_identifier=item_identifier,
-            )
+        old_path = self._get_visible_asset_path(infinitive_phrase='to copy')
         if not old_path:
             return
         old_name = os.path.basename(old_path)
@@ -135,7 +131,7 @@ class Wrangler(Controller):
             if not new_storehouse:
                 return
         prompt_string = 'new {} name'
-        prompt_string = prompt_string.format(item_identifier)
+        prompt_string = prompt_string.format(self._item_identifier)
         # TODO: add additional help string: "leave blank to keep name"
         getter = self._io_manager.make_getter()
         getter.append_string(prompt_string)
@@ -354,13 +350,9 @@ class Wrangler(Controller):
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
 
-    def _get_visible_asset_path(
-        self, 
-        infinitive_phrase=None,
-        item_identifier='asset',
-        ):
+    def _get_visible_asset_path(self, infinitive_phrase=None):
         getter = self._io_manager.make_getter()
-        prompt_string = 'enter {}'.format(item_identifier)
+        prompt_string = 'enter {}'.format(self._item_identifier)
         if infinitive_phrase:
             prompt_string = prompt_string + ' ' + infinitive_phrase
         if hasattr(self, '_make_asset_menu_section'):
@@ -385,9 +377,9 @@ class Wrangler(Controller):
         path = paths[index]
         return path
 
-    def _get_visible_asset_paths(self, item_identifier='asset'):
+    def _get_visible_asset_paths(self):
         getter = self._io_manager.make_getter()
-        plural_identifier = stringtools.pluralize(item_identifier)
+        plural_identifier = stringtools.pluralize(self._item_identifier)
         prompt_string = 'enter {}(s) to remove'
         prompt_string = prompt_string.format(plural_identifier)
         menu = self._make_asset_selection_menu()
@@ -729,8 +721,8 @@ class Wrangler(Controller):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _remove_assets(self, item_identifier='asset', prompt=True):
-        paths = self._get_visible_asset_paths(item_identifier=item_identifier)
+    def _remove_assets(self, prompt=True):
+        paths = self._get_visible_asset_paths()
         self._io_manager.display('')
         if not paths:
             return
@@ -754,11 +746,8 @@ class Wrangler(Controller):
             manager = self._initialize_manager(path)
             manager._remove()
 
-    def _rename_asset(self, item_identifier='asset'):
-        path = self._get_visible_asset_path(
-            infinitive_phrase='to rename',
-            item_identifier=item_identifier,
-            )
+    def _rename_asset(self):
+        path = self._get_visible_asset_path(infinitive_phrase='to rename')
         if not path:
             return
         self._io_manager.display('')

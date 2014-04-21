@@ -160,7 +160,6 @@ class StylesheetWrangler(Wrangler):
         self._copy_asset(
             extension='.ily',
             file_name_callback=self._file_name_callback,
-            item_identifier='stylesheet',
             )
 
     def edit_stylesheet(self, path):
@@ -186,15 +185,11 @@ class StylesheetWrangler(Wrangler):
 
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='stylesheet', 
-            )
+        self._remove_assets()
 
     def rename_stylesheet(self):
         r'''Renames stylesheet.
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='stylesheet',
-            )
+        self._rename_asset()

@@ -37,6 +37,7 @@ class DistributionFileWrangler(Wrangler):
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('distribution',)
         self._include_extensions = True
+        self._item_identifier = 'file'
         self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
@@ -127,15 +128,11 @@ class DistributionFileWrangler(Wrangler):
         
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='distribution file',
-            )
+        self._remove_assets()
 
     def rename_distribution_file(self):
         r'''Renames distribution file.
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='distribution file',
-            )
+        self._rename_asset()

@@ -48,6 +48,7 @@ class ScorePackageWrangler(Wrangler):
         self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
+        self._item_identifier = 'score package'
         self._manager_class = managers.ScorePackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -366,48 +367,16 @@ class ScorePackageWrangler(Wrangler):
         
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='score package',
-            )
+        self._remove_assets()
 
     def rename_score_package(self):
         r'''Renames score package.
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='score package',
-            )
+        self._rename_asset()
 
     ### MIGRATED OVER ###
-
-#    def add_to_repository(self, prompt=True):
-#        r'''Adds assets to repository.
-#
-#        Returns none.
-#        '''
-#        self.add_to_repository(prompt=prompt)
-
-#    def apply_view(self):
-#        r'''Applies view.
-#
-#        Returns none.
-#        '''
-#        self.apply_view()
-
-#    def clear_view(self):
-#        r'''Clears view.
-#
-#        Returns none.
-#        '''
-#        self.clear_view()
-
-#    def commit_to_repository(self, prompt=True):
-#        r'''Commits assets to repository.
-#
-#        Returns none.
-#        '''
-#        self.commit_to_repository()
 
     def copy_score(self):
         r'''Copies score package.
@@ -451,13 +420,6 @@ class ScorePackageWrangler(Wrangler):
         '''
         self._session.display_user_scores()
 
-#    def doctest(self):
-#        r'''Runs doctest on visible score packages.
-#
-#        Returns none.
-#        '''
-#        self.doctest()
-
     def edit_metadata_modules(self):
         r'''Edits all metadata modules everywhere.
 
@@ -475,8 +437,6 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import managers
-        #wrangler = self._score_package_wrangler
-        #paths = wrangler._list_visible_asset_paths()
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = managers.ScorePackageManager(
@@ -511,27 +471,6 @@ class ScorePackageWrangler(Wrangler):
         message = message.format(len(paths))
         self._io_manager.proceed(message, prompt=prompt)
 
-#    def list_views(self):
-#        r'''Lists views.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.list_views()
-
-#    def make_score_package(self):
-#        r'''Makes new score.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.make_score_package()
-
-#    def make_view(self):
-#        r'''Makes view.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.make_view()
-
     def manage_build_file_library(self):
         r'''Manages build file library.
 
@@ -560,16 +499,6 @@ class ScorePackageWrangler(Wrangler):
         '''
         self._session._score_manager._material_package_wrangler._run()
 
-#    def manage_score(self, path):
-#        r'''Manages score.
-#
-#        Returns none.
-#        '''
-#        manager = self._score_package_wrangler._initialize_manager(path)
-#        package_name = os.path.basename(path)
-#        manager.fix(prompt=True)
-#        manager._run()
-
     def manage_segment_library(self):
         r'''Manages segment library.
 
@@ -583,62 +512,6 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         self._session._score_manager._stylesheet_wrangler._run()
-
-#    def pytest(self):
-#        r'''Runs py.test.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.pytest()
-
-#    def remove_score_packages(self):
-#        r'''Removes score package.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.remove_score_packages()
-
-#    def remove_views(self):
-#        r'''Removes view(s) from views module.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.remove_views()
-
-#    def remove_views_module(self):
-#        r'''Removes views module.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.remove_views_module()
-
-#    def rename_score_package(self):
-#        r'''Renames score package.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.rename_score_package()
-
-#    def rename_view(self):
-#        r'''Renames view.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.rename_view()
-
-#    def repository_status(self, prompt=True):
-#        r'''Displays status of repository assets.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.repository_status(prompt=prompt)
-
-#    def revert_to_repository(self, prompt=True):
-#        r'''Reverts modified assets and unadds added assets.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.revert_to_repository(prompt=prompt)
 
     def rewrite_metadata_modules(self, prompt=True):
         r'''Rewrites all metadata modules everywhere.
@@ -659,13 +532,6 @@ class ScorePackageWrangler(Wrangler):
         message = message.format(len(directories))
         self._io_manager.proceed(message, prompt=prompt)
 
-#    def update_from_repository(self, prompt=True):
-#        r'''Updates repository assets.
-#
-#        Returns none.
-#        '''
-#        self._score_package_wrangler.update_from_repository()
-
     def view_cache(self):
         r'''Views cache.
 
@@ -674,14 +540,6 @@ class ScorePackageWrangler(Wrangler):
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
-
-#    def view_views_module(self):
-#        r'''View views module.
-#
-#        Return none.
-#        '''
-#        print('FOO')
-#        self._score_package_wrangler.view_views_module()
 
     def write_cache(self, prompt=True):
         r'''Writes cache.

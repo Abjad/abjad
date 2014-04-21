@@ -31,6 +31,7 @@ class SegmentPackageWrangler(Wrangler):
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
         self._score_storehouse_path_infix_parts = ('segments',)
+        self._item_identifier = 'segment package'
         self._manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -241,9 +242,7 @@ class SegmentPackageWrangler(Wrangler):
         
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='segment package',
-            )
+        self._remove_assets()
 
     def remove_initializer(self):
         r'''Removes initializer module.
@@ -257,9 +256,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='segment package',
-            )
+        self._rename_asset()
 
     def view_initializer(self):
         r'''Views initializer module.

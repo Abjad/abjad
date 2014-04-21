@@ -51,6 +51,7 @@ class MaterialPackageWrangler(Wrangler):
         path = configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
+        self._item_identifier = 'material package'
         self._manager_class = managers.MaterialPackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -254,15 +255,11 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='material package',
-            )
+        self._remove_assets()
 
     def rename_material_package(self):
         r'''Renames material package.
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='material package',
-            )
+        self._rename_asset()

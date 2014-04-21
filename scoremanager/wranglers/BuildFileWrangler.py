@@ -38,6 +38,7 @@ class BuildFileWrangler(Wrangler):
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('build',)
         self._include_extensions = True
+        self._item_identifier = 'file'
         self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
@@ -284,10 +285,7 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._copy_asset(
-            force_lowercase=False,
-            item_identifier='file',
-            )
+        self._copy_asset(force_lowercase=False)
 
     def copy_segment_lilypond_files(self):
         r'''Copies segment LilyPond files from segment
@@ -474,18 +472,14 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._remove_assets(
-            item_identifier='build file',
-            )
+        self._remove_assets()
 
     def rename_file(self):
         r'''Renames build file.
 
         Returns none.
         '''
-        self._rename_asset(
-            item_identifier='build file',
-            )
+        self._rename_asset()
 
     def typeset_back_cover_latex(self):
         r'''Typesets back cover LaTeX file.
