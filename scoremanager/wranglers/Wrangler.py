@@ -727,6 +727,18 @@ class Wrangler(Controller):
         if not paths:
             return
         count = len(paths)
+        messages = []
+        if count == 1:
+            message = 'Will remove {}'.format(paths[0])
+            messages.append(message)
+        else:
+            messages.append('Will remove ...')
+            messages.append('')
+            for path in paths:
+                message = '    {}'.format(path)
+                messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
         if count == 1:
             confirmation_string = 'remove'
         else:
