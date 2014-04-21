@@ -14,8 +14,7 @@ def test_DistributionFileWrangler_doctest_01():
 
     strings = [
         'Running doctest ...',
-        'testable assets found ...',
-        'tests passed in',
+        'No testable assets found.',
         ]
     for string in strings:
         assert string in contents

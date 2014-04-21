@@ -14,8 +14,7 @@ def test_StylesheetWrangler_doctest_01():
 
     strings = [
         'Running doctest ...',
-        'testable assets found ...',
-        'tests passed in',
+        'No testable assets found.',
         ]
     for string in strings:
         assert string in contents
@@ -31,8 +30,7 @@ def test_StylesheetWrangler_doctest_02():
 
     strings = [
         'Running doctest ...',
-        '2 testable assets found ...',
-        '0 of 0 tests passed in 2 modules.',
+        'No testable assets found.',
         ]
     for string in strings:
         assert string in contents

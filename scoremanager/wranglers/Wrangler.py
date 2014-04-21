@@ -70,6 +70,7 @@ class Wrangler(Controller):
         result = superclass._user_input_to_action
         result = copy.deepcopy(result)
         result.update({
+            'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -294,10 +295,6 @@ class Wrangler(Controller):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
-    def _get_directory_of_focus(self):
-        path = os.path.abspath('.')
-        return path
-
     def _get_file_path_ending_with(self, string):
         path = self._get_current_directory_path()
         for file_name in self._list():
@@ -468,34 +465,6 @@ class Wrangler(Controller):
                 result.append(path)
         return result
 
-    def _list_python_files_in_visible_assets(self, tests_only=False):
-        assets = []
-        if self._session.is_in_score:
-            focus_directory = self._get_directory_of_focus()
-            current_directory = self._get_current_directory_path()
-            if len(focus_directory) < len(current_directory):
-                longer_directory = current_directory
-            else:
-                longer_directory = focus_directory
-            paths = [longer_directory]
-        else:
-            paths = self._list_visible_asset_paths()
-        for path in paths:
-            if os.path.isdir(path):
-                triples = os.walk(path)
-                for directory_path, subdirectory_names, file_names in triples:
-                    for file_name in file_names:
-                        if file_name.endswith('.py'):
-                            if not tests_only or file_name.startswith('test_'):
-                                file_path = os.path.join(
-                                    directory_path, 
-                                    file_name,
-                                    )
-                                assets.append(file_path)
-            elif os.path.isfile(path) and path.endswith('.py'):
-                assets.append(path)
-        return assets
-        
     def _list_storehouse_paths(
         self,
         abjad_library=True,
@@ -948,31 +917,6 @@ class Wrangler(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def doctest(self):
-        r'''Runs doctest on Python files in visible assets.
-
-        Returns none.
-        '''
-        file_paths = self._list_python_files_in_visible_assets()
-        if not file_paths:
-            message = 'no testable assets found.'
-            self._io_manager.display([message, ''])
-        else:
-            count = len(file_paths)
-            identifier = stringtools.pluralize('asset', count=count)
-            message = '{} testable {} found ...'
-            message = message.format(count, identifier)
-            self._io_manager.display([message, ''])
-            script = developerscripttools.RunDoctestsScript()
-            strings = script.process_args(
-                file_paths=file_paths,
-                print_to_terminal=False,
-                )
-            if strings:
-                strings.append('')
-            self._io_manager.display(strings, capitalize=False)
-        self._session._hide_next_redraw = True
-
     def list_views(self):
         r'''List views in views module.
 
@@ -1031,32 +975,6 @@ class Wrangler(Controller):
                 )
         view_inventory[view_name] = view
         self._write_view_inventory(view_inventory)
-
-    def pytest(self):
-        r'''Runs py.test on visible assets.
-
-        Returns none.
-        '''
-        assets = []
-        paths = self._list_python_files_in_visible_assets(tests_only=True)
-        for path in paths:
-            if os.path.isdir(path):
-                assets.append(path)
-            elif os.path.isfile(path) and path.endswith('.py'):
-                assets.append(path)
-        if not assets:
-            message = 'no testable assets found.'
-            self._io_manager.display([message, ''])
-        else:
-            count = len(paths)
-            identifier = stringtools.pluralize('asset', count=count)
-            message = '{} testable {} found ...'
-            message = message.format(count, identifier)
-            self._io_manager.display([message, ''])
-            assets = ' '.join(assets)
-            command = 'py.test -rf {}'.format(assets)
-            self._io_manager.run_command(command, capitalize=False)
-        self._session._hide_next_redraw = True
 
     def remove_views(self):
         r'''Removes view(s) from views module.

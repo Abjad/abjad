@@ -112,6 +112,8 @@ class Manager(Controller):
             'cp': self.copy,
             'ls': self.list,
             'll': self.list_long,
+            'pyd': self.doctest,
+            'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -163,6 +165,9 @@ class Manager(Controller):
         else:
             raise ValueError(self)
         return paths
+
+    def _get_current_directory_path(self):
+        return self._path
 
     def _get_modified_asset_paths(self):
         if self._is_git_versioned():

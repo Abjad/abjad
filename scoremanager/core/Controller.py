@@ -1,6 +1,7 @@
 # -*- encoding: utf -*-
 import os
 import re
+from abjad.tools import developerscripttools
 from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
@@ -59,6 +60,10 @@ class Controller(ScoreManagerObject):
                     filtered_entries.append(entry)
         return filtered_entries
 
+    def _get_directory_of_focus(self):
+        path = os.path.abspath('.')
+        return path
+
     @staticmethod
     def _is_directory_with_metadata_module(path):
         if os.path.isdir(path):
@@ -88,6 +93,34 @@ class Controller(ScoreManagerObject):
                     if path not in paths:
                         paths.append(path)
         return paths
+
+    def _list_python_files_in_visible_assets(self, tests_only=False):
+        assets = []
+        if self._session.is_in_score:
+            focus_directory = self._get_directory_of_focus()
+            current_directory = self._get_current_directory_path()
+            if len(focus_directory) < len(current_directory):
+                longer_directory = current_directory
+            else:
+                longer_directory = focus_directory
+            paths = [longer_directory]
+        else:
+            paths = self._list_visible_asset_paths()
+        for path in paths:
+            if os.path.isdir(path):
+                triples = os.walk(path)
+                for directory_path, subdirectory_names, file_names in triples:
+                    for file_name in file_names:
+                        if file_name.endswith('.py'):
+                            if not tests_only or file_name.startswith('test_'):
+                                file_path = os.path.join(
+                                    directory_path, 
+                                    file_name,
+                                    )
+                                assets.append(file_path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        return assets
 
     def _make_asset_menu_entries(
         self,
@@ -288,3 +321,71 @@ class Controller(ScoreManagerObject):
         for key in sorted(dictionary):
             new_dictionary[key] = dictionary[key]
         return new_dictionary
+
+    ### PUBLIC METHODS ###
+
+    def doctest(self):
+        r'''Runs doctest on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        assets = []
+        if isinstance(self, managers.Manager):
+            paths = [self._path]
+        else:
+            paths = self._list_visible_asset_paths()
+        for path in paths:
+            if path.endswith('.py'):
+                assets.append(path)
+            if os.path.isdir(path):
+                triples = os.walk(path)
+                for directory_name, subdirectories, file_names in triples:
+                    for file_name in file_names:
+                        if file_name.endswith('.py'):
+                            file_path = os.path.join(directory_name, file_name)
+                            assets.append(file_path)
+        if not assets:
+            message = 'no testable assets found.'
+            self._io_manager.display([message, ''])
+        else:
+            count = len(assets)
+            identifier = stringtools.pluralize('asset', count=count)
+            message = '{} testable {} found ...'
+            message = message.format(count, identifier)
+            self._io_manager.display([message, ''])
+            script = developerscripttools.RunDoctestsScript()
+            strings = script.process_args(
+                file_paths=assets,
+                print_to_terminal=False,
+                )
+            if strings:
+                strings.append('')
+            self._io_manager.display(strings, capitalize=False)
+        self._session._hide_next_redraw = True
+
+    def pytest(self):
+        r'''Runs py.test on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        assets = []
+        paths = self._list_python_files_in_visible_assets(tests_only=True)
+        for path in paths:
+            if os.path.isdir(path):
+                assets.append(path)
+            elif os.path.isfile(path) and path.endswith('.py'):
+                assets.append(path)
+        if not assets:
+            message = 'no testable assets found.'
+            self._io_manager.display([message, ''])
+        else:
+            count = len(paths)
+            identifier = stringtools.pluralize('asset', count=count)
+            message = '{} testable {} found ...'
+            message = message.format(count, identifier)
+            self._io_manager.display([message, ''])
+            assets = ' '.join(assets)
+            command = 'py.test -rf {}'.format(assets)
+            self._io_manager.run_command(command, capitalize=False)
+        self._session._hide_next_redraw = True
