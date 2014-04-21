@@ -3,6 +3,7 @@ from __future__ import print_function
 import doctest
 import importlib
 import os
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 try:
@@ -175,11 +176,15 @@ class RunDoctestsScript(DirectoryScript):
             print()
         else:
             result.append('')
-        string = '{} of {} tests passed in {} modules.'
+        test_identifier = stringtools.pluralize('test', total_tests)
+        module_identifier = stringtools.pluralize('module', total_modules)
+        string = '{} of {} {} passed in {} {}.'
         string = string.format(
             total_successes,
             total_tests,
+            test_identifier,
             total_modules,
+            module_identifier,
             )
         if print_to_terminal:
             print(string)
