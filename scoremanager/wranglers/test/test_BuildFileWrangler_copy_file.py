@@ -18,9 +18,9 @@ def test_BuildFileWrangler_copy_file_01():
 
     titles = [
         'Score manager - example scores',
-        'Score manager - build file library',
+        'Score manager - build files',
         '',
-        'Score manager - build file library - select storehouse:',
+        'Score manager - build files - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

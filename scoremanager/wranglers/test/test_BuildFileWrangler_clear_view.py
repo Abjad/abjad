@@ -22,7 +22,7 @@ def test_BuildFileWrangler_clear_view_01():
     without_view = score_manager._transcript[-8]
 
     lines = [
-        'Score manager - build file library (_test view)',
+        'Score manager - build files (_test view)',
         '',
         '    1: segment-01.ly (Red Example Score)',
         '',
@@ -34,7 +34,7 @@ def test_BuildFileWrangler_clear_view_01():
         ]
     assert with_view.lines == lines
 
-    title = 'Score manager - build file library'
+    title = 'Score manager - build files'
     assert without_view.title == title
 
     lines = [
@@ -65,7 +65,7 @@ def test_BuildFileWrangler_clear_view_02():
     without_view = score_manager._transcript[-8]
 
     lines = [
-        'Score manager - build file library (_test view)',
+        'Score manager - build files (_test view)',
         '',
         '    1: segment-01.ly (Red Example Score)',
         '',
@@ -77,7 +77,7 @@ def test_BuildFileWrangler_clear_view_02():
         ]
     assert with_view.lines == lines
 
-    title = 'Score manager - build file library'
+    title = 'Score manager - build files'
     assert without_view.title == title
 
     lines = [

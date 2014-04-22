@@ -13,8 +13,8 @@ def test_Session_is_navigating_to_score_build_files_01():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build directory',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -29,7 +29,7 @@ def test_Session_is_navigating_to_score_build_files_02():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - distribution directory',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -44,7 +44,7 @@ def test_Session_is_navigating_to_score_build_files_03():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - makers',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -59,7 +59,7 @@ def test_Session_is_navigating_to_score_build_files_04():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -74,7 +74,7 @@ def test_Session_is_navigating_to_score_build_files_05():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -89,7 +89,7 @@ def test_Session_is_navigating_to_score_build_files_06():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - setup',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -104,6 +104,6 @@ def test_Session_is_navigating_to_score_build_files_07():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         ]
     assert score_manager._transcript.titles == titles

@@ -45,10 +45,7 @@ class BuildFileWrangler(Wrangler):
 
     @property
     def _breadcrumb(self):
-        if self._session.is_in_score:
-            breadcrumb = 'build directory'
-        else:
-            breadcrumb = 'build file library'
+        breadcrumb = 'build files'
         view_name = self._read_view_name()
         if view_name:
             breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)

@@ -14,7 +14,7 @@ def test_Session_is_navigating_to_score_materials_01():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build files',
         'Red Example Score (2013) - materials',
         ]
     assert score_manager._transcript.titles == titles

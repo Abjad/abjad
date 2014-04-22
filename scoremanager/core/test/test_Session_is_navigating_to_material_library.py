@@ -13,7 +13,7 @@ def test_Session_is_navigating_to_material_library_01():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - build file library',
+        'Score manager - build files',
         'Score manager - material library',
         ]
     assert score_manager._transcript.titles == titles
