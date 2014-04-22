@@ -213,3 +213,7 @@
 
 52. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
+
+53. Reimplement a 'commands - hide' ($) command.
+    This will make it easier to work with screens featuring.
+    a large number of assets.
