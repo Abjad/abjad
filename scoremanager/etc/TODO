@@ -210,3 +210,6 @@
 
 51. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
+
+52. Make bicolumnar layout work for asset screens.
+    Right now it just works for the (?) screen.
