@@ -70,6 +70,10 @@ class BuildFileWrangler(Wrangler):
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
             'fco': self.view_front_cover_pdf,
+            'me': self.edit_music_lilypond_file,
+            'mg': self.generate_music_lilypond_file,
+            'mi': self.interpret_music_lilypond_file,
+            'mo': self.view_music_pdf,
             'new': self.make_file,
             'pfe': self.edit_preface_latex,
             'pfg': self.generate_preface_latex,
@@ -83,9 +87,6 @@ class BuildFileWrangler(Wrangler):
             'pdfcp': self.copy_segment_pdfs,
             'ren': self.rename_file,
             'rm': self.remove_files,
-            'sege': self.edit_segment_assembly_lilypond_file,
-            'segly': self.interpret_segment_assembly_lilypond_file,
-            'sego': self.view_segment_assembly_pdf,
             })
         return result
 
@@ -206,11 +207,23 @@ class BuildFileWrangler(Wrangler):
             self._make_directory_menu_section(menu, is_permanent=True)
             self._make_draft_menu_section(menu)
             self._make_front_cover_menu_section(menu)
+            self._make_music_menu_section(menu)
             self._make_preface_menu_section(menu)
             self._make_score_menu_section(menu)
-            self._make_segment_assembly_menu_section(menu)
             self._make_segments_menu_section(menu)
         return menu
+
+    def _make_music_menu_section(self, menu):
+        commands = []
+        commands.append(('music - edit lilypond file', 'me'))
+        commands.append(('music - generate lilypond file', 'mg'))
+        commands.append(('music - interpret lilypond file', 'mi'))
+        commands.append(('music - open pdf', 'mo'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='music',
+            )
 
     def _make_preface_menu_section(self, menu):
         commands = []
@@ -222,16 +235,6 @@ class BuildFileWrangler(Wrangler):
             commands=commands,
             is_hidden=True,
             name='preface',
-            )
-
-    def _make_segment_assembly_menu_section(self, menu):
-        commands = []
-        commands.append(('segment assembly ly - edit', 'sege'))
-        commands.append(('segment assembly ly - lilypond', 'segly'))
-        commands.append(('segment assembly pdf - open', 'sego'))
-        menu.make_command_section(
-            commands=commands,
-            name='segment assembly?',
             )
 
     def _make_segments_menu_section(self, menu):
@@ -420,6 +423,13 @@ class BuildFileWrangler(Wrangler):
         '''
         self._edit_file_ending_with('front-cover.tex')
 
+    def edit_music_lilypond_file(self):
+        r'''Edits music LilyPond file.
+
+        Returns none.
+        '''
+        self._edit_file_ending_with('music.ly')
+
     def edit_preface_latex(self):
         r'''Edits preface LaTeX file.
 
@@ -433,13 +443,6 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._edit_file_ending_with('score.tex')
-
-    def edit_segment_assembly_lilypond_file(self):
-        r'''Edits segment assembly LilyPond file.
-
-        Returns none.
-        '''
-        self._edit_file_ending_with('score-segments.ly')
 
     def generate_back_cover_latex(self):
         r'''Generates back cover LaTeX file.
@@ -462,6 +465,13 @@ class BuildFileWrangler(Wrangler):
         '''
         self._io_manager.print_not_yet_implemented()
 
+    def generate_music_lilypond_file(self):
+        r'''Generates music LilyPond file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
     def generate_preface_latex(self):
         r'''Generates preface LaTeX file.
 
@@ -476,13 +486,13 @@ class BuildFileWrangler(Wrangler):
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def interpret_segment_assembly_lilypond_file(self):
-        r'''Interprets segment assembly LilyPond file.
+    def interpret_music_lilypond_file(self):
+        r'''Interprets music LilyPond file.
 
         Returns none.
         '''
-        self._call_lilypond_on_file_ending_with('score-segments.ly')
-
+        self._call_lilypond_on_file_ending_with('music.ly')
+        
     def make_file(self):
         r'''Makes build file.
 
@@ -570,6 +580,13 @@ class BuildFileWrangler(Wrangler):
         '''
         self._open_file_ending_with('front-cover.pdf')
 
+    def view_music_pdf(self):
+        r'''Views music PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('music.pdf')
+
     def view_preface_pdf(self):
         r'''Views preface PDF.
 
@@ -583,10 +600,3 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._open_file_ending_with('score.pdf')
-
-    def view_segment_assembly_pdf(self):
-        r''''Views segment assembly PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('score-segments.pdf')
