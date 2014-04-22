@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage[papersize={8.5in, 11in}]{geometry}
+\usepackage{pdfpages}
+\newcommand{\build}{/Users/username/scores/score_package_name/build}
+\begin{document}
+
+\includepdf[pages=-]{\build/score-front-cover.pdf}
+\includepdf[pages=-]{\build/score-preface.pdf}
+\includepdf[pages=-]{\build/segment-01.pdf}
+\includepdf[pages=-]{\build/segment-02.pdf}
+\includepdf[pages=-]{\build/segment-03.pdf}
+\includepdf[pages=-]{\build/score-back-cover.pdf}
+
+\end{document}

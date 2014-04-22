@@ -325,11 +325,7 @@ class BuildFileWrangler(Wrangler):
                 score_path)
             score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
-            target_file_name = '{}-{}.ly'
-            target_file_name = target_file_name.format(
-                score_name,
-                directory_entry,
-                )
+            target_file_name = directory_entry + '.ly'
             target_file_path = os.path.join(
                 build_directory_path,
                 target_file_name,
@@ -341,7 +337,9 @@ class BuildFileWrangler(Wrangler):
             message = 'segment {} LilyPond file copied & trimmed.'
             message = message.format(directory_entry)
             self._io_manager.display(message)
-        self._io_manager.proceed('')
+        self._io_manager.display('')
+        #self._io_manager.proceed()
+        self._session._hide_next_redraw = True
 
     def copy_segment_pdfs(self):
         r'''Copies segment PDFs from segment

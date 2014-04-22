@@ -20,7 +20,7 @@ def test_BuildFileWrangler_copy_segment_lilypond_files_01():
     # set up file paths
     file_names, file_paths, temporary_file_paths = [], [], []
     for number in ('01', '02', '03'):
-        file_name = 'red-example-score-segment-{}.ly'
+        file_name = 'segment-{}.ly'
         file_name = file_name.format(number)
         file_names.append(file_name)
         file_path = os.path.join(build_directory, file_name)

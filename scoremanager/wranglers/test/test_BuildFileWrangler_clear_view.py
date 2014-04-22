@@ -15,7 +15,7 @@ def test_BuildFileWrangler_clear_view_01():
     '''
     
     input_ = 'u vnew _test rm all'
-    input_ += ' add red-example-score-segment-01.ly done default'
+    input_ += ' add segment-01.ly done default'
     input_ += ' va _test V vrm _test default q'
     score_manager._run(pending_user_input=input_)
     with_view = score_manager._transcript[-10]
@@ -24,7 +24,7 @@ def test_BuildFileWrangler_clear_view_01():
     lines = [
         'Score manager - build file library (_test view)',
         '',
-        '    1: red-example-score-segment-01.ly (Red Example Score)',
+        '    1: segment-01.ly (Red Example Score)',
         '',
         '    files - copy (cp)',
         '    files - new (new)',
@@ -38,9 +38,9 @@ def test_BuildFileWrangler_clear_view_01():
     assert without_view.title == title
 
     lines = [
-        'red-example-score-segment-01.ly (Red Example Score)',
-        'red-example-score-segment-02.ly (Red Example Score)',
-        'red-example-score-segment-03.ly (Red Example Score)',
+        'segment-01.ly (Red Example Score)',
+        'segment-02.ly (Red Example Score)',
+        'segment-03.ly (Red Example Score)',
         'red-example-score.pdf (Red Example Score)',
         ]
 
@@ -58,7 +58,7 @@ def test_BuildFileWrangler_clear_view_02():
     '''
     
     input_ = 'red~example~score u vnew _test rm all'
-    input_ += ' add red-example-score-segment-01.ly done default'
+    input_ += ' add segment-01.ly done default'
     input_ += ' va _test V vrm _test default q'
     score_manager._run(pending_user_input=input_)
     with_view = score_manager._transcript[-10]
@@ -67,7 +67,7 @@ def test_BuildFileWrangler_clear_view_02():
     lines = [
         'Score manager - build file library (_test view)',
         '',
-        '    1: red-example-score-segment-01.ly (Red Example Score)',
+        '    1: segment-01.ly (Red Example Score)',
         '',
         '    files - copy (cp)',
         '    files - new (new)',
@@ -81,9 +81,9 @@ def test_BuildFileWrangler_clear_view_02():
     assert without_view.title == title
 
     lines = [
-        'red-example-score-segment-01.ly (Red Example Score)',
-        'red-example-score-segment-02.ly (Red Example Score)',
-        'red-example-score-segment-03.ly (Red Example Score)',
+        'segment-01.ly (Red Example Score)',
+        'segment-02.ly (Red Example Score)',
+        'segment-03.ly (Red Example Score)',
         'red-example-score.pdf (Red Example Score)',
         ]
 
