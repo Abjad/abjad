@@ -731,7 +731,10 @@ class Wrangler(Controller):
         path = self._get_visible_asset_path(infinitive_phrase='to rename')
         if not path:
             return
-        self._io_manager.display('')
+        file_name = os.path.basename(path)
+        message = 'Existing file name> {}'
+        message = message.format(file_name)
+        self._io_manager.display(message)
         manager = self._initialize_manager(
             path,
             asset_identifier=self._asset_identifier,
