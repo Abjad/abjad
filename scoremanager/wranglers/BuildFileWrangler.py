@@ -65,6 +65,10 @@ class BuildFileWrangler(Wrangler):
             'bct': self.typeset_back_cover_latex,
             'bco': self.view_back_cover_pdf,
             'cp': self.copy_file,
+            'de': self.edit_draft_latex,
+            'dg': self.generate_draft_latex,
+            'dt': self.typeset_draft_latex,
+            'do': self.view_draft_pdf,
             'fce': self.edit_front_cover_latex,
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
@@ -201,6 +205,7 @@ class BuildFileWrangler(Wrangler):
         if self._session.is_in_score:
             self._make_back_cover_menu_section(menu)
             self._make_directory_menu_section(menu, is_permanent=True)
+            self._make_draft_menu_section(menu)
             self._make_front_cover_menu_section(menu)
             self._make_preface_menu_section(menu)
             self._make_score_menu_section(menu)
@@ -236,6 +241,17 @@ class BuildFileWrangler(Wrangler):
         menu.make_command_section(
             commands=commands,
             name='segments?',
+            )
+
+    def _make_draft_menu_section(self, menu):
+        commands = []
+        commands.append(('draft latex - edit', 'de'))
+        commands.append(('draft latex - generate', 'dg'))
+        commands.append(('draft latex - typeset', 'dt'))
+        commands.append(('draft pdf - open', 'do'))
+        menu.make_command_section(
+            commands=commands,
+            name='draft',
             )
 
     def _make_score_menu_section(self, menu):
@@ -338,7 +354,6 @@ class BuildFileWrangler(Wrangler):
             message = message.format(directory_entry)
             self._io_manager.display(message)
         self._io_manager.display('')
-        #self._io_manager.proceed()
         self._session._hide_next_redraw = True
 
     def copy_segment_pdfs(self):
@@ -365,13 +380,12 @@ class BuildFileWrangler(Wrangler):
             manager = self._session.current_score_package_manager
             score_name = manager._package_name
             if 'segment' in directory_entry:
-                target_file_name = '{}-{}.pdf'
+                target_file_name = directory_entry + '.pdf'
             else:
-                target_file_name = '{}-segment-{}.pdf'
-            target_file_name = target_file_name.format(
-                score_name,
-                directory_entry,
-                )
+                target_file_name = '{}-{}.pdf'.format(
+                    score_name,
+                    directory_entry,
+                    )
             target_file_name = target_file_name.replace('_', '-')
             target_file_path = os.path.join(
                 build_directory_path,
@@ -389,6 +403,13 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._edit_file_ending_with('back-cover.tex')
+
+    def edit_draft_latex(self):
+        r'''Edits draft score LaTeX file.
+
+        Returns none.
+        '''
+        self._edit_file_ending_with('draft.tex')
 
     def edit_front_cover_latex(self):
         r'''Edits front cover LaTeX file.
@@ -420,6 +441,13 @@ class BuildFileWrangler(Wrangler):
 
     def generate_back_cover_latex(self):
         r'''Generates back cover LaTeX file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def generate_draft_latex(self):
+        r'''Generates draft score LaTeX file.
 
         Returns none.
         '''
@@ -491,6 +519,13 @@ class BuildFileWrangler(Wrangler):
         '''
         self._typeset_file_ending_with('back-cover.tex')
 
+    def typeset_draft_latex(self):
+        r'''Typesets draft score LaTeX file.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('draft.tex')
+
     def typeset_front_cover_latex(self):
         r'''Typesets front cover LaTeX file.
 
@@ -518,6 +553,13 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._open_file_ending_with('back-cover.pdf')
+
+    def view_draft_pdf(self):
+        r'''Views draft score PDF.
+
+        Return none.
+        '''
+        self._open_file_ending_with('draft.pdf')
 
     def view_front_cover_pdf(self):
         r'''Views front cover PDF.

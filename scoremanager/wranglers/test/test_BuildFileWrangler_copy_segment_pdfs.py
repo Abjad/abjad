@@ -36,7 +36,7 @@ def test_BuildFileWrangler_copy_segment_pdfs_01():
     # find destination paths
     destination_pdfs = []
     for number in ('01', '02', '03'):
-        file_name = 'red-example-score-segment-{}.pdf'
+        file_name = 'segment-{}.pdf'
         file_name = file_name.format(number)
         path = os.path.join(
             score_manager._configuration.example_score_packages_directory_path,
