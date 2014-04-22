@@ -41,7 +41,7 @@ def test_BuildFileWrangler_clear_view_01():
         'segment-01.ly (Red Example Score)',
         'segment-02.ly (Red Example Score)',
         'segment-03.ly (Red Example Score)',
-        'red-example-score.pdf (Red Example Score)',
+        'score.pdf (Red Example Score)',
         ]
 
     contents = without_view.contents
@@ -84,7 +84,7 @@ def test_BuildFileWrangler_clear_view_02():
         'segment-01.ly (Red Example Score)',
         'segment-02.ly (Red Example Score)',
         'segment-03.ly (Red Example Score)',
-        'red-example-score.pdf (Red Example Score)',
+        'score.pdf (Red Example Score)',
         ]
 
     contents = without_view.contents

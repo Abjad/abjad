@@ -182,7 +182,7 @@
 42. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-43. Make sure that (red~example~score d red-example-score.pdf)
+43. Make sure that (red~example~score d score.pdf)
     opens with PDF viewier insted of text editor.
 
 44. Allow 5-99 (or any other large number) to work when removing items.
