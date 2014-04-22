@@ -182,43 +182,40 @@
 42. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-43. Make sure that (red~example~score d score.pdf)
-    opens with PDF viewier insted of text editor.
-
-44. Allow 5-99 (or any other large number) to work when removing items.
+43. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-45. Move score_manager_library/views/*_views__.py files to
+44. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-46. Change 'vmrm' to 'vmtrash'.
+45. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-47. Make (red m ls) work.
+46. Make (red m ls) work.
 
-48. Fix menu title that results from the following:
+47. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-49. Change breadcrumbs so that ...
+48. Change breadcrumbs so that ...
         'Score manager - active scores'
     ... becomes ...
         'Score manager - score packages (active scores view)'
     ... instead.
 
-50. Maybe change 'Score manager - stylesheet library' to
+49. Maybe change 'Score manager - stylesheet library' to
     just 'Score manager - stylesheets'.
 
-51. There is no such thing as 'My build file library'.
+50. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-52. Make bicolumnar layout work for asset screens.
+51. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-53. Reimplement a 'commands - hide' ($) command.
+52. Reimplement a 'commands - hide' ($) command.
     This will make it easier to work with screens featuring.
     a large number of assets.
 
-54. Right align the colons of numbers in numbered lists.
+53. Right align the colons of numbers in numbered lists.
     Change ...
         1: provisional-segment-score.tex
         2: red-example-score.pdf
