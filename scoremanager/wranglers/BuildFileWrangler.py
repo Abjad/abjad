@@ -203,7 +203,9 @@ class BuildFileWrangler(Wrangler):
             self._make_directory_menu_section(menu, is_permanent=True)
             self._make_front_cover_menu_section(menu)
             self._make_preface_menu_section(menu)
-            self._make_score_menu_sections(menu)
+            self._make_score_menu_section(menu)
+            self._make_segment_assembly_menu_section(menu)
+            self._make_segments_menu_section(menu)
         return menu
 
     def _make_preface_menu_section(self, menu):
@@ -217,15 +219,7 @@ class BuildFileWrangler(Wrangler):
             name='preface',
             )
 
-    # TODO: divide into three methods
-    def _make_score_menu_sections(self, menu):
-        commands = []
-        commands.append(('segment lys - copy', 'lycp'))
-        commands.append(('segment pdfs - copy', 'pdfcp'))
-        menu.make_command_section(
-            commands=commands,
-            name='segments?',
-            )
+    def _make_segment_assembly_menu_section(self, menu):
         commands = []
         commands.append(('segment assembly ly - edit', 'sege'))
         commands.append(('segment assembly ly - lilypond', 'segly'))
@@ -234,6 +228,17 @@ class BuildFileWrangler(Wrangler):
             commands=commands,
             name='segment assembly?',
             )
+
+    def _make_segments_menu_section(self, menu):
+        commands = []
+        commands.append(('segment lys - copy', 'lycp'))
+        commands.append(('segment pdfs - copy', 'pdfcp'))
+        menu.make_command_section(
+            commands=commands,
+            name='segments?',
+            )
+
+    def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('score latex - edit', 'se'))
         commands.append(('score latex - generate', 'sg'))
