@@ -669,13 +669,21 @@ class Manager(Controller):
             return
         parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)
-        message = 'new path name will be: {!r}.'
-        message = message.format(new_path)
-        self._io_manager.display([message, ''])
+        messages = []
+        messages.append('')
+        messages.append('Will rename ...')
+        messages.append('')
+        message = '  FROM: {}'.format(self._path)
+        messages.append(message)
+        message = '    TO: {}'.format(new_path)
+        messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
         if not self._io_manager.confirm():
             return
         if self._rename(new_path):
-            self._io_manager.proceed('asset renamed.')
+            message = '{} renamed.'.format(self._asset_identifier)
+            self._io_manager.proceed(message)
 
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.
