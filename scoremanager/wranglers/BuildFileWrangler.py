@@ -173,6 +173,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('back cover pdf - open', 'bco'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='back cover',
             )
 
@@ -195,6 +196,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('front cover pdf - open', 'fco'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='front cover',
             )
 
@@ -221,6 +223,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('preface pdf - open', 'pfo'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='preface',
             )
 
@@ -251,6 +254,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('draft pdf - open', 'do'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='draft',
             )
 
@@ -262,6 +266,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('score pdf - open', 'so'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='score',
             )
 
