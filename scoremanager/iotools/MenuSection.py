@@ -246,7 +246,14 @@ class MenuSection(AbjadObject):
             key = menu_entry.key
             prepopulated_value = menu_entry.prepopulated_value
             if self.is_numbered:
-                menu_line += '{}: '.format(menu_entry.number)
+                #menu_line += '{}: '.format(menu_entry.number)
+                number_indicator = '{}: '.format(menu_entry.number)
+                tab = self._make_tab(self.indent_level)
+                tab_width = len(tab)
+                number_width = len(str(number_indicator))
+                reduced_tab_width = tab_width - number_width
+                reduced_tab = reduced_tab_width * ' '
+                menu_line = reduced_tab + number_indicator
             menu_line += display_string
             if key:
                 if i == self.default_index:
@@ -263,7 +270,7 @@ class MenuSection(AbjadObject):
         return menu_lines
 
     def _make_tab(self, n=1):
-        tab_string = 4 * n * ' '
+        tab_string = 6 * n * ' '
         if self.is_informational_section:
             characters = list(tab_string)
             characters[-3:-1] = self._informational_message_bullet

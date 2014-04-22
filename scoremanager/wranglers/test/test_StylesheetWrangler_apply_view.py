@@ -20,12 +20,12 @@ def test_StylesheetWrangler_apply_view_01():
     lines = [
         'Score manager - stylesheet library (_test view)',
         '',
-        '    1: clean-letter-14.ily (Abjad)',
+        '   1: clean-letter-14.ily (Abjad)',
         '',
-        '    stylesheets - copy (cp)',
-        '    stylesheets - new (new)',
-        '    stylesheets - remove (rm)',
-        '    stylesheets - rename (ren)',
+        '      stylesheets - copy (cp)',
+        '      stylesheets - new (new)',
+        '      stylesheets - remove (rm)',
+        '      stylesheets - rename (ren)',
         '',
         ]
     assert applied_view.lines == lines
@@ -46,12 +46,12 @@ def test_StylesheetWrangler_apply_view_02():
     lines = [
         'Red Example Score (2013) - stylesheets (_test view)',
         '',
-        '    1: stylesheet-addendum.ily',
+        '   1: stylesheet-addendum.ily',
         '',
-        '    stylesheets - copy (cp)',
-        '    stylesheets - new (new)',
-        '    stylesheets - remove (rm)',
-        '    stylesheets - rename (ren)',
+        '      stylesheets - copy (cp)',
+        '      stylesheets - new (new)',
+        '      stylesheets - remove (rm)',
+        '      stylesheets - rename (ren)',
         '',
         ]
     assert applied_view.lines == lines

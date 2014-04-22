@@ -24,12 +24,12 @@ def test_BuildFileWrangler_clear_view_01():
     lines = [
         'Score manager - build files (_test view)',
         '',
-        '    1: segment-01.ly (Red Example Score)',
+        '   1: segment-01.ly (Red Example Score)',
         '',
-        '    files - copy (cp)',
-        '    files - new (new)',
-        '    files - remove (rm)',
-        '    files - rename (ren)',
+        '      files - copy (cp)',
+        '      files - new (new)',
+        '      files - remove (rm)',
+        '      files - rename (ren)',
         '',
         ]
     assert with_view.lines == lines
@@ -67,12 +67,12 @@ def test_BuildFileWrangler_clear_view_02():
     lines = [
         'Score manager - build files (_test view)',
         '',
-        '    1: segment-01.ly (Red Example Score)',
+        '   1: segment-01.ly (Red Example Score)',
         '',
-        '    files - copy (cp)',
-        '    files - new (new)',
-        '    files - remove (rm)',
-        '    files - rename (ren)',
+        '      files - copy (cp)',
+        '      files - new (new)',
+        '      files - remove (rm)',
+        '      files - rename (ren)',
         '',
         ]
     assert with_view.lines == lines

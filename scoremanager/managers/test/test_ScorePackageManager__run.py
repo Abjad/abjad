@@ -16,14 +16,14 @@ def test_ScorePackageManager__run_01():
     lines = [
         'Red Example Score (2013)',
         '',
-        '    build (u)',
-        '    distribution (d)',
-        '    makers (k)',
-        '    materials (m)',
-        '    segments (g)',
-        '    stylesheets (y)',
+        '      build (u)',
+        '      distribution (d)',
+        '      makers (k)',
+        '      materials (m)',
+        '      segments (g)',
+        '      stylesheets (y)',
         '',
-        '    score pdf - open (pdfo)',
+        '      score pdf - open (pdfo)',
         '',
         ]
     assert score_manager._transcript.last_menu_lines == lines

@@ -102,15 +102,15 @@ def test_Editor__Instrument_04():
     lines = [
         'Accordion',
         '',
-        '    1: clefs (cf): treble, bass',
-        "    2: instrument name (in): accordion",
-        "    3: instrument name markup (im): \markup { Accordion }",
-        '    4: range (rg): [E1, C8]',
-        "    5: short instrument name (sn): acc.",
-        "    6: short instrument name markup (sm): \markup { Acc. }",
-        "    7: sounding pitch of written middle C (sp): c'",
+        '   1: clefs (cf): treble, bass',
+        "   2: instrument name (in): accordion",
+        "   3: instrument name markup (im): \markup { Accordion }",
+        '   4: range (rg): [E1, C8]',
+        "   5: short instrument name (sn): acc.",
+        "   6: short instrument name markup (sm): \markup { Acc. }",
+        "   7: sounding pitch of written middle C (sp): c'",
         '',
-        '    done (done)',
+        '      done (done)',
         '',
         ]
     assert editor._transcript.last_menu_lines == lines

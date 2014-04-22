@@ -19,12 +19,12 @@ def test_StylesheetWrangler_clear_view_01():
     lines = [
         'Score manager - stylesheet library (_test view)',
         '',
-        '    1: clean-letter-14.ily (Abjad)',
+        '   1: clean-letter-14.ily (Abjad)',
         '',
-        '    stylesheets - copy (cp)',
-        '    stylesheets - new (new)',
-        '    stylesheets - remove (rm)',
-        '    stylesheets - rename (ren)',
+        '      stylesheets - copy (cp)',
+        '      stylesheets - new (new)',
+        '      stylesheets - remove (rm)',
+        '      stylesheets - rename (ren)',
         '',
         ]
     assert with_view.lines == lines
