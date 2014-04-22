@@ -136,7 +136,7 @@ class FileManager(Manager):
 
     ### PUBLIC METHODS ###
 
-    # TODO: delegate to IOManager
+    # TODO: hoist to IOManager
     def call_lilypond(self, prompt=True):
         r'''Calls LilyPond on file.
 
@@ -156,7 +156,9 @@ class FileManager(Manager):
         input_directory = os.path.dirname(self._path)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self._io_manager.spawn_subprocess(command)
-        self._io_manager.proceed('', prompt=prompt)
+        self._io_manager.display('')
+        #self._io_manager.proceed('', prompt=prompt)
+        self._session._hide_next_redraw = True
 
     def edit(self, line_number=None):
         r'''Edits file.

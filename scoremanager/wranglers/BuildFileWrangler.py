@@ -101,7 +101,6 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager.proceed(message)
 
     # TODO: migrate to IOManager
     def _edit_file_ending_with(self, string):
@@ -112,7 +111,6 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager.proceed(message)
 
     def _enter_run(self):
         self._session._is_navigating_to_score_build_files = False
