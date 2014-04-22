@@ -217,3 +217,32 @@
 53. Reimplement a 'commands - hide' ($) command.
     This will make it easier to work with screens featuring.
     a large number of assets.
+
+54. Right align the colons of numbers in numbered lists.
+    Change ...
+        1: provisional-segment-score.tex
+        2: red-example-score.pdf
+        3: score-back-cover.pdf
+        4: score-back-cover.tex
+        5: score-front-cover.pdf
+        6: score-front-cover.tex
+        7: score-preface.pdf
+        8: score-preface.tex
+        9: segment-01.ly
+        10: segment-02.ly
+        11: segment-03.ly
+    ... to ...
+        1: provisional-segment-score.tex
+        2: red-example-score.pdf
+        3: score-back-cover.pdf
+        4: score-back-cover.tex
+        5: score-front-cover.pdf
+        6: score-front-cover.tex
+        7: score-preface.pdf
+        8: score-preface.tex
+        9: segment-01.ly
+       10: segment-02.ly
+       11: segment-03.ly
+    ... instead.
+    Probably best to left align start of asset names with starts
+    of command names in command sections further down on screen.
