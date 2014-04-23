@@ -292,6 +292,15 @@ class ScorePackageManager(PackageManager):
                 break
         self._session._is_in_score_setup_menu = False
 
+    def _parse_paper_dimensions(self):
+        string = self._get_metadatum('paper_dimensions') or '8.5 x 11 in'
+        parts = string.split()
+        assert len(parts) == 4
+        width, _, height, units = parts
+        width = eval(width)
+        height = eval(height)
+        return width, height, units
+
     def _remove(self):
         superclass = super(ScorePackageManager, self)
         superclass._remove()

@@ -447,7 +447,12 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        manager = self._session.current_score_package_manager
+        assert manager is not None
+        width, height, units = manager._parse_paper_dimensions()
+        print width, height, units, 'DIMENSIONS'
+        self._session._hide_next_redraw = True
+
 
     def generate_draft_latex(self):
         r'''Generates draft score LaTeX file.
