@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -8,7 +7,6 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_DistributionFileWrangler_repository_status_01():
     r'''Works with distribution file library.
     '''
-    pytest.skip('add some distribution files to red example score.')
 
     input_ = 'd rst q'
     score_manager._run(pending_user_input=input_)
