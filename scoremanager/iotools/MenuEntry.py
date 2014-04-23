@@ -44,14 +44,15 @@ class MenuEntry(AbjadObject):
 
     def __init__(
         self,
-        menu_section,
+        menu_section=None,
         display_string=None,
         explicit_return_value=None,
         key=None,
         prepopulated_value=None,
         ):
-        if menu_section.is_command_section:
-            assert '-' in display_string, repr(menu_section)
+        if menu_section is not None:
+            if menu_section.is_command_section:
+                assert '-' in display_string, repr(menu_section)
         self._menu_section = menu_section
         self._display_string = display_string
         self._explicit_return_value = explicit_return_value
@@ -85,8 +86,15 @@ class MenuEntry(AbjadObject):
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = ()
+        keyword_argument_names = (
+            'display_string',
+            'explicit_return_value',
+            'key',
+            'prepopulated_value',
+            )
         return systemtools.StorageFormatSpecification(
             self,
+            keyword_argument_names=keyword_argument_names,
             positional_argument_values=positional_argument_values,
             )
 

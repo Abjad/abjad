@@ -149,10 +149,13 @@ class ScorePackageManager(PackageManager):
             message = message.format(result)
             raise ValueError(message)
 
+    # TODO: reimplement options as dictionary
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'catalog number':
             self.edit_catalog_number()
+        elif result == 'paper dimensions':
+            self.edit_paper_dimensions()
         elif result == 'tagline':
             self.edit_forces_tagline()
         elif result == 'title':
@@ -238,11 +241,20 @@ class ScorePackageManager(PackageManager):
         return menu
 
     def _make_setup_menu_entries(self):
+        from scoremanager import iotools
         result = []
+
         return_value = 'title'
         prepopulated_value = None
         prepopulated_value = self._get_title() or None
-        result.append((return_value, None, prepopulated_value, return_value))
+        #result.append((return_value, None, prepopulated_value, return_value))
+        entry = iotools.MenuEntry(
+            display_string=return_value,
+            prepopulated_value=prepopulated_value,
+            explicit_return_value=return_value,
+            )
+        result.append(entry)
+
         forces_tagline = self._get_metadatum('forces_tagline')
         prepopulated_value = None
         return_value = 'tagline'
@@ -310,12 +322,23 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         getter = self._io_manager.make_getter()
-        getter.append_string('Forces tagline')
-        assert getter._session is self._session
+        getter.append_string('forces tagline')
         result = getter._run()
         if self._should_backtrack():
             return
         self._add_metadatum('forces_tagline', result)
+
+    def edit_paper_dimensions(self):
+        r'''Edits paper dimensions of score.
+
+        Returns none.
+        '''
+        getter = self._io_manager.make_getter()
+        getter.append_string('paper dimensions')
+        result = getter._run()
+        if self._should_backtrac():
+            return
+        self._add_metadatum('paper_dimensions', result)
 
     def edit_title(self):
         r'''Edits title of score.

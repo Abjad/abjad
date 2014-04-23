@@ -562,6 +562,14 @@ class MenuSection(AbjadObject):
         Returns menu entry.
         '''
         from scoremanager import iotools
+        if isinstance(expr, iotools.MenuEntry):
+            new_expr = (
+                expr.display_string,
+                expr.key,
+                expr.prepopulated_value,
+                expr.explicit_return_value,
+                )
+            expr = new_expr
         assert isinstance(expr, (str, tuple))
         number = None
         if isinstance(expr, str):
