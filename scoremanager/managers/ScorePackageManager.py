@@ -240,40 +240,35 @@ class ScorePackageManager(PackageManager):
         self._make_setup_menu_section(menu)
         return menu
 
-    def _make_setup_menu_entries(self):
+    def _make_setup_menu_entry(self, display_string, prepopulated_value):
         from scoremanager import iotools
-        result = []
-
-        return_value = 'title'
-        prepopulated_value = None
-        prepopulated_value = self._get_title() or None
-        #result.append((return_value, None, prepopulated_value, return_value))
-        entry = iotools.MenuEntry(
-            display_string=return_value,
+        return iotools.MenuEntry(
+            display_string=display_string,
             prepopulated_value=prepopulated_value,
-            explicit_return_value=return_value,
+            explicit_return_value=display_string,
             )
-        result.append(entry)
 
+    def _make_setup_menu_entries(self):
+        entries = []
+        title = self._get_metadatum('title')
+        entry = self._make_setup_menu_entry('title', title)
+        entries.append(entry)
         forces_tagline = self._get_metadatum('forces_tagline')
-        prepopulated_value = None
-        return_value = 'tagline'
-        if forces_tagline:
-            prepopulated_value = forces_tagline
-        result.append((return_value, None, prepopulated_value, return_value))
-        return_value = 'year'
-        prepopulated_value = None
+        entry = self._make_setup_menu_entry('tagline', forces_tagline)
+        entries.append(entry)
         year_of_completion = self._get_metadatum('year_of_completion')
-        if year_of_completion:
-            prepopulated_value = str(year_of_completion)
-        result.append((return_value, None, prepopulated_value, return_value))
+        entry = self._make_setup_menu_entry('year', year_of_completion)
+        entries.append(entry)
         catalog_number = self._get_metadatum('catalog_number')
-        prepopulated_value = None
-        return_value = 'catalog number'
-        if catalog_number:
-            prepopulated_value = catalog_number
-        result.append((return_value, None, prepopulated_value, return_value))
-        return result
+        entry = self._make_setup_menu_entry('catalog number', catalog_number)
+        entries.append(entry)
+        paper_dimensions = self._get_metadatum('paper_dimensions')
+        entry = self._make_setup_menu_entry(
+            'paper dimensions', 
+            paper_dimensions,
+            )
+        entries.append(entry)
+        return entries
 
     def _make_setup_menu_section(self, menu):
         menu_entries = self._make_setup_menu_entries()
@@ -336,7 +331,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager.make_getter()
         getter.append_string('paper dimensions')
         result = getter._run()
-        if self._should_backtrac():
+        if self._should_backtrack():
             return
         self._add_metadatum('paper_dimensions', result)
 
