@@ -433,16 +433,6 @@ class MaterialPackageManager(PackageManager):
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
-    @staticmethod
-    def _replace_in_file(file_path, old, new):
-        with file(file_path, 'r') as file_pointer:
-            new_file_lines = []
-            for line in file_pointer.readlines():
-                line = line.replace(old, new)
-                new_file_lines.append(line)
-        with file(file_path, 'w') as file_pointer:
-            file_pointer.write(''.join(new_file_lines))
-
     def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
             'output_module_import_statements',

@@ -199,7 +199,7 @@ class FileManager(Manager):
             self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
-        self._io_manager.proceed('', prompt=prompt)
+        self._io_manager.display('')
 
     def view(self):
         r'''Views file.
