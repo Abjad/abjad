@@ -64,7 +64,7 @@ class BuildFileWrangler(Wrangler):
             'cp': self.copy_file,
             'de': self.edit_draft_source,
             'dg': self.generate_draft_source,
-            'dt': self.interpret_draft,
+            'di': self.interpret_draft,
             'do': self.view_draft_pdf,
             'fce': self.edit_front_cover_source,
             'fcg': self.generate_front_cover_source,
@@ -213,9 +213,9 @@ class BuildFileWrangler(Wrangler):
 
     def _make_music_menu_section(self, menu):
         commands = []
-        commands.append(('music - edit lilypond file', 'me'))
-        commands.append(('music - generate lilypond file', 'mg'))
-        commands.append(('music - interpret lilypond file', 'mi'))
+        commands.append(('music - edit lilypond source', 'me'))
+        commands.append(('music - generate lilypond source', 'mg'))
+        commands.append(('music - interpret lilypond source', 'mi'))
         commands.append(('music - open pdf', 'mo'))
         menu.make_command_section(
             commands=commands,
@@ -248,7 +248,7 @@ class BuildFileWrangler(Wrangler):
         commands = []
         commands.append(('draft - edit latex source', 'de'))
         commands.append(('draft - generate latex source', 'dg'))
-        commands.append(('draft - interpret latex source', 'dt'))
+        commands.append(('draft - interpret latex source', 'di'))
         commands.append(('draft - open pdf', 'do'))
         menu.make_command_section(
             commands=commands,
@@ -484,7 +484,42 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        manager = self._session.current_score_package_manager
+        width, height, unit = manager._parse_paper_dimensions()
+        build_directory = self._get_current_directory_path()
+        assert width and height and unit
+        assert build_directory
+
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            'draft.tex',
+            )
+        previously_existed = False
+        if os.path.exists(destination_path):
+            previously_existed = True
+            messages = []
+            message = 'overwrite {}?'
+            message = message.format(destination_path)
+            if not self._io_manager.confirm(message):
+                return
+        source_path = os.path.join(
+            self._configuration.score_manager_directory_path,
+            'latex',
+            'draft.tex',
+            )
+        shutil.copyfile(source_path, destination_path)
+        old = '{PAPER_DIMENSIONS}'
+        new = '{{{}{}, {}{}}}'
+        new = new.format(width, unit, height, unit)
+        self._replace_in_file(destination_path, old, new)
+        old = '{BUILD_DIRECTORY}'
+        new = '{{{}}}'.format(build_directory)
+        self._replace_in_file(destination_path, old, new)
+        if previously_existed:
+            message = 'Overwrote {}.'.format(destination_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def generate_front_cover_source(self):
         r'''Generates front cover LaTeX file.
