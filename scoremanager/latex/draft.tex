@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage[papersize={8.5in, 11in}]{geometry}
+\usepackage{pdfpages}
+\newcommand{\build}{BUILD_DIRECTORY}
+\begin{document}
+
+\includepdf[pages=-]{\build/score-front-cover.pdf}
+\includepdf[pages=-]{\build/score-preface.pdf}
+SEGMENTS
+\includepdf[pages=-]{\build/score-back-cover.pdf}
+
+\end{document}
