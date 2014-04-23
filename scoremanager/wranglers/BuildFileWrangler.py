@@ -57,31 +57,31 @@ class BuildFileWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'bce': self.edit_back_cover_latex,
-            'bcg': self.generate_back_cover_latex,
-            'bct': self.typeset_back_cover_latex,
+            'bce': self.edit_back_cover_source,
+            'bcg': self.generate_back_cover_source,
+            'bct': self.interpret_back_cover,
             'bco': self.view_back_cover_pdf,
             'cp': self.copy_file,
-            'de': self.edit_draft_latex,
-            'dg': self.generate_draft_latex,
-            'dt': self.typeset_draft_latex,
+            'de': self.edit_draft_source,
+            'dg': self.generate_draft_source,
+            'dt': self.interpret_draft,
             'do': self.view_draft_pdf,
-            'fce': self.edit_front_cover_latex,
-            'fcg': self.generate_front_cover_latex,
-            'fct': self.typeset_front_cover_latex,
+            'fce': self.edit_front_cover_source,
+            'fcg': self.generate_front_cover_source,
+            'fct': self.interpret_front_cover,
             'fco': self.view_front_cover_pdf,
-            'me': self.edit_music_lilypond_file,
-            'mg': self.generate_music_lilypond_file,
+            'me': self.edit_music_source,
+            'mg': self.generate_music_source,
             'mi': self.interpret_music_lilypond_file,
             'mo': self.view_music_pdf,
             'new': self.make_file,
-            'pfe': self.edit_preface_latex,
-            'pfg': self.generate_preface_latex,
-            'pft': self.typeset_preface_latex,
+            'pfe': self.edit_preface_source,
+            'pfg': self.generate_preface_source,
+            'pft': self.interpret_preface,
             'pfo': self.view_preface_pdf,
-            'se': self.edit_score_latex,
-            'sg': self.generate_score_latex,
-            'st': self.typeset_score_latex,
+            'se': self.edit_score_source,
+            'sg': self.generate_score_source,
+            'st': self.interpret_score,
             'so': self.view_score_pdf,
             'lycp': self.copy_segment_lilypond_files,
             'pdfcp': self.copy_segment_pdfs,
@@ -401,49 +401,49 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display(message)
         self._io_manager.proceed('')
 
-    def edit_back_cover_latex(self):
+    def edit_back_cover_source(self):
         r'''Edits back cover LaTeX file.
 
         Returns none.
         '''
         self._edit_file_ending_with('back-cover.tex')
 
-    def edit_draft_latex(self):
+    def edit_draft_source(self):
         r'''Edits draft score LaTeX file.
 
         Returns none.
         '''
         self._edit_file_ending_with('draft.tex')
 
-    def edit_front_cover_latex(self):
+    def edit_front_cover_source(self):
         r'''Edits front cover LaTeX file.
 
         Returns none.
         '''
         self._edit_file_ending_with('front-cover.tex')
 
-    def edit_music_lilypond_file(self):
+    def edit_music_source(self):
         r'''Edits music LilyPond file.
 
         Returns none.
         '''
         self._edit_file_ending_with('music.ly')
 
-    def edit_preface_latex(self):
+    def edit_preface_source(self):
         r'''Edits preface LaTeX file.
 
         Returns none.
         '''
         self._edit_file_ending_with('preface.tex')
 
-    def edit_score_latex(self):
+    def edit_score_source(self):
         r'''Edits score LaTeX file.
 
         Returns none.
         '''
         self._edit_file_ending_with('score.tex')
 
-    def generate_back_cover_latex(self):
+    def generate_back_cover_source(self):
         r'''Generates back cover LaTeX file.
 
         Returns none.
@@ -479,35 +479,35 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def generate_draft_latex(self):
-        r'''Generates draft score LaTeX file.
+    def generate_draft_source(self):
+        r'''Generates draft LaTeX file.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def generate_front_cover_latex(self):
+    def generate_front_cover_source(self):
         r'''Generates front cover LaTeX file.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def generate_music_lilypond_file(self):
+    def generate_music_source(self):
         r'''Generates music LilyPond file.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def generate_preface_latex(self):
+    def generate_preface_source(self):
         r'''Generates preface LaTeX file.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def generate_score_latex(self):
+    def generate_score_source(self):
         r'''Generates score LaTeX file.
 
         Returns none.
@@ -552,35 +552,35 @@ class BuildFileWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def typeset_back_cover_latex(self):
+    def interpret_back_cover(self):
         r'''Typesets back cover LaTeX file.
 
         Returns none.
         '''
         self._typeset_file_ending_with('back-cover.tex')
 
-    def typeset_draft_latex(self):
+    def interpret_draft(self):
         r'''Typesets draft score LaTeX file.
 
         Returns none.
         '''
         self._typeset_file_ending_with('draft.tex')
 
-    def typeset_front_cover_latex(self):
+    def interpret_front_cover(self):
         r'''Typesets front cover LaTeX file.
 
         Retunrs none.
         '''
         self._typeset_file_ending_with('front-cover.tex')
 
-    def typeset_preface_latex(self):
+    def interpret_preface(self):
         r'''Typesets preface LaTeX file.
 
         Returns none.
         '''
         self._typeset_file_ending_with('preface.tex')
 
-    def typeset_score_latex(self):
+    def interpret_score(self):
         r'''Typesets score LaTeX file.
 
         Returns none.

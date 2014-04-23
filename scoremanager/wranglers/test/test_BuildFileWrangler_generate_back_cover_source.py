@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_generate_back_cover_latex_01():
+def test_BuildFileWrangler_generate_back_cover_source_01():
     r'''Works when back cover LaTeX doesn't yet exist.
 
     Supplies papersize={8.5in, 11in} as a default.
@@ -47,7 +47,7 @@ def test_BuildFileWrangler_generate_back_cover_latex_01():
     assert not os.path.exists(destination_path)
 
 
-def test_BuildFileWrangler_generate_back_cover_latex_02():
+def test_BuildFileWrangler_generate_back_cover_source_02():
     r'''Works when back cover LaTeX already exists.
     '''
 

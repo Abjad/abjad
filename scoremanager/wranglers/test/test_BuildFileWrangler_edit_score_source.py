@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_edit_score_latex_01():
+def test_BuildFileWrangler_edit_score_source_01():
 
     input_ = 'red~example~score u se q'
     score_manager._run(pending_user_input=input_)
