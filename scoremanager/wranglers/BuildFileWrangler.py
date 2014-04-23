@@ -59,7 +59,7 @@ class BuildFileWrangler(Wrangler):
         result.update({
             'bce': self.edit_back_cover_source,
             'bcg': self.generate_back_cover_source,
-            'bct': self.interpret_back_cover,
+            'bci': self.interpret_back_cover,
             'bco': self.view_back_cover_pdf,
             'cp': self.copy_file,
             'de': self.edit_draft_source,
@@ -68,7 +68,7 @@ class BuildFileWrangler(Wrangler):
             'do': self.view_draft_pdf,
             'fce': self.edit_front_cover_source,
             'fcg': self.generate_front_cover_source,
-            'fct': self.interpret_front_cover,
+            'fci': self.interpret_front_cover,
             'fco': self.view_front_cover_pdf,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
@@ -77,7 +77,7 @@ class BuildFileWrangler(Wrangler):
             'new': self.make_file,
             'pfe': self.edit_preface_source,
             'pfg': self.generate_preface_source,
-            'pft': self.interpret_preface,
+            'pfi': self.interpret_preface,
             'pfo': self.view_preface_pdf,
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
@@ -163,10 +163,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_back_cover_menu_section(self, menu):
         commands = []
-        commands.append(('back cover latex - edit', 'bce'))
-        commands.append(('back cover latex - generate', 'bcg'))
-        commands.append(('back cover latex - typeset', 'bct'))
-        commands.append(('back cover pdf - open', 'bco'))
+        commands.append(('back cover - edit latex source', 'bce'))
+        commands.append(('back cover - generate latex source', 'bcg'))
+        commands.append(('back cover - interpret latex source', 'bci'))
+        commands.append(('back cover - open pdf', 'bco'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -186,10 +186,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_front_cover_menu_section(self, menu):
         commands = []
-        commands.append(('front cover latex - edit', 'fce'))
-        commands.append(('front cover latex - generate', 'fcg'))
-        commands.append(('front cover latex - typeset', 'fct'))
-        commands.append(('front cover pdf - open', 'fco'))
+        commands.append(('front cover - edit latex source', 'fce'))
+        commands.append(('front cover - generate latex source', 'fcg'))
+        commands.append(('front cover - interpret latex source', 'fci'))
+        commands.append(('front cover - open pdf', 'fco'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -225,10 +225,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_preface_menu_section(self, menu):
         commands = []
-        commands.append(('preface latex - edit', 'pfe'))
-        commands.append(('preface latex - generate', 'pfg'))
-        commands.append(('preface latex - typeset', 'pft'))
-        commands.append(('preface pdf - open', 'pfo'))
+        commands.append(('preface - edit latex source', 'pfe'))
+        commands.append(('preface - generate latex source', 'pfg'))
+        commands.append(('preface - interpret latex source', 'pfi'))
+        commands.append(('preface - open pdf', 'pfo'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -246,10 +246,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_draft_menu_section(self, menu):
         commands = []
-        commands.append(('draft latex - edit', 'de'))
-        commands.append(('draft latex - generate', 'dg'))
-        commands.append(('draft latex - typeset', 'dt'))
-        commands.append(('draft pdf - open', 'do'))
+        commands.append(('draft - edit latex source', 'de'))
+        commands.append(('draft - generate latex source', 'dg'))
+        commands.append(('draft - interpret latex source', 'dt'))
+        commands.append(('draft - open pdf', 'do'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -258,10 +258,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_score_menu_section(self, menu):
         commands = []
-        commands.append(('score latex - edit', 'se'))
-        commands.append(('score latex - generate', 'sg'))
-        commands.append(('score latex - typeset', 'st'))
-        commands.append(('score pdf - open', 'so'))
+        commands.append(('score - edit latex source', 'se'))
+        commands.append(('score - generate latex source', 'sg'))
+        commands.append(('score - interpret latex source', 'st'))
+        commands.append(('score - open pdf', 'so'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
