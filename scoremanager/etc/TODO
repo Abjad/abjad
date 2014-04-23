@@ -114,101 +114,97 @@
 23. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-24. Make 'n' user input work in confirmation dialogue.
-    Carefully use (m > example pitch range inventory > mdmrm > n)
-    to reproduce the bug.
-
-25. Make sure new-style.ily doesn't alias (new).
+24. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-26. When in (new) score, change 'Enter package name>' to
+25. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-27. Block (new) score when view is hiding user scores.
+26. Block (new) score when view is hiding user scores.
     This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.
 
-28. Allow more flexible input for score (new).
+27. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-29. Implement stringtools.delimit_words(delimitor=' ').
+28. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-30. Maybe change Wrangler._current_package_manager to
+29. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-31. Make (mdmro) work for wranglers.
+30. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-32. Make menu title breadcrumbs correctly reflect changes in view
+31. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-33. Refuse to apply view when invalid regular expression is found.
+32. Refuse to apply view when invalid regular expression is found.
 
-34. Imlement 'views - autoedit' (vae) command.
+33. Imlement 'views - autoedit' (vae) command.
 
-35. Compile regular expressions at view entry add time.
+34. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-36. Allow arbitrary metadata in view patterns.
+35. Allow arbitrary metadata in view patterns.
 
-37. Change ...
+36. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-38. Change ...
+37. Change ...
         Score manager - stylesheet library (_test view) - select view to remove:
     ... to ...
         Score manager - stylesheet library - select view to remove:
     ... instead.
 
-39. Change 'default' to '<return>' in test input strings.
+38. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-40. Write test for editing stylesheet.
+39. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-41. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+40. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-42. Make (rst) work again. Right now runs on archipel and then quits.
+41. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-43. Allow 5-99 (or any other large number) to work when removing items.
+42. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-44. Move score_manager_library/views/*_views__.py files to
+43. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-45. Change 'vmrm' to 'vmtrash'.
+44. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-46. Make (red m ls) work.
+45. Make (red m ls) work.
 
-47. Fix menu title that results from the following:
+46. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-48. Change breadcrumbs so that ...
+47. Change breadcrumbs so that ...
         'Score manager - active scores'
     ... becomes ...
         'Score manager - score packages (active scores view)'
     ... instead.
 
-49. Maybe change 'Score manager - stylesheet library' to
+48. Maybe change 'Score manager - stylesheet library' to
     just 'Score manager - stylesheets'.
 
-50. There is no such thing as 'My build file library'.
+49. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-51. Make bicolumnar layout work for asset screens.
+50. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-52. Maybe change 'lilypond_file' to 'lilypond_source'?
+51. Maybe change 'lilypond_file' to 'lilypond_source'?

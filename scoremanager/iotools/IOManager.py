@@ -130,6 +130,9 @@ class IOManager(IOManager):
             pass
         elif directive in self._wrangler_navigation_alias_to_action:
             self._wrangler_navigation_alias_to_action[directive]()
+        elif (self._session.is_in_confirmation_environment and
+            directive in ('y', 'Y', 'n', 'N')):
+            return directive
         elif directive in self._user_input_to_action:
             self._user_input_to_action[directive]()
             directive = None
