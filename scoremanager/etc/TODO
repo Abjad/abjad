@@ -207,4 +207,5 @@
 50. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-51. Maybe change 'lilypond_file' to 'lilypond_source'?
+51. Remove (*rm) commands where possible.
+    Use '! rm name' instead.
