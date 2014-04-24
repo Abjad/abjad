@@ -9,9 +9,9 @@ view_inventory=datastructuretools.TypedOrderedDict(
             'backward',
             iotools.View(
                 [
-                    'segment 03 (Red Example Score)',
-                    'segment 02 (Red Example Score)',
-                    'segment 01 (Red Example Score)',
+                    'segment 03',
+                    'segment 02',
+                    'segment 01',
                     ]
                 ),
             ),

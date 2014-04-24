@@ -53,16 +53,29 @@ class Controller(ScoreManagerObject):
                 self._io_manager.proceed(message)
             for entry in entries:
                 display_string, _, _, path = entry
-                file_name = display_string.split()[0]
-                if item == file_name:
+                if self._session.is_in_score:
+                    string = self._get_without_annotation(display_string)
+                else:
+                    string = display_string
+                if item == string:
                     filtered_entries.append(entry)
-                elif pattern and pattern.match(file_name):
+                elif pattern and pattern.match(string):
                     filtered_entries.append(entry)
         return filtered_entries
 
+    # TODO: eventually remove and just handle temporary directory setting
     def _get_directory_of_focus(self):
         path = os.path.abspath('.')
         return path
+
+    @staticmethod
+    def _get_without_annotation(display_string):
+        if not display_string.endswith(')'):
+            return display_string
+        index = display_string.find('(')
+        result = display_string[:index]
+        result = result.strip()
+        return result
 
     @staticmethod
     def _is_directory_with_metadata_module(path):
