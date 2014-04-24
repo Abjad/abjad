@@ -23,7 +23,7 @@ def test_MakerModuleWrangler_copy_maker_module_01():
     assert not os.path.exists(target_path)
     try:
         input_ = 'k cp RedExampleScoreTemplate.py'
-        input_ += ' My~maker~module~library ReusableScoreTemplate y q'
+        input_ += ' My~maker~modules ReusableScoreTemplate y q'
         score_manager._run(pending_user_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)

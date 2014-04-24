@@ -46,16 +46,13 @@ class StylesheetWrangler(Wrangler):
 
     @property
     def _breadcrumb(self):
-        if self._session.is_in_score:
-            breadcrumb = 'stylesheets'
-        else:
-            breadcrumb = 'stylesheet library'
+        breadcrumb = 'stylesheets'
         view_name = self._read_view_name()
         if not view_name:
             return breadcrumb
         view_inventory = self._read_view_inventory()
         if view_name in view_inventory:
-            breadcrumb = '{} ({} view)'.format(breadcrumb, view_name)
+            breadcrumb = '{} ({})'.format(breadcrumb, view_name)
         return breadcrumb
 
     @property

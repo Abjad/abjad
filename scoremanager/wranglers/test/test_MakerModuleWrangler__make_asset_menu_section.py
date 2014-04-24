@@ -13,6 +13,6 @@ def test_MakerModuleWrangler__make_asset_menu_section_01():
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',
-        'Blue Example Score (2013) - makers',
+        'Blue Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles

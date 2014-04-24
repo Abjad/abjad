@@ -21,7 +21,7 @@ def test_StylesheetWrangler_copy_stylesheet_01():
     assert not os.path.exists(target_path)
     try:
         input_ = 'y cp clean-letter-14.ily'
-        input_ += ' My~stylesheet~library test~foo~stylesheet y q'
+        input_ += ' My~stylesheets test~foo~stylesheet y q'
         score_manager._run(pending_user_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)

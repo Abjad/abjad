@@ -40,10 +40,10 @@ def test_MaterialPackageWrangler_make_material_package_01():
     first_lines = [
         'Score manager - example scores',
         '> m',
-        'Score manager - material library',
+        'Score manager - materials',
         '> new',
         'Enter material package name> b',
-        'Score manager - material library',
+        'Score manager - materials',
         '> q',
         ]
     

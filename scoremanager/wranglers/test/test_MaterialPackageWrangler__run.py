@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler__run_02():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'm q'
     score_manager._run(pending_user_input=input_)
-    title_line = 'Score manager - material library'
+    title_line = 'Score manager - materials'
     assert score_manager._transcript.last_title == title_line
 
 
@@ -76,5 +76,5 @@ def test_MaterialPackageWrangler__run_05():
     input_ = 'red~example~score b m q'
     score_manager._run(pending_user_input=input_)
 
-    input_ = 'Score manager - material library'
+    input_ = 'Score manager - materials'
     assert score_manager._transcript.entries[-2].title == input_

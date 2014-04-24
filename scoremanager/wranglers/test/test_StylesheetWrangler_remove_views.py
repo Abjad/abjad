@@ -40,8 +40,8 @@ def test_StylesheetWrangler_remove_views_02():
 
     titles = [
         'Score manager - example scores',
-        'Score manager - stylesheet library',
-        'Score manager - stylesheet library - select view(s) to remove:',
-        'Score manager - stylesheet library',
+        'Score manager - stylesheets',
+        'Score manager - stylesheets - select view(s) to remove:',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

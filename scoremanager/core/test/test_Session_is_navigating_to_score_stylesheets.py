@@ -28,7 +28,7 @@ def test_Session_is_navigating_to_score_stylesheets_02():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - distribution directory',
+        'Red Example Score (2013) - distribution files',
         'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
@@ -43,7 +43,7 @@ def test_Session_is_navigating_to_score_stylesheets_03():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

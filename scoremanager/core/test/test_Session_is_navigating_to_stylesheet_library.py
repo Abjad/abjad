@@ -13,7 +13,7 @@ def test_Session_is_navigating_to_stylesheet_library_01():
     titles = [
         'Score manager - example scores',
         'Score manager - build files',
-        'Score manager - stylesheet library',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -26,8 +26,8 @@ def test_Session_is_navigating_to_stylesheet_library_02():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - distribution file library',
-        'Score manager - stylesheet library',
+        'Score manager - distribution files',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -40,8 +40,8 @@ def test_Session_is_navigating_to_stylesheet_library_03():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - maker module library',
-        'Score manager - stylesheet library',
+        'Score manager - maker modules',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -54,8 +54,8 @@ def test_Session_is_navigating_to_stylesheet_library_04():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - material library',
-        'Score manager - stylesheet library',
+        'Score manager - materials',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -68,8 +68,8 @@ def test_Session_is_navigating_to_stylesheet_library_05():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - segment library',
-        'Score manager - stylesheet library',
+        'Score manager - segments',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -82,7 +82,7 @@ def test_Session_is_navigating_to_stylesheet_library_06():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - stylesheet library',
-        'Score manager - stylesheet library',
+        'Score manager - stylesheets',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

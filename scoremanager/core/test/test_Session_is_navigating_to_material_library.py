@@ -14,7 +14,7 @@ def test_Session_is_navigating_to_material_library_01():
     titles = [
         'Score manager - example scores',
         'Score manager - build files',
-        'Score manager - material library',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -27,8 +27,8 @@ def test_Session_is_navigating_to_material_library_02():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - distribution file library',
-        'Score manager - material library',
+        'Score manager - distribution files',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -41,8 +41,8 @@ def test_Session_is_navigating_to_material_library_03():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - maker module library',
-        'Score manager - material library',
+        'Score manager - maker modules',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -55,8 +55,8 @@ def test_Session_is_navigating_to_material_library_04():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - material library',
-        'Score manager - material library',
+        'Score manager - materials',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -69,8 +69,8 @@ def test_Session_is_navigating_to_material_library_05():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - segment library',
-        'Score manager - material library',
+        'Score manager - segments',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -83,7 +83,7 @@ def test_Session_is_navigating_to_material_library_06():
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - stylesheet library',
-        'Score manager - material library',
+        'Score manager - stylesheets',
+        'Score manager - materials',
         ]
     assert score_manager._transcript.titles == titles

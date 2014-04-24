@@ -17,7 +17,7 @@ def test_StylesheetWrangler_clear_view_01():
     without_view = score_manager._transcript[-8]
 
     lines = [
-        'Score manager - stylesheet library (_test view)',
+        'Score manager - stylesheets (_test)',
         '',
         '   1: clean-letter-14.ily (Abjad)',
         '',
@@ -29,7 +29,7 @@ def test_StylesheetWrangler_clear_view_01():
         ]
     assert with_view.lines == lines
 
-    title = 'Score manager - stylesheet library'
+    title = 'Score manager - stylesheets'
     assert without_view.title == title
 
     string = 'clean-letter-14.ily (Abjad)'

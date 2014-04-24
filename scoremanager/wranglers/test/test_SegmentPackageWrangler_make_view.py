@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import pytest
+pytest.skip('make me work')
 from abjad import *
 import scoremanager
 
@@ -6,11 +8,11 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_StylesheetWrangler_make_view_01():
+def test_SegmentPackageWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
-    input_ = 'y vnew _test q' 
+    input_ = 'g vnew _test q' 
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
@@ -18,7 +20,7 @@ def test_StylesheetWrangler_make_view_01():
     assert transcript.last_title == string
 
 
-def test_StylesheetWrangler_make_view_02():
+def test_SegmentPackageWrangler_make_view_02():
     r'''Makes sure at least one Abjad stylesheet appears in 
     view creation menu.
     '''
@@ -31,7 +33,7 @@ def test_StylesheetWrangler_make_view_02():
     assert string in transcript.contents
 
 
-def test_StylesheetWrangler_make_view_03():
+def test_SegmentPackageWrangler_make_view_03():
     r'''Makes view. Removes view.
 
     Makes sure no extra new lines appear before or after 

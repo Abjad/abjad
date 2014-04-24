@@ -16,7 +16,7 @@ def test_MaterialPackageManager_autoedit_output_01():
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - material library -'
+    string = 'Score manager - materials -'
     string += ' example markup inventory (Abjad) - markup inventory'
     assert transcript.last_title == string
 

@@ -15,7 +15,7 @@ def test_Session_is_navigating_to_score_maker_modules_01():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build files',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -29,8 +29,8 @@ def test_Session_is_navigating_to_score_maker_modules_02():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - distribution directory',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - distribution files',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -44,8 +44,8 @@ def test_Session_is_navigating_to_score_maker_modules_03():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - makers',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -60,7 +60,7 @@ def test_Session_is_navigating_to_score_maker_modules_04():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -75,7 +75,7 @@ def test_Session_is_navigating_to_score_maker_modules_05():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -90,7 +90,7 @@ def test_Session_is_navigating_to_score_maker_modules_06():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - setup',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -105,6 +105,6 @@ def test_Session_is_navigating_to_score_maker_modules_07():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets',
-        'Red Example Score (2013) - makers',
+        'Red Example Score (2013) - maker modules',
         ]
     assert score_manager._transcript.titles == titles
