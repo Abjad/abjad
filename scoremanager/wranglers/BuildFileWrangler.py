@@ -244,6 +244,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('segment pdfs - copy', 'pdfcp'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='segments?',
             )
 

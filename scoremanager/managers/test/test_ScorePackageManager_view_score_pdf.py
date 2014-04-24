@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageManager_view_score_pdf_01():
 
-    input_ = 'red~example~score pdfo q'
+    input_ = 'red~example~score spo q'
     score_manager._run(pending_user_input=input_)
 
     assert score_manager._session._attempted_to_open_file

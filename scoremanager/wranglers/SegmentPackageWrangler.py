@@ -79,11 +79,6 @@ class SegmentPackageWrangler(Wrangler):
         else:
             manager = self._initialize_manager(result)
             manager._run()
-#            path = manager._path
-#            assert path
-#            directory_change = systemtools.TemporaryDirectoryChange(path)
-#            with directory_change:
-#                manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(SegmentPackageWrangler, self)
@@ -102,6 +97,7 @@ class SegmentPackageWrangler(Wrangler):
         commands.append(('all segments - pdf - open', 'pdfo'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='all segments',
             )
 

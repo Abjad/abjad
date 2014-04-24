@@ -46,13 +46,13 @@ class ScorePackageManager(PackageManager):
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
-            'pdfo': self.view_score_pdf,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
+            'spo': self.view_score_pdf,
             'u': self._session._score_manager._build_file_wrangler._run,
             'y': self._session._score_manager._stylesheet_wrangler._run,
             'Y': self._io_manager.edit_score_stylesheet,
@@ -229,7 +229,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self._session._score_manager._distribution_file_wrangler
         if wrangler._get_file_path_ending_with('score.pdf'):
             commands = []
-            commands.append(('score pdf - open', 'pdfo'))
+            commands.append(('score - open pdf', 'spo'))
             menu.make_command_section(
                 commands=commands,
                 name='score pdf',

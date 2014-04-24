@@ -23,7 +23,7 @@ def test_ScorePackageManager__run_01():
         '      segments (g)',
         '      stylesheets (y)',
         '',
-        '      score pdf - open (pdfo)',
+        '      score - open pdf (spo)',
         '',
         ]
     assert score_manager._transcript.last_menu_lines == lines
