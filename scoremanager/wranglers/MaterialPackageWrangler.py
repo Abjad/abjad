@@ -48,24 +48,14 @@ class MaterialPackageWrangler(Wrangler):
         configuration = self._configuration
         path = configuration.abjad_material_packages_directory_path
         self._abjad_storehouse_path = path
+        self._asset_identifier = 'material package'
+        self._basic_breadcrumb = 'materials'
+        self._manager_class = managers.MaterialPackageManager
+        self._score_storehouse_path_infix_parts = ('materials',)
         path = configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
-        self._score_storehouse_path_infix_parts = ('materials',)
-        self._asset_identifier = 'material package'
-        self._manager_class = managers.MaterialPackageManager
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        breadcrumb = 'materials'
-        view_name = self._read_view_name()
-        if not view_name:
-            return breadcrumb
-        view_inventory = self._read_view_inventory()
-        if view_name in view_inventory:
-            breadcrumb = '{} ({})'.format(breadcrumb, view_name)
-        return breadcrumb
 
     @property
     def _user_input_to_action(self):

@@ -20,6 +20,7 @@ class Wrangler(Controller):
 
     __slots__ = (
         '_abjad_storehouse_path',
+        '_basic_breadcrumb',
         '_forbidden_directory_entries',
         '_asset_identifier',
         '_main_menu',
@@ -36,10 +37,22 @@ class Wrangler(Controller):
         self._abjad_storehouse_path = None
         self._forbidden_directory_entries = ()
         self._asset_identifier = None
+        self._basic_breadcrumb = None
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        breadcrumb = self._basic_breadcrumb
+        view_name = self._read_view_name()
+        if not view_name:
+            return breadcrumb
+        view_inventory = self._read_view_inventory()
+        if view_name in view_inventory:
+            breadcrumb = '{} ({})'.format(breadcrumb, view_name)
+        return breadcrumb
 
     @property
     def _current_package_manager(self):

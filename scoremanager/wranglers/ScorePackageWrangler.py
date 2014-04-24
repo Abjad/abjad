@@ -46,23 +46,13 @@ class ScorePackageWrangler(Wrangler):
         superclass.__init__(session=session)
         path = self._configuration.example_score_packages_directory_path
         self._abjad_storehouse_path = path
-        path = self._configuration.user_score_packages_directory_path
-        self._user_storehouse_path = path
+        self._basic_breadcrumb = 'scores'
         self._asset_identifier = 'score package'
         self._manager_class = managers.ScorePackageManager
+        path = self._configuration.user_score_packages_directory_path
+        self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        breadcrumb = 'scores'
-        view_name = self._read_view_name()
-        if not view_name:
-            return breadcrumb
-        view_inventory = self._read_view_inventory()
-        if view_name in view_inventory:
-            breadcrumb = '{} ({})'.format(breadcrumb, view_name)
-        return breadcrumb
 
     @property
     def _current_storehouse_path(self):
