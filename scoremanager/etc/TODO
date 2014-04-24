@@ -211,3 +211,5 @@
     Use '! rm name' instead.
 
 52. Maybe remove Wrangler._forbidden_directory_entries?
+
+53. Remove Controller._get_directory_of_focus()
