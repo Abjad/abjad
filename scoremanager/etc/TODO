@@ -209,3 +209,5 @@
 
 51. Remove (*rm) commands where possible.
     Use '! rm name' instead.
+
+52. Maybe remove Wrangler._forbidden_directory_entries?
