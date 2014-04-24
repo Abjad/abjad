@@ -489,7 +489,6 @@ class BuildFileWrangler(Wrangler):
         build_directory = self._get_current_directory_path()
         assert width and height and unit
         assert build_directory
-
         destination_path = os.path.join(
             manager._path,
             'build',
@@ -503,6 +502,34 @@ class BuildFileWrangler(Wrangler):
             message = message.format(destination_path)
             if not self._io_manager.confirm(message):
                 return
+        wrangler = self._session._score_manager._segment_package_wrangler
+        #print repr(wrangler), 'WR'
+        view_name = wrangler._read_view_name()
+        #print repr(view_name), 'VN'
+        segment_paths = wrangler._get_visible_asset_paths()
+        segment_paths = segment_paths or []
+        segment_names = []
+        for segment_path in segment_paths:
+            segment_name = os.path.basename(segment_path)
+            segment_names.append(segment_name)
+        messages = []
+        messages.append('')
+        if view_name:
+            message = 'the {!r} segment view is currently selected.'
+            message = message.format(view_name)
+            messages.append(message)
+            messages.append('')
+        message = 'will assemble segments in this order:'
+        messages.append(message)
+        messages.append('')
+        for segment_name in segment_names:
+            message = '    ' + segment_name
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        self._io_manager.confirm()
+        if self._should_backtrack():
+            return
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
             'latex',
