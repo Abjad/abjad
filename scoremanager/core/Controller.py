@@ -63,11 +63,6 @@ class Controller(ScoreManagerObject):
                     filtered_entries.append(entry)
         return filtered_entries
 
-    # TODO: eventually remove and just handle temporary directory setting
-    def _get_directory_of_focus(self):
-        path = os.path.abspath('.')
-        return path
-
     @staticmethod
     def _get_without_annotation(display_string):
         if not display_string.endswith(')'):
@@ -110,13 +105,8 @@ class Controller(ScoreManagerObject):
     def _list_python_files_in_visible_assets(self, tests_only=False):
         assets = []
         if self._session.is_in_score:
-            focus_directory = self._get_directory_of_focus()
             current_directory = self._get_current_directory_path()
-            if len(focus_directory) < len(current_directory):
-                longer_directory = current_directory
-            else:
-                longer_directory = focus_directory
-            paths = [longer_directory]
+            paths = [current_directory]
         else:
             paths = self._list_visible_asset_paths()
         for path in paths:
