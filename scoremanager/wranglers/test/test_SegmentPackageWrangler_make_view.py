@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('make me work')
+#import pytest
+#pytest.skip('make me work')
 from abjad import *
 import scoremanager
 
@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_make_view_01():
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - stylesheets - views - _test view - edit:'
+    string = 'Score manager - segments - views - _test view - edit:'
     assert transcript.last_title == string
 
 
@@ -25,11 +25,11 @@ def test_SegmentPackageWrangler_make_view_02():
     view creation menu.
     '''
 
-    input_ = 'y vnew _test q' 
+    input_ = 'g vnew _test q' 
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'clean-letter-14.ily (Abjad)'
+    string = 'segment 01 (Red Example Score)'
     assert string in transcript.contents
 
 
@@ -40,7 +40,8 @@ def test_SegmentPackageWrangler_make_view_03():
     'written to disk' message.
     '''
 
-    input_ = 'y vnew _test rm all add clean-letter-14.ily done default q' 
+    input_ = 'g vnew _test rm all'
+    input_ += ' add segment~01~(Red~Example~Score) done default q' 
     score_manager._run(pending_user_input=input_)
 
     lines =['> done', '']
@@ -49,7 +50,7 @@ def test_SegmentPackageWrangler_make_view_03():
     lines = ['View inventory written to disk.', '']
     assert score_manager._transcript[-4].lines == lines
         
-    input_ = 'y vls vrm _test default q'
+    input_ = 'g vls vrm _test default q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
