@@ -969,12 +969,16 @@ class Wrangler(Controller):
         view_name = getter._run()
         if self._should_backtrack():
             return
-        menu_entries = self._make_asset_menu_entries(apply_view=False)
+        include_annotation = not self._session.is_in_score
+        menu_entries = self._make_asset_menu_entries(
+            apply_view=False,
+            include_annotation=include_annotation,
+            )
         display_strings = [_[0] for _ in menu_entries]
         view = iotools.View(
             items=display_strings,
             )
-        breadcrumb = 'views - {} view - edit:'
+        breadcrumb = 'views - {} - edit:'
         breadcrumb = breadcrumb.format(view_name)
         editor = self._io_manager.make_editor(
             breadcrumb=breadcrumb,

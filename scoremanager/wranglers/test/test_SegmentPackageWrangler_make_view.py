@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_make_view_01():
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - segments - views - _test view - edit:'
+    string = 'Score manager - segments - views - _test - edit:'
     assert transcript.last_title == string
 
 
@@ -34,6 +34,23 @@ def test_SegmentPackageWrangler_make_view_02():
 
 
 def test_SegmentPackageWrangler_make_view_03():
+    r'''In score package.
+
+    Makes sure segment packages are not annotated with score title.
+    '''
+
+    input_ = 'red~example~score g vnew _test q' 
+    score_manager._run(pending_user_input=input_)
+    contents = score_manager._transcript.contents
+
+    string = 'segment 01'
+    assert string in contents
+
+    string = 'segment 01 (Red Example Score)'
+    assert string not in contents
+
+
+def test_SegmentPackageWrangler_make_view_04():
     r'''Makes view. Removes view.
 
     Makes sure no extra new lines appear before or after 
