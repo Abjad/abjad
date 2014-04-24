@@ -360,6 +360,7 @@ class Wrangler(Controller):
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
 
+    # TODO: rename interactive method with something other than _get*
     def _get_visible_asset_path(self, infinitive_phrase=None):
         getter = self._io_manager.make_getter()
         prompt_string = 'enter {}'.format(self._asset_identifier)
@@ -387,6 +388,7 @@ class Wrangler(Controller):
         path = paths[index]
         return path
 
+    # TODO: rename interactive method with something other than _get*
     def _get_visible_asset_paths(self):
         getter = self._io_manager.make_getter()
         plural_identifier = stringtools.pluralize(self._asset_identifier)

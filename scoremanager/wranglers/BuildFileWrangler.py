@@ -497,15 +497,20 @@ class BuildFileWrangler(Wrangler):
             if not self._io_manager.confirm(message):
                 return
         wrangler = self._session._score_manager._segment_package_wrangler
-        #print repr(wrangler), 'WR'
         view_name = wrangler._read_view_name()
-        #print repr(view_name), 'VN'
-        segment_paths = wrangler._get_visible_asset_paths()
+        view_inventory = wrangler._read_view_inventory()
+        if view_name not in view_inventory:
+            view_name = None
+        segment_paths = wrangler._list_visible_asset_paths()
         segment_paths = segment_paths or []
         segment_names = []
         for segment_path in segment_paths:
             segment_name = os.path.basename(segment_path)
             segment_names.append(segment_name)
+        pdf_names = []
+        for segment_name in segment_names:
+            pdf_name = segment_name.replace('_', '-')
+            pdf_names.append(pdf_name)
         messages = []
         messages.append('')
         if view_name:
@@ -521,7 +526,8 @@ class BuildFileWrangler(Wrangler):
             messages.append(message)
         messages.append('')
         self._io_manager.display(messages)
-        self._io_manager.confirm()
+        if not self._io_manager.confirm():
+            return
         if self._should_backtrack():
             return
         source_path = os.path.join(
@@ -536,6 +542,14 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         old = '{BUILD_DIRECTORY}'
         new = '{{{}}}'.format(build_directory)
+        self._replace_in_file(destination_path, old, new)
+        lines = []
+        for pdf_name in pdf_names:
+            line = r'\includepdf[pages=-]{{\build/{}.pdf}}'
+            line = line.format(pdf_name)
+            lines.append(line)
+        new = '\n'.join(lines)
+        old = '%%% SEGMENTS %%%'
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
