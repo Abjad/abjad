@@ -679,12 +679,20 @@ class Wrangler(Controller):
     def _read_view_inventory(self):
         if self._views_module_path is None:
             return
+        if not os.path.exists(self._views_module_path):
+            return
         result = self._views_module_manager._execute(
             attribute_names=('view_inventory',),
             )
         if result == 'corrupt':
-            message = 'views module is corrupt.'
-            self._io_manager.display([message, ''])
+            messages = []
+            message = '{} views module is corrupt:'
+            message = message.format(type(self).__name__)
+            messages.append(message)
+            messages.append('')
+            message = '    {}'.format(self._views_module_path)
+            messages.append(message)
+            self._io_manager.display(messages)
             return
         if not result:
             return

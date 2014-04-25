@@ -518,11 +518,16 @@ class BuildFileWrangler(Wrangler):
             message = message.format(view_name)
             messages.append(message)
             messages.append('')
-        message = 'will assemble segments in this order:'
-        messages.append(message)
-        messages.append('')
-        for segment_name in segment_names:
-            message = '    ' + segment_name
+        if pdf_names:
+            message = 'will assemble segments in this order:'
+            messages.append(message)
+            messages.append('')
+            for segment_name in segment_names:
+                message = '    ' + segment_name
+                messages.append(message)
+        else:
+            message = 'no segments found:'
+            message += ' will generate source without segments.'
             messages.append(message)
         messages.append('')
         self._io_manager.display(messages)
@@ -530,6 +535,7 @@ class BuildFileWrangler(Wrangler):
             return
         if self._should_backtrack():
             return
+        self._io_manager.display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
             'latex',
@@ -548,9 +554,13 @@ class BuildFileWrangler(Wrangler):
             line = r'\includepdf[pages=-]{{\build/{}.pdf}}'
             line = line.format(pdf_name)
             lines.append(line)
-        new = '\n'.join(lines)
-        old = '%%% SEGMENTS %%%'
-        self._replace_in_file(destination_path, old, new)
+        if lines:
+            new = '\n'.join(lines)
+            old = '%%% SEGMENTS %%%'
+            self._replace_in_file(destination_path, old, new)
+        else:
+            line_to_remove = '%%% SEGMENTS %%%\n'
+            self._remove_file_line(destination_path, line_to_remove)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager.display([message, ''])

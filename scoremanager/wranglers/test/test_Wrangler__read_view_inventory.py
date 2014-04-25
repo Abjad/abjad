@@ -30,7 +30,8 @@ def test_Wrangler__read_view_inventory_01():
         'Score manager - example scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - segments',
-        'Views module is corrupt.',
+        '',
+        'SegmentPackageWrangler views module is corrupt:',
         'No views found.',
         'Blue Example Score (2013) - segments',
         ]

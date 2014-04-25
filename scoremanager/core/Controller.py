@@ -319,6 +319,19 @@ class Controller(ScoreManagerObject):
         return stringtools.to_space_delimited_lowercase(name)
 
     @staticmethod
+    def _remove_file_line(file_path, line_to_remove):
+        lines_to_keep = []
+        with open(file_path, 'r') as file_pointer:
+            for line in file_pointer.readlines():
+                if line == line_to_remove:
+                    pass
+                else:
+                    lines_to_keep.append(line)
+        with open(file_path, 'w') as file_pointer:
+            contents = ''.join(lines_to_keep)
+            file_pointer.write(contents)
+
+    @staticmethod
     def _replace_in_file(file_path, old, new):
         with file(file_path, 'r') as file_pointer:
             new_file_lines = []
