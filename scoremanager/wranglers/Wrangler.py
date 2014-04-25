@@ -1095,4 +1095,9 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        self._views_module_manager.view()
+        if os.path.exists(self._views_module_path):
+            self._views_module_manager.view()
+        else:
+            message = 'no views module found.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
