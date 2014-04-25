@@ -499,7 +499,7 @@ class BuildFileWrangler(Wrangler):
         wrangler = self._session._score_manager._segment_package_wrangler
         view_name = wrangler._read_view_name()
         view_inventory = wrangler._read_view_inventory()
-        if view_name not in view_inventory:
+        if not view_inventory or view_name not in view_inventory:
             view_name = None
         segment_paths = wrangler._list_visible_asset_paths()
         segment_paths = segment_paths or []
