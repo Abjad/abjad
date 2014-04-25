@@ -60,12 +60,13 @@ class BuildFileWrangler(Wrangler):
             'di': self.interpret_draft,
             'do': self.view_draft_pdf,
             'fce': self.edit_front_cover_source,
+            'fceio': self.edit_interpret_open_front_cover_source,
             'fcg': self.generate_front_cover_source,
             'fci': self.interpret_front_cover,
             'fco': self.view_front_cover_pdf,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
-            'mi': self.interpret_music_lilypond_file,
+            'mi': self.interpret_music,
             'mo': self.view_music_pdf,
             'new': self.make_file,
             'pfe': self.edit_preface_source,
@@ -180,6 +181,7 @@ class BuildFileWrangler(Wrangler):
     def _make_front_cover_menu_section(self, menu):
         commands = []
         commands.append(('front cover - edit latex source', 'fce'))
+        commands.append(('front cover - edit; interpret; open', 'fceio'))
         commands.append(('front cover - generate latex source', 'fcg'))
         commands.append(('front cover - interpret latex source', 'fci'))
         commands.append(('front cover - open pdf', 'fco'))
@@ -308,7 +310,7 @@ class BuildFileWrangler(Wrangler):
 
     def copy_segment_lilypond_files(self):
         r'''Copies segment LilyPond files from segment
-        package directories to build directory.
+        packages to build directory.
 
         Trims top-level comments, includes and directives from each LilyPond
         file.
@@ -355,8 +357,7 @@ class BuildFileWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def copy_segment_pdfs(self):
-        r'''Copies segment PDFs from segment
-        package directories to build directory.
+        r'''Copies segment PDFs from segment packages to build directory.
 
         Returns none.
         '''
@@ -396,49 +397,60 @@ class BuildFileWrangler(Wrangler):
         self._io_manager.proceed('')
 
     def edit_back_cover_source(self):
-        r'''Edits back cover LaTeX file.
+        r'''Edits back cover LaTeX source.
 
         Returns none.
         '''
         self._edit_file_ending_with('back-cover.tex')
 
     def edit_draft_source(self):
-        r'''Edits draft score LaTeX file.
+        r'''Edits draft LaTeX source.
 
         Returns none.
         '''
         self._edit_file_ending_with('draft.tex')
 
     def edit_front_cover_source(self):
-        r'''Edits front cover LaTeX file.
+        r'''Edits front cover LaTeX source.
 
         Returns none.
         '''
         self._edit_file_ending_with('front-cover.tex')
 
+    def edit_interpret_open_front_cover_source(self):
+        r'''Edits front cover LaTeX source;
+        interprets front cover LaTeX source;
+        opens front cover PDF.
+
+        Returns none.
+        '''
+        self.edit_front_cover_source()
+        self.interpret_front_cover()
+        self.view_front_cover_pdf()
+
     def edit_music_source(self):
-        r'''Edits music LilyPond file.
+        r'''Edits music LilyPond source.
 
         Returns none.
         '''
         self._edit_file_ending_with('music.ly')
 
     def edit_preface_source(self):
-        r'''Edits preface LaTeX file.
+        r'''Edits preface LaTeX source.
 
         Returns none.
         '''
         self._edit_file_ending_with('preface.tex')
 
     def edit_score_source(self):
-        r'''Edits score LaTeX file.
+        r'''Edits score LaTeX source.
 
         Returns none.
         '''
         self._edit_file_ending_with('score.tex')
 
     def generate_back_cover_source(self):
-        r'''Generates back cover LaTeX file.
+        r'''Generates back cover LaTeX source.
 
         Returns none.
         '''
@@ -464,7 +476,7 @@ class BuildFileWrangler(Wrangler):
             'back-cover.tex',
             )
         shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_DIMENSIONS}'
+        old = '{PAPER_SIZE}'
         new = '{{{}{}, {}{}}}'
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
@@ -474,7 +486,7 @@ class BuildFileWrangler(Wrangler):
             self._session._hide_next_redraw = True
 
     def generate_draft_source(self):
-        r'''Generates draft LaTeX file.
+        r'''Generates draft LaTeX source.
 
         Returns none.
         '''
@@ -542,7 +554,7 @@ class BuildFileWrangler(Wrangler):
             'draft.tex',
             )
         shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_DIMENSIONS}'
+        old = '{PAPER_SIZE}'
         new = '{{{}{}, {}{}}}'
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
@@ -567,40 +579,75 @@ class BuildFileWrangler(Wrangler):
             self._session._hide_next_redraw = True
 
     def generate_front_cover_source(self):
-        r'''Generates front cover LaTeX file.
+        r'''Generates front cover LaTeX source.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_music_source(self):
-        r'''Generates music LilyPond file.
+        r'''Generates music LilyPond source.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_preface_source(self):
-        r'''Generates preface LaTeX file.
+        r'''Generates preface LaTeX source.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_score_source(self):
-        r'''Generates score LaTeX file.
+        r'''Generates score LaTeX source.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def interpret_music_lilypond_file(self):
-        r'''Interprets music LilyPond file.
+    def interpret_back_cover(self):
+        r'''Interprets back cover LaTeX source.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('back-cover.tex')
+
+    def interpret_draft(self):
+        r'''Interprets draft score LaTeX source.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('draft.tex')
+
+    def interpret_front_cover(self):
+        r'''Interprets front cover LaTeX source.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('front-cover.tex')
+
+    def interpret_music(self):
+        r'''Interprets music LilyPond source.
 
         Returns none.
         '''
         self._call_lilypond_on_file_ending_with('music.ly')
         
+    def interpret_preface(self):
+        r'''Interprets preface LaTeX source.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('preface.tex')
+
+    def interpret_score(self):
+        r'''Interprets score LaTeX source.
+
+        Returns none.
+        '''
+        self._typeset_file_ending_with('score.tex')
+
     def make_file(self):
         r'''Makes build file.
 
@@ -631,41 +678,6 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def interpret_back_cover(self):
-        r'''Typesets back cover LaTeX file.
-
-        Returns none.
-        '''
-        self._typeset_file_ending_with('back-cover.tex')
-
-    def interpret_draft(self):
-        r'''Typesets draft score LaTeX file.
-
-        Returns none.
-        '''
-        self._typeset_file_ending_with('draft.tex')
-
-    def interpret_front_cover(self):
-        r'''Typesets front cover LaTeX file.
-
-        Retunrs none.
-        '''
-        self._typeset_file_ending_with('front-cover.tex')
-
-    def interpret_preface(self):
-        r'''Typesets preface LaTeX file.
-
-        Returns none.
-        '''
-        self._typeset_file_ending_with('preface.tex')
-
-    def interpret_score(self):
-        r'''Typesets score LaTeX file.
-
-        Returns none.
-        '''
-        self._typeset_file_ending_with('score.tex')
 
     def view_back_cover_pdf(self):
         r'''Views back cover PDF.
