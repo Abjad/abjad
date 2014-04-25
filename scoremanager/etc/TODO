@@ -45,37 +45,35 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-14. Make 'vmro' provide a message when no __views__ module is found.
+14. Implement a 'views module - rewrite' (vmrw) command.
 
-15. Implement a 'views module - rewrite' (vmrw) command.
-
-16. Implement DirectoryManager.check_contents().
+15. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-17. Do something to put an empty .gitignore file in every directory everywhere.
+16. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-18. Eventually implement a Score Manager start-up behavior that will
+17. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-19: Bug:
+18: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-20. Bug:
+19. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory_path
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-21. Implement an Editor method to allow an none-allowing attribute to be 
+20. Implement an Editor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -103,7 +101,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-22. Bug:
+21. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -111,108 +109,108 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-23. Make (rrv) work for Subversion-managed directories.
+22. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-24. Make sure new-style.ily doesn't alias (new).
+23. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-25. When in (new) score, change 'Enter package name>' to
+24. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-26. Block (new) score when view is hiding user scores.
+25. Block (new) score when view is hiding user scores.
     This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.
 
-27. Allow more flexible input for score (new).
+26. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-28. Implement stringtools.delimit_words(delimitor=' ').
+27. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-29. Maybe change Wrangler._current_package_manager to
+28. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-30. Make (mdmro) work for wranglers.
+29. Make (mdmro) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmro) command should
     allow the composer to read that metadata module.
 
-31. Make menu title breadcrumbs correctly reflect changes in view
+30. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-32. Refuse to apply view when invalid regular expression is found.
+31. Refuse to apply view when invalid regular expression is found.
 
-33. Imlement 'views - autoedit' (vae) command.
+32. Imlement 'views - autoedit' (vae) command.
 
-34. Compile regular expressions at view entry add time.
+33. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-35. Allow arbitrary metadata in view patterns.
+34. Allow arbitrary metadata in view patterns.
 
-36. Change ...
+35. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-37. Change ...
+36. Change ...
         Score manager - stylesheet library (_test view) - select view to remove:
     ... to ...
         Score manager - stylesheet library - select view to remove:
     ... instead.
 
-38. Change 'default' to '<return>' in test input strings.
+37. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-39. Write test for editing stylesheet.
+38. Write test for editing stylesheet.
     Was StylesheetWrangler._edit_stylesheet(). But method no longer exists.
     Reproduce with (y > 1).
 
-40. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
+39. Make (y > pyd) work. Right now it runs doctest on absolutely everything.
 
-41. Make (rst) work again. Right now runs on archipel and then quits.
+40. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-42. Allow 5-99 (or any other large number) to work when removing items.
+41. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-43. Move score_manager_library/views/*_views__.py files to
+42. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-44. Change 'vmrm' to 'vmtrash'.
+43. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-45. Make (red m ls) work.
+44. Make (red m ls) work.
 
-46. Fix menu title that results from the following:
+45. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-47. Change breadcrumbs so that ...
+46. Change breadcrumbs so that ...
         'Score manager - active scores'
     ... becomes ...
         'Score manager - score packages (active scores view)'
     ... instead.
 
-48. Maybe change 'Score manager - stylesheet library' to
+47. Maybe change 'Score manager - stylesheet library' to
     just 'Score manager - stylesheets'.
 
-49. There is no such thing as 'My build file library'.
+48. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-50. Make bicolumnar layout work for asset screens.
+49. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-51. Remove (*rm) commands where possible.
+50. Remove (*rm) commands where possible.
     Use '! rm name' instead.
 
-52. Maybe remove Wrangler._forbidden_directory_entries?
+51. Maybe remove Wrangler._forbidden_directory_entries?
 
-53. Improve (pdfcp) user experience. This ...
+52. Improve (pdfcp) user experience. This ...
         > pdfcp
         Segment segment_01 PDF copied.
         Segment segment_02 PDF copied.
