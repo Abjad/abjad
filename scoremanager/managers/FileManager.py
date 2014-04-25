@@ -157,7 +157,6 @@ class FileManager(Manager):
         with systemtools.TemporaryDirectoryChange(input_directory):
             self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
-        #self._io_manager.proceed('', prompt=prompt)
         self._session._hide_next_redraw = True
 
     def edit(self, line_number=None):
@@ -180,6 +179,12 @@ class FileManager(Manager):
     def typeset_tex_file(self, prompt=True):
         r'''Typesets TeX file.
 
+        Calls ``pdflatex`` on file TWICE.
+
+        Some LaTeX packages like ``tikz`` require two passes.
+
+        Then removes intermediate LaTeX artifacts.
+
         Returns none.
         '''
         input_directory = os.path.dirname(self._path)
@@ -193,8 +198,9 @@ class FileManager(Manager):
             input_directory,
             input_file_name_stem,
             )
+        command_called_twice = '{}; {}'.format(command, command)
         with systemtools.TemporaryDirectoryChange(input_directory):
-            self._io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command_called_twice)
             command = 'rm {}/*.aux'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
