@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import shutil
+from abjad.tools import lilypondfiletools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
@@ -486,6 +487,7 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
+    # TODO: factor our code shared with self.generate_music_source()
     def generate_draft_source(self):
         r'''Generates draft LaTeX source.
 
@@ -616,12 +618,124 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
         
+    # TODO: factor our code shared with self.generate_draft_source()
     def generate_music_source(self):
         r'''Generates music LilyPond source.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        manager = self._session.current_score_package_manager
+        #width, height, unit = manager._parse_paper_dimensions()
+        build_directory = self._get_current_directory_path()
+        #assert width and height and unit
+        assert build_directory
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            'music.ly',
+            )
+        previously_existed = False
+        if os.path.exists(destination_path):
+            previously_existed = True
+            messages = []
+            message = 'overwrite {}?'
+            message = message.format(destination_path)
+            if not self._io_manager.confirm(message):
+                return
+        wrangler = self._session._score_manager._segment_package_wrangler
+        view_name = wrangler._read_view_name()
+        view_inventory = wrangler._read_view_inventory()
+        if not view_inventory or view_name not in view_inventory:
+            view_name = None
+        segment_paths = wrangler._list_visible_asset_paths()
+        segment_paths = segment_paths or []
+        segment_names = []
+        for segment_path in segment_paths:
+            segment_name = os.path.basename(segment_path)
+            segment_names.append(segment_name)
+        lilypond_names = []
+        for segment_name in segment_names:
+            lilypond_name = segment_name.replace('_', '-')
+            lilypond_names.append(lilypond_name)
+        messages = []
+        messages.append('')
+        if view_name:
+            message = 'the {!r} segment view is currently selected.'
+            message = message.format(view_name)
+            messages.append(message)
+            messages.append('')
+        if lilypond_names:
+            message = 'will assemble segments in this order:'
+            messages.append(message)
+            messages.append('')
+            for segment_name in segment_names:
+                message = '    ' + segment_name
+                messages.append(message)
+        else:
+            message = 'no segments found:'
+            message += ' will generate source without segments.'
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        if not self._io_manager.confirm():
+            return
+        if self._should_backtrack():
+            return
+        self._io_manager.display('')
+        source_path = os.path.join(
+            self._configuration.score_manager_directory_path,
+            'boilerplate',
+            'music.ly',
+            )
+        shutil.copyfile(source_path, destination_path)
+        lines = []
+        for lilypond_name in lilypond_names:
+            file_name = lilypond_name + '.ly'
+            path = os.path.join(build_directory, file_name)
+            line = r'   \include "{}"'
+            line = line.format(path)
+            lines.append(line)
+        if lines:
+            new = '\n'.join(lines)
+            old = '%%% SEGMENTS %%%'
+            self._replace_in_file(destination_path, old, new)
+        else:
+            line_to_remove = '%%% SEGMENTS %%%\n'
+            self._remove_file_line(destination_path, line_to_remove)
+        stylesheet_path = self._session.current_stylesheet_path
+        if stylesheet_path:
+            old = '% STYLESHEET_INCLUDE_STATEMENT'
+            new = r'\include "{}"'.format(stylesheet_path)
+            self._replace_in_file(destination_path, old, new)
+        language_token = lilypondfiletools.LilyPondLanguageToken()
+        lilypond_language_directive = format(language_token)
+        old = '% LILYPOND_LANGUAGE_DIRECTIVE'
+        new = lilypond_language_directive
+        self._replace_in_file(destination_path, old, new)
+        version_token = lilypondfiletools.LilyPondVersionToken()
+        lilypond_version_directive = format(version_token)
+        old = '% LILYPOND_VERSION_DIRECTIVE'
+        new = lilypond_version_directive
+        self._replace_in_file(destination_path, old, new)
+        score_title = manager._get_title()
+        if score_title:
+            old = 'SCORE_NAME'
+            new = score_title
+            self._replace_in_file(destination_path, old, new)
+        annotated_title = manager._get_title(year=True)
+        if annotated_title:
+            old = 'SCORE_TITLE'
+            new = annotated_title
+            self._replace_in_file(destination_path, old, new)
+        forces_tagline = manager._get_metadatum('forces_tagline')
+        if forces_tagline:
+            old = 'FORCES_TAGLINE'
+            new = forces_tagline
+            self._replace_in_file(destination_path, old, new)
+        if previously_existed:
+            message = 'Overwrote {}.'.format(destination_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def generate_preface_source(self):
         r'''Generates preface LaTeX source.

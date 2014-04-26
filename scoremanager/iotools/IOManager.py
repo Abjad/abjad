@@ -347,18 +347,9 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        if not self._session.is_in_score:
-            return
-        directory = self._session.current_score_directory_path
-        stylesheets_directory = os.path.join(directory, 'stylesheets')
-        found_score_stylesheet = False
-        for directory_entry in os.listdir(stylesheets_directory):
-            if directory_entry.endswith('stylesheet.ily'):
-                found_score_stylesheet = True
-                break
-        if found_score_stylesheet:
-            file_path = os.path.join(stylesheets_directory, directory_entry)
-            self.edit(file_path)
+        path = self._session.current_stylesheet_path
+        if path:
+            self.edit(path)
         else:
             message = 'no file ending in *stylesheet.ily found.'
             self.proceed(message)
