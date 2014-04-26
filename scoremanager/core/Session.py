@@ -435,6 +435,31 @@ class Session(abctools.AbjadObject):
             return os.path.join(self.current_score_directory_path, 'segments')
 
     @property
+    def current_stylesheet_path(self):
+        r'''Gets session current stylesheet path.
+
+        ..  container::
+
+            ::
+
+                >>> session.current_stylesheet_path
+
+        Returns path or none.
+        '''
+        if not self.is_in_score:
+            return
+        directory = self.current_score_directory_path
+        stylesheets_directory = os.path.join(directory, 'stylesheets')
+        found_score_stylesheet = False
+        for entry in os.listdir(stylesheets_directory):
+            if entry.endswith('stylesheet.ily'):
+                found_score_stylesheet = True
+                break
+        if found_score_stylesheet:
+            path = os.path.join(stylesheets_directory, entry)
+            return path
+
+    @property
     def display_pitch_ranges_with_numbered_pitches(self):
         r'''Is true when session should display pitch ranges with numbered
         pitches. Otherwise false.
