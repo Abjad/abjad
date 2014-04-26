@@ -449,6 +449,7 @@ class BuildFileWrangler(Wrangler):
         '''
         self._edit_file_ending_with('score.tex')
 
+    # TODO: factor out shared code with self.generate_front_cover_source()
     def generate_back_cover_source(self):
         r'''Generates back cover LaTeX source.
 
@@ -578,13 +579,43 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
+    # TODO: factor out shared code with self.generate_back_cover_source()
     def generate_front_cover_source(self):
         r'''Generates front cover LaTeX source.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
-
+        manager = self._session.current_score_package_manager
+        assert manager is not None
+        width, height, unit = manager._parse_paper_dimensions()
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            'front-cover.tex',
+            )
+        previously_existed = False
+        if os.path.exists(destination_path):
+            previously_existed = True
+            messages = []
+            message = 'overwrite {}?'
+            message = message.format(destination_path)
+            if not self._io_manager.confirm(message):
+                return
+        source_path = os.path.join(
+            self._configuration.score_manager_directory_path,
+            'latex',
+            'front-cover.tex',
+            )
+        shutil.copyfile(source_path, destination_path)
+        old = '{PAPER_SIZE}'
+        new = '{{{}{}, {}{}}}'
+        new = new.format(width, unit, height, unit)
+        self._replace_in_file(destination_path, old, new)
+        if previously_existed:
+            message = 'Overwrote {}.'.format(destination_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+        
     def generate_music_source(self):
         r'''Generates music LilyPond source.
 
