@@ -1,0 +1,9 @@
+% SCORE_TITLE FORCES_TAGLINE 
+
+\version "LILYPOND_VERSION"
+\language "LILYPOND_LANGUAGE"
+\include "STYLESHEET_PATH"
+
+\context Score = "SCORE_NAME" {
+%%% SEGMENTS %%%
+}
