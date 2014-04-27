@@ -279,9 +279,13 @@ class BuildFileWrangler(Wrangler):
         lines = []
         with open(file_path, 'r') as file_pointer:
             found_score_block = False
-            for line in file_pointer.readlines()[:-1]:
+            for line in file_pointer.readlines():
                 if line.startswith(r'\score'):
                     found_score_block = True
+                    continue
+                if line.startswith('}'):
+                    found_score_block = False
+                    lines.append('\n')
                     continue
                 if found_score_block:
                     lines.append(line)
