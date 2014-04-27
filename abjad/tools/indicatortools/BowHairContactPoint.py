@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
+import functools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.abctools import AbjadObject
 
 
+@functools.total_ordering
 class BowHairContactPoint(AbjadObject):
     r'''Bow hair contact point indicator.
 
@@ -35,6 +37,28 @@ class BowHairContactPoint(AbjadObject):
             assert 0 <= contact_point <= 1
         self._contact_point = contact_point
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        r'''Is true if `expr` is a bow-hair contact point with the same contact
+        point as this bow-hair contact point.
+
+        Returns boolean.
+        '''
+        if isinstance(expr, type(self)):
+            return self.contact_point == expr.contact_point
+        raise TypeError('unorderable types')
+
+    def __lt__(self, expr):
+        r'''Is true if `expr` is a bow-hair contact point and this bow-hair
+        contact point is less than `expr`.
+
+        Returns boolean.
+        '''
+        if isinstance(expr, type(self)):
+            return self.contact_point < expr.contact_point
+        raise TypeError('unorderable types')
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -45,7 +69,7 @@ class BowHairContactPoint(AbjadObject):
 
             >>> indicator = indicatortools.BowHairContactPoint((3, 4))
             >>> print(format(indicator.markup, 'lilypond'))
-            ^ \markup {
+            \markup {
                 \vcenter
                     \fraction
                         3
@@ -57,7 +81,7 @@ class BowHairContactPoint(AbjadObject):
             self.contact_point.numerator,
             self.contact_point.denominator,
             )
-        markup = markuptools.Markup(string, Up)
+        markup = markuptools.Markup(string)
         return markup
 
     @property
@@ -73,4 +97,3 @@ class BowHairContactPoint(AbjadObject):
         Returns multiplier.
         '''
         return self._contact_point
-
