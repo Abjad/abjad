@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import importlib
 import os
 import shutil
@@ -162,7 +163,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                         )
                     os.remove(docs_file_path)
                     print('PRUNING', os.path.relpath(docs_file_path))
-            for directory_name in directory_names:
+            for directory_name in directory_names[:]:
                 code_directory_path = os.path.join(
                     code_path,
                     path_suffix,
@@ -175,8 +176,9 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     if x.endswith('.py')]:
                     should_delete = True
                 # sphinx seems to want a docs/source/_static directory
-                if code_directory_path.endswith('_static'):
+                if directory_name.startswith('_'):
                     should_delete = False
+                    directory_names.remove(directory_name)
                 if should_delete:
                     docs_directory_path = os.path.join(
                         directory_path,

@@ -185,20 +185,20 @@ class BuildApiScript(DeveloperScript):
             api_format.upper(),
             ))
         print('')
-        os.chdir(docs_directory)
-        if clean:
-            print('Cleaning build directory ...')
-            command = 'make clean'
-            systemtools.IOManager.spawn_subprocess(command)
-        if format == 'coverage':
-            command = 'sphinx-build -b coverage {} {}'.format(
-                'source',
-                os.path.join('build', 'coverage'),
-                )
-            systemtools.IOManager.spawn_subprocess(command)
-        else:
-            command = 'make {}'.format(api_format)
-            systemtools.IOManager.spawn_subprocess(command)
+        with systemtools.TemporaryDirectoryChange(docs_directory):
+            if clean:
+                print('Cleaning build directory ...')
+                command = 'make clean'
+                systemtools.IOManager.spawn_subprocess(command)
+            if format == 'coverage':
+                command = 'sphinx-build -b coverage {} {}'.format(
+                    'source',
+                    os.path.join('build', 'coverage'),
+                    )
+                systemtools.IOManager.spawn_subprocess(command)
+            else:
+                command = 'make {}'.format(api_format)
+                systemtools.IOManager.spawn_subprocess(command)
 
     def _build_experimental_api(self, api_format='html', clean=False):
         from abjad import abjad_configuration
