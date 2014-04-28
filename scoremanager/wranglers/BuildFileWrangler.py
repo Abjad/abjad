@@ -289,6 +289,8 @@ class BuildFileWrangler(Wrangler):
                     continue
                 if found_score_block:
                     lines.append(line)
+        if lines and lines[-1] == '\n':
+            lines.pop()
         lines = ''.join(lines)
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
