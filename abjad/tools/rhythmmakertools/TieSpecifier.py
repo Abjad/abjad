@@ -61,17 +61,17 @@ class TieSpecifier(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='tie_across_divisions',
                 menu_key='tad',
-                editor=getters.get_boolean,
+                editor=iotools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='tie_split_notes',
                 menu_key='tsn',
-                editor=getters.get_boolean,
+                editor=iotools.getters.get_boolean,
                 ),
             )
 

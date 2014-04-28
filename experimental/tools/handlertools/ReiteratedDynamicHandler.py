@@ -32,17 +32,17 @@ class ReiteratedDynamicHandler(DynamicHandler):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='dynamic_name',
                 menu_key='dy',
-                editor=getters.get_dynamic,
+                editor=iotools.getters.get_dynamic,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
                 menu_key='md',
-                editor=getters.get_duration,
+                editor=iotools.getters.get_duration,
                 ),
             )
 

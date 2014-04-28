@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import systemtools
+import getters
 
 
 systemtools.ImportManager.import_structured_package(

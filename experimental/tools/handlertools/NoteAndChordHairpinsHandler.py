@@ -56,16 +56,16 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='hairpin_tokens',
                 menu_key='ht',
-                editor=getters.get_hairpin_tokens,
+                editor=iotools.getters.get_hairpin_tokens,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
                 menu_key='md',
-                editor=getters.get_duration,
+                editor=iotools.getters.get_duration,
                 ),
             )

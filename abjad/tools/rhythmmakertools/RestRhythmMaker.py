@@ -101,7 +101,6 @@ class RestRhythmMaker(RhythmMaker):
     def _attribute_manifest(self):
         from abjad.tools import rhythmmakertools
         from abjad.tools import systemtools
-        from scoremanager import getters
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',

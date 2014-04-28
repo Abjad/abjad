@@ -120,12 +120,12 @@ class Performer(AbjadObject):
     def _attribute_manifest(self):
         from abjad.tools import instrumenttools
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='name',
                 menu_key='nm',
-                editor=getters.get_string,
+                editor=iotools.getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='instruments',

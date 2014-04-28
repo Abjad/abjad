@@ -64,17 +64,17 @@ class Talea(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='counts',
                 menu_key='c',
-                editor=getters.get_nonzero_integers,
+                editor=iotools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
                 name='denominator',
                 menu_key='d',
-                editor=getters.get_positive_integer_power_of_two,
+                editor=iotools.getters.get_positive_integer_power_of_two,
                 ),
             )
 

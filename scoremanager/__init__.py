@@ -17,7 +17,6 @@ appear on your filesystem after checkout:
     boilerplate/
     core/
     etc/
-    getters/
     iotools/
     latex/
     makers/
@@ -62,7 +61,6 @@ import sys
 if sys.version_info[0] == 2:
     import core
     import exceptions
-    import getters
     import iotools
     import makers
     import managers
@@ -72,7 +70,6 @@ if sys.version_info[0] == 2:
 else:
     from scoremanager import core
     from scoremanager import exceptions
-    from scoremanager import getters
     from scoremanager import iotools
     from scoremanager import makers
     from scoremanager import managers

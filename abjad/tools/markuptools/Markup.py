@@ -241,18 +241,18 @@ class Markup(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='contents',
                 display_string='arg',
                 menu_key='ag',
-                editor=getters.get_string,
+                editor=iotools.getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='direction',
                 menu_key='dr',
-                editor=getters.get_direction_string,
+                editor=iotools.getters.get_direction_string,
                 ),
             )
 

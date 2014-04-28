@@ -302,18 +302,18 @@ class Tempo(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import getters
+        from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='duration',
                 menu_key='d',
-                editor=getters.get_duration,
+                editor=iotools.getters.get_duration,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
                 name='units_per_minute',
                 menu_key='pm',
-                editor=getters.get_integer,
+                editor=iotools.getters.get_integer,
                 is_keyword=False,
                 ),
             )
