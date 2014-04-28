@@ -480,7 +480,7 @@ class BuildFileWrangler(Wrangler):
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
-            'latex',
+            'boilerplate',
             'back-cover.tex',
             )
         shutil.copyfile(source_path, destination_path)
@@ -559,7 +559,7 @@ class BuildFileWrangler(Wrangler):
         self._io_manager.display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
-            'latex',
+            'boilerplate',
             'draft.tex',
             )
         shutil.copyfile(source_path, destination_path)
@@ -611,7 +611,7 @@ class BuildFileWrangler(Wrangler):
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
-            'latex',
+            'boilerplate',
             'front-cover.tex',
             )
         shutil.copyfile(source_path, destination_path)

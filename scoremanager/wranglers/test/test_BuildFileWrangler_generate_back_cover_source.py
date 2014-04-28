@@ -13,7 +13,7 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
 
     source_path = os.path.join(
         score_manager._configuration.score_manager_directory_path,
-        'latex',
+        'boilerplate',
         'back-cover.tex',
         )
     destination_path = os.path.join(
@@ -53,7 +53,7 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
 
     source_path = os.path.join(
         score_manager._configuration.score_manager_directory_path,
-        'latex',
+        'boilerplate',
         'back-cover.tex',
         )
     destination_path = os.path.join(
