@@ -209,11 +209,3 @@
     Use '! rm name' instead.
 
 51. Maybe remove Wrangler._forbidden_directory_entries?
-
-52. Improve (pdfcp) user experience. This ...
-        > pdfcp
-        Segment segment_01 PDF copied.
-        Segment segment_02 PDF copied.
-        Segment segment_03 PDF copied.
-        Press return to continue. 
-    ... can be better.
