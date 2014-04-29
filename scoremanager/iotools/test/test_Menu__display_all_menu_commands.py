@@ -10,7 +10,7 @@ def test_Menu__display_all_menu_commands_01():
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'commands - all' in contents
+    assert 'system - commands' in contents
     assert 'scores - new' in contents
 
 

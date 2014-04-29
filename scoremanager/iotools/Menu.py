@@ -280,22 +280,11 @@ class Menu(ScoreManagerObject):
             massaged_lines.append(massaged_line)
         return massaged_lines
 
-    def _make_commands_menu_section(self):
-        commands = []
-        commands.append(('commands - all', '?'))
-        self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='commands', 
-            )
-
     def _make_default_hidden_sections(self):
         sections = []
-        sections.append(self._make_commands_menu_section())
         if self._session.is_in_score:
             sections.append(self._make_edit_menu_section())
         sections.append(self._make_go_menu_section())
-        sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
         sections.append(self._make_go_wranglers_menu_section())
@@ -347,15 +336,6 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             commands=commands,
             name='go - wranglers',
-            )
-
-    def _make_lilypond_menu_section(self):
-        commands = []
-        commands.append(('LilyPond log - read only', 'llro'))
-        section = self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='lilypond', 
             )
 
     def _make_menu_lines(self):
@@ -485,6 +465,8 @@ class Menu(ScoreManagerObject):
 
     def _make_system_menu_section(self):
         commands = []
+        commands.append(('system - commands', '?'))
+        commands.append(('system - LilyPond log read only', 'llro'))
         commands.append(('system - quit', 'q'))
         commands.append(('system - shell', '!'))
         section = self.make_command_section(
