@@ -881,11 +881,13 @@ class BuildFileWrangler(Wrangler):
         self._typeset_file_ending_with('score.tex')
 
     def make_file(self):
-        r'''Makes build file.
+        r'''Makes empty file in build directory.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._make_file(
+            prompt_string='file name', 
+            )
 
     def open_file(self, result):
         r'''Opens build file.
