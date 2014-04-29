@@ -51,7 +51,7 @@ def test_BuildFileWrangler_copy_segment_pdfs_01():
         assert not os.path.exists(path)
 
     # run input
-    input_ = 'red~example~score u pdfcp default q'
+    input_ = 'red~example~score u pdfcp y q'
     score_manager._run(pending_user_input=input_)
 
     # make sure destination paths exist

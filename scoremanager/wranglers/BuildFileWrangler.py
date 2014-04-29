@@ -370,7 +370,9 @@ class BuildFileWrangler(Wrangler):
         '''
         segments_directory_path = self._session.current_segments_directory_path
         build_directory_path = self._get_current_directory_path()
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
+        directory_entries = sorted(os.listdir(segments_directory_path))
+        source_file_paths, target_file_paths = [], []
+        for directory_entry in directory_entries:
             segment_directory_path = os.path.join(
                 segments_directory_path,
                 directory_entry,
@@ -397,11 +399,26 @@ class BuildFileWrangler(Wrangler):
                 build_directory_path,
                 target_file_name,
                 )
+            source_file_paths.append(source_file_path)
+            target_file_paths.append(target_file_path)
+        if directory_entries:
+            messages = []
+            messages.append('will copy ...')
+            messages.append('')
+            pairs = zip(source_file_paths, target_file_paths)
+            for source_file_path, target_file_path in pairs:
+                message = ' FROM: {}'.format(source_file_path)
+                messages.append(message)
+                message = '   TO: {}'.format(target_file_path)
+                messages.append(message)
+                messages.append('')
+            self._io_manager.display(messages)
+            if not self._io_manager.confirm():
+                return
+            if self._should_backtrack():
+                return
+        for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
-            message = 'segment {} PDF copied.'
-            message = message.format(directory_entry)
-            self._io_manager.display(message)
-        self._io_manager.proceed('')
 
     def edit_back_cover_source(self):
         r'''Edits back cover LaTeX source.
