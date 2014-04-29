@@ -76,7 +76,7 @@ class BuildFileWrangler(Wrangler):
             'pfo': self.view_preface_pdf,
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
-            'st': self.interpret_score,
+            'si': self.interpret_score,
             'so': self.view_score_pdf,
             'lycp': self.copy_segment_lilypond_files,
             'pdfcp': self.copy_segment_pdfs,
@@ -257,7 +257,7 @@ class BuildFileWrangler(Wrangler):
         commands = []
         commands.append(('score - edit latex source', 'se'))
         commands.append(('score - generate latex source', 'sg'))
-        commands.append(('score - interpret latex source', 'st'))
+        commands.append(('score - interpret latex source', 'si'))
         commands.append(('score - open pdf', 'so'))
         menu.make_command_section(
             commands=commands,
@@ -779,12 +779,47 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
+    # TODO: factor out code in common with other generate methods
     def generate_score_source(self):
         r'''Generates score LaTeX source.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        manager = self._session.current_score_package_manager
+        width, height, unit = manager._parse_paper_dimensions()
+        build_directory = self._get_current_directory_path()
+        assert width and height and unit
+        assert build_directory
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            'score.tex',
+            )
+        previously_existed = False
+        if os.path.exists(destination_path):
+            previously_existed = True
+            messages = []
+            message = 'overwrite {}?'
+            message = message.format(destination_path)
+            if not self._io_manager.confirm(message):
+                return
+        source_path = os.path.join(
+            self._configuration.score_manager_directory_path,
+            'boilerplate',
+            'score.tex',
+            )
+        shutil.copyfile(source_path, destination_path)
+        old = '{PAPER_SIZE}'
+        new = '{{{}{}, {}{}}}'
+        new = new.format(width, unit, height, unit)
+        self._replace_in_file(destination_path, old, new)
+        old = '{BUILD_DIRECTORY}'
+        new = '{{{}}}'.format(build_directory)
+        self._replace_in_file(destination_path, old, new)
+        if previously_existed:
+            message = 'Overwrote {}.'.format(destination_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def interpret_back_cover(self):
         r'''Interprets back cover LaTeX source.
