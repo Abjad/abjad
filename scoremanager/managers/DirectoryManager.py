@@ -277,23 +277,6 @@ class DirectoryManager(Manager):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def remove_views_module(self, prompt=True):
-        r'''Removes views module.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._views_module_path):
-            if prompt:
-                message = 'remove views module?'
-                if not self._io_manager.confirm(message):
-                    return
-            os.remove(self._views_module_path)
-            line = 'views module removed.'
-            self._io_manager.proceed(
-                line,
-                prompt=prompt,
-                )
-
     def rename(self):
         r'''Renames directory.
 

@@ -95,7 +95,6 @@ class Wrangler(Controller):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             'V': self.clear_view,
             })
@@ -629,7 +628,6 @@ class Wrangler(Controller):
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_views_menu_section(menu)
-        self._make_views_module_menu_section(menu)
         self._make_go_wrangler_menu_section(menu)
         return menu
 
@@ -1027,13 +1025,6 @@ class Wrangler(Controller):
             if view_name in view_inventory:
                 del(view_inventory[view_name])
         self._write_view_inventory(view_inventory)
-
-    def remove_views_module(self):
-        r'''Removes views module.
-
-        Returns none.
-        '''
-        self._views_module_manager._remove(prompt=True)
 
     def rename_view(self):
         r'''Renames view.

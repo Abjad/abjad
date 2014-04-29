@@ -262,20 +262,11 @@ class Controller(ScoreManagerObject):
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))
         commands.append(('views - rename', 'vren'))
+        commands.append(('views - view module', 'vmro'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='views',
-            )
-
-    def _make_views_module_menu_section(self, menu):
-        commands = []
-        commands.append(('views module - remove', 'vmrm'))
-        commands.append(('views module - read only', 'vmro'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='views module',
             )
 
     def _path_to_annotation(self, path, year=False):

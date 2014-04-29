@@ -103,7 +103,6 @@ class ScorePackageWrangler(Wrangler):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmrm': self.remove_views_module,
             'vmro': self.view_views_module,
             'V': self.clear_view,
             'y': self.manage_stylesheet_library,
@@ -284,7 +283,6 @@ class ScorePackageWrangler(Wrangler):
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
         self._make_views_menu_section(menu)
-        self._make_views_module_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):
