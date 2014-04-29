@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('make me work')
 import filecmp
 import os
 import shutil
