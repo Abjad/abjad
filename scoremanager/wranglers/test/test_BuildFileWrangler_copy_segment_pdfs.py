@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import filecmp
 import os
+import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -46,10 +47,26 @@ def test_BuildFileWrangler_copy_segment_pdfs_01():
             )
         destination_pdfs.append(path)
 
-    # make sure destination paths don't exist
+    # make sure destination paths exist
     for path in destination_pdfs:
-        assert not os.path.exists(path)
+        assert os.path.exists(path)
 
+    # make sure source and destination files compare equal
+    pairs = zip(source_pdfs, destination_pdfs)
+    for source_path, destination_path in pairs:
+        assert filecmp.cmp(source_path, destination_path)
+
+    # back up existing pdfs
+    backup_paths = []
+    for path in destination_pdfs:
+        backup_path = path + '.backup'
+        backup_paths.append(backup_path)
+        shutil.copyfile(path, backup_path)
+
+    # remove existing pdfs
+    for path in destination_pdfs:
+        os.remove(path)
+        
     # run input
     input_ = 'red~example~score u pdfcp y q'
     score_manager._run(pending_user_input=input_)
@@ -68,9 +85,13 @@ def test_BuildFileWrangler_copy_segment_pdfs_01():
         if os.path.exists(path):
             os.remove(path)
 
-    # make sure destination paths do not exist
-    for path in destination_pdfs:
-        assert not os.path.exists(path)
+    # restore backup pdfs
+    for backup_path, destination_path in zip(backup_paths, destination_pdfs):
+        shutil.copyfile(backup_path, destination_path)
+        
+    # remove backup pdfs
+    for path in backup_paths:
+        os.remove(path)
 
     # make sure source paths do exist
     for path in source_pdfs:
