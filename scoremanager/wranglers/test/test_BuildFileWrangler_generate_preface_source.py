@@ -30,7 +30,7 @@ def test_BuildFileWrangler_generate_preface_source_01():
     assert '{8.5in, 11in}' not in source_contents
 
     try:
-        input_ = 'blue~example~score u pfg q'
+        input_ = 'blue~example~score u pg q'
         score_manager._run(pending_user_input=input_)
         assert os.path.isfile(destination_path)
         destination_contents = ''.join(file(destination_path).readlines())
@@ -69,7 +69,7 @@ def test_BuildFileWrangler_generate_preface_source_02():
     assert 'PAPER_SIZE' in source_contents
     assert '{8.5in, 11in}' not in source_contents
 
-    input_ = 'red~example~score u pfg y q'
+    input_ = 'red~example~score u pg y q'
     score_manager._run(pending_user_input=input_)
     assert os.path.isfile(destination_path)
     destination_contents = ''.join(file(destination_path).readlines())

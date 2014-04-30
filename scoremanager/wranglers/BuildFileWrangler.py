@@ -70,10 +70,10 @@ class BuildFileWrangler(Wrangler):
             'mi': self.interpret_music,
             'mo': self.view_music_pdf,
             'new': self.make_file,
-            'pfe': self.edit_preface_source,
-            'pfg': self.generate_preface_source,
-            'pfi': self.interpret_preface,
-            'pfo': self.view_preface_pdf,
+            'pe': self.edit_preface_source,
+            'pg': self.generate_preface_source,
+            'pi': self.interpret_preface,
+            'po': self.view_preface_pdf,
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
             'si': self.interpret_score,
@@ -220,10 +220,10 @@ class BuildFileWrangler(Wrangler):
 
     def _make_preface_menu_section(self, menu):
         commands = []
-        commands.append(('preface - edit latex source', 'pfe'))
-        commands.append(('preface - generate latex source', 'pfg'))
-        commands.append(('preface - interpret latex source', 'pfi'))
-        commands.append(('preface - open pdf', 'pfo'))
+        commands.append(('preface - edit latex source', 'pe'))
+        commands.append(('preface - generate latex source', 'pg'))
+        commands.append(('preface - interpret latex source', 'pi'))
+        commands.append(('preface - open pdf', 'po'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

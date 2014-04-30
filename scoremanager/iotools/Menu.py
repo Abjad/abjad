@@ -456,8 +456,8 @@ class Menu(ScoreManagerObject):
     def _make_system_menu_section(self):
         commands = []
         commands.append(('system - commands', '?'))
-        commands.append(('system - display session variables', 'sdv'))
-        commands.append(('system - LilyPond log read only', 'llro'))
+        commands.append(('system - session variables', 'sv'))
+        commands.append(('system - LilyPond log', 'll'))
         commands.append(('system - quit', 'q'))
         commands.append(('system - shell', '!'))
         section = self.make_command_section(

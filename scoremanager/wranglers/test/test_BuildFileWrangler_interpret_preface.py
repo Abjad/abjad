@@ -33,7 +33,7 @@ def test_BuildFileWrangler_interpret_preface_01():
         assert filecmp.cmp(path, backup_path)
         os.remove(path)
         assert not os.path.exists(path)
-        input_ = 'red~example~score u pfi q'
+        input_ = 'red~example~score u pi q'
         score_manager._run(pending_user_input=input_)
         assert os.path.isfile(path)
         #assert diff-pdf(path, backup_path)

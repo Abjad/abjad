@@ -45,7 +45,7 @@ def test_Menu__display_all_menu_commands_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = '? llro q'
+    input_ = '? ll q'
     score_manager._run(pending_user_input=input_)
 
     title_2 = 'Score manager - example scores'
