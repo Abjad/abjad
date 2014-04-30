@@ -191,15 +191,11 @@ class Controller(ScoreManagerObject):
 
     def _make_initializer_menu_section(self, menu):
         commands = []
-        if (self._initializer_file_path and
-            os.path.isfile(self._initializer_file_path)):
-            commands.append(('initializer - read only', 'inro'))
-        else:
-            commands.append(('initializer - stub', 'ins'))
+        commands.append(('package - initializer read only', 'inro'))
         menu.make_command_section(
-            is_hidden=True,
             commands=commands,
-            name='initializer',
+            is_hidden=True,
+            name='package',
             )
 
     def _make_metadata_menu_section(self, menu):

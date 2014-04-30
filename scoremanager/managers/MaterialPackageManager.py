@@ -305,7 +305,6 @@ class MaterialPackageManager(PackageManager):
         self._make_illustrate_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
-        self._make_initializer_menu_section(menu)
         self._make_material_definition_menu_section(menu)
         self._make_autoeditor_summary_menu_section(menu)
         self._make_metadata_menu_section(menu)
@@ -397,6 +396,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('package - remove autoeditor', 'pra'))
         else:
             commands.append(('package - configure autoeditor', 'pca'))
+        commands.append(('package - initializer read only', 'inro'))
         if commands:
             path = self._definition_module_path
             has_definition_module = os.path.isfile(path)

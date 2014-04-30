@@ -46,13 +46,13 @@ class ScorePackageManager(PackageManager):
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
+            'pdf': self.view_score_pdf,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
-            'spo': self.view_score_pdf,
             'u': self._session._score_manager._build_file_wrangler._run,
             'y': self._session._score_manager._stylesheet_wrangler._run,
             'Y': self._io_manager.edit_score_stylesheet,
@@ -193,8 +193,6 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)
-        self._make_initializer_menu_section(menu)
-        self._make_score_pdf_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_score_menu_section(menu)
         return menu
@@ -215,23 +213,15 @@ class ScorePackageManager(PackageManager):
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('score package - fix', 'fix'))
+        commands.append(('score package - score pdf', 'pdf'))
         commands.append(('score package - remove unadded assets', 'rua'))
         commands.append(('score package - setup', 'p'))
+        commands.append(('score package - view initializer', 'inro'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='score',
             )
-
-    def _make_score_pdf_menu_section(self, menu):
-        wrangler = self._session._score_manager._distribution_file_wrangler
-        if wrangler._get_file_path_ending_with('score.pdf'):
-            commands = []
-            commands.append(('score - open pdf', 'spo'))
-            menu.make_command_section(
-                commands=commands,
-                name='score pdf',
-                )
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(name='setup')

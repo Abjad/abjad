@@ -124,9 +124,9 @@ class SegmentPackageWrangler(Wrangler):
         superclass = super(SegmentPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)
         self._make_all_segments_menu_section(menu)
-        self._make_segments_menu_section(menu)
         self._make_initializer_menu_section(menu)
         self._make_metadata_menu_section(menu)
+        self._make_segments_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
