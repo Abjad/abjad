@@ -919,7 +919,7 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.edit(result)
 
     def remove_files(self):
-        r'''Removes build file.
+        r'''Removes one or more build files.
 
         Returns none.
         '''

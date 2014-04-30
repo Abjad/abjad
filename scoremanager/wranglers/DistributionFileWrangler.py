@@ -49,7 +49,10 @@ class DistributionFileWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'cp': self.copy_distribution_file,
+            'cp': self.copy_file,
+            'new': self.make_file,
+            'ren': self.rename_file,
+            'rm': self.remove_files,
             })
         return result
 
@@ -106,21 +109,30 @@ class DistributionFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def copy_distribution_file(self):
+    def copy_file(self):
         r'''Copies distribution file.
 
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def remove_distribution_files(self):
+    def make_file(self):
+        r'''Makes empty file in distribution directory.
+
+        Returns none.
+        '''
+        self._make_file(
+            prompt_string='file name', 
+            )
+
+    def remove_files(self):
         r'''Removes one or more distribution files.
         
         Returns none.
         '''
         self._remove_assets()
 
-    def rename_distribution_file(self):
+    def rename_file(self):
         r'''Renames distribution file.
 
         Returns none.

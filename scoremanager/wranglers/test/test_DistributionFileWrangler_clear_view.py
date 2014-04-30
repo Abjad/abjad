@@ -39,7 +39,7 @@ def test_DistributionFileWrangler_clear_view_01():
 
     lines = [
         'red-example-score.pdf (Red Example Score)',
-        'temporary-red-example-score.txt (Red Example Score)',
+        'red-example-score-program-notes.txt (Red Example Score)',
         ]
 
     contents = without_view.contents
@@ -83,7 +83,7 @@ def test_DistributionFileWrangler_clear_view_02():
 
     lines = [
         'red-example-score.pdf',
-        'temporary-red-example-score.txt',
+        'red-example-score-program-notes.txt',
         ]
 
     contents = without_view.contents
