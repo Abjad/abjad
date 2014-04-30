@@ -403,7 +403,7 @@ class QEventSequence(AbjadObject):
 
             >>> durations = [250, 500, 1000, 1250, 1000]
             >>> pitches = [(0,), None, (2, 3), None, (1,)]
-            >>> pairs = zip(durations, pitches)
+            >>> pairs = tuple(zip(durations, pitches))
 
         ::
 
@@ -654,4 +654,4 @@ class QEventSequence(AbjadObject):
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
         return cls.from_millisecond_pitch_pairs(
-            zip(durations, pitches))
+            tuple(zip(durations, pitches)))

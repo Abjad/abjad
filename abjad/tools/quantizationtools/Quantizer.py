@@ -16,7 +16,7 @@ class Quantizer(AbjadObject):
         >>> pitches = range(8)
         >>> q_event_sequence = \
         ...     quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
-        ...     zip(durations, pitches))
+        ...     tuple(zip(durations, pitches)))
 
     Quantization defaults to outputting into a 4/4, quarter=60 musical
     structure:
