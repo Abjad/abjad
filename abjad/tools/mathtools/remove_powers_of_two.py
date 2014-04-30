@@ -33,6 +33,6 @@ def remove_powers_of_two(n):
         raise ValueError
 
     while n % 2 == 0:
-        n /= 2
+        n //= 2
 
     return n

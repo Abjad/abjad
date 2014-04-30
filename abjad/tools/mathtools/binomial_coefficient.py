@@ -22,4 +22,4 @@ def binomial_coefficient(n, k):
     Returns positive integer.
     '''
 
-    return math.factorial(n) / (math.factorial(n - k) * math.factorial(k))
+    return math.factorial(n) // (math.factorial(n - k) * math.factorial(k))

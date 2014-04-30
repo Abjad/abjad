@@ -53,24 +53,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         >>> isinstance(mathtools.NonreducedFraction(3, 6), numbers.Number)
         True
 
-    Nonreduced fraction initialization requires more function calls that
-    fraction initialization.
-    But nonreduced fraction initialization is reasonably fast anyway:
-
-    ::
-
-        >>> import fractions
-        >>> systemtools.IOManager.count_function_calls(
-        ...     'fractions.Fraction(3, 6)', globals())
-        13
-
-    ::
-
-        >>> systemtools.IOManager.count_function_calls(
-        ...     'mathtools.NonreducedFraction(3, 6)', globals())
-        30
-
-    Nonreduced fractions are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -84,7 +66,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
     def __new__(cls, *args):
         from abjad.tools import mathtools
-        from abjad.tools import sequencetools
         if len(args) == 1 and hasattr(args[0], 'numerator') and \
             hasattr(args[0], 'denominator'):
             numerator = args[0].numerator
@@ -137,22 +118,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
             >>> mathtools.NonreducedFraction(3, 3) + 1
             NonreducedFraction(6, 3)
-
-        Adding two nonreduced fractions is fairly fast:
-
-        ::
-
-            >>> a = mathtools.NonreducedFraction(3, 6)
-            >>> b = mathtools.NonreducedFraction(3, 12)
-            >>> systemtools.IOManager.count_function_calls('a + b', globals())
-            67
-
-        Adding an integer is even faster:
-
-        ::
-
-            >>> systemtools.IOManager.count_function_calls('a + 10', globals())
-            35
 
         Returns nonreduced fraction.
         '''
@@ -463,7 +428,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
     ### PRIVATE METHODS ###
 
     def _fraction_with_denominator(self, fraction, denominator):
-        from abjad.tools import durationtools
         from abjad.tools import mathtools
         denominator = mathtools.least_common_multiple(
             denominator, fraction.denominator)

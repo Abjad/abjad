@@ -33,16 +33,6 @@ def divisors(n):
         >>> mathtools.divisors(-27)
         [1, 3, 9, 27]
 
-    Performance is extremely fast:
-
-    ::
-
-        >>> systemtools.IOManager.count_function_calls(
-        ...     'mathtools.divisors(100000000)',
-        ...     globals(),
-        ...     )
-        50
-
     Raises type error on noninteger `n`.
 
     Raises not implemented error on ``0``.

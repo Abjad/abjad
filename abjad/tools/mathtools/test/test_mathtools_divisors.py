@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import pytest
+import sys
 from abjad import *
 
 
@@ -31,3 +32,17 @@ def test_mathtools_divisors_03():
     '''
 
     assert pytest.raises(TypeError, 'mathtools.divisors(7.5)')
+
+
+def test_mathtools_divisors_04():
+    r'''Performance is extremely fast.
+    '''
+
+    result = systemtools.IOManager.count_function_calls(
+        'mathtools.divisors(100000000)',
+        globals(),
+        )
+    if sys.version_info[0] == 2:
+        assert result == 50
+    else:
+        assert result == 51
