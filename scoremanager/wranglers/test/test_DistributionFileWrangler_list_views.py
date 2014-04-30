@@ -4,10 +4,10 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
-def test_BuildFileWrangler_list_views_01():
+def test_DistributionFileWrangler_list_views_01():
     
-    input_ = 'u vls vnew _test rm all'
-    input_ += ' add front-cover.pdf~(Red~Example~Score) done default'
+    input_ = 'd vls vnew _test rm all'
+    input_ += ' add red-example-score.pdf~(Red~Example~Score) done default'
     input_ += ' vls vrm _test default vls q'
     score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
