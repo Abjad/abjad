@@ -198,7 +198,6 @@ class BuildFileWrangler(Wrangler):
         self._make_files_menu_section(menu)
         if self._session.is_in_score:
             self._make_back_cover_menu_section(menu)
-            self._make_directory_menu_section(menu, is_permanent=True)
             self._make_draft_menu_section(menu)
             self._make_front_cover_menu_section(menu)
             self._make_music_menu_section(menu)

@@ -126,7 +126,6 @@ class SegmentPackageWrangler(Wrangler):
         menu = superclass._make_main_menu(name=name)
         self._make_all_segments_menu_section(menu)
         self._make_segments_menu_section(menu)
-        self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)

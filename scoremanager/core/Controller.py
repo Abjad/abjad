@@ -181,19 +181,6 @@ class Controller(ScoreManagerObject):
             entries = self._filter_asset_menu_entries_by_view(entries, view)
         return entries
 
-    def _make_directory_menu_section(self, menu, is_permanent=False):
-        commands = []
-        commands.append(('directory - list', 'ls'))
-        commands.append(('directory - list long', 'll'))
-        if not is_permanent:
-            commands.append(('directory - remove', 'rm'))
-            commands.append(('directory - rename', 'ren'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='directory',
-            )
-
     def _make_done_menu_section(self, menu):
         commands = []
         commands.append(('done', 'done'))

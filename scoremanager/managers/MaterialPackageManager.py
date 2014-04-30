@@ -302,7 +302,6 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialPackageManager, self)
         menu = superclass._make_main_menu(name=name)
-        self._make_directory_menu_section(menu)
         self._make_illustrate_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)

@@ -193,7 +193,6 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)
-        self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
         self._make_score_pdf_menu_section(menu)
         self._make_metadata_module_menu_section(menu)

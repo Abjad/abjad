@@ -170,7 +170,6 @@ class SegmentPackageManager(PackageManager):
         self._make_current_lilypond_file_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
         self._make_definition_module_menu_section(menu)
-        self._make_directory_menu_section(menu)
         self._make_make_module_menu_section(menu)
         self._make_versioned_pdfs_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
