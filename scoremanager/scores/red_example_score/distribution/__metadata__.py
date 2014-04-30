@@ -3,5 +3,5 @@ import collections
 
 
 metadata = collections.OrderedDict([
-    ('view_name', '_test'),
+    ('view_name', None),
     ])
