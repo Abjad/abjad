@@ -8,11 +8,15 @@ class RedirectedStreams(ContextManager):
 
     ::
 
-        >>> import StringIO
-        >>> string_io = StringIO.StringIO()
+        >>> try:
+        ...     from StringIO import StringIO
+        ... except ImportError:
+        ...     from io import StringIO
+        ...
+        >>> string_io = StringIO()
         >>> with systemtools.RedirectedStreams(stdout=string_io):
         ...     print("hello, world!")
-        ... 
+        ...
         >>> result = string_io.getvalue()
         >>> string_io.close()
         >>> print(result)
