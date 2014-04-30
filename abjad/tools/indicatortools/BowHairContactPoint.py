@@ -49,6 +49,12 @@ class BowHairContactPoint(AbjadObject):
             return self.contact_point == expr.contact_point
         raise TypeError('unorderable types')
 
+    def __hash__(self):
+        r'''Hashes bow-hair contact point.
+        '''
+        from abjad.tools import systemtools
+        return hash(systemtools.StorageFormatManager.get_hash_values(self))
+
     def __lt__(self, expr):
         r'''Is true if `expr` is a bow-hair contact point and this bow-hair
         contact point is less than `expr`.
