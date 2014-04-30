@@ -5,18 +5,18 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_make_file_01():
+def test_DistributionFileWrangler_make_file_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'build',
+        'distribution',
         'test-file.txt',
         )
 
     assert not os.path.exists(path)
     try:
-        input_ = 'red~example~score u new test-file.txt q'
+        input_ = 'red~example~score d new test-file.txt q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
     finally:

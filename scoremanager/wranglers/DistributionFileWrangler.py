@@ -114,7 +114,7 @@ class DistributionFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._copy_asset(force_lowercase=False)
 
     def make_file(self):
         r'''Makes empty file in distribution directory.
