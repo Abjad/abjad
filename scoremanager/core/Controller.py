@@ -216,7 +216,6 @@ class Controller(ScoreManagerObject):
 
     def _make_metadata_module_menu_section(self, menu):
         commands = []
-        commands.append(('metadata module - remove', 'mdmrm'))
         commands.append(('metadata module - rewrite', 'mdmrw'))
         commands.append(('metadata module - read only', 'mdmro'))
         menu.make_command_section(

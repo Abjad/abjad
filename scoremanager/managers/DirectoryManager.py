@@ -50,10 +50,8 @@ class DirectoryManager(Manager):
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
             'mdmro': self.view_metadata_module,
-            'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,
-            #'rm': self.remove,
             })
         return result
 
