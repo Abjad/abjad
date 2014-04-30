@@ -330,6 +330,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         fraction = expr / self.reduce()
         return self._fraction_with_denominator(fraction, max(denominators))
 
+    __rtruediv__ = __rdiv__
+
     def __repr__(self):
         r'''Gets interpreter representation of nonreduced fraction.
 
