@@ -83,8 +83,8 @@ def test_sievetools_ResidueClass_08():
     assert isinstance(rc.get_congruent_bases(12), list)
     assert isinstance(rc.get_boolean_train(12), list)
 
-    assert rc.get_congruent_bases(99) == range(100)
-    assert rc.get_congruent_bases(-10, 99) == range(-10, 100)
+    assert rc.get_congruent_bases(99) == list(range(100))
+    assert rc.get_congruent_bases(-10, 99) == list(range(-10, 100))
 
     assert rc.get_boolean_train(12) == [1] * 12
     assert rc.get_boolean_train(-2, 12) == [1] * 14
