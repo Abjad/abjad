@@ -314,9 +314,9 @@ class BuildFileWrangler(Wrangler):
         '''
         self._copy_asset(force_lowercase=False)
 
+    # TODO: factor our duplicate code with self.copy_segment_pdfs()
     def copy_segment_lilypond_files(self):
-        r'''Copies segment LilyPond files from segment
-        packages to build directory.
+        r'''Copies LilyPond files from segment packages to build directory.
 
         Trims top-level comments, includes and directives from each LilyPond
         file.
@@ -329,7 +329,9 @@ class BuildFileWrangler(Wrangler):
         '''
         segments_directory_path = self._session.current_segments_directory_path
         build_directory_path = self._get_current_directory_path()
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
+        directory_entries = sorted(os.listdir(segments_directory_path))
+        source_file_paths, target_file_paths = [], []
+        for directory_entry in directory_entries:
             segment_directory_path = os.path.join(
                 segments_directory_path,
                 directory_entry,
@@ -352,16 +354,34 @@ class BuildFileWrangler(Wrangler):
                 build_directory_path,
                 target_file_name,
                 )
-            if not os.path.exists(build_directory_path):
-                os.mkdir(build_directory_path)
+            source_file_paths.append(source_file_path)
+            target_file_paths.append(target_file_path)
+        if source_file_paths:
+            messages = []
+            messages.append('will copy ...')
+            messages.append('')
+            pairs = zip(source_file_paths, target_file_paths)
+            for source_file_path, target_file_path in pairs:
+                message = ' FROM: {}'.format(source_file_path)
+                messages.append(message)
+                message = '   TO: {}'.format(target_file_path)
+                messages.append(message)
+                messages.append('')
+            self._io_manager.display(messages)
+            if not self._io_manager.confirm():
+                return
+            if self._should_backtrack():
+                return
+        if not os.path.exists(build_directory_path):
+            os.mkdir(build_directory_path)
+        pairs = zip(source_file_paths, target_file_paths)
+        for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
-            message = 'segment {} LilyPond file copied & trimmed.'
-            message = message.format(directory_entry)
-            self._io_manager.display(message)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
+    # TODO: factor out duplicate code with self.copy_segment_lilypond_files()
     def copy_segment_pdfs(self):
         r'''Copies segment PDFs from segment packages to build directory.
 

@@ -46,7 +46,7 @@ def test_BuildFileWrangler_copy_segment_lilypond_files_01():
         assert not os.path.isfile(file_path)
 
     # call (lycp)
-    input_ = 'red~example~score u lycp default q'
+    input_ = 'red~example~score u lycp y default q'
     score_manager._run(pending_user_input=input_)
 
     # make sure new segment files are currently in build directory
@@ -59,3 +59,8 @@ def test_BuildFileWrangler_copy_segment_lilypond_files_01():
 
     # remove temporary directory
     shutil.rmtree(temporary_directory)
+
+    contents = score_manager._transcript.contents
+    assert 'Will copy ...' in contents
+    assert 'FROM:' in contents
+    assert 'TO:' in contents
