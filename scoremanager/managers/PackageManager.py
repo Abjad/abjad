@@ -49,7 +49,6 @@ class PackageManager(DirectoryManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
             })

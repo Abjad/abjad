@@ -178,7 +178,7 @@ def test_MaterialPackageWrangler_make_material_package_06():
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'm testnotes inrm remove ins default q'
+        input_ = 'm testnotes !~rm~__init__.py ins default q'
         score_manager._run(pending_user_input=input_)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         input_ = 'm rm testnotes remove q'

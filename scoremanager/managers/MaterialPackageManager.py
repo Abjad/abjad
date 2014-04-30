@@ -310,7 +310,6 @@ class MaterialPackageManager(PackageManager):
         self._make_autoeditor_summary_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_material_menu_section(menu)
-        self._make_metadata_module_menu_section(menu)
         self._make_output_module_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
