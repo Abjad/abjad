@@ -65,6 +65,7 @@ class BuildFileWrangler(Wrangler):
             'fcg': self.generate_front_cover_source,
             'fci': self.interpret_front_cover,
             'fco': self.view_front_cover_pdf,
+            'mc': self.collect_segment_lilypond_files,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
             'mi': self.interpret_music,
@@ -78,7 +79,6 @@ class BuildFileWrangler(Wrangler):
             'sg': self.generate_score_source,
             'si': self.interpret_score,
             'so': self.view_score_pdf,
-            'lycp': self.copy_segment_lilypond_files,
             'pdfcp': self.copy_segment_pdfs,
             'ren': self.rename_file,
             'rm': self.remove_files,
@@ -208,6 +208,7 @@ class BuildFileWrangler(Wrangler):
 
     def _make_music_menu_section(self, menu):
         commands = []
+        commands.append(('music - collect segment files', 'mc'))
         commands.append(('music - edit lilypond source', 'me'))
         commands.append(('music - generate lilypond source', 'mg'))
         commands.append(('music - interpret lilypond source', 'mi'))
@@ -232,7 +233,6 @@ class BuildFileWrangler(Wrangler):
 
     def _make_segments_menu_section(self, menu):
         commands = []
-        commands.append(('segment lys - copy', 'lycp'))
         commands.append(('segment pdfs - copy', 'pdfcp'))
         menu.make_command_section(
             commands=commands,
@@ -315,7 +315,7 @@ class BuildFileWrangler(Wrangler):
         self._copy_asset(force_lowercase=False)
 
     # TODO: factor our duplicate code with self.copy_segment_pdfs()
-    def copy_segment_lilypond_files(self):
+    def collect_segment_lilypond_files(self):
         r'''Copies LilyPond files from segment packages to build directory.
 
         Trims top-level comments, includes and directives from each LilyPond
@@ -381,7 +381,7 @@ class BuildFileWrangler(Wrangler):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    # TODO: factor out duplicate code with self.copy_segment_lilypond_files()
+    # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
     def copy_segment_pdfs(self):
         r'''Copies segment PDFs from segment packages to build directory.
 

@@ -7,7 +7,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_copy_segment_lilypond_files_01():
+def test_BuildFileWrangler_collect_segment_lilypond_files_01():
 
     # find build directory and set up temporary directory
     build_directory = os.path.join(
@@ -45,8 +45,8 @@ def test_BuildFileWrangler_copy_segment_lilypond_files_01():
     for file_path in file_paths:
         assert not os.path.isfile(file_path)
 
-    # call (lycp)
-    input_ = 'red~example~score u lycp y default q'
+    # call (mc)
+    input_ = 'red~example~score u mc y default q'
     score_manager._run(pending_user_input=input_)
 
     # make sure new segment files are currently in build directory

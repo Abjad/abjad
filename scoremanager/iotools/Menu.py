@@ -283,22 +283,21 @@ class Menu(ScoreManagerObject):
     def _make_default_hidden_sections(self):
         sections = []
         if self._session.is_in_score:
-            sections.append(self._make_edit_menu_section())
+            sections.append(self._make_go_edits_menu_section())
         sections.append(self._make_go_menu_section())
-        sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
         sections.append(self._make_go_wranglers_menu_section())
         sections.append(self._make_go_scores_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
 
-    def _make_edit_menu_section(self):
+    def _make_go_edits_menu_section(self):
         commands = []
-        commands.append(('edit - current stylesheet', 'Y'))
+        commands.append(('go - edit current stylesheet', 'Y'))
         self.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='edit',
+            name='go - zzz',
             )
 
     def _make_go_menu_section(self):
@@ -346,18 +345,6 @@ class Menu(ScoreManagerObject):
         result.extend(self._make_title_lines())
         result.extend(self._make_section_lines())
         return result
-
-    def _make_python_menu_section(self):
-        commands = []
-        commands.append(('Python - doctest', 'pyd'))
-        commands.append(('Python - invoke', 'pyi'))
-        commands.append(('Python - test', 'pyt'))
-        self.make_command_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            commands=commands,
-            name='python',
-            )
 
     def _make_repository_menu_section(self):
         commands = []
@@ -456,8 +443,11 @@ class Menu(ScoreManagerObject):
     def _make_system_menu_section(self):
         commands = []
         commands.append(('system - commands', '?'))
+        commands.append(('system - doctest', 'pyd'))
         commands.append(('system - session variables', 'sv'))
         commands.append(('system - LilyPond log', 'll'))
+        commands.append(('system - Python', 'pyi'))
+        commands.append(('system - py.test', 'pyt'))
         commands.append(('system - quit', 'q'))
         commands.append(('system - shell', '!'))
         section = self.make_command_section(
