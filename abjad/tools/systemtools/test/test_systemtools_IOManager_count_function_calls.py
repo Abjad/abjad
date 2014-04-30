@@ -9,7 +9,7 @@ def test_systemtools_IOManager_count_function_calls_01():
         "Note('c4')",
         globals(),
         )
-    if sys.version[0] == 2:
+    if sys.version_info[0] == 2:
         assert result == 10210
     else:
         assert result == 11282
@@ -21,7 +21,7 @@ def test_systemtools_IOManager_count_function_calls_02():
         "Note(-12, (1, 4))",
         globals(),
         )
-    if sys.version[0] == 2:
+    if sys.version_info[0] == 2:
         assert result == 170
     else:
         assert result == 192
