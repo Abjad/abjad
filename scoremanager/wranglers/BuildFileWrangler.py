@@ -56,6 +56,7 @@ class BuildFileWrangler(Wrangler):
             'bci': self.interpret_back_cover,
             'bco': self.view_back_cover_pdf,
             'cp': self.copy_file,
+            'dc': self.collect_segment_pdfs,
             'de': self.edit_draft_source,
             'dg': self.generate_draft_source,
             'di': self.interpret_draft,
@@ -79,7 +80,6 @@ class BuildFileWrangler(Wrangler):
             'sg': self.generate_score_source,
             'si': self.interpret_score,
             'so': self.view_score_pdf,
-            'pdfcp': self.copy_segment_pdfs,
             'ren': self.rename_file,
             'rm': self.remove_files,
             })
@@ -203,7 +203,6 @@ class BuildFileWrangler(Wrangler):
             self._make_music_menu_section(menu)
             self._make_preface_menu_section(menu)
             self._make_score_menu_section(menu)
-            self._make_segments_menu_section(menu)
         return menu
 
     def _make_music_menu_section(self, menu):
@@ -231,17 +230,9 @@ class BuildFileWrangler(Wrangler):
             name='preface',
             )
 
-    def _make_segments_menu_section(self, menu):
-        commands = []
-        commands.append(('segment pdfs - copy', 'pdfcp'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=True,
-            name='segments?',
-            )
-
     def _make_draft_menu_section(self, menu):
         commands = []
+        commands.append(('draft - collect segment files', 'dc'))
         commands.append(('draft - edit latex source', 'de'))
         commands.append(('draft - generate latex source', 'dg'))
         commands.append(('draft - interpret latex source', 'di'))
@@ -314,7 +305,7 @@ class BuildFileWrangler(Wrangler):
         '''
         self._copy_asset(force_lowercase=False)
 
-    # TODO: factor our duplicate code with self.copy_segment_pdfs()
+    # TODO: factor our duplicate code with self.collect_segment_pdfs()
     def collect_segment_lilypond_files(self):
         r'''Copies LilyPond files from segment packages to build directory.
 
@@ -382,7 +373,7 @@ class BuildFileWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
-    def copy_segment_pdfs(self):
+    def collect_segment_pdfs(self):
         r'''Copies segment PDFs from segment packages to build directory.
 
         Returns none.

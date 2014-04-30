@@ -7,7 +7,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_copy_segment_pdfs_01():
+def test_BuildFileWrangler_collect_segment_pdfs_01():
 
     # find build directory
     build_directory = os.path.join(
@@ -68,7 +68,7 @@ def test_BuildFileWrangler_copy_segment_pdfs_01():
         os.remove(path)
         
     # run input
-    input_ = 'red~example~score u pdfcp y q'
+    input_ = 'red~example~score u dc y q'
     score_manager._run(pending_user_input=input_)
 
     # make sure destination paths exist
