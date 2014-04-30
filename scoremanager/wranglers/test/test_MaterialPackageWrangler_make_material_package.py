@@ -165,33 +165,6 @@ def test_MaterialPackageWrangler_make_material_package_05():
 
 
 def test_MaterialPackageWrangler_make_material_package_06():
-    r'''Makes handmade package. Corrupts initializer. Restores initializer.
-    Removes package.
-    '''
-
-    assert not os.path.exists(package_path)
-    try:
-        input_ = 'm new testnotes q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(package_path)
-        assert os.path.exists(initializer_file_path)
-        assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
-        shutil.copyfile(exception_file_path, initializer_file_path)
-        assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'm testnotes inrm remove ins default q'
-        score_manager._run(pending_user_input=input_)
-        assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
-        input_ = 'm rm testnotes remove q'
-        score_manager._run(pending_user_input=input_)
-        assert not os.path.exists(package_path)
-        assert not os.path.exists(initializer_file_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
-
-
-def test_MaterialPackageWrangler_make_material_package_07():
     r'''Makes handmade package. Copies boilerplate definition module.
     Creates output material. Removes package.
     '''
@@ -220,7 +193,7 @@ def test_MaterialPackageWrangler_make_material_package_07():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_material_package_08():
+def test_MaterialPackageWrangler_make_material_package_07():
     r'''Makes handmade package. Removes definition module. Removes package.
     '''
 
@@ -244,7 +217,7 @@ def test_MaterialPackageWrangler_make_material_package_08():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_material_package_09():
+def test_MaterialPackageWrangler_make_material_package_08():
     r'''Makes handmade package. Overwrite material definition module with stub.
     Removes package.
     '''
@@ -274,7 +247,7 @@ def test_MaterialPackageWrangler_make_material_package_09():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_material_package_10():
+def test_MaterialPackageWrangler_make_material_package_09():
     r'''Makes handmade package. Copies canned material definition.
     Makes output module. Removes output material. Removes package.
     '''
@@ -307,7 +280,7 @@ def test_MaterialPackageWrangler_make_material_package_10():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_material_package_11():
+def test_MaterialPackageWrangler_make_material_package_10():
     r'''Makes handmade package. Corrupts definition module. Makes sure
     score manager starts when definition module is corrupt. Removes package.
     '''
@@ -329,7 +302,7 @@ def test_MaterialPackageWrangler_make_material_package_11():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_material_package_12():
+def test_MaterialPackageWrangler_make_material_package_11():
     r'''Makes handmade package. Copies canned material definition module.
     Makes output module. Corrupts output module. Makes sure score manager
     starts when output module is corrupt. Removes package.

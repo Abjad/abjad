@@ -447,7 +447,7 @@ class Menu(ScoreManagerObject):
         commands.append(('system - session variables', 'sv'))
         commands.append(('system - LilyPond log', 'll'))
         commands.append(('system - Python', 'pyi'))
-        commands.append(('system - py.test', 'pyt'))
+        commands.append(('system - pytest', 'pyt'))
         commands.append(('system - quit', 'q'))
         commands.append(('system - shell', '!'))
         section = self.make_command_section(

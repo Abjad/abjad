@@ -110,8 +110,6 @@ class Manager(Controller):
         result = copy.deepcopy(result)
         result.update({
             'cp': self.copy,
-            'ls': self.list,
-            'll': self.list_long,
             'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
@@ -631,16 +629,6 @@ class Manager(Controller):
             lines,
             capitalize=False,
             )
-        self._session._hide_next_redraw = True
-
-    def list_long(self):
-        r'''Lists directory with ``ls -l``.
-
-        Returns none.
-        '''
-        command = 'ls -l {} | grep -v .pyc'
-        command = command.format(self._path)
-        self._io_manager.run_command(command, capitalize=False)
         self._session._hide_next_redraw = True
 
     def remove_unadded_assets(self, prompt=True):

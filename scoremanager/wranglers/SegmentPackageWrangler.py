@@ -46,7 +46,6 @@ class SegmentPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_segment_package,
-            'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
             'lyi': self.interpret_current_lilypond_files,
@@ -125,10 +124,9 @@ class SegmentPackageWrangler(Wrangler):
         superclass = super(SegmentPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)
         self._make_all_segments_menu_section(menu)
-        self._make_segments_menu_section(menu)
         self._make_initializer_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_metadata_module_menu_section(menu)
+        self._make_segments_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 

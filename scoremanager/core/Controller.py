@@ -191,37 +191,24 @@ class Controller(ScoreManagerObject):
 
     def _make_initializer_menu_section(self, menu):
         commands = []
-        if (self._initializer_file_path and
-            os.path.isfile(self._initializer_file_path)):
-            commands.append(('initializer - remove', 'inrm'))
-            commands.append(('initializer - read only', 'inro'))
-        else:
-            commands.append(('initializer - stub', 'ins'))
+        commands.append(('package - initializer read only', 'inro'))
         menu.make_command_section(
-            is_hidden=True,
             commands=commands,
-            name='initializer',
+            is_hidden=True,
+            name='package',
             )
 
     def _make_metadata_menu_section(self, menu):
         commands = []
-        commands.append(('metadatum - add', 'mda'))
-        commands.append(('metadatum - get', 'mdg'))
-        commands.append(('metadatum - remove', 'mdrm'))
+        commands.append(('metadata - add', 'mda'))
+        commands.append(('metadata - get', 'mdg'))
+        commands.append(('metadata - remove', 'mdrm'))
+        commands.append(('metadata - rewrite module', 'mdmrw'))
+        commands.append(('metadata - view module', 'mdmro'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='metadatum',
-            )
-
-    def _make_metadata_module_menu_section(self, menu):
-        commands = []
-        commands.append(('metadata module - rewrite', 'mdmrw'))
-        commands.append(('metadata module - read only', 'mdmro'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='metadata module',
             )
 
     def _make_sibling_asset_tour_menu_section(self, menu):
