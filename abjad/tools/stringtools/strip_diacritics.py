@@ -8,7 +8,7 @@ def strip_diacritics(binary_string):
 
     ::
 
-        >>> binary_string = 'Dvo\xc5\x99\xc3\xa1k'
+        >>> binary_string = 'Dvořák'
 
     ::
 
