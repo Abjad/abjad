@@ -219,3 +219,16 @@
         go - previous asset (<)
 
 53. Implement 'views - rewrite module' (vmrw).
+
+54. Extend 'all score packages' options in Score Manager main menu.
+    Change ...
+        all score packages - fix (fix)
+    ... to ...
+        all score packages - fix (fix)
+        all score packages - remove unadded assets (rua)
+        all score packages - rewrite initializer (inro)
+        all score packages - rewrite metadata module (inro)
+        all score packages - score pdf (pdf)
+        all score packages - view initializer (inro)
+        all score packages - view metadata module (inro)
+    ... instead.
