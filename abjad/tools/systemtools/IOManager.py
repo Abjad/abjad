@@ -102,30 +102,6 @@ class IOManager(object):
         ):
         '''Counts function calls required to execute `expr`.
 
-        ..  container:: example
-
-            Counts function calls required to initialize note from string:
-
-            ::
-
-                >>> systemtools.IOManager.count_function_calls(
-                ...     "Note('c4')",
-                ...     globals(),
-                ...     )
-                10210
-
-        ..  container:: example
-
-            Counts function calls required to initialize note from integers:
-
-            ::
-
-                >>> systemtools.IOManager.count_function_calls(
-                ...     "Note(-12, (1, 4))",
-                ...     globals(),
-                ...     )
-                170
-
         Wraps ``IOManager.profile_expr(expr)``.
 
         Returns nonnegative integer.
