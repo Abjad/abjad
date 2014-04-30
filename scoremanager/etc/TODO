@@ -209,3 +209,13 @@
     Use '! rm name' instead.
 
 51. Maybe remove Wrangler._forbidden_directory_entries?
+
+52. Remove duplicates in (g > segment 01):
+        go - next score (>>)
+        go - previous score (<<)
+        go - next score (>>)
+        go - next asset (>)
+        go - previous score (<<)
+        go - previous asset (<)
+
+53. Implement 'views - rewrite module' (vmrw).
