@@ -12,7 +12,7 @@ def sum_elements(
 
     ::
 
-        >>> sequencetools.sum_elements(range(10), [(0, 3)])
+        >>> sequencetools.sum_elements(list(range(10)), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
     Sums `sequence` elements cyclically at indices according to `pairs`
@@ -20,7 +20,7 @@ def sum_elements(
 
     ::
 
-        >>> sequencetools.sum_elements(range(10), [(0, 3)], period=4)
+        >>> sequencetools.sum_elements(list(range(10)), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]
 
     Sums `sequence` elements cyclically at indices according to `pairs`
@@ -29,7 +29,7 @@ def sum_elements(
     ::
 
         >>> sequencetools.sum_elements(
-        ...     range(10), [(0, 3)], period=4, overhang=False)
+        ...     list(range(10)), [(0, 3)], period=4, overhang=False)
         [3, 3, 15, 7]
 
     Replaces ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``

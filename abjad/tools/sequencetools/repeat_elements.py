@@ -11,7 +11,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     indices=[1, 2],
             ...     total=3,
             ...     )
@@ -24,7 +24,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     indices=[-1, -2],
             ...     total=3,
             ...     )
@@ -38,7 +38,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     indices=[1, 2],
             ...     total=3,
             ...     period=5,
@@ -53,7 +53,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     indices=[-1, -2],
             ...     total=3,
             ...     period=5,
@@ -67,7 +67,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     total=2,
             ...     )
             [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]
@@ -79,7 +79,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     total=1,
             ...     )
             [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]
@@ -91,7 +91,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     total=0,
             ...     )
             [[], [], [], [], [], [], [], [], [], []]
@@ -103,7 +103,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         ::
 
             >>> sequencetools.repeat_elements(
-            ...     range(10),
+            ...     list(range(10)),
             ...     indices=[],
             ...     )
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

@@ -109,7 +109,10 @@ class Sequence(AbjadObject):
 
         Returns item.
         '''
-        return self._elements.__getitem__(i)
+        result = self._elements.__getitem__(i)
+        if isinstance(i, slice):
+            return type(self)(*result) 
+        return result
 
     def __getslice__(self, start, stop):
         r'''Gets slice from `start` to `stop`.
@@ -313,7 +316,7 @@ class Sequence(AbjadObject):
 
         Returns positive integer.
         '''
-        return len(self) / self.degree_of_rotational_symmetry
+        return len(self) // self.degree_of_rotational_symmetry
 
     ### PUBLIC METHODS ###
 
@@ -615,21 +618,21 @@ class Sequence(AbjadObject):
 
         ::
 
-            >>> sequencetools.Sequence(*range(10)).rotate(4)
+            >>> sequencetools.Sequence(*list(range(10))).rotate(4)
             Sequence(6, 7, 8, 9, 0, 1, 2, 3, 4, 5)
 
         Rotates `sequence` to the left:
 
         ::
 
-            >>> sequencetools.Sequence(*range(10)).rotate(-3)
+            >>> sequencetools.Sequence(*list(range(10))).rotate(-3)
             Sequence(3, 4, 5, 6, 7, 8, 9, 0, 1, 2)
 
         Rotates `sequence` neither to the right nor the left:
 
         ::
 
-            >>> sequencetools.Sequence(*range(10)).rotate(0)
+            >>> sequencetools.Sequence(*list(range(10))).rotate(0)
             Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
         Emits new sequence.

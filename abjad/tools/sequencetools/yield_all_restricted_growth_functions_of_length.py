@@ -34,7 +34,7 @@ def yield_all_restricted_growth_functions_of_length(length):
     if not mathtools.is_positive_integer(length):
         raise TypeError
 
-    last_rgf = range(1, length + 1)
+    last_rgf = list(range(1, length + 1))
 
     rgf = length * [1]
     yield tuple(rgf)

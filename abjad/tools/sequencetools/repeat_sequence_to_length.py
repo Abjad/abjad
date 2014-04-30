@@ -9,14 +9,15 @@ def repeat_sequence_to_length(sequence, length, start=0):
 
     ::
 
-        >>> sequencetools.repeat_sequence_to_length(range(5), 11)
+        >>> sequencetools.repeat_sequence_to_length(list(range(5)), 11)
         [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
     Repeats `sequence` to nonnegative integer `length` from `start`:
 
     ::
 
-        >>> sequencetools.repeat_sequence_to_length(range(5), 11, start=2)
+        >>> sequencetools.repeat_sequence_to_length(
+        ...     list(range(5)), 11, start=2)
         [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
 
     Returns newly constructed `sequence` object.

@@ -17,7 +17,10 @@ def replace_elements(
         ::
 
             >>> sequencetools.replace_elements(
-            ... range(16), ([0], 2), (['A', 'B', 'C', 'D'], None))
+            ...     list(range(16)),
+            ...     ([0], 2),
+            ...     (['A', 'B', 'C', 'D'], None),
+            ...     )
             ['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     ..  container:: example
@@ -28,7 +31,10 @@ def replace_elements(
         ::
 
             >>> sequencetools.replace_elements(
-            ... range(16), ([0, 1, 8, 13], None), (['A', 'B', 'C', 'D'], None))
+            ...     list(range(16)),
+            ...     ([0, 1, 8, 13], None),
+            ...     (['A', 'B', 'C', 'D'], None),
+            ...     )
             ['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15]
 
     ..  container:: example
@@ -38,7 +44,10 @@ def replace_elements(
         ::
 
             >>> sequencetools.replace_elements(
-            ... range(16), ([0], 2), (['*'], 1))
+            ...     list(range(16)),
+            ...     ([0], 2),
+            ...     (['*'], 1),
+            ...     )
             ['*', 1, '*', 3, '*', 5, '*', 7, '*', 9, '*', 11, '*', 13, '*', 15]
 
     ..  container:: example
@@ -49,7 +58,10 @@ def replace_elements(
         ::
 
             >>> sequencetools.replace_elements(
-            ... range(16), ([0], 2), (['A', 'B'], 3))
+            ...     list(range(16)),
+            ...     ([0], 2),
+            ...     (['A', 'B'], 3),
+            ...     )
             ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15]
 
     Raises type error when `sequence` is not a list.
@@ -72,11 +84,16 @@ def replace_elements(
     assert isinstance(material_values, list)
     assert isinstance(material_period, (int, type(None)))
 
+    try:
+        maxint = sys.maxint
+    except AttributeError:
+        maxint = sys.maxsize
+
     if index_period is None:
-        index_period = sys.maxint
+        index_period = maxint
 
     if material_period is None:
-        material_period = sys.maxint
+        material_period = maxint
 
     result = []
 
