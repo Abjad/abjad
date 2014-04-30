@@ -289,7 +289,6 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_repository_menu_section())
         sections.append(self._make_go_wranglers_menu_section())
         sections.append(self._make_go_scores_menu_section())
-        sections.append(self._make_session_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
 
@@ -454,18 +453,10 @@ class Menu(ScoreManagerObject):
             result = []
         return result
 
-    def _make_session_menu_section(self):
-        commands = []
-        commands.append(('session - display variables', 'sdv'))
-        self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='session', 
-            )
-
     def _make_system_menu_section(self):
         commands = []
         commands.append(('system - commands', '?'))
+        commands.append(('system - display session variables', 'sdv'))
         commands.append(('system - LilyPond log read only', 'llro'))
         commands.append(('system - quit', 'q'))
         commands.append(('system - shell', '!'))
