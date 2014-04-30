@@ -91,12 +91,12 @@ class Wrangler(Controller):
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'va': self.apply_view,
+            'vc': self.clear_view,
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
             'vmro': self.view_views_module,
-            'V': self.clear_view,
             })
         return result
 
@@ -614,21 +614,11 @@ class Wrangler(Controller):
         manager._make_empty_asset()
         manager.edit()
 
-    def _make_go_wrangler_menu_section(self, menu):
-        commands = []
-        commands.append(('go - clear view', 'V'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go wrangler',
-            )
-
     def _make_main_menu(self, name=None):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_views_menu_section(menu)
-        self._make_go_wrangler_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(

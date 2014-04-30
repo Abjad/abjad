@@ -99,12 +99,12 @@ class ScorePackageWrangler(Wrangler):
             'ssu': self.display_user_scores,
             'u': self.manage_build_file_library,
             'va': self.apply_view,
+            'vc': self.clear_view,
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
             'vmro': self.view_views_module,
-            'V': self.clear_view,
             'y': self.manage_stylesheet_library,
             }
         return result

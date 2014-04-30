@@ -245,6 +245,7 @@ class Controller(ScoreManagerObject):
     def _make_views_menu_section(self, menu):
         commands = []
         commands.append(('views - apply', 'va'))
+        commands.append(('views - clear', 'vc'))
         commands.append(('views - list', 'vls'))
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))
