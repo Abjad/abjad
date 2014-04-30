@@ -1,64 +1,73 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_StylesheetWrangler_rename_stylesheet_01():
+def test_BuildFileWrangler_rename_file_01():
     r'''Works in library.
     '''
 
     path = os.path.join(
-        configuration.abjad_stylesheets_directory_path,
-        'clean-letter-14.ily',
+        score_manager._configuration.example_score_packages_directory_path,
+        'red_example_score',
+        'build',
+        'score.pdf',
         )
     new_path = os.path.join(
-        configuration.abjad_stylesheets_directory_path,
-        'very-clean-letter-14.ily',
+        score_manager._configuration.example_score_packages_directory_path,
+        'red_example_score',
+        'build',
+        'foo-score.pdf',
         )
 
     assert os.path.exists(path)
 
-    input_ = 'y ren clean-letter-14.ily very-clean-letter-14.ily y q'
+    input_ = 'u ren score.pdf~(Red~Example~Score)'
+    input_ += ' foo-score.pdf y q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
-    input_ = 'y ren very-clean-letter-14.ily clean-letter-14.ily y q'
+    input_ = 'u ren foo-score.pdf~(Red~Example~Score)'
+    input_ += ' score.pdf y q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)
 
 
-def test_StylesheetWrangler_rename_stylesheet_02():
-    r'''Works in library.
+def test_BuildFileWrangler_rename_file_02():
+    r'''Works in score package.
     '''
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'stylesheets',
-        'stylesheet.ily',
+        'build',
+        'score.pdf',
         )
     new_path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'stylesheets',
-        'foo-stylesheet.ily',
+        'build',
+        'foo-score.pdf',
         )
 
     assert os.path.exists(path)
 
-    input_ = 'red~example~score y ren stylesheet.ily foo-stylesheet.ily y q'
+    input_ = 'red~example~score u ren score.pdf'
+    input_ += ' foo-score.pdf y q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
-    input_ = 'y ren foo-stylesheet.ily stylesheet.ily y q'
+    input_ = 'red~example~score u ren foo-score.pdf'
+    input_ += ' score.pdf y q'
     score_manager._run(pending_user_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)
