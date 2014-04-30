@@ -78,6 +78,15 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         '''
         return hash(repr(self))
 
+    def __lt__(self, arg):
+        r'''Is true when `arg` is a numbered inversion-equivalent
+        interval-class with a number less than this numbered
+        inversion-equivalent interval-class.
+        '''
+        if isinstance(arg, type(self)):
+            return self.number < arg.number
+        return False
+
     def __neg__(self):
         r'''Negates numbered inversion-equivalent interval-class.
 

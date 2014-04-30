@@ -7,7 +7,8 @@ def suggest_clef_for_named_pitches(pitches):
 
     ::
 
-        >>> staff = Staff(scoretools.make_notes(range(-12, -6), [(1, 4)]))
+        >>> staff = Staff(scoretools.make_notes(
+        ...     list(range(-12, -6)), [(1, 4)]))
         >>> pitchtools.suggest_clef_for_named_pitches(staff)
         Clef(name='bass')
 

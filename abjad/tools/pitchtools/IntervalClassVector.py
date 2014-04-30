@@ -15,15 +15,16 @@ class IntervalClassVector(Vector):
         ...     items=pitch_segment,
         ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
         ...     )
-        >>> for interval, count in numbered_interval_class_vector.items():
+        >>> items = sorted(numbered_interval_class_vector.items())
+        >>> for interval, count in items:
         ...     print(interval, count)
-        ... 
+        ...
+        1 12
         2 12
         3 12
-        5 12
         4 12
+        5 12
         6 6
-        1 12
 
     '''
 

@@ -155,6 +155,18 @@ class NamedIntervalClass(IntervalClass):
         '''
         return self._number
 
+    def __lt__(self, arg):
+        r'''Is true when `arg` is a named interval class with a number greater
+        than that of this named interval.
+        '''
+        from abjad.tools import pitchtools
+        if isinstance(arg, type(self)):
+            if self.number == arg.number:
+                return pitchtools.NamedInterval(self).semitones < \
+                    pitchtools.NamedInterval(arg).semitones
+            return self.number < arg.number
+        return False
+
     def __ne__(self, arg):
         r'''Is true when named interval-class does not equal `arg`. Otherwise
         false.

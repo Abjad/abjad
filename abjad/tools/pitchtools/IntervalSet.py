@@ -63,26 +63,26 @@ class IntervalSet(Set):
             >>> selection = select((staff_1, staff_2))
             >>> intervals = pitchtools.IntervalSet.from_selection(
             ...     selection)
-            >>> for interval in intervals:
+            >>> for interval in sorted(intervals):
             ...     interval
             ...
+            NamedInterval('-M6')
+            NamedInterval('-P5')
+            NamedInterval('-aug4')
+            NamedInterval('-M3')
+            NamedInterval('-m3')
+            NamedInterval('-M2')
+            NamedInterval('+m2')
             NamedInterval('+m3')
             NamedInterval('+M3')
             NamedInterval('+P4')
-            NamedInterval('+M7')
-            NamedInterval('-M6')
-            NamedInterval('+m2')
-            NamedInterval('+aug11')
-            NamedInterval('-P5')
-            NamedInterval('+M13')
-            NamedInterval('+P8')
-            NamedInterval('-M3')
-            NamedInterval('-aug4')
-            NamedInterval('+M9')
-            NamedInterval('+m7')
-            NamedInterval('-M2')
-            NamedInterval('-m3')
             NamedInterval('+P5')
+            NamedInterval('+m7')
+            NamedInterval('+M7')
+            NamedInterval('+P8')
+            NamedInterval('+M9')
+            NamedInterval('+aug11')
+            NamedInterval('+M13')
 
         Returns interval set.
         '''
