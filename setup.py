@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import setuptools
 import os
+import setuptools
+import sys
+
 version_file_path = os.path.join(
     os.path.dirname(__file__),
     'abjad',
@@ -47,6 +49,15 @@ keywords = [
     ]
 keywords = ', '.join(keywords)
 
+install_requires = [
+    'Sphinx >= 1.0.7',
+    'configobj >= 4.7.2',
+    'ply >= 3.4',
+    'pytest >= 2.1',
+    ]
+if sys.version_info[0] == 2:
+    install_requires.append('enum34')
+
 setuptools.setup(
     author=author,
     author_email=author_email,
@@ -58,17 +69,17 @@ setuptools.setup(
             ]
         },
     include_package_data=True,
-    install_requires=[
-        'pytest >= 2.1',
-        'Sphinx >= 1.0.7',
-        'ply >= 3.4',
-        'configobj >= 4.7.2',
-        ],
+    install_requires=install_requires,
     keywords=keywords,
     license='GPL',
     long_description=long_description,
     name='Abjad',
-    packages=setuptools.find_packages(exclude='experimental'),
+    packages=setuptools.find_packages(
+        exclude=(
+            'experimental',
+            'scoremanager',
+            ),
+        ),
     platforms='Any',
     url='http://www.projectabjad.org',
     version=__version__,
