@@ -376,7 +376,6 @@ class Manager(Controller):
 
     # TODO: eventually change prompt=False to prompt=True
     def _remove(self, prompt=False):
-
         if prompt:
             message = '{} will be removed.'
             message = message.format(self._path)
@@ -388,19 +387,29 @@ class Manager(Controller):
                 return
             if not result == 'remove':
                 return
-
+        cleanup_command = None
         if self._is_in_git_repository():
             if self._is_git_unknown():
                 command = 'rm -rf {}'
             else:
-                command = 'git rm --force {}'
+                command = 'git rm --force -r {}'
+                cleanup_command = 'rm -rf {}'
         elif self._is_svn_versioned():
             command = 'svn --force rm {}'
         else:
             command = 'rm -rf {}'
-        command = command.format(self._path)
+        path = self._path
+        command = command.format(path)
+        #print repr(command), 'CMD'
         process = self._io_manager.make_subprocess(command)
-        process.stdout.readline()
+        line = process.stdout.readline()
+        #print repr(line), 'DEBUG'
+        if cleanup_command:
+            cleanup_command = cleanup_command.format(path)
+            #print repr(cleanup_command), 'CLEAN'
+            process = self._io_manager.make_subprocess(command)
+            line = process.stdout.readline()
+            #print repr(line), 'DEBUG2'
         return True
 
     def _rename(self, new_path):
