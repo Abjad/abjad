@@ -211,3 +211,12 @@
         all score packages - view initializer (inro)
         all score packages - view metadata module (inro)
     ... instead.
+
+47. Improved (k > cp) user experience. Change ...
+        Enter maker module to copy> 1
+        New maker module name> RedExampleScoreRhythmMaker.py
+    ... to ...
+        Enter maker module to copy> 1
+        (Name of maker module to copy: RedExampleScoreTemplate.py)
+        New maker module name> RedExampleScoreRhythmMaker.py
+    ... instead.
