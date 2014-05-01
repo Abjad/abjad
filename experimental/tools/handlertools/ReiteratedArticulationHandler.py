@@ -109,16 +109,16 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def articulation_list():
-        def fget(self):
-            return self._articulation_list
-        def fset(self, articulation_list):
-            if isinstance(articulation_list, list):
-                if all(isinstance(x, str) for x in articulation_list):
-                    self._articulation_list = articulation_list
-            elif isinstance(articulation_list, str):
-                self._articulation_list = [articulation_list]
-            else:
-                raise TypeError(articulation_list)
-        return property(**locals())
+    @property
+    def articulation_list(self):
+        return self._articulation_list
+
+    @articulation_list.setter
+    def articulation_list(self, articulation_list):
+        if isinstance(articulation_list, list):
+            if all(isinstance(x, str) for x in articulation_list):
+                self._articulation_list = articulation_list
+        elif isinstance(articulation_list, str):
+            self._articulation_list = [articulation_list]
+        else:
+            raise TypeError(articulation_list)

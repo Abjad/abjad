@@ -51,16 +51,16 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     ###  PUBLIC PROPERTIES ###
 
-    @apply
-    def dynamics():
-        def fget(self):
-            return self._dynamics
-        def fset(self, dynamics):
-            if dynamics is None:
-                self._dynamics = dynamics
-            elif all(
-                indicatortools.Dynamic.is_dynamic_name(x) for x in dynamics):
-                self._dynamics = dynamics
-            else:
-                raise TypeError(dynamics)
-        return property(**locals())
+    @property
+    def dynamics(self):
+        return self._dynamics
+
+    @dynamics.setter
+    def dynamics(self, dynamics):
+        if dynamics is None:
+            self._dynamics = dynamics
+        elif all(
+            indicatortools.Dynamic.is_dynamic_name(x) for x in dynamics):
+            self._dynamics = dynamics
+        else:
+            raise TypeError(dynamics)

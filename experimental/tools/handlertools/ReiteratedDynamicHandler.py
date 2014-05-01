@@ -48,15 +48,15 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def dynamic_name():
-        def fget(self):
-            return self._dynamic_name
-        def fset(self, dynamic_name):
-            if dynamic_name is None:
-                self._dynamic_name = dynamic_name
-            elif indicatortools.Dynamic.is_dynamic_name(dynamic_name):
-                self._dynamic_name = dynamic_name
-            else:
-                raise TypeError(dynamic_name)
-        return property(**locals())
+    @property
+    def dynamic_name(self):
+        return self._dynamic_name
+
+    @dynamic_name.setter
+    def dynamic_name(self, dynamic_name):
+        if dynamic_name is None:
+            self._dynamic_name = dynamic_name
+        elif indicatortools.Dynamic.is_dynamic_name(dynamic_name):
+            self._dynamic_name = dynamic_name
+        else:
+            raise TypeError(dynamic_name)

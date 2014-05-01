@@ -108,13 +108,13 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def articulation_lists():
-        def fget(self):
-            return self._articulation_lists
-        def fset(self, articulation_lists):
-            if all(isinstance(x, (tuple, list)) for x in articulation_lists):
-                self._articulation_lists = articulation_lists
-            else:
-                raise TypeError(articulation_lists)
-        return property(**locals())
+    @property
+    def articulation_lists(self):
+        return self._articulation_lists
+
+    @articulation_lists.setter
+    def articulation_lists(self, articulation_lists):
+        if all(isinstance(x, (tuple, list)) for x in articulation_lists):
+            self._articulation_lists = articulation_lists
+        else:
+            raise TypeError(articulation_lists)

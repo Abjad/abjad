@@ -80,12 +80,12 @@ class TwoStageHairpinHandler(DynamicHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def swell_dynamics():
-        def fget(self):
-            return self._swell_dynamics
-        def fset(self, swell_dynamics):
-            assert isinstance(swell_dynamics, (tuple, list)), repr(
-                swell_dynamics)
-            self._swell_dynamics = swell_dynamics
-        return property(**locals())
+    @property
+    def swell_dynamics(self):
+        return self._swell_dynamics
+
+    @swell_dynamics.setter
+    def swell_dynamics(self, swell_dynamics):
+        assert isinstance(swell_dynamics, (tuple, list)), repr(
+            swell_dynamics)
+        self._swell_dynamics = swell_dynamics

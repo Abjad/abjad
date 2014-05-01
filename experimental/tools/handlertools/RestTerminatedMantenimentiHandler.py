@@ -50,12 +50,12 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def dynamics_talea():
-        def fget(self):
-            return self._dynamics_talea
-        def fset(self, dynamics_talea):
-            assert isinstance(dynamics_talea, (list, tuple)), repr(
-                dynamics_talea)
-            self._dynamics_talea = datastructuretools.CyclicTuple(dynamics_talea)
-        return property(**locals())
+    @property
+    def dynamics_talea(self):
+        return self._dynamics_talea
+
+    @dynamics_talea.setter
+    def dynamics_talea(self, dynamics_talea):
+        assert isinstance(dynamics_talea, (list, tuple)), repr(
+            dynamics_talea)
+        self._dynamics_talea = datastructuretools.CyclicTuple(dynamics_talea)

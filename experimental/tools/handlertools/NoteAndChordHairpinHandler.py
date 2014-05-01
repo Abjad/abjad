@@ -66,15 +66,15 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def hairpin_token():
-        def fget(self):
-            return self._hairpin_token
-        def fset(self, hairpin_token):
-            if hairpin_token is None:
-                self._hairpin_token = hairpin_token
-            elif spannertools.Hairpin._is_hairpin_token(hairpin_token):
-                self._hairpin_token = hairpin_token
-            else:
-                raise TypeError(hairpin_token)
-        return property(**locals())
+    @property
+    def hairpin_token(self):
+        return self._hairpin_token
+
+    @hairpin_token.setter
+    def hairpin_token(self, hairpin_token):
+        if hairpin_token is None:
+            self._hairpin_token = hairpin_token
+        elif spannertools.Hairpin._is_hairpin_token(hairpin_token):
+            self._hairpin_token = hairpin_token
+        else:
+            raise TypeError(hairpin_token)

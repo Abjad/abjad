@@ -18,14 +18,13 @@ class DynamicHandler(Handler):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def minimum_duration():
-        def fget(self):
-            return self._minimum_duration
-        def fset(self, minimum_duration):
-            if minimum_duration is None:
-                self._minimum_duration = minimum_duration
-            else:
-                duration = durationtools.duration_token_to_duration_pair(
-                    minimum_duration)
-                self._minimum_duration = durationtools.Duration(duration)
+    @property
+    def minimum_duration(self):
+        return self._minimum_duration
+
+    @minimum_duration.setter
+    def minimum_duration(self, minimum_duration):
+        if minimum_duration is None:
+            self._minimum_duration = minimum_duration
+        else:
+            self._minimum_duration = durationtools.Duration(minimum_duration)
