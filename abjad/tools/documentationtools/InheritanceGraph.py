@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import importlib
 import inspect
 import types
@@ -197,25 +198,8 @@ class InheritanceGraph(AbjadObject):
         immediate_classes = set([])
         visited_modules = set([])
         assert 0 < len(addresses)
-        try:
-            InstanceType = types.InstanceType
-        except AttributeError:
-            InstanceType = object
         for x in addresses:
-            if isinstance(x, (type, InstanceType)) or \
-                (isinstance(x, tuple) and len(x) == 2):
-                if isinstance(x, type):
-                    current_class = x
-                elif isinstance(x, InstanceType):
-                    current_class = x.__class__
-                else:
-                    module_name, class_name = x
-                    module = importlib.import_module(module_name)
-                    current_class = getattr(module, class_name)
-                all_classes.add(current_class)
-                immediate_classes.add(current_class)
-                address = (current_class.__module__, current_class.__name__)
-            elif isinstance(x, (str, types.ModuleType)):
+            if isinstance(x, (str, types.ModuleType)):
                 if isinstance(x, types.ModuleType):
                     module = x
                 else:
@@ -229,6 +213,18 @@ class InheritanceGraph(AbjadObject):
                         all_classes.update(
                             self._submodule_recurse(y, visited_modules))
                 address = module.__name__
+            else:
+                if isinstance(x, type):
+                    current_class = x
+                elif isinstance(x, tuple) and len(x) == 2:
+                    module_name, class_name = x
+                    module = importlib.import_module(module_name)
+                    current_class = getattr(module, class_name)
+                else:
+                    current_class = x.__class__
+                all_classes.add(current_class)
+                immediate_classes.add(current_class)
+                address = (current_class.__module__, current_class.__name__)
             cached_addresses.append(address)
         return all_classes, immediate_classes, tuple(cached_addresses)
 
