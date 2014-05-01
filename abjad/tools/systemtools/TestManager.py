@@ -120,7 +120,9 @@ class TestManager(object):
             directory_name,
             segment_ly_file_name,
             )
-        return file(segment_ly_path_name, 'r').read()
+        with open(segment_ly_path_name, 'r') as f:
+            string = f.read()
+        return string
 
     @staticmethod
     def test_function_name_to_title_lines(test_function_name):
@@ -222,4 +224,5 @@ class TestManager(object):
         if cache_ly:
             file_name = '{}.ly'.format(test_function_name)
             ly_path_name = os.path.join(parent_directory_name, file_name)
-            file(ly_path_name, 'w').write(format(score))
+            with open(ly_path_name, 'w') as f:
+                f.write(format(score))
