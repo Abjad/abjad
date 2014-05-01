@@ -964,7 +964,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 component._update_later(offsets=True)
             for spanner in self.payload._get_descendants().get_spanners():
                 spanner._components.sort(
-                    lambda x, y: cmp(x._get_parentage().score_index, y._get_parentage().score_index))
+                    key=lambda x: x._get_parentage().score_index
+                    )
             assert inspect_(self.payload).is_well_formed()
         return self
 

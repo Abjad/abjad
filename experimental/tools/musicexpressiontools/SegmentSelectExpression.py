@@ -141,7 +141,10 @@ class SegmentSelectExpression(SelectExpression):
         from experimental.tools import musicexpressiontools
         segments = self.score_specification.segment_specifications[:]
         start_offset = durationtools.Offset(0)
+        print('SEGMENTS', segments)
         expression = musicexpressiontools.StartPositionedPayloadExpression(
-            segments, start_offset=start_offset)
+            payload=segments, 
+            start_offset=start_offset,
+            )
         expression = self._apply_callbacks(expression)
         return expression

@@ -14,7 +14,7 @@ class SegmentSpecificationInventory(AbjadObject, list):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, arg):
-        if isinstance(arg, int):
+        if isinstance(arg, (int, slice)):
             return list.__getitem__(self, arg)
         elif isinstance(arg, str):
             for segment in self:
