@@ -69,7 +69,6 @@ if sys.version_info[0] == 2:
     import wranglers
 else:
     from scoremanager import core
-    from scoremanager import exceptions
     from scoremanager import iotools
     from scoremanager import makers
     from scoremanager import managers
