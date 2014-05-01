@@ -269,7 +269,8 @@ class GeneralizedBeam(Spanner):
                 next_leaf.written_duration.flag_count,
                 )
         flag_count = leaf.written_duration.flag_count
-        if left < flag_count and right < flag_count:
+        if (left is None or left < flag_count) and \
+            (right is None or right < flag_count):
             right = flag_count
         return left, right
 
