@@ -21,7 +21,6 @@ class Wrangler(Controller):
     __slots__ = (
         '_abjad_storehouse_path',
         '_basic_breadcrumb',
-        '_forbidden_directory_entries',
         '_asset_identifier',
         '_main_menu',
         '_manager_class',
@@ -35,7 +34,6 @@ class Wrangler(Controller):
         assert session is not None
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
-        self._forbidden_directory_entries = ()
         self._asset_identifier = None
         self._basic_breadcrumb = None
         self._score_storehouse_path_infix_parts = ()
@@ -429,9 +427,8 @@ class Wrangler(Controller):
         return manager
 
     def _is_valid_directory_entry(self, directory_entry):
-        if directory_entry not in self._forbidden_directory_entries:
-            if directory_entry[0].isalpha():
-                return True
+        if directory_entry[0].isalpha():
+            return True
         return False
 
     def _list(self, public_entries_only=False):

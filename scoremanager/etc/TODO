@@ -189,9 +189,7 @@
 43. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-44. Maybe remove Wrangler._forbidden_directory_entries?
-
-45. Remove duplicates in (g > segment 01):
+44. Remove duplicates in (g > segment 01):
         go - next score (>>)
         go - previous score (<<)
         go - next score (>>)
@@ -199,7 +197,7 @@
         go - previous score (<<)
         go - previous asset (<)
 
-46. Extend 'all score packages' options in Score Manager main menu.
+45. Extend 'all score packages' options in Score Manager main menu.
     Change ...
         all score packages - fix (fix)
     ... to ...
@@ -212,7 +210,7 @@
         all score packages - view metadata module (inro)
     ... instead.
 
-47. Improved (k > cp) user experience. Change ...
+46. Improved (k > cp) user experience. Change ...
         Enter maker module to copy> 1
         New maker module name> RedExampleScoreRhythmMaker.py
     ... to ...
