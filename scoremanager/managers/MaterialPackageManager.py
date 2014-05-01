@@ -678,38 +678,27 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        base_name = os.path.basename(self._path)
-        line = 'current name: {}'.format(base_name)
-        self._io_manager.display(line)
         getter = self._io_manager.make_getter()
-        getter.append_snake_case_package_name('new name')
+        getter.append_snake_case_package_name('enter new package name')
         new_package_name = getter._run()
         if self._should_backtrack():
             return
-        lines = []
-        lines.append('current name: {}'.format(base_name))
-        lines.append('new name:     {}'.format(new_package_name))
-        lines.append('')
-        self._io_manager.display(lines)
-        if not self._io_manager.confirm():
-            return
-        old_directory_path = self._path
-        new_directory_path = old_directory_path.replace(
+        base_name = os.path.basename(self._path)
+        new_directory_path = self._path.replace(
             base_name,
             new_package_name,
             )
-        is_in_git_repository, is_svn_versioned = False, False
-        if self._is_in_git_repository():
-            is_in_git_repository = True
-            command = 'git mv {} {}'
-        elif self._is_svn_versioned():
-            is_svn_versioned = True
-            command = 'svn mv {} {}'
-        else:
-            command = 'mv {} {}'
-        command = command.format(self._path, new_directory_path)
-        self._io_manager.spawn_subprocess(command)
-        self._path = new_directory_path
+        messages = []
+        messages.append('')
+        messages.append('will change ...')
+        messages.append('')
+        messages.append(' FROM: {}'.format(self._path))
+        messages.append('   TO: {}'.format(new_directory_path))
+        messages.append('')
+        self._io_manager.display(messages)
+        if not self._io_manager.confirm():
+            return
+        self._rename(new_directory_path)
         for directory_entry in os.listdir(new_directory_path):
             if directory_entry.endswith('.py'):
                 file_path = os.path.join(new_directory_path, directory_entry)
@@ -720,25 +709,6 @@ class MaterialPackageManager(PackageManager):
                     old_package_name,
                     new_package_name,
                     )
-        commit_message = 'Renamed material package.\n\n'
-        commit_message += 'OLD: {!r}.\n\n'.format(old_package_name)
-        commit_message += 'NEW: {!r}.'.format(new_package_name)
-        if is_in_git_repository:
-            command = 'git add -A {}'.format(new_directory_path)
-            self._io_manager.spawn_subprocess(command)
-            command = 'git commit -m "{}" {} {}'
-            command = command.format(
-                commit_message,
-                new_directory_path,
-                old_directory_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        elif is_svn_versioned:
-            parent_directory_path = os.path.dirname(self._path)
-            command = 'svn commit -m "{}" {}'
-            command = command.format(commit_message, parent_directory_path)
-            self._io_manager.spawn_subprocess(command)
-        self._session._is_backtracking_locally = True
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles user input values default status.
