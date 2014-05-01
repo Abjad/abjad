@@ -7,25 +7,25 @@ class Statement(object):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def code():
-        def fget(self):
-            return self._code
-        def fset(self, arg):
-            if isinstance(arg, basestring):
-                self._code = [arg]
-            elif isinstance(arg, (list, tuple)):
-                self._code = arg
-            else:
-                raise TypeError('must be a list or a tuple of executable strings: "%s".' % arg)
-        return property(**locals())
+    @property
+    def code(self):
+        return self._code
 
-    @apply
-    def text():
-        def fget(self):
-            return self._text
-        def fset(self, arg):
-            if not isinstance(arg, basestring):
-                raise TypeError('must be string: "%s".' % arg)
-            self._text = arg
-        return property(**locals())
+    @code.setter
+    def code(self, arg):
+        if isinstance(arg, basestring):
+            self._code = [arg]
+        elif isinstance(arg, (list, tuple)):
+            self._code = arg
+        else:
+            raise TypeError('must be a list or a tuple of executable strings: "%s".' % arg)
+
+    @property
+    def text(self):
+        return self._text
+
+    @text.setter
+    def text(self, arg):
+        if not isinstance(arg, basestring):
+            raise TypeError('must be string: "%s".' % arg)
+        self._text = arg
