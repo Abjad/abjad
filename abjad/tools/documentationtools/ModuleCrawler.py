@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import importlib
 import os
 from abjad.tools.abctools import AbjadObject
 
@@ -93,14 +94,15 @@ class ModuleCrawler(AbjadObject):
             for file in files:
                 path = os.path.join(current_root, file).replace('.py', '')
                 parts = path.split(os.path.sep)
-                object_name = parts[-1]
+                #object_name = parts[-1]
                 module_name = []
                 for part in reversed(parts):
                     module_name.append(part)
                     if part == self.root_package_name:
                         break
                 module_name = '.'.join(reversed(module_name))
-                module = __import__(module_name, fromlist=['*'])
+                module = importlib.import_module(module_name)
+                #module = __import__(module_name, fromlist=['*'])
                 yield module
 
     ### PUBLIC PROPERTIES ###
