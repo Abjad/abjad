@@ -15,7 +15,7 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         ... Let's print something:
         ...
         ... <abjad>
-        ... print "hello, world!"
+        ... print("hello, world!")
         ... </abjad>
         ...
         ... This is just a simple Python string:
@@ -55,7 +55,7 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         "Let's print something:"
         ''
         '<pre class="abjad">'
-        '>>> print "hello, world!"'
+        '>>> print("hello, world!")'
         'hello, world!'
         '</pre>'
         ''

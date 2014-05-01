@@ -11,7 +11,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         >>> document = r'''Let's print something:
         ...
         ... <abjad>
-        ... print "hello, world!"
+        ... print("hello, world!")
         ... </abjad>
         ...
         ... And let's show some music too:
@@ -38,7 +38,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         ''
         '::'
         ''
-        '\t>>> print "hello, world!"'
+        '\t>>> print("hello, world!")'
         '\thello, world!'
         ''
         "And let's show some music too:"

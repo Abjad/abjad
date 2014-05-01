@@ -35,7 +35,7 @@ class AssetOutputProxy(OutputProxy):
 
         Returns string.
         '''
-        md5 = hashlib.md5(self.payload).hexdigest()
+        md5 = hashlib.md5(self.payload.encode()).hexdigest()
         return '-'.join((self.file_name_prefix, md5))
 
     ### PUBLIC METHODS ###

@@ -16,7 +16,7 @@ class CodeBlock(AbjadObject):
 
     ::
 
-        >>> lines = ['message = "hello, world!"', 'print message']
+        >>> lines = ['message = "hello, world!"', 'print(message)']
         >>> code_block = newabjadbooktools.CodeBlock(lines)
 
     ::
@@ -28,7 +28,7 @@ class CodeBlock(AbjadObject):
 
         >>> output_proxies = code_block.execute(console)
         >>> print(output_proxies)
-        [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print message', 'hello, world!'))]
+        [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print(message)', 'hello, world!'))]
 
     Multiple code block interpretations can be chained together by using a
     common InteractiveConsole instance:
@@ -37,7 +37,7 @@ class CodeBlock(AbjadObject):
 
         >>> lines_one = ['message = "hello, "']
         >>> lines_two = ['message += "world!"']
-        >>> lines_three = ['print message']
+        >>> lines_three = ['print(message)']
         >>> code_block_one = newabjadbooktools.CodeBlock(lines_one)
         >>> code_block_two = newabjadbooktools.CodeBlock(lines_two)
         >>> code_block_three = newabjadbooktools.CodeBlock(lines_three)
@@ -49,7 +49,7 @@ class CodeBlock(AbjadObject):
         >>> code_block_two.execute(console)
         [CodeOutputProxy(('>>> message += "world!"',))]
         >>> code_block_three.execute(console)
-        [CodeOutputProxy(('>>> print message', 'hello, world!'))]
+        [CodeOutputProxy(('>>> print(message)', 'hello, world!'))]
 
     Code blocks intercept certain Abjad function calls and pull the
     output_proxies out as output proxies, to be dealt with by other
@@ -68,7 +68,7 @@ class CodeBlock(AbjadObject):
         >>> lines = [
         ...     'staff = Staff(r"\clef bass c4 d4 e4 f4")',
         ...     'show(staff)',
-        ...     'print len(staff)'
+        ...     'print(len(staff))'
         ...     ]
         >>> code_block = newabjadbooktools.CodeBlock(lines)
         >>> output_proxies = code_block.execute(console)
@@ -77,7 +77,7 @@ class CodeBlock(AbjadObject):
         ...
         CodeOutputProxy(('>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")', '>>> show(staff)'))
         LilyPondOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\header {}\n\n\\layout {}\n\n\\paper {}\n\n\\score {\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc4\n\t\td4\n\t\te4\n\t\tf4\n\t}\n}')
-        CodeOutputProxy(('>>> print len(staff)', '4'))
+        CodeOutputProxy(('>>> print(len(staff))', '4'))
 
     Code blocks also support a number of optional keyword arguments that
     affect what commands are executed in the code block's console, and what
@@ -94,7 +94,7 @@ class CodeBlock(AbjadObject):
         >>> lines = [
         ...     'note = Note("dqf16..")',
         ...     'play(note)',
-        ...     'print len(staff)'
+        ...     'print(len(staff))'
         ...     ]
         >>> code_block = newabjadbooktools.CodeBlock(
         ...     lines,

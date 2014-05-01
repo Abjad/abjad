@@ -14,7 +14,7 @@ class TextualDocumentHandler(DocumentHandler):
         >>> document = '''Let's print something:
         ...
         ... <abjad>
-        ... print "hello, world!"
+        ... print("hello, world!")
         ... </abjad>
         ...
         ... And let's show some music too:
@@ -39,7 +39,7 @@ class TextualDocumentHandler(DocumentHandler):
         >>> for location, code_block in source_to_code_block_mapping.items():
         ...     print(location, code_block.displayed_lines)
         ... 
-        (2, 4) ('print "hello, world!"',)
+        (2, 4) ('print("hello, world!")',)
         (8, 11) ('note = Note("c\'4"))', 'show(Note("c\'4"))')
 
     The textual document handler also determines what options, if any, were
@@ -139,8 +139,12 @@ class TextualDocumentHandler(DocumentHandler):
         ::
 
             >>> source_line = '<abjad>[strip_prompt=true, hide=false]'
-            >>> document_handler.extract_code_block_options(source_line)
-            {'hide': False, 'strip_prompt': True}
+            >>> options = document_handler.extract_code_block_options(
+            ...     source_line)
+            >>> for key, value in sorted(options.items()):
+            ...     key, value
+            ('hide', False)
+            ('strip_prompt', True)
 
         Returns dictionary.
         '''
@@ -169,7 +173,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> document = '''Let's print something:
             ...
             ... <abjad>
-            ... print "hello, world!"
+            ... print("hello, world!")
             ... </abjad>
             ...
             ... This is just a simple Python string:
@@ -214,7 +218,7 @@ class TextualDocumentHandler(DocumentHandler):
             ...     print(format(code_block))
             ... 
             newabjadbooktools.CodeBlock(
-                ('print "hello, world!"',),
+                ('print("hello, world!")',),
                 allow_exceptions=False,
                 hide=False,
                 strip_prompt=False,
