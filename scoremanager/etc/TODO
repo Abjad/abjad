@@ -218,3 +218,14 @@
         (Name of maker module to copy: RedExampleScoreTemplate.py)
         New maker module name> RedExampleScoreRhythmMaker.py
     ... instead.
+
+47. Improve (vls) user experience. Change ...
+        2 views found:
+        cary & sekka
+        examples
+    ... to ...
+        2 views found:
+
+        1. cary & sekka
+        2. examples
+    ... instead.
