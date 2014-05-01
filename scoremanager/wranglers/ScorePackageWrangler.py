@@ -286,22 +286,24 @@ class ScorePackageWrangler(Wrangler):
         return menu
 
     def _make_score_selection_menu(self):
-        if self._session.rewrite_cache:
-            self._io_manager.write_cache(prompt=False)
-            self._session._rewrite_cache = False
-        menu_entries = self._io_manager._read_cache()
-        if (not menu_entries or
-            (self._session._scores_to_display == 'example' and
-            not menu_entries[0][0] == 'Blue Example Score (2013)')):
-            self._io_manager.write_cache(prompt=False)
-            menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )
-        menu.make_asset_section(
-            menu_entries=menu_entries,
-            )
+        if self._session.rewrite_cache:
+            self.write_cache(prompt=False)
+            self._session._rewrite_cache = False
+        menu_entries = self._io_manager._read_cache()
+        #print repr(menu_entries), 'ENTRIES'
+        if (not menu_entries or
+            (self._session._scores_to_display == 'example' and
+            not menu_entries[0][0] == 'Blue Example Score (2013)')):
+            self.write_cache(prompt=False)
+            menu_entries = self._io_manager._read_cache()
+        if menu_entries:
+            menu.make_asset_section(
+                menu_entries=menu_entries,
+                )
         return menu
 
     def _make_scores_menu_section(self, menu):
@@ -330,6 +332,17 @@ class ScorePackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
+    def apply_view(self):
+        r'''Applies view.
+
+        Caches main menu.
+        
+        Returns none.
+        '''
+        superclass = super(ScorePackageWrangler, self)
+        superclass.apply_view()
+        self.write_cache(prompt=False)
+
     def make_package(self):
         r'''Makes score package.
 
@@ -341,7 +354,7 @@ class ScorePackageWrangler(Wrangler):
         if not path:
             return
         self._make_asset(path)
-        self._io_manager.write_cache(prompt=False)
+        self.write_cache(prompt=False)
 
     def manage_score(self, path):
         r'''Manages score.
