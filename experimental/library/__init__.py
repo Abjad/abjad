@@ -1,10 +1,9 @@
-from dynamics import *
-from pitch import *
-from rhythm import *
-from tempos import *
+from __future__ import absolute_import
+from experimental.library.dynamics import *
+from experimental.library.pitch import *
+from experimental.library.rhythm import *
+from experimental.library.tempos import *
 __all__ = []
-
-
 __all__.extend(dynamics.__all__)
 __all__.extend(pitch.__all__)
 __all__.extend(rhythm.__all__)

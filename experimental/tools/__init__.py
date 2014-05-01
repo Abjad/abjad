@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
 from abjad import *
 
 
-import constrainttools
-import handlertools
-import interpolationtools
-import musicexpressiontools
-import newabjadbooktools
-import segmentmakertools
-import selectortools
+systemtools.ImportManager.import_structured_package(
+    __path__[0],
+    globals(),
+    delete_systemtools=False,
+    )

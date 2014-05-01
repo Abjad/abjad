@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
 from abjad import *
 
 
-import library
-from tools import constrainttools
-from tools import handlertools
-from tools import interpolationtools
-from tools import musicexpressiontools
-from tools import newabjadbooktools
-from tools import segmentmakertools
-from tools import selectortools
+from experimental import library
+from experimental.tools import constrainttools
+from experimental.tools import handlertools
+from experimental.tools import interpolationtools
+from experimental.tools import musicexpressiontools
+from experimental.tools import newabjadbooktools
+from experimental.tools import segmentmakertools
+from experimental.tools import selectortools
