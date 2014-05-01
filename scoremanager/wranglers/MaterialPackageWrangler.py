@@ -160,9 +160,10 @@ class MaterialPackageWrangler(Wrangler):
             )
         if not entries:
             return
-        menu.make_asset_section(
+        section = menu.make_asset_section(
             menu_entries=entries,
             )
+        menu._asset_section = section
 
     def _make_main_menu(self, name='material package wrangler'):
         superclass = super(MaterialPackageWrangler, self)
@@ -216,7 +217,7 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._copy_asset()
 
     def make_package(self):
         r'''Makes material package.
