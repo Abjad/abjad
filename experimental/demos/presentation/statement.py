@@ -1,3 +1,5 @@
+import sys
+
 
 class Statement(object):
 
@@ -13,7 +15,11 @@ class Statement(object):
 
     @code.setter
     def code(self, arg):
-        if isinstance(arg, basestring):
+        if sys.version_info[0] == 2:
+            prototype = basestring
+        else:
+            prototype = str
+        if isinstance(arg, prototype):
             self._code = [arg]
         elif isinstance(arg, (list, tuple)):
             self._code = arg
@@ -26,6 +32,10 @@ class Statement(object):
 
     @text.setter
     def text(self, arg):
-        if not isinstance(arg, basestring):
+        if sys.version_info[0] == 2:
+            prototype = basestring
+        else:
+            prototype = str
+        if not isinstance(arg, prototype):
             raise TypeError('must be string: "%s".' % arg)
         self._text = arg
