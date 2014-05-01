@@ -2,4 +2,6 @@
 import collections
 
 
-metadata = collections.OrderedDict([])
+metadata = collections.OrderedDict([
+    ('view_name', None),
+    ])
