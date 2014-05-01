@@ -201,7 +201,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     return ()
             elif incise_specifier.incise_output:
                 if 0 < middle:
-                    return (-abs(middle), )
+                    return (-abs(middle),)
                 else:
                     return ()
             else:
@@ -311,7 +311,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 overhang=False,
                 )[0]
         numeric_map_part = prefix + middle + suffix
-        return numeric_map_part
+        return [durationtools.Duration(x) for x in numeric_map_part]
 
     def _make_output_incised_numeric_map(
         self,

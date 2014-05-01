@@ -55,7 +55,7 @@ class LilyPondNameManager(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_attribute_pairs(self):
-        return tuple(vars(self).items())
+        return tuple(sorted(vars(self).items()))
 
     def _get_skeleton_strings(self):
         result = []
