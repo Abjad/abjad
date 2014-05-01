@@ -33,20 +33,6 @@ class TypedList(TypedCollection):
 
     ::
 
-        >>> print(format(new(object_collection, keep_sorted=True)))
-        datastructuretools.TypedList(
-            [
-                False,
-                3.14159,
-                23,
-                'foo',
-                (1, 2, 3),
-                ],
-            keep_sorted=True,
-            )
-
-    ::
-
         >>> pitch_collection = datastructuretools.TypedList(
         ...     item_class=NamedPitch)
         >>> pitch_collection.append(0)

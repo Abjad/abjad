@@ -54,7 +54,7 @@ class CyclicTuple(AbjadObject, tuple):
 
         Returns item.
         '''
-        if type(i) == slice:
+        if isinstance(i, slice):
             return self.__getslice__(i.start, i.stop)
         if not self:
             raise IndexError
@@ -89,12 +89,16 @@ class CyclicTuple(AbjadObject, tuple):
 
         Returns tuple.
         '''
-        if 1000000 < stop_index:
+        if stop_index is not None and 1000000 < stop_index:
             stop_index = len(self)
         result = []
         if start_index is None:
             start_index = 0
-        result = [self[n] for n in range(start_index, stop_index)]
+        if stop_index is None:
+            indices = range(start_index, len(self))
+        else:
+            indices = range(start_index, stop_index)
+        result = [self[n] for n in indices]
         return tuple(result)
 
     def __hash__(self):
