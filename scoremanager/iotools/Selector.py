@@ -294,7 +294,7 @@ class Selector(ScoreManagerObject):
             )
         return selector
 
-    def make_material_package_selector(self, output_material_class_name=''):
+    def make_package_selector(self, output_material_class_name=''):
         r'''Makes material package selector.
 
         Returns selector.

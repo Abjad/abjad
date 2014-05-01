@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler__make_material_package_01():
 
     assert not os.path.exists(path)
     try:
-        wrangler._make_material_package(path)
+        wrangler._make_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -54,7 +54,7 @@ def test_MaterialPackageWrangler__make_material_package_02():
 
     assert not os.path.exists(path)
     try:
-        wrangler._make_material_package(path)
+        wrangler._make_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager

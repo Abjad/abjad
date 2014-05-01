@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScorePackageWrangler_rename_score_package_01():
+def test_ScorePackageWrangler_rename_package_01():
     r'''Creates score package. Renames score package.
     '''
 

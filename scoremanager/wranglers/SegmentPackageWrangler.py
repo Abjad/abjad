@@ -45,11 +45,12 @@ class SegmentPackageWrangler(Wrangler):
         result.update({
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
-            'cp': self.copy_segment_package,
+            'cp': self.copy_package,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
             'lyi': self.interpret_current_lilypond_files,
             'mmi': self.interpret_make_modules,
+            'new': self.make_package,
             'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,
             })
@@ -146,7 +147,7 @@ class SegmentPackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def copy_segment_package(self):
+    def copy_package(self):
         r'''Copies segment package.
 
         Returns none.
@@ -220,6 +221,13 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
+    def make_package(self):
+        r'''Makes segment package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
     def remove_initializer(self):
         r'''Removes initializer module.
 
@@ -227,14 +235,14 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._current_package_manager.remove_initializer()
 
-    def remove_segment_packages(self):
+    def remove_packages(self):
         r'''Removes one or more segment packages.
         
         Returns none.
         '''
         self._remove_assets()
 
-    def rename_segment_package(self):
+    def rename_package(self):
         r'''Renames segment package.
 
         Returns none.

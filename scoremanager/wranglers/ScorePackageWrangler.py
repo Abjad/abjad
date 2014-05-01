@@ -71,7 +71,7 @@ class ScorePackageWrangler(Wrangler):
     @property
     def _user_input_to_action(self):
         result = {
-            'cp': self.copy_score,
+            'cp': self.copy_package,
             'cro': self.view_cache,
             'cw': self.write_cache,
             'd': self.manage_distribution_artifact_library,
@@ -82,13 +82,13 @@ class ScorePackageWrangler(Wrangler):
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
-            'new': self.make_score_package,
+            'new': self.make_package,
             'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename_score_package,
-            'rm': self.remove_score_packages,
+            'ren': self.rename_package,
+            'rm': self.remove_packages,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
@@ -330,7 +330,7 @@ class ScorePackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_score_package(self):
+    def make_package(self):
         r'''Makes score package.
 
         Returns none.
@@ -353,14 +353,14 @@ class ScorePackageWrangler(Wrangler):
         manager.fix(prompt=True)
         manager._run()
 
-    def remove_score_packages(self):
+    def remove_packages(self):
         r'''Removes one or more score packages.
         
         Returns none.
         '''
         self._remove_assets()
 
-    def rename_score_package(self):
+    def rename_package(self):
         r'''Renames score package.
 
         Returns none.
@@ -369,7 +369,7 @@ class ScorePackageWrangler(Wrangler):
 
     ### MIGRATED OVER ###
 
-    def copy_score(self):
+    def copy_package(self):
         r'''Copies score package.
 
         Returns none.
