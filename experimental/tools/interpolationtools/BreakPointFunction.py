@@ -118,7 +118,9 @@ class BreakPointFunction(AbjadObject):
 
         Emit new `BreakPointFunction`.
         '''
-        return self._operate(expr, operator.div)
+        return self._operate(expr, operator.truediv)
+
+    __truediv__ = __div__
 
     def __getitem__(self, item):
         r'''Aliases BreakPointFunction.get_y_at_x().

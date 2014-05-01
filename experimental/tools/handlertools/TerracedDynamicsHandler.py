@@ -24,7 +24,8 @@ class TerracedDynamicsHandler(DynamicHandler):
         for i, note_or_chord in enumerate(
             iterate(expr).by_class((scoretools.Note, scoretools.Chord))):
             dynamic_name = dynamics[offset + i]
-            if self.minimum_duration <= note_or_chord._get_duration():
+            if self.minimum_duration is None or \
+                self.minimum_duration <= note_or_chord._get_duration():
                 #indicatortools.Dynamic(dynamic_name)(note_or_chord)
                 command = indicatortools.LilyPondCommand(dynamic_name, 'right')
                 attach(command, note_or_chord)
