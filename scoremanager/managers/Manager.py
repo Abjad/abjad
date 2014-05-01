@@ -400,16 +400,12 @@ class Manager(Controller):
             command = 'rm -rf {}'
         path = self._path
         command = command.format(path)
-        #print repr(command), 'CMD'
         process = self._io_manager.make_subprocess(command)
         line = process.stdout.readline()
-        #print repr(line), 'DEBUG'
         if cleanup_command:
             cleanup_command = cleanup_command.format(path)
-            #print repr(cleanup_command), 'CLEAN'
-            process = self._io_manager.make_subprocess(command)
+            process = self._io_manager.make_subprocess(cleanup_command)
             line = process.stdout.readline()
-            #print repr(line), 'DEBUG2'
         return True
 
     def _rename(self, new_path):
