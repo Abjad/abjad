@@ -50,10 +50,10 @@ class MakerModuleWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'cp': self.copy_maker_module,
-            'new': self.make_maker_module,
-            'ren': self.rename_maker_module,
-            'rm': self.remove_maker_modules,
+            'cp': self.copy_module,
+            'new': self.make_module,
+            'ren': self.rename_module,
+            'rm': self.remove_modules,
             })
         return result
 
@@ -118,10 +118,10 @@ class MakerModuleWrangler(Wrangler):
     def _make_main_menu(self, name='make module wrangler'):
         superclass = super(MakerModuleWrangler, self)
         menu = superclass._make_main_menu(name=name)
-        self._make_maker_modules_menu_section(menu)
+        self._make_modules_menu_section(menu)
         return menu
 
-    def _make_maker_modules_menu_section(self, menu):
+    def _make_modules_menu_section(self, menu):
         commands = []
         commands.append(('maker modules - copy', 'cp'))
         commands.append(('maker modules - new', 'new'))
@@ -134,14 +134,14 @@ class MakerModuleWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def copy_maker_module(self):
+    def copy_module(self):
         r'''Copies maker module.
 
         Returns none.
         '''
         self._copy_asset(extension='.py', force_lowercase=False)
 
-    def make_maker_module(self):
+    def make_module(self):
         r'''Makes maker module.
 
         Returns none.
@@ -152,14 +152,14 @@ class MakerModuleWrangler(Wrangler):
             prompt_string='maker name', 
             )
 
-    def remove_maker_modules(self):
+    def remove_modules(self):
         r'''Removes one or more maker modules.
 
         Returns none.
         '''
         self._remove_assets()
 
-    def rename_maker_module(self):
+    def rename_module(self):
         r'''Renames make module.
 
         Returns none.
