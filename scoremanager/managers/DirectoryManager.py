@@ -275,7 +275,12 @@ class DirectoryManager(Manager):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def rename(self):
+    def rename(
+        self,
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
         r'''Renames directory.
 
         Returns none.

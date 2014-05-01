@@ -668,7 +668,12 @@ class MaterialPackageManager(PackageManager):
         self._output_module_manager._remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
-    def rename(self):
+    def rename(
+        self,
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
         r'''Renames material package.
 
         Returns none.

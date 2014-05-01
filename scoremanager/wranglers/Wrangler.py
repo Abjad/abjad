@@ -738,7 +738,12 @@ class Wrangler(Controller):
             manager = self._initialize_manager(path)
             manager._remove()
 
-    def _rename_asset(self):
+    def _rename_asset(
+        self,
+        extension=None,
+        file_name_callback=None, 
+        force_lowercase=True,
+        ):
         path = self._get_visible_asset_path(infinitive_phrase='to rename')
         if not path:
             return
@@ -750,7 +755,11 @@ class Wrangler(Controller):
             path,
             asset_identifier=self._asset_identifier,
             )
-        manager.rename()
+        manager.rename(
+            extension=extension,
+            file_name_callback=file_name_callback,
+            force_lowercase=force_lowercase,
+            )
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools

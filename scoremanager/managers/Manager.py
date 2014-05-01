@@ -588,19 +588,30 @@ class Manager(Controller):
         self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def copy(self):
+    def copy(
+        self, 
+        extension=None, 
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
         r'''Copies asset.
 
         Returns none.
         '''
         getter = self._initialize_file_name_getter()
-        result = getter._run()
+        name = getter._run()
         if self._should_backtrack():
             return
-        new_asset_name = \
-            self._space_delimited_lowercase_name_to_asset_name(result)
+        name = stringtools.strip_diacritics(name)
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
+        if extension and not name.endswith(extension):
+            name = name + extension
         parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, new_asset_name)
+        new_path = os.path.join(parent_directory_path, name)
         message = 'new path will be {}'
         message = message.format(new_path)
         self._io_manager.display(message)
@@ -646,17 +657,33 @@ class Manager(Controller):
         self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
-    def rename(self):
+    def rename(
+        self, 
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
         r'''Renames asset.
 
         Returns none.
         '''
-        getter = self._initialize_file_name_getter()
-        result = getter._run()
+        #getter = self._initialize_file_name_getter()
+        getter = self._io_manager.make_getter()
+        string = 'existing asset name'
+        getter.append_string(string)
+        name = getter._run()
         if self._should_backtrack():
             return
+        name = stringtools.strip_diacritics(name)
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
+        if extension and not name.endswith(extension):
+            name = name + extension
         parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, result)
+        new_path = os.path.join(parent_directory_path, name)
         messages = []
         messages.append('')
         messages.append('Will rename ...')

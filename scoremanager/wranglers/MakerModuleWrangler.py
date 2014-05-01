@@ -164,4 +164,7 @@ class MakerModuleWrangler(Wrangler):
 
         Returns none.
         '''
-        self._rename_asset()
+        self._rename_asset(
+            extension='.py', 
+            force_lowercase=False,
+            )
