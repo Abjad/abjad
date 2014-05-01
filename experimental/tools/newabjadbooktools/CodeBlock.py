@@ -1,5 +1,8 @@
 # -*- encoding: utf-8 -*-
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import copy
 import contextlib
 import random
@@ -202,7 +205,7 @@ class CodeBlock(AbjadObject):
 
             result += line + '\n'
             first, sep, rest = line.partition('(')
-            with contextlib.closing(StringIO.StringIO()) as stream:
+            with contextlib.closing(StringIO()) as stream:
                 with systemtools.RedirectedStreams(stream, stream):
 
                     output_method = first.strip()
@@ -253,7 +256,7 @@ class CodeBlock(AbjadObject):
                     result += '... '
 
         # Simulate a final carriage return to break any incomplete indents
-        with contextlib.closing(StringIO.StringIO()) as stream:
+        with contextlib.closing(StringIO()) as stream:
             with systemtools.RedirectedStreams(stream, stream):
                 console.push('')
                 output = stream.getvalue()
