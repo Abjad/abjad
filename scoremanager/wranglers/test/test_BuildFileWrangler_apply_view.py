@@ -7,15 +7,15 @@ score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
 def test_BuildFileWrangler_apply_view_01():
-    r'''Applies view to library.
+    r'''Works in library.
     
     Makes sure only select build files are visible.
     '''
     
     input_ = 'u vnew _test rm all'
-    input_ += ' add segment-01.ly'
-    input_ += ' add segment-02.ly'
-    input_ += ' add segment-03.ly done default'
+    input_ += ' add segment-01.ly~(Red~Example~Score)'
+    input_ += ' add segment-02.ly~(Red~Example~Score)'
+    input_ += ' add segment-03.ly~(Red~Example~Score) done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)
     applied_view = score_manager._transcript[-8]
@@ -37,7 +37,7 @@ def test_BuildFileWrangler_apply_view_01():
 
 
 def test_BuildFileWrangler_apply_view_02():
-    r'''Applies view to score package build directory.
+    r'''Works in score package build directory.
     
     Makes sure only select build file is visible.
 
