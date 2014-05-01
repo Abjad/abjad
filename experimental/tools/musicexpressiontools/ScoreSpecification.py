@@ -111,7 +111,12 @@ class ScoreSpecification(Specification):
         if result in (-1, 1):
             return result
         else:
-            return cmp(x._lexical_rank, y._lexical_rank)
+            if x._lexical_rank == y._lexical_rank:
+                return 0
+            elif x._lexical_rank < y._lexical_rank:
+                return -1
+            else:
+                return 1
 
     def _find_first_unused_segment_number(self):
         candidate_segment_number = 1
@@ -263,7 +268,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> for timespan_inventory in \
-            ...     score_specification.region_expressions_by_attribute.itervalues():
+            ...     score_specification.region_expressions_by_attribute.values():
             ...     if timespan_inventory:
             ...         print(format(timespan_inventory))
             timespantools.TimespanInventory(
@@ -617,9 +622,9 @@ class ScoreSpecification(Specification):
         ::
 
             >>> for voice_proxy in \
-            ...     score_specification.voice_data_structures_by_voice.itervalues():
+            ...     score_specification.voice_data_structures_by_voice.values():
             ...     for timespan_inventory in \
-            ...         voice_proxy.payload_expressions_by_attribute.itervalues():
+            ...         voice_proxy.payload_expressions_by_attribute.values():
             ...         if timespan_inventory:
             ...             print(format(timespan_inventory))
             timespantools.TimespanInventory(

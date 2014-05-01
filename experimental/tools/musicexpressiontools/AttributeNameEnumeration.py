@@ -14,7 +14,7 @@ class AttributeNameEnumeration(collections.OrderedDict):
 
     ::
 
-        >>> for key, value in attributes.iteritems(): key, value
+        >>> for key, value in attributes.items(): key, value
         ...
         ('articulations', 0)
         ('divisions', 1)

@@ -208,7 +208,7 @@ class ConcreteInterpreter(Interpreter):
         assert mathtools.weight(sequence) == mathtools.weight(weights)
         start_offsets = \
             mathtools.cumulative_sums([abs(x) for x in sequence])[:-1]
-        token = zip(start_offsets, sequence)
+        token = list(zip(start_offsets, sequence))
         result = []
         for interval_start, interval_stop in \
             mathtools.cumulative_sums_pairwise(weights):

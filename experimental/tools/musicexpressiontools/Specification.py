@@ -208,7 +208,11 @@ class Specification(AbjadObject):
         '''
         x_depth = self.context_name_to_depth(x)
         y_depth = self.context_name_to_depth(y)
-        return cmp(x_depth, y_depth)
+        if x_depth == y_depth:
+            return 0
+        elif x_depth < y_depth:
+            return -1
+        return 1
 
     def context_name_to_depth(self, context_name):
         r'''Context name to context depth.

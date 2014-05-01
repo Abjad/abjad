@@ -201,7 +201,7 @@ class TextualDocumentHandler(DocumentHandler):
 
         ::
 
-            >>> for location in source_to_code_block_mapping.iterkeys():
+            >>> for location in source_to_code_block_mapping.keys():
             ...     print(location)
             ... 
             (2, 4)
@@ -210,7 +210,7 @@ class TextualDocumentHandler(DocumentHandler):
 
         ::
 
-            >>> for code_block in source_to_code_block_mapping.itervalues():
+            >>> for code_block in source_to_code_block_mapping.values():
             ...     print(format(code_block))
             ... 
             newabjadbooktools.CodeBlock(
