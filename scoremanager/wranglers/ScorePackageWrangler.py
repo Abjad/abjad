@@ -436,17 +436,21 @@ class ScorePackageWrangler(Wrangler):
 
         Returns none.
         '''
-        from scoremanager import managers
         directories = self._list_all_directories_with_metadata_modules()
+        messages = []
         for directory in directories:
-            manager = managers.PackageManager(
-                path=directory,
-                session=self._session,
-                )
+            path = os.path.join(directory, '__metadata__.py')
+            message = 'rewriting {} ...'.format(path)
+            messages.append(message)
+            manager = self._io_manager.make_package_manager(directory)
             manager.rewrite_metadata_module(prompt=False)
-        message = '{} metadata modules found.'
+        messages.append('')
+        message = '{} metadata modules rewritten.'
         message = message.format(len(directories))
-        self._io_manager.proceed(message, prompt=prompt)
+        messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        self._session._hide_next_redraw = True
 
     def view_cache(self):
         r'''Views cache.
