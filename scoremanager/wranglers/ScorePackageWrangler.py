@@ -203,24 +203,16 @@ class ScorePackageWrangler(Wrangler):
     def _list_visible_asset_paths(
         self,
         abjad_library=True,
-        user_library=True,
         example_score_packages=True,
+        user_library=True,
         user_score_packages=True,
         ):
-        visible_paths = []
-        paths = self._list_asset_paths(
+        return self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
-        # TODO: remove this branch
-        for path in paths:
-            #manager = self._initialize_manager(path)
-            #if manager._is_visible() != False:
-            if True:
-                visible_paths.append(path)
-        return paths
 
     def _make_all_directories_menu_section(self, menu):
         commands = []
