@@ -518,6 +518,7 @@ class Wrangler(Controller):
         user_library=True,
         user_score_packages=True,
         ):
+        from scoremanager import wranglers
         visible_paths = []
         paths = self._list_asset_paths(
             abjad_library=abjad_library,
@@ -527,7 +528,11 @@ class Wrangler(Controller):
             )
         current_path = self._get_current_directory_path()
         for path in paths:
-            if current_path is None or path.startswith(current_path):
+            if current_path is None:
+                visible_paths.append(path)
+            elif type(self) is wranglers.ScorePackageWrangler:
+                visible_paths.append(path)
+            elif path.startswith(current_path):
                 visible_paths.append(path)
         return visible_paths
 

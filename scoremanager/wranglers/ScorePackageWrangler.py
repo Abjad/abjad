@@ -200,20 +200,6 @@ class ScorePackageWrangler(Wrangler):
             directories.extend(result)
         return directories
 
-    def _list_visible_asset_paths(
-        self,
-        abjad_library=True,
-        example_score_packages=True,
-        user_library=True,
-        user_score_packages=True,
-        ):
-        return self._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            example_score_packages=example_score_packages,
-            user_score_packages=user_score_packages,
-            )
-
     def _make_all_directories_menu_section(self, menu):
         commands = []
         string = 'all dirs - metadata module - edit'
