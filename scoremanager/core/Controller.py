@@ -136,6 +136,7 @@ class Controller(ScoreManagerObject):
         packages_instead_of_paths=False,
         sort_by_annotation=True,
         ):
+        from scoremanager import iotools
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:
@@ -174,9 +175,10 @@ class Controller(ScoreManagerObject):
             entries.append(entry)
         if self._session.is_test:
             return entries
-        if not apply_view:
+        elif not apply_view:
             return entries
-        view = self._read_view()
+        else:
+            view = self._read_view()
         if view is not None:
             entries = self._filter_asset_menu_entries_by_view(entries, view)
         return entries
@@ -215,8 +217,6 @@ class Controller(ScoreManagerObject):
         section = menu['go - scores']
         menu.menu_sections.remove(section)
         commands = []
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - previous score', '<<'))
         commands.append(('go - next score', '>>'))
         commands.append(('go - next asset', '>'))
         commands.append(('go - previous score', '<<'))

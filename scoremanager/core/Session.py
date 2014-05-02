@@ -1140,16 +1140,12 @@ class Session(abctools.AbjadObject):
     def scores_to_display(self):
         r'''Gets session scores to show.
 
-        ..  container:: example
-
-            ::
-
-                >>> session.scores_to_display
-                'active'
+        ..  note:: deprecated: returns `'all'` during deprecation.
 
         Returns string.
         '''
-        return self._scores_to_display
+        #return self._scores_to_display
+        return 'all'
 
     @property
     def testable_command_history_string(self):

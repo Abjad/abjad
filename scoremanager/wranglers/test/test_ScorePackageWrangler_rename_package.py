@@ -10,29 +10,35 @@ def test_ScorePackageWrangler_rename_package_01():
     r'''Creates score package. Renames score package.
     '''
 
-    path = os.path.join(
+    path_100 = os.path.join(
         score_manager._configuration.user_score_packages_directory_path,
-        'test_score',
+        'example_score_100',
         )
-    new_path = os.path.join(
+    path_101 = os.path.join(
         score_manager._configuration.user_score_packages_directory_path,
-        'new_test_score',
+        'example_score_101',
         )
 
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)
+    assert not os.path.exists(path_100)
+    assert not os.path.exists(path_101)
     try:
-        input_ = 'new test~score q'
+        input_ = 'new example~score~100 q'
         score_manager._run(pending_user_input=input_)
-        assert os.path.exists(path)
-        input_ = 'ssl ren Untitled~(test_score) new_test_score y q'
+        assert os.path.exists(path_100)
+
+        manager = scoremanager.managers.ScorePackageManager
+        manager = manager(path=path_100, session=score_manager._session)
+        title = 'Example Score 100'
+        manager._add_metadatum('title', title)
+
+        input_ = 'ren Example~Score~100 example_score_101 y q'
         score_manager._run(pending_user_input=input_)
-        assert not os.path.exists(path)
-        assert os.path.exists(new_path)
+        assert not os.path.exists(path_100)
+        assert os.path.exists(path_101)
     finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-        if os.path.exists(new_path):
-            shutil.rmtree(new_path)
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)
+        if os.path.exists(path_100):
+            shutil.rmtree(path_100)
+        if os.path.exists(path_101):
+            shutil.rmtree(path_101)
+    assert not os.path.exists(path_100)
+    assert not os.path.exists(path_101)

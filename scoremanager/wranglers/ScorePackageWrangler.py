@@ -140,10 +140,17 @@ class ScorePackageWrangler(Wrangler):
             return title
 
     def _get_scores_to_display_string(self):
-        return '{} scores'.format(self._session.scores_to_display)
+        if self._session.is_test:
+            return 'example scores'
+        view_name = self._read_view_name()
+        if view_name:
+            return 'scores ({})'.format(view_name)
+        return 'scores'
 
     def _get_sibling_score_directory_path(self, next_=True):
-        paths = self._list_visible_asset_paths()
+        #paths = self._list_visible_asset_paths()
+        entries = self._make_asset_menu_entries()
+        paths = [_[-1] for _ in entries]
         if self._session.last_asset_path is None:
             if next_:
                 return paths[0]
@@ -263,6 +270,42 @@ class ScorePackageWrangler(Wrangler):
             packages_instead_of_paths=packages_instead_of_paths,
             sort_by_annotation=sort_by_annotation,
             )
+        if self._session.is_test:
+            menu_entries = [
+                _ for _ in menu_entries
+                if 'Example Score' in _[0]
+                ]
+        else:
+            view = self._read_view()
+            if view is not None:
+                menu_entries = self._filter_asset_menu_entries_by_view(
+                    menu_entries, 
+                    view,
+                    )
+        return menu_entries
+
+    def _make_asset_menu_entries_for_cache(
+        self,
+        apply_view=True,
+        include_annotation=True,
+        include_extensions=False,
+        include_asset_name=False,
+        include_year=True,
+        human_readable=True,
+        packages_instead_of_paths=False,
+        sort_by_annotation=True,
+        ):
+        superclass = super(ScorePackageWrangler, self)
+        menu_entries = superclass._make_asset_menu_entries(
+            apply_view=apply_view,
+            include_annotation=include_annotation,
+            include_extensions=include_extensions,
+            include_asset_name=include_asset_name,
+            include_year=include_year,
+            human_readable=human_readable,
+            packages_instead_of_paths=packages_instead_of_paths,
+            sort_by_annotation=sort_by_annotation,
+            )
         return menu_entries
 
     def _make_cache_menu_section(self, menu):
@@ -290,16 +333,23 @@ class ScorePackageWrangler(Wrangler):
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )
+        # TODO: remove Sesssion.rewrite_cache
         if self._session.rewrite_cache:
             self.write_cache(prompt=False)
             self._session._rewrite_cache = False
         menu_entries = self._io_manager._read_cache()
-        #print repr(menu_entries), 'ENTRIES'
-        if (not menu_entries or
-            (self._session._scores_to_display == 'example' and
-            not menu_entries[0][0] == 'Blue Example Score (2013)')):
-            self.write_cache(prompt=False)
-            menu_entries = self._io_manager._read_cache()
+        if self._session.is_test:
+            menu_entries = [
+                _ for _ in menu_entries
+                if 'Example Score' in _[0]
+                ]
+        else:
+            view = self._read_view()
+            if view is not None:
+                menu_entries = self._filter_asset_menu_entries_by_view(
+                    menu_entries, 
+                    view,
+                    )
         if menu_entries:
             menu.make_asset_section(
                 menu_entries=menu_entries,
@@ -332,16 +382,27 @@ class ScorePackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def apply_view(self):
-        r'''Applies view.
-
-        Caches main menu.
-        
-        Returns none.
-        '''
-        superclass = super(ScorePackageWrangler, self)
-        superclass.apply_view()
-        self.write_cache(prompt=False)
+#    def apply_view(self):
+#        r'''Applies view.
+#
+#        Caches main menu.
+#        
+#        Returns none.
+#        '''
+#        superclass = super(ScorePackageWrangler, self)
+#        superclass.apply_view()
+#        self.write_cache(prompt=False)
+#
+#    def clear_view(self):
+#        r'''Clears view.
+#
+#        Caches main menu.
+#
+#        Returns none.
+#        '''
+#        superclass = super(ScorePackageWrangler, self)
+#        superclass.clear_view()
+#        self.write_cache(prompt=False)
 
     def make_package(self):
         r'''Makes score package.
