@@ -74,11 +74,11 @@ class ScorePackageWrangler(Wrangler):
             'cp': self.copy_package,
             'cro': self.view_cache,
             'cw': self.write_cache,
-            'd': self.manage_distribution_artifact_library,
+            'd': self._session._score_manager._distribution_file_wrangler._run,
             'fix': self.fix_packages,
-            'g': self.manage_segment_library,
-            'k': self.manage_maker_library,
-            'm': self.manage_material_library,
+            'g': self._session._score_manager._segment_package_wrangler._run,
+            'k': self._session._score_manager._maker_module_wrangler._run,
+            'm': self._session._score_manager._material_package_wrangler._run,
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
@@ -92,7 +92,7 @@ class ScorePackageWrangler(Wrangler):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'u': self.manage_build_file_library,
+            'u': self._session._score_manager._build_file_wrangler._run,
             'va': self.apply_view,
             'vc': self.clear_view,
             'vls': self.list_views,
@@ -100,7 +100,7 @@ class ScorePackageWrangler(Wrangler):
             'vren': self.rename_view,
             'vrm': self.remove_views,
             'vmro': self.view_views_module,
-            'y': self.manage_stylesheet_library,
+            'y': self._session._score_manager._stylesheet_wrangler._run,
             }
         return result
 
@@ -342,45 +342,6 @@ class ScorePackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_package(self):
-        r'''Makes score package.
-
-        Returns none.
-        '''
-        path = self._get_available_path()
-        if self._should_backtrack():
-            return
-        if not path:
-            return
-        self._make_asset(path)
-        self.write_cache(prompt=False)
-
-    def manage_score(self, path):
-        r'''Manages score.
-
-        Returns none.
-        '''
-        manager = self._initialize_manager(path)
-        package_name = os.path.basename(path)
-        manager.fix(prompt=True)
-        manager._run()
-
-    def remove_packages(self):
-        r'''Removes one or more score packages.
-        
-        Returns none.
-        '''
-        self._remove_assets()
-
-    def rename_package(self):
-        r'''Renames score package.
-
-        Returns none.
-        '''
-        self._rename_asset()
-
-    ### MIGRATED OVER ###
-
     def copy_package(self):
         r'''Copies score package.
 
@@ -391,9 +352,7 @@ class ScorePackageWrangler(Wrangler):
         self.write_cache(prompt=False)
 
     def edit_metadata_modules(self):
-        r'''Edits all metadata modules everywhere.
-
-        Ignores view.
+        r'''Edits metadata modules in all visible score packages.
 
         Returns none.
         '''
@@ -402,7 +361,7 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.view(paths)
 
     def fix_packages(self, prompt=True):
-        r'''Fixes score packages.
+        r'''Fixes visible score packages.
 
         Returns none.
         '''
@@ -426,9 +385,7 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_metadata_modules(self, prompt=True):
-        r'''Lists all metadata modules everywhere.
-
-        Ignores view.
+        r'''Lists metadata modules in all visible score packages.
 
         Returns none.
         '''
@@ -443,52 +400,45 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def manage_build_file_library(self):
-        r'''Manages build file library.
+    def make_package(self):
+        r'''Makes score package.
 
         Returns none.
         '''
-        self._session._score_manager._build_file_wrangler._run()
+        path = self._get_available_path()
+        if self._should_backtrack():
+            return
+        if not path:
+            return
+        self._make_asset(path)
+        self.write_cache(prompt=False)
 
-    def manage_distribution_artifact_library(self):
-        r'''Manages distribution file library.
-
-        Returns none.
-        '''
-        self._session._score_manager._distribution_file_wrangler._run()
-
-    def manage_maker_library(self):
-        r'''Manages maker library.
-
-        Returns none.
-        '''
-        self._session._score_manager._maker_module_wrangler._run()
-
-    def manage_material_library(self):
-        r'''Manages material library.
+    def manage_score(self, path):
+        r'''Manages score package.
 
         Returns none.
         '''
-        self._session._score_manager._material_package_wrangler._run()
+        manager = self._initialize_manager(path)
+        package_name = os.path.basename(path)
+        manager.fix(prompt=True)
+        manager._run()
 
-    def manage_segment_library(self):
-        r'''Manages segment library.
+    def remove_packages(self):
+        r'''Removes one or more score packages.
+        
+        Returns none.
+        '''
+        self._remove_assets()
+
+    def rename_package(self):
+        r'''Renames score package.
 
         Returns none.
         '''
-        self._session._score_manager._segment_package_wrangler._run()
-
-    def manage_stylesheet_library(self):
-        r'''Manages stylesheet library.
-
-        Returns none.
-        '''
-        self._session._score_manager._stylesheet_wrangler._run()
+        self._rename_asset()
 
     def rewrite_metadata_modules(self, prompt=True):
-        r'''Rewrites all metadata modules everywhere.
-
-        Ignores view.
+        r'''Rewrites metadata modules in all visible score packages.
 
         Returns none.
         '''
