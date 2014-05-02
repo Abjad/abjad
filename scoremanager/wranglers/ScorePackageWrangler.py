@@ -144,8 +144,7 @@ class ScorePackageWrangler(Wrangler):
         return 'scores'
 
     def _get_sibling_score_directory_path(self, next_=True):
-        entries = self._make_asset_menu_entries()
-        paths = [_[-1] for _ in entries]
+        paths = self._list_truly_visible_asset_paths()
         if self._session.last_asset_path is None:
             if next_:
                 return paths[0]
@@ -188,17 +187,17 @@ class ScorePackageWrangler(Wrangler):
         return False
 
     def _list_all_directories_with_metadata_modules(self):
-        storehouses = (
-            self._configuration.abjad_material_packages_directory_path,
-            self._configuration.example_score_packages_directory_path,
-            self._configuration.user_library_directory_path,
-            self._configuration.user_score_packages_directory_path,
-            )
         directories = []
-        for storehouse in storehouses:
-            result = self._list_directories_with_metadata_modules(storehouse)
+        paths = self._list_truly_visible_asset_paths()
+        for path in paths:
+            result = self._list_directories_with_metadata_modules(path)
             directories.extend(result)
         return directories
+
+    def _list_truly_visible_asset_paths(self):
+        entries = self._make_asset_menu_entries()
+        paths = [_[-1] for _ in entries]
+        return paths
 
     def _make_all_directories_menu_section(self, menu):
         commands = []
@@ -408,8 +407,7 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import managers
-        entries = self._make_asset_menu_entries()
-        paths = [_[-1] for _ in entries]
+        paths = self._list_truly_visible_asset_paths()
         messages = []
         for path in paths:
             manager = self._initialize_manager(path)
@@ -442,7 +440,8 @@ class ScorePackageWrangler(Wrangler):
             self._io_manager.display(lines)
         message = '{} metadata modules found.'
         message = message.format(len(paths))
-        self._io_manager.proceed(message, prompt=prompt)
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def manage_build_file_library(self):
         r'''Manages build file library.
