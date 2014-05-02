@@ -75,7 +75,7 @@ class ScorePackageWrangler(Wrangler):
             'cro': self.view_cache,
             'cw': self.write_cache,
             'd': self.manage_distribution_artifact_library,
-            'fix': self.fix_score_packages,
+            'fix': self.fix_packages,
             'g': self.manage_segment_library,
             'k': self.manage_maker_library,
             'm': self.manage_material_library,
@@ -214,11 +214,13 @@ class ScorePackageWrangler(Wrangler):
             example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )
+        # TODO: remove this branch
         for path in paths:
-            manager = self._initialize_manager(path)
-            if manager._is_visible() != False:
+            #manager = self._initialize_manager(path)
+            #if manager._is_visible() != False:
+            if True:
                 visible_paths.append(path)
-        return visible_paths
+        return paths
 
     def _make_all_directories_menu_section(self, menu):
         commands = []
@@ -422,28 +424,30 @@ class ScorePackageWrangler(Wrangler):
         paths = [os.path.join(_, '__metadata__.py') for _ in directories]
         self._io_manager.view(paths)
 
-    def fix_score_packages(self, prompt=True):
+    def fix_packages(self, prompt=True):
         r'''Fixes score packages.
 
         Returns none.
         '''
         from scoremanager import managers
-        paths = self._list_visible_asset_paths()
+        entries = self._make_asset_menu_entries()
+        paths = [_[-1] for _ in entries]
+        messages = []
         for path in paths:
-            manager = managers.ScorePackageManager(
-                path=path,
-                session=self._session,
-                )
+            manager = self._initialize_manager(path)
             needed_to_be_fixed = manager.fix(prompt=prompt)
             if not needed_to_be_fixed:
                 title = manager._get_title()
                 message = '{} OK.'
                 message = message.format(title)
-                self._io_manager.display(message)
+                messages.append(message)
+        messages.append('')
         message = '{} score packages checked.'
         message = message.format(len(paths))
-        self._io_manager.display(['', message, ''])
-        self._io_manager.proceed(prompt=prompt)
+        messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        self._session._hide_next_redraw = True
 
     def list_metadata_modules(self, prompt=True):
         r'''Lists all metadata modules everywhere.

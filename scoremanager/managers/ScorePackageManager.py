@@ -167,10 +167,6 @@ class ScorePackageManager(PackageManager):
         else:
             raise ValueError(result)
 
-    def _is_visible(self):
-        metadata = self._get_metadata()
-        return metadata
-
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)

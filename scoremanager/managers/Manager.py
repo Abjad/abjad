@@ -48,10 +48,6 @@ class Manager(Controller):
         return self._space_delimited_lowercase_class_name
 
     @property
-    def _is_visible(self):
-        raise NotImplementedError
-
-    @property
     def _repository_add_command(self):
         if not self._path:
             return
