@@ -5,14 +5,14 @@ from abjad import *
 import scoremanager
 
 
-def test_ScorePackageWrangler_make_score_package_01():
+def test_ScorePackageWrangler_make_package_01():
     r'''Makes score package.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_score_packages_directory_path,
-        'test_score',
+        'example_score',
         )
     directory_entries = [
         '__init__.py',
@@ -27,7 +27,7 @@ def test_ScorePackageWrangler_make_score_package_01():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'new test~score q'
+        input_ = 'new example~score q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
