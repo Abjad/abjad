@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('make me work')
 from abjad import *
 import scoremanager
 
@@ -19,7 +17,7 @@ def test_ScorePackageWrangler_apply_view_01():
     applied_view = score_manager._transcript[-8]
 
     lines = [
-        'Score manager - example scores (_test)',
+        'Score manager - scores (_test)',
         '',
         '   1: Red Example Score (2013)',
         '',

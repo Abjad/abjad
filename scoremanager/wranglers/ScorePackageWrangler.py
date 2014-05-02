@@ -137,13 +137,13 @@ class ScorePackageWrangler(Wrangler):
     def _get_scores_to_display_string(self):
         if self._session.is_test:
             return 'example scores'
-        view_name = self._read_view_name()
-        if view_name:
+        view = self._read_view()
+        if view:
+            view_name = self._read_view_name()
             return 'scores ({})'.format(view_name)
         return 'scores'
 
     def _get_sibling_score_directory_path(self, next_=True):
-        #paths = self._list_visible_asset_paths()
         entries = self._make_asset_menu_entries()
         paths = [_[-1] for _ in entries]
         if self._session.last_asset_path is None:
