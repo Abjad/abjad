@@ -177,7 +177,11 @@ class ScorePackageWrangler(Wrangler):
         else:
             score_package_paths = self._list_visible_asset_paths()
             if result in score_package_paths:
-                self.manage_score(result)
+                path = result
+                manager = self._initialize_manager(path)
+                package_name = os.path.basename(path)
+                manager.fix(prompt=True)
+                manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(ScorePackageWrangler, self)
@@ -412,16 +416,6 @@ class ScorePackageWrangler(Wrangler):
             return
         self._make_asset(path)
         self.write_cache(prompt=False)
-
-    def manage_score(self, path):
-        r'''Manages score package.
-
-        Returns none.
-        '''
-        manager = self._initialize_manager(path)
-        package_name = os.path.basename(path)
-        manager.fix(prompt=True)
-        manager._run()
 
     def remove_packages(self):
         r'''Removes one or more score packages.
