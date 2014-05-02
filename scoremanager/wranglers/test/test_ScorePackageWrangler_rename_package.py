@@ -25,12 +25,10 @@ def test_ScorePackageWrangler_rename_package_01():
         input_ = 'new example~score~100 q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path_100)
-
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path_100, session=score_manager._session)
         title = 'Example Score 100'
         manager._add_metadatum('title', title)
-
         input_ = 'ren Example~Score~100 example_score_101 y q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path_100)

@@ -127,13 +127,16 @@ class Wrangler(Controller):
         extension=None,
         file_name_callback=None, 
         force_lowercase=True,
+        new_storehouse=None
         ):
         old_path = self._get_visible_asset_path(infinitive_phrase='to copy')
         if not old_path:
             return
         old_name = os.path.basename(old_path)
         self._io_manager.display('')
-        if self._session.is_in_score:
+        if new_storehouse:
+            pass
+        elif self._session.is_in_score:
             new_storehouse = self._get_current_directory_path()
         else:
             new_storehouse = self._select_storehouse_path()

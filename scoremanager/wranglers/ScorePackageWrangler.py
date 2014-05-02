@@ -407,7 +407,9 @@ class ScorePackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        path = self._configuration.user_score_packages_directory_path
+        self._copy_asset(new_storehouse=path)
+        self.write_cache(prompt=False)
 
     def edit_metadata_modules(self):
         r'''Edits all metadata modules everywhere.
