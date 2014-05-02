@@ -92,11 +92,6 @@ class ScorePackageWrangler(Wrangler):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'ssl': self.display_all_scores,
-            'ssv': self.display_active_scores,
-            'ssmb': self.display_mothballed_scores,
-            'ssx': self.display_example_scores,
-            'ssu': self.display_user_scores,
             'u': self.manage_build_file_library,
             'va': self.apply_view,
             'vc': self.clear_view,
@@ -323,7 +318,6 @@ class ScorePackageWrangler(Wrangler):
         self._make_all_directories_menu_section(menu)
         self._make_all_score_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
-        self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
         self._make_views_menu_section(menu)
         return menu
@@ -367,42 +361,7 @@ class ScorePackageWrangler(Wrangler):
             name='scores',
             )
 
-    def _make_scores_show_menu_section(self, menu):
-        commands = []
-        commands.append(('scores - show all', 'ssl'))
-        commands.append(('scores - show active', 'ssv'))
-        commands.append(('scores - show examples', 'ssx'))
-        commands.append(('scores - show mothballed', 'ssmb'))
-        commands.append(('scores - show user', 'ssu'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='scores - show',
-            )
-
     ### PUBLIC METHODS ###
-
-#    def apply_view(self):
-#        r'''Applies view.
-#
-#        Caches main menu.
-#        
-#        Returns none.
-#        '''
-#        superclass = super(ScorePackageWrangler, self)
-#        superclass.apply_view()
-#        self.write_cache(prompt=False)
-#
-#    def clear_view(self):
-#        r'''Clears view.
-#
-#        Caches main menu.
-#
-#        Returns none.
-#        '''
-#        superclass = super(ScorePackageWrangler, self)
-#        superclass.clear_view()
-#        self.write_cache(prompt=False)
 
     def make_package(self):
         r'''Makes score package.
@@ -449,41 +408,6 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
-
-    def display_active_scores(self):
-        r'''Displays active scores.
-
-        Returns none.
-        '''
-        self._session.display_active_scores()
-
-    def display_all_scores(self):
-        r'''Displays all scores.
-
-        Returns none.
-        '''
-        self._session.display_all_scores()
-
-    def display_example_scores(self):
-        r'''Displays example scores.
-
-        Returns none.
-        '''
-        self._session.display_example_scores()
-
-    def display_mothballed_scores(self):
-        r'''Displays mothballed scores.
-
-        Returns none.
-        '''
-        self._session.display_mothballed_scores()
-
-    def display_user_scores(self):
-        r'''Displays user scores.
-
-        Returns none.
-        '''
-        self._session.display_user_scores()
 
     def edit_metadata_modules(self):
         r'''Edits all metadata modules everywhere.

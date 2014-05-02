@@ -168,27 +168,8 @@ class ScorePackageManager(PackageManager):
             raise ValueError(result)
 
     def _is_visible(self):
-        scores_to_display = self._session.scores_to_display
         metadata = self._get_metadata()
-        if scores_to_display == 'all':
-            return metadata
-        is_mothballed = metadata.get('is_mothballed')
-        is_example = metadata.get('is_example')
-        if scores_to_display == 'active':
-            if not is_mothballed:
-                if not is_example:
-                    return metadata
-        elif scores_to_display == 'user':
-            if not is_example:
-                return metadata
-        elif scores_to_display == 'example':
-            if is_example:
-                if not is_mothballed:
-                    return metadata
-        elif scores_to_display == 'mothballed':
-            if is_mothballed:
-                return metadata
-        return False
+        return metadata
 
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)

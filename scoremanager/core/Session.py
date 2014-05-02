@@ -73,7 +73,6 @@ class Session(abctools.AbjadObject):
         '_proceed_count',
         '_rewrite_cache',
         '_score_manager',
-        '_scores_to_display',
         '_transcript',
         '_use_current_user_input_values_as_default',
         )
@@ -89,7 +88,6 @@ class Session(abctools.AbjadObject):
         'is_in_editor',
         'is_in_user_input_getter',
         'last_asset_path',
-        'scores_to_display',
         )
 
     ### INITIALIZER ###
@@ -138,10 +136,6 @@ class Session(abctools.AbjadObject):
         self._proceed_count = 0
         self._rewrite_cache = False
         self._score_manager = None
-        if is_test:
-            self._scores_to_display = 'example'
-        else:
-            self._scores_to_display = 'active'
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
 
@@ -1137,17 +1131,6 @@ class Session(abctools.AbjadObject):
         return self._score_manager
 
     @property
-    def scores_to_display(self):
-        r'''Gets session scores to show.
-
-        ..  note:: deprecated: returns `'all'` during deprecation.
-
-        Returns string.
-        '''
-        #return self._scores_to_display
-        return 'all'
-
-    @property
     def testable_command_history_string(self):
         r'''Gets session testable command history string.
 
@@ -1198,46 +1181,6 @@ class Session(abctools.AbjadObject):
         return self._use_current_user_input_values_as_default
 
     ### PUBLIC METHODS ###
-
-    def display_active_scores(self):
-        r'''Sets scores to show to ``'active'``.
-
-        Returns none.
-        '''
-        self._scores_to_display = 'active'
-        self._rewrite_cache = True
-
-    def display_all_scores(self):
-        r'''Sets scores to show to ``'all'``.
-
-        Returns none.
-        '''
-        self._scores_to_display = 'all'
-        self._rewrite_cache = True
-
-    def display_example_scores(self):
-        r'''Sets scores to show to ``'example'``.
-
-        Returns none.
-        '''
-        self._scores_to_display = 'example'
-        self._rewrite_cache = True
-
-    def display_mothballed_scores(self):
-        r'''Sets scores to show to ``'mothballed'``.
-
-        Returns none.
-        '''
-        self._scores_to_display = 'mothballed'
-        self._rewrite_cache = True
-
-    def display_user_scores(self):
-        r'''Sets scores to show to ``'user'``.
-
-        Returns none.
-        '''
-        self._scores_to_display = 'user'
-        self._rewrite_cache = True
 
     def display_variables(self):
         r'''Displays session variables.
