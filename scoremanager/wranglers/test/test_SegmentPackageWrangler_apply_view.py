@@ -38,7 +38,7 @@ def test_SegmentPackageWrangler_apply_view_02():
     Makes sure only one segment is visible after view is applied.
     '''
     
-    input_ = 'ssx red~example~score g vnew _test'
+    input_ = 'red~example~score g vnew _test'
     input_ += ' rm all add segment~01 done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

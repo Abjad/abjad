@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_apply_view_01():
     r'''Makes sure only select scores are visible.
     '''
     
-    input_ = 'ssl vnew _test rm all'
+    input_ = 'vnew _test rm all'
     input_ += ' add Red~Example~Score done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

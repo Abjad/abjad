@@ -40,11 +40,9 @@ def test_BuildFileWrangler_apply_view_02():
     r'''Works in score package build directory.
     
     Makes sure only select build file is visible.
-
-    Must use explicit (ssx) to manage example scores when is_test=False.
     '''
     
-    input_ = 'ssx red~example~score u vnew _test rm all'
+    input_ = 'red~example~score u vnew _test rm all'
     input_ += ' add segment-01.ly done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

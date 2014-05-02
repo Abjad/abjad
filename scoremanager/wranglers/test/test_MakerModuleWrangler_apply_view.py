@@ -37,11 +37,9 @@ def test_MakerModuleWrangler_apply_view_02():
     r'''Works in score package makers directory.
     
     Makes sure only select maker module is visible.
-
-    Must use explicit (ssx) to manage example scores when is_test=False.
     '''
     
-    input_ = 'ssx red~example~score k vnew _test rm all'
+    input_ = 'red~example~score k vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

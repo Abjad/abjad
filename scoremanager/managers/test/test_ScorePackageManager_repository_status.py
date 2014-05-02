@@ -24,7 +24,7 @@ def test_ScorePackageManager_repository_status_02():
     if not name:
         return
 
-    input_ = 'ssl {} rst q'.format(name)
+    input_ = '{} rst q'.format(name)
     score_manager._run(pending_user_input=input_)
     string = '...'
 

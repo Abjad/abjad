@@ -34,7 +34,7 @@ def test_DistributionFileWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = 'ssl {} d rst q'.format(score_name)
+    input_ = '{} d rst q'.format(score_name)
     score_manager._run(pending_user_input=input_)
 
     assert '> rst' in score_manager._transcript.first_lines

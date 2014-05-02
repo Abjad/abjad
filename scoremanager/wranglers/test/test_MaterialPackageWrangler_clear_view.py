@@ -60,11 +60,9 @@ def test_MaterialPackageWrangler_clear_view_02():
     
     Then makes sure multiple material packages are visible once view is 
     cleared.
-
-    Use explicit (ssx) to manage example scores when is_test=False.
     '''
     
-    input_ = 'ssx red~example~score m vnew _test rm all'
+    input_ = 'red~example~score m vnew _test rm all'
     input_ += ' add instrumentation done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_user_input=input_)

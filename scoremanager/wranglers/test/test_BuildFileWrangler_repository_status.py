@@ -36,7 +36,7 @@ def test_BuildFileWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = 'ssl {} u rst q'.format(score_name)
+    input_ = '{} u rst q'.format(score_name)
     score_manager._run(pending_user_input=input_)
 
     assert score_manager._session._attempted_repository_status

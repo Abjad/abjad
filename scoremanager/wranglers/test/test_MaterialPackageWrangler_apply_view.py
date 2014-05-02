@@ -38,11 +38,9 @@ def test_MaterialPackageWrangler_apply_view_02():
     r'''Works in score.
     
     Makes sure only select material package is visible.
-
-    Must use explicit (ssx) to manage example scores when is_test=False.
     '''
     
-    input_ = 'ssx red~example~score m vnew _test rm all'
+    input_ = 'red~example~score m vnew _test rm all'
     input_ += ' add instrumentation done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

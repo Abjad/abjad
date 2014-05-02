@@ -114,7 +114,6 @@
     'Enter score package name>'.
 
 23. Block (new) score when view is hiding user scores.
-    This is true when (ssx) is the current view.
     Otherwise the score package gets created but is hidden.
 
 24. Allow more flexible input for score (new).

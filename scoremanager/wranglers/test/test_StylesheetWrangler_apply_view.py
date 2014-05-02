@@ -37,7 +37,7 @@ def test_StylesheetWrangler_apply_view_02():
     Makes sure only one stylesheet is visible after view is applied.
     '''
     
-    input_ = 'ssx red~example~score y vnew _test'
+    input_ = 'red~example~score y vnew _test'
     input_ += ' rm all add stylesheet-addendum.ily done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)

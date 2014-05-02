@@ -36,12 +36,9 @@ def test_DistributionFileWrangler_apply_view_02():
     r'''Applies view to single view directory.
     
     Makes sure only select distribution file are visible.
-
-    Must use explicit (ssx) to manage example score when
-    is_test=False.
     '''
     
-    input_ = 'ssx red~example~score d vnew _test rm all'
+    input_ = 'red~example~score d vnew _test rm all'
     input_ += ' add red-example-score.pdf done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_user_input=input_)
