@@ -49,11 +49,12 @@ class SegmentPackageWrangler(Wrangler):
             'dme': self.edit_definition_modules,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
-            'lyi': self.interpret_current_lilypond_files,
+            'lyi': self.interpret_lilypond_files,
             'mmi': self.interpret_make_modules,
             'new': self.make_package,
             'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,
+            'rm': self.remove_packages,
             })
         return result
 
@@ -142,6 +143,24 @@ class SegmentPackageWrangler(Wrangler):
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
+    # TODO: migrate to SegmentPackageManager
+    def _make_package(
+        self,
+        path,
+        prompt=False,
+        metadata=None,
+        ):
+        from scoremanager import managers
+        assert os.path.sep in path
+        metadata = collections.OrderedDict(metadata or {})
+        assert not os.path.exists(path)
+        os.mkdir(path)
+        manager = self._initialize_manager(path)
+        manager._initializer_file_manager._write_stub()
+        manager.rewrite_metadata_module(metadata, prompt=False)
+        message = 'segment package created: {!r}.'.format(path)
+        self._io_manager.proceed(message=message, prompt=prompt)
+
     def _make_segments_menu_section(self, menu):
         commands = []
         commands.append(('segments - copy', 'cp'))
@@ -192,7 +211,7 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.view(paths)
         self._session._hide_next_redraw = True
 
-    def interpret_current_lilypond_files(
+    def interpret_lilypond_files(
         self,
         prompt=True,
         view_output_pdfs=True,
@@ -222,7 +241,7 @@ class SegmentPackageWrangler(Wrangler):
             return
         self._io_manager.display('')
         for manager in self._list_visible_asset_managers():
-            manager.interpret_current_lilypond_file(
+            manager.interpret_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )
@@ -273,7 +292,22 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._select_storehouse_path()
+        prompt_string = 'enter segment package name'
+        path = self._get_available_path(
+            prompt_string=prompt_string,
+            storehouse_path=storehouse_path,
+            )
+        if self._should_backtrack():
+            return
+        if not path:
+            return
+        self._make_package(path)
+        manager = self._get_manager(path)
+        manager._run()
 
     def remove_packages(self):
         r'''Removes one or more segment packages.

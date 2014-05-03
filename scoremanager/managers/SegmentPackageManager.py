@@ -76,7 +76,7 @@ class SegmentPackageManager(PackageManager):
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
-            'lyi': self.interpret_current_lilypond_file,
+            'lyi': self.interpret_lilypond_file,
             'lyro': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'mmi': self.interpret_make_module,
@@ -171,11 +171,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_make_module_menu_section(self, menu):
         commands = []
-        if os.path.isfile(self._make_module_path):
-            commands.append(('make module - interpret', 'mmi'))
-            commands.append(('make module - read only', 'mmro'))
-        else:
-            commands.append(('make module - stub', 'mms'))
+        commands.append(('make module - interpret', 'mmi'))
+        commands.append(('make module - read only', 'mmro'))
+        commands.append(('make module - stub', 'mms'))
         menu.make_command_section(
             commands=commands,
             name='make module',
@@ -248,7 +246,7 @@ class SegmentPackageManager(PackageManager):
             return
         manager.edit()
 
-    def interpret_current_lilypond_file(
+    def interpret_lilypond_file(
         self,
         view_output_pdf=True,
         prompt=True,

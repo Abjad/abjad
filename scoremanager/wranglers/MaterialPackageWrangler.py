@@ -195,10 +195,7 @@ class MaterialPackageWrangler(Wrangler):
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(path)
         os.mkdir(path)
-        manager = managers.MaterialPackageManager(
-            path=path,
-            session=self._session,
-            )
+        manager = self._initialize_manager(path)
         manager._initializer_file_manager._write_stub()
         manager.rewrite_metadata_module(metadata, prompt=False)
         if definition_module_stub:
@@ -227,7 +224,7 @@ class MaterialPackageWrangler(Wrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        prompt_string = 'Enter material package name'
+        prompt_string = 'enter material package name'
         path = self._get_available_path(
             prompt_string=prompt_string,
             storehouse_path=storehouse_path,
