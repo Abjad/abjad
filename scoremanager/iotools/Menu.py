@@ -607,6 +607,7 @@ class Menu(ScoreManagerObject):
             name=name,
             return_value_attribute='explicit',
             )
+        self._asset_section = section
         return section
 
     def make_attribute_section(

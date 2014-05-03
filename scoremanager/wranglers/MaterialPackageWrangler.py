@@ -163,7 +163,6 @@ class MaterialPackageWrangler(Wrangler):
         section = menu.make_asset_section(
             menu_entries=entries,
             )
-        menu._asset_section = section
 
     def _make_main_menu(self, name='material package wrangler'):
         superclass = super(MaterialPackageWrangler, self)

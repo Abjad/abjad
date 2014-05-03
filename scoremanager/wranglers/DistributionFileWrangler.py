@@ -88,7 +88,6 @@ class DistributionFileWrangler(Wrangler):
         section = menu.make_asset_section(
             menu_entries=menu_entries
             )
-        menu._asset_section = section
 
     def _make_files_menu_section(self, menu):
         commands = []

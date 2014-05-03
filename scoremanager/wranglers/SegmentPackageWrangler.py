@@ -152,7 +152,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._copy_asset()
 
     def interpret_current_lilypond_files(
         self,

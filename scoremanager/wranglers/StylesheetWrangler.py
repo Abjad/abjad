@@ -118,7 +118,6 @@ class StylesheetWrangler(Wrangler):
         section = menu.make_asset_section(
             menu_entries=menu_entries,
             )
-        menu._asset_section = section
 
     def _make_main_menu(self, name='stylesheet wrangler'):
         superclass = super(StylesheetWrangler, self)

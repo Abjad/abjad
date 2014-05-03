@@ -121,7 +121,6 @@ class DirectoryManager(Manager):
         section = menu.make_asset_section(
             menu_entries=menu_entries,
             )
-        menu._asset_section = section
 
     def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self._path):

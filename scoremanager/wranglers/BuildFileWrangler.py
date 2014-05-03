@@ -154,7 +154,6 @@ class BuildFileWrangler(Wrangler):
         section = menu.make_asset_section(
             menu_entries=menu_entries,
             )
-        menu._asset_section = section
 
     def _make_back_cover_menu_section(self, menu):
         commands = []
