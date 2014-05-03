@@ -75,7 +75,6 @@ class SegmentPackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'dmE': self.edit_definition_module_from_top,
             'dme': self.edit_definition_module,
             'lyi': self.interpret_current_lilypond_file,
             'lyro': self.view_current_output_ly,
@@ -144,25 +143,19 @@ class SegmentPackageManager(PackageManager):
                 )
 
     def _make_definition_module_menu_section(self, menu):
-        commands = []
-        if os.path.isfile(self._definition_module_path):
-            commands.append(('definition module - edit', 'dme'))
-            commands.append(('definition module - edit at top', 'dmE'))
-            menu.make_command_section(
-                commands=commands,
-                name='definition module',
-                )
-        else:
+        if not os.path.isfile(self._definition_module_path):
             message = 'No definition.py module found;'
             message += ' use (dms) to create a stub.'
             menu.make_informational_section(
                 menu_entries=[message],
                 )
-            commands.append(('definition module - stub', 'dms'))
-            menu.make_command_section(
-                commands=commands,
-                name='definition module',
-                )
+        commands = []
+        commands.append(('definition module - edit', 'dme'))
+        commands.append(('definition module - stub', 'dms'))
+        menu.make_command_section(
+            commands=commands,
+            name='definition module',
+            )
 
     def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)
@@ -254,16 +247,6 @@ class SegmentPackageManager(PackageManager):
         if not manager:
             return
         manager.edit()
-
-    def edit_definition_module_from_top(self):
-        r'''Edits asset definition module.
-
-        Returns none.
-        '''
-        manager = self._definition_module_manager
-        if not manager:
-            return
-        manager.edit(line_number=1)
 
     def interpret_current_lilypond_file(
         self,
