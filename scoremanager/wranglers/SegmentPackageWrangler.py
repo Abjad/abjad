@@ -163,32 +163,35 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        parts = (self._session.current_score_directory_path,)
-        parts += self._score_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
-            if not directory_entry[0].isalpha():
+        segments_directory = self._get_current_directory_path()
+        entries = sorted(os.listdir(segments_directory))
+        messages = []
+        messages.append('')
+        messages.append('will interpret ...')
+        messages.append('')
+        segment_paths = []
+        for entry in entries:
+            if not entry[0].isalpha():
                 continue
-            segment_package_name = directory_entry
-            segment_package_directory_path = os.path.join(
-                segments_directory_path,
-                segment_package_name,
-                )
-            segment_package_path = \
-                self._configuration.path_to_package_path(
-                segment_package_directory_path)
-            manager = self._manager_class(
-                segment_package_path,
-                session=self._session,
-                )
+            segment_path = os.path.join(segments_directory, entry)
+            segment_paths.append(segment_path)
+            input_path = os.path.join(segment_path, 'output.ly')
+            output_path = os.path.join(segment_path, 'output.pdf')
+            messages.append(' INPUT: {}'.format(input_path))
+            messages.append('OUTPUT: {}'.format(output_path))
+            messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        for path in segment_paths:
+            manager = self._initialize_manager(path=path)
             manager.interpret_current_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )
-        message = 'press return to view PDF(s).'
-        self._io_manager.proceed(message=message, prompt=prompt)
-        if view_output_pdfs:
-            self.view_segment_pdfs()
 
     def interpret_make_modules(self):
         r'''Makes asset PDFs.

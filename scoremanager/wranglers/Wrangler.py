@@ -166,14 +166,14 @@ class Wrangler(Controller):
         if os.path.exists(new_path):
             message = 'already exists: {}'.format(new_path)
             return
-        lines = []
-        lines.append('')
-        lines.append('will copy ...')
-        lines.append('')
-        lines.append(' FROM: {}'.format(old_path))
-        lines.append('   TO: {}'.format(new_path))
-        lines.append('')
-        self._io_manager.display(lines)
+        messages = []
+        messages.append('')
+        messages.append('will copy ...')
+        messages.append('')
+        messages.append(' FROM: {}'.format(old_path))
+        messages.append('   TO: {}'.format(new_path))
+        messages.append('')
+        self._io_manager.display(messages)
         result = self._io_manager.confirm()
         if self._should_backtrack():
             return
@@ -831,7 +831,6 @@ class Wrangler(Controller):
             message = 'no views found.'
             self._io_manager.proceed(message)
             return
-        lines = []
         view_names = list(view_inventory.keys())
         if is_ranged:
             breadcrumb = 'view(s)'
@@ -956,7 +955,7 @@ class Wrangler(Controller):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
             return
-        lines = []
+        messages = []
         names = list(view_inventory.keys())
         view_count = len(view_inventory)
         view_string = 'view'
@@ -964,10 +963,10 @@ class Wrangler(Controller):
             view_string = stringtools.pluralize(view_string)
         message = '{} {} found:'
         message = message.format(view_count, view_string)
-        lines.append(message)
-        lines.extend(names)
-        lines.append('')
-        self._io_manager.display(lines, capitalize=False)
+        messages.append(message)
+        messages.extend(names)
+        messages.append('')
+        self._io_manager.display(messages, capitalize=False)
         self._session._hide_next_redraw = True
 
     def make_view(self):
