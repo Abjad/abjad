@@ -228,3 +228,9 @@
         1. cary & sekka
         2. examples
     ... instead.
+
+48. Make (rrv) work in Git directories.
+    Can test with (red~example~score g lyi y).
+    This will modify all segment output.pdf files.
+    Using (rrv) should then run 'git checkout' on each of the output.pdf files.
+    But that does not currently work.
