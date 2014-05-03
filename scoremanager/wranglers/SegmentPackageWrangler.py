@@ -156,8 +156,8 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager._initializer_file_manager._write_stub()
-        manager.rewrite_metadata_module(metadata, prompt=False)
+        kanager.write_definition_module_stub()
+        manager.write_make_module_stub()
         message = 'segment package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 

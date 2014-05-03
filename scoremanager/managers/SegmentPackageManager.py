@@ -485,8 +485,8 @@ class SegmentPackageManager(PackageManager):
         '''
         self._view_versioned_file('.pdf')
 
-    def write_definition_module(self):
-        r'''Write definition module to disk.
+    def write_definition_module_stub(self):
+        r'''Writes definition module stub.
 
         Returns none.
         '''
@@ -500,17 +500,8 @@ class SegmentPackageManager(PackageManager):
                 contents = '\n'.join(lines)
                 file_pointer.write(contents)
 
-    def write_initializer(self):
-        r'''Writes initializer to disk.
-
-        Returns none.
-        '''
-        if not os.path.exists(self._initializer_file_path):
-            with file(self._initializer_file_path, 'w') as file_pointer:
-                file_pointer.write('')
-
     def write_make_module_stub(self):
-        r'''Writes __make__ module stub to disk.
+        r'''Writes __make__.py module stub.
 
         Returns none.
         '''
