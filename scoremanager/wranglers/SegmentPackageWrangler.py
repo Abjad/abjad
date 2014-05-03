@@ -46,6 +46,7 @@ class SegmentPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_package,
+            'dme': self.edit_definition_modules,
             'ins': self.write_initializer_stub,
             'inro': self.view_initializer,
             'lyi': self.interpret_current_lilypond_files,
@@ -77,14 +78,24 @@ class SegmentPackageWrangler(Wrangler):
                 return True
         return False
 
+    def _list_visible_asset_managers(self):
+        paths = self._list_visible_asset_paths()
+        managers = []
+        for path in paths:
+            manager = self._initialize_manager(path=path)
+            managers.append(manager)
+        return managers
+
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        string = 'all segments - make module - interpret'
+        string = 'all - definition modules - edit'
+        commands.append((string, 'dme'))
+        string = 'all - make modules - interpret'
         commands.append((string, 'mmi'))
-        string = 'all segments - lilypond file - interpret'
+        string = 'all - lilypond files - interpret'
         commands.append((string, 'lyi'))
-        commands.append(('all segments - pdf - version', 'pdfs'))
-        commands.append(('all segments - pdf - open', 'pdfo'))
+        commands.append(('all - pdfs - version', 'pdfs'))
+        commands.append(('all - pdfs - open', 'pdfo'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -154,6 +165,13 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
+    def edit_definition_modules(self):
+        r'''Edits segment definition modules.
+
+        Returns none.
+        '''
+        pass
+
     def interpret_current_lilypond_files(
         self,
         prompt=True,
@@ -169,12 +187,8 @@ class SegmentPackageWrangler(Wrangler):
         messages.append('')
         messages.append('will interpret ...')
         messages.append('')
-        segment_paths = []
-        for entry in entries:
-            if not entry[0].isalpha():
-                continue
-            segment_path = os.path.join(segments_directory, entry)
-            segment_paths.append(segment_path)
+        segment_paths = self._list_visible_asset_paths()
+        for segment_path in segment_paths:
             input_path = os.path.join(segment_path, 'output.ly')
             output_path = os.path.join(segment_path, 'output.pdf')
             messages.append(' INPUT: {}'.format(input_path))
@@ -186,22 +200,24 @@ class SegmentPackageWrangler(Wrangler):
             return
         if not result:
             return
-        for path in segment_paths:
-            manager = self._initialize_manager(path=path)
+        self._io_manager.display('')
+        for manager in self._list_visible_asset_managers():
             manager.interpret_current_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )
+        self._session._hide_next_redraw = True
 
     def interpret_make_modules(self):
-        r'''Makes asset PDFs.
+        r'''Interprets segment __make.py__ modules.
+        
+        Makes asset PDFs.
 
         Returns none.
         '''
-        parts = (self._session.current_score_directory_path,)
-        parts += self._score_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
+        segments_directory_path = self._get_current_directory
+        entries = sorted(os.listdir(segments_directory_path))
+        for directory_entry in entries:
             if not directory_entry[0].isalpha():
                 continue
             segment_package_name = directory_entry
@@ -230,13 +246,6 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
-
-    def remove_initializer(self):
-        r'''Removes initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.remove_initializer()
 
     def remove_packages(self):
         r'''Removes one or more segment packages.

@@ -25,6 +25,8 @@ def test_SegmentPackageWrangler_interpret_segment_lilypond_files_01():
         'Will interpret ...',
         'INPUT:',
         'OUTPUT:',
+        'Interpreted',
+        'Wrote',
         ])
 
     pdf_paths = [_ for _ in paths if _.endswith('.pdf')]
