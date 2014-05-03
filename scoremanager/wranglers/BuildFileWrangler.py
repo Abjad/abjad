@@ -257,6 +257,7 @@ class BuildFileWrangler(Wrangler):
     def _open_file_ending_with(self, string):
         path = self._get_file_path_ending_with(string)
         if path:
+            # TODO: maybe change to self._io_manager.open_file(path)
             manager = self._io_manager.make_file_manager(path)
             manager.open()
         else:

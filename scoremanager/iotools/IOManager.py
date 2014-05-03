@@ -666,14 +666,14 @@ class IOManager(IOManager):
     def view(self, file_path):
         r'''Views `file_path`.
 
-        Also works when `file_path` is a list of PDFs.
+        Also works when `file_path` is a list.
 
         Returns none.
         '''
         if not isinstance(file_path, list) and not os.path.isfile(file_path):
             return
-        if isinstance(file_path, list) and \
-            all(x.endswith('.pdf') for x in file_path):
+        if (isinstance(file_path, list) and
+            all(x.endswith('.pdf') for x in file_path)):
             file_paths = file_path
             file_paths = ' '.join(file_paths)
             command = 'open {}'.format(file_paths)

@@ -170,7 +170,28 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        pass
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, 'definition.py')
+            if os.path.isfile(path):
+                paths.append(path)
+        messages = []
+        messages.append('')
+        messages.append('will edit ...')
+        messages.append('')
+        for path in paths:
+            message = '   ' + path
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        self._io_manager.display('')
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        self._io_manager.view(paths)
+        self._session._hide_next_redraw = True
 
     def interpret_current_lilypond_files(
         self,
