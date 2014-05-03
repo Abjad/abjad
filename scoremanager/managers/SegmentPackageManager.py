@@ -284,7 +284,7 @@ class SegmentPackageManager(PackageManager):
         if view_output_pdf:
             self.view_output_pdf()
 
-    def interpret_make_module(self, prompt=True):
+    def interpret_make_module(self):
         r'''Interprets __make__ module.
 
         Creates output.ly and output.pdf files.
@@ -296,13 +296,17 @@ class SegmentPackageManager(PackageManager):
             message = 'no __make__ module found.'
             self._io_manager.proceed(message, prompt=prompt)
             return
-        manager = managers.FileManager(
-            path=self._make_module_path,
-            session=self._session,
-            )
+        manager = self._io_manager.make_file_manager(self._make_module_path)
         manager._interpret(prompt=False)
-        message = 'created output.ly and output.pdf files.'
-        self._io_manager.proceed(message, prompt=prompt)
+        messages = []
+        message = 'Interpreted {!r}.'.format(self._make_module_path)
+        messages.append(message)
+        message = 'Wrote {!r}.'.format(self._output_lilypond_file_path)
+        messages.append(message)
+        message = 'Wrote {!r}.'.format(self._output_pdf_file_path)
+        messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
 
     def list_versions_directory(self):
         r'''Lists versions directory.
