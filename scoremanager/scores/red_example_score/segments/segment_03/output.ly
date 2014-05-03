@@ -1,11 +1,11 @@
-% 2014-03-20 10:25
+% 2014-05-03 15:53
 
-\version "2.19.3"
+\version "2.19.5"
 \language "english"
 
 #(ly:set-option 'relative-includes #t)
 
-\include "../../stylesheets/red-example-score-stylesheet.ily"
+\include "../../stylesheets/stylesheet.ily"
 
 \header {}
 

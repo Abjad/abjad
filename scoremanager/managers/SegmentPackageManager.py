@@ -304,7 +304,7 @@ class SegmentPackageManager(PackageManager):
     def interpret_make_module(self, prompt=True):
         r'''Interprets __make__ module.
 
-        Creates output.pdf and output.ly files.
+        Creates output.ly and output.pdf files.
 
         Returns none.
         '''
@@ -318,7 +318,7 @@ class SegmentPackageManager(PackageManager):
             session=self._session,
             )
         manager._interpret(prompt=False)
-        message = 'created output.pdf and output.ly files.'
+        message = 'created output.ly and output.pdf files.'
         self._io_manager.proceed(message, prompt=prompt)
 
     def list_versions_directory(self):
