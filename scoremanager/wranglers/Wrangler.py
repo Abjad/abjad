@@ -765,6 +765,7 @@ class Wrangler(Controller):
             file_name_callback=file_name_callback,
             force_lowercase=force_lowercase,
             )
+        self._session._is_backtracking_locally = False
 
     def _run(self, pending_user_input=None):
         from scoremanager import iotools

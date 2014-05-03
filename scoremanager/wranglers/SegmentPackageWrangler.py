@@ -54,6 +54,7 @@ class SegmentPackageWrangler(Wrangler):
             'new': self.make_package,
             'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,
+            'ren': self.rename_package,
             'rm': self.remove_packages,
             })
         return result
@@ -156,7 +157,7 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        kanager.write_definition_module_stub()
+        manager.write_definition_module_stub()
         manager.write_make_module_stub()
         message = 'segment package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
