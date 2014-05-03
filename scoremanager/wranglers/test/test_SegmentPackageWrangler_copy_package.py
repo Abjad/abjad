@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('make me work')
 import os
 import shutil
 from abjad import *
@@ -22,9 +20,9 @@ def test_SegmentPackageWrangler_copy_package_01():
 
     titles = [
         'Score manager - example scores',
-        'Score manager - materials',
+        'Score manager - segments',
         '',
-        'Score manager - materials - select storehouse:',
+        'Score manager - segments - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -36,26 +34,26 @@ def test_SegmentPackageWrangler_copy_package_02():
     source_path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'materials',
-        'instrumentation',
+        'segments',
+        'segment_01',
         )
     target_path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'materials',
-        'copied_instrumentation',
+        'segments',
+        'copied_segment_01',
         )
 
     assert os.path.exists(source_path)
     assert not os.path.exists(target_path)
     try:
-        input_ = 'red~example~score m cp'
-        input_ += ' instrumentation copied_instrumentation y q'
+        input_ = 'red~example~score g cp'
+        input_ += ' segment~01 copied_segment_01 y q'
         score_manager._run(pending_user_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
-        assert 'copied_instrumentation' in contents
+        assert 'copied_segment_01' in contents
         shutil.rmtree(target_path)
     finally:
         if os.path.exists(target_path):
