@@ -30,6 +30,7 @@ class FileManager(Manager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'cp': self.copy,
             'dme': self.edit,
             'ts': self.typeset_tex_file,
             'v': self.view,
@@ -157,6 +158,13 @@ class FileManager(Manager):
             self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
+
+    def copy(self):
+        r'''Copies file.
+
+        Returns none.
+        '''
+        self._copy()
 
     def edit(self, line_number=None):
         r'''Edits file.
