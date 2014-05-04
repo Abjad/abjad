@@ -52,7 +52,7 @@ class SegmentPackageWrangler(Wrangler):
             'lyi': self.interpret_lilypond_files,
             'mmi': self.interpret_make_modules,
             'new': self.make_package,
-            'pdfo': self.view_segment_pdfs,
+            'pdfo': self.open_output_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
             'ver': self.version_artifacts,
@@ -183,6 +183,7 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
+    # TODO: factor out code shared with self.open_output_pdfs()
     def edit_definition_modules(self):
         r'''Edits segment definition modules.
 
@@ -212,8 +213,8 @@ class SegmentPackageWrangler(Wrangler):
 
     def interpret_lilypond_files(
         self,
+        open_output_pdfs=True,
         prompt=True,
-        view_output_pdfs=True,
         ):
         r'''Reinterprets all current LilyPond files.
 
@@ -242,7 +243,7 @@ class SegmentPackageWrangler(Wrangler):
         for manager in self._list_visible_asset_managers():
             manager.interpret_lilypond_file(
                 prompt=False,
-                view_output_pdf=False,
+                open_output_pdf=False,
                 )
         self._session._hide_next_redraw = True
 
@@ -308,6 +309,34 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
+    # TODO: factor out code shared with self.edit_definition_modules()
+    def open_output_pdfs(self):
+        r'''Opens output.pdf file in each segment.
+
+        Returns none.
+        '''
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, 'output.pdf')
+            if os.path.isfile(path):
+                paths.append(path)
+        messages = []
+        messages.append('will open ...')
+        messages.append('')
+        for path in paths:
+            message = '   ' + path
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        self._io_manager.display('')
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        self._io_manager.view(paths)
+        self._session._hide_next_redraw = True
+
     def remove_packages(self):
         r'''Removes one or more segment packages.
         
@@ -350,28 +379,6 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         self._current_package_manager.view_initializer()
-
-    def view_segment_pdfs(self):
-        r'''Views all asset PDFs.
-
-        Returns none.
-        '''
-        parts = (self._session.current_score_directory_path,)
-        parts += self._score_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        output_pdf_file_paths = []
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
-            if not directory_entry[0].isalpha():
-                continue
-            segment_package_name = directory_entry
-            output_pdf_file_path = os.path.join(
-                segments_directory_path,
-                segment_package_name,
-                'output.pdf',
-                )
-            if os.path.isfile(output_pdf_file_path):
-                output_pdf_file_paths.append(output_pdf_file_path)
-        self._io_manager.view(output_pdf_file_paths)
 
     def write_initializer_stub(self):
         r'''Writes stub initializer module.

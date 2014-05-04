@@ -81,7 +81,7 @@ class SegmentPackageManager(PackageManager):
             'mmi': self.interpret_make_module,
             'mms': self.write_make_module_stub,
             'mmro': self.view_make_module,
-            'pdfo': self.view_output_pdf,
+            'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
             'vlyo': self.view_versioned_output_ly,
@@ -262,12 +262,12 @@ class SegmentPackageManager(PackageManager):
 
     def interpret_lilypond_file(
         self,
-        view_output_pdf=True,
+        open_output_pdf=True,
         prompt=True,
         ):
         r'''Reinterprets current LilyPond file.
 
-        Opens resulting PDF when `view_output_pdf` is true.
+        Opens resulting PDF when `open_output_pdf` is true.
 
         Returns none.
         '''
@@ -290,11 +290,11 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.display(lines)
         lines = []
         message = None
-        if view_output_pdf:
+        if open_output_pdf:
             message = 'press return to view PDF.'
         self._io_manager.proceed(message=message, prompt=prompt)
-        if view_output_pdf:
-            self.view_output_pdf()
+        if open_output_pdf:
+            self.open_output_pdf()
 
     def interpret_make_module(self):
         r'''Interprets __make__ module.
@@ -344,6 +344,15 @@ class SegmentPackageManager(PackageManager):
             lines.append('')
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
+
+    def open_output_pdf(self):
+        r'''Opens output PDF.
+
+        Returns none.
+        '''
+        file_path = self._output_pdf_file_path
+        if os.path.isfile(file_path):
+            self._io_manager.view(file_path)
 
     def version_artifacts(self, prompt=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
@@ -477,15 +486,6 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager.view(self._make_module_path)
-
-    def view_output_pdf(self):
-        r'''Views output PDF.
-
-        Returns none.
-        '''
-        file_path = self._output_pdf_file_path
-        if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
 
     def view_versioned_definition_module(self):
         r'''Views versioned definition module.
