@@ -246,7 +246,7 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_in_each_package('__metadata__.py')
 
     def interpret_illustration_lilypond_files(self):
         r'''Calls LilyPond on the illustration.ly file in each material
