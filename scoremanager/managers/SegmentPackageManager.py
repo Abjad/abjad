@@ -309,7 +309,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.proceed(message, prompt=prompt)
             return
         manager = self._io_manager.make_file_manager(self._make_module_path)
-        manager._interpret(prompt=False)
+        manager.interpret(prompt=False)
         messages = []
         message = 'Interpreted {!r}.'.format(self._make_module_path)
         messages.append(message)

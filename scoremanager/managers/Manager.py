@@ -119,34 +119,6 @@ class Manager(Controller):
 
     ### PRIVATE METHODS ###
 
-    def _copy(
-        self, 
-        extension=None, 
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        getter = self._initialize_file_name_getter()
-        name = getter._run()
-        if self._should_backtrack():
-            return
-        name = stringtools.strip_diacritics(name)
-        if file_name_callback:
-            name = file_name_callback(name)
-        name = name.replace(' ', '_')
-        if force_lowercase:
-            name = name.lower()
-        if extension and not name.endswith(extension):
-            name = name + extension
-        parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, name)
-        message = 'new path will be {}'
-        message = message.format(new_path)
-        self._io_manager.display(message)
-        if not self._io_manager.confirm():
-            return
-        shutil.copyfile(self._path, new_path)
-        self._io_manager.proceed('asset copied.')
-
     def _enter_run(self):
         pass
 

@@ -571,25 +571,25 @@ class MaterialPackageManager(PackageManager):
         path = os.path.join(self._path, file_name)
         manager = managers.FileManager(path=path, session=self._session)
         manager._write(contents)
-        result = manager._interpret(prompt=False)
+        result = manager.interpret(prompt=False)
         manager._remove()
         if result:
             message = 'created illustration.pdf and illustration.ly files.'
             self._io_manager.proceed(message, prompt=prompt)
 
     def interpret_definition_module(self):
-        r'''Runs Python on material definition module.
+        r'''Calls Python on material definition module.
 
         Returns none.
         '''
-        self._definition_module_manager._interpret()
+        self._definition_module_manager.interpret()
 
     def interpret_illustrate_module(self, prompt=True):
-        r'''Runs Python on illustrate module module.
+        r'''Calls Python on illustrate module module.
 
         Returns none.
         '''
-        self._illustrate_module_manager._interpret(prompt=prompt)
+        self._illustrate_module_manager.interpret(prompt=prompt)
 
     def interpret_illustration_ly(self, prompt=True):
         r'''Calls LilyPond on illustration.ly file.

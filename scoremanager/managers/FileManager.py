@@ -75,17 +75,6 @@ class FileManager(Manager):
         elif result == 'user entered lone return':
             self.edit()
 
-    # TODO: make public; add command alias
-    def _interpret(self, prompt=True):
-        command = 'python {}'.format(self._path)
-        result = self._io_manager.spawn_subprocess(command)
-        if result != 0:
-            self._io_manager.display('')
-            self._io_manager.proceed()
-        elif prompt:
-            message = 'file interpreted.'
-            self._io_manager.proceed(message)
-
     def _is_editable(self):
         if self._path.endswith(('.tex', '.py')):
             return True
@@ -159,12 +148,38 @@ class FileManager(Manager):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def copy(self):
+    def copy(
+        self, 
+        extension=None, 
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
         r'''Copies file.
 
         Returns none.
         '''
-        self._copy()
+        getter = self._initialize_file_name_getter()
+        name = getter._run()
+        if self._should_backtrack():
+            return
+        name = stringtools.strip_diacritics(name)
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
+        if extension and not name.endswith(extension):
+            name = name + extension
+        parent_directory_path = os.path.dirname(self._path)
+        new_path = os.path.join(parent_directory_path, name)
+        message = 'new path will be {}'
+        message = message.format(new_path)
+        self._io_manager.display(message)
+        if not self._io_manager.confirm():
+            return
+        shutil.copyfile(self._path, new_path)
+        message = 'copied {}.'.format(self._path)
+        self._io_manager.proceed(message)
 
     def edit(self, line_number=None):
         r'''Edits file.
@@ -175,6 +190,19 @@ class FileManager(Manager):
             self._path,
             line_number=line_number,
             )
+
+    def interpret(self, prompt=True):
+        r'''Calls Python on file.
+
+        Returns none.
+        '''
+        command = 'python {}'.format(self._path)
+        result = self._io_manager.spawn_subprocess(command)
+        if result != 0:
+            self._io_manager.display('')
+        elif prompt:
+            message = 'interpreted {}.'.format(self._path)
+            self._io_manager.display([message, ''])
 
     def open(self):
         r'''Opens file.
