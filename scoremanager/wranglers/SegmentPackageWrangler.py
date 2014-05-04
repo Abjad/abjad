@@ -91,6 +91,7 @@ class SegmentPackageWrangler(Wrangler):
     def _make_all_segments_menu_section(self, menu):
         commands = []
         commands.append(('all segments - edit definition modules', 'dme'))
+        commands.append(('all segments - edit metadata modules', 'mdme'))
         commands.append(('all segments - interpret make modules', 'mmi'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
         commands.append(('all segments - open output.pdf files', 'pdfo'))
@@ -183,32 +184,12 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
-    # TODO: factor out code shared with self.open_output_pdfs()
     def edit_definition_modules(self):
         r'''Edits segment definition modules.
 
         Returns none.
         '''
-        paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, 'definition.py')
-            if os.path.isfile(path):
-                paths.append(path)
-        messages = []
-        messages.append('will edit ...')
-        messages.append('')
-        for path in paths:
-            message = '   ' + path
-            messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        self._io_manager.display('')
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        self._io_manager.view(paths)
+        self._open_in_each_package('definition.py')
         self._session._hide_next_redraw = True
 
     def interpret_lilypond_files(
@@ -309,32 +290,12 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
-    # TODO: factor out code shared with self.edit_definition_modules()
     def open_output_pdfs(self):
         r'''Opens output.pdf file in each segment.
 
         Returns none.
         '''
-        paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, 'output.pdf')
-            if os.path.isfile(path):
-                paths.append(path)
-        messages = []
-        messages.append('will open ...')
-        messages.append('')
-        for path in paths:
-            message = '   ' + path
-            messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        self._io_manager.display('')
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        self._io_manager.view(paths)
+        self._open_in_each_package('output.pdf')
         self._session._hide_next_redraw = True
 
     def remove_packages(self):
