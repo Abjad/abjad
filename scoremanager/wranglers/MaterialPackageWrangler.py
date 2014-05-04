@@ -66,7 +66,7 @@ class MaterialPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_package,
-            'ine': self.edit_initializers,
+            'ino': self.open_initializers,
             'lyi': self.interpret_illustration_lys,
             'mdmo': self.open_metadata_modules,
             'new': self.make_package,
@@ -160,10 +160,10 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_all_materials_menu_section(self, menu):
         commands = []
-        commands.append(('all materials - edit initializers', 'ine'))
-        commands.append(('all materials - interpret illustration.lys', 'lyi'))
-        commands.append(('all materials - open illustration.pdfs', 'pdfo'))
-        commands.append(('all materials - open metadata modules', 'mdmo'))
+        commands.append(('all materials - illustration.lys - interpret', 'lyi'))
+        commands.append(('all materials - illustration.pdfs - open', 'pdfo'))
+        commands.append(('all materials - initializers - open', 'ino'))
+        commands.append(('all materials - metadata modules - open', 'mdmo'))
         commands.append(('all materials - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,
@@ -234,19 +234,19 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
-    def edit_initializers(self):
-        r'''Edits the __init__.py file in each material package.
+    def open_initializers(self):
+        r'''Opens the ``__ini__.py`` file in each material package.
 
         Returns none.
         '''
-        self._open_in_each_package('__init__.py', verb='edit')
+        self._open_in_each_package('__init__.py')
 
     def open_metadata_modules(self):
-        r'''Edits the __metadata__.py file in each material package.
+        r'''Opens the ``__metadata__.py`` file in each material package.
 
         Returns none.
         '''
-        self._open_in_each_package('__metadata__.py', verb='edit')
+        self._open_in_each_package('__metadata__.py')
 
     def interpret_illustration_lys(self):
         r'''Calls LilyPond on the illustration.ly file in each material

@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler_open_metadata_modules_01():
             )
 
     lines = []
-    lines.append('Will edit ...')
+    lines.append('Will open ...')
     lines.extend(paths)
 
     for line in lines:

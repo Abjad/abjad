@@ -88,12 +88,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self._initializer_file_path,
-            session=self._session,
-            )
-        manager.view()
+        self._initializer_file_manager.view()
 
     def write_initializer_stub(self, prompt=True):
         r'''Wrties stub initializer module.
