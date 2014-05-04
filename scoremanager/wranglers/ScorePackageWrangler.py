@@ -72,7 +72,7 @@ class ScorePackageWrangler(Wrangler):
     def _user_input_to_action(self):
         result = {
             'cp': self.copy_package,
-            'cro': self.view_cache,
+            'co': self.open_cache,
             'cw': self.write_cache,
             'd': self._session._score_manager._distribution_file_wrangler._run,
             'fix': self.fix_packages,
@@ -288,7 +288,7 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_cache_menu_section(self, menu):
         commands = []
-        commands.append(('cache - read only', 'cro'))
+        commands.append(('cache - open', 'co'))
         commands.append(('cache - write', 'cw'))
         menu.make_command_section(
             is_hidden=True,
@@ -452,7 +452,7 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.display(messages)
         self._session._hide_next_redraw = True
 
-    def view_cache(self):
+    def open_cache(self):
         r'''Views cache.
 
         Returns none.
