@@ -302,8 +302,8 @@ class MaterialPackageWrangler(Wrangler):
         self._rename_asset()
 
     def version_artifacts(self):
-        r'''Versions the output.py, illustration.ly and illustration.pdf
-        files in each material package.
+        r'''Versions any of the ``output.py``, ``illustration.ly`` and 
+        ``illustration.pdf`` files that exist in each material package.
 
         Returns none.
         '''
