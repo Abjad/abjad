@@ -67,7 +67,7 @@ class MaterialPackageWrangler(Wrangler):
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_package,
             'ine': self.edit_initializers,
-            'lyi': self.interpret_illustration_lilypond_files,
+            'lyi': self.interpret_illustration_lys,
             'mdme': self.edit_metadata_modules,
             'new': self.make_package,
             'pdfo': self.open_illustration_pdfs,
@@ -248,7 +248,7 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('__metadata__.py')
 
-    def interpret_illustration_lilypond_files(self):
+    def interpret_illustration_lys(self):
         r'''Calls LilyPond on the illustration.ly file in each material
         package.
 

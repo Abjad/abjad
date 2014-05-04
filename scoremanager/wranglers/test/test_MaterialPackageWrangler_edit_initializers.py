@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_edit_definition_modules_01():
+def test_MaterialPackageWrangler_edit_initializers_01():
 
     input_ = 'red~example~score m ine y q'
     score_manager._run(pending_user_input=input_)
