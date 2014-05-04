@@ -3,10 +3,10 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageManager_view_illustration_ly_01():
+def test_MaterialPackageManager_open_illustration_ly_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'm example~notes lyro q'
+    input_ = 'm example~notes lyo q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',

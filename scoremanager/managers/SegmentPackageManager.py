@@ -77,7 +77,7 @@ class SegmentPackageManager(PackageManager):
         result.update({
             'dme': self.edit_definition_module,
             'lyi': self.interpret_lilypond_file,
-            'lyro': self.view_current_output_ly,
+            'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
             'mms': self.write_make_module_stub,
             'mmro': self.view_make_module,
@@ -123,7 +123,7 @@ class SegmentPackageManager(PackageManager):
             string = 'lilypond file - interpret'
             commands.append((string, 'lyi'))
             string = 'lilypond file - read only'
-            commands.append((string, 'lyro'))
+            commands.append((string, 'lyo'))
             menu.make_command_section(
                 is_hidden=True,
                 commands=commands,
@@ -471,7 +471,7 @@ class SegmentPackageManager(PackageManager):
             return
         self._io_manager.view(file_paths)
 
-    def view_current_output_ly(self):
+    def open_output_ly(self):
         r'''Views current output LilyPond file.
 
         Returns none.

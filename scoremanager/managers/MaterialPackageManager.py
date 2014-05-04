@@ -158,7 +158,7 @@ class MaterialPackageManager(PackageManager):
             'imi': self.interpret_illustrate_module,
             'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
-            'lyro': self.view_illustration_ly,
+            'lyo': self.open_illustration_ly,
             'mae': self.autoedit_output_material,
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
@@ -281,7 +281,7 @@ class MaterialPackageManager(PackageManager):
         commands = []
         commands.append(('illustration ly - interpret', 'lyi'))
         commands.append(('illustration ly - remove', 'lyrm'))
-        commands.append(('illustration ly - read only', 'lyro'))
+        commands.append(('illustration ly - read only', 'lyo'))
         menu.make_command_section(
             commands=commands,
             name='illustration ly',
@@ -703,7 +703,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._session.toggle_user_input_values_default_status()
 
-    def view_illustration_ly(self):
+    def open_illustration_ly(self):
         r'''Views illustration LilyPond file.
 
         Returns none.
