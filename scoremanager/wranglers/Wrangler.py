@@ -540,6 +540,14 @@ class Wrangler(Controller):
                 result.append(path)
         return result
 
+    def _list_visible_asset_managers(self):
+        paths = self._list_visible_asset_paths()
+        managers = []
+        for path in paths:
+            manager = self._initialize_manager(path=path)
+            managers.append(manager)
+        return managers
+
     def _list_visible_asset_paths(
         self,
         abjad_library=True,
@@ -904,6 +912,24 @@ class Wrangler(Controller):
     def _set_is_navigating_to_sibling_asset(self):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
+
+    def _version_artifacts(self):
+        managers = self._list_visible_asset_managers()
+        messages = []
+        messages.append('will copy ...')
+        messages.append('')
+        for manager in managers:
+            messages.extend(manager._make_version_artifacts_messages())
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        for manager in self._list_visible_asset_managers():
+            manager.version_artifacts(prompt=False)
+        self._io_manager.display('')
+        self._session._hide_next_redraw = True
 
     def _write_view_inventory(self, view_inventory, prompt=True):
         lines = []

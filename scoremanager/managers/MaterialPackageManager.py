@@ -6,6 +6,7 @@ import traceback
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools import topleveltools
 from scoremanager import wizards
 from scoremanager.managers.PackageManager import PackageManager
@@ -172,6 +173,10 @@ class MaterialPackageManager(PackageManager):
             'uit': self.toggle_user_input_values_default_status,
             })
         return result
+
+    @property
+    def _versions_directory_path(self):
+        return os.path.join(self._path, 'versions')
 
     ### PRIVATE METHODS ###
 
@@ -429,6 +434,41 @@ class MaterialPackageManager(PackageManager):
         lines.append(line)
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
+
+    def _make_version_artifacts_messages(self):
+        io_manager = systemtools.IOManager
+        next_output_file_name = io_manager.get_next_output_file_name(
+            output_directory_path=self._versions_directory_path,
+            )
+        result = os.path.splitext(next_output_file_name)
+        next_output_file_name_root, extension = result
+        messages = []
+        source_paths = (
+            self._definition_module_path,
+            self._output_module_path,
+            self._illustration_ly_file_path,
+            self._illustration_pdf_file_path,
+            )
+        for source_path in source_paths:
+            if not source_path:
+                continue
+            if not os.path.isfile(source_path):
+                continue
+            message = ' FROM: {}'.format(source_path)
+            messages.append(message)
+            versions_directory = self._versions_directory_path
+            base_name = os.path.basename(source_path)
+            file_name, extension = os.path.splitext(base_name)
+            name = '{}_{}{}'.format(
+                file_name,
+                next_output_file_name_root,
+                extension,
+                )
+            target_path = os.path.join(versions_directory, name)
+            message = '   TO: {}'.format(target_path)
+            messages.append(message)
+            messages.append('')
+        return messages
 
     def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
@@ -717,6 +757,86 @@ class MaterialPackageManager(PackageManager):
         '''
         self._illustration_pdf_file_manager.view()
 
+    def version_artifacts(self, prompt=True):
+        r'''Copies any of definition.py, output.py, illustration.ly and
+        illustration.pdf to versions directory, if they exist.
+
+        Returns none.
+        '''
+        if not os.path.isdir(self._versions_directory_path):
+            os.mkdir(self._versions_directory_path)
+        io_manager = systemtools.IOManager
+        next_output_file_name = io_manager.get_next_output_file_name(
+            output_directory_path=self._versions_directory_path,
+            )
+        result = os.path.splitext(next_output_file_name)
+        next_output_file_name_root, extension = result
+        if prompt:
+            messages = []
+            messages.append('will copy ...')
+            messages.append('')
+            messages.extend(self._make_version_artifacts_messages())
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            self._io_manager.display('')
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+        result = os.path.splitext(next_output_file_name)
+        next_output_file_name_root, extension = result
+        name_root = next_output_file_name_root
+        if os.path.isfile(self._definition_module_path):
+            target_file_name = 'definition_{}.py'.format(name_root)
+            target_file_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            # TODO: replace with shutil.copyfile()
+            command = 'cp {} {}'.format(
+                self._definition_module_path,
+                target_file_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        if os.path.isfile(self._output_module_path):
+            target_file_name = 'output_{}.py'.format(name_root)
+            target_file_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            # TODO: replace with shutil.copyfile()
+            command = 'cp {} {}'.format(
+                self._output_module_path,
+                target_file_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        if os.path.isfile(self._illustration_ly_file_path):
+            target_file_name = 'illustration_{}.ly'.format(name_root)
+            target_file_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            # TODO: replace with shutil.copyfile()
+            command = 'cp {} {}'.format(
+                self._illustration_ly_file_path,
+                target_file_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        if os.path.isfile(self._illustration_pdf_file_path):
+            target_file_name = 'illustration_{}.pdf'.format(name_root)
+            target_file_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            # TODO: replace with shutil.copyfile()
+            command = 'cp {} {}'.format(
+                self._illustration_pdf_file_path,
+                target_file_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        self._io_maanger.display('')
+        self._session._hide_next_redraw = True
+
     def view_output_module(self):
         r'''Views output module.
 
@@ -814,6 +934,9 @@ class MaterialPackageManager(PackageManager):
         contents = ''.join(lines)
         self._output_module_manager._write(contents)
         output_material_class_name = type(output_material).__name__
-        self._add_metadatum('output_material_class_name', output_material_class_name)
+        self._add_metadatum(
+            'output_material_class_name', 
+            output_material_class_name,
+            )
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)

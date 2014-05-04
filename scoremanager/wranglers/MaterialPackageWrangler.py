@@ -235,7 +235,7 @@ class MaterialPackageWrangler(Wrangler):
         self._copy_asset()
 
     def open_initializers(self):
-        r'''Opens the ``__ini__.py`` file in each material package.
+        r'''Opens the ``__init__.py`` file in each material package.
 
         Returns none.
         '''
@@ -307,4 +307,4 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._version_artifacts()

@@ -80,13 +80,14 @@ class SegmentPackageWrangler(Wrangler):
                 return True
         return False
 
-    def _list_visible_asset_managers(self):
-        paths = self._list_visible_asset_paths()
-        managers = []
-        for path in paths:
-            manager = self._initialize_manager(path=path)
-            managers.append(manager)
-        return managers
+    # TODO: hoist to Wrangler
+#    def _list_visible_asset_managers(self):
+#        paths = self._list_visible_asset_paths()
+#        managers = []
+#        for path in paths:
+#            manager = self._initialize_manager(path=path)
+#            managers.append(manager)
+#        return managers
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
@@ -317,22 +318,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        managers = self._list_visible_asset_managers()
-        messages = []
-        messages.append('will copy ...')
-        messages.append('')
-        for manager in managers:
-            messages.extend(manager._make_version_artifacts_messages())
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        for manager in self._list_visible_asset_managers():
-            manager.version_artifacts(prompt=False)
-        self._io_manager.display('')
-        self._session._hide_next_redraw = True
+        self._version_artifacts()
 
     def open_initializer(self):
         r'''Views initializer module.

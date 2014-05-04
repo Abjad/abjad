@@ -236,3 +236,5 @@
         Added red_example_score/segments/segment_03 to repository ...
 
     ... instead.
+
+48. Change MPM.view_output_module() to MPM.open_output_module().
