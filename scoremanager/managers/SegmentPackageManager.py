@@ -115,7 +115,7 @@ class SegmentPackageManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         elif result == 'user entered lone return':
-            self.edit_definition_module()
+            pass
 
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
@@ -337,18 +337,14 @@ class SegmentPackageManager(PackageManager):
         if not os.path.exists(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
 
-    def save_to_versions_directory(
-        self,
-        prompt=True
-        ):
-        r'''Saves asset definition module,
-        output PDF and output LilyPond file to versions directory.
+    def save_to_versions_directory(self, prompt=True):
+        r'''Saves definition.py, output.ly and output.pdf to versions
+        directory.
 
-        Returns none.
+        Returns version number or none.
         '''
         paths = {}
-        definition_module_path = \
-            self._get_definition_module_path()
+        definition_module_path = self._definition_module_path
         if not os.path.isfile(definition_module_path):
             message = 'can not find asset definition module.'
             self._io_manager.proceed(
@@ -372,7 +368,10 @@ class SegmentPackageManager(PackageManager):
                 prompt=prompt,
                 )
             return
-        next_output_file_name = systemtools.IOManager.get_next_output_file_name(
+        if not os.path.isdir(self._versions_directory_path):
+            os.mkdir(self._versions_directory_path)
+        io_manager = systemtools.IOManager
+        next_output_file_name = io_manager.get_next_output_file_name(
             output_directory_path=self._versions_directory_path,
             )
         result = os.path.splitext(next_output_file_name)

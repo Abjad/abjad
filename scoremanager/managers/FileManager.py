@@ -109,7 +109,6 @@ class FileManager(Manager):
         if self._path.endswith('.pdf'):
             commands.append(('file - read only', 'v'))
         menu.make_command_section(
-            default_index=0,
             commands=commands,
             )
 

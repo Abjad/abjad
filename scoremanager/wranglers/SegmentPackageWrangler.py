@@ -52,10 +52,10 @@ class SegmentPackageWrangler(Wrangler):
             'lyi': self.interpret_lilypond_files,
             'mmi': self.interpret_make_modules,
             'new': self.make_package,
-            'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
+            'ver': self.version_packages,
             })
         return result
 
@@ -90,14 +90,11 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        string = 'all - definition modules - edit'
-        commands.append((string, 'dme'))
-        string = 'all - make modules - interpret'
-        commands.append((string, 'mmi'))
-        string = 'all - lilypond files - interpret'
-        commands.append((string, 'lyi'))
-        commands.append(('all - pdfs - version', 'pdfs'))
-        commands.append(('all - pdfs - open', 'pdfo'))
+        commands.append(('all segments - edit definition.py files', 'dme'))
+        commands.append(('all segments - interpret __make__.py files', 'mmi'))
+        commands.append(('all segments - interpret output.ly files', 'lyi'))
+        commands.append(('all segments - open output.pdf files', 'pdfo'))
+        commands.append(('all segments - version', 'ver'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -324,38 +321,19 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def version_segment_packages(self):
-        r'''Versions all assets.
+    def version_packages(self):
+        r'''Versions all segment packages.
 
         Returns none.
         '''
-        parts = (self._session.current_score_directory_path,)
-        parts += self._score_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
-            if not directory_entry[0].isalpha():
-                continue
-            segment_package_name = directory_entry
-            segment_package_directory_path = os.path.join(
-                segments_directory_path,
-                segment_package_name,
-                )
-            segment_package_path = \
-                self._configuration.path_to_package_path(
-                segment_package_directory_path)
-            manager = self._manager_class(
-                segment_package_path,
-                session=self._session,
-                )
-            version_number = manager.save_to_versions_directory(
-                prompt=False,
-                )
+        for manager in self._list_visible_asset_managers():
+            version_number = manager.save_to_versions_directory(prompt=False)
             if version_number is not None:
                 message = 'segment {} version {} written to disk.'
-                message = message.format(segment_package_name, version_number)
+                message = message.format(manager._package_name, version_number)
                 self._io_manager.display(message)
         self._io_manager.display('')
-        self._io_manager.proceed()
+        self._session._hide_next_redraw = True
 
     def view_initializer(self):
         r'''Views initializer module.

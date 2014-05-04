@@ -178,7 +178,7 @@ class Session(abctools.AbjadObject):
             message = 'transcripts directory contains {} transcripts.'
             message = message.format(count)
             messages.append(message)
-            message = 'prune directory soon.'
+            message = 'prune {} soon.'.format(transcripts_directory)
             messages.append(message)
             self.io_manager.display(messages)
         self.transcript._write()

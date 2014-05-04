@@ -246,7 +246,6 @@ class MenuSection(AbjadObject):
             key = menu_entry.key
             prepopulated_value = menu_entry.prepopulated_value
             if self.is_numbered:
-                #menu_line += '{}: '.format(menu_entry.number)
                 number_indicator = '{}: '.format(menu_entry.number)
                 tab = self._make_tab(self.indent_level)
                 tab_width = len(tab)
