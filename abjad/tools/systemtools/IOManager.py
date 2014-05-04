@@ -60,7 +60,8 @@ class IOManager(object):
     @staticmethod
     def _warn_when_output_directory_almost_full(last_number):
         from abjad import abjad_configuration
-        abjad_output_directory_path = abjad_configuration['abjad_output_directory_path']
+        abjad_output_directory_path = \
+            abjad_configuration['abjad_output_directory_path']
         max_number = 10000
         lines = []
         lines.append('')
@@ -186,8 +187,10 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         pattern = re.compile('\d{4,4}.[a-z]{2,3}')
-        output_directory_path = \
-            output_directory_path or abjad_configuration['abjad_output_directory_path']
+        output_directory_path = output_directory_path or \
+            abjad_configuration['abjad_output_directory_path']
+        if not os.path.exists(output_directory_path):
+            return
         all_file_names = os.listdir(output_directory_path)
         all_output = [x for x in all_file_names if pattern.match(x)]
         if all_output == []:
@@ -222,8 +225,8 @@ class IOManager(object):
             output_directory_path=output_directory_path,
             )
         if last_output is None:
-            next_number = 0
-            next_output_file_name = '0000.{}'.format(file_extension)
+            next_number = 1
+            next_output_file_name = '0001.{}'.format(file_extension)
         else:
             last_number = int(last_output.split('.')[0])
             next_number = last_number + 1
