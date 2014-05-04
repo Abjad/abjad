@@ -205,14 +205,13 @@ class Controller(ScoreManagerObject):
         commands = []
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
-        commands.append(('metadata - open module', 'mdmo'))
         commands.append(('metadata - remove', 'mdrm'))
-        commands.append(('metadata - rewrite module', 'mdmrw'))
-        commands.append(('metadata - view module', 'mdmro'))
+        commands.append(('metadata module - open', 'mdmo'))
+        commands.append(('metadata module - rewrite', 'mdmrw'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='metadatum',
+            name='metadata',
             )
 
     def _make_sibling_asset_tour_menu_section(self, menu):

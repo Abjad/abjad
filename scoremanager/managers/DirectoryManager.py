@@ -50,7 +50,6 @@ class DirectoryManager(Manager):
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
             'mdmo': self.open_metadata_module,
-            'mdmro': self.view_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,
             })
@@ -348,12 +347,3 @@ class DirectoryManager(Manager):
         if prompt:
             message = 'rewrote metadata module.'
             self._io_manager.proceed(message)
-
-    def view_metadata_module(self):
-        r'''Views metadata module.
-
-        Returns none.
-        '''
-        file_path = self._metadata_module_path
-        if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
