@@ -90,11 +90,11 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all segments - edit definition.py files', 'dme'))
-        commands.append(('all segments - interpret __make__.py files', 'mmi'))
+        commands.append(('all segments - edit definition modules', 'dme'))
+        commands.append(('all segments - interpret make modules', 'mmi'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
         commands.append(('all segments - open output.pdf files', 'pdfo'))
-        commands.append(('all segments - version', 'ver'))
+        commands.append(('all segments - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -116,7 +116,8 @@ class SegmentPackageWrangler(Wrangler):
             )
         manager.write_initializer()
         manager.write_definition_module()
-        manager.make_versions_directory()
+        if not os.path.exists(manager._versions_directory_path):
+            os.mkdir(manager._versions_directory_path)
         message = 'segment created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -326,12 +327,20 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
+        managers = self._list_visible_asset_managers()
+        messages = []
+        messages.append('will copy ...')
+        messages.append('')
+        for manager in managers:
+            messages.extend(manager._make_version_artifacts_messages())
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
+            return
         for manager in self._list_visible_asset_managers():
-            version_number = manager.version_artifacts(prompt=False)
-            if version_number is not None:
-                message = 'segment {} version {} written to disk.'
-                message = message.format(manager._package_name, version_number)
-                self._io_manager.display(message)
+            manager.version_artifacts(prompt=False)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 

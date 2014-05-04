@@ -164,7 +164,6 @@ class SegmentPackageManager(PackageManager):
         self._make_current_pdf_menu_section(menu)
         self._make_definition_module_menu_section(menu)
         self._make_make_module_menu_section(menu)
-#        self._make_versioned_pdfs_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -178,6 +177,32 @@ class SegmentPackageManager(PackageManager):
             commands=commands,
             name='make module',
             )
+
+    def _make_version_artifacts_messages(self):
+        paths = {}
+        io_manager = systemtools.IOManager
+        next_output_file_name = io_manager.get_next_output_file_name(
+            output_directory_path=self._versions_directory_path,
+            )
+        result = os.path.splitext(next_output_file_name)
+        next_output_file_name_root, extension = result
+        messages = []
+        source_paths = (
+            self._definition_module_path,
+            self._output_lilypond_file_path,
+            self._output_pdf_file_path,
+            )
+        for source_path in source_paths:
+            _, extension = os.path.splitext(source_path)
+            message = ' FROM: {}'.format(source_path)
+            messages.append(message)
+            directory = self._versions_directory_path
+            file_name = next_output_file_name_root + extension
+            target_path = os.path.join(directory, file_name)
+            message = '   TO: {}'.format(target_path)
+            messages.append(message)
+            messages.append('')
+        return messages
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
@@ -320,14 +345,6 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
-    def make_versions_directory(self):
-        r'''Makes versions directory.
-
-        Returns none.
-        '''
-        if not os.path.exists(self._versions_directory_path):
-            os.mkdir(self._versions_directory_path)
-
     def version_artifacts(self, prompt=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
         directory.
@@ -367,31 +384,18 @@ class SegmentPackageManager(PackageManager):
             )
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
-        messages = []
-        messages.append('will copy ...')
-        messages.append('')
-        source_paths = (
-            self._definition_module_path,
-            self._output_lilypond_file_path,
-            self._output_pdf_file_path,
-            )
-        for source_path in source_paths:
-            _, extension = os.path.splitext(source_path)
-            message = ' FROM: {}'.format(source_path)
-            messages.append(message)
-            directory = self._versions_directory_path
-            file_name = next_output_file_name_root + extension
-            target_path = os.path.join(directory, file_name)
-            message = '   TO: {}'.format(target_path)
-            messages.append(message)
+        if prompt:
+            messages = []
+            messages.append('will copy ...')
             messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        self._io_manager.display('')
-        if self._should_backtrack():
-            return
-        if not result:
-            return
+            messages.extend(self._make_version_artifacts_messages())
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            self._io_manager.display('')
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
         target_file_name = next_output_file_name_root + '.py'
@@ -428,7 +432,7 @@ class SegmentPackageManager(PackageManager):
             )
         self._io_manager.spawn_subprocess(command)
         version_number = int(next_output_file_name_root)
-        message = 'Copied definition.py, output.ly and output.pdf'
+        message = 'copied definition.py, output.ly and output.pdf'
         message += ' to versions directory.'
         message = message.format(version_number)
         self._io_manager.display([message, ''])
