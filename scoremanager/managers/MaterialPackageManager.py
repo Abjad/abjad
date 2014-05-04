@@ -395,7 +395,7 @@ class MaterialPackageManager(PackageManager):
             commands.append(('package - remove autoeditor', 'pra'))
         else:
             commands.append(('package - configure autoeditor', 'pca'))
-        commands.append(('package - initializer read only', 'inro'))
+        commands.append(('package - initializer - open', 'ino'))
         if commands:
             path = self._definition_module_path
             has_definition_module = os.path.isfile(path)

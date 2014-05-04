@@ -48,7 +48,7 @@ class SegmentPackageWrangler(Wrangler):
             'cp': self.copy_package,
             'dme': self.edit_definition_modules,
             'ins': self.write_initializer_stub,
-            'inro': self.view_initializer,
+            'ino': self.open_initializer,
             'lyi': self.interpret_lilypond_files,
             'mmi': self.interpret_make_modules,
             'new': self.make_package,
@@ -334,12 +334,12 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def view_initializer(self):
+    def open_initializer(self):
         r'''Views initializer module.
 
         Returns none.
         '''
-        self._current_package_manager.view_initializer()
+        self._current_package_manager.open_initializer()
 
     def write_initializer_stub(self):
         r'''Writes stub initializer module.

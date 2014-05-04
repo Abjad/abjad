@@ -4,9 +4,9 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_PackageManager_view_initializer_01():
+def test_PackageManager_open_initializer_01():
 
-    input_ = 'm example~numbers inro q'
+    input_ = 'm example~numbers ino q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',

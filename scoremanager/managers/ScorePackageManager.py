@@ -193,7 +193,7 @@ class ScorePackageManager(PackageManager):
         commands.append(('score package - score pdf', 'pdf'))
         commands.append(('score package - remove unadded assets', 'rua'))
         commands.append(('score package - setup', 'p'))
-        commands.append(('score package - view initializer', 'inro'))
+        commands.append(('score package - initializer - open', 'ino'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

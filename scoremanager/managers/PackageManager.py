@@ -50,7 +50,7 @@ class PackageManager(DirectoryManager):
         result = result.copy()
         result.update({
             'ins': self.write_initializer_stub,
-            'inro': self.view_initializer,
+            'ino': self.open_initializer,
             })
         return result
 
@@ -83,7 +83,7 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def view_initializer(self):
+    def open_initializer(self):
         r'''Views initializer module.
 
         Returns none.

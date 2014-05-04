@@ -187,12 +187,12 @@
         all score packages - fix (fix)
     ... to ...
         all score packages - fix (fix)
-        all score packages - remove unadded assets (rua)
-        all score packages - rewrite initializer (inro)
-        all score packages - rewrite metadata module (inro)
-        all score packages - score pdf (pdf)
-        all score packages - view initializer (inro)
-        all score packages - view metadata module (inro)
+        all score packages - initializers - rewrite (inrw)
+        all score packages - initializers - open (ino)
+        all score packages - metadata modules - open (mdmo)
+        all score packages - metadata modules - rewrite (mdmrw)
+        all score packages - score pdfs - open (pdfo)
+        all score packages - unadded assets - remove (uarm)
     ... instead.
 
 44. Improve (k > cp) user experience. Change ...
