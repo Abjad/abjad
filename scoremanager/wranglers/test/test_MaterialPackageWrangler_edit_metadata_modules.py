@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_MaterialPackageWrangler_edit_metadata_modules_01():
 
-    input_ = 'red~example~score g dme y q'
+    input_ = 'red~example~score m mdme y q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
 

@@ -189,7 +189,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._open_in_each_package('definition.py')
+        self._open_in_each_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
 
     def interpret_lilypond_files(

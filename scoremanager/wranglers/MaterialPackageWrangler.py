@@ -239,14 +239,14 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._open_in_each_package('__init__.py')
+        self._open_in_each_package('__init__.py', verb='edit')
 
     def edit_metadata_modules(self):
         r'''Edits the __metadata__.py file in each material package.
 
         Returns none.
         '''
-        self._open_in_each_package('__metadata__.py')
+        self._open_in_each_package('__metadata__.py', verb='edit')
 
     def interpret_illustration_lys(self):
         r'''Calls LilyPond on the illustration.ly file in each material
@@ -284,7 +284,7 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_in_each_package('illustration.pdf')
 
     def remove_packages(self):
         r'''Removes material package.

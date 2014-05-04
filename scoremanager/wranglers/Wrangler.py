@@ -689,14 +689,15 @@ class Wrangler(Controller):
     def _navigate_to_previous_asset(self):
         pass
 
-    def _open_in_each_package(self, file_name):
+    def _open_in_each_package(self, file_name, verb='open'):
         paths = []
         for segment_path in self._list_visible_asset_paths():
             path = os.path.join(segment_path, file_name)
             if os.path.isfile(path):
                 paths.append(path)
         messages = []
-        messages.append('will edit ...')
+        message = 'will {} ...'.format(verb)
+        messages.append(message)
         messages.append('')
         for path in paths:
             message = '   ' + path
