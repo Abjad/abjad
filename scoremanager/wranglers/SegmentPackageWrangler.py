@@ -55,7 +55,7 @@ class SegmentPackageWrangler(Wrangler):
             'pdfo': self.view_segment_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver': self.version_packages,
+            'ver': self.version_artifacts,
             })
         return result
 
@@ -322,7 +322,7 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def version_packages(self):
+    def version_artifacts(self):
         r'''Versions all segment packages.
 
         Returns none.
