@@ -100,11 +100,9 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self._initializer_file_path,
-            session=self._session,
-            )
+        path = self._initializer_file_path
+        manager = self._io_manager.make_file_manager(path)
         manager._write_stub()
-        message = 'stub initializer written.'
-        self._io_manager.proceed(message)
+        message = 'wrote initializer stub.'
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
