@@ -176,27 +176,13 @@
 40. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-41. Change breadcrumbs so that ...
-        'Score manager - active scores'
-    ... becomes ...
-        'Score manager - score packages (active scores view)'
-    ... instead.
-
-42. There is no such thing as 'My build file library'.
+41. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-43. Make bicolumnar layout work for asset screens.
+42. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-44. Remove duplicates in (g > segment 01):
-        go - next score (>>)
-        go - previous score (<<)
-        go - next score (>>)
-        go - next asset (>)
-        go - previous score (<<)
-        go - previous asset (<)
-
-45. Extend 'all score packages' options in Score Manager main menu.
+43. Extend 'all score packages' options in Score Manager main menu.
     Change ...
         all score packages - fix (fix)
     ... to ...
@@ -209,7 +195,7 @@
         all score packages - view metadata module (inro)
     ... instead.
 
-46. Improved (k > cp) user experience. Change ...
+44. Improve (k > cp) user experience. Change ...
         Enter maker module to copy> 1
         New maker module name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -218,7 +204,7 @@
         New maker module name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-47. Improve (vls) user experience. Change ...
+45. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -229,13 +215,13 @@
         2. examples
     ... instead.
 
-48. Make (rrv) work in Git directories.
+46. Make (rrv) work in Git directories.
     Can test with (red~example~score g lyi y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-49. Improve (rad) user experience. Change
+47. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
