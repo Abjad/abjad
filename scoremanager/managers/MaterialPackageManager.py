@@ -171,6 +171,7 @@ class MaterialPackageManager(PackageManager):
             'pra': self.remove_autoeditor,
             'ren': self.rename,
             'uit': self.toggle_user_input_values_default_status,
+            'ver': self.version_artifacts,
             })
         return result
 
@@ -401,6 +402,7 @@ class MaterialPackageManager(PackageManager):
         else:
             commands.append(('package - configure autoeditor', 'pca'))
         commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - version artifacts', 'ver'))
         if commands:
             path = self._definition_module_path
             has_definition_module = os.path.isfile(path)
@@ -436,18 +438,22 @@ class MaterialPackageManager(PackageManager):
         return lines
 
     def _make_version_artifacts_messages(self):
-        io_manager = systemtools.IOManager
-        next_output_file_name = io_manager.get_next_output_file_name(
-            output_directory_path=self._versions_directory_path,
-            )
-        result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
+        #io_manager = systemtools.IOManager
+        #next_output_file_name = io_manager.get_next_output_file_name(
+        #    output_directory_path=self._versions_directory_path,
+        #    )
+        #result = os.path.splitext(next_output_file_name)
+        #next_output_file_name_root, extension = result
+        path = self._versions_directory_path
+        greatest_version = self._io_manager.get_greatest_version_number(path)
+        new_version = greatest_version + 1
+        new_version_string = '%04d' % new_version
         messages = []
         source_paths = (
             self._definition_module_path,
-            self._output_module_path,
             self._illustration_ly_file_path,
             self._illustration_pdf_file_path,
+            self._output_module_path,
             )
         for source_path in source_paths:
             if not source_path:
@@ -461,7 +467,8 @@ class MaterialPackageManager(PackageManager):
             file_name, extension = os.path.splitext(base_name)
             name = '{}_{}{}'.format(
                 file_name,
-                next_output_file_name_root,
+                #next_output_file_name_root,
+                new_version_string,
                 extension,
                 )
             target_path = os.path.join(versions_directory, name)
@@ -758,19 +765,18 @@ class MaterialPackageManager(PackageManager):
         self._illustration_pdf_file_manager.view()
 
     def version_artifacts(self, prompt=True):
-        r'''Copies any of definition.py, output.py, illustration.ly and
-        illustration.pdf to versions directory, if they exist.
+        r'''Copies any of ``definition.py``, ``output.py``, 
+        ``illustration.ly`` and ``illustration.pdf`` to versions directory,
+        if they exist.
 
         Returns none.
         '''
         if not os.path.isdir(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
-        io_manager = systemtools.IOManager
-        next_output_file_name = io_manager.get_next_output_file_name(
-            output_directory_path=self._versions_directory_path,
-            )
-        result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
+        path = self._versions_directory_path
+        greatest_version = self._io_manager.get_greatest_version_number(path)
+        new_version = greatest_version + 1
+        new_version_string = '%04d' % new_version
         if prompt:
             messages = []
             messages.append('will copy ...')
@@ -783,11 +789,8 @@ class MaterialPackageManager(PackageManager):
                 return
             if not result:
                 return
-        result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
-        name_root = next_output_file_name_root
         if os.path.isfile(self._definition_module_path):
-            target_file_name = 'definition_{}.py'.format(name_root)
+            target_file_name = 'definition_{}.py'.format(new_version_string)
             target_file_path = os.path.join(
                 self._versions_directory_path,
                 target_file_name,
@@ -799,7 +802,7 @@ class MaterialPackageManager(PackageManager):
                 )
             self._io_manager.spawn_subprocess(command)
         if os.path.isfile(self._output_module_path):
-            target_file_name = 'output_{}.py'.format(name_root)
+            target_file_name = 'output_{}.py'.format(new_version_string)
             target_file_path = os.path.join(
                 self._versions_directory_path,
                 target_file_name,
@@ -811,7 +814,7 @@ class MaterialPackageManager(PackageManager):
                 )
             self._io_manager.spawn_subprocess(command)
         if os.path.isfile(self._illustration_ly_file_path):
-            target_file_name = 'illustration_{}.ly'.format(name_root)
+            target_file_name = 'illustration_{}.ly'.format(new_version_string)
             target_file_path = os.path.join(
                 self._versions_directory_path,
                 target_file_name,
@@ -823,7 +826,7 @@ class MaterialPackageManager(PackageManager):
                 )
             self._io_manager.spawn_subprocess(command)
         if os.path.isfile(self._illustration_pdf_file_path):
-            target_file_name = 'illustration_{}.pdf'.format(name_root)
+            target_file_name = 'illustration_{}.pdf'.format(new_version_string)
             target_file_path = os.path.join(
                 self._versions_directory_path,
                 target_file_name,
@@ -834,7 +837,7 @@ class MaterialPackageManager(PackageManager):
                 target_file_path,
                 )
             self._io_manager.spawn_subprocess(command)
-        self._io_maanger.display('')
+        self._io_manager.display('')
         self._session._hide_next_redraw = True
 
     def view_output_module(self):

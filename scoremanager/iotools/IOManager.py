@@ -354,6 +354,27 @@ class IOManager(IOManager):
             message = 'no file ending in *stylesheet.ily found.'
             self.proceed(message)
 
+    def get_greatest_version_number(self, version_directory):
+        r'''Gets greatest version number in `version_directory`.
+
+        Returns ``0`` when `version_directory` does not exist.
+
+        Returns nonnegative integer.
+        '''
+        if not os.path.isdir(version_directory):
+            return 0
+        greatest_number = 0
+        for entry in os.listdir(version_directory):
+            base_name, extension = os.path.splitext(entry)
+            number = 0
+            try:
+                number = int(base_name[-4:])
+            except ValueError:
+                pass
+            if greatest_number < number:
+                greatest_number = number
+        return greatest_number
+
     def handle_user_input(
         self,
         prompt_string,
