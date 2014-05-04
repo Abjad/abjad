@@ -49,6 +49,7 @@ class DirectoryManager(Manager):
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
+            'mdme': self.edit_metadata_module,
             'mdmro': self.view_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,
@@ -225,9 +226,9 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        file_path = self._metadata_module_path
-        if os.path.isfile(file_path):
-            self._io_manager.edit(file_path)
+        path = self._metadata_module_path
+        if os.path.isfile(path):
+            self._io_manager.edit(path)
 
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
