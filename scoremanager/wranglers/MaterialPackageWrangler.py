@@ -66,9 +66,14 @@ class MaterialPackageWrangler(Wrangler):
             '>': self._navigate_to_next_asset,
             '<': self._navigate_to_previous_asset,
             'cp': self.copy_package,
+            'ine': self.edit_initializers,
+            'lyi': self.interpret_illustration_lilypond_files,
+            'mdme': self.edit_metadata_modules,
             'new': self.make_package,
+            'pdfo': self.open_illustration_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
+            'ver': self.version_artifacts,
             })
         return result
 
@@ -153,6 +158,19 @@ class MaterialPackageWrangler(Wrangler):
                 result.append(path)
         return result
 
+    def _make_all_materials_menu_section(self, menu):
+        commands = []
+        commands.append(('all materials - edit initializers', 'ine'))
+        commands.append(('all materials - edit metadata modules', 'mdme'))
+        commands.append(('all materials - interpret illustration.lys', 'lyi'))
+        commands.append(('all materials - open illustration.pdfs', 'pdfo'))
+        commands.append(('all materials - version artifacts', 'ver'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='all materials',
+            )
+
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
         entries = self._make_asset_menu_entries(
@@ -167,6 +185,7 @@ class MaterialPackageWrangler(Wrangler):
     def _make_main_menu(self, name='material package wrangler'):
         superclass = super(MaterialPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)
+        self._make_all_materials_menu_section(menu)
         self._make_material_command_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -215,6 +234,28 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
+    def edit_initializers(self):
+        r'''Edits the __init__.py file in each material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def edit_metadata_modules(self):
+        r'''Edits the __metadata__.py file in each material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def interpret_illustration_lilypond_files(self):
+        r'''Calls LilyPond on the illustration.ly file in each material
+        package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
     def make_package(self):
         r'''Makes material package.
 
@@ -237,6 +278,13 @@ class MaterialPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
+    def open_illustration_pdfs(self):
+        r'''Opens the illustration.pdf file in each material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
     def remove_packages(self):
         r'''Removes material package.
 
@@ -250,3 +298,11 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
+
+    def version_artifacts(self):
+        r'''Versions the output.py, illustration.ly and illustration.pdf
+        files in each material package.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()

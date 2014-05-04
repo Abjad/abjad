@@ -301,11 +301,11 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialPackageManager, self)
         menu = superclass._make_main_menu(name=name)
+        self._make_autoeditor_summary_menu_section(menu)
         self._make_illustrate_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_material_definition_menu_section(menu)
-        self._make_autoeditor_summary_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_material_menu_section(menu)
         self._make_output_module_menu_section(menu)
