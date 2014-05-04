@@ -94,7 +94,7 @@ class Wrangler(Controller):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmro': self.view_views_module,
+            'vmo': self.open_views_module,
             })
         return result
 
@@ -1145,7 +1145,7 @@ class Wrangler(Controller):
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def view_views_module(self):
+    def open_views_module(self):
         r'''Views views module.
 
         Returns none.

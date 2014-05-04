@@ -99,7 +99,7 @@ class ScorePackageWrangler(Wrangler):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmro': self.view_views_module,
+            'vmo': self.open_views_module,
             'y': self._session._score_manager._stylesheet_wrangler._run,
             }
         return result
