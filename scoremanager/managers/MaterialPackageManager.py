@@ -169,7 +169,6 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.view_illustration_pdf,
             'pra': self.remove_autoeditor,
             'ren': self.rename,
-            'uis': self.display_user_input_demo_values,
             'uit': self.toggle_user_input_values_default_status,
             })
         return result
@@ -534,19 +533,6 @@ class MaterialPackageManager(PackageManager):
         message = 'package configured for {} autoeditor.'
         message = message.format(class_.__name__)
         self._io_manager.proceed(message, prompt=prompt)
-
-    def display_user_input_demo_values(self, prompt=True):
-        r'''Displays user input demo values.
-
-        Returns none.
-        '''
-        lines = []
-        for i, (key, value) in enumerate(self.user_input_demo_values):
-            line = '    {}: {!r}'.format(key.replace('_', ' '), value)
-            lines.append(line)
-        lines.append('')
-        self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
 
     def edit_and_interpret_illustrate_module(self):
         r'''Edits and then interprets illustrate module module.
