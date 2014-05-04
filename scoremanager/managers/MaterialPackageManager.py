@@ -166,7 +166,7 @@ class MaterialPackageManager(PackageManager):
             'omro': self.view_output_module,
             'pca': self.configure_autoeditor,
             'pdfrm': self.remove_illustration_pdf,
-            'pdfo': self.view_illustration_pdf,
+            'pdfo': self.open_illustration_pdf,
             'pra': self.remove_autoeditor,
             'ren': self.rename,
             'uit': self.toggle_user_input_values_default_status,
@@ -710,7 +710,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._illustration_ly_file_manager.view()
 
-    def view_illustration_pdf(self):
+    def open_illustration_pdf(self):
         r'''Views illustration PDF.
 
         Returns none.

@@ -79,8 +79,8 @@ class ScorePackageWrangler(Wrangler):
             'g': self._session._score_manager._segment_package_wrangler._run,
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
-            'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
+            'mdmo': self.open_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_package,
             'pyd': self.doctest,
@@ -205,11 +205,11 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_all_directories_menu_section(self, menu):
         commands = []
-        string = 'all dirs - metadata module - edit'
-        commands.append((string, 'mdme'))
-        string = 'all dirs - metadata module - list'
+        string = 'all dirs - metadata modules - edit'
+        commands.append((string, 'mdmo'))
+        string = 'all dirs - metadata modules - list'
         commands.append((string, 'mdmls'))
-        string = 'all dirs - metadata module - rewrite'
+        string = 'all dirs - metadata modules - rewrite'
         commands.append((string, 'mdmrw'))
         menu.make_command_section(
             is_hidden=True,
@@ -355,7 +355,7 @@ class ScorePackageWrangler(Wrangler):
         self._copy_asset(new_storehouse=path)
         self.write_cache(prompt=False)
 
-    def edit_metadata_modules(self):
+    def open_metadata_modules(self):
         r'''Edits metadata modules in all visible score packages.
 
         Returns none.

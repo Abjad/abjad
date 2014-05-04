@@ -68,7 +68,7 @@ class MaterialPackageWrangler(Wrangler):
             'cp': self.copy_package,
             'ine': self.edit_initializers,
             'lyi': self.interpret_illustration_lys,
-            'mdme': self.edit_metadata_modules,
+            'mdmo': self.open_metadata_modules,
             'new': self.make_package,
             'pdfo': self.open_illustration_pdfs,
             'ren': self.rename_package,
@@ -161,9 +161,9 @@ class MaterialPackageWrangler(Wrangler):
     def _make_all_materials_menu_section(self, menu):
         commands = []
         commands.append(('all materials - edit initializers', 'ine'))
-        commands.append(('all materials - edit metadata modules', 'mdme'))
         commands.append(('all materials - interpret illustration.lys', 'lyi'))
         commands.append(('all materials - open illustration.pdfs', 'pdfo'))
+        commands.append(('all materials - open metadata modules', 'mdmo'))
         commands.append(('all materials - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,
@@ -241,7 +241,7 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('__init__.py', verb='edit')
 
-    def edit_metadata_modules(self):
+    def open_metadata_modules(self):
         r'''Edits the __metadata__.py file in each material package.
 
         Returns none.
@@ -285,6 +285,7 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         self._open_in_each_package('illustration.pdf')
+        self._session._hide_next_redraw = True
 
     def remove_packages(self):
         r'''Removes material package.

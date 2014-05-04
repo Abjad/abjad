@@ -205,8 +205,8 @@ class Controller(ScoreManagerObject):
         commands = []
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
+        commands.append(('metadata - open module', 'mdmo'))
         commands.append(('metadata - remove', 'mdrm'))
-        commands.append(('metadata - edit module', 'mdme'))
         commands.append(('metadata - rewrite module', 'mdmrw'))
         commands.append(('metadata - view module', 'mdmro'))
         menu.make_command_section(

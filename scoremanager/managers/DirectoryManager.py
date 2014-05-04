@@ -49,7 +49,7 @@ class DirectoryManager(Manager):
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mdme': self.edit_metadata_module,
+            'mdmo': self.open_metadata_module,
             'mdmro': self.view_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,
@@ -221,7 +221,7 @@ class DirectoryManager(Manager):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def edit_metadata_module(self):
+    def open_metadata_module(self):
         r'''Edits metadata module.
 
         Returns none.

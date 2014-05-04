@@ -91,9 +91,9 @@ class SegmentPackageWrangler(Wrangler):
     def _make_all_segments_menu_section(self, menu):
         commands = []
         commands.append(('all segments - edit definition modules', 'dme'))
-        commands.append(('all segments - edit metadata modules', 'mdme'))
         commands.append(('all segments - interpret make modules', 'mmi'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
+        commands.append(('all segments - open metadata modules', 'mdmo'))
         commands.append(('all segments - open output.pdf files', 'pdfo'))
         commands.append(('all segments - version artifacts', 'ver'))
         menu.make_command_section(
