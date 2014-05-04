@@ -239,7 +239,7 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_in_each_package('__init__.py')
 
     def edit_metadata_modules(self):
         r'''Edits the __metadata__.py file in each material package.
