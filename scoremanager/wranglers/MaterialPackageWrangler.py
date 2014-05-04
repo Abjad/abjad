@@ -254,7 +254,8 @@ class MaterialPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._interpret_in_each_package('illustration.ly')
+        self._session._hide_next_redraw = True
 
     def make_package(self):
         r'''Makes material package.

@@ -122,28 +122,6 @@ class Wrangler(Controller):
 
     ### PRIVATE METHODS ###
 
-    def _open_in_each_package(self, file_name):
-        paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, file_name)
-            if os.path.isfile(path):
-                paths.append(path)
-        messages = []
-        messages.append('will edit ...')
-        messages.append('')
-        for path in paths:
-            message = '   ' + path
-            messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        self._io_manager.display('')
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        self._io_manager.view(paths)
-
     def _copy_asset(
         self, 
         extension=None,
@@ -451,6 +429,35 @@ class Wrangler(Controller):
             manager._asset_identifier = asset_identifier
         return manager
 
+    def _interpret_in_each_package(self, file_name):
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, file_name)
+            if os.path.isfile(path):
+                paths.append(path)
+        _, extension = os.path.splitext(file_name)
+        messages = []
+        messages.append('will interpret ...')
+        messages.append('')
+        for path in paths:
+            message = ' INPUT: {}'.format(path)
+            messages.append(message)
+            if extension == '.ly':
+                output_path = path.replace('.ly', '.pdf')
+                message = 'OUTPUT: {}'.format(output_path)
+                messages.append(message)
+            messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        self._io_manager.display('')
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        for path in paths:
+            manager = self._io_manager.make_file_manager(path)
+            manager.interpret()
+
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry[0].isalpha():
             return True
@@ -681,6 +688,28 @@ class Wrangler(Controller):
 
     def _navigate_to_previous_asset(self):
         pass
+
+    def _open_in_each_package(self, file_name):
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, file_name)
+            if os.path.isfile(path):
+                paths.append(path)
+        messages = []
+        messages.append('will edit ...')
+        messages.append('')
+        for path in paths:
+            message = '   ' + path
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        self._io_manager.display('')
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        self._io_manager.view(paths)
 
     def _read_view(self):
         view_name = self._read_view_name()
