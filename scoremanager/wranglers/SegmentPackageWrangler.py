@@ -327,7 +327,7 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         for manager in self._list_visible_asset_managers():
-            version_number = manager.save_to_versions_directory(prompt=False)
+            version_number = manager.version_artifacts(prompt=False)
             if version_number is not None:
                 message = 'segment {} version {} written to disk.'
                 message = message.format(manager._package_name, version_number)

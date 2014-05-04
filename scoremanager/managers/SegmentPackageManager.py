@@ -78,16 +78,16 @@ class SegmentPackageManager(PackageManager):
             'dme': self.edit_definition_module,
             'lyi': self.interpret_lilypond_file,
             'lyro': self.view_current_output_ly,
-            'lyver': self.view_versioned_output_ly,
             'mmi': self.interpret_make_module,
             'mms': self.write_make_module_stub,
             'mmro': self.view_make_module,
             'pdfo': self.view_output_pdf,
+            'vdls': self.list_versions_directory,
+            'ver': self.version_artifacts,
+            'vlyo': self.view_versioned_output_ly,
+            'vpdfo': self.view_versioned_output_pdf,
+            'vpyo': self.view_versioned_definition_module,
             'vv': self.view_all_versioned_pdfs,
-            'pdfver': self.view_versioned_output_pdf,
-            'pyver': self.view_versioned_definition_module,
-            'pdfs': self.save_to_versions_directory,
-            'vrl': self.list_versions_directory,
             })
         return result
 
@@ -133,7 +133,7 @@ class SegmentPackageManager(PackageManager):
     def _make_current_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('pdf - version', 'pdfs'))
+            commands.append(('artifacts - version', 'ver'))
         if os.path.isfile(self._output_pdf_file_path):
             commands.append(('pdf - open', 'pdfo'))
         if commands:
@@ -164,7 +164,7 @@ class SegmentPackageManager(PackageManager):
         self._make_current_pdf_menu_section(menu)
         self._make_definition_module_menu_section(menu)
         self._make_make_module_menu_section(menu)
-        self._make_versioned_pdfs_menu_section(menu)
+#        self._make_versioned_pdfs_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -179,26 +179,15 @@ class SegmentPackageManager(PackageManager):
             name='make module',
             )
 
-    def _make_versioned_pdfs_menu_section(self, menu):
-        versions_directory_path = self._versions_directory_path
-        if not self._is_populated_directory(versions_directory_path):
-            return
-        commands = []
-        commands.append(('versioned pdfs - read only', 'vv'))
-        menu.make_command_section(
-            commands=commands,
-            name='versioned pdfs',
-            )
-
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versioned output ly - read only', 'lyver'))
-        commands.append(('versioned output pdf - open', 'pdfo'))
-        string = 'versioned definition module - read only'
-        commands.append((string, 'pyver'))
-        commands.append(('versions directory - list', 'vrl'))
+        commands.append(('versioned ly - open', 'vlyo'))
+        commands.append(('versioned pdf - open', 'vpdfo'))
+        commands.append(('versioned pdfs - open', 'vv'))
+        commands.append(('versioned py - open', 'vpyo'))
+        commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
-            is_hidden=True,
+            is_hidden=False,
             commands=commands,
             name='versions directory',
             )
@@ -326,8 +315,10 @@ class SegmentPackageManager(PackageManager):
             key, file_names = x
             line = ' '.join(file_names)
             lines.append(line)
+        if lines:
+            lines.append('')
         self._io_manager.display(lines)
-        self._io_manager.proceed('')
+        self._session._hide_next_redraw = True
 
     def make_versions_directory(self):
         r'''Makes versions directory.
@@ -337,7 +328,7 @@ class SegmentPackageManager(PackageManager):
         if not os.path.exists(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
 
-    def save_to_versions_directory(self, prompt=True):
+    def version_artifacts(self, prompt=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
         directory.
 
@@ -346,7 +337,7 @@ class SegmentPackageManager(PackageManager):
         paths = {}
         definition_module_path = self._definition_module_path
         if not os.path.isfile(definition_module_path):
-            message = 'can not find asset definition module.'
+            message = 'can not find definition.py file.'
             self._io_manager.proceed(
                 message,
                 prompt=prompt,
@@ -354,7 +345,7 @@ class SegmentPackageManager(PackageManager):
             return
         output_pdf_file_path = self._output_pdf_file_path
         if not os.path.isfile(output_pdf_file_path):
-            message = 'can not find output PDF.'
+            message = 'can not find output.pdf file.'
             self._io_manager.proceed(
                 message,
                 prompt=prompt,
@@ -362,7 +353,7 @@ class SegmentPackageManager(PackageManager):
             return
         output_lilypond_file_path = self._output_lilypond_file_path
         if not os.path.isfile(output_lilypond_file_path):
-            message = 'can not find output LilyPond file.'
+            message = 'can not find output.ly file.'
             self._io_manager.proceed(
                 message,
                 prompt=prompt,
@@ -376,11 +367,39 @@ class SegmentPackageManager(PackageManager):
             )
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
+        messages = []
+        messages.append('will copy ...')
+        messages.append('')
+        source_paths = (
+            self._definition_module_path,
+            self._output_lilypond_file_path,
+            self._output_pdf_file_path,
+            )
+        for source_path in source_paths:
+            _, extension = os.path.splitext(source_path)
+            message = ' FROM: {}'.format(source_path)
+            messages.append(message)
+            directory = self._versions_directory_path
+            file_name = next_output_file_name_root + extension
+            target_path = os.path.join(directory, file_name)
+            message = '   TO: {}'.format(target_path)
+            messages.append(message)
+            messages.append('')
+        self._io_manager.display(messages)
+        result = self._io_manager.confirm()
+        self._io_manager.display('')
+        if self._should_backtrack():
+            return
+        if not result:
+            return
+        result = os.path.splitext(next_output_file_name)
+        next_output_file_name_root, extension = result
         target_file_name = next_output_file_name_root + '.py'
         target_file_path = os.path.join(
             self._versions_directory_path,
             target_file_name,
             )
+        # TODO: replace with shutil.copyfile()
         command = 'cp {} {}'.format(
             definition_module_path,
             target_file_path,
@@ -391,6 +410,7 @@ class SegmentPackageManager(PackageManager):
             self._versions_directory_path,
             target_file_name,
             )
+        # TODO: replace with shutil.copyfile()
         command = 'cp {} {}'.format(
             output_pdf_file_path,
             target_file_path,
@@ -401,18 +421,18 @@ class SegmentPackageManager(PackageManager):
             self._versions_directory_path,
             target_file_name,
             )
+        # TODO: replace with shutil.copyfile()
         command = 'cp {} {}'.format(
             output_lilypond_file_path,
             target_file_path,
             )
         self._io_manager.spawn_subprocess(command)
         version_number = int(next_output_file_name_root)
-        message = 'version {} written to disk.'
+        message = 'Copied definition.py, output.ly and output.pdf'
+        message += ' to versions directory.'
         message = message.format(version_number)
-        self._io_manager.proceed(
-            message,
-            prompt=prompt,
-            )
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
         return version_number
 
     def view_all_versioned_pdfs(self):
