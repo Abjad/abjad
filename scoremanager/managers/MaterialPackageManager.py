@@ -621,7 +621,8 @@ class MaterialPackageManager(PackageManager):
         manager._remove()
         if result:
             message = 'created illustration.pdf and illustration.ly files.'
-            self._io_manager.proceed(message, prompt=prompt)
+            self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def interpret_definition_module(self):
         r'''Calls Python on material definition module.
@@ -638,7 +639,10 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustrate_module_manager.interpret(prompt=prompt)
+        result = self._illustrate_module_manager.interpret(prompt=prompt)
+        if result == 0:
+            self._io_manager.display('')
+        self._session._hide_next_redraw = True
 
     def interpret_illustration_ly(self, prompt=True):
         r'''Calls LilyPond on illustration.ly file.
@@ -652,7 +656,8 @@ class MaterialPackageManager(PackageManager):
             manager.call_lilypond(prompt=prompt)
         else:
             message = 'illustration.ly file does not exist.'
-            self._io_manager.proceed(message)
+            self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def remove_autoeditor(self, prompt=True):
         r'''Removes autoeditor.
@@ -660,7 +665,7 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         self._remove_metadatum('use_autoeditor')
-        message = 'Removed autoeditor from package.'
+        message = 'removed autoeditor from package.'
         self._io_manager.proceed(message, prompt=prompt)
 
     def remove_definition_module(self, prompt=True):

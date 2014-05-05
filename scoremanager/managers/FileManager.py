@@ -32,8 +32,8 @@ class FileManager(Manager):
         result.update({
             'cp': self.copy,
             'dme': self.edit,
+            'o': self.view,
             'ts': self.typeset_tex_file,
-            'v': self.view,
             })
         return result
 
@@ -97,7 +97,7 @@ class FileManager(Manager):
         if self._path.endswith('.tex'):
             commands.append(('file - typeset', 'ts'))
         if self._path.endswith('.pdf'):
-            commands.append(('file - read only', 'v'))
+            commands.append(('file - open', 'o'))
         menu.make_command_section(
             commands=commands,
             )

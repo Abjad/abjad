@@ -80,7 +80,7 @@ class SegmentPackageManager(PackageManager):
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
             'mms': self.write_make_module_stub,
-            'mmro': self.view_make_module,
+            'mmo': self.view_make_module,
             'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
@@ -120,10 +120,8 @@ class SegmentPackageManager(PackageManager):
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
             commands = []
-            string = 'lilypond file - interpret'
-            commands.append((string, 'lyi'))
-            string = 'lilypond file - read only'
-            commands.append((string, 'lyo'))
+            commands.append(('lilypond file - interpret', 'lyi'))
+            commands.append(('lilypond file - open', 'lyo'))
             menu.make_command_section(
                 is_hidden=True,
                 commands=commands,
@@ -171,7 +169,7 @@ class SegmentPackageManager(PackageManager):
     def _make_make_module_menu_section(self, menu):
         commands = []
         commands.append(('make module - interpret', 'mmi'))
-        commands.append(('make module - read only', 'mmro'))
+        commands.append(('make module - open', 'mmo'))
         commands.append(('make module - stub', 'mms'))
         menu.make_command_section(
             commands=commands,
