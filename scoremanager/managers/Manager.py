@@ -369,6 +369,24 @@ class Manager(Controller):
                         result.append(directory_entry)
         return result
 
+    def _list_pretty(self):
+        lines = []
+        for directory_entry in self._list():
+            path = os.path.join(self._path, directory_entry)
+            if os.path.isdir(path):
+                line = directory_entry + '/'
+            elif os.path.isfile(path):
+                line = directory_entry
+            else:
+                raise TypeError(directory_entry)
+            lines.append(line)
+        lines.append('')
+        self._io_manager.display(
+            lines,
+            capitalize=False,
+            )
+        self._session._hide_next_redraw = True
+
     # TODO: eventually change prompt=False to prompt=True
     def _remove(self, prompt=False):
         if prompt:
@@ -587,28 +605,6 @@ class Manager(Controller):
         command = command.format(commit_message, self._path)
         self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
-
-    def list(self):
-        r'''Lists directory.
-
-        Returns none.
-        '''
-        lines = []
-        for directory_entry in self._list():
-            path = os.path.join(self._path, directory_entry)
-            if os.path.isdir(path):
-                line = directory_entry + '/'
-            elif os.path.isfile(path):
-                line = directory_entry
-            else:
-                raise TypeError(directory_entry)
-            lines.append(line)
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize=False,
-            )
-        self._session._hide_next_redraw = True
 
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.
