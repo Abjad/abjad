@@ -11,7 +11,11 @@ def test_MaterialPackageWrangler_interpret_illustration_lys_01():
     r'''Works when illustration.ly already exists.
     '''
 
-    package_names = ('pitch_range_inventory', 'tempo_inventory')
+    package_names = (
+        'magic_numbers', 
+        'pitch_range_inventory', 
+        'tempo_inventory',
+        )
     input_paths = []
     for name in package_names:
         path = os.path.join(
