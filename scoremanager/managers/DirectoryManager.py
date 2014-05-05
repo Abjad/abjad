@@ -243,23 +243,6 @@ class DirectoryManager(Manager):
         message = '{!r}'.format(metadatum)
         self._io_manager.proceed(message=message)
 
-    def remove_metadata_module(self, prompt=True):
-        r'''Removes metadata module.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._metadata_module_path):
-            if prompt:
-                message = 'remove metadata module?'
-                if not self._io_manager.confirm(message):
-                    return
-            os.remove(self._metadata_module_path)
-            line = 'metadata module removed.'
-            self._io_manager.proceed(
-                line,
-                prompt=prompt,
-                )
-
     def remove_metadatum(self):
         r'''Removes metadatum from meatdata module.
 
