@@ -160,7 +160,7 @@ class MaterialPackageManager(PackageManager):
             'mae': self.autoedit_output_material,
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
-            'omo': self.view_output_module,
+            'omo': self.open_output_module,
             'pdfo': self.open_illustration_pdf,
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
@@ -606,18 +606,25 @@ class MaterialPackageManager(PackageManager):
         self._session._hide_next_redraw = True
 
     def open_illustration_ly(self):
-        r'''Views illustration LilyPond file.
+        r'''Opens illustration LilyPond file.
 
         Returns none.
         '''
         self._illustration_ly_file_manager.view()
 
     def open_illustration_pdf(self):
-        r'''Views illustration PDF.
+        r'''Opens illustration PDF.
 
         Returns none.
         '''
         self._illustration_pdf_file_manager.view()
+
+    def open_output_module(self):
+        r'''Opens output module.
+
+        Returns none.
+        '''
+        self._output_module_manager.view()
 
     def rename(
         self,
@@ -789,13 +796,6 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
-
-    def view_output_module(self):
-        r'''Views output module.
-
-        Returns none.
-        '''
-        self._output_module_manager.view()
 
     def write_definition_module_stub(self):
         r'''Writes stub material definition module.
