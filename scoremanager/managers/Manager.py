@@ -109,7 +109,6 @@ class Manager(Controller):
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
-            'ren': self.rename,
             'rst': self.repository_status,
             'rrv': self.revert_to_repository,
             'rua': self.remove_unadded_assets,
@@ -436,6 +435,44 @@ class Manager(Controller):
         process.stdout.readline()
         self._path = new_path
 
+    def _rename_interactively(
+        self, 
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
+        getter = self._io_manager.make_getter()
+        string = 'existing asset name'
+        getter.append_string(string)
+        name = getter._run()
+        if self._should_backtrack():
+            return
+        name = stringtools.strip_diacritics(name)
+        if file_name_callback:
+            name = file_name_callback(name)
+        name = name.replace(' ', '_')
+        if force_lowercase:
+            name = name.lower()
+        if extension and not name.endswith(extension):
+            name = name + extension
+        parent_directory_path = os.path.dirname(self._path)
+        new_path = os.path.join(parent_directory_path, name)
+        messages = []
+        messages.append('')
+        messages.append('Will rename ...')
+        messages.append('')
+        message = '  FROM: {}'.format(self._path)
+        messages.append(message)
+        message = '    TO: {}'.format(new_path)
+        messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        if not self._io_manager.confirm():
+            return
+        if self._rename(new_path):
+            message = '{} renamed.'.format(self._asset_identifier)
+            self._io_manager.proceed(message)
+
     def _revert_from_repository(self):
         paths = []
         paths.extend(self._get_added_asset_paths())
@@ -620,49 +657,6 @@ class Manager(Controller):
         command = command.format(remove_command, paths)
         self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
-
-    def rename(
-        self, 
-        extension=None,
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        r'''Renames asset.
-
-        Returns none.
-        '''
-        #getter = self._initialize_file_name_getter()
-        getter = self._io_manager.make_getter()
-        string = 'existing asset name'
-        getter.append_string(string)
-        name = getter._run()
-        if self._should_backtrack():
-            return
-        name = stringtools.strip_diacritics(name)
-        if file_name_callback:
-            name = file_name_callback(name)
-        name = name.replace(' ', '_')
-        if force_lowercase:
-            name = name.lower()
-        if extension and not name.endswith(extension):
-            name = name + extension
-        parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, name)
-        messages = []
-        messages.append('')
-        messages.append('Will rename ...')
-        messages.append('')
-        message = '  FROM: {}'.format(self._path)
-        messages.append(message)
-        message = '    TO: {}'.format(new_path)
-        messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        if not self._io_manager.confirm():
-            return
-        if self._rename(new_path):
-            message = '{} renamed.'.format(self._asset_identifier)
-            self._io_manager.proceed(message)
 
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.

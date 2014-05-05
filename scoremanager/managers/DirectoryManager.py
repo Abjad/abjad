@@ -51,7 +51,6 @@ class DirectoryManager(Manager):
             'mdrm': self.remove_metadatum,
             'mdmo': self.open_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
-            'ren': self.rename,
             })
         return result
 
@@ -181,6 +180,60 @@ class DirectoryManager(Manager):
         if was_removed:
             self.rewrite_metadata_module(metadata, prompt=False)
 
+    def _rename_interactively(
+        self,
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
+        base_name = os.path.basename(self._path)
+        line = 'current name: {}'.format(base_name)
+        self._io_manager.display(line)
+        getter = self._io_manager.make_getter()
+        getter.append_snake_case_package_name('new name')
+        new_package_name = getter._run()
+        if self._should_backtrack():
+            return
+        lines = []
+        line = 'current name: {}'.format(base_name)
+        lines.append(line)
+        line = 'new name:     {}'.format(new_package_name)
+        lines.append(line)
+        lines.append('')
+        self._io_manager.display(lines)
+        if not self._io_manager.confirm():
+            return
+        new_directory_path = self._path.replace(
+            base_name,
+            new_package_name,
+            )
+        if self._is_svn_versioned():
+            # rename package directory
+            command = 'svn mv {} {}'
+            command = command.format(self._path, new_directory_path)
+            self._io_manager.spawn_subprocess(command)
+            # commit
+            commit_message = 'renamed {} to {}.'
+            commit_message = commit_message.format(
+                base_name,
+                new_package_name,
+                )
+            commit_message = commit_message.replace('_', ' ')
+            parent_directory_path = os.path.dirname(self._path)
+            command = 'svn commit -m {!r} {}'
+            command = command.format(
+                commit_message,
+                parent_directory_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        else:
+            command = 'mv {} {}'
+            command = command.format(self._path, new_directory_path)
+            self._io_manager.spawn_subprocess(command)
+        # update path name to reflect change
+        self._path = new_directory_path
+        self._session._is_backtracking_locally = True
+
     def _run_asset_manager(
         self,
         path,
@@ -256,64 +309,6 @@ class DirectoryManager(Manager):
         if result:
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
-
-    def rename(
-        self,
-        extension=None,
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        r'''Renames directory.
-
-        Returns none.
-        '''
-        base_name = os.path.basename(self._path)
-        line = 'current name: {}'.format(base_name)
-        self._io_manager.display(line)
-        getter = self._io_manager.make_getter()
-        getter.append_snake_case_package_name('new name')
-        new_package_name = getter._run()
-        if self._should_backtrack():
-            return
-        lines = []
-        line = 'current name: {}'.format(base_name)
-        lines.append(line)
-        line = 'new name:     {}'.format(new_package_name)
-        lines.append(line)
-        lines.append('')
-        self._io_manager.display(lines)
-        if not self._io_manager.confirm():
-            return
-        new_directory_path = self._path.replace(
-            base_name,
-            new_package_name,
-            )
-        if self._is_svn_versioned():
-            # rename package directory
-            command = 'svn mv {} {}'
-            command = command.format(self._path, new_directory_path)
-            self._io_manager.spawn_subprocess(command)
-            # commit
-            commit_message = 'renamed {} to {}.'
-            commit_message = commit_message.format(
-                base_name,
-                new_package_name,
-                )
-            commit_message = commit_message.replace('_', ' ')
-            parent_directory_path = os.path.dirname(self._path)
-            command = 'svn commit -m {!r} {}'
-            command = command.format(
-                commit_message,
-                parent_directory_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        else:
-            command = 'mv {} {}'
-            command = command.format(self._path, new_directory_path)
-            self._io_manager.spawn_subprocess(command)
-        # update path name to reflect change
-        self._path = new_directory_path
-        self._session._is_backtracking_locally = True
 
     def rewrite_metadata_module(
         self,

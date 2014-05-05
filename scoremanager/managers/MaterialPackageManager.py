@@ -164,7 +164,6 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.open_illustration_pdf,
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
-            'ren': self.rename,
             'ver': self.version_artifacts,
             })
         return result
@@ -425,12 +424,6 @@ class MaterialPackageManager(PackageManager):
         return lines
 
     def _make_version_artifacts_messages(self):
-        #io_manager = systemtools.IOManager
-        #next_output_file_name = io_manager.get_next_output_file_name(
-        #    output_directory_path=self._versions_directory_path,
-        #    )
-        #result = os.path.splitext(next_output_file_name)
-        #next_output_file_name_root, extension = result
         path = self._versions_directory_path
         greatest_version = self._io_manager.get_greatest_version_number(path)
         new_version = greatest_version + 1
@@ -454,7 +447,6 @@ class MaterialPackageManager(PackageManager):
             file_name, extension = os.path.splitext(base_name)
             name = '{}_{}{}'.format(
                 file_name,
-                #next_output_file_name_root,
                 new_version_string,
                 extension,
                 )
@@ -463,6 +455,44 @@ class MaterialPackageManager(PackageManager):
             messages.append(message)
             messages.append('')
         return messages
+
+    def _rename_interactively(
+        self,
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
+        getter = self._io_manager.make_getter()
+        getter.append_snake_case_package_name('enter new package name')
+        new_package_name = getter._run()
+        if self._should_backtrack():
+            return
+        base_name = os.path.basename(self._path)
+        new_directory_path = self._path.replace(
+            base_name,
+            new_package_name,
+            )
+        messages = []
+        messages.append('')
+        messages.append('will change ...')
+        messages.append('')
+        messages.append(' FROM: {}'.format(self._path))
+        messages.append('   TO: {}'.format(new_directory_path))
+        messages.append('')
+        self._io_manager.display(messages)
+        if not self._io_manager.confirm():
+            return
+        self._rename(new_directory_path)
+        for directory_entry in os.listdir(new_directory_path):
+            if directory_entry.endswith('.py'):
+                file_path = os.path.join(new_directory_path, directory_entry)
+                result = os.path.splitext(base_name)
+                old_package_name, extension = result
+                self._replace_in_file(
+                    file_path,
+                    old_package_name,
+                    new_package_name,
+                    )
 
     def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
@@ -625,48 +655,6 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         self._output_module_manager.view()
-
-    def rename(
-        self,
-        extension=None,
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        r'''Renames material package.
-
-        Returns none.
-        '''
-        getter = self._io_manager.make_getter()
-        getter.append_snake_case_package_name('enter new package name')
-        new_package_name = getter._run()
-        if self._should_backtrack():
-            return
-        base_name = os.path.basename(self._path)
-        new_directory_path = self._path.replace(
-            base_name,
-            new_package_name,
-            )
-        messages = []
-        messages.append('')
-        messages.append('will change ...')
-        messages.append('')
-        messages.append(' FROM: {}'.format(self._path))
-        messages.append('   TO: {}'.format(new_directory_path))
-        messages.append('')
-        self._io_manager.display(messages)
-        if not self._io_manager.confirm():
-            return
-        self._rename(new_directory_path)
-        for directory_entry in os.listdir(new_directory_path):
-            if directory_entry.endswith('.py'):
-                file_path = os.path.join(new_directory_path, directory_entry)
-                result = os.path.splitext(base_name)
-                old_package_name, extension = result
-                self._replace_in_file(
-                    file_path,
-                    old_package_name,
-                    new_package_name,
-                    )
 
     def set_autoeditor(self, prompt=True):
         r'''Sets autoeditor.

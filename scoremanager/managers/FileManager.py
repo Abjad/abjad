@@ -31,8 +31,11 @@ class FileManager(Manager):
         result = result.copy()
         result.update({
             'cp': self.copy,
+            # TODO: change 'dme' to 'e'
             'dme': self.edit,
             'o': self.view,
+            'ren': self.rename,
+            # TODO: remove 'ts'?
             'ts': self.typeset_tex_file,
             })
         return result
@@ -221,6 +224,22 @@ class FileManager(Manager):
         Returns none.
         '''
         self._io_manager.open_file(self._path)
+
+    def rename(
+        self, 
+        extension=None,
+        file_name_callback=None,
+        force_lowercase=True,
+        ):
+        r'''Renames file.
+
+        Returns none.
+        '''
+        self._rename_interactively(
+            extension=extension,
+            file_name_callback=file_name_callback,
+            force_lowercase=force_lowercase,
+            )
 
     def typeset_tex_file(self, prompt=True):
         r'''Typesets TeX file.

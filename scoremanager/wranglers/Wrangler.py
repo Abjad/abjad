@@ -820,7 +820,7 @@ class Wrangler(Controller):
             path,
             asset_identifier=self._asset_identifier,
             )
-        manager.rename(
+        manager._rename_interactively(
             extension=extension,
             file_name_callback=file_name_callback,
             force_lowercase=force_lowercase,
