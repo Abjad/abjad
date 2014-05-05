@@ -164,7 +164,7 @@ class MaterialPackageManager(PackageManager):
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
-            'omro': self.view_output_module,
+            'omo': self.view_output_module,
             'pca': self.configure_autoeditor,
             'pdfrm': self.remove_illustration_pdf,
             'pdfo': self.open_illustration_pdf,
@@ -286,8 +286,8 @@ class MaterialPackageManager(PackageManager):
             return
         commands = []
         commands.append(('illustration ly - interpret', 'lyi'))
+        commands.append(('illustration ly - open', 'lyo'))
         commands.append(('illustration ly - remove', 'lyrm'))
-        commands.append(('illustration ly - read only', 'lyo'))
         menu.make_command_section(
             commands=commands,
             name='illustration ly',
@@ -383,11 +383,10 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         commands = []
+        commands.append(('output module - write', 'omw'))
         if os.path.isfile(self._output_module_path):
+            commands.append(('output module - open', 'omo'))
             commands.append(('output module - remove', 'omrm'))
-            commands.append(('output module - read only', 'omro'))
-        if self._can_make_output_material():
-            commands.append(('output module - write', 'omw'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -629,7 +628,10 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._definition_module_manager.interpret()
+        result = self._definition_module_manager.interpret()
+        message = 'no exceptions raised; use (omo) to write output module.'
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def interpret_illustrate_module(self, prompt=True):
         r'''Calls Python on illustrate module module.
@@ -942,4 +944,5 @@ class MaterialPackageManager(PackageManager):
             output_material_class_name,
             )
         message = 'output module written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True

@@ -194,7 +194,7 @@ class FileManager(Manager):
     def interpret(self, prompt=True):
         r'''Calls Python on file.
 
-        Returns none.
+        Returns integer success code.
         '''
         _, extension = os.path.splitext(self._path)
         if extension == '.py':
@@ -212,7 +212,8 @@ class FileManager(Manager):
             self._io_manager.display('')
         elif prompt:
             message = 'interpreted {}.'.format(self._path)
-            self._io_manager.display([message, ''])
+            self._io_manager.display([message])
+        return result
 
     def open(self):
         r'''Opens file.
