@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_configure_autoeditor_01():
+def test_MaterialPackageManager_set_autoeditor_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
@@ -19,10 +19,10 @@ def test_MaterialPackageManager_configure_autoeditor_01():
 
     try:
         input_ = 'red~example~score m new test~tempo~inventory'
-        input_ += ' pca TempoInventory default q'
+        input_ += ' psa TempoInventory q'
         score_manager._run(pending_user_input=input_)
         contents = score_manager._transcript.contents
-        string = 'Package configured for TempoInventory autoeditor.'
+        string = 'Package autoeditor set for TempoInventory.'
         assert string in contents
     finally:
         if os.path.exists(path):

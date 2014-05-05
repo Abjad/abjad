@@ -44,7 +44,7 @@ def test_MaterialPackageManager_autoedit_output_02():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm new testtempoinventory pca TempoInventory default'
+        input_ = 'm new testtempoinventory psa TempoInventory default'
         input_ += ' mae add d (1, 4) units 60 done add d (1, 4) units 90 done'
         input_ += ' done default q'
         score_manager._run(pending_user_input=input_)
@@ -84,7 +84,7 @@ def test_MaterialPackageManager_autoedit_output_03():
     assert not os.path.exists(path)
     try:
         input_ = 'm new testpri'
-        input_ += ' pca PitchRangeInventory default done default q'
+        input_ += ' psa PitchRangeInventory default done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -121,7 +121,7 @@ def test_MaterialPackageManager_autoedit_output_04():
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm new testpri pca PitchRangeInventory default'
+    input_ = 'm new testpri psa PitchRangeInventory default'
     input_ += ' mae add range [A0, C8] done'
     input_ += ' add range [C2, F#5] done'
     input_ += ' add range [C2, G5] done'
@@ -172,7 +172,7 @@ def test_MaterialPackageManager_autoedit_output_05():
 
     assert not os.path.exists(path)
     try:
-        input_ = "m new testmarkupinventory pca markup default"
+        input_ = "m new testmarkupinventory psa markup default"
         input_ += " mae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done default q"
         score_manager._run(pending_user_input=input_)
@@ -212,7 +212,7 @@ def test_MaterialPackageManager_autoedit_output_06():
     assert not os.path.exists(path)
     try:
         input_ = 'm new testoctavetrans'
-        input_ += ' pca OctaveTranspositionMappingInventory default'
+        input_ += ' psa OctaveTranspositionMappingInventory default'
         input_ += ' done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
@@ -261,7 +261,7 @@ def test_MaterialPackageManager_autoedit_output_07():
     assert not os.path.exists(path)
     try:
         input_ = 'm new testoctavetrans'
-        input_ += ' pca OctaveTranspositionMappingInventory default'
+        input_ += ' psa OctaveTranspositionMappingInventory default'
         input_ += ' mae add add source [A0, C4) target 15 done'
         input_ += ' add source [C4, C8) target 27 done done'
         input_ += ' add add source [A0, C8] target -18 done'
@@ -300,7 +300,7 @@ def test_MaterialPackageManager_autoedit_output_08():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm new testlist pca list default mae 17 foo done b default q'
+        input_ = 'm new testlist psa list default mae 17 foo done b default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -334,7 +334,7 @@ def test_MaterialPackageManager_autoedit_output_09():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm new testlist pca list default'
+        input_ = 'm new testlist psa list default'
         input_ += ' mae add 17 add foo done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
@@ -380,7 +380,7 @@ def test_MaterialPackageManager_autoedit_output_10():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'm new testrhythmmaker pca TaleaRhythmMaker default'
+        input_ = 'm new testrhythmmaker psa TaleaRhythmMaker default'
         input_ += ' mae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
@@ -428,7 +428,7 @@ def test_MaterialPackageManager_autoedit_output_11():
     assert not os.path.exists(path)
     try:
         input_ = "m new testarticulationhandler"
-        input_ += " pca ReiteratedArticulationHandler default"
+        input_ += " psa ReiteratedArticulationHandler default"
         input_ += " mae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done default q"
         score_manager._run(pending_user_input=input_)
@@ -471,7 +471,7 @@ def test_MaterialPackageManager_autoedit_output_12():
 
     try:
         input_ = 'm new testdynamichandler'
-        input_ += ' pca ReiteratedDynamicHandler default'
+        input_ += ' psa ReiteratedDynamicHandler default'
         input_ += ' mae dy f md (1, 16) done default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
