@@ -70,19 +70,6 @@ class PackageManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def remove_initializer(self, prompt=True):
-        r'''Removes initializer module.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._initializer_file_path):
-            os.remove(self._initializer_file_path)
-            line = 'initializer deleted.'
-            self._io_manager.proceed(
-                line,
-                prompt=prompt,
-                )
-
     def open_initializer(self):
         r'''Views initializer module.
 
