@@ -165,7 +165,6 @@ class MaterialPackageManager(PackageManager):
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
             'ren': self.rename,
-            'uit': self.toggle_user_input_values_default_status,
             'ver': self.version_artifacts,
             })
         return result
@@ -606,6 +605,20 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
+    def open_illustration_ly(self):
+        r'''Views illustration LilyPond file.
+
+        Returns none.
+        '''
+        self._illustration_ly_file_manager.view()
+
+    def open_illustration_pdf(self):
+        r'''Views illustration PDF.
+
+        Returns none.
+        '''
+        self._illustration_pdf_file_manager.view()
+
     def rename(
         self,
         extension=None,
@@ -647,27 +660,6 @@ class MaterialPackageManager(PackageManager):
                     old_package_name,
                     new_package_name,
                     )
-
-    def toggle_user_input_values_default_status(self):
-        r'''Toggles user input values default status.
-
-        Returns none.
-        '''
-        self._session.toggle_user_input_values_default_status()
-
-    def open_illustration_ly(self):
-        r'''Views illustration LilyPond file.
-
-        Returns none.
-        '''
-        self._illustration_ly_file_manager.view()
-
-    def open_illustration_pdf(self):
-        r'''Views illustration PDF.
-
-        Returns none.
-        '''
-        self._illustration_pdf_file_manager.view()
 
     def set_autoeditor(self, prompt=True):
         r'''Sets autoeditor.

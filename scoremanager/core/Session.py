@@ -74,7 +74,6 @@ class Session(abctools.AbjadObject):
         '_rewrite_cache',
         '_score_manager',
         '_transcript',
-        '_use_current_user_input_values_as_default',
         )
 
     _variables_to_display = (
@@ -137,7 +136,6 @@ class Session(abctools.AbjadObject):
         self._rewrite_cache = False
         self._score_manager = None
         self._transcript = iotools.Transcript()
-        self._use_current_user_input_values_as_default = False
 
     ### SPECIAL METHODS ###
 
@@ -1165,21 +1163,6 @@ class Session(abctools.AbjadObject):
         '''
         return self._transcript
 
-    @property
-    def use_current_user_input_values_as_default(self):
-        r'''Gets and sets flag to use current user input values as default.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.use_current_user_input_values_as_default
-                False
-
-        Returns boolean.
-        '''
-        return self._use_current_user_input_values_as_default
-
     ### PUBLIC METHODS ###
 
     def display_variables(self):
@@ -1236,11 +1219,3 @@ class Session(abctools.AbjadObject):
         '''
         current = self.hide_hidden_commands
         self._hide_hidden_commands = not current
-
-    def toggle_user_input_values_default_status(self):
-        r'''Toggles `use_current_user_input_values_as_default`.
-
-        Returns none.
-        '''
-        current = self.use_current_user_input_values_as_default
-        self._use_current_user_input_values_as_default = not current
