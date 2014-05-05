@@ -194,30 +194,6 @@ def test_MaterialPackageWrangler_make_package_06():
 
 
 def test_MaterialPackageWrangler_make_package_07():
-    r'''Makes handmade package. Removes definition module. Removes package.
-    '''
-
-    assert not os.path.exists(package_path)
-    try:
-        input_ = 'm new testnotes q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(package_path)
-        assert os.path.exists(definition_module_path)
-        input_ = 'm testnotes dmrm remove q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(package_path)
-        assert not os.path.exists(definition_module_path)
-        input_ = 'm rm testnotes remove q'
-        score_manager._run(pending_user_input=input_)
-        assert not os.path.exists(package_path)
-        assert not os.path.exists(definition_module_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
-
-
-def test_MaterialPackageWrangler_make_package_08():
     r'''Makes handmade package. Overwrite material definition module with stub.
     Removes package.
     '''
@@ -247,40 +223,7 @@ def test_MaterialPackageWrangler_make_package_08():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_package_09():
-    r'''Makes handmade package. Copies canned material definition.
-    Makes output module. Removes output material. Removes package.
-    '''
-
-    assert not os.path.exists(package_path)
-    try:
-        input_ = 'm new testnotes q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(package_path)
-        assert os.path.exists(definition_module_path)
-        assert not os.path.exists(output_module_path)
-        shutil.copyfile(
-            boilerplate_definition_module_path,
-            definition_module_path,
-            )
-        input_ = 'm testnotes omw default q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(definition_module_path)
-        assert os.path.exists(output_module_path)
-        input_ = 'm testnotes omrm remove q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(definition_module_path)
-        assert not os.path.exists(output_module_path)
-        input_ = 'm rm testnotes remove q'
-        score_manager._run(pending_user_input=input_)
-        assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
-
-
-def test_MaterialPackageWrangler_make_package_10():
+def test_MaterialPackageWrangler_make_package_08():
     r'''Makes handmade package. Corrupts definition module. Makes sure
     score manager starts when definition module is corrupt. Removes package.
     '''
@@ -302,7 +245,7 @@ def test_MaterialPackageWrangler_make_package_10():
     assert not os.path.exists(package_path)
 
 
-def test_MaterialPackageWrangler_make_package_11():
+def test_MaterialPackageWrangler_make_package_09():
     r'''Makes handmade package. Copies canned material definition module.
     Makes output module. Corrupts output module. Makes sure score manager
     starts when output module is corrupt. Removes package.

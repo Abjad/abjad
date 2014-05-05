@@ -149,23 +149,18 @@ class MaterialPackageManager(PackageManager):
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
-            'dmrm': self.remove_definition_module,
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
             'ime': self.edit_illustrate_module,
             'imei': self.edit_and_interpret_illustrate_module,
-            'imrm': self.remove_illustrate_module,
             'ims': self.write_illustrate_module_stub,
             'imi': self.interpret_illustrate_module,
             'lyi': self.interpret_illustration_ly,
-            'lyrm': self.remove_illustration_ly,
             'lyo': self.open_illustration_ly,
             'mae': self.autoedit_output_material,
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
-            'omrm': self.remove_output_module,
             'omo': self.view_output_module,
-            'pdfrm': self.remove_illustration_pdf,
             'pdfo': self.open_illustration_pdf,
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
@@ -267,8 +262,6 @@ class MaterialPackageManager(PackageManager):
             commands.append((string, 'imei'))
             string = 'illustrate module - interpret'
             commands.append((string, 'imi'))
-            string = 'illustrate module - remove'
-            commands.append((string, 'imrm'))
             string = 'illustrate module - stub'
             commands.append((string, 'ims'))
         else:
@@ -287,7 +280,6 @@ class MaterialPackageManager(PackageManager):
         commands = []
         commands.append(('illustration ly - interpret', 'lyi'))
         commands.append(('illustration ly - open', 'lyo'))
-        commands.append(('illustration ly - remove', 'lyrm'))
         menu.make_command_section(
             commands=commands,
             name='illustration ly',
@@ -296,7 +288,6 @@ class MaterialPackageManager(PackageManager):
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustration_pdf_file_path):
-            commands.append(('illustration pdf - remove', 'pdfrm'))
             commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
             menu.make_command_section(
@@ -331,7 +322,6 @@ class MaterialPackageManager(PackageManager):
         if os.path.isfile(self._definition_module_path):
             commands.append(('definition module - edit', 'dme'))
             commands.append(('definition module - interpret', 'dmi'))
-            commands.append(('definition module - remove', 'dmrm'))
         else:
             commands.append(('definition module - stub', 'dms'))
         if commands:
@@ -386,7 +376,6 @@ class MaterialPackageManager(PackageManager):
         commands.append(('output module - write', 'omw'))
         if os.path.isfile(self._output_module_path):
             commands.append(('output module - open', 'omo'))
-            commands.append(('output module - remove', 'omrm'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -616,46 +605,6 @@ class MaterialPackageManager(PackageManager):
             message = 'illustration.ly file does not exist.'
             self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
-
-    def remove_definition_module(self, prompt=True):
-        r'''Removes material definition module.
-
-        Returns none.
-        '''
-        self._definition_module_manager._remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
-
-    def remove_illustrate_module(self, prompt=True):
-        r'''Removes illustrate module module.
-
-        Returns none.
-        '''
-        self._illustrate_module_manager._remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
-
-    def remove_illustration_ly(self, prompt=True):
-        r'''Removes illustration ly.
-
-        Returns none.
-        '''
-        self._illustration_ly_file_manager._remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
-
-    def remove_illustration_pdf(self, prompt=True):
-        r'''Removes illustration PDF.
-
-        Returns none.
-        '''
-        self._illustration_pdf_file_manager._remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
-
-    def remove_output_module(self, prompt=True):
-        r'''Removes output module.
-
-        Returns none.
-        '''
-        self._output_module_manager._remove(prompt=prompt)
-        self._session._is_backtracking_locally = False
 
     def rename(
         self,
