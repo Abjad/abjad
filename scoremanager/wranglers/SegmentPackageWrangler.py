@@ -214,10 +214,8 @@ class SegmentPackageWrangler(Wrangler):
             return
         self._io_manager.display('')
         for manager in self._list_visible_asset_managers():
-            manager.interpret_lilypond_file(
-                prompt=False,
-                open_output_pdf=False,
-                )
+            self._session._hide_next_redraw = False
+            manager.interpret_lilypond_file(confirm=False, notify=True)
         self._session._hide_next_redraw = True
 
     def interpret_make_modules(self):

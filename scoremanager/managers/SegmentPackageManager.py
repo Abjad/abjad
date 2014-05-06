@@ -259,41 +259,48 @@ class SegmentPackageManager(PackageManager):
             return
         manager.edit()
 
-    def interpret_lilypond_file(
-        self,
-        open_output_pdf=True,
-        prompt=True,
-        ):
+    def interpret_lilypond_file(self, confirm=True, notify=True):
         r'''Reinterprets current LilyPond file.
-
-        Opens resulting PDF when `open_output_pdf` is true.
 
         Returns none.
         '''
+        if notify:
+            messages = []
+            messages.append('will interpret ...')
+            messages.append('')
+            message = ' INPUT: {}'.format(self._output_lilypond_file_path)
+            messages.append(message)
+            message = 'OUTPUT: {}'.format(self._output_pdf_file_path)
+            messages.append(message)
+            messages.append('')
+            self._io_manager.display(messages)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
         file_path = self._output_lilypond_file_path
         if not os.path.isfile(file_path):
             return
         result = self._io_manager.run_lilypond(file_path)
         if not result:
             return
-        lines = []
         lilypond_file_path = self._output_lilypond_file_path
-        message = 'interpreted {!r}.'
-        message = message.format(lilypond_file_path)
-        lines.append(message)
-        pdf_file_path = self._output_pdf_file_path
-        message = 'wrote {!r}.'
-        message = message.format(pdf_file_path)
-        lines.append(message)
-        lines.append('')
-        self._io_manager.display(lines)
-        lines = []
-        message = None
-        if open_output_pdf:
-            message = 'press return to view PDF.'
-        self._io_manager.proceed(message=message, prompt=prompt)
-        if open_output_pdf:
-            self.open_output_pdf()
+        if notify:
+            messages = []
+            message = 'interpreted {!r}.'
+            message = message.format(lilypond_file_path)
+            messages.append(message)
+            message = 'wrote {!r}.'.format(self._output_pdf_file_path)
+            messages.append(message)
+            message = 'use (pdfo) to open {}.'
+            message = message.format(self._output_pdf_file_path)
+            messages.append(message)
+            messages.append('')
+            self._io_manager.display(messages)
+            self._session._hide_next_redraw = True
 
     def interpret_make_module(self):
         r'''Interprets __make__ module.
