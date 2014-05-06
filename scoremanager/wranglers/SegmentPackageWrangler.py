@@ -80,15 +80,6 @@ class SegmentPackageWrangler(Wrangler):
                 return True
         return False
 
-    # TODO: hoist to Wrangler
-#    def _list_visible_asset_managers(self):
-#        paths = self._list_visible_asset_paths()
-#        managers = []
-#        for path in paths:
-#            manager = self._initialize_manager(path=path)
-#            managers.append(manager)
-#        return managers
-
     def _make_all_segments_menu_section(self, menu):
         commands = []
         commands.append(('all segments - edit definition modules', 'dme'))

@@ -161,6 +161,7 @@ class SegmentPackageManager(PackageManager):
         self._make_current_lilypond_file_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
         self._make_definition_module_menu_section(menu)
+        self._make_metadata_menu_section(menu)
         self._make_make_module_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
@@ -210,7 +211,7 @@ class SegmentPackageManager(PackageManager):
         commands.append(('versioned py - open', 'vpyo'))
         commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
-            is_hidden=False,
+            is_hidden=True,
             commands=commands,
             name='versions directory',
             )
