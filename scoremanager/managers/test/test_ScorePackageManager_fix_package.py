@@ -17,7 +17,7 @@ def test_ScorePackageManager_fix_package_01():
     assert 'No fixes required.' in contents
 
 
-def test_ScorePackageManager_fix_package_01():
+def test_ScorePackageManager_fix_package_02():
     r'''Works when no fixes are required.
     '''
 
