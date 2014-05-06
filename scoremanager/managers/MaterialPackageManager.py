@@ -318,11 +318,9 @@ class MaterialPackageManager(PackageManager):
     def _make_material_definition_menu_section(self, menu):
         name = 'definition module'
         commands = []
-        if os.path.isfile(self._definition_module_path):
-            commands.append(('definition module - edit', 'dme'))
-            commands.append(('definition module - interpret', 'dmi'))
-        else:
-            commands.append(('definition module - stub', 'dms'))
+        commands.append(('definition module - edit', 'dme'))
+        commands.append(('definition module - interpret', 'dmi'))
+        commands.append(('definition module - stub', 'dms'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
@@ -787,11 +785,21 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def write_definition_module_stub(self):
+    def write_definition_module_stub(self, prompt=True):
         r'''Writes stub material definition module.
 
         Returns none.
         '''
+        if prompt:
+            message = 'will write stub to {}.'
+            message = message.format(self._definition_module_path)
+            self._io_manager.display([message, ''])
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
         lines = []
         lines.append(self._unicode_directive)
         lines.append(self._abjad_import_statement)
@@ -803,6 +811,10 @@ class MaterialPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._definition_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
+        if prompt:
+            message = 'wrote stub to {}.'.format(self._definition_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def write_illustrate_module_stub(self, prompt=True):
         r'''Writes stub illustrate module module.
