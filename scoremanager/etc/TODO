@@ -236,3 +236,10 @@
         Added red_example_score/segments/segment_03 to repository ...
 
     ... instead.
+
+48. Change SegmentPackageManager versioning protocol.
+    Change ...
+        0000.ly 0000.pdf 0000.py
+    ... to ...
+        output_0000.ly output_0000.pdf definition_0000.py
+    ... instead.
