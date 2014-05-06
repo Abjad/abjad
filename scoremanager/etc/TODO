@@ -243,3 +243,6 @@
     ... to ...
         output_0000.ly output_0000.pdf definition_0000.py
     ... instead.
+
+49. Change ScorePackageManager.year_of_completion to just 
+    ScorePackageManager.year.
