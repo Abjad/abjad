@@ -246,3 +246,11 @@
 
 49. Change ScorePackageManager.year_of_completion to just 
     ScorePackageManager.year.
+
+50. Change messaging regime.
+    Change ...
+        prompt=True
+    ... to ...
+        confirm=True
+        notify=True
+    ... instead.
