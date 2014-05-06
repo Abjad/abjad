@@ -324,4 +324,5 @@ class DirectoryManager(Manager):
         self._write_metadata_module(metadata)
         if prompt:
             message = 'rewrote metadata module.'
-            self._io_manager.proceed(message)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
