@@ -821,27 +821,22 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        material_package_name = self._package_name
         lines = []
         lines.append(self._abjad_import_statement)
-        line = 'from {}.output import {}'
-        line = line.format(material_package_path, material_package_name)
+        line = 'from output import {}'
+        line = line.format(self._package_name)
         lines.append(line)
         lines.append('')
         lines.append('')
         line = 'score, treble_staff, bass_staff ='
         line += ' scoretools.make_piano_score_from_leaves({})'
-        line = line.format(material_package_name)
+        line = line.format(self._package_name)
         lines.append(line)
         line = 'illustration = lilypondfiletools.'
         line += 'make_basic_lilypond_file(score)'
         lines.append(line)
         contents = '\n'.join(lines)
-        file_path = os.path.join(
-            self._path,
-            '__illustrate__.py',
-            )
-        with file(file_path, 'w') as file_pointer:
+        with file(self._illustrate_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
         message = 'stub illustrate module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
