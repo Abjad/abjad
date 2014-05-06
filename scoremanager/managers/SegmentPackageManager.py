@@ -76,6 +76,7 @@ class SegmentPackageManager(PackageManager):
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
+            'dmws': self.write_stub_definition_module,
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
@@ -549,7 +550,7 @@ class SegmentPackageManager(PackageManager):
         self._view_versioned_file('.pdf')
 
     # TODO: reimplement as boilerplate
-    def write_stub_definition_module(self, confirm=True, notify=False):
+    def write_stub_definition_module(self, confirm=True, notify=True):
         r'''Writes stub definition module.
 
         Returns none.
@@ -566,15 +567,14 @@ class SegmentPackageManager(PackageManager):
                 return
             if not result:
                 return
-        if not os.path.exists(self._definition_module_path):
-            with file(self._definition_module_path, 'w') as file_pointer:
-                lines = []
-                lines.append(self._unicode_directive)
-                lines.append(self._abjad_import_statement)
-                lines.append('')
-                lines.append('')
-                contents = '\n'.join(lines)
-                file_pointer.write(contents)
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append(self._abjad_import_statement)
+        lines.append('')
+        lines.append('')
+        contents = '\n'.join(lines)
+        with file(self._definition_module_path, 'w') as file_pointer:
+            file_pointer.write(contents)
         if notify:
             message = 'wrote stub to {}.'
             message = message.format(self._definition_module_path)
