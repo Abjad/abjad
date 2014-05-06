@@ -83,11 +83,11 @@ class SegmentPackageManager(PackageManager):
             'mmws': self.write_stub_make_module,
             'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
+            'vdmo': self.open_versioned_definition_module,
             'ver': self.version_artifacts,
             'vlyo': self.open_versioned_output_ly,
             'vpdfo': self.open_versioned_output_pdf,
             'vpdfso': self.open_versioned_pdfs,
-            'vdmo': self.open_versioned_definition_module,
             })
         return result
 
@@ -163,6 +163,7 @@ class SegmentPackageManager(PackageManager):
         self._make_definition_module_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_make_module_menu_section(menu)
+        self._make_package_configuration_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -176,6 +177,17 @@ class SegmentPackageManager(PackageManager):
             commands=commands,
             name='make module',
             )
+
+    def _make_package_configuration_menu_section(self, menu):
+        commands = []
+        commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - initializer - write stub', 'inws'))
+        if commands:
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='package configuation',
+                )
 
     def _make_version_artifacts_messages(self):
         paths = {}

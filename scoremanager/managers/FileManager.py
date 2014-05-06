@@ -272,9 +272,15 @@ class FileManager(Manager):
             self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
 
+    # TODO: change to self.open()
     def view(self):
-        r'''Views file.
+        r'''Opens file.
 
         Returns none.
         '''
-        self._io_manager.view(self._path)
+        if os.path.isfile(self._path):
+            self._io_manager.view(self._path)
+        else:
+            message = 'Can not find {}.'.format(self._path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
