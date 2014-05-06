@@ -65,7 +65,11 @@ class DirectoryManager(Manager):
         assert ' ' not in metadatum_name, repr(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.rewrite_metadata_module(metadata, prompt=False)
+        self.rewrite_metadata_module(
+            metadata=metadata, 
+            confirm=False, 
+            notify=False,
+            )
 
     def _get_file_manager(self, file_path):
         from scoremanager import managers
@@ -178,7 +182,11 @@ class DirectoryManager(Manager):
         except KeyError:
             pass
         if was_removed:
-            self.rewrite_metadata_module(metadata, prompt=False)
+            self.rewrite_metadata_module(
+                metadata=metadata, 
+                confirm=False, 
+                notify=False,
+                )
 
     def _rename_interactively(
         self,
@@ -281,6 +289,9 @@ class DirectoryManager(Manager):
         path = self._metadata_module_path
         if os.path.isfile(path):
             self._io_manager.edit(path)
+        else:
+            message = 'can not find {}.'.format(path)
+            self._io_manager.display([message, ''])
 
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
@@ -311,9 +322,10 @@ class DirectoryManager(Manager):
             self._remove_metadatum(metadatum_name)
 
     def rewrite_metadata_module(
-        self,
-        metadata=None,
-        prompt=True,
+        self, 
+        confirm=True, 
+        metadata=None, 
+        notify=True,
         ):
         r'''Rewrites metadata module.
 
@@ -322,7 +334,7 @@ class DirectoryManager(Manager):
         if metadata is None:
             metadata = self._get_metadata()
         self._write_metadata_module(metadata)
-        if prompt:
+        if notify:
             message = 'rewrote metadata module.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True

@@ -77,24 +77,25 @@ class PackageManager(DirectoryManager):
         '''
         self._initializer_file_manager.view()
 
-    def write_stub_initializer(self, prompt=True):
+    def write_stub_initializer(self, confirm=True, notify=True):
         r'''Writes initializer stub.
 
         Returns none.
         '''
         path = self._initializer_file_path
-        if prompt:
+        if notify:
             message = 'will write stub to {}.'
             message = message.format(path)
             self._io_manager.display(message)
+        if confirm:
             result = self._io_manager.confirm()
             if self._should_backtrack():
                 return
             if not result:
                 return
-        manager = self._io_manager.make_file_manager(path)
+        manager = self._initializer_file_manager
         manager._write_stub()
-        if prompt:
+        if notify:
             message = 'wrote stub to {}.'
             message = message.format(path)
             self._io_manager.display([message, ''])

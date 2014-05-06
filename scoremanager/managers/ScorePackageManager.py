@@ -42,7 +42,7 @@ class ScorePackageManager(PackageManager):
         result.update({
             'd': self._session._score_manager._distribution_file_wrangler._run,
             'g': self._session._score_manager._segment_package_wrangler._run,
-            'fix': self.fix,
+            'fix': self.fix_package,
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
@@ -338,8 +338,8 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('year_of_completion', result)
 
-    def fix(self, prompt=True):
-        r'''Fixes score package structure.
+    def fix_package(self, confirm=True, notify=True):
+        r'''Fixes score package.
 
         Returns none.
         '''
@@ -347,34 +347,61 @@ class ScorePackageManager(PackageManager):
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 package_needed_to_be_fixed = True
-                message = 'create {!r}?'.format(path)
-                if not prompt or self._io_manager.confirm(message):
-                    os.makedirs(path)
-                    gitignore_path = os.path.join(path, '.gitignore')
-                    with file(gitignore_path, 'w') as file_pointer:
-                        file_pointer.write('')
+                if notify:
+                    messages = []
+                    message = 'can not find {}.'.format(path)
+                    messages.append(message)
+                    message = 'create {}?'.format(path)
+                    messages.append(message)
+                    self._io_manager.display(messages)
+                if confirm:
+                    result = self._io_manager.confirm()
+                    self._io_manager.display('')
+                    if self._should_backtrack():
+                        return
+                    if not result:
+                        return
+                os.makedirs(path)
+                gitignore_path = os.path.join(path, '.gitignore')
+                with file(gitignore_path, 'w') as file_pointer:
+                    file_pointer.write('')
         if not os.path.exists(self._initializer_file_path):
             package_needed_to_be_fixed = True
-            message = 'create {}?'.format(self._initializer_file_path)
-            if not prompt or self._io_manager.confirm(message):
-                with file(self._initializer_file_path, 'w') as initializer:
-                    initializer.write('')
-        lines = []
+            if notify:
+                messages = []
+                path = self._initializer_file_path
+                message = 'can not find {}.'.format(path)
+                messages.append(message)
+                message = 'create {}?'.format(path)
+                messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                self._io_manager.display('')
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            self.write_stub_initializer(confirm=confirm, notify=notify)
         if not os.path.exists(self._metadata_module_path):
             package_needed_to_be_fixed = True
-            message = 'create {}?'.format(self._metadata_module_path)
-            if not prompt or self._io_manager.confirm(message):
-                lines = []
-                lines.append(self._unicode_directive)
-                lines.append(self._abjad_import_statement)
-                lines.append('import collections')
-                lines.append('')
-                lines.append('')
-                line = 'metadata = collections.OrderedDict([])'
-                lines.append(line)
-                contents = '\n'.join(lines)
-                with file(self._metadata_module_path, 'w') as file_pointer:
-                    file_pointer.write(contents)
+            if notify:
+                messages = []
+                path = self._metadata_module_path
+                message = 'can not find {}.'.format(path)
+                messages.append(message)
+                message = 'create {}?'.format(path)
+                messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                self._io_manager.display('')
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            self.rewrite_metadata_module(confirm=confirm, notify=notify)
+        self._session._hide_next_redraw = False
         return package_needed_to_be_fixed
 
     def open_score_pdf(self):

@@ -584,8 +584,8 @@ class Wrangler(Controller):
         manager = self._initialize_manager(path)
         if hasattr(manager, '_write_stub'):
             manager._write_stub()
-        elif hasattr(manager, 'fix'):
-            manager.fix(prompt=False)
+        elif hasattr(manager, 'fix_package'):
+            manager.fix_package(confirm=False, notify=False)
 
     def _make_asset_selection_breadcrumb(
         self,
