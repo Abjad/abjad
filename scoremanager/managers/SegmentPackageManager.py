@@ -82,8 +82,8 @@ class SegmentPackageManager(PackageManager):
             'mmo': self.open_make_module,
             'mmws': self.write_stub_make_module,
             'pdfo': self.open_output_pdf,
-            'vdls': self.list_versions_directory,
             'vdmo': self.open_versioned_definition_module,
+            'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
             'vlyo': self.open_versioned_output_ly,
             'vpdfo': self.open_versioned_output_pdf,
@@ -217,10 +217,10 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versioned ly - open', 'vlyo'))
-        commands.append(('versioned pdf - open', 'vpdfo'))
-        commands.append(('versioned pdfs - open', 'vpdfso'))
-        commands.append(('versioned definition module - open', 'vdmo'))
+        commands.append(('versions - definition module - open', 'vdmo'))
+        commands.append(('versions - ly - open', 'vlyo'))
+        commands.append(('versions - pdf - open', 'vpdfo'))
+        commands.append(('versions - all pdfs - open', 'vpdfso'))
         commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
             is_hidden=True,

@@ -632,12 +632,10 @@ class IOManager(IOManager):
     def print_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.
 
-        Prompts user to proceed.
-
         Returns none.
         '''
-        self.display(['not yet implemented', ''])
-        self.proceed()
+        self.display(['not yet implemented.', ''])
+        self._session._hide_next_redraw = True
 
     def proceed(self, message=None, prompt=True):
         r'''Prompts user to proceed.

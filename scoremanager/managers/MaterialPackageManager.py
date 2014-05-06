@@ -165,7 +165,12 @@ class MaterialPackageManager(PackageManager):
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
             'uar': self.remove_unadded_assets,
+            'vdmo': self.open_versioned_definition_module,
+            'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
+            'vlyo': self.open_versioned_illustration_ly,
+            'vomo': self.open_versioned_output_module,
+            'vpdfo': self.open_versioned_illustration_pdf,
             })
         return result
 
@@ -307,6 +312,7 @@ class MaterialPackageManager(PackageManager):
         self._make_output_module_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
+        self._make_versions_directory_menu_section(menu)
         try:
             section = menu['material summary']
             menu.menu_sections.remove(section)
@@ -423,6 +429,19 @@ class MaterialPackageManager(PackageManager):
         lines.append(line)
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
+
+    def _make_versions_directory_menu_section(self, menu):
+        commands = []
+        commands.append(('versions - definition module - open', 'vdmo'))
+        commands.append(('versions - output module - open', 'vomo'))
+        commands.append(('versions - illustration.ly - open', 'vlyo'))
+        commands.append(('versions - illustration.pdf - open', 'vpdfo'))
+        commands.append(('versions directory - list', 'vdls'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='versions directory',
+            )
 
     def _make_version_artifacts_messages(self):
         path = self._versions_directory_path
@@ -631,6 +650,13 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
+    def list_versions_directory(self):
+        r'''Lists versions directory.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented() 
+
     def open_illustration_ly(self):
         r'''Opens illustration LilyPond file.
 
@@ -651,6 +677,34 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         self._output_module_manager.view()
+
+    def open_versioned_definition_module(self):
+        r'''Opens versioned definition module.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def open_versioned_illustration_ly(self):
+        r'''Opens versioned illustration LilyPond file.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def open_versioned_illustration_pdf(self):
+        r'''Opens versioned illustration PDF.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
+
+    def open_versioned_output_module(self):
+        r'''Opens versioned ``output.py`` module.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def set_autoeditor(self, prompt=True):
         r'''Sets autoeditor.
