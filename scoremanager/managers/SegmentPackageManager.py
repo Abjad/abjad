@@ -519,7 +519,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.view(file_path)
 
     def open_make_module(self):
-        r'''Opens __make__ module.
+        r'''Opens ``__make__.py`` module.
 
         Returns none.
         '''
