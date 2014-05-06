@@ -8,7 +8,6 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_MaterialPackageWrangler_version_artifacts_01():
     
-    input_ = ''
     target_paths = []
     segments = ('segment_01', 'segment_02', 'segment_03')
     file_names = ('definition.py', 'output.ly', 'output.pdf')
