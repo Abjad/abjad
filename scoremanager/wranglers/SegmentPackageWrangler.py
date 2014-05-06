@@ -148,8 +148,8 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager.write_stub_definition_module()
-        manager.write_stub_make_module()
+        manager.write_stub_definition_module(confirm=False, notify=False)
+        manager.write_stub_make_module(confirm=False, notify=False)
         message = 'segment package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -253,7 +253,7 @@ class SegmentPackageWrangler(Wrangler):
         if not result:
             return
         for manager in managers:
-            manager.interpret_make_module()
+            manager.interpret_make_module(confirm=False, notify=True)
         if not managers:
             self._io_manager.display('')
         self._session._hide_next_redraw = True

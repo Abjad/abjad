@@ -302,29 +302,49 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.display(messages)
             self._session._hide_next_redraw = True
 
-    def interpret_make_module(self):
-        r'''Interprets __make__ module.
+    def interpret_make_module(self, confirm=True, notify=True):
+        r'''Interprets ``__make__.py`` module.
 
-        Creates output.ly and output.pdf files.
+        Creates ``output.ly`` and ``output.pdf`` files.
 
         Returns none.
         '''
-        from scoremanager import managers
         if not os.path.isfile(self._make_module_path):
-            message = 'no __make__ module found.'
-            self._io_manager.proceed(message, prompt=prompt)
+            message = 'no __make__.py module found.'
+            self._io_manager.proceed(message)
             return
+        if notify:
+            messages = []
+            messages.append('will interpret ...')
+            messages.append('')
+            message = ' INPUT: {}'.format(self._make_module_path)
+            messages.append(message)
+            message = 'OUTPUT: {}'.format(self._output_lilypond_file_path)
+            messages.append(message)
+            message = 'OUTPUT: {}'.format(self._output_pdf_file_path)
+            messages.append(message)
+            messages.append('')
+            self._io_manager.display(messages)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
         manager = self._io_manager.make_file_manager(self._make_module_path)
         manager.interpret(prompt=False)
-        messages = []
-        message = 'Interpreted {!r}.'.format(self._make_module_path)
-        messages.append(message)
-        message = 'Wrote {!r}.'.format(self._output_lilypond_file_path)
-        messages.append(message)
-        message = 'Wrote {!r}.'.format(self._output_pdf_file_path)
-        messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
+        if notify:
+            messages = []
+            message = 'Interpreted {!r}.'.format(self._make_module_path)
+            messages.append(message)
+            message = 'Wrote {!r}.'.format(self._output_lilypond_file_path)
+            messages.append(message)
+            message = 'Wrote {!r}.'.format(self._output_pdf_file_path)
+            messages.append(message)
+            messages.append('')
+            self._io_manager.display(messages)
+            self._session._hide_next_redraw = True
 
     def list_versions_directory(self):
         r'''Lists versions directory.
@@ -455,7 +475,7 @@ class SegmentPackageManager(PackageManager):
         return version_number
 
     def open_versioned_pdfs(self):
-        r'''Views all versioend PDFs.
+        r'''Opens versioend PDFs.
 
         Returns none.
         '''
@@ -478,7 +498,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.view(file_paths)
 
     def open_output_ly(self):
-        r'''Views current output LilyPond file.
+        r'''Opens current output LilyPond file.
 
         Returns none.
         '''
@@ -487,38 +507,51 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.view(file_path)
 
     def open_make_module(self):
-        r'''Views __make__ module.
+        r'''Opens __make__ module.
 
         Returns none.
         '''
         self._io_manager.view(self._make_module_path)
 
     def open_versioned_definition_module(self):
-        r'''Views versioned definition module.
+        r'''Opens versioned definition module.
 
         Returns none.
         '''
         self._view_versioned_file('.py')
 
     def open_versioned_output_ly(self):
-        r'''Views output LilyPond file.
+        r'''Opens output LilyPond file.
 
         Returns none.
         '''
         self._view_versioned_file('.ly')
 
     def open_versioned_output_pdf(self):
-        r'''Views output PDF.
+        r'''Opens output PDF.
 
         Returns none.
         '''
         self._view_versioned_file('.pdf')
 
-    def write_stub_definition_module(self):
-        r'''Writes definition module stub.
+    # TODO: reimplement as boilerplate
+    def write_stub_definition_module(self, confirm=True, notify=False):
+        r'''Writes stub definition module.
 
         Returns none.
         '''
+        if notify:
+            messages = []
+            message = 'will write stub to {}.'
+            message = message.format(self._definition_module_path)
+            messages.append(message)
+            self._io_manager.display(message)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         if not os.path.exists(self._definition_module_path):
             with file(self._definition_module_path, 'w') as file_pointer:
                 lines = []
@@ -528,12 +561,28 @@ class SegmentPackageManager(PackageManager):
                 lines.append('')
                 contents = '\n'.join(lines)
                 file_pointer.write(contents)
+        if notify:
+            message = 'wrote stub to {}.'
+            message = message.format(self._definition_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
-    def write_stub_make_module(self):
-        r'''Writes __make__.py module stub.
+    # TODO: reimplement as boilerplate
+    def write_stub_make_module(self, confirm=True, notify=True):
+        r'''Writes stub __make__.py module.
 
         Returns none.
         '''
+        if notify:
+            messages = []
+            message = 'will write stub to {}.'.format(self._make_module_path)
+            self._io_manager.display(message)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         lines = []
         lines.append(self._unicode_directive)
         lines.append('import os')
@@ -552,3 +601,8 @@ class SegmentPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._make_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
+        if notify:
+            messages = []
+            message = 'wrote stub to {}.'.format(self._make_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
