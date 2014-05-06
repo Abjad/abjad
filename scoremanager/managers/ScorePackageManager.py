@@ -402,6 +402,13 @@ class ScorePackageManager(PackageManager):
                     return
             self.rewrite_metadata_module(confirm=confirm, notify=notify)
         self._session._hide_next_redraw = False
+        if notify:
+            if package_needed_to_be_fixed:
+                message = 'Fixed package.'.format(self._path)
+            else:
+                message = 'No fixes required.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
         return package_needed_to_be_fixed
 
     def open_score_pdf(self):

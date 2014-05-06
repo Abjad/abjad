@@ -180,7 +180,7 @@ class ScorePackageWrangler(Wrangler):
                 path = result
                 manager = self._initialize_manager(path)
                 package_name = os.path.basename(path)
-                manager.fix_package()
+                manager.fix_package(confirm=False, notify=False)
                 if self._should_backtrack():
                     return
                 manager._run()
