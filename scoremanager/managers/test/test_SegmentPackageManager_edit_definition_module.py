@@ -3,10 +3,10 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageManager_edit_definition_module_01():
+def test_SegmentPackageManager_edit_definition_module_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score m magic~numbers dme q'
+    input_ = 'red~example~score g segment~01 dme q'
     score_manager._run(pending_user_input=input_)
 
     assert score_manager._session._attempted_to_open_file
