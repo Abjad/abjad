@@ -821,6 +821,16 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
+        if prompt:
+            message = 'will write stub to {}.'
+            message = message.format(self._illustrate_module_path)
+            self._io_manager.display([message, ''])
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
         lines = []
         lines.append(self._abjad_import_statement)
         line = 'from output import {}'
@@ -828,9 +838,10 @@ class MaterialPackageManager(PackageManager):
         lines.append(line)
         lines.append('')
         lines.append('')
-        line = 'score, treble_staff, bass_staff ='
-        line += ' scoretools.make_piano_score_from_leaves({})'
+        line = 'triple = scoretools.make_piano_score_from_leaves({})'
         line = line.format(self._package_name)
+        lines.append(line)
+        line = 'score, treble_staff, bass_staff = triple'
         lines.append(line)
         line = 'illustration = lilypondfiletools.'
         line += 'make_basic_lilypond_file(score)'
@@ -838,8 +849,11 @@ class MaterialPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._illustrate_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        message = 'stub illustrate module written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)
+        if prompt:
+            message = 'wrote stub to {}.'
+            message = message.format(self._illustrate_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def write_output_material(
         self,

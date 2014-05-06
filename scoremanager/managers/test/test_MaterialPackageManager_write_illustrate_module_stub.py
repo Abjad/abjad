@@ -28,6 +28,9 @@ def test_MaterialPackageManager_write_illustrate_module_stub_01():
         score_manager._run(pending_user_input=input_)
         assert os.path.isfile(path)
         assert not filecmp.cmp(path, backup_path)
+        contents = score_manager._transcript.contents
+        assert 'Will write stub to' in contents
+        assert 'Wrote stub to' in contents
     finally:
         assert os.path.isfile(backup_path)
         shutil.copyfile(backup_path, path)
