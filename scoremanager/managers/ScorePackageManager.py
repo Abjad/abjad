@@ -46,14 +46,14 @@ class ScorePackageManager(PackageManager):
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
-            'pdf': self.view_score_pdf,
+            'pdfo': self.open_score_pdf,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
-            'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
             'u': self._session._score_manager._build_file_wrangler._run,
+            'uar': self.remove_unadded_assets,
             'y': self._session._score_manager._stylesheet_wrangler._run,
             'Y': self._io_manager.edit_score_stylesheet,
             })
@@ -189,15 +189,15 @@ class ScorePackageManager(PackageManager):
 
     def _make_score_menu_section(self, menu):
         commands = []
-        commands.append(('score package - fix', 'fix'))
-        commands.append(('score package - score pdf', 'pdf'))
-        commands.append(('score package - remove unadded assets', 'rua'))
-        commands.append(('score package - setup', 'p'))
-        commands.append(('score package - initializer - open', 'ino'))
+        commands.append(('package - fix', 'fix'))
+        commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - score pdf - open', 'pdfo'))
+        commands.append(('package - setup', 'p'))
+        commands.append(('package - unadded assets - remove', 'uar'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='score',
+            name='score package',
             )
 
     def _make_setup_menu(self):
@@ -377,7 +377,7 @@ class ScorePackageManager(PackageManager):
                     file_pointer.write(contents)
         return package_needed_to_be_fixed
 
-    def view_score_pdf(self):
+    def open_score_pdf(self):
         r'''Views score PDF.
 
         Returns none.

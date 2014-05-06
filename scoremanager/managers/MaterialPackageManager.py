@@ -164,6 +164,7 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.open_illustration_pdf,
             'psa': self.set_autoeditor,
             'pua': self.unset_autoeditor,
+            'uar': self.remove_unadded_assets,
             'ver': self.version_artifacts,
             })
         return result
@@ -388,6 +389,7 @@ class MaterialPackageManager(PackageManager):
         else:
             commands.append(('package - set autoeditor', 'psa'))
         commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - unadded assets - remove', 'uar'))
         commands.append(('package - version artifacts', 'ver'))
         if commands:
             path = self._definition_module_path

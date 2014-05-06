@@ -79,7 +79,7 @@ class BuildFileWrangler(Wrangler):
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
             'si': self.interpret_score,
-            'so': self.view_score_pdf,
+            'so': self.open_score_pdf,
             'ren': self.rename_file,
             'rm': self.remove_files,
             })
@@ -958,7 +958,7 @@ class BuildFileWrangler(Wrangler):
         '''
         self._open_file_ending_with('preface.pdf')
 
-    def view_score_pdf(self):
+    def open_score_pdf(self):
         r'''Views score PDF.
 
         Returns none.

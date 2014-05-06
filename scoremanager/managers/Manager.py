@@ -111,8 +111,8 @@ class Manager(Controller):
             'rci': self.commit_to_repository,
             'rst': self.repository_status,
             'rrv': self.revert_to_repository,
-            'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
+            'uar': self.remove_unadded_assets,
             })
         return result
 

@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_view_score_pdf_01():
+def test_BuildFileWrangler_open_score_pdf_01():
 
     input_ = 'red~example~score u so q'
     score_manager._run(pending_user_input=input_)
