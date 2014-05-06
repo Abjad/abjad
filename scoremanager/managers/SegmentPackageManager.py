@@ -80,7 +80,7 @@ class SegmentPackageManager(PackageManager):
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
             'mmo': self.view_make_module,
-            'mmws': self.write_make_module_stub,
+            'mmws': self.write_stub_make_module,
             'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
@@ -506,7 +506,7 @@ class SegmentPackageManager(PackageManager):
         '''
         self._view_versioned_file('.pdf')
 
-    def write_definition_module_stub(self):
+    def write_stub_definition_module(self):
         r'''Writes definition module stub.
 
         Returns none.
@@ -521,7 +521,7 @@ class SegmentPackageManager(PackageManager):
                 contents = '\n'.join(lines)
                 file_pointer.write(contents)
 
-    def write_make_module_stub(self):
+    def write_stub_make_module(self):
         r'''Writes __make__.py module stub.
 
         Returns none.

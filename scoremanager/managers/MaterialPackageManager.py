@@ -150,11 +150,11 @@ class MaterialPackageManager(PackageManager):
         result.update({
             'dme': self.edit_definition_module,
             'dmi': self.interpret_definition_module,
-            'dmws': self.write_definition_module_stub,
+            'dmws': self.write_stub_definition_module,
             'ime': self.edit_illustrate_module,
             'imei': self.edit_and_interpret_illustrate_module,
             'imi': self.interpret_illustrate_module,
-            'imws': self.write_illustrate_module_stub,
+            'imws': self.write_stub_illustrate_module,
             'lyi': self.interpret_illustration_ly,
             'lyo': self.open_illustration_ly,
             'mae': self.autoedit_output_material,
@@ -781,74 +781,6 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def write_definition_module_stub(self, prompt=True):
-        r'''Writes stub material definition module.
-
-        Returns none.
-        '''
-        if prompt:
-            message = 'will write stub to {}.'
-            message = message.format(self._definition_module_path)
-            self._io_manager.display(message)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        lines = []
-        lines.append(self._unicode_directive)
-        lines.append(self._abjad_import_statement)
-        lines.append('output_module_import_statements = []')
-        lines.append('')
-        lines.append('')
-        line = '{} = None'.format(self._material_package_name)
-        lines.append(line)
-        contents = '\n'.join(lines)
-        with file(self._definition_module_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-        if prompt:
-            message = 'wrote stub to {}.'.format(self._definition_module_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-
-    def write_illustrate_module_stub(self, prompt=True):
-        r'''Writes stub illustrate module module.
-
-        Returns none.
-        '''
-        if prompt:
-            message = 'will write stub to {}.'
-            message = message.format(self._illustrate_module_path)
-            self._io_manager.display(message)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        lines = []
-        lines.append(self._abjad_import_statement)
-        line = 'from output import {}'
-        line = line.format(self._package_name)
-        lines.append(line)
-        lines.append('')
-        lines.append('')
-        line = 'triple = scoretools.make_piano_score_from_leaves({})'
-        line = line.format(self._package_name)
-        lines.append(line)
-        line = 'score, treble_staff, bass_staff = triple'
-        lines.append(line)
-        line = 'illustration = lilypondfiletools.'
-        line += 'make_basic_lilypond_file(score)'
-        lines.append(line)
-        contents = '\n'.join(lines)
-        with file(self._illustrate_module_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-        if prompt:
-            message = 'wrote stub to {}.'
-            message = message.format(self._illustrate_module_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-
     def write_output_material(
         self,
         import_statements=None,
@@ -899,3 +831,71 @@ class MaterialPackageManager(PackageManager):
         message = 'output module written to disk.'
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
+
+    def write_stub_definition_module(self, prompt=True):
+        r'''Writes stub material definition module.
+
+        Returns none.
+        '''
+        if prompt:
+            message = 'will write stub to {}.'
+            message = message.format(self._definition_module_path)
+            self._io_manager.display(message)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append(self._abjad_import_statement)
+        lines.append('output_module_import_statements = []')
+        lines.append('')
+        lines.append('')
+        line = '{} = None'.format(self._material_package_name)
+        lines.append(line)
+        contents = '\n'.join(lines)
+        with file(self._definition_module_path, 'w') as file_pointer:
+            file_pointer.write(contents)
+        if prompt:
+            message = 'wrote stub to {}.'.format(self._definition_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+
+    def write_stub_illustrate_module(self, prompt=True):
+        r'''Writes stub illustrate module module.
+
+        Returns none.
+        '''
+        if prompt:
+            message = 'will write stub to {}.'
+            message = message.format(self._illustrate_module_path)
+            self._io_manager.display(message)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+        lines = []
+        lines.append(self._abjad_import_statement)
+        line = 'from output import {}'
+        line = line.format(self._package_name)
+        lines.append(line)
+        lines.append('')
+        lines.append('')
+        line = 'triple = scoretools.make_piano_score_from_leaves({})'
+        line = line.format(self._package_name)
+        lines.append(line)
+        line = 'score, treble_staff, bass_staff = triple'
+        lines.append(line)
+        line = 'illustration = lilypondfiletools.'
+        line += 'make_basic_lilypond_file(score)'
+        lines.append(line)
+        contents = '\n'.join(lines)
+        with file(self._illustrate_module_path, 'w') as file_pointer:
+            file_pointer.write(contents)
+        if prompt:
+            message = 'wrote stub to {}.'
+            message = message.format(self._illustrate_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True

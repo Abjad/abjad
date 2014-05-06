@@ -50,7 +50,7 @@ class PackageManager(DirectoryManager):
         result = result.copy()
         result.update({
             'ino': self.open_initializer,
-            'inws': self.write_initializer_stub,
+            'inws': self.write_stub_initializer,
             })
         return result
 
@@ -77,7 +77,7 @@ class PackageManager(DirectoryManager):
         '''
         self._initializer_file_manager.view()
 
-    def write_initializer_stub(self, prompt=True):
+    def write_stub_initializer(self, prompt=True):
         r'''Writes initializer stub.
 
         Returns none.

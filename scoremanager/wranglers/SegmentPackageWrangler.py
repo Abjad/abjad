@@ -48,7 +48,7 @@ class SegmentPackageWrangler(Wrangler):
             'cp': self.copy_package,
             'dme': self.edit_definition_modules,
             'ino': self.open_initializer,
-            'inws': self.write_initializer_stub,
+            'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
             'mmi': self.interpret_make_modules,
             'new': self.make_package,
@@ -157,8 +157,8 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager.write_definition_module_stub()
-        manager.write_make_module_stub()
+        manager.write_stub_definition_module()
+        manager.write_stub_make_module()
         message = 'segment package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -327,9 +327,9 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._current_package_manager.open_initializer()
 
-    def write_initializer_stub(self):
+    def write_stub_initializer(self):
         r'''Writes stub initializer module.
 
         Returns none.
         '''
-        self._current_package_manager.write_initializer_stub()
+        self._current_package_manager.write_stub_initializer()
