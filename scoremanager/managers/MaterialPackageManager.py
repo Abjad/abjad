@@ -792,6 +792,15 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
+        if prompt:
+            message = 'will write output material to {}.'
+            message = message.format(self._output_module_path)
+            self._io_manager.display(message)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         if import_statements is None:
             assert body_lines is None
         else:
@@ -828,9 +837,11 @@ class MaterialPackageManager(PackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
-        message = 'output module written to disk.'
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        if prompt:
+            message = 'wrote output material to {}.'
+            message = message.format(self._output_module_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def write_stub_definition_module(self, prompt=True):
         r'''Writes stub material definition module.

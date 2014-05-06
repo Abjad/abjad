@@ -181,7 +181,7 @@ def test_MaterialPackageWrangler_make_package_06():
             boilerplate_definition_module_path,
             definition_module_path,
             )
-        input_ = 'm testnotes omw default q'
+        input_ = 'm testnotes omw y q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
         input_ = 'm rm testnotes remove q'
@@ -266,7 +266,7 @@ def test_MaterialPackageWrangler_make_package_09():
             definition_module_path,
             boilerplate_definition_module_path,
             )
-        input_ = 'm testnotes omw default q'
+        input_ = 'm testnotes omw y q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
         assert not filecmp.cmp(output_module_path, exception_file_path)
