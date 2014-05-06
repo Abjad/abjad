@@ -79,15 +79,15 @@ class SegmentPackageManager(PackageManager):
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
-            'mmo': self.view_make_module,
+            'mmo': self.open_make_module,
             'mmws': self.write_stub_make_module,
             'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
-            'vlyo': self.view_versioned_output_ly,
-            'vpdfo': self.view_versioned_output_pdf,
-            'vpyo': self.view_versioned_definition_module,
-            'vv': self.view_all_versioned_pdfs,
+            'vlyo': self.open_versioned_output_ly,
+            'vpdfo': self.open_versioned_output_pdf,
+            'vpdfso': self.open_versioned_pdfs,
+            'vdmo': self.open_versioned_definition_module,
             })
         return result
 
@@ -207,8 +207,8 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('versioned ly - open', 'vlyo'))
         commands.append(('versioned pdf - open', 'vpdfo'))
-        commands.append(('versioned pdfs - open', 'vv'))
-        commands.append(('versioned py - open', 'vpyo'))
+        commands.append(('versioned pdfs - open', 'vpdfso'))
+        commands.append(('versioned definition module - open', 'vdmo'))
         commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
             is_hidden=True,
@@ -454,7 +454,7 @@ class SegmentPackageManager(PackageManager):
         self._session._hide_next_redraw = True
         return version_number
 
-    def view_all_versioned_pdfs(self):
+    def open_versioned_pdfs(self):
         r'''Views all versioend PDFs.
 
         Returns none.
@@ -486,28 +486,28 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(file_path):
             self._io_manager.view(file_path)
 
-    def view_make_module(self):
+    def open_make_module(self):
         r'''Views __make__ module.
 
         Returns none.
         '''
         self._io_manager.view(self._make_module_path)
 
-    def view_versioned_definition_module(self):
+    def open_versioned_definition_module(self):
         r'''Views versioned definition module.
 
         Returns none.
         '''
         self._view_versioned_file('.py')
 
-    def view_versioned_output_ly(self):
+    def open_versioned_output_ly(self):
         r'''Views output LilyPond file.
 
         Returns none.
         '''
         self._view_versioned_file('.ly')
 
-    def view_versioned_output_pdf(self):
+    def open_versioned_output_pdf(self):
         r'''Views output PDF.
 
         Returns none.
