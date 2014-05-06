@@ -149,12 +149,12 @@ class MaterialPackageManager(PackageManager):
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
-            'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
+            'dmws': self.write_definition_module_stub,
             'ime': self.edit_illustrate_module,
             'imei': self.edit_and_interpret_illustrate_module,
-            'ims': self.write_illustrate_module_stub,
             'imi': self.interpret_illustrate_module,
+            'imws': self.write_illustrate_module_stub,
             'lyi': self.interpret_illustration_ly,
             'lyo': self.open_illustration_ly,
             'mae': self.autoedit_output_material,
@@ -261,12 +261,12 @@ class MaterialPackageManager(PackageManager):
             commands.append((string, 'imei'))
             string = 'illustrate module - interpret'
             commands.append((string, 'imi'))
-            string = 'illustrate module - stub'
-            commands.append((string, 'ims'))
+            string = 'illustrate module - write stub'
+            commands.append((string, 'imws'))
         else:
             is_hidden = True
-            string = 'illustrate module - stub'
-            commands.append((string, 'ims'))
+            string = 'illustrate module - write stub'
+            commands.append((string, 'imws'))
         menu.make_command_section(
             is_hidden=is_hidden,
             commands=commands,
@@ -320,7 +320,7 @@ class MaterialPackageManager(PackageManager):
         commands = []
         commands.append(('definition module - edit', 'dme'))
         commands.append(('definition module - interpret', 'dmi'))
-        commands.append(('definition module - stub', 'dms'))
+        commands.append(('definition module - write stub', 'dmws'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
@@ -387,6 +387,7 @@ class MaterialPackageManager(PackageManager):
         else:
             commands.append(('package - set autoeditor', 'psa'))
         commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - initializer - write stub', 'inws'))
         commands.append(('package - unadded assets - remove', 'uar'))
         commands.append(('package - version artifacts', 'ver'))
         if commands:
@@ -511,11 +512,6 @@ class MaterialPackageManager(PackageManager):
         else:
             self._session._pending_user_input = 'mae'
         self._run()
-
-    def _write_definition_module_stub(self, prompt=True):
-        self.write_definition_module_stub()
-        message = 'stub material definition written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)
 
     ### PUBLIC METHODS ###
 
@@ -793,13 +789,12 @@ class MaterialPackageManager(PackageManager):
         if prompt:
             message = 'will write stub to {}.'
             message = message.format(self._definition_module_path)
-            self._io_manager.display([message, ''])
+            self._io_manager.display(message)
             result = self._io_manager.confirm()
             if self._should_backtrack():
                 return
             if not result:
                 return
-            self._io_manager.display('')
         lines = []
         lines.append(self._unicode_directive)
         lines.append(self._abjad_import_statement)
@@ -824,13 +819,12 @@ class MaterialPackageManager(PackageManager):
         if prompt:
             message = 'will write stub to {}.'
             message = message.format(self._illustrate_module_path)
-            self._io_manager.display([message, ''])
+            self._io_manager.display(message)
             result = self._io_manager.confirm()
             if self._should_backtrack():
                 return
             if not result:
                 return
-            self._io_manager.display('')
         lines = []
         lines.append(self._abjad_import_statement)
         line = 'from output import {}'

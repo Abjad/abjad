@@ -194,7 +194,7 @@ class Controller(ScoreManagerObject):
     def _make_initializer_menu_section(self, menu):
         commands = []
         commands.append(('package - initializer - open', 'ino'))
-        commands.append(('package - initializer - stub', 'ins'))
+        commands.append(('package - initializer - write stub', 'inws'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

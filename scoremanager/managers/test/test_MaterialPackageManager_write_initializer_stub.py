@@ -7,14 +7,14 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_write_definition_module_stub_01():
+def test_MaterialPackageManager_write_initializer_stub_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
         'materials',
         'magic_numbers',
-        'definition.py',
+        '__init__.py',
         )
     backup_path = path + '.backup'
 
@@ -24,10 +24,14 @@ def test_MaterialPackageManager_write_definition_module_stub_01():
     try:
         shutil.copyfile(path, backup_path)
         assert filecmp.cmp(path, backup_path)
-        input_ = 'red~example~score m magic~numbers dmws y q'
+        os.remove(path)
+        assert not os.path.exists(path)
+        input_ = 'red~example~score m magic~numbers inws y q'
         score_manager._run(pending_user_input=input_)
         assert os.path.isfile(path)
-        assert not filecmp.cmp(path, backup_path)
+        contents = score_manager._transcript.contents
+        assert 'Will write stub to' in contents
+        assert 'Wrote stub to' in contents
     finally:
         assert os.path.isfile(backup_path)
         shutil.copyfile(backup_path, path)

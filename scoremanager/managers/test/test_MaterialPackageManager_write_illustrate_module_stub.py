@@ -24,7 +24,7 @@ def test_MaterialPackageManager_write_illustrate_module_stub_01():
     try:
         shutil.copyfile(path, backup_path)
         assert filecmp.cmp(path, backup_path)
-        input_ = 'red~example~score m magic~numbers ims y q'
+        input_ = 'red~example~score m magic~numbers imws y q'
         score_manager._run(pending_user_input=input_)
         assert os.path.isfile(path)
         assert not filecmp.cmp(path, backup_path)

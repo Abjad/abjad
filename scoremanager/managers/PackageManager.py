@@ -49,8 +49,8 @@ class PackageManager(DirectoryManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'ins': self.write_initializer_stub,
             'ino': self.open_initializer,
+            'inws': self.write_initializer_stub,
             })
         return result
 
@@ -71,20 +71,31 @@ class PackageManager(DirectoryManager):
     ### PUBLIC METHODS ###
 
     def open_initializer(self):
-        r'''Views initializer module.
+        r'''Opens initializer.
 
         Returns none.
         '''
         self._initializer_file_manager.view()
 
     def write_initializer_stub(self, prompt=True):
-        r'''Wrties stub initializer module.
+        r'''Writes initializer stub.
 
         Returns none.
         '''
         path = self._initializer_file_path
+        if prompt:
+            message = 'will write stub to {}.'
+            message = message.format(path)
+            self._io_manager.display(message)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         manager = self._io_manager.make_file_manager(path)
         manager._write_stub()
-        message = 'wrote initializer stub.'
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        if prompt:
+            message = 'wrote stub to {}.'
+            message = message.format(path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True

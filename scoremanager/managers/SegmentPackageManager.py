@@ -79,8 +79,8 @@ class SegmentPackageManager(PackageManager):
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
-            'mms': self.write_make_module_stub,
             'mmo': self.view_make_module,
+            'mmws': self.write_make_module_stub,
             'pdfo': self.open_output_pdf,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
@@ -143,13 +143,13 @@ class SegmentPackageManager(PackageManager):
     def _make_definition_module_menu_section(self, menu):
         if not os.path.isfile(self._definition_module_path):
             message = 'No definition.py module found;'
-            message += ' use (dms) to create a stub.'
+            message += ' use (dmws) to write stub.'
             menu.make_informational_section(
                 menu_entries=[message],
                 )
         commands = []
         commands.append(('definition module - edit', 'dme'))
-        commands.append(('definition module - stub', 'dms'))
+        commands.append(('definition module - write stub', 'dmws'))
         menu.make_command_section(
             commands=commands,
             name='definition module',
@@ -170,7 +170,7 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('make module - interpret', 'mmi'))
         commands.append(('make module - open', 'mmo'))
-        commands.append(('make module - stub', 'mms'))
+        commands.append(('make module - write stub', 'mmws'))
         menu.make_command_section(
             commands=commands,
             name='make module',
