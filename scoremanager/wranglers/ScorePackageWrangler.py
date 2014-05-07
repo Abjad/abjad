@@ -70,7 +70,10 @@ class ScorePackageWrangler(Wrangler):
 
     @property
     def _user_input_to_action(self):
-        result = {
+        superclass = super(ScorePackageWrangler, self)
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'cp': self.copy_package,
             'co': self.open_cache,
             'cw': self.write_cache,
@@ -83,8 +86,6 @@ class ScorePackageWrangler(Wrangler):
             'mdmo': self.open_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_package,
-            'pyd': self.doctest,
-            'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename_package,
@@ -93,15 +94,8 @@ class ScorePackageWrangler(Wrangler):
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'u': self._session._score_manager._build_file_wrangler._run,
-            'va': self.apply_view,
-            'vc': self.clear_view,
-            'vls': self.list_views,
-            'vnew': self.make_view,
-            'vren': self.rename_view,
-            'vrm': self.remove_views,
-            'vmo': self.open_views_module,
             'y': self._session._score_manager._stylesheet_wrangler._run,
-            }
+            })
         return result
 
     ### PRIVATE METHODS ###
