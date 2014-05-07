@@ -419,6 +419,12 @@ class Wrangler(Controller):
         storehouses = list(sorted(storehouses))
         return storehouses
 
+    def _go_to_next_asset(self):
+        pass
+
+    def _go_to_previous_asset(self):
+        pass
+
     def _initialize_manager(self, path, asset_identifier=None):
         assert os.path.sep in path, repr(path)
         manager = self._manager_class(
@@ -690,12 +696,6 @@ class Wrangler(Controller):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
-
-    def _navigate_to_next_asset(self):
-        pass
-
-    def _navigate_to_previous_asset(self):
-        pass
 
     def _open_in_each_package(self, file_name, verb='open'):
         paths = []

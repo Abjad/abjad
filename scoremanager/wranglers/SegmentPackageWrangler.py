@@ -43,8 +43,8 @@ class SegmentPackageWrangler(Wrangler):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            '>': self._navigate_to_next_asset,
-            '<': self._navigate_to_previous_asset,
+            '>': self.go_to_next_asset,
+            '<': self.go_to_previous_asset,
             'cp': self.copy_package,
             'dme': self.edit_definition_modules,
             'ino': self.open_initializer,
@@ -183,6 +183,20 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
+
+    def go_to_next_asset(self):
+        r'''Goes to next asset.
+
+        Returns none.
+        '''
+        self._go_to_next_asset()
+
+    def go_to_previous_asset(self):
+        r'''Goes to previous asset.
+
+        Returns none.
+        '''
+        self._go_to_previous_asset()
 
     def interpret_lilypond_files(
         self,
