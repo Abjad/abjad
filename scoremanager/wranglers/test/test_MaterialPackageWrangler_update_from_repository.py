@@ -10,7 +10,7 @@ def test_MaterialPackageWrangler_update_from_repository_01():
     '''
 
     input_ = 'red~example~score m rup default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._session._attempted_to_update_from_repository
 
 
@@ -19,5 +19,5 @@ def test_MaterialPackageWrangler_update_from_repository_02():
     '''
 
     input_ = 'm rup default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._session._attempted_to_update_from_repository

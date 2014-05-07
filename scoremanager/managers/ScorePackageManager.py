@@ -35,9 +35,9 @@ class ScorePackageManager(PackageManager):
             return annotated_title
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(ScorePackageManager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'd': self._session._score_manager._distribution_file_wrangler._run,
@@ -140,8 +140,8 @@ class ScorePackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:

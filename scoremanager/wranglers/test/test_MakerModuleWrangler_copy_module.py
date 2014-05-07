@@ -24,7 +24,7 @@ def test_MakerModuleWrangler_copy_module_01():
     try:
         input_ = 'k cp RedExampleScoreTemplate.py'
         input_ += ' My~maker~modules ReusableScoreTemplate y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)

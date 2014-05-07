@@ -33,7 +33,7 @@ def test_MaterialPackageManager_interpret_illustrate_module_01():
             os.remove(path)
             assert not os.path.exists(path)
         input_ = 'red~example~score m magic~numbers imi q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         for path in paths:
             assert os.path.isfile(path)
         #assert diff-pdf(pdf_path, pdf_path + '.backup')

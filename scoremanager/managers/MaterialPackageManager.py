@@ -143,9 +143,9 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(MaterialPackageManager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
@@ -219,8 +219,8 @@ class MaterialPackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:
@@ -525,11 +525,11 @@ class MaterialPackageManager(PackageManager):
         return result
 
     def _run_first_time(self):
-        if self._session.pending_user_input:
-            pending_user_input = 'mae ' + self._session.pending_user_input
-            self._session._pending_user_input = pending_user_input
+        if self._session.pending_input:
+            pending_input = 'mae ' + self._session.pending_input
+            self._session._pending_input = pending_input
         else:
-            self._session._pending_user_input = 'mae'
+            self._session._pending_input = 'mae'
         self._run()
 
     ### PUBLIC METHODS ###

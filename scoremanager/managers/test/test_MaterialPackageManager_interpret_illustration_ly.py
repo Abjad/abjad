@@ -36,7 +36,7 @@ def test_MaterialPackageManager_interpret_illustration_ly_01():
         os.remove(output_path)
         assert not os.path.exists(output_path)
         input_ = 'red~example~score m tempo~inventory lyi q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(output_path)
         #assert diff-pdf(output_path, backup_output_path)
     finally:

@@ -15,7 +15,7 @@ def test_Editor__run_01():
         target=target,
         )
     input_ = 'nm tenor done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == Clef('tenor')
 
@@ -31,7 +31,7 @@ def test_Editor__run_02():
         target=target,
         )
     input_ = 'done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target is target
 
@@ -46,7 +46,7 @@ def test_Editor__run_03():
         target=Tempo(),
         )
     input_ = 'duration (1, 8) units 98 done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == Tempo(Duration(1, 8), 98)
 
@@ -61,7 +61,7 @@ def test_Editor__run_04():
         target=Tempo(),
         )
     input_ = 'duration Duration(1, 8) units 98 done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == Tempo(Duration(1, 8), 98)
 
@@ -76,7 +76,7 @@ def test_Editor__run_05():
         target=Markup(),
         )
     input_ = 'arg foo~text done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     markup = markuptools.Markup('foo text')
     assert editor.target == markup
@@ -92,7 +92,7 @@ def test_Editor__run_06():
         target=Markup(),
         )
     input_ = '''arg '"foo~text~here"' dir up done'''
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == Markup('"foo text here"', direction=Up)
 
@@ -108,7 +108,7 @@ def test_Editor__run_07():
         target=target,
         )
     input_ = 'arg entirely~new~text direction up done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == Markup('entirely new text', direction=Up)
 
@@ -124,7 +124,7 @@ def test_Editor__run_08():
         target=target,
         )
     input_ = 'source [A0, C8] target -18 q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
     assert editor.target == component
@@ -141,7 +141,7 @@ def test_Editor__run_09():
         target=target,
         )
     input_ = '1 [F#3, C5) q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == pitchtools.PitchRange('[F#3, C5)')
 
@@ -152,7 +152,7 @@ def test_Editor__run_09():
         target=target,
         )
     input_ = '1 (A0, C8] q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == pitchtools.PitchRange('(A0, C8]')
 
@@ -171,7 +171,7 @@ def test_Editor__run_10():
         target=target,
         )
     input_ = 'q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor._transcript.signature == (2,)
 
     session = scoremanager.core.Session(is_test=True)
@@ -181,7 +181,7 @@ def test_Editor__run_10():
         target=target,
         )
     input_ = 's q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor._transcript.signature == (4, (0, 2))
 
     session = scoremanager.core.Session(is_test=True)
@@ -191,7 +191,7 @@ def test_Editor__run_10():
         target=target,
         )
     input_ = 'h'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor._transcript.signature == (2,)
 
     session = scoremanager.core.Session(is_test=True)
@@ -201,7 +201,7 @@ def test_Editor__run_10():
         target=target,
         )
     input_ = 'foo q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor._transcript.signature == (4, (0, 2))
 
 
@@ -217,7 +217,7 @@ def test_Editor__run_11():
         target=target,
         )
     input_ = "ht ('p', '<', 'f') Duration(1, 8) done"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),
@@ -239,7 +239,7 @@ def test_Editor__run_12():
         target=target,
         )
     input_ = "ht [('p', '<', 'f')] Duration(1, 8) done"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.NoteAndChordHairpinsHandler(
         hairpin_tokens=[('p', '<', 'f')],
@@ -261,7 +261,7 @@ def test_Editor__run_13():
         target=target,
         )
     input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.PatternedArticulationsHandler(
         articulation_lists=[['.', '^'], ['.']],
@@ -287,7 +287,7 @@ def test_Editor__run_14():
         target=target,
         )
     input_ = "['.', '^'] (1, 16) (1, 8) cs'' c''' done"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
@@ -313,7 +313,7 @@ def test_Editor__run_15():
         target=target,
         )
     input_ = "['.', '^'] None None None None done"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
@@ -334,7 +334,7 @@ def test_Editor__run_16():
         target=target
         )
     input_ = '1 f Duration(1, 8) q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',
@@ -356,7 +356,7 @@ def test_Editor__run_17():
         target=target,
         )
     input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     handler = handlertools.TerracedDynamicsHandler(
         dynamics=['p', 'f', 'f'],
@@ -377,7 +377,7 @@ def test_Editor__run_18():
         target=target,
         )
     input_ = 't c (-1, 2, -3, 4) d 16 done sdc (6,) xcd (2, 3) done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),
@@ -404,7 +404,7 @@ def test_Editor__run_19():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -429,7 +429,7 @@ def test_Editor__run_20():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo rm piccolo done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -453,7 +453,7 @@ def test_Editor__run_21():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo mv 1 2 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Piccolo(),
@@ -480,7 +480,7 @@ def test_Editor__run_22():
         )
     input_ = 'ps add accordionist default add bassoonist default'
     input_ += ' add cellist default done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
@@ -513,7 +513,7 @@ def test_Editor__run_23():
         target=target,
         )
     input_ = 'ps add 1-3 default default default done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
@@ -543,7 +543,7 @@ def test_Editor__run_24():
         )
     input_ = 'ps add acc default add bass default add bassoon default'
     input_ += ' rm 3 rm 2 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier(
         [
@@ -571,7 +571,7 @@ def test_Editor__run_25():
         target=target,
         )
     input_ = 'ps add 1-3 default default default rm 3-2 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier(
         [
@@ -599,7 +599,7 @@ def test_Editor__run_26():
         )
     input_ = 'ps add accordionist default add bassist default'
     input_ += ' add bassoonist bassoon mv 1 2 mv 2 3 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(

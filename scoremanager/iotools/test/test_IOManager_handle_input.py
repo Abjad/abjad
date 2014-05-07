@@ -3,13 +3,13 @@ from abjad import *
 import scoremanager
 
 
-def test_IOManager_handle_user_input_01():
+def test_IOManager_handle_input_01():
     r'''Command repetition works.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '>> . . . q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',

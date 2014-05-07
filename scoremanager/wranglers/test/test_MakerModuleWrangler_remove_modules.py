@@ -21,7 +21,7 @@ def test_MakerModuleWrangler_remove_modules_01():
             file_pointer.write('This is a test file.')
         assert os.path.exists(path)
         input_ = 'red~example~score k rm Foo.py remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):

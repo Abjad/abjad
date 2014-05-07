@@ -268,7 +268,7 @@ class SargassoMeasureMaker(AbjadObject):
             )
 
     @property
-    def _user_input_demo_values(self):
+    def _input_demo_values(self):
         return [
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),

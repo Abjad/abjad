@@ -13,7 +13,7 @@ def test_MaterialPackageManager_autoedit_output_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'm example~markup~inventory mae q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     string = 'Score manager - materials -'
@@ -47,7 +47,7 @@ def test_MaterialPackageManager_autoedit_output_02():
         input_ = 'm new testtempoinventory psa TempoInventory default'
         input_ += ' mae add d (1, 4) units 60 done add d (1, 4) units 90 done'
         input_ += ' done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -56,7 +56,7 @@ def test_MaterialPackageManager_autoedit_output_02():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testtempoinventory remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -85,7 +85,7 @@ def test_MaterialPackageManager_autoedit_output_03():
     try:
         input_ = 'm new testpri'
         input_ += ' psa PitchRangeInventory default done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -94,7 +94,7 @@ def test_MaterialPackageManager_autoedit_output_03():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -129,7 +129,7 @@ def test_MaterialPackageManager_autoedit_output_04():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -138,7 +138,7 @@ def test_MaterialPackageManager_autoedit_output_04():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -175,7 +175,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         input_ = "m new testmarkupinventory psa markup default"
         input_ += " mae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y default q"
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -184,7 +184,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testmarkupinventory remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -214,7 +214,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         input_ = 'm new testoctavetrans'
         input_ += ' psa OctaveTranspositionMappingInventory default'
         input_ += ' done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -223,7 +223,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -266,7 +266,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         input_ += ' add source [C4, C8) target 27 done done'
         input_ += ' add add source [A0, C8] target -18 done'
         input_ += ' done done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -275,7 +275,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -301,7 +301,7 @@ def test_MaterialPackageManager_autoedit_output_08():
     assert not os.path.exists(path)
     try:
         input_ = 'm new testlist psa list default mae 17 foo done b default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -310,7 +310,7 @@ def test_MaterialPackageManager_autoedit_output_08():
         output_material = manager._execute_output_module()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -336,7 +336,7 @@ def test_MaterialPackageManager_autoedit_output_09():
     try:
         input_ = 'm new testlist psa list default'
         input_ += ' mae add 17 add foo done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -345,7 +345,7 @@ def test_MaterialPackageManager_autoedit_output_09():
         output_material = manager._execute_output_module()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -385,7 +385,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
         input_ += ' done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -394,7 +394,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         output_material = manager._execute_output_module()
         assert output_material == maker
         input_ = 'm rm testrhythmmaker remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -431,7 +431,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         input_ += " psa ReiteratedArticulationHandler default"
         input_ += " mae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done y default q"
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -440,7 +440,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         output_material = manager._execute_output_module()
         assert output_material == handler
         input_ = 'm rm testarticulationhandler remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -473,7 +473,7 @@ def test_MaterialPackageManager_autoedit_output_12():
         input_ = 'm new testdynamichandler'
         input_ += ' psa ReiteratedDynamicHandler default'
         input_ += ' mae dy f md (1, 16) done y default q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -482,7 +482,7 @@ def test_MaterialPackageManager_autoedit_output_12():
         output_material = manager._execute_output_module()
         assert output_material == handler
         input_ = 'm rm testdynamichandler remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

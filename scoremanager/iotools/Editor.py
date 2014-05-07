@@ -255,10 +255,10 @@ class Editor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(
             controller=self,
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
@@ -273,13 +273,13 @@ class Editor(Controller):
                 if self._is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
-                    menu._predetermined_user_input = result
+                    menu._predetermined_input = result
                     menu._run()
                     is_first_pass = False
                 elif is_first_pass and self._is_autostarting:
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
-                    menu._predetermined_user_input = result
+                    menu._predetermined_input = result
                     menu._run()
                     is_first_pass = False
                 elif result and self._is_autoadvancing:

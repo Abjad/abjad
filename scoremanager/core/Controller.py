@@ -33,7 +33,7 @@ class Controller(ScoreManagerObject):
         return '# -*- encoding: utf-8 -*-'
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         result = {
             }
         return result

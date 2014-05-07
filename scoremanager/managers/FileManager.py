@@ -25,9 +25,9 @@ class FileManager(Manager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superlcass = super(FileManager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'cp': self.copy,
@@ -73,8 +73,8 @@ class FileManager(Manager):
             return name
 
     def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif result == 'user entered lone return':
             self.edit()
 

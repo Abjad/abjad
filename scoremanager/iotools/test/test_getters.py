@@ -10,7 +10,7 @@ def test_getters_01():
 
     getter = iotools.getters.get_duration('foo bar')
     input_ = 'asdf (1, 16)'
-    assert getter._run(pending_user_input=input_) == Duration(1, 16)
+    assert getter._run(pending_input=input_) == Duration(1, 16)
 
 
 def test_getters_02():
@@ -19,4 +19,4 @@ def test_getters_02():
 
     getter = iotools.getters.get_duration('foo bar')
     input_ = 'None'
-    assert getter._run(pending_user_input=input_) is None
+    assert getter._run(pending_input=input_) is None

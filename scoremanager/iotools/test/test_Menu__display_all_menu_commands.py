@@ -7,7 +7,7 @@ def test_Menu__display_all_menu_commands_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     assert 'system - commands' in contents
@@ -18,7 +18,7 @@ def test_Menu__display_all_menu_commands_02():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     title = 'Score manager - example scores'
     assert score_manager._transcript.last_title == title
@@ -30,7 +30,7 @@ def test_Menu__display_all_menu_commands_03():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? asdf q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     title_1 = 'Score manager - example scores'
     title_2 = 'Score manager - example scores'
@@ -46,7 +46,7 @@ def test_Menu__display_all_menu_commands_04():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? ll q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     title_2 = 'Score manager - example scores'
     title_1 = 'Score manager - example scores'
@@ -62,7 +62,7 @@ def test_Menu__display_all_menu_commands_05():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -75,7 +75,7 @@ def test_Menu__display_all_menu_commands_06():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? pyd default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -88,7 +88,7 @@ def test_Menu__display_all_menu_commands_07():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? pyt default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -101,7 +101,7 @@ def test_Menu__display_all_menu_commands_08():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? pyi 2**38 redraw q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -115,7 +115,7 @@ def test_Menu__display_all_menu_commands_09():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score ? rad q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -129,7 +129,7 @@ def test_Menu__display_all_menu_commands_10():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score ? rci q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -142,7 +142,7 @@ def test_Menu__display_all_menu_commands_11():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? rst default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -156,7 +156,7 @@ def test_Menu__display_all_menu_commands_12():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score ? rup q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'
@@ -169,7 +169,7 @@ def test_Menu__display_all_menu_commands_13():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? o default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     title = 'Red Example Score (2013)'

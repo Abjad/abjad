@@ -23,7 +23,7 @@ def test_SegmentPackageManager_write_stub_initializer_01():
 
     try:
         input_ = 'red~example~score g segment~01 inws y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
         assert 'Will write stub to' in contents

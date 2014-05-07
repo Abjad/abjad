@@ -16,7 +16,7 @@ def test_BuildFileWrangler_copy_file_01():
     '''
 
     input_ = 'u cp score.pdf~(Red~Example~Score) q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     titles = [
         'Score manager - example scores',
@@ -49,7 +49,7 @@ def test_BuildFileWrangler_copy_file_02():
     try:
         input_ = 'red~example~score u cp'
         input_ += ' score.pdf copied-score.pdf y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)

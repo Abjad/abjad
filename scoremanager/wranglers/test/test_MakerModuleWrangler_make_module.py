@@ -17,7 +17,7 @@ def test_MakerModuleWrangler_make_module_01():
     assert not os.path.exists(path)
     try:
         input_ = 'red~example~score k new FooMaker.py q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
     finally:
         if os.path.exists(path):

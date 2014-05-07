@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageManager_doctest_01():
 
     input_ = 'red~example~score m tempo~inventory pyd default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     strings = [

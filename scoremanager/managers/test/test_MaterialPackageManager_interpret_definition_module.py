@@ -18,7 +18,7 @@ def test_MaterialPackageManager_interpret_definition_module_01():
         )
 
     input_ = 'red~example~score m magic~numbers dmi q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     string = 'No exceptions raised; use (omo) to write output module.'

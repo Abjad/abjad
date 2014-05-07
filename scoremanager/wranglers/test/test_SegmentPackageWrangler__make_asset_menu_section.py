@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler__make_asset_menu_section_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     string = 'Red Example Score (2013) - segments'
     assert score_manager._transcript.last_menu_lines[0] == string

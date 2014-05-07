@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_open_illustration_pdfs_01():
         paths.append(path)
 
     input_ = 'red~example~score m pdfo y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert score_manager._session._attempted_to_open_file
     assert 'Will open ...' in contents

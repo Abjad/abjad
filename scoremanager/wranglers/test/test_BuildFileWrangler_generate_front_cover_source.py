@@ -28,7 +28,7 @@ def test_BuildFileWrangler_generate_front_cover_source_01():
         shutil.copyfile(path, backup_path)
         assert os.path.isfile(backup_path)
         input_ = 'red~example~score u fcg y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' in contents
         assert 'Overwrote' in contents
@@ -66,7 +66,7 @@ def test_BuildFileWrangler_generate_front_cover_source_02():
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score u fcg q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' not in contents
         assert 'Overwrote' not in contents

@@ -7,6 +7,6 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_StylesheetWrangler_open_views_module_01():
 
     input_ = 'y vmo q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     assert score_manager._session._attempted_to_open_file

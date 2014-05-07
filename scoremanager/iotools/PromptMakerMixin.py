@@ -207,7 +207,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be duration.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        setup_statements.append('evaluated_user_input = Duration({})')
+        setup_statements.append('evaluated_input = Duration({})')
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_duration_token,
@@ -429,7 +429,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be markup.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        statement = 'evaluated_user_input = markuptools.Markup({})'
+        statement = 'evaluated_input = markuptools.Markup({})'
         setup_statements.append(statement)
         self._make_prompt(
             spaced_attribute_name,
@@ -509,7 +509,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be named chromatic pitch.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        string = 'evaluated_user_input = pitchtools.NamedPitch({!r})'
+        string = 'evaluated_input = pitchtools.NamedPitch({!r})'
         setup_statements.append(string)
         self._make_prompt(
             spaced_attribute_name,
@@ -586,7 +586,7 @@ class PromptMakerMixin(AbjadObject):
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
         setup_statements.append(
-            'evaluated_user_input = pitchtools.PitchRange({})')
+            'evaluated_input = pitchtools.PitchRange({})')
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_pitch_range_or_none,

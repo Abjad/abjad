@@ -28,14 +28,14 @@ def test_DistributionFileWrangler_rename_file_01():
 
     input_ = 'd ren red-example-score.pdf~(Red~Example~Score)'
     input_ += ' foo-score.pdf y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'd ren foo-score.pdf~(Red~Example~Score)'
     input_ += ' red-example-score.pdf y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)
 
@@ -61,13 +61,13 @@ def test_DistributionFileWrangler_rename_file_02():
 
     input_ = 'red~example~score d ren red-example-score.pdf'
     input_ += ' foo-score.pdf y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'red~example~score d ren foo-score.pdf'
     input_ += ' red-example-score.pdf y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)

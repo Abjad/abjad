@@ -76,9 +76,9 @@ class Wrangler(Controller):
             return os.path.join(path, '__init__.py')
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(Wrangler, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = copy.deepcopy(result)
         result.update({
             'pyd': self.doctest,
@@ -827,10 +827,10 @@ class Wrangler(Controller):
             )
         self._session._is_backtracking_locally = False
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(
             self,
             on_enter_callbacks=(self._enter_run,),

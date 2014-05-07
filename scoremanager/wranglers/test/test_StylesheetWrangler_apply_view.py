@@ -14,7 +14,7 @@ def test_StylesheetWrangler_apply_view_01():
     
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default'
     input_ += ' va _test vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     applied_view = score_manager._transcript[-8]
 
     lines = [
@@ -40,7 +40,7 @@ def test_StylesheetWrangler_apply_view_02():
     input_ = 'red~example~score y vnew _test'
     input_ += ' rm all add stylesheet-addendum.ily done default'
     input_ += ' va _test vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     applied_view = score_manager._transcript[-8]
 
     lines = [

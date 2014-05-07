@@ -13,7 +13,7 @@ def test_SegmentPackageWrangler_make_view_01():
     '''
 
     input_ = 'g vnew _test q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     string = 'Score manager - segments - views - _test - edit:'
@@ -26,7 +26,7 @@ def test_SegmentPackageWrangler_make_view_02():
     '''
 
     input_ = 'g vnew _test q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     string = 'segment 01 (Red Example Score)'
@@ -40,7 +40,7 @@ def test_SegmentPackageWrangler_make_view_03():
     '''
 
     input_ = 'red~example~score g vnew _test q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     string = 'segment 01'
@@ -59,7 +59,7 @@ def test_SegmentPackageWrangler_make_view_04():
 
     input_ = 'g vnew _test rm all'
     input_ += ' add segment~01~(Red~Example~Score) done default q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     lines =['> done', '']
     assert score_manager._transcript[-5].lines == lines
@@ -68,13 +68,13 @@ def test_SegmentPackageWrangler_make_view_04():
     assert score_manager._transcript[-4].lines == lines
         
     input_ = 'g vls vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' in contents
 
     input_ = 'y vls q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' not in contents

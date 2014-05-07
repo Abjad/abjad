@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_ScorePackageManager_rewrite_metadata_module_01():
 
     input_ = 'red~example~score mdmrw default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     assert 'Rewrote metadata module.' in contents

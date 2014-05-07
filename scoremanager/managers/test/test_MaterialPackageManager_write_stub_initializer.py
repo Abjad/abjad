@@ -27,7 +27,7 @@ def test_MaterialPackageManager_write_stub_initializer_01():
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score m magic~numbers inws y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
         assert 'Will write stub to' in contents

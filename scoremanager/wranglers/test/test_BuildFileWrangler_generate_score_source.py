@@ -27,7 +27,7 @@ def test_BuildFileWrangler_generate_score_source_01():
         assert filecmp.cmp(path, backup_path)
         assert os.path.exists(backup_path)
         input_ = 'red~example~score u sg y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         assert filecmp.cmp(path, backup_path)
     finally:

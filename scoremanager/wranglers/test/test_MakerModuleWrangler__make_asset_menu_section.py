@@ -9,7 +9,7 @@ def test_MakerModuleWrangler__make_asset_menu_section_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'blue~example~score k q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',

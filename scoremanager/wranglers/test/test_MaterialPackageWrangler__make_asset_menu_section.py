@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler__make_asset_menu_section_01():
     '''
 
     input_ = 'blue~example~score m q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler__make_asset_menu_section_02():
     '''
 
     input_ = 'red~example~score m q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert '(Red Example Score)' not in score_manager._transcript.contents
 
 
@@ -32,5 +32,5 @@ def test_MaterialPackageWrangler__make_asset_menu_section_03():
     '''
 
     input_ = 'm q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert '(Red Example Score)' in score_manager._transcript.contents

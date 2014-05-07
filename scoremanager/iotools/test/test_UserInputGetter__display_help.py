@@ -9,7 +9,7 @@ def test_UserInputGetter__display_help_01():
     '''
 
     input_ = 'red~example~score m new ? q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     lines = [
         'Score manager - example scores',
         '> red example score',
@@ -29,7 +29,7 @@ def test_UserInputGetter__display_help_02():
     '''
 
     input_ = 'red~example~score m new help q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     lines = [
         'Score manager - example scores',
         '> red example score',

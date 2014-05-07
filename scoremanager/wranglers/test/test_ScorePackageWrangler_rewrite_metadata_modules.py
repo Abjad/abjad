@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_ScorePackageWrangler_rewrite_metadata_modules_01():
 
     input_ = 'mdmrw default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     path = score_manager._configuration.example_score_packages_directory_path

@@ -105,10 +105,10 @@ class PerformerCreationWizard(Wizard):
             )
         return menu
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         try_again = False
         performers = []
         context = iotools.ControllerContext(self)

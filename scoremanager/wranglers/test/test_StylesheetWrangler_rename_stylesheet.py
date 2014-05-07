@@ -22,13 +22,13 @@ def test_StylesheetWrangler_rename_stylesheet_01():
     assert os.path.exists(path)
 
     input_ = 'y ren clean-letter-14.ily very-clean-letter-14.ily y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'y ren very-clean-letter-14.ily clean-letter-14.ily y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)
 
@@ -53,12 +53,12 @@ def test_StylesheetWrangler_rename_stylesheet_02():
     assert os.path.exists(path)
 
     input_ = 'red~example~score y ren stylesheet.ily foo-stylesheet.ily y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'y ren foo-stylesheet.ily stylesheet.ily y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)

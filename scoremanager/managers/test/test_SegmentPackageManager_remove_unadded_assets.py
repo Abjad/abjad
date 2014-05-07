@@ -22,7 +22,7 @@ def test_SegmentPackageManager_remove_unadded_assets_01():
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'red~example~score g segment~01 uar y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert not os.path.exists(foo_path)
     finally:
         if os.path.exists(foo_path):

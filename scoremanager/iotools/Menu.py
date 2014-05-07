@@ -40,7 +40,7 @@ class Menu(ScoreManagerObject):
         '_hide_current_run',
         '_menu_sections',
         '_name',
-        '_predetermined_user_input',
+        '_predetermined_input',
         '_should_clear_terminal',
         '_title',
         )
@@ -58,7 +58,7 @@ class Menu(ScoreManagerObject):
         self._breadcrumb_callback = breadcrumb_callback
         self._menu_sections = []
         self._name = name
-        self._predetermined_user_input = None
+        self._predetermined_input = None
         self._should_clear_terminal = False
         self._title = title
 
@@ -110,30 +110,30 @@ class Menu(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _change_user_input_to_directive(self, user_input):
-        user_input = stringtools.strip_diacritics(
-            user_input)
-        if self._user_enters_nothing(user_input):
+    def _change_input_to_directive(self, input):
+        input = stringtools.strip_diacritics(
+            input)
+        if self._user_enters_nothing(input):
             default_value = None
             for section in self.menu_sections:
                 if section._has_default_value:
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif user_input in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
-            return user_input
-        elif user_input.startswith('!'):
-            return user_input
+        elif input in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
+            return input
+        elif input.startswith('!'):
+            return input
         for section in self.menu_sections:
             for menu_entry in section:
-                if menu_entry.matches(user_input):
+                if menu_entry.matches(input):
                     return self._enclose_in_list(menu_entry.return_value)
         for section in self.menu_sections:
             for menu_entry in section:
-                if menu_entry.matches(user_input.lower()):
+                if menu_entry.matches(input.lower()):
                     return self._enclose_in_list(menu_entry.return_value)
-        if self._user_enters_argument_range(user_input):
-            return self._handle_argument_range_user_input(user_input)
+        if self._user_enters_argument_range(input):
+            return self._handle_argument_range_input(input)
 
     def _clear_terminal(self):
         if self._should_clear_terminal:
@@ -150,10 +150,10 @@ class Menu(ScoreManagerObject):
             capitalize=False,
             )
         user_entered_lone_return = False
-        user_input = self._io_manager.handle_user_input('')
-        if user_input == '':
+        input = self._io_manager.handle_input('')
+        if input == '':
             user_entered_lone_return = True
-        directive = self._change_user_input_to_directive(user_input)
+        directive = self._change_input_to_directive(input)
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
         directive = self._io_manager._handle_directive(directive)
@@ -206,14 +206,14 @@ class Menu(ScoreManagerObject):
             if section._menu_entry_return_values:
                 return section._menu_entry_return_values[0]
 
-    def _handle_argument_range_user_input(self, user_input):
+    def _handle_argument_range_input(self, input):
         if not self._has_ranged_section():
             return
         for section in self.menu_sections:
             if section.is_ranged:
                 ranged_section = section
         entry_numbers = ranged_section._argument_range_string_to_numbers(
-            user_input)
+            input)
         if not entry_numbers:
             return
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
@@ -483,10 +483,10 @@ class Menu(ScoreManagerObject):
         entry_index = (entry_index + 1) % len(section)
         return section._menu_entry_return_values[entry_index]
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         clear_terminal, hide_current_run = True, False
         context = iotools.ControllerContext(
             self,
@@ -497,7 +497,7 @@ class Menu(ScoreManagerObject):
                 self._should_clear_terminal = clear_terminal
                 self._hide_current_run = hide_current_run
                 clear_terminal, hide_current_run = False, True
-                result = self._predetermined_user_input
+                result = self._predetermined_input
                 if not result:
                     result = self._display()
                 if self._session.is_complete:
@@ -524,16 +524,16 @@ class Menu(ScoreManagerObject):
         else:
             return expr
 
-    def _user_enters_argument_range(self, user_input):
-        if ',' in user_input:
+    def _user_enters_argument_range(self, input):
+        if ',' in input:
             return True
-        if '-' in user_input:
+        if '-' in input:
             return True
         return False
 
-    def _user_enters_nothing(self, user_input):
-        return not user_input or (3 <= len(user_input) and \
-            'default'.startswith(user_input))
+    def _user_enters_nothing(self, input):
+        return not input or (3 <= len(input) and \
+            'default'.startswith(input))
 
     ### PUBLIC PROPERTIES ###
 

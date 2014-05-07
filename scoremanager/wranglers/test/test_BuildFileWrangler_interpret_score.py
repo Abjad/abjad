@@ -34,7 +34,7 @@ def test_BuildFileWrangler_interpret_score_01():
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score u si q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         #assert diff-pdf(path, backup_path)
     finally:

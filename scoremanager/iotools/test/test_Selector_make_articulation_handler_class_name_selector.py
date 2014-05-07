@@ -10,6 +10,6 @@ def test_Selector_make_articulation_handler_class_name_selector_01():
     selector = selector.make_articulation_handler_class_name_selector()
     selector._session._is_test = True
     input_ = 'reiterated'
-    result = selector._run(pending_user_input=input_)
+    result = selector._run(pending_input=input_)
 
     assert result == 'ReiteratedArticulationHandler'

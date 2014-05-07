@@ -18,7 +18,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         '_allow_none',
         '_capitalize_prompts',
         '_current_prompt_is_done',
-        '_evaluated_user_input',
+        '_evaluated_input',
         '_include_newlines',
         '_include_chevron',
         '_number_prompts',
@@ -94,41 +94,41 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         lines.append('')
         self._io_manager.display(lines)
 
-    def _evaluate_user_input(self, user_input):
+    def _evaluate_input(self, input):
         section = self._current_prompt.target_menu_section
         setup_statements = self._current_prompt.setup_statements
-        if self.allow_none and user_input in ('', 'None'):
-            evaluated_user_input = None
+        if self.allow_none and input in ('', 'None'):
+            evaluated_input = None
         elif section is not None:
-            evaluated_user_input = section._argument_range_string_to_numbers(
-                user_input)
-            if (1 < len(evaluated_user_input) and
+            evaluated_input = section._argument_range_string_to_numbers(
+                input)
+            if (1 < len(evaluated_input) and
                 self._current_prompt.disallow_range):
-                evaluated_user_input = None
+                evaluated_input = None
         elif setup_statements:
             for setup_statement in self._current_prompt.setup_statements:
                 try:
-                    command = setup_statement.format(user_input)
+                    command = setup_statement.format(input)
                     exec(command)
                     continue
                 except (NameError, SyntaxError):
                     pass
                 try:
-                    command = setup_statement.format(repr(user_input))
+                    command = setup_statement.format(repr(input))
                     exec(command)
                 except ValueError:
                     self._display_help()
         else:
             try:
-                evaluated_user_input = eval(user_input)
+                evaluated_input = eval(input)
             except (NameError, SyntaxError):
-                evaluated_user_input = user_input
-        if not 'evaluated_user_input' in locals():
+                evaluated_input = input
+        if not 'evaluated_input' in locals():
             return
-        if not self._validate_evaluated_user_input(evaluated_user_input):
+        if not self._validate_evaluated_input(evaluated_input):
             self._display_help()
             return
-        self._evaluated_user_input.append(evaluated_user_input)
+        self._evaluated_input.append(evaluated_input)
         self._prompt_index += 1
         self._current_prompt_is_done = True
 
@@ -146,10 +146,10 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self._prompt_strings.append(prompt_string)
 
     def _move_to_previous_prompt(self):
-        self._evaluated_user_input.pop()
+        self._evaluated_input.pop()
         self._prompt_index = self._prompt_index - 1
 
-    def _present_prompt_and_evaluate_user_input(self, include_chevron=True):
+    def _present_prompt_and_evaluate_input(self, include_chevron=True):
         self._load_prompt_string()
         self._current_prompt_is_done = False
         while not self._current_prompt_is_done:
@@ -158,7 +158,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_string)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            user_input = self._io_manager.handle_user_input(
+            input = self._io_manager.handle_input(
                 prompt_string,
                 default_value=default_value,
                 include_chevron=include_chevron,
@@ -166,13 +166,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_character=self.prompt_character,
                 capitalize_prompt=self.capitalize_prompts,
                 )
-            if user_input is None:
+            if input is None:
                 self._prompt_index += 1
                 break
-            elif user_input == '?':
+            elif input == '?':
                 self._display_help()
-            assert isinstance(user_input, str), repr(user_input)
-            directive = self._io_manager._handle_directive(user_input)
+            assert isinstance(input, str), repr(input)
+            directive = self._io_manager._handle_directive(input)
             if self._should_backtrack():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
@@ -186,39 +186,39 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             elif directive == 'skip':
                 break
             elif isinstance(directive, str):
-                self._evaluate_user_input(directive)
+                self._evaluate_input(directive)
             else:
                 self._io_manager.print_not_yet_implemented()
 
-    def _present_prompts_and_evaluate_user_input(
+    def _present_prompts_and_evaluate_input(
         self,
         include_chevron=True,
         ):
         self._prompt_index = 0
         self._prompt_strings = []
-        self._evaluated_user_input = []
+        self._evaluated_input = []
         self._all_prompts_are_done = False
         while (self._prompt_index < len(self) and
             not self._all_prompts_are_done):
-            self._present_prompt_and_evaluate_user_input(
+            self._present_prompt_and_evaluate_input(
                 include_chevron=include_chevron)
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(
             controller=self,
             is_in_confirmation_environment=True,
             )
         with context:
-            self._present_prompts_and_evaluate_user_input(
+            self._present_prompts_and_evaluate_input(
                 include_chevron=self._include_chevron,
                 )
-            if len(self._evaluated_user_input) == 1:
-                result = self._evaluated_user_input[0]
+            if len(self._evaluated_input) == 1:
+                result = self._evaluated_input[0]
             else:
-                result = self._evaluated_user_input[:]
+                result = self._evaluated_input[:]
             return result
 
     def _should_backtrack(self):
@@ -236,11 +236,11 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         else:
             return False
 
-    def _validate_evaluated_user_input(self, evaluated_user_input):
-        if evaluated_user_input is None and self.allow_none:
+    def _validate_evaluated_input(self, evaluated_input):
+        if evaluated_input is None and self.allow_none:
             return True
         validation_function = self._current_prompt.validation_function
-        return validation_function(evaluated_user_input)
+        return validation_function(evaluated_input)
 
     ### PUBLIC PROPERTIES ###
 

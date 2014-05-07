@@ -11,7 +11,7 @@ def test_ScorePackageManager__run_01():
     '''
 
     input_ = 'red~example~score q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     lines = [
         'Red Example Score (2013)',
@@ -32,7 +32,7 @@ def test_ScorePackageManager__run_02():
     '''
 
     input_ = 'red~example~score h q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     titles = [
         'Score manager - example scores',
@@ -47,7 +47,7 @@ def test_ScorePackageManager__run_03():
     '''
 
     input_ = 'red~example~score b q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     titles = [
         'Score manager - example scores',

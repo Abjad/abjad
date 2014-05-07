@@ -9,7 +9,7 @@ def test_MakerModuleWrangler_repository_status_01():
     '''
 
     input_ = 'k rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
@@ -20,7 +20,7 @@ def test_MakerModuleWrangler_repository_status_02():
     '''
 
     input_ = 'red~example~score k rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
@@ -35,6 +35,6 @@ def test_MakerModuleWrangler_repository_status_03():
         return
 
     input_ = '{} k rst q'.format(score_name)
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     assert '> rst' in score_manager._transcript.first_lines

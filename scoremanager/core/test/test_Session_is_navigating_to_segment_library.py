@@ -9,7 +9,7 @@ def test_Session_is_navigating_to_segment_library_01():
     '''
 
     input_ = 'u g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - build files',
@@ -23,7 +23,7 @@ def test_Session_is_navigating_to_segment_library_02():
     '''
 
     input_ = 'd g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - distribution files',
@@ -37,7 +37,7 @@ def test_Session_is_navigating_to_segment_library_03():
     '''
 
     input_ = 'k g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - maker modules',
@@ -51,7 +51,7 @@ def test_Session_is_navigating_to_segment_library_04():
     '''
 
     input_ = 'm g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - materials',
@@ -65,7 +65,7 @@ def test_Session_is_navigating_to_segment_library_05():
     '''
 
     input_ = 'g g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - segments',
@@ -79,7 +79,7 @@ def test_Session_is_navigating_to_segment_library_06():
     '''
 
     input_ = 'y g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Score manager - stylesheets',

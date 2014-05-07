@@ -17,7 +17,7 @@ def test_DistributionFileWrangler_make_file_01():
     assert not os.path.exists(path)
     try:
         input_ = 'red~example~score d new test-file.txt q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
     finally:
         if os.path.exists(path):

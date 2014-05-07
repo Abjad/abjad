@@ -28,7 +28,7 @@ def test_ScorePackageWrangler_make_package_01():
     assert not os.path.exists(path)
     try:
         input_ = 'new example~score q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.ScorePackageManager

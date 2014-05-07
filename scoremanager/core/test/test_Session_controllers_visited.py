@@ -26,7 +26,7 @@ def test_Session_controllers_visited_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -42,7 +42,7 @@ def test_Session_controllers_visited_02():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -62,7 +62,7 @@ def test_Session_controllers_visited_03():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score u q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -83,7 +83,7 @@ def test_Session_controllers_visited_04():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -104,7 +104,7 @@ def test_Session_controllers_visited_05():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -129,7 +129,7 @@ def test_Session_controllers_visited_06():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -150,7 +150,7 @@ def test_Session_controllers_visited_07():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g 1 q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [
@@ -175,7 +175,7 @@ def test_Session_controllers_visited_08():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     session = scoremanager.core.Session(is_test=True)
     controllers = [

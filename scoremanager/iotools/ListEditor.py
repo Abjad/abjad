@@ -20,7 +20,7 @@ class ListEditor(Editor):
 
     ::
 
-        >>> editor._run(pending_user_input='rm 1 q')
+        >>> editor._run(pending_input='rm 1 q')
 
     ::
 
@@ -99,7 +99,7 @@ class ListEditor(Editor):
             return 'edit'
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         result = {
             'add': self.add_items,
             'rm': self.remove_items,
@@ -124,8 +124,8 @@ class ListEditor(Editor):
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
             raise TypeError('result must be string.')
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_item(result)
         else:

@@ -9,7 +9,7 @@ def test_MakerModuleWrangler_doctest_01():
     '''
 
     input_ = 'k pyd q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     strings = [
@@ -26,7 +26,7 @@ def test_MakerModuleWrangler_doctest_02():
     '''
 
     input_ = 'red~example~score k pyd q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     strings = [

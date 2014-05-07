@@ -15,7 +15,7 @@ def test_Editor__Instrument_01():
         target=target,
         )
     input_ = "sn 'foo' q"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
 
@@ -26,7 +26,7 @@ def test_Editor__Instrument_01():
         target=target,
         )
     input_ = "sm 'bar' sn 'foo' q"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
     assert instrument.short_instrument_name_markup == Markup('bar')
@@ -43,7 +43,7 @@ def test_Editor__Instrument_02():
         target=target,
         )
     input_ = 'q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor.target.pitch_range == pitchtools.PitchRange(-19, 36)
 
     session = scoremanager.core.Session(is_test=True)
@@ -53,7 +53,7 @@ def test_Editor__Instrument_02():
         target=target,
         )
     input_ = 'rg [C2, C7] q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor.target.pitch_range == pitchtools.PitchRange(-24, 36)
 
 
@@ -69,7 +69,7 @@ def test_Editor__Instrument_03():
         target=target,
         )
     input_ = "in 'foo' q"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
 
@@ -80,7 +80,7 @@ def test_Editor__Instrument_03():
         target=target,
         )
     input_ = "im 'bar' in 'foo' q"
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == Markup('bar')
@@ -97,7 +97,7 @@ def test_Editor__Instrument_04():
         target=target
         )
     input_ = 'q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     lines = [
         'Accordion',
@@ -128,7 +128,7 @@ def test_Editor__Instrument_05():
         target=target,
         )
     input_ = 'sp bf done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     instrument = editor.target
     horn = instrumenttools.FrenchHorn(
         sounding_pitch_of_written_middle_c=NamedPitch('bf')

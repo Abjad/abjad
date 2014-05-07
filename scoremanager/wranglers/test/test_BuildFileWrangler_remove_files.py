@@ -21,7 +21,7 @@ def test_BuildFileWrangler_remove_files_01():
             file_pointer.write('This is a test file.')
         assert os.path.exists(path)
         input_ = 'red~example~score u rm foo-file.txt remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):

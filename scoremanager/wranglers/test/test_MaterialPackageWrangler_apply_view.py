@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_apply_view_01():
     input_ += ' add instrumentation~(Red~Example~Score)'
     input_ += ' add tempo~inventory~(Red~Example~Score) done default'
     input_ += ' va _test vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     applied_view = score_manager._transcript[-8]
 
     lines = [
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_apply_view_02():
     input_ = 'red~example~score m vnew _test rm all'
     input_ += ' add instrumentation done default'
     input_ += ' va _test vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     applied_view = score_manager._transcript[-8]
 
     lines = [

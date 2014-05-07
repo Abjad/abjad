@@ -89,12 +89,12 @@ class ScoreManager(Controller):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
         self._session._reinitialize()
         type(self).__init__(self, session=self._session)
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(
             self,
             on_exit_callbacks=(self._session._clean_up,)

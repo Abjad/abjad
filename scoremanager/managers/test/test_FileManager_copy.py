@@ -27,7 +27,7 @@ def test_FileManager_copy_01():
         file_manager._make_empty_asset()
         assert os.path.exists(path)
         input_ = 'new-temporary-file.txt y q'
-        file_manager._session._pending_user_input = input_
+        file_manager._session._pending_input = input_
         file_manager.copy()
         assert os.path.exists(path)
         assert os.path.exists(new_path)

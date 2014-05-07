@@ -35,10 +35,10 @@ class Wizard(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(self)
         with context:
             selector = self._selector

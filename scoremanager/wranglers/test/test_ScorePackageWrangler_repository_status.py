@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_repository_status_01():
     '''
 
     input_ = 'rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = score_manager._transcript.titles
 
     assert titles[-1] == '# On branch master'

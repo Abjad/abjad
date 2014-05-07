@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler_repository_status_01():
     '''
 
     input_ = 'g rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler_repository_status_02():
     '''
 
     input_ = 'red~example~score g rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles

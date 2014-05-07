@@ -9,5 +9,5 @@ def test_UserInputGetter_back_01():
     '''
 
     input_ = 'red~example~score m tempo~inventory mae 1 d b q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (15, (10, 13))

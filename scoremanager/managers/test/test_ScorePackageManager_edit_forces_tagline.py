@@ -18,11 +18,11 @@ def test_ScorePackageManager_edit_forces_tagline_01():
 
     try:
         input_ = 'red~example~score p tagline for~foo~bar q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         session = scoremanager.core.Session(is_test=True)
         assert manager._get_metadatum('forces_tagline') == 'for foo bar'
     finally:
         input_ = 'red~example~score p tagline for~piano q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
 
     assert manager._get_metadatum('forces_tagline') == 'for piano'

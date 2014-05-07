@@ -26,7 +26,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
 
     try:
         input_ = 'red~example~score u dg y y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' in contents
         assert 'Will assemble segments in this order:' in contents
@@ -57,7 +57,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
 
     try:
         input_ = 'blue~example~score u dg y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         message = 'SegmentPackageWrangler views module is corrupt.' 
         assert message not in contents
@@ -89,7 +89,7 @@ def test_BuildFileWrangler_generate_draft_source_03():
 
     try:
         input_ = 'etude~example~score u dg y y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' in contents
         assert 'No segments found:' in contents

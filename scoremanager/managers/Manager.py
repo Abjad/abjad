@@ -100,9 +100,9 @@ class Manager(Controller):
             return os.path.basename(self._path)
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(Manager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = copy.deepcopy(result)
         result.update({
             'pyd': self.doctest,
@@ -492,10 +492,10 @@ class Manager(Controller):
         self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
 
-    def _run(self, pending_user_input=None):
+    def _run(self, pending_input=None):
         from scoremanager import iotools
-        if pending_user_input:
-            self._session._pending_user_input = pending_user_input
+        if pending_input:
+            self._session._pending_input = pending_input
         context = iotools.ControllerContext(self)
         directory_change = systemtools.TemporaryDirectoryChange(self._path)
         io_manager = self._io_manager

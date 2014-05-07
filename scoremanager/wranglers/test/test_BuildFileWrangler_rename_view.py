@@ -10,28 +10,28 @@ def test_BuildFileWrangler_rename_view_01():
 
     input_ = 'u vnew _test_100 rm all'
     input_ += ' add score.pdf~(Red~Example~Score) done default q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
         
     input_ = 'u vls q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert '_test_100' in contents
     assert '_test_101' not in contents
 
     input_ = 'u vren _test_100 _test_101 default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
     input_ = 'u vls q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert '_test_100' not in contents
     assert '_test_101' in contents
 
     input_ = 'u vrm _test_101 default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     input_ = 'u vls q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert '_test_101' not in contents

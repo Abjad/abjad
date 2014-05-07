@@ -20,7 +20,7 @@ def test_MaterialPackageManager_set_autoeditor_01():
     try:
         input_ = 'red~example~score m new test~tempo~inventory'
         input_ += ' psa TempoInventory q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         string = 'Package autoeditor set for TempoInventory.'
         assert string in contents

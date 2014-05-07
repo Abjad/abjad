@@ -69,9 +69,9 @@ class ScorePackageWrangler(Wrangler):
             return self._configuration.user_score_packages_directory_path
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(ScorePackageWrangler, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'cp': self.copy_package,
@@ -164,8 +164,8 @@ class ScorePackageWrangler(Wrangler):
             return self._get_sibling_score_directory_path(next_=False)
 
     def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:

@@ -157,13 +157,13 @@ class Transcript(AbjadObject):
         return result
 
     @property
-    def user_input_entries(self):
+    def input_entries(self):
         r'''Gets user input entries in transcript.
 
         Returns list.
         '''
         result = []
         for entry in self:
-            if entry.is_user_input:
+            if entry.is_input:
                 result.append(entry)
         return result

@@ -28,7 +28,7 @@ def test_SegmentPackageManager_version_artifacts_01():
 
     try:
         input_ = 'red~example~score g segment~01 ver y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert all(os.path.isfile(_) for _ in paths)
     finally:
         for path in paths:

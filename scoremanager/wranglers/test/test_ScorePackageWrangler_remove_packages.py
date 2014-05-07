@@ -18,14 +18,14 @@ def test_ScorePackageWrangler_remove_packages_01():
     assert not os.path.exists(path)
     try:
         input_ = 'new example~score~100 q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path, session=score_manager._session)
         title = 'Example Score 100'
         manager._add_metadatum('title', title)
         input_ = 'rm Example~Score~100 remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):
@@ -49,7 +49,7 @@ def test_ScorePackageWrangler_remove_packages_02():
     assert not os.path.exists(path_100)
     try:
         input_ = 'new example~score~100 new example~score~101 q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.exists(path_100)
         assert os.path.exists(path_101)
         manager = scoremanager.managers.ScorePackageManager
@@ -61,7 +61,7 @@ def test_ScorePackageWrangler_remove_packages_02():
         title = 'Example Score 101'
         manager._add_metadatum('title', title)
         input_ = 'rm Example~Score~100~-~Example~Score~101 remove~2 q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert not os.path.exists(path_100)
         assert not os.path.exists(path_101)
     finally:

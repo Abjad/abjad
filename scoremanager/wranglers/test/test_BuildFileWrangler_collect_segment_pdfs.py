@@ -69,7 +69,7 @@ def test_BuildFileWrangler_collect_segment_pdfs_01():
         
     # run input
     input_ = 'red~example~score u dc y q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     # make sure destination paths exist
     for path in destination_pdfs:

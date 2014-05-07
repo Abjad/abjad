@@ -70,9 +70,9 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'output.pdf')
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(SegmentPackageManager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'dme': self.edit_definition_module,
@@ -114,8 +114,8 @@ class SegmentPackageManager(PackageManager):
         return version_number
 
     def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result in self._input_to_action:
+            self._input_to_action[result]()
         elif result == 'user entered lone return':
             pass
 

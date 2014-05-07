@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_copy_package_01():
     '''
 
     input_ = 'm cp instrumentation~(Red~Example~Score) q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     titles = [
         'Score manager - example scores',
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_copy_package_02():
     try:
         input_ = 'red~example~score m cp'
         input_ += ' instrumentation copied_instrumentation y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)

@@ -22,7 +22,7 @@ def test_StylesheetWrangler_copy_stylesheet_01():
     try:
         input_ = 'y cp clean-letter-14.ily'
         input_ += ' My~stylesheets test~foo~stylesheet y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)

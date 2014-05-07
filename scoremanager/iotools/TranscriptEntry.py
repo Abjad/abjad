@@ -64,10 +64,10 @@ class TranscriptEntry(AbjadObject):
 
         Returns boolean.
         '''
-        return not self.is_user_input
+        return not self.is_input
 
     @property
-    def is_user_input(self):
+    def is_input(self):
         r'''Is true when entry is user input. Otherwise false.
 
         Returns boolean.

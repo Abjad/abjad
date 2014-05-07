@@ -11,7 +11,7 @@ def test_StylesheetWrangler_make_view_01():
     '''
 
     input_ = 'y vnew _test q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     string = 'Score manager - stylesheets - views - _test - edit:'
@@ -24,7 +24,7 @@ def test_StylesheetWrangler_make_view_02():
     '''
 
     input_ = 'y vnew _test q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     string = 'clean-letter-14.ily (Abjad)'
@@ -39,7 +39,7 @@ def test_StylesheetWrangler_make_view_03():
     '''
 
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default q' 
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     lines =['> done', '']
     assert score_manager._transcript[-5].lines == lines
@@ -48,13 +48,13 @@ def test_StylesheetWrangler_make_view_03():
     assert score_manager._transcript[-4].lines == lines
         
     input_ = 'y vls vrm _test default q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' in contents
 
     input_ = 'y vls q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' not in contents

@@ -44,7 +44,7 @@ class Session(abctools.AbjadObject):
         '_display_pitch_ranges_with_numbered_pitches',
         '_hide_hidden_commands',
         '_hide_next_redraw',
-        '_initial_user_input',
+        '_initial_input',
         '_io_manager',
         '_is_autoadding',
         '_is_backtracking_locally',
@@ -52,7 +52,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
-        '_is_in_user_input_getter',
+        '_is_in_input_getter',
         '_is_navigating_to_score_build_files',
         '_is_navigating_to_score_distribution_files',
         '_is_navigating_to_next_asset',
@@ -69,7 +69,7 @@ class Session(abctools.AbjadObject):
         '_last_command_was_composite',
         '_last_asset_path',
         '_menu_header_width',
-        '_pending_user_input',
+        '_pending_input',
         '_proceed_count',
         '_rewrite_cache',
         '_score_manager',
@@ -85,13 +85,13 @@ class Session(abctools.AbjadObject):
         'is_autoadding',
         'is_in_confirmation_environment',
         'is_in_editor',
-        'is_in_user_input_getter',
+        'is_in_input_getter',
         'last_asset_path',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, pending_user_input=None, is_test=False):
+    def __init__(self, pending_input=None, is_test=False):
         from scoremanager import core
         from scoremanager import iotools
         self._attempted_repository_status = False
@@ -107,7 +107,7 @@ class Session(abctools.AbjadObject):
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
-        self._initial_user_input = pending_user_input
+        self._initial_input = pending_input
         self._io_manager = iotools.IOManager(self)
         self._is_repository_test = False
         self._is_autoadding = False
@@ -131,7 +131,7 @@ class Session(abctools.AbjadObject):
         self._last_command_was_composite = False
         self._last_asset_path = None
         self._menu_header_width = 160
-        self._pending_user_input = pending_user_input
+        self._pending_input = pending_input
         self._proceed_count = 0
         self._rewrite_cache = False
         self._score_manager = None
@@ -152,13 +152,13 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         summary = []
-        if self.initial_user_input is not None:
-            string = 'initial_pending_user_input={!r}'
-            string = string.format(self.initial_user_input)
+        if self.initial_input is not None:
+            string = 'initial_pending_input={!r}'
+            string = string.format(self.initial_input)
             summary.append(string)
-        if self.pending_user_input not in (None, ''):
-            string = 'pending_user_input={!r}'
-            string = string.format(self.pending_user_input)
+        if self.pending_input not in (None, ''):
+            string = 'pending_input={!r}'
+            string = string.format(self.pending_input)
             summary.append(string)
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
@@ -213,11 +213,11 @@ class Session(abctools.AbjadObject):
 
     def _print_transcript(
         self,
-        include_user_input=True,
+        include_input=True,
         include_system_display=True,
         ):
         for entry in self.transcript:
-            if entry.is_user_input and include_user_input:
+            if entry.is_input and include_input:
                 print(entry)
             elif entry.is_system_display and include_system_display:
                 print(entry)
@@ -519,19 +519,19 @@ class Session(abctools.AbjadObject):
         return self._hide_next_redraw
 
     @property
-    def initial_user_input(self):
+    def initial_input(self):
         r'''Gets session initial user input.
 
         ..  container:: example
 
             ::
 
-                >>> session.initial_user_input is None
+                >>> session.initial_input is None
                 True
 
         Returns string or none.
         '''
-        return self._initial_user_input
+        return self._initial_input
 
     @property
     def io_manager(self):
@@ -726,14 +726,14 @@ class Session(abctools.AbjadObject):
         return self._is_in_score_setup_menu
 
     @property
-    def is_in_user_input_getter(self):
+    def is_in_input_getter(self):
         r'''Is true when session is in user input getter. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_in_user_input_getter
+                >>> session.is_in_input_getter
                 False
 
         Returns boolean.
@@ -1069,19 +1069,19 @@ class Session(abctools.AbjadObject):
         return self._menu_header_width
 
     @property
-    def pending_user_input(self):
+    def pending_input(self):
         r'''Gets and sets pending user input.
 
         ..  container:: example
 
             ::
 
-                >>> session.pending_user_input is None
+                >>> session.pending_input is None
                 True
 
         Returns string.
         '''
-        return self._pending_user_input
+        return self._pending_input
 
     @property
     def proceed_count(self):
@@ -1190,7 +1190,7 @@ class Session(abctools.AbjadObject):
         self._hide_next_redraw = True
 
     def get_controller_with(self, ui=None):
-        r'''Gets most recent controller with `ui` in `_user_input_to_action`
+        r'''Gets most recent controller with `ui` in `_input_to_action`
         dictionary.
 
         Returns controller.
@@ -1201,13 +1201,13 @@ class Session(abctools.AbjadObject):
                 controller = controller._score_package_wrangler
             if not ui:
                 return controller
-            user_input_to_action = getattr(
+            input_to_action = getattr(
                 controller,
-                '_user_input_to_action',
+                '_input_to_action',
                 None,
                 )
-            if user_input_to_action:
-                if ui in user_input_to_action:
+            if input_to_action:
+                if ui in input_to_action:
                     return controller
 
     def toggle_hidden_commands(self):

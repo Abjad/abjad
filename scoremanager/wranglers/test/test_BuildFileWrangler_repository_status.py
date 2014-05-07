@@ -9,7 +9,7 @@ def test_BuildFileWrangler_repository_status_01():
     '''
 
     input_ = 'u rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
@@ -21,7 +21,7 @@ def test_BuildFileWrangler_repository_status_02():
     '''
 
     input_ = 'red~example~score u rst q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     title = '# On branch master'
 
     assert title in score_manager._transcript.titles
@@ -37,7 +37,7 @@ def test_BuildFileWrangler_repository_status_03():
         return
 
     input_ = '{} u rst q'.format(score_name)
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
 
     assert score_manager._session._attempted_repository_status
     assert score_manager._session.proceed_count == 0

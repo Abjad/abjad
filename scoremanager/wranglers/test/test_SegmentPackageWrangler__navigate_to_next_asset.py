@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler__navigate_to_next_asset_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g > > > > q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

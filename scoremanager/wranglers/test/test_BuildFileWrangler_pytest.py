@@ -9,7 +9,7 @@ def test_BuildFileWrangler_pytest_01():
     '''
 
     input_ = 'u pyt q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript_contents = score_manager._transcript.contents
 
     strings = [
@@ -26,7 +26,7 @@ def test_BuildFileWrangler_pytest_02():
     '''
 
     input_ = 'red~example~score u pyt q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     transcript_contents = score_manager._transcript.contents
 
     strings = [

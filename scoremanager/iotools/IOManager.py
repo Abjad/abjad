@@ -60,7 +60,7 @@ class IOManager(IOManager):
 
     @property
     @systemtools.Memoize
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         result = {
             'b': self._handle_backtrack_navigation_directive,
             'h': self._handle_home_navigation_directive,
@@ -133,8 +133,8 @@ class IOManager(IOManager):
         elif (self._session.is_in_confirmation_environment and
             directive in ('y', 'Y', 'n', 'N')):
             return directive
-        elif directive in self._user_input_to_action:
-            self._user_input_to_action[directive]()
+        elif directive in self._input_to_action:
+            self._input_to_action[directive]()
             directive = None
         elif directive.startswith('!'):
             statement = directive.replace('!', '')
@@ -216,32 +216,32 @@ class IOManager(IOManager):
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
-    def _pop_from_pending_user_input(self):
+    def _pop_from_pending_input(self):
         self._session._last_command_was_composite = False
-        if self._session.pending_user_input is None:
+        if self._session.pending_input is None:
             return None
-        elif self._session._pending_user_input == '':
-            self._session._pending_user_input = None
+        elif self._session._pending_input == '':
+            self._session._pending_input = None
             return None
-        elif self._session.pending_user_input.startswith('{{'):
-            index = self._session.pending_user_input.find('}}')
-            user_input = self._session.pending_user_input[2:index]
-            pending_user_input = self._session.pending_user_input[index+2:]
-            pending_user_input = pending_user_input.strip()
+        elif self._session.pending_input.startswith('{{'):
+            index = self._session.pending_input.find('}}')
+            input = self._session.pending_input[2:index]
+            pending_input = self._session.pending_input[index+2:]
+            pending_input = pending_input.strip()
             self._session._last_command_was_composite = True
         else:
-            user_input_parts = self._session.pending_user_input.split(' ')
+            input_parts = self._session.pending_input.split(' ')
             first_parts, rest_parts = [], []
-            for i, part in enumerate(user_input_parts):
+            for i, part in enumerate(input_parts):
                 if not part.endswith((',', '-')):
                     break
-            first_parts = user_input_parts[:i+1]
-            rest_parts = user_input_parts[i+1:]
-            user_input = ' '.join(first_parts)
-            pending_user_input = ' '.join(rest_parts)
-        user_input = user_input.replace('~', ' ')
-        self._session._pending_user_input = pending_user_input
-        return user_input
+            first_parts = input_parts[:i+1]
+            rest_parts = input_parts[i+1:]
+            input = ' '.join(first_parts)
+            pending_input = ' '.join(rest_parts)
+        input = input.replace('~', ' ')
+        self._session._pending_input = pending_input
+        return input
 
     def _read_cache(self):
         start_menu_entries = []
@@ -265,7 +265,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         if not self._session.hide_next_redraw:
-            if not self._session.pending_user_input:
+            if not self._session.pending_input:
                 superclass = super(IOManager, self)
                 superclass.clear_terminal()
 
@@ -311,7 +311,7 @@ class IOManager(IOManager):
                 ]
         if lines:
             self._session.transcript._append_entry(lines)
-        if not self._session.pending_user_input:
+        if not self._session.pending_input:
             for line in lines:
                 print(line)
 
@@ -375,7 +375,7 @@ class IOManager(IOManager):
                 greatest_number = number
         return greatest_number
 
-    def handle_user_input(
+    def handle_input(
         self,
         prompt_string,
         default_value=None,
@@ -404,39 +404,39 @@ class IOManager(IOManager):
                 prompt_string = prompt_string + prompt_character + ' '
             else:
                 prompt_string = prompt_string + ' '
-            if not self._session.pending_user_input:
-                user_input = raw_input(prompt_string)
+            if not self._session.pending_input:
+                input = raw_input(prompt_string)
                 if include_newline:
-                    if not user_input == 'help':
+                    if not input == 'help':
                         print('')
             else:
-                user_input = self._pop_from_pending_user_input()
-                if user_input == 'default':
+                input = self._pop_from_pending_input()
+                if input == 'default':
                     found_default_token = True
             if not found_default_token:
-                self._session.command_history.append(user_input)
-            if user_input == '.':
+                self._session.command_history.append(input)
+            if input == '.':
                 last_semantic_command = self._session.last_semantic_command
-                user_input = last_semantic_command
+                input = last_semantic_command
             if found_default_token:
                 menu_chunk = [prompt_string.strip()]
                 if include_newline:
-                    if not user_input == 'help':
+                    if not input == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
                 menu_chunk = ['> ']
                 if include_newline:
-                    if not user_input == 'help':
+                    if not input == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
             else:
                 menu_chunk = []
-                menu_chunk.append('{}{}'.format(prompt_string, user_input))
+                menu_chunk.append('{}{}'.format(prompt_string, input))
                 if include_newline:
-                    if not user_input == 'help':
+                    if not input == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
-            return user_input
+            return input
         finally:
             readline.set_startup_hook()
 
@@ -450,7 +450,7 @@ class IOManager(IOManager):
         lines = []
         prompt = True
         if statement is None:
-            statement = self.handle_user_input('>>', include_newline=False)
+            statement = self.handle_input('>>', include_newline=False)
         else:
             prompt = False
         command = 'from abjad import *'
@@ -477,7 +477,7 @@ class IOManager(IOManager):
         lines = []
         prompt = True
         if statement is None:
-            statement = self.handle_user_input(
+            statement = self.handle_input(
                 '$',
                 include_chevron=False,
                 include_newline=False,
@@ -660,7 +660,7 @@ class IOManager(IOManager):
         assert isinstance(message, str)
         if not prompt:
             return
-        self.handle_user_input(
+        self.handle_input(
             message,
             include_chevron=False,
             )

@@ -11,7 +11,7 @@ def test_ScorePackageWrangler__run_01():
     '''
 
     input_ = 'q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (2,)
 
 
@@ -20,7 +20,7 @@ def test_ScorePackageWrangler__run_02():
     '''
 
     input_ = 'h q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (4, (0, 2))
 
 
@@ -29,7 +29,7 @@ def test_ScorePackageWrangler__run_03():
     '''
 
     input_ = 'foo q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (4, (0, 2))
 
 
@@ -38,7 +38,7 @@ def test_ScorePackageWrangler__run_04():
     '''
 
     input_ = 's q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (4, (0, 2))
 
 
@@ -47,5 +47,5 @@ def test_ScorePackageWrangler__run_05():
     '''
 
     input_ = 'b q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_input=input_)
     assert score_manager._transcript.signature == (4, (0, 2))

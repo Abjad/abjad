@@ -31,7 +31,7 @@ def test_SegmentPackageWrangler_version_artifacts_01():
 
     try:
         input_ = 'red~example~score g ver y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         for path in target_paths:
             assert os.path.isfile(path)
     finally:

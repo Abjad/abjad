@@ -29,7 +29,7 @@ def test_BuildFileWrangler_generate_music_source_01():
         shutil.copyfile(path, backup_path)
         assert os.path.exists(backup_path)
         input_ = 'red~example~score u mg y y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         with file(path, 'r') as file_pointer:
             file_lines = file_pointer.readlines()

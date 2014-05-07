@@ -11,7 +11,7 @@ def test_ListEditor__run_01():
     editor = scoremanager.iotools.ListEditor(session=session)
     input_ = "17 99 'foo' done q"
     editor._is_autoadding = True
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     assert editor.target == [17, 99, 'foo']
 
@@ -27,7 +27,7 @@ def test_ListEditor__run_02():
         target=target,
         )
     input_ = 'add nm treble done add nm bass done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     inventory = indicatortools.ClefInventory(['treble', 'bass'])
     assert editor.target == inventory
@@ -44,7 +44,7 @@ def test_ListEditor__run_03():
         target=target,
         )
     input_ = '2 nm alto done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     new_inventory = indicatortools.ClefInventory(['treble', 'alto'])
     assert editor.target == new_inventory
@@ -61,7 +61,7 @@ def test_ListEditor__run_04():
         target=target,
         )
     input_ = r'add arg \italic~{~serenamente~possibile~} done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
@@ -86,7 +86,7 @@ def test_ListEditor__run_05():
     input_ += r' arg \italic~{~serenamente~possibile~}'
     input_ += ' direction up done'
     input_ += r' add arg \italic~{~presto~} done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
@@ -117,7 +117,7 @@ def test_ListEditor__run_06():
     input_ = 'add d (1, 4) units 60 done'
     input_ +=  ' add d (1, 4) units 72 done'
     input_ += ' add d (1, 4) units 84 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60),
         Tempo(Duration(1, 4), 72),
@@ -141,7 +141,7 @@ def test_ListEditor__run_07():
     input_ = 'add d Duration(1, 4) units 60 done'
     input_ += ' add d Duration(1, 4) units 72 done'
     input_ += ' add d Duration(1, 4) units 84 done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60),
         Tempo(Duration(1, 4), 72),
@@ -164,7 +164,7 @@ def test_ListEditor__run_08():
     input_ += ' add range [C1, C7] done'
     input_ += ' add range [C2, C8] done'
     input_ += ' rm 1 mv 1 2 q'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
     assert editor.target == pitchtools.PitchRangeInventory([
         pitchtools.PitchRange('[C2, C8]'),
         pitchtools.PitchRange('[C1, C7]'),
@@ -183,7 +183,7 @@ def test_ListEditor__run_09():
         )
     input_ = 'add source [A0, F#4] target 22 done'
     input_ += ' add source (F#4, C8] target 26 done done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping([
         ('[A0, F#4]', 22),
@@ -204,7 +204,7 @@ def test_ListEditor__run_10():
         )
     input_ = 'add source [A0, F#4] target 22 done'
     input_ +=  ' add source (F#4, C8] target 26 done done done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping(
             [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
@@ -224,7 +224,7 @@ def test_ListEditor__run_11():
         target=target,
         )
     input_ = 'add flute add piccolo done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     inventory = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -245,7 +245,7 @@ def test_ListEditor__run_12():
         target=target,
         )
     input_ = 'add first~pattern default add second~pattern default done'
-    editor._run(pending_user_input=input_)
+    editor._run(pending_input=input_)
 
     view = scoremanager.iotools.View([
         'first pattern',

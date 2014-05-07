@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler__get_available_path_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     storehouse = configuration.user_library_material_packages_directory_path
     input_ = 'foo'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path(
         storehouse_path=storehouse,
         )
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler__get_available_path_01():
     assert result == path
 
     input_ = 'example~notes q'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     assert result is None
 
@@ -33,7 +33,7 @@ def test_MaterialPackageWrangler__get_available_path_02():
     session._set_test_score('red_example_score')
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     input_ = 'foo'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     path = os.path.join(
         configuration.example_score_packages_directory_path,
@@ -51,16 +51,16 @@ def test_MaterialPackageWrangler__get_available_path_03():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     input_ = 'q'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     assert result is None
 
     input_ = 'b'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     assert result is None
 
     input_ = 'h'
-    wrangler._session._pending_user_input = input_
+    wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     assert result is None

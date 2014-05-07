@@ -26,7 +26,7 @@ def test_FileManager_rename_01():
         manager._make_empty_asset()
         assert os.path.exists(path)
         input_ = 'new-test-file.txt y q'
-        manager._session._pending_user_input = input_
+        manager._session._pending_input = input_
         manager.rename()
         assert manager._path == new_path
         assert not os.path.exists(path)
@@ -65,7 +65,7 @@ def test_FileManager_rename_02():
         assert manager._is_in_git_repository()
         assert manager._is_git_added()
         input_ = 'new-test-file.txt y q'
-        manager._session._pending_user_input = input_
+        manager._session._pending_input = input_
         manager.rename()
         assert manager._path == new_path
         assert os.path.exists(new_path)

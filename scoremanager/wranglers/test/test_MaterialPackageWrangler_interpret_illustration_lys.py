@@ -45,7 +45,7 @@ def test_MaterialPackageWrangler_interpret_illustration_lys_01():
             os.remove(path)
         assert not any(os.path.exists(_) for _ in output_paths)
         input_ = 'red~example~score m lyi y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert all(os.path.isfile(_) for _ in output_paths)
         assert 'Will interpret ...' in contents

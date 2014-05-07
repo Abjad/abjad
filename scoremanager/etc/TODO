@@ -3,7 +3,7 @@
 2.  Make user input getter defaults work like menu defaults.
     Implement default value on user input getter.
 
-3.  Fix IOManager.handle_user_input() default handling.
+3.  Fix IOManager.handle_input() default handling.
 
 4.  Find a way dynamically to present default notice with default menu entries.
 

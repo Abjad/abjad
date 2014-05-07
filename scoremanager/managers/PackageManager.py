@@ -44,9 +44,9 @@ class PackageManager(DirectoryManager):
         return os.path.join(self._path, '__init__.py')
 
     @property
-    def _user_input_to_action(self):
+    def _input_to_action(self):
         superclass = super(PackageManager, self)
-        result = superclass._user_input_to_action
+        result = superclass._input_to_action
         result = result.copy()
         result.update({
             'ino': self.open_initializer,

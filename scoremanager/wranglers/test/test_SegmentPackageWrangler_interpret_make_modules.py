@@ -49,7 +49,7 @@ def test_SegmentPackageWrangler_interpret_make_modules_01():
         for backup_path in backup_paths:
             assert os.path.isfile(backup_path)
         input_ = 'red~example~score g mmi y q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         for string in strings:
             assert string in contents
