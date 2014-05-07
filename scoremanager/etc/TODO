@@ -263,3 +263,5 @@
         if not result:
             return
     ... in all cases.
+
+52. Change BuildFileWrangler.view*() to open*().

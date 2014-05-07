@@ -1086,6 +1086,18 @@ class Wrangler(Controller):
         view_inventory[view_name] = view
         self._write_view_inventory(view_inventory)
 
+    def open_views_module(self):
+        r'''Views views module.
+
+        Returns none.
+        '''
+        if os.path.exists(self._views_module_path):
+            self._views_module_manager.view()
+        else:
+            message = 'no views module found.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+
     def remove_views(self):
         r'''Removes view(s) from views module.
 
@@ -1170,15 +1182,3 @@ class Wrangler(Controller):
             manager = self._initialize_manager(path)
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
-
-    def open_views_module(self):
-        r'''Views views module.
-
-        Returns none.
-        '''
-        if os.path.exists(self._views_module_path):
-            self._views_module_manager.view()
-        else:
-            message = 'no views module found.'
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True

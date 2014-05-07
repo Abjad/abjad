@@ -167,6 +167,19 @@ class BuildFileWrangler(Wrangler):
             name='back cover',
             )
 
+    def _make_draft_menu_section(self, menu):
+        commands = []
+        commands.append(('draft - collect segment files', 'dc'))
+        commands.append(('draft - edit latex source', 'de'))
+        commands.append(('draft - generate latex source', 'dg'))
+        commands.append(('draft - interpret latex source', 'di'))
+        commands.append(('draft - open pdf', 'do'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='draft',
+            )
+
     def _make_files_menu_section(self, menu):
         commands = []
         commands.append(('files - copy', 'cp'))
@@ -229,19 +242,6 @@ class BuildFileWrangler(Wrangler):
             name='preface',
             )
 
-    def _make_draft_menu_section(self, menu):
-        commands = []
-        commands.append(('draft - collect segment files', 'dc'))
-        commands.append(('draft - edit latex source', 'de'))
-        commands.append(('draft - generate latex source', 'dg'))
-        commands.append(('draft - interpret latex source', 'di'))
-        commands.append(('draft - open pdf', 'do'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=True,
-            name='draft',
-            )
-
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('score - edit latex source', 'se'))
@@ -297,13 +297,6 @@ class BuildFileWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     ### PUBLIC METHODS ###
-
-    def copy_file(self):
-        r'''Copies build file.
-
-        Returns none.
-        '''
-        self._copy_asset(force_lowercase=False)
 
     # TODO: factor our duplicate code with self.collect_segment_pdfs()
     def collect_segment_lilypond_files(self):
@@ -429,6 +422,13 @@ class BuildFileWrangler(Wrangler):
                 return
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
+
+    def copy_file(self):
+        r'''Copies build file.
+
+        Returns none.
+        '''
+        self._copy_asset(force_lowercase=False)
 
     def edit_back_cover_source(self):
         r'''Edits back cover LaTeX source.
@@ -909,6 +909,13 @@ class BuildFileWrangler(Wrangler):
         else:
             self._io_manager.edit(result)
 
+    def open_score_pdf(self):
+        r'''Views score PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('score.pdf')
+
     def remove_files(self):
         r'''Removes one or more build files.
 
@@ -957,10 +964,3 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._open_file_ending_with('preface.pdf')
-
-    def open_score_pdf(self):
-        r'''Views score PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('score.pdf')

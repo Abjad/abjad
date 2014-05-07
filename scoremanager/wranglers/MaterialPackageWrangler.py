@@ -238,20 +238,6 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
-    def open_initializers(self):
-        r'''Opens the ``__init__.py`` file in each material package.
-
-        Returns none.
-        '''
-        self._open_in_each_package('__init__.py')
-
-    def open_metadata_modules(self):
-        r'''Opens the ``__metadata__.py`` file in each material package.
-
-        Returns none.
-        '''
-        self._open_in_each_package('__metadata__.py')
-
     def interpret_illustration_lys(self):
         r'''Calls LilyPond on the illustration.ly file in each material
         package.
@@ -290,6 +276,20 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('illustration.pdf')
         self._session._hide_next_redraw = True
+
+    def open_initializers(self):
+        r'''Opens the ``__init__.py`` file in each material package.
+
+        Returns none.
+        '''
+        self._open_in_each_package('__init__.py')
+
+    def open_metadata_modules(self):
+        r'''Opens the ``__metadata__.py`` file in each material package.
+
+        Returns none.
+        '''
+        self._open_in_each_package('__metadata__.py')
 
     def remove_packages(self):
         r'''Removes material package.

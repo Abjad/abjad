@@ -351,15 +351,6 @@ class ScorePackageWrangler(Wrangler):
         self._copy_asset(new_storehouse=path)
         self.write_cache(prompt=False)
 
-    def open_metadata_modules(self):
-        r'''Edits metadata modules in all visible score packages.
-
-        Returns none.
-        '''
-        directories = self._list_all_directories_with_metadata_modules()
-        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        self._io_manager.view(paths)
-
     def fix_packages(self, confirm=True, notify=True):
         r'''Fixes visible score packages.
 
@@ -416,6 +407,24 @@ class ScorePackageWrangler(Wrangler):
         self._make_asset(path)
         self.write_cache(prompt=False)
 
+    def open_cache(self):
+        r'''Views cache.
+
+        Returns none.
+        '''
+        file_path = self._configuration.cache_file_path
+        self._io_manager.open_file(file_path)
+        self._session._hide_next_redraw = True
+
+    def open_metadata_modules(self):
+        r'''Edits metadata modules in all visible score packages.
+
+        Returns none.
+        '''
+        directories = self._list_all_directories_with_metadata_modules()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        self._io_manager.view(paths)
+
     def remove_packages(self):
         r'''Removes one or more score packages.
         
@@ -449,15 +458,6 @@ class ScorePackageWrangler(Wrangler):
         messages.append(message)
         messages.append('')
         self._io_manager.display(messages)
-        self._session._hide_next_redraw = True
-
-    def open_cache(self):
-        r'''Views cache.
-
-        Returns none.
-        '''
-        file_path = self._configuration.cache_file_path
-        self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
 
     def write_cache(self, prompt=True):

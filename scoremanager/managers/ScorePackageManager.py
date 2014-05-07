@@ -206,14 +206,6 @@ class ScorePackageManager(PackageManager):
         self._make_setup_menu_section(menu)
         return menu
 
-    def _make_setup_menu_entry(self, display_string, prepopulated_value):
-        from scoremanager import iotools
-        return iotools.MenuEntry(
-            display_string=display_string,
-            prepopulated_value=prepopulated_value,
-            explicit_return_value=display_string,
-            )
-
     def _make_setup_menu_entries(self):
         entries = []
         title = self._get_metadatum('title')
@@ -235,6 +227,14 @@ class ScorePackageManager(PackageManager):
             )
         entries.append(entry)
         return entries
+
+    def _make_setup_menu_entry(self, display_string, prepopulated_value):
+        from scoremanager import iotools
+        return iotools.MenuEntry(
+            display_string=display_string,
+            prepopulated_value=prepopulated_value,
+            explicit_return_value=display_string,
+            )
 
     def _make_setup_menu_section(self, menu):
         menu_entries = self._make_setup_menu_entries()

@@ -280,6 +280,13 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
+    def open_initializer(self):
+        r'''Views initializer module.
+
+        Returns none.
+        '''
+        self._current_package_manager.open_initializer()
+
     def open_output_pdfs(self):
         r'''Opens output.pdf file in each segment.
 
@@ -308,13 +315,6 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         self._version_artifacts()
-
-    def open_initializer(self):
-        r'''Views initializer module.
-
-        Returns none.
-        '''
-        self._current_package_manager.open_initializer()
 
     def write_stub_initializer(self):
         r'''Writes stub initializer module.

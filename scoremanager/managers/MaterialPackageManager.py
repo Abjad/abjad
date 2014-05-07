@@ -430,19 +430,6 @@ class MaterialPackageManager(PackageManager):
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
-    def _make_versions_directory_menu_section(self, menu):
-        commands = []
-        commands.append(('versions - definition module - open', 'vdmo'))
-        commands.append(('versions - output module - open', 'vomo'))
-        commands.append(('versions - illustration.ly - open', 'vlyo'))
-        commands.append(('versions - illustration.pdf - open', 'vpdfo'))
-        commands.append(('versions directory - list', 'vdls'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='versions directory',
-            )
-
     def _make_version_artifacts_messages(self):
         path = self._versions_directory_path
         greatest_version = self._io_manager.get_greatest_version_number(path)
@@ -475,6 +462,19 @@ class MaterialPackageManager(PackageManager):
             messages.append(message)
             messages.append('')
         return messages
+
+    def _make_versions_directory_menu_section(self, menu):
+        commands = []
+        commands.append(('versions - definition module - open', 'vdmo'))
+        commands.append(('versions - output module - open', 'vomo'))
+        commands.append(('versions - illustration.ly - open', 'vlyo'))
+        commands.append(('versions - illustration.pdf - open', 'vpdfo'))
+        commands.append(('versions directory - list', 'vdls'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='versions directory',
+            )
 
     def _rename_interactively(
         self,

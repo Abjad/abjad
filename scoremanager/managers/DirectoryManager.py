@@ -281,18 +281,6 @@ class DirectoryManager(Manager):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def open_metadata_module(self):
-        r'''Edits metadata module.
-
-        Returns none.
-        '''
-        path = self._metadata_module_path
-        if os.path.isfile(path):
-            self._io_manager.edit(path)
-        else:
-            message = 'can not find {}.'.format(path)
-            self._io_manager.display([message, ''])
-
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 
@@ -306,6 +294,18 @@ class DirectoryManager(Manager):
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
         self._io_manager.proceed(message=message)
+
+    def open_metadata_module(self):
+        r'''Edits metadata module.
+
+        Returns none.
+        '''
+        path = self._metadata_module_path
+        if os.path.isfile(path):
+            self._io_manager.edit(path)
+        else:
+            message = 'can not find {}.'.format(path)
+            self._io_manager.display([message, ''])
 
     def remove_metadatum(self):
         r'''Removes metadatum from meatdata module.

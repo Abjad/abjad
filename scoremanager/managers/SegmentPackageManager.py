@@ -386,6 +386,22 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
+    def open_make_module(self):
+        r'''Opens ``__make__.py`` module.
+
+        Returns none.
+        '''
+        self._io_manager.view(self._make_module_path)
+
+    def open_output_ly(self):
+        r'''Opens current output LilyPond file.
+
+        Returns none.
+        '''
+        file_path = self._output_lilypond_file_path
+        if os.path.isfile(file_path):
+            self._io_manager.view(file_path)
+
     def open_output_pdf(self):
         r'''Opens output PDF.
 
@@ -394,6 +410,50 @@ class SegmentPackageManager(PackageManager):
         file_path = self._output_pdf_file_path
         if os.path.isfile(file_path):
             self._io_manager.view(file_path)
+
+    def open_versioned_definition_module(self):
+        r'''Opens versioned definition module.
+
+        Returns none.
+        '''
+        self._view_versioned_file('.py')
+
+    def open_versioned_output_ly(self):
+        r'''Opens output LilyPond file.
+
+        Returns none.
+        '''
+        self._view_versioned_file('.ly')
+
+    def open_versioned_output_pdf(self):
+        r'''Opens output PDF.
+
+        Returns none.
+        '''
+        self._view_versioned_file('.pdf')
+
+    def open_versioned_pdfs(self):
+        r'''Opens versioend PDFs.
+
+        Returns none.
+        '''
+        versions_directory_path = self._versions_directory_path
+        file_paths = []
+        for directory_entry in os.listdir(versions_directory_path):
+            if not directory_entry[0].isdigit():
+                continue
+            if not directory_entry.endswith('.pdf'):
+                continue
+            file_path = os.path.join(
+                versions_directory_path,
+                directory_entry,
+                )
+            file_paths.append(file_path)
+        if not file_paths:
+            message = 'version directory empty.'
+            self._io_manager.proceed(message)
+            return
+        self._io_manager.view(file_paths)
 
     def version_artifacts(self, prompt=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
@@ -488,66 +548,6 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
         return version_number
-
-    def open_versioned_pdfs(self):
-        r'''Opens versioend PDFs.
-
-        Returns none.
-        '''
-        versions_directory_path = self._versions_directory_path
-        file_paths = []
-        for directory_entry in os.listdir(versions_directory_path):
-            if not directory_entry[0].isdigit():
-                continue
-            if not directory_entry.endswith('.pdf'):
-                continue
-            file_path = os.path.join(
-                versions_directory_path,
-                directory_entry,
-                )
-            file_paths.append(file_path)
-        if not file_paths:
-            message = 'version directory empty.'
-            self._io_manager.proceed(message)
-            return
-        self._io_manager.view(file_paths)
-
-    def open_output_ly(self):
-        r'''Opens current output LilyPond file.
-
-        Returns none.
-        '''
-        file_path = self._output_lilypond_file_path
-        if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
-
-    def open_make_module(self):
-        r'''Opens ``__make__.py`` module.
-
-        Returns none.
-        '''
-        self._io_manager.view(self._make_module_path)
-
-    def open_versioned_definition_module(self):
-        r'''Opens versioned definition module.
-
-        Returns none.
-        '''
-        self._view_versioned_file('.py')
-
-    def open_versioned_output_ly(self):
-        r'''Opens output LilyPond file.
-
-        Returns none.
-        '''
-        self._view_versioned_file('.ly')
-
-    def open_versioned_output_pdf(self):
-        r'''Opens output PDF.
-
-        Returns none.
-        '''
-        self._view_versioned_file('.pdf')
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_module(self, confirm=True, notify=True):
