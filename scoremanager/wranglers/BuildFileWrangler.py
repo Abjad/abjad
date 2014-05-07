@@ -54,28 +54,28 @@ class BuildFileWrangler(Wrangler):
             'bce': self.edit_back_cover_source,
             'bcg': self.generate_back_cover_source,
             'bci': self.interpret_back_cover,
-            'bco': self.view_back_cover_pdf,
+            'bco': self.open_back_cover_pdf,
             'cp': self.copy_file,
             'dc': self.collect_segment_pdfs,
             'de': self.edit_draft_source,
             'dg': self.generate_draft_source,
             'di': self.interpret_draft,
-            'do': self.view_draft_pdf,
+            'do': self.open_draft_pdf,
             'fce': self.edit_front_cover_source,
             'fceio': self.edit_interpret_open_front_cover_source,
             'fcg': self.generate_front_cover_source,
             'fci': self.interpret_front_cover,
-            'fco': self.view_front_cover_pdf,
+            'fco': self.open_front_cover_pdf,
             'mc': self.collect_segment_lilypond_files,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
             'mi': self.interpret_music,
-            'mo': self.view_music_pdf,
+            'mo': self.open_music_pdf,
             'new': self.make_file,
             'pe': self.edit_preface_source,
             'pg': self.generate_preface_source,
             'pi': self.interpret_preface,
-            'po': self.view_preface_pdf,
+            'po': self.open_preface_pdf,
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
             'si': self.interpret_score,
@@ -460,7 +460,7 @@ class BuildFileWrangler(Wrangler):
         '''
         self.edit_front_cover_source()
         self.interpret_front_cover()
-        self.view_front_cover_pdf()
+        self.open_front_cover_pdf()
 
     def edit_music_source(self):
         r'''Edits music LilyPond source.
@@ -899,6 +899,20 @@ class BuildFileWrangler(Wrangler):
             prompt_string='file name', 
             )
 
+    def open_back_cover_pdf(self):
+        r'''Views back cover PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('back-cover.pdf')
+
+    def open_draft_pdf(self):
+        r'''Views draft score PDF.
+
+        Return none.
+        '''
+        self._open_file_ending_with('draft.pdf')
+
     def open_file(self, result):
         r'''Opens build file.
 
@@ -908,6 +922,27 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.open_file(result)
         else:
             self._io_manager.edit(result)
+
+    def open_front_cover_pdf(self):
+        r'''Views front cover PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('front-cover.pdf')
+
+    def open_music_pdf(self):
+        r'''Views music PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('music.pdf')
+
+    def open_preface_pdf(self):
+        r'''Views preface PDF.
+
+        Returns none.
+        '''
+        self._open_file_ending_with('preface.pdf')
 
     def open_score_pdf(self):
         r'''Views score PDF.
@@ -929,38 +964,3 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def view_back_cover_pdf(self):
-        r'''Views back cover PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('back-cover.pdf')
-
-    def view_draft_pdf(self):
-        r'''Views draft score PDF.
-
-        Return none.
-        '''
-        self._open_file_ending_with('draft.pdf')
-
-    def view_front_cover_pdf(self):
-        r'''Views front cover PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('front-cover.pdf')
-
-    def view_music_pdf(self):
-        r'''Views music PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('music.pdf')
-
-    def view_preface_pdf(self):
-        r'''Views preface PDF.
-
-        Returns none.
-        '''
-        self._open_file_ending_with('preface.pdf')

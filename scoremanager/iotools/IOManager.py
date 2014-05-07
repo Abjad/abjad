@@ -68,7 +68,7 @@ class IOManager(IOManager):
             's': self._handle_score_navigation_directive,
             '?': self._handle_display_all_commands_directive,
             'n': self._handle_display_all_commands_directive,
-            'll': self.view_last_log,
+            'll': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
             'pyt': self.pytest,
@@ -629,6 +629,17 @@ class IOManager(IOManager):
             line_number=line_number,
             )
 
+    def open_lilypond_log(self):
+        r'''Views last LilyPond log.
+
+        Returns none.
+        '''
+        from abjad.tools import systemtools
+        self._session._attempted_to_open_file = True
+        if self._session.is_test:
+            return
+        systemtools.IOManager.open_lilypond_log()
+
     def print_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.
 
@@ -708,17 +719,6 @@ class IOManager(IOManager):
         if self._session.is_test:
             return
         self.spawn_subprocess(command)
-
-    def view_last_log(self):
-        r'''Views last LilyPond log.
-
-        Returns none.
-        '''
-        from abjad.tools import systemtools
-        self._session._attempted_to_open_file = True
-        if self._session.is_test:
-            return
-        systemtools.IOManager.view_last_log()
 
     def write_cache(self, prompt=True):
         r'''Writes cache.

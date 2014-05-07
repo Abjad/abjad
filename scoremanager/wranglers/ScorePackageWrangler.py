@@ -201,25 +201,14 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_all_directories_menu_section(self, menu):
         commands = []
-        string = 'all dirs - metadata modules - edit'
-        commands.append((string, 'mdmo'))
-        string = 'all dirs - metadata modules - list'
-        commands.append((string, 'mdmls'))
-        string = 'all dirs - metadata modules - rewrite'
-        commands.append((string, 'mdmrw'))
+        commands.append(('all - metadata modules - edit', 'mdmo'))
+        commands.append(('all - metadata modules - list', 'mdmls'))
+        commands.append(('all - metadata modules - rewrite', 'mdmrw'))
+        commands.append(('all - score packages - fix', 'fix'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='all dirs',
-            )
-
-    def _make_all_score_packages_menu_section(self, menu):
-        commands = []
-        commands.append(('all score packages - fix', 'fix'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='all score packages',
             )
 
     def _make_asset_menu_entries(
@@ -295,7 +284,6 @@ class ScorePackageWrangler(Wrangler):
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
         self._make_all_directories_menu_section(menu)
-        self._make_all_score_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)
         self._make_views_menu_section(menu)

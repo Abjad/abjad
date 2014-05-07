@@ -4,9 +4,9 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_view_back_cover_pdf_01():
+def test_BuildFileWrangler_open_draft_pdf_01():
 
-    input_ = 'red~example~score u bco q'
+    input_ = 'red~example~score u do q'
     score_manager._run(pending_user_input=input_)
 
     assert score_manager._session._attempted_to_open_file

@@ -4,17 +4,17 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_DistributionFileWrangler_view_views_module_01():
+def test_BuildFileWrangler_open_views_module_01():
 
-    input_ = 'd vmo q'
+    input_ = 'u vmo q'
     score_manager._run(pending_user_input=input_)
 
     assert score_manager._session._attempted_to_open_file
 
 
-def test_DistributionFileWrangler_view_views_module_02():
+def test_BuildFileWrangler_open_views_module_02():
 
-    input_ = 'blue~example~score d vmo q'
+    input_ = 'blue~example~score u vmo q'
     score_manager._run(pending_user_input=input_)
     contents = score_manager._transcript.contents
 

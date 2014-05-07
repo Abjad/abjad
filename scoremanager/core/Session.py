@@ -1187,9 +1187,7 @@ class Session(abctools.AbjadObject):
                 lines.append(line)
         lines.append('')
         self.io_manager.display(lines, capitalize=False)
-        if self.is_in_user_input_getter:
-            self._hide_next_redraw = True
-        self.io_manager.proceed()
+        self._hide_next_redraw = True
 
     def get_controller_with(self, ui=None):
         r'''Gets most recent controller with `ui` in `_user_input_to_action`

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_IOManager_view_last_log_01():
+def test_IOManager_open_lilypond_log_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'll q'
