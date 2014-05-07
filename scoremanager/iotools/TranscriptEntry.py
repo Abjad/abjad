@@ -59,20 +59,20 @@ class TranscriptEntry(AbjadObject):
         return self._current_time
 
     @property
-    def is_system_display(self):
-        r'''Is true when entry is system display. Otherwise false.
-
-        Returns boolean.
-        '''
-        return not self.is_input
-
-    @property
     def is_input(self):
         r'''Is true when entry is user input. Otherwise false.
 
         Returns boolean.
         '''
         return self.lines and '>' in self.lines[0]
+
+    @property
+    def is_system_display(self):
+        r'''Is true when entry is system display. Otherwise false.
+
+        Returns boolean.
+        '''
+        return not self.is_input
 
     @property
     def lines(self):

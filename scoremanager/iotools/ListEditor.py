@@ -90,15 +90,6 @@ class ListEditor(Editor):
         return systemtools.AttributeManifest()
 
     @property
-    def _items(self):
-        return self.target
-
-    @property
-    def _target_name(self):
-        if self.target is not None:
-            return 'edit'
-
-    @property
     def _input_to_action(self):
         result = {
             'add': self.add_items,
@@ -106,6 +97,15 @@ class ListEditor(Editor):
             'mv': self.move_item,
             }
         return result
+
+    @property
+    def _items(self):
+        return self.target
+
+    @property
+    def _target_name(self):
+        if self.target is not None:
+            return 'edit'
 
     ### PRIVATE METHODS ###
 

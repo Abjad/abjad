@@ -48,6 +48,23 @@ class Manager(Controller):
         return self._space_delimited_lowercase_class_name
 
     @property
+    def _input_to_action(self):
+        superclass = super(Manager, self)
+        result = superclass._input_to_action
+        result = copy.deepcopy(result)
+        result.update({
+            'pyd': self.doctest,
+            'pyt': self.pytest,
+            'rad': self.add_to_repository,
+            'rci': self.commit_to_repository,
+            'rst': self.repository_status,
+            'rrv': self.revert_to_repository,
+            'rup': self.update_from_repository,
+            'uar': self.remove_unadded_assets,
+            })
+        return result
+
+    @property
     def _repository_add_command(self):
         if not self._path:
             return
@@ -98,23 +115,6 @@ class Manager(Controller):
     def _space_delimited_lowercase_name(self):
         if self._path:
             return os.path.basename(self._path)
-
-    @property
-    def _input_to_action(self):
-        superclass = super(Manager, self)
-        result = superclass._input_to_action
-        result = copy.deepcopy(result)
-        result.update({
-            'pyd': self.doctest,
-            'pyt': self.pytest,
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
-            'rst': self.repository_status,
-            'rrv': self.revert_to_repository,
-            'rup': self.update_from_repository,
-            'uar': self.remove_unadded_assets,
-            })
-        return result
 
     ### PRIVATE METHODS ###
 

@@ -55,10 +55,6 @@ class IOManager(IOManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _unicode_directive(self):
-        return '# -*- encoding: utf-8 -*-'
-
-    @property
     @systemtools.Memoize
     def _input_to_action(self):
         result = {
@@ -80,6 +76,10 @@ class IOManager(IOManager):
             '<': self._handle_previous_sibling_asset_directive,
             }
         return result
+
+    @property
+    def _unicode_directive(self):
+        return '# -*- encoding: utf-8 -*-'
 
     @property
     @systemtools.Memoize

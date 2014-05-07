@@ -29,18 +29,6 @@ class DirectoryManager(Manager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _metadata_module_path(self):
-        file_path = os.path.join(self._path, '__metadata__.py')
-        return file_path
-
-    @property
-    def _space_delimited_lowercase_name(self):
-        if self._path:
-            base_name = os.path.basename(self._path)
-            result = base_name.replace('_', ' ')
-            return result
-
-    @property
     def _input_to_action(self):
         superclass = super(DirectoryManager, self)
         result = superclass._input_to_action
@@ -53,6 +41,18 @@ class DirectoryManager(Manager):
             'mdmrw': self.rewrite_metadata_module,
             })
         return result
+
+    @property
+    def _metadata_module_path(self):
+        file_path = os.path.join(self._path, '__metadata__.py')
+        return file_path
+
+    @property
+    def _space_delimited_lowercase_name(self):
+        if self._path:
+            base_name = os.path.basename(self._path)
+            result = base_name.replace('_', ' ')
+            return result
 
     @property
     def _views_module_path(self):

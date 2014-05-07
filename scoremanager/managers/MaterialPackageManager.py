@@ -118,31 +118,6 @@ class MaterialPackageManager(PackageManager):
         return os.path.join(self._path, 'illustration.pdf')
 
     @property
-    def _material_package_name(self):
-        return os.path.basename(self._path)
-
-    @property
-    def _output_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._output_module_path,
-            session=self._session,
-            )
-
-    @property
-    def _output_module_path(self):
-        return os.path.join(self._path, 'output.py')
-
-    @property
-    def _score_package_manager(self):
-        from scoremanager import managers
-        score_path = self._configuration._path_to_score_path(self._path)
-        return managers.ScorePackageManager(
-            path=score_path,
-            session=self._session,
-            )
-
-    @property
     def _input_to_action(self):
         superclass = super(MaterialPackageManager, self)
         result = superclass._input_to_action
@@ -173,6 +148,31 @@ class MaterialPackageManager(PackageManager):
             'vpdfo': self.open_versioned_illustration_pdf,
             })
         return result
+
+    @property
+    def _material_package_name(self):
+        return os.path.basename(self._path)
+
+    @property
+    def _output_module_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            path=self._output_module_path,
+            session=self._session,
+            )
+
+    @property
+    def _output_module_path(self):
+        return os.path.join(self._path, 'output.py')
+
+    @property
+    def _score_package_manager(self):
+        from scoremanager import managers
+        score_path = self._configuration._path_to_score_path(self._path)
+        return managers.ScorePackageManager(
+            path=score_path,
+            session=self._session,
+            )
 
     @property
     def _versions_directory_path(self):

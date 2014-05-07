@@ -85,6 +85,18 @@ class Transcript(AbjadObject):
         return [_[0] for _ in self]
 
     @property
+    def input_entries(self):
+        r'''Gets user input entries in transcript.
+
+        Returns list.
+        '''
+        result = []
+        for entry in self:
+            if entry.is_input:
+                result.append(entry)
+        return result
+
+    @property
     def last_menu_lines(self):
         r'''Gets last menu lines.
 
@@ -154,16 +166,4 @@ class Transcript(AbjadObject):
             if entry.is_system_display:
                 title = entry.title
                 result.append(title)
-        return result
-
-    @property
-    def input_entries(self):
-        r'''Gets user input entries in transcript.
-
-        Returns list.
-        '''
-        result = []
-        for entry in self:
-            if entry.is_input:
-                result.append(entry)
         return result

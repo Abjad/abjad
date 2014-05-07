@@ -58,18 +58,6 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'definition.py')
 
     @property
-    def _make_module_path(self):
-        return os.path.join(self._path, '__make__.py')
-
-    @property
-    def _output_lilypond_file_path(self):
-        return os.path.join(self._path, 'output.ly')
-
-    @property
-    def _output_pdf_file_path(self):
-        return os.path.join(self._path, 'output.pdf')
-
-    @property
     def _input_to_action(self):
         superclass = super(SegmentPackageManager, self)
         result = superclass._input_to_action
@@ -92,6 +80,18 @@ class SegmentPackageManager(PackageManager):
             'vpdfso': self.open_versioned_pdfs,
             })
         return result
+
+    @property
+    def _make_module_path(self):
+        return os.path.join(self._path, '__make__.py')
+
+    @property
+    def _output_lilypond_file_path(self):
+        return os.path.join(self._path, 'output.ly')
+
+    @property
+    def _output_pdf_file_path(self):
+        return os.path.join(self._path, 'output.pdf')
 
     @property
     def _versions_directory_path(self):

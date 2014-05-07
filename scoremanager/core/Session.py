@@ -52,7 +52,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
-        '_is_in_input_getter',
+        '_is_in_user_input_getter',
         '_is_navigating_to_score_build_files',
         '_is_navigating_to_score_distribution_files',
         '_is_navigating_to_next_asset',
@@ -85,7 +85,7 @@ class Session(abctools.AbjadObject):
         'is_autoadding',
         'is_in_confirmation_environment',
         'is_in_editor',
-        'is_in_input_getter',
+        'is_in_user_input_getter',
         'last_asset_path',
         )
 
@@ -726,14 +726,14 @@ class Session(abctools.AbjadObject):
         return self._is_in_score_setup_menu
 
     @property
-    def is_in_input_getter(self):
+    def is_in_user_input_getter(self):
         r'''Is true when session is in user input getter. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_in_input_getter
+                >>> session.is_in_user_input_getter
                 False
 
         Returns boolean.

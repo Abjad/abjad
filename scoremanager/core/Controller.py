@@ -29,14 +29,14 @@ class Controller(ScoreManagerObject):
         return 'from abjad import *'
 
     @property
-    def _unicode_directive(self):
-        return '# -*- encoding: utf-8 -*-'
-
-    @property
     def _input_to_action(self):
         result = {
             }
         return result
+
+    @property
+    def _unicode_directive(self):
+        return '# -*- encoding: utf-8 -*-'
 
     ### PRIVATE METHODS ###
 
