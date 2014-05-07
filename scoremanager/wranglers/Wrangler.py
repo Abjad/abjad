@@ -455,11 +455,11 @@ class Wrangler(Controller):
             messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        self._io_manager.display('')
         if self._should_backtrack():
             return
         if not result:
             return
+        self._io_manager.display('')
         for path in paths:
             manager = self._io_manager.make_file_manager(path)
             manager.interpret()
@@ -713,11 +713,11 @@ class Wrangler(Controller):
         messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        self._io_manager.display('')
         if self._should_backtrack():
             return
         if not result:
             return
+        self._io_manager.display('')
         self._io_manager.open_file(paths)
 
     def _read_view(self):
@@ -1012,7 +1012,10 @@ class Wrangler(Controller):
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self._io_manager.display(line)
-        if not self._io_manager.confirm():
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
             return
         paths = self._list_visible_asset_paths()
         for path in paths:

@@ -500,7 +500,10 @@ class MaterialPackageManager(PackageManager):
         messages.append('   TO: {}'.format(new_directory_path))
         messages.append('')
         self._io_manager.display(messages)
-        if not self._io_manager.confirm():
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
             return
         self._rename(new_directory_path)
         for directory_entry in os.listdir(new_directory_path):
@@ -779,11 +782,11 @@ class MaterialPackageManager(PackageManager):
             messages.extend(self._make_version_artifacts_messages())
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
-            self._io_manager.display('')
             if self._should_backtrack():
                 return
             if not result:
                 return
+            self._io_manager.display('')
         if os.path.isfile(self._definition_module_path):
             target_file_name = 'definition_{}.py'.format(new_version_string)
             target_file_path = os.path.join(

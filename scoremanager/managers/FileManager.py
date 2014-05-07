@@ -178,7 +178,10 @@ class FileManager(Manager):
         message = 'new path will be {}'
         message = message.format(new_path)
         self._io_manager.display(message)
-        if not self._io_manager.confirm():
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
             return
         shutil.copyfile(self._path, new_path)
         message = 'copied {}.'.format(self._path)

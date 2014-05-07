@@ -255,13 +255,4 @@
         notify=True
     ... instead.
 
-51. Audit everything. Make sure every ...
-        result = self._io_manager.confirm()
-    ..  is followed by ...
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-    ... in all cases.
-
-52. Glue 'go' menu sections together.
+51. Glue 'go' menu sections together.

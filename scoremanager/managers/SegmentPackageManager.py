@@ -45,8 +45,11 @@ class SegmentPackageManager(PackageManager):
         from scoremanager import managers
         if not os.path.exists(self._definition_module_path):
             message = 'no definition.py module found.'
-            self._io_manager.confirm(message)
-            return
+            result = self._io_manager.confirm(message)
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         manager = managers.FileManager(
             self._definition_module_path,
             session=self._session,
@@ -501,11 +504,11 @@ class SegmentPackageManager(PackageManager):
             messages.extend(self._make_version_artifacts_messages())
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
-            self._io_manager.display('')
             if self._should_backtrack():
                 return
             if not result:
                 return
+            self._io_manager.display('')
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
         target_file_name = next_output_file_name_root + '.py'

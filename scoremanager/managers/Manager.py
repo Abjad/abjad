@@ -467,7 +467,10 @@ class Manager(Controller):
         messages.append(message)
         messages.append('')
         self._io_manager.display(messages)
-        if not self._io_manager.confirm():
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
             return
         if self._rename(new_path):
             message = '{} renamed.'.format(self._asset_identifier)
@@ -632,7 +635,10 @@ class Manager(Controller):
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
-            if not self._io_manager.confirm():
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
                 return
         lines = []
         line = self._get_score_package_directory_name()

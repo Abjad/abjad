@@ -209,7 +209,10 @@ class DirectoryManager(Manager):
         lines.append(line)
         lines.append('')
         self._io_manager.display(lines)
-        if not self._io_manager.confirm():
+        result = self._io_manager.confirm()
+        if self._should_backtrack():
+            return
+        if not result:
             return
         new_directory_path = self._path.replace(
             base_name,

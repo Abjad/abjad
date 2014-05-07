@@ -357,11 +357,11 @@ class ScorePackageManager(PackageManager):
                     self._io_manager.display(messages)
                 if confirm:
                     result = self._io_manager.confirm()
-                    self._io_manager.display('')
                     if self._should_backtrack():
                         return
                     if not result:
                         return
+                    self._io_manager.display('')
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
                 with file(gitignore_path, 'w') as file_pointer:
@@ -377,12 +377,12 @@ class ScorePackageManager(PackageManager):
                 messages.append(message)
                 self._io_manager.display(messages)
             if confirm:
-                result = self._io_manager.confirm()
                 self._io_manager.display('')
                 if self._should_backtrack():
                     return
                 if not result:
                     return
+                result = self._io_manager.confirm()
             self.write_stub_initializer(confirm=confirm, notify=notify)
         if not os.path.exists(self._metadata_module_path):
             package_needed_to_be_fixed = True
@@ -396,11 +396,11 @@ class ScorePackageManager(PackageManager):
                 self._io_manager.display(messages)
             if confirm:
                 result = self._io_manager.confirm()
-                self._io_manager.display('')
                 if self._should_backtrack():
                     return
                 if not result:
                     return
+                self._io_manager.display('')
             self.rewrite_metadata_module(confirm=confirm, notify=notify)
         self._session._hide_next_redraw = False
         if notify:
