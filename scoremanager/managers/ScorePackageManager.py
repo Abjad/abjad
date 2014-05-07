@@ -191,6 +191,7 @@ class ScorePackageManager(PackageManager):
         commands = []
         commands.append(('package - fix', 'fix'))
         commands.append(('package - initializer - open', 'ino'))
+        commands.append(('package - initializer - write stub', 'inws'))
         commands.append(('package - score pdf - open', 'pdfo'))
         commands.append(('package - setup', 'p'))
         commands.append(('package - unadded assets - remove', 'uar'))
