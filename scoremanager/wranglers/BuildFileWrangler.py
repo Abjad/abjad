@@ -116,7 +116,7 @@ class BuildFileWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self._io_manager.view(result)
+            self._io_manager.open_file(result)
 
     def _make_asset_menu_entries(
         self,
@@ -257,9 +257,7 @@ class BuildFileWrangler(Wrangler):
     def _open_file_ending_with(self, string):
         path = self._get_file_path_ending_with(string)
         if path:
-            # TODO: maybe change to self._io_manager.open_file(path)
-            manager = self._io_manager.make_file_manager(path)
-            manager.open()
+            self._io_manager.open_file(path)
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)

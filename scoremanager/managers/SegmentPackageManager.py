@@ -260,7 +260,7 @@ class SegmentPackageManager(PackageManager):
             file_name,
             )
         if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
+            self._io_manager.open_file(file_path)
 
     ### PUBLIC METHODS ###
 
@@ -391,7 +391,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.view(self._make_module_path)
+        self._io_manager.open_file(self._make_module_path)
 
     def open_output_ly(self):
         r'''Opens current output LilyPond file.
@@ -400,7 +400,7 @@ class SegmentPackageManager(PackageManager):
         '''
         file_path = self._output_lilypond_file_path
         if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
+            self._io_manager.open_file(file_path)
 
     def open_output_pdf(self):
         r'''Opens output PDF.
@@ -409,7 +409,7 @@ class SegmentPackageManager(PackageManager):
         '''
         file_path = self._output_pdf_file_path
         if os.path.isfile(file_path):
-            self._io_manager.view(file_path)
+            self._io_manager.open_file(file_path)
 
     def open_versioned_definition_module(self):
         r'''Opens versioned definition module.
@@ -453,7 +453,7 @@ class SegmentPackageManager(PackageManager):
             message = 'version directory empty.'
             self._io_manager.proceed(message)
             return
-        self._io_manager.view(file_paths)
+        self._io_manager.open_file(file_paths)
 
     def version_artifacts(self, prompt=True):
         r'''Saves definition.py, output.ly and output.pdf to versions

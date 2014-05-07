@@ -718,7 +718,7 @@ class Wrangler(Controller):
             return
         if not result:
             return
-        self._io_manager.view(paths)
+        self._io_manager.open_file(paths)
 
     def _read_view(self):
         view_name = self._read_view_name()

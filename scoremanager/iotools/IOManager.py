@@ -612,22 +612,32 @@ class IOManager(IOManager):
             session=self._session,
             )
 
-    def open_file(self, file_path, application=None, line_number=None):
+    def open_file(self, file_path):
         r'''Opens `file_path`.
+
+        Also works when `file_path` is a list.
 
         Returns none.
         '''
-        from abjad.tools import systemtools
+        if not isinstance(file_path, list) and not os.path.isfile(file_path):
+            return
+        if (isinstance(file_path, list) and
+            all(x.endswith('.pdf') for x in file_path)):
+            file_paths = file_path
+            file_paths = ' '.join(file_paths)
+            command = 'open {}'.format(file_paths)
+        elif isinstance(file_path, list):
+            file_paths = file_path
+            file_paths = ' '.join(file_paths)
+            command = 'vim {}'.format(file_paths)
+        elif file_path.endswith('.pdf'):
+            command = 'open {}'.format(file_path)
+        else:
+            command = 'vim -R {}'.format(file_path)
         self._session._attempted_to_open_file = True
         if self._session.is_test:
             return
-        if not os.path.isfile(file_path):
-            return
-        return systemtools.IOManager.open_file(
-            file_path,
-            application=application,
-            line_number=line_number,
-            )
+        self.spawn_subprocess(command)
 
     def open_lilypond_log(self):
         r'''Opens last LilyPond log.
@@ -692,33 +702,6 @@ class IOManager(IOManager):
             lines,
             capitalize=capitalize,
             )
-
-    def view(self, file_path):
-        r'''Opens `file_path`.
-
-        Also works when `file_path` is a list.
-
-        Returns none.
-        '''
-        if not isinstance(file_path, list) and not os.path.isfile(file_path):
-            return
-        if (isinstance(file_path, list) and
-            all(x.endswith('.pdf') for x in file_path)):
-            file_paths = file_path
-            file_paths = ' '.join(file_paths)
-            command = 'open {}'.format(file_paths)
-        elif isinstance(file_path, list):
-            file_paths = file_path
-            file_paths = ' '.join(file_paths)
-            command = 'vim {}'.format(file_paths)
-        elif file_path.endswith('.pdf'):
-            command = 'open {}'.format(file_path)
-        else:
-            command = 'vim -R {}'.format(file_path)
-        self._session._attempted_to_open_file = True
-        if self._session.is_test:
-            return
-        self.spawn_subprocess(command)
 
     def write_cache(self, prompt=True):
         r'''Writes cache.

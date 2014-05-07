@@ -401,7 +401,7 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._configuration.cache_file_path
-        self._io_manager.view(file_path)
+        self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
 
     def open_metadata_modules(self):
@@ -411,7 +411,7 @@ class ScorePackageWrangler(Wrangler):
         '''
         directories = self._list_all_directories_with_metadata_modules()
         paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        self._io_manager.view(paths)
+        self._io_manager.open_file(paths)
 
     def remove_packages(self):
         r'''Removes one or more score packages.
