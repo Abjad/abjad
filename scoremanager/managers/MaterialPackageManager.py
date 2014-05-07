@@ -662,21 +662,21 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_ly_file_manager.view()
+        self._illustration_ly_file_manager.open()
 
     def open_illustration_pdf(self):
         r'''Opens illustration PDF.
 
         Returns none.
         '''
-        self._illustration_pdf_file_manager.view()
+        self._illustration_pdf_file_manager.open()
 
     def open_output_module(self):
         r'''Opens output module.
 
         Returns none.
         '''
-        self._output_module_manager.view()
+        self._output_module_manager.open()
 
     def open_versioned_definition_module(self):
         r'''Opens versioned definition module.

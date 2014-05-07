@@ -413,7 +413,7 @@ class ScorePackageManager(PackageManager):
         return package_needed_to_be_fixed
 
     def open_score_pdf(self):
-        r'''Views score PDF.
+        r'''Opens score PDF.
 
         Returns none.
         '''

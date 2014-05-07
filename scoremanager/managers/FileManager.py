@@ -223,7 +223,12 @@ class FileManager(Manager):
 
         Returns none.
         '''
-        self._io_manager.open_file(self._path)
+        if os.path.isfile(self._path):
+            self._io_manager.open_file(self._path)
+        else:
+            message = 'Can not find {}.'.format(self._path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def rename(
         self, 
@@ -271,16 +276,3 @@ class FileManager(Manager):
             command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
-
-    # TODO: change to self.open()
-    def view(self):
-        r'''Opens file.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._path):
-            self._io_manager.view(self._path)
-        else:
-            message = 'Can not find {}.'.format(self._path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True

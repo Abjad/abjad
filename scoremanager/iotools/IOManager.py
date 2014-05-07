@@ -630,7 +630,7 @@ class IOManager(IOManager):
             )
 
     def open_lilypond_log(self):
-        r'''Views last LilyPond log.
+        r'''Opens last LilyPond log.
 
         Returns none.
         '''
@@ -694,7 +694,7 @@ class IOManager(IOManager):
             )
 
     def view(self, file_path):
-        r'''Views `file_path`.
+        r'''Opens `file_path`.
 
         Also works when `file_path` is a list.
 

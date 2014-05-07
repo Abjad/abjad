@@ -75,7 +75,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        self._initializer_file_manager.view()
+        self._initializer_file_manager.open()
 
     def write_stub_initializer(self, confirm=True, notify=True):
         r'''Writes initializer stub.

@@ -295,7 +295,7 @@ class SegmentPackageWrangler(Wrangler):
         manager._run()
 
     def open_initializer(self):
-        r'''Views initializer module.
+        r'''Opens initializer module.
 
         Returns none.
         '''

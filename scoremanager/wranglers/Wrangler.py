@@ -1087,12 +1087,12 @@ class Wrangler(Controller):
         self._write_view_inventory(view_inventory)
 
     def open_views_module(self):
-        r'''Views views module.
+        r'''Opens views module.
 
         Returns none.
         '''
         if os.path.exists(self._views_module_path):
-            self._views_module_manager.view()
+            self._views_module_manager.open()
         else:
             message = 'no views module found.'
             self._io_manager.display([message, ''])

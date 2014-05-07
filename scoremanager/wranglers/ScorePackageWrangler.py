@@ -396,7 +396,7 @@ class ScorePackageWrangler(Wrangler):
         self.write_cache(prompt=False)
 
     def open_cache(self):
-        r'''Views cache.
+        r'''Opens cache.
 
         Returns none.
         '''

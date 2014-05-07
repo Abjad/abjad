@@ -900,14 +900,14 @@ class BuildFileWrangler(Wrangler):
             )
 
     def open_back_cover_pdf(self):
-        r'''Views back cover PDF.
+        r'''Opens back cover PDF.
 
         Returns none.
         '''
         self._open_file_ending_with('back-cover.pdf')
 
     def open_draft_pdf(self):
-        r'''Views draft score PDF.
+        r'''Opens draft score PDF.
 
         Return none.
         '''
@@ -924,28 +924,28 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.edit(result)
 
     def open_front_cover_pdf(self):
-        r'''Views front cover PDF.
+        r'''Opens front cover PDF.
 
         Returns none.
         '''
         self._open_file_ending_with('front-cover.pdf')
 
     def open_music_pdf(self):
-        r'''Views music PDF.
+        r'''Opens music PDF.
 
         Returns none.
         '''
         self._open_file_ending_with('music.pdf')
 
     def open_preface_pdf(self):
-        r'''Views preface PDF.
+        r'''Opens preface PDF.
 
         Returns none.
         '''
         self._open_file_ending_with('preface.pdf')
 
     def open_score_pdf(self):
-        r'''Views score PDF.
+        r'''Opens score PDF.
 
         Returns none.
         '''
