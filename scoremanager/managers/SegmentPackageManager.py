@@ -220,10 +220,10 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition module - open', 'vdmo'))
-        commands.append(('versions - ly - open', 'vlyo'))
-        commands.append(('versions - pdf - open', 'vpdfo'))
-        commands.append(('versions - all pdfs - open', 'vpdfso'))
+        commands.append(('versions - definition.py - open', 'vdmo'))
+        commands.append(('versions - output.ly - open', 'vlyo'))
+        commands.append(('versions - output.pdf - open', 'vpdfo'))
+        commands.append(('versions - all output.pdf - open', 'vpdfso'))
         commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
             is_hidden=True,

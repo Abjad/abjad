@@ -465,10 +465,10 @@ class MaterialPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition module - open', 'vdmo'))
-        commands.append(('versions - output module - open', 'vomo'))
+        commands.append(('versions - definition.py - open', 'vdmo'))
         commands.append(('versions - illustration.ly - open', 'vlyo'))
         commands.append(('versions - illustration.pdf - open', 'vpdfo'))
+        commands.append(('versions - output.py - open', 'vomo'))
         commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
             is_hidden=True,
