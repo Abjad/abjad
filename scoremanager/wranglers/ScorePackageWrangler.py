@@ -401,7 +401,7 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._configuration.cache_file_path
-        self._io_manager.open_file(file_path)
+        self._io_manager.view(file_path)
         self._session._hide_next_redraw = True
 
     def open_metadata_modules(self):

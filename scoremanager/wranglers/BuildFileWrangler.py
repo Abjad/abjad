@@ -116,7 +116,7 @@ class BuildFileWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self.open_file(result)
+            self._io_manager.view(result)
 
     def _make_asset_menu_entries(
         self,
@@ -912,16 +912,6 @@ class BuildFileWrangler(Wrangler):
         Return none.
         '''
         self._open_file_ending_with('draft.pdf')
-
-    def open_file(self, result):
-        r'''Opens build file.
-
-        Returns none.
-        '''
-        if result.endswith('.pdf'):
-            self._io_manager.open_file(result)
-        else:
-            self._io_manager.edit(result)
 
     def open_front_cover_pdf(self):
         r'''Opens front cover PDF.

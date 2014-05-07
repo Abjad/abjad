@@ -224,7 +224,7 @@ class FileManager(Manager):
         Returns none.
         '''
         if os.path.isfile(self._path):
-            self._io_manager.open_file(self._path)
+            self._io_manager.view(self._path)
         else:
             message = 'Can not find {}.'.format(self._path)
             self._io_manager.display([message, ''])
