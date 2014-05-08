@@ -108,14 +108,6 @@ class DirectoryManager(Manager):
         else:
             self._run_asset_manager(result)
 
-    def _list_visible_asset_paths(self):
-        file_names = self._list()
-        file_paths = []
-        for file_name in file_names:
-            file_path = os.path.join(self._path, file_name)
-            file_paths.append(file_path)
-        return file_paths
-
     def _make_asset_menu_section(self, menu):
         menu_entries = self._make_asset_menu_entries()
         if not menu_entries:
