@@ -71,7 +71,6 @@ class Session(abctools.AbjadObject):
         '_menu_header_width',
         '_pending_input',
         '_proceed_count',
-        '_rewrite_cache',
         '_score_manager',
         '_transcript',
         )
@@ -133,7 +132,6 @@ class Session(abctools.AbjadObject):
         self._menu_header_width = 160
         self._pending_input = pending_input
         self._proceed_count = 0
-        self._rewrite_cache = False
         self._score_manager = None
         self._transcript = iotools.Transcript()
 
@@ -1098,21 +1096,6 @@ class Session(abctools.AbjadObject):
         Returns nonnegative integer.
         '''
         return self._proceed_count
-
-    @property
-    def rewrite_cache(self):
-        r'''Gets and sets flag to rewrite cache.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.rewrite_cache
-                False
-
-        Returns boolean.
-        '''
-        return self._rewrite_cache
 
     @property
     def score_manager(self):

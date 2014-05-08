@@ -263,10 +263,6 @@ class ScorePackageWrangler(Wrangler):
             name='main',
             breadcrumb_callback=self._get_scores_to_display_string,
             )
-        # TODO: remove Sesssion.rewrite_cache
-        if self._session.rewrite_cache:
-            self.write_cache(prompt=False)
-            self._session._rewrite_cache = False
         entries = self._io_manager._read_cache()
         if self._session.is_test:
             entries = [_ for _ in entries if 'Example Score' in _[0]]
