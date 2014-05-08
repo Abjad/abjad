@@ -88,7 +88,7 @@ class DirectoryManager(Manager):
             try:
                 exec(file_contents_string)
             except:
-                message = 'Can not interpret metadata module: {!r}.'
+                message = 'can not interpret metadata module: {!r}.'
                 message = message.format(self)
                 print(message)
             metadata = locals().get('metadata')
@@ -110,7 +110,6 @@ class DirectoryManager(Manager):
 
     def _list_visible_asset_paths(self):
         file_names = self._list()
-        file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
             file_path = os.path.join(self._path, file_name)

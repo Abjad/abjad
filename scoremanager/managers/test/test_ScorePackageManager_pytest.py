@@ -12,7 +12,7 @@ def test_ScorePackageManager_pytest_01():
 
     strings = [
         'Running py.test ...',
-        '1 testable asset found ...',
+        '3 testable assets found ...',
         ]
 
     for string in strings:

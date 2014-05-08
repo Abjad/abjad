@@ -48,7 +48,7 @@ def test_SegmentPackageWrangler_pytest_03():
 
     strings = [
         'Running py.test ...',
-        'No testable assets found.',
+        '3 testable assets found ...',
         ]
 
     for string in strings:

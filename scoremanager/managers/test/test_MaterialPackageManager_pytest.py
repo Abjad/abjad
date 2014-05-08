@@ -12,7 +12,7 @@ def test_MaterialPackageManager_pytest_01():
 
     strings = [
         'Running py.test ...',
-        'No testable assets found.',
+        '5 testable assets found ...',
         ]
 
     for string in strings:

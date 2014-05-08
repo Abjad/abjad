@@ -386,6 +386,9 @@ class Manager(Controller):
             )
         self._session._hide_next_redraw = True
 
+    def _list_visible_asset_paths(self):
+        return [self._path]
+
     # TODO: eventually change prompt=False to prompt=True
     def _remove(self, prompt=False):
         if prompt:
@@ -654,15 +657,7 @@ class Manager(Controller):
 
         Returns none.
         '''
-        paths = self._get_unadded_asset_paths()
-        if not paths:
-            return
-        remove_command = self._shell_remove_command
-        paths = ' '.join(paths)
-        command = '{} {}'
-        command = command.format(remove_command, paths)
-        self._io_manager.run_command(command)
-        self._io_manager.proceed(prompt=prompt)
+        self._remove_unadded_assets(prompt=prompt)
 
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.

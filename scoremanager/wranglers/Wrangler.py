@@ -88,6 +88,7 @@ class Wrangler(Controller):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
+            'uar': self.remove_unadded_assets,
             'va': self.apply_view,
             'vc': self.clear_view,
             'vls': self.list_views,
@@ -1100,6 +1101,13 @@ class Wrangler(Controller):
             message = 'no views module found.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
+
+    def remove_unadded_assets(self, prompt=True):
+        r'''Removes assets not yet added to repository.
+
+        Returns none.
+        '''
+        self._remove_unadded_assets(prompt=prompt)
 
     def remove_views(self):
         r'''Removes view(s) from views module.

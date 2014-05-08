@@ -8,7 +8,6 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 class Controller(ScoreManagerObject):
     r'''Controller.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -105,11 +104,12 @@ class Controller(ScoreManagerObject):
 
     def _list_python_files_in_visible_assets(self, tests_only=False):
         assets = []
-        if self._session.is_in_score:
-            current_directory = self._get_current_directory_path()
-            paths = [current_directory]
-        else:
-            paths = self._list_visible_asset_paths()
+#        if self._session.is_in_score:
+#            current_directory = self._get_current_directory_path()
+#            paths = [current_directory]
+#        else:
+#            paths = self._list_visible_asset_paths()
+        paths = self._list_visible_asset_paths()
         for path in paths:
             if os.path.isdir(path):
                 triples = os.walk(path)
@@ -125,6 +125,9 @@ class Controller(ScoreManagerObject):
             elif os.path.isfile(path) and path.endswith('.py'):
                 assets.append(path)
         return assets
+
+    def _list_visible_asset_paths(self):
+        pass
 
     def _make_asset_menu_entries(
         self,
@@ -301,6 +304,17 @@ class Controller(ScoreManagerObject):
             contents = ''.join(lines_to_keep)
             file_pointer.write(contents)
 
+    def _remove_unadded_assets(self, prompt=True):
+        paths = self._get_unadded_asset_paths()
+        if not paths:
+            return
+        remove_command = self._shell_remove_command
+        paths = ' '.join(paths)
+        command = '{} {}'
+        command = command.format(remove_command, paths)
+        self._io_manager.run_command(command)
+        self._io_manager.proceed(prompt=prompt)
+
     @staticmethod
     def _replace_in_file(file_path, old, new):
         with file(file_path, 'r') as file_pointer:
@@ -327,10 +341,7 @@ class Controller(ScoreManagerObject):
         '''
         from scoremanager import managers
         assets = []
-        if isinstance(self, managers.Manager):
-            paths = [self._path]
-        else:
-            paths = self._list_visible_asset_paths()
+        paths = self._list_visible_asset_paths()
         for path in paths:
             if path.endswith('.py'):
                 assets.append(path)
