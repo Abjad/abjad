@@ -652,6 +652,20 @@ class Manager(Controller):
         self._io_manager.run_command(command, capitalize=False)
         self._io_manager.proceed(prompt=prompt)
 
+    def doctest(self):
+        r'''Runs doctest on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        self._doctest()
+
+    def pytest(self):
+        r'''Runs py.test on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        self._pytest()
+
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.
 

@@ -1027,6 +1027,13 @@ class Wrangler(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
+    def doctest(self):
+        r'''Runs doctest on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        self._doctest()
+
     def list_views(self):
         r'''List views in views module.
 
@@ -1101,6 +1108,13 @@ class Wrangler(Controller):
             message = 'no views module found.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
+
+    def pytest(self):
+        r'''Runs py.test on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        self._pytest()
 
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.

@@ -334,12 +334,7 @@ class Controller(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def doctest(self):
-        r'''Runs doctest on Python files contained in visible assets.
-
-        Returns none.
-        '''
-        from scoremanager import managers
+    def _doctest(self):
         assets = []
         paths = self._list_visible_asset_paths()
         for path in paths:
@@ -371,11 +366,7 @@ class Controller(ScoreManagerObject):
             self._io_manager.display(strings, capitalize=False)
         self._session._hide_next_redraw = True
 
-    def pytest(self):
-        r'''Runs py.test on Python files contained in visible assets.
-
-        Returns none.
-        '''
+    def _pytest(self):
         assets = []
         paths = self._list_python_files_in_visible_assets(tests_only=True)
         for path in paths:
