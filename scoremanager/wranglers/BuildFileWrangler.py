@@ -26,6 +26,7 @@ class BuildFileWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_human_readable',
         '_include_extensions',
         )
 
@@ -39,6 +40,7 @@ class BuildFileWrangler(Wrangler):
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ('build',)
         self._basic_breadcrumb = 'build files'
+        self._human_readable = False
         self._include_extensions = True
         self._asset_identifier = 'file'
         self._manager_class = managers.FileManager
@@ -117,30 +119,6 @@ class BuildFileWrangler(Wrangler):
             pass
         else:
             self._io_manager.open_file(result)
-
-    def _make_asset_menu_entries(
-        self,
-        apply_view=True,
-        include_annotation=True,
-        include_extensions=True,
-        include_asset_name=True,
-        include_year=False,
-        human_readable=False,
-        packages_instead_of_paths=False,
-        sort_by_annotation=True,
-        ):
-        superclass = super(BuildFileWrangler, self)
-        menu_entries = superclass._make_asset_menu_entries(
-            apply_view=apply_view,
-            include_annotation=include_annotation,
-            include_extensions=include_extensions,
-            include_asset_name=include_asset_name,
-            include_year=include_year,
-            human_readable=human_readable,
-            packages_instead_of_paths=packages_instead_of_paths,
-            sort_by_annotation=sort_by_annotation,
-            )
-        return menu_entries
 
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score

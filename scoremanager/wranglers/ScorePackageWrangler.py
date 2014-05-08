@@ -236,8 +236,6 @@ class ScorePackageWrangler(Wrangler):
             )
         if self._session.is_test:
             entries = [_ for _ in entries if 'Example Score' in _[0]]
-        elif apply_view:
-            entries = self._filter_asset_menu_entries_by_view(entries)
         return entries
 
     def _make_cache_menu_section(self, menu):

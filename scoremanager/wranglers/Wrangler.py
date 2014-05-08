@@ -623,14 +623,18 @@ class Wrangler(Controller):
     def _make_asset_menu_entries(
         self,
         apply_view=True,
+        human_readable=True,
         include_annotation=True,
         include_extensions=False,
         include_asset_name=True,
         include_year=False,
-        human_readable=True,
         packages_instead_of_paths=False,
         sort_by_annotation=True,
         ):
+        if hasattr(self, '_human_readable'):
+            human_readable = self._human_readable
+        if hasattr(self, '_include_extensions'):
+            include_extensions = self._include_extensions
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:

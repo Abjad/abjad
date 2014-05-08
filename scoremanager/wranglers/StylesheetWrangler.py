@@ -24,6 +24,7 @@ class StylesheetWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_human_readable',
         '_include_extensions',
         )
 
@@ -37,6 +38,7 @@ class StylesheetWrangler(Wrangler):
             self._configuration.abjad_stylesheets_directory_path
         self._asset_identifier = 'stylesheet'
         self._basic_breadcrumb = 'stylesheets'
+        self._human_readable = False
         self._include_extensions = True
         self._manager_class = managers.FileManager
         self._score_storehouse_path_infix_parts = ('stylesheets',)
@@ -83,30 +85,6 @@ class StylesheetWrangler(Wrangler):
             if directory_entry.endswith('.ily'):
                 return True
         return False
-
-    def _make_asset_menu_entries(
-        self,
-        apply_view=True,
-        include_annotation=True,
-        include_extensions=True,
-        include_asset_name=True,
-        include_year=False,
-        human_readable=False,
-        packages_instead_of_paths=False,
-        sort_by_annotation=True,
-        ):
-        superclass = super(StylesheetWrangler, self)
-        menu_entries = superclass._make_asset_menu_entries(
-            apply_view=apply_view,
-            include_annotation=include_annotation,
-            include_extensions=include_extensions,
-            include_asset_name=include_asset_name,
-            include_year=include_year,
-            human_readable=human_readable,
-            packages_instead_of_paths=packages_instead_of_paths,
-            sort_by_annotation=sort_by_annotation,
-            )
-        return menu_entries
 
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
