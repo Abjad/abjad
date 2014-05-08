@@ -4,19 +4,19 @@ from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.iotools.Editor import Editor
+from scoremanager.iotools.Autoeditor import Autoeditor
 
 
-class ListEditor(Editor):
+class ListAutoeditor(Autoeditor):
     r'''List editor.
 
     ::
 
         >>> session = scoremanager.core.Session()
-        >>> editor = scoremanager.iotools.ListEditor(session=session)
+        >>> editor = scoremanager.iotools.ListAutoeditor(session=session)
         >>> editor._target = ['first', 'second', 'third']
         >>> editor
-        <ListEditor(target=list)>
+        <ListAutoeditor(target=list)>
 
     ::
 
@@ -25,7 +25,7 @@ class ListEditor(Editor):
     ::
 
         >>> editor
-        <ListEditor(target=list)>
+        <ListAutoeditor(target=list)>
 
     '''
 
@@ -52,7 +52,7 @@ class ListEditor(Editor):
         from scoremanager import iotools
         if target is None:
             target = []
-        superclass = super(ListEditor, self)
+        superclass = super(ListAutoeditor, self)
         superclass.__init__(
             breadcrumb=breadcrumb,
             session=session, 
@@ -78,9 +78,9 @@ class ListEditor(Editor):
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.ListEditor
+                self._item_creator_class = iotools.ListAutoeditor
             else:
-                self._item_creator_class = iotools.Editor
+                self._item_creator_class = iotools.Autoeditor
 
     ### PRIVATE PROPERTIES ###
 
@@ -129,7 +129,7 @@ class ListEditor(Editor):
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_item(result)
         else:
-            super(ListEditor, self)._handle_main_menu_result(result)
+            super(ListAutoeditor, self)._handle_main_menu_result(result)
 
     def _initialize_target(self):
         if self.target is not None:
@@ -235,7 +235,7 @@ class ListEditor(Editor):
         item = self._get_item_from_item_number(item_number)
         if item is None:
             return
-        item_editor_class = self._item_editor_class or iotools.Editor
+        item_editor_class = self._item_editor_class or iotools.Autoeditor
         item_editor = item_editor_class(
             session=self._session,
             target=item,

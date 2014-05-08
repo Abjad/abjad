@@ -526,9 +526,9 @@ class IOManager(IOManager):
             datastructuretools.TypedList,
             )
         if isinstance(target, prototype):
-            class_ = iotools.ListEditor
+            class_ = iotools.ListAutoeditor
         else:
-            class_ = iotools.Editor
+            class_ = iotools.Autoeditor
         return class_(
             breadcrumb=breadcrumb,
             session=self._session,

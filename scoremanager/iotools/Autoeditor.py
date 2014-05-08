@@ -6,8 +6,8 @@ from abjad.tools.topleveltools import new
 from scoremanager.core.Controller import Controller
 
 
-class Editor(Controller):
-    r'''Editor.
+class Autoeditor(Controller):
+    r'''Autoeditor.
     '''
 
     ### CLASS VARIABLES ###
@@ -112,7 +112,7 @@ class Editor(Controller):
                 prepopulated_value=prepopulated_value,
                 allow_none=True,
                 )
-        elif issubclass(attribute_detail.editor, Editor):
+        elif issubclass(attribute_detail.editor, Autoeditor):
             editor = attribute_detail.editor(
                 session=self._session,
                 target=prepopulated_value,
@@ -120,7 +120,7 @@ class Editor(Controller):
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
-            editor = iotools.ListEditor(
+            editor = iotools.ListAutoeditor(
                 session=self._session,
                 target=target,
                 )

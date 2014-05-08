@@ -3,12 +3,12 @@ from abjad import *
 import scoremanager
 
 
-def test_ListEditor__run_01():
+def test_ListAutoeditor__run_01():
     r'''Edits built-in list.
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.ListEditor(session=session)
+    editor = scoremanager.iotools.ListAutoeditor(session=session)
     input_ = "17 99 'foo' done q"
     editor._is_autoadding = True
     editor._run(pending_input=input_)
@@ -16,13 +16,13 @@ def test_ListEditor__run_01():
     assert editor.target == [17, 99, 'foo']
 
 
-def test_ListEditor__run_02():
+def test_ListAutoeditor__run_02():
     r'''Edits empty clef inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.ClefInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -33,13 +33,13 @@ def test_ListEditor__run_02():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_03():
+def test_ListAutoeditor__run_03():
     r'''Edits nonempty clef inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.ClefInventory(['treble', 'bass'])
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -50,13 +50,13 @@ def test_ListEditor__run_03():
     assert editor.target == new_inventory
 
 
-def test_ListEditor__run_04():
+def test_ListAutoeditor__run_04():
     r'''Edits empty markup inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = markuptools.MarkupInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -72,13 +72,13 @@ def test_ListEditor__run_04():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_05():
+def test_ListAutoeditor__run_05():
     r'''Edits nonempty markup inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = markuptools.MarkupInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -102,7 +102,7 @@ def test_ListEditor__run_05():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_06():
+def test_ListAutoeditor__run_06():
     r'''Edits empty tempo inventory.
 
     Works with duration pairs.
@@ -110,7 +110,7 @@ def test_ListEditor__run_06():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.TempoInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -126,7 +126,7 @@ def test_ListEditor__run_06():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_07():
+def test_ListAutoeditor__run_07():
     r'''Edits empty tempo inventory.
 
     Works with durations.
@@ -134,7 +134,7 @@ def test_ListEditor__run_07():
 
     session = scoremanager.core.Session(is_test=True)
     target = indicatortools.TempoInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -150,13 +150,13 @@ def test_ListEditor__run_07():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_08():
+def test_ListAutoeditor__run_08():
     r'''Edits empty pitch range inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRangeInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -171,13 +171,13 @@ def test_ListEditor__run_08():
         ])
 
 
-def test_ListEditor__run_09():
+def test_ListAutoeditor__run_09():
     r'''Edits empty octave transposition mapping.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -192,13 +192,13 @@ def test_ListEditor__run_09():
     assert editor.target == mapping
 
 
-def test_ListEditor__run_10():
+def test_ListAutoeditor__run_10():
     r'''Edits empty octave transposition mapping.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -213,13 +213,13 @@ def test_ListEditor__run_10():
     assert editor.target == mapping
 
 
-def test_ListEditor__run_11():
+def test_ListAutoeditor__run_11():
     r'''Edits instrument inventory.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentInventory()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -234,13 +234,13 @@ def test_ListEditor__run_11():
     assert editor.target == inventory
 
 
-def test_ListEditor__run_12():
+def test_ListAutoeditor__run_12():
     r'''Edits view.
     '''
 
     session = scoremanager.core.Session(is_test=True)
     target = scoremanager.iotools.View()
-    editor = scoremanager.iotools.ListEditor(
+    editor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )

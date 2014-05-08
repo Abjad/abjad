@@ -68,7 +68,7 @@
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-18. Implement an Editor method to allow an none-allowing attribute to be 
+18. Implement an Autoeditor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)

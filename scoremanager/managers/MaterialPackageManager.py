@@ -204,9 +204,9 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import iotools
         prototype = (datastructuretools.TypedList, list)
         if isinstance(target, prototype):
-            class_ = iotools.ListEditor
+            class_ = iotools.ListAutoeditor
         else:
-            class_ = iotools.Editor
+            class_ = iotools.Autoeditor
         editor = class_(session=self._session, target=target)
         return editor
 

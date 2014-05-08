@@ -25,7 +25,7 @@ class Wizard(ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         self._selector = None
         self._target = target
-        self._target_editor_class_name_suffix = 'Editor'
+        self._target_editor_class_name_suffix = 'Autoeditor'
 
     ### PRIVATE PROPERTIES ###
 
@@ -58,7 +58,7 @@ class Wizard(ScoreManagerObject):
             else:
                 raise ValueError(class_name)
             assert target
-            editor = iotools.Editor(
+            editor = iotools.Autoeditor(
                 session=self._session,
                 target=target,
                 )

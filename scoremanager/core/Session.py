@@ -563,7 +563,7 @@ class Session(abctools.AbjadObject):
         '''
         from scoremanager import iotools
         for controller in reversed(self.controller_stack):
-            if isinstance(controller, iotools.Editor):
+            if isinstance(controller, iotools.Autoeditor):
                 return controller.is_autoadding
         return False
 
@@ -689,7 +689,7 @@ class Session(abctools.AbjadObject):
         '''
         from scoremanager import iotools
         for controller in reversed(self.controller_stack):
-            if isinstance(controller, iotools.Editor):
+            if isinstance(controller, iotools.Autoeditor):
                 return True
         return False
 
