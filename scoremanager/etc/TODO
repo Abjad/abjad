@@ -278,3 +278,6 @@
     ... instead.
 
 51. Kill ScorePackageWrangler._list_truly_visible_asset_paths().
+
+52. Reimplement metdata tests to create __metadata__.py.backup files.
+    Then wrap with context manager.
