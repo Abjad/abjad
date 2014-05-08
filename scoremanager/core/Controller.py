@@ -102,26 +102,24 @@ class Controller(ScoreManagerObject):
                         paths.append(path)
         return paths
 
-    def _list_python_files_in_visible_assets(self, tests_only=False):
+    def _list_python_files_in_visible_assets(self):
+        from scoremanager import wranglers
         assets = []
-#        if self._session.is_in_score:
-#            current_directory = self._get_current_directory_path()
-#            paths = [current_directory]
-#        else:
-#            paths = self._list_visible_asset_paths()
-        paths = self._list_visible_asset_paths()
+        if type(self) is wranglers.ScorePackageWrangler:
+            paths = self._list_truly_visible_asset_paths()
+        else:
+            paths = self._list_visible_asset_paths()
         for path in paths:
             if os.path.isdir(path):
                 triples = os.walk(path)
                 for directory_path, subdirectory_names, file_names in triples:
                     for file_name in file_names:
                         if file_name.endswith('.py'):
-                            if not tests_only or file_name.startswith('test_'):
-                                file_path = os.path.join(
-                                    directory_path, 
-                                    file_name,
-                                    )
-                                assets.append(file_path)
+                            file_path = os.path.join(
+                                directory_path, 
+                                file_name,
+                                )
+                            assets.append(file_path)
             elif os.path.isfile(path) and path.endswith('.py'):
                 assets.append(path)
         return assets
@@ -368,7 +366,10 @@ class Controller(ScoreManagerObject):
 
     def _pytest(self):
         assets = []
-        paths = self._list_python_files_in_visible_assets(tests_only=True)
+        paths = self._list_python_files_in_visible_assets()
+        for path in paths:
+            assert os.path.isfile(path)
+        paths = [_ for _ in paths if os.path.basename(_).startswith('test_')]
         for path in paths:
             if os.path.isdir(path):
                 assets.append(path)

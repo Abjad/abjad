@@ -14,7 +14,7 @@ def test_MaterialPackageWrangler_pytest_01():
 
     strings = [
         'Running py.test ...',
-        '3 testable assets found ...',
+        'No testable assets found.',
         ]
 
     for string in strings:

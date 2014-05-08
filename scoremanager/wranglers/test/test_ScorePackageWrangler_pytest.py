@@ -14,7 +14,7 @@ def test_ScorePackageWrangler_pytest_01():
 
     strings = [
         'Running py.test ...',
-        '70 testable assets found ...',
+        '3 testable assets found ...',
         ]
 
     for string in strings:
@@ -31,7 +31,7 @@ def test_ScorePackageWrangler_pytest_02():
 
     strings = [
         'Running py.test ...',
-        '3 testable assets found ...',
+        '1 testable asset found ...',
         ]
 
     for string in strings:
