@@ -555,21 +555,10 @@ class Wrangler(Controller):
             managers.append(manager)
         return managers
 
-    def _list_visible_asset_paths(
-        self,
-        abjad_library=True,
-        example_score_packages=True,
-        user_library=True,
-        user_score_packages=True,
-        ):
+    def _list_visible_asset_paths(self):
         from scoremanager import wranglers
         visible_paths = []
-        paths = self._list_asset_paths(
-            abjad_library=abjad_library,
-            example_score_packages=example_score_packages,
-            user_library=user_library,
-            user_score_packages=user_score_packages,
-            )
+        paths = self._list_asset_paths()
         current_path = self._get_current_directory_path()
         for path in paths:
             if current_path is None:

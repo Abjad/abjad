@@ -124,9 +124,6 @@ class Controller(ScoreManagerObject):
                 assets.append(path)
         return assets
 
-    def _list_visible_asset_paths(self):
-        pass
-
     def _make_asset_menu_entries(
         self,
         apply_view=True,

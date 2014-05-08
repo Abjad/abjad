@@ -169,8 +169,8 @@ class ScorePackageWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            score_package_paths = self._list_visible_asset_paths()
-            if result in score_package_paths:
+            paths = self._list_truly_visible_asset_paths()
+            if result in paths:
                 path = result
                 manager = self._initialize_manager(path)
                 package_name = os.path.basename(path)
