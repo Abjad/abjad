@@ -1,29 +1,21 @@
-1.  Sweep inline scoremanager TODO items.
+1.  Find a way dynamically to present default notice with default menu entries.
+    Reproduce as follows: create a material package; set autoeditor
+    for PerformerInventory; then (mae add fl); the (default) indicator
+    will appear next to the C-flute. Make the (default) indicator
+    appear automatically.
 
-2.  Make user input getter defaults work like menu defaults.
-    Implement default value on user input getter.
-
-3.  Fix IOManager.handle_input() default handling.
-
-4.  Find a way dynamically to present default notice with default menu entries.
-
-5.  Distinguish positional autoeditor parameters from keyword 
-    autoeditor parameters.
-
-6.  Audit the UI of the entire materials management system by hand.
-
-7.  Implement red_example_score.materials.divisions to import 
+2.  Implement red_example_score.materials.divisions to import 
     red_example_score.materials.time_signatures.
     This will implement an intrapackage material import.
 
-8.  Implement an 'all whatever - edit' command.
+3.  Implement an 'all whatever - edit' command.
 
-9.  Add (lyrm!) for 'lilypond ly - remove from repository'.
+4.  Add (lyrm!) for 'lilypond ly - remove from repository'.
     This will work together with (lyrm) for 'lilypond ly - remove'.
     The difference will be that (lyrm!) will (try to) act on the repository 
     where (lyrm) will only ever work on the filesystem.
 
-10. Write py.test tests for the following properties and methods:
+5.  Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -31,7 +23,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-11. Add 'output module - check (omc)' command.
+6.  Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -41,35 +33,35 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-12. Implement a 'views module - rewrite' (vmrw) command.
+7.  Implement a 'views module - rewrite' (vmrw) command.
 
-13. Implement DirectoryManager.check_contents().
+8.  Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-14. Do something to put an empty .gitignore file in every directory everywhere.
+9.  Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-15. Eventually implement a Score Manager start-up behavior that will
+10. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-16: Bug:
+11: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-17. Bug:
+12. Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory_path
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-18. Implement an Autoeditor method to allow an none-allowing attribute to be 
+13. Implement an Autoeditor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -97,7 +89,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-19. Bug:
+14. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -105,85 +97,85 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-20. Make (rrv) work for Subversion-managed directories.
+15. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
 
-21. Make sure new-style.ily doesn't alias (new).
+16. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-22. When in (new) score, change 'Enter package name>' to
+17. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-23. Block (new) score when view is hiding user scores.
+18. Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-24. Allow more flexible input for score (new).
+19. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-25. Implement stringtools.delimit_words(delimitor=' ').
+20. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-26. Maybe change Wrangler._current_package_manager to
+21. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-27. Make (mdmo) work for wranglers.
+22. Make (mdmo) work for wranglers.
     There is now a metadata module in which wranglers store
     things like 'current_view'. The (mdmo) command should
     allow the composer to read that metadata module.
 
-28. Make menu title breadcrumbs correctly reflect changes in view
+23. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-29. Refuse to apply view when invalid regular expression is found.
+24. Refuse to apply view when invalid regular expression is found.
 
-30. Imlement 'views - autoedit' (vae) command.
+25. Imlement 'views - autoedit' (vae) command.
 
-31. Compile regular expressions at view entry add time.
+26. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-32. Allow arbitrary metadata in view patterns.
+27. Allow arbitrary metadata in view patterns.
 
-33. Change ...
+28. Change ...
         Untitled (test_score)
     ... to just ...
         test_score
     ... in Score Manager main menu.
 
-34. Change ...
+29. Change ...
         Score manager - stylesheets (_test) - select view to remove:
     ... to ...
         Score manager - stylesheets - select view to remove:
     ... instead.
 
-35. Change 'default' to '<return>' in test input strings.
+30. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-36. Make (rst) work again. Right now runs on archipel and then quits.
+31. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-37. Allow 5-99 (or any other large number) to work when removing items.
+32. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-38. Move score_manager_library/views/*_views__.py files to
+33. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-39. Change 'vmrm' to 'vmtrash'.
+34. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-40. Fix menu title that results from the following:
+35. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-41. There is no such thing as 'My build file library'.
+36. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-42. Make bicolumnar layout work for asset screens.
+37. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-43. Extend 'all score packages' options in Score Manager main menu.
+38. Extend 'all score packages' options in Score Manager main menu.
     Change ...
         all score packages - fix (fix)
     ... to ...
@@ -196,7 +188,7 @@
         all score packages - unadded assets - remove (uarm)
     ... instead.
 
-44. Improve (k > cp) user experience. Change ...
+39. Improve (k > cp) user experience. Change ...
         Enter maker module to copy> 1
         New maker module name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -205,7 +197,7 @@
         New maker module name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-45. Improve (vls) user experience. Change ...
+40. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -216,13 +208,13 @@
         2. examples
     ... instead.
 
-46. Make (rrv) work in Git directories.
+41. Make (rrv) work in Git directories.
     Can test with (red~example~score g lyi y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-47. Improve (rad) user experience. Change
+42. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
@@ -238,17 +230,17 @@
 
     ... instead.
 
-48. Change SegmentPackageManager versioning protocol.
+43. Change SegmentPackageManager versioning protocol.
     Change ...
         0000.ly 0000.pdf 0000.py
     ... to ...
         output_0000.ly output_0000.pdf definition_0000.py
     ... instead.
 
-49. Change ScorePackageManager.year_of_completion to just 
+44. Change ScorePackageManager.year_of_completion to just 
     ScorePackageManager.year.
 
-50. Change messaging regime.
+45. Change messaging regime.
     Change ...
         prompt=True
     ... to ...
@@ -256,4 +248,21 @@
         notify=True
     ... instead.
 
-51. Glue 'go' menu sections together.
+46. Glue 'go' menu sections together.
+
+47. Remove methods from Session.
+    Session should implement properties only.
+
+48. Change (psa) to (psae). Use 'ae' as standard abbreviation for
+    both 'autoedit' and 'autoeditor'.
+
+49. Write test for (... psa ... pua).
+    Right now the autoeditor settings remain in metadata module.
+    Autoeditor settings should not remain in metadata module.
+
+50. Remove blank lines between the following:
+        Enter material packages(s) to remove> 9
+
+        Will remove /Users/trevorbaca/Documents/baca/score_manager_library/materials/performer_inventory
+
+        Type 'remove' to proceed> 
