@@ -58,7 +58,7 @@ Use ``dir()`` to take a look at the contents of the ``systemtools`` package:
 The ``systemtools`` package implements I/O functions that help you work with the
 files you create in Abjad.
 
-Use ``systemtools.view_last_ly()`` to see the last LilyPond input file created
+Use ``systemtools.open_last_ly()`` to see the last LilyPond input file created
 in Abjad:
 
 ::
@@ -97,7 +97,7 @@ above.  Abjad then called LilyPond on that ``.ly`` file to create a PDF.
 
 (Quit your text editor in the usual way to return to the Python interpreter.)
 
-Now use ``systemtools.view_last_log()`` to see the output LilyPond created as
+Now use ``systemtools.open_last_log()`` to see the output LilyPond created as
 it ran:
 
 ::

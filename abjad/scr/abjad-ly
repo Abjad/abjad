@@ -2,4 +2,4 @@
 
 from abjad.tools import systemtools
 
-systemtools.IOManager.view_last_ly()
+systemtools.IOManager.open_last_ly()
