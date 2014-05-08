@@ -2,6 +2,7 @@
 import copy
 import doctest
 import os
+import re
 import shutil
 import subprocess
 from abjad.tools import datastructuretools
@@ -201,6 +202,29 @@ class Wrangler(Controller):
             elif parent_directory not in parent_directories:
                 parent_directories.append(parent_directory)
         return parent_directories
+
+    def _filter_asset_menu_entries_by_view(self, entries, view):
+        entries = entries[:]
+        filtered_entries = []
+        for item in view:
+            try:
+                pattern = re.compile(item)
+            except TypeError:
+                pattern = None
+                message = 'invalid regular expression: {!r}.'
+                message  = message.format(item)
+                self._io_manager.proceed(message)
+            for entry in entries:
+                display_string, _, _, path = entry
+                if self._session.is_in_score:
+                    string = self._get_without_annotation(display_string)
+                else:
+                    string = display_string
+                if item == string:
+                    filtered_entries.append(entry)
+                elif pattern and pattern.match(string):
+                    filtered_entries.append(entry)
+        return filtered_entries
 
     def _find_git_manager(self, inside_score=True, must_have_file=False):
         manager = self._find_up_to_date_manager(
@@ -419,6 +443,15 @@ class Wrangler(Controller):
             storehouses.add(storehouse)
         storehouses = list(sorted(storehouses))
         return storehouses
+
+    @staticmethod
+    def _get_without_annotation(display_string):
+        if not display_string.endswith(')'):
+            return display_string
+        index = display_string.find('(')
+        result = display_string[:index]
+        result = result.strip()
+        return result
 
     def _go_to_next_asset(self):
         pass

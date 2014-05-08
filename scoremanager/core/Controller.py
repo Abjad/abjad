@@ -40,38 +40,6 @@ class Controller(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _filter_asset_menu_entries_by_view(self, entries, view):
-        entries = entries[:]
-        filtered_entries = []
-        for item in view:
-            try:
-                pattern = re.compile(item)
-            except:
-                pattern = None
-                message = 'invalid regular expression: {!r}.'
-                message  = message.format(item)
-                self._io_manager.proceed(message)
-            for entry in entries:
-                display_string, _, _, path = entry
-                if self._session.is_in_score:
-                    string = self._get_without_annotation(display_string)
-                else:
-                    string = display_string
-                if item == string:
-                    filtered_entries.append(entry)
-                elif pattern and pattern.match(string):
-                    filtered_entries.append(entry)
-        return filtered_entries
-
-    @staticmethod
-    def _get_without_annotation(display_string):
-        if not display_string.endswith(')'):
-            return display_string
-        index = display_string.find('(')
-        result = display_string[:index]
-        result = result.strip()
-        return result
-
     @staticmethod
     def _is_directory_with_metadata_module(path):
         if os.path.isdir(path):
