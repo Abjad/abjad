@@ -8,5 +8,5 @@ metadata = collections.OrderedDict([
     ('is_example', True),
     ('paper_dimensions', '8.5 x 11 in'),
     ('title', 'Red Example Score'),
-    ('year_of_completion', 2013),
+    ('year', 2013),
     ])

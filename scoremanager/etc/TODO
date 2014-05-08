@@ -237,10 +237,7 @@
         output_0000.ly output_0000.pdf definition_0000.py
     ... instead.
 
-44. Change ScorePackageManager.year_of_completion to just 
-    ScorePackageManager.year.
-
-45. Change messaging regime.
+44. Change messaging regime.
     Change ...
         prompt=True
     ... to ...
@@ -248,21 +245,34 @@
         notify=True
     ... instead.
 
-46. Glue 'go' menu sections together.
+45. Glue 'go' menu sections together.
 
-47. Remove methods from Session.
+46. Remove methods from Session.
     Session should implement properties only.
 
-48. Change (psa) to (psae). Use 'ae' as standard abbreviation for
+47. Change (psa) to (psae). Use 'ae' as standard abbreviation for
     both 'autoedit' and 'autoeditor'.
 
-49. Write test for (... psa ... pua).
+48. Write test for (... psa ... pua).
     Right now the autoeditor settings remain in metadata module.
     Autoeditor settings should not remain in metadata module.
 
-50. Remove blank lines between the following:
+49. Remove blank lines between the following:
         Enter material packages(s) to remove> 9
 
         Will remove /Users/trevorbaca/Documents/baca/score_manager_library/materials/performer_inventory
 
         Type 'remove' to proceed> 
+
+50. Annotate material package entries to show autoeditors.
+    Change ...
+        1: instrumentation
+        2: magic numbers
+        3: pitch range inventory
+        4: tempo inventory
+    ... to ...
+        1: instrumentation (AE)
+        2: magic numbers
+        3: pitch range inventory (AE)
+        4: tempo inventory (AE)
+    ... instead.

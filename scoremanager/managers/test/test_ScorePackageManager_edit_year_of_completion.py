@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScorePackageManager_edit_year_of_completion_01():
+def test_ScorePackageManager_edit_year_01():
 
     try:
         score_manager = scoremanager.core.ScoreManager(is_test=True)

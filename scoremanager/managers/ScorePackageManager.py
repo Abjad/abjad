@@ -118,11 +118,11 @@ class ScorePackageManager(PackageManager):
                 return output_material
 
     def _get_title(self, year=False):
-        if year and self._get_metadatum('year_of_completion'):
+        if year and self._get_metadatum('year'):
             result = '{} ({})'
             result = result.format(
                 self._get_title(),
-                self._get_metadatum('year_of_completion')
+                self._get_metadatum('year')
                 )
             return result
         else:
@@ -161,7 +161,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'title':
             self.edit_title()
         elif result == 'year':
-            self.edit_year_of_completion()
+            self.edit_year()
         elif result == 'user entered lone return':
             pass
         else:
@@ -214,8 +214,8 @@ class ScorePackageManager(PackageManager):
         forces_tagline = self._get_metadatum('forces_tagline')
         entry = self._make_setup_menu_entry('tagline', forces_tagline)
         entries.append(entry)
-        year_of_completion = self._get_metadatum('year_of_completion')
-        entry = self._make_setup_menu_entry('year', year_of_completion)
+        year = self._get_metadatum('year')
+        entry = self._make_setup_menu_entry('year', year)
         entries.append(entry)
         catalog_number = self._get_metadatum('catalog_number')
         entry = self._make_setup_menu_entry('catalog number', catalog_number)
@@ -323,7 +323,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('title', result)
         self._io_manager.write_cache(prompt=False)
 
-    def edit_year_of_completion(self):
+    def edit_year(self):
         r'''Edits year of completion of score.
 
         Returns none.
@@ -337,7 +337,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self._should_backtrack():
             return
-        self._add_metadatum('year_of_completion', result)
+        self._add_metadatum('year', result)
 
     def fix_package(self, confirm=True, notify=True):
         r'''Fixes score package.

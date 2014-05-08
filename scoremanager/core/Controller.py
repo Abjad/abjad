@@ -259,10 +259,10 @@ class Controller(ScoreManagerObject):
                 )
             metadata = manager._get_metadata()
             if metadata:
-                year_of_completion = metadata.get('year_of_completion')
+                year = metadata.get('year')
                 title = metadata.get('title')
-                if year and year_of_completion:
-                    annotation = '{} ({})'.format(title, year_of_completion)
+                if year and year:
+                    annotation = '{} ({})'.format(title, year)
                 else:
                     annotation = str(title)
             else:
