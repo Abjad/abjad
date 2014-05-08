@@ -135,7 +135,6 @@ class Controller(ScoreManagerObject):
         packages_instead_of_paths=False,
         sort_by_annotation=True,
         ):
-        from scoremanager import iotools
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:

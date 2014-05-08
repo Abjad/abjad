@@ -108,6 +108,30 @@ class DirectoryManager(Manager):
         else:
             self._run_asset_manager(result)
 
+    def _make_asset_menu_entries(
+        self,
+        include_extensions=False,
+        ):
+        paths = self._list_visible_asset_paths()
+        strings = []
+        for path in paths:
+            if human_readable:
+                string = self._path_to_human_readable_name(
+                    path,
+                    include_extension=include_extensions,
+                    )
+            else:
+                string = os.path.basename(path)
+            strings.append(string)
+        pairs = zip(strings, paths)
+        entries = []
+        for string, path in pairs:
+            if packages_instead_of_paths:
+                path = self._configuration.path_to_package_path(path)
+            entry = (string, None, None, path)
+            entries.append(entry)
+        return entries
+
     def _make_asset_menu_section(self, menu):
         menu_entries = self._make_asset_menu_entries()
         if not menu_entries:
