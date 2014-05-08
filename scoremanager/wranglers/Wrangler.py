@@ -203,7 +203,10 @@ class Wrangler(Controller):
                 parent_directories.append(parent_directory)
         return parent_directories
 
-    def _filter_asset_menu_entries_by_view(self, entries, view):
+    def _filter_asset_menu_entries_by_view(self, entries):
+        view = self._read_view()
+        if view is None:
+            return entries
         entries = entries[:]
         filtered_entries = []
         for item in view:
@@ -590,16 +593,17 @@ class Wrangler(Controller):
 
     def _list_visible_asset_paths(self):
         from scoremanager import wranglers
-        visible_paths = []
+        current_paths = []
         paths = self._list_asset_paths()
         current_path = self._get_current_directory_path()
         for path in paths:
             if current_path is None:
-                visible_paths.append(path)
+                current_paths.append(path)
             elif type(self) is wranglers.ScorePackageWrangler:
-                visible_paths.append(path)
+                current_paths.append(path)
             elif path.startswith(current_path):
-                visible_paths.append(path)
+                current_paths.append(path)
+        visible_paths = current_paths
         return visible_paths
 
     def _make_asset(self, asset_name):
@@ -671,9 +675,7 @@ class Wrangler(Controller):
         elif not apply_view:
             return entries
         else:
-            view = self._read_view()
-        if view is not None:
-            entries = self._filter_asset_menu_entries_by_view(entries, view)
+            entries = self._filter_asset_menu_entries_by_view(entries)
         return entries
 
     def _make_asset_selection_breadcrumb(

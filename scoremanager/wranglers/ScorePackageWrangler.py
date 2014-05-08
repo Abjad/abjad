@@ -224,7 +224,7 @@ class ScorePackageWrangler(Wrangler):
         sort_by_annotation=True,
         ):
         superclass = super(ScorePackageWrangler, self)
-        menu_entries = superclass._make_asset_menu_entries(
+        entries = superclass._make_asset_menu_entries(
             apply_view=apply_view,
             include_annotation=include_annotation,
             include_extensions=include_extensions,
@@ -235,18 +235,10 @@ class ScorePackageWrangler(Wrangler):
             sort_by_annotation=sort_by_annotation,
             )
         if self._session.is_test:
-            menu_entries = [
-                _ for _ in menu_entries
-                if 'Example Score' in _[0]
-                ]
+            entries = [_ for _ in entries if 'Example Score' in _[0]]
         else:
-            view = self._read_view()
-            if view is not None:
-                menu_entries = self._filter_asset_menu_entries_by_view(
-                    menu_entries, 
-                    view,
-                    )
-        return menu_entries
+            entries = self._filter_asset_menu_entries_by_view(entries)
+        return entries
 
     def _make_asset_menu_entries_for_cache(
         self,
@@ -299,23 +291,13 @@ class ScorePackageWrangler(Wrangler):
         if self._session.rewrite_cache:
             self.write_cache(prompt=False)
             self._session._rewrite_cache = False
-        menu_entries = self._io_manager._read_cache()
+        entries = self._io_manager._read_cache()
         if self._session.is_test:
-            menu_entries = [
-                _ for _ in menu_entries
-                if 'Example Score' in _[0]
-                ]
+            entries = [_ for _ in entries if 'Example Score' in _[0]]
         else:
-            view = self._read_view()
-            if view is not None:
-                menu_entries = self._filter_asset_menu_entries_by_view(
-                    menu_entries, 
-                    view,
-                    )
-        if menu_entries:
-            menu.make_asset_section(
-                menu_entries=menu_entries,
-                )
+            entries = self._filter_asset_menu_entries_by_view(entries)
+        if entries:
+            menu.make_asset_section(menu_entries=entries)
         return menu
 
     def _make_scores_menu_section(self, menu):
