@@ -149,7 +149,10 @@ class Controller(ScoreManagerObject):
             else:
                 string = os.path.basename(path)
             if include_annotation:
-                annotation = self._path_to_annotation(path, year=include_year)
+                annotation = self._path_to_annotation(
+                    path, 
+                    include_year=include_year,
+                    )
                 if include_asset_name:
                     string = '{} ({})'.format(string, annotation)
                 else:
@@ -245,7 +248,7 @@ class Controller(ScoreManagerObject):
             name='views',
             )
 
-    def _path_to_annotation(self, path, year=False):
+    def _path_to_annotation(self, path, include_year=False):
         from scoremanager import managers
         score_storehouses = (
             self._configuration.example_score_packages_directory_path,
@@ -261,7 +264,7 @@ class Controller(ScoreManagerObject):
             if metadata:
                 year = metadata.get('year')
                 title = metadata.get('title')
-                if year and year:
+                if include_year and year:
                     annotation = '{} ({})'.format(title, year)
                 else:
                     annotation = str(title)
