@@ -4,30 +4,30 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_go_to_segments_01():
-    r'''Goes from score build files to score segments.
+def test_SegmentPackageWrangler_go_to_stylesheets_01():
+    r'''From segments directory to stylesheets directory.
     '''
 
-    input_ = 'red~example~score u g q'
+    input_ = 'red~example~score g y q'
     score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build files',
         'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_BuildFileWrangler_go_to_segments_02():
-    r'''Goes from build file library to segment library.
+def test_SegmentPackageWrangler_go_to_stylesheets_02():
+    r'''Goes from segment library to stylesheet library.
     '''
 
-    input_ = 'u g q'
+    input_ = 'g y q'
     score_manager._run(pending_input=input_)
     titles = [
         'Score manager - example scores',
-        'Score manager - build files',
         'Score manager - segments',
+        'Score manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

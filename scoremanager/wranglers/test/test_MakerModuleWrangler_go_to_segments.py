@@ -17,3 +17,17 @@ def test_MakerModuleWrangler_go_to_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
+
+
+def test_MakerModuleWrangler_go_to_segments_02():
+    r'''Goes from maker module library to segment library.
+    '''
+
+    input_ = 'k g q'
+    score_manager._run(pending_input=input_)
+    titles = [
+        'Score manager - example scores',
+        'Score manager - maker modules',
+        'Score manager - segments',
+        ]
+    assert score_manager._transcript.titles == titles

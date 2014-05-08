@@ -17,3 +17,17 @@ def test_DistributionFileWrangler_go_to_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
+
+    
+def test_DistributionFileWrangler_go_to_segments_02():
+    r'''Goes from distribution file library to segment library.
+    '''
+
+    input_ = 'd g q'
+    score_manager._run(pending_input=input_)
+    titles = [
+        'Score manager - example scores',
+        'Score manager - distribution files',
+        'Score manager - segments',
+        ]
+    assert score_manager._transcript.titles == titles
