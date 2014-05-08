@@ -281,3 +281,7 @@
 
 52. Reimplement metdata tests to create __metadata__.py.backup files.
     Then wrap with context manager.
+
+53. Remove all wrangler _make_asset_menu_entries() definitions.
+    Except for Wrangler. Implement instance variables on concrete
+    wrangler classes to model current keywords.
