@@ -36,6 +36,9 @@ class ScorePackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_only_example_scores_during_test',
+        '_include_asset_name',
+        '_include_year',
         )
 
     ### INITIALIZER ###
@@ -46,9 +49,12 @@ class ScorePackageWrangler(Wrangler):
         superclass.__init__(session=session)
         path = self._configuration.example_score_packages_directory_path
         self._abjad_storehouse_path = path
-        self._basic_breadcrumb = 'scores'
         self._asset_identifier = 'score package'
+        self._basic_breadcrumb = 'scores'
+        self._include_asset_name = False
+        self._include_year = True
         self._manager_class = managers.ScorePackageManager
+        self._only_example_scores_during_test = True
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
 
@@ -211,32 +217,6 @@ class ScorePackageWrangler(Wrangler):
             commands=commands,
             name='all score packages',
             )
-
-    def _make_asset_menu_entries(
-        self,
-        apply_view=True,
-        include_annotation=True,
-        include_extensions=False,
-        include_asset_name=False,
-        include_year=True,
-        human_readable=True,
-        packages_instead_of_paths=False,
-        sort_by_annotation=True,
-        ):
-        superclass = super(ScorePackageWrangler, self)
-        entries = superclass._make_asset_menu_entries(
-            apply_view=apply_view,
-            include_annotation=include_annotation,
-            include_extensions=include_extensions,
-            include_asset_name=include_asset_name,
-            include_year=include_year,
-            human_readable=human_readable,
-            packages_instead_of_paths=packages_instead_of_paths,
-            sort_by_annotation=sort_by_annotation,
-            )
-        if self._session.is_test:
-            entries = [_ for _ in entries if 'Example Score' in _[0]]
-        return entries
 
     def _make_cache_menu_section(self, menu):
         commands = []

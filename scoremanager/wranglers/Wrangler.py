@@ -633,8 +633,12 @@ class Wrangler(Controller):
         ):
         if hasattr(self, '_human_readable'):
             human_readable = self._human_readable
+        if hasattr(self, '_include_asset_name'):
+            include_asset_name = self._include_asset_name
         if hasattr(self, '_include_extensions'):
             include_extensions = self._include_extensions
+        if hasattr(self, '_include_year'):
+            include_year = self._include_year
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:
@@ -674,12 +678,11 @@ class Wrangler(Controller):
                 path = self._configuration.path_to_package_path(path)
             entry = (string, None, None, path)
             entries.append(entry)
-        if self._session.is_test:
-            return entries
-        elif not apply_view:
-            return entries
-        else:
+        if apply_view and not self._session.is_test:
             entries = self._filter_asset_menu_entries_by_view(entries)
+        if self._session.is_test:
+            if getattr(self, '_only_example_scores_during_test', False):
+                entries = [_ for _ in entries if 'Example Score' in _[0]]
         return entries
 
     def _make_asset_selection_breadcrumb(
