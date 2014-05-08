@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Session_is_navigating_to_previous_score_01():
+def test_ScorePackageWrangler_go_to_previous_score_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '<< << q'
