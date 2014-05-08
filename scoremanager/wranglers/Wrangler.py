@@ -1073,14 +1073,14 @@ class Wrangler(Controller):
             )
         breadcrumb = 'views - {} - edit:'
         breadcrumb = breadcrumb.format(view_name)
-        editor = self._io_manager.make_editor(
+        autoeditor = self._io_manager.make_autoeditor(
             breadcrumb=breadcrumb,
             target=view,
             )
-        editor._run()
+        autoeditor._run()
         if self._should_backtrack():
             return
-        view = editor.target
+        view = autoeditor.target
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
             view_inventory = datastructuretools.TypedOrderedDict(

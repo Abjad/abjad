@@ -10,24 +10,24 @@ def test_Autoeditor__Instrument_01():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = "sn 'foo' q"
-    editor._run(pending_input=input_)
-    instrument = editor.target
+    autoeditor._run(pending_input=input_)
+    instrument = autoeditor.target
     assert instrument.short_instrument_name == 'foo'
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = "sm 'bar' sn 'foo' q"
-    editor._run(pending_input=input_)
-    instrument = editor.target
+    autoeditor._run(pending_input=input_)
+    instrument = autoeditor.target
     assert instrument.short_instrument_name == 'foo'
     assert instrument.short_instrument_name_markup == Markup('bar')
 
@@ -38,23 +38,23 @@ def test_Autoeditor__Instrument_02():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Marimba()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'q'
-    editor._run(pending_input=input_)
-    assert editor.target.pitch_range == pitchtools.PitchRange(-19, 36)
+    autoeditor._run(pending_input=input_)
+    assert autoeditor.target.pitch_range == pitchtools.PitchRange(-19, 36)
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Marimba()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'rg [C2, C7] q'
-    editor._run(pending_input=input_)
-    assert editor.target.pitch_range == pitchtools.PitchRange(-24, 36)
+    autoeditor._run(pending_input=input_)
+    assert autoeditor.target.pitch_range == pitchtools.PitchRange(-24, 36)
 
 
 def test_Autoeditor__Instrument_03():
@@ -64,24 +64,24 @@ def test_Autoeditor__Instrument_03():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = "in 'foo' q"
-    editor._run(pending_input=input_)
-    instrument = editor.target
+    autoeditor._run(pending_input=input_)
+    instrument = autoeditor.target
     assert instrument.instrument_name == 'foo'
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = "im 'bar' in 'foo' q"
-    editor._run(pending_input=input_)
-    instrument = editor.target
+    autoeditor._run(pending_input=input_)
+    instrument = autoeditor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == Markup('bar')
 
@@ -92,12 +92,12 @@ def test_Autoeditor__Instrument_04():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Accordion()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target
         )
     input_ = 'q'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     lines = [
         'Accordion',
@@ -113,7 +113,7 @@ def test_Autoeditor__Instrument_04():
         '      done (done)',
         '',
         ]
-    assert editor._transcript.last_menu_lines == lines
+    assert autoeditor._transcript.last_menu_lines == lines
 
 
 def test_Autoeditor__Instrument_05():
@@ -123,13 +123,13 @@ def test_Autoeditor__Instrument_05():
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.FrenchHorn()
     assert target.sounding_pitch_of_written_middle_c == NamedPitch('f')
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'sp bf done'
-    editor._run(pending_input=input_)
-    instrument = editor.target
+    autoeditor._run(pending_input=input_)
+    instrument = autoeditor.target
     horn = instrumenttools.FrenchHorn(
         sounding_pitch_of_written_middle_c=NamedPitch('bf')
         )

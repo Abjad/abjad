@@ -500,25 +500,14 @@ class IOManager(IOManager):
             self.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
-    def make_directory_manager(self, path):
-        r'''Makes directory manager.
-
-        Returns directory manager.
-        '''
-        from scoremanager import managers
-        return managers.DirectoryManager(
-            path=path,
-            session=self._session,
-            )
-
-    def make_editor(
+    def make_autoeditor(
         self, 
         breadcrumb=None,
         target=None,
         ):
-        r'''Makes editor with optional `target`.
+        r'''Makes autoeditor with optional `target`.
 
-        Returns editor or list editor.
+        Returns autoeditor or list autoeditor.
         '''
         from scoremanager import iotools
         prototype = (
@@ -533,6 +522,17 @@ class IOManager(IOManager):
             breadcrumb=breadcrumb,
             session=self._session,
             target=target,
+            )
+
+    def make_directory_manager(self, path):
+        r'''Makes directory manager.
+
+        Returns directory manager.
+        '''
+        from scoremanager import managers
+        return managers.DirectoryManager(
+            path=path,
+            session=self._session,
             )
 
     def make_file_manager(self, path):

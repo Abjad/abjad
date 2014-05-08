@@ -13,18 +13,18 @@ class ListAutoeditor(Autoeditor):
     ::
 
         >>> session = scoremanager.core.Session()
-        >>> editor = scoremanager.iotools.ListAutoeditor(session=session)
-        >>> editor._target = ['first', 'second', 'third']
-        >>> editor
+        >>> autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
+        >>> autoeditor._target = ['first', 'second', 'third']
+        >>> autoeditor
         <ListAutoeditor(target=list)>
 
     ::
 
-        >>> editor._run(pending_input='rm 1 q')
+        >>> autoeditor._run(pending_input='rm 1 q')
 
     ::
 
-        >>> editor
+        >>> autoeditor
         <ListAutoeditor(target=list)>
 
     '''

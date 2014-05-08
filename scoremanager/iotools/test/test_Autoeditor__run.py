@@ -10,14 +10,14 @@ def test_Autoeditor__run_01():
 
     target = Clef('alto')
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'nm tenor done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == Clef('tenor')
+    assert autoeditor.target == Clef('tenor')
 
 
 def test_Autoeditor__run_02():
@@ -26,14 +26,14 @@ def test_Autoeditor__run_02():
 
     target = Tempo()
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target is target
+    assert autoeditor.target is target
 
 
 def test_Autoeditor__run_03():
@@ -41,14 +41,14 @@ def test_Autoeditor__run_03():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Tempo(),
         )
     input_ = 'duration (1, 8) units 98 done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == Tempo(Duration(1, 8), 98)
+    assert autoeditor.target == Tempo(Duration(1, 8), 98)
 
 
 def test_Autoeditor__run_04():
@@ -56,14 +56,14 @@ def test_Autoeditor__run_04():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Tempo(),
         )
     input_ = 'duration Duration(1, 8) units 98 done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == Tempo(Duration(1, 8), 98)
+    assert autoeditor.target == Tempo(Duration(1, 8), 98)
 
 
 def test_Autoeditor__run_05():
@@ -71,15 +71,15 @@ def test_Autoeditor__run_05():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Markup(),
         )
     input_ = 'arg foo~text done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     markup = markuptools.Markup('foo text')
-    assert editor.target == markup
+    assert autoeditor.target == markup
 
 
 def test_Autoeditor__run_06():
@@ -87,14 +87,14 @@ def test_Autoeditor__run_06():
     '''
 
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Markup(),
         )
     input_ = '''arg '"foo~text~here"' dir up done'''
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == Markup('"foo text here"', direction=Up)
+    assert autoeditor.target == Markup('"foo text here"', direction=Up)
 
 
 def test_Autoeditor__run_07():
@@ -103,14 +103,14 @@ def test_Autoeditor__run_07():
 
     target = Markup('foo bar')
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'arg entirely~new~text direction up done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == Markup('entirely new text', direction=Up)
+    assert autoeditor.target == Markup('entirely new text', direction=Up)
 
 
 def test_Autoeditor__run_08():
@@ -119,15 +119,15 @@ def test_Autoeditor__run_08():
 
     target = pitchtools.OctaveTranspositionMappingComponent()
     session = scoremanager.core.Session(is_test=True)
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'source [A0, C8] target -18 q'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
-    assert editor.target == component
+    assert autoeditor.target == component
 
 
 def test_Autoeditor__run_09():
@@ -136,25 +136,25 @@ def test_Autoeditor__run_09():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = '1 [F#3, C5) q'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == pitchtools.PitchRange('[F#3, C5)')
+    assert autoeditor.target == pitchtools.PitchRange('[F#3, C5)')
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = '1 (A0, C8] q'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
-    assert editor.target == pitchtools.PitchRange('(A0, C8]')
+    assert autoeditor.target == pitchtools.PitchRange('(A0, C8]')
 
 
 def test_Autoeditor__run_10():
@@ -166,43 +166,43 @@ def test_Autoeditor__run_10():
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'q'
-    editor._run(pending_input=input_)
-    assert editor._transcript.signature == (2,)
+    autoeditor._run(pending_input=input_)
+    assert autoeditor._transcript.signature == (2,)
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 's q'
-    editor._run(pending_input=input_)
-    assert editor._transcript.signature == (4, (0, 2))
+    autoeditor._run(pending_input=input_)
+    assert autoeditor._transcript.signature == (4, (0, 2))
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'h'
-    editor._run(pending_input=input_)
-    assert editor._transcript.signature == (2,)
+    autoeditor._run(pending_input=input_)
+    assert autoeditor._transcript.signature == (2,)
 
     session = scoremanager.core.Session(is_test=True)
     target = pitchtools.PitchRange()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'foo q'
-    editor._run(pending_input=input_)
-    assert editor._transcript.signature == (4, (0, 2))
+    autoeditor._run(pending_input=input_)
+    assert autoeditor._transcript.signature == (4, (0, 2))
 
 
 def test_Autoeditor__run_11():
@@ -211,20 +211,20 @@ def test_Autoeditor__run_11():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         target=target,
         )
     input_ = "ht ('p', '<', 'f') Duration(1, 8) done"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),
         minimum_duration=Duration(1, 8),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_12():
@@ -233,20 +233,20 @@ def test_Autoeditor__run_12():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinsHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         target=target,
         )
     input_ = "ht [('p', '<', 'f')] Duration(1, 8) done"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.NoteAndChordHairpinsHandler(
         hairpin_tokens=[('p', '<', 'f')],
         minimum_duration=Duration(1, 8),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_13():
@@ -255,13 +255,13 @@ def test_Autoeditor__run_13():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         target=target,
         )
     input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.PatternedArticulationsHandler(
         articulation_lists=[['.', '^'], ['.']],
@@ -271,7 +271,7 @@ def test_Autoeditor__run_13():
         maximum_written_pitch=NamedPitch("c'''"),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_14():
@@ -280,14 +280,14 @@ def test_Autoeditor__run_14():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         is_autostarting=True,
         target=target,
         )
     input_ = "['.', '^'] (1, 16) (1, 8) cs'' c''' done"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
@@ -297,7 +297,7 @@ def test_Autoeditor__run_14():
         maximum_written_pitch=NamedPitch("c'''"),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_15():
@@ -306,20 +306,20 @@ def test_Autoeditor__run_15():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         is_autostarting=True,
         target=target,
         )
     input_ = "['.', '^'] None None None None done"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_16():
@@ -328,20 +328,20 @@ def test_Autoeditor__run_16():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.ReiteratedDynamicHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         target=target
         )
     input_ = '1 f Duration(1, 8) q'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',
         minimum_duration=Duration(1, 8),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_17():
@@ -350,20 +350,20 @@ def test_Autoeditor__run_17():
 
     session = scoremanager.core.Session(is_test=True)
     target = handlertools.TerracedDynamicsHandler()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         is_autoadvancing=True,
         target=target,
         )
     input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     handler = handlertools.TerracedDynamicsHandler(
         dynamics=['p', 'f', 'f'],
         minimum_duration=Duration(1, 8),
         )
 
-    assert editor.target == handler
+    assert autoeditor.target == handler
 
 
 def test_Autoeditor__run_18():
@@ -372,12 +372,12 @@ def test_Autoeditor__run_18():
 
     session = scoremanager.core.Session(is_test=True)
     target = rhythmmakertools.TaleaRhythmMaker()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 't c (-1, 2, -3, 4) d 16 done sdc (6,) xcd (2, 3) done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),
@@ -390,7 +390,7 @@ def test_Autoeditor__run_18():
         extra_counts_per_division=(2, 3),
         )
 
-    assert editor.target == maker
+    assert autoeditor.target == maker
 
 
 def test_Autoeditor__run_19():
@@ -399,12 +399,12 @@ def test_Autoeditor__run_19():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -415,7 +415,7 @@ def test_Autoeditor__run_19():
         instruments=instruments,
         )
 
-    assert editor.target == performer
+    assert autoeditor.target == performer
 
 
 def test_Autoeditor__run_20():
@@ -424,12 +424,12 @@ def test_Autoeditor__run_20():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo rm piccolo done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -439,7 +439,7 @@ def test_Autoeditor__run_20():
         instruments=instruments,
         )
 
-    assert editor.target == performer
+    assert autoeditor.target == performer
 
 
 def test_Autoeditor__run_21():
@@ -448,12 +448,12 @@ def test_Autoeditor__run_21():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Performer()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo mv 1 2 done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Piccolo(),
@@ -464,7 +464,7 @@ def test_Autoeditor__run_21():
         instruments=instruments,
         )
 
-    assert editor.target == performer
+    assert autoeditor.target == performer
 
 
 # TODO: migrate to PerformerInventory test
@@ -474,13 +474,13 @@ def test_Autoeditor__run_22():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'ps add accordionist default add bassoonist default'
     input_ += ' add cellist default done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
@@ -496,7 +496,7 @@ def test_Autoeditor__run_22():
             instruments=[instrumenttools.Cello()],
             )])
 
-    assert editor.target == specifier
+    assert autoeditor.target == specifier
 
 
 # TODO: migrate to PerformerInventory test
@@ -508,12 +508,12 @@ def test_Autoeditor__run_23():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'ps add 1-3 default default default done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
@@ -527,7 +527,7 @@ def test_Autoeditor__run_23():
             instruments=[instrumenttools.BaritoneVoice()]),
             ])
 
-    assert editor.target == specifier
+    assert autoeditor.target == specifier
 
 
 # TODO: migrate to PerformerInventory test
@@ -537,13 +537,13 @@ def test_Autoeditor__run_24():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'ps add acc default add bass default add bassoon default'
     input_ += ' rm 3 rm 2 done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier(
         [
@@ -554,7 +554,7 @@ def test_Autoeditor__run_24():
             ]
         )
 
-    assert editor.target == specifier
+    assert autoeditor.target == specifier
 
 
 # TODO: migrate to PerformerInventory test
@@ -566,12 +566,12 @@ def test_Autoeditor__run_25():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'ps add 1-3 default default default rm 3-2 done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier(
         [
@@ -582,7 +582,7 @@ def test_Autoeditor__run_25():
             ]
         )
 
-    assert editor.target == specifier
+    assert autoeditor.target == specifier
 
 
 # TODO: migrate to PerformerInventory test
@@ -593,13 +593,13 @@ def test_Autoeditor__run_26():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.InstrumentationSpecifier()
-    editor = scoremanager.iotools.Autoeditor(
+    autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
         )
     input_ = 'ps add accordionist default add bassist default'
     input_ += ' add bassoonist bassoon mv 1 2 mv 2 3 done done'
-    editor._run(pending_input=input_)
+    autoeditor._run(pending_input=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
@@ -616,4 +616,4 @@ def test_Autoeditor__run_26():
             ),
         ])
 
-    assert editor.target == specifier
+    assert autoeditor.target == specifier

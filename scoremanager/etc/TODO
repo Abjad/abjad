@@ -7,7 +7,8 @@
 
 4.  Find a way dynamically to present default notice with default menu entries.
 
-5.  Distinguish positional editor parameters from keyword editor parameters.
+5.  Distinguish positional autoeditor parameters from keyword 
+    autoeditor parameters.
 
 6.  Audit the UI of the entire materials management system by hand.
 

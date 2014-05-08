@@ -44,7 +44,7 @@ class Autoeditor(Controller):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpreter representation of editor.
+        r'''Gets interpreter representation of autoeditor.
 
         Returns string.
         '''
@@ -106,35 +106,35 @@ class Autoeditor(Controller):
         from scoremanager import iotools
         from scoremanager import wizards
         if isinstance(attribute_detail.editor, types.FunctionType):
-            editor = attribute_detail.editor(
+            autoeditor = attribute_detail.editor(
                 space_delimited_attribute_name,
                 session=self._session,
                 prepopulated_value=prepopulated_value,
                 allow_none=True,
                 )
         elif issubclass(attribute_detail.editor, Autoeditor):
-            editor = attribute_detail.editor(
+            autoeditor = attribute_detail.editor(
                 session=self._session,
                 target=prepopulated_value,
                 )
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
-            editor = iotools.ListAutoeditor(
+            autoeditor = iotools.ListAutoeditor(
                 session=self._session,
                 target=target,
                 )
         elif isinstance(attribute_detail.editor, types.TypeType):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
-            editor = type(self)(
+            autoeditor = type(self)(
                 session=self._session,
                 target=target,
                 )
         elif issubclass(attribute_detail.editor, iotools.Selector):
-            editor = attribute_detail.editor(session=self._session)
+            autoeditor = attribute_detail.editor(session=self._session)
         elif issubclass(attribute_detail.editor, wizards.Wizard):
-            editor = attribute_detail.editor(
+            autoeditor = attribute_detail.editor(
                 session=self._session,
                 target=prepopulated_value,
                 )
@@ -142,7 +142,7 @@ class Autoeditor(Controller):
             message = 'what is {!r}?'
             message = message.format(attribute_detail.editor)
             raise ValueError(message)
-        return editor
+        return autoeditor
 
     def _get_target_summary_lines(self):
         result = []
@@ -353,7 +353,7 @@ class Autoeditor(Controller):
 
     @property
     def breadcrumb(self):
-        r'''Gets editor breadcrumb.
+        r'''Gets autoeditor breadcrumb.
 
         Returns string.
         '''
@@ -365,7 +365,7 @@ class Autoeditor(Controller):
 
     @property
     def is_autoadding(self):
-        r'''Is true when editor is autoadding. Otherwise false.
+        r'''Is true when autoeditor is autoadding. Otherwise false.
 
         Returns boolean.
         '''
@@ -373,7 +373,7 @@ class Autoeditor(Controller):
 
     @property
     def is_autoadvancing(self):
-        r'''Is true when editor is autoadvancing. Otherwise false.
+        r'''Is true when autoeditor is autoadvancing. Otherwise false.
 
         Returns boolean.
         '''
@@ -381,7 +381,7 @@ class Autoeditor(Controller):
 
     @property
     def is_autostarting(self):
-        r'''Is true when editor is autostarting. Otherwise false.
+        r'''Is true when autoeditor is autostarting. Otherwise false.
 
         Returns boolean.
         '''
@@ -389,7 +389,7 @@ class Autoeditor(Controller):
 
     @property
     def target(self):
-        r'''Gets editor target.
+        r'''Gets autoeditor target.
 
         Returns object or none.
         '''

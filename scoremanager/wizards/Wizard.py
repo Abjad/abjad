@@ -58,14 +58,14 @@ class Wizard(ScoreManagerObject):
             else:
                 raise ValueError(class_name)
             assert target
-            editor = iotools.Autoeditor(
+            autoeditor = iotools.Autoeditor(
                 session=self._session,
                 target=target,
                 )
-            editor._is_autoadvancing = True
-            editor._is_autostarting = True
-            editor._run()
-            self._target = editor.target
+            autoeditor._is_autoadvancing = True
+            autoeditor._is_autostarting = True
+            autoeditor._run()
+            self._target = autoeditor.target
 
     def _should_backtrack(self):
         if self._session.is_complete:

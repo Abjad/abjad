@@ -207,8 +207,8 @@ class MaterialPackageManager(PackageManager):
             class_ = iotools.ListAutoeditor
         else:
             class_ = iotools.Autoeditor
-        editor = class_(session=self._session, target=target)
-        return editor
+        autoeditor = class_(session=self._session, target=target)
+        return autoeditor
 
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -249,10 +249,10 @@ class MaterialPackageManager(PackageManager):
             if not os.path.isfile(self._output_module_path):
                 return
         output_material = self._execute_output_module()
-        editor = self._get_output_material_editor(target=output_material)
-        if not editor:
+        autoeditor = self._get_output_material_editor(target=output_material)
+        if not autoeditor:
             return
-        lines = editor._get_target_summary_lines()
+        lines = autoeditor._get_target_summary_lines()
         lines = lines or ['(empty)']
         return menu.make_material_summary_section(lines=lines)
 
@@ -548,21 +548,21 @@ class MaterialPackageManager(PackageManager):
             self._make_output_material() and
             isinstance(self._make_output_material(), wizards.Wizard)
             ):
-            editor = self._make_output_material(target=output_material)
+            autoeditor = self._make_output_material(target=output_material)
         else:
-            editor = self._get_output_material_editor(target=output_material)
-        if not editor:
+            autoeditor = self._get_output_material_editor(target=output_material)
+        if not autoeditor:
             return
-        editor._run()
+        autoeditor._run()
         if self._should_backtrack():
             return
         output_module_import_statements = self._output_module_import_statements
         if hasattr(self, '_make_output_module_body_lines'):
-            body_lines = self._make_output_module_body_lines(editor.target)
+            body_lines = self._make_output_module_body_lines(autoeditor.target)
         else:
             line = '{} = {}'
             target_repr = self._get_storage_format(
-                editor.target)
+                autoeditor.target)
             line = line.format(
                 self._material_package_name,
                 target_repr,
@@ -571,7 +571,7 @@ class MaterialPackageManager(PackageManager):
         self.write_output_material(
             import_statements=output_module_import_statements,
             body_lines=body_lines,
-            output_material=editor.target,
+            output_material=autoeditor.target,
             )
 
     def edit_and_interpret_illustrate_module(self):
