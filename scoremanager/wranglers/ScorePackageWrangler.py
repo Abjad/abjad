@@ -39,6 +39,7 @@ class ScorePackageWrangler(Wrangler):
         '_only_example_scores_during_test',
         '_include_asset_name',
         '_include_year',
+        '_sort_by_annotation',
         )
 
     ### INITIALIZER ###
@@ -55,6 +56,7 @@ class ScorePackageWrangler(Wrangler):
         self._include_year = True
         self._manager_class = managers.ScorePackageManager
         self._only_example_scores_during_test = True
+        self._sort_by_annotation = False
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
 

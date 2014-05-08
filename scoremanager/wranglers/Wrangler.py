@@ -625,10 +625,9 @@ class Wrangler(Controller):
         apply_view=True,
         human_readable=True,
         include_annotation=True,
-        include_extensions=False,
         include_asset_name=True,
+        include_extensions=False,
         include_year=False,
-        packages_instead_of_paths=False,
         sort_by_annotation=True,
         ):
         if hasattr(self, '_human_readable'):
@@ -639,6 +638,8 @@ class Wrangler(Controller):
             include_extensions = self._include_extensions
         if hasattr(self, '_include_year'):
             include_year = self._include_year
+        if hasattr(self, '_sort_by_annotation'):
+            sort_by_annotation = self._sort_by_annotation
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:
@@ -672,10 +673,15 @@ class Wrangler(Controller):
                 annotation = stringtools.strip_diacritics(annotation)
                 return annotation
             pairs.sort(key=lambda _: sort_function(_))
+        else:
+            def sort_function(pair):
+                string = pair[0]
+                string = stringtools.strip_diacritics(string)
+                string = string.replace("'", '')
+                return string
+            pairs.sort(key=lambda _: sort_function(_))
         entries = []
         for string, path in pairs:
-            if packages_instead_of_paths:
-                path = self._configuration.path_to_package_path(path)
             entry = (string, None, None, path)
             entries.append(entry)
         if apply_view and not self._session.is_test:
@@ -706,12 +712,11 @@ class Wrangler(Controller):
         else:
             return 'select {}:'.format(human_readable_target_name)
 
-    def _make_asset_selection_menu(self, packages_instead_of_paths=False):
+    def _make_asset_selection_menu(self):
         menu = self._io_manager.make_menu(name='asset selection')
         include_extensions = getattr(self, '_include_extensions', False)
         menu_entries = self._make_asset_menu_entries(
             include_extensions=include_extensions,
-            packages_instead_of_paths=packages_instead_of_paths,
             )
         menu.make_asset_section(
             menu_entries=menu_entries,
