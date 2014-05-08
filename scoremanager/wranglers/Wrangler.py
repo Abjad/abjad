@@ -595,13 +595,13 @@ class Wrangler(Controller):
         from scoremanager import wranglers
         current_paths = []
         paths = self._list_asset_paths()
-        current_path = self._get_current_directory_path()
+        current_directory = self._get_current_directory_path()
         for path in paths:
-            if current_path is None:
+            if current_directory is None:
                 current_paths.append(path)
             elif type(self) is wranglers.ScorePackageWrangler:
                 current_paths.append(path)
-            elif path.startswith(current_path):
+            elif path.startswith(current_directory):
                 current_paths.append(path)
         visible_paths = current_paths
         return visible_paths

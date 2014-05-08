@@ -236,33 +236,9 @@ class ScorePackageWrangler(Wrangler):
             )
         if self._session.is_test:
             entries = [_ for _ in entries if 'Example Score' in _[0]]
-        else:
+        elif apply_view:
             entries = self._filter_asset_menu_entries_by_view(entries)
         return entries
-
-    def _make_asset_menu_entries_for_cache(
-        self,
-        apply_view=True,
-        include_annotation=True,
-        include_extensions=False,
-        include_asset_name=False,
-        include_year=True,
-        human_readable=True,
-        packages_instead_of_paths=False,
-        sort_by_annotation=True,
-        ):
-        superclass = super(ScorePackageWrangler, self)
-        menu_entries = superclass._make_asset_menu_entries(
-            apply_view=apply_view,
-            include_annotation=include_annotation,
-            include_extensions=include_extensions,
-            include_asset_name=include_asset_name,
-            include_year=include_year,
-            human_readable=human_readable,
-            packages_instead_of_paths=packages_instead_of_paths,
-            sort_by_annotation=sort_by_annotation,
-            )
-        return menu_entries
 
     def _make_cache_menu_section(self, menu):
         commands = []

@@ -714,7 +714,8 @@ class IOManager(IOManager):
         lines.append('')
         lines.append('start_menu_entries = [')
         wrangler = self._session.score_manager._score_package_wrangler
-        menu_entries = wrangler._make_asset_menu_entries_for_cache(
+        menu_entries = wrangler._make_asset_menu_entries(
+            apply_view=False,
             include_asset_name=False,
             include_year=True,
             sort_by_annotation=True,
