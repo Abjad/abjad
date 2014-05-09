@@ -67,10 +67,11 @@ class AssetBackup(ContextManager):
         for path in self.paths:
             backup_path = path + '.backup'
             if os.path.isfile(path):
+                os.remove(backup_path)
                 shutil.copyfile(backup_path, path)
                 filecmp.cmp(path, backup_path)
-                os.remove(backup_path)
             elif os.path.isdir(path):
+                shutil.rmtree(path)
                 shutil.copytree(backup_path, path)
                 shutil.rmtree(backup_path)
         assert all(os.path.exists(_) for _ in self.paths)
