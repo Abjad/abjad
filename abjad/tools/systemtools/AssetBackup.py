@@ -36,15 +36,15 @@ class AssetBackup(ContextManager):
         Returns none.
         '''
         for path in self.remove:
-            assert not os.path.exists(path)
-        assert all(os.path.exists(_) for _ in self.paths)
+            assert not os.path.exists(path), repr(path)
+        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
         assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.paths)
         backup_paths = []
         for path in self.paths:
             backup_path = path + '.backup'
             if os.path.isfile(path):
                 shutil.copyfile(path, backup_path)
-                assert filecmp.cmp(path, backup_path)
+                assert filecmp.cmp(path, backup_path), repr(path)
             elif os.path.isdir(path):
                 shutil.copytree(path, backup_path)
             else:
@@ -61,20 +61,22 @@ class AssetBackup(ContextManager):
 
         Returns none.
         '''
-        assert all(os.path.exists(_) for _ in self.paths)
+        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
         assert all(os.path.exists(_) for _ in self.backup_paths)
-        assert len(self.paths) == len(self.backup_paths)
+        assert len(self.paths) == len(self.backup_paths), repr(self.paths)
         for path in self.paths:
             backup_path = path + '.backup'
+            assert os.path.exists(backup_path), repr(backup_path)
             if os.path.isfile(path):
-                os.remove(backup_path)
+                os.remove(path)
                 shutil.copyfile(backup_path, path)
                 filecmp.cmp(path, backup_path)
+                os.remove(backup_path)
             elif os.path.isdir(path):
                 shutil.rmtree(path)
                 shutil.copytree(backup_path, path)
                 shutil.rmtree(backup_path)
-        assert all(os.path.exists(_) for _ in self.paths)
+        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
         assert not any(os.path.exists(_) for _ in self.backup_paths)
         for path in self.remove:
             if os.path.exists:
