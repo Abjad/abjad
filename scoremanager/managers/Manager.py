@@ -386,7 +386,7 @@ class Manager(Controller):
             )
         self._session._hide_next_redraw = True
 
-    def _list_truly_visible_asset_paths(self):
+    def _list_visible_asset_paths(self):
         return [self._path]
 
     # TODO: eventually change prompt=False to prompt=True

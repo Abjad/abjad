@@ -25,6 +25,6 @@ def test_ScorePackageWrangler__list_visible_asset_paths_01():
             )
         paths.append(path)
 
-    result = wrangler._list_truly_visible_asset_paths()
+    result = wrangler._list_visible_asset_paths()
 
     assert result == paths

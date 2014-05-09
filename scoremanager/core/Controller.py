@@ -72,7 +72,7 @@ class Controller(ScoreManagerObject):
 
     def _list_python_files_in_visible_assets(self):
         assets = []
-        paths = self._list_truly_visible_asset_paths()
+        paths = self._list_visible_asset_paths()
         for path in paths:
             if os.path.isdir(path):
                 triples = os.walk(path)
@@ -234,7 +234,7 @@ class Controller(ScoreManagerObject):
 
     def _doctest(self):
         assets = []
-        paths = self._list_truly_visible_asset_paths()
+        paths = self._list_visible_asset_paths()
         for path in paths:
             if path.endswith('.py'):
                 assets.append(path)

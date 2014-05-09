@@ -213,7 +213,7 @@ class SegmentPackageWrangler(Wrangler):
         messages.append('')
         messages.append('will interpret ...')
         messages.append('')
-        segment_paths = self._list_truly_visible_asset_paths()
+        segment_paths = self._list_visible_asset_paths()
         for segment_path in segment_paths:
             input_path = os.path.join(segment_path, 'output.ly')
             output_path = os.path.join(segment_path, 'output.pdf')
