@@ -17,9 +17,7 @@ def test_StylesheetWrangler_copy_stylesheet_01():
         'test-foo-stylesheet.ily',
         )
 
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)
-    try:
+    with systemtools.AssetBackup(paths=[source_path], remove=[target_path]):
         input_ = 'y cp clean-letter-14.ily'
         input_ += ' My~stylesheets test~foo~stylesheet y q'
         score_manager._run(pending_input=input_)
@@ -27,9 +25,3 @@ def test_StylesheetWrangler_copy_stylesheet_01():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'test-foo-stylesheet.ily' in contents
-        os.remove(target_path)
-    finally:
-        if os.path.exists(target_path):
-            os.remove(target_path)
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)

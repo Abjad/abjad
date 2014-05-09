@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -44,9 +43,7 @@ def test_SegmentPackageWrangler_copy_package_02():
         'copied_segment_01',
         )
 
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)
-    try:
+    with systemtools.AssetBackup(paths=[source_path], remove=[target_path]):
         input_ = 'red~example~score g cp'
         input_ += ' segment~01 copied_segment_01 y q'
         score_manager._run(pending_input=input_)
@@ -54,9 +51,3 @@ def test_SegmentPackageWrangler_copy_package_02():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied_segment_01' in contents
-        shutil.rmtree(target_path)
-    finally:
-        if os.path.exists(target_path):
-            shutil.rmtree(target_path)
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)

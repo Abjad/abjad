@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -8,7 +7,6 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_SegmentPackageWrangler_version_artifacts_01():
     
-    input_ = ''
     target_paths = []
     segments = ('segment_01', 'segment_02', 'segment_03')
     file_names = ('definition.py', 'output.ly', 'output.pdf')
@@ -26,18 +24,8 @@ def test_SegmentPackageWrangler_version_artifacts_01():
             target_path = os.path.join(versions_directory, target_name)
             target_paths.append(target_path)
 
-    for path in target_paths:
-        assert not os.path.exists(path)
-
-    try:
+    with systemtools.AssetBackup(remove=target_paths):
         input_ = 'red~example~score g ver y q'
         score_manager._run(pending_input=input_)
         for path in target_paths:
             assert os.path.isfile(path)
-    finally:
-        for path in target_paths:
-            if os.path.exists(path):
-                os.remove(path)
-
-    for path in target_paths:
-        assert not os.path.exists(path)
