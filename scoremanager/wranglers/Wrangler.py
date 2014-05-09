@@ -591,22 +591,6 @@ class Wrangler(Controller):
             managers.append(manager)
         return managers
 
-    # TODO: test & see if this can be eliminated for self._list_aset_paths()
-    def _list_visible_asset_paths(self):
-        from scoremanager import wranglers
-        current_paths = []
-        paths = self._list_asset_paths()
-        current_directory = self._get_current_directory_path()
-        for path in paths:
-            if current_directory is None:
-                current_paths.append(path)
-            elif type(self) is wranglers.ScorePackageWrangler:
-                current_paths.append(path)
-            elif path.startswith(current_directory):
-                current_paths.append(path)
-        visible_paths = current_paths
-        return visible_paths
-
     def _list_truly_visible_asset_paths(self):
         entries = self._make_asset_menu_entries()
         paths = [_[-1] for _ in entries]
@@ -1067,7 +1051,7 @@ class Wrangler(Controller):
         for path in paths:
             manager = self._initialize_manager(path)
             manager.add_to_repository(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._session._hide_next_redraw = True
 
     def apply_view(self):
         r'''Applies view.
@@ -1126,6 +1110,7 @@ class Wrangler(Controller):
         paths = self._list_truly_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
+            self._session._hide_next_redraw = False
             manager.commit_to_repository(
                 commit_message=commit_message,
                 prompt=False,
@@ -1280,10 +1265,11 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._session._attempted_repository_status = True
-        paths = self._list_visible_asset_paths()
+        paths = self._list_truly_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
             manager = self._io_manager.make_directory_manager(path)
+            self._session._hide_next_redraw = False
             manager.repository_status(prompt=False)
         self._session._hide_next_redraw = True
 
@@ -1299,6 +1285,7 @@ class Wrangler(Controller):
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
             manager = self._io_manager.make_directory_manager(path)
+            self._session._hide_next_redraw = False
             manager.revert_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
@@ -1310,5 +1297,6 @@ class Wrangler(Controller):
         paths = self._list_truly_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
+            self._session._hide_next_redraw = False
             manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)

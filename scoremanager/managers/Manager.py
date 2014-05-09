@@ -389,9 +389,6 @@ class Manager(Controller):
     def _list_truly_visible_asset_paths(self):
         return [self._path]
 
-    def _list_visible_asset_paths(self):
-        return [self._path]
-
     # TODO: eventually change prompt=False to prompt=True
     def _remove(self, prompt=False):
         if prompt:
