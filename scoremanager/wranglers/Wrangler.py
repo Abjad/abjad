@@ -591,6 +591,7 @@ class Wrangler(Controller):
             managers.append(manager)
         return managers
 
+    # TODO: test & see if this can be eliminated for self._list_aset_paths()
     def _list_visible_asset_paths(self):
         from scoremanager import wranglers
         current_paths = []
@@ -640,7 +641,10 @@ class Wrangler(Controller):
             include_year = self._include_year
         if hasattr(self, '_sort_by_annotation'):
             sort_by_annotation = self._sort_by_annotation
-        paths = self._list_visible_asset_paths()
+        paths = self._list_asset_paths()
+        current_directory = self._get_current_directory_path()
+        if apply_view and current_directory:
+            paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = []
         for path in paths:
             if human_readable:
