@@ -279,5 +279,8 @@
 
 51. Reimplement metdata tests to create __metadata__.py.backup files.
     Then wrap with context manager.
+    Maybe also reimplement cache tests (like ScorePackageManager.edit_title())
+    to create cache.py.backup files.
+    Then wrap with context manager.
 
 52. Possibly forbid calls to ScorePackageWrangler.write_cache() during test.
