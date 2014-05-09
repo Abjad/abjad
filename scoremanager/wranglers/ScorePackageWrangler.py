@@ -202,10 +202,10 @@ class ScorePackageWrangler(Wrangler):
             directories.extend(result)
         return directories
 
-    def _list_truly_visible_asset_paths(self):
-        entries = self._make_asset_menu_entries()
-        paths = [_[-1] for _ in entries]
-        return paths
+#    def _list_truly_visible_asset_paths(self):
+#        entries = self._make_asset_menu_entries()
+#        paths = [_[-1] for _ in entries]
+#        return paths
 
     def _make_all_score_packages_menu_section(self, menu):
         commands = []

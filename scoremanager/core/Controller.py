@@ -71,12 +71,8 @@ class Controller(ScoreManagerObject):
         return paths
 
     def _list_python_files_in_visible_assets(self):
-        from scoremanager import wranglers
         assets = []
-        if type(self) is wranglers.ScorePackageWrangler:
-            paths = self._list_truly_visible_asset_paths()
-        else:
-            paths = self._list_visible_asset_paths()
+        paths = self._list_truly_visible_asset_paths()
         for path in paths:
             if os.path.isdir(path):
                 triples = os.walk(path)
@@ -238,7 +234,7 @@ class Controller(ScoreManagerObject):
 
     def _doctest(self):
         assets = []
-        paths = self._list_visible_asset_paths()
+        paths = self._list_truly_visible_asset_paths()
         for path in paths:
             if path.endswith('.py'):
                 assets.append(path)

@@ -531,7 +531,7 @@ class BuildFileWrangler(Wrangler):
         view_inventory = wrangler._read_view_inventory()
         if not view_inventory or view_name not in view_inventory:
             view_name = None
-        segment_paths = wrangler._list_visible_asset_paths()
+        segment_paths = wrangler._list_truly_visible_asset_paths()
         segment_paths = segment_paths or []
         segment_names = []
         for segment_path in segment_paths:
@@ -669,7 +669,7 @@ class BuildFileWrangler(Wrangler):
         view_inventory = wrangler._read_view_inventory()
         if not view_inventory or view_name not in view_inventory:
             view_name = None
-        segment_paths = wrangler._list_visible_asset_paths()
+        segment_paths = wrangler._list_truly_visible_asset_paths()
         segment_paths = segment_paths or []
         segment_names = []
         for segment_path in segment_paths:

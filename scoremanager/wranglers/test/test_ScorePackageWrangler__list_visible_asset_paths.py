@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('make me work')
 import os
 from abjad import *
 import scoremanager
@@ -27,6 +25,6 @@ def test_ScorePackageWrangler__list_visible_asset_paths_01():
             )
         paths.append(path)
 
-    result = wrangler._list_visible_asset_paths()
+    result = wrangler._list_truly_visible_asset_paths()
 
     assert result == paths
