@@ -14,15 +14,19 @@ class AssetBackup(ContextManager):
     __slots__ = (
         '_backup_paths',
         '_paths',
+        '_remove',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, paths=None):
+    def __init__(self, paths=None, remove=None):
         paths = paths or []
         assert isinstance(paths, (list, tuple)), repr(paths)
         paths = tuple(paths)
         self._paths = paths
+        remove = remove or []
+        assert isinstance(remove, (list, tuple)), repr(remove)
+        self._remove = remove
 
     ### SPECIAL METHODS ###
 
@@ -31,6 +35,8 @@ class AssetBackup(ContextManager):
 
         Returns none.
         '''
+        for path in self.remove:
+            assert not os.path.exists(path)
         assert all(os.path.exists(_) for _ in self.paths)
         assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.paths)
         backup_paths = []
@@ -50,7 +56,8 @@ class AssetBackup(ContextManager):
         self._backup_paths = backup_paths
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        r'''Restores assets and removes backups.
+        r'''Restores assets and removes backups;
+        also removes paths in remove list.
 
         Returns none.
         '''
@@ -68,6 +75,14 @@ class AssetBackup(ContextManager):
                 shutil.rmtree(backup_path)
         assert all(os.path.exists(_) for _ in self.paths)
         assert not any(os.path.exists(_) for _ in self.backup_paths)
+        for path in self.remove:
+            if os.path.exists:
+                if os.path.isfile(path):
+                    os.remove(path)
+                elif os.path.isdir(path):
+                    shutil.rmtree(path)
+                else:
+                    pass
 
     ### PUBLIC PROPERTIES ###
 
@@ -86,3 +101,11 @@ class AssetBackup(ContextManager):
         Returns tuple.
         '''
         return self._paths
+
+    @property
+    def remove(self):
+        r'''Gets paths to remove on exit.
+
+        Returns tuple.
+        '''
+        return self._remove
