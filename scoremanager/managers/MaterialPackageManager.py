@@ -612,7 +612,7 @@ class MaterialPackageManager(PackageManager):
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
         manager = managers.FileManager(path=path, session=self._session)
-        manager._write(contents)
+        self._io_manager.write(path, contents)
         self._io_manager.interpret(path, prompt=False)
         manager._remove()
         if result:
@@ -890,7 +890,7 @@ class MaterialPackageManager(PackageManager):
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)
         contents = ''.join(lines)
-        self._output_module_manager._write(contents)
+        self._io_manager.write(self._output_module_path, contents)
         output_material_class_name = type(output_material).__name__
         self._add_metadatum(
             'output_material_class_name', 

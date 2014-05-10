@@ -13,18 +13,6 @@ class FileManager(Manager):
     __slots__ = (
         )
 
-    ### INITIALIZER ###
-
-    def __init__(self, path=None, session=None):
-        superclass = super(FileManager, self)
-        superclass.__init__(path=path, session=session)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _input_to_action(self):
-        return {}
-
     ### PRIVATE METHODS ###
 
     def _execute(self, path=None, attribute_names=None):
@@ -48,7 +36,3 @@ class FileManager(Manager):
                 result.append(None)
         result = tuple(result)
         return result
-
-    def _write(self, contents):
-        with file(self._path, 'w') as file_pointer:
-            file_pointer.write(contents)

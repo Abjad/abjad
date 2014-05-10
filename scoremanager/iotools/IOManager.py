@@ -785,6 +785,14 @@ class IOManager(IOManager):
             capitalize=capitalize,
             )
 
+    def write(self, path, string):
+        r'''Write `string` to `path`.
+
+        Returns none.
+        '''
+        with open(path, 'w') as file_pointer:
+            file_pointer.write(string)
+
     def write_cache(self, prompt=True):
         r'''Writes cache.
 

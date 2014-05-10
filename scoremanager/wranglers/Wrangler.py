@@ -1031,7 +1031,7 @@ class Wrangler(Controller):
         lines.append(line)
         contents = '\n'.join(lines)
         manager = self._views_module_manager
-        manager._write(contents)
+        self._io_manager.write(manager._path, contents)
         message = 'view inventory written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
