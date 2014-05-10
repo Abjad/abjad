@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -19,9 +18,7 @@ def test_MakerModuleWrangler_copy_module_01():
         'ReusableScoreTemplate.py',
         )
 
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)
-    try:
+    with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'k cp RedExampleScoreTemplate.py'
         input_ += ' My~maker~modules ReusableScoreTemplate y q'
         score_manager._run(pending_input=input_)
@@ -29,9 +26,3 @@ def test_MakerModuleWrangler_copy_module_01():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'ReusableScoreTemplate.py' in contents
-        os.remove(target_path)
-    finally:
-        if os.path.exists(target_path):
-            os.remove(target_path)
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)

@@ -44,9 +44,7 @@ def test_MaterialPackageWrangler_copy_package_02():
         'copied_instrumentation',
         )
 
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)
-    try:
+    with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score m cp'
         input_ += ' instrumentation copied_instrumentation y q'
         score_manager._run(pending_input=input_)
@@ -54,9 +52,3 @@ def test_MaterialPackageWrangler_copy_package_02():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied_instrumentation' in contents
-        shutil.rmtree(target_path)
-    finally:
-        if os.path.exists(target_path):
-            shutil.rmtree(target_path)
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)

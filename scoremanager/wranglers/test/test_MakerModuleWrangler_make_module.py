@@ -14,12 +14,7 @@ def test_MakerModuleWrangler_make_module_01():
         'FooMaker.py',
         )
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score k new FooMaker.py q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-    assert not os.path.exists(path)

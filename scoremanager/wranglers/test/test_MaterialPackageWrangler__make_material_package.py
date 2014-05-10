@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
-import shutil
 from abjad import *
 import scoremanager
 
@@ -20,8 +18,7 @@ def test_MaterialPackageWrangler__make_material_package_01():
         'definition.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         wrangler._make_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -32,10 +29,6 @@ def test_MaterialPackageWrangler__make_material_package_01():
         output_material = manager._execute_output_module()
         assert output_material is None
         manager._remove()
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler__make_material_package_02():
@@ -52,8 +45,7 @@ def test_MaterialPackageWrangler__make_material_package_02():
         'definition.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         wrangler._make_package(path)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -64,7 +56,3 @@ def test_MaterialPackageWrangler__make_material_package_02():
         output_material = manager._execute_output_module()
         assert output_material is None
         manager._remove()
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)

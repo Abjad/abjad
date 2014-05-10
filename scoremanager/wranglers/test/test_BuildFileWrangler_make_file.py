@@ -14,12 +14,7 @@ def test_BuildFileWrangler_make_file_01():
         'test-file.txt',
         )
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score u new test-file.txt q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-    assert not os.path.exists(path)
