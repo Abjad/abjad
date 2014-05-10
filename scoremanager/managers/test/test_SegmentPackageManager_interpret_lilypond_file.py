@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import filecmp
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -25,27 +23,11 @@ def test_SegmentPackageManager_interpret_lilypond_file_01():
         'segment_01',
         'output.pdf',
         )
-    backup_output_path = output_path + '.backup'
-    assert os.path.isfile(input_path)
-    assert os.path.isfile(output_path)
-    assert not os.path.exists(backup_output_path)
 
-    try:
-        shutil.copyfile(output_path, backup_output_path)
-        assert filecmp.cmp(output_path, backup_output_path)
+    with systemtools.FilesystemState(keep=[input_path, output_path]):
         os.remove(output_path)
         assert not os.path.exists(output_path)
         input_ = 'red~example~score g segment~01 lyi y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(output_path)
         #assert diff-pdf(output_path, backup_output_path)
-    finally:
-        assert os.path.exists(backup_output_path)
-        if os.path.exists(output_path):
-            os.remove(output_path)
-        shutil.copyfile(backup_output_path, output_path)
-        os.remove(backup_output_path)
-
-    assert os.path.isfile(input_path)
-    assert os.path.isfile(output_path)
-    assert not os.path.exists(backup_output_path)

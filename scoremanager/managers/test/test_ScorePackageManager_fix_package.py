@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 import pytest
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -29,20 +28,9 @@ def test_ScorePackageManager_fix_package_02():
         )
 
     initializer_path = os.path.join(score_path, '__init__.py')
-    initializer_backup = initializer_path + '.backup'
     metadata_path = os.path.join(score_path, '__metadata__.py')
-    metadata_backup = metadata_path + '.backup'
 
-    assert os.path.isfile(initializer_path)
-    assert os.path.isfile(metadata_path)
-    assert not os.path.isfile(initializer_backup)
-    assert not os.path.isfile(metadata_backup)
-
-    try:
-        shutil.copyfile(initializer_path, initializer_backup)
-        shutil.copyfile(metadata_path, metadata_backup)
-        assert os.path.isfile(initializer_backup)
-        assert os.path.isfile(metadata_backup)
+    with systemtools.FilesystemState(keep=[initializer_path, metadata_path]):
         os.remove(initializer_path)
         os.remove(metadata_path)
         # calls fix_package() on ScorePackageManager start
@@ -50,13 +38,3 @@ def test_ScorePackageManager_fix_package_02():
         score_manager._run(pending_input=input_)
         assert os.path.isfile(initializer_path)
         assert os.path.isfile(metadata_path)
-    finally:
-        shutil.copyfile(initializer_backup, initializer_path)
-        shutil.copyfile(metadata_backup, metadata_path)
-        os.remove(initializer_backup)
-        os.remove(metadata_backup)
-
-    assert os.path.isfile(initializer_path)
-    assert os.path.isfile(metadata_path)
-    assert not os.path.exists(initializer_backup)
-    assert not os.path.exists(metadata_backup)

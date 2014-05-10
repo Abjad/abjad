@@ -15,17 +15,10 @@ def test_MaterialPackageManager_remove_unadded_assets_01():
         'test_foo.txt',
         )
 
-    assert not os.path.exists(foo_path)
-
-    try:
+    with systemtools.FilesystemState(remove=[foo_path]):
         with file(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'red~example~score m magic~numbers uar y q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(foo_path)
-    finally:
-        if os.path.exists(foo_path):
-            os.remove(foo_path)
-
-    assert not os.path.exists(foo_path)

@@ -11,20 +11,16 @@ def test_ScorePackageManager_edit_catalog_number_01():
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
         )
+    metadata_path = os.path.join(path, '__metadata__.py')
 
     manager = scoremanager.managers.ScorePackageManager
     manager = manager(path=path, session=score_manager._session)
     assert manager._get_metadatum('catalog_number') == '#165'
 
-    try:
+    with systemtools.FilesystemState(keep=[metadata_path]):
         input_ = 'red~example~score p catalog~number for~foo~bar q'
         score_manager._run(pending_input=input_)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path, session=session)
         assert manager._get_metadatum('catalog_number') == 'for foo bar'
-    finally:
-        input_ = 'red~example~score p catalog~number #165 q'
-        score_manager._run(pending_input=input_)
-
-    assert manager._get_metadatum('catalog_number') == '#165'

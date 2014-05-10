@@ -11,18 +11,12 @@ def test_ScorePackageManager_edit_paper_dimensions_01():
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
         )
+    metadata_path = os.path.join(path, '__metadata__.py')
 
-    try:
+    with systemtools.FilesystemState(keep=[metadata_path]):
+        manager = scoremanager.managers.ScorePackageManager
+        manager = manager(path=path, session=score_manager._session)
+        manager._get_metadatum('paper_dimensions') == '8.5 x 11 in'
         input_ = 'red~example~score p paper~dimensions A4 q'
         score_manager._run(pending_input=input_)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager
-        manager = manager(path=path, session=session)
         assert manager._get_metadatum('paper_dimensions') == 'A4'
-    finally:
-        input_ = 'red~example~score p paper~dimensions 8.5~x~11~in q'
-        score_manager._run(pending_input=input_)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager
-        manager = manager(path=path, session=session)
-        assert manager._get_metadatum('paper_dimensions') == '8.5 x 11 in'
