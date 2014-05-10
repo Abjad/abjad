@@ -282,3 +282,7 @@
     Then wrap with context manager.
 
 52. Possibly forbid calls to ScorePackageWrangler.write_cache() during test.
+
+53. (red~example~score u vnew _test)
+    The resulting dialogue should show Red Example Score build files only.
+    Right now the dialogue shows all build files everywhere.
