@@ -15,7 +15,7 @@ def test_SegmentPackageManager_write_stub_make_module_01():
         '__make__.py',
         )
 
-    with systemtools.AssetState(keep=[path]):
+    with systemtools.FilesystemState(keep=[path]):
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score g segment~01 mmws y q'

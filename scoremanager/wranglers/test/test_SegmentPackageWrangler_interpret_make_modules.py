@@ -26,7 +26,7 @@ def test_SegmentPackageWrangler_interpret_make_modules_01():
     pdf_paths = [_ for _ in paths if _.endswith('.pdf')]
     original_paths = ly_paths + pdf_paths
 
-    with systemtools.AssetState(keep=original_paths):
+    with systemtools.FilesystemState(keep=original_paths):
         input_ = 'red~example~score g mmi y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents

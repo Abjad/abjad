@@ -24,7 +24,7 @@ def test_SegmentPackageWrangler_version_artifacts_01():
             target_path = os.path.join(versions_directory, target_name)
             target_paths.append(target_path)
 
-    with systemtools.AssetState(remove=target_paths):
+    with systemtools.FilesystemState(remove=target_paths):
         input_ = 'red~example~score g ver y q'
         score_manager._run(pending_input=input_)
         for path in target_paths:

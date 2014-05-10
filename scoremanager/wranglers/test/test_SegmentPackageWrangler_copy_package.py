@@ -43,7 +43,7 @@ def test_SegmentPackageWrangler_copy_package_02():
         'copied_segment_01',
         )
 
-    with systemtools.AssetState(keep=[source_path], remove=[target_path]):
+    with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score g cp'
         input_ += ' segment~01 copied_segment_01 y q'
         score_manager._run(pending_input=input_)

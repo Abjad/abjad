@@ -17,7 +17,7 @@ def test_SegmentPackageManager_write_stub_initializer_01():
         '__init__.py',
         )
 
-    with systemtools.AssetState(remove=[path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score g segment~01 inws y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)

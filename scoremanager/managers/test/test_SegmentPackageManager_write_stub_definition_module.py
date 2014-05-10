@@ -16,7 +16,7 @@ def test_SegmentPackageManager_write_stub_definition_module_01():
         'definition.py',
         )
 
-    with systemtools.AssetState(keep=[path]):
+    with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score g segment~01 dmws y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)

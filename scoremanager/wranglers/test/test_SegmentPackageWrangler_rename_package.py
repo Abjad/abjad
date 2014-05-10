@@ -22,7 +22,7 @@ def test_SegmentPackageWrangler_rename_package_01():
         'renamed_segment_04',
         )
 
-    with systemtools.AssetState(remove=[path, new_path]):
+    with systemtools.FilesystemState(remove=[path, new_path]):
         input_ = 'red~example~score g new segment~04 q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
