@@ -23,9 +23,7 @@ def test_MaterialPackageWrangler_rename_package_01():
         'new_test_material',
         )
 
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)
-    try:
+    with systemtools.FilesystemState(remove=[path, new_path]):
         input_ = 'red~example~score m new test~material q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
@@ -33,10 +31,3 @@ def test_MaterialPackageWrangler_rename_package_01():
         score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
         assert os.path.exists(new_path)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-        if os.path.exists(new_path):
-            shutil.rmtree(new_path)
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)

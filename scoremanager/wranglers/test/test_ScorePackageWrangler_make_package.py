@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -25,8 +24,7 @@ def test_ScorePackageWrangler_make_package_01():
         'stylesheets',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'new example~score q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
@@ -34,7 +32,3 @@ def test_ScorePackageWrangler_make_package_01():
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)

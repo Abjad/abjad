@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -19,9 +18,7 @@ def test_ScorePackageWrangler_rename_package_01():
         'example_score_101',
         )
 
-    assert not os.path.exists(path_100)
-    assert not os.path.exists(path_101)
-    try:
+    with systemtools.FilesystemState(remove=[path_100, path_101]):
         input_ = 'new example~score~100 q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path_100)
@@ -33,10 +30,3 @@ def test_ScorePackageWrangler_rename_package_01():
         score_manager._run(pending_input=input_)
         assert not os.path.exists(path_100)
         assert os.path.exists(path_101)
-    finally:
-        if os.path.exists(path_100):
-            shutil.rmtree(path_100)
-        if os.path.exists(path_101):
-            shutil.rmtree(path_101)
-    assert not os.path.exists(path_100)
-    assert not os.path.exists(path_101)

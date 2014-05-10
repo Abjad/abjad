@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -15,8 +14,7 @@ def test_ScorePackageWrangler_remove_packages_01():
         'example_score_100',
         )
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'new example~score~100 q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
@@ -27,10 +25,6 @@ def test_ScorePackageWrangler_remove_packages_01():
         input_ = 'rm Example~Score~100 remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_ScorePackageWrangler_remove_packages_02():
@@ -46,8 +40,7 @@ def test_ScorePackageWrangler_remove_packages_02():
         'example_score_101',
         )
 
-    assert not os.path.exists(path_100)
-    try:
+    with systemtools.FilesystemState(remove=[path_100, path_101]):
         input_ = 'new example~score~100 new example~score~101 q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path_100)
@@ -64,10 +57,3 @@ def test_ScorePackageWrangler_remove_packages_02():
         score_manager._run(pending_input=input_)
         assert not os.path.exists(path_100)
         assert not os.path.exists(path_101)
-    finally:
-        if os.path.exists(path_100):
-            shutil.rmtree(path_100)
-        if os.path.exists(path_101):
-            shutil.rmtree(path_101)
-    assert not os.path.exists(path_100)
-    assert not os.path.exists(path_101)

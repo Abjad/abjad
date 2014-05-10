@@ -1,15 +1,13 @@
 # -*- encoding: utf-8 -*-
 import filecmp
 import os
-import pytest
 import shutil
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 package_path = os.path.join(
-    configuration.user_library_material_packages_directory_path,
+    score_manager._configuration.user_library_material_packages_directory_path,
     'testnotes',
     )
 initializer_file_path = os.path.join(package_path, '__init__.py')
@@ -18,15 +16,15 @@ definition_module_path = os.path.join(package_path, 'definition.py')
 output_module_path = os.path.join(package_path, 'output.py')
 
 exception_file_path = os.path.join(
-    configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory_path,
     'exception.py',
     )
 empty_unicode_file_path = os.path.join(
-    configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory_path,
     'empty_unicode.py',
     )
 boilerplate_definition_module_path = os.path.join(
-    configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory_path,
     'notes_definition.py',
     )
 
@@ -56,6 +54,7 @@ def test_MaterialPackageWrangler_make_package_02():
 
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
+    configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -66,8 +65,7 @@ def test_MaterialPackageWrangler_make_package_02():
         'definition.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'testnotes q'
         wrangler._session._pending_input = input_
         wrangler.make_package()
@@ -76,10 +74,6 @@ def test_MaterialPackageWrangler_make_package_02():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_make_package_03():
@@ -87,6 +81,7 @@ def test_MaterialPackageWrangler_make_package_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
+    configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -105,8 +100,7 @@ def test_MaterialPackageWrangler_make_package_03():
     lines.append('testnotes = None')
     contents = '\n'.join(lines)
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
@@ -114,10 +108,6 @@ def test_MaterialPackageWrangler_make_package_03():
             file_lines = file_pointer.readlines()
         file_contents = ''.join(file_lines)
         assert file_contents == contents
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_make_package_04():
@@ -125,19 +115,13 @@ def test_MaterialPackageWrangler_make_package_04():
     definition module are created. Removes package.
     '''
 
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
         assert os.path.exists(metadata_module_path)
         assert os.path.exists(definition_module_path)
-        shutil.rmtree(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
 
 
 def test_MaterialPackageWrangler_make_package_05():
@@ -146,8 +130,7 @@ def test_MaterialPackageWrangler_make_package_05():
     Removes package.
     '''
 
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
@@ -158,10 +141,6 @@ def test_MaterialPackageWrangler_make_package_05():
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
 
 
 def test_MaterialPackageWrangler_make_package_06():
@@ -169,9 +148,7 @@ def test_MaterialPackageWrangler_make_package_06():
     Creates output material. Removes package.
     '''
 
-
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
@@ -187,10 +164,6 @@ def test_MaterialPackageWrangler_make_package_06():
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
 
 
 def test_MaterialPackageWrangler_make_package_07():
@@ -204,8 +177,7 @@ def test_MaterialPackageWrangler_make_package_07():
         'definition.py',
         ]
 
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes default testnotes dms default q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
@@ -217,10 +189,6 @@ def test_MaterialPackageWrangler_make_package_07():
         assert manager._execute_output_module() is None
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
 
 
 def test_MaterialPackageWrangler_make_package_08():
@@ -228,8 +196,7 @@ def test_MaterialPackageWrangler_make_package_08():
     score manager starts when definition module is corrupt. Removes package.
     '''
 
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
@@ -239,10 +206,6 @@ def test_MaterialPackageWrangler_make_package_08():
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
 
 
 def test_MaterialPackageWrangler_make_package_09():
@@ -251,8 +214,7 @@ def test_MaterialPackageWrangler_make_package_09():
     starts when output module is corrupt. Removes package.
     '''
 
-    assert not os.path.exists(package_path)
-    try:
+    with systemtools.FilesystemState(remove=[package_path]):
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
@@ -275,7 +237,3 @@ def test_MaterialPackageWrangler_make_package_09():
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)
