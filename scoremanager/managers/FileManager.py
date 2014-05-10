@@ -89,15 +89,11 @@ class FileManager(Manager):
     def _make_file_menu_section(self, menu):
         commands = []
         if self._is_editable():
-            commands.append(('file - edit', 'dme'))
+            commands.append(('file - edit', 'e'))
+        else:
+            commands.append(('file - open', 'o'))
         commands.append(('file - rename', 'ren'))
         commands.append(('file - remove', 'rm'))
-        if self._path.endswith('.py'):
-            commands.append(('file - run', 'run'))
-        if self._path.endswith('.tex'):
-            commands.append(('file - typeset', 'ts'))
-        if self._path.endswith('.pdf'):
-            commands.append(('file - open', 'o'))
         menu.make_command_section(
             commands=commands,
             )
@@ -124,29 +120,6 @@ class FileManager(Manager):
         self._write(self._unicode_directive)
 
     ### PUBLIC METHODS ###
-
-    # TODO: hoist to IOManager
-    def call_lilypond(self, prompt=True):
-        r'''Calls LilyPond on file.
-
-        Returns none.
-        '''
-        if self._io_manager.find_executable('lily'):
-            executable = 'lily'
-        elif self._io_manager.find_executable('lilypond'):
-            executable = 'lilypond'
-        else:
-            message = 'Cannot find LilyPond executable.'
-            raise ValueError(message)
-        command = '{} {}'.format(
-            executable,
-            self._path,
-            )
-        input_directory = os.path.dirname(self._path)
-        with systemtools.TemporaryDirectoryChange(input_directory):
-            self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
-        self._session._hide_next_redraw = True
 
     def copy(
         self, 

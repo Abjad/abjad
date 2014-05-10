@@ -646,8 +646,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         path = self._illustration_ly_file_path
         if os.path.isfile(path):
-            manager = managers.FileManager(path=path, session=self._session)
-            manager.call_lilypond(prompt=prompt)
+            self._io_manager.invoke_lilypond(path, prompt=prompt)
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager.display([message, ''])

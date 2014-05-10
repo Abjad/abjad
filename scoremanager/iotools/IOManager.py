@@ -440,10 +440,30 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
+    def invoke_lilypond(self, file_path, prompt=True):
+        r'''Invokes LilyPond on file.
+
+        Returns none.
+        '''
+        if self.find_executable('lily'):
+            executable = 'lily'
+        elif self.find_executable('lilypond'):
+            executable = 'lilypond'
+        else:
+            message = 'cannot find LilyPond executable.'
+            raise ValueError(message)
+        command = '{} {}'.format(
+            executable,
+            file_path,
+            )
+        input_directory = os.path.dirname(file_path)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            self.spawn_subprocess(command)
+        self.display('')
+        self._session._hide_next_redraw = True
+
     def invoke_python(self, statement=None):
         r'''Invokes Python on `statement`.
-
-        Hides next redraw.
 
         Returns none.
         '''
