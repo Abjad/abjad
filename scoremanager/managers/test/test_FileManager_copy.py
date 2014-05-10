@@ -21,9 +21,7 @@ def test_FileManager_copy_01():
         session=session,
         )
 
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)
-    try:
+    with systemtools.FilesystemState(remove=[path, new_path]):
         file_manager._make_empty_asset()
         assert os.path.exists(path)
         input_ = 'new-temporary-file.txt y q'
@@ -31,12 +29,3 @@ def test_FileManager_copy_01():
         file_manager.copy()
         assert os.path.exists(path)
         assert os.path.exists(new_path)
-        file_manager._remove()
-        os.remove(new_path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-        if os.path.exists(new_path):
-            os.remove(new_path)
-    assert not os.path.exists(path)
-    assert not os.path.exists(new_path)

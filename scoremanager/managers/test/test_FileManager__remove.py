@@ -16,16 +16,11 @@ def test_FileManager__remove_01():
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         manager._make_empty_asset()
         assert os.path.exists(path)
         manager._remove()
         assert not os.path.exists(path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-    assert not os.path.exists(path)
 
 
 def test_FileManager__remove_02():
@@ -39,8 +34,7 @@ def test_FileManager__remove_02():
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         manager._make_empty_asset()
         assert os.path.exists(path)
         manager.add_to_repository(prompt=False)
@@ -48,7 +42,3 @@ def test_FileManager__remove_02():
         assert manager._is_git_added()
         manager._remove()
         assert not os.path.exists(path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-    assert not os.path.exists(path)

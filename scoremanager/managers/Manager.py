@@ -530,27 +530,22 @@ class Manager(Controller):
         assert self._is_up_to_date()
         path_1 = os.path.join(self._path, 'tmp_1.py')
         path_2 = os.path.join(self._path, 'tmp_2.py')
-        assert not os.path.exists(path_1)
-        assert not os.path.exists(path_2)
-        with file(path_1, 'w') as file_pointer:
-            file_pointer.write('')
-        with file(path_2, 'w') as file_pointer:
-            file_pointer.write('')
-        assert os.path.exists(path_1)
-        assert os.path.exists(path_2)
-        assert not self._is_up_to_date()
-        assert self._get_unadded_asset_paths() == [path_1, path_2]
-        assert self._get_added_asset_paths() == []
-        self.add_to_repository(prompt=False)
-        assert self._get_unadded_asset_paths() == []
-        assert self._get_added_asset_paths() == [path_1, path_2]
-        self.revert_to_repository(prompt=False)
-        assert self._get_unadded_asset_paths() == [path_1, path_2]
-        assert self._get_added_asset_paths() == []
-        os.remove(path_1)
-        os.remove(path_2)
-        assert not os.path.exists(path_1)
-        assert not os.path.exists(path_2)
+        with systemtools.FilesystemState(remove=[path_1, path_2]):
+            with file(path_1, 'w') as file_pointer:
+                file_pointer.write('')
+            with file(path_2, 'w') as file_pointer:
+                file_pointer.write('')
+            assert os.path.exists(path_1)
+            assert os.path.exists(path_2)
+            assert not self._is_up_to_date()
+            assert self._get_unadded_asset_paths() == [path_1, path_2]
+            assert self._get_added_asset_paths() == []
+            self.add_to_repository(prompt=False)
+            assert self._get_unadded_asset_paths() == []
+            assert self._get_added_asset_paths() == [path_1, path_2]
+            self.revert_to_repository(prompt=False)
+            assert self._get_unadded_asset_paths() == [path_1, path_2]
+            assert self._get_added_asset_paths() == []
         assert self._is_up_to_date()
         return True
 
@@ -558,25 +553,16 @@ class Manager(Controller):
         assert self._is_up_to_date()
         path_3 = os.path.join(self._path, 'tmp_3.py')
         path_4 = os.path.join(self._path, 'tmp_4.py')
-        assert not os.path.exists(path_3)
-        assert not os.path.exists(path_4)
-        with file(path_3, 'w') as file_pointer:
-            file_pointer.write('')
-        with file(path_4, 'w') as file_pointer:
-            file_pointer.write('')
-        assert os.path.exists(path_3)
-        assert os.path.exists(path_4)
-        assert not self._is_up_to_date()
-        assert self._get_unadded_asset_paths() == [path_3, path_4]
-        try:
+        with systemtools.FilesystemState(remove=[path_3, path_4]):
+            with file(path_3, 'w') as file_pointer:
+                file_pointer.write('')
+            with file(path_4, 'w') as file_pointer:
+                file_pointer.write('')
+            assert os.path.exists(path_3)
+            assert os.path.exists(path_4)
+            assert not self._is_up_to_date()
+            assert self._get_unadded_asset_paths() == [path_3, path_4]
             self.remove_unadded_assets(prompt=False)
-        finally:
-            if os.path.exists(path_3):
-                os.remove(path_3)
-            if os.path.exists(path_4):
-                os.remove(path_4)
-        assert not os.path.exists(path_3)
-        assert not os.path.exists(path_4)
         assert self._is_up_to_date()
         return True
 
@@ -587,19 +573,13 @@ class Manager(Controller):
         if not file_name:
             return
         file_path = os.path.join(self._path, file_name)
-        home_directory = self._configuration.home_directory_path
-        backup_copy = os.path.join(home_directory, file_name + '.back')
-        shutil.copyfile(file_path, backup_copy)
-        assert filecmp.cmp(file_path, backup_copy)
-        try:
+        with systemtools.FilesystemState(keep=[file_path]):
             with file(file_path, 'a') as file_pointer:
                 string = '# extra text appended during testing'
                 file_pointer.write(string)
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
             self.revert_to_repository(prompt=False)
-        finally:
-            shutil.copyfile(backup_copy, file_path)
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True

@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 import pytest
-import shutil
 from abjad import *
 from experimental import *
 import scoremanager
@@ -43,7 +42,8 @@ def test_MaterialPackageManager_autoedit_output_02():
         ])
 
     assert not os.path.exists(path)
-    try:
+
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testtempoinventory psa TempoInventory default'
         input_ += ' mae add d (1, 4) units 60 done add d (1, 4) units 90 done'
         input_ += ' done y default q'
@@ -57,10 +57,6 @@ def test_MaterialPackageManager_autoedit_output_02():
         assert output_material == inventory
         input_ = 'm rm testtempoinventory remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_03():
@@ -81,8 +77,7 @@ def test_MaterialPackageManager_autoedit_output_03():
         ]
     inventory = pitchtools.PitchRangeInventory()
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testpri'
         input_ += ' psa PitchRangeInventory default done y default q'
         score_manager._run(pending_input=input_)
@@ -95,10 +90,6 @@ def test_MaterialPackageManager_autoedit_output_03():
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_04():
@@ -127,8 +118,7 @@ def test_MaterialPackageManager_autoedit_output_04():
     input_ += ' add range [C2, G5] done'
     input_ += ' rm 1 mv 1 2 b y default q'
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -139,10 +129,6 @@ def test_MaterialPackageManager_autoedit_output_04():
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_05():
@@ -170,8 +156,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         'output.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = "m new testmarkupinventory psa markup default"
         input_ += " mae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y default q"
@@ -185,10 +170,6 @@ def test_MaterialPackageManager_autoedit_output_05():
         assert output_material == inventory
         input_ = 'm rm testmarkupinventory remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_06():
@@ -209,8 +190,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         ]
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
         input_ += ' psa OctaveTranspositionMappingInventory default'
         input_ += ' done y default q'
@@ -224,10 +204,6 @@ def test_MaterialPackageManager_autoedit_output_06():
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_07():
@@ -258,8 +234,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         mapping_2
         ])
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
         input_ += ' psa OctaveTranspositionMappingInventory default'
         input_ += ' mae add add source [A0, C4) target 15 done'
@@ -276,10 +251,6 @@ def test_MaterialPackageManager_autoedit_output_07():
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_08():
@@ -298,8 +269,7 @@ def test_MaterialPackageManager_autoedit_output_08():
         'output.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testlist psa list default mae 17 foo done b default q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
@@ -311,10 +281,6 @@ def test_MaterialPackageManager_autoedit_output_08():
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_09():
@@ -332,8 +298,7 @@ def test_MaterialPackageManager_autoedit_output_09():
         'output.py',
         ]
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testlist psa list default'
         input_ += ' mae add 17 add foo done y default q'
         score_manager._run(pending_input=input_)
@@ -346,10 +311,6 @@ def test_MaterialPackageManager_autoedit_output_09():
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_10():
@@ -378,8 +339,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         extra_counts_per_division=(2, 3),
         )
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testrhythmmaker psa TaleaRhythmMaker default'
         input_ += ' mae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
@@ -395,10 +355,6 @@ def test_MaterialPackageManager_autoedit_output_10():
         assert output_material == maker
         input_ = 'm rm testrhythmmaker remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_11():
@@ -425,8 +381,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         maximum_written_pitch=NamedPitch("c''''"),
         )
 
-    assert not os.path.exists(path)
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = "m new testarticulationhandler"
         input_ += " psa ReiteratedArticulationHandler default"
         input_ += " mae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
@@ -441,10 +396,6 @@ def test_MaterialPackageManager_autoedit_output_11():
         assert output_material == handler
         input_ = 'm rm testarticulationhandler remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-    assert not os.path.exists(path)
 
 
 def test_MaterialPackageManager_autoedit_output_12():
@@ -457,7 +408,6 @@ def test_MaterialPackageManager_autoedit_output_12():
         configuration.user_library_material_packages_directory_path,
         'testdynamichandler',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
@@ -469,7 +419,7 @@ def test_MaterialPackageManager_autoedit_output_12():
         minimum_duration=Duration(1, 16),
         )
 
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testdynamichandler'
         input_ += ' psa ReiteratedDynamicHandler default'
         input_ += ' mae dy f md (1, 16) done y default q'
@@ -483,8 +433,3 @@ def test_MaterialPackageManager_autoedit_output_12():
         assert output_material == handler
         input_ = 'm rm testdynamichandler remove q'
         score_manager._run(pending_input=input_)
-    finally:
-        if os.path.exists(path):
-            shutil.rmtree(path)
-
-    assert not os.path.exists(path)
