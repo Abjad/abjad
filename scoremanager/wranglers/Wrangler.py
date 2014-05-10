@@ -747,8 +747,7 @@ class Wrangler(Controller):
         if not name.endswith(extension):
             name = name + extension
         path = os.path.join(path, name)
-        manager = self._initialize_manager(path=path)
-        manager._make_empty_asset()
+        self._io_manager.make_empty_asset(path)
         self._io_manager.edit(path)
 
     def _make_main_menu(self, name=None):
