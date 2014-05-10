@@ -17,7 +17,7 @@ def test_StylesheetWrangler_copy_stylesheet_01():
         'test-foo-stylesheet.ily',
         )
 
-    with systemtools.AssetBackup(paths=[source_path], remove=[target_path]):
+    with systemtools.AssetState(keep=[source_path], remove=[target_path]):
         input_ = 'y cp clean-letter-14.ily'
         input_ += ' My~stylesheets test~foo~stylesheet y q'
         score_manager._run(pending_input=input_)

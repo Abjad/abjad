@@ -12,7 +12,7 @@ def test_StylesheetWrangler_make_stylesheet_01():
         'test-stylesheet.ily',
         )
 
-    with systemtools.AssetBackup(remove=[path]):
+    with systemtools.AssetState(remove=[path]):
         input_ = 'y new 1 test-stylesheet q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)

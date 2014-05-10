@@ -21,7 +21,7 @@ def test_SegmentPackageWrangler_interpret_lilypond_files_01():
 
     pdf_paths = [_ for _ in paths if _.endswith('.pdf')]
 
-    with systemtools.AssetBackup(paths=pdf_paths):
+    with systemtools.AssetState(keep=pdf_paths):
         input_ = 'red~example~score g lyi y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
