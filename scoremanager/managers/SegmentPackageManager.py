@@ -350,8 +350,7 @@ class SegmentPackageManager(PackageManager):
             if not result:
                 return
             self._io_manager.display('')
-        manager = self._io_manager.make_file_manager(self._make_module_path)
-        manager.interpret(prompt=False)
+        self._io_manager.interpret(self._make_module_path, prompt=False)
         if notify:
             messages = []
             message = 'Interpreted {!r}.'.format(self._make_module_path)

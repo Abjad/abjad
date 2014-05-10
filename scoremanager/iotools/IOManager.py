@@ -520,6 +520,30 @@ class IOManager(IOManager):
             self.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
+    def interpret(self, path, prompt=True):
+        r'''Invokes Python or LilyPond on `path`.
+
+        Returns integer success code.
+        '''
+        _, extension = os.path.splitext(path)
+        if extension == '.py':
+            command = 'python {}'.format(path)
+        elif extension == '.ly':
+            command = 'lilypond {}'.format(path)
+        else:
+            message = 'can not interpret {}.'.format(path)
+            raise Exception(message)
+        directory = os.path.dirname(path)
+        context = systemtools.TemporaryDirectoryChange(directory)
+        with context:
+            result = self.spawn_subprocess(command)
+        if result != 0:
+            self.display('')
+        elif prompt:
+            message = 'interpreted {}.'.format(path)
+            self.display([message])
+        return result
+
     def make_autoeditor(
         self, 
         breadcrumb=None,

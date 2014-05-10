@@ -498,8 +498,7 @@ class Wrangler(Controller):
             return
         self._io_manager.display('')
         for path in paths:
-            manager = self._io_manager.make_file_manager(path)
-            manager.interpret()
+            self._io_manager.interpret(path)
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry[0].isalpha():

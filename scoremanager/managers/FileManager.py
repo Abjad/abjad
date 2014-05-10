@@ -167,30 +167,6 @@ class FileManager(Manager):
             line_number=line_number,
             )
 
-    def interpret(self, prompt=True):
-        r'''Calls Python on file.
-
-        Returns integer success code.
-        '''
-        _, extension = os.path.splitext(self._path)
-        if extension == '.py':
-            command = 'python {}'.format(self._path)
-        elif extension == '.ly':
-            command = 'lilypond {}'.format(self._path)
-        else:
-            message = 'can not interpret {}.'.format(self._path)
-            raise Exception(message)
-        directory = os.path.dirname(self._path)
-        context = systemtools.TemporaryDirectoryChange(directory)
-        with context:
-            result = self._io_manager.spawn_subprocess(command)
-        if result != 0:
-            self._io_manager.display('')
-        elif prompt:
-            message = 'interpreted {}.'.format(self._path)
-            self._io_manager.display([message])
-        return result
-
     def open(self):
         r'''Opens file.
 

@@ -611,7 +611,7 @@ class MaterialPackageManager(PackageManager):
         path = os.path.join(self._path, file_name)
         manager = managers.FileManager(path=path, session=self._session)
         manager._write(contents)
-        result = manager.interpret(prompt=False)
+        self._io_manager.interpret(path, prompt=False)
         manager._remove()
         if result:
             message = 'created illustration.pdf and illustration.ly files.'
@@ -623,7 +623,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        result = self._definition_module_manager.interpret()
+        result = self._io_manager.interpret(self._definition_module_path)
         message = 'no exceptions raised; use (omo) to write output module.'
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
@@ -633,7 +633,8 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        result = self._illustrate_module_manager.interpret(prompt=prompt)
+        result = self._io_manager.interpret(self._illustrate_module_path,
+            prompt=prompt)
         if result == 0:
             self._io_manager.display('')
         self._session._hide_next_redraw = True
