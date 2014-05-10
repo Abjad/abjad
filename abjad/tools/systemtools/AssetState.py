@@ -5,7 +5,7 @@ import shutil
 from abjad.tools.abctools.ContextManager import ContextManager
 
 
-class AssetBackup(ContextManager):
+class AssetState(ContextManager):
     r'''Asset backup context manager.
     '''
 
@@ -13,17 +13,17 @@ class AssetBackup(ContextManager):
 
     __slots__ = (
         '_backup_paths',
-        '_paths',
+        '_keep',
         '_remove',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, paths=None, remove=None):
-        paths = paths or []
-        assert isinstance(paths, (list, tuple)), repr(paths)
-        paths = tuple(paths)
-        self._paths = paths
+    def __init__(self, keep=None, remove=None):
+        keep = keep or []
+        assert isinstance(keep, (list, tuple)), repr(keep)
+        keep = tuple(keep)
+        self._keep = keep
         remove = remove or []
         assert isinstance(remove, (list, tuple)), repr(remove)
         self._remove = remove
@@ -37,10 +37,10 @@ class AssetBackup(ContextManager):
         '''
         for path in self.remove:
             assert not os.path.exists(path), repr(path)
-        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
-        assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.paths)
+        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
+        assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.keep)
         backup_paths = []
-        for path in self.paths:
+        for path in self.keep:
             backup_path = path + '.backup'
             if os.path.isfile(path):
                 shutil.copyfile(path, backup_path)
@@ -61,10 +61,10 @@ class AssetBackup(ContextManager):
 
         Returns none.
         '''
-        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
+        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
         assert all(os.path.exists(_) for _ in self.backup_paths)
-        assert len(self.paths) == len(self.backup_paths), repr(self.paths)
-        for path in self.paths:
+        assert len(self.keep) == len(self.backup_paths), repr(self.keep)
+        for path in self.keep:
             backup_path = path + '.backup'
             assert os.path.exists(backup_path), repr(backup_path)
             if os.path.isfile(path):
@@ -76,7 +76,7 @@ class AssetBackup(ContextManager):
                 shutil.rmtree(path)
                 shutil.copytree(backup_path, path)
                 shutil.rmtree(backup_path)
-        assert all(os.path.exists(_) for _ in self.paths), repr(self.paths)
+        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
         assert not any(os.path.exists(_) for _ in self.backup_paths)
         for path in self.remove:
             if os.path.exists:
@@ -98,12 +98,12 @@ class AssetBackup(ContextManager):
         return self._backup_paths
 
     @property
-    def paths(self):
-        r'''Gets asset paths.
+    def keep(self):
+        r'''Gets asset paths to restore on exit.
 
         Returns tuple.
         '''
-        return self._paths
+        return self._keep
 
     @property
     def remove(self):
