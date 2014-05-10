@@ -801,3 +801,11 @@ class IOManager(IOManager):
         if prompt:
             message = 'cache written.'
             self.proceed(message)
+
+    def write_stub(self, path):
+        r'''Writes Unicode directive to otherwise empty file at `path`.
+
+        Returns none.
+        '''
+        with open(path, 'w') as file_pointer:
+            file_pointer.write(self._unicode_directive)

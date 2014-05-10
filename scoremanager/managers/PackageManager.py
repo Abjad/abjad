@@ -93,8 +93,7 @@ class PackageManager(DirectoryManager):
                 return
             if not result:
                 return
-        manager = self._initializer_file_manager
-        manager._write_stub()
+        self._io_manager.write_stub(self._initializer_file_path)
         if notify:
             message = 'wrote stub to {}.'
             message = message.format(path)

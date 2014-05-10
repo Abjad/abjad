@@ -66,6 +66,3 @@ class FileManager(Manager):
     def _write(self, contents):
         with file(self._path, 'w') as file_pointer:
             file_pointer.write(contents)
-
-    def _write_stub(self):
-        self._write(self._unicode_directive)

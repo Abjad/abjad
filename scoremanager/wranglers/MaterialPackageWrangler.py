@@ -215,7 +215,8 @@ class MaterialPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager._initializer_file_manager._write_stub()
+        initializer_path = os.path.join(path, '__init__.py')
+        self._io_manager.write_stub(initializer_path)
         manager.rewrite_metadata_module(
             metadata=metadata, 
             confirm=False,
