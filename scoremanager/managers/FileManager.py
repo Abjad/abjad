@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 import traceback
-from abjad.tools import stringtools
 from scoremanager.managers.Manager import Manager
 
 
@@ -24,14 +23,7 @@ class FileManager(Manager):
 
     @property
     def _input_to_action(self):
-        superlcass = super(FileManager, self)
-        result = superclass._input_to_action
-        result = result.copy()
-        result.update({
-            'cp': self.copy,
-            'o': self.open,
-            })
-        return result
+        return {}
 
     ### PRIVATE METHODS ###
 
@@ -58,44 +50,11 @@ class FileManager(Manager):
         result = tuple(result)
         return result
 
-    def _get_space_delimited_lowercase_name(self):
-        if self._path:
-            base_name = os.path.basename(self._path)
-            name = base_name.strip('.py')
-            name = stringtools.to_space_delimited_lowercase(name)
-            return name
-
-    def _handle_main_menu_result(self, result):
-        if result in self._input_to_action:
-            self._input_to_action[result]()
-        elif result == 'user entered lone return':
-            self._io_manager.edit(self._path)
-
-    def _is_editable(self):
-        if self._path.endswith(('.tex', '.py')):
-            return True
-        return False
-
     def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self._path):
             with file(self._path, 'w') as file_pointer:
                 file_pointer.write('')
         self._io_manager.proceed(prompt=prompt)
-
-    def _make_file_menu_section(self, menu):
-        commands = []
-        if self._is_editable():
-            commands.append(('file - edit', 'e'))
-        commands.append(('file - remove', 'rm'))
-        menu.make_command_section(
-            commands=commands,
-            )
-
-    def _make_main_menu(self, name='file manager'):
-        menu = self._io_manager.make_menu(name=name)
-        self._main_menu = menu
-        self._make_file_menu_section(self, menu)
-        return menu
 
     def _read_lines(self):
         result = []
