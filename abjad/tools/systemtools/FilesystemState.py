@@ -5,7 +5,7 @@ import shutil
 from abjad.tools.abctools.ContextManager import ContextManager
 
 
-class AssetState(ContextManager):
+class FilesystemState(ContextManager):
     r'''Asset backup context manager.
     '''
 
