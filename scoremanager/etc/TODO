@@ -277,9 +277,7 @@
         4: tempo inventory (AE)
     ... instead.
 
-51. Reimplement metdata tests to create __metadata__.py.backup files.
-    Then wrap with context manager.
-    Maybe also reimplement cache tests (like ScorePackageManager.edit_title())
+51. Reimplement cache tests (like ScorePackageManager.edit_title())
     to create cache.py.backup files.
     Then wrap with context manager.
 
