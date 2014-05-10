@@ -4,6 +4,7 @@ import shutil
 from abjad.tools import lilypondfiletools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
@@ -261,15 +262,48 @@ class BuildFileWrangler(Wrangler):
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
 
+#    def _typeset_file_ending_with(self, string):
+#        file_path = self._get_file_path_ending_with(string)
+#        if file_path:
+#            file_manager = self._initialize_manager(file_path)
+#            file_manager.typeset_tex_file()
+#        else:
+#            message = 'file ending in {!r} not found.'
+#            message = message.format(string)
+#            self._io_manager.display([message, ''])
+#        self._session._hide_next_redraw = True
+
     def _typeset_file_ending_with(self, string):
+        r'''Typesets TeX file.
+        Calls ``pdflatex`` on file TWICE.
+        Some LaTeX packages like ``tikz`` require two passes.
+        '''
         file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._initialize_manager(file_path)
-            file_manager.typeset_tex_file()
-        else:
+        if not file_path:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
             self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+            return
+        input_directory = os.path.dirname(file_path)
+        basename = os.path.basename(file_path)
+        input_file_name_stem, extension = os.path.splitext(basename)
+        output_directory = input_directory
+        command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
+        command = command.format(
+            input_file_name_stem,
+            output_directory,
+            input_directory,
+            input_file_name_stem,
+            )
+        command_called_twice = '{}; {}'.format(command, command)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            self._io_manager.spawn_subprocess(command_called_twice)
+            command = 'rm {}/*.aux'.format(output_directory)
+            self._io_manager.spawn_subprocess(command)
+            command = 'rm {}/*.log'.format(output_directory)
+            self._io_manager.spawn_subprocess(command)
+        self._io_manager.display('')
         self._session._hide_next_redraw = True
 
     ### PUBLIC METHODS ###

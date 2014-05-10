@@ -31,12 +31,9 @@ class FileManager(Manager):
         result = result.copy()
         result.update({
             'cp': self.copy,
-            # TODO: change 'dme' to 'e'
-            'dme': self.edit,
-            'o': self.view,
+            'e': self.edit,
+            'o': self.open,
             'ren': self.rename,
-            # TODO: remove 'ts'?
-            'ts': self.typeset_tex_file,
             })
         return result
 
@@ -248,34 +245,3 @@ class FileManager(Manager):
             file_name_callback=file_name_callback,
             force_lowercase=force_lowercase,
             )
-
-    def typeset_tex_file(self, prompt=True):
-        r'''Typesets TeX file.
-
-        Calls ``pdflatex`` on file TWICE.
-
-        Some LaTeX packages like ``tikz`` require two passes.
-
-        Then removes intermediate LaTeX artifacts.
-
-        Returns none.
-        '''
-        input_directory = os.path.dirname(self._path)
-        basename = os.path.basename(self._path)
-        input_file_name_stem, extension = os.path.splitext(basename)
-        output_directory = input_directory
-        command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
-        command = command.format(
-            input_file_name_stem,
-            output_directory,
-            input_directory,
-            input_file_name_stem,
-            )
-        command_called_twice = '{}; {}'.format(command, command)
-        with systemtools.TemporaryDirectoryChange(input_directory):
-            self._io_manager.spawn_subprocess(command_called_twice)
-            command = 'rm {}/*.aux'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
-            command = 'rm {}/*.log'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
