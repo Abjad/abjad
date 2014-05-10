@@ -587,15 +587,14 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        file_path = self._definition_module_path
-        self._io_manager.edit(file_path)
+        self._io_manager.edit(self._definition_module_path)
 
     def edit_illustrate_module(self):
         r'''Edits illustrate module module.
 
         Returns none.
         '''
-        self._illustrate_module_manager.edit()
+        self._io_manager.edit(self._illustrate_module_path)
 
     def illustrate_material(self, prompt=True):
         r'''Illustrates material.
@@ -665,21 +664,21 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._illustration_ly_file_manager.open()
+        self._io_manager.open_file(self._illustration_ly_file_path)
 
     def open_illustration_pdf(self):
         r'''Opens illustration PDF.
 
         Returns none.
         '''
-        self._illustration_pdf_file_manager.open()
+        self._io_manager.open_file(self._illustration_pdf_file_path)
 
     def open_output_module(self):
         r'''Opens output module.
 
         Returns none.
         '''
-        self._output_module_manager.open()
+        self._io_manager.open_file(self._output_module_path)
 
     def open_versioned_definition_module(self):
         r'''Opens versioned definition module.

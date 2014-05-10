@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 import traceback
 from abjad.tools import stringtools
-from abjad.tools import systemtools
 from scoremanager.managers.Manager import Manager
 
 
@@ -31,9 +29,7 @@ class FileManager(Manager):
         result = result.copy()
         result.update({
             'cp': self.copy,
-            'e': self.edit,
             'o': self.open,
-            'ren': self.rename,
             })
         return result
 
@@ -73,7 +69,7 @@ class FileManager(Manager):
         if result in self._input_to_action:
             self._input_to_action[result]()
         elif result == 'user entered lone return':
-            self.edit()
+            self._io_manager.edit(self._path)
 
     def _is_editable(self):
         if self._path.endswith(('.tex', '.py')):
@@ -90,9 +86,6 @@ class FileManager(Manager):
         commands = []
         if self._is_editable():
             commands.append(('file - edit', 'e'))
-        else:
-            commands.append(('file - open', 'o'))
-        commands.append(('file - rename', 'ren'))
         commands.append(('file - remove', 'rm'))
         menu.make_command_section(
             commands=commands,
@@ -118,79 +111,3 @@ class FileManager(Manager):
 
     def _write_stub(self):
         self._write(self._unicode_directive)
-
-    ### PUBLIC METHODS ###
-
-    def copy(
-        self, 
-        extension=None, 
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        r'''Copies file.
-
-        Returns none.
-        '''
-        getter = self._initialize_file_name_getter()
-        name = getter._run()
-        if self._should_backtrack():
-            return
-        name = stringtools.strip_diacritics(name)
-        if file_name_callback:
-            name = file_name_callback(name)
-        name = name.replace(' ', '_')
-        if force_lowercase:
-            name = name.lower()
-        if extension and not name.endswith(extension):
-            name = name + extension
-        parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, name)
-        message = 'new path will be {}'
-        message = message.format(new_path)
-        self._io_manager.display(message)
-        result = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        shutil.copyfile(self._path, new_path)
-        message = 'copied {}.'.format(self._path)
-        self._io_manager.proceed(message)
-
-    def edit(self, line_number=None):
-        r'''Edits file.
-
-        Returns none.
-        '''
-        self._io_manager.edit(
-            self._path,
-            line_number=line_number,
-            )
-
-    def open(self):
-        r'''Opens file.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._path):
-            self._io_manager.open_file(self._path)
-        else:
-            message = 'Can not find {}.'.format(self._path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-
-    def rename(
-        self, 
-        extension=None,
-        file_name_callback=None,
-        force_lowercase=True,
-        ):
-        r'''Renames file.
-
-        Returns none.
-        '''
-        self._rename_interactively(
-            extension=extension,
-            file_name_callback=file_name_callback,
-            force_lowercase=force_lowercase,
-            )

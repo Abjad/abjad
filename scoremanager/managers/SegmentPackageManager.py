@@ -272,10 +272,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        manager = self._definition_module_manager
-        if not manager:
-            return
-        manager.edit()
+        self._io_manager.edit(self._definition_module_path)
 
     def interpret_lilypond_file(self, confirm=True, notify=True):
         r'''Reinterprets current LilyPond file.

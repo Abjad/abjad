@@ -749,7 +749,7 @@ class Wrangler(Controller):
         path = os.path.join(path, name)
         manager = self._initialize_manager(path=path)
         manager._make_empty_asset()
-        manager.edit()
+        self._io_manager.edit(path)
 
     def _make_main_menu(self, name=None):
         menu = self._io_manager.make_menu(name=name)
@@ -1192,7 +1192,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         if os.path.exists(self._views_module_path):
-            self._views_module_manager.open()
+            self._io_manager.open_file(self._views_module_path)
         else:
             message = 'no views module found.'
             self._io_manager.display([message, ''])

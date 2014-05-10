@@ -59,11 +59,7 @@ class DistributionFileWrangler(Wrangler):
     ### PRIVATE METHODS ###
 
     def _edit_file(self, path):
-        manager = self._manager_class(
-            path=path,
-            session=self._session,
-            )
-        manager.edit()
+        self._io_manager.edit(path)
 
     def _enter_run(self):
         self._session._is_navigating_to_score_distribution_files = False
