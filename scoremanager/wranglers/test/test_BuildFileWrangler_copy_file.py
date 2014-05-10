@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -44,9 +43,7 @@ def test_BuildFileWrangler_copy_file_02():
         'copied-score.pdf',
         )
 
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)
-    try:
+    with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score u cp'
         input_ += ' score.pdf copied-score.pdf y q'
         score_manager._run(pending_input=input_)
@@ -54,9 +51,3 @@ def test_BuildFileWrangler_copy_file_02():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied-score.pdf' in contents
-        os.remove(target_path)
-    finally:
-        if os.path.exists(target_path):
-            os.remove(target_path)
-    assert os.path.exists(source_path)
-    assert not os.path.exists(target_path)

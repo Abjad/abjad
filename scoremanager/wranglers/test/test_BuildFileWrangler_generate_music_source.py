@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -20,14 +19,8 @@ def test_BuildFileWrangler_generate_music_source_01():
         'build',
         'music.ly',
         )
-    backup_path = path + '.backup'
 
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)
-
-    try:
-        shutil.copyfile(path, backup_path)
-        assert os.path.exists(backup_path)
+    with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u mg y y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
@@ -38,11 +31,3 @@ def test_BuildFileWrangler_generate_music_source_01():
         assert r'\language' in file_contents
         assert r'\version' in file_contents
         assert r'\context Score = "Red Example Score"' in file_contents
-    finally:
-        if os.path.exists(backup_path):
-            shutil.copyfile(backup_path, path)
-        if os.path.exists(backup_path):
-            os.remove(backup_path)
-
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)

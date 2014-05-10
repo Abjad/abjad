@@ -17,14 +17,8 @@ def test_BuildFileWrangler_generate_draft_source_01():
         'build',
         'draft.tex',
         )
-    backup_path = path + '.backup'
 
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)
-    shutil.copyfile(path, backup_path)
-    assert os.path.exists(backup_path)
-
-    try:
+    with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u dg y y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
@@ -32,12 +26,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
         assert 'Will assemble segments in this order:' in contents
         assert 'Overwrote' in contents
         assert os.path.isfile(path)
-        assert filecmp.cmp(path, backup_path)
-    finally:
-        shutil.move(backup_path, path)
-
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)
+        assert filecmp.cmp(path, path + '.backup')
 
 
 def test_BuildFileWrangler_generate_draft_source_02():
@@ -53,9 +42,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
         'draft.tex',
         )
 
-    assert not os.path.exists(path)
-
-    try:
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'blue~example~score u dg y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
@@ -63,11 +50,6 @@ def test_BuildFileWrangler_generate_draft_source_02():
         assert message not in contents
         assert 'Will assemble segments in this order:' in contents
         assert os.path.isfile(path)
-    finally:
-        if os.path.exists(path):
-            os.remove(path)
-
-    assert not os.path.exists(path)
 
 
 def test_BuildFileWrangler_generate_draft_source_03():
@@ -80,14 +62,9 @@ def test_BuildFileWrangler_generate_draft_source_03():
         'build',
         'draft.tex',
         )
-    backup_path = path + '.backup'
 
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)
-    shutil.copyfile(path, backup_path)
-    assert os.path.exists(backup_path)
+    with systemtools.FilesystemState(keep=[path]):
 
-    try:
         input_ = 'etude~example~score u dg y y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
@@ -96,9 +73,4 @@ def test_BuildFileWrangler_generate_draft_source_03():
         assert 'will generate source without segments' in contents
         assert 'Overwrote' in contents
         assert os.path.isfile(path)
-        assert filecmp.cmp(path, backup_path)
-    finally:
-        shutil.move(backup_path, path)
-
-    assert os.path.isfile(path)
-    assert not os.path.exists(backup_path)
+        assert filecmp.cmp(path, path + '.backup')
