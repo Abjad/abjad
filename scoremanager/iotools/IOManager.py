@@ -3,6 +3,7 @@ import abc
 import os
 import subprocess
 import readline
+import traceback
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import stringtools
@@ -353,6 +354,32 @@ class IOManager(IOManager):
         else:
             message = 'no file ending in *stylesheet.ily found.'
             self.proceed(message)
+
+    def execute_file(self, path=None, attribute_names=None):
+        r'''Executes file `path`.
+
+        Returns `attribute_names` from file.
+        '''
+        assert path is not None
+        assert isinstance(attribute_names, tuple)
+        if not os.path.isfile(path):
+            return
+        with open(path, 'r') as file_pointer:
+            file_contents_string = file_pointer.read()
+        try:
+            exec(file_contents_string)
+        except:
+            traceback.print_exc()
+            self.display('')
+            return 'corrupt'
+        result = []
+        for name in attribute_names:
+            if name in locals():
+                result.append(locals()[name])
+            else:
+                result.append(None)
+        result = tuple(result)
+        return result
 
     def get_greatest_version_number(self, version_directory):
         r'''Gets greatest version number in `version_directory`.

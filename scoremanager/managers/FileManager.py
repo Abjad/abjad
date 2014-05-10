@@ -32,9 +32,8 @@ class FileManager(Manager):
         path = path or self._path
         if not os.path.isfile(path):
             return
-        file_pointer = open(path, 'r')
-        file_contents_string = file_pointer.read()
-        file_pointer.close()
+        with open(path, 'r') as file_pointer:
+            file_contents_string = file_pointer.read()
         try:
             exec(file_contents_string)
         except:

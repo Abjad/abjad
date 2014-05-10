@@ -191,7 +191,8 @@ class MaterialPackageManager(PackageManager):
 
     def _execute_output_module(self):
         attribute_names = (self._material_package_name,)
-        result = self._output_module_manager._execute(
+        result = self._io_manager.execute_file(
+            path = self._output_module_path,
             attribute_names=attribute_names,
             )
         if result and len(result) == 1:
@@ -234,7 +235,8 @@ class MaterialPackageManager(PackageManager):
     def _interpret_definition_module(self):
         if not os.path.isfile(self._definition_module_path):
             return
-        result = self._definition_module_manager._execute(
+        result = self._io_manager.execute_file(
+            path=self._definition_module_path,
             attribute_names=(self._material_package_name,),
             )
         if result:
@@ -522,7 +524,8 @@ class MaterialPackageManager(PackageManager):
             'output_module_import_statements',
             self._material_package_name,
             )
-        result = self._definition_module_manager._execute(
+        result = self._io_manager.execute_file(
+            path=self._definition_module_path,
             attribute_names=attribute_names,
             )
         return result
