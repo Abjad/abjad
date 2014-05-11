@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 import scoremanager
 
@@ -37,6 +38,7 @@ def test_StylesheetWrangler_make_view_03():
     Makes sure no extra new lines appear before or after 
     'written to disk' message.
     '''
+    pytest.skip('port me forward.')
 
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default q' 
     score_manager._run(pending_input=input_)

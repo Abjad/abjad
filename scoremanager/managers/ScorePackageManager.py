@@ -268,7 +268,7 @@ class ScorePackageManager(PackageManager):
         superclass = super(ScorePackageManager, self)
         superclass._remove()
         wrangler = self._session._score_manager._score_package_wrangler
-        wrangler.write_cache(prompt=False)
+        wrangler.write_cache(confirm=False, display=False)
 
     ### PUBLIC METHODS ###
 
@@ -320,7 +320,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('title', result)
         wrangler = self._session._score_manager._score_package_wrangler
-        wrangler.write_cache(prompt=False)
+        wrangler.write_cache(confirm=False, display=False)
 
     def edit_year(self):
         r'''Edits year of completion of score.
@@ -338,7 +338,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('year', result)
         wrangler = self._session._score_manager._score_package_wrangler
-        wrangler.write_cache(prompt=False)
+        wrangler.write_cache(confirm=False, display=False)
 
     def fix_package(self, confirm=True, display=True):
         r'''Fixes score package.

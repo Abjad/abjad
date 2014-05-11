@@ -709,7 +709,8 @@ class MaterialPackageManager(PackageManager):
             body_lines=body_lines,
             import_statements=import_statements,
             output_material=empty_target,
-            prompt=False,
+            confirm=False,
+            display=False,
             )
         if display:
             self._session._hide_next_redraw = False
@@ -811,13 +812,14 @@ class MaterialPackageManager(PackageManager):
         import_statements=None,
         body_lines=None,
         output_material=None,
-        prompt=True,
+        confirm=True,
+        display=True,
         ):
         r'''Writes output material.
 
         Returns none.
         '''
-        if prompt:
+        if confirm:
             message = 'will write output material to {}.'
             message = message.format(self._output_module_path)
             self._io_manager.display(message)
@@ -862,7 +864,7 @@ class MaterialPackageManager(PackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
-        if prompt:
+        if display:
             message = 'wrote output material to {}.'
             message = message.format(self._output_module_path)
             self._io_manager.display([message, ''])

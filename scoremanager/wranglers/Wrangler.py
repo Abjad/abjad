@@ -854,10 +854,11 @@ class Wrangler(AssetController):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _remove_assets(self, prompt=True):
+    def _remove_assets(self, confirm=True, display=True):
         from scoremanager import managers
         paths = self._get_visible_asset_paths()
-        self._io_manager.display('')
+        if display:
+            self._io_manager.display('')
         if not paths:
             return
         count = len(paths)
@@ -872,7 +873,8 @@ class Wrangler(AssetController):
                 message = '    {}'.format(path)
                 messages.append(message)
         messages.append('')
-        self._io_manager.display(messages)
+        if display:
+            self._io_manager.display(messages)
         if count == 1:
             confirmation_string = 'remove'
         else:
@@ -880,7 +882,7 @@ class Wrangler(AssetController):
             confirmation_string = confirmation_string.format(count)
         prompt_string = "type {!r} to proceed"
         prompt_string = prompt_string.format(confirmation_string)
-        if prompt:
+        if confirm:
             getter = self._io_manager.make_getter()
             getter.append_string(prompt_string)
             result = getter._run()
@@ -890,7 +892,7 @@ class Wrangler(AssetController):
                 return
         for path in paths:
             manager = managers.PackageManager(path=path, session=self._session)
-            manager._remove(prompt=False)
+            manager._remove(confirm=False, display=False)
 
     def _rename_asset(
         self,
@@ -1020,7 +1022,12 @@ class Wrangler(AssetController):
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def _write_view_inventory(self, view_inventory, prompt=True):
+    def _write_view_inventory(
+        self, 
+        view_inventory, 
+        confirm=True,
+        display=True,
+        ):
         lines = []
         lines.append(self._unicode_directive)
         lines.append(self._abjad_import_statement)
@@ -1032,12 +1039,13 @@ class Wrangler(AssetController):
         lines.append(line)
         contents = '\n'.join(lines)
         self._io_manager.write(self._views_module_path, contents)
-        message = 'view inventory written to disk.'
-        self._io_manager.proceed(message, confirm=prompt)
+        if display:
+            message = 'view inventory written to disk.'
+            self._io_manager.display(message)
 
     ### PUBLIC METHODS ###
 
-    def add_to_repository(self, prompt=True):
+    def add_to_repository(self, confirm=True, display=True):
         r'''Adds assets to repository.
 
         Returns none.
@@ -1048,8 +1056,9 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
-            manager.add_to_repository(prompt=False)
-        self._session._hide_next_redraw = True
+            manager.add_to_repository(confirm=False, display=False)
+        if display:
+            self._session._hide_next_redraw = True
 
     def apply_view(self):
         r'''Applies view.
@@ -1085,7 +1094,7 @@ class Wrangler(AssetController):
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
 
-    def commit_to_repository(self, prompt=True):
+    def commit_to_repository(self, confirm=True, display=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -1098,22 +1107,23 @@ class Wrangler(AssetController):
         commit_message = getter._run()
         if self._should_backtrack():
             return
-        line = 'commit message will be: "{}"\n'.format(commit_message)
-        self._io_manager.display(line)
-        result = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not result:
-            return
+        if confirm:
+            line = 'commit message will be: "{}"\n'.format(commit_message)
+            self._io_manager.display(line)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
             self._session._hide_next_redraw = False
             manager.commit_to_repository(
                 commit_message=commit_message,
-                prompt=False,
+                confirm=False,
+                display=False,
                 )
-        self._io_manager.proceed(confirm=prompt)
 
     def doctest(self):
         r'''Runs doctest on Python files contained in visible assets.
@@ -1205,12 +1215,12 @@ class Wrangler(AssetController):
         '''
         self._pytest()
 
-    def remove_unadded_assets(self, prompt=True):
+    def remove_unadded_assets(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.
 
         Returns none.
         '''
-        self._remove_unadded_assets(prompt=prompt)
+        self._remove_unadded_assets(confirm=confirm, display=display)
 
     def remove_views(self):
         r'''Removes view(s) from views module.
@@ -1258,7 +1268,7 @@ class Wrangler(AssetController):
         view_inventory[new_view_name] = view
         self._write_view_inventory(view_inventory)
 
-    def repository_status(self, prompt=True):
+    def repository_status(self):
         r'''Display asset status in repository.
 
         Returns none.
@@ -1269,10 +1279,10 @@ class Wrangler(AssetController):
         for path in paths:
             manager = self._io_manager.make_directory_manager(path)
             self._session._hide_next_redraw = False
-            manager.repository_status(prompt=False)
+            manager.repository_status()
         self._session._hide_next_redraw = True
 
-    def revert_to_repository(self, prompt=True):
+    def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts assets from repository.
 
         Returns none.
@@ -1285,10 +1295,9 @@ class Wrangler(AssetController):
         for path in paths:
             manager = self._io_manager.make_directory_manager(path)
             self._session._hide_next_redraw = False
-            manager.revert_to_repository(prompt=False)
-        self._io_manager.proceed(confirm=prompt)
+            manager.revert_to_repository(confirm=False, display=False)
 
-    def update_from_repository(self, prompt=True):
+    def update_from_repository(self, confirm=True, display=True):
         r'''Updates assets from repository.
 
         Returns none.
@@ -1297,5 +1306,4 @@ class Wrangler(AssetController):
         for path in paths:
             manager = self._initialize_manager(path)
             self._session._hide_next_redraw = False
-            manager.update_from_repository(prompt=False)
-        self._io_manager.proceed(confirm=prompt)
+            manager.update_from_repository(confirm=False, display=False)

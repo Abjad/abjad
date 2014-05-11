@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-#import pytest
-#pytest.skip('make me work')
+import pytest
 from abjad import *
 import scoremanager
 
@@ -38,6 +37,7 @@ def test_SegmentPackageWrangler_make_view_03():
 
     Makes sure segment packages are not annotated with score title.
     '''
+    pytest.skip('port me forward.')
 
     input_ = 'red~example~score g vnew _test q' 
     score_manager._run(pending_input=input_)
@@ -56,6 +56,7 @@ def test_SegmentPackageWrangler_make_view_04():
     Makes sure no extra new lines appear before or after 
     'written to disk' message.
     '''
+    pytest.skip('port me forward.')
 
     input_ = 'g vnew _test rm all'
     input_ += ' add segment~01~(Red~Example~Score) done default q' 

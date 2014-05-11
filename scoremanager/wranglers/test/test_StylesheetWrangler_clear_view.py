@@ -13,8 +13,7 @@ def test_StylesheetWrangler_clear_view_01():
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - stylesheets (_test)',
@@ -27,13 +26,4 @@ def test_StylesheetWrangler_clear_view_01():
         '      stylesheets - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Score manager - stylesheets'
-    assert without_view.title == title
-
-    string = 'clean-letter-14.ily (Abjad)'
-    assert string in without_view.contents
-
-    string = 'clean-letter-16.ily (Abjad)'
-    assert string in without_view.contents
+    assert any(_.lines == lines for _ in transcript)

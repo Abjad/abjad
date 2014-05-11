@@ -30,7 +30,7 @@ def test_SegmentPackageWrangler_remove_packages_01():
         path=path,
         session=score_manager._session,
         )
-    manager.add_to_repository(prompt=False)
+    manager.add_to_repository(confirm=False, display=False)
 
     assert os.path.exists(path)
     assert not os.path.exists(backup_path)

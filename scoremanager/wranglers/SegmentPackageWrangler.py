@@ -94,12 +94,7 @@ class SegmentPackageWrangler(Wrangler):
             name='all segments',
             )
 
-    def _make_asset(
-        self,
-        path,
-        prompt=False,
-        metadata=None,
-        ):
+    def _make_asset(self, path, metadata=None):
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(path)
         os.mkdir(path)
@@ -111,8 +106,6 @@ class SegmentPackageWrangler(Wrangler):
         manager.write_definition_module()
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
-        message = 'segment created: {!r}.'.format(path)
-        self._io_manager.proceed(message=message, confirm=prompt)
 
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
@@ -136,12 +129,7 @@ class SegmentPackageWrangler(Wrangler):
         return menu
 
     # TODO: migrate to SegmentPackageManager
-    def _make_package(
-        self,
-        path,
-        prompt=False,
-        metadata=None,
-        ):
+    def _make_package(self, path, metadata=None):
         from scoremanager import managers
         assert os.path.sep in path
         metadata = collections.OrderedDict(metadata or {})
@@ -150,8 +138,6 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._initialize_manager(path)
         manager.write_stub_definition_module(confirm=False, display=False)
         manager.write_stub_make_module(confirm=False, display=False)
-        message = 'segment package created: {!r}.'.format(path)
-        self._io_manager.proceed(message=message, confirm=prompt)
 
     def _make_segments_menu_section(self, menu):
         commands = []
@@ -200,8 +186,9 @@ class SegmentPackageWrangler(Wrangler):
 
     def interpret_lilypond_files(
         self,
+        confirm=True,
+        display=True,
         open_output_pdfs=True,
-        prompt=True,
         ):
         r'''Reinterprets all current LilyPond files.
 
@@ -209,24 +196,25 @@ class SegmentPackageWrangler(Wrangler):
         '''
         segments_directory = self._get_current_directory()
         entries = sorted(os.listdir(segments_directory))
-        messages = []
-        messages.append('')
-        messages.append('will interpret ...')
-        messages.append('')
-        segment_paths = self._list_visible_asset_paths()
-        for segment_path in segment_paths:
-            input_path = os.path.join(segment_path, 'output.ly')
-            output_path = os.path.join(segment_path, 'output.pdf')
-            messages.append(' INPUT: {}'.format(input_path))
-            messages.append('OUTPUT: {}'.format(output_path))
+        if confirm:
+            messages = []
             messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        self._io_manager.display('')
+            messages.append('will interpret ...')
+            messages.append('')
+            segment_paths = self._list_visible_asset_paths()
+            for segment_path in segment_paths:
+                input_path = os.path.join(segment_path, 'output.ly')
+                output_path = os.path.join(segment_path, 'output.pdf')
+                messages.append(' INPUT: {}'.format(input_path))
+                messages.append('OUTPUT: {}'.format(output_path))
+                messages.append('')
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
         for manager in self._list_visible_asset_managers():
             self._session._hide_next_redraw = False
             manager.interpret_lilypond_file(confirm=False, display=True)

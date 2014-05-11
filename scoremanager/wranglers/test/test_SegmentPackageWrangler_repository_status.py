@@ -35,7 +35,7 @@ def test_SegmentPackageWrangler_repository_status_03():
     if not manager:
         return
 
-    manager.repository_status(prompt=False)
+    manager.repository_status()
     titles = manager._transcript.titles
 
     assert titles[0].endswith('...')

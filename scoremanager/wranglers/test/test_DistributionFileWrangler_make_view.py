@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 import scoremanager
 
@@ -37,6 +38,7 @@ def test_DistributionFileWrangler_make_view_03():
     Makes sure no extra new lines appear before or after 
     'written to disk' message.
     '''
+    pytest.skip('port me forward.')
 
     input_ = 'd vnew _test rm all'
     input_ += ' add red-example-score.pdf~(Red~Example~Score) done default q' 

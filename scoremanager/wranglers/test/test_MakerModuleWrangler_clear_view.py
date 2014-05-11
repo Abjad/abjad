@@ -19,8 +19,7 @@ def test_MakerModuleWrangler_clear_view_01():
     input_ += ' done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - maker modules (_test)',
@@ -33,19 +32,7 @@ def test_MakerModuleWrangler_clear_view_01():
         '      maker modules - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Score manager - maker modules'
-    assert without_view.title == title
-
-    lines = [
-        'RedExampleScoreTemplate.py (Red Example Score)',
-        'RedExampleScoreRhythmMaker.py (Red Example Score)',
-        ]
-
-    contents = without_view.contents
-    for line in lines:
-        assert line in contents
+    assert any(_.lines == lines for _ in transcript)
 
 
 def test_MakerModuleWrangler_clear_view_02():
@@ -60,8 +47,7 @@ def test_MakerModuleWrangler_clear_view_02():
     input_ += ' add RedExampleScoreTemplate.py done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Red Example Score (2013) - maker modules (_test)',
@@ -74,16 +60,4 @@ def test_MakerModuleWrangler_clear_view_02():
         '      maker modules - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Red Example Score (2013) - maker modules'
-    assert without_view.title == title
-
-    lines = [
-        'RedExampleScoreRhythmMaker.py',
-        'RedExampleScoreTemplate.py',
-        ]
-
-    contents = without_view.contents
-    for line in lines:
-        assert line in contents
+    assert any(_.lines == lines for _ in transcript)

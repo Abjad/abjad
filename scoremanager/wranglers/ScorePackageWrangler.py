@@ -267,7 +267,7 @@ class ScorePackageWrangler(Wrangler):
         '''
         path = self._configuration.user_score_packages_directory_path
         self._copy_asset(new_storehouse=path)
-        self.write_cache(prompt=False)
+        self.write_cache(confirm=False, display=False)
 
     def fix_packages(self, confirm=True, display=True):
         r'''Fixes visible score packages.
@@ -296,17 +296,16 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.display(messages)
         self._session._hide_next_redraw = True
 
-    def list_metadata_modules(self, prompt=True):
+    def list_metadata_modules(self):
         r'''Lists metadata modules in all visible score packages.
 
         Returns none.
         '''
         directories = self._list_all_directories_with_metadata_modules()
         paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        lines = paths[:]
-        lines.append('')
-        if prompt:
-            self._io_manager.display(lines)
+        messages = paths[:]
+        messages.append('')
+        self._io_manager.display(messages)
         message = '{} metadata modules found.'
         message = message.format(len(paths))
         self._io_manager.display([message, ''])
@@ -323,7 +322,7 @@ class ScorePackageWrangler(Wrangler):
         if not path:
             return
         self._make_asset(path)
-        self.write_cache(prompt=False)
+        self.write_cache(confirm=False, display=False)
 
     def open_cache(self):
         r'''Opens cache.
@@ -357,7 +356,7 @@ class ScorePackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def rewrite_metadata_modules(self, prompt=True):
+    def rewrite_metadata_modules(self, confirm=True, display=True):
         r'''Rewrites metadata modules in all visible score packages.
 
         Returns none.
@@ -370,15 +369,16 @@ class ScorePackageWrangler(Wrangler):
             messages.append(message)
             manager = self._io_manager.make_package_manager(directory)
             manager.rewrite_metadata_module(confirm=False, display=False)
-        messages.append('')
-        message = '{} metadata modules rewritten.'
-        message = message.format(len(directories))
-        messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        self._session._hide_next_redraw = True
+        if display:
+            messages.append('')
+            message = '{} metadata modules rewritten.'
+            message = message.format(len(directories))
+            messages.append(message)
+            messages.append('')
+            self._io_manager.display(messages)
+            self._session._hide_next_redraw = True
 
-    def write_cache(self, prompt=True):
+    def write_cache(self, confirm=True, display=True):
         r'''Writes cache.
 
         Returns none.
@@ -401,7 +401,7 @@ class ScorePackageWrangler(Wrangler):
         contents = '\n'.join(lines)
         cache_file_path = self._configuration.cache_file_path
         self._io_manager.write(cache_file_path, contents)
-        if prompt:
-            message = 'Wrote {}.'.format(cache_file_path)
+        if display:
+            message = 'wrote {}.'.format(cache_file_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True

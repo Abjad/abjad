@@ -14,7 +14,7 @@ def test_ScorePackageWrangler_apply_view_01():
     input_ += ' add Red~Example~Score done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_input=input_)
-    applied_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - scores (_test)',
@@ -27,4 +27,4 @@ def test_ScorePackageWrangler_apply_view_01():
         '      scores - rename (ren)',
         '',
         ]
-    assert applied_view.lines == lines
+    assert any(_.lines == lines for _ in transcript)

@@ -18,7 +18,7 @@ def test_BuildFileWrangler_apply_view_01():
     input_ += ' add segment-03.ly~(Red~Example~Score) done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_input=input_)
-    applied_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - build files (_test)',
@@ -33,7 +33,7 @@ def test_BuildFileWrangler_apply_view_01():
         '      files - rename (ren)',
         '',
         ]
-    assert applied_view.lines == lines
+    assert any(_.lines == lines for _ in transcript)
 
 
 def test_BuildFileWrangler_apply_view_02():
@@ -46,7 +46,7 @@ def test_BuildFileWrangler_apply_view_02():
     input_ += ' add segment-01.ly done default'
     input_ += ' va _test vrm _test default q'
     score_manager._run(pending_input=input_)
-    applied_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Red Example Score (2013) - build files (_test)',
@@ -59,4 +59,4 @@ def test_BuildFileWrangler_apply_view_02():
         '      files - rename (ren)',
         '',
         ]
-    assert applied_view.lines == lines
+    assert any(_.lines == lines for _ in transcript)

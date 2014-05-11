@@ -14,8 +14,7 @@ def test_SegmentPackageWrangler_clear_view_01():
     input_ += ' add segment~01~(Red~Example~Score) done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - segments (_test)',
@@ -28,13 +27,4 @@ def test_SegmentPackageWrangler_clear_view_01():
         '      segments - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Score manager - segments'
-    assert without_view.title == title
-
-    string = 'segment 01 (Red Example Score)'
-    assert string in without_view.contents
-
-    string = 'segment 02 (Red Example Score)'
-    assert string in without_view.contents
+    assert any(_.lines == lines for _ in transcript)

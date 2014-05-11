@@ -18,8 +18,7 @@ def test_DistributionFileWrangler_clear_view_01():
     input_ += ' add red-example-score.pdf~(Red~Example~Score) done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - distribution files (_test)',
@@ -32,19 +31,7 @@ def test_DistributionFileWrangler_clear_view_01():
         '      files - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Score manager - distribution files'
-    assert without_view.title == title
-
-    lines = [
-        'red-example-score.pdf (Red Example Score)',
-        'red-example-score-program-notes.txt (Red Example Score)',
-        ]
-
-    contents = without_view.contents
-    for line in lines:
-        assert line in contents
+    assert any(_.lines == lines for _ in transcript)
 
 
 def test_DistributionFileWrangler_clear_view_02():
@@ -60,8 +47,7 @@ def test_DistributionFileWrangler_clear_view_02():
     input_ += ' add red-example-score.pdf done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Red Example Score (2013) - distribution files (_test)',
@@ -74,16 +60,4 @@ def test_DistributionFileWrangler_clear_view_02():
         '      files - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Red Example Score (2013) - distribution files'
-    assert without_view.title == title
-
-    lines = [
-        'red-example-score.pdf',
-        'red-example-score-program-notes.txt',
-        ]
-
-    contents = without_view.contents
-    for line in lines:
-        assert line in contents
+    assert any(_.lines == lines for _ in transcript)

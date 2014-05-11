@@ -21,10 +21,9 @@ def test_StylesheetWrangler_remove_stylesheets_01():
         score_manager._run(pending_input=input_)
         assert not os.path.exists(path)
         assert os.path.exists(path + '.backup')
-        #shutil.move(path + '.backup', path)
         shutil.copyfile(path + '.backup', path)
         manager = scoremanager.managers.PackageManager(
             path=path,
             session=score_manager._session,
             )
-        manager.add_to_repository(prompt=False)
+        manager.add_to_repository(confirm=False, display=False)

@@ -499,8 +499,8 @@ class PackageManager(AssetController):
             result.append((display_string, None, metadata[key], key))
         return result
 
-    def _remove(self, prompt=True):
-        if prompt:
+    def _remove(self, confirm=True, display=True):
+        if confirm:
             message = '{} will be removed.'
             message = message.format(self._path)
             self._io_manager.display([message, ''])
@@ -702,10 +702,10 @@ class PackageManager(AssetController):
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
-            self.add_to_repository(prompt=False)
+            self.add_to_repository(confirm=False, display=False)
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
-            self.revert_to_repository(prompt=False)
+            self.revert_to_repository(confirm=False, display=False)
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
         assert self._is_up_to_date()
@@ -741,7 +741,7 @@ class PackageManager(AssetController):
                 file_pointer.write(string)
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
-            self.revert_to_repository(prompt=False)
+            self.revert_to_repository(confirm=False, display=False)
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
@@ -775,7 +775,7 @@ class PackageManager(AssetController):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def add_to_repository(self, prompt=True):
+    def add_to_repository(self, confirm=True, display=True):
         r'''Adds unversioned assets to repository.
 
         Returns none.
@@ -789,9 +789,13 @@ class PackageManager(AssetController):
         command = self._repository_add_command
         assert isinstance(command, str)
         self._io_manager.run_command(command)
-        self._io_manager.proceed(confirm=prompt)
 
-    def commit_to_repository(self, commit_message=None, prompt=True):
+    def commit_to_repository(
+        self, 
+        commit_message=None, 
+        confirm=True,
+        display=True,
+        ):
         r'''Commits unversioned assets to repository.
 
         Returns none.
@@ -805,21 +809,21 @@ class PackageManager(AssetController):
             commit_message = getter._run()
             if self._should_backtrack():
                 return
-            line = 'commit message will be: "{}"\n'.format(commit_message)
-            self._io_manager.display(line)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        lines = []
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        lines.append(line)
+            if confirm:
+                message = 'commit message will be: "{}"\n'.format(commit_message)
+                self._io_manager.display(message)
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+        messages = []
+        message = self._get_score_package_directory_name()
+        message = message + ' ...'
+        messages.append(message)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
         self._io_manager.run_command(command, capitalize=False)
-        self._io_manager.proceed(confirm=prompt)
 
     def doctest(self):
         r'''Runs doctest on Python files contained in visible assets.
@@ -889,7 +893,7 @@ class PackageManager(AssetController):
         '''
         self._remove_unadded_assets(confirm=confirm, display=display)
 
-    def repository_status(self, prompt=True):
+    def repository_status(self):
         r'''Displays repository status of assets.
 
         Returns none.
@@ -932,7 +936,7 @@ class PackageManager(AssetController):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def revert_to_repository(self, prompt=True):
+    def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts assets from repository.
 
         Returns none.
@@ -940,13 +944,13 @@ class PackageManager(AssetController):
         self._session._attempted_to_revert_to_repository = True
         if self._session.is_repository_test:
             return
-        message = 'reverting {} ...'
-        message = message.format(self._path)
-        self._io_manager.display(message)
+        if display:
+            message = 'reverting {} ...'
+            message = message.format(self._path)
+            self._io_manager.display(message)
         self._revert_from_repository()
-        self._io_manager.proceed(confirm=prompt)
 
-    def update_from_repository(self, prompt=True):
+    def update_from_repository(self, confirm=True, display=True):
         r'''Updates versioned assets.
 
         Returns none.
@@ -955,11 +959,11 @@ class PackageManager(AssetController):
         if self._session.is_repository_test:
             return
         line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._io_manager.display(line, capitalize=False)
+        if display:
+            line = line + ' ...'
+            self._io_manager.display(line, capitalize=False)
         command = self._repository_update_command
         self._io_manager.run_command(command)
-        self._io_manager.proceed(confirm=prompt)
 
     def write_stub_initializer(self, confirm=True, display=True):
         r'''Writes initializer stub.

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 import scoremanager
 
@@ -70,6 +71,7 @@ def test_MaterialPackageWrangler_make_view_05():
     Makes sure no extra new lines appear before or after 
     'written to disk' message.
     '''
+    pytest.skip('port me forward')
 
     input_ = 'm vnew _test rm all'
     input_ += ' add instrumentation~(Red~Example~Score) done default q' 

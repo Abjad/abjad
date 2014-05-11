@@ -18,8 +18,7 @@ def test_ScorePackageWrangler_clear_view_01():
     input_ += ' add Red~Example~Score done default'
     input_ += ' va _test vc vrm _test default q'
     score_manager._run(pending_input=input_)
-    with_view = score_manager._transcript[-10]
-    without_view = score_manager._transcript[-8]
+    transcript = score_manager._transcript
 
     lines = [
         'Score manager - scores (_test)',
@@ -32,17 +31,4 @@ def test_ScorePackageWrangler_clear_view_01():
         '      scores - rename (ren)',
         '',
         ]
-    assert with_view.lines == lines
-
-    title = 'Score manager - scores'
-    assert without_view.title == title
-
-    lines = [
-        'Red Example Score (2013)',
-        'Blue Example Score (2013)',
-        'Étude Example Score (2013)',
-        ]
-
-    contents = without_view.contents
-    for line in lines:
-        assert line in contents
+    assert any(_.lines == lines for _ in transcript)
