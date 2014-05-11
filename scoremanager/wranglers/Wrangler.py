@@ -611,6 +611,7 @@ class Wrangler(Controller):
 
     def _make_asset_menu_entries(
         self,
+        apply_current_directory=True,
         apply_view=True,
         human_readable=True,
         include_annotation=True,
@@ -632,6 +633,7 @@ class Wrangler(Controller):
         paths = self._list_asset_paths()
         current_directory = self._get_current_directory()
         if apply_view and current_directory:
+        #if (apply_current_directory or apply_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = []
         for path in paths:
@@ -1170,6 +1172,7 @@ class Wrangler(Controller):
         breadcrumb = 'views - {} - edit:'
         breadcrumb = breadcrumb.format(view_name)
         autoeditor = self._io_manager.make_autoeditor(
+            allow_item_edit=False,
             breadcrumb=breadcrumb,
             target=view,
             )

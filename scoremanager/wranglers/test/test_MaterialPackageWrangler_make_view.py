@@ -32,6 +32,24 @@ def test_MaterialPackageWrangler_make_view_02():
 
 
 def test_MaterialPackageWrangler_make_view_03():
+    r'''Makes sure numeric entry during view creation does not
+    raise an exception.
+    '''
+
+    input_ = 'red~example~score m vnew _test 1 q' 
+    score_manager._run(pending_input=input_)
+
+    titles = [
+        'Score manager - example scores',
+        'Red Example Score (2013)',
+        'Red Example Score (2013) - materials',
+        'Red Example Score (2013) - materials - views - _test - edit:',
+        'Red Example Score (2013) - materials - views - _test - edit:',
+        ]
+    assert score_manager._transcript.titles == titles
+
+
+def test_MaterialPackageWrangler_make_view_04():
     r'''Makes view in library. Removes view.
 
     Makes sure no extra new lines appear before or after 

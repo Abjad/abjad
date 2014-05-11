@@ -573,6 +573,7 @@ class IOManager(IOManager):
 
     def make_autoeditor(
         self, 
+        allow_item_edit=True,
         breadcrumb=None,
         target=None,
         ):
@@ -587,13 +588,19 @@ class IOManager(IOManager):
             )
         if isinstance(target, prototype):
             class_ = iotools.ListAutoeditor
+            return class_(
+                allow_item_edit=allow_item_edit,
+                breadcrumb=breadcrumb,
+                session=self._session,
+                target=target,
+                )
         else:
             class_ = iotools.Autoeditor
-        return class_(
-            breadcrumb=breadcrumb,
-            session=self._session,
-            target=target,
-            )
+            return class_(
+                breadcrumb=breadcrumb,
+                session=self._session,
+                target=target,
+                )
 
     def make_directory_manager(self, path):
         r'''Makes directory manager.

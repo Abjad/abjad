@@ -32,6 +32,7 @@ class ListAutoeditor(Autoeditor):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
+        '_allow_item_edit',
         '_item_class',
         '_item_creator_class',
         '_item_creator_class_kwargs',
@@ -45,6 +46,7 @@ class ListAutoeditor(Autoeditor):
 
     def __init__(
         self, 
+        allow_item_edit=True,
         breadcrumb=None,
         session=None, 
         target=None,
@@ -58,6 +60,7 @@ class ListAutoeditor(Autoeditor):
             session=session, 
             target=target,
             )
+        self._allow_item_edit = allow_item_edit
         self._item_class = None
         self._item_creator_class = None
         self._item_creator_class_kwargs = {}
@@ -123,13 +126,17 @@ class ListAutoeditor(Autoeditor):
 
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
-            raise TypeError('result must be string.')
+            message = 'result must be string: {!r}.'
+            message = message.format(result)
+            raise TypeError(message)
         if result in self._input_to_action:
             self._input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_item(result)
+            if self.allow_item_edit:
+                self.edit_item(result)
         else:
-            super(ListAutoeditor, self)._handle_main_menu_result(result)
+            superclass = super(ListAutoeditor, self)
+            superclass._handle_main_menu_result(result)
 
     def _initialize_target(self):
         if self.target is not None:
@@ -165,6 +172,19 @@ class ListAutoeditor(Autoeditor):
             )
         self._make_done_menu_section(menu)
         return menu
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allow_item_edit(self):
+        r'''Is true when list items can be edited.
+
+        Set to false to allow rearrangement of list items
+        without giving user the ability to edit list items.
+
+        Returns boolean.
+        '''
+        return self._allow_item_edit
 
     ### PUBLIC METHODS ###
 
