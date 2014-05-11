@@ -438,29 +438,26 @@ class SegmentPackageManager(PackageManager):
             return
         self._io_manager.open_file(file_paths)
 
-    def version_artifacts(self, prompt=True):
+    def version_artifacts(self, confirm=True, notify=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
         directory.
 
         Returns version number or none.
         '''
         paths = {}
-        definition_module_path = self._definition_module_path
-        if not os.path.isfile(definition_module_path):
-            message = 'can not find definition.py file.'
-            self._io_manager.proceed(
-                message,
-                prompt=prompt,
-                )
+        if not os.path.isfile(self._definition_module_path):
+            if notify:
+                message = 'can not find {}.'
+                message = message.format(self._definition_module_path)
+                self._io_manager.display(message)
             return
         output_pdf_file_path = self._output_pdf_file_path
-        if not os.path.isfile(output_pdf_file_path):
-            message = 'can not find output.pdf file.'
-            self._io_manager.proceed(
-                message,
-                prompt=prompt,
-                )
-            return
+        if not os.path.isfile(self._output_pdf_file_path):
+            if notify:
+                message = 'can not find {}.'
+                message = message.format(self._output_pdf_file_path)
+                self._io_manager.display(message)
+                return
         output_lilypond_file_path = self._output_lilypond_file_path
         if not os.path.isfile(output_lilypond_file_path):
             message = 'can not find output.ly file.'
@@ -477,7 +474,7 @@ class SegmentPackageManager(PackageManager):
             )
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
-        if prompt:
+        if confirm:
             messages = []
             messages.append('will copy ...')
             messages.append('')
@@ -498,7 +495,7 @@ class SegmentPackageManager(PackageManager):
             )
         # TODO: replace with shutil.copyfile()
         command = 'cp {} {}'.format(
-            definition_module_path,
+            self._definition_module_path,
             target_file_path,
             )
         self._io_manager.spawn_subprocess(command)

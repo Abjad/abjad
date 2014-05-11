@@ -323,12 +323,12 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def version_artifacts(self):
+    def version_artifacts(self, confirm=True, notify=True):
         r'''Versions all segment packages.
 
         Returns none.
         '''
-        self._version_artifacts()
+        self._version_artifacts(confirm=confirm, notify=notify)
 
     def write_stub_initializer(self):
         r'''Writes stub initializer module.

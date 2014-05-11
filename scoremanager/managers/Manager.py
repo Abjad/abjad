@@ -6,10 +6,10 @@ import shutil
 import subprocess
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.Controller import Controller
+from scoremanager.core.AssetController import AssetController
 
 
-class Manager(Controller):
+class Manager(AssetController):
     r'''Manager.
     '''
 
@@ -26,7 +26,8 @@ class Manager(Controller):
     def __init__(self, path=None, session=None):
         assert session is not None
         assert path is not None and os.path.sep in path
-        Controller.__init__(self, session=session)
+        superclass = super(Manager, self)
+        superclass.__init__(session=session)
         self._asset_identifier = None
         self._path = path
 

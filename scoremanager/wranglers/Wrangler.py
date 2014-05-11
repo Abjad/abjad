@@ -10,10 +10,10 @@ from abjad.tools import developerscripttools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.Controller import Controller
+from scoremanager.core.AssetController import AssetController
 
 
-class Wrangler(Controller):
+class Wrangler(AssetController):
     r'''Wrangler.
     '''
 
@@ -34,7 +34,8 @@ class Wrangler(Controller):
     def __init__(self, session=None):
         from scoremanager import managers
         assert session is not None
-        Controller.__init__(self, session=session)
+        superclass = super(Wrangler, self)
+        superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._asset_identifier = None
         self._basic_breadcrumb = None
@@ -745,7 +746,7 @@ class Wrangler(Controller):
         if not name.endswith(extension):
             name = name + extension
         path = os.path.join(path, name)
-        self._io_manager.make_empty_asset(path)
+        self._io_manager.write(path, '')
         self._io_manager.edit(path)
 
     def _make_main_menu(self, name=None):
@@ -1001,7 +1002,7 @@ class Wrangler(Controller):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
 
-    def _version_artifacts(self):
+    def _version_artifacts(self, confirm=True, notify=True):
         managers = self._list_visible_asset_managers()
         messages = []
         messages.append('will copy ...')
@@ -1015,7 +1016,7 @@ class Wrangler(Controller):
         if not result:
             return
         for manager in self._list_visible_asset_managers():
-            manager.version_artifacts(prompt=False)
+            manager.version_artifacts(confirm=False, notify=False)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 

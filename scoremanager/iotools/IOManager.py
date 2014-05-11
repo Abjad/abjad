@@ -613,16 +613,6 @@ class IOManager(IOManager):
             session=self._session,
             )
 
-    def make_empty_asset(self, path, prompt=False):
-        r'''Makes empty asset at file `path`.
-
-        Returns none.
-        '''
-        if not os.path.exists(path):
-            with file(path, 'w') as file_pointer:
-                file_pointer.write('')
-        self.proceed(prompt=prompt)
-
     def make_getter(
         self,
         allow_none=False,

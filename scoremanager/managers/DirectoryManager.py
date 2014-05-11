@@ -96,15 +96,6 @@ class DirectoryManager(Manager):
             menu_entries=menu_entries,
             )
 
-#    def _make_empty_asset(self, prompt=False):
-#        if not os.path.exists(self._path):
-#            os.makedirs(self._path)
-#            if self._is_in_git_repository(self._path):
-#                file_path = os.path.join(self._path, '.gitignore')
-#                with file(file_path, 'w') as file_pointer:
-#                    file_pointer.write('')
-#        self._io_manager.proceed(prompt=prompt)
-
     def _make_main_menu(self, name='directory manager'):
         menu = self._io_manager.make_menu(name=name)
         self._main_menu = menu

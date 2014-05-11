@@ -722,7 +722,7 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def version_artifacts(self, prompt=True):
+    def version_artifacts(self, confirm=True, notify=True):
         r'''Copies any of ``definition.py``, ``output.py``, 
         ``illustration.ly`` and ``illustration.pdf`` to versions directory,
         if they exist.
@@ -735,7 +735,7 @@ class MaterialPackageManager(PackageManager):
         greatest_version = self._io_manager.get_greatest_version_number(path)
         new_version = greatest_version + 1
         new_version_string = '%04d' % new_version
-        if prompt:
+        if confirm:
             messages = []
             messages.append('will copy ...')
             messages.append('')
@@ -795,8 +795,9 @@ class MaterialPackageManager(PackageManager):
                 target_file_path,
                 )
             self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
-        self._session._hide_next_redraw = True
+        if notify:
+            self._io_manager.display('')
+            self._session._hide_next_redraw = True
 
     def write_output_material(
         self,
