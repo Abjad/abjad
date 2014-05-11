@@ -5,9 +5,11 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScorePackageWrangler_write_cache_01():
+    r'''Not necessary to keep cache path with FilesystemState.
+    ScoreManager._run() always preserves cache during tests.
+    '''
 
     input_ = 'cw default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
-
     assert 'Wrote' in contents

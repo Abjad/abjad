@@ -101,7 +101,11 @@ class ScoreManager(Controller):
             )
         path = self._configuration.score_manager_directory_path
         directory_change = systemtools.TemporaryDirectoryChange(path)
-        with context, directory_change:
+        path = self._configuration.cache_file_path
+        state = systemtools.NullContextManager()
+        if self._session.is_test:
+            state = systemtools.FilesystemState(keep=[path])
+        with context, directory_change, state:
             wrangler = self._score_package_wrangler
             io_manager = self._io_manager
             while True:

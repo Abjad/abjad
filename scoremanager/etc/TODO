@@ -281,10 +281,8 @@
     to create cache.py.backup files.
     Then wrap with context manager.
 
-52. Possibly forbid calls to ScorePackageWrangler.write_cache() during test.
-
-53. Remove all Wrangler._*_manager properties.
+52. Remove all Wrangler._*_manager properties.
     Just pass paths to IOManager methods instead.
 
-54. Remove IOManager.write_cache() in favor of
+53. Remove IOManager.write_cache() in favor of
     ScorePackageWranlger.write_cache()

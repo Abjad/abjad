@@ -383,4 +383,25 @@ class ScorePackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager.write_cache(prompt=prompt)
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append('')
+        lines.append('')
+        lines.append('start_menu_entries = [')
+        menu_entries = self._make_asset_menu_entries(
+            apply_current_directory=False,
+            apply_view=False,
+            include_asset_name=False,
+            include_year=True,
+            sort_by_annotation=True,
+            )
+        for menu_entry in menu_entries:
+            lines.append('{},'.format(menu_entry))
+        lines.append(']')
+        contents = '\n'.join(lines)
+        cache_file_path = self._configuration.cache_file_path
+        self._io_manager.write(cache_file_path, contents)
+        if prompt:
+            message = 'Wrote {}.'.format(cache_file_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True

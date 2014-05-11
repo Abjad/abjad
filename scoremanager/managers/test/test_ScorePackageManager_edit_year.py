@@ -16,7 +16,6 @@ def test_ScorePackageManager_edit_year_01():
     with systemtools.FilesystemState(keep=[metadata_file]):
         input_ = 'red~example~score p year 2001 q'
         score_manager._run(pending_input=input_)
-        transcript = score_manager._transcript
-        assert transcript.signature == (9,)
-        assert transcript[-5].title == 'Red Example Score (2013) - setup'
-        assert transcript.last_title == 'Red Example Score (2001) - setup'
+        contents = score_manager._transcript.contents
+        string = 'Red Example Score (2001)'
+        assert string in contents
