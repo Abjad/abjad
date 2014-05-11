@@ -889,7 +889,7 @@ class Wrangler(Controller):
                 return
         for path in paths:
             manager = managers.Manager(path=path, session=self._session)
-            manager._remove()
+            manager._remove(prompt=False)
 
     def _rename_asset(
         self,

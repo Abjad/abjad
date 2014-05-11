@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler__make_material_package_01():
         assert manager._interpret_definition_module() is None
         output_material = manager._execute_output_module()
         assert output_material is None
-        manager._remove()
+        manager._remove(prompt=False)
 
 
 def test_MaterialPackageWrangler__make_material_package_02():
@@ -55,4 +55,4 @@ def test_MaterialPackageWrangler__make_material_package_02():
         assert manager._interpret_definition_module() is None
         output_material = manager._execute_output_module()
         assert output_material is None
-        manager._remove()
+        manager._remove(prompt=False)
