@@ -276,3 +276,5 @@
         3: pitch range inventory (AE)
         4: tempo inventory (AE)
     ... instead.
+
+51. Wrap view tests with FilesystemState.
