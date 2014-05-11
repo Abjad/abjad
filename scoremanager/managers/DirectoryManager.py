@@ -12,19 +12,7 @@ class DirectoryManager(Manager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_manager_class',
         )
-
-    ### INITIALIZER ###
-
-    def __init__(self, path=None, session=None):
-        from scoremanager import managers
-        superclass = super(DirectoryManager, self)
-        superclass.__init__(
-            path=path,
-            session=session,
-            )
-        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
@@ -70,14 +58,6 @@ class DirectoryManager(Manager):
             confirm=False, 
             notify=False,
             )
-
-    def _get_file_manager(self, file_path):
-        from scoremanager import managers
-        file_manager = managers.FileManager(
-            file_path,
-            session=self._session,
-            )
-        return file_manager
 
     def _get_metadata(self):
         metadata = None

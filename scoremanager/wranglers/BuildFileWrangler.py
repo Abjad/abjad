@@ -44,7 +44,6 @@ class BuildFileWrangler(Wrangler):
         self._human_readable = False
         self._include_extensions = True
         self._asset_identifier = 'file'
-        self._manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 

@@ -31,15 +31,6 @@ class PackageManager(DirectoryManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    @systemtools.Memoize
-    def _initializer_file_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self._initializer_file_path,
-            session=self._session,
-            )
-
-    @property
     def _initializer_file_path(self):
         return os.path.join(self._path, '__init__.py')
 

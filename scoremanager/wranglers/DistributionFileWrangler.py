@@ -37,7 +37,6 @@ class DistributionFileWrangler(Wrangler):
         self._asset_identifier = 'file'
         self._basic_breadcrumb = 'distribution files'
         self._include_extensions = True
-        self._manager_class = managers.FileManager
         self._score_storehouse_path_infix_parts = ('distribution',)
         self._user_storehouse_path = None
 

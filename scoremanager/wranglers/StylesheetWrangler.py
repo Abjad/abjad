@@ -40,7 +40,6 @@ class StylesheetWrangler(Wrangler):
         self._basic_breadcrumb = 'stylesheets'
         self._human_readable = False
         self._include_extensions = True
-        self._manager_class = managers.FileManager
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory_path

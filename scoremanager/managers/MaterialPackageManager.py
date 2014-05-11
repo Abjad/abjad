@@ -70,48 +70,16 @@ class MaterialPackageManager(PackageManager):
         return string
 
     @property
-    def _definition_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._definition_module_path,
-            session=self._session,
-            )
-
-    @property
     def _definition_module_path(self):
         return os.path.join(self._path, 'definition.py')
-
-    @property
-    def _illustrate_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._illustrate_module_path,
-            session=self._session,
-            )
 
     @property
     def _illustrate_module_path(self):
         return os.path.join(self._path, '__illustrate__.py')
 
     @property
-    def _illustration_ly_file_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._illustration_ly_file_path,
-            session=self._session,
-            )
-
-    @property
     def _illustration_ly_file_path(self):
         return os.path.join(self._path, 'illustration.ly')
-
-    @property
-    def _illustration_pdf_file_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._illustration_pdf_file_path,
-            session=self._session,
-            )
 
     @property
     def _illustration_pdf_file_path(self):
@@ -152,14 +120,6 @@ class MaterialPackageManager(PackageManager):
     @property
     def _material_package_name(self):
         return os.path.basename(self._path)
-
-    @property
-    def _output_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            path=self._output_module_path,
-            session=self._session,
-            )
 
     @property
     def _output_module_path(self):
@@ -611,10 +571,8 @@ class MaterialPackageManager(PackageManager):
         contents = '\n'.join(lines)
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
-        manager = managers.FileManager(path=path, session=self._session)
         self._io_manager.write(path, contents)
         self._io_manager.interpret(path, prompt=False)
-        manager._remove()
         if result:
             message = 'created illustration.pdf and illustration.ly files.'
             self._io_manager.display([message, ''])

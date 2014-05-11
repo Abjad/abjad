@@ -32,11 +32,13 @@ class Wrangler(Controller):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         assert session is not None
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
         self._asset_identifier = None
         self._basic_breadcrumb = None
+        self._manager_class = managers.Manager
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
 
@@ -852,6 +854,7 @@ class Wrangler(Controller):
         return manager._get_metadatum(metadatum_name)
 
     def _remove_assets(self, prompt=True):
+        from scoremanager import managers
         paths = self._get_visible_asset_paths()
         self._io_manager.display('')
         if not paths:
@@ -885,7 +888,7 @@ class Wrangler(Controller):
             if not result == confirmation_string:
                 return
         for path in paths:
-            manager = self._initialize_manager(path)
+            manager = managers.Manager(path=path, session=self._session)
             manager._remove()
 
     def _rename_asset(

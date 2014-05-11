@@ -37,7 +37,6 @@ class MakerModuleWrangler(Wrangler):
         self._asset_identifier = 'maker module'
         self._basic_breadcrumb = 'maker modules'
         self._include_extensions = True
-        self._manager_class = managers.FileManager
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
             self._configuration.user_library_makers_directory_path

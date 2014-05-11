@@ -623,18 +623,6 @@ class IOManager(IOManager):
                 file_pointer.write('')
         self.proceed(prompt=prompt)
 
-
-    def make_file_manager(self, path):
-        r'''Makes file manager.
-
-        Returns file manager.
-        '''
-        from scoremanager import managers
-        return managers.FileManager(
-            path=path,
-            session=self._session,
-            )
-
     def make_getter(
         self,
         allow_none=False,

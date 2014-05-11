@@ -41,22 +41,6 @@ class SegmentPackageManager(PackageManager):
         return string
 
     @property
-    def _definition_module_manager(self):
-        from scoremanager import managers
-        if not os.path.exists(self._definition_module_path):
-            message = 'no definition.py module found.'
-            result = self._io_manager.confirm(message)
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        manager = managers.FileManager(
-            self._definition_module_path,
-            session=self._session,
-            )
-        return manager
-
-    @property
     def _definition_module_path(self):
         return os.path.join(self._path, 'definition.py')
 
