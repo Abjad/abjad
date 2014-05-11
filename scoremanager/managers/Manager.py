@@ -11,6 +11,7 @@ from scoremanager.core.AssetController import AssetController
 
 class Manager(AssetController):
     r'''Manager.
+
     '''
 
     ### CLASS VARIABLES ###
