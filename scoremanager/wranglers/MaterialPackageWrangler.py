@@ -223,7 +223,7 @@ class MaterialPackageWrangler(Wrangler):
             display=False,
             )
         if definition_module_stub:
-            manager.write_stub_definition_module(prompt=False)
+            manager.write_stub_definition_module(confirm=False, display=False)
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, confirm=prompt)
 

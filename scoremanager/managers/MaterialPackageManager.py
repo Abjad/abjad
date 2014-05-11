@@ -556,7 +556,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.edit(self._illustrate_module_path)
 
-    def illustrate_material(self, prompt=True):
+    def illustrate_material(self, confirm=True, display=True):
         r'''Illustrates material.
 
         Creates illustration.pdf and illustration.ly files.
@@ -569,11 +569,12 @@ class MaterialPackageManager(PackageManager):
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
         self._io_manager.write(path, contents)
-        self._io_manager.interpret(path, prompt=False)
-        if result:
-            message = 'created illustration.pdf and illustration.ly files.'
-            self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        self._io_manager.interpret(path, confirm=confirm, display=display)
+        if display:
+            if result:
+                message = 'created illustration.pdf and illustration.ly files.'
+                self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def interpret_definition_module(self):
         r'''Calls Python on material definition module.
@@ -673,7 +674,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.print_not_yet_implemented()
 
-    def set_autoeditor(self, prompt=True):
+    def set_autoeditor(self, confirm=True, display=True):
         r'''Sets autoeditor.
 
         Returns none.
@@ -710,21 +711,23 @@ class MaterialPackageManager(PackageManager):
             output_material=empty_target,
             prompt=False,
             )
-        self._session._hide_next_redraw = False
-        message = 'package autoeditor set for {}.'
-        message = message.format(class_.__name__)
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        if display:
+            self._session._hide_next_redraw = False
+            message = 'package autoeditor set for {}.'
+            message = message.format(class_.__name__)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
-    def unset_autoeditor(self, prompt=True):
+    def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
 
         Returns none.
         '''
         self._remove_metadatum('use_autoeditor')
-        message = 'Package autoeditor set to none.'
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        if display:
+            message = 'Package autoeditor set to none.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.py``, 
@@ -865,12 +868,12 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def write_stub_definition_module(self, prompt=True):
+    def write_stub_definition_module(self, confirm=True, display=True):
         r'''Writes stub material definition module.
 
         Returns none.
         '''
-        if prompt:
+        if confirm:
             message = 'will write stub to {}.'
             message = message.format(self._definition_module_path)
             self._io_manager.display(message)
@@ -890,17 +893,17 @@ class MaterialPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._definition_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if prompt:
+        if display:
             message = 'wrote stub to {}.'.format(self._definition_module_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def write_stub_illustrate_module(self, prompt=True):
+    def write_stub_illustrate_module(self, confirm=True, display=True):
         r'''Writes stub illustrate module module.
 
         Returns none.
         '''
-        if prompt:
+        if confirm:
             message = 'will write stub to {}.'
             message = message.format(self._illustrate_module_path)
             self._io_manager.display(message)
@@ -927,7 +930,7 @@ class MaterialPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._illustrate_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if prompt:
+        if display:
             message = 'wrote stub to {}.'
             message = message.format(self._illustrate_module_path)
             self._io_manager.display([message, ''])
