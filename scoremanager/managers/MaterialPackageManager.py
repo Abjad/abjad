@@ -9,10 +9,10 @@ from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
 from scoremanager import wizards
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
-class MaterialPackageManager(PackageManager):
+class MaterialPackageManager(DirectoryManager):
     r'''Material package manager.
 
 
@@ -47,11 +47,8 @@ class MaterialPackageManager(PackageManager):
     def __init__(self, path=None, session=None):
         if path is not None:
             assert os.path.sep in path
-        PackageManager.__init__(
-            self,
-            path=path,
-            session=session,
-            )
+        superclass = super(MaterialPackageManager, self)
+        superclass.__init__(path=path, session=session)
         self._output_module_import_statements = [
             self._abjad_import_statement,
             ]

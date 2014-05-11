@@ -3,10 +3,10 @@ import functools
 import os
 from abjad.tools import indicatortools
 from abjad.tools import systemtools
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
-class ScorePackageManager(PackageManager):
+class ScorePackageManager(DirectoryManager):
     r'''Score package manager.
     '''
 
@@ -18,11 +18,8 @@ class ScorePackageManager(PackageManager):
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
-        PackageManager.__init__(
-            self,
-            path=path,
-            session=session,
-            )
+        superclass = super(ScorePackageManager, self)
+        superclass.__init__(path=path, session=session)
 
     ### PRIVATE PROPERTIES ###
 

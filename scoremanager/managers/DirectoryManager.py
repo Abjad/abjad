@@ -12,9 +12,22 @@ class DirectoryManager(Manager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_package_name',
         )
 
+    ### INITIALIZER ###
+
+    def __init__(self, path=None, session=None):
+        superclass = super(DirectoryManager, self)
+        superclass.__init__(path=path, session=session)
+        assert path is not None
+        self._package_name = os.path.basename(path)
+
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _initializer_file_path(self):
+        return os.path.join(self._path, '__init__.py')
 
     @property
     def _input_to_action(self):
@@ -22,6 +35,8 @@ class DirectoryManager(Manager):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
+            'ino': self.open_initializer,
+            'inws': self.write_stub_initializer,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
@@ -59,6 +74,11 @@ class DirectoryManager(Manager):
             notify=False,
             )
 
+    def _enter_run(self):
+        self._session._is_navigating_to_next_asset = False
+        self._session._is_navigating_to_previous_asset = False
+        self._session._last_asset_path = self._path
+
     def _get_metadata(self):
         metadata = None
         if os.path.isfile(self._metadata_module_path):
@@ -88,18 +108,16 @@ class DirectoryManager(Manager):
         else:
             self._run_asset_manager(result)
 
-    def _make_asset_menu_section(self, menu):
-        menu_entries = self._make_asset_menu_entries()
-        if not menu_entries:
-            return
-        section = menu.make_asset_section(
-            menu_entries=menu_entries,
-            )
+#    def _make_asset_menu_section(self, menu):
+#        menu_entries = self._make_asset_menu_entries()
+#        if not menu_entries:
+#            return
+#        section = menu.make_asset_section(
+#            menu_entries=menu_entries,
+#            )
 
     def _make_main_menu(self, name='directory manager'):
         menu = self._io_manager.make_menu(name=name)
-        self._main_menu = menu
-        self._make_asset_menu_section(menu)
         return menu
 
     @staticmethod
@@ -217,6 +235,9 @@ class DirectoryManager(Manager):
             )
         manager._run()
 
+    def _run_first_time(self, **kwargs):
+        self._run(**kwargs)
+
     def _write_metadata_module(self, metadata):
         lines = []
         lines.append(self._unicode_directive)
@@ -260,6 +281,13 @@ class DirectoryManager(Manager):
         message = '{!r}'.format(metadatum)
         self._io_manager.proceed(message=message)
 
+    def open_initializer(self):
+        r'''Opens initializer.
+
+        Returns none.
+        '''
+        self._io_manager.open_file(self._initializer_file_path)
+
     def open_metadata_module(self):
         r'''Edits metadata module.
 
@@ -301,5 +329,28 @@ class DirectoryManager(Manager):
         self._write_metadata_module(metadata)
         if notify:
             message = 'rewrote metadata module.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+
+    def write_stub_initializer(self, confirm=True, notify=True):
+        r'''Writes initializer stub.
+
+        Returns none.
+        '''
+        path = self._initializer_file_path
+        if notify:
+            message = 'will write stub to {}.'
+            message = message.format(path)
+            self._io_manager.display(message)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+        self._io_manager.write_stub(self._initializer_file_path)
+        if notify:
+            message = 'wrote stub to {}.'
+            message = message.format(path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True

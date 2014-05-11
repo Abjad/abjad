@@ -2,10 +2,10 @@
 import itertools
 import os
 from abjad.tools import systemtools
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
-class SegmentPackageManager(PackageManager):
+class SegmentPackageManager(DirectoryManager):
     r'''Segment package manager.
     '''
 
@@ -16,16 +16,9 @@ class SegmentPackageManager(PackageManager):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        path=None,
-        session=None,
-        ):
-        PackageManager.__init__(
-            self,
-            path=path,
-            session=session,
-            )
+    def __init__(self, path=None, session=None):
+        superclass = super(SegmentPackageManager, self)
+        superclass.__init__(path=path, session=session)
 
     ### PRIVATE PROPERTIES ###
 

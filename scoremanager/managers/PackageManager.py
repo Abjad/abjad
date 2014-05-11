@@ -16,77 +16,77 @@ class PackageManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, path=None, session=None):
-        if path is not None:
-            assert os.path.sep in path
-        DirectoryManager.__init__(
-            self,
-            path=path,
-            session=session,
-            )
-        package_name = None
-        if path is not None:
-            self._package_name = os.path.basename(self._path)
+#    def __init__(self, path=None, session=None):
+#        if path is not None:
+#            assert os.path.sep in path
+#        DirectoryManager.__init__(
+#            self,
+#            path=path,
+#            session=session,
+#            )
+#        package_name = None
+#        if path is not None:
+#            self._package_name = os.path.basename(self._path)
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _initializer_file_path(self):
-        return os.path.join(self._path, '__init__.py')
+#    @property
+#    def _initializer_file_path(self):
+#        return os.path.join(self._path, '__init__.py')
 
-    @property
-    def _input_to_action(self):
-        superclass = super(PackageManager, self)
-        result = superclass._input_to_action
-        result = result.copy()
-        result.update({
-            'ino': self.open_initializer,
-            'inws': self.write_stub_initializer,
-            })
-        return result
+#    @property
+#    def _input_to_action(self):
+#        superclass = super(PackageManager, self)
+#        result = superclass._input_to_action
+#        result = result.copy()
+#        result.update({
+#            'ino': self.open_initializer,
+#            'inws': self.write_stub_initializer,
+#            })
+#        return result
 
     ### PRIVATE METHODS ###
 
-    def _enter_run(self):
-        self._session._is_navigating_to_next_asset = False
-        self._session._is_navigating_to_previous_asset = False
-        self._session._last_asset_path = self._path
+#    def _enter_run(self):
+#        self._session._is_navigating_to_next_asset = False
+#        self._session._is_navigating_to_previous_asset = False
+#        self._session._last_asset_path = self._path
+#
+#    def _make_main_menu(self, name='package manager'):
+#        menu = self._io_manager.make_menu(name=name)
+#        return menu
+#
+#    def _run_first_time(self, **kwargs):
+#        self._run(**kwargs)
 
-    def _make_main_menu(self, name='package manager'):
-        menu = self._io_manager.make_menu(name=name)
-        return menu
-
-    def _run_first_time(self, **kwargs):
-        self._run(**kwargs)
-
-    ### PUBLIC METHODS ###
-
-    def open_initializer(self):
-        r'''Opens initializer.
-
-        Returns none.
-        '''
-        self._io_manager.open_file(self._initializer_file_path)
-
-    def write_stub_initializer(self, confirm=True, notify=True):
-        r'''Writes initializer stub.
-
-        Returns none.
-        '''
-        path = self._initializer_file_path
-        if notify:
-            message = 'will write stub to {}.'
-            message = message.format(path)
-            self._io_manager.display(message)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        self._io_manager.write_stub(self._initializer_file_path)
-        if notify:
-            message = 'wrote stub to {}.'
-            message = message.format(path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+#    ### PUBLIC METHODS ###
+#
+#    def open_initializer(self):
+#        r'''Opens initializer.
+#
+#        Returns none.
+#        '''
+#        self._io_manager.open_file(self._initializer_file_path)
+#
+#    def write_stub_initializer(self, confirm=True, notify=True):
+#        r'''Writes initializer stub.
+#
+#        Returns none.
+#        '''
+#        path = self._initializer_file_path
+#        if notify:
+#            message = 'will write stub to {}.'
+#            message = message.format(path)
+#            self._io_manager.display(message)
+#        if confirm:
+#            result = self._io_manager.confirm()
+#            if self._should_backtrack():
+#                return
+#            if not result:
+#                return
+#        self._io_manager.write_stub(self._initializer_file_path)
+#        if notify:
+#            message = 'wrote stub to {}.'
+#            message = message.format(path)
+#            self._io_manager.display([message, ''])
+#            self._session._hide_next_redraw = True
