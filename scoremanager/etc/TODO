@@ -276,13 +276,3 @@
         3: pitch range inventory (AE)
         4: tempo inventory (AE)
     ... instead.
-
-51. Reimplement cache tests (like ScorePackageManager.edit_title())
-    to create cache.py.backup files.
-    Then wrap with context manager.
-
-52. Remove all Wrangler._*_manager properties.
-    Just pass paths to IOManager methods instead.
-
-53. Remove IOManager.write_cache() in favor of
-    ScorePackageWranlger.write_cache()
