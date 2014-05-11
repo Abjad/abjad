@@ -202,7 +202,7 @@ class Selector(ScoreManagerObject):
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory_path in storehouse_paths:
-            manager = managers.PackageManager(
+            manager = managers.Manager(
                 path=directory_path,
                 session=self._session,
                 )

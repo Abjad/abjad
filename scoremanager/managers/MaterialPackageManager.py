@@ -9,10 +9,10 @@ from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
 from scoremanager import wizards
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.Manager import Manager
 
 
-class MaterialPackageManager(PackageManager):
+class MaterialPackageManager(Manager):
     r'''Material package manager.
 
 

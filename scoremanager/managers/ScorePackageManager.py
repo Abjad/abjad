@@ -3,10 +3,10 @@ import functools
 import os
 from abjad.tools import indicatortools
 from abjad.tools import systemtools
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.Manager import Manager
 
 
-class ScorePackageManager(PackageManager):
+class ScorePackageManager(Manager):
     r'''Score package manager.
     '''
 

@@ -35,7 +35,7 @@
 
 7.  Implement a 'views module - rewrite' (vmrw) command.
 
-8.  Implement PackageManager.check_contents().
+8.  Implement Manager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
