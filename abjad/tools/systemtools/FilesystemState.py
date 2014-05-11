@@ -6,13 +6,12 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class FilesystemState(ContextManager):
-    r'''Asset backup context manager.
+    r'''Filesystem state context manager.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_backup_paths',
         '_keep',
         '_remove',
         )
@@ -31,15 +30,13 @@ class FilesystemState(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Backs up assets.
+        r'''Backs up filesystem assets.
 
         Returns none.
         '''
-        for path in self.remove:
-            assert not os.path.exists(path), repr(path)
+        assert not any(os.path.exists(_) for _ in self.remove)
         assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
         assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.keep)
-        backup_paths = []
         for path in self.keep:
             backup_path = path + '.backup'
             if os.path.isfile(path):
@@ -51,51 +48,44 @@ class FilesystemState(ContextManager):
                 message = 'neither file nor directory: {}.'
                 message = message.format(path)
                 raise TypeError(message)
-            backup_paths.append(backup_path)
-        backup_paths = tuple(backup_paths)
-        self._backup_paths = backup_paths
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        r'''Restores assets and removes backups;
+        r'''Restores filesytem assets and removes backups;
         also removes paths in remove list.
 
         Returns none.
         '''
-        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
-        assert all(os.path.exists(_) for _ in self.backup_paths)
-        assert len(self.keep) == len(self.backup_paths), repr(self.keep)
+        backup_paths = (_ + '.backup' for _ in self.keep)
+        assert all(os.path.exists(_) for _ in backup_paths)
         for path in self.keep:
             backup_path = path + '.backup'
             assert os.path.exists(backup_path), repr(backup_path)
-            if os.path.isfile(path):
-                os.remove(path)
+            if os.path.isfile(backup_path):
                 shutil.copyfile(backup_path, path)
                 filecmp.cmp(path, backup_path)
                 os.remove(backup_path)
-            elif os.path.isdir(path):
+            elif os.path.isdir(backup_path):
                 shutil.rmtree(path)
                 shutil.copytree(backup_path, path)
                 shutil.rmtree(backup_path)
-        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
-        assert not any(os.path.exists(_) for _ in self.backup_paths)
+            else:
+                message = 'neither file nor directory: {}.'
+                message = message.format(path)
+                raise TypeError(message)
         for path in self.remove:
-            if os.path.exists:
+            if os.path.exists(path):
                 if os.path.isfile(path):
                     os.remove(path)
                 elif os.path.isdir(path):
                     shutil.rmtree(path)
                 else:
-                    pass
+                    message = 'neither file nor directory: {}.'
+                    message = message.format(path)
+                    raise TypeError(message)
+        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
+        assert not any(os.path.exists(_) for _ in backup_paths)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def backup_paths(self):
-        r'''Gets asset backup paths.
-
-        Returns tuple.
-        '''
-        return self._backup_paths
 
     @property
     def keep(self):
