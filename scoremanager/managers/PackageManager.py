@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 from scoremanager.managers.Manager import Manager
 
 
-class DirectoryManager(Manager):
+class PackageManager(Manager):
     r'''Directory manager.
     '''
 
@@ -18,7 +18,7 @@ class DirectoryManager(Manager):
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
-        superclass = super(DirectoryManager, self)
+        superclass = super(PackageManager, self)
         superclass.__init__(path=path, session=session)
         assert path is not None
         self._package_name = os.path.basename(path)
@@ -31,7 +31,7 @@ class DirectoryManager(Manager):
 
     @property
     def _input_to_action(self):
-        superclass = super(DirectoryManager, self)
+        superclass = super(PackageManager, self)
         result = superclass._input_to_action
         result = result.copy()
         result.update({

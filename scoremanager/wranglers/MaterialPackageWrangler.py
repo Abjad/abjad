@@ -149,7 +149,7 @@ class MaterialPackageWrangler(Wrangler):
             return paths
         result = []
         for path in paths:
-            manager = managers.DirectoryManager(
+            manager = managers.PackageManager(
                 path=path,
                 session=self._session,
                 )
