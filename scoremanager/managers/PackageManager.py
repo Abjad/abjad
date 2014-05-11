@@ -155,7 +155,7 @@ class PackageManager(AssetController):
         self.rewrite_metadata_module(
             metadata=metadata, 
             confirm=False, 
-            notify=False,
+            display=False,
             )
 
 #    def _enter_run(self):
@@ -545,7 +545,7 @@ class PackageManager(AssetController):
             self.rewrite_metadata_module(
                 metadata=metadata, 
                 confirm=False, 
-                notify=False,
+                display=False,
                 )
 
     def _rename(self, new_path):
@@ -918,7 +918,7 @@ class PackageManager(AssetController):
         self, 
         confirm=True, 
         metadata=None, 
-        notify=True,
+        display=True,
         ):
         r'''Rewrites metadata module.
 
@@ -927,7 +927,7 @@ class PackageManager(AssetController):
         if metadata is None:
             metadata = self._get_metadata()
         self._write_metadata_module(metadata)
-        if notify:
+        if display:
             message = 'rewrote metadata module.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
@@ -961,13 +961,13 @@ class PackageManager(AssetController):
         self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
 
-    def write_stub_initializer(self, confirm=True, notify=True):
+    def write_stub_initializer(self, confirm=True, display=True):
         r'''Writes initializer stub.
 
         Returns none.
         '''
         path = self._initializer_file_path
-        if notify:
+        if display:
             message = 'will write stub to {}.'
             message = message.format(path)
             self._io_manager.display(message)
@@ -978,7 +978,7 @@ class PackageManager(AssetController):
             if not result:
                 return
         self._io_manager.write_stub(self._initializer_file_path)
-        if notify:
+        if display:
             message = 'wrote stub to {}.'
             message = message.format(path)
             self._io_manager.display([message, ''])

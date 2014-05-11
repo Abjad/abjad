@@ -148,8 +148,8 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager.write_stub_definition_module(confirm=False, notify=False)
-        manager.write_stub_make_module(confirm=False, notify=False)
+        manager.write_stub_definition_module(confirm=False, display=False)
+        manager.write_stub_make_module(confirm=False, display=False)
         message = 'segment package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -229,7 +229,7 @@ class SegmentPackageWrangler(Wrangler):
         self._io_manager.display('')
         for manager in self._list_visible_asset_managers():
             self._session._hide_next_redraw = False
-            manager.interpret_lilypond_file(confirm=False, notify=True)
+            manager.interpret_lilypond_file(confirm=False, display=True)
         self._session._hide_next_redraw = True
 
     def interpret_make_modules(self):
@@ -267,7 +267,7 @@ class SegmentPackageWrangler(Wrangler):
         if not result:
             return
         for manager in managers:
-            manager.interpret_make_module(confirm=False, notify=True)
+            manager.interpret_make_module(confirm=False, display=True)
         if not managers:
             self._io_manager.display('')
         self._session._hide_next_redraw = True
@@ -323,12 +323,12 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def version_artifacts(self, confirm=True, notify=True):
+    def version_artifacts(self, confirm=True, display=True):
         r'''Versions all segment packages.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, notify=notify)
+        self._version_artifacts(confirm=confirm, display=display)
 
     def write_stub_initializer(self):
         r'''Writes stub initializer module.

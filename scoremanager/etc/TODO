@@ -242,7 +242,7 @@
         prompt=True
     ... to ...
         confirm=True
-        notify=True
+        display=True
     ... instead.
 
 45. Glue 'go' menu sections together.

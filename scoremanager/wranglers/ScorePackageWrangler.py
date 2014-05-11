@@ -182,7 +182,7 @@ class ScorePackageWrangler(Wrangler):
                 path = result
                 manager = self._initialize_manager(path)
                 package_name = os.path.basename(path)
-                manager.fix_package(confirm=False, notify=False)
+                manager.fix_package(confirm=False, display=False)
                 if self._should_backtrack():
                     return
                 manager._run()
@@ -269,7 +269,7 @@ class ScorePackageWrangler(Wrangler):
         self._copy_asset(new_storehouse=path)
         self.write_cache(prompt=False)
 
-    def fix_packages(self, confirm=True, notify=True):
+    def fix_packages(self, confirm=True, display=True):
         r'''Fixes visible score packages.
 
         Returns none.
@@ -281,7 +281,7 @@ class ScorePackageWrangler(Wrangler):
             manager = self._initialize_manager(path)
             needed_to_be_fixed = manager.fix_package(
                 confirm=confirm,
-                notify=notify,
+                display=display,
                 )
             if not needed_to_be_fixed:
                 title = manager._get_title()
@@ -369,7 +369,7 @@ class ScorePackageWrangler(Wrangler):
             message = 'rewriting {} ...'.format(path)
             messages.append(message)
             manager = self._io_manager.make_package_manager(directory)
-            manager.rewrite_metadata_module(confirm=False, notify=False)
+            manager.rewrite_metadata_module(confirm=False, display=False)
         messages.append('')
         message = '{} metadata modules rewritten.'
         message = message.format(len(directories))

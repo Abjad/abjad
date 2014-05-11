@@ -719,7 +719,7 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def version_artifacts(self, confirm=True, notify=True):
+    def version_artifacts(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.py``, 
         ``illustration.ly`` and ``illustration.pdf`` to versions directory,
         if they exist.
@@ -792,7 +792,7 @@ class MaterialPackageManager(PackageManager):
                 target_file_path,
                 )
             self._io_manager.spawn_subprocess(command)
-        if notify:
+        if display:
             self._io_manager.display('')
             self._session._hide_next_redraw = True
 

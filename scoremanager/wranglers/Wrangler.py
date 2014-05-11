@@ -605,7 +605,7 @@ class Wrangler(AssetController):
         if hasattr(manager, '_write_stub'):
             self._io_manager.write_stub(path)
         elif hasattr(manager, 'fix_package'):
-            manager.fix_package(confirm=False, notify=False)
+            manager.fix_package(confirm=False, display=False)
 
     def _make_asset_menu_entries(
         self,
@@ -1002,7 +1002,7 @@ class Wrangler(AssetController):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
 
-    def _version_artifacts(self, confirm=True, notify=True):
+    def _version_artifacts(self, confirm=True, display=True):
         managers = self._list_visible_asset_managers()
         messages = []
         messages.append('will copy ...')
@@ -1016,7 +1016,7 @@ class Wrangler(AssetController):
         if not result:
             return
         for manager in self._list_visible_asset_managers():
-            manager.version_artifacts(confirm=False, notify=False)
+            manager.version_artifacts(confirm=False, display=False)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 

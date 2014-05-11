@@ -251,12 +251,12 @@ class SegmentPackageManager(PackageManager):
         '''
         self._io_manager.edit(self._definition_module_path)
 
-    def interpret_lilypond_file(self, confirm=True, notify=True):
+    def interpret_lilypond_file(self, confirm=True, display=True):
         r'''Reinterprets current LilyPond file.
 
         Returns none.
         '''
-        if notify:
+        if display:
             messages = []
             messages.append('will interpret ...')
             messages.append('')
@@ -280,7 +280,7 @@ class SegmentPackageManager(PackageManager):
         if not result:
             return
         lilypond_file_path = self._output_lilypond_file_path
-        if notify:
+        if display:
             messages = []
             message = 'interpreted {!r}.'
             message = message.format(lilypond_file_path)
@@ -294,7 +294,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.display(messages)
             self._session._hide_next_redraw = True
 
-    def interpret_make_module(self, confirm=True, notify=True):
+    def interpret_make_module(self, confirm=True, display=True):
         r'''Interprets ``__make__.py`` module.
 
         Creates ``output.ly`` and ``output.pdf`` files.
@@ -305,7 +305,7 @@ class SegmentPackageManager(PackageManager):
             message = 'no __make__.py module found.'
             self._io_manager.proceed(message)
             return
-        if notify:
+        if display:
             messages = []
             messages.append('will interpret ...')
             messages.append('')
@@ -325,7 +325,7 @@ class SegmentPackageManager(PackageManager):
                 return
             self._io_manager.display('')
         self._io_manager.interpret(self._make_module_path, prompt=False)
-        if notify:
+        if display:
             messages = []
             message = 'Interpreted {!r}.'.format(self._make_module_path)
             messages.append(message)
@@ -431,7 +431,7 @@ class SegmentPackageManager(PackageManager):
             return
         self._io_manager.open_file(file_paths)
 
-    def version_artifacts(self, confirm=True, notify=True):
+    def version_artifacts(self, confirm=True, display=True):
         r'''Saves definition.py, output.ly and output.pdf to versions
         directory.
 
@@ -439,14 +439,14 @@ class SegmentPackageManager(PackageManager):
         '''
         paths = {}
         if not os.path.isfile(self._definition_module_path):
-            if notify:
+            if display:
                 message = 'can not find {}.'
                 message = message.format(self._definition_module_path)
                 self._io_manager.display(message)
             return
         output_pdf_file_path = self._output_pdf_file_path
         if not os.path.isfile(self._output_pdf_file_path):
-            if notify:
+            if display:
                 message = 'can not find {}.'
                 message = message.format(self._output_pdf_file_path)
                 self._io_manager.display(message)
@@ -523,12 +523,12 @@ class SegmentPackageManager(PackageManager):
         return version_number
 
     # TODO: reimplement as boilerplate
-    def write_stub_definition_module(self, confirm=True, notify=True):
+    def write_stub_definition_module(self, confirm=True, display=True):
         r'''Writes stub definition module.
 
         Returns none.
         '''
-        if notify:
+        if display:
             messages = []
             message = 'will write stub to {}.'
             message = message.format(self._definition_module_path)
@@ -548,19 +548,19 @@ class SegmentPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._definition_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if notify:
+        if display:
             message = 'wrote stub to {}.'
             message = message.format(self._definition_module_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
     # TODO: reimplement as boilerplate
-    def write_stub_make_module(self, confirm=True, notify=True):
+    def write_stub_make_module(self, confirm=True, display=True):
         r'''Writes stub __make__.py module.
 
         Returns none.
         '''
-        if notify:
+        if display:
             messages = []
             message = 'will write stub to {}.'.format(self._make_module_path)
             self._io_manager.display(message)
@@ -588,7 +588,7 @@ class SegmentPackageManager(PackageManager):
         contents = '\n'.join(lines)
         with file(self._make_module_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if notify:
+        if display:
             messages = []
             message = 'wrote stub to {}.'.format(self._make_module_path)
             self._io_manager.display([message, ''])

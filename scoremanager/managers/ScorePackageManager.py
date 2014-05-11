@@ -340,7 +340,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self._session._score_manager._score_package_wrangler
         wrangler.write_cache(prompt=False)
 
-    def fix_package(self, confirm=True, notify=True):
+    def fix_package(self, confirm=True, display=True):
         r'''Fixes score package.
 
         Returns none.
@@ -349,7 +349,7 @@ class ScorePackageManager(PackageManager):
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 package_needed_to_be_fixed = True
-                if notify:
+                if display:
                     messages = []
                     message = 'can not find {}.'.format(path)
                     messages.append(message)
@@ -369,7 +369,7 @@ class ScorePackageManager(PackageManager):
                     file_pointer.write('')
         if not os.path.exists(self._initializer_file_path):
             package_needed_to_be_fixed = True
-            if notify:
+            if display:
                 messages = []
                 path = self._initializer_file_path
                 message = 'can not find {}.'.format(path)
@@ -384,10 +384,10 @@ class ScorePackageManager(PackageManager):
                 if not result:
                     return
                 result = self._io_manager.confirm()
-            self.write_stub_initializer(confirm=confirm, notify=notify)
+            self.write_stub_initializer(confirm=confirm, display=display)
         if not os.path.exists(self._metadata_module_path):
             package_needed_to_be_fixed = True
-            if notify:
+            if display:
                 messages = []
                 path = self._metadata_module_path
                 message = 'can not find {}.'.format(path)
@@ -402,9 +402,9 @@ class ScorePackageManager(PackageManager):
                 if not result:
                     return
                 self._io_manager.display('')
-            self.rewrite_metadata_module(confirm=confirm, notify=notify)
+            self.rewrite_metadata_module(confirm=confirm, display=display)
         self._session._hide_next_redraw = False
-        if notify:
+        if display:
             if package_needed_to_be_fixed:
                 message = 'Fixed package.'.format(self._path)
             else:

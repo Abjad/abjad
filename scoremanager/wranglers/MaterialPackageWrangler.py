@@ -220,7 +220,7 @@ class MaterialPackageWrangler(Wrangler):
         manager.rewrite_metadata_module(
             metadata=metadata, 
             confirm=False,
-            notify=False,
+            display=False,
             )
         if definition_module_stub:
             manager.write_stub_definition_module(prompt=False)
@@ -320,10 +320,10 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def version_artifacts(self, confirm=True, notify=True):
+    def version_artifacts(self, confirm=True, display=True):
         r'''Versions any of the ``output.py``, ``illustration.ly`` and 
         ``illustration.pdf`` files that exist in each material package.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, notify=notify)
+        self._version_artifacts(confirm=confirm, display=display)
