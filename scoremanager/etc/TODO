@@ -283,8 +283,8 @@
 
 52. Possibly forbid calls to ScorePackageWrangler.write_cache() during test.
 
-53. Remove Wrangler._views_module_manager. Can't memoize something
-    that should reinitialize differently depending on whether we're in score
-    or out of score.
-    In fact should be possible to remove all Wrangler._*_manager properties.
+53. Remove all Wrangler._*_manager properties.
     Just pass paths to IOManager methods instead.
+
+54. Remove IOManager.write_cache() in favor of
+    ScorePackageWranlger.write_cache()

@@ -107,11 +107,6 @@ class Wrangler(Controller):
         return self._io_manager.make_directory_manager(path)
 
     @property
-    @systemtools.Memoize
-    def _views_module_manager(self):
-        return self._io_manager.make_file_manager(self._views_module_path)
-
-    @property
     def _views_module_path(self):
         if self._session.is_in_score:
             directory = self._get_current_directory()
@@ -823,7 +818,8 @@ class Wrangler(Controller):
             return
         if not os.path.exists(self._views_module_path):
             return
-        result = self._views_module_manager._execute(
+        result = self._io_manager.execute_file(
+            path=self._views_module_path,
             attribute_names=('view_inventory',),
             )
         if result == 'corrupt':
@@ -1031,8 +1027,7 @@ class Wrangler(Controller):
         line = 'view_inventory={}'.format(format(view_inventory))
         lines.append(line)
         contents = '\n'.join(lines)
-        manager = self._views_module_manager
-        self._io_manager.write(manager._path, contents)
+        self._io_manager.write(self._views_module_path, contents)
         message = 'view inventory written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 

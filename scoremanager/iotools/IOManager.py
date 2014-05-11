@@ -826,8 +826,9 @@ class IOManager(IOManager):
         with file(cache_file_path, 'w') as cache_file_pointer:
             cache_file_pointer.write(contents)
         if prompt:
-            message = 'cache written.'
-            self.proceed(message)
+            message = 'Wrote {}.'.format(cache_file_path)
+            self.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def write_stub(self, path):
         r'''Writes Unicode directive to otherwise empty file at `path`.

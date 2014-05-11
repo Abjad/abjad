@@ -1,14 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScorePackageWrangler_write_cache_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'cw default q'
     score_manager._run(pending_input=input_)
+    contents = score_manager._transcript.contents
 
-    string = 'Cache written.'
-    transcript = score_manager._transcript
-    assert transcript[2].title.startswith(string)
+    assert 'Wrote' in contents
