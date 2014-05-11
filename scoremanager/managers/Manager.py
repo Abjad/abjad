@@ -564,102 +564,69 @@ class Manager(AssetController):
         self._path = new_path
 
     def _rename_interactively(
-        self, 
+        self,
         extension=None,
         file_name_callback=None,
         force_lowercase=True,
         ):
+        base_name = os.path.basename(self._path)
+        line = 'current name: {}'.format(base_name)
+        self._io_manager.display(line)
         getter = self._io_manager.make_getter()
-        string = 'existing asset name'
-        getter.append_string(string)
-        name = getter._run()
+        getter.append_string('new name')
+        new_package_name = getter._run()
         if self._should_backtrack():
             return
-        name = stringtools.strip_diacritics(name)
+        new_package_name = stringtools.strip_diacritics(new_package_name)
         if file_name_callback:
-            name = file_name_callback(name)
-        name = name.replace(' ', '_')
+            new_package_name = file_name_callback(new_package_name)
+        new_package_name = new_package_name.replace(' ', '_')
         if force_lowercase:
-            name = name.lower()
-        if extension and not name.endswith(extension):
-            name = name + extension
-        parent_directory_path = os.path.dirname(self._path)
-        new_path = os.path.join(parent_directory_path, name)
-        messages = []
-        messages.append('')
-        messages.append('Will rename ...')
-        messages.append('')
-        message = '  FROM: {}'.format(self._path)
-        messages.append(message)
-        message = '    TO: {}'.format(new_path)
-        messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
+            new_package_name = new_package_name.lower()
+        if extension and not new_package_name.endswith(extension):
+            new_package_name = new_package_name + extension
+        lines = []
+        line = 'current name: {}'.format(base_name)
+        lines.append(line)
+        line = 'new name:     {}'.format(new_package_name)
+        lines.append(line)
+        lines.append('')
+        self._io_manager.display(lines)
         result = self._io_manager.confirm()
         if self._should_backtrack():
             return
         if not result:
             return
-        if self._rename(new_path):
-            message = '{} renamed.'.format(self._asset_identifier)
-            self._io_manager.proceed(message)
-
-#    def _rename_interactively(
-#        self,
-#        extension=None,
-#        file_name_callback=None,
-#        force_lowercase=True,
-#        ):
-#        base_name = os.path.basename(self._path)
-#        line = 'current name: {}'.format(base_name)
-#        self._io_manager.display(line)
-#        getter = self._io_manager.make_getter()
-#        getter.append_snake_case_package_name('new name')
-#        new_package_name = getter._run()
-#        if self._should_backtrack():
-#            return
-#        lines = []
-#        line = 'current name: {}'.format(base_name)
-#        lines.append(line)
-#        line = 'new name:     {}'.format(new_package_name)
-#        lines.append(line)
-#        lines.append('')
-#        self._io_manager.display(lines)
-#        result = self._io_manager.confirm()
-#        if self._should_backtrack():
-#            return
-#        if not result:
-#            return
-#        new_directory_path = self._path.replace(
-#            base_name,
-#            new_package_name,
-#            )
-#        if self._is_svn_versioned():
-#            # rename package directory
-#            command = 'svn mv {} {}'
-#            command = command.format(self._path, new_directory_path)
-#            self._io_manager.spawn_subprocess(command)
-#            # commit
-#            commit_message = 'renamed {} to {}.'
-#            commit_message = commit_message.format(
-#                base_name,
-#                new_package_name,
-#                )
-#            commit_message = commit_message.replace('_', ' ')
-#            parent_directory_path = os.path.dirname(self._path)
-#            command = 'svn commit -m {!r} {}'
-#            command = command.format(
-#                commit_message,
-#                parent_directory_path,
-#                )
-#            self._io_manager.spawn_subprocess(command)
-#        else:
-#            command = 'mv {} {}'
-#            command = command.format(self._path, new_directory_path)
-#            self._io_manager.spawn_subprocess(command)
-#        # update path name to reflect change
-#        self._path = new_directory_path
-#        self._session._is_backtracking_locally = True
+        new_directory_path = self._path.replace(
+            base_name,
+            new_package_name,
+            )
+        if self._is_svn_versioned():
+            # rename package directory
+            command = 'svn mv {} {}'
+            command = command.format(self._path, new_directory_path)
+            self._io_manager.spawn_subprocess(command)
+            # commit
+            commit_message = 'renamed {} to {}.'
+            commit_message = commit_message.format(
+                base_name,
+                new_package_name,
+                )
+            commit_message = commit_message.replace('_', ' ')
+            parent_directory_path = os.path.dirname(self._path)
+            command = 'svn commit -m {!r} {}'
+            command = command.format(
+                commit_message,
+                parent_directory_path,
+                )
+            self._io_manager.spawn_subprocess(command)
+        else:
+            command = 'mv {} {}'
+            command = command.format(self._path, new_directory_path)
+            self._io_manager.spawn_subprocess(command)
+        # update path name to reflect change
+        self._path = new_directory_path
+        self._session._is_backtracking_locally = True
 
     def _revert_from_repository(self):
         paths = []
