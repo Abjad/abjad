@@ -608,7 +608,7 @@ class IOManager(IOManager):
         Returns directory manager.
         '''
         from scoremanager import managers
-        return managers.Manager(
+        return managers.PackageManager(
             path=path,
             session=self._session,
             )
@@ -656,7 +656,7 @@ class IOManager(IOManager):
         Returns package manager.
         '''
         from scoremanager import managers
-        return managers.Manager(
+        return managers.PackageManager(
             path=path,
             session=self._session,
             )

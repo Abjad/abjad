@@ -2,10 +2,10 @@
 import itertools
 import os
 from abjad.tools import systemtools
-from scoremanager.managers.Manager import Manager
+from scoremanager.managers.PackageManager import PackageManager
 
 
-class SegmentPackageManager(Manager):
+class SegmentPackageManager(PackageManager):
     r'''Segment package manager.
     '''
 

@@ -9,7 +9,7 @@ def test_BuildFileWrangler_copy_file_01():
     r'''Works in library.
     
     Partial test because we can't be sure any user score packages will be
-    present. And because Score Manager allows copying into user score packges
+    present. And because Score PackageManager allows copying into user score packges
     only (because copying into example score packages could pollute the example
     score packages).
     '''

@@ -16,12 +16,12 @@
     where (lyrm) will only ever work on the filesystem.
 
 5.  Write py.test tests for the following properties and methods:
-        Manager._repository_add_command
-        Manager._repository_status_command
-        Manager._get_added_asset_paths()
-        Manager._get_unadded_asset_paths()
-        Manager._get_repository_root_directory()
-        Manager._is_up_to_date()
+        PackageManager._repository_add_command
+        PackageManager._repository_status_command
+        PackageManager._get_added_asset_paths()
+        PackageManager._get_unadded_asset_paths()
+        PackageManager._get_repository_root_directory()
+        PackageManager._is_up_to_date()
 
 6.  Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
@@ -35,7 +35,7 @@
 
 7.  Implement a 'views module - rewrite' (vmrw) command.
 
-8.  Implement Manager.check_contents().
+8.  Implement PackageManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
@@ -44,7 +44,7 @@
 9.  Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-10. Eventually implement a Score Manager start-up behavior that will
+10. Eventually implement a Score PackageManager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
@@ -143,7 +143,7 @@
         Untitled (test_score)
     ... to just ...
         test_score
-    ... in Score Manager main menu.
+    ... in Score PackageManager main menu.
 
 29. Change ...
         Score manager - stylesheets (_test) - select view to remove:
@@ -175,7 +175,7 @@
 37. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-38. Extend 'all score packages' options in Score Manager main menu.
+38. Extend 'all score packages' options in Score PackageManager main menu.
     Change ...
         all score packages - fix (fix)
     ... to ...

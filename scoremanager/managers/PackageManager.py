@@ -10,9 +10,8 @@ from abjad.tools import systemtools
 from scoremanager.core.AssetController import AssetController
 
 
-class Manager(AssetController):
-    r'''Manager.
-
+class PackageManager(AssetController):
+    r'''Package manager.
     '''
 
     ### CLASS VARIABLES ###
@@ -29,7 +28,7 @@ class Manager(AssetController):
     def __init__(self, path=None, session=None):
         assert session is not None
         assert path is not None and os.path.sep in path
-        superclass = super(Manager, self)
+        superclass = super(PackageManager, self)
         superclass.__init__(session=session)
         self._asset_identifier = None
         self._package_name = os.path.basename(path)
@@ -58,7 +57,7 @@ class Manager(AssetController):
 
     @property
     def _input_to_action(self):
-        superclass = super(Manager, self)
+        superclass = super(PackageManager, self)
         result = superclass._input_to_action
         result = copy.deepcopy(result)
         result.update({

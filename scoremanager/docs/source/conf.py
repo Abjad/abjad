@@ -85,7 +85,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Abjad Score Manager'
+project = u'Abjad Score PackageManager'
 copyright = u'2008 - 2012, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -269,7 +269,7 @@ latex_domain_indices = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'abjadscoremanager', u'Abjad Score Manager Documentation',
+    ('index', 'abjadscoremanager', u'Abjad Score PackageManager Documentation',
      [u'Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer'], 1)
 ]
 
@@ -283,7 +283,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'AbjadScoreManager', u'Abjad Score Manager Documentation',
+  ('index', 'AbjadScoreManager', u'Abjad Score PackageManager Documentation',
    u'Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer', 'AbjadScoreManager', 'One line description of project.',
    'Miscellaneous'),
 ]

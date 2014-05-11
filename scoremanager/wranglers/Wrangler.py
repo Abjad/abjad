@@ -39,7 +39,7 @@ class Wrangler(AssetController):
         self._abjad_storehouse_path = None
         self._asset_identifier = None
         self._basic_breadcrumb = None
-        self._manager_class = managers.Manager
+        self._manager_class = managers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
 
@@ -889,7 +889,7 @@ class Wrangler(AssetController):
             if not result == confirmation_string:
                 return
         for path in paths:
-            manager = managers.Manager(path=path, session=self._session)
+            manager = managers.PackageManager(path=path, session=self._session)
             manager._remove(prompt=False)
 
     def _rename_asset(
