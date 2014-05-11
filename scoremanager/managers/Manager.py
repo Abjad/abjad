@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import copy
 import filecmp
 import os
@@ -18,6 +19,7 @@ class Manager(AssetController):
     __slots__ = (
         '_asset_identifier',
         '_main_menu',
+        '_package_name',
         '_path',
         )
 
@@ -29,6 +31,7 @@ class Manager(AssetController):
         superclass = super(Manager, self)
         superclass.__init__(session=session)
         self._asset_identifier = None
+        self._package_name = os.path.basename(path)
         self._path = path
 
     ### SPECIAL METHODS ###
@@ -49,11 +52,22 @@ class Manager(AssetController):
         return self._space_delimited_lowercase_class_name
 
     @property
+    def _initializer_file_path(self):
+        return os.path.join(self._path, '__init__.py')
+
+    @property
     def _input_to_action(self):
         superclass = super(Manager, self)
         result = superclass._input_to_action
         result = copy.deepcopy(result)
         result.update({
+            'ino': self.open_initializer,
+            'inws': self.write_stub_initializer,
+            'mda': self.add_metadatum,
+            'mdg': self.get_metadatum,
+            'mdrm': self.remove_metadatum,
+            'mdmo': self.open_metadata_module,
+            'mdmrw': self.rewrite_metadata_module,
             'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
@@ -64,6 +78,10 @@ class Manager(AssetController):
             'uar': self.remove_unadded_assets,
             })
         return result
+
+    @property
+    def _metadata_module_path(self):
+        return os.path.join(self._path, '__metadata__.py')
 
     @property
     def _repository_add_command(self):
@@ -112,15 +130,41 @@ class Manager(AssetController):
             return 'trash'
         return 'rm'
 
+#    @property
+#    def _space_delimited_lowercase_name(self):
+#        if self._path:
+#            return os.path.basename(self._path)
+
     @property
     def _space_delimited_lowercase_name(self):
         if self._path:
-            return os.path.basename(self._path)
+            base_name = os.path.basename(self._path)
+            result = base_name.replace('_', ' ')
+            return result
+
+    @property
+    def _views_module_path(self):
+        return os.path.join(self._path, '__views__.py')
 
     ### PRIVATE METHODS ###
 
+    def _add_metadatum(self, metadatum_name, metadatum_value):
+        assert ' ' not in metadatum_name, repr(metadatum_name)
+        metadata = self._get_metadata()
+        metadata[metadatum_name] = metadatum_value
+        self.rewrite_metadata_module(
+            metadata=metadata, 
+            confirm=False, 
+            notify=False,
+            )
+
+#    def _enter_run(self):
+#        pass
+
     def _enter_run(self):
-        pass
+        self._session._is_navigating_to_next_asset = False
+        self._session._is_navigating_to_previous_asset = False
+        self._session._last_asset_path = self._path
 
     def _exit_run(self):
         return self._should_backtrack()
@@ -161,6 +205,27 @@ class Manager(AssetController):
 
     def _get_current_directory(self):
         return self._path
+
+    def _get_metadata(self):
+        metadata = None
+        if os.path.isfile(self._metadata_module_path):
+            file_pointer = open(self._metadata_module_path, 'r')
+            file_contents_string = file_pointer.read()
+            file_pointer.close()
+            try:
+                exec(file_contents_string)
+            except:
+                message = 'can not interpret metadata module: {!r}.'
+                message = message.format(self)
+                print(message)
+            metadata = locals().get('metadata')
+        metadata = metadata or collections.OrderedDict()
+        return metadata
+
+    def _get_metadatum(self, metadatum_name):
+        metadata = self._get_metadata()
+        metadatum = metadata.get(metadatum_name, None)
+        return metadatum
 
     def _get_modified_asset_paths(self):
         if self._is_git_versioned():
@@ -236,6 +301,14 @@ class Manager(AssetController):
         else:
             raise ValueError(self)
         return paths
+
+    def _handle_main_menu_result(self, result):
+        if result in self._input_to_action:
+            self._input_to_action[result]()
+        elif result == 'user entered lone return':
+            pass
+        else:
+            self._run_asset_manager(result)
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
@@ -390,6 +463,42 @@ class Manager(AssetController):
     def _list_visible_asset_paths(self):
         return [self._path]
 
+    def _make_main_menu(self, name='directory manager'):
+        menu = self._io_manager.make_menu(name=name)
+        return menu
+
+    @staticmethod
+    def _make_metadata_lines(metadata):
+        if metadata:
+            lines = []
+            for key, value in sorted(metadata.items()):
+                key = repr(key)
+                if hasattr(value, '_get_multiline_repr'):
+                    repr_lines = \
+                        value._get_multiline_repr(include_tools_package=True)
+                    value = '\n    '.join(repr_lines)
+                    lines.append('({}, {})'.format(key, value))
+                else:
+                    if hasattr(value, '_storage_format_specification'):
+                        string = format(value)
+                    else:
+                        string = repr(value)
+                    lines.append('({}, {})'.format(key, string))
+            lines = ',\n    '.join(lines)
+            result = 'metadata = collections.OrderedDict([\n    {},\n    ])'
+            result = result.format(lines)
+        else:
+            result = 'metadata = collections.OrderedDict([])'
+        return result
+
+    def _make_metadata_menu_entries(self):
+        result = []
+        metadata = self._get_metadata()
+        for key in sorted(metadata):
+            display_string = key.replace('_', ' ')
+            result.append((display_string, None, metadata[key], key))
+        return result
+
     def _remove(self, prompt=True):
         if prompt:
             message = '{} will be removed.'
@@ -422,6 +531,22 @@ class Manager(AssetController):
             process = self._io_manager.make_subprocess(cleanup_command)
             line = process.stdout.readline()
         return True
+
+    # TODO: remove prompt messaging
+    def _remove_metadatum(self, metadatum_name):
+        metadata = self._get_metadata()
+        was_removed = False
+        try:
+            del(metadata[metadatum_name])
+            was_removed = True
+        except KeyError:
+            pass
+        if was_removed:
+            self.rewrite_metadata_module(
+                metadata=metadata, 
+                confirm=False, 
+                notify=False,
+                )
 
     def _rename(self, new_path):
         if self._is_in_git_repository():
@@ -479,6 +604,63 @@ class Manager(AssetController):
             message = '{} renamed.'.format(self._asset_identifier)
             self._io_manager.proceed(message)
 
+#    def _rename_interactively(
+#        self,
+#        extension=None,
+#        file_name_callback=None,
+#        force_lowercase=True,
+#        ):
+#        base_name = os.path.basename(self._path)
+#        line = 'current name: {}'.format(base_name)
+#        self._io_manager.display(line)
+#        getter = self._io_manager.make_getter()
+#        getter.append_snake_case_package_name('new name')
+#        new_package_name = getter._run()
+#        if self._should_backtrack():
+#            return
+#        lines = []
+#        line = 'current name: {}'.format(base_name)
+#        lines.append(line)
+#        line = 'new name:     {}'.format(new_package_name)
+#        lines.append(line)
+#        lines.append('')
+#        self._io_manager.display(lines)
+#        result = self._io_manager.confirm()
+#        if self._should_backtrack():
+#            return
+#        if not result:
+#            return
+#        new_directory_path = self._path.replace(
+#            base_name,
+#            new_package_name,
+#            )
+#        if self._is_svn_versioned():
+#            # rename package directory
+#            command = 'svn mv {} {}'
+#            command = command.format(self._path, new_directory_path)
+#            self._io_manager.spawn_subprocess(command)
+#            # commit
+#            commit_message = 'renamed {} to {}.'
+#            commit_message = commit_message.format(
+#                base_name,
+#                new_package_name,
+#                )
+#            commit_message = commit_message.replace('_', ' ')
+#            parent_directory_path = os.path.dirname(self._path)
+#            command = 'svn commit -m {!r} {}'
+#            command = command.format(
+#                commit_message,
+#                parent_directory_path,
+#                )
+#            self._io_manager.spawn_subprocess(command)
+#        else:
+#            command = 'mv {} {}'
+#            command = command.format(self._path, new_directory_path)
+#            self._io_manager.spawn_subprocess(command)
+#        # update path name to reflect change
+#        self._path = new_directory_path
+#        self._session._is_backtracking_locally = True
+
     def _revert_from_repository(self):
         paths = []
         paths.extend(self._get_added_asset_paths())
@@ -519,6 +701,19 @@ class Manager(AssetController):
                     self._handle_main_menu_result(result)
                     if self._exit_run():
                         break
+
+    def _run_asset_manager(
+        self,
+        path,
+        ):
+        manager = self._manager_class(
+            path=path,
+            session=self._session,
+            )
+        manager._run()
+
+    def _run_first_time(self, **kwargs):
+        self._run(**kwargs)
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
@@ -584,7 +779,34 @@ class Manager(AssetController):
         assert self._is_up_to_date()
         return True
 
+    def _write_metadata_module(self, metadata):
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append('import collections')
+        lines.append('')
+        lines.append('')
+        contents = '\n'.join(lines)
+        metadata_lines = self._make_metadata_lines(metadata)
+        contents = contents + '\n' + metadata_lines
+        with file(self._metadata_module_path, 'w') as file_pointer:
+            file_pointer.write(contents)
+
     ### PUBLIC METHODS ###
+
+    def add_metadatum(self):
+        r'''Adds metadatum to metadata module.
+
+        Returns none.
+        '''
+        getter = self._io_manager.make_getter()
+        getter.append_snake_case_string('metadatum name', allow_empty=False)
+        getter.append_expr('metadatum value')
+        result = getter._run()
+        if self._should_backtrack():
+            return
+        if result:
+            metadatum_name, metadatum_value = result
+            self._add_metadatum(metadatum_name, metadatum_value)
 
     def add_to_repository(self, prompt=True):
         r'''Adds unversioned assets to repository.
@@ -639,6 +861,39 @@ class Manager(AssetController):
         '''
         self._doctest()
 
+    def get_metadatum(self):
+        r'''Gets metadatum from metadata module.
+
+        Returns none.
+        '''
+        getter = self._io_manager.make_getter()
+        getter.append_string('metadatum name')
+        result = getter._run()
+        if self._should_backtrack():
+            return
+        metadatum = self._get_metadatum(result)
+        message = '{!r}'.format(metadatum)
+        self._io_manager.proceed(message=message)
+
+    def open_initializer(self):
+        r'''Opens initializer.
+
+        Returns none.
+        '''
+        self._io_manager.open_file(self._initializer_file_path)
+
+    def open_metadata_module(self):
+        r'''Edits metadata module.
+
+        Returns none.
+        '''
+        path = self._metadata_module_path
+        if os.path.isfile(path):
+            self._io_manager.edit(path)
+        else:
+            message = 'can not find {}.'.format(path)
+            self._io_manager.display([message, ''])
+
     def pytest(self):
         r'''Runs py.test on Python files contained in visible assets.
 
@@ -646,6 +901,20 @@ class Manager(AssetController):
         '''
         self._pytest()
 
+    def remove_metadatum(self):
+        r'''Removes metadatum from meatdata module.
+
+        Returns none.
+        '''
+        getter = self._io_manager.make_getter()
+        getter.append_string('metadatum name')
+        result = getter._run()
+        if self._should_backtrack():
+            return
+        if result:
+            metadatum_name = result
+            self._remove_metadatum(metadatum_name)
+            
     def remove_unadded_assets(self, prompt=True):
         r'''Removes assets not yet added to repository.
 
@@ -678,6 +947,24 @@ class Manager(AssetController):
             )
         self._session._hide_next_redraw = True
 
+    def rewrite_metadata_module(
+        self, 
+        confirm=True, 
+        metadata=None, 
+        notify=True,
+        ):
+        r'''Rewrites metadata module.
+
+        Returns none.
+        '''
+        if metadata is None:
+            metadata = self._get_metadata()
+        self._write_metadata_module(metadata)
+        if notify:
+            message = 'rewrote metadata module.'
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+
     def revert_to_repository(self, prompt=True):
         r'''Reverts assets from repository.
 
@@ -706,3 +993,26 @@ class Manager(AssetController):
         command = self._repository_update_command
         self._io_manager.run_command(command)
         self._io_manager.proceed(prompt=prompt)
+
+    def write_stub_initializer(self, confirm=True, notify=True):
+        r'''Writes initializer stub.
+
+        Returns none.
+        '''
+        path = self._initializer_file_path
+        if notify:
+            message = 'will write stub to {}.'
+            message = message.format(path)
+            self._io_manager.display(message)
+        if confirm:
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+        self._io_manager.write_stub(self._initializer_file_path)
+        if notify:
+            message = 'wrote stub to {}.'
+            message = message.format(path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
