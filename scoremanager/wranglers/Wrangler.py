@@ -632,8 +632,7 @@ class Wrangler(Controller):
             sort_by_annotation = self._sort_by_annotation
         paths = self._list_asset_paths()
         current_directory = self._get_current_directory()
-        if apply_view and current_directory:
-        #if (apply_current_directory or apply_view) and current_directory:
+        if (apply_current_directory or apply_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = []
         for path in paths:
