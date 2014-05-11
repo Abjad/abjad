@@ -724,7 +724,7 @@ class PackageManager(AssetController):
             assert os.path.exists(path_4)
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_3, path_4]
-            self.remove_unadded_assets(prompt=False)
+            self.remove_unadded_assets(confirm=False, display=False)
         assert self._is_up_to_date()
         return True
 
@@ -789,7 +789,7 @@ class PackageManager(AssetController):
         command = self._repository_add_command
         assert isinstance(command, str)
         self._io_manager.run_command(command)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def commit_to_repository(self, commit_message=None, prompt=True):
         r'''Commits unversioned assets to repository.
@@ -819,7 +819,7 @@ class PackageManager(AssetController):
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self._path)
         self._io_manager.run_command(command, capitalize=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def doctest(self):
         r'''Runs doctest on Python files contained in visible assets.
@@ -882,12 +882,12 @@ class PackageManager(AssetController):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
             
-    def remove_unadded_assets(self, prompt=True):
+    def remove_unadded_assets(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.
 
         Returns none.
         '''
-        self._remove_unadded_assets(prompt=prompt)
+        self._remove_unadded_assets(confirm=confirm, display=display)
 
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.
@@ -944,7 +944,7 @@ class PackageManager(AssetController):
         message = message.format(self._path)
         self._io_manager.display(message)
         self._revert_from_repository()
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates versioned assets.
@@ -959,7 +959,7 @@ class PackageManager(AssetController):
         self._io_manager.display(line, capitalize=False)
         command = self._repository_update_command
         self._io_manager.run_command(command)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def write_stub_initializer(self, confirm=True, display=True):
         r'''Writes initializer stub.

@@ -112,7 +112,7 @@ class SegmentPackageWrangler(Wrangler):
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
         message = 'segment created: {!r}.'.format(path)
-        self._io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, confirm=prompt)
 
     def _make_asset_menu_section(self, menu):
         include_annotation = not self._session.is_in_score
@@ -151,7 +151,7 @@ class SegmentPackageWrangler(Wrangler):
         manager.write_stub_definition_module(confirm=False, display=False)
         manager.write_stub_make_module(confirm=False, display=False)
         message = 'segment package created: {!r}.'.format(path)
-        self._io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, confirm=prompt)
 
     def _make_segments_menu_section(self, menu):
         commands = []

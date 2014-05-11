@@ -585,18 +585,21 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def interpret_illustrate_module(self, prompt=True):
+    def interpret_illustrate_module(self, confirm=True, display=True):
         r'''Calls Python on illustrate module module.
 
         Returns none.
         '''
-        result = self._io_manager.interpret(self._illustrate_module_path,
-            prompt=prompt)
+        result = self._io_manager.interpret(
+            self._illustrate_module_path,
+            confirm=confirm,
+            display=display,
+            )
         if result == 0:
             self._io_manager.display('')
         self._session._hide_next_redraw = True
 
-    def interpret_illustration_ly(self, prompt=True):
+    def interpret_illustration_ly(self, confirm=True, display=True):
         r'''Calls LilyPond on illustration.ly file.
 
         Returns none.
@@ -604,7 +607,11 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         path = self._illustration_ly_file_path
         if os.path.isfile(path):
-            self._io_manager.invoke_lilypond(path, prompt=prompt)
+            self._io_manager.invoke_lilypond(
+                path, 
+                confirm=confirm, 
+                display=display,
+                )
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager.display([message, ''])

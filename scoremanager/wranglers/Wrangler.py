@@ -1033,7 +1033,7 @@ class Wrangler(AssetController):
         contents = '\n'.join(lines)
         self._io_manager.write(self._views_module_path, contents)
         message = 'view inventory written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)
+        self._io_manager.proceed(message, confirm=prompt)
 
     ### PUBLIC METHODS ###
 
@@ -1113,7 +1113,7 @@ class Wrangler(AssetController):
                 commit_message=commit_message,
                 prompt=False,
                 )
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def doctest(self):
         r'''Runs doctest on Python files contained in visible assets.
@@ -1286,7 +1286,7 @@ class Wrangler(AssetController):
             manager = self._io_manager.make_directory_manager(path)
             self._session._hide_next_redraw = False
             manager.revert_to_repository(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
@@ -1298,4 +1298,4 @@ class Wrangler(AssetController):
             manager = self._initialize_manager(path)
             self._session._hide_next_redraw = False
             manager.update_from_repository(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(confirm=prompt)

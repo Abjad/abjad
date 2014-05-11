@@ -467,7 +467,7 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
-    def invoke_lilypond(self, file_path, prompt=True):
+    def invoke_lilypond(self, file_path, confirm=True, display=True):
         r'''Invokes LilyPond on file.
 
         Returns none.
@@ -486,8 +486,9 @@ class IOManager(IOManager):
         input_directory = os.path.dirname(file_path)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self.spawn_subprocess(command)
-        self.display('')
-        self._session._hide_next_redraw = True
+        if display:
+            self.display('')
+            self._session._hide_next_redraw = True
 
     def invoke_python(self, statement=None):
         r'''Invokes Python on `statement`.
@@ -547,7 +548,7 @@ class IOManager(IOManager):
             self.display(lines, capitalize=False)
         self._session._hide_next_redraw = True
 
-    def interpret(self, path, prompt=True):
+    def interpret(self, path, confirm=True, display=True):
         r'''Invokes Python or LilyPond on `path`.
 
         Returns integer success code.
@@ -566,7 +567,7 @@ class IOManager(IOManager):
             result = self.spawn_subprocess(command)
         if result != 0:
             self.display('')
-        elif prompt:
+        elif display:
             message = 'interpreted {}.'.format(path)
             self.display([message])
         return result
@@ -725,7 +726,7 @@ class IOManager(IOManager):
         self.display(['not yet implemented.', ''])
         self._session._hide_next_redraw = True
 
-    def proceed(self, message=None, prompt=True):
+    def proceed(self, message=None, confirm=True):
         r'''Prompts user to proceed.
 
         Clears terminal.
@@ -735,7 +736,7 @@ class IOManager(IOManager):
         self._session._proceed_count += 1
         message = message or 'press return to continue.'
         assert isinstance(message, str)
-        if not prompt:
+        if not confirm:
             return
         self.handle_input(
             message,

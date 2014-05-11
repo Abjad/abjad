@@ -324,7 +324,11 @@ class SegmentPackageManager(PackageManager):
             if not result:
                 return
             self._io_manager.display('')
-        self._io_manager.interpret(self._make_module_path, prompt=False)
+        self._io_manager.interpret(
+            self._make_module_path, 
+            confirm=False, 
+            display=False,
+            )
         if display:
             messages = []
             message = 'Interpreted {!r}.'.format(self._make_module_path)
@@ -454,10 +458,7 @@ class SegmentPackageManager(PackageManager):
         output_lilypond_file_path = self._output_lilypond_file_path
         if not os.path.isfile(output_lilypond_file_path):
             message = 'can not find output.ly file.'
-            self._io_manager.proceed(
-                message,
-                prompt=prompt,
-                )
+            self._io_manager.proceed(message, confirm=prompt)
             return
         if not os.path.isdir(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)

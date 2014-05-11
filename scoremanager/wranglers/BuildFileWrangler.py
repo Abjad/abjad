@@ -259,17 +259,6 @@ class BuildFileWrangler(Wrangler):
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
 
-#    def _typeset_file_ending_with(self, string):
-#        file_path = self._get_file_path_ending_with(string)
-#        if file_path:
-#            file_manager = self._initialize_manager(file_path)
-#            file_manager.typeset_tex_file()
-#        else:
-#            message = 'file ending in {!r} not found.'
-#            message = message.format(string)
-#            self._io_manager.display([message, ''])
-#        self._session._hide_next_redraw = True
-
     def _typeset_file_ending_with(self, string):
         r'''Typesets TeX file.
         Calls ``pdflatex`` on file TWICE.

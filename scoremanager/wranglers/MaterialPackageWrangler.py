@@ -225,7 +225,7 @@ class MaterialPackageWrangler(Wrangler):
         if definition_module_stub:
             manager.write_stub_definition_module(prompt=False)
         message = 'material package created: {!r}.'.format(path)
-        self._io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, confirm=prompt)
 
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_materials = True
