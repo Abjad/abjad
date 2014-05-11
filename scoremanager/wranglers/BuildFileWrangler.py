@@ -320,7 +320,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory_path()
+        build_directory_path = self._get_current_directory()
         directory_entries = sorted(os.listdir(segments_directory_path))
         source_file_paths, target_file_paths = [], []
         for directory_entry in directory_entries:
@@ -380,7 +380,7 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory_path()
+        build_directory_path = self._get_current_directory()
         directory_entries = sorted(os.listdir(segments_directory_path))
         source_file_paths, target_file_paths = [], []
         for directory_entry in directory_entries:
@@ -539,7 +539,7 @@ class BuildFileWrangler(Wrangler):
         '''
         manager = self._session.current_score_package_manager
         width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory_path()
+        build_directory = self._get_current_directory()
         assert width and height and unit
         assert build_directory
         destination_path = os.path.join(
@@ -677,7 +677,7 @@ class BuildFileWrangler(Wrangler):
         '''
         manager = self._session.current_score_package_manager
         #width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory_path()
+        build_directory = self._get_current_directory()
         #assert width and height and unit
         assert build_directory
         destination_path = os.path.join(
@@ -839,7 +839,7 @@ class BuildFileWrangler(Wrangler):
         '''
         manager = self._session.current_score_package_manager
         width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory_path()
+        build_directory = self._get_current_directory()
         assert width and height and unit
         assert build_directory
         destination_path = os.path.join(

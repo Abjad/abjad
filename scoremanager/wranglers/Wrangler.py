@@ -55,7 +55,7 @@ class Wrangler(Controller):
 
     @property
     def _current_package_manager(self):
-        path = self._get_current_directory_path()
+        path = self._get_current_directory()
         if path is None:
             return
         return self._io_manager.make_package_manager(path)
@@ -72,7 +72,7 @@ class Wrangler(Controller):
 
     @property
     def _initializer_file_path(self):
-        path = self._get_current_directory_path()
+        path = self._get_current_directory()
         if path:
             return os.path.join(path, '__init__.py')
 
@@ -114,7 +114,7 @@ class Wrangler(Controller):
     @property
     def _views_module_path(self):
         if self._session.is_in_score:
-            directory = self._get_current_directory_path()
+            directory = self._get_current_directory()
             return os.path.join(directory, '__views__.py')
         else:
             directory = self._configuration.user_library_views_directory_path
@@ -139,7 +139,7 @@ class Wrangler(Controller):
         if new_storehouse:
             pass
         elif self._session.is_in_score:
-            new_storehouse = self._get_current_directory_path()
+            new_storehouse = self._get_current_directory()
         else:
             new_storehouse = self._select_storehouse_path()
             if self._should_backtrack():
@@ -327,7 +327,7 @@ class Wrangler(Controller):
             else:
                 return path
 
-    def _get_current_directory_path(self):
+    def _get_current_directory(self):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
             parts = (score_directory_path,)
@@ -337,7 +337,7 @@ class Wrangler(Controller):
             return directory_path
 
     def _get_file_path_ending_with(self, string):
-        path = self._get_current_directory_path()
+        path = self._get_current_directory()
         for file_name in self._list():
             if file_name.endswith(string):
                 file_path = os.path.join(path, file_name)
@@ -507,7 +507,7 @@ class Wrangler(Controller):
 
     def _list(self, public_entries_only=False):
         result = []
-        path = self._get_current_directory_path()
+        path = self._get_current_directory()
         if not os.path.exists(path):
             return result
         if public_entries_only:
@@ -630,7 +630,7 @@ class Wrangler(Controller):
         if hasattr(self, '_sort_by_annotation'):
             sort_by_annotation = self._sort_by_annotation
         paths = self._list_asset_paths()
-        current_directory = self._get_current_directory_path()
+        current_directory = self._get_current_directory()
         if apply_view and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = []
@@ -724,7 +724,7 @@ class Wrangler(Controller):
         ):
         from scoremanager import managers
         if self._session.is_in_score:
-            path = self._get_current_directory_path()
+            path = self._get_current_directory()
         else:
             path = self._select_storehouse_path()
             if self._should_backtrack():
@@ -925,7 +925,7 @@ class Wrangler(Controller):
             )
         directory_change = systemtools.NullContextManager()
         if self._session.is_in_score:
-            path = self._get_current_directory_path()
+            path = self._get_current_directory()
             directory_change = systemtools.TemporaryDirectoryChange(path)
         with context, directory_change:
             while True:

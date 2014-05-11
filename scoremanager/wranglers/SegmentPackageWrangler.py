@@ -207,7 +207,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        segments_directory = self._get_current_directory_path()
+        segments_directory = self._get_current_directory()
         entries = sorted(os.listdir(segments_directory))
         messages = []
         messages.append('')

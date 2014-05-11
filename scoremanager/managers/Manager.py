@@ -158,7 +158,7 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
-    def _get_current_directory_path(self):
+    def _get_current_directory(self):
         return self._path
 
     def _get_modified_asset_paths(self):
