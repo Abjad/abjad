@@ -74,27 +74,18 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'output.pdf')
 
     @property
+    def _source_paths(self):
+        return (
+            self._definition_module_path,
+            self._output_lilypond_file_path,
+            self._output_pdf_file_path,
+            )
+
+    @property
     def _versions_directory_path(self):
         return os.path.join(self._path, 'versions')
 
     ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _file_name_to_version_number(file_name):
-        root, extension = os.path.splitext(file_name)
-        assert 4 <= len(root), repr(file_name)
-        version_number_string = root[-4:]
-        version_number = int(version_number_string)
-        return version_number
-
-    def _get_last_version_number(self):
-        versions_directory_path = self._versions_directory_path
-        if not os.path.exists(versions_directory_path):
-            return
-        file_names = os.listdir(versions_directory_path)
-        if not file_names:
-            return
-        return max(self._file_name_to_version_number(_) for _ in file_names)
 
     def _handle_main_menu_result(self, result):
         if result in self._input_to_action:
@@ -176,17 +167,11 @@ class SegmentPackageManager(PackageManager):
                 )
 
     def _make_version_artifacts_messages(self):
-        paths = {}
         last_version_number = self._get_last_version_number()
         next_version_number = last_version_number + 1
         next_version_string = '%04d' % next_version_number
         messages = []
-        source_paths = (
-            self._definition_module_path,
-            self._output_lilypond_file_path,
-            self._output_pdf_file_path,
-            )
-        for source_path in source_paths:
+        for source_path in self._source_paths:
             root, extension = os.path.splitext(source_path)
             message = ' FROM: {}'.format(source_path)
             messages.append(message)
@@ -387,72 +372,12 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.open_file(file_paths)
 
     def version_artifacts(self, confirm=True, display=True):
-        r'''Saves definition.py, output.ly and output.pdf to versions
-        directory.
+        r'''Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
+        to versions directory, if they exist.
 
-        Returns version number or none.
+        Returns none.
         '''
-        paths = {}
-        if not os.path.isfile(self._definition_module_path):
-            if display:
-                message = 'can not find {}.'
-                message = message.format(self._definition_module_path)
-                self._io_manager.display(message)
-            return
-        if not os.path.isfile(self._output_pdf_file_path):
-            if display:
-                message = 'can not find {}.'
-                message = message.format(self._output_pdf_file_path)
-                self._io_manager.display(message)
-            return
-        if not os.path.isfile(self._output_lilypond_file_path):
-            if display:
-                message = 'can not find output.ly file.'
-                self._io_manager.display(message)
-            return
-        if not os.path.isdir(self._versions_directory_path):
-            os.mkdir(self._versions_directory_path)
-        if confirm:
-            messages = []
-            messages.append('will copy ...')
-            messages.append('')
-            messages.extend(self._make_version_artifacts_messages())
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-            self._io_manager.display('')
-        last_version_number = self._get_last_version_number()
-        next_version_number = last_version_number + 1
-        next_version_string = '%04d' % next_version_number
-        source_paths = (
-            self._definition_module_path,
-            self._output_lilypond_file_path,
-            self._output_pdf_file_path,
-            )
-        for source_path in source_paths:
-            file_name = os.path.basename(source_path)
-            root, extension = os.path.splitext(file_name)
-            target_file_name = '{}_{}{}'.format(
-                root, 
-                next_version_string, 
-                extension,
-                )
-            target_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            shutil.copyfile(source_path, target_path)
-        version_number = int(next_version_number)
-        if display:
-            message = 'copied definition.py, output.ly and output.pdf'
-            message += ' to versions directory.'
-            message = message.format(version_number)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-        return version_number
+        self._version_artifacts(confirm=confirm, display=display)
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_module(self, confirm=True, display=True):

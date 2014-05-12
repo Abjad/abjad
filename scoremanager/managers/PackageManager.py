@@ -162,6 +162,14 @@ class PackageManager(AssetController):
     def _exit_run(self):
         return self._should_backtrack()
 
+    @staticmethod
+    def _file_name_to_version_number(file_name):
+        root, extension = os.path.splitext(file_name)
+        assert 4 <= len(root), repr(file_name)
+        version_number_string = root[-4:]
+        version_number = int(version_number_string)
+        return version_number
+
     def _find_first_file_name(self):
         for directory_entry in os.listdir(self._path):
             if not directory_entry.startswith('.'):
@@ -198,6 +206,15 @@ class PackageManager(AssetController):
 
     def _get_current_directory(self):
         return self._path
+
+    def _get_last_version_number(self):
+        versions_directory_path = self._versions_directory_path
+        if not os.path.exists(versions_directory_path):
+            return
+        file_names = os.listdir(versions_directory_path)
+        if not file_names:
+            return
+        return max(self._file_name_to_version_number(_) for _ in file_names)
 
     def _get_metadata(self):
         metadata = None
@@ -246,6 +263,12 @@ class PackageManager(AssetController):
         else:
             raise ValueError(self)
         return paths
+
+    def _get_next_version_string(self):
+        last_version_number = self._get_last_version_number()
+        next_version_number = last_version_number + 1
+        next_version_string = '%04d' % next_version_number
+        return next_version_string
 
     def _get_repository_root_directory(self):
         if self._is_git_versioned():
@@ -800,6 +823,41 @@ class PackageManager(AssetController):
         assert self._is_up_to_date()
         return True
 
+    def _version_artifacts(self, confirm=True, display=True):
+        if not os.path.isdir(self._versions_directory_path):
+            os.mkdir(self._versions_directory_path)
+        if confirm:
+            messages = []
+            messages.append('will copy ...')
+            messages.append('')
+            messages.extend(self._make_version_artifacts_messages())
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.display('')
+        next_version_string = self._get_next_version_string()
+        for source_path in self._source_paths:
+            if not os.path.isfile(source_path):
+                continue
+            file_name = os.path.basename(source_path)
+            root, extension = os.path.splitext(file_name)
+            target_file_name = '{}_{}{}'.format(
+                root, 
+                next_version_string, 
+                extension,
+                )
+            target_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            shutil.copyfile(source_path, target_path)
+        if display:
+            self._io_manager.display('')
+            self._session._hide_next_redraw = True
+            
     def _write_metadata_module(self, metadata):
         lines = []
         lines.append(self._unicode_directive)

@@ -132,6 +132,15 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
+    def _source_paths(self):
+        return (
+            self._definition_module_path,
+            self._output_module_path,
+            self._illustration_ly_file_path,
+            self._illustration_pdf_file_path,
+            )
+
+    @property
     def _versions_directory_path(self):
         return os.path.join(self._path, 'versions')
 
@@ -393,15 +402,9 @@ class MaterialPackageManager(PackageManager):
         path = self._versions_directory_path
         greatest_version = self._io_manager.get_greatest_version_number(path)
         new_version = greatest_version + 1
-        new_version_string = '%04d' % new_version
+        next_version_string = '%04d' % new_version
         messages = []
-        source_paths = (
-            self._definition_module_path,
-            self._illustration_ly_file_path,
-            self._illustration_pdf_file_path,
-            self._output_module_path,
-            )
-        for source_path in source_paths:
+        for source_path in self._source_paths:
             if not source_path:
                 continue
             if not os.path.isfile(source_path):
@@ -413,7 +416,7 @@ class MaterialPackageManager(PackageManager):
             file_name, extension = os.path.splitext(base_name)
             name = '{}_{}{}'.format(
                 file_name,
-                new_version_string,
+                next_version_string,
                 extension,
                 )
             target_path = os.path.join(versions_directory, name)
@@ -737,75 +740,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.isdir(self._versions_directory_path):
-            os.mkdir(self._versions_directory_path)
-        path = self._versions_directory_path
-        greatest_version = self._io_manager.get_greatest_version_number(path)
-        new_version = greatest_version + 1
-        new_version_string = '%04d' % new_version
-        if confirm:
-            messages = []
-            messages.append('will copy ...')
-            messages.append('')
-            messages.extend(self._make_version_artifacts_messages())
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-            self._io_manager.display('')
-        if os.path.isfile(self._definition_module_path):
-            target_file_name = 'definition_{}.py'.format(new_version_string)
-            target_file_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            # TODO: replace with shutil.copyfile()
-            command = 'cp {} {}'.format(
-                self._definition_module_path,
-                target_file_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        if os.path.isfile(self._output_module_path):
-            target_file_name = 'output_{}.py'.format(new_version_string)
-            target_file_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            # TODO: replace with shutil.copyfile()
-            command = 'cp {} {}'.format(
-                self._output_module_path,
-                target_file_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        if os.path.isfile(self._illustration_ly_file_path):
-            target_file_name = 'illustration_{}.ly'.format(new_version_string)
-            target_file_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            # TODO: replace with shutil.copyfile()
-            command = 'cp {} {}'.format(
-                self._illustration_ly_file_path,
-                target_file_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        if os.path.isfile(self._illustration_pdf_file_path):
-            target_file_name = 'illustration_{}.pdf'.format(new_version_string)
-            target_file_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            # TODO: replace with shutil.copyfile()
-            command = 'cp {} {}'.format(
-                self._illustration_pdf_file_path,
-                target_file_path,
-                )
-            self._io_manager.spawn_subprocess(command)
-        if display:
-            self._io_manager.display('')
-            self._session._hide_next_redraw = True
+        self._version_artifacts(confirm=confirm, display=display)
 
     def write_output_material(
         self,
