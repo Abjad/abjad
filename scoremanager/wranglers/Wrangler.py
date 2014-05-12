@@ -625,22 +625,7 @@ class Wrangler(AssetController):
         current_directory = self._get_current_directory()
         if (apply_current_directory or apply_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
-        strings = []
-        for path in paths:
-            if self._human_readable:
-                string = self._path_to_human_readable_name(
-                    path,
-                    include_extension=self._include_extensions,
-                    )
-            else:
-                string = os.path.basename(path)
-            if not self._session.is_in_score:
-                annotation = self._path_to_annotation(path)
-                if self._include_asset_name:
-                    string = '{} ({})'.format(string, annotation)
-                else:
-                    string = str(annotation)
-            strings.append(string)
+        strings = [self._path_to_asset_menu_display_string(_) for _ in paths]
         pairs = zip(strings, paths)
         if self._sort_by_annotation:
             def sort_function(pair):
@@ -825,6 +810,29 @@ class Wrangler(AssetController):
         else:
             annotation = None
         return annotation
+
+    def _path_to_asset_menu_display_string(self, path):
+        if self._human_readable:
+            asset_name = self._path_to_human_readable_name(path)
+        else:
+            asset_name = os.path.basename(path)
+        if self._session.is_in_score:
+            string = asset_name
+        else:
+            annotation = self._path_to_annotation(path)
+            if self._include_asset_name:
+                string = '{} ({})'.format(asset_name, annotation)
+            else:
+                string = annotation
+        return string
+
+    def _path_to_human_readable_name(self, path):
+        path = os.path.normpath(path)
+        name = os.path.basename(path)
+        include_extensions = self._include_extensions
+        if not include_extensions:
+            name, extension = os.path.splitext(name)
+        return stringtools.to_space_delimited_lowercase(name)
 
     def _read_view(self):
         view_name = self._read_view_name()
