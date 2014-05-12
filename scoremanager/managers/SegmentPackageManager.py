@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad.tools import systemtools
 from scoremanager.managers.PackageManager import PackageManager
 
@@ -398,22 +399,20 @@ class SegmentPackageManager(PackageManager):
                 message = message.format(self._definition_module_path)
                 self._io_manager.display(message)
             return
-        output_pdf_file_path = self._output_pdf_file_path
         if not os.path.isfile(self._output_pdf_file_path):
             if display:
                 message = 'can not find {}.'
                 message = message.format(self._output_pdf_file_path)
                 self._io_manager.display(message)
-                return
-        output_lilypond_file_path = self._output_lilypond_file_path
-        if not os.path.isfile(output_lilypond_file_path):
-            message = 'can not find output.ly file.'
-            self._io_manager.proceed(message, confirm=prompt)
+            return
+        if not os.path.isfile(self._output_lilypond_file_path):
+            if display:
+                message = 'can not find output.ly file.'
+                self._io_manager.display(message)
             return
         if not os.path.isdir(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
-        io_manager = systemtools.IOManager
-        next_output_file_name = io_manager.get_next_output_file_name(
+        next_output_file_name = self._io_manager.get_next_output_file_name(
             output_directory_path=self._versions_directory_path,
             )
         result = os.path.splitext(next_output_file_name)
@@ -437,40 +436,26 @@ class SegmentPackageManager(PackageManager):
             self._versions_directory_path,
             target_file_name,
             )
-        # TODO: replace with shutil.copyfile()
-        command = 'cp {} {}'.format(
-            self._definition_module_path,
-            target_file_path,
-            )
-        self._io_manager.spawn_subprocess(command)
+        shutil.copyfile(self._definition_module_path, target_file_path)
         target_file_name = next_output_file_name_root + '.pdf'
         target_file_path = os.path.join(
             self._versions_directory_path,
             target_file_name,
             )
-        # TODO: replace with shutil.copyfile()
-        command = 'cp {} {}'.format(
-            output_pdf_file_path,
-            target_file_path,
-            )
-        self._io_manager.spawn_subprocess(command)
+        shutil.copyfile(self._output_pdf_file_path, target_file_path)
         target_file_name = next_output_file_name_root + '.ly'
         target_file_path = os.path.join(
             self._versions_directory_path,
             target_file_name,
             )
-        # TODO: replace with shutil.copyfile()
-        command = 'cp {} {}'.format(
-            output_lilypond_file_path,
-            target_file_path,
-            )
-        self._io_manager.spawn_subprocess(command)
+        shutil.copyfile(self._output_lilypond_file_path, target_file_path)
         version_number = int(next_output_file_name_root)
-        message = 'copied definition.py, output.ly and output.pdf'
-        message += ' to versions directory.'
-        message = message.format(version_number)
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        if display:
+            message = 'copied definition.py, output.ly and output.pdf'
+            message += ' to versions directory.'
+            message = message.format(version_number)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
         return version_number
 
     # TODO: reimplement as boilerplate
