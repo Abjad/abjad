@@ -177,12 +177,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_version_artifacts_messages(self):
         paths = {}
-        io_manager = systemtools.IOManager
-        next_output_file_name = io_manager.get_next_output_file_name(
-            output_directory_path=self._versions_directory_path,
-            )
-        result = os.path.splitext(next_output_file_name)
-        next_version_number, extension = result
+        last_version_number = self._get_last_version_number()
+        next_version_number = last_version_number + 1
+        next_version_string = '%04d' % next_version_number
         messages = []
         source_paths = (
             self._definition_module_path,
@@ -190,11 +187,11 @@ class SegmentPackageManager(PackageManager):
             self._output_pdf_file_path,
             )
         for source_path in source_paths:
-            _, extension = os.path.splitext(source_path)
+            root, extension = os.path.splitext(source_path)
             message = ' FROM: {}'.format(source_path)
             messages.append(message)
             directory = self._versions_directory_path
-            file_name = next_version_number + extension
+            file_name = '{}_{}{}'.format(root, next_version_string, extension)
             target_path = os.path.join(directory, file_name)
             message = '   TO: {}'.format(target_path)
             messages.append(message)
@@ -415,11 +412,6 @@ class SegmentPackageManager(PackageManager):
             return
         if not os.path.isdir(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
-        next_output_file_name = self._io_manager.get_next_output_file_name(
-            output_directory_path=self._versions_directory_path,
-            )
-        result = os.path.splitext(next_output_file_name)
-        next_version_number, extension = result
         if confirm:
             messages = []
             messages.append('will copy ...')
@@ -432,8 +424,9 @@ class SegmentPackageManager(PackageManager):
             if not result:
                 return
             self._io_manager.display('')
-        result = os.path.splitext(next_output_file_name)
-        next_version_number, extension = result
+        last_version_number = self._get_last_version_number()
+        next_version_number = last_version_number + 1
+        next_version_string = '%04d' % next_version_number
         source_paths = (
             self._definition_module_path,
             self._output_lilypond_file_path,
@@ -444,7 +437,7 @@ class SegmentPackageManager(PackageManager):
             root, extension = os.path.splitext(file_name)
             target_file_name = '{}_{}{}'.format(
                 root, 
-                next_version_number, 
+                next_version_string, 
                 extension,
                 )
             target_path = os.path.join(

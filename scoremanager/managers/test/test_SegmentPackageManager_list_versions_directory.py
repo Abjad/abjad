@@ -13,5 +13,5 @@ def test_SegmentPackageManager_list_versions_directory_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'definition_0000.py output_0000.ly output_0000.pdf'
+    string = 'definition_0001.py output_0001.ly output_0001.pdf'
     assert string in contents

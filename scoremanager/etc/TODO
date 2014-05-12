@@ -196,10 +196,9 @@
         cary & sekka
         examples
     ... to ...
-        2 views found:
-
-        1. cary & sekka
-        2. examples
+        Views found:
+            1. cary & sekka
+            2. examples
     ... instead.
 
 40. Make (rrv) work in Git directories.
@@ -224,38 +223,31 @@
 
     ... instead.
 
-42. Change SegmentPackageManager versioning protocol.
-    Change ...
-        0000.ly 0000.pdf 0000.py
-    ... to ...
-        output_0000.ly output_0000.pdf definition_0000.py
-    ... instead.
+42. Glue 'go' menu sections together.
 
-43. Glue 'go' menu sections together.
-
-44. Remove methods from Session.
+43. Remove methods from Session.
     Session should implement properties only.
 
-45. Change (psa) to (psae). Use 'ae' as standard abbreviation for
+44. Change (psa) to (psae). Use 'ae' as standard abbreviation for
     both 'autoedit' and 'autoeditor'.
 
-46. Write test for (... psa ... pua).
+45. Write test for (... psa ... pua).
     Right now the autoeditor settings remain in metadata module.
     Autoeditor settings should not remain in metadata module.
 
-47. Remove blank lines between the following:
+46. Remove blank lines between the following:
         Enter material packages(s) to remove> 9
 
         Will remove /Users/trevorbaca/Documents/baca/score_manager_library/materials/performer_inventory
 
         Type 'remove' to proceed> 
 
-48. Wrap view tests with FilesystemState.
+47. Wrap view tests with FilesystemState.
 
-49. Do not overwrite output.py when selecting (psa).
+48. Do not overwrite output.py when selecting (psa).
     Composer may already have defined output object.
 
-50. Change (Y) to something with only lowercase letters.
+49. Change (Y) to something with only lowercase letters.
 
-51. Add 'all segments - list versions directories'.
+50. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
