@@ -173,17 +173,6 @@ class MaterialPackageWrangler(Wrangler):
             name='all materials',
             )
 
-    def _make_asset_menu_section(self, menu):
-        include_annotation = not self._session.is_in_score
-        entries = self._make_asset_menu_entries(
-            include_annotation=include_annotation,
-            )
-        if not entries:
-            return
-        section = menu.make_asset_section(
-            menu_entries=entries,
-            )
-
     def _make_main_menu(self, name='material package wrangler'):
         superclass = super(MaterialPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)

@@ -107,17 +107,6 @@ class SegmentPackageWrangler(Wrangler):
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
 
-    def _make_asset_menu_section(self, menu):
-        include_annotation = not self._session.is_in_score
-        entries = self._make_asset_menu_entries(
-            include_annotation=include_annotation,
-            )
-        if not entries:
-            return
-        menu.make_asset_section(
-            menu_entries=entries,
-            )
-
     def _make_main_menu(self, name='segment wrangler'):
         superclass = super(SegmentPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)

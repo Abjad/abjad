@@ -392,7 +392,6 @@ class ScorePackageWrangler(Wrangler):
             apply_current_directory=False,
             apply_view=False,
             include_asset_name=False,
-            #annotate_year=True,
             sort_by_annotation=True,
             )
         for menu_entry in menu_entries:

@@ -612,7 +612,6 @@ class Wrangler(AssetController):
         apply_current_directory=True,
         apply_view=True,
         human_readable=True,
-        include_annotation=True,
         include_asset_name=True,
         include_extensions=False,
         sort_by_annotation=True,
@@ -625,6 +624,9 @@ class Wrangler(AssetController):
             include_extensions = self._include_extensions
         if hasattr(self, '_sort_by_annotation'):
             sort_by_annotation = self._sort_by_annotation
+
+        include_annotation = not self._session.is_in_score
+
         paths = self._list_asset_paths()
         current_directory = self._get_current_directory()
         if (apply_current_directory or apply_view) and current_directory:
@@ -676,6 +678,11 @@ class Wrangler(AssetController):
                 entries = [_ for _ in entries if 'Example Score' in _[0]]
         return entries
 
+    def _make_asset_menu_section(self, menu):
+        menu_entries = self._make_asset_menu_entries()
+        if menu_entries:
+            menu.make_asset_section(menu_entries=menu_entries)
+
     def _make_asset_selection_breadcrumb(
         self,
         human_readable_target_name=None,
@@ -699,13 +706,8 @@ class Wrangler(AssetController):
 
     def _make_asset_selection_menu(self):
         menu = self._io_manager.make_menu(name='asset selection')
-        include_extensions = getattr(self, '_include_extensions', False)
-        menu_entries = self._make_asset_menu_entries(
-            include_extensions=include_extensions,
-            )
-        menu.make_asset_section(
-            menu_entries=menu_entries,
-            )
+        menu_entries = self._make_asset_menu_entries()
+        menu.make_asset_section(menu_entries=menu_entries)
         return menu
 
     def _make_file(
@@ -1191,11 +1193,7 @@ class Wrangler(AssetController):
         view_name = getter._run()
         if self._should_backtrack():
             return
-        include_annotation = not self._session.is_in_score
-        menu_entries = self._make_asset_menu_entries(
-            apply_view=False,
-            include_annotation=include_annotation,
-            )
+        menu_entries = self._make_asset_menu_entries(apply_view=False)
         display_strings = [_[0] for _ in menu_entries]
         view = iotools.View(
             items=display_strings,

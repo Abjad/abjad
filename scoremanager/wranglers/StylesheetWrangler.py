@@ -85,17 +85,6 @@ class StylesheetWrangler(Wrangler):
                 return True
         return False
 
-    def _make_asset_menu_section(self, menu):
-        include_annotation = not self._session.is_in_score
-        menu_entries = self._make_asset_menu_entries(
-            include_annotation=include_annotation,
-            )
-        if not menu_entries:
-            return
-        section = menu.make_asset_section(
-            menu_entries=menu_entries,
-            )
-
     def _make_main_menu(self, name='stylesheet wrangler'):
         superclass = super(StylesheetWrangler, self)
         menu = superclass._make_main_menu(name=name)

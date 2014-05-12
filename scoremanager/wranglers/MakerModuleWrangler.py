@@ -24,6 +24,7 @@ class MakerModuleWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_human_readable',
         '_include_extensions',
         )
 
@@ -36,6 +37,7 @@ class MakerModuleWrangler(Wrangler):
         self._abjad_storehouse_path = None
         self._asset_identifier = 'maker module'
         self._basic_breadcrumb = 'maker modules'
+        self._human_readable = False
         self._include_extensions = True
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
@@ -71,19 +73,6 @@ class MakerModuleWrangler(Wrangler):
             pass
         else:
             self._edit_maker_module(result)
-
-    def _make_asset_menu_section(self, menu):
-        include_annotation = not self._session.is_in_score
-        menu_entries = self._make_asset_menu_entries(
-            human_readable=False,
-            include_annotation=include_annotation,
-            include_extensions=True,
-            )
-        if not menu_entries:
-            return
-        section = menu.make_asset_section(
-            menu_entries=menu_entries,
-            )
 
     def _make_main_menu(self, name='make module wrangler'):
         superclass = super(MakerModuleWrangler, self)
