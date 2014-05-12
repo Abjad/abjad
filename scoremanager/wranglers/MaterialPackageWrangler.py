@@ -197,7 +197,7 @@ class MaterialPackageWrangler(Wrangler):
         self,
         path,
         metadata=None,
-        definition_module_stub=True,
+        definition_py_stub=True,
         ):
         from scoremanager import managers
         assert os.path.sep in path
@@ -212,8 +212,8 @@ class MaterialPackageWrangler(Wrangler):
             confirm=False,
             display=False,
             )
-        if definition_module_stub:
-            manager.write_stub_definition_module(confirm=False, display=False)
+        if definition_py_stub:
+            manager.write_stub_definition_py(confirm=False, display=False)
 
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_materials = True

@@ -233,7 +233,7 @@
 45. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-46. Maybe change definition_module to definition_py.
+46. Maybe change definition_py to definition_py.
     This will work with illustration_ly and illustration_pdf.
     This will have the effect of removing the term 'module'
     from most parts of the codebase.

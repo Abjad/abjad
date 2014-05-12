@@ -46,7 +46,7 @@ class SegmentPackageWrangler(Wrangler):
             '>': self.go_to_next_asset,
             '<': self.go_to_previous_asset,
             'cp': self.copy_package,
-            'dme': self.edit_definition_modules,
+            'dme': self.edit_definition_pys,
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
@@ -103,7 +103,7 @@ class SegmentPackageWrangler(Wrangler):
             session=self._session,
             )
         manager.write_initializer()
-        manager.write_definition_module()
+        manager.write_definition_py()
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
 
@@ -125,7 +125,7 @@ class SegmentPackageWrangler(Wrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager.write_stub_definition_module(confirm=False, display=False)
+        manager.write_stub_definition_py(confirm=False, display=False)
         manager.write_stub_make_module(confirm=False, display=False)
 
     def _make_segments_menu_section(self, menu):
@@ -151,7 +151,7 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
-    def edit_definition_modules(self):
+    def edit_definition_pys(self):
         r'''Edits segment definition modules.
 
         Returns none.

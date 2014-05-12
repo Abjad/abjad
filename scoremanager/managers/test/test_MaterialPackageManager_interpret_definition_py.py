@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_interpret_definition_module_01():
+def test_MaterialPackageManager_interpret_definition_py_01():
     r'''Interpretation makes sure definition module raises no exceptions.
     '''
 

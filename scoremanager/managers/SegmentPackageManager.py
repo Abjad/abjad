@@ -34,7 +34,7 @@ class SegmentPackageManager(PackageManager):
         return string
 
     @property
-    def _definition_module_path(self):
+    def _definition_py_path(self):
         return os.path.join(self._path, 'definition.py')
 
     @property
@@ -43,8 +43,8 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            'dme': self.edit_definition_module,
-            'dmws': self.write_stub_definition_module,
+            'dme': self.edit_definition_py,
+            'dmws': self.write_stub_definition_py,
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
             'mmi': self.interpret_make_module,
@@ -52,7 +52,7 @@ class SegmentPackageManager(PackageManager):
             'mmws': self.write_stub_make_module,
             'pdfo': self.open_output_pdf,
             'uar': self.remove_unadded_assets,
-            'vdmo': self.open_versioned_definition_module,
+            'vdmo': self.open_versioned_definition_py,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
             'vlyo': self.open_versioned_output_ly,
@@ -76,7 +76,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def _source_paths(self):
         return (
-            self._definition_module_path,
+            self._definition_py_path,
             self._output_lilypond_file_path,
             self._output_pdf_file_path,
             )
@@ -116,8 +116,8 @@ class SegmentPackageManager(PackageManager):
                 name='pdf',
                 )
 
-    def _make_definition_module_menu_section(self, menu):
-        if not os.path.isfile(self._definition_module_path):
+    def _make_definition_py_menu_section(self, menu):
+        if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py module found;'
             message += ' use (dmws) to write stub.'
             menu.make_informational_section(
@@ -136,7 +136,7 @@ class SegmentPackageManager(PackageManager):
         menu = superclass._make_main_menu(name=name)
         self._make_current_lilypond_file_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
-        self._make_definition_module_menu_section(menu)
+        self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_make_module_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
@@ -198,12 +198,12 @@ class SegmentPackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def edit_definition_module(self):
+    def edit_definition_py(self):
         r'''Edits asset definition module.
 
         Returns none.
         '''
-        self._io_manager.edit(self._definition_module_path)
+        self._io_manager.edit(self._definition_py_path)
 
     def interpret_lilypond_file(self, confirm=True, display=True):
         r'''Reinterprets current LilyPond file.
@@ -327,7 +327,7 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(file_path):
             self._io_manager.open_file(file_path)
 
-    def open_versioned_definition_module(self):
+    def open_versioned_definition_py(self):
         r'''Opens versioned definition module.
 
         Returns none.
@@ -380,7 +380,7 @@ class SegmentPackageManager(PackageManager):
         self._version_artifacts(confirm=confirm, display=display)
 
     # TODO: reimplement as boilerplate
-    def write_stub_definition_module(self, confirm=True, display=True):
+    def write_stub_definition_py(self, confirm=True, display=True):
         r'''Writes stub definition module.
 
         Returns none.
@@ -388,7 +388,7 @@ class SegmentPackageManager(PackageManager):
         if display:
             messages = []
             message = 'will write stub to {}.'
-            message = message.format(self._definition_module_path)
+            message = message.format(self._definition_py_path)
             messages.append(message)
             self._io_manager.display(message)
         if confirm:
@@ -403,11 +403,11 @@ class SegmentPackageManager(PackageManager):
         lines.append('')
         lines.append('')
         contents = '\n'.join(lines)
-        with file(self._definition_module_path, 'w') as file_pointer:
+        with file(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'
-            message = message.format(self._definition_module_path)
+            message = message.format(self._definition_py_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 

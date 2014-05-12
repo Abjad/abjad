@@ -67,7 +67,7 @@ class MaterialPackageManager(PackageManager):
         return string
 
     @property
-    def _definition_module_path(self):
+    def _definition_py_path(self):
         return os.path.join(self._path, 'definition.py')
 
     @property
@@ -90,9 +90,9 @@ class MaterialPackageManager(PackageManager):
         result.update({
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
-            'dme': self.edit_definition_module,
-            'dmi': self.interpret_definition_module,
-            'dmws': self.write_stub_definition_module,
+            'dme': self.edit_definition_py,
+            'dmi': self.interpret_definition_py,
+            'dmws': self.write_stub_definition_py,
             'ime': self.edit_illustrate_module,
             'imei': self.edit_and_interpret_illustrate_module,
             'imi': self.interpret_illustrate_module,
@@ -105,7 +105,7 @@ class MaterialPackageManager(PackageManager):
             'omo': self.open_output_module,
             'pdfo': self.open_illustration_pdf,
             'uar': self.remove_unadded_assets,
-            'vdmo': self.open_versioned_definition_module,
+            'vdmo': self.open_versioned_definition_py,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
             'vlyo': self.open_versioned_illustration_ly,
@@ -134,7 +134,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def _source_paths(self):
         return (
-            self._definition_module_path,
+            self._definition_py_path,
             self._output_module_path,
             self._illustration_ly_file_path,
             self._illustration_pdf_file_path,
@@ -147,7 +147,7 @@ class MaterialPackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _can_make_output_material(self):
-        if os.path.isfile(self._definition_module_path):
+        if os.path.isfile(self._definition_py_path):
             return True
         return False
 
@@ -194,15 +194,15 @@ class MaterialPackageManager(PackageManager):
             raise ValueError(result)
 
     def _has_output_material_editor(self):
-        if not os.path.isfile(self._definition_module_path):
+        if not os.path.isfile(self._definition_py_path):
             return True
         return False
 
-    def _interpret_definition_module(self):
-        if not os.path.isfile(self._definition_module_path):
+    def _interpret_definition_py(self):
+        if not os.path.isfile(self._definition_py_path):
             return
         result = self._io_manager.execute_file(
-            path=self._definition_module_path,
+            path=self._definition_py_path,
             attribute_names=(self._material_package_name,),
             )
         if result:
@@ -212,7 +212,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_autoeditor_summary_menu_section(self, menu):
         if not self._get_metadatum('use_autoeditor'):
-            if os.path.isfile(self._definition_module_path):
+            if os.path.isfile(self._definition_py_path):
                 return
             if not os.path.isfile(self._output_module_path):
                 return
@@ -365,10 +365,10 @@ class MaterialPackageManager(PackageManager):
         commands.append(('package - unadded assets - remove', 'uar'))
         commands.append(('package - version artifacts', 'ver'))
         if commands:
-            path = self._definition_module_path
-            has_definition_module = os.path.isfile(path)
+            path = self._definition_py_path
+            has_definition_py = os.path.isfile(path)
             menu.make_command_section(
-                is_hidden=has_definition_module,
+                is_hidden=has_definition_py,
                 commands=commands,
                 name='package configuration',
                 )
@@ -485,7 +485,7 @@ class MaterialPackageManager(PackageManager):
             self._material_package_name,
             )
         result = self._io_manager.execute_file(
-            path=self._definition_module_path,
+            path=self._definition_py_path,
             attribute_names=attribute_names,
             )
         return result
@@ -546,12 +546,12 @@ class MaterialPackageManager(PackageManager):
         self.edit_illustrate_module()
         self.interpret_illustrate_module()
 
-    def edit_definition_module(self):
+    def edit_definition_py(self):
         r'''Edits material definition module.
 
         Returns none.
         '''
-        self._io_manager.edit(self._definition_module_path)
+        self._io_manager.edit(self._definition_py_path)
 
     def edit_illustrate_module(self):
         r'''Edits illustrate module module.
@@ -580,12 +580,12 @@ class MaterialPackageManager(PackageManager):
                 self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def interpret_definition_module(self):
+    def interpret_definition_py(self):
         r'''Calls Python on material definition module.
 
         Returns none.
         '''
-        result = self._io_manager.interpret(self._definition_module_path)
+        result = self._io_manager.interpret(self._definition_py_path)
         message = 'no exceptions raised; use (omo) to write output module.'
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
@@ -650,7 +650,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.open_file(self._output_module_path)
 
-    def open_versioned_definition_module(self):
+    def open_versioned_definition_py(self):
         r'''Opens versioned definition module.
 
         Returns none.
@@ -817,14 +817,14 @@ class MaterialPackageManager(PackageManager):
             output_material_class_name,
             )
 
-    def write_stub_definition_module(self, confirm=True, display=True):
+    def write_stub_definition_py(self, confirm=True, display=True):
         r'''Writes stub material definition module.
 
         Returns none.
         '''
         if confirm:
             message = 'will write stub to {}.'
-            message = message.format(self._definition_module_path)
+            message = message.format(self._definition_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
             if self._should_backtrack():
@@ -840,10 +840,10 @@ class MaterialPackageManager(PackageManager):
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
         contents = '\n'.join(lines)
-        with file(self._definition_module_path, 'w') as file_pointer:
+        with file(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
-            message = 'wrote stub to {}.'.format(self._definition_module_path)
+            message = 'wrote stub to {}.'.format(self._definition_py_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
