@@ -715,24 +715,6 @@ class IOManager(IOManager):
         self.display(['not yet implemented.', ''])
         self._session._hide_next_redraw = True
 
-    def proceed(self, message=None, confirm=True):
-        r'''Prompts user to proceed.
-
-        Clears terminal.
-
-        Returns none.
-        '''
-        self._session._proceed_count += 1
-        message = message or 'press return to continue.'
-        assert isinstance(message, str)
-        if not confirm:
-            return
-        self.handle_input(
-            message,
-            include_chevron=False,
-            )
-        self.clear_terminal()
-
     def pytest(self):
         r'''Runs Pytest on most recent pytestable controller in controller
         stack.

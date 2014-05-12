@@ -224,7 +224,7 @@ class Wrangler(AssetController):
                 pattern = None
                 message = 'invalid regular expression: {!r}.'
                 message  = message.format(item)
-                self._io_manager.proceed(message)
+                self._io_manager.display(message)
             for entry in entries:
                 display_string, _, _, path = entry
                 if self._session.is_in_score:
@@ -1015,7 +1015,7 @@ class Wrangler(AssetController):
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
             message = 'no views found.'
-            self._io_manager.proceed(message)
+            self._io_manager.display(message)
             return
         view_names = list(view_inventory.keys())
         if is_ranged:

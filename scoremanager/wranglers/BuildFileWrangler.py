@@ -222,7 +222,7 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager.proceed(message)
+            self._io_manager.display(message)
 
     def _trim_lilypond_file(self, file_path):
         lines = []

@@ -255,4 +255,7 @@
 49. Do not overwrite output.py when selecting (psa).
     Composer may already have defined output object.
 
-50. Kill IOManager.proceed(). Use IOManager.display() instead.
+50. Change (Y) to something with only lowercase letters.
+
+51. Add 'all segments - list versions directories'.
+    Add 'all materials - list versions directories'.

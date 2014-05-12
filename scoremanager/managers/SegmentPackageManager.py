@@ -275,7 +275,7 @@ class SegmentPackageManager(PackageManager):
         '''
         if not os.path.isfile(self._make_module_path):
             message = 'no __make__.py module found.'
-            self._io_manager.proceed(message)
+            self._io_manager.display(message)
             return
         if display:
             messages = []
@@ -385,7 +385,7 @@ class SegmentPackageManager(PackageManager):
             file_paths.append(file_path)
         if not file_paths:
             message = 'version directory empty.'
-            self._io_manager.proceed(message)
+            self._io_manager.display(message)
             return
         self._io_manager.open_file(file_paths)
 
