@@ -801,8 +801,7 @@ class Wrangler(AssetController):
                     annotation = str(title)
             else:
                 package_name = os.path.basename(path)
-                annotation = 'Untitled ({})'
-                annotation = annotation.format(package_name)
+                annotation = package_name
         elif path.startswith(self._user_storehouse_path):
             annotation = self._configuration.composer_last_name
         elif path.startswith(self._abjad_storehouse_path):

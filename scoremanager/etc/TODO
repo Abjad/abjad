@@ -140,42 +140,36 @@
 27. Allow arbitrary metadata in view patterns.
 
 28. Change ...
-        Untitled (test_score)
-    ... to just ...
-        test_score
-    ... in Score PackageManager main menu.
-
-29. Change ...
         Score manager - stylesheets (_test) - select view to remove:
     ... to ...
         Score manager - stylesheets - select view to remove:
     ... instead.
 
-30. Change 'default' to '<return>' in test input strings.
+29. Change 'default' to '<return>' in test input strings.
     Makes test more readable.
 
-31. Make (rst) work again. Right now runs on archipel and then quits.
+30. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-32. Allow 5-99 (or any other large number) to work when removing items.
+31. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-33. Move score_manager_library/views/*_views__.py files to
+32. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-34. Change 'vmrm' to 'vmtrash'.
+33. Change 'vmrm' to 'vmtrash'.
     No reason to remove views modules from repository.
 
-35. Fix menu title that results from the following:
+34. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-36. There is no such thing as 'My build file library'.
+35. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-37. Make bicolumnar layout work for asset screens.
+36. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-38. Extend 'all score packages' options in Score PackageManager main menu.
+37. Extend 'all score packages' options in Score PackageManager main menu.
     Change ...
         all score packages - fix (fix)
     ... to ...
@@ -188,7 +182,7 @@
         all score packages - unadded assets - remove (uarm)
     ... instead.
 
-39. Improve (k > cp) user experience. Change ...
+38. Improve (k > cp) user experience. Change ...
         Enter maker module to copy> 1
         New maker module name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -197,7 +191,7 @@
         New maker module name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-40. Improve (vls) user experience. Change ...
+39. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -208,13 +202,13 @@
         2. examples
     ... instead.
 
-41. Make (rrv) work in Git directories.
+40. Make (rrv) work in Git directories.
     Can test with (red~example~score g lyi y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-42. Improve (rad) user experience. Change
+41. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
@@ -230,14 +224,14 @@
 
     ... instead.
 
-43. Change SegmentPackageManager versioning protocol.
+42. Change SegmentPackageManager versioning protocol.
     Change ...
         0000.ly 0000.pdf 0000.py
     ... to ...
         output_0000.ly output_0000.pdf definition_0000.py
     ... instead.
 
-44. Change messaging regime.
+43. Change messaging regime.
     Change ...
         prompt=True
     ... to ...
@@ -245,26 +239,26 @@
         display=True
     ... instead.
 
-45. Glue 'go' menu sections together.
+44. Glue 'go' menu sections together.
 
-46. Remove methods from Session.
+45. Remove methods from Session.
     Session should implement properties only.
 
-47. Change (psa) to (psae). Use 'ae' as standard abbreviation for
+46. Change (psa) to (psae). Use 'ae' as standard abbreviation for
     both 'autoedit' and 'autoeditor'.
 
-48. Write test for (... psa ... pua).
+47. Write test for (... psa ... pua).
     Right now the autoeditor settings remain in metadata module.
     Autoeditor settings should not remain in metadata module.
 
-49. Remove blank lines between the following:
+48. Remove blank lines between the following:
         Enter material packages(s) to remove> 9
 
         Will remove /Users/trevorbaca/Documents/baca/score_manager_library/materials/performer_inventory
 
         Type 'remove' to proceed> 
 
-50. Annotate material package entries to show autoeditors.
+49. Annotate material package entries to show autoeditors.
     Change ...
         1: instrumentation
         2: magic numbers
@@ -277,4 +271,4 @@
         4: tempo inventory (AE)
     ... instead.
 
-51. Wrap view tests with FilesystemState.
+50. Wrap view tests with FilesystemState.
