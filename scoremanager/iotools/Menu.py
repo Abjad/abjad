@@ -293,7 +293,7 @@ class Menu(ScoreManagerObject):
 
     def _make_go_edits_menu_section(self):
         commands = []
-        commands.append(('go - edit current stylesheet', 'Y'))
+        commands.append(('go - edit score stylesheet', 'ess'))
         self.make_command_section(
             is_hidden=True,
             commands=commands,

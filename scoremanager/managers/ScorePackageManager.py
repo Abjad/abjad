@@ -38,6 +38,7 @@ class ScorePackageManager(PackageManager):
         result = result.copy()
         result.update({
             'd': self._session._score_manager._distribution_file_wrangler._run,
+            'ess': self._io_manager.edit_score_stylesheet,
             'g': self._session._score_manager._segment_package_wrangler._run,
             'fix': self.fix_package,
             'k': self._session._score_manager._maker_module_wrangler._run,
@@ -52,7 +53,6 @@ class ScorePackageManager(PackageManager):
             'u': self._session._score_manager._build_file_wrangler._run,
             'uar': self.remove_unadded_assets,
             'y': self._session._score_manager._stylesheet_wrangler._run,
-            'Y': self._io_manager.edit_score_stylesheet,
             })
         return result
 

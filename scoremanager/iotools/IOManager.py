@@ -59,6 +59,7 @@ class IOManager(IOManager):
     @systemtools.Memoize
     def _input_to_action(self):
         result = {
+            'ess': self.edit_score_stylesheet,
             'b': self._handle_backtrack_navigation_directive,
             'h': self._handle_home_navigation_directive,
             'q': self._handle_quit_directive,
@@ -70,7 +71,6 @@ class IOManager(IOManager):
             'pyi': self.invoke_python,
             'pyt': self.pytest,
             'sv': self._session.display_variables,
-            'Y': self.edit_score_stylesheet,
             '>>': self._handle_next_score_directive,
             '<<': self._handle_previous_score_directive,
             '>': self._handle_next_sibling_asset_directive,
@@ -353,7 +353,8 @@ class IOManager(IOManager):
             self.edit(path)
         else:
             message = 'no file ending in *stylesheet.ily found.'
-            self.proceed(message)
+            self.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def execute_file(self, path=None, attribute_names=None):
         r'''Executes file `path`.

@@ -247,12 +247,10 @@
 48. Do not overwrite output.py when selecting (psa).
     Composer may already have defined output object.
 
-49. Change (Y) to something with only lowercase letters.
-
-50. Add 'all segments - list versions directories'.
+49. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-51. Maybe change definition_module to definition_py.
+50. Maybe change definition_module to definition_py.
     This will work with illustration_ly and illustration_pdf.
     This will have the effect of removing the term 'module'
     from most parts of the codebase.
