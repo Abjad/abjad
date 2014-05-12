@@ -254,3 +254,5 @@
 
 49. Do not overwrite output.py when selecting (psa).
     Composer may already have defined output object.
+
+50. Kill IOManager.proceed(). Use IOManager.display() instead.
