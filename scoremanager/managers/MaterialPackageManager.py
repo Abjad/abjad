@@ -717,7 +717,7 @@ class MaterialPackageManager(PackageManager):
             )
         if display:
             self._session._hide_next_redraw = False
-            message = 'package autoeditor set for {}.'
+            message = 'autoeditor set for {}.'
             message = message.format(class_.__name__)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
@@ -729,7 +729,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._remove_metadatum('use_autoeditor')
         if display:
-            message = 'Package autoeditor set to none.'
+            message = 'autoeditor set to none.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 

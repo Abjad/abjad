@@ -891,32 +891,29 @@ class Wrangler(AssetController):
     def _remove_assets(self, confirm=True, display=True):
         from scoremanager import managers
         paths = self._get_visible_asset_paths()
-        if display:
-            self._io_manager.display('')
         if not paths:
             return
-        count = len(paths)
-        messages = []
-        if count == 1:
-            message = 'Will remove {}'.format(paths[0])
-            messages.append(message)
-        else:
-            messages.append('Will remove ...')
-            messages.append('')
-            for path in paths:
-                message = '    {}'.format(path)
-                messages.append(message)
-        messages.append('')
-        if display:
-            self._io_manager.display(messages)
-        if count == 1:
-            confirmation_string = 'remove'
-        else:
-            confirmation_string = 'remove {}'
-            confirmation_string = confirmation_string.format(count)
-        prompt_string = "type {!r} to proceed"
-        prompt_string = prompt_string.format(confirmation_string)
         if confirm:
+            count = len(paths)
+            messages = []
+            if count == 1:
+                message = 'will remove {}'.format(paths[0])
+                messages.append(message)
+            else:
+                messages.append('will remove ...')
+                messages.append('')
+                for path in paths:
+                    message = '    {}'.format(path)
+                    messages.append(message)
+            if display:
+                self._io_manager.display(messages)
+            if count == 1:
+                confirmation_string = 'remove'
+            else:
+                confirmation_string = 'remove {}'
+                confirmation_string = confirmation_string.format(count)
+            prompt_string = "type {!r} to proceed"
+            prompt_string = prompt_string.format(confirmation_string)
             getter = self._io_manager.make_getter()
             getter.append_string(prompt_string)
             result = getter._run()
