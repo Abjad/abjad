@@ -23,9 +23,13 @@ class Wrangler(AssetController):
         '_abjad_storehouse_path',
         '_basic_breadcrumb',
         '_asset_identifier',
+        '_human_readable',
+        '_include_asset_name',
+        '_include_extensions',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
+        '_sort_by_annotation',
         '_user_storehouse_path',
         )
 
@@ -42,6 +46,11 @@ class Wrangler(AssetController):
         self._manager_class = managers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._user_storehouse_path = None
+
+        self._human_readable = True
+        self._include_asset_name = True
+        self._include_extensions = False
+        self._sort_by_annotation = True
 
     ### PRIVATE PROPERTIES ###
 
@@ -611,44 +620,29 @@ class Wrangler(AssetController):
         self,
         apply_current_directory=True,
         apply_view=True,
-        human_readable=True,
-        include_asset_name=True,
-        include_extensions=False,
-        sort_by_annotation=True,
         ):
-        if hasattr(self, '_human_readable'):
-            human_readable = self._human_readable
-        if hasattr(self, '_include_asset_name'):
-            include_asset_name = self._include_asset_name
-        if hasattr(self, '_include_extensions'):
-            include_extensions = self._include_extensions
-        if hasattr(self, '_sort_by_annotation'):
-            sort_by_annotation = self._sort_by_annotation
-
-        include_annotation = not self._session.is_in_score
-
         paths = self._list_asset_paths()
         current_directory = self._get_current_directory()
         if (apply_current_directory or apply_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = []
         for path in paths:
-            if human_readable:
+            if self._human_readable:
                 string = self._path_to_human_readable_name(
                     path,
-                    include_extension=include_extensions,
+                    include_extension=self._include_extensions,
                     )
             else:
                 string = os.path.basename(path)
-            if include_annotation:
+            if not self._session.is_in_score:
                 annotation = self._path_to_annotation(path)
-                if include_asset_name:
+                if self._include_asset_name:
                     string = '{} ({})'.format(string, annotation)
                 else:
                     string = str(annotation)
             strings.append(string)
         pairs = zip(strings, paths)
-        if sort_by_annotation:
+        if self._sort_by_annotation:
             def sort_function(pair):
                 string = pair[0]
                 if '(' not in string:

@@ -24,7 +24,6 @@ class DistributionFileWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_include_extensions',
         )
 
     ### INITIALIZER ###

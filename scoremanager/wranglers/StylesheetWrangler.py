@@ -24,8 +24,6 @@ class StylesheetWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_human_readable',
-        '_include_extensions',
         )
 
     ### INITIALIZER ###
