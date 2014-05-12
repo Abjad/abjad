@@ -654,28 +654,28 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_versioned_file('definition.py')
 
     def open_versioned_illustration_ly(self):
         r'''Opens versioned illustration LilyPond file.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_versioned_file('illustration.ly')
 
     def open_versioned_illustration_pdf(self):
         r'''Opens versioned illustration PDF.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_versioned_file('illustration.pdf')
 
     def open_versioned_output_module(self):
         r'''Opens versioned ``output.py`` module.
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
+        self._open_versioned_file('output.py')
 
     def set_autoeditor(self, confirm=True, display=True):
         r'''Sets autoeditor.

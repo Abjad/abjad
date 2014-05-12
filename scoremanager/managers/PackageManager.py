@@ -488,11 +488,15 @@ class PackageManager(AssetController):
         for directory_entry in os.listdir(versions_directory_path):
             if not directory_entry.startswith('_'):
                 file_names.append(directory_entry)
+        file_names.sort(key=lambda _: self._file_name_to_version_number(_))
         messages = []
         def group_helper(file_name):
             root, extension = os.path.splitext(file_name)
             return root[-4:]
-        for x in itertools.groupby(file_names, key=lambda x: group_helper(x)):
+        for x in itertools.groupby(
+            file_names, 
+            key=lambda _: self._file_name_to_version_number(_),
+            ):
             key, file_names = x
             message = ' '.join(file_names)
             messages.append(message)
@@ -542,26 +546,39 @@ class PackageManager(AssetController):
             result.append((display_string, None, metadata[key], key))
         return result
 
+    def _get_existing_version_numbers(self, file_name_prototype):
+        root, extension = os.path.splitext(file_name_prototype)
+        file_names = []
+        version_numbers = []
+        for entry in os.listdir(self._versions_directory_path):
+            if entry.startswith(root) and entry.endswith(extension):
+                version_number = self._file_name_to_version_number(entry)
+                version_numbers.append(version_number)
+        return version_numbers
+
     def _open_versioned_file(self, file_name_prototype):
         getter = self._io_manager.make_getter()
-        last_version_number = self._get_last_version_number()
-        if last_version_number is None:
-            message = 'versions directory empty.'
-            self._io_manager.display(message)
+        version_numbers = self._get_existing_version_numbers(
+            file_name_prototype)
+        if not version_numbers: 
+            message = 'no {} files in versions directory.'
+            message = message.format(file_name_prototype)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
             return
-        prompt = 'version number (0-{})'
-        prompt = prompt.format(last_version_number)
+        prompt = 'version number ({})'
+        prompt = prompt.format(version_numbers)
         getter.append_integer(prompt)
         version_number = getter._run()
         if self._should_backtrack():
             return
-        if last_version_number < version_number or \
-            (version_number < 0 and last_version_number < abs(version_number)):
-            message = "version {} doesn't exist yet."
-            message = message.format(version_number)
-            self._io_manager.display(['', message])
+        if 0 < version_number and version_number not in version_numbers:
+            message = 'no {} version {}.'
+            message = message.format(file_name_prototype, version_number)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
         if version_number < 0:
-            version_number = last_version_number + version_number + 1
+            version_number = version_numbers[version_number]
         version_string = str(version_number).zfill(4)
         root, extension = os.path.splitext(file_name_prototype)
         file_name = '{}_{}{}'.format(
@@ -576,6 +593,10 @@ class PackageManager(AssetController):
             )
         if os.path.isfile(file_path):
             self._io_manager.open_file(file_path)
+        else:
+            message = 'file not found: {}'.format(file_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
 
     def _remove(self, confirm=True, display=True):
         if confirm:
