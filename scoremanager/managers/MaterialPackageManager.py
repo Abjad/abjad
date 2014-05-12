@@ -306,8 +306,8 @@ class MaterialPackageManager(PackageManager):
     def _make_material_menu_section(self, menu):
         commands = []         
         if os.path.isfile(self._output_module_path):
-            commands.append(('material - autoedit', 'mae'))
-        if os.path.isfile(self._output_module_path):
+            if self._get_metadatum('use_autoeditor'):
+                commands.append(('material - autoedit', 'mae'))
             commands.append(('material - illustrate', 'mi'))
         if commands:
             menu.make_command_section(
@@ -513,7 +513,8 @@ class MaterialPackageManager(PackageManager):
             ):
             autoeditor = self._make_output_material(target=output_material)
         else:
-            autoeditor = self._get_output_material_editor(target=output_material)
+            autoeditor = self._get_output_material_editor(
+                target=output_material)
         if not autoeditor:
             return
         autoeditor._run()
@@ -690,6 +691,26 @@ class MaterialPackageManager(PackageManager):
             return
         self._add_metadatum('use_autoeditor', True)
         self._add_metadatum('output_material_class_name', class_.__name__)
+        output_material = self._execute_output_module()
+        if type(output_material) is class_:
+            if display:
+                self._io_manager.display('')
+                self._session._hide_next_redraw = True
+                return
+        if confirm:
+            if output_material is not None:
+                messages = []
+                message = 'existing output.py file contains {}.'
+                message = message.format(type(output_material).__name__)
+                messages.append(message)
+                message = 'overwrite existing output.py file?'
+                messages.append(message)
+                self._io_manager.display(messages)
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
         empty_target = class_()
         if type(empty_target) is list:
             storage_format = repr(empty_target)
@@ -719,8 +740,7 @@ class MaterialPackageManager(PackageManager):
             self._session._hide_next_redraw = False
             message = 'autoeditor set for {}.'
             message = message.format(class_.__name__)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+            self._io_manager.display(message)
 
     def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
@@ -729,7 +749,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._remove_metadatum('use_autoeditor')
         if display:
-            message = 'autoeditor set to none.'
+            message = 'autoeditor unset.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
@@ -799,11 +819,6 @@ class MaterialPackageManager(PackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
-        if display:
-            message = 'wrote output material to {}.'
-            message = message.format(self._output_module_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
 
     def write_stub_definition_module(self, confirm=True, display=True):
         r'''Writes stub material definition module.

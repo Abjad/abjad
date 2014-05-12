@@ -24,5 +24,5 @@ def test_MaterialPackageManager_unset_autoeditor_01():
         input_ = 'red~example~Score m test~tempo~inventory aeu q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
-        string = 'Autoeditor set to none.'
+        string = 'Autoeditor unset.'
         assert string in contents

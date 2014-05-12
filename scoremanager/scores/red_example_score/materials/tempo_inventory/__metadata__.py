@@ -3,6 +3,6 @@ import collections
 
 
 metadata = collections.OrderedDict([
-    ('output_material_class_name', 'TempoInventory'),
+    ('output_material_class_name', 'ClefInventory'),
     ('use_autoeditor', True),
     ])

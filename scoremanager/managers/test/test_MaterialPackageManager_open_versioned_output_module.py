@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_open_versioned_definition_module_01():
+def test_MaterialPackageManager_open_versioned_output_module_01():
 
     input_ = 'red~example~score m magic~numbers vomo 1 q'
     score_manager._run(pending_input=input_)

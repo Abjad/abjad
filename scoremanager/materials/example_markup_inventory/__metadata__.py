@@ -4,4 +4,5 @@ import collections
 
 metadata = collections.OrderedDict([
     ('output_material_class_name', 'MarkupInventory'),
+    ('use_autoeditor', True),
     ])

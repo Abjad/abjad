@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import filecmp
 import os
 from abjad import *
 import scoremanager
@@ -21,3 +22,45 @@ def test_MaterialPackageManager_set_autoeditor_01():
         contents = score_manager._transcript.contents
         string = 'Autoeditor set for TempoInventory.'
         assert string in contents
+
+
+def test_MaterialPackageManager_set_autoeditor_02():
+    r'''Preserves existing output.py file when appropriate.
+    '''
+
+    path = os.path.join(
+        score_manager._configuration.example_score_packages_directory_path,
+        'red_example_score',
+        'materials',
+        'tempo_inventory',
+        'output.py',
+        )
+
+    with systemtools.FilesystemState(keep=[path]):
+        input_ = 'red~example~score m tempo~inventory'
+        input_ += ' aeu aes TempoInventory q'
+        score_manager._run(pending_input=input_)
+        assert filecmp.cmp(path, path + '.backup')
+
+
+def test_MaterialPackageManager_set_autoeditor_03():
+    r'''Warns before clobbering existing output.py file.
+    '''
+
+    path = os.path.join(
+        score_manager._configuration.example_score_packages_directory_path,
+        'red_example_score',
+        'materials',
+        'tempo_inventory',
+        'output.py',
+        )
+
+    with systemtools.FilesystemState(keep=[path]):
+        input_ = 'red~example~score m tempo~inventory'
+        input_ += ' aeu aes ClefInventory n q'
+        score_manager._run(pending_input=input_)
+        contents = score_manager._transcript.contents
+        line = 'Existing output.py file contains TempoInventory.'
+        assert line in contents
+        line = 'Overwrite existing output.py file?'
+        assert line in contents

@@ -24,4 +24,3 @@ def test_MaterialPackageManager_write_output_module_01():
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
         assert 'Will write output material to' in contents
-        assert 'Wrote output material to' in contents
