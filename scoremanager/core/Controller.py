@@ -149,38 +149,6 @@ class Controller(ScoreManagerObject):
             name='views',
             )
 
-    def _path_to_annotation(self, path, include_year=False):
-        from scoremanager import managers
-        score_storehouses = (
-            self._configuration.example_score_packages_directory_path,
-            self._configuration.user_score_packages_directory_path,
-            )
-        if path.startswith(score_storehouses):
-            score_path = self._configuration._path_to_score_path(path)
-            manager = managers.ScorePackageManager(
-                path=score_path,
-                session=self._session,
-                )
-            metadata = manager._get_metadata()
-            if metadata:
-                year = metadata.get('year')
-                title = metadata.get('title')
-                if include_year and year:
-                    annotation = '{} ({})'.format(title, year)
-                else:
-                    annotation = str(title)
-            else:
-                package_name = os.path.basename(path)
-                annotation = 'Untitled ({})'
-                annotation = annotation.format(package_name)
-        elif path.startswith(self._user_storehouse_path):
-            annotation = self._configuration.composer_last_name
-        elif path.startswith(self._abjad_storehouse_path):
-            annotation = 'Abjad'
-        else:
-            annotation = None
-        return annotation
-
     @staticmethod
     def _path_to_human_readable_name(path, include_extension=False):
         path = os.path.normpath(path)

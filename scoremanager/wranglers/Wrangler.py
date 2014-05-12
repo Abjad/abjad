@@ -105,9 +105,9 @@ class Wrangler(AssetController):
 
     @property
     @systemtools.Memoize
-    def _views_directory_manager(self):
+    def _views_package_manager(self):
         path = self._configuration.user_library_views_directory_path
-        return self._io_manager.make_directory_manager(path)
+        return self._io_manager.make_package_manager(path)
 
     @property
     def _views_module_path(self):
@@ -615,7 +615,6 @@ class Wrangler(AssetController):
         include_annotation=True,
         include_asset_name=True,
         include_extensions=False,
-        include_year=False,
         sort_by_annotation=True,
         ):
         if hasattr(self, '_human_readable'):
@@ -624,8 +623,6 @@ class Wrangler(AssetController):
             include_asset_name = self._include_asset_name
         if hasattr(self, '_include_extensions'):
             include_extensions = self._include_extensions
-        if hasattr(self, '_include_year'):
-            include_year = self._include_year
         if hasattr(self, '_sort_by_annotation'):
             sort_by_annotation = self._sort_by_annotation
         paths = self._list_asset_paths()
@@ -642,10 +639,7 @@ class Wrangler(AssetController):
             else:
                 string = os.path.basename(path)
             if include_annotation:
-                annotation = self._path_to_annotation(
-                    path, 
-                    include_year=include_year,
-                    )
+                annotation = self._path_to_annotation(path)
                 if include_asset_name:
                     string = '{} ({})'.format(string, annotation)
                 else:
@@ -807,6 +801,35 @@ class Wrangler(AssetController):
         self._io_manager.display('')
         self._io_manager.open_file(paths)
 
+    def _path_to_annotation(self, path):
+        annotate_year = getattr(self, '_annotate_year', False)
+        score_storehouses = (
+            self._configuration.example_score_packages_directory_path,
+            self._configuration.user_score_packages_directory_path,
+            )
+        if path.startswith(score_storehouses):
+            score_path = self._configuration._path_to_score_path(path)
+            manager = self._io_manager.make_package_manager(path=score_path)
+            metadata = manager._get_metadata()
+            if metadata:
+                year = metadata.get('year')
+                title = metadata.get('title')
+                if annotate_year and year:
+                    annotation = '{} ({})'.format(title, year)
+                else:
+                    annotation = str(title)
+            else:
+                package_name = os.path.basename(path)
+                annotation = 'Untitled ({})'
+                annotation = annotation.format(package_name)
+        elif path.startswith(self._user_storehouse_path):
+            annotation = self._configuration.composer_last_name
+        elif path.startswith(self._abjad_storehouse_path):
+            annotation = 'Abjad'
+        else:
+            annotation = None
+        return annotation
+
     def _read_view(self):
         view_name = self._read_view_name()
         if not view_name:
@@ -848,7 +871,7 @@ class Wrangler(AssetController):
             manager = self._current_package_manager
             metadatum_name = 'view_name'
         else:
-            manager = self._views_directory_manager
+            manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         if not manager:
             return
@@ -1075,7 +1098,7 @@ class Wrangler(AssetController):
             manager = self._current_package_manager
             metadatum_name = 'view_name'
         else:
-            manager = self._views_directory_manager
+            manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, view_name)
 
@@ -1090,7 +1113,7 @@ class Wrangler(AssetController):
             manager = self._current_package_manager
             metadatum_name = 'view_name'
         else:
-            manager = self._views_directory_manager
+            manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
 
@@ -1277,7 +1300,7 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
-            manager = self._io_manager.make_directory_manager(path)
+            manager = self._io_manager.make_package_manager(path)
             self._session._hide_next_redraw = False
             manager.repository_status()
         self._session._hide_next_redraw = True
@@ -1293,7 +1316,7 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
-            manager = self._io_manager.make_directory_manager(path)
+            manager = self._io_manager.make_package_manager(path)
             self._session._hide_next_redraw = False
             manager.revert_to_repository(confirm=False, display=False)
 

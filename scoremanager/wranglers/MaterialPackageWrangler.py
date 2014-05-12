@@ -37,6 +37,7 @@ class MaterialPackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotate_autoeditor',
         )
 
     ### INITIALIZER ###
@@ -48,6 +49,7 @@ class MaterialPackageWrangler(Wrangler):
         configuration = self._configuration
         path = configuration.abjad_material_packages_directory_path
         self._abjad_storehouse_path = path
+        self._annotate_autoeditor = True
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'
         self._manager_class = managers.MaterialPackageManager

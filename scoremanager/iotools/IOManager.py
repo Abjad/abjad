@@ -603,17 +603,6 @@ class IOManager(IOManager):
                 target=target,
                 )
 
-    def make_directory_manager(self, path):
-        r'''Makes directory manager.
-
-        Returns directory manager.
-        '''
-        from scoremanager import managers
-        return managers.PackageManager(
-            path=path,
-            session=self._session,
-            )
-
     def make_getter(
         self,
         allow_none=False,

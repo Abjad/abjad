@@ -38,7 +38,7 @@ class ScorePackageWrangler(Wrangler):
     __slots__ = (
         '_only_example_scores_during_test',
         '_include_asset_name',
-        '_include_year',
+        '_annotate_year',
         '_sort_by_annotation',
         )
 
@@ -53,7 +53,7 @@ class ScorePackageWrangler(Wrangler):
         self._asset_identifier = 'score package'
         self._basic_breadcrumb = 'scores'
         self._include_asset_name = False
-        self._include_year = True
+        self._annotate_year = True
         self._manager_class = managers.ScorePackageManager
         self._only_example_scores_during_test = True
         self._sort_by_annotation = False
@@ -392,7 +392,7 @@ class ScorePackageWrangler(Wrangler):
             apply_current_directory=False,
             apply_view=False,
             include_asset_name=False,
-            include_year=True,
+            #annotate_year=True,
             sort_by_annotation=True,
             )
         for menu_entry in menu_entries:
