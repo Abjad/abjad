@@ -237,8 +237,3 @@
     This will work with illustration_ly and illustration_pdf.
     This will have the effect of removing the term 'module'
     from most parts of the codebase.
-
-47. Implement some sort of Interaction context manager in iotools.
-    The context manager will initialize with display=True keyword.
-    The context manager will not need confirm=True keyword.
-    The context manager will make sure a blank line is displayed on exit.

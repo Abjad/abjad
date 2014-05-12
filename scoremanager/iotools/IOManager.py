@@ -26,16 +26,16 @@ class IOManager(IOManager):
     ### CLASS VARAIBLES ###
 
     __slots__ = (
-        '_session',
         '_configuration',
+        '_session',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from scoremanager import core
-        self._session = session
         self._configuration = core.ScoreManagerConfiguration()
+        self._session = session
 
     ### SPECIAL METHODS ###
 
@@ -255,6 +255,19 @@ class IOManager(IOManager):
             except SyntaxError:
                 pass
         return start_menu_entries
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def selector(self):
+        r'''Gets dummy selector.
+
+        Use for access to selector make methods.
+
+        Returns selector.
+        '''
+        from scoremanager import iotools
+        return iotools.Selector(session=self._session)
 
     ### PUBLIC METHODS ###
 
@@ -622,6 +635,15 @@ class IOManager(IOManager):
             include_newlines=include_newlines,
             )
         return getter
+
+    def make_interaction(self, controller, display=True):
+        r'''Makes interaction context manager.
+
+        Returns interaction context manager.
+        '''
+        from scoremanager import iotools
+        context = iotools.Interaction(controller=controller, display=display)
+        return context
 
     def make_menu(
         self,

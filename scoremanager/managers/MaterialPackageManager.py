@@ -684,63 +684,60 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         from scoremanager import iotools
-        selector = iotools.Selector(session=self._session)
-        selector = selector.make_inventory_class_selector()
-        class_ = selector._run()
-        if not class_:
-            return
-        self._add_metadatum('use_autoeditor', True)
-        self._add_metadatum('output_material_class_name', class_.__name__)
-        output_material = self._execute_output_module()
-        if type(output_material) is class_:
-            if display:
-                self._io_manager.display('')
-                self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(self, display=display):
+            selector = self._io_manager.selector
+            selector = selector.make_inventory_class_selector()
+            class_ = selector._run()
+            if not class_:
                 return
-        if confirm:
-            if output_material is not None:
-                messages = []
-                message = 'existing output.py file contains {}.'
-                message = message.format(type(output_material).__name__)
-                messages.append(message)
-                message = 'overwrite existing output.py file?'
-                messages.append(message)
-                self._io_manager.display(messages)
-                result = self._io_manager.confirm()
-                if self._should_backtrack():
-                    return
-                if not result:
-                    return
-        empty_target = class_()
-        if type(empty_target) is list:
-            storage_format = repr(empty_target)
-        else:
-            storage_format = format(empty_target, 'storage')
-        body_lines = '{} = {}'.format(
-            self._package_name,
-            storage_format,
-            )
-        body_lines = body_lines.split('\n')
-        body_lines = [_ + '\n' for _ in body_lines]
-        import_statements = [self._abjad_import_statement]
-        if 'handlertools.' in storage_format:
-            statement = 'from experimental.tools import handlertools'
-            import_statements.append(statement)
-        if ' makers.' in storage_format:
-            statement = 'from scoremanager import makers'
-            import_statements.append(statement)
-        self.write_output_material(
-            body_lines=body_lines,
-            import_statements=import_statements,
-            output_material=empty_target,
-            confirm=False,
-            display=False,
-            )
-        if display:
-            self._session._hide_next_redraw = False
-            message = 'autoeditor set for {}.'
-            message = message.format(class_.__name__)
-            self._io_manager.display(message)
+            self._add_metadatum('use_autoeditor', True)
+            self._add_metadatum('output_material_class_name', class_.__name__)
+            output_material = self._execute_output_module()
+            if type(output_material) is class_:
+                return
+            if confirm:
+                if output_material is not None:
+                    messages = []
+                    message = 'existing output.py file contains {}.'
+                    message = message.format(type(output_material).__name__)
+                    messages.append(message)
+                    message = 'overwrite existing output.py file?'
+                    messages.append(message)
+                    self._io_manager.display(messages)
+                    result = self._io_manager.confirm()
+                    if self._should_backtrack():
+                        return
+                    if not result:
+                        return
+            empty_target = class_()
+            if type(empty_target) is list:
+                storage_format = repr(empty_target)
+            else:
+                storage_format = format(empty_target, 'storage')
+            body_lines = '{} = {}'.format(
+                self._package_name,
+                storage_format,
+                )
+            body_lines = body_lines.split('\n')
+            body_lines = [_ + '\n' for _ in body_lines]
+            import_statements = [self._abjad_import_statement]
+            if 'handlertools.' in storage_format:
+                statement = 'from experimental.tools import handlertools'
+                import_statements.append(statement)
+            if ' makers.' in storage_format:
+                statement = 'from scoremanager import makers'
+                import_statements.append(statement)
+            self.write_output_material(
+                body_lines=body_lines,
+                import_statements=import_statements,
+                output_material=empty_target,
+                confirm=False,
+                display=False,
+                )
+            if display:
+                message = 'autoeditor set for {}.'
+                message = message.format(class_.__name__)
+                self._io_manager.display(message)
 
     def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
