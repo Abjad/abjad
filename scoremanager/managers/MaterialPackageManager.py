@@ -623,7 +623,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented() 
+        self._list_versions_directory()
 
     def open_illustration_ly(self):
         r'''Opens illustration LilyPond file.

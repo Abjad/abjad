@@ -2,6 +2,7 @@
 import collections
 import copy
 import filecmp
+import itertools
 import os
 import shutil
 import subprocess
@@ -130,11 +131,6 @@ class PackageManager(AssetController):
             return 'trash'
         return 'rm'
 
-#    @property
-#    def _space_delimited_lowercase_name(self):
-#        if self._path:
-#            return os.path.basename(self._path)
-
     @property
     def _space_delimited_lowercase_name(self):
         if self._path:
@@ -157,9 +153,6 @@ class PackageManager(AssetController):
             confirm=False, 
             display=False,
             )
-
-#    def _enter_run(self):
-#        pass
 
     def _enter_run(self):
         self._session._is_navigating_to_next_asset = False
@@ -460,6 +453,30 @@ class PackageManager(AssetController):
             )
         self._session._hide_next_redraw = True
 
+    def _list_versions_directory(self):
+        versions_directory_path = self._versions_directory_path
+        if not os.path.exists(versions_directory_path):
+            message = 'no versions directory found {}.'
+            message = message.format(self._versions_directory_path)
+            self._io_manager.display([message, ''])
+            self._session._hide_next_redraw = True
+            return
+        file_names = []
+        for directory_entry in os.listdir(versions_directory_path):
+            if directory_entry[0].isdigit():
+                file_names.append(directory_entry)
+        messages = []
+        for x in itertools.groupby(file_names, key=lambda x: x[:4]):
+            key, file_names = x
+            message = ' '.join(file_names)
+            messages.append(message)
+        if not messages:
+            message = 'versions directory is empty.'
+            messages.append(message)
+        messages.append('')
+        self._io_manager.display(messages)
+        self._session._hide_next_redraw = True
+
     def _list_visible_asset_paths(self):
         return [self._path]
 
@@ -532,7 +549,6 @@ class PackageManager(AssetController):
             line = process.stdout.readline()
         return True
 
-    # TODO: remove prompt messaging
     def _remove_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
         was_removed = False
@@ -745,6 +761,37 @@ class PackageManager(AssetController):
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
+
+    def _view_versioned_file(self, extension=None):
+        assert extension in ('.ly', '.pdf', '.py')
+        getter = self._io_manager.make_getter()
+        last_version_number = self._get_last_version_number()
+        if last_version_number is None:
+            message = 'versions directory empty.'
+            self._io_manager.proceed(message)
+            return
+        prompt = 'version number (0-{})'
+        prompt = prompt.format(last_version_number)
+        getter.append_integer(prompt)
+        version_number = getter._run()
+        if self._should_backtrack():
+            return
+        if last_version_number < version_number or \
+            (version_number < 0 and last_version_number < abs(version_number)):
+            message = "version {} doesn't exist yet."
+            message = message.format(version_number)
+            self._io_manager.proceed(['', message])
+        if version_number < 0:
+            version_number = last_version_number + version_number + 1
+        version_string = str(version_number).zfill(4)
+        file_name = '{}{}'.format(version_string, extension)
+        file_path = os.path.join(
+            self._path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            self._io_manager.open_file(file_path)
 
     def _write_metadata_module(self, metadata):
         lines = []
