@@ -41,7 +41,7 @@ class Controller(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _is_directory_with_metadata_module(path):
+    def _is_directory_with_metadata_py(path):
         if os.path.isdir(path):
             for directory_entry in os.listdir(path):
                 if directory_entry == '__metadata__.py':
@@ -56,16 +56,16 @@ class Controller(ScoreManagerObject):
                     return True
         return False
 
-    def _list_directories_with_metadata_modules(self, path=None):
+    def _list_directories_with_metadata_pys(self, path=None):
         path = path or self._path
         paths = []
         for directory_path, subdirectory_names, file_names in os.walk(path):
-            if self._is_directory_with_metadata_module(directory_path):
+            if self._is_directory_with_metadata_py(directory_path):
                 if directory_path not in paths:
                     paths.append(directory_path)
             for subdirectory_name in subdirectory_names:
                 path = os.path.join(directory_path, subdirectory_name)
-                if self._is_directory_with_metadata_module(path):
+                if self._is_directory_with_metadata_py(path):
                     if path not in paths:
                         paths.append(path)
         return paths

@@ -67,8 +67,8 @@ class PackageManager(AssetController):
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mdmo': self.open_metadata_module,
-            'mdmrw': self.rewrite_metadata_module,
+            'mdmo': self.open_metadata_py,
+            'mdmrw': self.rewrite_metadata_py,
             'pyd': self.doctest,
             'pyt': self.pytest,
             'rad': self.add_to_repository,
@@ -81,7 +81,7 @@ class PackageManager(AssetController):
         return result
 
     @property
-    def _metadata_module_path(self):
+    def _metadata_py_path(self):
         return os.path.join(self._path, '__metadata__.py')
 
     @property
@@ -148,7 +148,7 @@ class PackageManager(AssetController):
         assert ' ' not in metadatum_name, repr(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.rewrite_metadata_module(
+        self.rewrite_metadata_py(
             metadata=metadata, 
             confirm=False, 
             display=False,
@@ -218,8 +218,8 @@ class PackageManager(AssetController):
 
     def _get_metadata(self):
         metadata = None
-        if os.path.isfile(self._metadata_module_path):
-            file_pointer = open(self._metadata_module_path, 'r')
+        if os.path.isfile(self._metadata_py_path):
+            file_pointer = open(self._metadata_py_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             try:
@@ -640,7 +640,7 @@ class PackageManager(AssetController):
         except KeyError:
             pass
         if was_removed:
-            self.rewrite_metadata_module(
+            self.rewrite_metadata_py(
                 metadata=metadata, 
                 confirm=False, 
                 display=False,
@@ -879,7 +879,7 @@ class PackageManager(AssetController):
             self._io_manager.display('')
             self._session._hide_next_redraw = True
             
-    def _write_metadata_module(self, metadata):
+    def _write_metadata_py(self, metadata):
         lines = []
         lines.append(self._unicode_directive)
         lines.append('import collections')
@@ -888,7 +888,7 @@ class PackageManager(AssetController):
         contents = '\n'.join(lines)
         metadata_lines = self._make_metadata_lines(metadata)
         contents = contents + '\n' + metadata_lines
-        with file(self._metadata_module_path, 'w') as file_pointer:
+        with file(self._metadata_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
 
     ### PUBLIC METHODS ###
@@ -987,12 +987,12 @@ class PackageManager(AssetController):
         '''
         self._io_manager.open_file(self._initializer_file_path)
 
-    def open_metadata_module(self):
+    def open_metadata_py(self):
         r'''Edits metadata module.
 
         Returns none.
         '''
-        path = self._metadata_module_path
+        path = self._metadata_py_path
         if os.path.isfile(path):
             self._io_manager.edit(path)
         else:
@@ -1052,7 +1052,7 @@ class PackageManager(AssetController):
             )
         self._session._hide_next_redraw = True
 
-    def rewrite_metadata_module(
+    def rewrite_metadata_py(
         self, 
         confirm=True, 
         metadata=None, 
@@ -1064,7 +1064,7 @@ class PackageManager(AssetController):
         '''
         if metadata is None:
             metadata = self._get_metadata()
-        self._write_metadata_module(metadata)
+        self._write_metadata_py(metadata)
         if display:
             message = 'rewrote metadata module.'
             self._io_manager.display([message, ''])

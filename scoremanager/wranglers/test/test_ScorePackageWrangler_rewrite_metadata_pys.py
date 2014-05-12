@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScorePackageWrangler_rewrite_metadata_modules_01():
+def test_ScorePackageWrangler_rewrite_metadata_pys_01():
 
     input_ = 'mdmrw default q'
     score_manager._run(pending_input=input_)

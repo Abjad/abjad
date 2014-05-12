@@ -70,7 +70,7 @@ class MaterialPackageWrangler(Wrangler):
             'cp': self.copy_package,
             'ino': self.open_initializers,
             'lyi': self.interpret_illustration_lys,
-            'mdmo': self.open_metadata_modules,
+            'mdmo': self.open_metadata_pys,
             'new': self.make_package,
             'pdfo': self.open_illustration_pdfs,
             'ren': self.rename_package,
@@ -207,7 +207,7 @@ class MaterialPackageWrangler(Wrangler):
         manager = self._initialize_manager(path)
         initializer_path = os.path.join(path, '__init__.py')
         self._io_manager.write_stub(initializer_path)
-        manager.rewrite_metadata_module(
+        manager.rewrite_metadata_py(
             metadata=metadata, 
             confirm=False,
             display=False,
@@ -287,7 +287,7 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('__init__.py')
 
-    def open_metadata_modules(self):
+    def open_metadata_pys(self):
         r'''Opens the ``__metadata__.py`` file in each material package.
 
         Returns none.

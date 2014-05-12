@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_rewrite_metadata_module_01():
+def test_MaterialPackageManager_rewrite_metadata_py_01():
 
     input_ = 'red~example~score m magic~numbers mdmrw default q'
     score_manager._run(pending_input=input_)

@@ -11,7 +11,7 @@ package_path = os.path.join(
     'testnotes',
     )
 initializer_file_path = os.path.join(package_path, '__init__.py')
-metadata_module_path = os.path.join(package_path, '__metadata__.py')
+metadata_py_path = os.path.join(package_path, '__metadata__.py')
 definition_py_path = os.path.join(package_path, 'definition.py')
 output_module_path = os.path.join(package_path, 'output.py')
 
@@ -120,7 +120,7 @@ def test_MaterialPackageWrangler_make_package_04():
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
-        assert os.path.exists(metadata_module_path)
+        assert os.path.exists(metadata_py_path)
         assert os.path.exists(definition_py_path)
 
 

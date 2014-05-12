@@ -87,9 +87,9 @@ class ScorePackageWrangler(Wrangler):
             'g': self._session._score_manager._segment_package_wrangler._run,
             'k': self._session._score_manager._maker_module_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
-            'mdmls': self.list_metadata_modules,
-            'mdmo': self.open_metadata_modules,
-            'mdmrw': self.rewrite_metadata_modules,
+            'mdmls': self.list_metadata_pys,
+            'mdmo': self.open_metadata_pys,
+            'mdmrw': self.rewrite_metadata_pys,
             'new': self.make_package,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -191,11 +191,11 @@ class ScorePackageWrangler(Wrangler):
                 return True
         return False
 
-    def _list_all_directories_with_metadata_modules(self):
+    def _list_all_directories_with_metadata_pys(self):
         directories = []
         paths = self._list_visible_asset_paths()
         for path in paths:
-            result = self._list_directories_with_metadata_modules(path)
+            result = self._list_directories_with_metadata_pys(path)
             directories.extend(result)
         return directories
 
@@ -293,12 +293,12 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.display(messages)
         self._session._hide_next_redraw = True
 
-    def list_metadata_modules(self):
+    def list_metadata_pys(self):
         r'''Lists metadata modules in all visible score packages.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_modules()
+        directories = self._list_all_directories_with_metadata_pys()
         paths = [os.path.join(_, '__metadata__.py') for _ in directories]
         messages = paths[:]
         messages.append('')
@@ -330,12 +330,12 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
 
-    def open_metadata_modules(self):
+    def open_metadata_pys(self):
         r'''Edits metadata modules in all visible score packages.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_modules()
+        directories = self._list_all_directories_with_metadata_pys()
         paths = [os.path.join(_, '__metadata__.py') for _ in directories]
         self._io_manager.open_file(paths)
 
@@ -353,19 +353,19 @@ class ScorePackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def rewrite_metadata_modules(self, confirm=True, display=True):
+    def rewrite_metadata_pys(self, confirm=True, display=True):
         r'''Rewrites metadata modules in all visible score packages.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_modules()
+        directories = self._list_all_directories_with_metadata_pys()
         messages = []
         for directory in directories:
             path = os.path.join(directory, '__metadata__.py')
             message = 'rewriting {} ...'.format(path)
             messages.append(message)
             manager = self._io_manager.make_package_manager(directory)
-            manager.rewrite_metadata_module(confirm=False, display=False)
+            manager.rewrite_metadata_py(confirm=False, display=False)
         if display:
             messages.append('')
             message = '{} metadata modules rewritten.'

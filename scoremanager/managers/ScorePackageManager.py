@@ -385,11 +385,11 @@ class ScorePackageManager(PackageManager):
                     return
                 result = self._io_manager.confirm()
             self.write_stub_initializer(confirm=confirm, display=display)
-        if not os.path.exists(self._metadata_module_path):
+        if not os.path.exists(self._metadata_py_path):
             package_needed_to_be_fixed = True
             if display:
                 messages = []
-                path = self._metadata_module_path
+                path = self._metadata_py_path
                 message = 'can not find {}.'.format(path)
                 messages.append(message)
                 message = 'create {}?'.format(path)
@@ -402,7 +402,7 @@ class ScorePackageManager(PackageManager):
                 if not result:
                     return
                 self._io_manager.display('')
-            self.rewrite_metadata_module(confirm=confirm, display=display)
+            self.rewrite_metadata_py(confirm=confirm, display=display)
         self._session._hide_next_redraw = False
         if display:
             if package_needed_to_be_fixed:
