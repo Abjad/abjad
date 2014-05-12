@@ -79,19 +79,22 @@ class SegmentPackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _file_name_to_version_number(file_name):
+        root, extension = os.path.splitext(file_name)
+        assert 4 <= len(root), repr(file_name)
+        version_number_string = root[-4:]
+        version_number = int(version_number_string)
+        return version_number
+
     def _get_last_version_number(self):
         versions_directory_path = self._versions_directory_path
         if not os.path.exists(versions_directory_path):
             return
-        file_names = sorted(os.listdir(versions_directory_path))
+        file_names = os.listdir(versions_directory_path)
         if not file_names:
             return
-        file_names.sort()
-        last_file_name = file_names[-1]
-        assert last_file_name[0].isdigit()
-        version_string = last_file_name[:4]
-        version_number = int(version_string)
-        return version_number
+        return max(self._file_name_to_version_number(_) for _ in file_names)
 
     def _handle_main_menu_result(self, result):
         if result in self._input_to_action:
@@ -179,7 +182,7 @@ class SegmentPackageManager(PackageManager):
             output_directory_path=self._versions_directory_path,
             )
         result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
+        next_version_number, extension = result
         messages = []
         source_paths = (
             self._definition_module_path,
@@ -191,7 +194,7 @@ class SegmentPackageManager(PackageManager):
             message = ' FROM: {}'.format(source_path)
             messages.append(message)
             directory = self._versions_directory_path
-            file_name = next_output_file_name_root + extension
+            file_name = next_version_number + extension
             target_path = os.path.join(directory, file_name)
             message = '   TO: {}'.format(target_path)
             messages.append(message)
@@ -347,31 +350,31 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._view_versioned_file(extension='.py')
+        self._open_versioned_file('definition.py')
 
     def open_versioned_output_ly(self):
         r'''Opens output LilyPond file.
 
         Returns none.
         '''
-        self._view_versioned_file(extension='.ly')
+        self._open_versioned_file('output.ly')
 
     def open_versioned_output_pdf(self):
         r'''Opens output PDF.
 
         Returns none.
         '''
-        self._view_versioned_file(extension='.pdf')
+        self._open_versioned_file('output.pdf')
 
     def open_versioned_pdfs(self):
-        r'''Opens versioend PDFs.
+        r'''Opens versioned PDFs.
 
         Returns none.
         '''
         versions_directory_path = self._versions_directory_path
         file_paths = []
         for directory_entry in os.listdir(versions_directory_path):
-            if not directory_entry[0].isdigit():
+            if not directory_entry.startswith('output'):
                 continue
             if not directory_entry.endswith('.pdf'):
                 continue
@@ -416,7 +419,7 @@ class SegmentPackageManager(PackageManager):
             output_directory_path=self._versions_directory_path,
             )
         result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
+        next_version_number, extension = result
         if confirm:
             messages = []
             messages.append('will copy ...')
@@ -430,26 +433,26 @@ class SegmentPackageManager(PackageManager):
                 return
             self._io_manager.display('')
         result = os.path.splitext(next_output_file_name)
-        next_output_file_name_root, extension = result
-        target_file_name = next_output_file_name_root + '.py'
-        target_file_path = os.path.join(
-            self._versions_directory_path,
-            target_file_name,
+        next_version_number, extension = result
+        source_paths = (
+            self._definition_module_path,
+            self._output_lilypond_file_path,
+            self._output_pdf_file_path,
             )
-        shutil.copyfile(self._definition_module_path, target_file_path)
-        target_file_name = next_output_file_name_root + '.pdf'
-        target_file_path = os.path.join(
-            self._versions_directory_path,
-            target_file_name,
-            )
-        shutil.copyfile(self._output_pdf_file_path, target_file_path)
-        target_file_name = next_output_file_name_root + '.ly'
-        target_file_path = os.path.join(
-            self._versions_directory_path,
-            target_file_name,
-            )
-        shutil.copyfile(self._output_lilypond_file_path, target_file_path)
-        version_number = int(next_output_file_name_root)
+        for source_path in source_paths:
+            file_name = os.path.basename(source_path)
+            root, extension = os.path.splitext(file_name)
+            target_file_name = '{}_{}{}'.format(
+                root, 
+                next_version_number, 
+                extension,
+                )
+            target_path = os.path.join(
+                self._versions_directory_path,
+                target_file_name,
+                )
+            shutil.copyfile(source_path, target_path)
+        version_number = int(next_version_number)
         if display:
             message = 'copied definition.py, output.ly and output.pdf'
             message += ' to versions directory.'

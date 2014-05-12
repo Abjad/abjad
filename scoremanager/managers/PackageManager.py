@@ -463,10 +463,13 @@ class PackageManager(AssetController):
             return
         file_names = []
         for directory_entry in os.listdir(versions_directory_path):
-            if directory_entry[0].isdigit():
+            if not directory_entry.startswith('_'):
                 file_names.append(directory_entry)
         messages = []
-        for x in itertools.groupby(file_names, key=lambda x: x[:4]):
+        def group_helper(file_name):
+            root, extension = os.path.splitext(file_name)
+            return root[-4:]
+        for x in itertools.groupby(file_names, key=lambda x: group_helper(x)):
             key, file_names = x
             message = ' '.join(file_names)
             messages.append(message)
@@ -474,7 +477,7 @@ class PackageManager(AssetController):
             message = 'versions directory is empty.'
             messages.append(message)
         messages.append('')
-        self._io_manager.display(messages)
+        self._io_manager.display(messages, capitalize=False)
         self._session._hide_next_redraw = True
 
     def _list_visible_asset_paths(self):
@@ -515,6 +518,41 @@ class PackageManager(AssetController):
             display_string = key.replace('_', ' ')
             result.append((display_string, None, metadata[key], key))
         return result
+
+    def _open_versioned_file(self, file_name_prototype):
+        getter = self._io_manager.make_getter()
+        last_version_number = self._get_last_version_number()
+        if last_version_number is None:
+            message = 'versions directory empty.'
+            self._io_manager.display(message)
+            return
+        prompt = 'version number (0-{})'
+        prompt = prompt.format(last_version_number)
+        getter.append_integer(prompt)
+        version_number = getter._run()
+        if self._should_backtrack():
+            return
+        if last_version_number < version_number or \
+            (version_number < 0 and last_version_number < abs(version_number)):
+            message = "version {} doesn't exist yet."
+            message = message.format(version_number)
+            self._io_manager.display(['', message])
+        if version_number < 0:
+            version_number = last_version_number + version_number + 1
+        version_string = str(version_number).zfill(4)
+        root, extension = os.path.splitext(file_name_prototype)
+        file_name = '{}_{}{}'.format(
+            root,
+            version_string,
+            extension,
+            )
+        file_path = os.path.join(
+            self._path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            self._io_manager.open_file(file_path)
 
     def _remove(self, confirm=True, display=True):
         if confirm:
@@ -762,37 +800,6 @@ class PackageManager(AssetController):
         assert self._is_up_to_date()
         return True
 
-    def _view_versioned_file(self, extension=None):
-        assert extension in ('.ly', '.pdf', '.py')
-        getter = self._io_manager.make_getter()
-        last_version_number = self._get_last_version_number()
-        if last_version_number is None:
-            message = 'versions directory empty.'
-            self._io_manager.proceed(message)
-            return
-        prompt = 'version number (0-{})'
-        prompt = prompt.format(last_version_number)
-        getter.append_integer(prompt)
-        version_number = getter._run()
-        if self._should_backtrack():
-            return
-        if last_version_number < version_number or \
-            (version_number < 0 and last_version_number < abs(version_number)):
-            message = "version {} doesn't exist yet."
-            message = message.format(version_number)
-            self._io_manager.proceed(['', message])
-        if version_number < 0:
-            version_number = last_version_number + version_number + 1
-        version_string = str(version_number).zfill(4)
-        file_name = '{}{}'.format(version_string, extension)
-        file_path = os.path.join(
-            self._path,
-            'versions',
-            file_name,
-            )
-        if os.path.isfile(file_path):
-            self._io_manager.open_file(file_path)
-
     def _write_metadata_module(self, metadata):
         lines = []
         lines.append(self._unicode_directive)
@@ -891,7 +898,8 @@ class PackageManager(AssetController):
             return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
-        self._io_manager.proceed(message=message)
+        self._io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def open_initializer(self):
         r'''Opens initializer.

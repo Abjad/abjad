@@ -19,8 +19,8 @@ def test_MaterialPackageWrangler_version_artifacts_01():
             'versions',
             )
         for file_name in file_names:
-            _, extension = os.path.splitext(file_name)
-            target_name = '0001' + extension
+            root, extension = os.path.splitext(file_name)
+            target_name = '{}_{}{}'.format(root, '0001', extension)
             target_path = os.path.join(versions_directory, target_name)
             target_paths.append(target_path)
 

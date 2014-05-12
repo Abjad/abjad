@@ -15,9 +15,9 @@ def test_SegmentPackageManager_version_artifacts_01():
         'versions',
         )
     file_names = (
-        '0001.ly',
-        '0001.pdf',
-        '0001.py',
+        'definition_0001.py',
+        'output_0001.ly',
+        'output_0001.pdf',
         )
     paths = []
     for file_name in file_names:

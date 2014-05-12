@@ -10,7 +10,7 @@ def test_ScorePackageManager_remove_metadatum_01():
     # make sure no flavor_type metadatum found
     input_ = 'red~example~score mdg flavor_type default q'
     score_manager._run(pending_input=input_)
-    assert score_manager._transcript.entries[-4].title == 'None'
+    assert 'None' in score_manager._transcript.contents
 
     # add flavor_type metadatum
     input_ = 'red~example~score mda flavor_type cherry q'
@@ -19,7 +19,7 @@ def test_ScorePackageManager_remove_metadatum_01():
     # maker sure flavor_type metadatum now equal to 'cherry'
     input_ = 'red~example~score mdg flavor_type default q'
     score_manager._run(pending_input=input_)
-    assert score_manager._transcript.entries[-4].title == "'cherry'"
+    assert "'cherry'" in score_manager._transcript.contents
 
     # remove flavor_type metadatum
     input_ = 'red~example~score mdrm flavor_type default q'
@@ -28,4 +28,4 @@ def test_ScorePackageManager_remove_metadatum_01():
     # make sure no flavor_type metadatum found
     input_ = 'red~example~score mdg flavor_type default q'
     score_manager._run(pending_input=input_)
-    assert score_manager._transcript.entries[-4].title == 'None'
+    assert 'None' in score_manager._transcript.contents
