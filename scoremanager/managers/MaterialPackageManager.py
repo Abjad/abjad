@@ -88,6 +88,8 @@ class MaterialPackageManager(PackageManager):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
+            'aes': self.set_autoeditor,
+            'aeu': self.unset_autoeditor,
             'dme': self.edit_definition_module,
             'dmi': self.interpret_definition_module,
             'dmws': self.write_stub_definition_module,
@@ -102,8 +104,6 @@ class MaterialPackageManager(PackageManager):
             'omw': self.write_output_material,
             'omo': self.open_output_module,
             'pdfo': self.open_illustration_pdf,
-            'psa': self.set_autoeditor,
-            'pua': self.unset_autoeditor,
             'uar': self.remove_unadded_assets,
             'vdmo': self.open_versioned_definition_module,
             'vdls': self.list_versions_directory,
@@ -357,9 +357,9 @@ class MaterialPackageManager(PackageManager):
         commands = []
         use_autoeditor = self._get_metadatum('use_autoeditor')
         if use_autoeditor:
-            commands.append(('package - unset autoeditor', 'pua'))
+            commands.append(('package - autoeditor - unset', 'aeu'))
         else:
-            commands.append(('package - set autoeditor', 'psa'))
+            commands.append(('package - autoeditor - set', 'aes'))
         commands.append(('package - initializer - open', 'ino'))
         commands.append(('package - initializer - write stub', 'inws'))
         commands.append(('package - unadded assets - remove', 'uar'))

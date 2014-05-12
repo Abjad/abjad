@@ -16,7 +16,7 @@ def test_MaterialPackageManager_set_autoeditor_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score m new test~tempo~inventory'
-        input_ += ' psa TempoInventory q'
+        input_ += ' aes TempoInventory q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         string = 'Package autoeditor set for TempoInventory.'

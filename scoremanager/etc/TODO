@@ -228,29 +228,26 @@
 43. Remove methods from Session.
     Session should implement properties only.
 
-44. Change (psa) to (psae). Use 'ae' as standard abbreviation for
-    both 'autoedit' and 'autoeditor'.
-
-45. Write test for (... psa ... pua).
+44. Write test for (... psa ... pua).
     Right now the autoeditor settings remain in metadata module.
     Autoeditor settings should not remain in metadata module.
 
-46. Remove blank lines between the following:
+45. Remove blank lines between the following:
         Enter material packages(s) to remove> 9
 
         Will remove /Users/trevorbaca/Documents/baca/score_manager_library/materials/performer_inventory
 
         Type 'remove' to proceed> 
 
-47. Wrap view tests with FilesystemState.
+46. Wrap view tests with FilesystemState.
 
-48. Do not overwrite output.py when selecting (psa).
+47. Do not overwrite output.py when selecting (psa).
     Composer may already have defined output object.
 
-49. Add 'all segments - list versions directories'.
+48. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-50. Maybe change definition_module to definition_py.
+49. Maybe change definition_module to definition_py.
     This will work with illustration_ly and illustration_pdf.
     This will have the effect of removing the term 'module'
     from most parts of the codebase.
