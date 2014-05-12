@@ -150,14 +150,6 @@ class Controller(ScoreManagerObject):
             )
 
     @staticmethod
-    def _path_to_human_readable_name(path, include_extension=False):
-        path = os.path.normpath(path)
-        name = os.path.basename(path)
-        if not include_extension:
-            name, extension = os.path.splitext(name)
-        return stringtools.to_space_delimited_lowercase(name)
-
-    @staticmethod
     def _remove_file_line(file_path, line_to_remove):
         lines_to_keep = []
         with open(file_path, 'r') as file_pointer:

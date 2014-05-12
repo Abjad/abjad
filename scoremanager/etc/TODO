@@ -258,17 +258,7 @@
 
         Type 'remove' to proceed> 
 
-49. Annotate material package entries to show autoeditors.
-    Change ...
-        1: instrumentation
-        2: magic numbers
-        3: pitch range inventory
-        4: tempo inventory
-    ... to ...
-        1: instrumentation (AE)
-        2: magic numbers
-        3: pitch range inventory (AE)
-        4: tempo inventory (AE)
-    ... instead.
+49. Wrap view tests with FilesystemState.
 
-50. Wrap view tests with FilesystemState.
+50. Do not overwrite output.py when selecting (psa).
+    Composer may already have defined output object.

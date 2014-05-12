@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_apply_view_02():
     lines = [
         'Red Example Score (2013) - materials (_test)',
         '',
-        '   1: instrumentation',
+        '   1: instrumentation (AE)',
         '',
         '      materials - copy (cp)',
         '      materials - new (new)',

@@ -21,6 +21,7 @@ class Wrangler(AssetController):
 
     __slots__ = (
         '_abjad_storehouse_path',
+        '_annotate_year',
         '_basic_breadcrumb',
         '_asset_identifier',
         '_human_readable',
@@ -41,16 +42,16 @@ class Wrangler(AssetController):
         superclass = super(Wrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
+        self._annotate_year = False
         self._asset_identifier = None
         self._basic_breadcrumb = None
-        self._manager_class = managers.PackageManager
-        self._score_storehouse_path_infix_parts = ()
-        self._user_storehouse_path = None
-
         self._human_readable = True
         self._include_asset_name = True
         self._include_extensions = False
+        self._manager_class = managers.PackageManager
+        self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
+        self._user_storehouse_path = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -627,7 +628,7 @@ class Wrangler(AssetController):
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = [self._path_to_asset_menu_display_string(_) for _ in paths]
         pairs = zip(strings, paths)
-        if self._sort_by_annotation:
+        if not self._session.is_in_score:
             def sort_function(pair):
                 string = pair[0]
                 if '(' not in string:
@@ -783,7 +784,6 @@ class Wrangler(AssetController):
         self._io_manager.open_file(paths)
 
     def _path_to_annotation(self, path):
-        annotate_year = getattr(self, '_annotate_year', False)
         score_storehouses = (
             self._configuration.example_score_packages_directory_path,
             self._configuration.user_score_packages_directory_path,
@@ -795,7 +795,7 @@ class Wrangler(AssetController):
             if metadata:
                 year = metadata.get('year')
                 title = metadata.get('title')
-                if annotate_year and year:
+                if self._annotate_year and year:
                     annotation = '{} ({})'.format(title, year)
                 else:
                     annotation = str(title)
@@ -823,6 +823,14 @@ class Wrangler(AssetController):
                 string = '{} ({})'.format(asset_name, annotation)
             else:
                 string = annotation
+        if getattr(self, '_annotate_autoeditor', False):
+            use_autoeditor = False
+            manager = self._io_manager.make_package_manager(path=path)
+            metadata = manager._get_metadata()
+            if metadata:
+                use_autoeditor = metadata.get('use_autoeditor')
+            if use_autoeditor:
+                string = string + ' (AE)'
         return string
 
     def _path_to_human_readable_name(self, path):

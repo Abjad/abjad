@@ -36,7 +36,6 @@ class ScorePackageWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_annotate_year',
         '_only_example_scores_during_test',
         )
 
