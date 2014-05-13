@@ -30,7 +30,10 @@ class ScoreManagerObject(object):
         from scoremanager import iotools
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
-        self._io_manager = iotools.IOManager(self._session)
+        self._io_manager = iotools.IOManager(
+            client=self,
+            session=self._session,
+            )
         self._transcript = self._session.transcript
         self._controller_context = iotools.ControllerContext(self)
 

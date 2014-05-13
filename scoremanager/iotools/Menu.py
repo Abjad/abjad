@@ -280,13 +280,14 @@ class Menu(ScoreManagerObject):
             massaged_lines.append(massaged_line)
         return massaged_lines
 
-    def _make_default_hidden_sections(self):
+    def _make_default_hidden_sections(self, controller):
         sections = []
         if self._session.is_in_score:
             sections.append(self._make_go_edits_menu_section())
         sections.append(self._make_go_menu_section())
         sections.append(self._make_repository_menu_section())
-        sections.append(self._make_go_wranglers_menu_section())
+        if hasattr(controller, '_make_go_wranglers_menu_section'):
+            sections.append(controller._make_go_wranglers_menu_section(self))
         sections.append(self._make_go_scores_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
@@ -320,20 +321,6 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             commands=commands,
             name='go - scores',
-            )
-
-    def _make_go_wranglers_menu_section(self):
-        commands = []
-        commands.append(('go - build', 'u'))
-        commands.append(('go - distribution', 'd'))
-        commands.append(('go - makers', 'k'))
-        commands.append(('go - materials', 'm'))
-        commands.append(('go - segments', 'g'))
-        commands.append(('go - stylesheets', 'y'))
-        self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go - wranglers',
             )
 
     def _make_menu_lines(self):

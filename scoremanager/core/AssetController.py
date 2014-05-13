@@ -21,6 +21,22 @@ class AssetController(Controller):
             })
         return result
 
+    ### PRIVATE METHODS ###
+
+    def _make_go_wranglers_menu_section(self, menu):
+        commands = []
+        commands.append(('go - build', 'u'))
+        commands.append(('go - distribution', 'd'))
+        commands.append(('go - makers', 'k'))
+        commands.append(('go - materials', 'm'))
+        commands.append(('go - segments', 'g'))
+        commands.append(('go - stylesheets', 'y'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='go - wranglers',
+            )
+
     ### PUBLIC METHODS ###
 
     def go_to_build_files(self):

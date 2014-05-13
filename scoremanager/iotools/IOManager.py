@@ -26,14 +26,16 @@ class IOManager(IOManager):
     ### CLASS VARAIBLES ###
 
     __slots__ = (
+        '_client',
         '_configuration',
         '_session',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, client=None, session=None):
         from scoremanager import core
+        self._client = client
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session
 
@@ -257,6 +259,14 @@ class IOManager(IOManager):
         return start_menu_entries
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of IO manager.
+
+        Returns score manager object.
+        '''
+        return self._client
 
     @property
     def selector(self):
@@ -660,7 +670,7 @@ class IOManager(IOManager):
             name=name,
             session=self._session,
             )
-        menu._make_default_hidden_sections()
+        menu._make_default_hidden_sections(controller=self.client)
         return menu
 
     def make_package_manager(self, path):
