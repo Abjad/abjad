@@ -18,12 +18,6 @@ class AssetController(Controller):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            'd': self.go_to_distribution_files,
-            'g': self.go_to_segment_packages,
-            'k': self.go_to_maker_files,
-            'm': self.go_to_material_packages,
-            'u': self.go_to_build_files,
-            'y': self.go_to_stylesheets,
             })
         return result
 

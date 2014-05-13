@@ -37,12 +37,12 @@ class ScorePackageManager(PackageManager):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            'd': self._session._score_manager._distribution_file_wrangler._run,
+            'd': self.go_to_distribution_files,
             'ess': self._io_manager.edit_score_stylesheet,
-            'g': self._session._score_manager._segment_package_wrangler._run,
+            'g': self.go_to_segment_packages,
             'fix': self.fix_package,
             'k': self.go_to_maker_files,
-            'm': self._session._score_manager._material_package_wrangler._run,
+            'm': self.go_to_material_packages,
             'p': self._manage_setup,
             'pdfo': self.open_score_pdf,
             'rad': self.add_to_repository,
@@ -50,9 +50,9 @@ class ScorePackageManager(PackageManager):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'u': self._session._score_manager._build_file_wrangler._run,
+            'u': self.go_to_build_files,
             'uar': self.remove_unadded_assets,
-            'y': self._session._score_manager._stylesheet_wrangler._run,
+            'y': self.go_to_stylesheets,
             })
         return result
 
