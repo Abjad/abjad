@@ -20,4 +20,4 @@ def test_ScorePackageWrangler_list_metadata_pys_01():
     for path in paths:
         assert path in contents
 
-    assert 'metadata modules found.' in contents
+    assert 'metadata pys found.' in contents

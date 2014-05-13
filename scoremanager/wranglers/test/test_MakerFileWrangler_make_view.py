@@ -15,12 +15,12 @@ def test_MakerFileWrangler_make_view_01():
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
-    string = 'Score manager - maker modules - views - _test - edit:'
+    string = 'Score manager - maker files - views - _test - edit:'
     assert transcript.last_title == string
 
 
 def test_MakerFileWrangler_make_view_02():
-    r'''Makes sure at least maker module appears in 
+    r'''Makes sure at least maker file appears in 
     view creation menu.
     '''
 

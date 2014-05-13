@@ -13,7 +13,7 @@ def test_MakerFileWrangler_go_to_maker_files_01():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - maker modules',
-        'Red Example Score (2013) - maker modules',
+        'Red Example Score (2013) - maker files',
+        'Red Example Score (2013) - maker files',
         ]
     assert score_manager._transcript.titles == titles

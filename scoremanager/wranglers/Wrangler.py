@@ -861,7 +861,7 @@ class Wrangler(AssetController):
             )
         if result == 'corrupt':
             messages = []
-            message = '{} views module is corrupt:'
+            message = '{} views py is corrupt:'
             message = message.format(type(self).__name__)
             messages.append(message)
             messages.append('')
@@ -1094,7 +1094,7 @@ class Wrangler(AssetController):
     def apply_view(self):
         r'''Applies view.
 
-        Writes view name to metadata module.
+        Writes view name to metadata py.
 
         Returns none.
         '''
@@ -1113,7 +1113,7 @@ class Wrangler(AssetController):
     def clear_view(self):
         r'''Clears view.
 
-        Set 'view_name' to none in metadata module.
+        Set 'view_name' to none in metadata py.
 
         Returns none.
         '''
@@ -1164,7 +1164,7 @@ class Wrangler(AssetController):
         self._doctest()
 
     def list_views(self):
-        r'''List views in views module.
+        r'''List views in views py.
 
         Returns none.
         '''
@@ -1224,14 +1224,14 @@ class Wrangler(AssetController):
         self._write_view_inventory(view_inventory)
 
     def open_views_py(self):
-        r'''Opens views module.
+        r'''Opens views py.
 
         Returns none.
         '''
         if os.path.exists(self._views_py_path):
             self._io_manager.open_file(self._views_py_path)
         else:
-            message = 'no views module found.'
+            message = 'no views py found.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
@@ -1250,7 +1250,7 @@ class Wrangler(AssetController):
         self._remove_unadded_assets(confirm=confirm, display=display)
 
     def remove_views(self):
-        r'''Removes view(s) from views module.
+        r'''Removes view(s) from views py.
 
         Returns none.
         '''

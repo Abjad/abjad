@@ -6,7 +6,7 @@ from scoremanager.wranglers.Wrangler import Wrangler
 
 
 class MakerFileWrangler(Wrangler):
-    r'''Maker module wrangler.
+    r'''Maker file wrangler.
 
     ..  container:: example
 
@@ -33,8 +33,8 @@ class MakerFileWrangler(Wrangler):
         superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
-        self._asset_identifier = 'maker module'
-        self._basic_breadcrumb = 'maker modules'
+        self._asset_identifier = 'maker file'
+        self._basic_breadcrumb = 'maker files'
         self._human_readable = False
         self._include_extensions = True
         self._score_storehouse_path_infix_parts = ('makers',)
@@ -72,7 +72,7 @@ class MakerFileWrangler(Wrangler):
         else:
             self._edit_maker_file(result)
 
-    def _make_main_menu(self, name='make module wrangler'):
+    def _make_main_menu(self, name='make py wrangler'):
         superclass = super(MakerFileWrangler, self)
         menu = superclass._make_main_menu(name=name)
         self._make_pys_menu_section(menu)
@@ -80,26 +80,26 @@ class MakerFileWrangler(Wrangler):
 
     def _make_pys_menu_section(self, menu):
         commands = []
-        commands.append(('maker modules - copy', 'cp'))
-        commands.append(('maker modules - new', 'new'))
-        commands.append(('maker modules - rename', 'ren'))
-        commands.append(('maker modules - remove', 'rm'))
+        commands.append(('maker files - copy', 'cp'))
+        commands.append(('maker files - new', 'new'))
+        commands.append(('maker files - rename', 'ren'))
+        commands.append(('maker files - remove', 'rm'))
         menu.make_command_section(
             commands=commands,
-            name='maker modules',
+            name='maker files',
             )
 
     ### PUBLIC METHODS ###
 
     def copy_file(self):
-        r'''Copies maker module.
+        r'''Copies maker file.
 
         Returns none.
         '''
         self._copy_asset(extension='.py', force_lowercase=False)
 
     def make_py(self):
-        r'''Makes maker module.
+        r'''Makes maker file.
 
         Returns none.
         '''
@@ -110,14 +110,14 @@ class MakerFileWrangler(Wrangler):
             )
 
     def remove_files(self):
-        r'''Removes one or more maker modules.
+        r'''Removes one or more maker files.
 
         Returns none.
         '''
         self._remove_assets()
 
     def rename_file(self):
-        r'''Renames make module.
+        r'''Renames make py.
 
         Returns none.
         '''

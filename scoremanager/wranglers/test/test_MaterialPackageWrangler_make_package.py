@@ -77,7 +77,7 @@ def test_MaterialPackageWrangler_make_package_02():
 
 
 def test_MaterialPackageWrangler_make_package_03():
-    r'''Creates empty material definition module.
+    r'''Creates empty material definition py.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -111,8 +111,8 @@ def test_MaterialPackageWrangler_make_package_03():
 
 
 def test_MaterialPackageWrangler_make_package_04():
-    r'''Makes handmade package. Makes sure initializer, metadata module and
-    definition module are created. Removes package.
+    r'''Makes handmade package. Makes sure initializer, metadata py and
+    definition py are created. Removes package.
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
@@ -144,7 +144,7 @@ def test_MaterialPackageWrangler_make_package_05():
 
 
 def test_MaterialPackageWrangler_make_package_06():
-    r'''Makes handmade package. Copies boilerplate definition module.
+    r'''Makes handmade package. Copies boilerplate definition py.
     Creates output material. Removes package.
     '''
 
@@ -167,7 +167,7 @@ def test_MaterialPackageWrangler_make_package_06():
 
 
 def test_MaterialPackageWrangler_make_package_07():
-    r'''Makes handmade package. Overwrite material definition module with stub.
+    r'''Makes handmade package. Overwrite material definition py with stub.
     Removes package.
     '''
 
@@ -192,8 +192,8 @@ def test_MaterialPackageWrangler_make_package_07():
 
 
 def test_MaterialPackageWrangler_make_package_08():
-    r'''Makes handmade package. Corrupts definition module. Makes sure
-    score manager starts when definition module is corrupt. Removes package.
+    r'''Makes handmade package. Corrupts definition py. Makes sure
+    score manager starts when definition py is corrupt. Removes package.
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
@@ -209,9 +209,9 @@ def test_MaterialPackageWrangler_make_package_08():
 
 
 def test_MaterialPackageWrangler_make_package_09():
-    r'''Makes handmade package. Copies canned material definition module.
-    Makes output module. Corrupts output module. Makes sure score manager
-    starts when output module is corrupt. Removes package.
+    r'''Makes handmade package. Copies canned material definition py.
+    Makes output py. Corrupts output py. Makes sure score manager
+    starts when output py is corrupt. Removes package.
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):

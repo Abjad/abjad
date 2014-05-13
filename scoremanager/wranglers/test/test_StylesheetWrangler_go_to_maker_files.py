@@ -14,6 +14,6 @@ def test_StylesheetWrangler_go_to_maker_files_01():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets',
-        'Red Example Score (2013) - maker modules',
+        'Red Example Score (2013) - maker files',
         ]
     assert score_manager._transcript.titles == titles

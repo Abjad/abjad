@@ -118,17 +118,17 @@ class SegmentPackageManager(PackageManager):
 
     def _make_definition_py_menu_section(self, menu):
         if not os.path.isfile(self._definition_py_path):
-            message = 'No definition.py module found;'
+            message = 'No definition.py found;'
             message += ' use (dmws) to write stub.'
             menu.make_informational_section(
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition module - edit', 'dme'))
-        commands.append(('definition module - write stub', 'dmws'))
+        commands.append(('definition py - edit', 'dme'))
+        commands.append(('definition py - write stub', 'dmws'))
         menu.make_command_section(
             commands=commands,
-            name='definition module',
+            name='definition py',
             )
 
     def _make_main_menu(self, name='segment package manager'):
@@ -146,12 +146,12 @@ class SegmentPackageManager(PackageManager):
 
     def _make_make_py_menu_section(self, menu):
         commands = []
-        commands.append(('make module - interpret', 'mmi'))
-        commands.append(('make module - open', 'mmo'))
-        commands.append(('make module - write stub', 'mmws'))
+        commands.append(('make py - interpret', 'mmi'))
+        commands.append(('make py - open', 'mmo'))
+        commands.append(('make py - write stub', 'mmws'))
         menu.make_command_section(
             commands=commands,
-            name='make module',
+            name='make py',
             )
 
     def _make_package_configuration_menu_section(self, menu):
@@ -199,7 +199,7 @@ class SegmentPackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_definition_py(self):
-        r'''Edits asset definition module.
+        r'''Edits asset definition py.
 
         Returns none.
         '''
@@ -249,14 +249,14 @@ class SegmentPackageManager(PackageManager):
             self._session._hide_next_redraw = True
 
     def interpret_make_py(self, confirm=True, display=True):
-        r'''Interprets ``__make__.py`` module.
+        r'''Interprets ``__make__.py``.
 
-        Creates ``output.ly`` and ``output.pdf`` files.
+        Creates ``output.ly`` and ``output.pdf``.
 
         Returns none.
         '''
         if not os.path.isfile(self._make_py_path):
-            message = 'no __make__.py module found.'
+            message = 'no __make__.py found.'
             self._io_manager.display(message)
             return
         if display:
@@ -303,7 +303,7 @@ class SegmentPackageManager(PackageManager):
         self._list_versions_directory()
 
     def open_make_py(self):
-        r'''Opens ``__make__.py`` module.
+        r'''Opens ``__make__.py``.
 
         Returns none.
         '''
@@ -328,7 +328,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.open_file(file_path)
 
     def open_versioned_definition_py(self):
-        r'''Opens versioned definition module.
+        r'''Opens versioned definition py.
 
         Returns none.
         '''
@@ -381,7 +381,7 @@ class SegmentPackageManager(PackageManager):
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_py(self, confirm=True, display=True):
-        r'''Writes stub definition module.
+        r'''Writes stub definition py.
 
         Returns none.
         '''
@@ -413,7 +413,7 @@ class SegmentPackageManager(PackageManager):
 
     # TODO: reimplement as boilerplate
     def write_stub_make_py(self, confirm=True, display=True):
-        r'''Writes stub __make__.py module.
+        r'''Writes stub ``__make__.py``.
 
         Returns none.
         '''

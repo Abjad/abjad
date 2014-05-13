@@ -165,7 +165,7 @@ class MaterialPackageWrangler(Wrangler):
         commands.append(('all materials - illustration.lys - interpret', 'lyi'))
         commands.append(('all materials - illustration.pdfs - open', 'pdfo'))
         commands.append(('all materials - initializers - open', 'ino'))
-        commands.append(('all materials - metadata modules - open', 'mdmo'))
+        commands.append(('all materials - metadata pys - open', 'mdmo'))
         commands.append(('all materials - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,

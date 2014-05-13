@@ -44,8 +44,8 @@ def test_MakerFileWrangler_remove_views_02():
 
     titles = [
         'Score manager - example scores',
-        'Score manager - maker modules',
-        'Score manager - maker modules - select view(s) to remove:',
-        'Score manager - maker modules',
+        'Score manager - maker files',
+        'Score manager - maker files - select view(s) to remove:',
+        'Score manager - maker files',
         ]
     assert score_manager._transcript.titles == titles

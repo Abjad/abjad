@@ -225,7 +225,7 @@ class PackageManager(AssetController):
             try:
                 exec(file_contents_string)
             except:
-                message = 'can not interpret metadata module: {!r}.'
+                message = 'can not interpret metadata py: {!r}.'
                 message = message.format(self)
                 print(message)
             metadata = locals().get('metadata')
@@ -894,7 +894,7 @@ class PackageManager(AssetController):
     ### PUBLIC METHODS ###
 
     def add_metadatum(self):
-        r'''Adds metadatum to metadata module.
+        r'''Adds metadatum to metadata py.
 
         Returns none.
         '''
@@ -966,7 +966,7 @@ class PackageManager(AssetController):
         self._doctest()
 
     def get_metadatum(self):
-        r'''Gets metadatum from metadata module.
+        r'''Gets metadatum from metadata py.
 
         Returns none.
         '''
@@ -988,7 +988,7 @@ class PackageManager(AssetController):
         self._io_manager.open_file(self._initializer_file_path)
 
     def open_metadata_py(self):
-        r'''Edits metadata module.
+        r'''Edits metadata py.
 
         Returns none.
         '''
@@ -1007,7 +1007,7 @@ class PackageManager(AssetController):
         self._pytest()
 
     def remove_metadatum(self):
-        r'''Removes metadatum from meatdata module.
+        r'''Removes metadatum from ``__metadata__.py``.
 
         Returns none.
         '''
@@ -1058,7 +1058,7 @@ class PackageManager(AssetController):
         metadata=None, 
         display=True,
         ):
-        r'''Rewrites metadata module.
+        r'''Rewrites metadata py.
 
         Returns none.
         '''
@@ -1066,7 +1066,7 @@ class PackageManager(AssetController):
             metadata = self._get_metadata()
         self._write_metadata_py(metadata)
         if display:
-            message = 'rewrote metadata module.'
+            message = 'rewrote metadata py.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 

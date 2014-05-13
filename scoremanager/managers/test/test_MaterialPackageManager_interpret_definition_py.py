@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_MaterialPackageManager_interpret_definition_py_01():
-    r'''Interpretation makes sure definition module raises no exceptions.
+    r'''Interpretation makes sure definition py raises no exceptions.
     '''
 
     input_path = os.path.join(
@@ -21,6 +21,6 @@ def test_MaterialPackageManager_interpret_definition_py_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'No exceptions raised; use (omo) to write output module.'
+    string = 'No exceptions raised; use (omo) to write output py.'
     assert string in contents
     assert 'Interpreted' in contents

@@ -23,7 +23,7 @@
         PackageManager._get_repository_root_directory()
         PackageManager._is_up_to_date()
 
-6.  Add 'output module - check (omc)' command.
+6.  Add 'output py - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -33,7 +33,7 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-7.  Implement a 'views module - rewrite' (vmrw) command.
+7.  Implement a 'views py - rewrite' (vmrw) command.
 
 8.  Implement PackageManager.check_contents().
     With corresponding 'check - contents' (cc) command.
@@ -123,9 +123,9 @@
     Wrangler._current_manager?
 
 22. Make (mdmo) work for wranglers.
-    There is now a metadata module in which wranglers store
+    There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdmo) command should
-    allow the composer to read that metadata module.
+    allow the composer to read that metadata py.
 
 23. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
@@ -158,7 +158,7 @@
     ~/.score_manager/ directory.
 
 33. Change 'vmrm' to 'vmtrash'.
-    No reason to remove views modules from repository.
+    No reason to remove views pys from repository.
 
 34. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
@@ -176,19 +176,19 @@
         all score packages - fix (fix)
         all score packages - initializers - rewrite (inrw)
         all score packages - initializers - open (ino)
-        all score packages - metadata modules - open (mdmo)
-        all score packages - metadata modules - rewrite (mdmrw)
+        all score packages - metadata pys - open (mdmo)
+        all score packages - metadata pys - rewrite (mdmrw)
         all score packages - score pdfs - open (pdfo)
         all score packages - unadded assets - remove (uarm)
     ... instead.
 
 38. Improve (k > cp) user experience. Change ...
-        Enter maker module to copy> 1
-        New maker module name> RedExampleScoreRhythmMaker.py
+        Enter maker file to copy> 1
+        New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
-        Enter maker module to copy> 1
-        (Name of maker module to copy: RedExampleScoreTemplate.py)
-        New maker module name> RedExampleScoreRhythmMaker.py
+        Enter maker file to copy> 1
+        (Name of maker file to copy: RedExampleScoreTemplate.py)
+        New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
 39. Improve (vls) user experience. Change ...
@@ -232,8 +232,3 @@
 
 45. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
-
-46. Maybe change definition_py to definition_py.
-    This will work with illustration_ly and illustration_pdf.
-    This will have the effect of removing the term 'module'
-    from most parts of the codebase.

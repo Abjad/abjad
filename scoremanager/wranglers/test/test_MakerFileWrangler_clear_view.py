@@ -9,7 +9,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=False)
 def test_MakerFileWrangler_clear_view_01():
     r'''In library: applies view and then clears view.
 
-    Makes sure only one maker module is visible when view is applied.
+    Makes sure only one maker file is visible when view is applied.
     
     Then makes sure multiple files are visible once view is cleared.
     '''
@@ -22,14 +22,14 @@ def test_MakerFileWrangler_clear_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Score manager - maker modules (_test)',
+        'Score manager - maker files (_test)',
         '',
         '   1: RedExampleScoreTemplate.py (Red Example Score)',
         '',
-        '      maker modules - copy (cp)',
-        '      maker modules - new (new)',
-        '      maker modules - remove (rm)',
-        '      maker modules - rename (ren)',
+        '      maker files - copy (cp)',
+        '      maker files - new (new)',
+        '      maker files - remove (rm)',
+        '      maker files - rename (ren)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -38,9 +38,9 @@ def test_MakerFileWrangler_clear_view_01():
 def test_MakerFileWrangler_clear_view_02():
     r'''In single makers directory: applies view and then clears view.
 
-    Makes sure only one maker module is visible when view is applied.
+    Makes sure only one maker file is visible when view is applied.
     
-    Then makes sure multiple maker modules are visible once view is cleared.
+    Then makes sure multiple maker files are visible once view is cleared.
     '''
     
     input_ = 'red~example~score k vnew _test rm all'
@@ -50,14 +50,14 @@ def test_MakerFileWrangler_clear_view_02():
     transcript = score_manager._transcript
 
     lines = [
-        'Red Example Score (2013) - maker modules (_test)',
+        'Red Example Score (2013) - maker files (_test)',
         '',
         '   1: RedExampleScoreTemplate.py',
         '',
-        '      maker modules - copy (cp)',
-        '      maker modules - new (new)',
-        '      maker modules - remove (rm)',
-        '      maker modules - rename (ren)',
+        '      maker files - copy (cp)',
+        '      maker files - new (new)',
+        '      maker files - remove (rm)',
+        '      maker files - rename (ren)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)

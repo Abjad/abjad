@@ -32,7 +32,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
 def test_BuildFileWrangler_generate_draft_source_02():
     r'''Works with empty build directory.
 
-    (Blue Example Score segment views module is intentionally corrupt.)
+    (Blue Example Score segment views py is intentionally corrupt.)
     '''
 
     path = os.path.join(
@@ -46,7 +46,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
         input_ = 'blue~example~score u dg y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
-        message = 'SegmentPackageWrangler views module is corrupt.' 
+        message = 'SegmentPackageWrangler views py is corrupt.' 
         assert message not in contents
         assert 'Will assemble segments in this order:' in contents
         assert os.path.isfile(path)

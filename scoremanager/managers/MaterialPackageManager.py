@@ -228,22 +228,22 @@ class MaterialPackageManager(PackageManager):
         commands = []
         if os.path.isfile(self._illustrate_py_path):
             is_hidden = False
-            string = 'illustrate module - edit'
+            string = 'illustrate py - edit'
             commands.append((string, 'ime'))
-            string = 'illustrate module - edit & interpret'
+            string = 'illustrate py - edit & interpret'
             commands.append((string, 'imei'))
-            string = 'illustrate module - interpret'
+            string = 'illustrate py - interpret'
             commands.append((string, 'imi'))
-            string = 'illustrate module - write stub'
+            string = 'illustrate py - write stub'
             commands.append((string, 'imws'))
         else:
             is_hidden = True
-            string = 'illustrate module - write stub'
+            string = 'illustrate py - write stub'
             commands.append((string, 'imws'))
         menu.make_command_section(
             is_hidden=is_hidden,
             commands=commands,
-            name='illustrate module',
+            name='illustrate py',
             )
 
     def _make_illustration_ly_menu_section(self, menu):
@@ -290,17 +290,17 @@ class MaterialPackageManager(PackageManager):
         return menu
 
     def _make_material_definition_menu_section(self, menu):
-        name = 'definition module'
+        name = 'definition py'
         commands = []
-        commands.append(('definition module - edit', 'dme'))
-        commands.append(('definition module - interpret', 'dmi'))
-        commands.append(('definition module - write stub', 'dmws'))
+        commands.append(('definition py - edit', 'dme'))
+        commands.append(('definition py - interpret', 'dmi'))
+        commands.append(('definition py - write stub', 'dmws'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
                 is_hidden=use_autoeditor,
                 commands=commands,
-                name='definition module',
+                name='definition py',
                 )
 
     def _make_material_menu_section(self, menu):
@@ -344,13 +344,13 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         commands = []
-        commands.append(('output module - write', 'omw'))
+        commands.append(('output py - write', 'omw'))
         if os.path.isfile(self._output_py_path):
-            commands.append(('output module - open', 'omo'))
+            commands.append(('output py - open', 'omo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
-                name='output module',
+                name='output py',
                 )
 
     def _make_package_configuration_menu_section(self, menu):
@@ -539,7 +539,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     def edit_and_interpret_illustrate_py(self):
-        r'''Edits and then interprets illustrate module module.
+        r'''Edits and then interprets ``illustrate.py``.
 
         Returns none.
         '''
@@ -547,14 +547,14 @@ class MaterialPackageManager(PackageManager):
         self.interpret_illustrate_py()
 
     def edit_definition_py(self):
-        r'''Edits material definition module.
+        r'''Edits material definition py.
 
         Returns none.
         '''
         self._io_manager.edit(self._definition_py_path)
 
     def edit_illustrate_py(self):
-        r'''Edits illustrate module module.
+        r'''Edits ``illustrate.py``.
 
         Returns none.
         '''
@@ -581,17 +581,17 @@ class MaterialPackageManager(PackageManager):
             self._session._hide_next_redraw = True
 
     def interpret_definition_py(self):
-        r'''Calls Python on material definition module.
+        r'''Calls Python on material definition py.
 
         Returns none.
         '''
         result = self._io_manager.interpret(self._definition_py_path)
-        message = 'no exceptions raised; use (omo) to write output module.'
+        message = 'no exceptions raised; use (omo) to write output py.'
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
     def interpret_illustrate_py(self, confirm=True, display=True):
-        r'''Calls Python on illustrate module module.
+        r'''Calls Python on ``illustrate.py``.
 
         Returns none.
         '''
@@ -644,14 +644,14 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.open_file(self._illustration_pdf_file_path)
 
     def open_output_py(self):
-        r'''Opens output module.
+        r'''Opens output py.
 
         Returns none.
         '''
         self._io_manager.open_file(self._output_py_path)
 
     def open_versioned_definition_py(self):
-        r'''Opens versioned definition module.
+        r'''Opens versioned definition py.
 
         Returns none.
         '''
@@ -672,7 +672,7 @@ class MaterialPackageManager(PackageManager):
         self._open_versioned_file('illustration.pdf')
 
     def open_versioned_output_py(self):
-        r'''Opens versioned ``output.py`` module.
+        r'''Opens versioned ``output.py``.
 
         Returns none.
         '''
@@ -818,7 +818,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     def write_stub_definition_py(self, confirm=True, display=True):
-        r'''Writes stub material definition module.
+        r'''Writes stub material definition py.
 
         Returns none.
         '''
@@ -848,7 +848,7 @@ class MaterialPackageManager(PackageManager):
             self._session._hide_next_redraw = True
 
     def write_stub_illustrate_py(self, confirm=True, display=True):
-        r'''Writes stub illustrate module module.
+        r'''Writes stub ``illustrate.py``.
 
         Returns none.
         '''

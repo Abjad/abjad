@@ -201,9 +201,9 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
-        commands.append(('all - metadata modules - edit', 'mdmo'))
-        commands.append(('all - metadata modules - list', 'mdmls'))
-        commands.append(('all - metadata modules - rewrite', 'mdmrw'))
+        commands.append(('all - metadata pys - edit', 'mdmo'))
+        commands.append(('all - metadata pys - list', 'mdmls'))
+        commands.append(('all - metadata pys - rewrite', 'mdmrw'))
         commands.append(('all - score packages - fix', 'fix'))
         commands.append(('all - unadded assets - remove', 'uar'))
         menu.make_command_section(
@@ -294,7 +294,7 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_metadata_pys(self):
-        r'''Lists metadata modules in all visible score packages.
+        r'''Lists metadata pys in all visible score packages.
 
         Returns none.
         '''
@@ -303,7 +303,7 @@ class ScorePackageWrangler(Wrangler):
         messages = paths[:]
         messages.append('')
         self._io_manager.display(messages)
-        message = '{} metadata modules found.'
+        message = '{} metadata pys found.'
         message = message.format(len(paths))
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
@@ -331,7 +331,7 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def open_metadata_pys(self):
-        r'''Edits metadata modules in all visible score packages.
+        r'''Edits metadata pys in all visible score packages.
 
         Returns none.
         '''
@@ -354,7 +354,7 @@ class ScorePackageWrangler(Wrangler):
         self._rename_asset()
 
     def rewrite_metadata_pys(self, confirm=True, display=True):
-        r'''Rewrites metadata modules in all visible score packages.
+        r'''Rewrites metadata pys in all visible score packages.
 
         Returns none.
         '''
@@ -368,7 +368,7 @@ class ScorePackageWrangler(Wrangler):
             manager.rewrite_metadata_py(confirm=False, display=False)
         if display:
             messages.append('')
-            message = '{} metadata modules rewritten.'
+            message = '{} metadata pys rewritten.'
             message = message.format(len(directories))
             messages.append(message)
             messages.append('')

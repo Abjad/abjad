@@ -8,7 +8,7 @@ configuration = score_manager._configuration
 
 
 def test_Wrangler__read_view_inventory_01():
-    r'''Ignores corrupt views module.
+    r'''Ignores corrupt views py.
     '''
 
     views_py_path = os.path.join(
@@ -31,7 +31,7 @@ def test_Wrangler__read_view_inventory_01():
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - segments',
         '',
-        'SegmentPackageWrangler views module is corrupt:',
+        'SegmentPackageWrangler views py is corrupt:',
         'No views found.',
         'Blue Example Score (2013) - segments',
         ]

@@ -5,7 +5,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_MakerFileWrangler_pytest_01():
-    r'''Works on all test files in all maker module directories.
+    r'''Works on all test files in all maker file directories.
     '''
 
     input_ = 'k pyt q'
@@ -22,7 +22,7 @@ def test_MakerFileWrangler_pytest_01():
 
 
 def test_MakerFileWrangler_pytest_02():
-    r'''Works on all test files in a single maker module directory.
+    r'''Works on all test files in a single maker file directory.
     '''
 
     input_ = 'red~example~score k pyt q'

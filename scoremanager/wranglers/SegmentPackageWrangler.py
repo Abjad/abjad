@@ -82,10 +82,10 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all segments - edit definition modules', 'dme'))
-        commands.append(('all segments - interpret make modules', 'mmi'))
+        commands.append(('all segments - edit definition pys', 'dme'))
+        commands.append(('all segments - interpret make pys', 'mmi'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
-        commands.append(('all segments - open metadata modules', 'mdmo'))
+        commands.append(('all segments - open metadata pys', 'mdmo'))
         commands.append(('all segments - open output.pdf files', 'pdfo'))
         commands.append(('all segments - version artifacts', 'ver'))
         menu.make_command_section(
@@ -152,7 +152,7 @@ class SegmentPackageWrangler(Wrangler):
         self._copy_asset()
 
     def edit_definition_pys(self):
-        r'''Edits segment definition modules.
+        r'''Edits segment definition pys.
 
         Returns none.
         '''
@@ -210,9 +210,9 @@ class SegmentPackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def interpret_make_pys(self):
-        r'''Interprets __make.py__ module in each segment.
+        r'''Interprets ``__make.py__`` in each segment.
         
-        Makes output.ly and output.pdf file in each segment.
+        Makes output.ly and output.pdf in each segment.
 
         Returns none.
         '''
@@ -272,7 +272,7 @@ class SegmentPackageWrangler(Wrangler):
         manager._run()
 
     def open_initializer(self):
-        r'''Opens initializer module.
+        r'''Opens initializer.
 
         Returns none.
         '''
@@ -308,7 +308,7 @@ class SegmentPackageWrangler(Wrangler):
         self._version_artifacts(confirm=confirm, display=display)
 
     def write_stub_initializer(self):
-        r'''Writes stub initializer module.
+        r'''Writes stub initializer.
 
         Returns none.
         '''

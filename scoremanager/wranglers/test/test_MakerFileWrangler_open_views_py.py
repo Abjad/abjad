@@ -19,4 +19,4 @@ def test_MakerFileWrangler_open_views_py_02():
     contents = score_manager._transcript.contents
 
     assert not score_manager._session._attempted_to_open_file
-    assert 'No views module found.' in contents
+    assert 'No views py found.' in contents
