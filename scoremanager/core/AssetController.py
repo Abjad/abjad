@@ -23,6 +23,28 @@ class AssetController(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _make_go_edits_menu_section(self, menu):
+        commands = []
+        commands.append(('go - edit score stylesheet', 'ess'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='go - zzz',
+            )
+
+    def _make_repository_menu_section(self, menu):
+        commands = []
+        commands.append(('repository - add', 'rad'))
+        commands.append(('repository - commit', 'rci'))
+        commands.append(('repository - revert', 'rrv'))
+        commands.append(('repository - status', 'rst'))
+        commands.append(('repository - update', 'rup'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='repository',
+            )
+
     def _make_go_wranglers_menu_section(self, menu):
         commands = []
         commands.append(('go - build', 'u'))

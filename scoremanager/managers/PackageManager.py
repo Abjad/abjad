@@ -755,7 +755,7 @@ class PackageManager(AssetController):
         with context, directory_change:
                 self._enter_run()
                 while True:
-                    result = io_manager._get_wrangler_navigation_directive()
+                    result = self._session.wrangler_navigation_directive
                     if not result:
                         menu = self._make_main_menu()
                         result = menu._run()

@@ -168,7 +168,6 @@ class Menu(ScoreManagerObject):
     def _display_all_commands(self):
         menu_lines = []
         for section in self.menu_sections:
-            #print repr(section), 'SECTION'
             if not section.is_command_section:
                 continue
             for menu_entry in section:
@@ -280,49 +279,6 @@ class Menu(ScoreManagerObject):
             massaged_lines.append(massaged_line)
         return massaged_lines
 
-    def _make_default_hidden_sections(self, controller):
-        sections = []
-        if self._session.is_in_score:
-            sections.append(self._make_go_edits_menu_section())
-        sections.append(self._make_go_menu_section())
-        sections.append(self._make_repository_menu_section())
-        if hasattr(controller, '_make_go_wranglers_menu_section'):
-            sections.append(controller._make_go_wranglers_menu_section(self))
-        sections.append(self._make_go_scores_menu_section())
-        sections.append(self._make_system_menu_section())
-        return sections
-
-    def _make_go_edits_menu_section(self):
-        commands = []
-        commands.append(('go - edit score stylesheet', 'ess'))
-        self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go - zzz',
-            )
-
-    def _make_go_menu_section(self):
-        commands = []
-        commands.append(('go - back', 'b'))
-        commands.append(('go - home', 'h'))
-        commands.append(('go - score', 's'))
-        self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go',
-            )
-
-    def _make_go_scores_menu_section(self):
-        commands = []
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - previous score', '<<'))
-        self.make_command_section(
-            is_alphabetized=False,
-            is_hidden=True,
-            commands=commands,
-            name='go - scores',
-            )
-
     def _make_menu_lines(self):
         result = []
         if not self.name:
@@ -332,19 +288,6 @@ class Menu(ScoreManagerObject):
         result.extend(self._make_title_lines())
         result.extend(self._make_section_lines())
         return result
-
-    def _make_repository_menu_section(self):
-        commands = []
-        commands.append(('repository - add', 'rad'))
-        commands.append(('repository - commit', 'rci'))
-        commands.append(('repository - revert', 'rrv'))
-        commands.append(('repository - status', 'rst'))
-        commands.append(('repository - update', 'rup'))
-        section = self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='repository',
-            )
 
     def _make_section(
         self,
@@ -426,22 +369,6 @@ class Menu(ScoreManagerObject):
         if self._hide_current_run:
             result = []
         return result
-
-    def _make_system_menu_section(self):
-        commands = []
-        commands.append(('system - commands', '?'))
-        commands.append(('system - doctest', 'pyd'))
-        commands.append(('system - session variables', 'sv'))
-        commands.append(('system - LilyPond log', 'll'))
-        commands.append(('system - Python', 'pyi'))
-        commands.append(('system - pytest', 'pyt'))
-        commands.append(('system - quit', 'q'))
-        commands.append(('system - shell', '!'))
-        section = self.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='system', 
-            )
 
     def _make_tab(self, n=1):
         return 4 * n * ' '

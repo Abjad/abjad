@@ -186,7 +186,6 @@ class Session(abctools.AbjadObject):
         first_controller = self.controller_stack[0]
         breadcrumb = getattr(first_controller, 'breadcrumb', None)
         breadcrumb = breadcrumb or first_controller._breadcrumb
-        #breadcrumb = self.controller_stack[0]._breadcrumb
         if breadcrumb:
             result_lines.append(breadcrumb)
         hanging_indent_width = 5
@@ -578,20 +577,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        if self.is_navigating_to_score_build_files:
-            return True
-        elif self.is_navigating_to_score_distribution_files:
-            return True
-        elif self.is_navigating_to_score_maker_files:
-            return True
-        elif self.is_navigating_to_score_materials:
-            return True
-        elif self.is_navigating_to_score_segments:
-            return True
-        elif self.is_navigating_to_score_stylesheets:
-            return True
-        else:
-            return False
+        return self.wrangler_navigation_directive is not None
 
     @property
     def is_backtracking_locally(self):
@@ -1145,6 +1131,32 @@ class Session(abctools.AbjadObject):
         Returns IO transcript.
         '''
         return self._transcript
+
+    @property
+    def wrangler_navigation_directive(self):
+        r'''Gets wrangler navigation directive.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.wrangler_navigation_directive is None
+                True
+
+        Returns u, d, k, m, g, y or none.
+        '''
+        if self.is_navigating_to_score_build_files:
+            return 'u'
+        elif self.is_navigating_to_score_distribution_files:
+            return 'd'
+        elif self.is_navigating_to_score_maker_files:
+            return 'k'
+        elif self.is_navigating_to_score_materials:
+            return 'm'
+        elif self.is_navigating_to_score_segments:
+            return 'g'
+        elif self.is_navigating_to_score_stylesheets:
+            return 'y'
 
     ### PUBLIC METHODS ###
 

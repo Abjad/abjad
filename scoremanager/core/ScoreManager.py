@@ -111,7 +111,7 @@ class ScoreManager(Controller):
             while True:
                 result = wrangler._get_sibling_score_path()
                 if not result:
-                    result = io_manager._get_wrangler_navigation_directive()
+                    result = self._session.wrangler_navigation_directive
                 if not result:
                     menu = wrangler._make_main_menu()
                     result = menu._run()
