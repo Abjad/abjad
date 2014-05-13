@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageManager_interpret_make_module_01():
+def test_SegmentPackageManager_interpret_make_py_01():
 
     segment_directory = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,

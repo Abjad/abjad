@@ -109,7 +109,7 @@ class Wrangler(AssetController):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmo': self.open_views_module,
+            'vmo': self.open_views_py,
             })
         return result
 
@@ -120,7 +120,7 @@ class Wrangler(AssetController):
         return self._io_manager.make_package_manager(path)
 
     @property
-    def _views_module_path(self):
+    def _views_py_path(self):
         if self._session.is_in_score:
             directory = self._get_current_directory()
             return os.path.join(directory, '__views__.py')
@@ -851,12 +851,12 @@ class Wrangler(AssetController):
         return view_inventory.get(view_name)
 
     def _read_view_inventory(self):
-        if self._views_module_path is None:
+        if self._views_py_path is None:
             return
-        if not os.path.exists(self._views_module_path):
+        if not os.path.exists(self._views_py_path):
             return
         result = self._io_manager.execute_file(
-            path=self._views_module_path,
+            path=self._views_py_path,
             attribute_names=('view_inventory',),
             )
         if result == 'corrupt':
@@ -865,7 +865,7 @@ class Wrangler(AssetController):
             message = message.format(type(self).__name__)
             messages.append(message)
             messages.append('')
-            message = '    {}'.format(self._views_module_path)
+            message = '    {}'.format(self._views_py_path)
             messages.append(message)
             self._io_manager.display(messages)
             return
@@ -1069,7 +1069,7 @@ class Wrangler(AssetController):
         line = 'view_inventory={}'.format(format(view_inventory))
         lines.append(line)
         contents = '\n'.join(lines)
-        self._io_manager.write(self._views_module_path, contents)
+        self._io_manager.write(self._views_py_path, contents)
         if display:
             message = 'view inventory written to disk.'
             self._io_manager.display(message)
@@ -1223,13 +1223,13 @@ class Wrangler(AssetController):
         view_inventory[view_name] = view
         self._write_view_inventory(view_inventory)
 
-    def open_views_module(self):
+    def open_views_py(self):
         r'''Opens views module.
 
         Returns none.
         '''
-        if os.path.exists(self._views_module_path):
-            self._io_manager.open_file(self._views_module_path)
+        if os.path.exists(self._views_py_path):
+            self._io_manager.open_file(self._views_py_path)
         else:
             message = 'no views module found.'
             self._io_manager.display([message, ''])

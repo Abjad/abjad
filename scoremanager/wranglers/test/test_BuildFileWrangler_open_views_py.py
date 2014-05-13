@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_BuildFileWrangler_open_views_module_01():
+def test_BuildFileWrangler_open_views_py_01():
 
     input_ = 'u vmo q'
     score_manager._run(pending_input=input_)
@@ -12,7 +12,7 @@ def test_BuildFileWrangler_open_views_module_01():
     assert score_manager._session._attempted_to_open_file
 
 
-def test_BuildFileWrangler_open_views_module_02():
+def test_BuildFileWrangler_open_views_py_02():
 
     input_ = 'blue~example~score u vmo q'
     score_manager._run(pending_input=input_)

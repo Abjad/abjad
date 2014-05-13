@@ -47,9 +47,9 @@ class SegmentPackageManager(PackageManager):
             'dmws': self.write_stub_definition_py,
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
-            'mmi': self.interpret_make_module,
-            'mmo': self.open_make_module,
-            'mmws': self.write_stub_make_module,
+            'mmi': self.interpret_make_py,
+            'mmo': self.open_make_py,
+            'mmws': self.write_stub_make_py,
             'pdfo': self.open_output_pdf,
             'uar': self.remove_unadded_assets,
             'vdmo': self.open_versioned_definition_py,
@@ -62,7 +62,7 @@ class SegmentPackageManager(PackageManager):
         return result
 
     @property
-    def _make_module_path(self):
+    def _make_py_path(self):
         return os.path.join(self._path, '__make__.py')
 
     @property
@@ -138,13 +138,13 @@ class SegmentPackageManager(PackageManager):
         self._make_current_pdf_menu_section(menu)
         self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_make_module_menu_section(menu)
+        self._make_make_py_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
-    def _make_make_module_menu_section(self, menu):
+    def _make_make_py_menu_section(self, menu):
         commands = []
         commands.append(('make module - interpret', 'mmi'))
         commands.append(('make module - open', 'mmo'))
@@ -248,14 +248,14 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.display(messages)
             self._session._hide_next_redraw = True
 
-    def interpret_make_module(self, confirm=True, display=True):
+    def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py`` module.
 
         Creates ``output.ly`` and ``output.pdf`` files.
 
         Returns none.
         '''
-        if not os.path.isfile(self._make_module_path):
+        if not os.path.isfile(self._make_py_path):
             message = 'no __make__.py module found.'
             self._io_manager.display(message)
             return
@@ -263,7 +263,7 @@ class SegmentPackageManager(PackageManager):
             messages = []
             messages.append('will interpret ...')
             messages.append('')
-            message = ' INPUT: {}'.format(self._make_module_path)
+            message = ' INPUT: {}'.format(self._make_py_path)
             messages.append(message)
             message = 'OUTPUT: {}'.format(self._output_lilypond_file_path)
             messages.append(message)
@@ -279,13 +279,13 @@ class SegmentPackageManager(PackageManager):
                 return
             self._io_manager.display('')
         self._io_manager.interpret(
-            self._make_module_path, 
+            self._make_py_path, 
             confirm=False, 
             display=False,
             )
         if display:
             messages = []
-            message = 'Interpreted {!r}.'.format(self._make_module_path)
+            message = 'Interpreted {!r}.'.format(self._make_py_path)
             messages.append(message)
             message = 'Wrote {!r}.'.format(self._output_lilypond_file_path)
             messages.append(message)
@@ -302,12 +302,12 @@ class SegmentPackageManager(PackageManager):
         '''
         self._list_versions_directory()
 
-    def open_make_module(self):
+    def open_make_py(self):
         r'''Opens ``__make__.py`` module.
 
         Returns none.
         '''
-        self._io_manager.open_file(self._make_module_path)
+        self._io_manager.open_file(self._make_py_path)
 
     def open_output_ly(self):
         r'''Opens current output LilyPond file.
@@ -412,14 +412,14 @@ class SegmentPackageManager(PackageManager):
             self._session._hide_next_redraw = True
 
     # TODO: reimplement as boilerplate
-    def write_stub_make_module(self, confirm=True, display=True):
+    def write_stub_make_py(self, confirm=True, display=True):
         r'''Writes stub __make__.py module.
 
         Returns none.
         '''
         if display:
             messages = []
-            message = 'will write stub to {}.'.format(self._make_module_path)
+            message = 'will write stub to {}.'.format(self._make_py_path)
             self._io_manager.display(message)
         if confirm:
             result = self._io_manager.confirm()
@@ -443,10 +443,10 @@ class SegmentPackageManager(PackageManager):
         lines.append(line)
         lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
         contents = '\n'.join(lines)
-        with file(self._make_module_path, 'w') as file_pointer:
+        with file(self._make_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
             messages = []
-            message = 'wrote stub to {}.'.format(self._make_module_path)
+            message = 'wrote stub to {}.'.format(self._make_py_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True

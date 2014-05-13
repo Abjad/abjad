@@ -50,7 +50,7 @@ class SegmentPackageWrangler(Wrangler):
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
-            'mmi': self.interpret_make_modules,
+            'mmi': self.interpret_make_pys,
             'new': self.make_package,
             'pdfo': self.open_output_pdfs,
             'ren': self.rename_package,
@@ -126,7 +126,7 @@ class SegmentPackageWrangler(Wrangler):
         os.mkdir(path)
         manager = self._initialize_manager(path)
         manager.write_stub_definition_py(confirm=False, display=False)
-        manager.write_stub_make_module(confirm=False, display=False)
+        manager.write_stub_make_py(confirm=False, display=False)
 
     def _make_segments_menu_section(self, menu):
         commands = []
@@ -209,7 +209,7 @@ class SegmentPackageWrangler(Wrangler):
             manager.interpret_lilypond_file(confirm=False, display=True)
         self._session._hide_next_redraw = True
 
-    def interpret_make_modules(self):
+    def interpret_make_pys(self):
         r'''Interprets __make.py__ module in each segment.
         
         Makes output.ly and output.pdf file in each segment.
@@ -217,22 +217,22 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         managers = self._list_visible_asset_managers()
-        make_module_paths = []
+        make_py_paths = []
         output_ly_paths = []
         output_pdf_paths = []
         for manager in managers:
-            make_module_paths.append(manager._make_module_path)
+            make_py_paths.append(manager._make_py_path)
             output_ly_paths.append(manager._output_lilypond_file_path)
             output_pdf_paths.append(manager._output_pdf_file_path)
         messages = []
         messages.append('will interpret ...')
         messages.append('')
-        triples = zip(make_module_paths, output_ly_paths, output_pdf_paths)
+        triples = zip(make_py_paths, output_ly_paths, output_pdf_paths)
         for triple in triples:
-            make_module_path = triple[0]
+            make_py_path = triple[0]
             output_ly_path = triple[1]
             output_pdf_path = triple[2]
-            messages.append(' INPUT: {}'.format(make_module_path))
+            messages.append(' INPUT: {}'.format(make_py_path))
             messages.append('OUTPUT: {}'.format(output_ly_path))
             messages.append('OUTPUT: {}'.format(output_pdf_path))
             messages.append('')
@@ -244,7 +244,7 @@ class SegmentPackageWrangler(Wrangler):
         if not result:
             return
         for manager in managers:
-            manager.interpret_make_module(confirm=False, display=True)
+            manager.interpret_make_py(confirm=False, display=True)
         if not managers:
             self._io_manager.display('')
         self._session._hide_next_redraw = True

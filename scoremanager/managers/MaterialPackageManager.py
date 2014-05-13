@@ -71,7 +71,7 @@ class MaterialPackageManager(PackageManager):
         return os.path.join(self._path, 'definition.py')
 
     @property
-    def _illustrate_module_path(self):
+    def _illustrate_py_path(self):
         return os.path.join(self._path, '__illustrate__.py')
 
     @property
@@ -93,10 +93,10 @@ class MaterialPackageManager(PackageManager):
             'dme': self.edit_definition_py,
             'dmi': self.interpret_definition_py,
             'dmws': self.write_stub_definition_py,
-            'ime': self.edit_illustrate_module,
-            'imei': self.edit_and_interpret_illustrate_module,
-            'imi': self.interpret_illustrate_module,
-            'imws': self.write_stub_illustrate_module,
+            'ime': self.edit_illustrate_py,
+            'imei': self.edit_and_interpret_illustrate_py,
+            'imi': self.interpret_illustrate_py,
+            'imws': self.write_stub_illustrate_py,
             'lyi': self.interpret_illustration_ly,
             'lyo': self.open_illustration_ly,
             'mae': self.autoedit_output_material,
@@ -224,9 +224,9 @@ class MaterialPackageManager(PackageManager):
         lines = lines or ['(empty)']
         return menu.make_material_summary_section(lines=lines)
 
-    def _make_illustrate_module_menu_section(self, menu):
+    def _make_illustrate_py_menu_section(self, menu):
         commands = []
-        if os.path.isfile(self._illustrate_module_path):
+        if os.path.isfile(self._illustrate_py_path):
             is_hidden = False
             string = 'illustrate module - edit'
             commands.append((string, 'ime'))
@@ -271,7 +271,7 @@ class MaterialPackageManager(PackageManager):
         superclass = super(MaterialPackageManager, self)
         menu = superclass._make_main_menu(name=name)
         self._make_autoeditor_summary_menu_section(menu)
-        self._make_illustrate_module_menu_section(menu)
+        self._make_illustrate_py_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_material_definition_menu_section(menu)
@@ -373,7 +373,7 @@ class MaterialPackageManager(PackageManager):
                 name='package configuration',
                 )
 
-    def _make_temporary_illustrate_module_lines(self):
+    def _make_temporary_illustrate_py_lines(self):
         lines = []
         lines.append(self._unicode_directive)
         lines.append('import os')
@@ -381,11 +381,11 @@ class MaterialPackageManager(PackageManager):
         line = 'from output import {}'
         line = line.format(self._material_package_name)
         lines.append(line)
-        if os.path.isfile(self._illustrate_module_path):
+        if os.path.isfile(self._illustrate_py_path):
             lines.append('from illustrate import __illustrate__')
         lines.append('')
         lines.append('')
-        if os.path.isfile(self._illustrate_module_path):
+        if os.path.isfile(self._illustrate_py_path):
             line = 'lilypond_file = __illustrate__({})'
         else:
             line = 'lilypond_file = {}.__illustrate__()'
@@ -538,13 +538,13 @@ class MaterialPackageManager(PackageManager):
             output_material=autoeditor.target,
             )
 
-    def edit_and_interpret_illustrate_module(self):
+    def edit_and_interpret_illustrate_py(self):
         r'''Edits and then interprets illustrate module module.
 
         Returns none.
         '''
-        self.edit_illustrate_module()
-        self.interpret_illustrate_module()
+        self.edit_illustrate_py()
+        self.interpret_illustrate_py()
 
     def edit_definition_py(self):
         r'''Edits material definition module.
@@ -553,12 +553,12 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.edit(self._definition_py_path)
 
-    def edit_illustrate_module(self):
+    def edit_illustrate_py(self):
         r'''Edits illustrate module module.
 
         Returns none.
         '''
-        self._io_manager.edit(self._illustrate_module_path)
+        self._io_manager.edit(self._illustrate_py_path)
 
     def illustrate_material(self, confirm=True, display=True):
         r'''Illustrates material.
@@ -568,7 +568,7 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         from scoremanager import managers
-        lines = self._make_temporary_illustrate_module_lines()
+        lines = self._make_temporary_illustrate_py_lines()
         contents = '\n'.join(lines)
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
@@ -590,13 +590,13 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def interpret_illustrate_module(self, confirm=True, display=True):
+    def interpret_illustrate_py(self, confirm=True, display=True):
         r'''Calls Python on illustrate module module.
 
         Returns none.
         '''
         result = self._io_manager.interpret(
-            self._illustrate_module_path,
+            self._illustrate_py_path,
             confirm=confirm,
             display=display,
             )
@@ -847,14 +847,14 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def write_stub_illustrate_module(self, confirm=True, display=True):
+    def write_stub_illustrate_py(self, confirm=True, display=True):
         r'''Writes stub illustrate module module.
 
         Returns none.
         '''
         if confirm:
             message = 'will write stub to {}.'
-            message = message.format(self._illustrate_module_path)
+            message = message.format(self._illustrate_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
             if self._should_backtrack():
@@ -877,10 +877,10 @@ class MaterialPackageManager(PackageManager):
         line += 'make_basic_lilypond_file(score)'
         lines.append(line)
         contents = '\n'.join(lines)
-        with file(self._illustrate_module_path, 'w') as file_pointer:
+        with file(self._illustrate_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'
-            message = message.format(self._illustrate_module_path)
+            message = message.format(self._illustrate_py_path)
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True

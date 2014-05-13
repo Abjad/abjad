@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_interpret_make_modules_01():
+def test_SegmentPackageWrangler_interpret_make_pys_01():
 
     path = score_manager._configuration.example_score_packages_directory_path
     path = os.path.join(path, 'red_example_score', 'segments')

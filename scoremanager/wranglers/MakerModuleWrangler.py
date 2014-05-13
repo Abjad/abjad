@@ -50,7 +50,7 @@ class MakerModuleWrangler(Wrangler):
         result = result.copy()
         result.update({
             'cp': self.copy_module,
-            'new': self.make_module,
+            'new': self.make_py,
             'ren': self.rename_module,
             'rm': self.remove_modules,
             })
@@ -75,10 +75,10 @@ class MakerModuleWrangler(Wrangler):
     def _make_main_menu(self, name='make module wrangler'):
         superclass = super(MakerModuleWrangler, self)
         menu = superclass._make_main_menu(name=name)
-        self._make_modules_menu_section(menu)
+        self._make_pys_menu_section(menu)
         return menu
 
-    def _make_modules_menu_section(self, menu):
+    def _make_pys_menu_section(self, menu):
         commands = []
         commands.append(('maker modules - copy', 'cp'))
         commands.append(('maker modules - new', 'new'))
@@ -98,7 +98,7 @@ class MakerModuleWrangler(Wrangler):
         '''
         self._copy_asset(extension='.py', force_lowercase=False)
 
-    def make_module(self):
+    def make_py(self):
         r'''Makes maker module.
 
         Returns none.

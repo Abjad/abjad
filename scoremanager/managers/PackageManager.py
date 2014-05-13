@@ -139,7 +139,7 @@ class PackageManager(AssetController):
             return result
 
     @property
-    def _views_module_path(self):
+    def _views_py_path(self):
         return os.path.join(self._path, '__views__.py')
 
     ### PRIVATE METHODS ###
