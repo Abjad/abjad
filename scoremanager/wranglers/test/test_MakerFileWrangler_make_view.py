@@ -7,7 +7,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_make_view_01():
+def test_MakerFileWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
@@ -19,7 +19,7 @@ def test_MakerModuleWrangler_make_view_01():
     assert transcript.last_title == string
 
 
-def test_MakerModuleWrangler_make_view_02():
+def test_MakerFileWrangler_make_view_02():
     r'''Makes sure at least maker module appears in 
     view creation menu.
     '''
@@ -32,7 +32,7 @@ def test_MakerModuleWrangler_make_view_02():
     assert string in transcript.contents
 
 
-def test_MakerModuleWrangler_make_view_03():
+def test_MakerFileWrangler_make_view_03():
     r'''Makes view in library. Removes view.
 
     Makes sure no extra new lines appear before or after 

@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_go_to_segments_01():
+def test_MakerFileWrangler_go_to_segments_01():
     r'''Goes from score maker modules to score segments.
     '''
 
@@ -19,7 +19,7 @@ def test_MakerModuleWrangler_go_to_segments_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_MakerModuleWrangler_go_to_segments_02():
+def test_MakerFileWrangler_go_to_segments_02():
     r'''Goes from maker module library to segment library.
     '''
 

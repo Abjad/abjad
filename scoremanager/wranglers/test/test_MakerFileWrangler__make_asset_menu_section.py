@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MakerModuleWrangler__make_asset_menu_section_01():
+def test_MakerFileWrangler__make_asset_menu_section_01():
     r'''Behaves gracefully when no assets are found.
     '''
 

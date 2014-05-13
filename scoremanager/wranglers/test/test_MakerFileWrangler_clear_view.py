@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
-def test_MakerModuleWrangler_clear_view_01():
+def test_MakerFileWrangler_clear_view_01():
     r'''In library: applies view and then clears view.
 
     Makes sure only one maker module is visible when view is applied.
@@ -35,7 +35,7 @@ def test_MakerModuleWrangler_clear_view_01():
     assert any(_.lines == lines for _ in transcript)
 
 
-def test_MakerModuleWrangler_clear_view_02():
+def test_MakerFileWrangler_clear_view_02():
     r'''In single makers directory: applies view and then clears view.
 
     Makes sure only one maker module is visible when view is applied.

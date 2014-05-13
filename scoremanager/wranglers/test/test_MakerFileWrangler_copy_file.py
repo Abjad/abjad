@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_copy_file_01():
+def test_MakerFileWrangler_copy_file_01():
 
     source_path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,

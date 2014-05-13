@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_repository_status_01():
+def test_MakerFileWrangler_repository_status_01():
     r'''Works with library.
     '''
 
@@ -15,7 +15,7 @@ def test_MakerModuleWrangler_repository_status_01():
     assert title in score_manager._transcript.titles
 
 
-def test_MakerModuleWrangler_repository_status_02():
+def test_MakerFileWrangler_repository_status_02():
     r'''Works with Git-managed makers directory.
     '''
 
@@ -26,7 +26,7 @@ def test_MakerModuleWrangler_repository_status_02():
     assert title in score_manager._transcript.titles
 
 
-def test_MakerModuleWrangler_repository_status_03():
+def test_MakerFileWrangler_repository_status_03():
     r'''Works with Subversion-managed makers directory.
     '''
 

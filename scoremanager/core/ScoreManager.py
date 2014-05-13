@@ -61,7 +61,7 @@ class ScoreManager(Controller):
     @systemtools.Memoize
     def _maker_file_wrangler(self):
         from scoremanager import wranglers
-        return wranglers.MakerModuleWrangler(session=self._session)
+        return wranglers.MakerFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize

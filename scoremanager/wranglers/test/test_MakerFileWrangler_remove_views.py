@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_remove_views_01():
+def test_MakerFileWrangler_remove_views_01():
     r'''Makes two views. Removes two views at one time.
     '''
 
@@ -35,7 +35,7 @@ def test_MakerModuleWrangler_remove_views_01():
     assert '_test_101' not in contents
 
 
-def test_MakerModuleWrangler_remove_views_02():
+def test_MakerFileWrangler_remove_views_02():
     r'''Makes sure selector backtracking works.
     '''
 

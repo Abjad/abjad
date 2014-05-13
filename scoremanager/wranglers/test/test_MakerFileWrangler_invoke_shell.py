@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_invoke_shell_01():
+def test_MakerFileWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
@@ -19,7 +19,7 @@ def test_MakerModuleWrangler_invoke_shell_01():
     assert string in score_manager._transcript.contents
 
 
-def test_MakerModuleWrangler_invoke_shell_02():
+def test_MakerFileWrangler_invoke_shell_02():
     r'''Inside score package.
     '''
 

@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_doctest_01():
+def test_MakerFileWrangler_doctest_01():
     r'''In library.
     '''
 
@@ -21,7 +21,7 @@ def test_MakerModuleWrangler_doctest_01():
         assert string in contents
 
     
-def test_MakerModuleWrangler_doctest_02():
+def test_MakerFileWrangler_doctest_02():
     r'''In score package.
     '''
 

@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
-def test_MakerModuleWrangler_apply_view_01():
+def test_MakerFileWrangler_apply_view_01():
     r'''Works in library.
     
     Makes sure only select maker module is visible.
@@ -33,7 +33,7 @@ def test_MakerModuleWrangler_apply_view_01():
     assert any(_.lines == lines for _ in transcript)
 
 
-def test_MakerModuleWrangler_apply_view_02():
+def test_MakerFileWrangler_apply_view_02():
     r'''Works in score package makers directory.
     
     Makes sure only select maker module is visible.

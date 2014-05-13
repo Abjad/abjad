@@ -5,19 +5,16 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_remove_files_01():
+def test_MakerFileWrangler_make_py_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
         'makers',
-        'Foo.py',
+        'FooMaker.py',
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        with file(path, 'w') as file_pointer:
-            file_pointer.write('This is a test file.')
-        assert os.path.exists(path)
-        input_ = 'red~example~score k rm Foo.py remove q'
+        input_ = 'red~example~score k new FooMaker.py q'
         score_manager._run(pending_input=input_)
-        assert not os.path.exists(path)
+        assert os.path.exists(path)

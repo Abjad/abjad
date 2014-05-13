@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=False)
 
 
-def test_MakerModuleWrangler_list_views_01():
+def test_MakerFileWrangler_list_views_01():
     
     input_ = 'k vls vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'

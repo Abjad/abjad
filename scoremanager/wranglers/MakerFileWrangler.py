@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class MakerModuleWrangler(Wrangler):
+class MakerFileWrangler(Wrangler):
     r'''Maker module wrangler.
 
     ..  container:: example
@@ -13,11 +13,11 @@ class MakerModuleWrangler(Wrangler):
         ::
 
             >>> session = scoremanager.core.Session()
-            >>> wrangler = scoremanager.wranglers.MakerModuleWrangler(
+            >>> wrangler = scoremanager.wranglers.MakerFileWrangler(
             ...     session=session,
             ...     )
             >>> wrangler
-            MakerModuleWrangler()
+            MakerFileWrangler()
 
     '''
 
@@ -30,7 +30,7 @@ class MakerModuleWrangler(Wrangler):
 
     def __init__(self, session=None):
         from scoremanager import managers
-        superclass = super(MakerModuleWrangler, self)
+        superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._asset_identifier = 'maker module'
@@ -45,7 +45,7 @@ class MakerModuleWrangler(Wrangler):
 
     @property
     def _input_to_action(self):
-        superclass = super(MakerModuleWrangler, self)
+        superclass = super(MakerFileWrangler, self)
         result = superclass._input_to_action
         result = result.copy()
         result.update({
@@ -73,7 +73,7 @@ class MakerModuleWrangler(Wrangler):
             self._edit_maker_file(result)
 
     def _make_main_menu(self, name='make module wrangler'):
-        superclass = super(MakerModuleWrangler, self)
+        superclass = super(MakerFileWrangler, self)
         menu = superclass._make_main_menu(name=name)
         self._make_pys_menu_section(menu)
         return menu

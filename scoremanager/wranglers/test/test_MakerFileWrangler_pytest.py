@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_pytest_01():
+def test_MakerFileWrangler_pytest_01():
     r'''Works on all test files in all maker module directories.
     '''
 
@@ -21,7 +21,7 @@ def test_MakerModuleWrangler_pytest_01():
         assert string in transcript_contents
 
 
-def test_MakerModuleWrangler_pytest_02():
+def test_MakerFileWrangler_pytest_02():
     r'''Works on all test files in a single maker module directory.
     '''
 
