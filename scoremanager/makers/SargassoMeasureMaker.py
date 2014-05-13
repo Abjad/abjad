@@ -294,7 +294,7 @@ class SargassoMeasureMaker(AbjadObject):
             possible_meter_multipliers.append(possible_meter_multiplier)
         return possible_meter_multipliers
 
-    def _make_output_module_body_lines(self, output_material):
+    def _make_output_py_body_lines(self, output_material):
         lines = []
         lines.append('{} = ['.format(self._material_package_name))
         for measure in output_material[:-1]:

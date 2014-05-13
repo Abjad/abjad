@@ -53,7 +53,7 @@ def test_MaterialPackageManager_autoedit_output_02():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testtempoinventory remove q'
         score_manager._run(pending_input=input_)
@@ -86,7 +86,7 @@ def test_MaterialPackageManager_autoedit_output_03():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
         score_manager._run(pending_input=input_)
@@ -125,7 +125,7 @@ def test_MaterialPackageManager_autoedit_output_04():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
         score_manager._run(pending_input=input_)
@@ -166,7 +166,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testmarkupinventory remove q'
         score_manager._run(pending_input=input_)
@@ -200,7 +200,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_input=input_)
@@ -247,7 +247,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
         score_manager._run(pending_input=input_)
@@ -277,7 +277,7 @@ def test_MaterialPackageManager_autoedit_output_08():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
         score_manager._run(pending_input=input_)
@@ -307,7 +307,7 @@ def test_MaterialPackageManager_autoedit_output_09():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
         score_manager._run(pending_input=input_)
@@ -351,7 +351,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == maker
         input_ = 'm rm testrhythmmaker remove q'
         score_manager._run(pending_input=input_)
@@ -392,7 +392,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == handler
         input_ = 'm rm testarticulationhandler remove q'
         score_manager._run(pending_input=input_)
@@ -429,7 +429,7 @@ def test_MaterialPackageManager_autoedit_output_12():
         manager = scoremanager.managers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material == handler
         input_ = 'm rm testdynamichandler remove q'
         score_manager._run(pending_input=input_)

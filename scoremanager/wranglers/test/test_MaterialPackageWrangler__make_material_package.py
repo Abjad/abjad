@@ -26,7 +26,7 @@ def test_MaterialPackageWrangler__make_material_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_py() is None
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material is None
         manager._remove(confirm=False, display=False)
 
@@ -53,6 +53,6 @@ def test_MaterialPackageWrangler__make_material_package_02():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_py() is None
-        output_material = manager._execute_output_module()
+        output_material = manager._execute_output_py()
         assert output_material is None
         manager._remove(confirm=False, display=True)

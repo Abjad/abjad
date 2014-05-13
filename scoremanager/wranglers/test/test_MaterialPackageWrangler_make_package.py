@@ -13,7 +13,7 @@ package_path = os.path.join(
 initializer_file_path = os.path.join(package_path, '__init__.py')
 metadata_py_path = os.path.join(package_path, '__metadata__.py')
 definition_py_path = os.path.join(package_path, 'definition.py')
-output_module_path = os.path.join(package_path, 'output.py')
+output_py_path = os.path.join(package_path, 'output.py')
 
 exception_file_path = os.path.join(
     score_manager._configuration.boilerplate_directory_path,
@@ -94,7 +94,7 @@ def test_MaterialPackageWrangler_make_package_03():
     lines = []
     lines.append('# -*- encoding: utf-8 -*-')
     lines.append('from abjad import *')
-    lines.append('output_module_import_statements = []')
+    lines.append('output_py_import_statements = []')
     lines.append('')
     lines.append('')
     lines.append('testnotes = None')
@@ -153,14 +153,14 @@ def test_MaterialPackageWrangler_make_package_06():
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_py_path)
-        assert not os.path.exists(output_module_path)
+        assert not os.path.exists(output_py_path)
         shutil.copyfile(
             boilerplate_definition_py_path,
             definition_py_path,
             )
         input_ = 'm testnotes omw y q'
         score_manager._run(pending_input=input_)
-        assert os.path.exists(output_module_path)
+        assert os.path.exists(output_py_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)
@@ -186,7 +186,7 @@ def test_MaterialPackageWrangler_make_package_07():
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_py() is None
-        assert manager._execute_output_module() is None
+        assert manager._execute_output_py() is None
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
 
@@ -219,7 +219,7 @@ def test_MaterialPackageWrangler_make_package_09():
         score_manager._run(pending_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_py_path)
-        assert not os.path.exists(output_module_path)
+        assert not os.path.exists(output_py_path)
         shutil.copyfile(
             boilerplate_definition_py_path,
             definition_py_path,
@@ -230,10 +230,10 @@ def test_MaterialPackageWrangler_make_package_09():
             )
         input_ = 'm testnotes omw y q'
         score_manager._run(pending_input=input_)
-        assert os.path.exists(output_module_path)
-        assert not filecmp.cmp(output_module_path, exception_file_path)
-        shutil.copyfile(exception_file_path, output_module_path)
-        assert filecmp.cmp(output_module_path, exception_file_path)
+        assert os.path.exists(output_py_path)
+        assert not filecmp.cmp(output_py_path, exception_file_path)
+        shutil.copyfile(exception_file_path, output_py_path)
+        assert filecmp.cmp(output_py_path, exception_file_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(package_path)

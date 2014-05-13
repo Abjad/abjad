@@ -111,7 +111,7 @@ class ScorePackageManager(PackageManager):
             manager = wrangler._initialize_manager(path)
             output_material_class_name = manager._get_metadatum('output_material_class_name')
             if output_material_class_name == 'TempoInventory':
-                output_material = manager._execute_output_module()
+                output_material = manager._execute_output_py()
                 return output_material
 
     def _get_title(self, year=False):

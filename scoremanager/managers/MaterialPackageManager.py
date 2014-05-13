@@ -39,7 +39,7 @@ class MaterialPackageManager(PackageManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_output_module_import_statements',
+        '_output_py_import_statements',
         )
 
     ### INTIALIZER ###
@@ -49,7 +49,7 @@ class MaterialPackageManager(PackageManager):
             assert os.path.sep in path
         superclass = super(MaterialPackageManager, self)
         superclass.__init__(path=path, session=session)
-        self._output_module_import_statements = [
+        self._output_py_import_statements = [
             self._abjad_import_statement,
             ]
 
@@ -102,14 +102,14 @@ class MaterialPackageManager(PackageManager):
             'mae': self.autoedit_output_material,
             'mi': self.illustrate_material,
             'omw': self.write_output_material,
-            'omo': self.open_output_module,
+            'omo': self.open_output_py,
             'pdfo': self.open_illustration_pdf,
             'uar': self.remove_unadded_assets,
             'vdmo': self.open_versioned_definition_py,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
             'vlyo': self.open_versioned_illustration_ly,
-            'vomo': self.open_versioned_output_module,
+            'vomo': self.open_versioned_output_py,
             'vpdfo': self.open_versioned_illustration_pdf,
             })
         return result
@@ -119,7 +119,7 @@ class MaterialPackageManager(PackageManager):
         return os.path.basename(self._path)
 
     @property
-    def _output_module_path(self):
+    def _output_py_path(self):
         return os.path.join(self._path, 'output.py')
 
     @property
@@ -135,7 +135,7 @@ class MaterialPackageManager(PackageManager):
     def _source_paths(self):
         return (
             self._definition_py_path,
-            self._output_module_path,
+            self._output_py_path,
             self._illustration_ly_file_path,
             self._illustration_pdf_file_path,
             )
@@ -155,10 +155,10 @@ class MaterialPackageManager(PackageManager):
     def _check_output_material(material):
         return True
 
-    def _execute_output_module(self):
+    def _execute_output_py(self):
         attribute_names = (self._material_package_name,)
         result = self._io_manager.execute_file(
-            path = self._output_module_path,
+            path = self._output_py_path,
             attribute_names=attribute_names,
             )
         if result and len(result) == 1:
@@ -214,9 +214,9 @@ class MaterialPackageManager(PackageManager):
         if not self._get_metadatum('use_autoeditor'):
             if os.path.isfile(self._definition_py_path):
                 return
-            if not os.path.isfile(self._output_module_path):
+            if not os.path.isfile(self._output_py_path):
                 return
-        output_material = self._execute_output_module()
+        output_material = self._execute_output_py()
         autoeditor = self._get_output_material_editor(target=output_material)
         if not autoeditor:
             return
@@ -277,7 +277,7 @@ class MaterialPackageManager(PackageManager):
         self._make_material_definition_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_material_menu_section(menu)
-        self._make_output_module_menu_section(menu)
+        self._make_output_py_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
@@ -305,7 +305,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_material_menu_section(self, menu):
         commands = []         
-        if os.path.isfile(self._output_module_path):
+        if os.path.isfile(self._output_py_path):
             if self._get_metadatum('use_autoeditor'):
                 commands.append(('material - autoedit', 'mae'))
             commands.append(('material - illustrate', 'mi'))
@@ -330,7 +330,7 @@ class MaterialPackageManager(PackageManager):
             )
         return (import_statements, body_string, output_material)
 
-    def _make_output_module_body_lines(self, output_material):
+    def _make_output_py_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):
             lines = format(output_material, 'storage').splitlines()
         else:
@@ -340,12 +340,12 @@ class MaterialPackageManager(PackageManager):
         lines = [line + '\n' for line in lines]
         return lines
 
-    def _make_output_module_menu_section(self, menu):
+    def _make_output_py_menu_section(self, menu):
         if not os.path.isfile(self._initializer_file_path):
             return
         commands = []
         commands.append(('output module - write', 'omw'))
-        if os.path.isfile(self._output_module_path):
+        if os.path.isfile(self._output_py_path):
             commands.append(('output module - open', 'omo'))
         if commands:
             menu.make_command_section(
@@ -481,7 +481,7 @@ class MaterialPackageManager(PackageManager):
 
     def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
-            'output_module_import_statements',
+            'output_py_import_statements',
             self._material_package_name,
             )
         result = self._io_manager.execute_file(
@@ -505,7 +505,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        output_material = self._execute_output_module()
+        output_material = self._execute_output_py()
         if (hasattr(self, '_make_output_material') and
             output_material is None and
             self._make_output_material() and
@@ -520,9 +520,9 @@ class MaterialPackageManager(PackageManager):
         autoeditor._run()
         if self._should_backtrack():
             return
-        output_module_import_statements = self._output_module_import_statements
-        if hasattr(self, '_make_output_module_body_lines'):
-            body_lines = self._make_output_module_body_lines(autoeditor.target)
+        output_py_import_statements = self._output_py_import_statements
+        if hasattr(self, '_make_output_py_body_lines'):
+            body_lines = self._make_output_py_body_lines(autoeditor.target)
         else:
             line = '{} = {}'
             target_repr = self._get_storage_format(
@@ -533,7 +533,7 @@ class MaterialPackageManager(PackageManager):
                 )
             body_lines = [line]
         self.write_output_material(
-            import_statements=output_module_import_statements,
+            import_statements=output_py_import_statements,
             body_lines=body_lines,
             output_material=autoeditor.target,
             )
@@ -643,12 +643,12 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.open_file(self._illustration_pdf_file_path)
 
-    def open_output_module(self):
+    def open_output_py(self):
         r'''Opens output module.
 
         Returns none.
         '''
-        self._io_manager.open_file(self._output_module_path)
+        self._io_manager.open_file(self._output_py_path)
 
     def open_versioned_definition_py(self):
         r'''Opens versioned definition module.
@@ -671,7 +671,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._open_versioned_file('illustration.pdf')
 
-    def open_versioned_output_module(self):
+    def open_versioned_output_py(self):
         r'''Opens versioned ``output.py`` module.
 
         Returns none.
@@ -692,7 +692,7 @@ class MaterialPackageManager(PackageManager):
                 return
             self._add_metadatum('use_autoeditor', True)
             self._add_metadatum('output_material_class_name', class_.__name__)
-            output_material = self._execute_output_module()
+            output_material = self._execute_output_py()
             if type(output_material) is class_:
                 return
             if confirm:
@@ -773,7 +773,7 @@ class MaterialPackageManager(PackageManager):
         '''
         if confirm:
             message = 'will write output material to {}.'
-            message = message.format(self._output_module_path)
+            message = message.format(self._output_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
             if self._should_backtrack():
@@ -795,9 +795,9 @@ class MaterialPackageManager(PackageManager):
         if body_lines is None:
             triple = self._make_output_material_triple()
             import_statements = triple[0]
-            output_module_body_string = triple[1]
+            output_py_body_string = triple[1]
             output_material = triple[2]
-            body_lines = [output_module_body_string]
+            body_lines = [output_py_body_string]
         import_statements = import_statements or []
         if any('handlertools' in _ for _ in body_lines):
             statement = 'from experimental.tools import handlertools'
@@ -810,7 +810,7 @@ class MaterialPackageManager(PackageManager):
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)
         contents = ''.join(lines)
-        self._io_manager.write(self._output_module_path, contents)
+        self._io_manager.write(self._output_py_path, contents)
         output_material_class_name = type(output_material).__name__
         self._add_metadatum(
             'output_material_class_name', 
@@ -834,7 +834,7 @@ class MaterialPackageManager(PackageManager):
         lines = []
         lines.append(self._unicode_directive)
         lines.append(self._abjad_import_statement)
-        lines.append('output_module_import_statements = []')
+        lines.append('output_py_import_statements = []')
         lines.append('')
         lines.append('')
         line = '{} = None'.format(self._material_package_name)
