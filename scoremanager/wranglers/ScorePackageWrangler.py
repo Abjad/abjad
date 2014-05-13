@@ -85,7 +85,7 @@ class ScorePackageWrangler(Wrangler):
             'd': self._session._score_manager._distribution_file_wrangler._run,
             'fix': self.fix_packages,
             'g': self._session._score_manager._segment_package_wrangler._run,
-            'k': self._session._score_manager._maker_module_wrangler._run,
+            'k': self._session._score_manager._maker_file_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'mdmls': self.list_metadata_pys,
             'mdmo': self.open_metadata_pys,

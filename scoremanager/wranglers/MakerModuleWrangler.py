@@ -49,20 +49,20 @@ class MakerModuleWrangler(Wrangler):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            'cp': self.copy_module,
+            'cp': self.copy_file,
             'new': self.make_py,
-            'ren': self.rename_module,
-            'rm': self.remove_modules,
+            'ren': self.rename_file,
+            'rm': self.remove_files,
             })
         return result
 
     ### PRIVATE METHODS ###
 
-    def _edit_maker_module(self, path):
+    def _edit_maker_file(self, path):
         self._io_manager.edit(path)
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_maker_modules = False
+        self._session._is_navigating_to_score_maker_files = False
 
     def _handle_main_menu_result(self, result):
         if result in self._input_to_action:
@@ -70,7 +70,7 @@ class MakerModuleWrangler(Wrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            self._edit_maker_module(result)
+            self._edit_maker_file(result)
 
     def _make_main_menu(self, name='make module wrangler'):
         superclass = super(MakerModuleWrangler, self)
@@ -91,7 +91,7 @@ class MakerModuleWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def copy_module(self):
+    def copy_file(self):
         r'''Copies maker module.
 
         Returns none.
@@ -109,14 +109,14 @@ class MakerModuleWrangler(Wrangler):
             prompt_string='maker name', 
             )
 
-    def remove_modules(self):
+    def remove_files(self):
         r'''Removes one or more maker modules.
 
         Returns none.
         '''
         self._remove_assets()
 
-    def rename_module(self):
+    def rename_file(self):
         r'''Renames make module.
 
         Returns none.

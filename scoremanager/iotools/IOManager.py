@@ -88,7 +88,7 @@ class IOManager(IOManager):
         result = {
             'd': self._handle_to_distribution_file_wrangler_directive,
             'g': self._handle_to_segment_package_wrangler_directive,
-            'k': self._handle_to_maker_module_wrangler_directive,
+            'k': self._handle_to_maker_file_wrangler_directive,
             'm': self._handle_to_material_package_wrangler_directive,
             'u': self._handle_to_build_file_wrangler_directive,
             'y': self._handle_to_stylesheet_wrangler_directive,
@@ -113,7 +113,7 @@ class IOManager(IOManager):
             return 'u'
         elif self._session.is_navigating_to_score_distribution_files:
             return 'd'
-        elif self._session.is_navigating_to_score_maker_modules:
+        elif self._session.is_navigating_to_score_maker_files:
             return 'k'
         elif self._session.is_navigating_to_score_materials:
             return 'm'
@@ -191,9 +191,9 @@ class IOManager(IOManager):
         if self._is_in_open_environment():
             self._session._is_navigating_to_score_distribution_files = True
 
-    def _handle_to_maker_module_wrangler_directive(self):
+    def _handle_to_maker_file_wrangler_directive(self):
         if self._is_in_open_environment():
-            self._session._is_navigating_to_score_maker_modules = True
+            self._session._is_navigating_to_score_maker_files = True
 
     def _handle_to_material_package_wrangler_directive(self):
         if self._is_in_open_environment():

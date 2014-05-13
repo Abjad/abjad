@@ -41,7 +41,7 @@ class ScorePackageManager(PackageManager):
             'ess': self._io_manager.edit_score_stylesheet,
             'g': self._session._score_manager._segment_package_wrangler._run,
             'fix': self.fix_package,
-            'k': self._session._score_manager._maker_module_wrangler._run,
+            'k': self._session._score_manager._maker_file_wrangler._run,
             'm': self._session._score_manager._material_package_wrangler._run,
             'p': self._manage_setup,
             'pdfo': self.open_score_pdf,

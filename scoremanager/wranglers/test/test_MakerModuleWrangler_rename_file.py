@@ -7,7 +7,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_rename_module_01():
+def test_MakerModuleWrangler_rename_file_01():
     r'''Works in library.
     '''
 
@@ -40,7 +40,7 @@ def test_MakerModuleWrangler_rename_module_01():
     assert os.path.exists(path)
 
 
-def test_MakerModuleWrangler_rename_module_02():
+def test_MakerModuleWrangler_rename_file_02():
     r'''Works in score package.
     '''
 

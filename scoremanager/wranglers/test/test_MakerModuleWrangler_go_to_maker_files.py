@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_go_to_maker_modules_01():
+def test_MakerModuleWrangler_go_to_maker_files_01():
     r'''From makers directory to makers directory.
     '''
 

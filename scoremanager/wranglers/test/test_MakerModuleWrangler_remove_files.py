@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MakerModuleWrangler_remove_modules_01():
+def test_MakerModuleWrangler_remove_files_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
