@@ -567,18 +567,17 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        from scoremanager import managers
-        lines = self._make_temporary_illustrate_py_lines()
-        contents = '\n'.join(lines)
-        file_name = 'temporary_illustrate.py'
-        path = os.path.join(self._path, file_name)
-        self._io_manager.write(path, contents)
-        self._io_manager.interpret(path, confirm=confirm, display=display)
-        if display:
-            if result:
-                message = 'created illustration.pdf and illustration.ly files.'
-                self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            lines = self._make_temporary_illustrate_py_lines()
+            contents = '\n'.join(lines)
+            file_name = 'temporary_illustrate.py'
+            path = os.path.join(self._path, file_name)
+            self._io_manager.write(path, contents)
+            self._io_manager.interpret(
+                path, 
+                confirm=confirm, 
+                display=display,
+                )
 
     def interpret_definition_py(self):
         r'''Calls Python on material definition py.
@@ -684,7 +683,7 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         from scoremanager import iotools
-        with self._io_manager.make_interaction(self, display=display):
+        with self._io_manager.make_interaction(display=display):
             selector = self._io_manager.selector
             selector = selector.make_inventory_class_selector()
             class_ = selector._run()

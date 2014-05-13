@@ -51,6 +51,7 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
         'magic_numbers',
         'pitch_range_inventory',
         'tempo_inventory',
+        'time_signatures',
         ]
 
     paths = []

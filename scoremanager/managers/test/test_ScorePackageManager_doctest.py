@@ -12,11 +12,11 @@ def test_ScorePackageManager_doctest_01():
 
     strings = [
         'Running doctest ...',
-        '50 testable assets found ...',
+        '54 testable assets found ...',
         '\n__init__.py OK\n',
         '\n__metadata__.py OK\n',
         '\nmakers/RedExampleScoreTemplate.py OK\n',
-        '0 of 0 tests passed in 50 modules.',
+        '0 of 0 tests passed in 54 modules.',
         ]
 
     for string in strings:

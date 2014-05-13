@@ -62,7 +62,8 @@ def test_MaterialPackageWrangler_make_view_04():
     assert '2:' in contents
     assert '3:' in contents
     assert '4:' in contents
-    assert '5:' not in contents
+    assert '5:' in contents
+    assert '6:' not in contents
 
 
 def test_MaterialPackageWrangler_make_view_05():

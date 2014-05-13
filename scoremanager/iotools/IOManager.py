@@ -632,13 +632,13 @@ class IOManager(IOManager):
             )
         return getter
 
-    def make_interaction(self, controller, display=True):
+    def make_interaction(self, display=True):
         r'''Makes interaction context manager.
 
         Returns interaction context manager.
         '''
         from scoremanager import iotools
-        context = iotools.Interaction(controller=controller, display=display)
+        context = iotools.Interaction(controller=self.client, display=display)
         return context
 
     def make_menu(
