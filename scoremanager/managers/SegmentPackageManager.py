@@ -214,9 +214,9 @@ class SegmentPackageManager(PackageManager):
             messages = []
             messages.append('will interpret ...')
             messages.append('')
-            message = ' INPUT: {}'.format(self._output_lilypond_file_path)
+            message = '  INPUT: {}'.format(self._output_lilypond_file_path)
             messages.append(message)
-            message = 'OUTPUT: {}'.format(self._output_pdf_file_path)
+            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
             messages.append(message)
             messages.append('')
             self._io_manager.display(messages)
@@ -251,49 +251,36 @@ class SegmentPackageManager(PackageManager):
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.
 
-        Creates ``output.ly`` and ``output.pdf``.
+        Makes ``output.ly`` and ``output.pdf``.
 
         Returns none.
         '''
-        if not os.path.isfile(self._make_py_path):
-            message = 'no __make__.py found.'
-            self._io_manager.display(message)
-            return
-        if display:
-            messages = []
-            messages.append('will interpret ...')
-            messages.append('')
-            message = ' INPUT: {}'.format(self._make_py_path)
-            messages.append(message)
-            message = 'OUTPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = 'OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            messages.append('')
-            self._io_manager.display(messages)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
+        with self._io_manager.make_interaction(display=display):
+            if not os.path.isfile(self._make_py_path):
+                message = 'no __make__.py found.'
+                self._io_manager.display(message)
                 return
-            if not result:
-                return
-            self._io_manager.display('')
-        self._io_manager.interpret(
-            self._make_py_path, 
-            confirm=False, 
-            display=False,
-            )
-        if display:
-            messages = []
-            message = 'Interpreted {!r}.'.format(self._make_py_path)
-            messages.append(message)
-            message = 'Wrote {!r}.'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = 'Wrote {!r}.'.format(self._output_pdf_file_path)
-            messages.append(message)
-            messages.append('')
-            self._io_manager.display(messages)
-            self._session._hide_next_redraw = True
+            if display:
+                messages = []
+                messages.append('will interpret ...')
+                message = '  INPUT: {}'.format(self._make_py_path)
+                messages.append(message)
+                message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
+                messages.append(message)
+                message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+                messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            self._io_manager.interpret(
+                self._make_py_path, 
+                confirm=False, 
+                display=False,
+                )
 
     def list_versions_directory(self):
         r'''Lists versions directory.

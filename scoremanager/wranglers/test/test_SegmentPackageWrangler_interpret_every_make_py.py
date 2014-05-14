@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_interpret_make_pys_01():
+def test_SegmentPackageWrangler_interpret_every_make_py_01():
 
     path = score_manager._configuration.example_score_packages_directory_path
     path = os.path.join(path, 'red_example_score', 'segments')
@@ -27,7 +27,7 @@ def test_SegmentPackageWrangler_interpret_make_pys_01():
     original_paths = ly_paths + pdf_paths
 
     with systemtools.FilesystemState(keep=original_paths):
-        input_ = 'red~example~score g mmi y q'
+        input_ = 'red~example~score g mpyi* y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         strings = []
@@ -36,8 +36,6 @@ def test_SegmentPackageWrangler_interpret_make_pys_01():
             'Will interpret ...',
             'INPUT:',
             'OUTPUT:',
-            'Interpreted',
-            'Wrote',
             ])
         for string in strings:
             assert string in contents

@@ -46,11 +46,11 @@ class SegmentPackageWrangler(Wrangler):
             '>': self.go_to_next_asset,
             '<': self.go_to_previous_asset,
             'cp': self.copy_package,
-            'dpye': self.edit_definition_pys,
+            'dpye*': self.edit_every_definition_py,
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
-            'mmi': self.interpret_make_pys,
+            'mpyi*': self.interpret_every_make_py,
             'new': self.make_package,
             'pdfo': self.open_output_pdfs,
             'ren': self.rename_package,
@@ -82,8 +82,8 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all segments - edit definition pys', 'dpye'))
-        commands.append(('all segments - interpret make pys', 'mmi'))
+        commands.append(('all segments - definition.py - edit', 'dpye*'))
+        commands.append(('all segments - make.py - interpret', 'mpyi*'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
         commands.append(('all segments - open metadata pys', 'mdmo'))
         commands.append(('all segments - open output.pdf files', 'pdfo'))
@@ -151,8 +151,8 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._copy_asset()
 
-    def edit_definition_pys(self):
-        r'''Edits segment definition pys.
+    def edit_every_definition_py(self):
+        r'''Edits ``definition.py`` in every segment.
 
         Returns none.
         '''
@@ -194,8 +194,8 @@ class SegmentPackageWrangler(Wrangler):
             for segment_path in segment_paths:
                 input_path = os.path.join(segment_path, 'output.ly')
                 output_path = os.path.join(segment_path, 'output.pdf')
-                messages.append(' INPUT: {}'.format(input_path))
-                messages.append('OUTPUT: {}'.format(output_path))
+                messages.append('  INPUT: {}'.format(input_path))
+                messages.append(' OUTPUT: {}'.format(output_path))
                 messages.append('')
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
@@ -209,45 +209,43 @@ class SegmentPackageWrangler(Wrangler):
             manager.interpret_lilypond_file(confirm=False, display=True)
         self._session._hide_next_redraw = True
 
-    def interpret_make_pys(self):
-        r'''Interprets ``__make.py__`` in each segment.
+    def interpret_every_make_py(self):
+        r'''Interprets ``__make.py__`` in every segment.
         
-        Makes output.ly and output.pdf in each segment.
+        Makes ``output.ly`` and ``output.pdf`` in every segment.
 
         Returns none.
         '''
-        managers = self._list_visible_asset_managers()
-        make_py_paths = []
-        output_ly_paths = []
-        output_pdf_paths = []
-        for manager in managers:
-            make_py_paths.append(manager._make_py_path)
-            output_ly_paths.append(manager._output_lilypond_file_path)
-            output_pdf_paths.append(manager._output_pdf_file_path)
-        messages = []
-        messages.append('will interpret ...')
-        messages.append('')
-        triples = zip(make_py_paths, output_ly_paths, output_pdf_paths)
-        for triple in triples:
-            make_py_path = triple[0]
-            output_ly_path = triple[1]
-            output_pdf_path = triple[2]
-            messages.append(' INPUT: {}'.format(make_py_path))
-            messages.append('OUTPUT: {}'.format(output_ly_path))
-            messages.append('OUTPUT: {}'.format(output_pdf_path))
-            messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        self._io_manager.display('')
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        for manager in managers:
-            manager.interpret_make_py(confirm=False, display=True)
-        if not managers:
-            self._io_manager.display('')
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            managers = self._list_visible_asset_managers()
+            make_py_paths = []
+            output_ly_paths = []
+            output_pdf_paths = []
+            for manager in managers:
+                make_py_paths.append(manager._make_py_path)
+                output_ly_paths.append(manager._output_lilypond_file_path)
+                output_pdf_paths.append(manager._output_pdf_file_path)
+            # TODO: gather message with dry_run=True keyword
+            messages = []
+            messages.append('will interpret ...')
+            triples = zip(make_py_paths, output_ly_paths, output_pdf_paths)
+            for triple in triples:
+                make_py_path = triple[0]
+                output_ly_path = triple[1]
+                output_pdf_path = triple[2]
+                messages.append('  INPUT: {}'.format(make_py_path))
+                messages.append(' OUTPUT: {}'.format(output_ly_path))
+                messages.append(' OUTPUT: {}'.format(output_pdf_path))
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            for manager in managers:
+                manager.interpret_make_py(confirm=False, display=False)
+            if not managers:
+                self._io_manager.display('')
 
     def make_package(self):
         r'''Makes segment package.

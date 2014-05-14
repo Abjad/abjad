@@ -222,3 +222,5 @@
 
 43. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
+
+44. Implement a dry_run=False keyword on bundled every*() methods.
