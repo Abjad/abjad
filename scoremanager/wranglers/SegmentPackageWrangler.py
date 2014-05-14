@@ -50,6 +50,9 @@ class SegmentPackageWrangler(Wrangler):
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
+            'mdmls': self.list_metadata_pys,
+            'mdmo': self.open_metadata_pys,
+            'mdmrw': self.rewrite_metadata_pys,
             'mpyi*': self.interpret_every_make_py,
             'new': self.make_package,
             'pdfo': self.open_output_pdfs,
@@ -82,12 +85,12 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all segments - definition.py - edit', 'dpye*'))
-        commands.append(('all segments - make.py - interpret', 'mpyi*'))
-        commands.append(('all segments - interpret output.ly files', 'lyi'))
-        commands.append(('all segments - open metadata pys', 'mdmo'))
-        commands.append(('all segments - open output.pdf files', 'pdfo'))
-        commands.append(('all segments - version artifacts', 'ver'))
+        commands.append(('all - definition.py - edit', 'dpye*'))
+        commands.append(('all - make.py - interpret', 'mpyi*'))
+        commands.append(('all - metadata.py - open', 'mdmo'))
+        commands.append(('all - output.ly - interpret', 'lyi'))
+        commands.append(('all - output.pdf - open', 'pdfo'))
+        commands.append(('all - version', 'ver'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -247,6 +250,13 @@ class SegmentPackageWrangler(Wrangler):
             if not managers:
                 self._io_manager.display('')
 
+    def list_metadata_pys(self):
+        r'''Lists ``__metadata__.py`` in every score.
+
+        Returns none.
+        '''
+        self._list_metadata_pys()
+
     def make_package(self):
         r'''Makes segment package.
 
@@ -276,6 +286,13 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._current_package_manager.open_initializer()
 
+    def open_metadata_pys(self):
+        r'''Opens ``__metadata__.py`` in every segment.
+
+        Returns none.
+        '''
+        self._open_in_each_package('__metadata__.py')
+
     def open_output_pdfs(self):
         r'''Opens output.pdf file in each segment.
 
@@ -297,6 +314,13 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
+
+    def rewrite_metadata_pys(self, confirm=True, display=True):
+        r'''Rewrites ``__metadata__.py`` in each segment.
+
+        Returns none.
+        '''
+        self._rewrite_metadata_pys(confirm=confirm, display=display)
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Versions all segment packages.

@@ -250,6 +250,13 @@ class MaterialPackageWrangler(Wrangler):
         self._interpret_in_each_package('illustration.ly')
         self._session._hide_next_redraw = True
 
+    def list_metadata_pys(self):
+        r'''Lists ``__metadata__.py`` in every score.
+
+        Returns none.
+        '''
+        self._list_metadata_pys()
+
     def make_package(self):
         r'''Makes material package.
 
@@ -288,7 +295,7 @@ class MaterialPackageWrangler(Wrangler):
         self._open_in_each_package('__init__.py')
 
     def open_metadata_pys(self):
-        r'''Opens the ``__metadata__.py`` file in each material package.
+        r'''Opens ``__metadata__.py`` in each material.
 
         Returns none.
         '''
@@ -307,6 +314,13 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
+
+    def rewrite_metadata_pys(self, confirm=True, display=True):
+        r'''Rewrites ``__metadata__.py`` in each material.
+
+        Returns none.
+        '''
+        self._rewrite_metadata_pys(confirm=confirm, display=display)
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Versions any of the ``output.py``, ``illustration.ly`` and 

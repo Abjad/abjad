@@ -558,6 +558,17 @@ class Wrangler(AssetController):
                 result.append(path)
         return result
 
+    def _list_metadata_pys(self):
+        with self._io_manager.make_interaction():
+            directories = self._list_all_directories_with_metadata_pys()
+            paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+            messages = paths[:]
+            messages.append('')
+            self._io_manager.display(messages)
+            message = '{} metadata pys found.'
+            message = message.format(len(paths))
+            self._io_manager.display(message)
+
     def _list_storehouse_paths(
         self,
         abjad_library=True,
@@ -781,6 +792,33 @@ class Wrangler(AssetController):
                 return
             self._io_manager.open_file(paths)
 
+    def _list_metadata_py_files_in_all_directories(self):
+        paths = []
+        directories = self._list_all_directories_with_metadata_pys()
+        for directory in directories:
+            path = os.path.join(directory, '__metadata__.py')
+            paths.append(path)
+        paths.sort()
+        return paths
+        
+    def _open_metadata_pys(self, confirm=True, display=True):
+        with self._io_manager.make_interaction(display=display):
+            paths = self._list_metadata_py_files_in_all_directories()
+            if display:
+                messages = []
+                messages.append('will open ...')
+                for path in paths:
+                    message = '    ' + path
+                    messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            self._io_manager.open_file(paths)
+
     def _path_to_annotation(self, path):
         score_storehouses = (
             self._configuration.example_score_packages_directory_path,
@@ -972,6 +1010,22 @@ class Wrangler(AssetController):
                     if self._should_backtrack():
                         return
 
+    def _rewrite_metadata_pys(self, confirm=True, display=True):
+        with self._io_manager.make_interaction(display=display):
+            directories = self._list_all_directories_with_metadata_pys()
+            messages = []
+            for directory in directories:
+                path = os.path.join(directory, '__metadata__.py')
+                message = 'rewriting {} ...'.format(path)
+                messages.append(message)
+                manager = self._io_manager.make_package_manager(directory)
+                manager.rewrite_metadata_py(confirm=False, display=False)
+            if display:
+                message = '{} metadata pys rewritten.'
+                message = message.format(len(directories))
+                messages.append(message)
+                self._io_manager.display(messages)
+
     def _select_asset_path(self):
         menu = self._make_asset_selection_menu()
         while True:
@@ -1092,7 +1146,7 @@ class Wrangler(AssetController):
     def apply_view(self):
         r'''Applies view.
 
-        Writes view name to metadata py.
+        Writes view name to ``__metadata.py__``.
 
         Returns none.
         '''
@@ -1111,7 +1165,7 @@ class Wrangler(AssetController):
     def clear_view(self):
         r'''Clears view.
 
-        Set 'view_name' to none in metadata py.
+        Set 'view_name' to none in ``__metadata__.py``.
 
         Returns none.
         '''
@@ -1155,14 +1209,14 @@ class Wrangler(AssetController):
                 )
 
     def doctest(self):
-        r'''Runs doctest on Python files contained in visible assets.
+        r'''Runs doctest on Python files contained in assets.
 
         Returns none.
         '''
         self._doctest()
 
     def list_views(self):
-        r'''List views in views py.
+        r'''List views in ``__views__.py``.
 
         Returns none.
         '''
@@ -1222,7 +1276,7 @@ class Wrangler(AssetController):
         self._write_view_inventory(view_inventory)
 
     def open_views_py(self):
-        r'''Opens views py.
+        r'''Opens ``__views__.py``.
 
         Returns none.
         '''
@@ -1234,7 +1288,7 @@ class Wrangler(AssetController):
             self._session._hide_next_redraw = True
 
     def pytest(self):
-        r'''Runs py.test on Python files contained in visible assets.
+        r'''Runs py.test on Python files contained in assets.
 
         Returns none.
         '''
@@ -1248,7 +1302,7 @@ class Wrangler(AssetController):
         self._remove_unadded_assets(confirm=confirm, display=display)
 
     def remove_views(self):
-        r'''Removes view(s) from views py.
+        r'''Removes view(s) from ``__views__.py``.
 
         Returns none.
         '''

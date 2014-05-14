@@ -294,19 +294,11 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_metadata_pys(self):
-        r'''Lists metadata pys in all visible score packages.
+        r'''Lists ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_pys()
-        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        messages = paths[:]
-        messages.append('')
-        self._io_manager.display(messages)
-        message = '{} metadata pys found.'
-        message = message.format(len(paths))
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        self._list_metadata_pys()
 
     def make_package(self):
         r'''Makes score package.
@@ -331,13 +323,11 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def open_metadata_pys(self):
-        r'''Edits metadata pys in all visible score packages.
+        r'''Opens ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_pys()
-        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        self._io_manager.open_file(paths)
+        self._open_metadata_pys()
 
     def remove_packages(self):
         r'''Removes one or more score packages.
@@ -354,26 +344,11 @@ class ScorePackageWrangler(Wrangler):
         self._rename_asset()
 
     def rewrite_metadata_pys(self, confirm=True, display=True):
-        r'''Rewrites metadata pys in all visible score packages.
+        r'''Rewrites ``__metadata__.py`` in each score.
 
         Returns none.
         '''
-        directories = self._list_all_directories_with_metadata_pys()
-        messages = []
-        for directory in directories:
-            path = os.path.join(directory, '__metadata__.py')
-            message = 'rewriting {} ...'.format(path)
-            messages.append(message)
-            manager = self._io_manager.make_package_manager(directory)
-            manager.rewrite_metadata_py(confirm=False, display=False)
-        if display:
-            messages.append('')
-            message = '{} metadata pys rewritten.'
-            message = message.format(len(directories))
-            messages.append(message)
-            messages.append('')
-            self._io_manager.display(messages)
-            self._session._hide_next_redraw = True
+        self._rewrite_metadata_pys(confirm=confirm, display=display)
 
     def write_cache(self, confirm=True, display=True):
         r'''Writes cache.
