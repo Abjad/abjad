@@ -224,3 +224,6 @@
     Add 'all materials - list versions directories'.
 
 44. Implement a dry_run=False keyword on bundled every*() methods.
+
+45. Consolidate Wrangler repository methods and PackageManager repo methods.
+    Implemented consolidated set of repository methods on AssetController.
