@@ -18,6 +18,11 @@ class AssetController(Controller):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
+            #'rad': self.add_to_repository,
+            #'rci': self.commit_to_repository,
+            #'rrv': self.revert_to_repository,
+            #'rst': self.repository_status,
+            #'rup': self.update_from_repository,
             })
         return result
 

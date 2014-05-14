@@ -91,13 +91,8 @@ class ScorePackageWrangler(Wrangler):
             'mdmo': self.open_metadata_pys,
             'mdmrw': self.rewrite_metadata_pys,
             'new': self.make_package,
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'rrv': self.revert_to_repository,
-            'rst': self.repository_status,
-            'rup': self.update_from_repository,
             'u': self.go_to_build_files,
             'y': self.go_to_stylesheets,
             })
