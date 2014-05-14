@@ -46,7 +46,7 @@ class SegmentPackageWrangler(Wrangler):
             '>': self.go_to_next_asset,
             '<': self.go_to_previous_asset,
             'cp': self.copy_package,
-            'dme': self.edit_definition_pys,
+            'dpye': self.edit_definition_pys,
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
             'lyi': self.interpret_lilypond_files,
@@ -82,7 +82,7 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all segments - edit definition pys', 'dme'))
+        commands.append(('all segments - edit definition pys', 'dpye'))
         commands.append(('all segments - interpret make pys', 'mmi'))
         commands.append(('all segments - interpret output.ly files', 'lyi'))
         commands.append(('all segments - open metadata pys', 'mdmo'))

@@ -90,7 +90,7 @@ class MaterialPackageManager(PackageManager):
         result.update({
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
-            'dme': self.edit_definition_py,
+            'dpye': self.edit_definition_py,
             'dmi': self.interpret_definition_py,
             'dmws': self.write_stub_definition_py,
             'ime': self.edit_illustrate_py,
@@ -292,7 +292,7 @@ class MaterialPackageManager(PackageManager):
     def _make_material_definition_menu_section(self, menu):
         name = 'definition py'
         commands = []
-        commands.append(('definition py - edit', 'dme'))
+        commands.append(('definition py - edit', 'dpye'))
         commands.append(('definition py - interpret', 'dmi'))
         commands.append(('definition py - write stub', 'dmws'))
         if commands:

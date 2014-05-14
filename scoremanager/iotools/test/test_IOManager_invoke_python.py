@@ -9,10 +9,10 @@ def test_IOManager_invoke_python_01():
     input_ = 'pyi 2**30 q'
     score_manager._run(pending_input=input_)
 
-    assert score_manager._transcript[1].lines == ['> pyi', '']
+    assert score_manager._transcript[1].lines == ['> pyi']
     assert score_manager._transcript[2].lines == ['>>> 2**30']
     assert score_manager._transcript[3].lines == ['1073741824', '']
-    assert score_manager._transcript[4].lines == ['> q', '']
+    assert score_manager._transcript[4].lines == ['> q']
 
 
 def test_IOManager_invoke_python_02():
@@ -23,8 +23,8 @@ def test_IOManager_invoke_python_02():
     input_ = 'pyi foo q'
     score_manager._run(pending_input=input_)
 
-    assert score_manager._transcript[1].lines == ['> pyi', '']
+    assert score_manager._transcript[1].lines == ['> pyi']
     assert score_manager._transcript[2].lines == ['>>> foo']
     entry = ['Expression not executable.', '']
     assert score_manager._transcript[3].lines == entry
-    assert score_manager._transcript[4].lines == ['> q', '']
+    assert score_manager._transcript[4].lines == ['> q']

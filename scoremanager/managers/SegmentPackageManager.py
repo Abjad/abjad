@@ -43,7 +43,7 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
-            'dme': self.edit_definition_py,
+            'dpye': self.edit_definition_py,
             'dmws': self.write_stub_definition_py,
             'lyi': self.interpret_lilypond_file,
             'lyo': self.open_output_ly,
@@ -124,7 +124,7 @@ class SegmentPackageManager(PackageManager):
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition py - edit', 'dme'))
+        commands.append(('definition py - edit', 'dpye'))
         commands.append(('definition py - write stub', 'dmws'))
         menu.make_command_section(
             commands=commands,

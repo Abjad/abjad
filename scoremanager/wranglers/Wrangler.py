@@ -761,27 +761,25 @@ class Wrangler(AssetController):
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     def _open_in_each_package(self, file_name, verb='open'):
-        paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, file_name)
-            if os.path.isfile(path):
-                paths.append(path)
-        messages = []
-        message = 'will {} ...'.format(verb)
-        messages.append(message)
-        messages.append('')
-        for path in paths:
-            message = '   ' + path
+        with self._io_manager.make_interaction():
+            paths = []
+            for segment_path in self._list_visible_asset_paths():
+                path = os.path.join(segment_path, file_name)
+                if os.path.isfile(path):
+                    paths.append(path)
+            messages = []
+            message = 'will {} ...'.format(verb)
             messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
-        if self._should_backtrack():
-            return
-        if not result:
-            return
-        self._io_manager.display('')
-        self._io_manager.open_file(paths)
+            for path in paths:
+                message = '   ' + path
+                messages.append(message)
+            self._io_manager.display(messages)
+            result = self._io_manager.confirm()
+            if self._should_backtrack():
+                return
+            if not result:
+                return
+            self._io_manager.open_file(paths)
 
     def _path_to_annotation(self, path):
         score_storehouses = (

@@ -312,7 +312,7 @@ class IOManager(IOManager):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if self._session.hide_next_redraw:
+        if self._session._hide_next_redraw:
             return
         if capitalize:
             lines = [
@@ -417,7 +417,8 @@ class IOManager(IOManager):
         prompt_string,
         default_value=None,
         include_chevron=True,
-        include_newline=True,
+        #include_newline=True,
+        include_newline=False,
         prompt_character='>',
         capitalize_prompt=True,
         ):
