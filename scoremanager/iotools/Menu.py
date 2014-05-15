@@ -230,7 +230,10 @@ class Menu(ScoreManagerObject):
 
     def _make_bicolumnar(self, lines):
         terminal_height = 50
-        column_width = 55
+        left_column_lines = lines[:terminal_height]
+        left_column_lines = [_.strip() for _ in left_column_lines]
+        max_left_column_line_length = max(len(_) for _ in left_column_lines)
+        column_width = min(max_left_column_line_length + 8, 55)
         if len(lines) < terminal_height:
             return lines
         if 2 * terminal_height < len(lines):
