@@ -913,15 +913,16 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        self._session._attempted_to_add_to_repository = True
-        if self._session.is_repository_test:
-            return
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._io_manager.display(line, capitalize=False)
-        command = self._repository_add_command
-        assert isinstance(command, str)
-        self._io_manager.run_command(command)
+        with self._io_manager.make_interaction(display=display):
+            self._session._attempted_to_add_to_repository = True
+            if self._session.is_repository_test:
+                return
+            message = self._get_score_package_directory_name()
+            message = message + ' ...'
+            self._io_manager.display(message, capitalize=False)
+            command = self._repository_add_command
+            assert isinstance(command, str)
+            self._io_manager.run_command(command)
 
     def commit_to_repository(
         self, 
@@ -933,30 +934,30 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        self._session._attempted_to_commit_to_repository = True
-        if self._session.is_repository_test:
-            return
-        if commit_message is None:
-            getter = self._io_manager.make_getter()
-            getter.append_string('commit message')
-            commit_message = getter._run()
-            if self._should_backtrack():
+        with self._io_manager.make_interaction(display=display):
+            self._session._attempted_to_commit_to_repository = True
+            if self._session.is_repository_test:
                 return
-            if confirm:
-                message = 'commit message will be: "{}"\n'.format(commit_message)
-                self._io_manager.display(message)
-                result = self._io_manager.confirm()
+            if commit_message is None:
+                getter = self._io_manager.make_getter()
+                getter.append_string('commit message')
+                commit_message = getter._run()
                 if self._should_backtrack():
                     return
-                if not result:
-                    return
-        messages = []
-        message = self._get_score_package_directory_name()
-        message = message + ' ...'
-        messages.append(message)
-        command = 'svn commit -m "{}" {}'
-        command = command.format(commit_message, self._path)
-        self._io_manager.run_command(command, capitalize=False)
+                if confirm:
+                    message = 'commit message will be: "{}"\n'
+                    message = message.format(commit_message)
+                    self._io_manager.display(message)
+                    result = self._io_manager.confirm()
+                    if self._should_backtrack():
+                        return
+                    if not result:
+                        return
+            message = self._get_score_package_directory_name()
+            message = message + ' ...'
+            command = 'svn commit -m "{}" {}'
+            command = command.format(commit_message, self._path)
+            self._io_manager.run_command(command, capitalize=False)
 
     def doctest(self):
         r'''Runs doctest on Python files contained in visible assets.
@@ -1028,14 +1029,13 @@ class PackageManager(AssetController):
         self._remove_unadded_assets(confirm=confirm, display=display)
 
     def repository_status(self):
-        r'''Displays repository status of assets.
+        r'''Displays repository status of package.
 
         Returns none.
         '''
         self._session._attempted_repository_status = True
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._io_manager.display(line, capitalize=False)
+        message = self._path + '...'
+        self._io_manager.display(message, capitalize=False)
         command = self._repository_status_command
         process = self._io_manager.make_subprocess(command)
         path = self._path

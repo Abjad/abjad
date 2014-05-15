@@ -756,7 +756,6 @@ class IOManager(IOManager):
         lines = [line.strip() for line in process.stdout.readlines()]
         if not lines:
             return
-        lines.append('')
         self.display(
             lines,
             capitalize=capitalize,

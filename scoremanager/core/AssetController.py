@@ -64,6 +64,33 @@ class AssetController(Controller):
             name='go - wranglers',
             )
 
+    def _remove_unadded_assets(self, confirm=True, display=True):
+        with self._io_manager.make_interaction(display=display):
+            paths = self._get_unadded_asset_paths()
+            if not paths:
+                if display:
+                    message = 'no unadded assets.'
+                    self._io_manager.display(message)
+                return
+            if display:
+                messages = []
+                messages.append('will remove ...')
+                for path in paths:
+                    message = '    ' + path
+                    messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            remove_command = self._shell_remove_command
+            paths = ' '.join(paths)
+            command = '{} {}'
+            command = command.format(remove_command, paths)
+            self._io_manager.run_command(command)
+
     ### PUBLIC METHODS ###
 
     def go_to_build_files(self):

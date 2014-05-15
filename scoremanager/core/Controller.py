@@ -162,23 +162,6 @@ class Controller(ScoreManagerObject):
             contents = ''.join(lines_to_keep)
             file_pointer.write(contents)
 
-    def _remove_unadded_assets(self, confirm=True, display=True):
-        paths = self._get_unadded_asset_paths()
-        if not paths:
-            return
-        remove_command = self._shell_remove_command
-        paths = ' '.join(paths)
-        command = '{} {}'
-        command = command.format(remove_command, paths)
-        self._io_manager.run_command(command)
-        if display:
-            messages = []
-            messages.append('removed ...')
-            for path in paths:
-                message = '    {}'.format(path)
-                messages.append(message)
-            self._io_manager.display(messages)
-
     @staticmethod
     def _replace_in_file(file_path, old, new):
         with file(file_path, 'r') as file_pointer:

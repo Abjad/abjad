@@ -201,11 +201,15 @@ class Wrangler(AssetController):
 
     def _extract_common_parent_directories(self, paths):
         parent_directories = []
+        example_score_packages_directory_path = \
+            self._configuration.example_score_packages_directory_path
         user_score_packages_directory_path = \
             self._configuration.user_score_packages_directory_path
         for path in paths:
             parent_directory = os.path.dirname(path)
             if parent_directory == user_score_packages_directory_path:
+                parent_directories.append(path)
+            elif parent_directory == example_score_packages_directory_path:
                 parent_directories.append(path)
             elif parent_directory not in parent_directories:
                 parent_directories.append(parent_directory)
@@ -1348,13 +1352,14 @@ class Wrangler(AssetController):
         self._write_view_inventory(view_inventory)
 
     def repository_status(self):
-        r'''Display asset status in repository.
+        r'''Displays repository status of every asset.
 
         Returns none.
         '''
         self._session._attempted_repository_status = True
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
+        paths.sort()
         for path in paths:
             manager = self._io_manager.make_package_manager(path)
             self._session._hide_next_redraw = False

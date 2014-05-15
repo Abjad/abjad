@@ -109,34 +109,6 @@ def test_Menu__display_all_menu_commands_08():
 
 
 def test_Menu__display_all_menu_commands_09():
-    r'''Hidden menu persists after adding assets to repository.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._session._is_repository_test = True
-    input_ = 'red~example~score ? rad q'
-    score_manager._run(pending_input=input_)
-    transcript = score_manager._transcript
-
-    title = 'Red Example Score (2013)'
-    assert transcript.last_title == title
-
-
-def test_Menu__display_all_menu_commands_10():
-    r'''Hidden menu persists after commiting assets to repository.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._session._is_repository_test = True
-    input_ = 'red~example~score ? rci q'
-    score_manager._run(pending_input=input_)
-    transcript = score_manager._transcript
-
-    title = 'Red Example Score (2013)'
-    assert transcript.last_title == title
-
-
-def test_Menu__display_all_menu_commands_11():
     r'''Hidden menu persists after displaying repository status.
     '''
 
@@ -149,7 +121,7 @@ def test_Menu__display_all_menu_commands_11():
     assert transcript.last_title == title
 
 
-def test_Menu__display_all_menu_commands_12():
+def test_Menu__display_all_menu_commands_10():
     r'''Hidden menu persists after updating from repository.
     '''
 
@@ -163,7 +135,7 @@ def test_Menu__display_all_menu_commands_12():
     assert transcript.last_title == title
 
 
-def test_Menu__display_all_menu_commands_13():
+def test_Menu__display_all_menu_commands_11():
     r'''Hidden menu persists after displaying session variables.
     '''
 
