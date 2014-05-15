@@ -17,10 +17,10 @@ def test_MaterialPackageManager_set_autoeditor_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score m new test~tempo~inventory'
-        input_ += ' aes TempoInventory q'
+        input_ += ' aes TempoInventory default q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
-        string = 'Autoeditor set for TempoInventory.'
+        string = 'test tempo inventory (AE)'
         assert string in contents
 
 
@@ -38,7 +38,7 @@ def test_MaterialPackageManager_set_autoeditor_02():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score m tempo~inventory'
-        input_ += ' aeu aes TempoInventory q'
+        input_ += ' aeu aes TempoInventory default q'
         score_manager._run(pending_input=input_)
         assert filecmp.cmp(path, path + '.backup')
 

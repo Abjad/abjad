@@ -165,58 +165,61 @@ class Controller(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def _doctest(self):
-        assets = []
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            if path.endswith('.py'):
-                assets.append(path)
-            if os.path.isdir(path):
-                triples = os.walk(path)
-                for directory_name, subdirectories, file_names in triples:
-                    for file_name in file_names:
-                        if file_name.endswith('.py'):
-                            file_path = os.path.join(directory_name, file_name)
-                            assets.append(file_path)
-        if not assets:
-            message = 'no testable assets found.'
-            self._io_manager.display([message, ''])
-        else:
-            count = len(assets)
-            identifier = stringtools.pluralize('asset', count=count)
-            message = '{} testable {} found ...'
-            message = message.format(count, identifier)
-            self._io_manager.display([message, ''])
-            script = developerscripttools.RunDoctestsScript()
-            strings = script.process_args(
-                file_paths=assets,
-                print_to_terminal=False,
-                )
-            if strings:
-                strings.append('')
-            self._io_manager.display(strings, capitalize=False)
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            assets = []
+            paths = self._list_visible_asset_paths()
+            for path in paths:
+                if path.endswith('.py'):
+                    assets.append(path)
+                if os.path.isdir(path):
+                    triples = os.walk(path)
+                    for directory_name, subdirectories, file_names in triples:
+                        for file_name in file_names:
+                            if file_name.endswith('.py'):
+                                file_path = os.path.join(
+                                    directory_name, 
+                                    file_name,
+                                    )
+                                assets.append(file_path)
+            if not assets:
+                message = 'no testable assets found.'
+                self._io_manager.display([message, ''])
+            else:
+                count = len(assets)
+                identifier = stringtools.pluralize('asset', count=count)
+                message = '{} testable {} found ...'
+                message = message.format(count, identifier)
+                self._io_manager.display([message, ''])
+                script = developerscripttools.RunDoctestsScript()
+                strings = script.process_args(
+                    file_paths=assets,
+                    print_to_terminal=False,
+                    )
+                self._io_manager.display(strings, capitalize=False)
 
     def _pytest(self):
-        assets = []
-        paths = self._list_python_files_in_visible_assets()
-        for path in paths:
-            assert os.path.isfile(path)
-        paths = [_ for _ in paths if os.path.basename(_).startswith('test_')]
-        for path in paths:
-            if os.path.isdir(path):
-                assets.append(path)
-            elif os.path.isfile(path) and path.endswith('.py'):
-                assets.append(path)
-        if not assets:
-            message = 'no testable assets found.'
-            self._io_manager.display([message, ''])
-        else:
-            count = len(paths)
-            identifier = stringtools.pluralize('asset', count=count)
-            message = '{} testable {} found ...'
-            message = message.format(count, identifier)
-            self._io_manager.display([message, ''])
-            assets = ' '.join(assets)
-            command = 'py.test -rf {}'.format(assets)
-            self._io_manager.run_command(command, capitalize=False)
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            assets = []
+            paths = self._list_python_files_in_visible_assets()
+            for path in paths:
+                assert os.path.isfile(path)
+            paths = [
+                _ for _ in paths if os.path.basename(_).startswith('test_')
+                ]
+            for path in paths:
+                if os.path.isdir(path):
+                    assets.append(path)
+                elif os.path.isfile(path) and path.endswith('.py'):
+                    assets.append(path)
+            if not assets:
+                message = 'no testable assets found.'
+                self._io_manager.display(message)
+            else:
+                count = len(paths)
+                identifier = stringtools.pluralize('asset', count=count)
+                message = '{} testable {} found ...'
+                message = message.format(count, identifier)
+                self._io_manager.display(message)
+                assets = ' '.join(assets)
+                command = 'py.test -rf {}'.format(assets)
+                self._io_manager.run_command(command, capitalize=False)

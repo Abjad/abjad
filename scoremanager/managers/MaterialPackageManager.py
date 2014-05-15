@@ -57,8 +57,13 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def _breadcrumb(self):
+        use_autoeditor = self._get_metadatum('use_autoeditor')
         if self._session.is_in_score:
-            return self._space_delimited_lowercase_name
+            name = self._space_delimited_lowercase_name
+            if use_autoeditor:
+                return '{} (AE)'.format(name)
+            else:
+                return name
         name = self._space_delimited_lowercase_name
         configuration = self._configuration
         annotation = configuration._path_to_storehouse_annotation(self._path)
@@ -680,7 +685,9 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         from scoremanager import iotools
-        with self._io_manager.make_interaction(display=display):
+        # not wrapped in interaction because redraw is important afterwards
+        #with self._io_manager.make_interaction(display=display):
+        if True:
             selector = self._io_manager.selector
             selector = selector.make_inventory_class_selector()
             class_ = selector._run()
@@ -693,6 +700,7 @@ class MaterialPackageManager(PackageManager):
                 return
             if confirm:
                 if output_material is not None:
+                    self._session._hide_next_redraw = False
                     messages = []
                     message = 'existing output.py file contains {}.'
                     message = message.format(type(output_material).__name__)
@@ -730,21 +738,18 @@ class MaterialPackageManager(PackageManager):
                 confirm=False,
                 display=False,
                 )
-            if display:
-                message = 'autoeditor set for {}.'
-                message = message.format(class_.__name__)
-                self._io_manager.display(message)
+            self._session._hide_next_redraw = False
 
     def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
 
         Returns none.
         '''
-        self._remove_metadatum('use_autoeditor')
-        if display:
-            message = 'autoeditor unset.'
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        #with self._io_manager.make_interaction(display=display):
+        # no interaction because redraw is important
+        if True:
+            self._remove_metadatum('use_autoeditor')
+            self._session._hide_next_redraw = False
 
     def version_package(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.py``, 

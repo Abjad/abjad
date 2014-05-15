@@ -925,15 +925,19 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
-        getter.append_snake_case_string('metadatum name', allow_empty=False)
-        getter.append_expr('metadatum value')
-        result = getter._run()
-        if self._should_backtrack():
-            return
-        if result:
-            metadatum_name, metadatum_value = result
-            self._add_metadatum(metadatum_name, metadatum_value)
+        with self._io_manager.make_interaction():
+            getter = self._io_manager.make_getter()
+            getter.append_snake_case_string(
+                'metadatum name', 
+                allow_empty=False,
+                )
+            getter.append_expr('metadatum value')
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            if result:
+                metadatum_name, metadatum_value = result
+                self._add_metadatum(metadatum_name, metadatum_value)
 
     def add_to_repository(self, confirm=True, display=True):
         r'''Adds unversioned assets to repository.
@@ -998,15 +1002,15 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
-        getter.append_string('metadatum name')
-        result = getter._run()
-        if self._should_backtrack():
-            return
-        metadatum = self._get_metadatum(result)
-        message = '{!r}'.format(metadatum)
-        self._io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            getter = self._io_manager.make_getter()
+            getter.append_string('metadatum name')
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            metadatum = self._get_metadatum(result)
+            message = '{!r}'.format(metadatum)
+            self._io_manager.display(message)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
@@ -1034,14 +1038,15 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
-        getter.append_string('metadatum name')
-        result = getter._run()
-        if self._should_backtrack():
-            return
-        if result:
-            metadatum_name = result
-            self._remove_metadatum(metadatum_name)
+        with self._io_manager.make_interaction():
+            getter = self._io_manager.make_getter()
+            getter.append_string('metadatum name')
+            result = getter._run()
+            if self._should_backtrack():
+                return
+            if result:
+                metadatum_name = result
+                self._remove_metadatum(metadatum_name)
             
     def repository_clean(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.
@@ -1055,24 +1060,23 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        self._session._attempted_repository_status = True
-        message = self._path + '...'
-        self._io_manager.display(message, capitalize=False)
-        command = self._repository_status_command
-        process = self._io_manager.make_subprocess(command)
-        path = self._path
-        path = path + os.path.sep
-        clean_lines = []
-        for line in process.stdout.readlines():
-            clean_line = line.strip()
-            clean_line = clean_line.replace(path, '')
-            clean_lines.append(clean_line)
-        clean_lines.append('')
-        self._io_manager.display(
-            clean_lines,
-            capitalize=False,
-            )
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            self._session._attempted_repository_status = True
+            message = self._path + '...'
+            self._io_manager.display(message, capitalize=False)
+            command = self._repository_status_command
+            process = self._io_manager.make_subprocess(command)
+            path = self._path
+            path = path + os.path.sep
+            clean_lines = []
+            for line in process.stdout.readlines():
+                clean_line = line.strip()
+                clean_line = clean_line.replace(path, '')
+                clean_lines.append(clean_line)
+            self._io_manager.display(
+                clean_lines,
+                capitalize=False,
+                )
 
     def rewrite_metadata_py(
         self, 
@@ -1084,62 +1088,60 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        if metadata is None:
-            metadata = self._get_metadata()
-        self._write_metadata_py(metadata)
-        if display:
-            message = 'rewrote metadata py.'
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            if metadata is None:
+                metadata = self._get_metadata()
+            self._write_metadata_py(metadata)
+            if display:
+                message = 'rewrote metadata py.'
+                self._io_manager.display(message)
 
     def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts assets from repository.
 
         Returns none.
         '''
-        self._session._attempted_to_revert_to_repository = True
-        if self._session.is_repository_test:
-            return
-        if display:
-            message = 'reverting {} ...'
-            message = message.format(self._path)
-            self._io_manager.display(message)
-        self._revert_from_repository()
+        with self._io_manager.make_interaction(display=display):
+            self._session._attempted_to_revert_to_repository = True
+            if self._session.is_repository_test:
+                return
+            if display:
+                message = 'reverting {} ...'
+                message = message.format(self._path)
+                self._io_manager.display(message)
+            self._revert_from_repository()
 
     def update_from_repository(self, confirm=True, display=True):
         r'''Updates versioned assets.
 
         Returns none.
         '''
-        self._session._attempted_to_update_from_repository = True
-        if self._session.is_repository_test:
-            return
-        line = self._get_score_package_directory_name()
-        if display:
-            line = line + ' ...'
-            self._io_manager.display(line, capitalize=False)
-        command = self._repository_update_command
-        self._io_manager.run_command(command)
+        with self._io_manager.make_interaction(display=display):
+            self._session._attempted_to_update_from_repository = True
+            if self._session.is_repository_test:
+                return
+            line = self._get_score_package_directory_name()
+            if display:
+                line = line + ' ...'
+                self._io_manager.display(line, capitalize=False)
+            command = self._repository_update_command
+            self._io_manager.run_command(command)
 
     def write_stub_init_py(self, confirm=True, display=True):
         r'''Writes ``__init__.py`` stub.
 
         Returns none.
         '''
-        path = self._init_py_file_path
-        if display:
-            message = 'will write stub to {}.'
-            message = message.format(path)
-            self._io_manager.display(message)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        self._io_manager.write_stub(self._init_py_file_path)
-        if display:
-            message = 'wrote stub to {}.'
-            message = message.format(path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            path = self._init_py_file_path
+            if display:
+                message = 'will write stub to {}.'
+                message = message.format(path)
+                self._io_manager.display(message)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            self._io_manager.write_stub(self._init_py_file_path)

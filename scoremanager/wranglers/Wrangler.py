@@ -1053,9 +1053,10 @@ class Wrangler(AssetController):
                 manager = self._io_manager.make_package_manager(directory)
                 manager.rewrite_metadata_py(confirm=False, display=False)
             if display:
-                message = '{} metadata pys rewritten.'
+                message = '{} __metadata__.py files rewritten.'
                 message = message.format(len(directories))
                 messages.append(message)
+                self._session._hide_next_redraw = False
                 self._io_manager.display(messages)
 
     def _select_asset_path(self):
@@ -1193,6 +1194,7 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, view_name)
+        self._session._hide_next_redraw = False
 
     def clear_view(self):
         r'''Clears view.
@@ -1208,6 +1210,7 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
+        self._session._hide_next_redraw = False
 
     def commit_to_repository(self, confirm=True, display=True):
         r'''Commits assets to repository.

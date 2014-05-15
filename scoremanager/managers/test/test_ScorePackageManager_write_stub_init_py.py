@@ -21,4 +21,3 @@ def test_ScorePackageManager_write_stub_init_py_01():
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
         assert 'Will write stub to' in contents
-        assert 'Wrote stub to' in contents

@@ -21,4 +21,4 @@ def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
         assert path in contents
 
     assert 'Rewriting' in contents
-    assert 'metadata pys rewritten.' in contents
+    assert '__metadata__.py files rewritten.' in contents

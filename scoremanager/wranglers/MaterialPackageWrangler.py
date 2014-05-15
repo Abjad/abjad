@@ -276,6 +276,7 @@ class MaterialPackageWrangler(Wrangler):
         if not path:
             return
         self._make_package(path)
+        self._session._hide_next_redraw = False
         manager = self._get_manager(path)
         manager._run()
 

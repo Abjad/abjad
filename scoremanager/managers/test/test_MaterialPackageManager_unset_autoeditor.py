@@ -19,10 +19,10 @@ def test_MaterialPackageManager_unset_autoeditor_01():
         input_ += ' aes TempoInventory default q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
-        string = 'Autoeditor set for TempoInventory.'
+        string = 'test tempo inventory (AE)'
         assert string in contents
         input_ = 'red~example~Score m test~tempo~inventory aeu q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
-        string = 'Autoeditor unset.'
+        string = 'test tempo inventory\n'
         assert string in contents
