@@ -83,13 +83,13 @@ class ScorePackageWrangler(Wrangler):
             'co': self.open_cache,
             'cw': self.write_cache,
             'd': self.go_to_distribution_files,
-            'fix': self.fix_packages,
+            'fix*': self.fix_packages,
             'g': self.go_to_segment_packages,
             'k': self.go_to_maker_files,
             'm': self.go_to_material_packages,
-            'mdmls': self.list_metadata_pys,
-            'mdmo': self.open_metadata_pys,
-            'mdmrw': self.rewrite_metadata_pys,
+            'mdpyls*': self.list_every_metadata_py,
+            'mdpyo*': self.open_every_metadata_py,
+            'mdpyrw*': self.rewrite_every_metadata_py,
             'new': self.make_package,
             'ren': self.rename_package,
             'rm': self.remove_packages,
@@ -196,14 +196,14 @@ class ScorePackageWrangler(Wrangler):
 
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
-        commands.append(('all - metadata pys - edit', 'mdmo'))
-        commands.append(('all - metadata pys - list', 'mdmls'))
-        commands.append(('all - metadata pys - rewrite', 'mdmrw'))
-        commands.append(('all - score packages - fix', 'fix'))
+        commands.append(('scores - metadata.py - list', 'mdpyls*'))
+        commands.append(('scores - metadata.py - open', 'mdpyo*'))
+        commands.append(('scores - metadata.py - rewrite', 'mdpyrw*'))
+        commands.append(('scores - fix', 'fix*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='all score packages',
+            name='scores 2',
             )
 
     def _make_cache_menu_section(self, menu):
@@ -287,12 +287,12 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.display(messages)
         self._session._hide_next_redraw = True
 
-    def list_metadata_pys(self):
+    def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        self._list_metadata_pys()
+        self._list_every_metadata_py()
 
     def make_package(self):
         r'''Makes score package.
@@ -316,12 +316,12 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
 
-    def open_metadata_pys(self):
+    def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        self._open_metadata_pys()
+        self._open_every_metadata_py()
 
     def remove_packages(self):
         r'''Removes one or more score packages.
@@ -337,12 +337,12 @@ class ScorePackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def rewrite_metadata_pys(self, confirm=True, display=True):
+    def rewrite_every_metadata_py(self, confirm=True, display=True):
         r'''Rewrites ``__metadata__.py`` in each score.
 
         Returns none.
         '''
-        self._rewrite_metadata_pys(confirm=confirm, display=display)
+        self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def write_cache(self, confirm=True, display=True):
         r'''Writes cache.

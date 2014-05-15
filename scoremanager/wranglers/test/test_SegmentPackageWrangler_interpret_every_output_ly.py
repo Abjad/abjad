@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_interpret_lilypond_files_01():
+def test_SegmentPackageWrangler_interpret_every_output_ly_01():
 
     path = score_manager._configuration.example_score_packages_directory_path
     path = os.path.join(path, 'red_example_score', 'segments')
@@ -22,7 +22,7 @@ def test_SegmentPackageWrangler_interpret_lilypond_files_01():
     pdf_paths = [_ for _ in paths if _.endswith('.pdf')]
 
     with systemtools.FilesystemState(keep=pdf_paths):
-        input_ = 'red~example~score g lyi y q'
+        input_ = 'red~example~score g olyi* y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         strings = []

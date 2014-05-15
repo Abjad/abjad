@@ -70,7 +70,7 @@ class MaterialPackageWrangler(Wrangler):
             'cp': self.copy_package,
             'ino': self.open_initializers,
             'lyi': self.interpret_illustration_lys,
-            'mdmo': self.open_metadata_pys,
+            'mdpyo': self.open_every_metadata_py,
             'new': self.make_package,
             'pdfo': self.open_illustration_pdfs,
             'ren': self.rename_package,
@@ -165,7 +165,7 @@ class MaterialPackageWrangler(Wrangler):
         commands.append(('all materials - illustration.lys - interpret', 'lyi'))
         commands.append(('all materials - illustration.pdfs - open', 'pdfo'))
         commands.append(('all materials - initializers - open', 'ino'))
-        commands.append(('all materials - metadata pys - open', 'mdmo'))
+        commands.append(('all materials - metadata pys - open', 'mdpyo'))
         commands.append(('all materials - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,
@@ -250,12 +250,12 @@ class MaterialPackageWrangler(Wrangler):
         self._interpret_in_each_package('illustration.ly')
         self._session._hide_next_redraw = True
 
-    def list_metadata_pys(self):
+    def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        self._list_metadata_pys()
+        self._list_every_metadata_py()
 
     def make_package(self):
         r'''Makes material package.
@@ -294,7 +294,7 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('__init__.py')
 
-    def open_metadata_pys(self):
+    def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in each material.
 
         Returns none.
@@ -315,12 +315,12 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def rewrite_metadata_pys(self, confirm=True, display=True):
+    def rewrite_every_metadata_py(self, confirm=True, display=True):
         r'''Rewrites ``__metadata__.py`` in each material.
 
         Returns none.
         '''
-        self._rewrite_metadata_pys(confirm=confirm, display=display)
+        self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Versions any of the ``output.py``, ``illustration.ly`` and 

@@ -49,16 +49,16 @@ class SegmentPackageWrangler(Wrangler):
             'dpye*': self.edit_every_definition_py,
             'ino': self.open_initializer,
             'inws': self.write_stub_initializer,
-            'lyi': self.interpret_lilypond_files,
-            'mdmls': self.list_metadata_pys,
-            'mdmo': self.open_metadata_pys,
-            'mdmrw': self.rewrite_metadata_pys,
+            'mdpyls*': self.list_every_metadata_py,
+            'mdpyo*': self.open_every_metadata_py,
+            'mdpyrw*': self.rewrite_every_metadata_py,
             'mpyi*': self.interpret_every_make_py,
             'new': self.make_package,
-            'pdfo': self.open_output_pdfs,
+            'olyi*': self.interpret_every_output_ly,
+            'opdfo*': self.open_every_output_pdf,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver': self.version_artifacts,
+            'ver*': self.version_artifacts,
             })
         return result
 
@@ -85,16 +85,16 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('all - definition.py - edit', 'dpye*'))
-        commands.append(('all - make.py - interpret', 'mpyi*'))
-        commands.append(('all - metadata.py - open', 'mdmo'))
-        commands.append(('all - output.ly - interpret', 'lyi'))
-        commands.append(('all - output.pdf - open', 'pdfo'))
-        commands.append(('all - version', 'ver'))
+        commands.append(('segments - definition.py - edit', 'dpye*'))
+        commands.append(('segments - make.py - interpret', 'mpyi*'))
+        commands.append(('segments - metadata.py - open', 'mdpyo*'))
+        commands.append(('segments - output.ly - interpret', 'olyi*'))
+        commands.append(('segments - output.pdf - open', 'opdfo*'))
+        commands.append(('segments - version', 'ver*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
-            name='all segments',
+            name='segments 2',
             )
 
     def _make_asset(self, path, metadata=None):
@@ -176,11 +176,11 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._go_to_previous_asset()
 
-    def interpret_lilypond_files(
+    def interpret_every_output_ly(
         self,
         confirm=True,
         display=True,
-        open_output_pdfs=True,
+        open_every_output_pdf=True,
         ):
         r'''Reinterprets all current LilyPond files.
 
@@ -250,12 +250,12 @@ class SegmentPackageWrangler(Wrangler):
             if not managers:
                 self._io_manager.display('')
 
-    def list_metadata_pys(self):
+    def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every score.
 
         Returns none.
         '''
-        self._list_metadata_pys()
+        self._list_every_metadata_py()
 
     def make_package(self):
         r'''Makes segment package.
@@ -286,14 +286,14 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._current_package_manager.open_initializer()
 
-    def open_metadata_pys(self):
+    def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every segment.
 
         Returns none.
         '''
         self._open_in_each_package('__metadata__.py')
 
-    def open_output_pdfs(self):
+    def open_every_output_pdf(self):
         r'''Opens output.pdf file in each segment.
 
         Returns none.
@@ -315,12 +315,12 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rename_asset()
 
-    def rewrite_metadata_pys(self, confirm=True, display=True):
+    def rewrite_every_metadata_py(self, confirm=True, display=True):
         r'''Rewrites ``__metadata__.py`` in each segment.
 
         Returns none.
         '''
-        self._rewrite_metadata_pys(confirm=confirm, display=display)
+        self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Versions all segment packages.

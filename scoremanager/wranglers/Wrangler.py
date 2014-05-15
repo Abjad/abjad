@@ -562,7 +562,7 @@ class Wrangler(AssetController):
                 result.append(path)
         return result
 
-    def _list_metadata_pys(self):
+    def _list_every_metadata_py(self):
         with self._io_manager.make_interaction():
             directories = self._list_all_directories_with_metadata_pys()
             paths = [os.path.join(_, '__metadata__.py') for _ in directories]
@@ -805,7 +805,7 @@ class Wrangler(AssetController):
         paths.sort()
         return paths
         
-    def _open_metadata_pys(self, confirm=True, display=True):
+    def _open_every_metadata_py(self, confirm=True, display=True):
         with self._io_manager.make_interaction(display=display):
             paths = self._list_metadata_py_files_in_all_directories()
             if display:
@@ -901,7 +901,7 @@ class Wrangler(AssetController):
             )
         if result == 'corrupt':
             messages = []
-            message = '{} views py is corrupt:'
+            message = '{} __views.py__ is corrupt:'
             message = message.format(type(self).__name__)
             messages.append(message)
             messages.append('')
@@ -1014,7 +1014,7 @@ class Wrangler(AssetController):
                     if self._should_backtrack():
                         return
 
-    def _rewrite_metadata_pys(self, confirm=True, display=True):
+    def _rewrite_every_metadata_py(self, confirm=True, display=True):
         with self._io_manager.make_interaction(display=display):
             directories = self._list_all_directories_with_metadata_pys()
             messages = []
@@ -1287,7 +1287,7 @@ class Wrangler(AssetController):
         if os.path.exists(self._views_py_path):
             self._io_manager.open_file(self._views_py_path)
         else:
-            message = 'no views py found.'
+            message = 'no __views.py__ found.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 

@@ -5,9 +5,9 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScorePackageWrangler_list_metadata_pys_01():
+def test_ScorePackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'mdmls default q'
+    input_ = 'mdpyls* default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

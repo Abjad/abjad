@@ -19,4 +19,4 @@ def test_DistributionFileWrangler_open_views_py_02():
     contents = score_manager._transcript.contents
 
     assert not score_manager._session._attempted_to_open_file
-    assert 'No views py found.' in contents
+    assert 'No __views.py__ found.' in contents

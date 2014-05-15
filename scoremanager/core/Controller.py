@@ -111,8 +111,8 @@ class Controller(ScoreManagerObject):
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
         commands.append(('metadata - remove', 'mdrm'))
-        commands.append(('metadata py - open', 'mdmo'))
-        commands.append(('metadata py - rewrite', 'mdmrw'))
+        commands.append(('metadata.py - open', 'mdpyo'))
+        commands.append(('metadata.py - rewrite', 'mdpyrw'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -142,7 +142,7 @@ class Controller(ScoreManagerObject):
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))
         commands.append(('views - rename', 'vren'))
-        commands.append(('views py - open', 'vmo'))
+        commands.append(('views.py - open', 'vmo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

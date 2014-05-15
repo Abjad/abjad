@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_version_artifacts_01():
         assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=target_paths):
-        input_ = 'red~example~score g ver y q'
+        input_ = 'red~example~score g ver* y q'
         score_manager._run(pending_input=input_)
         for path in target_paths:
             assert os.path.isfile(path)
