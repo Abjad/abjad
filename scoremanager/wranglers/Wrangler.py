@@ -1091,13 +1091,13 @@ class Wrangler(AssetController):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
 
-    def _version_artifacts(self, confirm=True, display=True):
+    def _version_package(self, confirm=True, display=True):
         managers = self._list_visible_asset_managers()
         messages = []
         messages.append('will copy ...')
         messages.append('')
         for manager in managers:
-            messages.extend(manager._make_version_artifacts_messages())
+            messages.extend(manager._make_version_package_messages())
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
         if self._should_backtrack():
@@ -1105,7 +1105,7 @@ class Wrangler(AssetController):
         if not result:
             return
         for manager in self._list_visible_asset_managers():
-            manager.version_artifacts(confirm=False, display=False)
+            manager.version_package(confirm=False, display=False)
         self._io_manager.display('')
         self._session._hide_next_redraw = True
 

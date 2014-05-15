@@ -5,19 +5,20 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageManager_version_artifacts_01():
+def test_MaterialPackageManager_version_package_01():
     
     versions_directory = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'segments',
-        'segment_01',
+        'materials',
+        'magic_numbers',
         'versions',
         )
     file_names = (
-        'definition_0002.py',
-        'output_0002.ly',
-        'output_0002.pdf',
+        'definition_0002.py', 
+        'illustration_0002.ly',
+        'illustration_0002.pdf',
+        'output_0002.py',
         )
     paths = []
     for file_name in file_names:
@@ -25,6 +26,6 @@ def test_SegmentPackageManager_version_artifacts_01():
         paths.append(path)
 
     with systemtools.FilesystemState(remove=paths):
-        input_ = 'red~example~score g segment~01 ver y q'
+        input_ = 'red~example~score m magic~numbers ver y q'
         score_manager._run(pending_input=input_)
         assert all(os.path.isfile(_) for _ in paths)

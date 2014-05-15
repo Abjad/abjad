@@ -110,30 +110,33 @@ class Menu(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _change_input_to_directive(self, input):
-        input = stringtools.strip_diacritics(
-            input)
-        if self._user_enters_nothing(input):
+    def _change_input_to_directive(self, input_):
+        input_ = stringtools.strip_diacritics(input_)
+        if self._user_enters_nothing(input_):
             default_value = None
             for section in self.menu_sections:
                 if section._has_default_value:
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
-            return input
-        elif input.startswith('!'):
-            return input
+        elif input_ in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
+            return input_
+        elif input_.startswith('!'):
+            return input_
         for section in self.menu_sections:
+            if section.is_information_section:
+                continue
             for menu_entry in section:
-                if menu_entry.matches(input):
+                if menu_entry.matches(input_):
                     return self._enclose_in_list(menu_entry.return_value)
         for section in self.menu_sections:
+            if section.is_information_section:
+                continue
             for menu_entry in section:
-                if menu_entry.matches(input.lower()):
+                if menu_entry.matches(input_.lower()):
                     return self._enclose_in_list(menu_entry.return_value)
-        if self._user_enters_argument_range(input):
-            return self._handle_argument_range_input(input)
+        if self._user_enters_argument_range(input_):
+            return self._handle_argument_range_input(input_)
 
     def _clear_terminal(self):
         if self._should_clear_terminal:
@@ -301,7 +304,7 @@ class Menu(ScoreManagerObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False,
-        is_informational_section=False,
+        is_information_section=False,
         is_material_summary_section=False,
         is_navigation_section=False,
         is_numbered=False,
@@ -323,7 +326,7 @@ class Menu(ScoreManagerObject):
             is_attribute_section=is_attribute_section,
             is_command_section=is_command_section,
             is_hidden=is_hidden,
-            is_informational_section=is_informational_section,
+            is_information_section=is_information_section,
             is_material_summary_section=is_material_summary_section,
             is_navigation_section=is_navigation_section,
             is_numbered=is_numbered,
@@ -586,16 +589,16 @@ class Menu(ScoreManagerObject):
             )
         return section
 
-    def make_informational_section(
+    def make_information_section(
         self,
         menu_entries=None,
         name='information',
         ):
-        r'''Makes informational section.
+        r'''Makes information section.
 
         Menu section with these attributes:
 
-            * is informational section
+            * is information section
             * not hidden
             * does not match on display string
             * return value attribute equal to ``'key'``
@@ -604,7 +607,7 @@ class Menu(ScoreManagerObject):
         '''
         section = self._make_section(
             is_hidden=False,
-            is_informational_section=True,
+            is_information_section=True,
             menu_entries=menu_entries,
             name=name,
             return_value_attribute='key',

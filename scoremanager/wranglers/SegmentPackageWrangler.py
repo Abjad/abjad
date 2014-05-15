@@ -58,7 +58,7 @@ class SegmentPackageWrangler(Wrangler):
             'opdfo*': self.open_every_output_pdf,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver*': self.version_artifacts,
+            'ver*': self.version_package,
             })
         return result
 
@@ -323,12 +323,12 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
-    def version_artifacts(self, confirm=True, display=True):
+    def version_package(self, confirm=True, display=True):
         r'''Versions all segment packages.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, display=display)
+        self._version_package(confirm=confirm, display=display)
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

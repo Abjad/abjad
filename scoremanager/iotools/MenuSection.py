@@ -39,7 +39,7 @@ class MenuSection(AbjadObject):
         '_is_attribute_section',
         '_is_command_section',
         '_is_hidden',
-        '_is_informational_section',
+        '_is_information_section',
         '_is_material_summary_section',
         '_is_navigation_section',
         '_is_numbered',
@@ -70,7 +70,7 @@ class MenuSection(AbjadObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False,
-        is_informational_section=False,
+        is_information_section=False,
         is_material_summary_section=False,
         is_navigation_section=False,
         is_numbered=False,
@@ -93,7 +93,7 @@ class MenuSection(AbjadObject):
         self._is_attribute_section = is_attribute_section
         self._is_command_section = is_command_section
         self._is_hidden = is_hidden
-        self._is_informational_section = is_informational_section
+        self._is_information_section = is_information_section
         self._is_material_summary_section = is_material_summary_section
         self._is_navigation_section = is_navigation_section
         self._is_numbered = is_numbered
@@ -159,7 +159,7 @@ class MenuSection(AbjadObject):
         return self.default_index is not None
 
     @property
-    def _informational_message_bullet(self):
+    def _information_message_bullet(self):
         return '=>'
 
     @property
@@ -270,9 +270,9 @@ class MenuSection(AbjadObject):
 
     def _make_tab(self, n=1):
         tab_string = 6 * n * ' '
-        if self.is_informational_section:
+        if self.is_information_section:
             characters = list(tab_string)
-            characters[-3:-1] = self._informational_message_bullet
+            characters[-3:-1] = self._information_message_bullet
             tab_string = ''.join(characters)
         elif self.is_material_summary_section:
             characters = list(tab_string)
@@ -388,18 +388,18 @@ class MenuSection(AbjadObject):
         return self._is_hidden
 
     @property
-    def is_informational_section(self):
-        r'''Is true when menu section is informational.
+    def is_information_section(self):
+        r'''Is true when menu section is information.
         Otherwise false:
 
         ::
 
-            >>> section.is_informational_section
+            >>> section.is_information_section
             False
 
         Returns boolean.
         '''
-        return self._is_informational_section
+        return self._is_information_section
 
     @property
     def is_material_summary_section(self):

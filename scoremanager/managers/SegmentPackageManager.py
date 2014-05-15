@@ -53,7 +53,7 @@ class SegmentPackageManager(PackageManager):
             'opdfo': self.open_output_pdf,
             'vdpyo': self.open_versioned_definition_py,
             'verls': self.list_versions_directory,
-            'ver': self.version_artifacts,
+            'ver': self.version_package,
             'volyo': self.open_versioned_output_ly,
             'vopdfo': self.open_versioned_output_pdf,
             })
@@ -109,6 +109,7 @@ class SegmentPackageManager(PackageManager):
         if commands:
             menu.make_command_section(
                 commands=commands,
+                is_hidden=True,
                 name='output.pdf',
                 )
 
@@ -116,7 +117,7 @@ class SegmentPackageManager(PackageManager):
         if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py found;'
             message += ' use (dpyws) to write stub.'
-            menu.make_informational_section(
+            menu.make_information_section(
                 menu_entries=[message],
                 )
         commands = []
@@ -124,6 +125,7 @@ class SegmentPackageManager(PackageManager):
         commands.append(('definition.py - write stub', 'dpyws'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='definition py',
             )
 
@@ -149,10 +151,11 @@ class SegmentPackageManager(PackageManager):
         commands.append(('__make__.py - write stub', 'mpyws'))
         menu.make_command_section(
             commands=commands,
+            is_hidden=True,
             name='__make__.py',
             )
 
-    def _make_version_artifacts_messages(self):
+    def _make_version_package_messages(self):
         last_version_number = self._get_last_version_number()
         next_version_number = last_version_number + 1
         next_version_string = '%04d' % next_version_number
@@ -319,13 +322,13 @@ class SegmentPackageManager(PackageManager):
         '''
         self._open_versioned_file('output.pdf')
 
-    def version_artifacts(self, confirm=True, display=True):
+    def version_package(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
         to versions directory, if they exist.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, display=display)
+        self._version_package(confirm=confirm, display=display)
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_py(self, confirm=True, display=True):

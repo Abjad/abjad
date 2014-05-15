@@ -75,7 +75,7 @@ class MaterialPackageWrangler(Wrangler):
             'pdfo': self.open_illustration_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver': self.version_artifacts,
+            'ver': self.version_package,
             })
         return result
 
@@ -322,10 +322,10 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
-    def version_artifacts(self, confirm=True, display=True):
+    def version_package(self, confirm=True, display=True):
         r'''Versions any of the ``output.py``, ``illustration.ly`` and 
         ``illustration.pdf`` files that exist in each material package.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, display=display)
+        self._version_package(confirm=confirm, display=display)

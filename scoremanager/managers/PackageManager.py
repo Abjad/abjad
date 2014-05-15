@@ -441,40 +441,38 @@ class PackageManager(AssetController):
         first_line = process.stdout.readline()
         return first_line == ''
 
-    def _list(self, public_entries_only=False):
-        result = []
+    def _list(self, public_entries_only=False, smart_sort=False):
+        entries = []
         if not os.path.exists(self._path):
-            return result
+            return entries
         if public_entries_only:
-            for directory_entry in sorted(os.listdir(self._path)):
-                if directory_entry[0].isalpha():
-                    if not directory_entry.endswith('.pyc'):
-                        if not directory_entry in ('test',):
-                            result.append(directory_entry)
+            for entry in sorted(os.listdir(self._path)):
+                if entry == '__pycache__':
+                    continue
+                if entry[0].isalpha():
+                    if not entry.endswith('.pyc'):
+                        if not entry in ('test',):
+                            entries.append(entry)
         else:
-            for directory_entry in sorted(os.listdir(self._path)):
-                if not directory_entry.startswith('.'):
-                    if not directory_entry.endswith('.pyc'):
-                        result.append(directory_entry)
-        return result
-
-    def _list_pretty(self):
-        lines = []
-        for directory_entry in self._list():
-            path = os.path.join(self._path, directory_entry)
-            if os.path.isdir(path):
-                line = directory_entry + '/'
-            elif os.path.isfile(path):
-                line = directory_entry
+            for entry in sorted(os.listdir(self._path)):
+                if entry == '__pycache__':
+                    continue
+                if not entry.startswith('.'):
+                    if not entry.endswith('.pyc'):
+                        entries.append(entry)
+        if not smart_sort:
+            return entries
+        dunder_files, files, directories = [], [], []
+        for entry in entries:
+            path = os.path.join(self._path, entry)
+            if entry.startswith('_'):
+                dunder_files.append(entry)
+            elif os.path.isdir(path):
+                directories.append(entry + '/')
             else:
-                raise TypeError(directory_entry)
-            lines.append(line)
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize=False,
-            )
-        self._session._hide_next_redraw = True
+                files.append(entry)
+        result = files + dunder_files + directories
+        return result
 
     def _list_versions_directory(self):
         versions_directory_path = self._versions_directory_path
@@ -510,6 +508,18 @@ class PackageManager(AssetController):
     def _list_visible_asset_paths(self):
         return [self._path]
 
+    def _make_asset_menu_section(self, menu):
+        directory_entries = self._list(smart_sort=True)
+        menu_entries = []
+        for directory_entry in directory_entries:
+            clean_directory_entry = directory_entry
+            if directory_entry.endswith('/'):
+                clean_directory_entry = directory_entry[:-1]
+            path = os.path.join(self._path, clean_directory_entry)
+            menu_entry = (directory_entry, None, None, path)
+            menu_entries.append(menu_entry)
+        menu.make_information_section(menu_entries=menu_entries)
+
     def _make_init_py_menu_section(self, menu):
         commands = []
         commands.append(('__init__.py - open', 'ipyo'))
@@ -521,8 +531,9 @@ class PackageManager(AssetController):
                 name='__init__.py',
                 )
 
-    def _make_main_menu(self, name='directory manager'):
+    def _make_main_menu(self, name='package manager'):
         menu = self._io_manager.make_menu(name=name)
+        self._make_asset_menu_section(menu)
         return menu
 
     @staticmethod
@@ -861,14 +872,14 @@ class PackageManager(AssetController):
         assert self._is_up_to_date()
         return True
 
-    def _version_artifacts(self, confirm=True, display=True):
+    def _version_package(self, confirm=True, display=True):
         if not os.path.isdir(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
         if confirm:
             messages = []
             messages.append('will copy ...')
             messages.append('')
-            messages.extend(self._make_version_artifacts_messages())
+            messages.extend(self._make_version_package_messages())
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
             if self._should_backtrack():

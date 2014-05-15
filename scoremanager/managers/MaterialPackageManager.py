@@ -106,7 +106,7 @@ class MaterialPackageManager(PackageManager):
             'pdfo': self.open_illustration_pdf,
             'vdpyo': self.open_versioned_definition_py,
             'verls': self.list_versions_directory,
-            'ver': self.version_artifacts,
+            'ver': self.version_package,
             'volyo': self.open_versioned_illustration_ly,
             'vomo': self.open_versioned_output_py,
             'vopdfo': self.open_versioned_illustration_pdf,
@@ -396,7 +396,7 @@ class MaterialPackageManager(PackageManager):
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
-    def _make_version_artifacts_messages(self):
+    def _make_version_package_messages(self):
         path = self._versions_directory_path
         greatest_version = self._io_manager.get_greatest_version_number(path)
         new_version = greatest_version + 1
@@ -746,14 +746,14 @@ class MaterialPackageManager(PackageManager):
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
 
-    def version_artifacts(self, confirm=True, display=True):
+    def version_package(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.py``, 
         ``illustration.ly`` and ``illustration.pdf`` to versions directory,
         if they exist.
 
         Returns none.
         '''
-        self._version_artifacts(confirm=confirm, display=display)
+        self._version_package(confirm=confirm, display=display)
 
     def write_output_material(
         self,

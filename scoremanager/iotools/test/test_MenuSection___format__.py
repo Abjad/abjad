@@ -30,7 +30,7 @@ def test_MenuSection___format___01():
             is_attribute_section=False,
             is_command_section=True,
             is_hidden=False,
-            is_informational_section=False,
+            is_information_section=False,
             is_material_summary_section=False,
             is_navigation_section=False,
             is_numbered=False,

@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_version_artifacts_01():
+def test_SegmentPackageWrangler_version_package_01():
     
     target_paths = []
     segments = ('segment_01', 'segment_02', 'segment_03')
