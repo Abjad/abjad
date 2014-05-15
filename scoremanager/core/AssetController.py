@@ -1,3 +1,4 @@
+import os
 from scoremanager.core.Controller import Controller
 
 
@@ -64,6 +65,15 @@ class AssetController(Controller):
             commands=commands,
             name='go - wranglers',
             )
+            
+    def _open_file(self, path):
+        with self._io_manager.make_interaction():
+            if os.path.isfile(path):
+                self._io_manager.open_file(path)
+            else:
+                message = 'can not find file: {}.'
+                message = message.format(path)
+                self._io_manager.display(message)
 
     def _repository_clean(self, confirm=True, display=True):
         with self._io_manager.make_interaction(display=display):

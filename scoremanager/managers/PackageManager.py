@@ -475,35 +475,34 @@ class PackageManager(AssetController):
         return result
 
     def _list_versions_directory(self):
-        versions_directory_path = self._versions_directory_path
-        if not os.path.exists(versions_directory_path):
-            message = 'no versions directory found {}.'
-            message = message.format(self._versions_directory_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-            return
-        file_names = []
-        for directory_entry in os.listdir(versions_directory_path):
-            if not directory_entry.startswith('_'):
-                file_names.append(directory_entry)
-        file_names.sort(key=lambda _: self._file_name_to_version_number(_))
-        messages = []
-        def group_helper(file_name):
-            root, extension = os.path.splitext(file_name)
-            return root[-4:]
-        for x in itertools.groupby(
-            file_names, 
-            key=lambda _: self._file_name_to_version_number(_),
-            ):
-            key, file_names = x
-            message = ' '.join(file_names)
-            messages.append(message)
-        if not messages:
-            message = 'versions directory is empty.'
-            messages.append(message)
-        messages.append('')
-        self._io_manager.display(messages, capitalize=False)
-        self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            versions_directory_path = self._versions_directory_path
+            if not os.path.exists(versions_directory_path):
+                message = 'no versions directory found {}.'
+                message = message.format(self._versions_directory_path)
+                self._io_manager.display([message, ''])
+                self._session._hide_next_redraw = True
+                return
+            file_names = []
+            for directory_entry in os.listdir(versions_directory_path):
+                if not directory_entry.startswith('_'):
+                    file_names.append(directory_entry)
+            file_names.sort(key=lambda _: self._file_name_to_version_number(_))
+            messages = []
+            def group_helper(file_name):
+                root, extension = os.path.splitext(file_name)
+                return root[-4:]
+            for x in itertools.groupby(
+                file_names, 
+                key=lambda _: self._file_name_to_version_number(_),
+                ):
+                key, file_names = x
+                message = ' '.join(file_names)
+                messages.append(message)
+            if not messages:
+                message = 'versions directory is empty.'
+                messages.append(message)
+            self._io_manager.display(messages, capitalize=False)
 
     def _list_visible_asset_paths(self):
         return [self._path]
@@ -1014,19 +1013,14 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        self._io_manager.open_file(self._init_py_file_path)
+        self._open_file(self._init_py_file_path)
 
     def open_metadata_py(self):
-        r'''Edits ``__metadata__.py``.
+        r'''Opens ``__metadata__.py``.
 
         Returns none.
         '''
-        path = self._metadata_py_path
-        if os.path.isfile(path):
-            self._io_manager.edit(path)
-        else:
-            message = 'can not find {}.'.format(path)
-            self._io_manager.display([message, ''])
+        self._open_file(self._metadata_py_path)
 
     def pytest(self):
         r'''Runs py.test on Python files contained in visible assets.

@@ -281,25 +281,21 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.open_file(self._make_py_path)
+        self._open_file(self._make_py_path)
 
     def open_output_ly(self):
         r'''Opens ``output.ly``.
 
         Returns none.
         '''
-        file_path = self._output_lilypond_file_path
-        if os.path.isfile(file_path):
-            self._io_manager.open_file(file_path)
+        self._open_file(self._output_lilypond_file_path)
 
     def open_output_pdf(self):
         r'''Opens ``output.pdf``.
 
         Returns none.
         '''
-        file_path = self._output_pdf_file_path
-        if os.path.isfile(file_path):
-            self._io_manager.open_file(file_path)
+        self._open_file(self._output_pdf_file_path)
 
     def open_versioned_definition_py(self):
         r'''Opens versioned ``definition py``.

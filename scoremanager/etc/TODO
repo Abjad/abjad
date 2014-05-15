@@ -227,3 +227,5 @@
     Implemented consolidated set of repository methods on AssetController.
 
 45. Remove Transcript.signature.
+
+46. Change (red~example~score g) to list assets.
