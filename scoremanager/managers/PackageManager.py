@@ -53,7 +53,7 @@ class PackageManager(AssetController):
         return self._space_delimited_lowercase_class_name
 
     @property
-    def _initializer_file_path(self):
+    def _init_py_file_path(self):
         return os.path.join(self._path, '__init__.py')
 
     @property
@@ -62,8 +62,8 @@ class PackageManager(AssetController):
         result = superclass._input_to_action
         result = copy.deepcopy(result)
         result.update({
-            'ino': self.open_initializer,
-            'inws': self.write_stub_initializer,
+            'ipyo': self.open_init_py,
+            'ipyws': self.write_stub_init_py,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
@@ -510,6 +510,17 @@ class PackageManager(AssetController):
     def _list_visible_asset_paths(self):
         return [self._path]
 
+    def _make_init_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__init__.py - open', 'ipyo'))
+        commands.append(('__init__.py - write stub', 'ipyws'))
+        if commands:
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='__init__.py',
+                )
+
     def _make_main_menu(self, name='directory manager'):
         menu = self._io_manager.make_menu(name=name)
         return menu
@@ -546,6 +557,17 @@ class PackageManager(AssetController):
             result.append((display_string, None, metadata[key], key))
         return result
 
+    def _make_package_menu_section(self, menu):
+        commands = []
+        commands.append(('package - version', 'ver'))
+        commands.append(('package - versions list', 'verls'))
+        if commands:
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='package',
+                )
+
     def _get_existing_version_numbers(self, file_name_prototype):
         root, extension = os.path.splitext(file_name_prototype)
         file_names = []
@@ -572,11 +594,6 @@ class PackageManager(AssetController):
         version_number = getter._run()
         if self._should_backtrack():
             return
-        if 0 < version_number and version_number not in version_numbers:
-            message = 'no {} version {}.'
-            message = message.format(file_name_prototype, version_number)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
         if version_number < 0:
             version_number = version_numbers[version_number]
         version_string = str(version_number).zfill(4)
@@ -981,15 +998,15 @@ class PackageManager(AssetController):
         self._io_manager.display([message, ''])
         self._session._hide_next_redraw = True
 
-    def open_initializer(self):
-        r'''Opens initializer.
+    def open_init_py(self):
+        r'''Opens ``__init__.py``.
 
         Returns none.
         '''
-        self._io_manager.open_file(self._initializer_file_path)
+        self._io_manager.open_file(self._init_py_file_path)
 
     def open_metadata_py(self):
-        r'''Edits metadata py.
+        r'''Edits ``__metadata__.py``.
 
         Returns none.
         '''
@@ -1099,12 +1116,12 @@ class PackageManager(AssetController):
         command = self._repository_update_command
         self._io_manager.run_command(command)
 
-    def write_stub_initializer(self, confirm=True, display=True):
-        r'''Writes initializer stub.
+    def write_stub_init_py(self, confirm=True, display=True):
+        r'''Writes ``__init__.py`` stub.
 
         Returns none.
         '''
-        path = self._initializer_file_path
+        path = self._init_py_file_path
         if display:
             message = 'will write stub to {}.'
             message = message.format(path)
@@ -1115,7 +1132,7 @@ class PackageManager(AssetController):
                 return
             if not result:
                 return
-        self._io_manager.write_stub(self._initializer_file_path)
+        self._io_manager.write_stub(self._init_py_file_path)
         if display:
             message = 'wrote stub to {}.'
             message = message.format(path)

@@ -162,6 +162,7 @@ class ScorePackageManager(PackageManager):
         menu = self._io_manager.make_menu(name=name)
         self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)
+        self._make_metadata_py_menu_section(menu)
         self._make_score_menu_section(menu)
         return menu
 
@@ -181,8 +182,8 @@ class ScorePackageManager(PackageManager):
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('package - fix', 'fix'))
-        commands.append(('package - initializer - open', 'ino'))
-        commands.append(('package - initializer - write stub', 'inws'))
+        commands.append(('__init__.py - open', 'ipyo'))
+        commands.append(('__init__.py - write stub', 'ipyws'))
         commands.append(('package - score pdf - open', 'pdfo'))
         commands.append(('package - setup', 'p'))
         menu.make_command_section(
@@ -360,11 +361,11 @@ class ScorePackageManager(PackageManager):
                 gitignore_path = os.path.join(path, '.gitignore')
                 with file(gitignore_path, 'w') as file_pointer:
                     file_pointer.write('')
-        if not os.path.exists(self._initializer_file_path):
+        if not os.path.exists(self._init_py_file_path):
             package_needed_to_be_fixed = True
             if display:
                 messages = []
-                path = self._initializer_file_path
+                path = self._init_py_file_path
                 message = 'can not find {}.'.format(path)
                 messages.append(message)
                 message = 'create {}?'.format(path)
@@ -377,7 +378,7 @@ class ScorePackageManager(PackageManager):
                 if not result:
                     return
                 result = self._io_manager.confirm()
-            self.write_stub_initializer(confirm=confirm, display=display)
+            self.write_stub_init_py(confirm=confirm, display=display)
         if not os.path.exists(self._metadata_py_path):
             package_needed_to_be_fixed = True
             if display:

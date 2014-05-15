@@ -84,7 +84,7 @@ class Wrangler(AssetController):
             return self._abjad_storehouse_path
 
     @property
-    def _initializer_file_path(self):
+    def _init_py_file_path(self):
         path = self._get_current_directory()
         if path:
             return os.path.join(path, '__init__.py')

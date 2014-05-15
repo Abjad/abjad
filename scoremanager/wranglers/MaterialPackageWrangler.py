@@ -68,7 +68,7 @@ class MaterialPackageWrangler(Wrangler):
             '>': self.go_to_next_asset,
             '<': self.go_to_previous_asset,
             'cp': self.copy_package,
-            'ino': self.open_initializers,
+            'ipyo': self.open_init_pys,
             'lyi': self.interpret_illustration_lys,
             'mdpyo': self.open_every_metadata_py,
             'new': self.make_package,
@@ -162,10 +162,10 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_all_materials_menu_section(self, menu):
         commands = []
-        commands.append(('all materials - illustration.lys - interpret', 'lyi'))
-        commands.append(('all materials - illustration.pdfs - open', 'pdfo'))
-        commands.append(('all materials - initializers - open', 'ino'))
-        commands.append(('all materials - metadata pys - open', 'mdpyo'))
+        commands.append(('all materials - illustration.ly - interpret', 'lyi'))
+        commands.append(('all materials - illustration.pdf - open', 'pdfo'))
+        commands.append(('all materials - __init__.py - open', 'ipyo'))
+        commands.append(('all materials - __metadata__.py - open', 'mdpyo'))
         commands.append(('all materials - version artifacts', 'ver'))
         menu.make_command_section(
             commands=commands,
@@ -287,7 +287,7 @@ class MaterialPackageWrangler(Wrangler):
         self._open_in_each_package('illustration.pdf')
         self._session._hide_next_redraw = True
 
-    def open_initializers(self):
+    def open_init_pys(self):
         r'''Opens the ``__init__.py`` file in each material package.
 
         Returns none.

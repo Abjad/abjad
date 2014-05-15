@@ -92,7 +92,7 @@ class MaterialPackageManager(PackageManager):
             'aeu': self.unset_autoeditor,
             'dpye': self.edit_definition_py,
             'dmi': self.interpret_definition_py,
-            'dmws': self.write_stub_definition_py,
+            'dpyws': self.write_stub_definition_py,
             'ime': self.edit_illustrate_py,
             'imei': self.edit_and_interpret_illustrate_py,
             'imi': self.interpret_illustrate_py,
@@ -104,12 +104,12 @@ class MaterialPackageManager(PackageManager):
             'omw': self.write_output_material,
             'omo': self.open_output_py,
             'pdfo': self.open_illustration_pdf,
-            'vdmo': self.open_versioned_definition_py,
-            'vdls': self.list_versions_directory,
+            'vdpyo': self.open_versioned_definition_py,
+            'verls': self.list_versions_directory,
             'ver': self.version_artifacts,
-            'vlyo': self.open_versioned_illustration_ly,
+            'volyo': self.open_versioned_illustration_ly,
             'vomo': self.open_versioned_output_py,
-            'vpdfo': self.open_versioned_illustration_pdf,
+            'vopdfo': self.open_versioned_illustration_pdf,
             })
         return result
 
@@ -273,11 +273,14 @@ class MaterialPackageManager(PackageManager):
         self._make_illustrate_py_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
+        self._make_init_py_menu_section(menu)
         self._make_material_definition_menu_section(menu)
         self._make_metadata_menu_section(menu)
+        self._make_metadata_py_menu_section(menu)
         self._make_material_menu_section(menu)
         self._make_output_py_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
+        self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         try:
@@ -293,7 +296,7 @@ class MaterialPackageManager(PackageManager):
         commands = []
         commands.append(('definition py - edit', 'dpye'))
         commands.append(('definition py - interpret', 'dmi'))
-        commands.append(('definition py - write stub', 'dmws'))
+        commands.append(('definition py - write stub', 'dpyws'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
@@ -340,7 +343,7 @@ class MaterialPackageManager(PackageManager):
         return lines
 
     def _make_output_py_menu_section(self, menu):
-        if not os.path.isfile(self._initializer_file_path):
+        if not os.path.isfile(self._init_py_file_path):
             return
         commands = []
         commands.append(('output py - write', 'omw'))
@@ -359,9 +362,6 @@ class MaterialPackageManager(PackageManager):
             commands.append(('package - autoeditor - unset', 'aeu'))
         else:
             commands.append(('package - autoeditor - set', 'aes'))
-        commands.append(('package - initializer - open', 'ino'))
-        commands.append(('package - initializer - write stub', 'inws'))
-        commands.append(('package - version artifacts', 'ver'))
         if commands:
             path = self._definition_py_path
             has_definition_py = os.path.isfile(path)
@@ -425,11 +425,10 @@ class MaterialPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdmo'))
-        commands.append(('versions - illustration.ly - open', 'vlyo'))
-        commands.append(('versions - illustration.pdf - open', 'vpdfo'))
+        commands.append(('versions - definition.py - open', 'vdpyo'))
+        commands.append(('versions - illustration.ly - open', 'volyo'))
+        commands.append(('versions - illustration.pdf - open', 'vopdfo'))
         commands.append(('versions - output.py - open', 'vomo'))
-        commands.append(('versions directory - list', 'vdls'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

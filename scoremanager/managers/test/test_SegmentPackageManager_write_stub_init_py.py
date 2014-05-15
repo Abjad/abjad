@@ -5,8 +5,8 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageManager_write_stub_initializer_01():
-    r'''Works when initializer doesn't already exist.
+def test_SegmentPackageManager_write_stub_init_py_01():
+    r'''Works when __init__.py doesn't already exist.
     '''
 
     path = os.path.join(
@@ -18,7 +18,7 @@ def test_SegmentPackageManager_write_stub_initializer_01():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'red~example~score g segment~01 inws y q'
+        input_ = 'red~example~score g segment~01 ipyws y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents

@@ -161,12 +161,12 @@
     Change ...
         score packages - fix (fix)
     ... to ...
+        score packages - __init__.py - open (ipyo*)
+        score packages - __init__.py - rewrite (inrw*)
+        score packages - __metadata__.py - open (mdpyo*)
         score packages - fix (fix*)
-        score packages - initializer - open (ino*)
-        score packages - initializer - rewrite (inrw*)
-        score packages - metadata.py - open (mdpyo*)
     ... and also to ...
-        all - metadata.py - rewrite (mdpyrw**)
+        all - __metadata__.py - rewrite (mdpyrw**)
         all - score pdf - open (pdfo**)
     ... instead.
 
@@ -190,7 +190,7 @@
     ... instead.
 
 37. Make (rrv) work in Git directories.
-    Can test with (red~example~score g lyi y).
+    Can test with (red~example~score g olyi y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.

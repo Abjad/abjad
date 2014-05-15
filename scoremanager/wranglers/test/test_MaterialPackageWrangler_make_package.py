@@ -111,8 +111,8 @@ def test_MaterialPackageWrangler_make_package_03():
 
 
 def test_MaterialPackageWrangler_make_package_04():
-    r'''Makes handmade package. Makes sure initializer, metadata py and
-    definition py are created. Removes package.
+    r'''Makes handmade package. Makes sure __init__.py, __metadata__.py and
+    definition.py are created. Removes package.
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
@@ -125,8 +125,8 @@ def test_MaterialPackageWrangler_make_package_04():
 
 
 def test_MaterialPackageWrangler_make_package_05():
-    r'''Makes handmade package. Corrupts initializer. Makes sure score manager
-    starts and package is removable when initializer is corrupt.
+    r'''Makes handmade package. Corrupts __init__.py. Makes sure score manager
+    starts and package is removable when __init__.py is corrupt.
     Removes package.
     '''
 

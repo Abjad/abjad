@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageManager_interpret_lilypond_file_01():
+def test_SegmentPackageManager_interpret_output_ly_01():
     r'''Works when output.ly already exists.
     '''
 
@@ -27,7 +27,7 @@ def test_SegmentPackageManager_interpret_lilypond_file_01():
     with systemtools.FilesystemState(keep=[input_path, output_path]):
         os.remove(output_path)
         assert not os.path.exists(output_path)
-        input_ = 'red~example~score g segment~01 lyi y q'
+        input_ = 'red~example~score g segment~01 olyi y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(output_path)
         #assert diff-pdf(output_path, backup_output_path)

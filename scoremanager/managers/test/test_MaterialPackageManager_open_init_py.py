@@ -4,9 +4,9 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageManager_open_versioned_output_pdfs_01():
+def test_MaterialPackageManager_open_init_py_01():
 
-    input_ = 'red~example~score g segment~01 vpdfso 0 q'
+    input_ = 'red~example~score m magic~numbers ipyo q'
     score_manager._run(pending_input=input_)
 
     assert score_manager._session._attempted_to_open_file

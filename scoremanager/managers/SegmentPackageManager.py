@@ -44,19 +44,18 @@ class SegmentPackageManager(PackageManager):
         result = result.copy()
         result.update({
             'dpye': self.edit_definition_py,
-            'dmws': self.write_stub_definition_py,
-            'lyi': self.interpret_lilypond_file,
-            'lyo': self.open_output_ly,
-            'mmi': self.interpret_make_py,
-            'mmo': self.open_make_py,
-            'mmws': self.write_stub_make_py,
-            'pdfo': self.open_output_pdf,
-            'vdmo': self.open_versioned_definition_py,
-            'vdls': self.list_versions_directory,
+            'dpyws': self.write_stub_definition_py,
+            'mpyi': self.interpret_make_py,
+            'mpyo': self.open_make_py,
+            'mpyws': self.write_stub_make_py,
+            'olyi': self.interpret_output_ly,
+            'olyo': self.open_output_ly,
+            'opdfo': self.open_output_pdf,
+            'vdpyo': self.open_versioned_definition_py,
+            'verls': self.list_versions_directory,
             'ver': self.version_artifacts,
-            'vlyo': self.open_versioned_output_ly,
-            'vpdfo': self.open_versioned_output_pdf,
-            'vpdfso': self.open_versioned_pdfs,
+            'volyo': self.open_versioned_output_ly,
+            'vopdfo': self.open_versioned_output_pdf,
             })
         return result
 
@@ -92,39 +91,37 @@ class SegmentPackageManager(PackageManager):
         elif result == 'user entered lone return':
             pass
 
-    def _make_current_lilypond_file_menu_section(self, menu):
+    def _make_output_ly_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
             commands = []
-            commands.append(('lilypond file - interpret', 'lyi'))
-            commands.append(('lilypond file - open', 'lyo'))
+            commands.append(('output.ly - interpret', 'olyi'))
+            commands.append(('output.ly - open', 'olyo'))
             menu.make_command_section(
                 is_hidden=True,
                 commands=commands,
-                name='lilypond file',
+                name='output.ly',
                 )
 
-    def _make_current_pdf_menu_section(self, menu):
+    def _make_output_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('artifacts - version', 'ver'))
-        if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('pdf - open', 'pdfo'))
+            commands.append(('output.pdf - open', 'opdfo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
-                name='pdf',
+                name='output.pdf',
                 )
 
     def _make_definition_py_menu_section(self, menu):
         if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py found;'
-            message += ' use (dmws) to write stub.'
+            message += ' use (dpyws) to write stub.'
             menu.make_informational_section(
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition py - edit', 'dpye'))
-        commands.append(('definition py - write stub', 'dmws'))
+        commands.append(('definition.py - edit', 'dpye'))
+        commands.append(('definition.py - write stub', 'dpyws'))
         menu.make_command_section(
             commands=commands,
             name='definition py',
@@ -133,36 +130,27 @@ class SegmentPackageManager(PackageManager):
     def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)
         menu = superclass._make_main_menu(name=name)
-        self._make_current_lilypond_file_menu_section(menu)
-        self._make_current_pdf_menu_section(menu)
         self._make_definition_py_menu_section(menu)
+        self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
+        self._make_metadata_py_menu_section(menu)
         self._make_make_py_menu_section(menu)
-        self._make_package_configuration_menu_section(menu)
-        self._make_versions_directory_menu_section(menu)
+        self._make_output_ly_menu_section(menu)
+        self._make_output_pdf_menu_section(menu)
+        self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
+        self._make_versions_directory_menu_section(menu)
         return menu
 
     def _make_make_py_menu_section(self, menu):
         commands = []
-        commands.append(('make py - interpret', 'mmi'))
-        commands.append(('make py - open', 'mmo'))
-        commands.append(('make py - write stub', 'mmws'))
+        commands.append(('__make__.py - interpret', 'mpyi'))
+        commands.append(('__make__.py - open', 'mpyo'))
+        commands.append(('__make__.py - write stub', 'mpyws'))
         menu.make_command_section(
             commands=commands,
-            name='make py',
+            name='__make__.py',
             )
-
-    def _make_package_configuration_menu_section(self, menu):
-        commands = []
-        commands.append(('package - initializer - open', 'ino'))
-        commands.append(('package - initializer - write stub', 'inws'))
-        if commands:
-            menu.make_command_section(
-                is_hidden=True,
-                commands=commands,
-                name='package configuation',
-                )
 
     def _make_version_artifacts_messages(self):
         last_version_number = self._get_last_version_number()
@@ -183,11 +171,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdmo'))
-        commands.append(('versions - output.ly - open', 'vlyo'))
-        commands.append(('versions - output.pdf - open', 'vpdfo'))
-        commands.append(('versions - all output.pdf - open', 'vpdfso'))
-        commands.append(('versions directory - list', 'vdls'))
+        commands.append(('versions - definition.py - open', 'vdpyo'))
+        commands.append(('versions - output.ly - open', 'volyo'))
+        commands.append(('versions - output.pdf - open', 'vopdfo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -203,7 +189,7 @@ class SegmentPackageManager(PackageManager):
         '''
         self._io_manager.edit(self._definition_py_path)
 
-    def interpret_lilypond_file(self, confirm=True, display=True):
+    def interpret_output_ly(self, confirm=True, display=True):
         r'''Reinterprets current LilyPond file.
 
         Returns none.
@@ -295,7 +281,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.open_file(self._make_py_path)
 
     def open_output_ly(self):
-        r'''Opens current output LilyPond file.
+        r'''Opens ``output.ly``.
 
         Returns none.
         '''
@@ -304,7 +290,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.open_file(file_path)
 
     def open_output_pdf(self):
-        r'''Opens output PDF.
+        r'''Opens ``output.pdf``.
 
         Returns none.
         '''
@@ -313,48 +299,25 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.open_file(file_path)
 
     def open_versioned_definition_py(self):
-        r'''Opens versioned definition py.
+        r'''Opens versioned ``definition py``.
 
         Returns none.
         '''
         self._open_versioned_file('definition.py')
 
     def open_versioned_output_ly(self):
-        r'''Opens output LilyPond file.
+        r'''Opens versioned ``output.ly``.
 
         Returns none.
         '''
         self._open_versioned_file('output.ly')
 
     def open_versioned_output_pdf(self):
-        r'''Opens output PDF.
+        r'''Opens versioned ``output.pdf``.
 
         Returns none.
         '''
         self._open_versioned_file('output.pdf')
-
-    def open_versioned_pdfs(self):
-        r'''Opens versioned PDFs.
-
-        Returns none.
-        '''
-        versions_directory_path = self._versions_directory_path
-        file_paths = []
-        for directory_entry in os.listdir(versions_directory_path):
-            if not directory_entry.startswith('output'):
-                continue
-            if not directory_entry.endswith('.pdf'):
-                continue
-            file_path = os.path.join(
-                versions_directory_path,
-                directory_entry,
-                )
-            file_paths.append(file_path)
-        if not file_paths:
-            message = 'version directory empty.'
-            self._io_manager.display(message)
-            return
-        self._io_manager.open_file(file_paths)
 
     def version_artifacts(self, confirm=True, display=True):
         r'''Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
@@ -366,7 +329,7 @@ class SegmentPackageManager(PackageManager):
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_py(self, confirm=True, display=True):
-        r'''Writes stub definition py.
+        r'''Writes stub ``definition.py``.
 
         Returns none.
         '''

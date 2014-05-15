@@ -47,8 +47,8 @@ class SegmentPackageWrangler(Wrangler):
             '<': self.go_to_previous_asset,
             'cp': self.copy_package,
             'dpye*': self.edit_every_definition_py,
-            'ino': self.open_initializer,
-            'inws': self.write_stub_initializer,
+            'ipyo': self.open_init_py,
+            'ipyws': self.write_stub_init_py,
             'mdpyls*': self.list_every_metadata_py,
             'mdpyo*': self.open_every_metadata_py,
             'mdpyrw*': self.rewrite_every_metadata_py,
@@ -87,7 +87,7 @@ class SegmentPackageWrangler(Wrangler):
         commands = []
         commands.append(('segments - definition.py - edit', 'dpye*'))
         commands.append(('segments - make.py - interpret', 'mpyi*'))
-        commands.append(('segments - metadata.py - open', 'mdpyo*'))
+        commands.append(('segments - __metadata__.py - open', 'mdpyo*'))
         commands.append(('segments - output.ly - interpret', 'olyi*'))
         commands.append(('segments - output.pdf - open', 'opdfo*'))
         commands.append(('segments - version', 'ver*'))
@@ -105,7 +105,7 @@ class SegmentPackageWrangler(Wrangler):
             path=path,
             session=self._session,
             )
-        manager.write_initializer()
+        manager.write_init_py()
         manager.write_definition_py()
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
@@ -114,8 +114,9 @@ class SegmentPackageWrangler(Wrangler):
         superclass = super(SegmentPackageWrangler, self)
         menu = superclass._make_main_menu(name=name)
         self._make_all_segments_menu_section(menu)
-        self._make_initializer_menu_section(menu)
+        self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
+        self._make_metadata_py_menu_section(menu)
         self._make_segments_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -209,7 +210,7 @@ class SegmentPackageWrangler(Wrangler):
             self._io_manager.display('')
         for manager in self._list_visible_asset_managers():
             self._session._hide_next_redraw = False
-            manager.interpret_lilypond_file(confirm=False, display=True)
+            manager.interpret_output_ly(confirm=False, display=True)
         self._session._hide_next_redraw = True
 
     def interpret_every_make_py(self):
@@ -279,12 +280,12 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
-    def open_initializer(self):
-        r'''Opens initializer.
+    def open_init_py(self):
+        r'''Opens ``__init__.py``.
 
         Returns none.
         '''
-        self._current_package_manager.open_initializer()
+        self._current_package_manager.open_init_py()
 
     def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every segment.
@@ -329,9 +330,9 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._version_artifacts(confirm=confirm, display=display)
 
-    def write_stub_initializer(self):
-        r'''Writes stub initializer.
+    def write_stub_init_py(self):
+        r'''Writes stub ``__init__.py``.
 
         Returns none.
         '''
-        self._current_package_manager.write_stub_initializer()
+        self._current_package_manager.write_stub_init_py()

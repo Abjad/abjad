@@ -30,11 +30,11 @@ class AssetController(Controller):
 
     def _make_go_edits_menu_section(self, menu):
         commands = []
-        commands.append(('go - edit score stylesheet', 'ess'))
+        commands.append(('edit - score stylesheet', 'ess'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='go - zzz',
+            name='edit - zzz',
             )
 
     def _make_repository_menu_section(self, menu):

@@ -5,9 +5,9 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageWrangler_open_initializers_01():
+def test_MaterialPackageWrangler_open_init_pys_01():
 
-    input_ = 'red~example~score m ino y q'
+    input_ = 'red~example~score m ipyo y q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

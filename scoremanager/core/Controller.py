@@ -96,10 +96,10 @@ class Controller(ScoreManagerObject):
             name='zzz - done',
             )
 
-    def _make_initializer_menu_section(self, menu):
+    def _make_init_py_menu_section(self, menu):
         commands = []
-        commands.append(('package - initializer - open', 'ino'))
-        commands.append(('package - initializer - write stub', 'inws'))
+        commands.append(('__init__.py - open', 'ipyo'))
+        commands.append(('__init__.py - write stub', 'ipyws'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -111,12 +111,20 @@ class Controller(ScoreManagerObject):
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
         commands.append(('metadata - remove', 'mdrm'))
-        commands.append(('metadata.py - open', 'mdpyo'))
-        commands.append(('metadata.py - rewrite', 'mdpyrw'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='metadata',
+            )
+            
+    def _make_metadata_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__metadata__.py - open', 'mdpyo'))
+        commands.append(('__metadata__.py - rewrite', 'mdpyrw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='__metadata__.py',
             )
 
     def _make_sibling_asset_tour_menu_section(self, menu):
