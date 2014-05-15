@@ -98,6 +98,7 @@ def test_Autoeditor__Instrument_04():
         )
     input_ = 'q'
     autoeditor._run(pending_input=input_)
+    contents = autoeditor._transcript.contents
 
     lines = [
         'Accordion',
@@ -113,7 +114,8 @@ def test_Autoeditor__Instrument_04():
         '      done (done)',
         '',
         ]
-    assert autoeditor._transcript.last_menu_lines == lines
+    for line in lines:
+        assert line in contents
 
 
 def test_Autoeditor__Instrument_05():

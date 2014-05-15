@@ -21,7 +21,6 @@ def test_MaterialPackageWrangler_copy_package_01():
     titles = [
         'Score manager - example scores',
         'Score manager - materials',
-        '',
         'Score manager - materials - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles

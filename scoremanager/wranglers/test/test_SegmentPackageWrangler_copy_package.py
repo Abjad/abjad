@@ -20,7 +20,6 @@ def test_SegmentPackageWrangler_copy_package_01():
     titles = [
         'Score manager - example scores',
         'Score manager - segments',
-        '',
         'Score manager - segments - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles

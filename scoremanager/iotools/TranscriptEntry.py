@@ -88,4 +88,5 @@ class TranscriptEntry(AbjadObject):
 
         Returns string.
         '''
-        return self.lines[0]
+        if not self.lines[0] == ['']:
+            return self.lines[0]

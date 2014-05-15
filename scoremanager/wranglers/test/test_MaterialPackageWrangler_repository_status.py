@@ -41,8 +41,7 @@ def test_MaterialPackageWrangler_repository_status_03():
     titles = manager._transcript.titles
 
     assert titles[0].endswith('...')
-    assert titles[1] == ''
-    assert len(titles) == 2
+    assert len(titles) == 1
 
 
 def test_MaterialPackageWrangler_repository_status_04():
@@ -59,5 +58,4 @@ def test_MaterialPackageWrangler_repository_status_04():
     titles = manager._transcript.titles
 
     assert titles[0].endswith('...')
-    assert titles[1] == ''
-    assert len(titles) == 2
+    assert len(titles) == 1

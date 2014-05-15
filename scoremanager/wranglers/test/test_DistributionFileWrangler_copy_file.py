@@ -18,7 +18,6 @@ def test_DistributionFileWrangler_copy_file_01():
     titles = [
         'Score manager - example scores',
         'Score manager - distribution files',
-        '',
         'Score manager - distribution files - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles

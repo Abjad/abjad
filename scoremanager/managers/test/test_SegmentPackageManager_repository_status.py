@@ -29,6 +29,5 @@ def test_SegmentPackageManager_repository_status_02():
     titles = manager._transcript.titles
 
     assert titles[0].endswith('...')
-    assert titles[1] == ''
-    assert len(titles) == 2
+    assert len(titles) == 1
     assert score_manager._session.proceed_count == 0

@@ -13,10 +13,10 @@ def test_StylesheetWrangler_make_view_01():
 
     input_ = 'y vnew _test q' 
     score_manager._run(pending_input=input_)
-    transcript = score_manager._transcript
+    contents = score_manager._transcript.contents
 
     string = 'Score manager - stylesheets - views - _test - edit:'
-    assert transcript.last_title == string
+    assert string in contents
 
 
 def test_StylesheetWrangler_make_view_02():

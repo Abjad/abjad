@@ -105,9 +105,9 @@ class ScoreManager(Controller):
         state = systemtools.NullContextManager()
         if self._session.is_test:
             state = systemtools.FilesystemState(keep=[path])
-        #interaction = self._io_manager.make_interaction()
-        #with context, directory_change, state, interaction:
-        with context, directory_change, state:
+        interaction = self._io_manager.make_interaction()
+        with context, directory_change, state, interaction:
+        #with context, directory_change, state:
             wrangler = self._score_package_wrangler
             io_manager = self._io_manager
             while True:

@@ -82,7 +82,9 @@ class Transcript(AbjadObject):
 
         Returns list of strings.
         '''
-        return [_[0] for _ in self]
+        result = [_[0] for _ in self]
+        result = [_ for _ in result if not _ == '']
+        return result
 
     @property
     def input_entries(self):
@@ -100,7 +102,7 @@ class Transcript(AbjadObject):
     def last_menu_lines(self):
         r'''Gets last menu lines.
 
-        Returns lines of -2 entry.
+        Returns lines of -3 entry.
         '''
         return self[-2].lines
 
@@ -165,5 +167,6 @@ class Transcript(AbjadObject):
         for entry in self:
             if entry.is_system_display:
                 title = entry.title
-                result.append(title)
+                if title:
+                    result.append(title)
         return result

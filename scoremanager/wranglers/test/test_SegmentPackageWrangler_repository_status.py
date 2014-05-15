@@ -39,5 +39,4 @@ def test_SegmentPackageWrangler_repository_status_03():
     titles = manager._transcript.titles
 
     assert titles[0].endswith('...')
-    assert titles[1] == ''
-    assert len(titles) == 2
+    assert len(titles) == 1
