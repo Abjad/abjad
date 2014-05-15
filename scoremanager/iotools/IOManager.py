@@ -214,7 +214,7 @@ class IOManager(IOManager):
             return None
         elif self._session.pending_input.startswith('{{'):
             index = self._session.pending_input.find('}}')
-            input = self._session.pending_input[2:index]
+            input_ = self._session.pending_input[2:index]
             pending_input = self._session.pending_input[index+2:]
             pending_input = pending_input.strip()
             self._session._last_command_was_composite = True
@@ -226,11 +226,11 @@ class IOManager(IOManager):
                     break
             first_parts = input_parts[:i+1]
             rest_parts = input_parts[i+1:]
-            input = ' '.join(first_parts)
+            input_ = ' '.join(first_parts)
             pending_input = ' '.join(rest_parts)
-        input = input.replace('~', ' ')
+        input_ = input_.replace('~', ' ')
         self._session._pending_input = pending_input
-        return input
+        return input_
 
     def _read_cache(self):
         start_menu_entries = []
@@ -443,38 +443,38 @@ class IOManager(IOManager):
             else:
                 prompt_string = prompt_string + ' '
             if not self._session.pending_input:
-                input = raw_input(prompt_string)
+                input_ = raw_input(prompt_string)
                 if include_newline:
-                    if not input == 'help':
+                    if not input_ == 'help':
                         print('')
             else:
-                input = self._pop_from_pending_input()
-                if input == 'default':
+                input_ = self._pop_from_pending_input()
+                if input_ == 'default':
                     found_default_token = True
             if not found_default_token:
-                self._session.command_history.append(input)
-            if input == '.':
+                self._session.command_history.append(input_)
+            if input_ == '.':
                 last_semantic_command = self._session.last_semantic_command
-                input = last_semantic_command
+                input_ = last_semantic_command
             if found_default_token:
                 menu_chunk = [prompt_string.strip()]
                 if include_newline:
-                    if not input == 'help':
+                    if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
                 menu_chunk = ['> ']
                 if include_newline:
-                    if not input == 'help':
+                    if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
             else:
                 menu_chunk = []
-                menu_chunk.append('{}{}'.format(prompt_string, input))
+                menu_chunk.append('{}{}'.format(prompt_string, input_))
                 if include_newline:
-                    if not input == 'help':
+                    if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
-            return input
+            return input_
         finally:
             readline.set_startup_hook()
 

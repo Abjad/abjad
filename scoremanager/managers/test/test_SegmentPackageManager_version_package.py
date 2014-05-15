@@ -25,6 +25,6 @@ def test_SegmentPackageManager_version_package_01():
         paths.append(path)
 
     with systemtools.FilesystemState(remove=paths):
-        input_ = 'red~example~score g segment~01 ver y q'
+        input_ = 'red~example~score g A ver y q'
         score_manager._run(pending_input=input_)
         assert all(os.path.isfile(_) for _ in paths)

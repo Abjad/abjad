@@ -222,6 +222,7 @@ class ScorePackageWrangler(Wrangler):
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)
         self._make_views_menu_section(menu)
+        self._make_views_py_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):

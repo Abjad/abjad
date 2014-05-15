@@ -14,4 +14,4 @@ def test_SegmentPackageWrangler__make_asset_menu_section_01():
 
     string = 'Red Example Score (2013) - segments'
     assert string in contents
-    assert 'segment 01\n' in contents
+    assert 'A\n' in contents

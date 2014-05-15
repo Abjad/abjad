@@ -29,6 +29,16 @@ class AssetController(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _make_init_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__init__.py - open', 'ipyo'))
+        commands.append(('__init__.py - write stub', 'ipyws'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='__init__.py',
+            )
+
     def _make_go_edits_menu_section(self, menu):
         commands = []
         commands.append(('edit - score stylesheet', 'ess'))
@@ -36,20 +46,6 @@ class AssetController(Controller):
             is_hidden=True,
             commands=commands,
             name='edit - zzz',
-            )
-
-    def _make_repository_menu_section(self, menu):
-        commands = []
-        commands.append(('repository - add', 'rad'))
-        commands.append(('repository - clean', 'rcn'))
-        commands.append(('repository - commit', 'rci'))
-        commands.append(('repository - revert', 'rrv'))
-        commands.append(('repository - status', 'rst'))
-        commands.append(('repository - update', 'rup'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='repository',
             )
 
     def _make_go_wranglers_menu_section(self, menu):
@@ -66,6 +62,20 @@ class AssetController(Controller):
             name='go - wranglers',
             )
             
+    def _make_repository_menu_section(self, menu):
+        commands = []
+        commands.append(('repository - add', 'rad'))
+        commands.append(('repository - clean', 'rcn'))
+        commands.append(('repository - commit', 'rci'))
+        commands.append(('repository - revert', 'rrv'))
+        commands.append(('repository - status', 'rst'))
+        commands.append(('repository - update', 'rup'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='repository',
+            )
+
     def _open_file(self, path):
         with self._io_manager.make_interaction():
             if os.path.isfile(path):

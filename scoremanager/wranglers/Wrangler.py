@@ -103,13 +103,13 @@ class Wrangler(AssetController):
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'rcn': self.repository_clean,
-            'va': self.apply_view,
-            'vc': self.clear_view,
+            'vap': self.apply_view,
+            'vcl': self.clear_view,
             'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vmo': self.open_views_py,
+            'vpyo': self.open_views_py,
             })
         return result
 
@@ -745,6 +745,7 @@ class Wrangler(AssetController):
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         self._make_views_menu_section(menu)
+        self._make_views_py_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -774,6 +775,29 @@ class Wrangler(AssetController):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
+
+    def _make_views_menu_section(self, menu):
+        commands = []
+        commands.append(('views - apply', 'vap'))
+        commands.append(('views - clear', 'vcl'))
+        commands.append(('views - list', 'vls'))
+        commands.append(('views - new', 'vnew'))
+        commands.append(('views - remove', 'vrm'))
+        commands.append(('views - rename', 'vren'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='views',
+            )
+
+    def _make_views_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__views.py__ - open', 'vpyo'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='__views__.py',
+            )
 
     def _open_in_each_package(self, file_name, verb='open'):
         with self._io_manager.make_interaction():
@@ -855,6 +879,10 @@ class Wrangler(AssetController):
             asset_name = self._path_to_human_readable_name(path)
         else:
             asset_name = os.path.basename(path)
+        if 'segments' in path:
+            manager = self._io_manager.make_package_manager(path=path)
+            name = manager._get_metadatum('name')
+            asset_name = name or asset_name
         if self._session.is_in_score:
             string = asset_name
         else:

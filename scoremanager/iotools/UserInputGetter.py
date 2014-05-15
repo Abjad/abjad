@@ -94,35 +94,35 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         lines.append('')
         self._io_manager.display(lines)
 
-    def _evaluate_input(self, input):
+    def _evaluate_input(self, input_):
         section = self._current_prompt.target_menu_section
         setup_statements = self._current_prompt.setup_statements
-        if self.allow_none and input in ('', 'None'):
+        if self.allow_none and input_ in ('', 'None'):
             evaluated_input = None
         elif section is not None:
             evaluated_input = section._argument_range_string_to_numbers(
-                input)
+                input_)
             if (1 < len(evaluated_input) and
                 self._current_prompt.disallow_range):
                 evaluated_input = None
         elif setup_statements:
             for setup_statement in self._current_prompt.setup_statements:
                 try:
-                    command = setup_statement.format(input)
+                    command = setup_statement.format(input_)
                     exec(command)
                     continue
                 except (NameError, SyntaxError):
                     pass
                 try:
-                    command = setup_statement.format(repr(input))
+                    command = setup_statement.format(repr(input_))
                     exec(command)
                 except ValueError:
                     self._display_help()
         else:
             try:
-                evaluated_input = eval(input)
+                evaluated_input = eval(input_)
             except (NameError, SyntaxError):
-                evaluated_input = input
+                evaluated_input = input_
         if not 'evaluated_input' in locals():
             return
         if not self._validate_evaluated_input(evaluated_input):
@@ -158,7 +158,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_string)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            input = self._io_manager.handle_input(
+            input_ = self._io_manager.handle_input(
                 prompt_string,
                 default_value=default_value,
                 include_chevron=include_chevron,
@@ -166,13 +166,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_character=self.prompt_character,
                 capitalize_prompt=self.capitalize_prompts,
                 )
-            if input is None:
+            if input_ is None:
                 self._prompt_index += 1
                 break
-            elif input == '?':
+            elif input_ == '?':
                 self._display_help()
-            assert isinstance(input, str), repr(input)
-            directive = self._io_manager._handle_directive(input)
+            assert isinstance(input_, str), repr(input_)
+            directive = self._io_manager._handle_directive(input_)
             if self._should_backtrack():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True

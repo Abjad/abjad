@@ -18,7 +18,7 @@ def test_SegmentPackageManager_write_stub_init_py_01():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'red~example~score g segment~01 ipyws y q'
+        input_ = 'red~example~score g A ipyws y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents

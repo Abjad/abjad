@@ -37,7 +37,7 @@ def test_MaterialPackageWrangler_go_to_next_asset_02():
         'Red Example Score (2013) - materials - instrumentation',
         'Red Example Score (2013) - materials - magic numbers',
         'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - segments - segment 01',
-        'Red Example Score (2013) - segments - segment 02',
+        'Red Example Score (2013) - segments - A',
+        'Red Example Score (2013) - segments - B',
         ]
     assert score_manager._transcript.titles == titles

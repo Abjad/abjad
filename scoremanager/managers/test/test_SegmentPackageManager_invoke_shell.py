@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_SegmentPackageManager_invoke_shell_01():
 
-    input_ = 'red~example~score g segment~01 !pwd q'
+    input_ = 'red~example~score g A !pwd q'
     score_manager._run(pending_input=input_)
 
     path = os.path.join(

@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_SegmentPackageManager_pytest_01():
 
-    input_ = 'red~example~score g segment~01 pyt q'
+    input_ = 'red~example~score g A pyt q'
     score_manager._run(pending_input=input_)
     transcript_contents = score_manager._transcript.contents
 

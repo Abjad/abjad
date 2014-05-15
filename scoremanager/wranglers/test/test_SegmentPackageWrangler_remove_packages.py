@@ -21,7 +21,7 @@ def test_SegmentPackageWrangler_remove_packages_01():
     shutil.copytree(path, backup_path)
     assert os.path.exists(backup_path)
 
-    input_ = 'red~example~score g rm segment~01 remove q'
+    input_ = 'red~example~score g rm A remove q'
     score_manager._run(pending_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(backup_path)

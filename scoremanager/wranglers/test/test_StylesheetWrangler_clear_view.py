@@ -11,7 +11,7 @@ def test_StylesheetWrangler_clear_view_01():
     '''
     
     input_ = 'y vnew _test rm all add clean-letter-14.ily done default'
-    input_ += ' va _test vc vrm _test default q'
+    input_ += ' vap _test vcl vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 

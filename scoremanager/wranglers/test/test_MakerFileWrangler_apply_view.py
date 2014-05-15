@@ -15,7 +15,7 @@ def test_MakerFileWrangler_apply_view_01():
     input_ = 'k vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
     input_ += ' done default'
-    input_ += ' va _test vrm _test default q'
+    input_ += ' vap _test vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
@@ -41,7 +41,7 @@ def test_MakerFileWrangler_apply_view_02():
     
     input_ = 'red~example~score k vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py done default'
-    input_ += ' va _test vrm _test default q'
+    input_ += ' vap _test vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 

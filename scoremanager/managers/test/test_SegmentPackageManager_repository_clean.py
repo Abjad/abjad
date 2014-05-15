@@ -19,6 +19,6 @@ def test_SegmentPackageManager_repository_clean_01():
         with file(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
-        input_ = 'red~example~score g segment~01 rcn y q'
+        input_ = 'red~example~score g A rcn y q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(foo_path)

@@ -208,14 +208,14 @@ class Menu(ScoreManagerObject):
             if section._menu_entry_return_values:
                 return section._menu_entry_return_values[0]
 
-    def _handle_argument_range_input(self, input):
+    def _handle_argument_range_input(self, input_):
         if not self._has_ranged_section():
             return
         for section in self.menu_sections:
             if section.is_ranged:
                 ranged_section = section
         entry_numbers = ranged_section._argument_range_string_to_numbers(
-            input)
+            input_)
         if not entry_numbers:
             return
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
@@ -442,16 +442,18 @@ class Menu(ScoreManagerObject):
         else:
             return expr
 
-    def _user_enters_argument_range(self, input):
-        if ',' in input:
+    def _user_enters_argument_range(self, input_):
+        if ',' in input_:
             return True
-        if '-' in input:
+        if '-' in input_:
             return True
         return False
 
-    def _user_enters_nothing(self, input):
-        return not input or (3 <= len(input) and \
-            'default'.startswith(input))
+    def _user_enters_nothing(self, input_):
+        return (
+            not input_ or 
+            (3 <= len(input_) and 'default'.startswith(input_))
+            )
 
     ### PUBLIC PROPERTIES ###
 

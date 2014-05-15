@@ -18,7 +18,7 @@ def test_SegmentPackageManager_write_stub_make_py_01():
     with systemtools.FilesystemState(keep=[path]):
         os.remove(path)
         assert not os.path.exists(path)
-        input_ = 'red~example~score g segment~01 mpyws y q'
+        input_ = 'red~example~score g A mpyws y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents

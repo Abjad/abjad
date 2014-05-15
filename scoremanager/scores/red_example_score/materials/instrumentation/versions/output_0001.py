@@ -148,7 +148,7 @@ instrumentation = instrumenttools.PerformerInventory(
                 [
                     instrumenttools.Cello(
                         instrument_name='cello',
-                        short_instrument_name='vc.',
+                        short_instrument_name='vcl.',
                         instrument_name_markup=markuptools.Markup(
                             contents=('Cello',),
                             ),

@@ -214,8 +214,8 @@ class MenuEntry(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def matches(self, input):
-        r'''Is true when menu entry matches `input` string.
+    def matches(self, input_):
+        r'''Is true when menu entry matches `input_` string.
 
         ..  container:: example
 
@@ -235,15 +235,18 @@ class MenuEntry(AbjadObject):
 
         Returns boolean.
         '''
-        if self.key is not None and input == self.key:
+        if self.key is not None and input_ == self.key:
             return True
-        if self.menu_section.is_numbered and input == str(self.number):
+        if self.menu_section.is_numbered and input_ == str(self.number):
             return True
         if (self.menu_section.match_on_display_string and 
-            3 <= len(input)):
+            3 <= len(input_)):
             helper = stringtools.strip_diacritics
             normalized_display_string = helper(self.display_string)
             normalized_display_string = normalized_display_string.lower()
-            if normalized_display_string.startswith(input.lower()):
+            if normalized_display_string.startswith(input_.lower()):
+                return True
+        if (self.menu_section.match_on_display_string and
+            input_ == self.display_string):
                 return True
         return False

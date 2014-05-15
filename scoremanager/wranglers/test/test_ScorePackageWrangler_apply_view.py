@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_apply_view_01():
     
     input_ = 'vnew _test rm all'
     input_ += ' add Red~Example~Score done default'
-    input_ += ' va _test vrm _test default q'
+    input_ += ' vap _test vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 

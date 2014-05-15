@@ -14,9 +14,9 @@ def test_SegmentPackageWrangler_go_to_next_asset_01():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - segments - segment 01',
-        'Red Example Score (2013) - segments - segment 02',
-        'Red Example Score (2013) - segments - segment 03',
-        'Red Example Score (2013) - segments - segment 01',
+        'Red Example Score (2013) - segments - A',
+        'Red Example Score (2013) - segments - B',
+        'Red Example Score (2013) - segments - C',
+        'Red Example Score (2013) - segments - A',
         ]
     assert score_manager._transcript.titles == titles

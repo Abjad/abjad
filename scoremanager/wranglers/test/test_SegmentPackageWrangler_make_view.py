@@ -28,7 +28,7 @@ def test_SegmentPackageWrangler_make_view_02():
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
-    string = 'segment 01 (Red Example Score)'
+    string = 'A (Red Example Score)'
     assert string in transcript.contents
 
 
@@ -43,10 +43,10 @@ def test_SegmentPackageWrangler_make_view_03():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'segment 01'
+    string = 'A'
     assert string in contents
 
-    string = 'segment 01 (Red Example Score)'
+    string = 'A (Red Example Score)'
     assert string not in contents
 
 
@@ -59,7 +59,7 @@ def test_SegmentPackageWrangler_make_view_04():
     pytest.skip('port me forward.')
 
     input_ = 'g vnew _test rm all'
-    input_ += ' add segment~01~(Red~Example~Score) done default q' 
+    input_ += ' add A~(Red~Example~Score) done default q' 
     score_manager._run(pending_input=input_)
 
     lines =['> done', '']

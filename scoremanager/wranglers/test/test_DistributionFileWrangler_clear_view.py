@@ -16,7 +16,7 @@ def test_DistributionFileWrangler_clear_view_01():
     
     input_ = 'd vnew _test rm all'
     input_ += ' add red-example-score.pdf~(Red~Example~Score) done default'
-    input_ += ' va _test vc vrm _test default q'
+    input_ += ' vap _test vcl vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
@@ -45,7 +45,7 @@ def test_DistributionFileWrangler_clear_view_02():
     
     input_ = 'red~example~score d vnew _test rm all'
     input_ += ' add red-example-score.pdf done default'
-    input_ += ' va _test vc vrm _test default q'
+    input_ += ' vap _test vcl vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 

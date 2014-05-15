@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler_remove_views_01():
     '''
 
     input_ = 'g vnew _test_100 rm all'
-    input_ += ' add segment~01~(Red~Example~Score) done default' 
+    input_ += ' add A~(Red~Example~Score) done default' 
     input_ += ' g vnew _test_101 rm all'
     input_ += ' add segment~02~(Red~Example~Score) done default'
     input_ += ' q' 

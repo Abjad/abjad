@@ -11,15 +11,15 @@ def test_SegmentPackageWrangler_clear_view_01():
     '''
     
     input_ = 'g vnew _test rm all'
-    input_ += ' add segment~01~(Red~Example~Score) done default'
-    input_ += ' va _test vc vrm _test default q'
+    input_ += ' add A~(Red~Example~Score) done default'
+    input_ += ' vap _test vcl vrm _test default q'
     score_manager._run(pending_input=input_)
     transcript = score_manager._transcript
 
     lines = [
         'Score manager - segments (_test)',
         '',
-        '   1: segment 01 (Red Example Score)',
+        '   1: A (Red Example Score)',
         '',
         '      segments - copy (cp)',
         '      segments - new (new)',

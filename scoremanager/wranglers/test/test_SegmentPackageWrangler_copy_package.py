@@ -14,7 +14,7 @@ def test_SegmentPackageWrangler_copy_package_01():
     score packages).
     '''
 
-    input_ = 'g cp segment~01~(Red~Example~Score) q'
+    input_ = 'g cp A~(Red~Example~Score) q'
     score_manager._run(pending_input=input_)
 
     titles = [
@@ -44,7 +44,7 @@ def test_SegmentPackageWrangler_copy_package_02():
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score g cp'
-        input_ += ' segment~01 copied_segment_01 y q'
+        input_ += ' A copied_segment_01 y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)

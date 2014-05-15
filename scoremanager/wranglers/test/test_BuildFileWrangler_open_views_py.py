@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_BuildFileWrangler_open_views_py_01():
 
-    input_ = 'u vmo q'
+    input_ = 'u vpyo q'
     score_manager._run(pending_input=input_)
 
     assert score_manager._session._attempted_to_open_file
@@ -14,7 +14,7 @@ def test_BuildFileWrangler_open_views_py_01():
 
 def test_BuildFileWrangler_open_views_py_02():
 
-    input_ = 'blue~example~score u vmo q'
+    input_ = 'blue~example~score u vpyo q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

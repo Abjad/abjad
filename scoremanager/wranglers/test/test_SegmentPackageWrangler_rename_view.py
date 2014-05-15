@@ -9,7 +9,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_rename_view_01():
 
     input_ = 'g vnew _test_100 rm all'
-    input_ += ' add segment~01~(Red~Example~Score) done default q' 
+    input_ += ' add A~(Red~Example~Score) done default q' 
     score_manager._run(pending_input=input_)
         
     input_ = 'g vls q'

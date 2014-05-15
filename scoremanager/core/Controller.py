@@ -96,16 +96,6 @@ class Controller(ScoreManagerObject):
             name='zzz - done',
             )
 
-    def _make_init_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__init__.py - open', 'ipyo'))
-        commands.append(('__init__.py - write stub', 'ipyws'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=True,
-            name='package',
-            )
-
     def _make_metadata_menu_section(self, menu):
         commands = []
         commands.append(('metadata - add', 'mda'))
@@ -140,21 +130,6 @@ class Controller(ScoreManagerObject):
             is_hidden=True,
             commands=commands,
             name='go - scores',
-            )
-
-    def _make_views_menu_section(self, menu):
-        commands = []
-        commands.append(('views - apply', 'va'))
-        commands.append(('views - clear', 'vc'))
-        commands.append(('views - list', 'vls'))
-        commands.append(('views - new', 'vnew'))
-        commands.append(('views - remove', 'vrm'))
-        commands.append(('views - rename', 'vren'))
-        commands.append(('views.py - open', 'vmo'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='views',
             )
 
     @staticmethod

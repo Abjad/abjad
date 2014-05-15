@@ -39,7 +39,7 @@ def test_MaterialPackageWrangler_go_to_previous_asset_02():
         'Red Example Score (2013) - materials - time signatures',
         'Red Example Score (2013) - materials - tempo inventory',
         'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - segments - segment 03',
-        'Red Example Score (2013) - segments - segment 02',
+        'Red Example Score (2013) - segments - C',
+        'Red Example Score (2013) - segments - B',
         ]
     assert score_manager._transcript.titles == titles

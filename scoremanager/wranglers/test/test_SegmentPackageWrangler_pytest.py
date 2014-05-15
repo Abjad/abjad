@@ -42,7 +42,7 @@ def test_SegmentPackageWrangler_pytest_03():
     r'''Works on a single segment package.
     '''
 
-    input_ = 'red~example~score g segment~01 pyt q'
+    input_ = 'red~example~score g A pyt q'
     score_manager._run(pending_input=input_)
     transcript_contents = score_manager._transcript.contents
 
