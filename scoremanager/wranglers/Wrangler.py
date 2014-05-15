@@ -102,7 +102,7 @@ class Wrangler(AssetController):
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'uar': self.remove_unadded_assets,
+            'rcn': self.repository_clean,
             'va': self.apply_view,
             'vc': self.clear_view,
             'vls': self.list_views,
@@ -1298,12 +1298,12 @@ class Wrangler(AssetController):
         '''
         self._pytest()
 
-    def remove_unadded_assets(self, confirm=True, display=True):
+    def repository_clean(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.
 
         Returns none.
         '''
-        self._remove_unadded_assets(confirm=confirm, display=display)
+        self._repository_clean(confirm=confirm, display=display)
 
     def remove_views(self):
         r'''Removes view(s) from ``__views__.py``.

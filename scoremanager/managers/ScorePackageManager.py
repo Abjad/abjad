@@ -46,7 +46,6 @@ class ScorePackageManager(PackageManager):
             'p': self._manage_setup,
             'pdfo': self.open_score_pdf,
             'u': self.go_to_build_files,
-            'uar': self.remove_unadded_assets,
             'y': self.go_to_stylesheets,
             })
         return result
@@ -186,7 +185,6 @@ class ScorePackageManager(PackageManager):
         commands.append(('package - initializer - write stub', 'inws'))
         commands.append(('package - score pdf - open', 'pdfo'))
         commands.append(('package - setup', 'p'))
-        commands.append(('package - unadded assets - remove', 'uar'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

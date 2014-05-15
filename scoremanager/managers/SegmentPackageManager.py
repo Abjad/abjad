@@ -51,7 +51,6 @@ class SegmentPackageManager(PackageManager):
             'mmo': self.open_make_py,
             'mmws': self.write_stub_make_py,
             'pdfo': self.open_output_pdf,
-            'uar': self.remove_unadded_assets,
             'vdmo': self.open_versioned_definition_py,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
@@ -158,7 +157,6 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('package - initializer - open', 'ino'))
         commands.append(('package - initializer - write stub', 'inws'))
-        commands.append(('package - unadded assets - remove', 'uar'))
         if commands:
             menu.make_command_section(
                 is_hidden=True,

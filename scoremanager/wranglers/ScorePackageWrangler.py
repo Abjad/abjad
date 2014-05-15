@@ -200,7 +200,6 @@ class ScorePackageWrangler(Wrangler):
         commands.append(('all - metadata pys - list', 'mdmls'))
         commands.append(('all - metadata pys - rewrite', 'mdmrw'))
         commands.append(('all - score packages - fix', 'fix'))
-        commands.append(('all - unadded assets - remove', 'uar'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

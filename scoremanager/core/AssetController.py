@@ -40,6 +40,7 @@ class AssetController(Controller):
     def _make_repository_menu_section(self, menu):
         commands = []
         commands.append(('repository - add', 'rad'))
+        commands.append(('repository - clean', 'rcn'))
         commands.append(('repository - commit', 'rci'))
         commands.append(('repository - revert', 'rrv'))
         commands.append(('repository - status', 'rst'))
@@ -64,7 +65,7 @@ class AssetController(Controller):
             name='go - wranglers',
             )
 
-    def _remove_unadded_assets(self, confirm=True, display=True):
+    def _repository_clean(self, confirm=True, display=True):
         with self._io_manager.make_interaction(display=display):
             paths = self._get_unadded_asset_paths()
             if not paths:

@@ -73,10 +73,10 @@ class PackageManager(AssetController):
             'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
+            'rcn': self.repository_clean,
             'rst': self.repository_status,
             'rrv': self.revert_to_repository,
             'rup': self.update_from_repository,
-            'uar': self.remove_unadded_assets,
             })
         return result
 
@@ -809,7 +809,7 @@ class PackageManager(AssetController):
         assert self._is_up_to_date()
         return True
 
-    def _test_remove_unadded_assets(self):
+    def _test_repository_clean(self):
         assert self._is_up_to_date()
         path_3 = os.path.join(self._path, 'tmp_3.py')
         path_4 = os.path.join(self._path, 'tmp_4.py')
@@ -822,7 +822,7 @@ class PackageManager(AssetController):
             assert os.path.exists(path_4)
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_3, path_4]
-            self.remove_unadded_assets(confirm=False, display=False)
+            self.repository_clean(confirm=False, display=False)
         assert self._is_up_to_date()
         return True
 
@@ -1021,12 +1021,12 @@ class PackageManager(AssetController):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
             
-    def remove_unadded_assets(self, confirm=True, display=True):
+    def repository_clean(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.
 
         Returns none.
         '''
-        self._remove_unadded_assets(confirm=confirm, display=display)
+        self._repository_clean(confirm=confirm, display=display)
 
     def repository_status(self):
         r'''Displays repository status of package.

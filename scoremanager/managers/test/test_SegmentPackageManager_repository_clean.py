@@ -5,13 +5,13 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_remove_unadded_assets_01():
+def test_SegmentPackageManager_repository_clean_01():
 
     foo_path = os.path.join(
         score_manager._configuration.example_score_packages_directory_path,
         'red_example_score',
-        'materials',
-        'magic_numbers',
+        'segments',
+        'segment_01',
         'test_foo.txt',
         )
 
@@ -19,6 +19,6 @@ def test_MaterialPackageManager_remove_unadded_assets_01():
         with file(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
-        input_ = 'red~example~score m magic~numbers uar y q'
+        input_ = 'red~example~score g segment~01 rcn y q'
         score_manager._run(pending_input=input_)
         assert not os.path.exists(foo_path)

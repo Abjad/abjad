@@ -104,7 +104,6 @@ class MaterialPackageManager(PackageManager):
             'omw': self.write_output_material,
             'omo': self.open_output_py,
             'pdfo': self.open_illustration_pdf,
-            'uar': self.remove_unadded_assets,
             'vdmo': self.open_versioned_definition_py,
             'vdls': self.list_versions_directory,
             'ver': self.version_artifacts,
@@ -362,7 +361,6 @@ class MaterialPackageManager(PackageManager):
             commands.append(('package - autoeditor - set', 'aes'))
         commands.append(('package - initializer - open', 'ino'))
         commands.append(('package - initializer - write stub', 'inws'))
-        commands.append(('package - unadded assets - remove', 'uar'))
         commands.append(('package - version artifacts', 'ver'))
         if commands:
             path = self._definition_py_path

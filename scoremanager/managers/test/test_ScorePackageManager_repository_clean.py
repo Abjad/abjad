@@ -5,15 +5,15 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScorePackageManager_remove_unadded_assets_01():
+def test_ScorePackageManager_repository_clean_01():
 
     wrangler = score_manager._score_package_wrangler
     manager = wrangler._find_git_manager()
 
-    assert manager._test_remove_unadded_assets()
+    assert manager._test_repository_clean()
 
 
-def test_ScorePackageManager_remove_unadded_assets_02():
+def test_ScorePackageManager_repository_clean_02():
 
     wrangler = score_manager._score_package_wrangler
     manager = wrangler._find_svn_manager()
@@ -21,4 +21,4 @@ def test_ScorePackageManager_remove_unadded_assets_02():
     if not manager:
         return
 
-    assert manager._test_remove_unadded_assets()
+    assert manager._test_repository_clean()
