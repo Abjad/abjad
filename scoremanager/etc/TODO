@@ -23,7 +23,7 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-5.  Implement a 'views py - rewrite' (vmrw) command.
+5.  Implement a 'views.py - rewrite' (vmrw) command.
 
 6.  Implement PackageManager.check_contents().
     With corresponding 'check - contents' (cc) command.
@@ -112,9 +112,9 @@
 19. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-20. Make (mdmo) work for wranglers.
+20. Make (mdpyo) work for wranglers.
     There is now a metadata py in which wranglers store
-    things like 'current_view'. The (mdmo) command should
+    things like 'current_view'. The (mdpyo) command should
     allow the composer to read that metadata py.
 
 21. Make menu title breadcrumbs correctly reflect changes in view
@@ -147,32 +147,30 @@
 30. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
-31. Change 'vmrm' to 'vmtrash'.
-    No reason to remove views pys from repository.
 
-32. Fix menu title that results from the following:
+31. Fix menu title that results from the following:
     (red~example~score m tempo~inventory mae 1 d b q).
 
-33. There is no such thing as 'My build file library'.
+32. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-34. Make bicolumnar layout work for asset screens.
+33. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-35. Extend 'all score packages' options in Score PackageManager main menu.
+34. Extend 'all score packages' options in Score PackageManager main menu.
     Change ...
-        all score packages - fix (fix)
+        score packages - fix (fix)
     ... to ...
-        all score packages - fix (fix)
-        all score packages - initializers - rewrite (inrw)
-        all score packages - initializers - open (ino)
-        all score packages - metadata pys - open (mdmo)
-        all score packages - metadata pys - rewrite (mdmrw)
-        all score packages - score pdfs - open (pdfo)
-        all score packages - unadded assets - remove (uarm)
+        score packages - fix (fix*)
+        score packages - initializer - open (ino*)
+        score packages - initializer - rewrite (inrw*)
+        score packages - metadata.py - open (mdpyo*)
+    ... and also to ...
+        all - metadata.py - rewrite (mdpyrw**)
+        all - score pdf - open (pdfo**)
     ... instead.
 
-36. Improve (k > cp) user experience. Change ...
+35. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -181,7 +179,7 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-37. Improve (vls) user experience. Change ...
+36. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -191,13 +189,13 @@
             2. examples
     ... instead.
 
-38. Make (rrv) work in Git directories.
+37. Make (rrv) work in Git directories.
     Can test with (red~example~score g lyi y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-39. Improve (rad) user experience. Change
+38. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
@@ -213,17 +211,17 @@
 
     ... instead.
 
-40. Glue 'go' menu sections together.
+39. Glue 'go' menu sections together.
 
-41. Remove methods from Session.
+40. Remove methods from Session.
     Session should implement properties only.
 
-42. Wrap view tests with FilesystemState.
+41. Wrap view tests with FilesystemState.
 
-43. Add 'all segments - list versions directories'.
+42. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-44. Implement a dry_run=False keyword on bundled every*() methods.
+43. Implement a dry_run=False keyword on bundled every*() methods.
 
-45. Consolidate Wrangler repository methods and PackageManager repo methods.
+44. Consolidate Wrangler repository methods and PackageManager repo methods.
     Implemented consolidated set of repository methods on AssetController.
