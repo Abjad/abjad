@@ -229,3 +229,5 @@
 45. Remove Transcript.signature.
 
 46. Change (red~example~score g) to list assets.
+
+47. Remove 'example scores'.
