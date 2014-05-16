@@ -144,7 +144,7 @@ class ScorePackageWrangler(Wrangler):
                 return paths[0]
             else:
                 return paths[-1]
-        score_path = self._session.last_asset_path
+        score_path = self._session.last_score_package_path
         index = paths.index(score_path)
         if next_:
             sibling_index = (index + 1) % len(paths)

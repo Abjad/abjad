@@ -921,7 +921,7 @@ class PackageManager(AssetController):
     ### PUBLIC METHODS ###
 
     def add_metadatum(self):
-        r'''Adds metadatum to metadata py.
+        r'''Adds metadatum to ``__metadata.py__``.
 
         Returns none.
         '''
@@ -998,7 +998,7 @@ class PackageManager(AssetController):
         self._doctest()
 
     def get_metadatum(self):
-        r'''Gets metadatum from metadata py.
+        r'''Gets metadatum from ``__metadata.py__``.
 
         Returns none.
         '''
@@ -1084,7 +1084,7 @@ class PackageManager(AssetController):
         metadata=None, 
         display=True,
         ):
-        r'''Rewrites metadata py.
+        r'''Rewrites ``__metadata.py__``.
 
         Returns none.
         '''
@@ -1093,7 +1093,7 @@ class PackageManager(AssetController):
                 metadata = self._get_metadata()
             self._write_metadata_py(metadata)
             if display:
-                message = 'rewrote metadata py.'
+                message = 'rewrote __metadata.py__.'
                 self._io_manager.display(message)
 
     def revert_to_repository(self, confirm=True, display=True):
