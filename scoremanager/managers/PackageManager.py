@@ -519,17 +519,6 @@ class PackageManager(AssetController):
             menu_entries.append(menu_entry)
         menu.make_information_section(menu_entries=menu_entries)
 
-    def _make_init_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__init__.py - open', 'ipyo'))
-        commands.append(('__init__.py - write stub', 'ipyws'))
-        if commands:
-            menu.make_command_section(
-                is_hidden=True,
-                commands=commands,
-                name='__init__.py',
-                )
-
     def _make_main_menu(self, name='package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)

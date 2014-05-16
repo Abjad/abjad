@@ -166,6 +166,7 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self, name='score package manager'):
         menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)
+        self._make_init_py_menu_section(menu)
         self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
@@ -188,8 +189,6 @@ class ScorePackageManager(PackageManager):
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('package - fix', 'fix'))
-        commands.append(('__init__.py - open', 'ipyo'))
-        commands.append(('__init__.py - write stub', 'ipyws'))
         commands.append(('package - score pdf - open', 'pdfo'))
         commands.append(('package - setup', 'p'))
         menu.make_command_section(
