@@ -38,7 +38,6 @@ class ScorePackageManager(PackageManager):
         result = result.copy()
         result.update({
             'd': self.go_to_distribution_files,
-            'ess': self._io_manager.edit_score_stylesheet,
             'g': self.go_to_segment_packages,
             'fix': self.fix_package,
             'k': self.go_to_maker_files,

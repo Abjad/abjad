@@ -19,6 +19,7 @@ class AssetController(Controller):
         result = superclass._input_to_action
         result = result.copy()
         result.update({
+            'ess': self.edit_score_stylesheet,
             #'rad': self.add_to_repository,
             #'rci': self.commit_to_repository,
             #'rrv': self.revert_to_repository,
@@ -113,6 +114,19 @@ class AssetController(Controller):
             self._io_manager.run_command(command)
 
     ### PUBLIC METHODS ###
+
+    def edit_score_stylesheet(self):
+        r'''Edits score stylesheet.
+
+        Returns none.
+        '''
+        with self._io_manager.make_interaction():
+            path = self._session.current_stylesheet_path
+            if path:
+                self._io_manager.edit(path)
+            else:
+                message = 'no file ending in *stylesheet.ily found.'
+                self._io_manager.display(message)
 
     def go_to_build_files(self):
         r'''Goes to build files.

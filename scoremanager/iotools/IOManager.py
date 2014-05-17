@@ -60,7 +60,6 @@ class IOManager(IOManager):
     @property
     def _input_to_action(self):
         result = {
-            'ess': self.edit_score_stylesheet,
             'b': self._handle_backtrack_navigation_directive,
             'h': self._handle_home_navigation_directive,
             'q': self._handle_quit_directive,
@@ -349,19 +348,6 @@ class IOManager(IOManager):
         if self._session.is_test:
             return
         self.spawn_subprocess(command)
-
-    def edit_score_stylesheet(self):
-        r'''Edits current stylesheet.
-
-        Returns none.
-        '''
-        path = self._session.current_stylesheet_path
-        if path:
-            self.edit(path)
-        else:
-            message = 'no file ending in *stylesheet.ily found.'
-            self.display([message, ''])
-            self._session._hide_next_redraw = True
 
     def execute_file(self, path=None, attribute_names=None):
         r'''Executes file `path`.

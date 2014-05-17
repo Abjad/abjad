@@ -47,7 +47,6 @@ class SegmentPackageManager(PackageManager):
         result.update({
             'dpye': self.edit_definition_py,
             'dpyws': self.write_stub_definition_py,
-            #'foo': self.foo,
             'mpyi': self.interpret_make_py,
             'mpyo': self.open_make_py,
             'mpyws': self.write_stub_make_py,
