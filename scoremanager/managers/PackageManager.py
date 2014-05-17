@@ -71,12 +71,6 @@ class PackageManager(AssetController):
             'mdpyrw': self.rewrite_metadata_py,
             'pyd': self.doctest,
             'pyt': self.pytest,
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
-            'rcn': self.repository_clean,
-            'rst': self.repository_status,
-            'rrv': self.revert_to_repository,
-            'rup': self.update_from_repository,
             })
         return result
 

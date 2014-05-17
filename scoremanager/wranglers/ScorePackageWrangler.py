@@ -82,19 +82,13 @@ class ScorePackageWrangler(Wrangler):
             'cp': self.copy_package,
             'co': self.open_cache,
             'cw': self.write_cache,
-            'd': self.go_to_distribution_files,
             'fix*': self.fix_packages,
-            'g': self.go_to_segment_packages,
-            'k': self.go_to_maker_files,
-            'm': self.go_to_material_packages,
             'mdpyls*': self.list_every_metadata_py,
             'mdpyo*': self.open_every_metadata_py,
             'mdpyrw*': self.rewrite_every_metadata_py,
             'new': self.make_package,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'u': self.go_to_build_files,
-            'y': self.go_to_stylesheets,
             })
         return result
 

@@ -97,12 +97,6 @@ class Wrangler(AssetController):
         result.update({
             'pyd': self.doctest,
             'pyt': self.pytest,
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
-            'rrv': self.revert_to_repository,
-            'rst': self.repository_status,
-            'rup': self.update_from_repository,
-            'rcn': self.repository_clean,
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vls': self.list_views,
