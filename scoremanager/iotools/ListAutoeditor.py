@@ -93,7 +93,7 @@ class ListAutoeditor(Autoeditor):
         return systemtools.AttributeManifest()
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         result = {
             'add': self.add_items,
             'rm': self.remove_items,
@@ -129,8 +129,8 @@ class ListAutoeditor(Autoeditor):
             message = 'result must be string: {!r}.'
             message = message.format(result)
             raise TypeError(message)
-        if result in self._input_to_action:
-            self._input_to_action[result]()
+        if result in self._input_to_method:
+            self._input_to_method[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             if self.allow_item_edit:
                 self.edit_item(result)

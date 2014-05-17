@@ -90,9 +90,9 @@ class Wrangler(AssetController):
             return os.path.join(path, '__init__.py')
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         superclass = super(Wrangler, self)
-        result = superclass._input_to_action
+        result = superclass._input_to_method
         result = result.copy()
         result.update({
             'pyd': self.doctest,

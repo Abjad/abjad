@@ -45,9 +45,9 @@ class StylesheetWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         superclass = super(StylesheetWrangler, self)
-        result = superclass._input_to_action
+        result = superclass._input_to_method
         result = result.copy()
         result.update({
             'cp': self.copy_stylesheet,
@@ -69,8 +69,8 @@ class StylesheetWrangler(Wrangler):
         return file_name
 
     def _handle_main_menu_result(self, result):
-        if result in self._input_to_action:
-            self._input_to_action[result]()
+        if result in self._input_to_method:
+            self._input_to_method[result]()
         elif result == 'user entered lone return':
             pass
         else:

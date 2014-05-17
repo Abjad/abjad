@@ -88,9 +88,9 @@ class MaterialPackageManager(PackageManager):
         return os.path.join(self._path, 'illustration.pdf')
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         superclass = super(MaterialPackageManager, self)
-        result = superclass._input_to_action
+        result = superclass._input_to_method
         result = result.copy()
         result.update({
             'aes': self.set_autoeditor,
@@ -190,8 +190,8 @@ class MaterialPackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self._input_to_action:
-            self._input_to_action[result]()
+        if result in self._input_to_method:
+            self._input_to_method[result]()
         elif result == 'user entered lone return':
             pass
         else:

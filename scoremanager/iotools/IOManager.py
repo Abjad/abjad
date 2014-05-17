@@ -58,7 +58,7 @@ class IOManager(IOManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         result = {
             'b': self._handle_backtrack_navigation_directive,
             'h': self._handle_home_navigation_directive,
@@ -119,8 +119,8 @@ class IOManager(IOManager):
         elif (self._session.is_in_confirmation_environment and
             directive in ('y', 'Y', 'n', 'N')):
             return directive
-        elif directive in self._input_to_action:
-            self._input_to_action[directive]()
+        elif directive in self._input_to_method:
+            self._input_to_method[directive]()
             directive = None
         elif directive.startswith('!'):
             statement = directive.replace('!', '')

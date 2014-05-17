@@ -14,9 +14,9 @@ class AssetController(Controller):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_action(self):
+    def _input_to_method(self):
         superclass = super(AssetController, self)
-        result = superclass._input_to_action
+        result = superclass._input_to_method
         result = result.copy()
         result.update({
             'd': self.go_to_distribution_files,

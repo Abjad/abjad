@@ -1206,7 +1206,7 @@ class Session(abctools.AbjadObject):
         self._hide_next_redraw = True
 
     def get_controller_with(self, ui=None):
-        r'''Gets most recent controller with `ui` in `_input_to_action`
+        r'''Gets most recent controller with `ui` in `_input_to_method`
         dictionary.
 
         Returns controller.
@@ -1219,7 +1219,7 @@ class Session(abctools.AbjadObject):
                 return controller
             input_to_action = getattr(
                 controller,
-                '_input_to_action',
+                '_input_to_method',
                 None,
                 )
             if input_to_action:
