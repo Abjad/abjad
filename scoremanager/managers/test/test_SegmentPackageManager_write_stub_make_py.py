@@ -23,4 +23,3 @@ def test_SegmentPackageManager_write_stub_make_py_01():
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
         assert 'Will write stub to' in contents
-        assert 'Wrote stub to' in contents

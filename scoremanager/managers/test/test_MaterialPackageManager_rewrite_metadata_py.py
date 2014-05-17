@@ -10,4 +10,4 @@ def test_MaterialPackageManager_rewrite_metadata_py_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Rewrote __metadata.py__.' in contents
+    assert 'Will rewrite' in contents

@@ -578,41 +578,41 @@ class PackageManager(AssetController):
         return version_numbers
 
     def _open_versioned_file(self, file_name_prototype):
-        getter = self._io_manager.make_getter()
-        version_numbers = self._get_existing_version_numbers(
-            file_name_prototype)
-        if not version_numbers: 
-            message = 'no {} files in versions directory.'
-            message = message.format(file_name_prototype)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
-            return
-        prompt = 'version number ({})'
-        prompt = prompt.format(version_numbers)
-        getter.append_integer(prompt)
-        version_number = getter._run()
-        if self._should_backtrack():
-            return
-        if version_number < 0:
-            version_number = version_numbers[version_number]
-        version_string = str(version_number).zfill(4)
-        root, extension = os.path.splitext(file_name_prototype)
-        file_name = '{}_{}{}'.format(
-            root,
-            version_string,
-            extension,
-            )
-        file_path = os.path.join(
-            self._path,
-            'versions',
-            file_name,
-            )
-        if os.path.isfile(file_path):
-            self._io_manager.open_file(file_path)
-        else:
-            message = 'file not found: {}'.format(file_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction():
+            getter = self._io_manager.make_getter()
+            version_numbers = self._get_existing_version_numbers(
+                file_name_prototype)
+            if not version_numbers: 
+                message = 'no {} files in versions directory.'
+                message = message.format(file_name_prototype)
+                self._io_manager.display([message, ''])
+                self._session._hide_next_redraw = True
+                return
+            prompt = 'version number ({})'
+            prompt = prompt.format(version_numbers)
+            getter.append_integer(prompt)
+            version_number = getter._run()
+            if self._should_backtrack():
+                return
+            if version_number < 0:
+                version_number = version_numbers[version_number]
+            version_string = str(version_number).zfill(4)
+            root, extension = os.path.splitext(file_name_prototype)
+            file_name = '{}_{}{}'.format(
+                root,
+                version_string,
+                extension,
+                )
+            file_path = os.path.join(
+                self._path,
+                'versions',
+                file_name,
+                )
+            if os.path.isfile(file_path):
+                self._io_manager.open_file(file_path)
+            else:
+                message = 'file not found: {}'.format(file_path)
+                self._io_manager.display(message)
 
     def _remove(self, confirm=True, display=True):
         if confirm:
@@ -861,39 +861,35 @@ class PackageManager(AssetController):
         return True
 
     def _version_package(self, confirm=True, display=True):
-        if not os.path.isdir(self._versions_directory_path):
-            os.mkdir(self._versions_directory_path)
-        if confirm:
-            messages = []
-            messages.append('will copy ...')
-            messages.append('')
-            messages.extend(self._make_version_package_messages())
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-            self._io_manager.display('')
-        next_version_string = self._get_next_version_string()
-        for source_path in self._source_paths:
-            if not os.path.isfile(source_path):
-                continue
-            file_name = os.path.basename(source_path)
-            root, extension = os.path.splitext(file_name)
-            target_file_name = '{}_{}{}'.format(
-                root, 
-                next_version_string, 
-                extension,
-                )
-            target_path = os.path.join(
-                self._versions_directory_path,
-                target_file_name,
-                )
-            shutil.copyfile(source_path, target_path)
-        if display:
-            self._io_manager.display('')
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            if not os.path.isdir(self._versions_directory_path):
+                os.mkdir(self._versions_directory_path)
+            if confirm:
+                messages = []
+                messages.append('will copy ...')
+                messages.extend(self._make_version_package_messages())
+                self._io_manager.display(messages)
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            next_version_string = self._get_next_version_string()
+            for source_path in self._source_paths:
+                if not os.path.isfile(source_path):
+                    continue
+                file_name = os.path.basename(source_path)
+                root, extension = os.path.splitext(file_name)
+                target_file_name = '{}_{}{}'.format(
+                    root, 
+                    next_version_string, 
+                    extension,
+                    )
+                target_path = os.path.join(
+                    self._versions_directory_path,
+                    target_file_name,
+                    )
+                shutil.copyfile(source_path, target_path)
             
     def _write_metadata_py(self, metadata):
         lines = []
@@ -1078,12 +1074,19 @@ class PackageManager(AssetController):
         Returns none.
         '''
         with self._io_manager.make_interaction(display=display):
+            if display:
+                message = 'will rewrite {}.'
+                message = message.format(self._metadata_py_path)
+                self._io_manager.display(message)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
             if metadata is None:
                 metadata = self._get_metadata()
             self._write_metadata_py(metadata)
-            if display:
-                message = 'rewrote __metadata.py__.'
-                self._io_manager.display(message)
 
     def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts assets from repository.

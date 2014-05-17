@@ -31,8 +31,6 @@ def test_SegmentPackageWrangler_interpret_every_output_ly_01():
             'Will interpret ...',
             'INPUT:',
             'OUTPUT:',
-            'Interpreted',
-            'Wrote',
             ])
         for string in strings:
             assert string in contents

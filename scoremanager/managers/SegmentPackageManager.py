@@ -125,7 +125,6 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('definition.py - edit', 'dpye'))
         commands.append(('definition.py - write stub', 'dpyws'))
-        commands.append(('foo - foo', 'foo'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -172,7 +171,6 @@ class SegmentPackageManager(PackageManager):
             target_path = os.path.join(directory, file_name)
             message = '   TO: {}'.format(target_path)
             messages.append(message)
-            messages.append('')
         return messages
 
     def _make_versions_directory_menu_section(self, menu):
@@ -193,50 +191,33 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.edit(self._definition_py_path)
+        with self._io_manager.make_interaction():
+            self._io_manager.edit(self._definition_py_path)
 
     def interpret_output_ly(self, confirm=True, display=True):
         r'''Reinterprets current LilyPond file.
 
         Returns none.
         '''
-        if display:
-            messages = []
-            messages.append('will interpret ...')
-            messages.append('')
-            message = '  INPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            messages.append('')
-            self._io_manager.display(messages)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
+        with self._io_manager.make_interaction(display=display):
+            if display:
+                messages = []
+                messages.append('will interpret ...')
+                message = '  INPUT: {}'.format(self._output_lilypond_file_path)
+                messages.append(message)
+                message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+                messages.append(message)
+                self._io_manager.display(messages)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            file_path = self._output_lilypond_file_path
+            if not os.path.isfile(file_path):
                 return
-            if not result:
-                return
-            self._io_manager.display('')
-        file_path = self._output_lilypond_file_path
-        if not os.path.isfile(file_path):
-            return
-        result = self._io_manager.run_lilypond(file_path)
-        if not result:
-            return
-        lilypond_file_path = self._output_lilypond_file_path
-        if display:
-            messages = []
-            message = 'interpreted {!r}.'
-            message = message.format(lilypond_file_path)
-            messages.append(message)
-            message = 'wrote {!r}.'.format(self._output_pdf_file_path)
-            messages.append(message)
-            message = 'use (pdfo) to open {}.'
-            message = message.format(self._output_pdf_file_path)
-            messages.append(message)
-            messages.append('')
-            self._io_manager.display(messages)
-            self._session._hide_next_redraw = True
+            self._io_manager.run_lilypond(file_path)
 
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.
@@ -335,31 +316,27 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if display:
-            messages = []
-            message = 'will write stub to {}.'
-            message = message.format(self._definition_py_path)
-            messages.append(message)
-            self._io_manager.display(message)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        lines = []
-        lines.append(self._unicode_directive)
-        lines.append(self._abjad_import_statement)
-        lines.append('')
-        lines.append('')
-        contents = '\n'.join(lines)
-        with file(self._definition_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-        if display:
-            message = 'wrote stub to {}.'
-            message = message.format(self._definition_py_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            if display:
+                messages = []
+                message = 'will write stub to {}.'
+                message = message.format(self._definition_py_path)
+                messages.append(message)
+                self._io_manager.display(message)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            lines = []
+            lines.append(self._unicode_directive)
+            lines.append(self._abjad_import_statement)
+            lines.append('')
+            lines.append('')
+            contents = '\n'.join(lines)
+            with file(self._definition_py_path, 'w') as file_pointer:
+                file_pointer.write(contents)
 
     # TODO: reimplement as boilerplate
     def write_stub_make_py(self, confirm=True, display=True):
@@ -367,36 +344,32 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if display:
-            messages = []
-            message = 'will write stub to {}.'.format(self._make_py_path)
-            self._io_manager.display(message)
-        if confirm:
-            result = self._io_manager.confirm()
-            if self._should_backtrack():
-                return
-            if not result:
-                return
-        lines = []
-        lines.append(self._unicode_directive)
-        lines.append('import os')
-        lines.append(self._abjad_import_statement)
-        lines.append('from definition import segment_maker')
-        lines.append('')
-        lines.append('')
-        lines.append('lilypond_file = segment_maker()')
-        lines.append('current_directory = os.path.dirname(__file__)')
-        line = "ly_file_path = os.path.join(current_directory, 'output.ly')"
-        lines.append(line)
-        lines.append('persist(lilypond_file).as_ly(ly_file_path)')
-        line = "pdf_file_path = os.path.join(current_directory, 'output.pdf')"
-        lines.append(line)
-        lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
-        contents = '\n'.join(lines)
-        with file(self._make_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-        if display:
-            messages = []
-            message = 'wrote stub to {}.'.format(self._make_py_path)
-            self._io_manager.display([message, ''])
-            self._session._hide_next_redraw = True
+        with self._io_manager.make_interaction(display=display):
+            if display:
+                messages = []
+                message = 'will write stub to {}.'.format(self._make_py_path)
+                self._io_manager.display(message)
+            if confirm:
+                result = self._io_manager.confirm()
+                if self._should_backtrack():
+                    return
+                if not result:
+                    return
+            lines = []
+            lines.append(self._unicode_directive)
+            lines.append('import os')
+            lines.append(self._abjad_import_statement)
+            lines.append('from definition import segment_maker')
+            lines.append('')
+            lines.append('')
+            lines.append('lilypond_file = segment_maker()')
+            lines.append('current_directory = os.path.dirname(__file__)')
+            line = "ly_file_path = os.path.join(current_directory, 'output.ly')"
+            lines.append(line)
+            lines.append('persist(lilypond_file).as_ly(ly_file_path)')
+            line = "pdf_file_path = os.path.join(current_directory, 'output.pdf')"
+            lines.append(line)
+            lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
+            contents = '\n'.join(lines)
+            with file(self._make_py_path, 'w') as file_pointer:
+                file_pointer.write(contents)
