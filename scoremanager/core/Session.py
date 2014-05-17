@@ -109,7 +109,7 @@ class Session(abctools.AbjadObject):
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_input = pending_input
-        self._io_manager = iotools.IOManager(self)
+        self._io_manager = iotools.IOManager(session=self)
         self._is_repository_test = False
         self._is_autoadding = False
         self._is_backtracking_locally = False

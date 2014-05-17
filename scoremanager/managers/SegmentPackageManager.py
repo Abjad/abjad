@@ -88,6 +88,7 @@ class SegmentPackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
+        #print repr(self), id(self), id(self._session)
         if result in self._input_to_action:
             self._input_to_action[result]()
         elif result == 'user entered lone return':

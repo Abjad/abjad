@@ -119,6 +119,7 @@ class AssetController(Controller):
 
         Returns none.
         '''
+        #print repr(self), id(self), id(self._session)
         self._session._score_manager._build_file_wrangler._run()
 
     def go_to_distribution_files(self):
