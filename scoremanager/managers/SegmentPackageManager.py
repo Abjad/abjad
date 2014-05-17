@@ -47,6 +47,7 @@ class SegmentPackageManager(PackageManager):
         result.update({
             'dpye': self.edit_definition_py,
             'dpyws': self.write_stub_definition_py,
+            #'foo': self.foo,
             'mpyi': self.interpret_make_py,
             'mpyo': self.open_make_py,
             'mpyws': self.write_stub_make_py,
@@ -88,7 +89,6 @@ class SegmentPackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        #print repr(self), id(self), id(self._session)
         if result in self._input_to_action:
             self._input_to_action[result]()
         elif result == 'user entered lone return':
@@ -126,6 +126,7 @@ class SegmentPackageManager(PackageManager):
         commands = []
         commands.append(('definition.py - edit', 'dpye'))
         commands.append(('definition.py - write stub', 'dpyws'))
+        commands.append(('foo - foo', 'foo'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

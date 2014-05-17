@@ -60,7 +60,7 @@ class PackageManager(AssetController):
     def _input_to_action(self):
         superclass = super(PackageManager, self)
         result = superclass._input_to_action
-        result = copy.deepcopy(result)
+        result = result.copy()
         result.update({
             'ipyo': self.open_init_py,
             'ipyws': self.write_stub_init_py,

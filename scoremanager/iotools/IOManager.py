@@ -58,7 +58,6 @@ class IOManager(IOManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    @systemtools.Memoize
     def _input_to_action(self):
         result = {
             'ess': self.edit_score_stylesheet,
@@ -85,7 +84,6 @@ class IOManager(IOManager):
         return '# -*- encoding: utf-8 -*-'
 
     @property
-    @systemtools.Memoize
     def _wrangler_navigation_alias_to_action(self):
         result = {
             'd': self._handle_to_distribution_file_wrangler_directive,

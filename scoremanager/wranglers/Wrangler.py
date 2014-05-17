@@ -93,7 +93,7 @@ class Wrangler(AssetController):
     def _input_to_action(self):
         superclass = super(Wrangler, self)
         result = superclass._input_to_action
-        result = copy.deepcopy(result)
+        result = result.copy()
         result.update({
             'pyd': self.doctest,
             'pyt': self.pytest,
@@ -114,7 +114,6 @@ class Wrangler(AssetController):
         return result
 
     @property
-    @systemtools.Memoize
     def _views_package_manager(self):
         path = self._configuration.user_library_views_directory_path
         return self._io_manager.make_package_manager(path)
