@@ -200,6 +200,15 @@ class ScorePackageWrangler(Wrangler):
             name='scores 2',
             )
 
+    def _make_asset_menu_section(self, menu):
+        entries = self._io_manager._read_cache()
+        if self._session.is_test:
+            entries = [_ for _ in entries if 'Example Score' in _[0]]
+        else:
+            entries = self._filter_asset_menu_entries_by_view(entries)
+        if entries:
+            menu.make_asset_section(menu_entries=entries)
+
     def _make_cache_menu_section(self, menu):
         commands = []
         commands.append(('cache - open', 'co'))
@@ -211,26 +220,13 @@ class ScorePackageWrangler(Wrangler):
             )
 
     def _make_main_menu(self):
-        menu = self._make_score_selection_menu()
+        superclass = super(ScorePackageWrangler, self)
+        menu = superclass._make_main_menu()
+        breadcrumb_callback=self._get_scores_to_display_string
+        menu._breadcrumb_callback = breadcrumb_callback
         self._make_all_score_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)
-        self._make_views_menu_section(menu)
-        self._make_views_py_menu_section(menu)
-        return menu
-
-    def _make_score_selection_menu(self):
-        menu = self._io_manager.make_menu(
-            name='main',
-            breadcrumb_callback=self._get_scores_to_display_string,
-            )
-        entries = self._io_manager._read_cache()
-        if self._session.is_test:
-            entries = [_ for _ in entries if 'Example Score' in _[0]]
-        else:
-            entries = self._filter_asset_menu_entries_by_view(entries)
-        if entries:
-            menu.make_asset_section(menu_entries=entries)
         return menu
 
     def _make_scores_menu_section(self, menu):

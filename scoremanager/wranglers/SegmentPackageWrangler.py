@@ -110,9 +110,9 @@ class SegmentPackageWrangler(Wrangler):
         if not os.path.exists(manager._versions_directory_path):
             os.mkdir(manager._versions_directory_path)
 
-    def _make_main_menu(self, name='segment wrangler'):
+    def _make_main_menu(self):
         superclass = super(SegmentPackageWrangler, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_all_segments_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)

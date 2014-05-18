@@ -734,7 +734,6 @@ class Wrangler(AssetController):
         self._io_manager.edit(path)
 
     def _make_main_menu(self, name=None):
-        #menu = self._io_manager.make_menu(name=name)
         superclass = super(Wrangler, self)
         menu = superclass._make_main_menu()
         self._make_asset_menu_section(menu)
