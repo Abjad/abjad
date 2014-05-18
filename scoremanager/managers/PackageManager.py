@@ -513,8 +513,9 @@ class PackageManager(AssetController):
             menu_entries.append(menu_entry)
         menu.make_information_section(menu_entries=menu_entries)
 
-    def _make_main_menu(self, name='package manager'):
-        menu = self._io_manager.make_menu(name=name)
+    def _make_main_menu(self):
+        superclass = super(PackageManager, self)
+        menu = superclass._make_main_menu()
         self._make_asset_menu_section(menu)
         return menu
 

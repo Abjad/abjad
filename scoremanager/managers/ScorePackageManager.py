@@ -156,9 +156,9 @@ class ScorePackageManager(PackageManager):
         else:
             raise ValueError(result)
 
-    def _make_main_menu(self, name='score package manager'):
-        menu = self._io_manager.make_menu(name=name)
-        self._make_asset_menu_section(menu)
+    def _make_main_menu(self):
+        superclass = super(ScorePackageManager, self)
+        menu = superclass._make_main_menu()
         self._make_init_py_menu_section(menu)
         self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)

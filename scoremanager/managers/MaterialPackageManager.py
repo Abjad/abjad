@@ -271,9 +271,9 @@ class MaterialPackageManager(PackageManager):
                 name='illustration pdf',
                 )
 
-    def _make_main_menu(self, name='material manager'):
+    def _make_main_menu(self):
         superclass = super(MaterialPackageManager, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_autoeditor_summary_menu_section(menu)
         self._make_illustrate_py_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)

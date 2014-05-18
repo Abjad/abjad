@@ -131,9 +131,9 @@ class SegmentPackageManager(PackageManager):
             name='definition py',
             )
 
-    def _make_main_menu(self, name='segment package manager'):
+    def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_definition_py_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)

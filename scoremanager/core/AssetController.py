@@ -71,16 +71,16 @@ class AssetController(Controller):
             name='edit - zzz',
             )
 
-#    def _make_go_scores_menu_section(self, menu):
-#        commands = []
-#        commands.append(('go - next score', '>>'))
-#        commands.append(('go - previous score', '<<'))
-#        menu.make_command_section(
-#            is_alphabetized=False,
-#            is_hidden=True,
-#            commands=commands,
-#            name='go - scores',
-#            )
+    def _make_go_scores_menu_section(self, menu):
+        commands = []
+        commands.append(('go - next score', '>>'))
+        commands.append(('go - previous score', '<<'))
+        menu.make_command_section(
+            is_alphabetized=False,
+            is_hidden=True,
+            commands=commands,
+            name='go - scores',
+            )
 
     def _make_go_wranglers_menu_section(self, menu):
         commands = []
@@ -99,6 +99,7 @@ class AssetController(Controller):
     def _make_main_menu(self):
         name = self._space_delimited_lowercase_class_name
         menu = self._io_manager.make_menu(name=name)
+        #self._make_go_scores_menu_section(menu)
         return menu
             
     def _make_repository_menu_section(self, menu):
