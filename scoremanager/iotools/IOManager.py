@@ -706,10 +706,11 @@ class IOManager(IOManager):
         Returns none.
         '''
         from abjad.tools import systemtools
-        self._session._attempted_to_open_file = True
-        if self._session.is_test:
-            return
-        systemtools.IOManager.open_lilypond_log()
+        with self.make_interaction():
+            self._session._attempted_to_open_file = True
+            if self._session.is_test:
+                return
+            systemtools.IOManager.open_last_log()
 
     def print_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.

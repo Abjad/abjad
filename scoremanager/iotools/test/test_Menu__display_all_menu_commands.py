@@ -41,7 +41,6 @@ def test_Menu__display_all_menu_commands_03():
     titles = [
         'Score manager - example scores',
         'Score manager - example scores',
-        'Score manager - example scores',
         ]
     assert score_manager._transcript.titles == titles
 
