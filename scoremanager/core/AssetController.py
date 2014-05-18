@@ -28,6 +28,8 @@ class AssetController(Controller):
             #
             'ess': self.edit_score_stylesheet,
             #
+            'll': self.open_lilypond_log,
+            #
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rcn': self.repository_clean,
@@ -178,3 +180,15 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._score_manager._stylesheet_wrangler._run()
+
+    def open_lilypond_log(self):
+        r'''Opens last LilyPond log.
+
+        Returns none.
+        '''
+        from abjad.tools import systemtools
+        with self._io_manager.make_interaction():
+            self._session._attempted_to_open_file = True
+            if self._session.is_test:
+                return
+            systemtools.IOManager.open_last_log()

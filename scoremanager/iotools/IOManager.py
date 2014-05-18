@@ -66,7 +66,6 @@ class IOManager(IOManager):
             's': self._handle_score_navigation_directive,
             '?': self._handle_display_all_commands_directive,
             'n': self._handle_display_all_commands_directive,
-            'll': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
             'pyt': self.pytest,
@@ -699,18 +698,6 @@ class IOManager(IOManager):
         if self._session.is_test:
             return
         self.spawn_subprocess(command)
-
-    def open_lilypond_log(self):
-        r'''Opens last LilyPond log.
-
-        Returns none.
-        '''
-        from abjad.tools import systemtools
-        with self.make_interaction():
-            self._session._attempted_to_open_file = True
-            if self._session.is_test:
-                return
-            systemtools.IOManager.open_last_log()
 
     def print_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.
