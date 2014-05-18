@@ -1236,13 +1236,6 @@ class Wrangler(AssetController):
                 display=False,
                 )
 
-    def doctest(self):
-        r'''Runs doctest on Python files contained in assets.
-
-        Returns none.
-        '''
-        self._doctest()
-
     def list_views(self):
         r'''List views in ``__views__.py``.
 
@@ -1314,13 +1307,6 @@ class Wrangler(AssetController):
             message = 'no __views.py__ found.'
             self._io_manager.display([message, ''])
             self._session._hide_next_redraw = True
-
-    def pytest(self):
-        r'''Runs py.test on Python files contained in assets.
-
-        Returns none.
-        '''
-        self._pytest()
 
     def repository_clean(self, confirm=True, display=True):
         r'''Removes assets not yet added to repository.

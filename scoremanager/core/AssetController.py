@@ -1,4 +1,6 @@
 import os
+from abjad.tools import developerscripttools
+from abjad.tools import stringtools
 from scoremanager.core.Controller import Controller
 
 
@@ -29,7 +31,9 @@ class AssetController(Controller):
             'ess': self.edit_score_stylesheet,
             #
             'll': self.open_lilypond_log,
+            'pyd': self.doctest,
             'pyi': self.invoke_python,
+            'pyt': self.pytest,
             #
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -127,6 +131,45 @@ class AssetController(Controller):
 
     ### PUBLIC METHODS ###
 
+    def doctest(self):
+        r'''Runs doctest on Python files contained in assets.
+        
+        Returns none.
+        '''
+        with self._io_manager.make_interaction():
+            message = 'running doctest ...'
+            self._io_manager.display(message)
+            assets = []
+            paths = self._list_visible_asset_paths()
+            for path in paths:
+                if path.endswith('.py'):
+                    assets.append(path)
+                if os.path.isdir(path):
+                    triples = os.walk(path)
+                    for directory_name, subdirectories, file_names in triples:
+                        for file_name in file_names:
+                            if file_name.endswith('.py'):
+                                file_path = os.path.join(
+                                    directory_name, 
+                                    file_name,
+                                    )
+                                assets.append(file_path)
+            if not assets:
+                message = 'no testable assets found.'
+                self._io_manager.display(message)
+            else:
+                count = len(assets)
+                identifier = stringtools.pluralize('asset', count=count)
+                message = '{} testable {} found ...'
+                message = message.format(count, identifier)
+                self._io_manager.display([message, ''])
+                script = developerscripttools.RunDoctestsScript()
+                strings = script.process_args(
+                    file_paths=assets,
+                    print_to_terminal=False,
+                    )
+                self._io_manager.display(strings, capitalize=False)
+
     def edit_score_stylesheet(self):
         r'''Edits score stylesheet.
 
@@ -220,3 +263,36 @@ class AssetController(Controller):
             if self._session.is_test:
                 return
             systemtools.IOManager.open_last_log()
+
+    def pytest(self):
+        r'''Runs py.test on Python files contained in visible assets.
+
+        Returns none.
+        '''
+        with self._io_manager.make_interaction():
+            message = 'running py.test ...'
+            self._io_manager.display(message)
+            assets = []
+            paths = self._list_python_files_in_visible_assets()
+            for path in paths:
+                assert os.path.isfile(path)
+            paths = [
+                _ for _ in paths if os.path.basename(_).startswith('test_')
+                ]
+            for path in paths:
+                if os.path.isdir(path):
+                    assets.append(path)
+                elif os.path.isfile(path) and path.endswith('.py'):
+                    assets.append(path)
+            if not assets:
+                message = 'no testable assets found.'
+                self._io_manager.display(message)
+            else:
+                count = len(paths)
+                identifier = stringtools.pluralize('asset', count=count)
+                message = '{} testable {} found ...'
+                message = message.format(count, identifier)
+                self._io_manager.display(message)
+                assets = ' '.join(assets)
+                command = 'py.test -rf {}'.format(assets)
+                self._io_manager.run_command(command, capitalize=False)

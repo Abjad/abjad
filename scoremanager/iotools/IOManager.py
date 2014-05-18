@@ -66,8 +66,6 @@ class IOManager(IOManager):
             's': self._handle_score_navigation_directive,
             '?': self._handle_display_all_commands_directive,
             'n': self._handle_display_all_commands_directive,
-            'pyd': self.doctest,
-            'pyt': self.pytest,
             'sv': self._session.display_variables,
             '>>': self._handle_next_score_directive,
             '<<': self._handle_previous_score_directive,
@@ -319,17 +317,6 @@ class IOManager(IOManager):
         if not self._session.pending_input:
             for line in lines:
                 print(line)
-
-    def doctest(self):
-        r'''Runs doctest on most recent doctestable controller in controller
-        stack.
-
-        Returns none.
-        '''
-        message = 'running doctest ...'
-        self.display([message, ''])
-        controller = self._session.get_controller_with(ui='pyd')
-        controller.doctest()
 
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.
@@ -679,17 +666,6 @@ class IOManager(IOManager):
         '''
         self.display(['not yet implemented.', ''])
         self._session._hide_next_redraw = True
-
-    def pytest(self):
-        r'''Runs Pytest on most recent pytestable controller in controller
-        stack.
-
-        Returns none.
-        '''
-        message = 'running py.test ...'
-        self.display([message, ''])
-        controller = self._session.get_controller_with(ui='pyt')
-        controller.pytest()
 
     def run_command(self, command, capitalize=True):
         r'''Makes subprocess with `command` and then runs and displays

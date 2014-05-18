@@ -969,13 +969,6 @@ class PackageManager(AssetController):
             command = command.format(commit_message, self._path)
             self._io_manager.run_command(command, capitalize=False)
 
-    def doctest(self):
-        r'''Runs doctest on Python files contained in visible assets.
-
-        Returns none.
-        '''
-        self._doctest()
-
     def get_metadatum(self):
         r'''Gets metadatum from ``__metadata.py__``.
 
@@ -1004,13 +997,6 @@ class PackageManager(AssetController):
         Returns none.
         '''
         self._open_file(self._metadata_py_path)
-
-    def pytest(self):
-        r'''Runs py.test on Python files contained in visible assets.
-
-        Returns none.
-        '''
-        self._pytest()
 
     def remove_metadatum(self):
         r'''Removes metadatum from ``__metadata__.py``.
