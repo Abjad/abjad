@@ -75,15 +75,7 @@ class ScoreManagerObject(object):
     ### PRIVATE METHODS ###
 
     def _make_default_hidden_sections(self, menu):
-        if (self._session.is_in_score and
-            hasattr(self, '_make_go_edits_menu_section')):
-            self._make_go_edits_menu_section(menu)
         self._make_go_menu_section(menu)
-        if hasattr(self, '_make_repository_menu_section'):
-            self._make_repository_menu_section(menu)
-        if hasattr(self, '_make_go_wranglers_menu_section'):
-            self._make_go_wranglers_menu_section(menu)
-        self._make_go_scores_menu_section(menu)
         self._make_system_menu_section(menu)
 
     def _make_go_menu_section(self, menu):
@@ -95,17 +87,6 @@ class ScoreManagerObject(object):
             is_hidden=True,
             commands=commands,
             name='go',
-            )
-
-    def _make_go_scores_menu_section(self, menu):
-        commands = []
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - previous score', '<<'))
-        menu.make_command_section(
-            is_alphabetized=False,
-            is_hidden=True,
-            commands=commands,
-            name='go - scores',
             )
 
     def _make_system_menu_section(self, menu):

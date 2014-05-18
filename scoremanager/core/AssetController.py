@@ -99,7 +99,11 @@ class AssetController(Controller):
     def _make_main_menu(self):
         name = self._space_delimited_lowercase_class_name
         menu = self._io_manager.make_menu(name=name)
-        #self._make_go_scores_menu_section(menu)
+        if self._session.is_in_score:
+            self._make_go_edits_menu_section(menu)
+        self._make_go_wranglers_menu_section(menu)
+        self._make_go_scores_menu_section(menu)
+        self._make_repository_menu_section(menu)
         return menu
             
     def _make_repository_menu_section(self, menu):
