@@ -67,7 +67,6 @@ class IOManager(IOManager):
             '?': self._handle_display_all_commands_directive,
             'n': self._handle_display_all_commands_directive,
             'pyd': self.doctest,
-            'pyi': self.invoke_python,
             'pyt': self.pytest,
             'sv': self._session.display_variables,
             '>>': self._handle_next_score_directive,
@@ -400,7 +399,6 @@ class IOManager(IOManager):
         prompt_string,
         default_value=None,
         include_chevron=True,
-        #include_newline=True,
         include_newline=False,
         prompt_character='>',
         capitalize_prompt=True,
@@ -483,31 +481,6 @@ class IOManager(IOManager):
         if display:
             self.display('')
             self._session._hide_next_redraw = True
-
-    def invoke_python(self, statement=None):
-        r'''Invokes Python on `statement`.
-
-        Returns none.
-        '''
-        lines = []
-        prompt = True
-        if statement is None:
-            statement = self.handle_input('>>', include_newline=False)
-        else:
-            prompt = False
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        if prompt:
-            self.display(lines)
-        self._session._hide_next_redraw = True
 
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.

@@ -29,6 +29,7 @@ class AssetController(Controller):
             'ess': self.edit_score_stylesheet,
             #
             'll': self.open_lilypond_log,
+            'pyi': self.invoke_python,
             #
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -180,6 +181,33 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._score_manager._stylesheet_wrangler._run()
+
+    def invoke_python(self, statement=None):
+        r'''Invokes Python on `statement`.
+
+        Returns none.
+        '''
+        with self._io_manager.make_interaction():
+            messages = []
+            prompt = True
+            if statement is None:
+                statement = self._io_manager.handle_input(
+                    '>>', 
+                    include_newline=False,
+                    )
+            else:
+                prompt = False
+            command = 'from abjad import *'
+            exec(command)
+            try:
+                result = None
+                command = 'result = {}'.format(statement)
+                exec(command)
+                messages.append('{!r}'.format(result))
+            except:
+                messages.append('expression not executable.')
+            if prompt:
+                self._io_manager.display(messages)
 
     def open_lilypond_log(self):
         r'''Opens last LilyPond log.
