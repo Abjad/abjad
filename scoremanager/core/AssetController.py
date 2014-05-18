@@ -44,6 +44,12 @@ class AssetController(Controller):
             })
         return result
 
+    @property
+    def _space_delimited_lowercase_class_name(self):
+        name = type(self).__name__
+        name = stringtools.upper_camel_case_to_space_delimited_lowercase(name)
+        return name
+
     ### PRIVATE METHODS ###
 
     def _make_init_py_menu_section(self, menu):
@@ -65,6 +71,17 @@ class AssetController(Controller):
             name='edit - zzz',
             )
 
+#    def _make_go_scores_menu_section(self, menu):
+#        commands = []
+#        commands.append(('go - next score', '>>'))
+#        commands.append(('go - previous score', '<<'))
+#        menu.make_command_section(
+#            is_alphabetized=False,
+#            is_hidden=True,
+#            commands=commands,
+#            name='go - scores',
+#            )
+
     def _make_go_wranglers_menu_section(self, menu):
         commands = []
         commands.append(('go - build', 'u'))
@@ -78,6 +95,11 @@ class AssetController(Controller):
             commands=commands,
             name='go - wranglers',
             )
+
+    def _make_main_menu(self):
+        name = self._space_delimited_lowercase_class_name
+        menu = self._io_manager.make_menu(name=name)
+        return menu
             
     def _make_repository_menu_section(self, menu):
         commands = []

@@ -175,7 +175,7 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_main_menu(self, name='material package wrangler'):
         superclass = super(MaterialPackageWrangler, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_all_materials_menu_section(menu)
         self._make_material_command_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
