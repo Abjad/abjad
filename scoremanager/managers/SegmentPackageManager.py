@@ -93,8 +93,8 @@ class SegmentPackageManager(PackageManager):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
+        else:
+            raise ValueError(result)
 
     def _make_output_ly_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):

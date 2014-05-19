@@ -133,12 +133,8 @@ class ScorePackageManager(PackageManager):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
         else:
-            message = 'unknown user input: {!r}.'
-            message = message.format(result)
-            raise ValueError(message)
+            raise ValueError(result)
 
     # TODO: reimplement options as dictionary
     def _handle_setup_menu_result(self, result):

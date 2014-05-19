@@ -58,9 +58,6 @@ class MakerFileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
-    def _edit_maker_file(self, path):
-        self._io_manager.edit(path)
-
     def _enter_run(self):
         self._session._is_navigating_to_score_maker_files = False
 
@@ -70,10 +67,8 @@ class MakerFileWrangler(Wrangler):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
         else:
-            self._edit_maker_file(result)
+            self._io_manager.open_file(result)
 
     def _make_main_menu(self, name='make py wrangler'):
         superclass = super(MakerFileWrangler, self)

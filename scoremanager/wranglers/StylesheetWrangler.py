@@ -74,10 +74,8 @@ class StylesheetWrangler(Wrangler):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
         else:
-            self.edit_stylesheet(result)
+            self._io_manager.open_file(result)
 
     def _is_valid_directory_entry(self, directory_entry):
         superclass = super(StylesheetWrangler, self)

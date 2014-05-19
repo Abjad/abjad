@@ -47,7 +47,9 @@ class AssetController(Controller):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result.startswith('!'):
+        if result == 'user entered lone return':
+            return True
+        elif result.startswith('!'):
             statement = result[1:]
             self._io_manager.invoke_shell(statement=statement)
             return True

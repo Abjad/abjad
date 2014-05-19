@@ -120,8 +120,6 @@ class MaterialPackageWrangler(Wrangler):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
         else:
             manager = self._initialize_manager(result)
             if os.path.exists(manager._path):

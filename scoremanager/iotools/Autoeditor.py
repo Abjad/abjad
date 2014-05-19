@@ -157,6 +157,7 @@ class Autoeditor(Controller):
         return result
 
     def _handle_main_menu_result(self, result):
+        assert isinstance(result, str), repr(result)
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
             return
@@ -171,7 +172,6 @@ class Autoeditor(Controller):
         if attribute_editor is None:
             return
         result = attribute_editor._run()
-        print repr(result), 'RES'
         if self._session.is_backtracking:
             self._is_autoadvancing = False
             return

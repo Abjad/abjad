@@ -125,10 +125,7 @@ class ListAutoeditor(Autoeditor):
         return result
 
     def _handle_main_menu_result(self, result):
-        if not isinstance(result, str):
-            message = 'result must be string: {!r}.'
-            message = message.format(result)
-            raise TypeError(message)
+        assert isinstance(result, str), repr(result)
         if result in self._input_to_method:
             self._input_to_method[result]()
         elif mathtools.is_integer_equivalent_expr(result):

@@ -68,10 +68,8 @@ class DistributionFileWrangler(Wrangler):
             return True
         elif result in self._input_to_method:
             self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
         else:
-            self._edit_file(result)
+            self._io_manager.open_file(result)
 
     def _make_files_menu_section(self, menu):
         commands = []
