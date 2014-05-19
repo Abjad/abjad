@@ -43,8 +43,6 @@ class SegmentPackageWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '>': self.go_to_next_asset,
-            '<': self.go_to_previous_asset,
             'cp': self.copy_package,
             'dpye*': self.edit_every_definition_py,
             'ipyo': self.open_init_py,
@@ -157,20 +155,6 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
-
-    def go_to_next_asset(self):
-        r'''Goes to next asset.
-
-        Returns none.
-        '''
-        self._go_to_next_asset()
-
-    def go_to_previous_asset(self):
-        r'''Goes to previous asset.
-
-        Returns none.
-        '''
-        self._go_to_previous_asset()
 
     def interpret_every_output_ly(
         self,

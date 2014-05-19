@@ -491,6 +491,9 @@ class MaterialPackageManager(PackageManager):
             self._session._pending_input = 'mae'
         self._run()
 
+    def _set_is_navigating_to_sibling_asset(self):
+        self._session._is_navigating_to_score_materials = True
+
     ### PUBLIC METHODS ###
 
     def autoedit_output_material(self):

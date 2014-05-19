@@ -461,12 +461,6 @@ class Wrangler(AssetController):
         result = result.strip()
         return result
 
-    def _go_to_next_asset(self):
-        pass
-
-    def _go_to_previous_asset(self):
-        pass
-
     def _handle_numeric_user_input(self, result):
         self._io_manager.open_file(result)
 
@@ -1027,6 +1021,7 @@ class Wrangler(AssetController):
             path = self._get_current_directory()
             directory_change = systemtools.TemporaryDirectoryChange(path)
         with context, directory_change:
+            result = None
             while True:
                 result = self._get_sibling_asset_path()
                 if not result:

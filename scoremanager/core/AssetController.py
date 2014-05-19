@@ -21,6 +21,8 @@ class AssetController(Controller):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<': self.go_to_previous_asset,
+            '>': self.go_to_next_asset,
             '<<': self.go_to_previous_score,
             '>>': self.go_to_next_score,
             #
@@ -314,6 +316,15 @@ class AssetController(Controller):
         '''
         self._session._score_manager._material_package_wrangler._run()
 
+    def go_to_next_asset(self):
+        r'''Goes to next asset.
+
+        Returns none.
+        '''
+        self._session._is_navigating_to_next_asset = True
+        self._session._hide_hidden_commands = True
+        self._set_is_navigating_to_sibling_asset()
+
     def go_to_next_score(self):
         r'''Goes to next score.
 
@@ -322,6 +333,15 @@ class AssetController(Controller):
         self._session._is_navigating_to_next_score = True
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
+
+    def go_to_previous_asset(self):
+        r'''Goes to previous asset.
+
+        Returns none.
+        '''
+        self._session._is_navigating_to_previous_asset = True
+        self._session._hide_hidden_commands = True
+        self._set_is_navigating_to_sibling_asset()
 
     def go_to_previous_score(self):
         r'''Goes to previous score.

@@ -178,6 +178,9 @@ class SegmentPackageManager(PackageManager):
             name='versions directory',
             )
 
+    def _set_is_navigating_to_sibling_asset(self):
+        self._session._is_navigating_to_score_segments = True
+
     ### PUBLIC METHODS ###
 
     def edit_definition_py(self):

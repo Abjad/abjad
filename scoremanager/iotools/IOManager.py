@@ -60,8 +60,6 @@ class IOManager(IOManager):
     @property
     def _input_to_method(self):
         result = {
-            '>': self._handle_next_sibling_asset_directive,
-            '<': self._handle_previous_sibling_asset_directive,
             }
         return result
 
@@ -106,18 +104,6 @@ class IOManager(IOManager):
             self._input_to_method[directive]()
             directive = None
         return directive
-
-    def _handle_next_sibling_asset_directive(self):
-        controller = self._session._get_controller_with(ui='<')
-        controller._set_is_navigating_to_sibling_asset()
-        self._session._is_navigating_to_next_asset = True
-        self._session._hide_hidden_commands = True
-
-    def _handle_previous_sibling_asset_directive(self):
-        controller = self._session._get_controller_with(ui='>')
-        controller._set_is_navigating_to_sibling_asset()
-        self._session._is_navigating_to_previous_asset = True
-        self._session._hide_hidden_commands = True
 
     def _handle_to_build_file_wrangler_directive(self):
         if self._is_in_open_environment():
