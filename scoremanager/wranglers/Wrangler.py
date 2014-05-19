@@ -1243,7 +1243,7 @@ class Wrangler(AssetController):
                 )
 
     def list_views(self):
-        r'''List views in ``__views__.py``.
+        r'''Lists views in ``__views__.py``.
 
         Returns none.
         '''

@@ -118,10 +118,6 @@ class IOManager(IOManager):
         elif directive in self._input_to_method:
             self._input_to_method[directive]()
             directive = None
-        elif directive.startswith('!'):
-            statement = directive.replace('!', '')
-            self.invoke_shell(statement=statement)
-            directive = None
         return directive
 
     def _handle_display_all_commands_directive(self):

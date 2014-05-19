@@ -30,6 +30,7 @@ class AssetController(Controller):
             #
             'ess': self.edit_score_stylesheet,
             #
+            '!': self.invoke_shell,
             'll': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
@@ -49,17 +50,14 @@ class AssetController(Controller):
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str), repr(result)
         if result == 'user entered lone return':
-            return True
+            pass
         elif result.startswith('!'):
             statement = result[1:]
-            self._io_manager.invoke_shell(statement=statement)
-            return True
+            self.invoke_shell(statement=statement)
         elif result in self._input_to_method:
             self._input_to_method[result]()
-            return True
         else:
             self._handle_numeric_user_input(result)
-            return True
 
     def _handle_numeric_user_input(self, result):
         pass
@@ -319,6 +317,13 @@ class AssetController(Controller):
                 messages.append('expression not executable.')
             if prompt:
                 self._io_manager.display(messages)
+
+    def invoke_shell(self, statement=None):
+        r'''Invokes shell on `statement`.
+
+        Returns none.
+        '''
+        self._io_manager.invoke_shell(statement=statement)
 
     def open_lilypond_log(self):
         r'''Opens last LilyPond log.
