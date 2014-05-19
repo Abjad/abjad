@@ -203,7 +203,7 @@ class SegmentPackageWrangler(Wrangler):
                 messages.append('')
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -242,7 +242,7 @@ class SegmentPackageWrangler(Wrangler):
                 messages.append(' OUTPUT: {}'.format(output_pdf_path))
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -272,7 +272,7 @@ class SegmentPackageWrangler(Wrangler):
             prompt_string=prompt_string,
             storehouse_path=storehouse_path,
             )
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not path:
             return

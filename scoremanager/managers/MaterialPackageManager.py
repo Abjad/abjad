@@ -449,7 +449,7 @@ class MaterialPackageManager(PackageManager):
         getter = self._io_manager.make_getter()
         getter.append_snake_case_package_name('enter new package name')
         new_package_name = getter._run()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         base_name = os.path.basename(self._path)
         new_directory_path = self._path.replace(
@@ -465,7 +465,7 @@ class MaterialPackageManager(PackageManager):
         messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not result:
             return
@@ -520,7 +520,7 @@ class MaterialPackageManager(PackageManager):
         if not autoeditor:
             return
         autoeditor._run()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         output_py_import_statements = self._output_py_import_statements
         if hasattr(self, '_make_output_py_body_lines'):
@@ -709,7 +709,7 @@ class MaterialPackageManager(PackageManager):
                     messages.append(message)
                     self._io_manager.display(messages)
                     result = self._io_manager.confirm()
-                    if self._session._should_backtrack():
+                    if self._session.is_backtracking:
                         return
                     if not result:
                         return
@@ -777,7 +777,7 @@ class MaterialPackageManager(PackageManager):
             message = message.format(self._output_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -828,7 +828,7 @@ class MaterialPackageManager(PackageManager):
             message = message.format(self._definition_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -858,7 +858,7 @@ class MaterialPackageManager(PackageManager):
             message = message.format(self._illustrate_py_path)
             self._io_manager.display(message)
             result = self._io_manager.confirm()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return

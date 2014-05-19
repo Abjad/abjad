@@ -246,15 +246,6 @@ class Session(abctools.AbjadObject):
             )
         self._controller_stack.append(manager)
 
-    def _should_backtrack(self):
-        if (self.is_quitting or
-            self.is_backtracking_to_score_manager or
-            self.is_backtracking_locally or 
-            self.is_backtracking_to_score or
-            self.is_autonavigating_within_score):
-            return True
-        return False
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -590,6 +581,25 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self.wrangler_navigation_directive is not None
+
+    @property
+    def is_backtracking(self):
+        r'''Is true when any of the following are true:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_backtracking
+                False
+
+        Returns boolean.
+        '''
+        return (self.is_quitting or
+            self.is_backtracking_to_score_manager or
+            self.is_backtracking_locally or 
+            self.is_backtracking_to_score or
+            self.is_autonavigating_within_score)
 
     @property
     def is_backtracking_locally(self):

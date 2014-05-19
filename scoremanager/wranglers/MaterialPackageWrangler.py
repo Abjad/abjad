@@ -271,7 +271,7 @@ class MaterialPackageWrangler(Wrangler):
             prompt_string=prompt_string,
             storehouse_path=storehouse_path,
             )
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not path:
             return

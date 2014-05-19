@@ -335,7 +335,7 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display(messages)
             if not self._io_manager.confirm():
                 return
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
         if not os.path.exists(build_directory_path):
             os.mkdir(build_directory_path)
@@ -399,7 +399,7 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.display(messages)
             if not self._io_manager.confirm():
                 return
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
@@ -485,7 +485,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -527,7 +527,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -567,7 +567,7 @@ class BuildFileWrangler(Wrangler):
         messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not result:
             return
@@ -623,7 +623,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -665,7 +665,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -705,7 +705,7 @@ class BuildFileWrangler(Wrangler):
         messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not result:
             return
@@ -785,7 +785,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return
@@ -827,7 +827,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager.confirm(message)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if not result:
                 return

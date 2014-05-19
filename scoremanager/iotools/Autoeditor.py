@@ -172,7 +172,7 @@ class Autoeditor(Controller):
             return
         result = attribute_editor._run()
         print repr(result), 'RES'
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             self._is_autoadvancing = False
             return
         if hasattr(attribute_editor, 'target'):
@@ -266,7 +266,7 @@ class Autoeditor(Controller):
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
         with context:
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             result = None
             entry_point = None
@@ -295,14 +295,14 @@ class Autoeditor(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run()
-                    if self._session._should_backtrack():
+                    if self._session.is_backtracking:
                         return
                     elif not result:
                         continue
                 if result == 'done':
                     break
                 self._handle_main_menu_result(result)
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
 
     def _set_target_attribute(self, attribute_name, attribute_value):

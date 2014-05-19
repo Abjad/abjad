@@ -167,7 +167,7 @@ class ScorePackageWrangler(Wrangler):
                 manager = self._initialize_manager(path)
                 package_name = os.path.basename(path)
                 manager.fix_package(confirm=False, display=False)
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 manager._run()
 
@@ -289,7 +289,7 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         path = self._get_available_path()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         if not path:
             return

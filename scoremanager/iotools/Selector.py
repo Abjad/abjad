@@ -101,7 +101,7 @@ class Selector(Controller):
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 if result and not result == 'user entered lone return':
                     return result

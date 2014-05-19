@@ -206,7 +206,7 @@ class ListAutoeditor(Autoeditor):
                 **self._item_creator_class_kwargs
                 )
             result = item_creator._run()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if result == 'done':
                 self._session._is_autoadding = False
@@ -219,7 +219,7 @@ class ListAutoeditor(Autoeditor):
                 self._asset_identifier,
                 )
             item_initialization_token = getter._run()
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
@@ -273,7 +273,7 @@ class ListAutoeditor(Autoeditor):
         getter.append_integer_in_range('old number', 1, len(self._items))
         getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -291,7 +291,7 @@ class ListAutoeditor(Autoeditor):
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self._session._should_backtrack():
+        if self._session.is_backtracking:
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

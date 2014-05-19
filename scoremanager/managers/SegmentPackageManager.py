@@ -210,7 +210,7 @@ class SegmentPackageManager(PackageManager):
                 self._io_manager.display(messages)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 if not result:
                     return
@@ -243,7 +243,7 @@ class SegmentPackageManager(PackageManager):
                 self._io_manager.display(messages)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 if not result:
                     return
@@ -325,7 +325,7 @@ class SegmentPackageManager(PackageManager):
                 self._io_manager.display(message)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 if not result:
                     return
@@ -351,7 +351,7 @@ class SegmentPackageManager(PackageManager):
                 self._io_manager.display(message)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._session._should_backtrack():
+                if self._session.is_backtracking:
                     return
                 if not result:
                     return

@@ -173,7 +173,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 self._display_help()
             assert isinstance(input_, str), repr(input_)
             directive = self._io_manager._handle_directive(input_)
-            if self._session._should_backtrack():
+            if self._session.is_backtracking:
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
             elif directive is None:
