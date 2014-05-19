@@ -182,6 +182,26 @@ class Session(abctools.AbjadObject):
             self.io_manager.display(messages)
         self.transcript._write()
 
+    def _display_variables(self):
+        lines = []
+        for variable_name in sorted(self._variables_to_display):
+            if variable_name == 'controller_stack':
+                line = '{}:'.format(variable_name)
+                lines.append(line)
+                variable_value = getattr(self, variable_name)
+                for controller in variable_value:
+                    tab_string = self._io_manager._make_tab()
+                    line = '{}{}'.format(tab_string, controller)
+                    lines.append(line)
+            else:
+                variable_value = getattr(self, variable_name)
+                line = '{}: {!r}'
+                line = line.format(variable_name, variable_value)
+                lines.append(line)
+        lines.append('')
+        self.io_manager.display(lines, capitalize=False)
+        self._hide_next_redraw = True
+
     def _format_controller_breadcrumbs(self):
         if not self.controller_stack:
             return ['']
@@ -210,6 +230,23 @@ class Session(abctools.AbjadObject):
                 result_line = hanging_indent_width * ' ' + breadcrumb
                 result_lines.append(result_line)
         return result_lines
+
+    # TODO: see if this can be removed
+    def _get_controller_with(self, ui=None):
+        from scoremanager import core
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, core.ScoreManager):
+                controller = controller._score_package_wrangler
+            if not ui:
+                return controller
+            input_to_action = getattr(
+                controller,
+                '_input_to_method',
+                None,
+                )
+            if input_to_action:
+                if ui in input_to_action:
+                    return controller
 
     def _print_transcript(
         self,
@@ -1182,58 +1219,3 @@ class Session(abctools.AbjadObject):
             return 'g'
         elif self.is_navigating_to_score_stylesheets:
             return 'y'
-
-    ### PUBLIC METHODS ###
-
-    def display_variables(self):
-        r'''Displays session variables.
-
-        Returns none.
-        '''
-        lines = []
-        for variable_name in sorted(self._variables_to_display):
-            if variable_name == 'controller_stack':
-                line = '{}:'.format(variable_name)
-                lines.append(line)
-                variable_value = getattr(self, variable_name)
-                for controller in variable_value:
-                    tab_string = self._io_manager._make_tab()
-                    line = '{}{}'.format(tab_string, controller)
-                    lines.append(line)
-            else:
-                variable_value = getattr(self, variable_name)
-                line = '{}: {!r}'
-                line = line.format(variable_name, variable_value)
-                lines.append(line)
-        lines.append('')
-        self.io_manager.display(lines, capitalize=False)
-        self._hide_next_redraw = True
-
-    def get_controller_with(self, ui=None):
-        r'''Gets most recent controller with `ui` in `_input_to_method`
-        dictionary.
-
-        Returns controller.
-        '''
-        from scoremanager import core
-        for controller in reversed(self.controller_stack):
-            if isinstance(controller, core.ScoreManager):
-                controller = controller._score_package_wrangler
-            if not ui:
-                return controller
-            input_to_action = getattr(
-                controller,
-                '_input_to_method',
-                None,
-                )
-            if input_to_action:
-                if ui in input_to_action:
-                    return controller
-
-    def toggle_hidden_commands(self):
-        r'''Toggles `hide_hidden_commands`.
-
-        Returns none.
-        '''
-        current = self.hide_hidden_commands
-        self._hide_hidden_commands = not current

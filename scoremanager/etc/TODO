@@ -213,22 +213,16 @@
 
 39. Glue 'go' menu sections together.
 
-40. Remove methods from Session.
-    Session should implement properties only.
+40. Wrap view tests with FilesystemState.
 
-41. Wrap view tests with FilesystemState.
-
-42. Add 'all segments - list versions directories'.
+41. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-43. Implement a dry_run=False keyword on bundled every*() methods.
+42. Implement a dry_run=False keyword on bundled every*() methods.
 
-44. Consolidate Wrangler repository methods and PackageManager repo methods.
-    Implemented consolidated set of repository methods on AssetController.
+43. Remove Transcript.signature.
 
-45. Remove Transcript.signature.
+44. Change (red~example~score g) to list assets.
 
-46. Change (red~example~score g) to list assets.
-
-47. Remove IOManager._input_to_method.
+45. Remove IOManager._input_to_method.
     Reimplement functionality on controllers.

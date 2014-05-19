@@ -66,7 +66,7 @@ class IOManager(IOManager):
             's': self._handle_score_navigation_directive,
             '?': self._handle_display_all_commands_directive,
             'n': self._handle_display_all_commands_directive,
-            'sv': self._session.display_variables,
+            'sv': self._session._display_variables,
             '>>': self._handle_next_score_directive,
             '<<': self._handle_previous_score_directive,
             '>': self._handle_next_sibling_asset_directive,
@@ -127,7 +127,8 @@ class IOManager(IOManager):
     def _handle_display_all_commands_directive(self):
         if (not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
-            self._session.toggle_hidden_commands()
+            hide = self._session.hide_hidden_commands
+            self._session._hide_hidden_commands = not hide
 
     def _handle_home_navigation_directive(self):
         self._session._is_backtracking_to_score_manager = True
@@ -139,7 +140,7 @@ class IOManager(IOManager):
         self._session._hide_hidden_commands = True
 
     def _handle_next_sibling_asset_directive(self):
-        controller = self._session.get_controller_with(ui='<')
+        controller = self._session._get_controller_with(ui='<')
         controller._set_is_navigating_to_sibling_asset()
         self._session._is_navigating_to_next_asset = True
         self._session._hide_hidden_commands = True
@@ -150,7 +151,7 @@ class IOManager(IOManager):
         self._session._hide_hidden_commands = True
 
     def _handle_previous_sibling_asset_directive(self):
-        controller = self._session.get_controller_with(ui='>')
+        controller = self._session._get_controller_with(ui='>')
         controller._set_is_navigating_to_sibling_asset()
         self._session._is_navigating_to_previous_asset = True
         self._session._hide_hidden_commands = True
@@ -600,7 +601,6 @@ class IOManager(IOManager):
             name=name,
             session=self._session,
             )
-#        self.client._make_default_hidden_sections(menu)
         return menu
 
     def make_package_manager(self, path):
