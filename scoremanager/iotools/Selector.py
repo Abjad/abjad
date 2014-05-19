@@ -4,10 +4,10 @@ import os
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import rhythmmakertools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Selector(ScoreManagerObject):
+class Selector(Controller):
     r'''Selector.
     '''
 
@@ -36,7 +36,7 @@ class Selector(ScoreManagerObject):
         ):
         assert session is not None
         assert not (menu_entries and items)
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         self._breadcrumb = breadcrumb
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged

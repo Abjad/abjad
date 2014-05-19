@@ -5,22 +5,24 @@ import scoremanager
 
 def test_PerformerCreationWizard__run_01():
 
-    wizard = scoremanager.wizards.PerformerCreationWizard()
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'q'
     assert wizard._run(pending_input=input_) is None
 
-    wizard = scoremanager.wizards.PerformerCreationWizard()
+    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'b'
     assert wizard._run(pending_input=input_) is None
 
-    wizard = scoremanager.wizards.PerformerCreationWizard()
+    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'h'
     assert wizard._run(pending_input=input_) is None
 
 
 def test_PerformerCreationWizard__run_02():
 
-    wizard = scoremanager.wizards.PerformerCreationWizard()
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'vn default'
     assert wizard._run(pending_input=input_) == \
         instrumenttools.Performer(
@@ -33,7 +35,11 @@ def test_PerformerCreationWizard__run_03():
     r'''Ranged.
     '''
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(is_ranged=True)
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(
+        is_ranged=True,
+        session=session,
+        )
     input_ = 'vn, va default default'
     assert wizard._run(pending_input=input_) == [
         instrumenttools.Performer(
@@ -51,7 +57,11 @@ def test_PerformerCreationWizard__run_04():
     r'''Skipping instruments.
     '''
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(is_ranged=True)
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(
+        is_ranged=True,
+        session=session,
+        )
     input_ = 'vn, va skip skip'
     assert wizard._run(pending_input=input_) == [
         instrumenttools.Performer(name='violinist'),
@@ -63,7 +73,11 @@ def test_PerformerCreationWizard__run_05():
     r'''More instruments.
     '''
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(is_ranged=True)
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(
+        is_ranged=True,
+        session=session,
+        )
     input_ = 'vn, va skip more xyl'
     assert wizard._run(pending_input=input_) == [
         instrumenttools.Performer(name='violinist'),
@@ -78,7 +92,11 @@ def test_PerformerCreationWizard__run_06():
     r'''Auxiliary percussion.
     '''
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(is_ranged=True)
+    session = scoremanager.core.Session()
+    wizard = scoremanager.wizards.PerformerCreationWizard(
+        is_ranged=True,
+        session=session,
+        )
     caxixi = instrumenttools.UntunedPercussion(
         instrument_name='caxixi',
         short_instrument_name='caxixi',

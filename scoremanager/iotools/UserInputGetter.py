@@ -2,11 +2,11 @@
 import types
 from abjad.tools import stringtools
 from scoremanager import predicates
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 from scoremanager.iotools.PromptMakerMixin import PromptMakerMixin
 
 
-class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
+class UserInputGetter(Controller, PromptMakerMixin):
     r'''User input getter.
     '''
 
@@ -40,7 +40,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         number_prompts=False,
         prompt_character='>',
         ):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
         self._prompts = []
         self._allow_none = allow_none

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Wizard(ScoreManagerObject):
+class Wizard(Controller):
     r'''Wizard.
     '''
 
@@ -22,7 +22,7 @@ class Wizard(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         self._selector = None
         self._target = target
         self._target_editor_class_name_suffix = 'Autoeditor'
