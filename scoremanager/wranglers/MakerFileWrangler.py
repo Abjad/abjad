@@ -61,13 +61,6 @@ class MakerFileWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_maker_files = False
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(MakerFileWrangler, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        else:
-            self._io_manager.open_file(result)
-
     def _make_main_menu(self):
         superclass = super(MakerFileWrangler, self)
         menu = superclass._make_main_menu()

@@ -57,6 +57,12 @@ class AssetController(Controller):
         elif result in self._input_to_method:
             self._input_to_method[result]()
             return True
+        else:
+            self._handle_numeric_user_input(result)
+            return True
+
+    def _handle_numeric_user_input(self, result):
+        pass
 
     def _make_init_py_menu_section(self, menu):
         commands = []

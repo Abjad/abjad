@@ -155,20 +155,16 @@ class ScorePackageWrangler(Wrangler):
             self._session._is_backtracking_to_score_manager = False
             return self._get_sibling_score_directory_path(next_=False)
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(ScorePackageWrangler, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        else:
-            paths = self._list_visible_asset_paths()
-            if result in paths:
-                path = result
-                manager = self._initialize_manager(path)
-                package_name = os.path.basename(path)
-                manager.fix_package(confirm=False, display=False)
-                if self._session.is_backtracking:
-                    return
-                manager._run()
+    def _handle_numeric_user_input(self, result):
+        paths = self._list_visible_asset_paths()
+        if result in paths:
+            path = result
+            manager = self._initialize_manager(path)
+            package_name = os.path.basename(path)
+            manager.fix_package(confirm=False, display=False)
+            if self._session.is_backtracking:
+                return
+            manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(ScorePackageWrangler, self)

@@ -108,13 +108,6 @@ class BuildFileWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_build_files = False
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(BuildFileWrangler, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        else:
-            self._io_manager.open_file(result)
-
     def _make_back_cover_menu_section(self, menu):
         commands = []
         commands.append(('back cover - edit latex source', 'bce'))

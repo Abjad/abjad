@@ -68,13 +68,6 @@ class StylesheetWrangler(Wrangler):
         file_name = file_name.replace('_', '-')
         return file_name
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(StylesheetWrangler, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        else:
-            self._io_manager.open_file(result)
-
     def _is_valid_directory_entry(self, directory_entry):
         superclass = super(StylesheetWrangler, self)
         if superclass._is_valid_directory_entry(directory_entry):

@@ -114,14 +114,10 @@ class MaterialPackageWrangler(Wrangler):
         manager = class_(package_path, session=self._session)
         return manager
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(MaterialPackageWrangler, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        else:
-            manager = self._initialize_manager(result)
-            if os.path.exists(manager._path):
-                manager._run()
+    def _handle_numeric_user_input(self, result):
+        manager = self._initialize_manager(result)
+        if os.path.exists(manager._path):
+            manager._run()
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(MaterialPackageWrangler, self)

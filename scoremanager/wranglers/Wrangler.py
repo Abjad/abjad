@@ -469,6 +469,9 @@ class Wrangler(AssetController):
     def _go_to_previous_asset(self):
         pass
 
+    def _handle_numeric_user_input(self, result):
+        self._io_manager.open_file(result)
+
     def _initialize_manager(self, path, asset_identifier=None):
         assert os.path.sep in path, repr(path)
         manager = self._manager_class(
