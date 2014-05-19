@@ -33,6 +33,7 @@ class Controller(ScoreManagerObject):
         result = {
             'b': self.go_back,
             'h': self.go_home,
+            'q': self.quit,
             's': self.go_to_current_score,
             }
         return result
@@ -191,3 +192,11 @@ class Controller(ScoreManagerObject):
         if self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
+
+    def quit(self):
+        r'''Quits Score Manager.
+
+        Returns none.
+        '''
+        self._session._is_quitting = True
+        self._session._hide_hidden_commands = True
