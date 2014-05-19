@@ -72,7 +72,7 @@ class InstrumentCreationWizard(Wizard):
         from scoremanager import iotools
         if pending_input:
             self._session._pending_input = pending_input
-        context = iotools.ControllerContext(self)
+        context = iotools.ControllerContext(controller=self)
         with context:
             items = instrumenttools.Instrument._list_instrument_names()
             selector = iotools.Selector(

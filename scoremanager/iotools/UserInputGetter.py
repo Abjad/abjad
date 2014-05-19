@@ -208,6 +208,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         if pending_input:
             self._session._pending_input = pending_input
         context = iotools.ControllerContext(
+            consume_local_backtrack=True,
             controller=self,
             is_in_confirmation_environment=True,
             )
@@ -220,21 +221,6 @@ class UserInputGetter(Controller, PromptMakerMixin):
             else:
                 result = self._evaluated_input[:]
             return result
-
-    def _should_backtrack(self):
-        if self._session.is_quitting:
-            return True
-        elif self._session.is_backtracking_to_score_manager:
-            return True
-        # keep on backtracking ... do not consume this backtrack
-        elif self._session.is_backtracking_locally:
-            return True
-        elif self._session.is_backtracking_to_score:
-            return True
-        elif self._session.is_autonavigating_within_score:
-            return True
-        else:
-            return False
 
     def _validate_evaluated_input(self, evaluated_input):
         if evaluated_input is None and self.allow_none:

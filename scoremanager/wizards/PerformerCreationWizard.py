@@ -111,7 +111,7 @@ class PerformerCreationWizard(Wizard):
             self._session._pending_input = pending_input
         try_again = False
         performers = []
-        context = iotools.ControllerContext(self)
+        context = iotools.ControllerContext(controller=self)
         selector = iotools.Selector(session=self._session)
         selector = selector.make_score_tools_performer_name_selector(
             is_ranged=self._is_ranged,

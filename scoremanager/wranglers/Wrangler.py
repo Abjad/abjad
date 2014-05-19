@@ -323,6 +323,8 @@ class Wrangler(AssetController):
             name = getter._run()
             if self._should_backtrack():
                 return
+            if not name:
+                return
             name = stringtools.to_accent_free_snake_case(name)
             path = os.path.join(storehouse_path, name)
             if os.path.exists(path):
@@ -1015,7 +1017,8 @@ class Wrangler(AssetController):
         if pending_input:
             self._session._pending_input = pending_input
         context = iotools.ControllerContext(
-            self,
+            consume_local_backtrack=True,
+            controller=self,
             on_enter_callbacks=(self._enter_run,),
             )
         directory_change = systemtools.NullContextManager()

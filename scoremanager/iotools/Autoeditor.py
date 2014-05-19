@@ -171,6 +171,7 @@ class Autoeditor(Controller):
         if attribute_editor is None:
             return
         result = attribute_editor._run()
+        print repr(result), 'RES'
         if self._should_backtrack():
             self._is_autoadvancing = False
             return
@@ -260,6 +261,7 @@ class Autoeditor(Controller):
         if pending_input:
             self._session._pending_input = pending_input
         context = iotools.ControllerContext(
+            consume_local_backtrack=True,
             controller=self,
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
@@ -307,6 +309,8 @@ class Autoeditor(Controller):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         if self._session.is_quitting:
+            return
+        if attribute_value in (None, []):
             return
         # TODO: see GitHub #366:
         # TODO: reimplement Tempo.__init__()

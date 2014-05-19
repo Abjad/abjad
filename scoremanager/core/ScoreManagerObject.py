@@ -36,7 +36,7 @@ class ScoreManagerObject(object):
             session=self._session,
             )
         self._transcript = self._session.transcript
-        self._controller_context = iotools.ControllerContext(self)
+        self._controller_context = iotools.ControllerContext(controller=self)
 
     ### SPECIAL METHODS ###
 
@@ -112,7 +112,6 @@ class ScoreManagerObject(object):
         elif self._session.is_backtracking_to_score_manager:
             return True
         elif self._session.is_backtracking_locally:
-            self._session._is_backtracking_locally = False
             return True
         elif self._session.is_backtracking_to_score:
             return True

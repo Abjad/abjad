@@ -9,24 +9,27 @@ class ControllerContext(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_session',
+        '_consume_local_backtrack',
         '_controller',
         '_is_in_confirmation_environment',
         '_on_enter_callbacks',
         '_on_exit_callbacks',
         '_reset_hide_hidden_commands',
+        '_session',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
+        consume_local_backtrack=False,
         controller=None,
         is_in_confirmation_environment=False,
         on_enter_callbacks=None,
         on_exit_callbacks=None,
         reset_hide_hidden_commands=True,
         ):
+        self._consume_local_backtrack = consume_local_backtrack
         self._controller = controller
         self._is_in_confirmation_environment = is_in_confirmation_environment
         self._on_enter_callbacks = on_enter_callbacks or ()
@@ -60,6 +63,8 @@ class ControllerContext(ContextManager):
         self._session._is_in_confirmation_environment = False
         if self._reset_hide_hidden_commands:
             self._session._hide_hidden_commands = True
+        if self._consume_local_backtrack:
+            self._session._is_backtracking_locally = False
         for on_exit_callback in self._on_exit_callbacks:
             on_exit_callback()
 

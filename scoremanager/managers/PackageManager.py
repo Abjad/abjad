@@ -760,7 +760,10 @@ class PackageManager(AssetController):
         from scoremanager import iotools
         if pending_input:
             self._session._pending_input = pending_input
-        context = iotools.ControllerContext(self)
+        context = iotools.ControllerContext(
+            consume_local_backtrack=True,
+            controller=self,
+            )
         directory_change = systemtools.TemporaryDirectoryChange(self._path)
         io_manager = self._io_manager
         with context, directory_change:

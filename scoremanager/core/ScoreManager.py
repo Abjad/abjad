@@ -96,7 +96,8 @@ class ScoreManager(Controller):
         if pending_input:
             self._session._pending_input = pending_input
         context = iotools.ControllerContext(
-            self,
+            controller=self,
+            consume_local_backtrack=True,
             on_exit_callbacks=(self._session._clean_up,)
             )
         path = self._configuration.score_manager_directory_path

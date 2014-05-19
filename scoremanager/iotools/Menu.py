@@ -409,7 +409,7 @@ class Menu(ScoreManagerObject):
             self._session._pending_input = pending_input
         clear_terminal, hide_current_run = True, False
         context = iotools.ControllerContext(
-            self,
+            controller=self,
             reset_hide_hidden_commands=False,
             )
         with context:

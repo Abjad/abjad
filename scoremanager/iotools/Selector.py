@@ -94,7 +94,10 @@ class Selector(Controller):
         from scoremanager import iotools
         if pending_input:
             self._session._pending_input = pending_input
-        with iotools.ControllerContext(self):
+        with iotools.ControllerContext(
+            consume_local_backtrack=True,
+            controller=self,
+            ):
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()
@@ -102,21 +105,6 @@ class Selector(Controller):
                     return
                 if result and not result == 'user entered lone return':
                     return result
-
-    def _should_backtrack(self):
-        if self._session.is_quitting:
-            return True
-        elif self._session.is_backtracking_to_score_manager:
-            return True
-        # keep on backtracking ... do not consume this backtrack
-        elif self._session.is_backtracking_locally:
-            return True
-        elif self._session.is_backtracking_to_score:
-            return True
-        elif self._session.is_autonavigating_within_score:
-            return True
-        else:
-            return False
 
     ### PUBLIC PROPERTIES ###
 

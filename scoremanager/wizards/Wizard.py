@@ -39,7 +39,7 @@ class Wizard(Controller):
         from scoremanager import iotools
         if pending_input:
             self._session._pending_input = pending_input
-        context = iotools.ControllerContext(self)
+        context = iotools.ControllerContext(controller=self)
         with context:
             selector = self._selector
             class_name = selector._run()
@@ -66,21 +66,6 @@ class Wizard(Controller):
             autoeditor._is_autostarting = True
             autoeditor._run()
             self._target = autoeditor.target
-
-    def _should_backtrack(self):
-        if self._session.is_quitting:
-            return True
-        elif self._session.is_backtracking_to_score_manager:
-            return True
-        # keep on backtracking ... do not consume this backtrack
-        elif self._session.is_backtracking_locally:
-            return True
-        elif self._session.is_backtracking_to_score:
-            return True
-        elif self._session.is_autonavigating_within_score:
-            return True
-        else:
-            return False
 
     ### PUBLIC PROPERTIES ###
 
