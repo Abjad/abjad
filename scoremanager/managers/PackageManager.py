@@ -154,7 +154,7 @@ class PackageManager(AssetController):
         self._session._last_asset_path = self._path
 
     def _exit_run(self):
-        return self._should_backtrack()
+        return self._session._should_backtrack()
 
     @staticmethod
     def _file_name_to_version_number(file_name):
@@ -587,7 +587,7 @@ class PackageManager(AssetController):
             prompt = prompt.format(version_numbers)
             getter.append_integer(prompt)
             version_number = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if version_number < 0:
                 version_number = version_numbers[version_number]
@@ -617,7 +617,7 @@ class PackageManager(AssetController):
             getter = self._io_manager.make_getter()
             getter.append_string("type 'remove' to proceed")
             result = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not result == 'remove':
                 return
@@ -684,7 +684,7 @@ class PackageManager(AssetController):
         getter = self._io_manager.make_getter()
         getter.append_string('new name')
         new_package_name = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         new_package_name = stringtools.strip_diacritics(new_package_name)
         if file_name_callback:
@@ -702,7 +702,7 @@ class PackageManager(AssetController):
         lines.append('')
         self._io_manager.display(lines)
         result = self._io_manager.confirm()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not result:
             return
@@ -868,7 +868,7 @@ class PackageManager(AssetController):
                 messages.extend(self._make_version_package_messages())
                 self._io_manager.display(messages)
                 result = self._io_manager.confirm()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if not result:
                     return
@@ -916,7 +916,7 @@ class PackageManager(AssetController):
                 )
             getter.append_expr('metadatum value')
             result = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if result:
                 metadatum_name, metadatum_value = result
@@ -956,14 +956,14 @@ class PackageManager(AssetController):
                 getter = self._io_manager.make_getter()
                 getter.append_string('commit message')
                 commit_message = getter._run()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if confirm:
                     message = 'commit message will be: "{}"\n'
                     message = message.format(commit_message)
                     self._io_manager.display(message)
                     result = self._io_manager.confirm()
-                    if self._should_backtrack():
+                    if self._session._should_backtrack():
                         return
                     if not result:
                         return
@@ -982,7 +982,7 @@ class PackageManager(AssetController):
             getter = self._io_manager.make_getter()
             getter.append_string('metadatum name')
             result = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             metadatum = self._get_metadatum(result)
             message = '{!r}'.format(metadatum)
@@ -1011,7 +1011,7 @@ class PackageManager(AssetController):
             getter = self._io_manager.make_getter()
             getter.append_string('metadatum name')
             result = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if result:
                 metadatum_name = result
@@ -1064,7 +1064,7 @@ class PackageManager(AssetController):
                 self._io_manager.display(message)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if not result:
                     return
@@ -1116,7 +1116,7 @@ class PackageManager(AssetController):
                 self._io_manager.display(message)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if not result:
                     return

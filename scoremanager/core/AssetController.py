@@ -146,7 +146,7 @@ class AssetController(Controller):
                 self._io_manager.display(messages)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if not result:
                     return

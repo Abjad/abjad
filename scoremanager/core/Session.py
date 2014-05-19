@@ -246,6 +246,15 @@ class Session(abctools.AbjadObject):
             )
         self._controller_stack.append(manager)
 
+    def _should_backtrack(self):
+        if (self.is_quitting or
+            self.is_backtracking_to_score_manager or
+            self.is_backtracking_locally or 
+            self.is_backtracking_to_score or
+            self.is_autonavigating_within_score):
+            return True
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property

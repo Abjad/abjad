@@ -143,7 +143,7 @@ class Wrangler(AssetController):
             new_storehouse = self._get_current_directory()
         else:
             new_storehouse = self._select_storehouse_path()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not new_storehouse:
                 return
@@ -153,7 +153,7 @@ class Wrangler(AssetController):
         getter = self._io_manager.make_getter()
         getter.append_string(prompt_string)
         name = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not name:
             name = old_name
@@ -178,7 +178,7 @@ class Wrangler(AssetController):
         messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not result:
             return
@@ -321,7 +321,7 @@ class Wrangler(AssetController):
             getter = self._io_manager.make_getter()
             getter.append_space_delimited_lowercase_string(prompt_string)
             name = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not name:
                 return
@@ -413,7 +413,7 @@ class Wrangler(AssetController):
             asset_section,
             )
         numbers = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not len(numbers) == 1:
             return
@@ -436,7 +436,7 @@ class Wrangler(AssetController):
             asset_section,
             )
         numbers = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         indices = [_ - 1 for _ in numbers]
         paths = [_.return_value for _ in asset_section.menu_entries]
@@ -499,7 +499,7 @@ class Wrangler(AssetController):
             messages.append('')
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not result:
             return
@@ -712,14 +712,14 @@ class Wrangler(AssetController):
             path = self._get_current_directory()
         else:
             path = self._select_storehouse_path()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not path:
                 return
         getter = self._io_manager.make_getter()
         getter.append_string(prompt_string)
         name = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not name:
             return
@@ -809,7 +809,7 @@ class Wrangler(AssetController):
                 messages.append(message)
             self._io_manager.display(messages)
             result = self._io_manager.confirm()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not result:
                 return
@@ -836,7 +836,7 @@ class Wrangler(AssetController):
                 self._io_manager.display(messages)
             if confirm:
                 result = self._io_manager.confirm()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if not result:
                     return
@@ -980,7 +980,7 @@ class Wrangler(AssetController):
             getter = self._io_manager.make_getter()
             getter.append_string(prompt_string)
             result = getter._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not result == confirmation_string:
                 return
@@ -1031,11 +1031,11 @@ class Wrangler(AssetController):
                 if not result:
                     menu = self._make_main_menu()
                     result = menu._run()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     return
                 if result:
                     self._handle_main_menu_result(result)
-                    if self._should_backtrack():
+                    if self._session._should_backtrack():
                         return
 
     def _rewrite_every_metadata_py(self, confirm=True, display=True):
@@ -1060,7 +1060,7 @@ class Wrangler(AssetController):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             elif not result:
                 continue
@@ -1084,7 +1084,7 @@ class Wrangler(AssetController):
             session=self._session,
             )
         result = selector._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         return result
 
@@ -1108,7 +1108,7 @@ class Wrangler(AssetController):
             items=view_names,
             )
         result = selector._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         return result
 
@@ -1125,7 +1125,7 @@ class Wrangler(AssetController):
             messages.extend(manager._make_version_package_messages())
         self._io_manager.display(messages)
         result = self._io_manager.confirm()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not result:
             return
@@ -1181,7 +1181,7 @@ class Wrangler(AssetController):
         '''
         infinitive_phrase = 'to apply'
         view_name = self._select_view(infinitive_phrase=infinitive_phrase)
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if self._session.is_in_score:
             manager = self._current_package_manager
@@ -1219,13 +1219,13 @@ class Wrangler(AssetController):
         getter = self._io_manager.make_getter()
         getter.append_string('commit message')
         commit_message = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if confirm:
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
             result = self._io_manager.confirm()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             if not result:
                 return
@@ -1273,7 +1273,7 @@ class Wrangler(AssetController):
         getter = self._io_manager.make_getter()
         getter.append_string('view name')
         view_name = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         menu_entries = self._make_asset_menu_entries(apply_view=False)
         display_strings = [_[0] for _ in menu_entries]
@@ -1288,7 +1288,7 @@ class Wrangler(AssetController):
             target=view,
             )
         autoeditor._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         view = autoeditor.target
         view_inventory = self._read_view_inventory()
@@ -1328,7 +1328,7 @@ class Wrangler(AssetController):
             infinitive_phrase=infinitive_phrase,
             is_ranged=True,
             )
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         if not view_names:
             return
@@ -1347,7 +1347,7 @@ class Wrangler(AssetController):
         '''
         infinitive_phrase = 'to rename'
         old_view_name = self._select_view(infinitive_phrase=infinitive_phrase)
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         view_inventory = self._read_view_inventory()
         if not view_inventory:
@@ -1358,7 +1358,7 @@ class Wrangler(AssetController):
         getter = self._io_manager.make_getter()
         getter.append_string('view name')
         new_view_name = getter._run()
-        if self._should_backtrack():
+        if self._session._should_backtrack():
             return
         del(view_inventory[old_view_name])
         view_inventory[new_view_name] = view

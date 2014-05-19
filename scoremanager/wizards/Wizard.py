@@ -43,7 +43,7 @@ class Wizard(Controller):
         with context:
             selector = self._selector
             class_name = selector._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             exec('from abjad import *')
             if class_name.endswith('Handler'):

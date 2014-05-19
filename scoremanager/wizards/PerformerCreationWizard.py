@@ -34,7 +34,7 @@ class PerformerCreationWizard(Wizard):
         menu = self._make_performer_configuration_menu(performer)
         while True:
             result = menu._run()
-            if self._should_backtrack():
+            if self._session._should_backtrack():
                 return
             elif not result:
                 continue
@@ -46,7 +46,7 @@ class PerformerCreationWizard(Wizard):
                     is_ranged=True,
                     )
                 instruments = wizard._run()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     break
                 if instruments is not None:
                     for instrument in instruments:
@@ -119,7 +119,7 @@ class PerformerCreationWizard(Wizard):
         with context:
             while True:
                 result = selector._run()
-                if self._should_backtrack():
+                if self._session._should_backtrack():
                     break
                 if isinstance(result, list):
                     performer_names = result
@@ -131,7 +131,7 @@ class PerformerCreationWizard(Wizard):
                     self._initialize_performer(performer)
                     was_backtracking_locally = \
                         self._session.is_backtracking_locally
-                    if self._should_backtrack():
+                    if self._session._should_backtrack():
                         if was_backtracking_locally:
                             try_again = True
                         else:

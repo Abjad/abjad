@@ -105,17 +105,3 @@ class ScoreManagerObject(object):
             commands=commands,
             name='system', 
             )
-
-    def _should_backtrack(self):
-        if self._session.is_quitting:
-            return True
-        elif self._session.is_backtracking_to_score_manager:
-            return True
-        elif self._session.is_backtracking_locally:
-            return True
-        elif self._session.is_backtracking_to_score:
-            return True
-        elif self._session.is_autonavigating_within_score:
-            return True
-        else:
-            return False
