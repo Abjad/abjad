@@ -121,21 +121,6 @@ class Controller(ScoreManagerObject):
             name='__metadata__.py',
             )
 
-    def _make_sibling_asset_tour_menu_section(self, menu):
-        section = menu['go - scores']
-        menu.menu_sections.remove(section)
-        commands = []
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - next asset', '>'))
-        commands.append(('go - previous score', '<<'))
-        commands.append(('go - previous asset', '<'))
-        menu.make_command_section(
-            is_alphabetized=False,
-            is_hidden=True,
-            commands=commands,
-            name='go - scores',
-            )
-
     @staticmethod
     def _remove_file_line(file_path, line_to_remove):
         lines_to_keep = []

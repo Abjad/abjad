@@ -21,6 +21,9 @@ class AssetController(Controller):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<<': self.go_to_previous_score,
+            '>>': self.go_to_next_score,
+            #
             'd': self.go_to_distribution_files,
             'g': self.go_to_segment_packages,
             'k': self.go_to_maker_files,
@@ -144,6 +147,21 @@ class AssetController(Controller):
             is_hidden=True,
             commands=commands,
             name='repository',
+            )
+
+    def _make_sibling_asset_tour_menu_section(self, menu):
+        section = menu['go - scores']
+        menu.menu_sections.remove(section)
+        commands = []
+        commands.append(('go - next score', '>>'))
+        commands.append(('go - next asset', '>'))
+        commands.append(('go - previous score', '<<'))
+        commands.append(('go - previous asset', '<'))
+        menu.make_command_section(
+            is_alphabetized=False,
+            is_hidden=True,
+            commands=commands,
+            name='go - scores',
             )
 
     def _make_system_menu_section(self, menu):
@@ -295,6 +313,24 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._score_manager._material_package_wrangler._run()
+
+    def go_to_next_score(self):
+        r'''Goes to next score.
+
+        Returns none.
+        '''
+        self._session._is_navigating_to_next_score = True
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
+
+    def go_to_previous_score(self):
+        r'''Goes to previous score.
+
+        Returns none.
+        '''
+        self._session._is_navigating_to_previous_score = True
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
 
     def go_to_segment_packages(self):
         r'''Goes to segment packages.
