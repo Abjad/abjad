@@ -112,8 +112,6 @@ class BuildFileWrangler(Wrangler):
         superclass = super(BuildFileWrangler, self)
         if superclass._handle_main_menu_result(result):
             return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
         else:
             self._io_manager.open_file(result)
 
@@ -166,9 +164,9 @@ class BuildFileWrangler(Wrangler):
             name='front cover',
             )
 
-    def _make_main_menu(self, name='build wrangler'):
+    def _make_main_menu(self):
         superclass = super(BuildFileWrangler, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_files_menu_section(menu)
         if self._session.is_in_score:
             self._make_back_cover_menu_section(menu)

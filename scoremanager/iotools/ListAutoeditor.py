@@ -142,7 +142,8 @@ class ListAutoeditor(Autoeditor):
             self._target = self._target_class([])
 
     # TODO: encapsulate section-making code into separate methods
-    def _make_main_menu(self, name='list editor'):
+    def _make_main_menu(self):
+        name = self._spaced_class_name
         menu = self._io_manager.make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:

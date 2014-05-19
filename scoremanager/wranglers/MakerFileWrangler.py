@@ -65,14 +65,12 @@ class MakerFileWrangler(Wrangler):
         superclass = super(MakerFileWrangler, self)
         if superclass._handle_main_menu_result(result):
             return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
         else:
             self._io_manager.open_file(result)
 
-    def _make_main_menu(self, name='make py wrangler'):
+    def _make_main_menu(self):
         superclass = super(MakerFileWrangler, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_pys_menu_section(menu)
         return menu
 

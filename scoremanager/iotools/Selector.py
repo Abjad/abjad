@@ -73,7 +73,8 @@ class Selector(Controller):
             return_value_attribute=self.return_value_attribute,
             )
 
-    def _make_main_menu(self, name='selector'):
+    def _make_main_menu(self):
+        name = self._spaced_class_name
         menu = self._io_manager.make_menu(name=name)
         self._make_asset_menu_section(menu)
         return menu

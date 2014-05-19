@@ -159,8 +159,6 @@ class ScorePackageWrangler(Wrangler):
         superclass = super(ScorePackageWrangler, self)
         if superclass._handle_main_menu_result(result):
             return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
         else:
             paths = self._list_visible_asset_paths()
             if result in paths:

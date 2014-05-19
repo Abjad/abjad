@@ -188,15 +188,6 @@ class MaterialPackageManager(PackageManager):
             return format(expr, 'storage')
         return repr(expr)
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(MaterialPackageManager, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
-        else:
-            raise ValueError(result)
-
     def _has_output_material_editor(self):
         if not os.path.isfile(self._definition_py_path):
             return True

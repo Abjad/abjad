@@ -72,8 +72,6 @@ class StylesheetWrangler(Wrangler):
         superclass = super(StylesheetWrangler, self)
         if superclass._handle_main_menu_result(result):
             return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
         else:
             self._io_manager.open_file(result)
 
@@ -84,9 +82,9 @@ class StylesheetWrangler(Wrangler):
                 return True
         return False
 
-    def _make_main_menu(self, name='stylesheet wrangler'):
+    def _make_main_menu(self):
         superclass = super(StylesheetWrangler, self)
-        menu = superclass._make_main_menu(name=name)
+        menu = superclass._make_main_menu()
         self._make_stylesheets_menu_section(menu)
         return menu
 

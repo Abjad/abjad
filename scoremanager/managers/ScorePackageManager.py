@@ -127,15 +127,6 @@ class ScorePackageManager(PackageManager):
             self._get_stylesheets_directory_path(),
             )
 
-    def _handle_main_menu_result(self, result):
-        superclass = super(ScorePackageManager, self)
-        if superclass._handle_main_menu_result(result):
-            return True
-        elif result in self._input_to_method:
-            self._input_to_method[result]()
-        else:
-            raise ValueError(result)
-
     # TODO: reimplement options as dictionary
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)

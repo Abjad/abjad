@@ -199,7 +199,8 @@ class Autoeditor(Controller):
                 kwargs[name] = value
         self._target = type(self.target)(*args, **kwargs)
 
-    def _make_main_menu(self, name='editor'):
+    def _make_main_menu(self):
+        name = self._spaced_class_name
         menu = self._io_manager.make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
