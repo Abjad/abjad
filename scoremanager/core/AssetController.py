@@ -104,6 +104,7 @@ class AssetController(Controller):
         self._make_go_wranglers_menu_section(menu)
         self._make_go_scores_menu_section(menu)
         self._make_repository_menu_section(menu)
+        self._make_system_menu_section(menu)
         return menu
             
     def _make_repository_menu_section(self, menu):
@@ -118,6 +119,21 @@ class AssetController(Controller):
             is_hidden=True,
             commands=commands,
             name='repository',
+            )
+
+    def _make_system_menu_section(self, menu):
+        commands = []
+        commands.append(('system - commands', '?'))
+        commands.append(('system - doctest', 'pyd'))
+        commands.append(('system - session variables', 'sv'))
+        commands.append(('system - LilyPond log', 'll'))
+        commands.append(('system - Python', 'pyi'))
+        commands.append(('system - pytest', 'pyt'))
+        commands.append(('system - shell', '!'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='system', 
             )
 
     def _open_file(self, path):

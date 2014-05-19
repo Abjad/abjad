@@ -77,31 +77,15 @@ class ScoreManagerObject(object):
 
     def _make_default_hidden_sections(self, menu):
         self._make_go_menu_section(menu)
-        self._make_system_menu_section(menu)
 
     def _make_go_menu_section(self, menu):
         commands = []
         commands.append(('go - back', 'b'))
         commands.append(('go - home', 'h'))
+        commands.append(('go - quit', 'q'))
         commands.append(('go - score', 's'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='go',
-            )
-
-    def _make_system_menu_section(self, menu):
-        commands = []
-        commands.append(('system - commands', '?'))
-        commands.append(('system - doctest', 'pyd'))
-        commands.append(('system - session variables', 'sv'))
-        commands.append(('system - LilyPond log', 'll'))
-        commands.append(('system - Python', 'pyi'))
-        commands.append(('system - pytest', 'pyt'))
-        commands.append(('system - quit', 'q'))
-        commands.append(('system - shell', '!'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='system', 
             )
