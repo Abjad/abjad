@@ -600,7 +600,7 @@ class IOManager(IOManager):
             name=name,
             session=self._session,
             )
-        self.client._make_default_hidden_sections(menu)
+#        self.client._make_default_hidden_sections(menu)
         return menu
 
     def make_package_manager(self, path):

@@ -50,7 +50,7 @@ class PackageManager(AssetController):
     def _breadcrumb(self):
         if self._path:
             return os.path.basename(self._path)
-        return self._space_delimited_lowercase_class_name
+        return self._spaced_class_name
 
     @property
     def _init_py_file_path(self):

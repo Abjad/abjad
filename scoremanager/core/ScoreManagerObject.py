@@ -1,14 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
-import inspect
-import os
 from abjad.tools import stringtools
-from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class ScoreManagerObject(object):
     r'''Score manager object.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -64,28 +60,5 @@ class ScoreManagerObject(object):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _space_delimited_lowercase_class_name(self):
-        return stringtools.to_space_delimited_lowercase(
-            type(self).__name__)
-
-    @property
     def _spaced_class_name(self):
-        return stringtools.to_space_delimited_lowercase(
-            type(self).__name__)
-
-    ### PRIVATE METHODS ###
-
-    def _make_default_hidden_sections(self, menu):
-        self._make_go_menu_section(menu)
-
-    def _make_go_menu_section(self, menu):
-        commands = []
-        commands.append(('go - back', 'b'))
-        commands.append(('go - home', 'h'))
-        commands.append(('go - quit', 'q'))
-        commands.append(('go - score', 's'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go',
-            )
+        return stringtools.to_space_delimited_lowercase(type(self).__name__)
