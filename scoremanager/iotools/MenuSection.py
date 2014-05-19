@@ -11,7 +11,8 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> menu = scoremanager.iotools.Menu()
+            >>> session = scoremanager.core.Session()
+            >>> menu = scoremanager.iotools.Menu(session=session)
             >>> commands = []
             >>> commands.append(('foo - add', 'add'))
             >>> commands.append(('foo - delete', 'delete'))

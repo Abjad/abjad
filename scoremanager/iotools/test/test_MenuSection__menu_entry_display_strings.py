@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session()
 
 
 def test_MenuSection__menu_entry_display_strings_01():
@@ -9,7 +10,7 @@ def test_MenuSection__menu_entry_display_strings_01():
     True whether section is numbered or not.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append('apple')
     commands.append('banana')
@@ -23,7 +24,7 @@ def test_MenuSection__menu_entry_display_strings_01():
     assert section._menu_entry_display_strings == \
         ['apple', 'banana', 'cherry']
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append('apple')
     commands.append('banana')
@@ -45,7 +46,7 @@ def test_MenuSection__menu_entry_display_strings_02():
     True whether section is numbered or not.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append(('add something', 'add'))
     commands.append(('delete something', 'rm'))
@@ -61,7 +62,7 @@ def test_MenuSection__menu_entry_display_strings_02():
     assert section._menu_entry_display_strings == \
         [x.display_string for x in section.menu_entries]
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append(('add something', 'add'))
     commands.append(('delete something', 'rm'))

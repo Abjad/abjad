@@ -5,17 +5,18 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Menu(ScoreManagerObject):
+class Menu(Controller):
     r'''Menu.
 
     ..  container:: example
 
         ::
 
-            >>> menu = scoremanager.iotools.Menu()
+            >>> session = scoremanager.core.Session()
+            >>> menu = scoremanager.iotools.Menu(session=session)
             >>> commands = []
             >>> commands.append(('foo - add', 'add'))
             >>> commands.append(('foo - delete', 'delete'))
@@ -54,7 +55,7 @@ class Menu(ScoreManagerObject):
         session=None,
         title=None,
         ):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         self._breadcrumb_callback = breadcrumb_callback
         self._menu_sections = []
         self._name = name
@@ -119,7 +120,7 @@ class Menu(ScoreManagerObject):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('s', 'h', 'q', 'b', 'n', '?', 'r'):
+        elif input_ in ('s', 'h', 'q', 'b', '?', 'r'):
             return input_
         elif input_.startswith('!'):
             return input_
@@ -425,6 +426,10 @@ class Menu(ScoreManagerObject):
                     return result
                 if result == 'r':
                     clear_terminal, hide_current_run = True, False
+                elif (isinstance(result, str) and 
+                    result in self._input_to_method):
+                    self._input_to_method[result]()
+                    return
                 else:
                     return result
 

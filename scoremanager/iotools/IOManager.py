@@ -61,7 +61,6 @@ class IOManager(IOManager):
     def _input_to_method(self):
         result = {
             'b': self._handle_backtrack_navigation_directive,
-            'h': self._handle_home_navigation_directive,
             'q': self._handle_quit_directive,
             's': self._handle_score_navigation_directive,
             '>>': self._handle_next_score_directive,
@@ -116,10 +115,6 @@ class IOManager(IOManager):
             self._input_to_method[directive]()
             directive = None
         return directive
-
-    def _handle_home_navigation_directive(self):
-        self._session._is_backtracking_to_score_manager = True
-        self._session._hide_hidden_commands = True
 
     def _handle_next_score_directive(self):
         self._session._is_navigating_to_next_score = True

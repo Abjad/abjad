@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session()
 
 
 def test_Menu__run_01():
@@ -8,8 +9,9 @@ def test_Menu__run_01():
     '''
 
     menu = scoremanager.iotools.Menu(
-        name='test',
         breadcrumb_callback='name',
+        name='test',
+        session=session,
         )
     commands = []
     commands.append('apple')
@@ -58,8 +60,9 @@ def test_Menu__run_02():
     '''
 
     menu = scoremanager.iotools.Menu(
-        name='test',
         breadcrumb_callback='name',
+        name='test',
+        session=session,
         )
     commands = []
     commands.append('apple')
@@ -104,6 +107,7 @@ def test_Menu__run_03():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append('apple')
@@ -157,6 +161,7 @@ def test_Menu__run_04():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append('apple')
@@ -211,6 +216,7 @@ def test_Menu__run_05():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -277,6 +283,7 @@ def test_Menu__run_06():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -331,6 +338,7 @@ def test_Menu__run_07():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -389,6 +397,7 @@ def test_Menu__run_08():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -444,6 +453,7 @@ def test_Menu__run_09():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -510,6 +520,7 @@ def test_Menu__run_10():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))
@@ -576,6 +587,7 @@ def test_Menu__run_11():
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
+        session=session,
         )
     commands = []
     commands.append(('first command', 'add'))

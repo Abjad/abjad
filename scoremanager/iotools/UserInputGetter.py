@@ -171,6 +171,8 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 break
             elif input_ == '?':
                 self._display_help()
+            elif input_ in self._input_to_method:
+                self._input_to_method[input_]()
             assert isinstance(input_, str), repr(input_)
             directive = self._io_manager._handle_directive(input_)
             if self._session.is_backtracking:

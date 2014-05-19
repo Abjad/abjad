@@ -31,6 +31,7 @@ class Controller(ScoreManagerObject):
     @property
     def _input_to_method(self):
         result = {
+            'h': self.go_home,
             }
         return result
 
@@ -161,3 +162,13 @@ class Controller(ScoreManagerObject):
         for key in sorted(dictionary):
             new_dictionary[key] = dictionary[key]
         return new_dictionary
+
+    ### PUBLIC METHODS ###
+
+    def go_home(self):
+        r'''Goes home.
+
+        Returns none.
+        '''
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True

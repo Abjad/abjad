@@ -5,6 +5,7 @@ from abjad.tools import stringtools
 
 class ScoreManagerObject(object):
     r'''Score manager object.
+
     '''
 
     ### CLASS VARIABLES ###

@@ -1,13 +1,14 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session()
 
 
 def test_MenuSection___format___01():
     r'''Formats menu section without raising exception.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
 
     commands = []
     commands.append(('foo - add', 'add'))

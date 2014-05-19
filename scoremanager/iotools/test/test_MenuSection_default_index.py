@@ -2,11 +2,12 @@
 import pytest
 from abjad import *
 import scoremanager
+session = scoremanager.core.Session()
 
 
 def test_MenuSection_default_index_01():
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append('apple')
     commands.append('banana')
@@ -22,7 +23,7 @@ def test_MenuSection_default_index_01():
 
 def test_MenuSection_default_index_02():
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(session=session)
     commands = []
     commands.append('apple')
     commands.append('banana')
