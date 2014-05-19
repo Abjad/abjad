@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_go_to_next_asset_01():
     input_ = 'red~example~score m > > > > > > q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',
@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler_go_to_next_asset_02():
     input_ = 'red~example~score m > > g > > q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',

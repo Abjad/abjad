@@ -11,7 +11,7 @@ def test_MakerFileWrangler_go_to_stylesheets_01():
     input_ = 'red~example~score k y q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - maker files',
         'Red Example Score (2013) - stylesheets',
@@ -26,7 +26,7 @@ def test_MakerFileWrangler_go_to_stylesheets_02():
     input_ = 'k y q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Score manager - maker files',
         'Score manager - stylesheets',
         ]

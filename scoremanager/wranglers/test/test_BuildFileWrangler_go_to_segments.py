@@ -11,7 +11,7 @@ def test_BuildFileWrangler_go_to_segments_01():
     input_ = 'red~example~score u g q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build files',
         'Red Example Score (2013) - segments',
@@ -26,7 +26,7 @@ def test_BuildFileWrangler_go_to_segments_02():
     input_ = 'u g q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Score manager - build files',
         'Score manager - segments',
         ]

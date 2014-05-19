@@ -23,9 +23,9 @@ def test_Menu__display_all_menu_commands_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
-        'Score manager - example scores',
-        'Score manager - example scores',
+        'Score manager - scores',
+        'Score manager - scores',
+        'Score manager - scores',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -39,8 +39,8 @@ def test_Menu__display_all_menu_commands_03():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
-        'Score manager - example scores',
+        'Score manager - scores',
+        'Score manager - scores',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -54,7 +54,7 @@ def test_Menu__display_all_menu_commands_04():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013)',
         ]

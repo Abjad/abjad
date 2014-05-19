@@ -123,8 +123,6 @@ class ScorePackageWrangler(Wrangler):
             return title
 
     def _get_scores_to_display_string(self):
-        if self._session.is_test:
-            return 'example scores'
         view = self._read_view()
         if view:
             view_name = self._read_view_name()

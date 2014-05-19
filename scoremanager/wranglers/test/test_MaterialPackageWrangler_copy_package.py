@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_copy_package_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Score manager - materials',
         'Score manager - materials - select storehouse:',
         ]

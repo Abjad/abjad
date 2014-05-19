@@ -41,7 +41,7 @@ def test_SegmentPackageWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Score manager - segments',
         'Score manager - segments - select view(s) to remove:',
         'Score manager - segments',

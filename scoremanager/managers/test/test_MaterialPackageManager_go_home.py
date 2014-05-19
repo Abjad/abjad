@@ -10,10 +10,10 @@ def test_MaterialPackageManager_go_home_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory (AE)',
-        'Score manager - example scores',
+        'Score manager - scores',
         ]
     assert score_manager._transcript.titles == titles

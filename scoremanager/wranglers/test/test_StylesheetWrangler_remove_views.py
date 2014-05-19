@@ -39,7 +39,7 @@ def test_StylesheetWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Score manager - stylesheets',
         'Score manager - stylesheets - select view(s) to remove:',
         'Score manager - stylesheets',

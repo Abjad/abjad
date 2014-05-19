@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler_make_view_03():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - views - _test - edit:',

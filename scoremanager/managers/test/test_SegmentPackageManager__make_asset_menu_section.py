@@ -11,7 +11,7 @@ def test_SegmentPackageManager__make_asset_menu_section_01():
     input_ = 'blue~example~score g segment~01 q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - segments',
         'Blue Example Score (2013) - segments - segment 01',

@@ -27,7 +27,7 @@ def test_Wrangler__read_view_inventory_01():
     input_ = 'blue~example~score g vls default q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - segments',
         'SegmentPackageWrangler __views.py__ is corrupt:',

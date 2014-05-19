@@ -9,7 +9,7 @@ def test_SegmentPackageManager_go_to_previous_asset_01():
     input_ = 'red~example~score g A < q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - example scores',
+        'Score manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - A',
