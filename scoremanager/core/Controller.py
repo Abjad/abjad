@@ -31,6 +31,7 @@ class Controller(ScoreManagerObject):
     @property
     def _input_to_method(self):
         result = {
+            'b': self.go_back,
             'h': self.go_home,
             }
         return result
@@ -164,6 +165,14 @@ class Controller(ScoreManagerObject):
         return new_dictionary
 
     ### PUBLIC METHODS ###
+
+    def go_back(self):
+        r'''Goes back.
+
+        Returns none.
+        '''
+        self._session._is_backtracking_locally = True
+        self._session._hide_hidden_commands = True
 
     def go_home(self):
         r'''Goes home.

@@ -60,7 +60,6 @@ class IOManager(IOManager):
     @property
     def _input_to_method(self):
         result = {
-            'b': self._handle_backtrack_navigation_directive,
             'q': self._handle_quit_directive,
             's': self._handle_score_navigation_directive,
             '>>': self._handle_next_score_directive,
@@ -98,10 +97,6 @@ class IOManager(IOManager):
             return expr
         else:
             return repr(expr)
-
-    def _handle_backtrack_navigation_directive(self):
-        self._session._is_backtracking_locally = True
-        self._session._hide_hidden_commands = True
 
     def _handle_directive(self, directive):
         if not isinstance(directive, str):
