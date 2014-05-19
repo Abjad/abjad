@@ -146,7 +146,7 @@ class Menu(ScoreManagerObject):
         from scoremanager import iotools
         self._clear_terminal()
         if not self._session.hide_hidden_commands:
-            self._display_all_commands()
+            self._display_available_commands()
         menu_lines = self._make_menu_lines()
         self._io_manager.display(
             menu_lines,
@@ -168,7 +168,7 @@ class Menu(ScoreManagerObject):
             result = directive
         return result
 
-    def _display_all_commands(self):
+    def _display_available_commands(self):
         menu_lines = []
         for section in self.menu_sections:
             if not section.is_command_section:
@@ -184,6 +184,7 @@ class Menu(ScoreManagerObject):
             menu_lines.pop()
         menu_lines = self._make_bicolumnar(menu_lines)
         title = self._session.menu_header
+        title = title + ' - available commands'
         title = stringtools.capitalize_start(title)
         menu_lines[0:0] = [title, '']
         menu_lines.append('')

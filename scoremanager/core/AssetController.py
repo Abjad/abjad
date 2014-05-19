@@ -31,6 +31,7 @@ class AssetController(Controller):
             'ess': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
+            '?': self.display_available_commands,
             'log': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
@@ -147,7 +148,7 @@ class AssetController(Controller):
 
     def _make_system_menu_section(self, menu):
         commands = []
-        commands.append(('system - commands', '?'))
+        commands.append(('system - available commands', '?'))
         commands.append(('system - doctest', 'pyd'))
         commands.append(('system - session variables', 'sv'))
         commands.append(('system - LilyPond log', 'log'))
@@ -197,6 +198,16 @@ class AssetController(Controller):
             self._io_manager.run_command(command)
 
     ### PUBLIC METHODS ###
+
+    def display_available_commands(self):
+        r'''Displays available commands.
+
+        Returns none.
+        '''
+        if (not self._session.is_in_confirmation_environment and
+            not self._session.is_in_editor):
+            hide = self._session.hide_hidden_commands
+            self._session._hide_hidden_commands = not hide
 
     def display_session_variables(self):
         r'''Displays session variables.

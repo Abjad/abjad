@@ -3,18 +3,18 @@ from abjad import *
 import scoremanager
 
 
-def test_Menu__display_all_menu_commands_01():
+def test_Menu__display_available_commands_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'system - commands' in contents
+    assert 'system - available commands' in contents
     assert 'scores - new' in contents
 
 
-def test_Menu__display_all_menu_commands_02():
+def test_Menu__display_available_commands_02():
     r'''Hidden menu persists after junk.
     '''
 
@@ -24,13 +24,13 @@ def test_Menu__display_all_menu_commands_02():
 
     titles = [
         'Score manager - scores',
-        'Score manager - scores',
+        'Score manager - scores - available commands',
         'Score manager - scores',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_Menu__display_all_menu_commands_03():
+def test_Menu__display_available_commands_03():
     r'''Hidden menu persists after 'LilyPond log view.
     '''
 
@@ -40,12 +40,12 @@ def test_Menu__display_all_menu_commands_03():
 
     titles = [
         'Score manager - scores',
-        'Score manager - scores',
+        'Score manager - scores - available commands',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_Menu__display_all_menu_commands_04():
+def test_Menu__display_available_commands_04():
     r'''Hidden menu is available when managing score package.
     '''
 
@@ -56,6 +56,6 @@ def test_Menu__display_all_menu_commands_04():
     titles = [
         'Score manager - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013)',
+        'Red Example Score (2013) - available commands',
         ]
     assert score_manager._transcript.titles == titles

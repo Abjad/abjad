@@ -64,7 +64,6 @@ class IOManager(IOManager):
             'h': self._handle_home_navigation_directive,
             'q': self._handle_quit_directive,
             's': self._handle_score_navigation_directive,
-            '?': self._handle_display_all_commands_directive,
             '>>': self._handle_next_score_directive,
             '<<': self._handle_previous_score_directive,
             '>': self._handle_next_sibling_asset_directive,
@@ -117,12 +116,6 @@ class IOManager(IOManager):
             self._input_to_method[directive]()
             directive = None
         return directive
-
-    def _handle_display_all_commands_directive(self):
-        if (not self._session.is_in_confirmation_environment and
-            not self._session.is_in_editor):
-            hide = self._session.hide_hidden_commands
-            self._session._hide_hidden_commands = not hide
 
     def _handle_home_navigation_directive(self):
         self._session._is_backtracking_to_score_manager = True
