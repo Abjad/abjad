@@ -31,10 +31,11 @@ class AssetController(Controller):
             'ess': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
-            'll': self.open_lilypond_log,
+            'log': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
             'pyt': self.pytest,
+            'sv': self.display_session_variables,
             #
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
@@ -149,7 +150,7 @@ class AssetController(Controller):
         commands.append(('system - commands', '?'))
         commands.append(('system - doctest', 'pyd'))
         commands.append(('system - session variables', 'sv'))
-        commands.append(('system - LilyPond log', 'll'))
+        commands.append(('system - LilyPond log', 'log'))
         commands.append(('system - Python', 'pyi'))
         commands.append(('system - pytest', 'pyt'))
         commands.append(('system - shell', '!'))
@@ -196,6 +197,13 @@ class AssetController(Controller):
             self._io_manager.run_command(command)
 
     ### PUBLIC METHODS ###
+
+    def display_session_variables(self):
+        r'''Displays session variables.
+
+        Returns none.
+        '''
+        self._session._display_variables()
 
     def doctest(self):
         r'''Runs doctest on Python files contained in assets.

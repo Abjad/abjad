@@ -69,8 +69,6 @@ class PackageManager(AssetController):
             'mdrm': self.remove_metadatum,
             'mdpyo': self.open_metadata_py,
             'mdpyrw': self.rewrite_metadata_py,
-            'pyd': self.doctest,
-            'pyt': self.pytest,
             })
         return result
 

@@ -65,8 +65,6 @@ class IOManager(IOManager):
             'q': self._handle_quit_directive,
             's': self._handle_score_navigation_directive,
             '?': self._handle_display_all_commands_directive,
-            'n': self._handle_display_all_commands_directive,
-            'sv': self._session._display_variables,
             '>>': self._handle_next_score_directive,
             '<<': self._handle_previous_score_directive,
             '>': self._handle_next_sibling_asset_directive,

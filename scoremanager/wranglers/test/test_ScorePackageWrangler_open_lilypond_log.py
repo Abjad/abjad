@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_open_lilypond_log_01():
 
-    input_ = 'u ll q'
+    input_ = 'u log q'
     score_manager._run(pending_input=input_)
     
     assert score_manager._session._attempted_to_open_file

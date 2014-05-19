@@ -95,8 +95,6 @@ class Wrangler(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'pyd': self.doctest,
-            'pyt': self.pytest,
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vls': self.list_views,

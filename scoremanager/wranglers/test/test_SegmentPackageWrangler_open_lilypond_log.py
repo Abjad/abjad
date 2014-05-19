@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_open_lilypond_log_01():
     r'''In score.
     '''
 
-    input_ = 'red~example~score g ll q'
+    input_ = 'red~example~score g log q'
     score_manager._run(pending_input=input_)
     
     assert score_manager._session._attempted_to_open_file
@@ -18,7 +18,7 @@ def test_SegmentPackageWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'g ll q'
+    input_ = 'g log q'
     score_manager._run(pending_input=input_)
     
     assert score_manager._session._attempted_to_open_file

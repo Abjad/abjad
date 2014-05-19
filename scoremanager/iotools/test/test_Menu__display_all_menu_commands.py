@@ -35,7 +35,7 @@ def test_Menu__display_all_menu_commands_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = '? ll q'
+    input_ = '? log q'
     score_manager._run(pending_input=input_)
 
     titles = [
