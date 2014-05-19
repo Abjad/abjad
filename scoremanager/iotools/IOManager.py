@@ -58,12 +58,6 @@ class IOManager(IOManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
-        result = {
-            }
-        return result
-
-    @property
     def _unicode_directive(self):
         return '# -*- encoding: utf-8 -*-'
 
@@ -93,16 +87,9 @@ class IOManager(IOManager):
             return repr(expr)
 
     def _handle_directive(self, directive):
-        if not isinstance(directive, str):
-            pass
-        elif directive in self._wrangler_navigation_alias_to_action:
+        if (isinstance(directive, str) and 
+            directive in self._wrangler_navigation_alias_to_action):
             self._wrangler_navigation_alias_to_action[directive]()
-        elif (self._session.is_in_confirmation_environment and
-            directive in ('y', 'Y', 'n', 'N')):
-            return directive
-        elif directive in self._input_to_method:
-            self._input_to_method[directive]()
-            directive = None
         return directive
 
     def _handle_to_build_file_wrangler_directive(self):
