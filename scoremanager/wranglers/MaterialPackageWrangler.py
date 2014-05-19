@@ -115,7 +115,10 @@ class MaterialPackageWrangler(Wrangler):
         return manager
 
     def _handle_main_menu_result(self, result):
-        if result in self._input_to_method:
+        superclass = super(MaterialPackageWrangler, self)
+        if superclass._handle_main_menu_result(result):
+            return True
+        elif result in self._input_to_method:
             self._input_to_method[result]()
         elif result == 'user entered lone return':
             pass

@@ -156,7 +156,10 @@ class ScorePackageWrangler(Wrangler):
             return self._get_sibling_score_directory_path(next_=False)
 
     def _handle_main_menu_result(self, result):
-        if result in self._input_to_method:
+        superclass = super(ScorePackageWrangler, self)
+        if superclass._handle_main_menu_result(result):
+            return True
+        elif result in self._input_to_method:
             self._input_to_method[result]()
         elif result == 'user entered lone return':
             pass

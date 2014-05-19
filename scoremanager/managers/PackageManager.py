@@ -312,14 +312,6 @@ class PackageManager(AssetController):
             raise ValueError(self)
         return paths
 
-    def _handle_main_menu_result(self, result):
-        if result in self._input_to_method:
-            self._input_to_method[result]()
-        elif result == 'user entered lone return':
-            pass
-        else:
-            self._run_asset_manager(result)
-
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
         asset_identifier = getattr(self, '_asset_identifier', None)
