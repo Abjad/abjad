@@ -306,7 +306,7 @@ class Autoeditor(Controller):
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
-        if self._session.is_complete:
+        if self._session.is_quitting:
             return
         # TODO: see GitHub #366:
         # TODO: reimplement Tempo.__init__()

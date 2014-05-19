@@ -420,7 +420,7 @@ class Menu(ScoreManagerObject):
                 result = self._predetermined_input
                 if not result:
                     result = self._display()
-                if self._session.is_complete:
+                if self._session.is_quitting:
                     return result
                 if result == 'r':
                     clear_terminal, hide_current_run = True, False

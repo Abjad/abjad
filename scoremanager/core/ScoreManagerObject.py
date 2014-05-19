@@ -106,7 +106,7 @@ class ScoreManagerObject(object):
             )
 
     def _should_backtrack(self):
-        if self._session.is_complete:
+        if self._session.is_quitting:
             return True
         elif self._session.is_backtracking_to_score_manager:
             return True

@@ -107,7 +107,6 @@ class ScoreManager(Controller):
             state = systemtools.FilesystemState(keep=[path])
         interaction = self._io_manager.make_interaction()
         with context, directory_change, state, interaction:
-        #with context, directory_change, state:
             wrangler = self._score_package_wrangler
             io_manager = self._io_manager
             while True:
@@ -117,22 +116,15 @@ class ScoreManager(Controller):
                 if not result:
                     menu = wrangler._make_main_menu()
                     result = menu._run()
-                if self._should_backtrack():
+                self._update_session_variables()
+                if self._session.is_quitting:
                     return
                 if result:
                     wrangler._handle_main_menu_result(result)
-                    if self._should_backtrack():
+                    self._update_session_variables()
+                    if self._session.is_quitting:
                         return
-
-    def _should_backtrack(self):
-        self._update_session_variables()
-        if self._session.is_complete:
-            return True
-        else:
-            return False
-
+    
     def _update_session_variables(self):
-        if self._session.is_backtracking_to_score_manager:
-            self._session._is_backtracking_to_score_manager = False
-        if self._session.is_backtracking_to_score:
-            self._session._is_backtracking_to_score = False
+        self._session._is_backtracking_to_score = False
+        self._session._is_backtracking_to_score_manager = False
