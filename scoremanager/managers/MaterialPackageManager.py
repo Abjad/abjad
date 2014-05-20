@@ -571,11 +571,13 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
+        file_name = 'temporary_illustrate.py'
+        path = os.path.join(self._path, file_name)
+        state = systemtools.FilesystemState(remove=[path])
+        interaction = self._io_manager._make_interaction(display=display)
+        with interaction, state:
             lines = self._make_temporary_illustrate_py_lines()
             contents = '\n'.join(lines)
-            file_name = 'temporary_illustrate.py'
-            path = os.path.join(self._path, file_name)
             self._io_manager.write(path, contents)
             self._io_manager.interpret_file(
                 path, 
