@@ -109,6 +109,18 @@ class Menu(Controller):
         elif self._breadcrumb_callback:
             return self._breadcrumb_callback()
 
+    @property
+    def _wrangler_navigation_to_session_variable(self):
+        result = {
+            'd': '_is_navigating_to_score_distribution_files',
+            'g': '_is_navigating_to_score_segments',
+            'k': '_is_navigating_to_score_maker_files',
+            'm': '_is_navigating_to_score_materials',
+            'u': '_is_navigating_to_score_build_files',
+            'y': '_is_navigating_to_score_stylesheets',
+        }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _change_input_to_directive(self, input_):
@@ -160,7 +172,7 @@ class Menu(Controller):
         directive = self._change_input_to_directive(input_)
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
-        directive = self._io_manager._handle_directive(directive)
+        directive = self._handle_directive(directive)
         if directive is None and user_entered_lone_return:
             result = 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -227,11 +239,28 @@ class Menu(Controller):
             result.append(entry)
         return result
 
+    def _handle_directive(self, directive):
+        if not self._is_in_open_environment():
+            return directive
+        if not isinstance(directive, str):
+            return directive
+        if directive in self._wrangler_navigation_to_session_variable:
+            variable = self._wrangler_navigation_to_session_variable[directive]
+            setattr(self._session, variable, True)
+        return directive
+
     def _has_numbered_section(self):
         return any(x.is_numbered for x in self.menu_sections)
 
     def _has_ranged_section(self):
         return any(x.is_ranged for x in self.menu_sections)
+
+    def _is_in_open_environment(self):
+        if self._session.is_in_confirmation_environment:
+            return False
+        if self._session.is_in_editor:
+            return False
+        return True
 
     def _make_bicolumnar(self, lines):
         terminal_height = 50

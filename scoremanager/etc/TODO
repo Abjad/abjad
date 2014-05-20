@@ -224,6 +224,4 @@
 
 44. Change (red~example~score g) to list assets.
 
-45. Remove IOManager._wrangler_naviation_alias_to_action.
-    Reimplement functionality on AssetController.
-    Then finish cleaning up all of IOManager.
+45. Finish cleaning up IOManager.

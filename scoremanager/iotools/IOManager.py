@@ -61,18 +61,6 @@ class IOManager(IOManager):
     def _unicode_directive(self):
         return '# -*- encoding: utf-8 -*-'
 
-    @property
-    def _wrangler_navigation_alias_to_action(self):
-        result = {
-            'd': self._handle_to_distribution_file_wrangler_directive,
-            'g': self._handle_to_segment_package_wrangler_directive,
-            'k': self._handle_to_maker_file_wrangler_directive,
-            'm': self._handle_to_material_package_wrangler_directive,
-            'u': self._handle_to_build_file_wrangler_directive,
-            'y': self._handle_to_stylesheet_wrangler_directive,
-        }
-        return result
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -85,43 +73,6 @@ class IOManager(IOManager):
             return expr
         else:
             return repr(expr)
-
-    def _handle_directive(self, directive):
-        if (isinstance(directive, str) and 
-            directive in self._wrangler_navigation_alias_to_action):
-            self._wrangler_navigation_alias_to_action[directive]()
-        return directive
-
-    def _handle_to_build_file_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_build_files = True
-
-    def _handle_to_distribution_file_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_distribution_files = True
-
-    def _handle_to_maker_file_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_maker_files = True
-
-    def _handle_to_material_package_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_materials = True
-
-    def _handle_to_segment_package_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_segments = True
-
-    def _handle_to_stylesheet_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_stylesheets = True
-
-    def _is_in_open_environment(self):
-        if self._session.is_in_confirmation_environment:
-            return False
-        if self._session.is_in_editor:
-            return False
-        return True
 
     def _make_tab(self, n=1):
         return 4 * n * ' '
