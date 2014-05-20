@@ -365,7 +365,8 @@ class PackageManager(AssetController):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = self._io_manager.make_subprocess(command)
+        with systemtools.TemporaryDirectoryChange(directory=self._path):
+            process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         first_line = first_line.strip()
         if first_line == '':
@@ -432,7 +433,8 @@ class PackageManager(AssetController):
         else:
             raise ValueError(self)
         command = command.format(self._path)
-        process = self._io_manager.make_subprocess(command)
+        with systemtools.TemporaryDirectoryChange(directory=self._path):
+            process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         return first_line == ''
 
@@ -918,7 +920,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        interaction = self._io_manager._make_interaction(display=display)
+        with change, interaction:
             self._session._attempted_to_add_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -939,7 +943,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        interaction = self._io_manager._make_interaction(display=display)
+        with change, interaction:
             self._session._attempted_to_commit_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -1020,7 +1026,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        interaction = self._io_manager._make_interaction()
+        with change, interaction:
             self._session._attempted_repository_status = True
             message = self._path + '...'
             self._io_manager._display(message, capitalize=False)
@@ -1043,7 +1051,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        interaction = self._io_manager._make_interaction()
+        with change, interaction:
             self._session._attempted_to_revert_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -1083,7 +1093,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        interaction = self._io_manager._make_interaction(display=display)
+        with change, interaction:
             self._session._attempted_to_update_from_repository = True
             if self._session.is_repository_test:
                 return
