@@ -7,7 +7,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 package_path = os.path.join(
-    score_manager._configuration.user_library_material_packages_directory_path,
+    score_manager._configuration.user_library_material_packages_directory,
     'testnotes',
     )
 initializer_file_path = os.path.join(package_path, '__init__.py')
@@ -16,15 +16,15 @@ definition_py_path = os.path.join(package_path, 'definition.py')
 output_py_path = os.path.join(package_path, 'output.py')
 
 exception_file_path = os.path.join(
-    score_manager._configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory,
     'exception.py',
     )
 empty_unicode_file_path = os.path.join(
-    score_manager._configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory,
     'empty_unicode.py',
     )
 boilerplate_definition_py_path = os.path.join(
-    score_manager._configuration.boilerplate_directory_path,
+    score_manager._configuration.boilerplate_directory,
     'notes_definition.py',
     )
 
@@ -56,7 +56,7 @@ def test_MaterialPackageWrangler_make_package_02():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testnotes',
         )
     directory_entries = [
@@ -83,7 +83,7 @@ def test_MaterialPackageWrangler_make_package_03():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testnotes',
         )
     definition_py_path = os.path.join(

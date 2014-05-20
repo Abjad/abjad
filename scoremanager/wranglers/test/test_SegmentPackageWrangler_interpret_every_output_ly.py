@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_SegmentPackageWrangler_interpret_every_output_ly_01():
 
-    path = score_manager._configuration.example_score_packages_directory_path
+    path = score_manager._configuration.example_score_packages_directory
     path = os.path.join(path, 'red_example_score', 'segments')
     paths = [
         os.path.join(path, 'segment_01', 'output.ly'),

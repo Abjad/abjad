@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    path = score_manager._configuration.example_score_packages_directory_path
+    path = score_manager._configuration.example_score_packages_directory
     paths = [
         os.path.join(path, 'blue_example_score', '__metadata__.py'),
         os.path.join(path, 'etude_example_score', '__metadata__.py'),

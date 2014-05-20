@@ -10,7 +10,7 @@ def test_ScorePackageWrangler_remove_packages_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score_100',
         )
 
@@ -32,11 +32,11 @@ def test_ScorePackageWrangler_remove_packages_02():
     '''
 
     path_100 = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score_100',
         )
     path_101 = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score_101',
         )
 

@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_ScorePackageManager_edit_title_01():
 
     metadata_file_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'etude_example_score',
         '__metadata__.py',
         )

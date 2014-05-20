@@ -10,13 +10,13 @@ def test_BuildFileWrangler_interpret_music_01():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'music.ly',
         )
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'music.pdf',

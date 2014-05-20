@@ -82,7 +82,7 @@ class SegmentPackageManager(PackageManager):
             )
 
     @property
-    def _versions_directory_path(self):
+    def _versions_directory(self):
         return os.path.join(self._path, 'versions')
 
     ### PRIVATE METHODS ###
@@ -160,7 +160,7 @@ class SegmentPackageManager(PackageManager):
             root, extension = os.path.splitext(source_path)
             message = ' FROM: {}'.format(source_path)
             messages.append(message)
-            directory = self._versions_directory_path
+            directory = self._versions_directory
             file_name = '{}_{}{}'.format(root, next_version_string, extension)
             target_path = os.path.join(directory, file_name)
             message = '   TO: {}'.format(target_path)

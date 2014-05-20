@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            wrangler._configuration.abjad_material_packages_directory_path,
+            wrangler._configuration.abjad_material_packages_directory,
             package_name,
             )
         paths.append(path)
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            wrangler._configuration.example_score_packages_directory_path,
+            wrangler._configuration.example_score_packages_directory,
             'red_example_score',
             'materials',
             package_name,

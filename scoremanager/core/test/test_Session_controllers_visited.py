@@ -6,7 +6,7 @@ import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 
 score_package_path = os.path.join(
-    configuration.example_score_packages_directory_path,
+    configuration.example_score_packages_directory,
     'red_example_score',
     )
 tempo_inventory_package_path = os.path.join(

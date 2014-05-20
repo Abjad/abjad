@@ -13,7 +13,7 @@ def test_BuildFileWrangler_generate_front_cover_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',
@@ -35,7 +35,7 @@ def test_BuildFileWrangler_generate_front_cover_source_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',

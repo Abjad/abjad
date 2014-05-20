@@ -17,7 +17,7 @@ def test_BuildFileWrangler_generate_preface_source_01():
         'preface.tex',
         )
     destination_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'blue_example_score',
         'build',
         'preface.tex',
@@ -50,7 +50,7 @@ def test_BuildFileWrangler_generate_preface_source_02():
         'preface.tex',
         )
     destination_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'preface.tex',

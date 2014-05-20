@@ -33,14 +33,14 @@ class StylesheetWrangler(Wrangler):
         superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = \
-            self._configuration.abjad_stylesheets_directory_path
+            self._configuration.abjad_stylesheets_directory
         self._asset_identifier = 'stylesheet'
         self._basic_breadcrumb = 'stylesheets'
         self._human_readable = False
         self._include_extensions = True
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._user_storehouse_path = \
-            self._configuration.user_library_stylesheets_directory_path
+            self._configuration.user_library_stylesheets_directory
 
     ### PRIVATE PROPERTIES ###
 

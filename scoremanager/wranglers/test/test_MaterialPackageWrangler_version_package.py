@@ -12,7 +12,7 @@ def test_MaterialPackageWrangler_version_package_01():
     file_names = ('definition.py', 'output.ly', 'output.pdf')
     for segment in segments:
         versions_directory = os.path.join(
-            score_manager._configuration.example_score_packages_directory_path,
+            score_manager._configuration.example_score_packages_directory,
             'red_example_score',
             'segments',
             segment,

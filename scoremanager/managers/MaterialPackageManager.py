@@ -24,7 +24,7 @@ class MaterialPackageManager(PackageManager):
             >>> configuration = scoremanager.core.ScoreManagerConfiguration()
             >>> session = scoremanager.core.Session()
             >>> path = os.path.join(
-            ...     configuration.abjad_material_packages_directory_path,
+            ...     configuration.abjad_material_packages_directory,
             ...     'example_numbers',
             ...     )
             >>> manager = scoremanager.managers.MaterialPackageManager(
@@ -145,7 +145,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def _versions_directory_path(self):
+    def _versions_directory(self):
         return os.path.join(self._path, 'versions')
 
     ### PRIVATE METHODS ###
@@ -386,14 +386,14 @@ class MaterialPackageManager(PackageManager):
         line = line.format(self._material_package_name)
         lines.append(line)
         lines.append('file_path = os.path.abspath(__file__)')
-        lines.append('directory_path = os.path.dirname(file_path)')
-        line = "file_path = os.path.join(directory_path, 'illustration.pdf')"
+        lines.append('directory = os.path.dirname(file_path)')
+        line = "file_path = os.path.join(directory, 'illustration.pdf')"
         lines.append(line)
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
     def _make_version_package_messages(self):
-        path = self._versions_directory_path
+        path = self._versions_directory
         greatest_version = self._io_manager._get_greatest_version_number(path)
         new_version = greatest_version + 1
         next_version_string = '%04d' % new_version
@@ -405,7 +405,7 @@ class MaterialPackageManager(PackageManager):
                 continue
             message = ' FROM: {}'.format(source_path)
             messages.append(message)
-            versions_directory = self._versions_directory_path
+            versions_directory = self._versions_directory
             base_name = os.path.basename(source_path)
             file_name, extension = os.path.splitext(base_name)
             name = '{}_{}{}'.format(
@@ -443,7 +443,7 @@ class MaterialPackageManager(PackageManager):
         if self._session.is_backtracking:
             return
         base_name = os.path.basename(self._path)
-        new_directory_path = self._path.replace(
+        new_directory = self._path.replace(
             base_name,
             new_package_name,
             )
@@ -452,7 +452,7 @@ class MaterialPackageManager(PackageManager):
         messages.append('will change ...')
         messages.append('')
         messages.append(' FROM: {}'.format(self._path))
-        messages.append('   TO: {}'.format(new_directory_path))
+        messages.append('   TO: {}'.format(new_directory))
         messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
@@ -460,10 +460,10 @@ class MaterialPackageManager(PackageManager):
             return
         if not result:
             return
-        self._rename(new_directory_path)
-        for directory_entry in os.listdir(new_directory_path):
+        self._rename(new_directory)
+        for directory_entry in os.listdir(new_directory):
             if directory_entry.endswith('.py'):
-                file_path = os.path.join(new_directory_path, directory_entry)
+                file_path = os.path.join(new_directory, directory_entry)
                 result = os.path.splitext(base_name)
                 old_package_name, extension = result
                 self._replace_in_file(

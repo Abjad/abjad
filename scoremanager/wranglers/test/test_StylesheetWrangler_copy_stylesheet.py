@@ -9,11 +9,11 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_StylesheetWrangler_copy_stylesheet_01():
 
     source_path = os.path.join(
-        score_manager._configuration.abjad_stylesheets_directory_path,
+        score_manager._configuration.abjad_stylesheets_directory,
         'clean-letter-14.ily',
         )
     target_path = os.path.join(
-        score_manager._configuration.user_library_stylesheets_directory_path,
+        score_manager._configuration.user_library_stylesheets_directory,
         'test-foo-stylesheet.ily',
         )
 

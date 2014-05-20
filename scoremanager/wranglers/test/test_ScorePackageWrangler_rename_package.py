@@ -13,11 +13,11 @@ def test_ScorePackageWrangler_rename_package_01():
     '''
 
     path_100 = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score_100',
         )
     path_101 = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score_101',
         )
 

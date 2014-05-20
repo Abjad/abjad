@@ -18,7 +18,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_01():
         repository='git',
         )
 
-    storehouse = configuration.example_score_packages_directory_path
+    storehouse = configuration.example_score_packages_directory
 
     assert isinstance(manager, scoremanager.managers.ScorePackageManager)
     assert manager._is_git_versioned()
@@ -41,7 +41,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_02():
     if not manager:
         return
 
-    storehouse = configuration.user_score_packages_directory_path
+    storehouse = configuration.user_score_packages_directory
 
     assert isinstance(manager, scoremanager.managers.ScorePackageManager)
     assert manager._is_svn_versioned()

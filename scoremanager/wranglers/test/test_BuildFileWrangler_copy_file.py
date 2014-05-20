@@ -30,13 +30,13 @@ def test_BuildFileWrangler_copy_file_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'score.pdf',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'copied-score.pdf',

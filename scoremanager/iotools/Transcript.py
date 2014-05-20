@@ -45,7 +45,7 @@ class Transcript(AbjadObject):
     def _write(self, transcripts_directory=None):
         if transcripts_directory is None:
             transcripts_directory = \
-                self._configuration.transcripts_directory_path
+                self._configuration.transcripts_directory
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
         file_name = 'session-{}.txt'.format(start_time)
         file_path = os.path.join(transcripts_directory, file_name)

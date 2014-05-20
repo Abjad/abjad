@@ -9,19 +9,19 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_01():
     r'''User library paths annotate composer last name.
     '''
 
-    path = configuration.user_library_directory_path
+    path = configuration.user_library_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.user_library_makers_directory_path
+    path = configuration.user_library_makers_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.user_library_material_packages_directory_path
+    path = configuration.user_library_material_packages_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.user_library_stylesheets_directory_path
+    path = configuration.user_library_stylesheets_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
@@ -30,11 +30,11 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_02():
     r'''Abjad library paths annotate 'Abjad'.
     '''
 
-    path = configuration.abjad_material_packages_directory_path
+    path = configuration.abjad_material_packages_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == 'Abjad'
 
-    path = configuration.abjad_stylesheets_directory_path
+    path = configuration.abjad_stylesheets_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == 'Abjad'
 
@@ -44,7 +44,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_annotation_03():
     '''
 
     path = os.path.join(
-        configuration.example_score_packages_directory_path,
+        configuration.example_score_packages_directory,
         'red_example_score',
         )
     annotation = configuration._path_to_storehouse_annotation(path)

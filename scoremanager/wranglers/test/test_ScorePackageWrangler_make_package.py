@@ -10,7 +10,7 @@ def test_ScorePackageWrangler_make_package_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'example_score',
         )
     directory_entries = [

@@ -200,10 +200,10 @@ class PackageManager(AssetController):
         return self._path
 
     def _get_last_version_number(self):
-        versions_directory_path = self._versions_directory_path
-        if not os.path.exists(versions_directory_path):
+        versions_directory = self._versions_directory
+        if not os.path.exists(versions_directory):
             return
-        file_names = os.listdir(versions_directory_path)
+        file_names = os.listdir(versions_directory)
         if not file_names:
             return
         return max(self._file_name_to_version_number(_) for _ in file_names)
@@ -276,9 +276,9 @@ class PackageManager(AssetController):
 
     def _get_score_package_directory_name(self):
         line = self._path
-        path = self._configuration.example_score_packages_directory_path
+        path = self._configuration.example_score_packages_directory
         line = line.replace(path, '')
-        path = self._configuration.user_score_packages_directory_path
+        path = self._configuration.user_score_packages_directory
         line = line.replace(path, '')
         line = line.lstrip(os.path.sep)
         return line
@@ -380,9 +380,9 @@ class PackageManager(AssetController):
         else:
             return True
 
-    def _is_populated_directory(self, directory_path):
-        if os.path.exists(directory_path):
-            if os.listdir(directory_path):
+    def _is_populated_directory(self, directory):
+        if os.path.exists(directory):
+            if os.listdir(directory):
                 return True
         return False
 
@@ -460,15 +460,15 @@ class PackageManager(AssetController):
 
     def _list_versions_directory(self):
         with self._io_manager._make_interaction():
-            versions_directory_path = self._versions_directory_path
-            if not os.path.exists(versions_directory_path):
+            versions_directory = self._versions_directory
+            if not os.path.exists(versions_directory):
                 message = 'no versions directory found {}.'
-                message = message.format(self._versions_directory_path)
+                message = message.format(self._versions_directory)
                 self._io_manager._display([message, ''])
                 self._session._hide_next_redraw = True
                 return
             file_names = []
-            for directory_entry in os.listdir(versions_directory_path):
+            for directory_entry in os.listdir(versions_directory):
                 if not directory_entry.startswith('_'):
                     file_names.append(directory_entry)
             file_names.sort(key=lambda _: self._file_name_to_version_number(_))
@@ -556,7 +556,7 @@ class PackageManager(AssetController):
         root, extension = os.path.splitext(file_name_prototype)
         file_names = []
         version_numbers = []
-        for entry in os.listdir(self._versions_directory_path):
+        for entry in os.listdir(self._versions_directory):
             if entry.startswith(root) and entry.endswith(extension):
                 version_number = self._file_name_to_version_number(entry)
                 version_numbers.append(version_number)
@@ -696,14 +696,14 @@ class PackageManager(AssetController):
             return
         if not result:
             return
-        new_directory_path = self._path.replace(
+        new_directory = self._path.replace(
             base_name,
             new_package_name,
             )
         if self._is_svn_versioned():
             # rename package directory
             command = 'svn mv {} {}'
-            command = command.format(self._path, new_directory_path)
+            command = command.format(self._path, new_directory)
             self._io_manager.spawn_subprocess(command)
             # commit
             commit_message = 'renamed {} to {}.'
@@ -712,19 +712,19 @@ class PackageManager(AssetController):
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
-            parent_directory_path = os.path.dirname(self._path)
+            parent_directory = os.path.dirname(self._path)
             command = 'svn commit -m {!r} {}'
             command = command.format(
                 commit_message,
-                parent_directory_path,
+                parent_directory,
                 )
             self._io_manager.spawn_subprocess(command)
         else:
             command = 'mv {} {}'
-            command = command.format(self._path, new_directory_path)
+            command = command.format(self._path, new_directory)
             self._io_manager.spawn_subprocess(command)
         # update path name to reflect change
-        self._path = new_directory_path
+        self._path = new_directory
         self._session._is_backtracking_locally = True
 
     def _revert_from_repository(self):
@@ -850,8 +850,8 @@ class PackageManager(AssetController):
 
     def _version_package(self, confirm=True, display=True):
         with self._io_manager._make_interaction(display=display):
-            if not os.path.isdir(self._versions_directory_path):
-                os.mkdir(self._versions_directory_path)
+            if not os.path.isdir(self._versions_directory):
+                os.mkdir(self._versions_directory)
             if confirm:
                 messages = []
                 messages.append('will copy ...')
@@ -874,7 +874,7 @@ class PackageManager(AssetController):
                     extension,
                     )
                 target_path = os.path.join(
-                    self._versions_directory_path,
+                    self._versions_directory,
                     target_file_name,
                     )
                 shutil.copyfile(source_path, target_path)

@@ -59,12 +59,12 @@ class Controller(ScoreManagerObject):
     def _list_directories_with_metadata_pys(self, path=None):
         path = path or self._path
         paths = []
-        for directory_path, subdirectory_names, file_names in os.walk(path):
-            if self._is_directory_with_metadata_py(directory_path):
-                if directory_path not in paths:
-                    paths.append(directory_path)
+        for directory, subdirectory_names, file_names in os.walk(path):
+            if self._is_directory_with_metadata_py(directory):
+                if directory not in paths:
+                    paths.append(directory)
             for subdirectory_name in subdirectory_names:
-                path = os.path.join(directory_path, subdirectory_name)
+                path = os.path.join(directory, subdirectory_name)
                 if self._is_directory_with_metadata_py(path):
                     if path not in paths:
                         paths.append(path)
@@ -76,11 +76,11 @@ class Controller(ScoreManagerObject):
         for path in paths:
             if os.path.isdir(path):
                 triples = os.walk(path)
-                for directory_path, subdirectory_names, file_names in triples:
+                for directory, subdirectory_names, file_names in triples:
                     for file_name in file_names:
                         if file_name.endswith('.py'):
                             file_path = os.path.join(
-                                directory_path, 
+                                directory, 
                                 file_name,
                                 )
                             assets.append(file_path)

@@ -47,14 +47,14 @@ class MaterialPackageWrangler(Wrangler):
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
         configuration = self._configuration
-        path = configuration.abjad_material_packages_directory_path
+        path = configuration.abjad_material_packages_directory
         self._abjad_storehouse_path = path
         self._annotate_autoeditor = True
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'
         self._manager_class = managers.MaterialPackageManager
         self._score_storehouse_path_infix_parts = ('materials',)
-        path = configuration.user_library_material_packages_directory_path
+        path = configuration.user_library_material_packages_directory
         self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
@@ -98,7 +98,7 @@ class MaterialPackageWrangler(Wrangler):
         command = 'from {0}.{1}.{1} import {1} as class_'
         configuration = self._configuration
         library_path = \
-            configuration.user_library_material_packages_directory_path
+            configuration.user_library_material_packages_directory
         package_path = self._configuration.path_to_package_path(library_path)
         command = command.format(
             package_path,

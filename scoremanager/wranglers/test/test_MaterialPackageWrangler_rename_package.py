@@ -11,13 +11,13 @@ def test_MaterialPackageWrangler_rename_package_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'test_material',
         )
     new_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'new_test_material',

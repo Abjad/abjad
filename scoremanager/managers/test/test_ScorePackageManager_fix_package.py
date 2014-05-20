@@ -23,7 +23,7 @@ def test_ScorePackageManager_fix_package_02():
     pytest.skip('make me work again; no idea why failing.')
 
     score_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         )
 

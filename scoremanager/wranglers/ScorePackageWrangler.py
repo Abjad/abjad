@@ -45,7 +45,7 @@ class ScorePackageWrangler(Wrangler):
         from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
-        path = self._configuration.example_score_packages_directory_path
+        path = self._configuration.example_score_packages_directory
         self._abjad_storehouse_path = path
         self._asset_identifier = 'score package'
         self._basic_breadcrumb = 'scores'
@@ -54,7 +54,7 @@ class ScorePackageWrangler(Wrangler):
         self._manager_class = managers.ScorePackageManager
         self._only_example_scores_during_test = True
         self._sort_by_annotation = False
-        path = self._configuration.user_score_packages_directory_path
+        path = self._configuration.user_score_packages_directory
         self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
@@ -62,16 +62,16 @@ class ScorePackageWrangler(Wrangler):
     @property
     def _current_storehouse_path(self):
         if self._session.is_in_score:
-            path = self._configuration.example_score_packages_directory_path
+            path = self._configuration.example_score_packages_directory
             directory_entries = sorted(os.listdir(path))
             manager = self._session.current_score_package_manager
             score_name = manager._package_name
             if score_name in directory_entries:
                 return path
             else:
-                return self._configuration.user_score_packages_directory_path
+                return self._configuration.user_score_packages_directory
         else:
-            return self._configuration.user_score_packages_directory_path
+            return self._configuration.user_score_packages_directory
 
     @property
     def _input_to_method(self):
@@ -129,7 +129,7 @@ class ScorePackageWrangler(Wrangler):
             return 'scores ({})'.format(view_name)
         return 'scores'
 
-    def _get_sibling_score_directory_path(self, next_=True):
+    def _get_sibling_score_directory(self, next_=True):
         paths = self._list_visible_asset_paths()
         if self._session.last_asset_path is None:
             if next_:
@@ -149,11 +149,11 @@ class ScorePackageWrangler(Wrangler):
         if self._session.is_navigating_to_next_score:
             self._session._is_navigating_to_next_score = False
             self._session._is_backtracking_to_score_manager = False
-            return self._get_sibling_score_directory_path(next_=True)
+            return self._get_sibling_score_directory(next_=True)
         if self._session.is_navigating_to_previous_score:
             self._session._is_navigating_to_previous_score = False
             self._session._is_backtracking_to_score_manager = False
-            return self._get_sibling_score_directory_path(next_=False)
+            return self._get_sibling_score_directory(next_=False)
 
     def _handle_numeric_user_input(self, result):
         paths = self._list_visible_asset_paths()
@@ -252,7 +252,7 @@ class ScorePackageWrangler(Wrangler):
 
         Returns none.
         '''
-        path = self._configuration.user_score_packages_directory_path
+        path = self._configuration.user_score_packages_directory
         self._copy_asset(new_storehouse=path)
         self.write_cache(confirm=False, display=False)
 

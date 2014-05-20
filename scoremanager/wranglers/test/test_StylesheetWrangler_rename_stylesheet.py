@@ -11,11 +11,11 @@ def test_StylesheetWrangler_rename_stylesheet_01():
     '''
 
     path = os.path.join(
-        configuration.abjad_stylesheets_directory_path,
+        configuration.abjad_stylesheets_directory,
         'clean-letter-14.ily',
         )
     new_path = os.path.join(
-        configuration.abjad_stylesheets_directory_path,
+        configuration.abjad_stylesheets_directory,
         'very-clean-letter-14.ily',
         )
 
@@ -38,13 +38,13 @@ def test_StylesheetWrangler_rename_stylesheet_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         'stylesheet.ily',
         )
     new_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         'foo-stylesheet.ily',

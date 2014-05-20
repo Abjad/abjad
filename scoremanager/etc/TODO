@@ -45,7 +45,7 @@
     IndexError: list index out of range
 
 10. Bug:
-    File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory_path
+    File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
@@ -221,5 +221,3 @@
 42. Implement a dry_run=False keyword on bundled every*() methods.
 
 43. Remove Transcript.signature.
-
-44. Change 'directory_path' to 'directory'.

@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler__get_available_path_01():
 
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
-    storehouse = configuration.user_library_material_packages_directory_path
+    storehouse = configuration.user_library_material_packages_directory
     input_ = 'foo'
     wrangler._session._pending_input = input_
     result = wrangler._get_available_path(
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler__get_available_path_02():
     wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     path = os.path.join(
-        configuration.example_score_packages_directory_path,
+        configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'foo',

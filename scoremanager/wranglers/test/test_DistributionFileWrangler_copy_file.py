@@ -28,13 +28,13 @@ def test_DistributionFileWrangler_copy_file_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'distribution',
         'red-example-score.pdf',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'distribution',
         'copied-red-example-score.pdf',

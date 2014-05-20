@@ -60,37 +60,37 @@ class ScorePackageManager(PackageManager):
             result = False
         return result
 
-    def _get_build_directory_path(self):
+    def _get_build_directory(self):
         return os.path.join(
             self._path,
             'build',
             )
 
-    def _get_distribution_directory_path(self):
+    def _get_distribution_directory(self):
         return os.path.join(
             self._path,
             'distribution',
             )
 
-    def _get_makers_directory_path(self):
+    def _get_makers_directory(self):
         return os.path.join(
             self._path,
             'makers',
             )
 
-    def _get_materials_directory_path(self):
+    def _get_materials_directory(self):
         return os.path.join(
             self._path,
             'materials',
             )
 
-    def _get_segments_directory_path(self):
+    def _get_segments_directory(self):
         return os.path.join(
             self._path,
             'segments',
             )
 
-    def _get_stylesheets_directory_path(self):
+    def _get_stylesheets_directory(self):
         return os.path.join(
             self._path,
             'stylesheets',
@@ -117,14 +117,14 @@ class ScorePackageManager(PackageManager):
         else:
             return self._get_metadatum('title') or '(untitled score)'
 
-    def _get_top_level_directory_paths(self):
+    def _get_top_level_directorys(self):
         return (
-            self._get_build_directory_path(),
-            self._get_distribution_directory_path(),
-            self._get_makers_directory_path(),
-            self._get_materials_directory_path(),
-            self._get_segments_directory_path(),
-            self._get_stylesheets_directory_path(),
+            self._get_build_directory(),
+            self._get_distribution_directory(),
+            self._get_makers_directory(),
+            self._get_materials_directory(),
+            self._get_segments_directory(),
+            self._get_stylesheets_directory(),
             )
 
     # TODO: reimplement options as dictionary
@@ -327,7 +327,7 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         package_needed_to_be_fixed = False
-        for path in self._get_top_level_directory_paths():
+        for path in self._get_top_level_directorys():
             if not os.path.exists(path):
                 package_needed_to_be_fixed = True
                 if display:

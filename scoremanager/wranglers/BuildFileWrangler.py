@@ -284,31 +284,31 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory()
-        directory_entries = sorted(os.listdir(segments_directory_path))
+        segments_directory = self._session.current_segments_directory
+        build_directory = self._get_current_directory()
+        directory_entries = sorted(os.listdir(segments_directory))
         source_file_paths, target_file_paths = [], []
         for directory_entry in directory_entries:
-            segment_directory_path = os.path.join(
-                segments_directory_path,
+            segment_directory = os.path.join(
+                segments_directory,
                 directory_entry,
                 )
-            if not os.path.isdir(segment_directory_path):
+            if not os.path.isdir(segment_directory):
                 continue
             source_file_path = os.path.join(
-                segment_directory_path,
+                segment_directory,
                 'output.ly',
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_path = self._session.current_score_directory_path
+            score_path = self._session.current_score_directory
             score_package = self._configuration.path_to_package_path(
                 score_path)
             score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = directory_entry + '.ly'
             target_file_path = os.path.join(
-                build_directory_path,
+                build_directory,
                 target_file_name,
                 )
             source_file_paths.append(source_file_path)
@@ -329,8 +329,8 @@ class BuildFileWrangler(Wrangler):
                 return
             if self._session.is_backtracking:
                 return
-        if not os.path.exists(build_directory_path):
-            os.mkdir(build_directory_path)
+        if not os.path.exists(build_directory):
+            os.mkdir(build_directory)
         pairs = zip(source_file_paths, target_file_paths)
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
@@ -344,19 +344,19 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._get_current_directory()
-        directory_entries = sorted(os.listdir(segments_directory_path))
+        segments_directory = self._session.current_segments_directory
+        build_directory = self._get_current_directory()
+        directory_entries = sorted(os.listdir(segments_directory))
         source_file_paths, target_file_paths = [], []
         for directory_entry in directory_entries:
-            segment_directory_path = os.path.join(
-                segments_directory_path,
+            segment_directory = os.path.join(
+                segments_directory,
                 directory_entry,
                 )
-            if not os.path.isdir(segment_directory_path):
+            if not os.path.isdir(segment_directory):
                 continue
             source_file_path = os.path.join(
-                segment_directory_path,
+                segment_directory,
                 'output.pdf',
                 )
             if not os.path.isfile(source_file_path):
@@ -372,7 +372,7 @@ class BuildFileWrangler(Wrangler):
                     )
             target_file_name = target_file_name.replace('_', '-')
             target_file_path = os.path.join(
-                build_directory_path,
+                build_directory,
                 target_file_name,
                 )
             source_file_paths.append(source_file_path)

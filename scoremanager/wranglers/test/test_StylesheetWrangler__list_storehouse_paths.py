@@ -12,7 +12,7 @@ def test_StylesheetWrangler__list_storehouse_paths_01():
     wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
 
     paths = [
-        wrangler._configuration.abjad_stylesheets_directory_path,
+        wrangler._configuration.abjad_stylesheets_directory,
         ]
 
     result = wrangler._list_storehouse_paths(
@@ -41,7 +41,7 @@ def test_StylesheetWrangler__list_storehouse_paths_02():
     paths = []
     for score_name in score_names:
         path = os.path.join(
-            wrangler._configuration.example_score_packages_directory_path,
+            wrangler._configuration.example_score_packages_directory,
             score_name,
             'stylesheets',
             )

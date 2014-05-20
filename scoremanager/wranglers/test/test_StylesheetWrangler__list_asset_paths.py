@@ -21,7 +21,7 @@ def test_StylesheetWrangler__list_asset_paths_01():
     paths = []
     for file_name in file_names:
         path = os.path.join(
-            wrangler._configuration.abjad_stylesheets_directory_path,
+            wrangler._configuration.abjad_stylesheets_directory,
             file_name,
             )
         paths.append(path)

@@ -27,7 +27,7 @@ def test_StylesheetWrangler_invoke_shell_02():
     score_manager._run(pending_input=input_)
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         )

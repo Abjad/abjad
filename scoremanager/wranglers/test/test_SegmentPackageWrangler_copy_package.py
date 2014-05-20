@@ -30,13 +30,13 @@ def test_SegmentPackageWrangler_copy_package_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'copied_segment_01',

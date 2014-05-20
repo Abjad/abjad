@@ -39,7 +39,7 @@ class MakerFileWrangler(Wrangler):
         self._include_extensions = True
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
-            self._configuration.user_library_makers_directory_path
+            self._configuration.user_library_makers_directory
 
     ### PRIVATE PROPERTIES ###
 

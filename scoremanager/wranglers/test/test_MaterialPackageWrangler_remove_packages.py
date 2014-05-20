@@ -9,7 +9,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageWrangler_remove_packages_01():
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'instrumentation',

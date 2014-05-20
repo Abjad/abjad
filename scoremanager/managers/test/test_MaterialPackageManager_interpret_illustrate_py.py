@@ -10,7 +10,7 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
     '''
 
     package = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'magic_numbers',

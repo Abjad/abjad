@@ -13,6 +13,6 @@ def test_StylesheetWrangler__select_asset_path_01():
     path = wrangler._select_asset_path()
 
     assert path == os.path.join(
-        score_manager._configuration.abjad_stylesheets_directory_path,
+        score_manager._configuration.abjad_stylesheets_directory,
         'clean-letter-14.ily',
         )

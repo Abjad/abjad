@@ -17,7 +17,7 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
         'back-cover.tex',
         )
     destination_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'blue_example_score',
         'build',
         'back-cover.tex',
@@ -50,7 +50,7 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
         'back-cover.tex',
         )
     destination_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'back-cover.tex',

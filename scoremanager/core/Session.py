@@ -169,7 +169,7 @@ class Session(abctools.AbjadObject):
     def _clean_up(self):
         if self.is_test:
             return
-        transcripts_directory = self._configuration.transcripts_directory_path
+        transcripts_directory = self._configuration.transcripts_directory
         transcripts = os.listdir(transcripts_directory)
         count = len(transcripts)
         if 9000 <= count:
@@ -273,7 +273,7 @@ class Session(abctools.AbjadObject):
         from scoremanager import managers
         assert not self.controller_stack
         path = os.path.join(
-            self._configuration.example_score_packages_directory_path,
+            self._configuration.example_score_packages_directory,
             score_package_name,
             )
         assert os.path.exists(path)
@@ -362,7 +362,7 @@ class Session(abctools.AbjadObject):
             return self.controller_stack[-1]
 
     @property
-    def current_materials_directory_path(self):
+    def current_materials_directory(self):
         r'''Gets session current materials directory path.
 
         ..  container:: example
@@ -371,7 +371,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.current_materials_directory_path
+                >>> session.current_materials_directory
                 '.../scoremanager/materials'
 
         ..  container:: example
@@ -380,32 +380,32 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session_in_score.current_materials_directory_path
+                >>> session_in_score.current_materials_directory
                 '.../red_example_score/materials'
 
         Returns string.
         '''
-        if self.current_score_directory_path:
-            return os.path.join(self.current_score_directory_path, 'materials')
+        if self.current_score_directory:
+            return os.path.join(self.current_score_directory, 'materials')
         else:
-            return self._configuration.abjad_material_packages_directory_path
+            return self._configuration.abjad_material_packages_directory
 
     @property
-    def current_score_directory_path(self):
+    def current_score_directory(self):
         r'''Gets session current score directory path.
 
         ..  container:: example
 
             ::
 
-                >>> session.current_score_directory_path is None
+                >>> session.current_score_directory is None
                 True
 
         ..  container:: example
 
             ::
 
-                >>> session_in_score.current_score_directory_path
+                >>> session_in_score.current_score_directory
                 '.../red_example_score'
 
         Returns string or none.
@@ -441,27 +441,27 @@ class Session(abctools.AbjadObject):
                 return controller
 
     @property
-    def current_segments_directory_path(self):
+    def current_segments_directory(self):
         r'''Gets session current segments directory path.
 
         ..  container:: example
 
             ::
 
-                >>> session.current_segments_directory_path is None
+                >>> session.current_segments_directory is None
                 True
 
         ..  container:: example
 
             ::
 
-                >>> session_in_score.current_segments_directory_path
+                >>> session_in_score.current_segments_directory
                 '.../red_example_score/segments'
 
         Returns string.
         '''
-        if self.current_score_directory_path:
-            return os.path.join(self.current_score_directory_path, 'segments')
+        if self.current_score_directory:
+            return os.path.join(self.current_score_directory, 'segments')
 
     @property
     def current_stylesheet_path(self):
@@ -477,7 +477,7 @@ class Session(abctools.AbjadObject):
         '''
         if not self.is_in_score:
             return
-        directory = self.current_score_directory_path
+        directory = self.current_score_directory
         stylesheets_directory = os.path.join(directory, 'stylesheets')
         found_score_stylesheet = False
         for entry in os.listdir(stylesheets_directory):

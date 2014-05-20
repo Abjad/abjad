@@ -190,9 +190,9 @@ class Selector(Controller):
         storehouse_paths = storehouse_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
-        for directory_path in storehouse_paths:
+        for directory in storehouse_paths:
             manager = managers.PackageManager(
-                path=directory_path,
+                path=directory,
                 session=self._session,
                 )
             entries = manager._list(public_entries_only=True)
@@ -233,9 +233,9 @@ class Selector(Controller):
         configuration = self._configuration
         base_class_names = base_class_names or ()
         forbidden_class_names = forbidden_class_names or ()
-        directory_path = configuration.handler_tools_directory_path
+        directory = configuration.handler_tools_directory
         class_names = []
-        for entry in os.listdir(directory_path):
+        for entry in os.listdir(directory):
             if entry.endswith('.py'):
                 for base_class_name in base_class_names:
                     if base_class_name in entry:
@@ -309,13 +309,13 @@ class Selector(Controller):
         Returns selector.
         '''
         configuration = self._configuration
-        rhythm_maker_tools_directory_path = os.path.join(
+        rhythm_maker_tools_directory = os.path.join(
             configuration.abjad_directory_path,
             'tools',
             'rhythmmakertools',
             )
         selector = self.make_directory_content_selector(
-            storehouse_paths=[rhythm_maker_tools_directory_path],
+            storehouse_paths=[rhythm_maker_tools_directory],
             endswith='RhythmMaker',
             strip_file_extensions=True,
             )

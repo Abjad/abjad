@@ -12,7 +12,7 @@ def test_ScorePackageWrangler__list_storehouse_paths_01():
     wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
 
     paths = [
-        wrangler._configuration.example_score_packages_directory_path,
+        wrangler._configuration.example_score_packages_directory,
         ]
 
     # TODO: should be possible to set abjad_library=False

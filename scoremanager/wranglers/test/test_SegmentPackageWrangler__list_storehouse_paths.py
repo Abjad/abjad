@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler__list_storehouse_paths_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            wrangler._configuration.example_score_packages_directory_path,
+            wrangler._configuration.example_score_packages_directory,
             package_name,
             'segments',
             )

@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler__make_material_package_01():
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
-        wrangler._configuration.user_library_material_packages_directory_path,
+        wrangler._configuration.user_library_material_packages_directory,
         'testnumbers',
         )
     directory_entries = [
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler__make_material_package_02():
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
-        wrangler._configuration.user_library_material_packages_directory_path,
+        wrangler._configuration.user_library_material_packages_directory,
         'testnotes',
         )
     directory_entries = [

@@ -91,38 +91,38 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def _user_library_directory_name(self):
-        directory_path = self.user_library_directory_path
-        directory_name = os.path.split(directory_path)[-1]
+        directory = self.user_library_directory
+        directory_name = os.path.split(directory)[-1]
         return directory_name
 
     ### PRIVATE METHODS ###
 
     def _make_missing_directories(self):
-        directory_paths = (
-            self.user_library_directory_path,
-            self.user_library_material_packages_directory_path,
-            self.user_library_makers_directory_path,
+        directorys = (
+            self.user_library_directory,
+            self.user_library_material_packages_directory,
+            self.user_library_makers_directory,
             )
-        for directory_path in directory_paths:
-            if not os.path.exists(directory_path):
-                os.makedirs(directory_path)
-                file_path = os.path.join(directory_path, '__init__.py')
+        for directory in directorys:
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+                file_path = os.path.join(directory, '__init__.py')
                 with file(file_path, 'w') as file_pointer:
                     file_pointer.write('')
-        directory_paths = (
-            self.user_score_packages_directory_path,
-            self.user_library_stylesheets_directory_path,
-            self.transcripts_directory_path,
+        directorys = (
+            self.user_score_packages_directory,
+            self.user_library_stylesheets_directory,
+            self.transcripts_directory,
             )
-        for directory_path in directory_paths:
-            if not os.path.exists(directory_path):
-                os.makedirs(directory_path)
+        for directory in directorys:
+            if not os.path.exists(directory):
+                os.makedirs(directory)
 
     def _path_to_score_path(self, path):
-        if path.startswith(self.user_score_packages_directory_path):
-            prefix_length = len(self.user_score_packages_directory_path)
-        elif path.startswith(self.example_score_packages_directory_path):
-            prefix_length = len(self.example_score_packages_directory_path)
+        if path.startswith(self.user_score_packages_directory):
+            prefix_length = len(self.user_score_packages_directory)
+        elif path.startswith(self.example_score_packages_directory):
+            prefix_length = len(self.example_score_packages_directory)
         else:
             return
         path_prefix = path[:prefix_length]
@@ -133,16 +133,16 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     def _path_to_storehouse(self, path):
         is_in_score = False
-        if path.startswith(self.user_score_packages_directory_path):
+        if path.startswith(self.user_score_packages_directory):
             is_in_score = True
-            prefix_length = len(self.user_score_packages_directory_path)
-        elif path.startswith(self.example_score_packages_directory_path):
+            prefix_length = len(self.user_score_packages_directory)
+        elif path.startswith(self.example_score_packages_directory):
             is_in_score = True
-            prefix_length = len(self.example_score_packages_directory_path)
-        elif path.startswith(self.user_library_directory_path):
-            prefix_length = len(self.user_library_directory_path)
-        elif path.startswith(self.abjad_stylesheets_directory_path):
-            return self.abjad_stylesheets_directory_path
+            prefix_length = len(self.example_score_packages_directory)
+        elif path.startswith(self.user_library_directory):
+            prefix_length = len(self.user_library_directory)
+        elif path.startswith(self.abjad_stylesheets_directory):
+            return self.abjad_stylesheets_directory
         else:
             message = 'unidentifiable path: {!r}.'
             message = message.format(path)
@@ -170,7 +170,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 )
             title = manager._get_title()
             return title
-        elif path.startswith(self.user_library_directory_path):
+        elif path.startswith(self.user_library_directory):
             return self.composer_last_name
         elif path.startswith(self.abjad_root_directory_path):
             return 'Abjad'
@@ -182,14 +182,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def abjad_makers_directory_path(self):
+    def abjad_makers_directory(self):
         r'''Gets Abjad makers directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_makers_directory_path
+                >>> configuration.abjad_makers_directory
                 '.../scoremanager/makers'
 
         Returns string.
@@ -201,14 +201,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def abjad_material_packages_directory_path(self):
+    def abjad_material_packages_directory(self):
         r'''Gets Abjad material packages directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_material_packages_directory_path
+                >>> configuration.abjad_material_packages_directory
                 '.../scoremanager/materials'
 
         Returns string.
@@ -242,14 +242,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
 
     @property
-    def abjad_stylesheets_directory_path(self):
+    def abjad_stylesheets_directory(self):
         r'''Gets Abjad stylesheets directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_stylesheets_directory_path
+                >>> configuration.abjad_stylesheets_directory
                 '.../abjad/stylesheets'
 
         Returns string.
@@ -261,12 +261,12 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def boilerplate_directory_path(self):
+    def boilerplate_directory(self):
         r'''Gets boilerplate directory path.
 
         ..  container:: example
 
-            >>> configuration.boilerplate_directory_path
+            >>> configuration.boilerplate_directory
             '.../scoremanager/boilerplate'
 
         Returns string.
@@ -291,7 +291,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         file_path = self._cache_file_path = os.path.join(
-            self.configuration_directory_path,
+            self.configuration_directory,
             'cache.py',
             )
         return file_path
@@ -333,14 +333,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return self._settings['composer_last_name']
 
     @property
-    def configuration_directory_path(self):
+    def configuration_directory(self):
         r'''Gets configuration directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.configuration_directory_path
+                >>> configuration.configuration_directory
                 '.../.score_manager'
 
         Defaults to path of hidden ``.score_manager`` directory.
@@ -377,18 +377,22 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        superclass = super(ScoreManagerConfiguration, self)
-        return superclass.configuration_file_path
+        #superclass = super(ScoreManagerConfiguration, self)
+        #return superclass.configuration_file_path
+        return os.path.join(
+            self.configuration_directory,
+            self.configuration_file_name,
+            )
 
     @property
-    def example_score_packages_directory_path(self):
+    def example_score_packages_directory(self):
         r'''Gets Abjad score packages directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.example_score_packages_directory_path
+                >>> configuration.example_score_packages_directory
                 '.../scoremanager/scores'
 
         Returns string.
@@ -400,14 +404,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def handler_tools_directory_path(self):
+    def handler_tools_directory(self):
         r'''Gets handler tools directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.handler_tools_directory_path
+                >>> configuration.handler_tools_directory
                 '.../experimental/tools/handlertools'
 
         Returns string.
@@ -436,20 +440,20 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return superclass.home_directory_path
 
     @property
-    def transcripts_directory_path(self):
+    def transcripts_directory(self):
         r'''Gets score manager transcripts directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.transcripts_directory_path
+                >>> configuration.transcripts_directory
                 '.../.score_manager/transcripts'
 
         Returns string.
         '''
         path = os.path.join(
-            self.configuration_directory_path,
+            self.configuration_directory,
             'transcripts',
             )
         return path
@@ -470,14 +474,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return '# -*- encoding: utf-8 -*-'
 
     @property
-    def user_library_directory_path(self):
+    def user_library_directory(self):
         r'''Gets user library directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_library_directory_path
+                >>> configuration.user_library_directory
                 '...'
 
         Aliases `score_manager_library` setting in score manager configuration
@@ -491,71 +495,71 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def user_library_makers_directory_path(self):
+    def user_library_makers_directory(self):
         r'''Gets user library makers path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_library_makers_directory_path
+                >>> configuration.user_library_makers_directory
                 '.../makers'
 
         Returns string.
         '''
         path = os.path.join(
-            self.user_library_directory_path,
+            self.user_library_directory,
             'makers',
             )
         return path
 
     @property
-    def user_library_material_packages_directory_path(self):
+    def user_library_material_packages_directory(self):
         r'''Gets user library material packages directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_library_material_packages_directory_path
+                >>> configuration.user_library_material_packages_directory
                 '.../materials'
 
         Returns string.
         '''
         path = os.path.join(
-            self.user_library_directory_path,
+            self.user_library_directory,
             'materials',
             )
         return path
 
     @property
-    def user_library_stylesheets_directory_path(self):
+    def user_library_stylesheets_directory(self):
         r'''Gets user library stylesheets directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_library_stylesheets_directory_path
+                >>> configuration.user_library_stylesheets_directory
                 '.../stylesheets'
 
         Returns string.
         '''
         path = os.path.join(
-            self.user_library_directory_path,
+            self.user_library_directory,
             'stylesheets',
             )
         return path
 
     @property
-    def user_score_packages_directory_path(self):
+    def user_score_packages_directory(self):
         r'''Gets user score packages directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_score_packages_directory_path
+                >>> configuration.user_score_packages_directory
                 '...'
 
         Aliases `scores_directory` setting in score manager configuration file.
@@ -568,23 +572,23 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def wrangler_views_directory_path(self):
+    def wrangler_views_directory(self):
         r'''Gets wrangler views directory.
 
         ..  container::
 
-            >>> configuration.wrangler_views_directory_path
+            >>> configuration.wrangler_views_directory
             '.../views'
 
         Defined equal to views/ subdirectory of score manager directory.
 
         Returns string.
         '''
-        return os.path.join(self.configuration_directory_path, 'views')
+        return os.path.join(self.configuration_directory, 'views')
 
     ### PUBLIC METHODS ###
 
-    def list_score_directory_paths(
+    def list_score_directorys(
         self,
         abjad=False,
         user=False,
@@ -597,7 +601,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
             ::
 
-                >>> for x in configuration.list_score_directory_paths(
+                >>> for x in configuration.list_score_directorys(
                 ...     abjad=True,
                 ...     ):
                 ...     x
@@ -609,30 +613,30 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         '''
         result = []
         if abjad:
-            scores_directory_path = self.example_score_packages_directory_path
-            directory_entries = sorted(os.listdir(scores_directory_path))
+            scores_directory = self.example_score_packages_directory
+            directory_entries = sorted(os.listdir(scores_directory))
             for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
-                    directory_path = os.path.join(
-                        scores_directory_path,
+                    directory = os.path.join(
+                        scores_directory,
                         directory_entry,
                         )
                     package_path = self.path_to_package_path(
-                        directory_path,
+                        directory,
                         )
                     path = os.path.join(
-                        self.example_score_packages_directory_path,
+                        self.example_score_packages_directory,
                         directory_entry,
                         )
                     result.append(path)
         if user:
-            scores_directory_path = self.user_score_packages_directory_path
-            directory_entries = sorted(os.listdir(scores_directory_path))
+            scores_directory = self.user_score_packages_directory
+            directory_entries = sorted(os.listdir(scores_directory))
             for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
                     package_path = directory_entry
                     path = os.path.join(
-                        self.user_score_packages_directory_path,
+                        self.user_score_packages_directory,
                         directory_entry,
                         )
                     result.append(path)
@@ -650,12 +654,12 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         if path.endswith('.py'):
             path = path[:-3]
         if path.startswith(
-            self.example_score_packages_directory_path):
-            prefix_length = len(self.example_score_packages_directory_path) + 1
+            self.example_score_packages_directory):
+            prefix_length = len(self.example_score_packages_directory) + 1
         elif path.startswith(
-            self.user_library_material_packages_directory_path):
+            self.user_library_material_packages_directory):
             prefix_length = \
-                len(self.user_library_material_packages_directory_path) + 1
+                len(self.user_library_material_packages_directory) + 1
             remainder = path[prefix_length:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
@@ -671,20 +675,20 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     ])
             return result
         elif path.startswith(
-            self.abjad_material_packages_directory_path):
+            self.abjad_material_packages_directory):
             prefix_length = len(self.abjad_root_directory_path) + 1
         elif path.startswith(self.score_manager_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_directory_path)) + 1
         elif path.startswith(
-            self.user_score_packages_directory_path):
-            prefix_length = len(self.user_score_packages_directory_path) + 1
+            self.user_score_packages_directory):
+            prefix_length = len(self.user_score_packages_directory) + 1
         elif path.startswith(
-            self.user_library_stylesheets_directory_path):
+            self.user_library_stylesheets_directory):
             prefix_length = \
                 len(os.path.dirname(
-                self.user_library_stylesheets_directory_path)) + 1
-        elif path.startswith(self.abjad_stylesheets_directory_path):
+                self.user_library_stylesheets_directory)) + 1
+        elif path.startswith(self.abjad_stylesheets_directory):
             prefix_length = len(self.abjad_root_directory_path) + 1
         else:
             message = 'can not change path to package path: {!r}.'

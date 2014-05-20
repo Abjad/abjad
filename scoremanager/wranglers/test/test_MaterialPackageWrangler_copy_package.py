@@ -31,13 +31,13 @@ def test_MaterialPackageWrangler_copy_package_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'instrumentation',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'copied_instrumentation',

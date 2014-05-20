@@ -10,13 +10,13 @@ def test_SegmentPackageWrangler_rename_package_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_04',
         )
     new_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'renamed_segment_04',

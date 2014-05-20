@@ -10,14 +10,14 @@ def test_SegmentPackageManager_interpret_output_ly_01():
     '''
 
     input_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
         'output.ly',
         )
     output_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',

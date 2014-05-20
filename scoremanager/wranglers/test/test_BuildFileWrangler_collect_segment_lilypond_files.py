@@ -11,7 +11,7 @@ def test_BuildFileWrangler_collect_segment_lilypond_files_01():
 
     # find build directory and set up temporary directory
     build_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         )

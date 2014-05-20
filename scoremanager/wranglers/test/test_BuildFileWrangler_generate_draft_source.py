@@ -12,7 +12,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'draft.tex',
@@ -36,7 +36,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'blue_example_score',
         'build',
         'draft.tex',
@@ -57,7 +57,7 @@ def test_BuildFileWrangler_generate_draft_source_03():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'etude_example_score',
         'build',
         'draft.tex',

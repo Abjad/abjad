@@ -9,7 +9,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageManager_set_autoeditor_01():
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'test_tempo_inventory',
@@ -29,7 +29,7 @@ def test_MaterialPackageManager_set_autoeditor_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'tempo_inventory',
@@ -48,7 +48,7 @@ def test_MaterialPackageManager_set_autoeditor_03():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory_path,
+        score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'tempo_inventory',

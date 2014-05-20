@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_open_every_metadata_py_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory_path,
+            score_manager._configuration.example_score_packages_directory,
             'red_example_score',
             'materials',
             package_name,

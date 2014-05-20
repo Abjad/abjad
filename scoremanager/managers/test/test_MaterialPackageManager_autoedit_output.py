@@ -27,7 +27,7 @@ def test_MaterialPackageManager_autoedit_output_02():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testtempoinventory',
         )
     directory_entries = [
@@ -66,7 +66,7 @@ def test_MaterialPackageManager_autoedit_output_03():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testpri',
         )
     directory_entries = [
@@ -99,7 +99,7 @@ def test_MaterialPackageManager_autoedit_output_04():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testpri',
         )
     directory_entries = [
@@ -136,7 +136,7 @@ def test_MaterialPackageManager_autoedit_output_05():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testmarkupinventory',
         )
     inventory = markuptools.MarkupInventory(
@@ -179,7 +179,7 @@ def test_MaterialPackageManager_autoedit_output_06():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testoctavetrans',
         )
     directory_entries = [
@@ -213,7 +213,7 @@ def test_MaterialPackageManager_autoedit_output_07():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testoctavetrans',
         )
     directory_entries = [
@@ -259,7 +259,7 @@ def test_MaterialPackageManager_autoedit_output_08():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testlist',
         )
     directory_entries = [
@@ -288,7 +288,7 @@ def test_MaterialPackageManager_autoedit_output_09():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testlist',
         )
     directory_entries = [
@@ -320,7 +320,7 @@ def test_MaterialPackageManager_autoedit_output_10():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testrhythmmaker',
         )
     directory_entries = [
@@ -364,7 +364,7 @@ def test_MaterialPackageManager_autoedit_output_11():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testarticulationhandler',
         )
     directory_entries = [
@@ -405,7 +405,7 @@ def test_MaterialPackageManager_autoedit_output_12():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
+        configuration.user_library_material_packages_directory,
         'testdynamichandler',
         )
     directory_entries = [

@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_interpret_illustration_lys_01():
     input_paths = []
     for name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory_path,
+            score_manager._configuration.example_score_packages_directory,
             'red_example_score',
             'materials',
             name,

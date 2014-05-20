@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_ScorePackageWrangler_copy_package_01():
 
     pretty_path = os.path.join(
-        score_manager._configuration.user_score_packages_directory_path,
+        score_manager._configuration.user_score_packages_directory,
         'pretty_example_score',
         )
 

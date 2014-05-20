@@ -8,7 +8,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 def test_ScoreManagerConfiguration__path_to_storehouse_01():
     
     storehouse = os.path.join(
-        configuration.user_library_directory_path,
+        configuration.user_library_directory,
         'stylesheets',
         )
 
@@ -24,7 +24,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_01():
 def test_ScoreManagerConfiguration__path_to_storehouse_02():
     
     storehouse = os.path.join(
-        configuration.user_score_packages_directory_path,
+        configuration.user_score_packages_directory,
         'foo_score',
         'stylesheets',
         )
@@ -41,7 +41,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_02():
 def test_ScoreManagerConfiguration__path_to_storehouse_03():
     
     storehouse = os.path.join(
-        configuration.example_score_packages_directory_path,
+        configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         )
@@ -57,7 +57,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_03():
 
 def test_ScoreManagerConfiguration__path_to_storehouse_04():
     
-    storehouse = configuration.abjad_stylesheets_directory_path
+    storehouse = configuration.abjad_stylesheets_directory
 
     assert configuration._path_to_storehouse(storehouse) == storehouse
 

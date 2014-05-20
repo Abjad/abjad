@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_open_illustration_pdfs_01():
     paths = []
     for name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory_path,
+            score_manager._configuration.example_score_packages_directory,
             'red_example_score',
             'materials',
             name,
