@@ -101,7 +101,7 @@ class Wrangler(AssetController):
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
-            'vpyo': self.open_views_py,
+            'vo': self.open_views_py,
             })
         return result
 
@@ -504,7 +504,8 @@ class Wrangler(AssetController):
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry[0].isalpha():
-            return True
+            if not directory_entry.endswith('.pyc'):
+                return True
         return False
 
     def _list(self, public_entries_only=False):
@@ -792,7 +793,7 @@ class Wrangler(AssetController):
 
     def _make_views_py_menu_section(self, menu):
         commands = []
-        commands.append(('__views.py__ - open', 'vpyo'))
+        commands.append(('__views.py__ - open', 'vo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

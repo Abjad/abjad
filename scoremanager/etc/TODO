@@ -221,3 +221,5 @@
 42. Implement a dry_run=False keyword on bundled every*() methods.
 
 43. Remove Transcript.signature.
+
+44. Remove *pycs in maker menus.
