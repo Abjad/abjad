@@ -288,6 +288,8 @@ class Wrangler(AssetController):
                     self._configuration.user_score_packages_directory
             asset_paths = []
             for directory_entry in  os.listdir(scores_directory):
+                if not directory_entry[0].isalpha():
+                    continue
                 path = os.path.join(scores_directory, directory_entry)
                 if os.path.isdir(path):
                     asset_paths.append(path)
