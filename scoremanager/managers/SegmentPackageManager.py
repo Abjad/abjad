@@ -327,7 +327,7 @@ class SegmentPackageManager(PackageManager):
                 if not result:
                     return
             lines = []
-            lines.append(self._unicode_directive)
+            lines.append(self._configuration.unicode_directive)
             lines.append(self._abjad_import_statement)
             lines.append('')
             lines.append('')
@@ -353,7 +353,7 @@ class SegmentPackageManager(PackageManager):
                 if not result:
                     return
             lines = []
-            lines.append(self._unicode_directive)
+            lines.append(self._configuration.unicode_directive)
             lines.append('import os')
             lines.append(self._abjad_import_statement)
             lines.append('from definition import segment_maker')

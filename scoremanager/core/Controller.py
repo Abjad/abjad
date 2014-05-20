@@ -38,10 +38,6 @@ class Controller(ScoreManagerObject):
             }
         return result
 
-    @property
-    def _unicode_directive(self):
-        return '# -*- encoding: utf-8 -*-'
-
     ### PRIVATE METHODS ###
 
     @staticmethod

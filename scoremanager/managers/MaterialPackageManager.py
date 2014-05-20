@@ -369,7 +369,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_temporary_illustrate_py_lines(self):
         lines = []
-        lines.append(self._unicode_directive)
+        lines.append(self._configuration.unicode_directive)
         lines.append('import os')
         lines.append(self._abjad_import_statement)
         line = 'from output import {}'
@@ -394,7 +394,7 @@ class MaterialPackageManager(PackageManager):
 
     def _make_version_package_messages(self):
         path = self._versions_directory_path
-        greatest_version = self._io_manager.get_greatest_version_number(path)
+        greatest_version = self._io_manager._get_greatest_version_number(path)
         new_version = greatest_version + 1
         next_version_string = '%04d' % new_version
         messages = []
@@ -607,7 +607,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         path = self._illustration_ly_file_path
         if os.path.isfile(path):
-            self._io_manager.invoke_lilypond(
+            self._io_manager.run_lilypond(
                 path, 
                 confirm=confirm, 
                 display=display,
@@ -786,7 +786,7 @@ class MaterialPackageManager(PackageManager):
             assert isinstance(body_lines, list), repr(body_lines)
             assert output_material is not None
         lines = []
-        lines.append(self._unicode_directive + '\n')
+        lines.append(self._configuration.unicode_directive + '\n')
         if body_lines is None:
             triple = self._make_output_material_triple()
             import_statements = triple[0]
@@ -827,7 +827,7 @@ class MaterialPackageManager(PackageManager):
             if not result:
                 return
         lines = []
-        lines.append(self._unicode_directive)
+        lines.append(self._configuration.unicode_directive)
         lines.append(self._abjad_import_statement)
         lines.append('output_py_import_statements = []')
         lines.append('')

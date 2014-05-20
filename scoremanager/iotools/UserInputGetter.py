@@ -158,7 +158,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 prompt_string)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            input_ = self._io_manager.handle_input(
+            input_ = self._io_manager._handle_input(
                 prompt_string,
                 default_value=default_value,
                 include_chevron=include_chevron,

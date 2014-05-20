@@ -455,6 +455,21 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
+    def unicode_directive(self):
+        r'''Gets Unicode directive.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.unicode_directive
+                '# -*- encoding: utf-8 -*-'
+
+        Returns string.
+        '''
+        return '# -*- encoding: utf-8 -*-'
+
+    @property
     def user_library_directory_path(self):
         r'''Gets user library directory path.
 

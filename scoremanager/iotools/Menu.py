@@ -166,7 +166,7 @@ class Menu(Controller):
             capitalize=False,
             )
         user_entered_lone_return = False
-        input_ = self._io_manager.handle_input('')
+        input_ = self._io_manager._handle_input('')
         if input_ == '':
             user_entered_lone_return = True
         directive = self._change_input_to_directive(input_)

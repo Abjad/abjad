@@ -55,12 +55,6 @@ class IOManager(IOManager):
         '''
         return '{}()'.format(type(self).__name__)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _unicode_directive(self):
-        return '# -*- encoding: utf-8 -*-'
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -73,6 +67,84 @@ class IOManager(IOManager):
             return expr
         else:
             return repr(expr)
+
+    @staticmethod
+    def _get_greatest_version_number(version_directory):
+        if not os.path.isdir(version_directory):
+            return 0
+        greatest_number = 0
+        for entry in os.listdir(version_directory):
+            base_name, extension = os.path.splitext(entry)
+            number = 0
+            try:
+                number = int(base_name[-4:])
+            except ValueError:
+                pass
+            if greatest_number < number:
+                greatest_number = number
+        return greatest_number
+
+    def _handle_input(
+        self,
+        prompt_string,
+        default_value=None,
+        include_chevron=True,
+        include_newline=False,
+        prompt_character='>',
+        capitalize_prompt=True,
+        ):
+        r'''Handles user input.
+        Appends user input to command history.
+        Appends user input to IO transcript.
+        Returns command selected by user.
+        '''
+        if default_value in (None, 'None'):
+            default_value = ''
+        readline.set_startup_hook(lambda: readline.insert_text(default_value))
+        found_default_token = False
+        try:
+            if capitalize_prompt:
+                prompt_string = stringtools.capitalize_start(
+                    prompt_string)
+            if include_chevron:
+                prompt_string = prompt_string + prompt_character + ' '
+            else:
+                prompt_string = prompt_string + ' '
+            if not self._session.pending_input:
+                input_ = raw_input(prompt_string)
+                if include_newline:
+                    if not input_ == 'help':
+                        print('')
+            else:
+                input_ = self._pop_from_pending_input()
+                if input_ == 'default':
+                    found_default_token = True
+            if not found_default_token:
+                self._session.command_history.append(input_)
+            if input_ == '.':
+                last_semantic_command = self._session.last_semantic_command
+                input_ = last_semantic_command
+            if found_default_token:
+                menu_chunk = [prompt_string.strip()]
+                if include_newline:
+                    if not input_ == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
+                menu_chunk = ['> ']
+                if include_newline:
+                    if not input_ == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
+            else:
+                menu_chunk = []
+                menu_chunk.append('{}{}'.format(prompt_string, input_))
+                if include_newline:
+                    if not input_ == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
+            return input_
+        finally:
+            readline.set_startup_hook()
 
     def _make_tab(self, n=1):
         return 4 * n * ' '
@@ -197,17 +269,21 @@ class IOManager(IOManager):
             for line in lines:
                 print(line)
 
-    def edit(self, file_path, line_number=None):
-        r'''Edits `file_path`.
+    def edit(self, path, line_number=None):
+        r'''Edits file `path`.
+
+        Opens at `line_number` when `line_number` is set.
+
+        Opens at first line when `line_number` is not set.
 
         Returns none.
         '''
-        if not os.path.isfile(file_path):
+        if not os.path.isfile(path):
             return
         if line_number is None:
-            command = 'vim + {}'.format(file_path)
+            command = 'vim + {}'.format(path)
         else:
-            command = 'vim +{} {}'.format(line_number, file_path)
+            command = 'vim +{} {}'.format(line_number, path)
         self._session._attempted_to_open_file = True
         if self._session.is_test:
             return
@@ -239,171 +315,59 @@ class IOManager(IOManager):
         result = tuple(result)
         return result
 
-    def get_greatest_version_number(self, version_directory):
-        r'''Gets greatest version number in `version_directory`.
-
-        Returns ``0`` when `version_directory` does not exist.
-
-        Returns nonnegative integer.
-        '''
-        if not os.path.isdir(version_directory):
-            return 0
-        greatest_number = 0
-        for entry in os.listdir(version_directory):
-            base_name, extension = os.path.splitext(entry)
-            number = 0
-            try:
-                number = int(base_name[-4:])
-            except ValueError:
-                pass
-            if greatest_number < number:
-                greatest_number = number
-        return greatest_number
-
-    def handle_input(
-        self,
-        prompt_string,
-        default_value=None,
-        include_chevron=True,
-        include_newline=False,
-        prompt_character='>',
-        capitalize_prompt=True,
-        ):
-        r'''Handles user input.
-
-        Appends user input to command history.
-
-        Appends user input to IO transcript.
-
-        Returns command selected by user.
-        '''
-        if default_value in (None, 'None'):
-            default_value = ''
-        readline.set_startup_hook(lambda: readline.insert_text(default_value))
-        found_default_token = False
-        try:
-            if capitalize_prompt:
-                prompt_string = stringtools.capitalize_start(
-                    prompt_string)
-            if include_chevron:
-                prompt_string = prompt_string + prompt_character + ' '
-            else:
-                prompt_string = prompt_string + ' '
-            if not self._session.pending_input:
-                input_ = raw_input(prompt_string)
-                if include_newline:
-                    if not input_ == 'help':
-                        print('')
-            else:
-                input_ = self._pop_from_pending_input()
-                if input_ == 'default':
-                    found_default_token = True
-            if not found_default_token:
-                self._session.command_history.append(input_)
-            if input_ == '.':
-                last_semantic_command = self._session.last_semantic_command
-                input_ = last_semantic_command
-            if found_default_token:
-                menu_chunk = [prompt_string.strip()]
-                if include_newline:
-                    if not input_ == 'help':
-                        menu_chunk.append('')
-                self._session.transcript._append_entry(menu_chunk)
-                menu_chunk = ['> ']
-                if include_newline:
-                    if not input_ == 'help':
-                        menu_chunk.append('')
-                self._session.transcript._append_entry(menu_chunk)
-            else:
-                menu_chunk = []
-                menu_chunk.append('{}{}'.format(prompt_string, input_))
-                if include_newline:
-                    if not input_ == 'help':
-                        menu_chunk.append('')
-                self._session.transcript._append_entry(menu_chunk)
-            return input_
-        finally:
-            readline.set_startup_hook()
-
-    def invoke_lilypond(self, file_path, confirm=True, display=True):
-        r'''Invokes LilyPond on file.
-
-        Returns none.
-        '''
-        if self.find_executable('lily'):
-            executable = 'lily'
-        elif self.find_executable('lilypond'):
-            executable = 'lilypond'
-        else:
-            message = 'cannot find LilyPond executable.'
-            raise ValueError(message)
-        command = '{} {}'.format(
-            executable,
-            file_path,
-            )
-        input_directory = os.path.dirname(file_path)
-        with systemtools.TemporaryDirectoryChange(input_directory):
-            self.spawn_subprocess(command)
-        if display:
-            self.display('')
-            self._session._hide_next_redraw = True
-
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.
 
-        Hides next redraw.
-
         Returns none.
         '''
-        lines = []
-        prompt = True
-        if statement is None:
-            statement = self.handle_input(
-                '$',
-                include_chevron=False,
-                include_newline=False,
+        with self.make_interaction():
+            lines = []
+            prompt = True
+            if statement is None:
+                statement = self._handle_input(
+                    '$',
+                    include_chevron=False,
+                    include_newline=False,
+                    )
+            statement = statement.strip()
+            process = subprocess.Popen(
+                statement,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
                 )
-        statement = statement.strip()
-        process = subprocess.Popen(
-            statement,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        try:
-            lines = process.stdout.readlines()
-        except:
-            lines.append('expression not executable.')
-        lines = lines or []
-        lines = [_.strip() for _ in lines]
-        lines.append('')
-        if prompt:
+            try:
+                lines = process.stdout.readlines()
+            except:
+                lines.append('expression not executable.')
+            lines = lines or []
+            lines = [_.strip() for _ in lines]
             self.display(lines, capitalize=False)
-        self._session._hide_next_redraw = True
 
     def interpret(self, path, confirm=True, display=True):
         r'''Invokes Python or LilyPond on `path`.
 
         Returns integer success code.
         '''
-        _, extension = os.path.splitext(path)
-        if extension == '.py':
-            command = 'python {}'.format(path)
-        elif extension == '.ly':
-            command = 'lilypond {}'.format(path)
-        else:
-            message = 'can not interpret {}.'.format(path)
-            raise Exception(message)
-        directory = os.path.dirname(path)
-        context = systemtools.TemporaryDirectoryChange(directory)
-        with context:
-            result = self.spawn_subprocess(command)
-        if result != 0:
-            self.display('')
-        elif display:
-            message = 'interpreted {}.'.format(path)
-            self.display([message])
-        return result
+        with self.make_interaction():
+            _, extension = os.path.splitext(path)
+            if extension == '.py':
+                command = 'python {}'.format(path)
+            elif extension == '.ly':
+                command = 'lilypond {}'.format(path)
+            else:
+                message = 'can not interpret {}.'.format(path)
+                raise Exception(message)
+            directory = os.path.dirname(path)
+            context = systemtools.TemporaryDirectoryChange(directory)
+            with context:
+                result = self.spawn_subprocess(command)
+            if result != 0:
+                self.display('')
+            elif display:
+                message = 'interpreted {}.'.format(path)
+                self.display(message)
+            return result
 
     def make_autoeditor(
         self, 
@@ -510,28 +474,28 @@ class IOManager(IOManager):
             session=self._session,
             )
 
-    def open_file(self, file_path):
-        r'''Opens `file_path`.
+    def open_file(self, path):
+        r'''Opens file `path`.
 
-        Also works when `file_path` is a list.
+        Also works when `path` is a list.
 
         Returns none.
         '''
-        if not isinstance(file_path, list) and not os.path.isfile(file_path):
+        if not isinstance(path, list) and not os.path.isfile(path):
             return
-        if (isinstance(file_path, list) and
-            all(x.endswith('.pdf') for x in file_path)):
-            file_paths = file_path
-            file_paths = ' '.join(file_paths)
-            command = 'open {}'.format(file_paths)
-        elif isinstance(file_path, list):
-            file_paths = file_path
-            file_paths = ' '.join(file_paths)
-            command = 'vim {}'.format(file_paths)
-        elif file_path.endswith('.pdf'):
-            command = 'open {}'.format(file_path)
+        if (isinstance(path, list) and
+            all(x.endswith('.pdf') for x in path)):
+            paths = path
+            paths = ' '.join(paths)
+            command = 'open {}'.format(paths)
+        elif isinstance(path, list):
+            paths = path
+            paths = ' '.join(paths)
+            command = 'vim {}'.format(paths)
+        elif path.endswith('.pdf'):
+            command = 'open {}'.format(path)
         else:
-            command = 'vim -R {}'.format(file_path)
+            command = 'vim -R {}'.format(path)
         self._session._attempted_to_open_file = True
         if self._session.is_test:
             return
@@ -542,8 +506,9 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        self.display(['not yet implemented.', ''])
-        self._session._hide_next_redraw = True
+        with self.make_interaction():
+            message = 'not yet implemented.'
+            self.display(message)
 
     def run_command(self, command, capitalize=True):
         r'''Makes subprocess with `command` and then runs and displays
@@ -560,8 +525,29 @@ class IOManager(IOManager):
             capitalize=capitalize,
             )
 
+    def run_lilypond(self, path, confirm=True, display=True):
+        r'''Runs LilyPond on file `path`.
+
+        Returns none.
+        '''
+        with self.make_interaction():
+            if self.find_executable('lily'):
+                executable = 'lily'
+            elif self.find_executable('lilypond'):
+                executable = 'lilypond'
+            else:
+                message = 'cannot find LilyPond executable.'
+                raise ValueError(message)
+            command = '{} {}'.format(
+                executable,
+                path,
+                )
+            input_directory = os.path.dirname(path)
+            with systemtools.TemporaryDirectoryChange(input_directory):
+                self.spawn_subprocess(command)
+
     def write(self, path, string):
-        r'''Write `string` to `path`.
+        r'''Writes `string` to `path`.
 
         Returns none.
         '''
@@ -574,4 +560,4 @@ class IOManager(IOManager):
         Returns none.
         '''
         with open(path, 'w') as file_pointer:
-            file_pointer.write(self._unicode_directive)
+            file_pointer.write(self._configuration.unicode_directive)

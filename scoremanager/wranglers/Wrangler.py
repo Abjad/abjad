@@ -1137,7 +1137,7 @@ class Wrangler(AssetController):
         display=True,
         ):
         lines = []
-        lines.append(self._unicode_directive)
+        lines.append(self._configuration.unicode_directive)
         lines.append(self._abjad_import_statement)
         lines.append('from scoremanager import iotools')
         lines.append('')

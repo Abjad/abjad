@@ -334,7 +334,7 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         lines = []
-        lines.append(self._unicode_directive)
+        lines.append(self._configuration.unicode_directive)
         lines.append('')
         lines.append('')
         lines.append('start_menu_entries = [')

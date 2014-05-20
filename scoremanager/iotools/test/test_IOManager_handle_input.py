@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_IOManager_handle_input_01():
+def test_IOManager__handle_input_01():
     r'''Command repetition works.
     '''
 

@@ -881,7 +881,7 @@ class PackageManager(AssetController):
             
     def _write_metadata_py(self, metadata):
         lines = []
-        lines.append(self._unicode_directive)
+        lines.append(self._configuration.unicode_directive)
         lines.append('import collections')
         lines.append('')
         lines.append('')

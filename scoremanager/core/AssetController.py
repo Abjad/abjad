@@ -375,7 +375,7 @@ class AssetController(Controller):
             messages = []
             prompt = True
             if statement is None:
-                statement = self._io_manager.handle_input(
+                statement = self._io_manager._handle_input(
                     '>>', 
                     include_newline=False,
                     )
