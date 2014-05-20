@@ -60,8 +60,8 @@ class IOManager(object):
     @staticmethod
     def _warn_when_output_directory_almost_full(last_number):
         from abjad import abjad_configuration
-        abjad_output_directory_path = \
-            abjad_configuration['abjad_output_directory_path']
+        abjad_output_directory = \
+            abjad_configuration['abjad_output_directory']
         max_number = 10000
         lines = []
         lines.append('')
@@ -70,7 +70,7 @@ class IOManager(object):
         line += 'and only {} are allowed.'
         line = line.format(last_number, max_number)
         lines.append(line)
-        line = 'Please empty {} soon!'.format(abjad_output_directory_path)
+        line = 'Please empty {} soon!'.format(abjad_output_directory)
         lines.append(line)
         lines.append('')
         for line in lines:
@@ -168,8 +168,8 @@ class IOManager(object):
         return result
 
     @staticmethod
-    def get_last_output_file_name(output_directory_path=None):
-        r'''Gets last output file name in `output_directory_path`.
+    def get_last_output_file_name(output_directory=None):
+        r'''Gets last output file name in `output_directory`.
 
         ..  container:: example
 
@@ -179,7 +179,7 @@ class IOManager(object):
                 '6222.ly'
 
         Gets last output file name in Abjad output directory when
-        `output_directory_path` is none.
+        `output_directory` is none.
 
         Returns none when output directory contains no output files.
 
@@ -187,11 +187,11 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         pattern = re.compile('\d{4,4}.[a-z]{2,3}')
-        output_directory_path = output_directory_path or \
-            abjad_configuration['abjad_output_directory_path']
-        if not os.path.exists(output_directory_path):
+        output_directory = output_directory or \
+            abjad_configuration['abjad_output_directory']
+        if not os.path.exists(output_directory):
             return
-        all_file_names = os.listdir(output_directory_path)
+        all_file_names = os.listdir(output_directory)
         all_output = [x for x in all_file_names if pattern.match(x)]
         if all_output == []:
             last_output_file_name = None
@@ -202,10 +202,10 @@ class IOManager(object):
     @staticmethod
     def get_next_output_file_name(
         file_extension='ly',
-        output_directory_path=None,
+        output_directory=None,
         ):
         r'''Gets next output file name with `file_extension` in
-        `output_directory_path`.
+        `output_directory`.
 
         ..  container:: example
 
@@ -215,14 +215,14 @@ class IOManager(object):
                 '6223.ly'
 
         Gets next output file name with `file_extension` in Abjad output
-        directory when `output_directory_path` is none.
+        directory when `output_directory` is none.
 
         Returns string.
         '''
         assert file_extension.isalpha() and \
             0 < len(file_extension) < 4, repr(file_extension)
         last_output = IOManager.get_last_output_file_name(
-            output_directory_path=output_directory_path,
+            output_directory=output_directory,
             )
         if last_output is None:
             next_number = 1
@@ -404,12 +404,12 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        abjad_output_directory_path = abjad_configuration['abjad_output_directory_path']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         if not lilypond_path:
             lilypond_path = abjad_configuration['lilypond_path']
             if not lilypond_path:
                 lilypond_path = 'lilypond'
-        log_file_path = os.path.join(abjad_output_directory_path, 'lily.log')
+        log_file_path = os.path.join(abjad_output_directory, 'lily.log')
         command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
         command = command.format(
             lilypond_path,
@@ -426,7 +426,7 @@ class IOManager(object):
             pass
         if exit_code:
             log_path = os.path.join(
-                abjad_configuration.abjad_output_directory_path,
+                abjad_configuration.abjad_output_directory,
                 'lily.log',
                 )
             if os.path.exists(log_path):
@@ -451,7 +451,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
+        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
         last_output_file_path = IOManager.get_last_output_file_name()
         if last_output_file_path is None:
             return
@@ -476,7 +476,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
+        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name()
         without_extension, extension = os.path.splitext(last_output_file_name)
         last_pdf = without_extension + '.pdf'
@@ -534,9 +534,9 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
-        abjad_output_directory_path = abjad_configuration['abjad_output_directory_path']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         text_editor = abjad_configuration.get_text_editor()
-        log_file_path = os.path.join(abjad_output_directory_path, 'lily.log')
+        log_file_path = os.path.join(abjad_output_directory, 'lily.log')
         command = '{} {}'.format(text_editor, log_file_path)
         IOManager.spawn_subprocess(command)
 
@@ -582,7 +582,7 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
+        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
         text_editor = abjad_configuration.get_text_editor()
         if isinstance(target, int) and target < 0:
             last_lilypond = IOManager.get_last_output_file_name()
@@ -620,7 +620,7 @@ class IOManager(object):
 
         Abjad writes PDFs to the ``~/.abjad/output`` directory by default.
 
-        You may change this by setting the ``abjad_output_directory_path`` variable in
+        You may change this by setting the ``abjad_output_directory`` variable in
         the ``config.py`` file.
 
         Set ``target=-2`` to open the next-to-last PDF generated by Abjad.
@@ -629,7 +629,7 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
+        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
         if isinstance(target, int) and target < 0:
             last_lilypond_file_name = IOManager.get_last_output_file_name()
             if last_lilypond_file_name:

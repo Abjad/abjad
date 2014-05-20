@@ -12,7 +12,7 @@ def test_BuildFileWrangler_generate_preface_source_01():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.score_manager_directory_path,
+        score_manager._configuration.score_manager_directory,
         'boilerplate',
         'preface.tex',
         )
@@ -45,7 +45,7 @@ def test_BuildFileWrangler_generate_preface_source_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.score_manager_directory_path,
+        score_manager._configuration.score_manager_directory,
         'boilerplate',
         'preface.tex',
         )

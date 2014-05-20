@@ -23,7 +23,7 @@ function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 def find_multifunction_modules():
 
     multifunction_modules = []
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         subdirectory_names_to_remove = []
         for subdirectory_name in subdirectory_names:
             if subdirectory_name in directory_name_blacklist:
@@ -35,11 +35,11 @@ def find_multifunction_modules():
                 file_name not in file_name_blacklist:
                 if not file_name.startswith('test_'):
                     result = has_multiple_public_function_definitions(
-                        directory_path,
+                        directory,
                         file_name
                         )
                     if result:
-                        file_path = os.path.join(directory_path, file_name)
+                        file_path = os.path.join(directory, file_name)
                         result_pair = (file_path, result)
                         multifunction_modules.append(result_pair)
 

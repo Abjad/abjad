@@ -94,32 +94,32 @@ class MakeNewClassTemplateScript(DeveloperScript):
             message = 'not in tools_package.class_name format: {!r}.'
             message = message.format(args.name)
             raise SystemExit(message)
-        root_directory_path = args.path
+        root_directory = args.path
         tools_package_name, class_name = args.name.split('.')
         if tools_package_name not in self._get_tools_package_names(
-            root_directory_path):
+            root_directory):
             message = '{!r} is not a valid tools package.'
             message = message.format(tools_package_name)
             raise SystemExit(message)
         if class_name in self._get_class_names_in_tools_package(
-            root_directory_path, tools_package_name):
+            root_directory, tools_package_name):
             message = '{!r} already exists in {!r}'
             message = message.format(class_name, tools_package_name)
             raise SystemExit(message)
-        tools_package_directory_path = os.path.join(
-            root_directory_path,
+        tools_package_directory = os.path.join(
+            root_directory,
             tools_package_name,
             )
         if args.path == os.path.join(
-            abjad_configuration.abjad_experimental_directory_path, 'tools'):
+            abjad_configuration.abjad_experimental_directory, 'tools'):
             package_root_name = 'experimental'
         elif args.path == os.path.join(
-            abjad_configuration.abjad_directory_path, 'tools'):
+            abjad_configuration.abjad_directory, 'tools'):
             package_root_name = 'abjad'
         else:
             raise SystemExit
         module_file_path = os.path.join(
-            tools_package_directory_path,
+            tools_package_directory,
             '{}.py'.format(class_name),
             )
         module_text = '\n'.join(self._get_class_text(class_name)) + '\n'
@@ -140,7 +140,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
         path_group.add_argument('-X', '--experimental',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_experimental_directory_path,
+                abjad_configuration.abjad_experimental_directory,
                 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
@@ -148,7 +148,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
         path_group.add_argument('-M', '--mainline',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_directory_path, 'tools'),
+                abjad_configuration.abjad_directory, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

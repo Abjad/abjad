@@ -13,7 +13,7 @@ class ImageOutputProxy(AssetOutputProxy):
 
     def get_asset_output_absolute_file_path(self, document_handler):
         return os.path.join(
-            document_handler.asset_output_directory_path,
+            document_handler.asset_output_directory,
             self.get_image_file_name(document_handler),
             )
 

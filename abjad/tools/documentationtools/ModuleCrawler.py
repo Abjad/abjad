@@ -36,7 +36,7 @@ class ModuleCrawler(AbjadObject):
         ):
         from abjad import abjad_configuration
         if code_root is None:
-            code_root = abjad_configuration.abjad_directory_path
+            code_root = abjad_configuration.abjad_directory
         assert os.path.exists(code_root)
         if not os.path.exists(os.path.join(code_root, '__init__.py')):
             message = '{} is not a Python package directory.'

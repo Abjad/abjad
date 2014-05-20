@@ -9,12 +9,12 @@ def count_source_lines():
     source_module_names = 0
     test_lines = 0
     test_module_names = 0
-    for directory_path, directory_names, file_names  in os.walk('.'):
+    for directory, directory_names, file_names  in os.walk('.'):
         if '.svn' in directory_names:
             directory_names.remove('.svn')
         module_names = [x for x in file_names if x.endswith('.py')]
         for module in module_names:
-            module_path = os.path.join(directory_path, module)
+            module_path = os.path.join(directory, module)
             command = "cat {} | sed '/^\s*$/d' | wc -l".format(module_path)
             process = subprocess.Popen(
                 command,

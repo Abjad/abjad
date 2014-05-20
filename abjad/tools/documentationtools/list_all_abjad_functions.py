@@ -16,7 +16,7 @@ def list_all_abjad_functions(modules=None):
     all_functions = set()
     paths = []
     if modules is None:
-        paths.append(abjad_configuration.abjad_directory_path)
+        paths.append(abjad_configuration.abjad_directory)
     elif isinstance(modules, types.ModuleType):
         paths.extend(modules.__path__)
     elif isinstance(modules, collections.Iterable):

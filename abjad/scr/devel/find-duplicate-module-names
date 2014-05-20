@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 def find_all_duplicate_module_names():
 
     all_file_names = []
-    all_directory_paths = []
+    all_directorys = []
     unique_file_names = []
     duplicate_file_names = []
 
@@ -23,27 +23,27 @@ def find_all_duplicate_module_names():
         'Voice.py',
         )
 
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         for file_name in file_names:
             if file_name.endswith('.py'):
                 if not file_name.startswith('test_') and \
-                    'demos' not in directory_path and \
+                    'demos' not in directory and \
                     file_name not in expected_duplicate_file_names:
                     if not file_name == '__init__.py':
                         all_file_names.append(file_name)
-                        all_directory_paths.append(directory_path)
+                        all_directorys.append(directory)
                         if file_name not in unique_file_names:
                             unique_file_names.append(file_name)
                         else:
                             second_full_path = os.path.join(
-                                directory_path, 
+                                directory, 
                                 file_name,
                                 )
                             index = all_file_names.index(file_name)
-                            duplicate_directory_path = \
-                                all_directory_paths[index]
+                            duplicate_directory = \
+                                all_directorys[index]
                             first_full_path = os.path.join(
-                                duplicate_directory_path, 
+                                duplicate_directory, 
                                 file_name,
                                 )
                             duplicate_file_names.append(first_full_path)

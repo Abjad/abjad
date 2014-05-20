@@ -6,11 +6,11 @@ from abjad.tools import systemtools
 def remove_source_file_terminal_blank_lines():
     total_source_file_names_with_blank_lines = 0
     total_blank_lines = 0
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         for file_name in file_names:
             found_import_as_statement = False
             if file_name.endswith(('.py', '.ly', '.raw', '.rst')):
-                file_path = os.path.join(directory_path, file_name)
+                file_path = os.path.join(directory, file_name)
                 file_pointer = file(file_path, 'r')
                 lines = file_pointer.readlines()
                 file_pointer.close()

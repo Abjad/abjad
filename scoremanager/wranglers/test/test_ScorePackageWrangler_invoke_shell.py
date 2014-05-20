@@ -13,7 +13,7 @@ def test_ScorePackageWrangler_invoke_shell_01():
     score_manager._run(pending_input=input_)
 
     path = os.path.join(
-        score_manager._configuration.score_manager_directory_path,
+        score_manager._configuration.score_manager_directory,
         )
     string = '\n{}\n'.format(path)
     assert string in score_manager._transcript.contents

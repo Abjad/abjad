@@ -10,26 +10,26 @@ class TemporaryDirectoryChange(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, directory_path=None):
-        if directory_path is not None:
-            assert os.path.isdir(directory_path)
-        self._directory_path = directory_path
+    def __init__(self, directory=None):
+        if directory is not None:
+            assert os.path.isdir(directory)
+        self._directory = directory
 
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters context manager and changes to `directory_path`.
+        r'''Enters context manager and changes to `directory`.
         '''
-        self._original_directory_path = os.getcwd()
-        if self._directory_path is not None:
-            os.chdir(self.directory_path)
+        self._original_directory = os.getcwd()
+        if self._directory is not None:
+            os.chdir(self.directory)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         r'''Exits context manager and returns to original working directory.
         '''
-        if self._directory_path is not None:
-            os.chdir(self._original_directory_path)
+        if self._directory is not None:
+            os.chdir(self._original_directory)
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
@@ -41,9 +41,9 @@ class TemporaryDirectoryChange(ContextManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def directory_path(self):
-        r'''Gets temporary directory path of context manager.
+    def directory(self):
+        r'''Gets temporary directory of context manager.
 
         Returns string.
         '''
-        return self._directory_path
+        return self._directory

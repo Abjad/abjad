@@ -108,31 +108,31 @@ class PyTestScript(DirectoryScript):
         group = parser.add_mutually_exclusive_group()
         group.add_argument('-A', '--all',
             action='store_const',
-            const=[abjad_configuration.abjad_root_directory_path],
+            const=[abjad_configuration.abjad_root_directory],
             dest='path',
             help='test all directories, including demos',
             )
         group.add_argument('-D', '--demos',
             action='store_const',
             const=[os.path.join(
-                abjad_configuration.abjad_directory_path, 'demos')],
+                abjad_configuration.abjad_directory, 'demos')],
             dest='path',
             help='test demos directory',
             )
         group.add_argument('-M', '--mainline',
             action='store_const',
             const=[os.path.join(
-                abjad_configuration.abjad_directory_path, 'tools')],
+                abjad_configuration.abjad_directory, 'tools')],
             dest='path',
             help='test mainline tools directory',
             )
         group.add_argument('-X', '--experimental',
             action='store_const',
-            const=[abjad_configuration.abjad_experimental_directory_path],
+            const=[abjad_configuration.abjad_experimental_directory],
             dest='path',
             help='test experimental directory',
             )
         parser.set_defaults(path=[
-            os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
-            abjad_configuration.abjad_experimental_directory_path
+            os.path.join(abjad_configuration.abjad_directory, 'tools'),
+            abjad_configuration.abjad_experimental_directory
             ])

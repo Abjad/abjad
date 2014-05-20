@@ -28,17 +28,17 @@ def test_TextualDocumentHandler_01():
     That's it!
     '''
 
-    test_directory_path = os.path.abspath(os.path.dirname(__file__))
+    test_directory = os.path.abspath(os.path.dirname(__file__))
     test_document_file_name = 'document.rst'
     test_document_file_path = os.path.join(
-        test_directory_path,
+        test_directory,
         test_document_file_name,
         )
 
     document_handler = newabjadbooktools.ReSTDocumentHandler(
         document,
         document_file_name=test_document_file_name,
-        output_directory_path=test_directory_path,
+        output_directory=test_directory,
         )
     document_handler.extract_code_blocks()
     document_handler.execute_code_blocks()

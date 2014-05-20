@@ -119,7 +119,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
         path_group.add_argument('-X', '--experimental',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_experimental_directory_path,
+                abjad_configuration.abjad_experimental_directory,
                 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
@@ -127,7 +127,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
         path_group.add_argument('-M', '--mainline',
             action='store_const',
             const=os.path.join(
-                abjad_configuration.abjad_directory_path, 'tools'),
+                abjad_configuration.abjad_directory, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

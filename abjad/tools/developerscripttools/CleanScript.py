@@ -96,7 +96,7 @@ class CleanScript(DirectoryScript):
                     os.remove(file_path)
             directories_to_remove = []
             for directory_name in directory_names:
-                directory_path = os.path.join(
+                directory = os.path.join(
                     root_directory,
                     directory_name,
                     )
@@ -107,10 +107,10 @@ class CleanScript(DirectoryScript):
                 if args.tmp:
                     if directory_name.startswith('tmp'):
                         should_remove = True
-                if not os.listdir(directory_path):
+                if not os.listdir(directory):
                     should_remove = True
                 if should_remove:
-                    shutil.rmtree(directory_path)
+                    shutil.rmtree(directory)
                     directories_to_remove.append(directory_name)
             for directory_name in directories_to_remove:
                 directory_names.remove(directory_name)

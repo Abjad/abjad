@@ -310,7 +310,7 @@ class Selector(Controller):
         '''
         configuration = self._configuration
         rhythm_maker_tools_directory = os.path.join(
-            configuration.abjad_directory_path,
+            configuration.abjad_directory,
             'tools',
             'rhythmmakertools',
             )

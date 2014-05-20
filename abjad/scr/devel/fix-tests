@@ -7,7 +7,7 @@ def fix_test_case_names():
     total_test_modules = 0
     total_test_cases = 0
     total_nonmatching_names = 0
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         test_modules = []
         for file_name in file_names:
             if file_name.startswith('test_') and file_name.endswith('.py'):
@@ -15,7 +15,7 @@ def fix_test_case_names():
         total_test_modules += len(test_modules)
         for test_module in test_modules:
             result = process_test_module_name_fixes(
-                test_module, directory_path)
+                test_module, directory)
             total_test_cases_in_module, total_nonmatching_names_in_module = \
                 result
             total_test_cases += total_test_cases_in_module
@@ -30,10 +30,10 @@ def fix_test_case_names():
         suffix, total_nonmatching_names)
 
 
-def process_test_module_name_fixes(test_module, directory_path):
+def process_test_module_name_fixes(test_module, directory):
     total_nonmatching_names_in_current_module = 0
     test_cases_in_current_module = 0
-    full_module_name = os.path.join(directory_path, test_module)
+    full_module_name = os.path.join(directory, test_module)
     short_module_name = test_module[:-3]
     desired_test_case_prefix = short_module_name
     #print 'desired: %s' % desired_test_case_prefix
@@ -90,7 +90,7 @@ def fix_test_case_numbers():
     total_test_modules = 0
     total_test_cases = 0
     total_misnumbered_cases = 0
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         test_modules = []
         for file_name in file_names:
             if file_name.startswith('test_') and file_name.endswith('.py'):
@@ -98,7 +98,7 @@ def fix_test_case_numbers():
         total_test_modules += len(test_modules)
         for test_module in test_modules:
             result = process_test_module_number_fixes(
-                test_module, directory_path)
+                test_module, directory)
             test_cases_in_current_module = result[0]
             misnumbered_cases_in_current_module = result[1]
             total_test_cases += test_cases_in_current_module
@@ -113,10 +113,10 @@ def fix_test_case_numbers():
         suffix, total_misnumbered_cases)
 
 
-def process_test_module_number_fixes(test_module, directory_path):
+def process_test_module_number_fixes(test_module, directory):
     test_cases_in_current_module = 0
     misnumbered_cases_in_current_module = 0
-    full_module_name = os.path.join(directory_path, test_module)
+    full_module_name = os.path.join(directory, test_module)
     short_module_name = test_module[:-3]
     desired_test_case_prefix = short_module_name
     file_pointer = file(full_module_name, 'r')

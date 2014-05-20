@@ -70,7 +70,7 @@ class PersistenceAgent(abctools.AbjadObject):
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
-                abjad_configuration.abjad_output_directory_path,
+                abjad_configuration.abjad_output_directory,
                 ly_file_name,
                 )
         else:
@@ -80,8 +80,8 @@ class PersistenceAgent(abctools.AbjadObject):
         with timer:
             lilypond_format = format(illustration, 'lilypond')
         abjad_formatting_time = timer.elapsed_time
-        directory_path = os.path.dirname(ly_file_path)
-        systemtools.IOManager._ensure_directory_existence(directory_path)
+        directory = os.path.dirname(ly_file_path)
+        systemtools.IOManager._ensure_directory_existence(directory)
         with open(ly_file_path, 'w') as file_handle:
             file_handle.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
@@ -175,8 +175,8 @@ class PersistenceAgent(abctools.AbjadObject):
         result.extend(storage_pieces[1:])
         result = '\n'.join(result)
         module_file_path = os.path.expanduser(module_file_path)
-        directory_path = os.path.dirname(module_file_path)
-        systemtools.IOManager._ensure_directory_existence(directory_path)
+        directory = os.path.dirname(module_file_path)
+        systemtools.IOManager._ensure_directory_existence(directory)
         with open(module_file_path, 'w') as f:
             f.write(result)
 

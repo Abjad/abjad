@@ -21,8 +21,8 @@ class Configuration(AbjadObject):
 
     def __init__(self):
         # verify configuration directory
-        if not os.path.exists(self.configuration_directory_path):
-            os.makedirs(self.configuration_directory_path)
+        if not os.path.exists(self.configuration_directory):
+            os.makedirs(self.configuration_directory)
         # attempt to load config from disk, and validate
         # a config object will be created if none is found on disk
         config = configobj.ConfigObj(
@@ -48,8 +48,8 @@ class Configuration(AbjadObject):
         config.initial_comment = self._initial_comment
         # write to disk if doesn't exist
         if not os.path.exists(self.configuration_file_path):
-            if not os.path.exists(self.configuration_directory_path):
-                os.makedirs(self.configuration_directory_path)
+            if not os.path.exists(self.configuration_directory):
+                os.makedirs(self.configuration_directory)
             config.write()
         # write to disk if different from current
         else:
@@ -150,8 +150,8 @@ class Configuration(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def configuration_directory_path(self):
-        r'''Gets configuration directory path.
+    def configuration_directory(self):
+        r'''Gets configuration directory.
 
         Returns string.
         '''
@@ -172,13 +172,13 @@ class Configuration(AbjadObject):
         Returns string.
         '''
         return os.path.join(
-            self.configuration_directory_path,
+            self.configuration_directory,
             self.configuration_file_name,
             )
 
     @property
-    def home_directory_path(self):
-        r'''Gets home directory path.
+    def home_directory(self):
+        r'''Gets home directory.
 
         Returns string.
         '''

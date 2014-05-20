@@ -10,7 +10,7 @@ def test_ListAutoeditor___init___01():
     manager directory.
     '''
 
-    os.chdir(configuration.score_manager_directory_path)
+    os.chdir(configuration.score_manager_directory)
     session = scoremanager.core.Session()
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     assert isinstance(autoeditor, scoremanager.iotools.ListAutoeditor)
@@ -21,7 +21,7 @@ def test_ListAutoeditor___init___02():
     other than the score manager directory.
     '''
 
-    os.chdir(configuration.abjad_directory_path)
+    os.chdir(configuration.abjad_directory)
     session = scoremanager.core.Session()
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     assert isinstance(autoeditor, scoremanager.iotools.ListAutoeditor)

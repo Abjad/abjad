@@ -27,7 +27,7 @@ class BuildApiScript(DeveloperScript):
         def docs_api_index_path(self):
             from abjad import abjad_configuration
             return os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'experimental',
                 'docs',
                 'source',
@@ -38,12 +38,12 @@ class BuildApiScript(DeveloperScript):
         def path_definitions(self):
             from abjad import abjad_configuration
             tools_code_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'experimental',
                 'tools',
                 )
             tools_docs_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'experimental',
                 'docs',
                 'source',
@@ -56,12 +56,12 @@ class BuildApiScript(DeveloperScript):
                 tools_package_prefix,
                 )
             demos_code_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'experimental',
                 'demos',
                 )
             demos_docs_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'experimental',
                 'docs',
                 'source',
@@ -94,7 +94,7 @@ class BuildApiScript(DeveloperScript):
         def docs_api_index_path(self):
             from abjad import abjad_configuration
             return os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'scoremanager',
                 'docs',
                 'source',
@@ -105,11 +105,11 @@ class BuildApiScript(DeveloperScript):
         def path_definitions(self):
             from abjad import abjad_configuration
             code_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'scoremanager',
                 )
             docs_path = os.path.join(
-                abjad_configuration.abjad_root_directory_path,
+                abjad_configuration.abjad_root_directory,
                 'scoremanager',
                 'docs',
                 'source',
@@ -205,7 +205,7 @@ class BuildApiScript(DeveloperScript):
         api_generator = BuildApiScript.ExperimentalAPIGenerator()
         api_title = 'experimental'
         docs_directory = os.path.join(
-            abjad_configuration.abjad_root_directory_path,
+            abjad_configuration.abjad_root_directory,
             'experimental',
             'docs',
             )
@@ -217,7 +217,7 @@ class BuildApiScript(DeveloperScript):
             docs_directory=docs_directory,
             )
         path = os.path.join(
-            abjad_configuration.abjad_root_directory_path,
+            abjad_configuration.abjad_root_directory,
             'experimental',
             'docs',
             'build',
@@ -231,7 +231,7 @@ class BuildApiScript(DeveloperScript):
         api_generator = AbjadAPIGenerator()
         api_title = 'mainline'
         docs_directory = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'docs',
             )
         self._build_api(
@@ -242,7 +242,7 @@ class BuildApiScript(DeveloperScript):
             docs_directory=docs_directory,
             )
         path = os.path.join(
-            abjad_configuration.abjad_root_directory_path,
+            abjad_configuration.abjad_root_directory,
             'abjad',
             'docs',
             'build',
@@ -257,7 +257,7 @@ class BuildApiScript(DeveloperScript):
         api_generator = BuildApiScript.ScoreManagerAPIGenerator()
         api_title = 'score manager'
         docs_directory = os.path.join(
-            abjad_configuration.abjad_root_directory_path,
+            abjad_configuration.abjad_root_directory,
             'scoremanager',
             'docs',
             )
@@ -269,7 +269,7 @@ class BuildApiScript(DeveloperScript):
             docs_directory=docs_directory,
             )
         path = os.path.join(
-            abjad_configuration.abjad_root_directory_path,
+            abjad_configuration.abjad_root_directory,
             'scoremanager',
             'docs',
             'build',

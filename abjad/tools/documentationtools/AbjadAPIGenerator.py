@@ -146,8 +146,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     def _prune_obsolete_documents(self, code_path, docs_path):
-        for directory_path, directory_names, file_names in os.walk(docs_path):
-            path_suffix = os.path.relpath(directory_path, docs_path)
+        for directory, directory_names, file_names in os.walk(docs_path):
+            path_suffix = os.path.relpath(directory, docs_path)
             for file_name in file_names:
                 if not file_name.endswith('.rst') or file_name == 'index.rst':
                     continue
@@ -158,21 +158,21 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     )
                 if not os.path.exists(code_file_path):
                     docs_file_path = os.path.join(
-                        directory_path,
+                        directory,
                         file_name,
                         )
                     os.remove(docs_file_path)
                     print('PRUNING', os.path.relpath(docs_file_path))
             for directory_name in directory_names[:]:
-                code_directory_path = os.path.join(
+                code_directory = os.path.join(
                     code_path,
                     path_suffix,
                     directory_name,
                     )
                 should_delete = False
-                if not os.path.exists(code_directory_path):
+                if not os.path.exists(code_directory):
                     should_delete = True
-                elif not [x for x in os.listdir(code_directory_path)
+                elif not [x for x in os.listdir(code_directory)
                     if x.endswith('.py')]:
                     should_delete = True
                 # sphinx seems to want a docs/source/_static directory
@@ -180,12 +180,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     should_delete = False
                     directory_names.remove(directory_name)
                 if should_delete:
-                    docs_directory_path = os.path.join(
-                        directory_path,
+                    docs_directory = os.path.join(
+                        directory,
                         directory_name,
                         )
-                    shutil.rmtree(docs_directory_path)
-                    print('PRUNING', os.path.relpath(docs_directory_path))
+                    shutil.rmtree(docs_directory)
+                    print('PRUNING', os.path.relpath(docs_directory))
 
     def _write_document(self, documenter, code_path, docs_path, package_prefix):
         from abjad.tools import documentationtools
@@ -199,9 +199,9 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             parts[-1] += '.rst'
         parts.insert(0, docs_path)
         file_path = os.path.join(*parts)
-        directory_path = os.path.dirname(file_path)
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
         documenter.write(file_path, documenter())
 
     ### PUBLIC PROPERTIES ###
@@ -212,7 +212,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         '''
         from abjad import abjad_configuration
         return os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'docs', 'source', 'api', 'index.rst')
 
     @property
@@ -227,11 +227,11 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         '''
         from abjad import abjad_configuration
         tools_code_path = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'tools',
             )
         tools_docs_path = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'docs',
             'source',
             'api',
@@ -244,11 +244,11 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             tools_package_prefix,
             )
         demos_code_path = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'demos',
             )
         demos_docs_path = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'docs',
             'source',
             'api',

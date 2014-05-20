@@ -14,12 +14,12 @@ class DocumentHandler(AbjadObject):
 
     def __init__(self,
         document,
-        output_directory_path=None,
+        output_directory=None,
         ):
         self._code_blocks = collections.OrderedDict()
         self._console = code.InteractiveConsole()
         self._document = document
-        self._output_directory_path = output_directory_path
+        self._output_directory = output_directory
 
     ### SPECIAL METHODS ###
 
@@ -36,9 +36,9 @@ class DocumentHandler(AbjadObject):
         raise NotImplemented
 
     @property
-    def asset_output_directory_path(self):
+    def asset_output_directory(self):
         return os.path.join(
-            self.output_directory_path,
+            self.output_directory,
             self.asset_output_directory_name,
             )
 
@@ -78,8 +78,8 @@ class DocumentHandler(AbjadObject):
         raise NotImplemented
 
     @property
-    def output_directory_path(self):
-        return self._output_directory_path
+    def output_directory(self):
+        return self._output_directory
 
     @property
     def source_to_code_block_mapping(self):
@@ -125,14 +125,14 @@ class DocumentHandler(AbjadObject):
 
     def write_assets(self):
         from experimental.tools import newabjadbooktools
-        assert os.path.exists(self.output_directory_path)
+        assert os.path.exists(self.output_directory)
         if self.has_asset_output_proxies:
-            asset_output_directory_path = os.path.join(
-                self.output_directory_path,
+            asset_output_directory = os.path.join(
+                self.output_directory,
                 self.asset_output_directory_name,
                 )
-            if not os.path.exists(asset_output_directory_path):
-                os.mkdir(asset_output_directory_path)
+            if not os.path.exists(asset_output_directory):
+                os.mkdir(asset_output_directory)
         for code_block in self.source_to_code_block_mapping.items():
             for output_proxy in code_block.output_proxies:
                 if not isinstance(output_proxy,

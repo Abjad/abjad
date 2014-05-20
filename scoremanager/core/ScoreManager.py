@@ -100,7 +100,7 @@ class ScoreManager(Controller):
             consume_local_backtrack=True,
             on_exit_callbacks=(self._session._clean_up,)
             )
-        path = self._configuration.score_manager_directory_path
+        path = self._configuration.score_manager_directory
         directory_change = systemtools.TemporaryDirectoryChange(path)
         path = self._configuration.cache_file_path
         state = systemtools.NullContextManager()

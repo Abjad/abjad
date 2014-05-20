@@ -7,9 +7,9 @@ def test_systemtools_AbjadConfiguration___init___01():
 
     ABJADCONFIG = systemtools.AbjadConfiguration()
 
-    assert os.path.exists(ABJADCONFIG.abjad_configuration_directory_path)
+    assert os.path.exists(ABJADCONFIG.abjad_configuration_directory)
     assert os.path.exists(ABJADCONFIG.abjad_configuration_file_path)
-    assert os.path.exists(ABJADCONFIG.abjad_output_directory_path)
+    assert os.path.exists(ABJADCONFIG.abjad_output_directory)
 
     keys = [
         'text_editor',
@@ -17,7 +17,7 @@ def test_systemtools_AbjadConfiguration___init___01():
         'lilypond_includes',
         'lilypond_path',
         'midi_player',
-        'abjad_output_directory_path',
+        'abjad_output_directory',
         'accidental_spelling',
         'lilypond_language',
     ]

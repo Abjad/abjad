@@ -6,13 +6,13 @@ from abjad.tools import systemtools
 def find_initializers():
 
     initializer_file_paths = []
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
-        if 'docs' in directory_path:
+    for directory, subdirectory_names, file_names in os.walk('.'):
+        if 'docs' in directory:
             continue
         for file_name in file_names:
             if file_name == '__init__.py':
-                directory_name = os.path.basename(directory_path)
-                initializer_file_path = os.path.join(directory_path, file_name)
+                directory_name = os.path.basename(directory)
+                initializer_file_path = os.path.join(directory, file_name)
                 initializer_file_paths.append(initializer_file_path)
     total_initializer_count = len(initializer_file_paths)
     print 'Total initializers:        {}'.format(total_initializer_count)

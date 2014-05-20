@@ -268,7 +268,7 @@ if __name__ == '__main__':
     configurations_by_class = make_configurations_by_class()
     lilypond_file = maker(configurations_by_class)
     file_path = __file__
-    directory_path = os.path.dirname(file_path)
+    directory = os.path.dirname(file_path)
     file_name = 'gallery.pdf'
-    file_path = os.path.join(directory_path, file_name)
+    file_path = os.path.join(directory, file_name)
     persist(lilypond_file).as_pdf(file_path, remove_ly=False)

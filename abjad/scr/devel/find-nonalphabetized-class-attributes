@@ -18,7 +18,7 @@ def main():
     total_modules_examined = 0
     nonalphabetized_module_names = []
 
-    for parent_directory_path, subdirectory_names, file_names in os.walk('.'):
+    for parent_directory, subdirectory_names, file_names in os.walk('.'):
 
         subdirectory_names_to_remove = []
         for subdirectory_name in subdirectory_names:
@@ -30,7 +30,7 @@ def main():
         py_file_names = (x for x in file_names if x.endswith('.py'))
         for file_name in py_file_names:
             total_modules_examined += 1
-            full_file_name = os.path.join(parent_directory_path, file_name)
+            full_file_name = os.path.join(parent_directory, file_name)
             file_pointer = file(full_file_name, 'r')
             found_class_keyword, found_def_keyword = False, False
             attribute_definition_lines = []

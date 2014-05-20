@@ -5,11 +5,11 @@ import os
 def _remove_trailing_whitespace(path):
     path = os.path.abspath(path)
     assert os.path.isdir(path)
-    for root_directory_path, directory_names, file_names in os.walk(path):
+    for root_directory, directory_names, file_names in os.walk(path):
         for file_name in file_names:
             if not file_name.endswith('.py'):
                 continue
-            file_path = os.path.join(root_directory_path, file_name)
+            file_path = os.path.join(root_directory, file_name)
             with open(file_path, 'r') as f:
                 lines = f.read().splitlines()
             for i, line in enumerate(lines):

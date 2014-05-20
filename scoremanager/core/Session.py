@@ -363,11 +363,11 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory(self):
-        r'''Gets session current materials directory path.
+        r'''Gets session current materials directory.
 
         ..  container:: example
 
-            Materials directory path of session outside score:
+            Materials directory of session outside score:
 
             ::
 
@@ -376,7 +376,7 @@ class Session(abctools.AbjadObject):
 
         ..  container:: example
 
-            Materials directory path of session in score:
+            Materials directory of session in score:
 
             ::
 
@@ -392,7 +392,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_directory(self):
-        r'''Gets session current score directory path.
+        r'''Gets session current score directory.
 
         ..  container:: example
 
@@ -442,7 +442,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_directory(self):
-        r'''Gets session current segments directory path.
+        r'''Gets session current segments directory.
 
         ..  container:: example
 

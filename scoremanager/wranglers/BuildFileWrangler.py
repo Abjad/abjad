@@ -482,7 +482,7 @@ class BuildFileWrangler(Wrangler):
             if not result:
                 return
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'back-cover.tex',
             )
@@ -565,7 +565,7 @@ class BuildFileWrangler(Wrangler):
             return
         self._io_manager._display('')
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'draft.tex',
             )
@@ -620,7 +620,7 @@ class BuildFileWrangler(Wrangler):
             if not result:
                 return
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'front-cover.tex',
             )
@@ -703,7 +703,7 @@ class BuildFileWrangler(Wrangler):
             return
         self._io_manager._display('')
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'music.ly',
             )
@@ -782,7 +782,7 @@ class BuildFileWrangler(Wrangler):
             if not result:
                 return
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'preface.tex',
             )
@@ -824,7 +824,7 @@ class BuildFileWrangler(Wrangler):
             if not result:
                 return
         source_path = os.path.join(
-            self._configuration.score_manager_directory_path,
+            self._configuration.score_manager_directory,
             'boilerplate',
             'score.tex',
             )

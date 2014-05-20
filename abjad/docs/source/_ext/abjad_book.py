@@ -60,7 +60,7 @@ class ShellDirective(sphinx.util.compat.Directive):
     def run(self):
         self.assert_has_content()
         #original_directory = os.path.abspath(os.path.curdir)
-        os.chdir(abjad_configuration.abjad_directory_path)
+        os.chdir(abjad_configuration.abjad_directory)
         result = []
         for line in self.content:
             prompt = '{}$ '.format(os.path.basename(os.path.abspath(os.path.curdir)))

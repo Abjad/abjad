@@ -34,7 +34,7 @@ class AbjadConfiguration(Configuration):
     `AbjadConfiguration` then writes the configuration back to disk.
 
     The Abjad output directory is created the from
-    `abjad_output_directory_path` key if it does not already exist.
+    `abjad_output_directory` key if it does not already exist.
 
     `AbjadConfiguration` supports the mutable mapping interface
     and can be subscripted as a dictionary.
@@ -51,8 +51,8 @@ class AbjadConfiguration(Configuration):
         Configuration.__init__(self)
         # TODO: uncommenting this fails ScoreManagegerConfiguration init
         # verify the PDF output directory
-        #if not os.path.exists(self.abjad_output_directory_path):
-        #    os.mkdir(self.abjad_output_directory_path)
+        #if not os.path.exists(self.abjad_output_directory):
+        #    os.mkdir(self.abjad_output_directory)
 
     ### PRIVATE PROPERTIES ###
 
@@ -67,7 +67,7 @@ class AbjadConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'abjad_output_directory_path': {
+            'abjad_output_directory': {
                 'comment': [
                     '',
                     'Set to the directory where all Abjad-generated files',
@@ -76,7 +76,7 @@ class AbjadConfiguration(Configuration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.abjad_configuration_directory_path,
+                        self.abjad_configuration_directory,
                         'output',
                         )
                     )
@@ -396,13 +396,13 @@ class AbjadConfiguration(Configuration):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def abjad_configuration_directory_path(self):
-        r'''Abjad configuration directory path.
+    def abjad_configuration_directory(self):
+        r'''Abjad configuration directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.home_directory_path,
+            self.home_directory,
             '.abjad',
             )
         return os.path.abspath(relative_path)
@@ -416,8 +416,8 @@ class AbjadConfiguration(Configuration):
         return self.configuration_file_path
 
     @property
-    def abjad_directory_path(self):
-        r'''Abjad directory path.
+    def abjad_directory(self):
+        r'''Abjad directory.
 
         Returns string.
         '''
@@ -431,68 +431,68 @@ class AbjadConfiguration(Configuration):
         return os.path.sep.join(file_path_parts)
 
     @property
-    def abjad_experimental_directory_path(self):
-        r'''Abjad experimental directory path.
+    def abjad_experimental_directory(self):
+        r'''Abjad experimental directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.abjad_root_directory_path,
+            self.abjad_root_directory,
             'experimental',
             )
         return os.path.abspath(relative_path)
 
     @property
-    def abjad_output_directory_path(self):
-        r'''Abjad output directory path.
+    def abjad_output_directory(self):
+        r'''Abjad output directory.
 
         Returns string.
         '''
-        return self._settings['abjad_output_directory_path']
+        return self._settings['abjad_output_directory']
 
     @property
-    def abjad_root_directory_path(self):
-        r'''Abjad root directory path.
+    def abjad_root_directory(self):
+        r'''Abjad root directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.abjad_directory_path,
+            self.abjad_directory,
             '..',
             )
         return os.path.abspath(relative_path)
 
     @property
-    def abjad_stylesheets_directory_path(self):
-        r'''Abjad stylesheets directory path.
+    def abjad_stylesheets_directory(self):
+        r'''Abjad stylesheets directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.abjad_directory_path,
+            self.abjad_directory,
             'stylesheets',
             )
         return os.path.abspath(relative_path)
 
     @property
-    def abjad_tools_directory_path(self):
-        r'''Abjad tools directory path.
+    def abjad_tools_directory(self):
+        r'''Abjad tools directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.abjad_directory_path,
+            self.abjad_directory,
             'tools',
             )
         return os.path.abspath(relative_path)
 
     @property
-    def configuration_directory_path(self):
-        r'''Configuration directory path.
+    def configuration_directory(self):
+        r'''Configuration directory.
 
         Returns string.
         '''
-        return self.abjad_configuration_directory_path
+        return self.abjad_configuration_directory
 
     @property
     def configuration_file_name(self):
@@ -503,13 +503,13 @@ class AbjadConfiguration(Configuration):
         return 'abjad.cfg'
 
     @property
-    def score_manager_directory_path(self):
-        r'''Abjad score manager directory path.
+    def score_manager_directory(self):
+        r'''Abjad score manager directory.
 
         Returns string.
         '''
         relative_path = os.path.join(
-            self.abjad_root_directory_path,
+            self.abjad_root_directory,
             'scoremanager'
             )
         return os.path.abspath(relative_path)

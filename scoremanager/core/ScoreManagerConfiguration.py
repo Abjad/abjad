@@ -54,7 +54,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.home_directory_path,
+                        self.home_directory,
                         'score_manager_library',
                         )
                     ),
@@ -67,7 +67,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.home_directory_path,
+                        self.home_directory,
                         'scores',
                         )
                     ),
@@ -172,7 +172,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             return title
         elif path.startswith(self.user_library_directory):
             return self.composer_last_name
-        elif path.startswith(self.abjad_root_directory_path):
+        elif path.startswith(self.abjad_root_directory):
             return 'Abjad'
         else:
             message = 'path in unknown storehouse: {!r}.'
@@ -183,7 +183,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_makers_directory(self):
-        r'''Gets Abjad makers directory path.
+        r'''Gets Abjad makers directory.
 
         ..  container:: example
 
@@ -195,14 +195,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.score_manager_directory_path,
+            self.score_manager_directory,
             'makers',
             )
         return path
 
     @property
     def abjad_material_packages_directory(self):
-        r'''Gets Abjad material packages directory path.
+        r'''Gets Abjad material packages directory.
 
         ..  container:: example
 
@@ -214,7 +214,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.score_manager_directory_path,
+            self.score_manager_directory,
             'materials',
             )
         return path
@@ -243,7 +243,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_stylesheets_directory(self):
-        r'''Gets Abjad stylesheets directory path.
+        r'''Gets Abjad stylesheets directory.
 
         ..  container:: example
 
@@ -255,14 +255,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.abjad_directory_path,
+            self.abjad_directory,
             'stylesheets',
             )
         return path
 
     @property
     def boilerplate_directory(self):
-        r'''Gets boilerplate directory path.
+        r'''Gets boilerplate directory.
 
         ..  container:: example
 
@@ -272,7 +272,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.score_manager_directory_path,
+            self.score_manager_directory,
             'boilerplate',
             )
         return path
@@ -334,7 +334,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def configuration_directory(self):
-        r'''Gets configuration directory path.
+        r'''Gets configuration directory.
 
         ..  container:: example
 
@@ -347,7 +347,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        return os.path.join(self.home_directory_path, '.score_manager')
+        return os.path.join(self.home_directory, '.score_manager')
 
     @property
     def configuration_file_name(self):
@@ -386,7 +386,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def example_score_packages_directory(self):
-        r'''Gets Abjad score packages directory path.
+        r'''Gets Abjad score packages directory.
 
         ..  container:: example
 
@@ -398,14 +398,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.score_manager_directory_path,
+            self.score_manager_directory,
             'scores',
             )
         return path
 
     @property
     def handler_tools_directory(self):
-        r'''Gets handler tools directory path.
+        r'''Gets handler tools directory.
 
         ..  container:: example
 
@@ -417,31 +417,31 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns string.
         '''
         path = os.path.join(
-            self.abjad_experimental_directory_path,
+            self.abjad_experimental_directory,
             'tools',
             'handlertools',
             )
         return path
 
     @property
-    def home_directory_path(self):
-        r'''Gets home directory path.
+    def home_directory(self):
+        r'''Gets home directory.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.home_directory_path
+                >>> configuration.home_directory
                 '...'
 
         Returns string.
         '''
         superclass = super(ScoreManagerConfiguration, self)
-        return superclass.home_directory_path
+        return superclass.home_directory
 
     @property
     def transcripts_directory(self):
-        r'''Gets score manager transcripts directory path.
+        r'''Gets score manager transcripts directory.
 
         ..  container:: example
 
@@ -475,7 +475,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def user_library_directory(self):
-        r'''Gets user library directory path.
+        r'''Gets user library directory.
 
         ..  container:: example
 
@@ -515,7 +515,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def user_library_material_packages_directory(self):
-        r'''Gets user library material packages directory path.
+        r'''Gets user library material packages directory.
 
         ..  container:: example
 
@@ -534,7 +534,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def user_library_stylesheets_directory(self):
-        r'''Gets user library stylesheets directory path.
+        r'''Gets user library stylesheets directory.
 
         ..  container:: example
 
@@ -553,7 +553,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def user_score_packages_directory(self):
-        r'''Gets user score packages directory path.
+        r'''Gets user score packages directory.
 
         ..  container:: example
 
@@ -593,11 +593,11 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         abjad=False,
         user=False,
         ):
-        r'''Lists score directory paths.
+        r'''Lists score directorys.
 
         ..  container:: example
 
-            Lists Abjad score directory paths:
+            Lists Abjad score directorys:
 
             ::
 
@@ -676,10 +676,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             return result
         elif path.startswith(
             self.abjad_material_packages_directory):
-            prefix_length = len(self.abjad_root_directory_path) + 1
-        elif path.startswith(self.score_manager_directory_path):
+            prefix_length = len(self.abjad_root_directory) + 1
+        elif path.startswith(self.score_manager_directory):
             prefix_length = \
-                len(os.path.dirname(self.score_manager_directory_path)) + 1
+                len(os.path.dirname(self.score_manager_directory)) + 1
         elif path.startswith(
             self.user_score_packages_directory):
             prefix_length = len(self.user_score_packages_directory) + 1
@@ -689,7 +689,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 len(os.path.dirname(
                 self.user_library_stylesheets_directory)) + 1
         elif path.startswith(self.abjad_stylesheets_directory):
-            prefix_length = len(self.abjad_root_directory_path) + 1
+            prefix_length = len(self.abjad_root_directory) + 1
         else:
             message = 'can not change path to package path: {!r}.'
             raise Exception(message.format(path))

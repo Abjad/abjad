@@ -67,7 +67,7 @@ class RenameModulesScript(DeveloperScript):
         from abjad import abjad_configuration
         if codebase == 'mainline':
             return os.path.join(
-                abjad_configuration.abjad_directory_path,
+                abjad_configuration.abjad_directory,
                 'docs',
                 'source',
                 'api',
@@ -75,7 +75,7 @@ class RenameModulesScript(DeveloperScript):
                 )
         elif codebase == 'experimental':
             return os.path.join(
-                abjad_configuration.abjad_experimental_directory_path,
+                abjad_configuration.abjad_experimental_directory,
                 'docs',
                 'source',
                 'tools',
@@ -88,10 +88,10 @@ class RenameModulesScript(DeveloperScript):
         from abjad import abjad_configuration
         if codebase == 'mainline':
             return os.path.join(
-                abjad_configuration.abjad_directory_path, 'tools')
+                abjad_configuration.abjad_directory, 'tools')
         elif codebase == 'experimental':
             return os.path.join(
-                abjad_configuration.abjad_experimental_directory_path, 'tools')
+                abjad_configuration.abjad_experimental_directory, 'tools')
         message = 'bad codebase name: {!r}.'
         message = message.format(codebase)
         raise Exception(message)
@@ -153,25 +153,25 @@ class RenameModulesScript(DeveloperScript):
             raise SystemExit
         tools_package_name, module_name = path.split('.')
         mainline_tools_directory = os.path.join(
-            abjad_configuration.abjad_directory_path,
+            abjad_configuration.abjad_directory,
             'tools',
             )
         for directory_name in os.listdir(mainline_tools_directory):
-            directory_path = os.path.join(
+            directory = os.path.join(
                 mainline_tools_directory, directory_name)
-            if not os.path.isdir(directory_path):
+            if not os.path.isdir(directory):
                 continue
             elif directory_name != tools_package_name:
                 continue
             return 'mainline', tools_package_name, module_name
         experimental_tools_directory = os.path.join(
-            abjad_configuration.abjad_experimental_directory_path,
+            abjad_configuration.abjad_experimental_directory,
             'tools',
             )
         for directory_name in os.listdir(mainline_tools_directory):
-            directory_path = os.path.join(
+            directory = os.path.join(
                 experimental_tools_directory, directory_name)
-            if not os.path.isdir(directory_path):
+            if not os.path.isdir(directory):
                 continue
             elif directory_name != tools_package_name:
                 continue
@@ -271,7 +271,7 @@ class RenameModulesScript(DeveloperScript):
         ):
         from abjad import abjad_configuration
         without_dirs = ['--without-dirs', 'build', '--without-dirs', '_build']
-        directory = abjad_configuration.abjad_root_directory_path
+        directory = abjad_configuration.abjad_root_directory
         print('Updating codebase ...')
         print('')
         old_text = '{}.{}'.format(old_tools_package_name, old_module_name)

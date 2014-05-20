@@ -32,7 +32,7 @@ class TextualDocumentHandler(DocumentHandler):
         >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
         ...     document,
         ...     document_file_name='foo.rst',
-        ...     output_directory_path='.',
+        ...     output_directory='.',
         ...     )
         >>> source_to_code_block_mapping = \
         ...     document_handler.extract_code_blocks()
@@ -65,7 +65,7 @@ class TextualDocumentHandler(DocumentHandler):
         >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
         ...     document,
         ...     document_file_name='baz.rst',
-        ...     output_directory_path='.',
+        ...     output_directory='.',
         ...     )
         >>> source_to_code_block_mapping = \
         ...     document_handler.extract_code_blocks()
@@ -83,11 +83,11 @@ class TextualDocumentHandler(DocumentHandler):
     def __init__(self,
         document,
         document_file_name=None,
-        output_directory_path=None,
+        output_directory=None,
         ):
         DocumentHandler.__init__(self,
             document,
-            output_directory_path=output_directory_path,
+            output_directory=output_directory,
             )
         self._document_file_name=document_file_name
 
@@ -198,7 +198,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
             ...     document,
             ...     document_file_name='foo.rst',
-            ...     output_directory_path='.',
+            ...     output_directory='.',
             ...     )
             >>> source_to_code_block_mapping = \
             ...     document_handler.extract_code_blocks()
@@ -339,10 +339,10 @@ class TextualDocumentHandler(DocumentHandler):
     def write_rebuilt_document(self):
         assert isinstance(self.document_file_name, str) and \
             self.document_file_name
-        assert os.path.exists(self.output_directory_path)
+        assert os.path.exists(self.output_directory)
         rebuilt_document = '\n'.join(self.rebuild_document())
         document_file_path = os.path.join(
-            self.output_directory_path,
+            self.output_directory,
             self.document_file_name,
             )
         previous_document = None

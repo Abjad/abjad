@@ -6,11 +6,11 @@ from abjad.tools import systemtools
 
 def find_misnamed_private_modules():
     offending_definition_lines = []
-    for directory_path, subdirectory_names, file_names in os.walk('.'):
+    for directory, subdirectory_names, file_names in os.walk('.'):
         for file_name in file_names:
             if file_name.endswith('.py'):
                 if not file_name.startswith(('test', '_')):
-                    full_name = os.path.join(directory_path, file_name)
+                    full_name = os.path.join(directory, file_name)
                     for line in file(full_name, 'r').readlines():
                         if line.startswith('def '):
                             if line.startswith('def _'):
