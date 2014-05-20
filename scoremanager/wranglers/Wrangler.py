@@ -1154,7 +1154,7 @@ class Wrangler(AssetController):
     ### PUBLIC METHODS ###
 
     def add_to_repository(self, confirm=True, display=True):
-        r'''Adds assets to repository.
+        r'''Adds files to repository.
 
         Returns none.
         '''
@@ -1205,7 +1205,7 @@ class Wrangler(AssetController):
         self._session._hide_next_redraw = False
 
     def commit_to_repository(self, confirm=True, display=True):
-        r'''Commits assets to repository.
+        r'''Commits files to repository.
 
         Returns none.
         '''
@@ -1376,7 +1376,7 @@ class Wrangler(AssetController):
         self._session._hide_next_redraw = True
 
     def revert_to_repository(self, confirm=True, display=True):
-        r'''Reverts assets from repository.
+        r'''Reverts files to repository.
 
         Returns none.
         '''
@@ -1391,7 +1391,7 @@ class Wrangler(AssetController):
             manager.revert_to_repository(confirm=False, display=False)
 
     def update_from_repository(self, confirm=True, display=True):
-        r'''Updates assets from repository.
+        r'''Updates files from repository.
 
         Returns none.
         '''

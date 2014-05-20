@@ -401,7 +401,7 @@ class AssetController(Controller):
         self._io_manager.invoke_shell(statement=statement)
 
     def open_lilypond_log(self):
-        r'''Opens last LilyPond log.
+        r'''Opens LilyPond log.
 
         Returns none.
         '''

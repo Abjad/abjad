@@ -104,9 +104,9 @@ class MaterialPackageManager(PackageManager):
             'is': self.write_stub_illustrate_py,
             'ili': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
-            'ae': self.autoedit_output_material,
+            'ae': self.autoedit,
             'i': self.illustrate_material,
-            'ow': self.write_output_material,
+            'ow': self.write_output_py,
             'oo': self.open_output_py,
             'ipo': self.open_illustration_pdf,
             'vdo': self.open_versioned_definition_py,
@@ -496,8 +496,8 @@ class MaterialPackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def autoedit_output_material(self):
-        r'''Autoedits output material.
+    def autoedit(self):
+        r'''Autoedits.
 
         Returns none.
         '''
@@ -528,14 +528,14 @@ class MaterialPackageManager(PackageManager):
                 target_repr,
                 )
             body_lines = [line]
-        self.write_output_material(
+        self.write_output_py(
             import_statements=output_py_import_statements,
             body_lines=body_lines,
             output_material=autoeditor.target,
             )
 
     def edit_and_interpret_illustrate_py(self):
-        r'''Edits and then interprets ``illustrate.py``.
+        r'''Edits and then interprets ``__illustrate.py__``.
 
         Returns none.
         '''
@@ -550,7 +550,7 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.edit(self._definition_py_path)
 
     def edit_illustrate_py(self):
-        r'''Edits ``illustrate.py``.
+        r'''Edits ``__illustrate.py__``.
 
         Returns none.
         '''
@@ -576,7 +576,7 @@ class MaterialPackageManager(PackageManager):
                 )
 
     def interpret_definition_py(self):
-        r'''Calls Python on material definition py.
+        r'''Interprets ``definition.py``.
 
         Returns none.
         '''
@@ -586,7 +586,7 @@ class MaterialPackageManager(PackageManager):
         self._session._hide_next_redraw = True
 
     def interpret_illustrate_py(self, confirm=True, display=True):
-        r'''Calls Python on ``illustrate.py``.
+        r'''Interprets ``__illustrate.py__``.
 
         Returns none.
         '''
@@ -600,7 +600,7 @@ class MaterialPackageManager(PackageManager):
         self._session._hide_next_redraw = True
 
     def interpret_illustration_ly(self, confirm=True, display=True):
-        r'''Calls LilyPond on illustration.ly file.
+        r'''Interprets ``illustration.ly``.
 
         Returns none.
         '''
@@ -618,49 +618,49 @@ class MaterialPackageManager(PackageManager):
         self._session._hide_next_redraw = True
 
     def list_versions_directory(self):
-        r'''Lists versions directory.
+        r'''Lists ``versions/`` directory.
 
         Returns none.
         '''
         self._list_versions_directory()
 
     def open_illustration_ly(self):
-        r'''Opens illustration LilyPond file.
+        r'''Opens ``illustration.ly``.
 
         Returns none.
         '''
         self._io_manager.open_file(self._illustration_ly_file_path)
 
     def open_illustration_pdf(self):
-        r'''Opens illustration PDF.
+        r'''Opens `illustration.pdf``.
 
         Returns none.
         '''
         self._io_manager.open_file(self._illustration_pdf_file_path)
 
     def open_output_py(self):
-        r'''Opens output py.
+        r'''Opens ``output.py``.
 
         Returns none.
         '''
         self._io_manager.open_file(self._output_py_path)
 
     def open_versioned_definition_py(self):
-        r'''Opens versioned definition py.
+        r'''Opens versioned ``definition.py``.
 
         Returns none.
         '''
         self._open_versioned_file('definition.py')
 
     def open_versioned_illustration_ly(self):
-        r'''Opens versioned illustration LilyPond file.
+        r'''Opens versioned ``illustration.ly``.
 
         Returns none.
         '''
         self._open_versioned_file('illustration.ly')
 
     def open_versioned_illustration_pdf(self):
-        r'''Opens versioned illustration PDF.
+        r'''Opens versioned ``illustration.pdf``.
 
         Returns none.
         '''
@@ -725,7 +725,7 @@ class MaterialPackageManager(PackageManager):
             if ' makers.' in storage_format:
                 statement = 'from scoremanager import makers'
                 import_statements.append(statement)
-            self.write_output_material(
+            self.write_output_py(
                 body_lines=body_lines,
                 import_statements=import_statements,
                 output_material=empty_target,
@@ -756,7 +756,7 @@ class MaterialPackageManager(PackageManager):
         '''
         self._version_package(confirm=confirm, display=display)
 
-    def write_output_material(
+    def write_output_py(
         self,
         import_statements=None,
         body_lines=None,
@@ -764,7 +764,7 @@ class MaterialPackageManager(PackageManager):
         confirm=True,
         display=True,
         ):
-        r'''Writes output material.
+        r'''Writes ``output.py``.
 
         Returns none.
         '''
@@ -815,7 +815,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     def write_stub_definition_py(self, confirm=True, display=True):
-        r'''Writes stub material definition py.
+        r'''Writes stub ``definition.py``.
 
         Returns none.
         '''

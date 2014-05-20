@@ -913,7 +913,7 @@ class PackageManager(AssetController):
                 self._add_metadatum(metadatum_name, metadatum_value)
 
     def add_to_repository(self, confirm=True, display=True):
-        r'''Adds unversioned files to repository.
+        r'''Adds files to repository.
 
         Returns none.
         '''
@@ -934,7 +934,7 @@ class PackageManager(AssetController):
         confirm=True,
         display=True,
         ):
-        r'''Commits unversioned files to repository.
+        r'''Commits files to repository.
 
         Returns none.
         '''
@@ -1063,7 +1063,7 @@ class PackageManager(AssetController):
             self._write_metadata_py(metadata)
 
     def revert_to_repository(self, confirm=True, display=True):
-        r'''Reverts files from repository.
+        r'''Reverts files to repository.
 
         Returns none.
         '''
@@ -1078,7 +1078,7 @@ class PackageManager(AssetController):
             self._revert_from_repository()
 
     def update_from_repository(self, confirm=True, display=True):
-        r'''Updates versioned files.
+        r'''Updates files from repository.
 
         Returns none.
         '''

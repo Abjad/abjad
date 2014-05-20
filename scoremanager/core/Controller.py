@@ -175,7 +175,7 @@ class Controller(ScoreManagerObject):
             self._session._hide_hidden_commands = True
 
     def quit(self):
-        r'''Quits Score Manager.
+        r'''Quits.
 
         Returns none.
         '''
