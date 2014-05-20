@@ -11,8 +11,12 @@ class TemporaryDirectoryChange(ContextManager):
     ### INITIALIZER ###
 
     def __init__(self, directory=None):
-        if directory is not None:
-            assert os.path.isdir(directory)
+        if directory is None:
+            pass
+        elif os.path.isdir(directory):
+            pass
+        elif os.path.isfile(directory):
+            directory = os.path.dirname(directory)
         self._directory = directory
 
     ### SPECIAL METHODS ###
