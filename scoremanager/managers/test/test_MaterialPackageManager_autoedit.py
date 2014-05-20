@@ -6,7 +6,7 @@ from experimental import *
 import scoremanager
 
 
-def test_MaterialPackageManager_autoedit_output_01():
+def test_MaterialPackageManager_autoedit_01():
     '''Edit menu has correct header.
     '''
 
@@ -20,7 +20,7 @@ def test_MaterialPackageManager_autoedit_output_01():
     assert string in contents
 
 
-def test_MaterialPackageManager_autoedit_output_02():
+def test_MaterialPackageManager_autoedit_02():
     r'''Edits tempo inventory.
     '''
 
@@ -59,7 +59,7 @@ def test_MaterialPackageManager_autoedit_output_02():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_03():
+def test_MaterialPackageManager_autoedit_03():
     r'''Edits empty pitch range inventory.
     '''
 
@@ -92,7 +92,7 @@ def test_MaterialPackageManager_autoedit_output_03():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_04():
+def test_MaterialPackageManager_autoedit_04():
     r'''Edits populated pitch range inventory.
     '''
 
@@ -131,7 +131,7 @@ def test_MaterialPackageManager_autoedit_output_04():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_05():
+def test_MaterialPackageManager_autoedit_05():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
@@ -172,7 +172,7 @@ def test_MaterialPackageManager_autoedit_output_05():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_06():
+def test_MaterialPackageManager_autoedit_06():
     r'''Edits empty octave transposition mapping inventory.
     '''
 
@@ -206,7 +206,7 @@ def test_MaterialPackageManager_autoedit_output_06():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_07():
+def test_MaterialPackageManager_autoedit_07():
     r'''Edits populated octave transposition mapping inventory.
     '''
 
@@ -253,7 +253,7 @@ def test_MaterialPackageManager_autoedit_output_07():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_08():
+def test_MaterialPackageManager_autoedit_08():
     pytest.skip('make autoadding work again.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -283,7 +283,7 @@ def test_MaterialPackageManager_autoedit_output_08():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_09():
+def test_MaterialPackageManager_autoedit_09():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
@@ -313,7 +313,7 @@ def test_MaterialPackageManager_autoedit_output_09():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_10():
+def test_MaterialPackageManager_autoedit_10():
     r'''Edits talea rhythm-maker.
     '''
 
@@ -357,7 +357,7 @@ def test_MaterialPackageManager_autoedit_output_10():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_11():
+def test_MaterialPackageManager_autoedit_11():
     r'''Edits retierated articulation handler.
     '''
 
@@ -398,7 +398,7 @@ def test_MaterialPackageManager_autoedit_output_11():
         score_manager._run(pending_input=input_)
 
 
-def test_MaterialPackageManager_autoedit_output_12():
+def test_MaterialPackageManager_autoedit_12():
     r'''Edits dynamic handler.
     '''
 

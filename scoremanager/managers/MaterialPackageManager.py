@@ -95,26 +95,34 @@ class MaterialPackageManager(PackageManager):
         result.update({
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
+            #
             'de': self.edit_definition_py,
             'di': self.interpret_definition_py,
             'ds': self.write_stub_definition_py,
-            'ime': self.edit_illustrate_py,
-            'imei': self.edit_and_interpret_illustrate_py,
-            'imi': self.interpret_illustrate_py,
+            #
+            'ie': self.edit_illustrate_py,
+            'iei': self.edit_and_interpret_illustrate_py,
+            'ii': self.interpret_illustrate_py,
             'is': self.write_stub_illustrate_py,
+            #
             'ili': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
+            #
             'ae': self.autoedit,
             'i': self.illustrate_material,
-            'ow': self.write_output_py,
+            #
             'oo': self.open_output_py,
+            'ow': self.write_output_py,
+            #
             'ipo': self.open_illustration_pdf,
+            #
             'vdo': self.open_versioned_definition_py,
-            'vrls': self.list_versions_directory,
-            'vr': self.version_package,
             'vilo': self.open_versioned_illustration_ly,
-            'voo': self.open_versioned_output_py,
             'vipo': self.open_versioned_illustration_pdf,
+            'voo': self.open_versioned_output_py,
+            #
+            'vr': self.version_package,
+            'vrls': self.list_versions_directory,
             })
         return result
 
@@ -224,11 +232,11 @@ class MaterialPackageManager(PackageManager):
         if os.path.isfile(self._illustrate_py_path):
             is_hidden = False
             string = '__illustrate__.py - edit'
-            commands.append((string, 'ime'))
+            commands.append((string, 'ie'))
             string = '__illustrate__.py - edit & interpret'
-            commands.append((string, 'imei'))
+            commands.append((string, 'iei'))
             string = '__illustrate__.py - interpret'
-            commands.append((string, 'imi'))
+            commands.append((string, 'ii'))
             string = '__illustrate__.py - write stub'
             commands.append((string, 'is'))
         else:
@@ -559,7 +567,7 @@ class MaterialPackageManager(PackageManager):
     def illustrate_material(self, confirm=True, display=True):
         r'''Illustrates material.
 
-        Creates illustration.pdf and illustration.ly files.
+        Creates ``illustration.pdf`` and ``illustration.ly`` files.
 
         Returns none.
         '''

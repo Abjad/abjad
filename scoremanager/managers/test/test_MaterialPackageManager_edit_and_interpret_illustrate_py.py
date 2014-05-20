@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_interpret_illustrate_py_01():
+def test_MaterialPackageManager_edit_and_interpret_illustrate_py_01():
     r'''Works when illustration.ly already exists.
     '''
 
@@ -23,7 +23,7 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
         for path in paths:
             os.remove(path)
             assert not os.path.exists(path)
-        input_ = 'red~example~score m magic~numbers ii q'
+        input_ = 'red~example~score m magic~numbers iei q'
         score_manager._run(pending_input=input_)
         for path in paths:
             assert os.path.isfile(path)
@@ -32,3 +32,5 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
         #    ly_path, 
         #    ly_path + '.backup',
         #    )
+
+    assert score_manager._session._attempted_to_open_file
