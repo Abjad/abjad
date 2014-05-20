@@ -113,7 +113,6 @@ class ScorePackageWrangler(Wrangler):
     def _find_svn_score_name(self):
         from scoremanager import managers
         manager = self._find_up_to_date_manager(
-            managers.ScorePackageManager,
             repository='svn',
             system=False,
             )

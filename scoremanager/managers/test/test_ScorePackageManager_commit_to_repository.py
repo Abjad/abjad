@@ -10,7 +10,6 @@ def test_ScorePackageManager_commit_to_repository_01():
     '''
 
     manager = score_manager._score_package_wrangler._find_up_to_date_manager(
-        scoremanager.managers.ScorePackageManager,
         repository='git',
         system=True,
         )
@@ -25,7 +24,6 @@ def test_ScorePackageManager_commit_to_repository_02():
     '''
 
     manager = score_manager._score_package_wrangler._find_up_to_date_manager(
-        scoremanager.managers.ScorePackageManager,
         repository='svn',
         system=False,
         )
