@@ -44,16 +44,16 @@ class SegmentPackageWrangler(Wrangler):
         result = result.copy()
         result.update({
             'cp': self.copy_package,
-            'dpye*': self.edit_every_definition_py,
-            'inpyo': self.open_init_py,
-            'inpyws': self.write_stub_init_py,
+            'dye*': self.edit_every_definition_py,
+            'nyo': self.open_init_py,
+            'nyws': self.write_stub_init_py,
             'mdpyls*': self.list_every_metadata_py,
-            'mdpyo*': self.open_every_metadata_py,
-            'mdpyrw*': self.rewrite_every_metadata_py,
-            'mpyi*': self.interpret_every_make_py,
+            'mdyo*': self.open_every_metadata_py,
+            'mdyrw*': self.rewrite_every_metadata_py,
+            'kyi*': self.interpret_every_make_py,
             'new': self.make_package,
-            'olyi*': self.interpret_every_output_ly,
-            'opdfo*': self.open_every_output_pdf,
+            'oli*': self.interpret_every_output_ly,
+            'opo*': self.open_every_output_pdf,
             'ren': self.rename_package,
             'rm': self.remove_packages,
             'ver*': self.version_package,
@@ -78,11 +78,11 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('segments - definition.py - edit', 'dpye*'))
-        commands.append(('segments - make.py - interpret', 'mpyi*'))
-        commands.append(('segments - __metadata__.py - open', 'mdpyo*'))
-        commands.append(('segments - output.ly - interpret', 'olyi*'))
-        commands.append(('segments - output.pdf - open', 'opdfo*'))
+        commands.append(('segments - definition.py - edit', 'dye*'))
+        commands.append(('segments - make.py - interpret', 'kyi*'))
+        commands.append(('segments - __metadata__.py - open', 'mdyo*'))
+        commands.append(('segments - output.ly - interpret', 'oli*'))
+        commands.append(('segments - output.pdf - open', 'opo*'))
         commands.append(('segments - version', 'ver*'))
         menu.make_command_section(
             commands=commands,

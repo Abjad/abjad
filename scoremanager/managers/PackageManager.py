@@ -62,13 +62,13 @@ class PackageManager(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'inpyo': self.open_init_py,
-            'inpyws': self.write_stub_init_py,
+            'nyo': self.open_init_py,
+            'nyws': self.write_stub_init_py,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mdpyo': self.open_metadata_py,
-            'mdpyrw': self.rewrite_metadata_py,
+            'mdyo': self.open_metadata_py,
+            'mdyrw': self.rewrite_metadata_py,
             })
         return result
 

@@ -95,26 +95,26 @@ class MaterialPackageManager(PackageManager):
         result.update({
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
-            'dpye': self.edit_definition_py,
-            'dpyi': self.interpret_definition_py,
-            'dpyws': self.write_stub_definition_py,
+            'dye': self.edit_definition_py,
+            'dyi': self.interpret_definition_py,
+            'dyws': self.write_stub_definition_py,
             'ime': self.edit_illustrate_py,
             'imei': self.edit_and_interpret_illustrate_py,
             'imi': self.interpret_illustrate_py,
-            'ipyws': self.write_stub_illustrate_py,
-            'ilyi': self.interpret_illustration_ly,
-            'ilyo': self.open_illustration_ly,
+            'iyws': self.write_stub_illustrate_py,
+            'ili': self.interpret_illustration_ly,
+            'ilo': self.open_illustration_ly,
             'ae': self.autoedit_output_material,
             'i': self.illustrate_material,
-            'opyw': self.write_output_material,
-            'opyo': self.open_output_py,
-            'ipdfo': self.open_illustration_pdf,
-            'vdpyo': self.open_versioned_definition_py,
+            'oyw': self.write_output_material,
+            'oyo': self.open_output_py,
+            'ipo': self.open_illustration_pdf,
+            'vdyo': self.open_versioned_definition_py,
             'verls': self.list_versions_directory,
             'ver': self.version_package,
-            'vilyo': self.open_versioned_illustration_ly,
-            'vopyo': self.open_versioned_output_py,
-            'vipdfo': self.open_versioned_illustration_pdf,
+            'vilo': self.open_versioned_illustration_ly,
+            'voyo': self.open_versioned_output_py,
+            'vipo': self.open_versioned_illustration_pdf,
             })
         return result
 
@@ -230,11 +230,11 @@ class MaterialPackageManager(PackageManager):
             string = 'illustrate py - interpret'
             commands.append((string, 'imi'))
             string = 'illustrate py - write stub'
-            commands.append((string, 'ipyws'))
+            commands.append((string, 'iyws'))
         else:
             is_hidden = True
             string = 'illustrate py - write stub'
-            commands.append((string, 'ipyws'))
+            commands.append((string, 'iyws'))
         menu.make_command_section(
             is_hidden=is_hidden,
             commands=commands,
@@ -245,8 +245,8 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._illustration_ly_file_path):
             return
         commands = []
-        commands.append(('illustration ly - interpret', 'ilyi'))
-        commands.append(('illustration ly - open', 'ilyo'))
+        commands.append(('illustration ly - interpret', 'ili'))
+        commands.append(('illustration ly - open', 'ilo'))
         menu.make_command_section(
             commands=commands,
             name='illustration ly',
@@ -255,7 +255,7 @@ class MaterialPackageManager(PackageManager):
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustration_pdf_file_path):
-            commands.append(('illustration pdf - open', 'ipdfo'))
+            commands.append(('illustration pdf - open', 'ipo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -290,9 +290,9 @@ class MaterialPackageManager(PackageManager):
     def _make_material_definition_menu_section(self, menu):
         name = 'definition py'
         commands = []
-        commands.append(('definition py - edit', 'dpye'))
-        commands.append(('definition py - interpret', 'dpyi'))
-        commands.append(('definition py - write stub', 'dpyws'))
+        commands.append(('definition py - edit', 'dye'))
+        commands.append(('definition py - interpret', 'dyi'))
+        commands.append(('definition py - write stub', 'dyws'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
@@ -342,9 +342,9 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._init_py_file_path):
             return
         commands = []
-        commands.append(('output py - write', 'opyw'))
+        commands.append(('output py - write', 'oyw'))
         if os.path.isfile(self._output_py_path):
-            commands.append(('output py - open', 'opyo'))
+            commands.append(('output py - open', 'oyo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -421,10 +421,10 @@ class MaterialPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdpyo'))
-        commands.append(('versions - illustration.ly - open', 'vilyo'))
-        commands.append(('versions - illustration.pdf - open', 'vipdfo'))
-        commands.append(('versions - output.py - open', 'vopyo'))
+        commands.append(('versions - definition.py - open', 'vdyo'))
+        commands.append(('versions - illustration.ly - open', 'vilo'))
+        commands.append(('versions - illustration.pdf - open', 'vipo'))
+        commands.append(('versions - output.py - open', 'voyo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -581,7 +581,7 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         result = self._io_manager.interpret_file(self._definition_py_path)
-        message = 'no exceptions raised; use (opyo) to write output py.'
+        message = 'no exceptions raised; use (oyo) to write output py.'
         self._io_manager._display([message, ''])
         self._session._hide_next_redraw = True
 

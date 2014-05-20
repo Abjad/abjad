@@ -45,19 +45,19 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'dpye': self.edit_definition_py,
-            'dpyws': self.write_stub_definition_py,
-            'mpyi': self.interpret_make_py,
-            'mpyo': self.open_make_py,
-            'mpyws': self.write_stub_make_py,
-            'olyi': self.interpret_output_ly,
-            'olyo': self.open_output_ly,
-            'opdfo': self.open_output_pdf,
-            'vdpyo': self.open_versioned_definition_py,
+            'dye': self.edit_definition_py,
+            'dyws': self.write_stub_definition_py,
+            'kyi': self.interpret_make_py,
+            'kyo': self.open_make_py,
+            'kyws': self.write_stub_make_py,
+            'oli': self.interpret_output_ly,
+            'olo': self.open_output_ly,
+            'opo': self.open_output_pdf,
+            'vdyo': self.open_versioned_definition_py,
             'verls': self.list_versions_directory,
             'ver': self.version_package,
-            'volyo': self.open_versioned_output_ly,
-            'vopdfo': self.open_versioned_output_pdf,
+            'volo': self.open_versioned_output_ly,
+            'vopo': self.open_versioned_output_pdf,
             })
         return result
 
@@ -90,8 +90,8 @@ class SegmentPackageManager(PackageManager):
     def _make_output_ly_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
             commands = []
-            commands.append(('output.ly - interpret', 'olyi'))
-            commands.append(('output.ly - open', 'olyo'))
+            commands.append(('output.ly - interpret', 'oli'))
+            commands.append(('output.ly - open', 'olo'))
             menu.make_command_section(
                 is_hidden=True,
                 commands=commands,
@@ -101,7 +101,7 @@ class SegmentPackageManager(PackageManager):
     def _make_output_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('output.pdf - open', 'opdfo'))
+            commands.append(('output.pdf - open', 'opo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -112,13 +112,13 @@ class SegmentPackageManager(PackageManager):
     def _make_definition_py_menu_section(self, menu):
         if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py found;'
-            message += ' use (dpyws) to write stub.'
+            message += ' use (dyws) to write stub.'
             menu.make_information_section(
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition.py - edit', 'dpye'))
-        commands.append(('definition.py - write stub', 'dpyws'))
+        commands.append(('definition.py - edit', 'dye'))
+        commands.append(('definition.py - write stub', 'dyws'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -142,9 +142,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_make_py_menu_section(self, menu):
         commands = []
-        commands.append(('__make__.py - interpret', 'mpyi'))
-        commands.append(('__make__.py - open', 'mpyo'))
-        commands.append(('__make__.py - write stub', 'mpyws'))
+        commands.append(('__make__.py - interpret', 'kyi'))
+        commands.append(('__make__.py - open', 'kyo'))
+        commands.append(('__make__.py - write stub', 'kyws'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -169,9 +169,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdpyo'))
-        commands.append(('versions - output.ly - open', 'volyo'))
-        commands.append(('versions - output.pdf - open', 'vopdfo'))
+        commands.append(('versions - definition.py - open', 'vdyo'))
+        commands.append(('versions - output.ly - open', 'volo'))
+        commands.append(('versions - output.pdf - open', 'vopo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

@@ -112,9 +112,9 @@
 19. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-20. Make (mdpyo) work for wranglers.
+20. Make (mdyo) work for wranglers.
     There is now a metadata py in which wranglers store
-    things like 'current_view'. The (mdpyo) command should
+    things like 'current_view'. The (mdyo) command should
     allow the composer to read that metadata py.
 
 21. Make menu title breadcrumbs correctly reflect changes in view
@@ -161,12 +161,12 @@
     Change ...
         score packages - fix (fix)
     ... to ...
-        score packages - __init__.py - open (inpyo*)
+        score packages - __init__.py - open (nyo*)
         score packages - __init__.py - rewrite (inrw*)
-        score packages - __metadata__.py - open (mdpyo*)
+        score packages - __metadata__.py - open (mdyo*)
         score packages - fix (fix*)
     ... and also to ...
-        all - __metadata__.py - rewrite (mdpyrw**)
+        all - __metadata__.py - rewrite (mdyrw**)
         all - score pdf - open (pdfo**)
     ... instead.
 
@@ -190,7 +190,7 @@
     ... instead.
 
 37. Make (rrv) work in Git directories.
-    Can test with (red~example~score g olyi y).
+    Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.

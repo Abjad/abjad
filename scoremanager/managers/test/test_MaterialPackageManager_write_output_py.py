@@ -19,7 +19,7 @@ def test_MaterialPackageManager_write_output_py_01():
     with systemtools.FilesystemState(keep=[path]):
         os.remove(path)
         assert not os.path.exists(path)
-        input_ = 'red~example~score m magic~numbers opyw y q'
+        input_ = 'red~example~score m magic~numbers oyw y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents
