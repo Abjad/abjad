@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler_interpret_illustration_lys_01():
         for path in output_paths:
             os.remove(path)
         assert not any(os.path.exists(_) for _ in output_paths)
-        input_ = 'red~example~score m lyi y q'
+        input_ = 'red~example~score m ilyi y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         assert all(os.path.isfile(_) for _ in output_paths)

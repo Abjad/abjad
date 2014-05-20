@@ -45,8 +45,8 @@ class SegmentPackageWrangler(Wrangler):
         result.update({
             'cp': self.copy_package,
             'dpye*': self.edit_every_definition_py,
-            'ipyo': self.open_init_py,
-            'ipyws': self.write_stub_init_py,
+            'inpyo': self.open_init_py,
+            'inpyws': self.write_stub_init_py,
             'mdpyls*': self.list_every_metadata_py,
             'mdpyo*': self.open_every_metadata_py,
             'mdpyrw*': self.rewrite_every_metadata_py,

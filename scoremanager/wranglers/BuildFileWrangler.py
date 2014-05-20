@@ -69,7 +69,7 @@ class BuildFileWrangler(Wrangler):
             'mc': self.collect_segment_lilypond_files,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
-            'mi': self.interpret_music,
+            'i': self.interpret_music,
             'mo': self.open_music_pdf,
             'new': self.make_file,
             'pe': self.edit_preface_source,
@@ -175,7 +175,7 @@ class BuildFileWrangler(Wrangler):
         commands.append(('music - collect segment files', 'mc'))
         commands.append(('music - edit lilypond source', 'me'))
         commands.append(('music - generate lilypond source', 'mg'))
-        commands.append(('music - interpret lilypond source', 'mi'))
+        commands.append(('music - interpret lilypond source', 'i'))
         commands.append(('music - open pdf', 'mo'))
         menu.make_command_section(
             commands=commands,

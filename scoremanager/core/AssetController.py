@@ -71,8 +71,8 @@ class AssetController(Controller):
 
     def _make_init_py_menu_section(self, menu):
         commands = []
-        commands.append(('__init__.py - open', 'ipyo'))
-        commands.append(('__init__.py - write stub', 'ipyws'))
+        commands.append(('__init__.py - open', 'inpyo'))
+        commands.append(('__init__.py - write stub', 'inpyws'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

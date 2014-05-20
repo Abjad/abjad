@@ -149,7 +149,7 @@
 
 
 31. Fix menu title that results from the following:
-    (red~example~score m tempo~inventory mae 1 d b q).
+    (red~example~score m tempo~inventory ae 1 d b q).
 
 32. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
@@ -161,7 +161,7 @@
     Change ...
         score packages - fix (fix)
     ... to ...
-        score packages - __init__.py - open (ipyo*)
+        score packages - __init__.py - open (inpyo*)
         score packages - __init__.py - rewrite (inrw*)
         score packages - __metadata__.py - open (mdpyo*)
         score packages - fix (fix*)
@@ -222,6 +222,4 @@
 
 43. Remove Transcript.signature.
 
-44. Change (red~example~score g) to list assets.
-
-45. Finish cleaning up IOManager.
+44. Change 'directory_path' to 'directory'.
