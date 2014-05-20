@@ -65,6 +65,9 @@ class MaterialPackageWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<': self.go_to_previous_package,
+            '>': self.go_to_next_package,
+            #
             'cp': self.copy_package,
             'no': self.open_init_pys,
             'ili': self.interpret_illustration_lys,
@@ -219,6 +222,20 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         self._copy_asset()
+
+    def go_to_next_package(self):
+        r'''Goes to next package.
+
+        Returns none.
+        '''
+        self._go_to_next_package()
+
+    def go_to_previous_package(self):
+        r'''Goes to previous package.
+
+        Returns none.
+        '''
+        self._go_to_previous_package()
 
     def interpret_illustration_lys(self):
         r'''Calls LilyPond on the illustration.ly file in each material

@@ -43,6 +43,9 @@ class SegmentPackageWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<': self.go_to_previous_package,
+            '>': self.go_to_next_package,
+            #
             'cp': self.copy_package,
             'de*': self.edit_every_definition_py,
             'no': self.open_init_py,
@@ -155,6 +158,20 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
+
+    def go_to_next_package(self):
+        r'''Goes to next package.
+
+        Returns none.
+        '''
+        self._go_to_next_package()
+
+    def go_to_previous_package(self):
+        r'''Goes to previous package.
+
+        Returns none.
+        '''
+        self._go_to_previous_package()
 
     def interpret_every_make_py(self):
         r'''Interprets ``__make.py__`` in every segment.

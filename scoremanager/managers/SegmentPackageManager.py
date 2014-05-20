@@ -45,19 +45,26 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<': self.go_to_previous_package,
+            '>': self.go_to_next_package,
+            #
             'de': self.edit_definition_py,
             'ds': self.write_stub_definition_py,
+            #
             'ki': self.interpret_make_py,
             'ko': self.open_make_py,
             'ks': self.write_stub_make_py,
+            #
             'oli': self.interpret_output_ly,
             'olo': self.open_output_ly,
             'opo': self.open_output_pdf,
+            #
             'vdo': self.open_versioned_definition_py,
-            'vrls': self.list_versions_directory,
-            'vr': self.version_package,
             'volo': self.open_versioned_output_ly,
             'vopo': self.open_versioned_output_pdf,
+            #
+            'vrls': self.list_versions_directory,
+            'vr': self.version_package,
             })
         return result
 
@@ -190,6 +197,20 @@ class SegmentPackageManager(PackageManager):
         '''
         with self._io_manager._make_interaction():
             self._io_manager.edit(self._definition_py_path)
+
+    def go_to_next_package(self):
+        r'''Goes to next package.
+
+        Returns none.
+        '''
+        self._go_to_next_package()
+
+    def go_to_previous_package(self):
+        r'''Goes to previous package.
+
+        Returns none.
+        '''
+        self._go_to_previous_package()
 
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.

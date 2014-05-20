@@ -38,7 +38,7 @@ class ScorePackageManager(PackageManager):
         result = result.copy()
         result.update({
             'fix': self.fix_package,
-            'p': self._manage_setup,
+            'p': self.go_to_setup,
             'spdfo': self.open_score_pdf,
             })
         return result
@@ -221,21 +221,6 @@ class ScorePackageManager(PackageManager):
             name='setup',
             )
 
-    def _manage_setup(self):
-        self._session._is_in_score_setup_menu = True
-        while True:
-            annotated_title = self._get_title(year=True)
-            menu = self._make_setup_menu()
-            result = menu._run()
-            if self._session.is_backtracking:
-                break
-            elif not result:
-                continue
-            self._handle_setup_menu_result(result)
-            if self._session.is_backtracking:
-                break
-        self._session._is_in_score_setup_menu = False
-
     def _parse_paper_dimensions(self):
         string = self._get_metadatum('paper_dimensions') or '8.5 x 11 in'
         parts = string.split()
@@ -254,7 +239,7 @@ class ScorePackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_catalog_number(self):
-        r'''Edits catalog number of score.
+        r'''Edits catalog number.
 
         Returns none.
         '''
@@ -266,7 +251,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('catalog_number', result)
 
     def edit_forces_tagline(self):
-        r'''Edits forces tagline of score.
+        r'''Edits forces tagline.
 
         Returns none.
         '''
@@ -278,7 +263,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('forces_tagline', result)
 
     def edit_paper_dimensions(self):
-        r'''Edits paper dimensions of score.
+        r'''Edits paper dimensions.
 
         Returns none.
         '''
@@ -290,7 +275,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('paper_dimensions', result)
 
     def edit_title(self):
-        r'''Edits title of score.
+        r'''Edits title.
 
         Returns none.
         '''
@@ -304,7 +289,7 @@ class ScorePackageManager(PackageManager):
         wrangler.write_cache(confirm=False, display=False)
 
     def edit_year(self):
-        r'''Edits year of completion of score.
+        r'''Edits year.
 
         Returns none.
         '''
@@ -322,7 +307,7 @@ class ScorePackageManager(PackageManager):
         wrangler.write_cache(confirm=False, display=False)
 
     def fix_package(self, confirm=True, display=True):
-        r'''Fixes score package.
+        r'''Fixes package.
 
         Returns none.
         '''
@@ -393,6 +378,25 @@ class ScorePackageManager(PackageManager):
             self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
         return package_needed_to_be_fixed
+
+    def go_to_setup(self):
+        r'''Goes to setup.
+
+        Returns none.
+        '''
+        self._session._is_in_score_setup_menu = True
+        while True:
+            annotated_title = self._get_title(year=True)
+            menu = self._make_setup_menu()
+            result = menu._run()
+            if self._session.is_backtracking:
+                break
+            elif not result:
+                continue
+            self._handle_setup_menu_result(result)
+            if self._session.is_backtracking:
+                break
+        self._session._is_in_score_setup_menu = False
 
     def open_score_pdf(self):
         r'''Opens score PDF.

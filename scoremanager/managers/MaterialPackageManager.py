@@ -93,6 +93,9 @@ class MaterialPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            '<': self.go_to_previous_package,
+            '>': self.go_to_next_package,
+            #
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
             #
@@ -563,6 +566,20 @@ class MaterialPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager.edit(self._illustrate_py_path)
+
+    def go_to_next_package(self):
+        r'''Goes to next package.
+
+        Returns none.
+        '''
+        self._go_to_next_package()
+
+    def go_to_previous_package(self):
+        r'''Goes to previous package.
+
+        Returns none.
+        '''
+        self._go_to_previous_package()
 
     def illustrate_material(self, confirm=True, display=True):
         r'''Illustrates material.
