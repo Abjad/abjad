@@ -102,7 +102,7 @@ class PackageManager(AssetController):
         elif self._is_svn_versioned(path=self._path):
             return 'svn st {}'.format(self._path)
         else:
-            raise ValueError(self)
+            return
 
     @property
     def _repository_update_command(self):
@@ -1033,6 +1033,11 @@ class PackageManager(AssetController):
             message = self._path + '...'
             self._io_manager._display(message, capitalize=False)
             command = self._repository_status_command
+            if not command:
+                message = 'path not in repository: {}.'
+                message = message.format(self._path)
+                self._io_manager._display(message)
+                return
             process = self._io_manager.make_subprocess(command)
             path = self._path
             path = path + os.path.sep
