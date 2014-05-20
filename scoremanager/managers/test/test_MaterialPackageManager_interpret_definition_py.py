@@ -17,7 +17,7 @@ def test_MaterialPackageManager_interpret_definition_py_01():
         'definition.py',
         )
 
-    input_ = 'red~example~score m magic~numbers dyi q'
+    input_ = 'red~example~score m magic~numbers di q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

@@ -112,9 +112,9 @@
 19. Maybe change Wrangler._current_package_manager to
     Wrangler._current_manager?
 
-20. Make (mdyo) work for wranglers.
+20. Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
-    things like 'current_view'. The (mdyo) command should
+    things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
 21. Make menu title breadcrumbs correctly reflect changes in view
@@ -161,12 +161,12 @@
     Change ...
         score packages - fix (fix)
     ... to ...
-        score packages - __init__.py - open (nyo*)
+        score packages - __init__.py - open (no*)
         score packages - __init__.py - rewrite (inrw*)
-        score packages - __metadata__.py - open (mdyo*)
+        score packages - __metadata__.py - open (mdo*)
         score packages - fix (fix*)
     ... and also to ...
-        all - __metadata__.py - rewrite (mdyrw**)
+        all - __metadata__.py - rewrite (mdw**)
         all - score pdf - open (pdfo**)
     ... instead.
 

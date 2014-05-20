@@ -44,19 +44,19 @@ class SegmentPackageWrangler(Wrangler):
         result = result.copy()
         result.update({
             'cp': self.copy_package,
-            'dye*': self.edit_every_definition_py,
-            'nyo': self.open_init_py,
-            'nyws': self.write_stub_init_py,
+            'de*': self.edit_every_definition_py,
+            'no': self.open_init_py,
+            'ns': self.write_stub_init_py,
             'mdpyls*': self.list_every_metadata_py,
-            'mdyo*': self.open_every_metadata_py,
-            'mdyrw*': self.rewrite_every_metadata_py,
-            'kyi*': self.interpret_every_make_py,
+            'mdo*': self.open_every_metadata_py,
+            'mdw*': self.rewrite_every_metadata_py,
+            'ki*': self.interpret_every_make_py,
             'new': self.make_package,
             'oli*': self.interpret_every_output_ly,
             'opo*': self.open_every_output_pdf,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver*': self.version_package,
+            'vr*': self.version_package,
             })
         return result
 
@@ -78,12 +78,12 @@ class SegmentPackageWrangler(Wrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('segments - definition.py - edit', 'dye*'))
-        commands.append(('segments - make.py - interpret', 'kyi*'))
-        commands.append(('segments - __metadata__.py - open', 'mdyo*'))
+        commands.append(('segments - definition.py - edit', 'de*'))
+        commands.append(('segments - make.py - interpret', 'ki*'))
+        commands.append(('segments - __metadata__.py - open', 'mdo*'))
         commands.append(('segments - output.ly - interpret', 'oli*'))
         commands.append(('segments - output.pdf - open', 'opo*'))
-        commands.append(('segments - version', 'ver*'))
+        commands.append(('segments - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

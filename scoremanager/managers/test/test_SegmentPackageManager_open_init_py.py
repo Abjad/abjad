@@ -8,7 +8,7 @@ def test_SegmentPackageManager_open_init_py_01():
     r'''Works when __init__.py doesn't exist.
     '''
 
-    input_ = 'red~example~score g A nyo q'
+    input_ = 'red~example~score g A no q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

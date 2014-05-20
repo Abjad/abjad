@@ -66,14 +66,14 @@ class MaterialPackageWrangler(Wrangler):
         result = result.copy()
         result.update({
             'cp': self.copy_package,
-            'nyo': self.open_init_pys,
+            'no': self.open_init_pys,
             'ili': self.interpret_illustration_lys,
-            'mdyo': self.open_every_metadata_py,
+            'mdo': self.open_every_metadata_py,
             'new': self.make_package,
             'ipo': self.open_illustration_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'ver': self.version_package,
+            'vr': self.version_package,
             })
         return result
 
@@ -157,9 +157,9 @@ class MaterialPackageWrangler(Wrangler):
         commands = []
         commands.append(('all materials - illustration.ly - interpret', 'ili'))
         commands.append(('all materials - illustration.pdf - open', 'ipo'))
-        commands.append(('all materials - __init__.py - open', 'nyo'))
-        commands.append(('all materials - __metadata__.py - open', 'mdyo'))
-        commands.append(('all materials - version artifacts', 'ver'))
+        commands.append(('all materials - __init__.py - open', 'no'))
+        commands.append(('all materials - __metadata__.py - open', 'mdo'))
+        commands.append(('all materials - version artifacts', 'vr'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

@@ -27,7 +27,7 @@ def test_SegmentPackageWrangler_interpret_every_make_py_01():
     original_paths = ly_paths + pdf_paths
 
     with systemtools.FilesystemState(keep=original_paths):
-        input_ = 'red~example~score g kyi* y q'
+        input_ = 'red~example~score g ki* y q'
         score_manager._run(pending_input=input_)
         contents = score_manager._transcript.contents
         strings = []

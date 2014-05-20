@@ -62,13 +62,13 @@ class PackageManager(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'nyo': self.open_init_py,
-            'nyws': self.write_stub_init_py,
+            'no': self.open_init_py,
+            'ns': self.write_stub_init_py,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mdyo': self.open_metadata_py,
-            'mdyrw': self.rewrite_metadata_py,
+            'mdo': self.open_metadata_py,
+            'mdw': self.rewrite_metadata_py,
             })
         return result
 
@@ -543,8 +543,8 @@ class PackageManager(AssetController):
 
     def _make_package_menu_section(self, menu):
         commands = []
-        commands.append(('package - version', 'ver'))
-        commands.append(('package - versions list', 'verls'))
+        commands.append(('package - version', 'vr'))
+        commands.append(('package - versions list', 'vrls'))
         if commands:
             menu.make_command_section(
                 is_hidden=True,

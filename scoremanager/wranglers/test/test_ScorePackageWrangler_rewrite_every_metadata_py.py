@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
 
-    input_ = 'mdyrw* default q'
+    input_ = 'mdw* default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

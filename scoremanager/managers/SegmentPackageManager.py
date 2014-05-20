@@ -45,17 +45,17 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'dye': self.edit_definition_py,
-            'dyws': self.write_stub_definition_py,
-            'kyi': self.interpret_make_py,
-            'kyo': self.open_make_py,
-            'kyws': self.write_stub_make_py,
+            'de': self.edit_definition_py,
+            'ds': self.write_stub_definition_py,
+            'ki': self.interpret_make_py,
+            'ko': self.open_make_py,
+            'ks': self.write_stub_make_py,
             'oli': self.interpret_output_ly,
             'olo': self.open_output_ly,
             'opo': self.open_output_pdf,
-            'vdyo': self.open_versioned_definition_py,
-            'verls': self.list_versions_directory,
-            'ver': self.version_package,
+            'vdo': self.open_versioned_definition_py,
+            'vrls': self.list_versions_directory,
+            'vr': self.version_package,
             'volo': self.open_versioned_output_ly,
             'vopo': self.open_versioned_output_pdf,
             })
@@ -112,13 +112,13 @@ class SegmentPackageManager(PackageManager):
     def _make_definition_py_menu_section(self, menu):
         if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py found;'
-            message += ' use (dyws) to write stub.'
+            message += ' use (ds) to write stub.'
             menu.make_information_section(
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition.py - edit', 'dye'))
-        commands.append(('definition.py - write stub', 'dyws'))
+        commands.append(('definition.py - edit', 'de'))
+        commands.append(('definition.py - write stub', 'ds'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -142,9 +142,9 @@ class SegmentPackageManager(PackageManager):
 
     def _make_make_py_menu_section(self, menu):
         commands = []
-        commands.append(('__make__.py - interpret', 'kyi'))
-        commands.append(('__make__.py - open', 'kyo'))
-        commands.append(('__make__.py - write stub', 'kyws'))
+        commands.append(('__make__.py - interpret', 'ki'))
+        commands.append(('__make__.py - open', 'ko'))
+        commands.append(('__make__.py - write stub', 'ks'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -169,7 +169,7 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdyo'))
+        commands.append(('versions - definition.py - open', 'vdo'))
         commands.append(('versions - output.ly - open', 'volo'))
         commands.append(('versions - output.pdf - open', 'vopo'))
         menu.make_command_section(

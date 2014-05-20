@@ -84,8 +84,8 @@ class ScorePackageWrangler(Wrangler):
             'cw': self.write_cache,
             'fix*': self.fix_packages,
             'mdpyls*': self.list_every_metadata_py,
-            'mdyo*': self.open_every_metadata_py,
-            'mdyrw*': self.rewrite_every_metadata_py,
+            'mdo*': self.open_every_metadata_py,
+            'mdw*': self.rewrite_every_metadata_py,
             'new': self.make_package,
             'ren': self.rename_package,
             'rm': self.remove_packages,
@@ -184,8 +184,8 @@ class ScorePackageWrangler(Wrangler):
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
         commands.append(('scores - __metadata__.py - list', 'mdpyls*'))
-        commands.append(('scores - __metadata__.py - open', 'mdyo*'))
-        commands.append(('scores - __metadata__.py - rewrite', 'mdyrw*'))
+        commands.append(('scores - __metadata__.py - open', 'mdo*'))
+        commands.append(('scores - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('scores - fix', 'fix*'))
         menu.make_command_section(
             is_hidden=True,
