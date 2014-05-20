@@ -574,12 +574,14 @@ class BuildFileWrangler(Wrangler):
         new = '{{{}{}, {}{}}}'
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
-        old = '{BUILD_DIRECTORY}'
-        new = '{{{}}}'.format(build_directory)
-        self._replace_in_file(destination_path, old, new)
+
+#        old = '{BUILD_DIRECTORY}'
+#        new = '{{{}}}'.format(build_directory)
+#        self._replace_in_file(destination_path, old, new)
+
         lines = []
         for pdf_name in pdf_names:
-            line = r'\includepdf[pages=-]{{\build/{}.pdf}}'
+            line = r'\includepdf[pages=-]{{{}.pdf}}'
             line = line.format(pdf_name)
             lines.append(line)
         if lines:
@@ -711,7 +713,8 @@ class BuildFileWrangler(Wrangler):
         lines = []
         for lilypond_name in lilypond_names:
             file_name = lilypond_name + '.ly'
-            path = os.path.join(build_directory, file_name)
+            #path = os.path.join(build_directory, file_name)
+            path = file_name
             line = r'   \include "{}"'
             line = line.format(path)
             lines.append(line)
@@ -833,9 +836,11 @@ class BuildFileWrangler(Wrangler):
         new = '{{{}{}, {}{}}}'
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
-        old = '{BUILD_DIRECTORY}'
-        new = '{{{}}}'.format(build_directory)
-        self._replace_in_file(destination_path, old, new)
+
+#        old = '{BUILD_DIRECTORY}'
+#        new = '{{{}}}'.format(build_directory)
+#        self._replace_in_file(destination_path, old, new)
+
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
