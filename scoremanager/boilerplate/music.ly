@@ -2,6 +2,8 @@
 
 % LILYPOND_VERSION_DIRECTIVE
 % LILYPOND_LANGUAGE_DIRECTIVE
+
+#(ly:set-option 'relative-includes #t)
 % STYLESHEET_INCLUDE_STATEMENT
 
 \context Score = "SCORE_NAME" {

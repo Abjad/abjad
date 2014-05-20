@@ -713,10 +713,10 @@ class BuildFileWrangler(Wrangler):
         lines = []
         for lilypond_name in lilypond_names:
             file_name = lilypond_name + '.ly'
-            #path = os.path.join(build_directory, file_name)
-            path = file_name
+            #path = file_name
             line = r'   \include "{}"'
-            line = line.format(path)
+            #line = line.format(path)
+            line = line.format(file_name)
             lines.append(line)
         if lines:
             new = '\n'.join(lines)
@@ -728,7 +728,8 @@ class BuildFileWrangler(Wrangler):
         stylesheet_path = self._session.current_stylesheet_path
         if stylesheet_path:
             old = '% STYLESHEET_INCLUDE_STATEMENT'
-            new = r'\include "{}"'.format(stylesheet_path)
+            #new = r'\include "{}"'.format(stylesheet_path)
+            new = r'\include "../stylesheets/stylesheet.ily"'
             self._replace_in_file(destination_path, old, new)
         language_token = lilypondfiletools.LilyPondLanguageToken()
         lilypond_language_directive = format(language_token)
