@@ -437,7 +437,7 @@ class MaterialPackageManager(PackageManager):
         file_name_callback=None,
         force_lowercase=True,
         ):
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_snake_case_package_name('enter new package name')
         new_package_name = getter._run()
         if self._session.is_backtracking:
@@ -454,8 +454,8 @@ class MaterialPackageManager(PackageManager):
         messages.append(' FROM: {}'.format(self._path))
         messages.append('   TO: {}'.format(new_directory_path))
         messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
@@ -563,13 +563,13 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             lines = self._make_temporary_illustrate_py_lines()
             contents = '\n'.join(lines)
             file_name = 'temporary_illustrate.py'
             path = os.path.join(self._path, file_name)
             self._io_manager.write(path, contents)
-            self._io_manager.interpret(
+            self._io_manager.interpret_file(
                 path, 
                 confirm=confirm, 
                 display=display,
@@ -580,9 +580,9 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        result = self._io_manager.interpret(self._definition_py_path)
+        result = self._io_manager.interpret_file(self._definition_py_path)
         message = 'no exceptions raised; use (omo) to write output py.'
-        self._io_manager.display([message, ''])
+        self._io_manager._display([message, ''])
         self._session._hide_next_redraw = True
 
     def interpret_illustrate_py(self, confirm=True, display=True):
@@ -590,13 +590,13 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        result = self._io_manager.interpret(
+        result = self._io_manager.interpret_file(
             self._illustrate_py_path,
             confirm=confirm,
             display=display,
             )
         if result == 0:
-            self._io_manager.display('')
+            self._io_manager._display('')
         self._session._hide_next_redraw = True
 
     def interpret_illustration_ly(self, confirm=True, display=True):
@@ -614,7 +614,7 @@ class MaterialPackageManager(PackageManager):
                 )
         else:
             message = 'illustration.ly file does not exist.'
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
         self._session._hide_next_redraw = True
 
     def list_versions_directory(self):
@@ -680,7 +680,7 @@ class MaterialPackageManager(PackageManager):
         '''
         from scoremanager import iotools
         # not wrapped in interaction because redraw is important afterwards
-        #with self._io_manager.make_interaction(display=display):
+        #with self._io_manager._make_interaction(display=display):
         if True:
             selector = self._io_manager.selector
             selector = selector.make_inventory_class_selector()
@@ -701,8 +701,8 @@ class MaterialPackageManager(PackageManager):
                     messages.append(message)
                     message = 'overwrite existing output.py file?'
                     messages.append(message)
-                    self._io_manager.display(messages)
-                    result = self._io_manager.confirm()
+                    self._io_manager._display(messages)
+                    result = self._io_manager._confirm()
                     if self._session.is_backtracking:
                         return
                     if not result:
@@ -739,7 +739,7 @@ class MaterialPackageManager(PackageManager):
 
         Returns none.
         '''
-        #with self._io_manager.make_interaction(display=display):
+        #with self._io_manager._make_interaction(display=display):
         # no interaction because redraw is important
         if True:
             self._remove_metadatum('use_autoeditor')
@@ -769,8 +769,8 @@ class MaterialPackageManager(PackageManager):
         if confirm:
             message = 'will write output material to {}.'
             message = message.format(self._output_py_path)
-            self._io_manager.display(message)
-            result = self._io_manager.confirm()
+            self._io_manager._display(message)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
@@ -820,8 +820,8 @@ class MaterialPackageManager(PackageManager):
         if confirm:
             message = 'will write stub to {}.'
             message = message.format(self._definition_py_path)
-            self._io_manager.display(message)
-            result = self._io_manager.confirm()
+            self._io_manager._display(message)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
@@ -839,7 +839,7 @@ class MaterialPackageManager(PackageManager):
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'.format(self._definition_py_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     def write_stub_illustrate_py(self, confirm=True, display=True):
@@ -850,8 +850,8 @@ class MaterialPackageManager(PackageManager):
         if confirm:
             message = 'will write stub to {}.'
             message = message.format(self._illustrate_py_path)
-            self._io_manager.display(message)
-            result = self._io_manager.confirm()
+            self._io_manager._display(message)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
@@ -877,5 +877,5 @@ class MaterialPackageManager(PackageManager):
         if display:
             message = 'wrote stub to {}.'
             message = message.format(self._illustrate_py_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True

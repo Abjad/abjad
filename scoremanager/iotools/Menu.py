@@ -153,7 +153,7 @@ class Menu(Controller):
 
     def _clear_terminal(self):
         if self._should_clear_terminal:
-            self._io_manager.clear_terminal()
+            self._io_manager._clear_terminal()
 
     def _display(self):
         from scoremanager import iotools
@@ -161,7 +161,7 @@ class Menu(Controller):
         if not self._session.hide_hidden_commands:
             self._display_available_commands()
         menu_lines = self._make_menu_lines()
-        self._io_manager.display(
+        self._io_manager._display(
             menu_lines,
             capitalize=False,
             )
@@ -202,7 +202,7 @@ class Menu(Controller):
         menu_lines[0:0] = [title, '']
         menu_lines.append('')
         self._clear_terminal()
-        self._io_manager.display(
+        self._io_manager._display(
             menu_lines,
             capitalize=False,
             )

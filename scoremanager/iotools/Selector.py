@@ -75,7 +75,7 @@ class Selector(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager.make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name)
         self._make_asset_menu_section(menu)
         return menu
 

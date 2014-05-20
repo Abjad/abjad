@@ -64,7 +64,7 @@ class PerformerCreationWizard(Wizard):
                 raise Exception("how'd we get here?")
 
     def _make_performer_configuration_menu(self, performer):
-        menu = self._io_manager.make_menu(name='performer configuration')
+        menu = self._io_manager._make_menu(name='performer configuration')
         commands = []
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name

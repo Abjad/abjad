@@ -71,7 +71,7 @@ class Wrangler(AssetController):
         path = self._get_current_directory()
         if path is None:
             return
-        return self._io_manager.make_package_manager(path)
+        return self._io_manager._make_package_manager(path)
 
     @property
     def _current_storehouse_path(self):
@@ -108,7 +108,7 @@ class Wrangler(AssetController):
     @property
     def _views_package_manager(self):
         path = self._configuration.user_library_views_directory_path
-        return self._io_manager.make_package_manager(path)
+        return self._io_manager._make_package_manager(path)
 
     @property
     def _views_py_path(self):
@@ -134,7 +134,7 @@ class Wrangler(AssetController):
         if not old_path:
             return
         old_name = os.path.basename(old_path)
-        self._io_manager.display('')
+        self._io_manager._display('')
         if new_storehouse:
             pass
         elif self._session.is_in_score:
@@ -148,7 +148,7 @@ class Wrangler(AssetController):
         prompt_string = 'new {} name'
         prompt_string = prompt_string.format(self._asset_identifier)
         # TODO: add additional help string: "leave blank to keep name"
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string(prompt_string)
         name = getter._run()
         if self._session.is_backtracking:
@@ -174,8 +174,8 @@ class Wrangler(AssetController):
         messages.append(' FROM: {}'.format(old_path))
         messages.append('   TO: {}'.format(new_path))
         messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
@@ -219,7 +219,7 @@ class Wrangler(AssetController):
                 pattern = None
                 message = 'invalid regular expression: {!r}.'
                 message  = message.format(item)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             for entry in entries:
                 display_string, _, _, path = entry
                 if self._session.is_in_score:
@@ -316,7 +316,7 @@ class Wrangler(AssetController):
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
             prompt_string = prompt_string or 'enter package name'
-            getter = self._io_manager.make_getter()
+            getter = self._io_manager._make_getter()
             getter.append_space_delimited_lowercase_string(prompt_string)
             name = getter._run()
             if self._session.is_backtracking:
@@ -328,7 +328,7 @@ class Wrangler(AssetController):
             if os.path.exists(path):
                 line = 'path already exists: {!r}.'
                 line = line.format(path)
-                self._io_manager.display([line, ''])
+                self._io_manager._display([line, ''])
             else:
                 return path
 
@@ -395,12 +395,12 @@ class Wrangler(AssetController):
 
     # TODO: rename interactive method with something other than _get*
     def _get_visible_asset_path(self, infinitive_phrase=None):
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         prompt_string = 'enter {}'.format(self._asset_identifier)
         if infinitive_phrase:
             prompt_string = prompt_string + ' ' + infinitive_phrase
         if hasattr(self, '_make_asset_menu_section'):
-            dummy_menu = self._io_manager.make_menu()
+            dummy_menu = self._io_manager._make_menu()
             self._make_asset_menu_section(dummy_menu)
             asset_section = dummy_menu._asset_section
         else:
@@ -423,7 +423,7 @@ class Wrangler(AssetController):
 
     # TODO: rename interactive method with something other than _get*
     def _get_visible_asset_paths(self):
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         plural_identifier = stringtools.pluralize(self._asset_identifier)
         prompt_string = 'enter {}(s) to remove'
         prompt_string = prompt_string.format(plural_identifier)
@@ -492,15 +492,15 @@ class Wrangler(AssetController):
                 message = 'OUTPUT: {}'.format(output_path)
                 messages.append(message)
             messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager.display('')
+        self._io_manager._display('')
         for path in paths:
-            self._io_manager.interpret(path)
+            self._io_manager.interpret_file(path)
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry[0].isalpha():
@@ -553,16 +553,25 @@ class Wrangler(AssetController):
         return result
 
     def _list_every_metadata_py(self):
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             directories = self._list_all_directories_with_metadata_pys()
             paths = [os.path.join(_, '__metadata__.py') for _ in directories]
             messages = paths[:]
             messages.append('')
-            self._io_manager.display(messages)
+            self._io_manager._display(messages)
             message = '{} metadata pys found.'
             message = message.format(len(paths))
-            self._io_manager.display(message)
+            self._io_manager._display(message)
 
+    def _list_metadata_py_files_in_all_directories(self):
+        paths = []
+        directories = self._list_all_directories_with_metadata_pys()
+        for directory in directories:
+            path = os.path.join(directory, '__metadata__.py')
+            paths.append(path)
+        paths.sort()
+        return paths
+        
     def _list_storehouse_paths(
         self,
         abjad_library=True,
@@ -690,7 +699,7 @@ class Wrangler(AssetController):
             return 'select {}:'.format(human_readable_target_name)
 
     def _make_asset_selection_menu(self):
-        menu = self._io_manager.make_menu(name='asset selection')
+        menu = self._io_manager._make_menu(name='asset selection')
         menu_entries = self._make_asset_menu_entries()
         menu.make_asset_section(menu_entries=menu_entries)
         return menu
@@ -711,7 +720,7 @@ class Wrangler(AssetController):
                 return
             if not path:
                 return
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string(prompt_string)
         name = getter._run()
         if self._session.is_backtracking:
@@ -790,7 +799,7 @@ class Wrangler(AssetController):
             )
 
     def _open_in_each_package(self, file_name, verb='open'):
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             paths = []
             for segment_path in self._list_visible_asset_paths():
                 path = os.path.join(segment_path, file_name)
@@ -802,25 +811,16 @@ class Wrangler(AssetController):
             for path in paths:
                 message = '   ' + path
                 messages.append(message)
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
                 return
             self._io_manager.open_file(paths)
 
-    def _list_metadata_py_files_in_all_directories(self):
-        paths = []
-        directories = self._list_all_directories_with_metadata_pys()
-        for directory in directories:
-            path = os.path.join(directory, '__metadata__.py')
-            paths.append(path)
-        paths.sort()
-        return paths
-        
     def _open_every_metadata_py(self, confirm=True, display=True):
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             paths = self._list_metadata_py_files_in_all_directories()
             if display:
                 messages = []
@@ -828,9 +828,9 @@ class Wrangler(AssetController):
                 for path in paths:
                     message = '    ' + path
                     messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -844,7 +844,7 @@ class Wrangler(AssetController):
             )
         if path.startswith(score_storehouses):
             score_path = self._configuration._path_to_score_path(path)
-            manager = self._io_manager.make_package_manager(path=score_path)
+            manager = self._io_manager._make_package_manager(path=score_path)
             metadata = manager._get_metadata()
             if metadata:
                 year = metadata.get('year')
@@ -870,7 +870,7 @@ class Wrangler(AssetController):
         else:
             asset_name = os.path.basename(path)
         if 'segments' in path:
-            manager = self._io_manager.make_package_manager(path=path)
+            manager = self._io_manager._make_package_manager(path=path)
             name = manager._get_metadatum('name')
             asset_name = name or asset_name
         if self._session.is_in_score:
@@ -883,7 +883,7 @@ class Wrangler(AssetController):
                 string = annotation
         if getattr(self, '_annotate_autoeditor', False):
             use_autoeditor = False
-            manager = self._io_manager.make_package_manager(path=path)
+            manager = self._io_manager._make_package_manager(path=path)
             metadata = manager._get_metadata()
             if metadata:
                 use_autoeditor = metadata.get('use_autoeditor')
@@ -925,7 +925,7 @@ class Wrangler(AssetController):
             messages.append('')
             message = '    {}'.format(self._views_py_path)
             messages.append(message)
-            self._io_manager.display(messages)
+            self._io_manager._display(messages)
             return
         if not result:
             return
@@ -964,7 +964,7 @@ class Wrangler(AssetController):
                     message = '    {}'.format(path)
                     messages.append(message)
             if display:
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if count == 1:
                 confirmation_string = 'remove'
             else:
@@ -972,7 +972,7 @@ class Wrangler(AssetController):
                 confirmation_string = confirmation_string.format(count)
             prompt_string = "type {!r} to proceed"
             prompt_string = prompt_string.format(confirmation_string)
-            getter = self._io_manager.make_getter()
+            getter = self._io_manager._make_getter()
             getter.append_string(prompt_string)
             result = getter._run()
             if self._session.is_backtracking:
@@ -995,7 +995,7 @@ class Wrangler(AssetController):
         file_name = os.path.basename(path)
         message = 'Existing file name> {}'
         message = message.format(file_name)
-        self._io_manager.display(message)
+        self._io_manager._display(message)
         manager = self._initialize_manager(
             path,
             asset_identifier=self._asset_identifier,
@@ -1035,21 +1035,21 @@ class Wrangler(AssetController):
                         return
 
     def _rewrite_every_metadata_py(self, confirm=True, display=True):
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             directories = self._list_all_directories_with_metadata_pys()
             messages = []
             for directory in directories:
                 path = os.path.join(directory, '__metadata__.py')
                 message = 'rewriting {} ...'.format(path)
                 messages.append(message)
-                manager = self._io_manager.make_package_manager(directory)
+                manager = self._io_manager._make_package_manager(directory)
                 manager.rewrite_metadata_py(confirm=False, display=False)
             if display:
                 message = '{} __metadata__.py files rewritten.'
                 message = message.format(len(directories))
                 messages.append(message)
                 self._session._hide_next_redraw = False
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
 
     def _select_asset_path(self):
         menu = self._make_asset_selection_menu()
@@ -1089,7 +1089,7 @@ class Wrangler(AssetController):
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
             message = 'no views found.'
-            self._io_manager.display(message)
+            self._io_manager._display(message)
             return
         view_names = list(view_inventory.keys())
         if is_ranged:
@@ -1098,7 +1098,7 @@ class Wrangler(AssetController):
             breadcrumb = 'view'
         if infinitive_phrase:
             breadcrumb = '{} {}'.format(breadcrumb, infinitive_phrase)
-        selector = self._io_manager.make_selector(
+        selector = self._io_manager._make_selector(
             breadcrumb=breadcrumb,
             is_ranged=is_ranged,
             items=view_names,
@@ -1119,15 +1119,15 @@ class Wrangler(AssetController):
         messages.append('')
         for manager in managers:
             messages.extend(manager._make_version_package_messages())
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
         for manager in self._list_visible_asset_managers():
             manager.version_package(confirm=False, display=False)
-        self._io_manager.display('')
+        self._io_manager._display('')
         self._session._hide_next_redraw = True
 
     def _write_view_inventory(
@@ -1149,7 +1149,7 @@ class Wrangler(AssetController):
         self._io_manager.write(self._views_py_path, contents)
         if display:
             message = 'view inventory written to disk.'
-            self._io_manager.display(message)
+            self._io_manager._display(message)
 
     ### PUBLIC METHODS ###
 
@@ -1212,15 +1212,15 @@ class Wrangler(AssetController):
         self._session._attempted_to_commit_to_repository = True
         if self._session.is_repository_test:
             return
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('commit message')
         commit_message = getter._run()
         if self._session.is_backtracking:
             return
         if confirm:
             line = 'commit message will be: "{}"\n'.format(commit_message)
-            self._io_manager.display(line)
-            result = self._io_manager.confirm()
+            self._io_manager._display(line)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
@@ -1243,7 +1243,7 @@ class Wrangler(AssetController):
         view_inventory = self._read_view_inventory()
         if not view_inventory:
             message = 'no views found.'
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
             return
         messages = []
@@ -1257,7 +1257,7 @@ class Wrangler(AssetController):
         messages.append(message)
         messages.extend(names)
         messages.append('')
-        self._io_manager.display(messages, capitalize=False)
+        self._io_manager._display(messages, capitalize=False)
         self._session._hide_next_redraw = True
 
     def make_view(self):
@@ -1266,7 +1266,7 @@ class Wrangler(AssetController):
         Returns none.
         '''
         from scoremanager import iotools
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('view name')
         view_name = getter._run()
         if self._session.is_backtracking:
@@ -1278,7 +1278,7 @@ class Wrangler(AssetController):
             )
         breadcrumb = 'views - {} - edit:'
         breadcrumb = breadcrumb.format(view_name)
-        autoeditor = self._io_manager.make_autoeditor(
+        autoeditor = self._io_manager._make_autoeditor(
             allow_item_edit=False,
             breadcrumb=breadcrumb,
             target=view,
@@ -1304,7 +1304,7 @@ class Wrangler(AssetController):
             self._io_manager.open_file(self._views_py_path)
         else:
             message = 'no __views.py__ found.'
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     def repository_clean(self, confirm=True, display=True):
@@ -1351,7 +1351,7 @@ class Wrangler(AssetController):
         view = view_inventory.get(old_view_name)
         if not view:
             return
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('view name')
         new_view_name = getter._run()
         if self._session.is_backtracking:
@@ -1370,7 +1370,7 @@ class Wrangler(AssetController):
         paths = self._extract_common_parent_directories(paths)
         paths.sort()
         for path in paths:
-            manager = self._io_manager.make_package_manager(path)
+            manager = self._io_manager._make_package_manager(path)
             self._session._hide_next_redraw = False
             manager.repository_status()
         self._session._hide_next_redraw = True
@@ -1386,7 +1386,7 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
-            manager = self._io_manager.make_package_manager(path)
+            manager = self._io_manager._make_package_manager(path)
             self._session._hide_next_redraw = False
             manager.revert_to_repository(confirm=False, display=False)
 

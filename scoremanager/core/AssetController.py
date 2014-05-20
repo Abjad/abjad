@@ -127,7 +127,7 @@ class AssetController(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager.make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name)
         if self._session.is_in_score:
             self._make_go_edits_menu_section(menu)
         self._make_go_menu_section(menu)
@@ -182,21 +182,21 @@ class AssetController(Controller):
             )
 
     def _open_file(self, path):
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             if os.path.isfile(path):
                 self._io_manager.open_file(path)
             else:
                 message = 'can not find file: {}.'
                 message = message.format(path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
 
     def _repository_clean(self, confirm=True, display=True):
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             paths = self._get_unadded_asset_paths()
             if not paths:
                 if display:
                     message = 'no unadded assets.'
-                    self._io_manager.display(message)
+                    self._io_manager._display(message)
                 return
             if display:
                 messages = []
@@ -204,9 +204,9 @@ class AssetController(Controller):
                 for path in paths:
                     message = '    ' + path
                     messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -241,9 +241,9 @@ class AssetController(Controller):
         
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             message = 'running doctest ...'
-            self._io_manager.display(message)
+            self._io_manager._display(message)
             assets = []
             paths = self._list_visible_asset_paths()
             for path in paths:
@@ -261,32 +261,32 @@ class AssetController(Controller):
                                 assets.append(file_path)
             if not assets:
                 message = 'no testable assets found.'
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             else:
                 count = len(assets)
                 identifier = stringtools.pluralize('asset', count=count)
                 message = '{} testable {} found ...'
                 message = message.format(count, identifier)
-                self._io_manager.display([message, ''])
+                self._io_manager._display([message, ''])
                 script = developerscripttools.RunDoctestsScript()
                 strings = script.process_args(
                     file_paths=assets,
                     print_to_terminal=False,
                     )
-                self._io_manager.display(strings, capitalize=False)
+                self._io_manager._display(strings, capitalize=False)
 
     def edit_score_stylesheet(self):
         r'''Edits score stylesheet.
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             path = self._session.current_stylesheet_path
             if path:
                 self._io_manager.edit(path)
             else:
                 message = 'no file ending in *stylesheet.ily found.'
-                self._io_manager.display(message)
+                self._io_manager._display(message)
 
     def go_to_build_files(self):
         r'''Goes to build files.
@@ -371,7 +371,7 @@ class AssetController(Controller):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             messages = []
             prompt = True
             if statement is None:
@@ -391,7 +391,7 @@ class AssetController(Controller):
             except:
                 messages.append('expression not executable.')
             if prompt:
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
 
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.
@@ -406,7 +406,7 @@ class AssetController(Controller):
         Returns none.
         '''
         from abjad.tools import systemtools
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             self._session._attempted_to_open_file = True
             if self._session.is_test:
                 return
@@ -417,9 +417,9 @@ class AssetController(Controller):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             message = 'running py.test ...'
-            self._io_manager.display(message)
+            self._io_manager._display(message)
             assets = []
             paths = self._list_python_files_in_visible_assets()
             for path in paths:
@@ -434,13 +434,13 @@ class AssetController(Controller):
                     assets.append(path)
             if not assets:
                 message = 'no testable assets found.'
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             else:
                 count = len(paths)
                 identifier = stringtools.pluralize('asset', count=count)
                 message = '{} testable {} found ...'
                 message = message.format(count, identifier)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
                 assets = ' '.join(assets)
                 command = 'py.test -rf {}'.format(assets)
                 self._io_manager.run_command(command, capitalize=False)

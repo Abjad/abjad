@@ -35,7 +35,7 @@ class Interaction(ContextManager):
         '''
         if self.display:
             self.controller._session._hide_next_redraw = False
-            self.controller._io_manager.display('')
+            self.controller._io_manager._display('')
         self.controller._session._hide_next_redraw = True
 
     ### PUBLIC PROPERTIES ###

@@ -144,7 +144,7 @@ class ListAutoeditor(Autoeditor):
     # TODO: encapsulate section-making code into separate methods
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager.make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(
@@ -211,7 +211,7 @@ class ListAutoeditor(Autoeditor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
-            getter = self._io_manager.make_getter()
+            getter = self._io_manager._make_getter()
             self._item_getter_configuration_method(
                 getter,
                 self._asset_identifier,
@@ -267,7 +267,7 @@ class ListAutoeditor(Autoeditor):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_integer_in_range('old number', 1, len(self._items))
         getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
@@ -284,7 +284,7 @@ class ListAutoeditor(Autoeditor):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         items_identifier = stringtools.pluralize(self._asset_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)

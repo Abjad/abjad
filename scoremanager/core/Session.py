@@ -179,7 +179,7 @@ class Session(abctools.AbjadObject):
             messages.append(message)
             message = 'prune {} soon.'.format(transcripts_directory)
             messages.append(message)
-            self.io_manager.display(messages)
+            self.io_manager._display(messages)
         self.transcript._write()
 
     def _display_variables(self):
@@ -199,7 +199,7 @@ class Session(abctools.AbjadObject):
                 line = line.format(variable_name, variable_value)
                 lines.append(line)
         lines.append('')
-        self.io_manager.display(lines, capitalize=False)
+        self.io_manager._display(lines, capitalize=False)
         self._hide_next_redraw = True
 
     def _format_controller_breadcrumbs(self):

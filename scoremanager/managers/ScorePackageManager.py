@@ -180,7 +180,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _make_setup_menu(self):
-        menu = self._io_manager.make_menu(name='setup')
+        menu = self._io_manager._make_menu(name='setup')
         self._make_setup_menu_section(menu)
         return menu
 
@@ -258,7 +258,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('catalog number')
         result = getter._run()
         if self._session.is_backtracking:
@@ -270,7 +270,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('forces tagline')
         result = getter._run()
         if self._session.is_backtracking:
@@ -282,7 +282,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('paper dimensions')
         result = getter._run()
         if self._session.is_backtracking:
@@ -294,7 +294,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_string('new title')
         result = getter._run()
         if self._session.is_backtracking:
@@ -308,7 +308,7 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         getter.append_integer_in_range(
             'year of completion',
             start=1,
@@ -336,14 +336,14 @@ class ScorePackageManager(PackageManager):
                     messages.append(message)
                     message = 'create {}?'.format(path)
                     messages.append(message)
-                    self._io_manager.display(messages)
+                    self._io_manager._display(messages)
                 if confirm:
-                    result = self._io_manager.confirm()
+                    result = self._io_manager._confirm()
                     if self._session.is_backtracking:
                         return
                     if not result:
                         return
-                    self._io_manager.display('')
+                    self._io_manager._display('')
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
                 with file(gitignore_path, 'w') as file_pointer:
@@ -357,14 +357,14 @@ class ScorePackageManager(PackageManager):
                 messages.append(message)
                 message = 'create {}?'.format(path)
                 messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                self._io_manager.display('')
+                self._io_manager._display('')
                 if self._session.is_backtracking:
                     return
                 if not result:
                     return
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
             self.write_stub_init_py(confirm=confirm, display=display)
         if not os.path.exists(self._metadata_py_path):
             package_needed_to_be_fixed = True
@@ -375,14 +375,14 @@ class ScorePackageManager(PackageManager):
                 messages.append(message)
                 message = 'create {}?'.format(path)
                 messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
                     return
-                self._io_manager.display('')
+                self._io_manager._display('')
             self.rewrite_metadata_py(confirm=confirm, display=display)
         self._session._hide_next_redraw = False
         if display:
@@ -390,7 +390,7 @@ class ScorePackageManager(PackageManager):
                 message = 'Fixed package.'.format(self._path)
             else:
                 message = 'No fixes required.'
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
         return package_needed_to_be_fixed
 

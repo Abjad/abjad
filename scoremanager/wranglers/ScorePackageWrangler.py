@@ -194,7 +194,7 @@ class ScorePackageWrangler(Wrangler):
             )
 
     def _make_asset_menu_section(self, menu):
-        entries = self._io_manager._read_cache()
+        entries = self._read_cache()
         if self._session.is_test:
             entries = [_ for _ in entries if 'Example Score' in _[0]]
         else:
@@ -233,6 +233,18 @@ class ScorePackageWrangler(Wrangler):
             name='scores',
             )
 
+    def _read_cache(self):
+        start_menu_entries = []
+        if os.path.exists(self._configuration.cache_file_path):
+            path = self._configuration.cache_file_path
+            with file(path, 'r') as file_pointer:
+                cache_lines = file_pointer.read()
+            try:
+                exec(cache_lines)
+            except SyntaxError:
+                pass
+        return start_menu_entries
+
     ### PUBLIC METHODS ###
 
     def copy_package(self):
@@ -268,7 +280,7 @@ class ScorePackageWrangler(Wrangler):
         message = message.format(len(paths))
         messages.append(message)
         messages.append('')
-        self._io_manager.display(messages)
+        self._io_manager._display(messages)
         self._session._hide_next_redraw = True
 
     def list_every_metadata_py(self):
@@ -350,5 +362,5 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.write(cache_file_path, contents)
         if display:
             message = 'wrote {}.'.format(cache_file_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True

@@ -311,7 +311,7 @@ class PackageManager(AssetController):
         return paths
 
     def _initialize_file_name_getter(self):
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager._make_getter()
         asset_identifier = getattr(self, '_asset_identifier', None)
         if asset_identifier:
             prompt = 'new {} name'.format(asset_identifier)
@@ -459,12 +459,12 @@ class PackageManager(AssetController):
         return result
 
     def _list_versions_directory(self):
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             versions_directory_path = self._versions_directory_path
             if not os.path.exists(versions_directory_path):
                 message = 'no versions directory found {}.'
                 message = message.format(self._versions_directory_path)
-                self._io_manager.display([message, ''])
+                self._io_manager._display([message, ''])
                 self._session._hide_next_redraw = True
                 return
             file_names = []
@@ -486,7 +486,7 @@ class PackageManager(AssetController):
             if not messages:
                 message = 'versions directory is empty.'
                 messages.append(message)
-            self._io_manager.display(messages, capitalize=False)
+            self._io_manager._display(messages, capitalize=False)
 
     def _list_visible_asset_paths(self):
         return [self._path]
@@ -563,14 +563,14 @@ class PackageManager(AssetController):
         return version_numbers
 
     def _open_versioned_file(self, file_name_prototype):
-        with self._io_manager.make_interaction():
-            getter = self._io_manager.make_getter()
+        with self._io_manager._make_interaction():
+            getter = self._io_manager._make_getter()
             version_numbers = self._get_existing_version_numbers(
                 file_name_prototype)
             if not version_numbers: 
                 message = 'no {} files in versions directory.'
                 message = message.format(file_name_prototype)
-                self._io_manager.display([message, ''])
+                self._io_manager._display([message, ''])
                 self._session._hide_next_redraw = True
                 return
             prompt = 'version number ({})'
@@ -597,14 +597,14 @@ class PackageManager(AssetController):
                 self._io_manager.open_file(file_path)
             else:
                 message = 'file not found: {}'.format(file_path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
 
     def _remove(self, confirm=True, display=True):
         if confirm:
             message = '{} will be removed.'
             message = message.format(self._path)
-            self._io_manager.display([message, ''])
-            getter = self._io_manager.make_getter()
+            self._io_manager._display([message, ''])
+            getter = self._io_manager._make_getter()
             getter.append_string("type 'remove' to proceed")
             result = getter._run()
             if self._session.is_backtracking:
@@ -670,8 +670,8 @@ class PackageManager(AssetController):
         ):
         base_name = os.path.basename(self._path)
         line = 'current name: {}'.format(base_name)
-        self._io_manager.display(line)
-        getter = self._io_manager.make_getter()
+        self._io_manager._display(line)
+        getter = self._io_manager._make_getter()
         getter.append_string('new name')
         new_package_name = getter._run()
         if self._session.is_backtracking:
@@ -690,8 +690,8 @@ class PackageManager(AssetController):
         line = 'new name:     {}'.format(new_package_name)
         lines.append(line)
         lines.append('')
-        self._io_manager.display(lines)
-        result = self._io_manager.confirm()
+        self._io_manager._display(lines)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
@@ -744,7 +744,7 @@ class PackageManager(AssetController):
             raise ValueError(self)
         command = ' && '.join(commands)
         self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
+        self._io_manager._display('')
 
     def _run(self, pending_input=None):
         from scoremanager import iotools
@@ -849,15 +849,15 @@ class PackageManager(AssetController):
         return True
 
     def _version_package(self, confirm=True, display=True):
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if not os.path.isdir(self._versions_directory_path):
                 os.mkdir(self._versions_directory_path)
             if confirm:
                 messages = []
                 messages.append('will copy ...')
                 messages.extend(self._make_version_package_messages())
-                self._io_manager.display(messages)
-                result = self._io_manager.confirm()
+                self._io_manager._display(messages)
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -898,8 +898,8 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
-            getter = self._io_manager.make_getter()
+        with self._io_manager._make_interaction():
+            getter = self._io_manager._make_getter()
             getter.append_snake_case_string(
                 'metadatum name', 
                 allow_empty=False,
@@ -917,13 +917,13 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             self._session._attempted_to_add_to_repository = True
             if self._session.is_repository_test:
                 return
             message = self._get_score_package_directory_name()
             message = message + ' ...'
-            self._io_manager.display(message, capitalize=False)
+            self._io_manager._display(message, capitalize=False)
             command = self._repository_add_command
             assert isinstance(command, str)
             self._io_manager.run_command(command)
@@ -938,12 +938,12 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             self._session._attempted_to_commit_to_repository = True
             if self._session.is_repository_test:
                 return
             if commit_message is None:
-                getter = self._io_manager.make_getter()
+                getter = self._io_manager._make_getter()
                 getter.append_string('commit message')
                 commit_message = getter._run()
                 if self._session.is_backtracking:
@@ -951,8 +951,8 @@ class PackageManager(AssetController):
                 if confirm:
                     message = 'commit message will be: "{}"\n'
                     message = message.format(commit_message)
-                    self._io_manager.display(message)
-                    result = self._io_manager.confirm()
+                    self._io_manager._display(message)
+                    result = self._io_manager._confirm()
                     if self._session.is_backtracking:
                         return
                     if not result:
@@ -968,15 +968,15 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
-            getter = self._io_manager.make_getter()
+        with self._io_manager._make_interaction():
+            getter = self._io_manager._make_getter()
             getter.append_string('metadatum name')
             result = getter._run()
             if self._session.is_backtracking:
                 return
             metadatum = self._get_metadatum(result)
             message = '{!r}'.format(metadatum)
-            self._io_manager.display(message)
+            self._io_manager._display(message)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
@@ -997,8 +997,8 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
-            getter = self._io_manager.make_getter()
+        with self._io_manager._make_interaction():
+            getter = self._io_manager._make_getter()
             getter.append_string('metadatum name')
             result = getter._run()
             if self._session.is_backtracking:
@@ -1019,10 +1019,10 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             self._session._attempted_repository_status = True
             message = self._path + '...'
-            self._io_manager.display(message, capitalize=False)
+            self._io_manager._display(message, capitalize=False)
             command = self._repository_status_command
             process = self._io_manager.make_subprocess(command)
             path = self._path
@@ -1032,7 +1032,7 @@ class PackageManager(AssetController):
                 clean_line = line.strip()
                 clean_line = clean_line.replace(path, '')
                 clean_lines.append(clean_line)
-            self._io_manager.display(
+            self._io_manager._display(
                 clean_lines,
                 capitalize=False,
                 )
@@ -1047,13 +1047,13 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if display:
                 message = 'will rewrite {}.'
                 message = message.format(self._metadata_py_path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -1067,14 +1067,14 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             self._session._attempted_to_revert_to_repository = True
             if self._session.is_repository_test:
                 return
             if display:
                 message = 'reverting {} ...'
                 message = message.format(self._path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             self._revert_from_repository()
 
     def update_from_repository(self, confirm=True, display=True):
@@ -1082,14 +1082,14 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             self._session._attempted_to_update_from_repository = True
             if self._session.is_repository_test:
                 return
             line = self._get_score_package_directory_name()
             if display:
                 line = line + ' ...'
-                self._io_manager.display(line, capitalize=False)
+                self._io_manager._display(line, capitalize=False)
             command = self._repository_update_command
             self._io_manager.run_command(command)
 
@@ -1098,14 +1098,14 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             path = self._init_py_file_path
             if display:
                 message = 'will write stub to {}.'
                 message = message.format(path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:

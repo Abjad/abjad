@@ -57,6 +57,48 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
+    def _clear_terminal(self):
+        if not self._session.hide_next_redraw:
+            if not self._session.pending_input:
+                superclass = super(IOManager, self)
+                superclass.clear_terminal()
+
+    def _confirm(
+        self,
+        prompt_string='ok?',
+        include_chevron=False,
+        ):
+        getter = self._make_getter(
+            include_chevron=include_chevron,
+            include_newlines=False,
+            )
+        getter.append_yes_no_string(prompt_string)
+        result = getter._run()
+        if isinstance(result, str):
+            if 'yes'.startswith(result.lower()):
+                return True
+
+    def _display(
+        self,
+        lines,
+        capitalize=True,
+        ):
+        assert isinstance(lines, (str, list))
+        if isinstance(lines, str):
+            lines = [lines]
+        if self._session._hide_next_redraw:
+            return
+        if capitalize:
+            lines = [
+                stringtools.capitalize_start(line)
+                for line in lines
+                ]
+        if lines:
+            self._session.transcript._append_entry(lines)
+        if not self._session.pending_input:
+            for line in lines:
+                print(line)
+
     @staticmethod
     def _get_one_line_menu_summary(expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
@@ -146,6 +188,111 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
+    def _make_autoeditor(
+        self, 
+        allow_item_edit=True,
+        breadcrumb=None,
+        target=None,
+        ):
+        r'''Makes autoeditor with optional `target`.
+
+        Returns autoeditor or list autoeditor.
+        '''
+        from scoremanager import iotools
+        prototype = (
+            list,
+            datastructuretools.TypedList,
+            )
+        if isinstance(target, prototype):
+            class_ = iotools.ListAutoeditor
+            return class_(
+                allow_item_edit=allow_item_edit,
+                breadcrumb=breadcrumb,
+                session=self._session,
+                target=target,
+                )
+        else:
+            class_ = iotools.Autoeditor
+            return class_(
+                breadcrumb=breadcrumb,
+                session=self._session,
+                target=target,
+                )
+
+    def _make_getter(
+        self,
+        allow_none=False,
+        include_chevron=True,
+        include_newlines=False,
+        ):
+        r'''Makes getter.
+
+        Returns getter.
+        '''
+        from scoremanager import iotools
+        getter = iotools.UserInputGetter(
+            session=self._session,
+            allow_none=allow_none,
+            include_chevron=include_chevron,
+            include_newlines=include_newlines,
+            )
+        return getter
+
+    def _make_interaction(self, display=True):
+        r'''Makes interaction context manager.
+
+        Returns interaction context manager.
+        '''
+        from scoremanager import iotools
+        context = iotools.Interaction(controller=self.client, display=display)
+        return context
+
+    def _make_menu(
+        self,
+        breadcrumb_callback=None,
+        name=None,
+        ):
+        r'''Makes menu.
+
+        Returns menu.
+        '''
+        from scoremanager import iotools
+        menu = iotools.Menu(
+            breadcrumb_callback=breadcrumb_callback,
+            name=name,
+            session=self._session,
+            )
+        return menu
+
+    def _make_package_manager(self, path):
+        r'''Makes package manager.
+
+        Returns package manager.
+        '''
+        from scoremanager import managers
+        return managers.PackageManager(
+            path=path,
+            session=self._session,
+            )
+
+    def _make_selector(
+        self,
+        breadcrumb=None,
+        is_ranged=False,
+        items=None,
+        ):
+        r'''Makes selector.
+
+        Returns selector.
+        '''
+        from scoremanager import iotools
+        return iotools.Selector(
+            breadcrumb=breadcrumb,
+            is_ranged=is_ranged,
+            items=items,
+            session=self._session,
+            )
+
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
@@ -176,17 +323,14 @@ class IOManager(IOManager):
         self._session._pending_input = pending_input
         return input_
 
-    def _read_cache(self):
-        start_menu_entries = []
-        if os.path.exists(self._configuration.cache_file_path):
-            path = self._configuration.cache_file_path
-            with file(path, 'r') as file_pointer:
-                cache_lines = file_pointer.read()
-            try:
-                exec(cache_lines)
-            except SyntaxError:
-                pass
-        return start_menu_entries
+    def _print_not_yet_implemented(self):
+        r'''Prints not-yet-implemented message.
+
+        Returns none.
+        '''
+        with self._make_interaction():
+            message = 'not yet implemented.'
+            self._display(message)
 
     ### PUBLIC PROPERTIES ###
 
@@ -210,64 +354,6 @@ class IOManager(IOManager):
         return iotools.Selector(session=self._session)
 
     ### PUBLIC METHODS ###
-
-    def clear_terminal(self):
-        r'''Clears terminal.
-
-        Only clears terminal if session is displayable.
-
-        Returns none.
-        '''
-        if not self._session.hide_next_redraw:
-            if not self._session.pending_input:
-                superclass = super(IOManager, self)
-                superclass.clear_terminal()
-
-    def confirm(
-        self,
-        prompt_string='ok?',
-        include_chevron=False,
-        ):
-        r'''Prompts user to confirm.
-
-        Returns boolean.
-        '''
-        getter = self.make_getter(
-            include_chevron=include_chevron,
-            include_newlines=False,
-            )
-        getter.append_yes_no_string(prompt_string)
-        result = getter._run()
-        if isinstance(result, str):
-            if 'yes'.startswith(result.lower()):
-                return True
-
-    def display(
-        self,
-        lines,
-        capitalize=True,
-        ):
-        r'''Displays `lines`.
-
-        Clears terminal first.
-
-        Returns none.
-        '''
-        assert isinstance(lines, (str, list))
-        if isinstance(lines, str):
-            lines = [lines]
-        if self._session._hide_next_redraw:
-            return
-        if capitalize:
-            lines = [
-                stringtools.capitalize_start(line)
-                for line in lines
-                ]
-        if lines:
-            self._session.transcript._append_entry(lines)
-        if not self._session.pending_input:
-            for line in lines:
-                print(line)
 
     def edit(self, path, line_number=None):
         r'''Edits file `path`.
@@ -304,7 +390,7 @@ class IOManager(IOManager):
             exec(file_contents_string)
         except:
             traceback.print_exc()
-            self.display('')
+            self._display('')
             return 'corrupt'
         result = []
         for name in attribute_names:
@@ -320,7 +406,7 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        with self.make_interaction():
+        with self._make_interaction():
             lines = []
             prompt = True
             if statement is None:
@@ -342,14 +428,14 @@ class IOManager(IOManager):
                 lines.append('expression not executable.')
             lines = lines or []
             lines = [_.strip() for _ in lines]
-            self.display(lines, capitalize=False)
+            self._display(lines, capitalize=False)
 
-    def interpret(self, path, confirm=True, display=True):
+    def interpret_file(self, path, confirm=True, display=True):
         r'''Invokes Python or LilyPond on `path`.
 
         Returns integer success code.
         '''
-        with self.make_interaction():
+        with self._make_interaction():
             _, extension = os.path.splitext(path)
             if extension == '.py':
                 command = 'python {}'.format(path)
@@ -363,116 +449,11 @@ class IOManager(IOManager):
             with context:
                 result = self.spawn_subprocess(command)
             if result != 0:
-                self.display('')
+                self._display('')
             elif display:
                 message = 'interpreted {}.'.format(path)
-                self.display(message)
+                self._display(message)
             return result
-
-    def make_autoeditor(
-        self, 
-        allow_item_edit=True,
-        breadcrumb=None,
-        target=None,
-        ):
-        r'''Makes autoeditor with optional `target`.
-
-        Returns autoeditor or list autoeditor.
-        '''
-        from scoremanager import iotools
-        prototype = (
-            list,
-            datastructuretools.TypedList,
-            )
-        if isinstance(target, prototype):
-            class_ = iotools.ListAutoeditor
-            return class_(
-                allow_item_edit=allow_item_edit,
-                breadcrumb=breadcrumb,
-                session=self._session,
-                target=target,
-                )
-        else:
-            class_ = iotools.Autoeditor
-            return class_(
-                breadcrumb=breadcrumb,
-                session=self._session,
-                target=target,
-                )
-
-    def make_getter(
-        self,
-        allow_none=False,
-        include_chevron=True,
-        include_newlines=False,
-        ):
-        r'''Makes getter.
-
-        Returns getter.
-        '''
-        from scoremanager import iotools
-        getter = iotools.UserInputGetter(
-            session=self._session,
-            allow_none=allow_none,
-            include_chevron=include_chevron,
-            include_newlines=include_newlines,
-            )
-        return getter
-
-    def make_interaction(self, display=True):
-        r'''Makes interaction context manager.
-
-        Returns interaction context manager.
-        '''
-        from scoremanager import iotools
-        context = iotools.Interaction(controller=self.client, display=display)
-        return context
-
-    def make_menu(
-        self,
-        breadcrumb_callback=None,
-        name=None,
-        ):
-        r'''Makes menu.
-
-        Returns menu.
-        '''
-        from scoremanager import iotools
-        menu = iotools.Menu(
-            breadcrumb_callback=breadcrumb_callback,
-            name=name,
-            session=self._session,
-            )
-        return menu
-
-    def make_package_manager(self, path):
-        r'''Makes package manager.
-
-        Returns package manager.
-        '''
-        from scoremanager import managers
-        return managers.PackageManager(
-            path=path,
-            session=self._session,
-            )
-
-    def make_selector(
-        self,
-        breadcrumb=None,
-        is_ranged=False,
-        items=None,
-        ):
-        r'''Makes selector.
-
-        Returns selector.
-        '''
-        from scoremanager import iotools
-        return iotools.Selector(
-            breadcrumb=breadcrumb,
-            is_ranged=is_ranged,
-            items=items,
-            session=self._session,
-            )
 
     def open_file(self, path):
         r'''Opens file `path`.
@@ -501,15 +482,6 @@ class IOManager(IOManager):
             return
         self.spawn_subprocess(command)
 
-    def print_not_yet_implemented(self):
-        r'''Prints not-yet-implemented message.
-
-        Returns none.
-        '''
-        with self.make_interaction():
-            message = 'not yet implemented.'
-            self.display(message)
-
     def run_command(self, command, capitalize=True):
         r'''Makes subprocess with `command` and then runs and displays
         output of subprocess.
@@ -520,7 +492,7 @@ class IOManager(IOManager):
         lines = [line.strip() for line in process.stdout.readlines()]
         if not lines:
             return
-        self.display(
+        self._display(
             lines,
             capitalize=capitalize,
             )
@@ -530,7 +502,7 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        with self.make_interaction():
+        with self._make_interaction():
             if self.find_executable('lily'):
                 executable = 'lily'
             elif self.find_executable('lilypond'):

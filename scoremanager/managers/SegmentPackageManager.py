@@ -188,7 +188,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             self._io_manager.edit(self._definition_py_path)
 
     def interpret_output_ly(self, confirm=True, display=True):
@@ -196,7 +196,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if display:
                 messages = []
                 messages.append('will interpret ...')
@@ -204,9 +204,9 @@ class SegmentPackageManager(PackageManager):
                 messages.append(message)
                 message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
                 messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -223,10 +223,10 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if not os.path.isfile(self._make_py_path):
                 message = 'no __make__.py found.'
-                self._io_manager.display(message)
+                self._io_manager._display(message)
                 return
             if display:
                 messages = []
@@ -237,14 +237,14 @@ class SegmentPackageManager(PackageManager):
                 messages.append(message)
                 message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
                 messages.append(message)
-                self._io_manager.display(messages)
+                self._io_manager._display(messages)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
                     return
-            self._io_manager.interpret(
+            self._io_manager.interpret_file(
                 self._make_py_path, 
                 confirm=False, 
                 display=False,
@@ -313,15 +313,15 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if display:
                 messages = []
                 message = 'will write stub to {}.'
                 message = message.format(self._definition_py_path)
                 messages.append(message)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -341,13 +341,13 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction(display=display):
+        with self._io_manager._make_interaction(display=display):
             if display:
                 messages = []
                 message = 'will write stub to {}.'.format(self._make_py_path)
-                self._io_manager.display(message)
+                self._io_manager._display(message)
             if confirm:
-                result = self._io_manager.confirm()
+                result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:

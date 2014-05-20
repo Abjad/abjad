@@ -180,13 +180,13 @@ class SegmentPackageWrangler(Wrangler):
                 messages.append('  INPUT: {}'.format(input_path))
                 messages.append(' OUTPUT: {}'.format(output_path))
                 messages.append('')
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
                 return
-            self._io_manager.display('')
+            self._io_manager._display('')
         for manager in self._list_visible_asset_managers():
             self._session._hide_next_redraw = False
             manager.interpret_output_ly(confirm=False, display=True)
@@ -199,7 +199,7 @@ class SegmentPackageWrangler(Wrangler):
 
         Returns none.
         '''
-        with self._io_manager.make_interaction():
+        with self._io_manager._make_interaction():
             managers = self._list_visible_asset_managers()
             make_py_paths = []
             output_ly_paths = []
@@ -219,8 +219,8 @@ class SegmentPackageWrangler(Wrangler):
                 messages.append('  INPUT: {}'.format(make_py_path))
                 messages.append(' OUTPUT: {}'.format(output_ly_path))
                 messages.append(' OUTPUT: {}'.format(output_pdf_path))
-            self._io_manager.display(messages)
-            result = self._io_manager.confirm()
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
@@ -228,7 +228,7 @@ class SegmentPackageWrangler(Wrangler):
             for manager in managers:
                 manager.interpret_make_py(confirm=False, display=False)
             if not managers:
-                self._io_manager.display('')
+                self._io_manager._display('')
 
     def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every score.

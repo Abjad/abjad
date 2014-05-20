@@ -201,7 +201,7 @@ class Autoeditor(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager.make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name)
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(

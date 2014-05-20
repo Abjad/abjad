@@ -214,7 +214,7 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager.display(message)
+            self._io_manager._display(message)
 
     def _trim_lilypond_file(self, file_path):
         lines = []
@@ -245,7 +245,7 @@ class BuildFileWrangler(Wrangler):
         if not file_path:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
             return
         input_directory = os.path.dirname(file_path)
@@ -266,7 +266,7 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
+        self._io_manager._display('')
         self._session._hide_next_redraw = True
 
     ### PUBLIC METHODS ###
@@ -324,8 +324,8 @@ class BuildFileWrangler(Wrangler):
                 message = '   TO: {}'.format(target_file_path)
                 messages.append(message)
                 messages.append('')
-            self._io_manager.display(messages)
-            if not self._io_manager.confirm():
+            self._io_manager._display(messages)
+            if not self._io_manager._confirm():
                 return
             if self._session.is_backtracking:
                 return
@@ -335,7 +335,7 @@ class BuildFileWrangler(Wrangler):
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
-        self._io_manager.display('')
+        self._io_manager._display('')
         self._session._hide_next_redraw = True
 
     # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
@@ -388,8 +388,8 @@ class BuildFileWrangler(Wrangler):
                 message = '   TO: {}'.format(target_file_path)
                 messages.append(message)
                 messages.append('')
-            self._io_manager.display(messages)
-            if not self._io_manager.confirm():
+            self._io_manager._display(messages)
+            if not self._io_manager._confirm():
                 return
             if self._session.is_backtracking:
                 return
@@ -476,7 +476,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -493,7 +493,7 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     # TODO: factor our code shared with self.generate_music_source()
@@ -518,7 +518,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -557,13 +557,13 @@ class BuildFileWrangler(Wrangler):
             message += ' will generate source without segments.'
             messages.append(message)
         messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager.display('')
+        self._io_manager._display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
             'boilerplate',
@@ -591,7 +591,7 @@ class BuildFileWrangler(Wrangler):
             self._remove_file_line(destination_path, line_to_remove)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     # TODO: factor out shared code with self.generate_back_cover_source()
@@ -614,7 +614,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -631,7 +631,7 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
         
     # TODO: factor our code shared with self.generate_draft_source()
@@ -656,7 +656,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -695,13 +695,13 @@ class BuildFileWrangler(Wrangler):
             message += ' will generate source without segments.'
             messages.append(message)
         messages.append('')
-        self._io_manager.display(messages)
-        result = self._io_manager.confirm()
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager.display('')
+        self._io_manager._display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory_path,
             'boilerplate',
@@ -754,7 +754,7 @@ class BuildFileWrangler(Wrangler):
             self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     def generate_preface_source(self):
@@ -776,7 +776,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -793,7 +793,7 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     # TODO: factor out code in common with other generate methods
@@ -818,7 +818,7 @@ class BuildFileWrangler(Wrangler):
             messages = []
             message = 'overwrite {}?'
             message = message.format(destination_path)
-            result = self._io_manager.confirm(message)
+            result = self._io_manager._confirm(message)
             if self._session.is_backtracking:
                 return
             if not result:
@@ -838,7 +838,7 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager.display([message, ''])
+            self._io_manager._display([message, ''])
             self._session._hide_next_redraw = True
 
     def interpret_back_cover(self):
