@@ -100,17 +100,6 @@ class IOManager(IOManager):
                 print(line)
 
     @staticmethod
-    def _get_one_line_menu_summary(expr):
-        if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
-            return expr.__name__
-        elif getattr(expr, '_one_line_menu_summary', None):
-            return expr._one_line_menu_summary
-        elif isinstance(expr, str):
-            return expr
-        else:
-            return repr(expr)
-
-    @staticmethod
     def _get_greatest_version_number(version_directory):
         if not os.path.isdir(version_directory):
             return 0
@@ -125,6 +114,17 @@ class IOManager(IOManager):
             if greatest_number < number:
                 greatest_number = number
         return greatest_number
+
+    @staticmethod
+    def _get_one_line_menu_summary(expr):
+        if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
+            return expr.__name__
+        elif getattr(expr, '_one_line_menu_summary', None):
+            return expr._one_line_menu_summary
+        elif isinstance(expr, str):
+            return expr
+        else:
+            return repr(expr)
 
     def _handle_input(
         self,
@@ -401,6 +401,31 @@ class IOManager(IOManager):
         result = tuple(result)
         return result
 
+    def interpret_file(self, path, confirm=True, display=True):
+        r'''Invokes Python or LilyPond on `path`.
+
+        Returns integer success code.
+        '''
+        with self._make_interaction():
+            _, extension = os.path.splitext(path)
+            if extension == '.py':
+                command = 'python {}'.format(path)
+            elif extension == '.ly':
+                command = 'lilypond {}'.format(path)
+            else:
+                message = 'can not interpret {}.'.format(path)
+                raise Exception(message)
+            directory = os.path.dirname(path)
+            context = systemtools.TemporaryDirectoryChange(directory)
+            with context:
+                result = self.spawn_subprocess(command)
+            if result != 0:
+                self._display('')
+            elif display:
+                message = 'interpreted {}.'.format(path)
+                self._display(message)
+            return result
+
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.
 
@@ -429,31 +454,6 @@ class IOManager(IOManager):
             lines = lines or []
             lines = [_.strip() for _ in lines]
             self._display(lines, capitalize=False)
-
-    def interpret_file(self, path, confirm=True, display=True):
-        r'''Invokes Python or LilyPond on `path`.
-
-        Returns integer success code.
-        '''
-        with self._make_interaction():
-            _, extension = os.path.splitext(path)
-            if extension == '.py':
-                command = 'python {}'.format(path)
-            elif extension == '.ly':
-                command = 'lilypond {}'.format(path)
-            else:
-                message = 'can not interpret {}.'.format(path)
-                raise Exception(message)
-            directory = os.path.dirname(path)
-            context = systemtools.TemporaryDirectoryChange(directory)
-            with context:
-                result = self.spawn_subprocess(command)
-            if result != 0:
-                self._display('')
-            elif display:
-                message = 'interpreted {}.'.format(path)
-                self._display(message)
-            return result
 
     def open_file(self, path):
         r'''Opens file `path`.

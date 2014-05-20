@@ -259,6 +259,13 @@ class MaterialPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
+    def open_every_metadata_py(self):
+        r'''Opens ``__metadata__.py`` in each material.
+
+        Returns none.
+        '''
+        self._open_in_each_package('__metadata__.py')
+
     def open_illustration_pdfs(self):
         r'''Opens the illustration.pdf file in each material package.
 
@@ -273,13 +280,6 @@ class MaterialPackageWrangler(Wrangler):
         Returns none.
         '''
         self._open_in_each_package('__init__.py')
-
-    def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in each material.
-
-        Returns none.
-        '''
-        self._open_in_each_package('__metadata__.py')
 
     def remove_packages(self):
         r'''Removes material package.

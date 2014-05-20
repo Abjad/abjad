@@ -69,16 +69,6 @@ class AssetController(Controller):
     def _handle_numeric_user_input(self, result):
         pass
 
-    def _make_init_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__init__.py - open', 'no'))
-        commands.append(('__init__.py - write stub', 'ns'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=True,
-            name='__init__.py',
-            )
-
     def _make_go_edits_menu_section(self, menu):
         commands = []
         commands.append(('edit - score stylesheet', 'ess'))
@@ -123,6 +113,16 @@ class AssetController(Controller):
             is_hidden=True,
             commands=commands,
             name='go - wranglers',
+            )
+
+    def _make_init_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__init__.py - open', 'no'))
+        commands.append(('__init__.py - write stub', 'ns'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='__init__.py',
             )
 
     def _make_main_menu(self):

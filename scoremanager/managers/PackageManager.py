@@ -199,6 +199,16 @@ class PackageManager(AssetController):
     def _get_current_directory(self):
         return self._path
 
+    def _get_existing_version_numbers(self, file_name_prototype):
+        root, extension = os.path.splitext(file_name_prototype)
+        file_names = []
+        version_numbers = []
+        for entry in os.listdir(self._versions_directory):
+            if entry.startswith(root) and entry.endswith(extension):
+                version_number = self._file_name_to_version_number(entry)
+                version_numbers.append(version_number)
+        return version_numbers
+
     def _get_last_version_number(self):
         versions_directory = self._versions_directory
         if not os.path.exists(versions_directory):
@@ -551,16 +561,6 @@ class PackageManager(AssetController):
                 commands=commands,
                 name='package',
                 )
-
-    def _get_existing_version_numbers(self, file_name_prototype):
-        root, extension = os.path.splitext(file_name_prototype)
-        file_names = []
-        version_numbers = []
-        for entry in os.listdir(self._versions_directory):
-            if entry.startswith(root) and entry.endswith(extension):
-                version_number = self._file_name_to_version_number(entry)
-                version_numbers.append(version_number)
-        return version_numbers
 
     def _open_versioned_file(self, file_name_prototype):
         with self._io_manager._make_interaction():
@@ -1037,6 +1037,21 @@ class PackageManager(AssetController):
                 capitalize=False,
                 )
 
+    def revert_to_repository(self, confirm=True, display=True):
+        r'''Reverts files to repository.
+
+        Returns none.
+        '''
+        with self._io_manager._make_interaction(display=display):
+            self._session._attempted_to_revert_to_repository = True
+            if self._session.is_repository_test:
+                return
+            if display:
+                message = 'reverting {} ...'
+                message = message.format(self._path)
+                self._io_manager._display(message)
+            self._revert_from_repository()
+
     def rewrite_metadata_py(
         self, 
         confirm=True, 
@@ -1061,21 +1076,6 @@ class PackageManager(AssetController):
             if metadata is None:
                 metadata = self._get_metadata()
             self._write_metadata_py(metadata)
-
-    def revert_to_repository(self, confirm=True, display=True):
-        r'''Reverts files to repository.
-
-        Returns none.
-        '''
-        with self._io_manager._make_interaction(display=display):
-            self._session._attempted_to_revert_to_repository = True
-            if self._session.is_repository_test:
-                return
-            if display:
-                message = 'reverting {} ...'
-                message = message.format(self._path)
-                self._io_manager._display(message)
-            self._revert_from_repository()
 
     def update_from_repository(self, confirm=True, display=True):
         r'''Updates files from repository.

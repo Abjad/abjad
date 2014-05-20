@@ -87,28 +87,6 @@ class SegmentPackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
-    def _make_output_ly_menu_section(self, menu):
-        if os.path.isfile(self._output_lilypond_file_path):
-            commands = []
-            commands.append(('output.ly - interpret', 'oli'))
-            commands.append(('output.ly - open', 'olo'))
-            menu.make_command_section(
-                is_hidden=True,
-                commands=commands,
-                name='output.ly',
-                )
-
-    def _make_output_pdf_menu_section(self, menu):
-        commands = []
-        if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('output.pdf - open', 'opo'))
-        if commands:
-            menu.make_command_section(
-                commands=commands,
-                is_hidden=True,
-                name='output.pdf',
-                )
-
     def _make_definition_py_menu_section(self, menu):
         if not os.path.isfile(self._definition_py_path):
             message = 'No definition.py found;'
@@ -151,6 +129,28 @@ class SegmentPackageManager(PackageManager):
             name='__make__.py',
             )
 
+    def _make_output_ly_menu_section(self, menu):
+        if os.path.isfile(self._output_lilypond_file_path):
+            commands = []
+            commands.append(('output.ly - interpret', 'oli'))
+            commands.append(('output.ly - open', 'olo'))
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='output.ly',
+                )
+
+    def _make_output_pdf_menu_section(self, menu):
+        commands = []
+        if os.path.isfile(self._output_pdf_file_path):
+            commands.append(('output.pdf - open', 'opo'))
+        if commands:
+            menu.make_command_section(
+                commands=commands,
+                is_hidden=True,
+                name='output.pdf',
+                )
+
     def _make_version_package_messages(self):
         last_version_number = self._get_last_version_number()
         next_version_number = last_version_number + 1
@@ -191,31 +191,6 @@ class SegmentPackageManager(PackageManager):
         with self._io_manager._make_interaction():
             self._io_manager.edit(self._definition_py_path)
 
-    def interpret_output_ly(self, confirm=True, display=True):
-        r'''Interprets ``output.ly``.
-
-        Returns none.
-        '''
-        with self._io_manager._make_interaction(display=display):
-            if display:
-                messages = []
-                messages.append('will interpret ...')
-                message = '  INPUT: {}'.format(self._output_lilypond_file_path)
-                messages.append(message)
-                message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-                messages.append(message)
-                self._io_manager._display(messages)
-            if confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
-            file_path = self._output_lilypond_file_path
-            if not os.path.isfile(file_path):
-                return
-            self._io_manager.run_lilypond(file_path)
-
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.
 
@@ -249,6 +224,31 @@ class SegmentPackageManager(PackageManager):
                 confirm=False, 
                 display=False,
                 )
+
+    def interpret_output_ly(self, confirm=True, display=True):
+        r'''Interprets ``output.ly``.
+
+        Returns none.
+        '''
+        with self._io_manager._make_interaction(display=display):
+            if display:
+                messages = []
+                messages.append('will interpret ...')
+                message = '  INPUT: {}'.format(self._output_lilypond_file_path)
+                messages.append(message)
+                message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+                messages.append(message)
+                self._io_manager._display(messages)
+            if confirm:
+                result = self._io_manager._confirm()
+                if self._session.is_backtracking:
+                    return
+                if not result:
+                    return
+            file_path = self._output_lilypond_file_path
+            if not os.path.isfile(file_path):
+                return
+            self._io_manager.run_lilypond(file_path)
 
     def list_versions_directory(self):
         r'''Lists ``versions/`` directory.

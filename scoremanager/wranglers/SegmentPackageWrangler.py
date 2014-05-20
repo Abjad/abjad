@@ -156,42 +156,6 @@ class SegmentPackageWrangler(Wrangler):
         self._open_in_each_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
 
-    def interpret_every_output_ly(
-        self,
-        confirm=True,
-        display=True,
-        open_every_output_pdf=True,
-        ):
-        r'''Reinterprets all current LilyPond files.
-
-        Returns none.
-        '''
-        segments_directory = self._get_current_directory()
-        entries = sorted(os.listdir(segments_directory))
-        if confirm:
-            messages = []
-            messages.append('')
-            messages.append('will interpret ...')
-            messages.append('')
-            segment_paths = self._list_visible_asset_paths()
-            for segment_path in segment_paths:
-                input_path = os.path.join(segment_path, 'output.ly')
-                output_path = os.path.join(segment_path, 'output.pdf')
-                messages.append('  INPUT: {}'.format(input_path))
-                messages.append(' OUTPUT: {}'.format(output_path))
-                messages.append('')
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
-            self._io_manager._display('')
-        for manager in self._list_visible_asset_managers():
-            self._session._hide_next_redraw = False
-            manager.interpret_output_ly(confirm=False, display=True)
-        self._session._hide_next_redraw = True
-
     def interpret_every_make_py(self):
         r'''Interprets ``__make.py__`` in every segment.
         
@@ -230,6 +194,42 @@ class SegmentPackageWrangler(Wrangler):
             if not managers:
                 self._io_manager._display('')
 
+    def interpret_every_output_ly(
+        self,
+        confirm=True,
+        display=True,
+        open_every_output_pdf=True,
+        ):
+        r'''Reinterprets all current LilyPond files.
+
+        Returns none.
+        '''
+        segments_directory = self._get_current_directory()
+        entries = sorted(os.listdir(segments_directory))
+        if confirm:
+            messages = []
+            messages.append('')
+            messages.append('will interpret ...')
+            messages.append('')
+            segment_paths = self._list_visible_asset_paths()
+            for segment_path in segment_paths:
+                input_path = os.path.join(segment_path, 'output.ly')
+                output_path = os.path.join(segment_path, 'output.pdf')
+                messages.append('  INPUT: {}'.format(input_path))
+                messages.append(' OUTPUT: {}'.format(output_path))
+                messages.append('')
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
+            self._io_manager._display('')
+        for manager in self._list_visible_asset_managers():
+            self._session._hide_next_redraw = False
+            manager.interpret_output_ly(confirm=False, display=True)
+        self._session._hide_next_redraw = True
+
     def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every score.
 
@@ -259,13 +259,6 @@ class SegmentPackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._run()
 
-    def open_init_py(self):
-        r'''Opens ``__init__.py``.
-
-        Returns none.
-        '''
-        self._current_package_manager.open_init_py()
-
     def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every segment.
 
@@ -280,6 +273,13 @@ class SegmentPackageWrangler(Wrangler):
         '''
         self._open_in_each_package('output.pdf')
         self._session._hide_next_redraw = True
+
+    def open_init_py(self):
+        r'''Opens ``__init__.py``.
+
+        Returns none.
+        '''
+        self._current_package_manager.open_init_py()
 
     def remove_packages(self):
         r'''Removes one or more segment packages.
