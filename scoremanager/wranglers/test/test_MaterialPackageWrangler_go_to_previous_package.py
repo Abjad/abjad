@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_go_to_previous_asset_01():
+def test_MaterialPackageWrangler_go_to_previous_package_01():
     r'''Previous material package.
     '''
 
@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler_go_to_previous_asset_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_MaterialPackageWrangler_go_to_previous_asset_02():
+def test_MaterialPackageWrangler_go_to_previous_package_02():
     r'''State is preserved cleanly navigating between different types of
     sibling asset.
     '''

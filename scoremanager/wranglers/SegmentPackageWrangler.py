@@ -303,7 +303,7 @@ class SegmentPackageWrangler(Wrangler):
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_package(self, confirm=True, display=True):
-        r'''Versions all segment packages.
+        r'''Versions every package.
 
         Returns none.
         '''

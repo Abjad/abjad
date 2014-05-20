@@ -4,15 +4,15 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageManager_go_to_next_asset_01():
+def test_SegmentPackageManager_go_to_next_package_01():
 
-    input_ = 'red~example~score m tempo~inventory > q'
+    input_ = 'red~example~score g A > q'
     score_manager._run(pending_input=input_)
     titles = [
         'Score manager - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory (AE)',
-        'Red Example Score (2013) - materials - time signatures',
+        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - segments - A',
+        'Red Example Score (2013) - segments - B',
         ]
     assert score_manager._transcript.titles == titles

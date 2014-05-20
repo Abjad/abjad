@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_go_to_next_asset_01():
+def test_MaterialPackageWrangler_go_to_next_package_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m > > > > > > q'
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_go_to_next_asset_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_MaterialPackageWrangler_go_to_next_asset_02():
+def test_MaterialPackageWrangler_go_to_next_package_02():
     r'''State is maintained cleanly moving between different types of sibling
     asset.
     '''

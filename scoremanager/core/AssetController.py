@@ -21,8 +21,8 @@ class AssetController(Controller):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<': self.go_to_previous_asset,
-            '>': self.go_to_next_asset,
+            '<': self.go_to_previous_package,
+            '>': self.go_to_next_package,
             '<<': self.go_to_previous_score,
             '>>': self.go_to_next_score,
             #
@@ -237,7 +237,7 @@ class AssetController(Controller):
         self._session._display_variables()
 
     def doctest(self):
-        r'''Runs doctest on Python files contained in assets.
+        r'''Doctests Python files.
         
         Returns none.
         '''
@@ -316,7 +316,7 @@ class AssetController(Controller):
         '''
         self._session._score_manager._material_package_wrangler._run()
 
-    def go_to_next_asset(self):
+    def go_to_next_package(self):
         r'''Goes to next asset.
 
         Returns none.
@@ -334,7 +334,7 @@ class AssetController(Controller):
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
 
-    def go_to_previous_asset(self):
+    def go_to_previous_package(self):
         r'''Goes to previous asset.
 
         Returns none.
@@ -413,7 +413,7 @@ class AssetController(Controller):
             systemtools.IOManager.open_last_log()
 
     def pytest(self):
-        r'''Runs py.test on Python files contained in visible assets.
+        r'''Pytests Python files.
 
         Returns none.
         '''

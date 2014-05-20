@@ -543,7 +543,7 @@ class MaterialPackageManager(PackageManager):
         self.interpret_illustrate_py()
 
     def edit_definition_py(self):
-        r'''Edits material definition py.
+        r'''Edits ``definition.py``.
 
         Returns none.
         '''
@@ -746,7 +746,9 @@ class MaterialPackageManager(PackageManager):
             self._session._hide_next_redraw = False
 
     def version_package(self, confirm=True, display=True):
-        r'''Copies any of ``definition.py``, ``output.py``, 
+        r'''Versions package.
+        
+        Copies any of ``definition.py``, ``output.py``, 
         ``illustration.ly`` and ``illustration.pdf`` to versions directory,
         if they exist.
 

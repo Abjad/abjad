@@ -1361,7 +1361,7 @@ class Wrangler(AssetController):
         self._write_view_inventory(view_inventory)
 
     def repository_status(self):
-        r'''Displays repository status of every asset.
+        r'''Displays repository status.
 
         Returns none.
         '''

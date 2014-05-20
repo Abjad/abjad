@@ -913,7 +913,7 @@ class PackageManager(AssetController):
                 self._add_metadatum(metadatum_name, metadatum_value)
 
     def add_to_repository(self, confirm=True, display=True):
-        r'''Adds unversioned assets to repository.
+        r'''Adds unversioned files to repository.
 
         Returns none.
         '''
@@ -934,7 +934,7 @@ class PackageManager(AssetController):
         confirm=True,
         display=True,
         ):
-        r'''Commits unversioned assets to repository.
+        r'''Commits unversioned files to repository.
 
         Returns none.
         '''
@@ -1008,14 +1008,14 @@ class PackageManager(AssetController):
                 self._remove_metadatum(metadatum_name)
             
     def repository_clean(self, confirm=True, display=True):
-        r'''Removes assets not yet added to repository.
+        r'''Removes files not yet added to repository.
 
         Returns none.
         '''
         self._repository_clean(confirm=confirm, display=display)
 
     def repository_status(self):
-        r'''Displays repository status of package.
+        r'''Displays repository status.
 
         Returns none.
         '''
@@ -1063,7 +1063,7 @@ class PackageManager(AssetController):
             self._write_metadata_py(metadata)
 
     def revert_to_repository(self, confirm=True, display=True):
-        r'''Reverts assets from repository.
+        r'''Reverts files from repository.
 
         Returns none.
         '''
@@ -1078,7 +1078,7 @@ class PackageManager(AssetController):
             self._revert_from_repository()
 
     def update_from_repository(self, confirm=True, display=True):
-        r'''Updates versioned assets.
+        r'''Updates versioned files.
 
         Returns none.
         '''
@@ -1094,7 +1094,7 @@ class PackageManager(AssetController):
             self._io_manager.run_command(command)
 
     def write_stub_init_py(self, confirm=True, display=True):
-        r'''Writes ``__init__.py`` stub.
+        r'''Writes stub ``__init__.py``.
 
         Returns none.
         '''

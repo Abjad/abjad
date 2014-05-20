@@ -184,7 +184,7 @@ class SegmentPackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_definition_py(self):
-        r'''Edits asset definition py.
+        r'''Edits ``definition.py``.
 
         Returns none.
         '''
@@ -192,7 +192,7 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.edit(self._definition_py_path)
 
     def interpret_output_ly(self, confirm=True, display=True):
-        r'''Reinterprets current LilyPond file.
+        r'''Interprets ``output.ly``.
 
         Returns none.
         '''
@@ -251,7 +251,7 @@ class SegmentPackageManager(PackageManager):
                 )
 
     def list_versions_directory(self):
-        r'''Lists versions directory.
+        r'''Lists ``versions/`` directory.
 
         Returns none.
         '''
@@ -300,7 +300,9 @@ class SegmentPackageManager(PackageManager):
         self._open_versioned_file('output.pdf')
 
     def version_package(self, confirm=True, display=True):
-        r'''Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
+        r'''Versions package.
+        
+        Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
         to versions directory, if they exist.
 
         Returns none.

@@ -303,7 +303,9 @@ class MaterialPackageWrangler(Wrangler):
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_package(self, confirm=True, display=True):
-        r'''Versions any of the ``output.py``, ``illustration.ly`` and 
+        r'''Versions every package.
+        
+        Copies any of the ``output.py``, ``illustration.ly`` and 
         ``illustration.pdf`` files that exist in each material package.
 
         Returns none.
