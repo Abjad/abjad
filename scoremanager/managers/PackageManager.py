@@ -383,7 +383,8 @@ class PackageManager(AssetController):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
-        process = self._io_manager.make_subprocess(command)
+        with systemtools.TemporaryDirectoryChange(directory=path):
+            process = self._io_manager.make_subprocess(command)
         first_line = process.stdout.readline()
         if first_line.startswith('fatal:'):
             return False
