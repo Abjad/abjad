@@ -291,6 +291,7 @@ class IOManager(object):
         if os.name == 'nt':
             os.startfile(file_path)
             return
+        viewer = None
         if sys.platform.lower().startswith('linux'):
             viewer = application or 'xdg-open'
         elif file_path.endswith('.pdf'):
