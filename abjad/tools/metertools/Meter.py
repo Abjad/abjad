@@ -924,4 +924,3 @@ class Meter(AbjadObject):
                 kernel[offset] = durationtools.Multiplier(response, total)
 
         return metertools.MetricAccentKernel(kernel)
-

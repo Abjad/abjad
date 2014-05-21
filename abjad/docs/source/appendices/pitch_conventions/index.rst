@@ -205,4 +205,3 @@ Or like this:
 ::
 
    >>> abjad_configuration['default_accidental_spelling'] = 'mixed'
-

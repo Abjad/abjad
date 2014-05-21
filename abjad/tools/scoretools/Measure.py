@@ -862,4 +862,3 @@ class Measure(FixedDurationContainer):
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):
                 self._scale_contents(remaining_multiplier)
-

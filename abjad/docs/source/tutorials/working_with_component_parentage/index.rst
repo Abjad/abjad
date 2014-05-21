@@ -69,4 +69,3 @@ Or the number of tuplets in which the component is nested:
 
    >>> parentage.tuplet_depth
    1
-

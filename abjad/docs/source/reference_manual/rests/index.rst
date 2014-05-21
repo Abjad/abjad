@@ -115,4 +115,3 @@ Set the written duration of rests like this:
    >>> show(rest)
 
 .. image:: images/index-7.png
-

@@ -722,4 +722,3 @@ class ContiguousSelection(Selection):
             in_seconds=in_seconds,
             overhang=overhang,
             )
-

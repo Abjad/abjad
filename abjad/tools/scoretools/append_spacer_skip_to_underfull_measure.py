@@ -55,4 +55,3 @@ def append_spacer_skip_to_underfull_measure(measure):
         measure.append(skip)
 
     return measure
-

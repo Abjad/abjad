@@ -301,4 +301,3 @@ Let's adjust the overall size of our output, and put everything together:
    >>> show(lilypond_file)
 
 .. image:: images/index-10.png
-

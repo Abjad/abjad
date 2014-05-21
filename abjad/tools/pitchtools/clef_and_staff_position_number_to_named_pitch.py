@@ -44,4 +44,3 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
     pitch = pitchtools.NamedPitch(pitch_name, octave)
 
     return pitch
-

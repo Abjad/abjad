@@ -133,4 +133,3 @@ class CyclicTuple(AbjadObject, tuple):
                 list(self),
                 ),
             )
-

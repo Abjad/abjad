@@ -329,4 +329,3 @@ You can make a staff treat its contents as simultaneous with
    >>> show(staff)
 
 .. image:: images/index-10.png
-

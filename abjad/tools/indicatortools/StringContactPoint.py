@@ -42,4 +42,3 @@ class StringContactPoint(AbjadObject):
 
         '''
         return self._contact_point
-

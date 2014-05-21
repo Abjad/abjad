@@ -95,4 +95,3 @@ Use the inspector to the get the value of an annotation in a single call:
 
    >>> inspect_(note).get_annotation('is phrase-initial')
    False
-

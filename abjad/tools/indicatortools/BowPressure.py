@@ -42,4 +42,3 @@ class BowPressure(AbjadObject):
 
         '''
         return self._pressure
-

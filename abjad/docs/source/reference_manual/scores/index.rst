@@ -279,4 +279,3 @@ Score names appear in LilyPond input but not in notational output:
    >>> show(score)
 
 .. image:: images/index-6.png
-

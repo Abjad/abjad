@@ -1416,4 +1416,3 @@ class IterationAgent(abctools.AbjadObject):
             else:
                 node, rank = _advance_node_depth_first(node, rank, direction)
         queue.clear()
-

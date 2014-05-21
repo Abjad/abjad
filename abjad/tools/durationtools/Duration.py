@@ -1219,4 +1219,3 @@ class Duration(AbjadObject, fractions.Fraction):
             if prolation.is_proper_tuplet_multiplier:
                 pair = (prolation, written_duration)
                 pairs.append(pair)
-

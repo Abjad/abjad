@@ -53,4 +53,3 @@ def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
                 attach(markup, note)
         except StopIteration:
             pass
-

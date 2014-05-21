@@ -737,4 +737,3 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator *= 2
             result = result.with_denominator(denominator)
         return result
-

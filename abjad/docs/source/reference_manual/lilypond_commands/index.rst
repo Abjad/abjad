@@ -151,4 +151,3 @@ command marks do not compare equal:
    False
    >>> command_3 == command_3
    True
-

@@ -359,4 +359,3 @@ class QGrid(AbjadObject):
                     q_event_proxies.append(next_leaf.q_event_proxies.pop(idx))
 
         return q_event_proxies
-
