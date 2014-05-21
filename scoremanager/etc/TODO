@@ -89,6 +89,8 @@
 
 13. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
+    Also make (rrv) work for Git-managed directories;
+    maybe 'git checkout ...' should be the underlying implementation.
 
 14. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
@@ -222,4 +224,5 @@
 
 43. Remove Transcript.signature.
 
-44. Remove *pycs in maker menus.
+44. Added 'with self._io_manager._make_interaction()' to essentially all
+    public methods.
