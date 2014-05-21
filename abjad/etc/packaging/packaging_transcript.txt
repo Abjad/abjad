@@ -5,36 +5,36 @@ Abjad 2.15
         ...?
 
     Packaging environment:
-        0. workstation description: 2.6 GHz i7 MacBook Pro / OSC 10.9.1
-        1. uname -v: Darwin Kernel Version 13.0.0
+        0. workstation description:
+        1. uname -v:
         2. git --version: git version 1.8.3.4 (Apple Git-47)
         3. python --version: Python 2.7.6
-        4. pip --version: pip 1.4.1
-        5. py.test --version: This is py.test version 2.5.1
-        6. sphinx-build --version: Sphinx (sphinx-build) 1.2
+        4. pip --version: pip 1.5.6
+        5. py.test --version: This is py.test version 2.5.2
+        6. sphinx-build --version: Sphinx (sphinx-build) 1.2.2
         7. lilypond --version: GNU LilyPond 2.19.6
         8. convert --version: ImageMagick 6.8.7-3 2013-11-16 Q16
         9. dot -V: graphviz version 2.38.0 (20140413.2041)
 
     Test results:
-        1. mainline py.test test results: 
-        2. mainline doctest test results: 
-        3. experimental py.test test results: 
-        4. experimental doctest test results: 
+        1. mainline py.test test results:
+        2. mainline doctest test results:
+        3. experimental py.test test results:
+        4. experimental doctest test results:
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
-        7. sanity check test results: 
-        8. experimental HTML build results: 
-        9. mainline HTML build results: 
-       10. LaTeX build results: 
-       11. Abjad.pdf build results: 
-       12. AbjadAPI.pdf build results: 
+        7. sanity check test results:
+        8. experimental HTML build results:
+        9. mainline HTML build results:
+       10. LaTeX build results:
+       11. Abjad.pdf build results:
+       12. AbjadAPI.pdf build results:
 
     Python 3.4 test results:
-        1. mainline py.test test results: 
-        2. mainline doctest test results: 
-        3. experimental py.test test results: 
-        4. experimental doctest test results: 
+        1. mainline py.test test results:
+        2. mainline doctest test results:
+        3. experimental py.test test results:
+        4. experimental doctest test results:
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
 
@@ -44,7 +44,7 @@ Abjad 2.14
     Build complete date: 2013-12-26
     MD5 hash of Abjad GitHub repository:
         c65cb1988b4be73080292b5f2121f1416456c2f5
-    
+
     Packaging environment:
         0. workstation description: 2.9 GHz i7 MacBook Pro / OSX 10.8.5
         1. uname -v: Darwin Kernel Version 12.5.0
@@ -80,12 +80,12 @@ Abjad 2.13
         2. svn --version: svn, version 1.6.18 (r1303927)
         3. python --version: Python 2.7.5
         4. pip --version: pip 1.4.1
-        5. py.test --version: This is py.test version 2.4.2 
+        5. py.test --version: This is py.test version 2.4.2
         6. sphinx-build --version: Sphinx v1.1.3
         7. lilypond --version: GNU LilyPond 2.17.28
         8. convert --version: ImageMagick 6.8.6-3 2013-06-25 Q16
-        9. dot -V: graphviz version 2.32.0 (20130801.1934)  
-       10. mainline py.test test results: 4357 passed, 5 skipped 
+        9. dot -V: graphviz version 2.32.0 (20130801.1934)
+       10. mainline py.test test results: 4357 passed, 5 skipped
        11. mainline doctest test results: Total modules: 986
        12. experimental py.test test results: 733 passed, 18 skipped
        13. experimental doctest test results: Total modules: 357
@@ -196,7 +196,7 @@ Abjad 2.10
             4695 passed in 184.99 seconds (laptop)
         9. doctest test results:
             0 errors over 1541 total modules
-       10. sanity check test results: 
+       10. sanity check test results:
             Abjad starts and f(), show(), play(), iotools.log(), iotools.ly() all pass
        11. HTML build results:
             0 errors and 0 warnings.
@@ -229,13 +229,13 @@ Abjad 2.9
             4717 passed in 189 seconds
         9. doctest test results:
             0 errors over 1635 total modules
-       10. sanity check test results: 
+       10. sanity check test results:
             Abjad starts and f(), show(), play(), iotools.log(), iotools.ly() all pass
        11. HTML build results:
             build succeeded, 1 warning
-            /abjad/docs/chapters/api/tools/documentationtools/Pipe/Pipe.rst:31: 
-            WARNING: autodoc can't import/find method 
-            'abjad.tools.documentationtools.Pipe.Pipe.Pipe.pipe_cloexec'. 
+            /abjad/docs/chapters/api/tools/documentationtools/Pipe/Pipe.rst:31:
+            WARNING: autodoc can't import/find method
+            'abjad.tools.documentationtools.Pipe.Pipe.Pipe.pipe_cloexec'.
        12. LaTeX build results:
             build succeeded, 1 warning (ibid.)
        13. PDF build results:
@@ -261,7 +261,7 @@ Abjad 2.9
             (But Ubuntu MoviePlayer hangs)
         9. doctest test results:
             0 errors over 1635 total modules
-       10. sanity check test results: 
+       10. sanity check test results:
             Abjad starts and f(), show(), iotools.log(), iotools.ly() all pass
             play() fails because MIDI playback not set up correctly on test environment
             (This does not halt packaging.)
