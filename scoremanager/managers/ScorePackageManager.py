@@ -331,7 +331,7 @@ class ScorePackageManager(PackageManager):
                     self._io_manager._display('')
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
-                with file(gitignore_path, 'w') as file_pointer:
+                with open(gitignore_path, 'w') as file_pointer:
                     file_pointer.write('')
         if not os.path.exists(self._init_py_file_path):
             package_needed_to_be_fixed = True

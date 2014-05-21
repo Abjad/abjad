@@ -355,7 +355,7 @@ class SegmentPackageManager(PackageManager):
             lines.append('')
             lines.append('')
             contents = '\n'.join(lines)
-            with file(self._definition_py_path, 'w') as file_pointer:
+            with open(self._definition_py_path, 'w') as file_pointer:
                 file_pointer.write(contents)
 
     # TODO: reimplement as boilerplate
@@ -391,5 +391,5 @@ class SegmentPackageManager(PackageManager):
             lines.append(line)
             lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
             contents = '\n'.join(lines)
-            with file(self._make_py_path, 'w') as file_pointer:
+            with open(self._make_py_path, 'w') as file_pointer:
                 file_pointer.write(contents)

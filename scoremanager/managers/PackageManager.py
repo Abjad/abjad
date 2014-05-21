@@ -798,9 +798,9 @@ class PackageManager(AssetController):
         path_1 = os.path.join(self._path, 'tmp_1.py')
         path_2 = os.path.join(self._path, 'tmp_2.py')
         with systemtools.FilesystemState(remove=[path_1, path_2]):
-            with file(path_1, 'w') as file_pointer:
+            with open(path_1, 'w') as file_pointer:
                 file_pointer.write('')
-            with file(path_2, 'w') as file_pointer:
+            with open(path_2, 'w') as file_pointer:
                 file_pointer.write('')
             assert os.path.exists(path_1)
             assert os.path.exists(path_2)
@@ -821,9 +821,9 @@ class PackageManager(AssetController):
         path_3 = os.path.join(self._path, 'tmp_3.py')
         path_4 = os.path.join(self._path, 'tmp_4.py')
         with systemtools.FilesystemState(remove=[path_3, path_4]):
-            with file(path_3, 'w') as file_pointer:
+            with open(path_3, 'w') as file_pointer:
                 file_pointer.write('')
-            with file(path_4, 'w') as file_pointer:
+            with open(path_4, 'w') as file_pointer:
                 file_pointer.write('')
             assert os.path.exists(path_3)
             assert os.path.exists(path_4)
@@ -841,7 +841,7 @@ class PackageManager(AssetController):
             return
         file_path = os.path.join(self._path, file_name)
         with systemtools.FilesystemState(keep=[file_path]):
-            with file(file_path, 'a') as file_pointer:
+            with open(file_path, 'a') as file_pointer:
                 string = '# extra text appended during testing'
                 file_pointer.write(string)
             assert not self._is_up_to_date()
@@ -891,7 +891,7 @@ class PackageManager(AssetController):
         contents = '\n'.join(lines)
         metadata_lines = self._make_metadata_lines(metadata)
         contents = contents + '\n' + metadata_lines
-        with file(self._metadata_py_path, 'w') as file_pointer:
+        with open(self._metadata_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
 
     ### PUBLIC METHODS ###

@@ -864,7 +864,7 @@ class MaterialPackageManager(PackageManager):
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
         contents = '\n'.join(lines)
-        with file(self._definition_py_path, 'w') as file_pointer:
+        with open(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'.format(self._definition_py_path)
@@ -901,7 +901,7 @@ class MaterialPackageManager(PackageManager):
         line += 'make_basic_lilypond_file(score)'
         lines.append(line)
         contents = '\n'.join(lines)
-        with file(self._illustrate_py_path, 'w') as file_pointer:
+        with open(self._illustrate_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'
