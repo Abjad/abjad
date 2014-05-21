@@ -451,7 +451,7 @@ class IOManager(IOManager):
                 stderr=subprocess.STDOUT,
                 )
             try:
-                lines = process.stdout.readlines()
+                lines = [str(x) for x in process.stdout.readlines()]
             except:
                 lines.append('expression not executable.')
             lines = lines or []
@@ -492,7 +492,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         process = self.make_subprocess(command)
-        lines = [line.strip() for line in process.stdout.readlines()]
+        lines = [str(line).strip() for line in process.stdout.readlines()]
         if not lines:
             return
         self._display(

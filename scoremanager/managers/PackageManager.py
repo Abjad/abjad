@@ -141,8 +141,8 @@ class PackageManager(AssetController):
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
         self.rewrite_metadata_py(
-            metadata=metadata, 
-            confirm=False, 
+            metadata=metadata,
+            confirm=False,
             display=False,
             )
 
@@ -170,12 +170,13 @@ class PackageManager(AssetController):
                     return directory_entry
 
     def _get_added_asset_paths(self):
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith('A'):
                     path = line.strip('A')
                     path = path.strip()
@@ -188,6 +189,7 @@ class PackageManager(AssetController):
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith('A'):
                     path = line.strip('A')
                     path = path.strip()
@@ -246,6 +248,7 @@ class PackageManager(AssetController):
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith(('M', ' M')):
                     path = line.strip('M ')
                     path = path.strip()
@@ -258,6 +261,7 @@ class PackageManager(AssetController):
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith('M'):
                     path = line.strip('M')
                     path = path.strip()
@@ -273,10 +277,10 @@ class PackageManager(AssetController):
         return next_version_string
 
     def _get_repository_root_directory(self):
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             command = 'git rev-parse --show-toplevel'
             process = self._io_manager.make_subprocess(command)
-            line = process.stdout.readline()
+            line = str(process.stdout.readline())
             line = line.strip()
             return line
         elif self._is_svn_versioned():
@@ -294,12 +298,13 @@ class PackageManager(AssetController):
         return line
 
     def _get_unadded_asset_paths(self):
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith('?'):
                     path = line.strip('?')
                     path = path.strip()
@@ -312,6 +317,7 @@ class PackageManager(AssetController):
             process = self._io_manager.make_subprocess(command)
             paths = []
             for line in process.stdout.readlines():
+                line = str(line)
                 if line.startswith('?'):
                     path = line.strip('?')
                     path = path.strip()
@@ -339,7 +345,7 @@ class PackageManager(AssetController):
         command = 'git status --porcelain {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         first_line = first_line.strip()
         if first_line.startswith('A'):
             return True
@@ -354,27 +360,25 @@ class PackageManager(AssetController):
         command = 'git status --porcelain {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         first_line = first_line.strip()
         if first_line.startswith('??'):
             return True
         return False
 
     def _is_git_versioned(self, path=None):
+        path = path or self._path
         if not self._is_in_git_repository(path=path):
             return False
         command = 'git status --porcelain {}'
         command = command.format(path)
         with systemtools.TemporaryDirectoryChange(directory=self._path):
             process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         first_line = first_line.strip()
-        if first_line == '':
-            return True
-        elif first_line.startswith('M'):
-            return True
-        else:
+        if first_line.startswith('?'):
             return False
+        return True
 
     def _is_in_git_repository(self, path=None):
         path = path or self._path
@@ -386,7 +390,7 @@ class PackageManager(AssetController):
         command = command.format(path)
         with systemtools.TemporaryDirectoryChange(directory=path):
             process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         if first_line.startswith('fatal:'):
             return False
         else:
@@ -419,14 +423,14 @@ class PackageManager(AssetController):
         command = 'svn st {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         if first_line.startswith('svn: warning:'):
             return False
         else:
             return True
 
     def _is_up_to_date(self):
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             command = 'git status --porcelain {}'
         elif self._is_svn_versioned():
             command = 'svn st {}'
@@ -435,7 +439,7 @@ class PackageManager(AssetController):
         command = command.format(self._path)
         with systemtools.TemporaryDirectoryChange(directory=self._path):
             process = self._io_manager.make_subprocess(command)
-        first_line = process.stdout.readline()
+        first_line = str(process.stdout.readline())
         return first_line == ''
 
     def _list(self, public_entries_only=False, smart_sort=False):
@@ -490,7 +494,7 @@ class PackageManager(AssetController):
                 root, extension = os.path.splitext(file_name)
                 return root[-4:]
             for x in itertools.groupby(
-                file_names, 
+                file_names,
                 key=lambda _: self._file_name_to_version_number(_),
                 ):
                 key, file_names = x
@@ -570,7 +574,7 @@ class PackageManager(AssetController):
             getter = self._io_manager._make_getter()
             version_numbers = self._get_existing_version_numbers(
                 file_name_prototype)
-            if not version_numbers: 
+            if not version_numbers:
                 message = 'no {} files in versions directory.'
                 message = message.format(file_name_prototype)
                 self._io_manager._display([message, ''])
@@ -628,11 +632,11 @@ class PackageManager(AssetController):
         path = self._path
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        line = process.stdout.readline()
+        line = str(process.stdout.readline())
         if cleanup_command:
             cleanup_command = cleanup_command.format(path)
             process = self._io_manager.make_subprocess(cleanup_command)
-            line = process.stdout.readline()
+            line = str(process.stdout.readline())
         return True
 
     def _remove_metadatum(self, metadatum_name):
@@ -645,8 +649,8 @@ class PackageManager(AssetController):
             pass
         if was_removed:
             self.rewrite_metadata_py(
-                metadata=metadata, 
-                confirm=False, 
+                metadata=metadata,
+                confirm=False,
                 display=False,
                 )
 
@@ -872,8 +876,8 @@ class PackageManager(AssetController):
                 file_name = os.path.basename(source_path)
                 root, extension = os.path.splitext(file_name)
                 target_file_name = '{}_{}{}'.format(
-                    root, 
-                    next_version_string, 
+                    root,
+                    next_version_string,
                     extension,
                     )
                 target_path = os.path.join(
@@ -881,7 +885,7 @@ class PackageManager(AssetController):
                     target_file_name,
                     )
                 shutil.copyfile(source_path, target_path)
-            
+
     def _write_metadata_py(self, metadata):
         lines = []
         lines.append(self._configuration.unicode_directive)
@@ -904,7 +908,7 @@ class PackageManager(AssetController):
         with self._io_manager._make_interaction():
             getter = self._io_manager._make_getter()
             getter.append_snake_case_string(
-                'metadatum name', 
+                'metadatum name',
                 allow_empty=False,
                 )
             getter.append_expr('metadatum value')
@@ -934,8 +938,8 @@ class PackageManager(AssetController):
             self._io_manager.run_command(command)
 
     def commit_to_repository(
-        self, 
-        commit_message=None, 
+        self,
+        commit_message=None,
         confirm=True,
         display=True,
         ):
@@ -1013,7 +1017,7 @@ class PackageManager(AssetController):
             if result:
                 metadatum_name = result
                 self._remove_metadatum(metadatum_name)
-            
+
     def repository_clean(self, confirm=True, display=True):
         r'''Removes files not yet added to repository.
 
@@ -1043,6 +1047,7 @@ class PackageManager(AssetController):
             path = path + os.path.sep
             clean_lines = []
             for line in process.stdout.readlines():
+                line = str(line)
                 clean_line = line.strip()
                 clean_line = clean_line.replace(path, '')
                 clean_lines.append(clean_line)
@@ -1069,9 +1074,9 @@ class PackageManager(AssetController):
             self._revert_from_repository()
 
     def rewrite_metadata_py(
-        self, 
-        confirm=True, 
-        metadata=None, 
+        self,
+        confirm=True,
+        metadata=None,
         display=True,
         ):
         r'''Rewrites ``__metadata.py__``.

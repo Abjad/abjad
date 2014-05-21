@@ -651,7 +651,7 @@ class Wrangler(AssetController):
         if (apply_current_directory or apply_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = [self._path_to_asset_menu_display_string(_) for _ in paths]
-        pairs = zip(strings, paths)
+        pairs = list(zip(strings, paths))
         if not self._session.is_in_score and self._sort_by_annotation:
             def sort_function(pair):
                 string = pair[0]
