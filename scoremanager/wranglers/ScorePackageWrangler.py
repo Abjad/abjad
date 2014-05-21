@@ -60,6 +60,10 @@ class ScorePackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        return
+
+    @property
     def _current_storehouse_path(self):
         if self._session.is_in_score:
             path = self._configuration.example_score_packages_directory

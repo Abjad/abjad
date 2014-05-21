@@ -36,13 +36,7 @@ class ScoreManager(Controller):
 
     @property
     def _breadcrumb(self):
-        if self._session.current_controller is self:
-            result = 'score manager - {} scores'
-            result = result.format(self._session.scores_to_display)
-            return result
-        elif self._session.is_in_score:
-            return
-        else:
+        if not self._session.is_in_score:
             return 'score manager'
 
     @property
@@ -108,23 +102,18 @@ class ScoreManager(Controller):
             state = systemtools.FilesystemState(keep=[path])
         interaction = self._io_manager._make_interaction()
         with context, directory_change, state, interaction:
-            wrangler = self._score_package_wrangler
-            io_manager = self._io_manager
             while True:
-                result = wrangler._get_sibling_score_path()
+                result = self._score_package_wrangler._get_sibling_score_path()
                 if not result:
                     result = self._session.wrangler_navigation_directive
                 if not result:
-                    menu = wrangler._make_main_menu()
-                    result = menu._run()
+                    self._score_package_wrangler._run()
+                else:
+                    self._score_package_wrangler._handle_main_menu_result(
+                        result)
                 self._update_session_variables()
                 if self._session.is_quitting:
                     return
-                if result:
-                    wrangler._handle_main_menu_result(result)
-                    self._update_session_variables()
-                    if self._session.is_quitting:
-                        return
     
     def _update_session_variables(self):
         self._session._is_backtracking_to_score = False

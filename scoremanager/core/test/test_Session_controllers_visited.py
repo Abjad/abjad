@@ -31,6 +31,7 @@ def test_Session_controllers_visited_01():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -47,6 +48,7 @@ def test_Session_controllers_visited_02():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
@@ -67,6 +69,7 @@ def test_Session_controllers_visited_03():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             session=session,
@@ -88,6 +91,7 @@ def test_Session_controllers_visited_04():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
@@ -109,6 +113,7 @@ def test_Session_controllers_visited_05():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
@@ -134,6 +139,7 @@ def test_Session_controllers_visited_06():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
@@ -155,6 +161,7 @@ def test_Session_controllers_visited_07():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
@@ -180,6 +187,7 @@ def test_Session_controllers_visited_08():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(
             path=score_package_path,
