@@ -16,27 +16,29 @@ Abjad 2.15
         8. convert --version: ImageMagick 6.8.7-3 2013-11-16 Q16
         9. dot -V: graphviz version 2.38.0 (20140413.2041)
 
-    Test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
+    Python 2.7 test results:
+        1. mainline py.test test results: 9114 passed, 7 skipped
+        2. mainline doctest test results: 6788 tests passed in 819 modules
+        3. experimental py.test test results: 440 passed, 7 skipped
+        4. experimental doctest test results: 845 tests passed in 172 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
         7. sanity check test results:
         8. experimental HTML build results:
         9. mainline HTML build results:
-       10. LaTeX build results:
-       11. Abjad.pdf build results:
-       12. AbjadAPI.pdf build results:
+       10. scoremanager HTML build results:
+       11. LaTeX build results:
+       12. Abjad.pdf build results:
+       13. AbjadAPI.pdf build results:
 
     Python 3.4 test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
+        1. mainline py.test test results: 9114 passed, 7 skipped
+        2. mainline doctest test results: 6788 tests passed in 819 modules
+        3. experimental py.test test results: 440 passed, 7 skipped
+        4. experimental doctest test results: 845 tests passed in 172 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
+        7. sanity check test results:
 
 
 Abjad 2.14
