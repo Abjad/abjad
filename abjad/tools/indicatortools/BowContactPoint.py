@@ -6,16 +6,16 @@ from abjad.tools.abctools import AbjadObject
 
 
 @functools.total_ordering
-class BowHairContactPoint(AbjadObject):
-    r'''Bow hair contact point indicator.
+class BowContactPoint(AbjadObject):
+    r'''Bow contact point indicator.
 
     Contact points are measured from frog to tip as a fraction between 0 and 1.
 
     ::
 
-        >>> indicator = indicatortools.BowHairContactPoint((1, 2))
+        >>> indicator = indicatortools.BowContactPoint((1, 2))
         >>> print(format(indicator))
-        indicatortools.BowHairContactPoint(
+        indicatortools.BowContactPoint(
             contact_point=durationtools.Multiplier(1, 2),
             )
 
@@ -40,8 +40,8 @@ class BowHairContactPoint(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true if `expr` is a bow-hair contact point with the same contact
-        point as this bow-hair contact point.
+        r'''Is true if `expr` is a bow contact point with the same contact
+        point as this bow contact point.
 
         Returns boolean.
         '''
@@ -50,14 +50,14 @@ class BowHairContactPoint(AbjadObject):
         raise TypeError('unorderable types')
 
     def __hash__(self):
-        r'''Hashes bow-hair contact point.
+        r'''Hashes bow contact point.
         '''
         from abjad.tools import systemtools
         return hash(systemtools.StorageFormatManager.get_hash_values(self))
 
     def __lt__(self, expr):
-        r'''Is true if `expr` is a bow-hair contact point and this bow-hair
-        contact point is less than `expr`.
+        r'''Is true if `expr` is a bow contact point and this bow contact point
+        is less than `expr`.
 
         Returns boolean.
         '''
@@ -73,7 +73,7 @@ class BowHairContactPoint(AbjadObject):
 
         ::
 
-            >>> indicator = indicatortools.BowHairContactPoint((1, 4))
+            >>> indicator = indicatortools.BowContactPoint((1, 4))
             >>> indicator.contact_point
             Multiplier(1, 4)
 
@@ -83,11 +83,11 @@ class BowHairContactPoint(AbjadObject):
 
     @property
     def markup(self):
-        r'''Gets bow hair contact point markup.
+        r'''Gets bow contact point markup.
 
         ::
 
-            >>> indicator = indicatortools.BowHairContactPoint((3, 4))
+            >>> indicator = indicatortools.BowContactPoint((3, 4))
             >>> print(format(indicator.markup, 'lilypond'))
             \markup {
                 \vcenter
