@@ -43,4 +43,4 @@ def test_SegmentPackageWrangler_list_every_metadata_py_02():
         ]
     for path in paths:
         assert path in contents
-    assert '16 __metadata__.py files found.' in contents
+    assert '3 __metadata__.py files found.' in contents
