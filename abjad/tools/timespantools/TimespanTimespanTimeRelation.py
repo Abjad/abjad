@@ -300,6 +300,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
                         return True
         return False
 
+    def __hash__(self):
+        r'''Hashes time relation.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(TimespanTimespanTimeRelation, self).__hash__()
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -364,15 +373,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns timespan.
         '''
         return self._timespan_2
-
-    def __hash__(self):
-        r'''Hashes time relation.
-
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(TimespanTimespanTimeRelation, self).__hash__()
 
     ### PUBLIC METHODS ###
 

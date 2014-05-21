@@ -228,16 +228,6 @@ class TypedCounter(TypedCollection):
         '''
         return iter(self._collection.keys())
 
-    def values(self):
-        r'''Iterates values in typed counter.
-        '''
-        return iter(self._collection.values())
-
-    def keys(self):
-        r'''Keys in typed counter.
-        '''
-        return list(self._collection.keys())
-
     def most_common(self, n=None):
         r'''Please document.
         '''
@@ -256,9 +246,9 @@ class TypedCounter(TypedCollection):
         self._collection.update(items, **itemdict)
 
     def values(self):
-        r'''Values of typed counter.
+        r'''Iterates values in typed counter.
         '''
-        return list(self._collection.values())
+        return iter(self._collection.values())
 
     def viewitems(self):
         r'''Please document.

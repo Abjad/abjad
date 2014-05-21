@@ -68,6 +68,20 @@ class BowHairContactPoint(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def contact_point(self):
+        r'''Gets contact point.
+
+        ::
+
+            >>> indicator = indicatortools.BowHairContactPoint((1, 4))
+            >>> indicator.contact_point
+            Multiplier(1, 4)
+
+        Returns multiplier.
+        '''
+        return self._contact_point
+
+    @property
     def markup(self):
         r'''Gets bow hair contact point markup.
 
@@ -89,17 +103,3 @@ class BowHairContactPoint(AbjadObject):
             )
         markup = markuptools.Markup(string)
         return markup
-
-    @property
-    def contact_point(self):
-        r'''Gets contact point.
-
-        ::
-
-            >>> indicator = indicatortools.BowHairContactPoint((1, 4))
-            >>> indicator.contact_point
-            Multiplier(1, 4)
-
-        Returns multiplier.
-        '''
-        return self._contact_point

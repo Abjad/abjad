@@ -210,28 +210,6 @@ class Tuning(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def pitches(self):
-        r'''Gets tuning pitches.
-
-        ::
-
-            >>> pitches = indicator.pitches
-            >>> print(format(pitches))
-            pitchtools.PitchSegment(
-                (
-                    pitchtools.NamedPitch('g'),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("a'"),
-                    pitchtools.NamedPitch("e''"),
-                    ),
-                item_class=pitchtools.NamedPitch,
-                )
-
-        Return pitch segment.
-        '''
-        return self._pitches
-
-    @property
     def pitch_ranges(self):
         r'''Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -266,3 +244,24 @@ class Tuning(AbjadObject):
         result = pitchtools.PitchRangeInventory(result)
         return result
 
+    @property
+    def pitches(self):
+        r'''Gets tuning pitches.
+
+        ::
+
+            >>> pitches = indicator.pitches
+            >>> print(format(pitches))
+            pitchtools.PitchSegment(
+                (
+                    pitchtools.NamedPitch('g'),
+                    pitchtools.NamedPitch("d'"),
+                    pitchtools.NamedPitch("a'"),
+                    pitchtools.NamedPitch("e''"),
+                    ),
+                item_class=pitchtools.NamedPitch,
+                )
+
+        Return pitch segment.
+        '''
+        return self._pitches

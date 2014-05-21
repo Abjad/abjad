@@ -188,20 +188,6 @@ class TypedOrderedDict(TypedCollection):
         '''
         return iter(self._collection.keys())
 
-    def values(self):
-        r'''Aliases OrderedDict.values().
-
-        Returns generator.
-        '''
-        return iter(self._collection.values())
-
-    def keys(self):
-        r'''Aliases OrderedDict.keys().
-
-        Returns list.
-        '''
-        return list(self._collection.keys())
-
     def pop(self, key, default=None):
         r'''Aliases OrderedDict.pop().
 
@@ -233,9 +219,9 @@ class TypedOrderedDict(TypedCollection):
     def values(self):
         r'''Aliases OrderedDict.values().
 
-        Returns list.
+        Returns generator.
         '''
-        return list(self._collection.values())
+        return iter(self._collection.values())
 
 
 collections.MutableMapping.register(TypedOrderedDict)

@@ -102,6 +102,25 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import iotools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='source_pitch_range',
+                menu_key='pr',
+                editor=iotools.getters.get_symbolic_pitch_range_string,
+                is_keyword=False,
+                ),
+            systemtools.AttributeDetail(
+                name='target_octave_start_pitch',
+                menu_key='sp',
+                editor=iotools.getters.get_integer,
+                is_keyword=False,
+                ),
+            )
+
+    @property
     def _input_argument_token(self):
         return '({!r}, {:d})'.format(
             self.source_pitch_range.one_line_named_pitch_repr,
@@ -146,25 +165,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             positional_argument_values=(
                 self.source_pitch_range,
                 self.target_octave_start_pitch,
-                ),
-            )
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from scoremanager import iotools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='source_pitch_range',
-                menu_key='pr',
-                editor=iotools.getters.get_symbolic_pitch_range_string,
-                is_keyword=False,
-                ),
-            systemtools.AttributeDetail(
-                name='target_octave_start_pitch',
-                menu_key='sp',
-                editor=iotools.getters.get_integer,
-                is_keyword=False,
                 ),
             )
 
