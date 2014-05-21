@@ -49,8 +49,12 @@ class Memoize(dict):
     Caches function return value.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, function=None):
         self.function = function
+
+    ### SPECIAL METHODS ###
 
     def __call__(self, *args):
         r'''Calls decorator on `args`.
