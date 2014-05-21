@@ -107,7 +107,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             if not os.path.exists(directory):
                 os.makedirs(directory)
                 file_path = os.path.join(directory, '__init__.py')
-                with file(file_path, 'w') as file_pointer:
+                with open(file_path, 'w') as file_pointer:
                     file_pointer.write('')
         directorys = (
             self.user_score_packages_directory,

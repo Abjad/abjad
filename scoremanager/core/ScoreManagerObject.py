@@ -44,6 +44,11 @@ class ScoreManagerObject(object):
         '''
         return type(self) is type(expr)
 
+    def __hash__(self):
+        r'''Hashes score manager object.
+        '''
+        return hash((type(self), self._session))
+
     def __ne__(self, expr):
         r'''Is true when types are not the same. Otherwise false.
 

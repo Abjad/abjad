@@ -132,12 +132,12 @@ class Controller(ScoreManagerObject):
 
     @staticmethod
     def _replace_in_file(file_path, old, new):
-        with file(file_path, 'r') as file_pointer:
+        with open(file_path, 'r') as file_pointer:
             new_file_lines = []
             for line in file_pointer.readlines():
                 line = line.replace(old, new)
                 new_file_lines.append(line)
-        with file(file_path, 'w') as file_pointer:
+        with open(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(new_file_lines))
 
     @staticmethod
