@@ -12,4 +12,4 @@ def test_ScorePackageWrangler_repository_status_01():
     score_manager._run(pending_input=input_)
     titles = score_manager._transcript.titles
 
-    assert titles[-1] == '# On branch master'
+    assert titles[-1] == 'On branch master'

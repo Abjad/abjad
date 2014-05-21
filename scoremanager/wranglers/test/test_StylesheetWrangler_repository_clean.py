@@ -17,7 +17,7 @@ def test_StylesheetWrangler_repository_clean_01():
     '''
 
     with systemtools.FilesystemState(remove=[foo_path]):
-        with file(foo_path, 'w') as file_pointer:
+        with open(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'red~example~score y rcn y q'
@@ -30,7 +30,7 @@ def test_StylesheetWrangler_repository_clean_02():
     '''
 
     with systemtools.FilesystemState(remove=[foo_path]):
-        with file(foo_path, 'w') as file_pointer:
+        with open(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'y rcn y q'

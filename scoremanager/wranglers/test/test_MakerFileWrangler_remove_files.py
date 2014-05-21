@@ -15,7 +15,7 @@ def test_MakerFileWrangler_remove_files_01():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        with file(path, 'w') as file_pointer:
+        with open(path, 'w') as file_pointer:
             file_pointer.write('This is a test file.')
         assert os.path.exists(path)
         input_ = 'red~example~score k rm Foo.py remove q'

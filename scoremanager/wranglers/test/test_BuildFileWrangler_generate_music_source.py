@@ -24,7 +24,7 @@ def test_BuildFileWrangler_generate_music_source_01():
         input_ = 'red~example~score u mg y y q'
         score_manager._run(pending_input=input_)
         assert os.path.isfile(path)
-        with file(path, 'r') as file_pointer:
+        with open(path, 'r') as file_pointer:
             file_lines = file_pointer.readlines()
             file_contents = ''.join(file_lines)
         assert 'Red Example Score (2013) for piano' in file_contents

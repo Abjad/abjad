@@ -104,7 +104,7 @@ def test_MaterialPackageWrangler_make_package_03():
         input_ = 'm new testnotes q'
         score_manager._run(pending_input=input_)
         assert os.path.exists(path)
-        with file(definition_py_path, 'r') as file_pointer:
+        with open(definition_py_path, 'r') as file_pointer:
             file_lines = file_pointer.readlines()
         file_contents = ''.join(file_lines)
         assert file_contents == contents

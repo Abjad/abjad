@@ -14,7 +14,7 @@ foo_path = os.path.join(
 def test_ScorePackageWrangler_repository_clean_01():
 
     with systemtools.FilesystemState(remove=[foo_path]):
-        with file(foo_path, 'w') as file_pointer:
+        with open(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'rcn y q'
