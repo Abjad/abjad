@@ -92,6 +92,7 @@ class SegmentPackageWrangler(Wrangler):
         commands.append(('segments - make.py - interpret', 'ki*'))
         commands.append(('segments - __metadata__.py - list', 'mdls*'))
         commands.append(('segments - __metadata__.py - open', 'mdo*'))
+        commands.append(('segments - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('segments - output.ly - interpret', 'oli*'))
         commands.append(('segments - output.pdf - open', 'opo*'))
         commands.append(('segments - version', 'vr*'))
