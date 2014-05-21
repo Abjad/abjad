@@ -74,7 +74,7 @@ class ListAutoeditor(Autoeditor):
             self._item_creator_class_kwargs = kwargs
         elif getattr(target, '_item_callable', None):
             assert self.target._item_callable
-            if not isinstance(self.target._item_callable, types.TypeType):
+            if not isinstance(self.target._item_callable, type):
                 return
             self._item_class = self.target._item_callable
             dummy_item = self.target._item_callable()

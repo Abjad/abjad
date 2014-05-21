@@ -124,7 +124,7 @@ class Autoeditor(Controller):
                 session=self._session,
                 target=target,
                 )
-        elif isinstance(attribute_detail.editor, types.TypeType):
+        elif isinstance(attribute_detail.editor, type):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
             autoeditor = type(self)(

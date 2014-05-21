@@ -117,7 +117,7 @@ class IOManager(IOManager):
 
     @staticmethod
     def _get_one_line_menu_summary(expr):
-        if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
+        if isinstance(expr, (type, abc.ABCMeta)):
             return expr.__name__
         elif getattr(expr, '_one_line_menu_summary', None):
             return expr._one_line_menu_summary

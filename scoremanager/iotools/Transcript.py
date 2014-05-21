@@ -49,7 +49,7 @@ class Transcript(AbjadObject):
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
         file_name = 'session-{}.txt'.format(start_time)
         file_path = os.path.join(transcripts_directory, file_name)
-        with file(file_path, 'w') as file_pointer:
+        with open(file_path, 'w') as file_pointer:
             for entry in self.entries:
                 line = entry._format()
                 file_pointer.write(line)
