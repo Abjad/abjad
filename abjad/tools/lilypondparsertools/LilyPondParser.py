@@ -865,7 +865,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_contexts():
             ...     print(x)
-            ... 
+            ...
             ChoirStaff
             ChordNames
             CueVoice
@@ -911,7 +911,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_dynamics():
             ...     print(x)
-            ... 
+            ...
             f
             ff
             fff
@@ -955,7 +955,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_grobs():
             ...     print(x)
-            ... 
+            ...
             Accidental
             AccidentalCautionary
             AccidentalPlacement
@@ -1109,7 +1109,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_languages():
             ...     print(x)
-            ... 
+            ...
             catalan
             deutsch
             english
@@ -1137,7 +1137,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_markup_functions():
             ...     print(x)
-            ... 
+            ...
             abs-fontsize
             arrow-head
             auto-footnote
@@ -1193,6 +1193,7 @@ class LilyPondParser(abctools.Parser):
             justified-lines
             justify
             justify-field
+            justify-line
             justify-string
             large
             larger
@@ -1303,7 +1304,7 @@ class LilyPondParser(abctools.Parser):
 
             >>> for x in lilypondparsertools.LilyPondParser.list_known_music_functions():
             ...     print(x)
-            ... 
+            ...
             acciaccatura
             appoggiatura
             bar
