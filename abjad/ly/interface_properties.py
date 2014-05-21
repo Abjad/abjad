@@ -1,4 +1,4 @@
-lilypond_version = "2.19.1"
+lilypond_version = "2.19.6"
 
 interface_properties = {
     "accidental-interface": [
@@ -676,6 +676,7 @@ interface_properties = {
     "tuplet-number-interface": [
         "avoid-slur",
         "direction",
+        "knee-to-beam",
     ],
     "unbreakable-spanner-interface": [
         "breakable",

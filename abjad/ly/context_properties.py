@@ -1,4 +1,4 @@
-lilypond_version = "2.19.1"
+lilypond_version = "2.19.6"
 
 context_properties = [
     "aDueText",

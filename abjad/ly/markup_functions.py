@@ -1,4 +1,4 @@
-lilypond_version = "2.19.1"
+lilypond_version = "2.19.6"
 
 markup_functions = {
     'abs-fontsize': ('number?', 'cheap-markup?',),
@@ -53,6 +53,7 @@ markup_functions = {
     'huge': ('cheap-markup?',),
     'italic': ('cheap-markup?',),
     'justify-field': ('symbol?',),
+    'justify-line': ('markup-list?',),
     'justify': ('markup-list?',),
     'justify-string': ('string?',),
     'large': ('cheap-markup?',),

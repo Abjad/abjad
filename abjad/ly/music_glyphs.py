@@ -1,4 +1,4 @@
-lilypond_version = "2.19.1"
+lilypond_version = "2.19.6"
 
 music_glyphs = set([
     "accidentals.doublesharp",
@@ -58,6 +58,8 @@ music_glyphs = set([
     "clefs.F",
     "clefs.F_change",
     "clefs.G",
+    "clefs.GG",
+    "clefs.GG_change",
     "clefs.G_change",
     "clefs.blackmensural.c",
     "clefs.blackmensural.c_change",
@@ -99,6 +101,12 @@ music_glyphs = set([
     "clefs.petrucci.g_change",
     "clefs.tab",
     "clefs.tab_change",
+    "clefs.tenorG",
+    "clefs.tenorG_change",
+    "clefs.varC",
+    "clefs.varC_change",
+    "clefs.varpercussion",
+    "clefs.varpercussion_change",
     "clefs.vaticana.do",
     "clefs.vaticana.do_change",
     "clefs.vaticana.fa",
