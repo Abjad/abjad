@@ -235,7 +235,9 @@ class ScorePackageWrangler(Wrangler):
             with open(path, 'r') as file_pointer:
                 cache_lines = file_pointer.read()
             try:
-                exec(cache_lines)
+                local_dict = {}
+                exec(cache_lines, globals(), local_dict)
+                start_menu_entries = local_dict.get('start_menu_entries', [])
             except SyntaxError:
                 pass
         return start_menu_entries

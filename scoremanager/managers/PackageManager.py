@@ -1,11 +1,8 @@
 # -*- encoding: utf-8 -*-
 import collections
-import copy
-import filecmp
 import itertools
 import os
 import shutil
-import subprocess
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.core.AssetController import AssetController
@@ -203,7 +200,6 @@ class PackageManager(AssetController):
 
     def _get_existing_version_numbers(self, file_name_prototype):
         root, extension = os.path.splitext(file_name_prototype)
-        file_names = []
         version_numbers = []
         for entry in os.listdir(self._versions_directory):
             if entry.startswith(root) and entry.endswith(extension):
@@ -223,16 +219,17 @@ class PackageManager(AssetController):
     def _get_metadata(self):
         metadata = None
         if os.path.isfile(self._metadata_py_path):
-            file_pointer = open(self._metadata_py_path, 'r')
-            file_contents_string = file_pointer.read()
-            file_pointer.close()
+            print(self._metadata_py_path)
+            with open(self._metadata_py_path, 'r') as file_pointer:
+                file_contents_string = file_pointer.read()
             try:
-                exec(file_contents_string)
+                local_dict = {}
+                exec(file_contents_string, globals(), local_dict)
+                metadata = local_dict.get('metadata')
             except:
                 message = 'can not interpret metadata py: {!r}.'
                 message = message.format(self)
                 print(message)
-            metadata = locals().get('metadata')
         metadata = metadata or collections.OrderedDict()
         return metadata
 
@@ -762,7 +759,6 @@ class PackageManager(AssetController):
             controller=self,
             )
         directory_change = systemtools.TemporaryDirectoryChange(self._path)
-        io_manager = self._io_manager
         with context, directory_change:
                 self._enter_run()
                 while True:
