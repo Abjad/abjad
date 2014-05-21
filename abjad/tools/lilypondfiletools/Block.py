@@ -79,6 +79,8 @@ class Block(AbjadObject):
             not getattr(self, 'contexts', None) and \
             not getattr(self, 'context_blocks', None) and \
             not len(self.items):
+            if self.name == 'score':
+                return ''
             string = '{} {{}}'.format(self._escaped_name)
             result.append(string)
             return result
