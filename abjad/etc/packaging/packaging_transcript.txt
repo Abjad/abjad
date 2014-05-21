@@ -21,8 +21,8 @@ Abjad 2.15
         2. mainline doctest test results: 6788 tests passed in 819 modules
         3. experimental py.test test results: 440 passed, 7 skipped
         4. experimental doctest test results: 845 tests passed in 172 modules
-        5. scoremanager py.test test results:
-        6. scoremanager doctest test results:
+        5. scoremanager py.test test results: 889 passed, 12 skipped
+        6. scoremanager doctest test results: 186 tests passed in 117 modules
         7. sanity check test results: OK
         8. experimental HTML build results: OK
         9. mainline HTML build results: OK
@@ -37,7 +37,7 @@ Abjad 2.15
         3. experimental py.test test results: 440 passed, 7 skipped
         4. experimental doctest test results: 845 tests passed in 172 modules
         5. scoremanager py.test test results:
-        6. scoremanager doctest test results:
+        6. scoremanager doctest test results: 186 tests passed in 117 modules
         7. sanity check test results: OK
 
 
