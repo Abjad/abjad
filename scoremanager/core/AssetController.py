@@ -31,7 +31,7 @@ class AssetController(Controller):
             'u': self.go_to_build_files,
             'y': self.go_to_stylesheets,
             #
-            'ess': self.edit_score_stylesheet,
+            'sse': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
             '?': self.display_available_commands,
@@ -79,11 +79,11 @@ class AssetController(Controller):
 
     def _make_go_edits_menu_section(self, menu):
         commands = []
-        commands.append(('edit - score stylesheet', 'ess'))
+        commands.append(('score stylesheet - edit', 'sse'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='edit - zzz',
+            name='score stylesheet',
             )
 
     def _make_go_menu_section(self, menu):
