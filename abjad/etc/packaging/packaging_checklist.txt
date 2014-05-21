@@ -66,6 +66,9 @@ Abjad packaging checklist:
     version of LilyPond in use in the packaging environment.
     If any part of the scrape fails to compile, fix, commit and repeat this
     step.
+    Note: updating the LilyPond scrape may need to be delayed until Abjad's
+    LilyPond parser can be brought in-line with many of LilyPond's internal
+    changes since 2.16.
 
  5. Change to the abjad mainline root directory.
     Run "ajv clean .".
