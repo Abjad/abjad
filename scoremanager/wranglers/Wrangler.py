@@ -1357,11 +1357,18 @@ class Wrangler(AssetController):
         self._write_view_inventory(view_inventory)
 
     def repository_clean(self, confirm=True, display=True):
-        r'''Removes assets not yet added to repository.
+        r'''Removes files not yet added to repository.
 
         Returns none.
         '''
-        self._repository_clean(confirm=confirm, display=display)
+        with self._io_manager._make_interaction(display=display):
+            paths = self._list_visible_asset_paths()
+            paths = self._extract_common_parent_directories(paths)
+            paths.sort()
+            for path in paths:
+                manager = self._io_manager._make_package_manager(path)
+                self._session._hide_next_redraw = False
+                manager.repository_clean(display=display)
 
     def repository_status(self):
         r'''Displays repository status.

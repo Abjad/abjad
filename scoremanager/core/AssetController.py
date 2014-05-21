@@ -25,9 +25,9 @@ class AssetController(Controller):
             '>>': self.go_to_next_score,
             #
             'd': self.go_to_distribution_files,
-            'g': self.go_to_segment_packages,
+            'g': self.go_to_segments,
             'k': self.go_to_maker_files,
-            'm': self.go_to_material_packages,
+            'm': self.go_to_materials,
             'u': self.go_to_build_files,
             'y': self.go_to_stylesheets,
             #
@@ -317,7 +317,7 @@ class AssetController(Controller):
         '''
         self._session._score_manager._maker_file_wrangler._run()
 
-    def go_to_material_packages(self):
+    def go_to_materials(self):
         r'''Goes to material packages.
 
         Returns none.
@@ -342,7 +342,7 @@ class AssetController(Controller):
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
 
-    def go_to_segment_packages(self):
+    def go_to_segments(self):
         r'''Goes to segment packages.
 
         Returns none.
