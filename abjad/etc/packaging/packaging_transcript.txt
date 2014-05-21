@@ -24,9 +24,9 @@ Abjad 2.15
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
         7. sanity check test results: OK
-        8. experimental HTML build results:
-        9. mainline HTML build results:
-       10. scoremanager HTML build results:
+        8. experimental HTML build results: OK
+        9. mainline HTML build results: OK
+       10. scoremanager HTML build results: OK
        11. LaTeX build results:
        12. Abjad.pdf build results:
        13. AbjadAPI.pdf build results:
