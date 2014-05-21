@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
 import os
-import subprocess
 import readline
+import subprocess
+import sys
 import traceback
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -153,7 +153,10 @@ class IOManager(IOManager):
             else:
                 prompt_string = prompt_string + ' '
             if not self._session.pending_input:
-                input_ = raw_input(prompt_string)
+                if sys.version_info[0] == 2:
+                    input_ = raw_input(prompt_string)
+                else:
+                    input_ = input(prompt_string)
                 if include_newline:
                     if not input_ == 'help':
                         print('')
