@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'mdpyls* default q'
+    input_ = 'mdls* default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
@@ -20,4 +20,4 @@ def test_ScorePackageWrangler_list_every_metadata_py_01():
     for path in paths:
         assert path in contents
 
-    assert 'metadata pys found.' in contents
+    assert '__metadata__.py files found.' in contents

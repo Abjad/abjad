@@ -568,9 +568,8 @@ class Wrangler(AssetController):
             directories = self._list_all_directories_with_metadata_pys()
             paths = [os.path.join(_, '__metadata__.py') for _ in directories]
             messages = paths[:]
-            messages.append('')
             self._io_manager._display(messages)
-            message = '{} metadata pys found.'
+            message = '{} __metadata__.py files found.'
             message = message.format(len(paths))
             self._io_manager._display(message)
 

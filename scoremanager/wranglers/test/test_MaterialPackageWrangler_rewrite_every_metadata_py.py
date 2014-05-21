@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_MaterialPackageWrangler_rewrite_every_metadata_py_01():
 
-    input_ = 'red~example~score m mdrw default q'
+    input_ = 'red~example~score m mdw* default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler_rewrite_every_metadata_py_01():
 
 def test_MaterialPackageWrangler_rewrite_every_metadata_py_02():
 
-    input_ = 'm mdrw default q'
+    input_ = 'm mdw* default q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 

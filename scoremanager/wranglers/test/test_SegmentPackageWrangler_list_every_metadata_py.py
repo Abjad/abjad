@@ -5,37 +5,35 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageWrangler_list_every_metadata_py_01():
+def test_SegmentPackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'red~example~score m mdls* y q'
+    input_ = 'red~example~score g mdls* y q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
-    materials = [
-        'instrumentation',
-        'magic_numbers',
-        'pitch_range_inventory',
-        'tempo_inventory',
-        'time_signatures',
+    segments = [
+        'segment_01',
+        'segment_02',
+        'segment_03',
         ]
     paths = []
-    for material in materials:
+    for segment in segments:
         path = os.path.join(
             score_manager._configuration.example_score_packages_directory,
             'red_example_score',
-            'materials',
-            material,
+            'segments',
+            segment,
             '__metadata__.py',
             )
         paths.append(path)
 
     for path in paths:
         assert path in contents
-    assert '5 __metadata__.py files found.' in contents
+    assert '3 __metadata__.py files found.' in contents
 
 
-def test_MaterialPackageWrangler_list_every_metadata_py_02():
+def test_SegmentPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'm mdls* y q'
+    input_ = 'g mdls* y q'
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
@@ -45,5 +43,4 @@ def test_MaterialPackageWrangler_list_every_metadata_py_02():
         ]
     for path in paths:
         assert path in contents
-
-    assert '__metadata__.py files found.' in contents
+    assert '16 __metadata__.py files found.' in contents

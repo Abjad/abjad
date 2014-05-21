@@ -69,15 +69,21 @@ class MaterialPackageWrangler(Wrangler):
             '>': self.go_to_next_package,
             #
             'cp': self.copy_package,
-            'no': self.open_init_pys,
-            'ili': self.interpret_illustration_lys,
-            'mdo': self.open_every_metadata_py,
-            'mdrw': self.rewrite_every_metadata_py,
             'new': self.make_package,
-            'ipo': self.open_illustration_pdfs,
             'ren': self.rename_package,
             'rm': self.remove_packages,
-            'vr': self.version_package,
+            #
+            'ili*': self.interpret_illustration_lys,
+            #
+            'ipo*': self.open_illustration_pdfs,
+            #
+            'mdls*': self.list_every_metadata_py,
+            'mdo*': self.open_every_metadata_py,
+            'mdw*': self.rewrite_every_metadata_py,
+            #
+            'no*': self.open_init_pys,
+            #
+            'vr*': self.version_package,
             })
         return result
 
@@ -159,12 +165,13 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_all_materials_menu_section(self, menu):
         commands = []
-        commands.append(('all materials - illustration.ly - interpret', 'ili'))
-        commands.append(('all materials - illustration.pdf - open', 'ipo'))
-        commands.append(('all materials - __init__.py - open', 'no'))
-        commands.append(('all materials - __metadata__.py - open', 'mdo'))
-        commands.append(('all materials - __metadata__.py - rewrite', 'mdrw'))
-        commands.append(('all materials - version artifacts', 'vr'))
+        commands.append(('all materials - illustration.ly - interpret', 'ili*'))
+        commands.append(('all materials - illustration.pdf - open', 'ipo*'))
+        commands.append(('all materials - __init__.py - open', 'no*'))
+        commands.append(('all materials - __metadata__.py - list', 'mdls*'))
+        commands.append(('all materials - __metadata__.py - open', 'mdo*'))
+        commands.append(('all materials - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all materials - version artifacts', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
