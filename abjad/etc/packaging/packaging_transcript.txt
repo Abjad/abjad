@@ -5,9 +5,9 @@ Abjad 2.15
         ...?
 
     Packaging environment:
-        0. workstation description:
-        1. uname -v:
-        2. git --version: git version 1.8.3.4 (Apple Git-47)
+        0. workstation description: 2.6 GHz i5 MacBook Pro / OSX 10.9.3
+        1. uname -v: Darwin Kernel Version 13.2.0
+        2. git --version: git version 1.8.5.2 (Apple Git-48)
         3. python --version: Python 2.7.6
         4. pip --version: pip 1.5.6
         5. py.test --version: This is py.test version 2.5.2
