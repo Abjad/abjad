@@ -172,14 +172,6 @@ class ScorePackageWrangler(Wrangler):
                 return True
         return False
 
-    def _list_all_directories_with_metadata_pys(self):
-        directories = []
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            result = self._list_directories_with_metadata_pys(path)
-            directories.extend(result)
-        return directories
-
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
         commands.append(('scores - __metadata__.py - list', 'mdpyls*'))

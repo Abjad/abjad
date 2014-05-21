@@ -528,6 +528,14 @@ class Wrangler(AssetController):
                         result.append(directory_entry)
         return result
 
+    def _list_all_directories_with_metadata_pys(self):
+        directories = []
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            result = self._list_directories_with_metadata_pys(path)
+            directories.extend(result)
+        return directories
+
     def _list_asset_paths(
         self,
         abjad_library=True,

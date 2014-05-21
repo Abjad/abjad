@@ -226,3 +226,5 @@
 
 44. Added 'with self._io_manager._make_interaction()' to essentially all
     public methods.
+
+45. Improve (m mdrw) user experience.

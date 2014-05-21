@@ -72,6 +72,7 @@ class MaterialPackageWrangler(Wrangler):
             'no': self.open_init_pys,
             'ili': self.interpret_illustration_lys,
             'mdo': self.open_every_metadata_py,
+            'mdrw': self.rewrite_every_metadata_py,
             'new': self.make_package,
             'ipo': self.open_illustration_pdfs,
             'ren': self.rename_package,
@@ -162,6 +163,7 @@ class MaterialPackageWrangler(Wrangler):
         commands.append(('all materials - illustration.pdf - open', 'ipo'))
         commands.append(('all materials - __init__.py - open', 'no'))
         commands.append(('all materials - __metadata__.py - open', 'mdo'))
+        commands.append(('all materials - __metadata__.py - rewrite', 'mdrw'))
         commands.append(('all materials - version artifacts', 'vr'))
         menu.make_command_section(
             commands=commands,
