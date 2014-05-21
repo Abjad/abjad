@@ -232,7 +232,7 @@ class ScorePackageWrangler(Wrangler):
         start_menu_entries = []
         if os.path.exists(self._configuration.cache_file_path):
             path = self._configuration.cache_file_path
-            with file(path, 'r') as file_pointer:
+            with open(path, 'r') as file_pointer:
                 cache_lines = file_pointer.read()
             try:
                 exec(cache_lines)
