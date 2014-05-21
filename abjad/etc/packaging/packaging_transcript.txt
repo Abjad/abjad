@@ -23,7 +23,7 @@ Abjad 2.15
         4. experimental doctest test results: 845 tests passed in 172 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
-        7. sanity check test results:
+        7. sanity check test results: OK
         8. experimental HTML build results:
         9. mainline HTML build results:
        10. scoremanager HTML build results:
@@ -38,7 +38,7 @@ Abjad 2.15
         4. experimental doctest test results: 845 tests passed in 172 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
-        7. sanity check test results:
+        7. sanity check test results: OK
 
 
 Abjad 2.14
