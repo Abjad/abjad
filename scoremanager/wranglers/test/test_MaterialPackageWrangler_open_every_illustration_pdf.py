@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageWrangler_open_illustration_pdfs_01():
+def test_MaterialPackageWrangler_open_every_illustration_pdf_01():
 
     package_names = ('pitch_range_inventory', 'tempo_inventory')
     paths = []

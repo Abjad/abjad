@@ -73,15 +73,15 @@ class MaterialPackageWrangler(Wrangler):
             'ren': self.rename_package,
             'rm': self.remove_packages,
             #
-            'ili*': self.interpret_illustration_lys,
+            'ili*': self.interpret_every_illustration_ly,
             #
-            'ipo*': self.open_illustration_pdfs,
+            'ipo*': self.open_every_illustration_pdf,
             #
             'mdls*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
             'mdw*': self.rewrite_every_metadata_py,
             #
-            'no*': self.open_init_pys,
+            'no*': self.open_every_init_py,
             #
             'vr*': self.version_package,
             })
@@ -165,17 +165,17 @@ class MaterialPackageWrangler(Wrangler):
 
     def _make_all_materials_menu_section(self, menu):
         commands = []
-        commands.append(('all materials - illustration.ly - interpret', 'ili*'))
-        commands.append(('all materials - illustration.pdf - open', 'ipo*'))
-        commands.append(('all materials - __init__.py - open', 'no*'))
-        commands.append(('all materials - __metadata__.py - list', 'mdls*'))
-        commands.append(('all materials - __metadata__.py - open', 'mdo*'))
-        commands.append(('all materials - __metadata__.py - rewrite', 'mdw*'))
-        commands.append(('all materials - version artifacts', 'vr*'))
+        commands.append(('materials - illustration.ly - interpret', 'ili*'))
+        commands.append(('materials - illustration.pdf - open', 'ipo*'))
+        commands.append(('materials - __init__.py - open', 'no*'))
+        commands.append(('materials - __metadata__.py - list', 'mdls*'))
+        commands.append(('materials - __metadata__.py - open', 'mdo*'))
+        commands.append(('materials - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('materials - version artifacts', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
-            name='all materials',
+            name='zzz',
             )
 
     def _make_main_menu(self):
@@ -226,7 +226,7 @@ class MaterialPackageWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def copy_package(self):
-        r'''Copies material package.
+        r'''Copies package.
 
         Returns none.
         '''
@@ -246,9 +246,8 @@ class MaterialPackageWrangler(Wrangler):
         '''
         self._go_to_previous_package()
 
-    def interpret_illustration_lys(self):
-        r'''Calls LilyPond on the illustration.ly file in each material
-        package.
+    def interpret_every_illustration_ly(self):
+        r'''Interprets ``illustration.ly`` in every package.
 
         Returns none.
         '''
@@ -256,14 +255,14 @@ class MaterialPackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_every_metadata_py(self):
-        r'''Lists ``__metadata__.py`` in every score.
+        r'''Lists ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._list_every_metadata_py()
 
     def make_package(self):
-        r'''Makes material package.
+        r'''Makes package.
 
         Returns none.
         '''
@@ -286,50 +285,50 @@ class MaterialPackageWrangler(Wrangler):
         manager._run()
 
     def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in each material.
+        r'''Opens ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._open_in_each_package('__metadata__.py')
 
-    def open_illustration_pdfs(self):
-        r'''Opens the illustration.pdf file in each material package.
+    def open_every_illustration_pdf(self):
+        r'''Opens ``illustration.pdf`` in every package.
 
         Returns none.
         '''
         self._open_in_each_package('illustration.pdf')
         self._session._hide_next_redraw = True
 
-    def open_init_pys(self):
-        r'''Opens the ``__init__.py`` file in each material package.
+    def open_every_init_py(self):
+        r'''Opens ``__init__.py`` in every package.
 
         Returns none.
         '''
         self._open_in_each_package('__init__.py')
 
     def remove_packages(self):
-        r'''Removes material package.
+        r'''Removes one or more packages.
 
         Returns none.
         '''
         self._remove_assets()
 
     def rename_package(self):
-        r'''Renames material package.
+        r'''Renames package.
 
         Returns none.
         '''
         self._rename_asset()
 
     def rewrite_every_metadata_py(self, confirm=True, display=True):
-        r'''Rewrites ``__metadata__.py`` in each material.
+        r'''Rewrites ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_package(self, confirm=True, display=True):
-        r'''Versions every package.
+        r'''Versions package.
         
         Copies any of the ``output.py``, ``illustration.ly`` and 
         ``illustration.pdf`` files that exist in each material package.

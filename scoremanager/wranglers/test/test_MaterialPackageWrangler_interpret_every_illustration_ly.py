@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_MaterialPackageWrangler_interpret_illustration_lys_01():
+def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
     r'''Works when illustration.ly already exists.
     '''
 

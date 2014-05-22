@@ -99,7 +99,7 @@ class SegmentPackageWrangler(Wrangler):
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
-            name='segments 2',
+            name='zzz',
             )
 
     def _make_asset(self, path, metadata=None):
@@ -154,14 +154,14 @@ class SegmentPackageWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def copy_package(self):
-        r'''Copies segment package.
+        r'''Copies package.
 
         Returns none.
         '''
         self._copy_asset()
 
     def edit_every_definition_py(self):
-        r'''Edits ``definition.py`` in every segment.
+        r'''Edits ``definition.py`` in every package.
 
         Returns none.
         '''
@@ -183,9 +183,9 @@ class SegmentPackageWrangler(Wrangler):
         self._go_to_previous_package()
 
     def interpret_every_make_py(self):
-        r'''Interprets ``__make.py__`` in every segment.
+        r'''Interprets ``__make.py__`` in every package.
         
-        Makes ``output.ly`` and ``output.pdf`` in every segment.
+        Makes ``output.ly`` and ``output.pdf`` in every package.
 
         Returns none.
         '''
@@ -226,7 +226,7 @@ class SegmentPackageWrangler(Wrangler):
         display=True,
         open_every_output_pdf=True,
         ):
-        r'''Reinterprets all current LilyPond files.
+        r'''Interprets ``output.ly`` in every package.
 
         Returns none.
         '''
@@ -257,14 +257,14 @@ class SegmentPackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_every_metadata_py(self):
-        r'''Lists ``__metadata__.py`` in every score.
+        r'''Lists ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._list_every_metadata_py()
 
     def make_package(self):
-        r'''Makes segment package.
+        r'''Makes package.
 
         Returns none.
         '''
@@ -286,14 +286,14 @@ class SegmentPackageWrangler(Wrangler):
         manager._run()
 
     def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in every segment.
+        r'''Opens ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._open_in_each_package('__metadata__.py')
 
     def open_every_output_pdf(self):
-        r'''Opens output.pdf file in each segment.
+        r'''Opens ``output.pdf`` file in every package.
 
         Returns none.
         '''
@@ -308,28 +308,28 @@ class SegmentPackageWrangler(Wrangler):
         self._current_package_manager.open_init_py()
 
     def remove_packages(self):
-        r'''Removes one or more segment packages.
+        r'''Removes one or more packages.
         
         Returns none.
         '''
         self._remove_assets()
 
     def rename_package(self):
-        r'''Renames segment package.
+        r'''Renames package.
 
         Returns none.
         '''
         self._rename_asset()
 
     def rewrite_every_metadata_py(self, confirm=True, display=True):
-        r'''Rewrites ``__metadata__.py`` in each segment.
+        r'''Rewrites ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_package(self, confirm=True, display=True):
-        r'''Versions every package.
+        r'''Versions package.
 
         Returns none.
         '''

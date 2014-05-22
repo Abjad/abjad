@@ -185,7 +185,7 @@ class ScorePackageWrangler(Wrangler):
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='scores 2',
+            name='zzz',
             )
 
     def _make_asset_menu_section(self, menu):
@@ -245,7 +245,7 @@ class ScorePackageWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def copy_package(self):
-        r'''Copies score package.
+        r'''Copies package.
 
         Returns none.
         '''
@@ -254,7 +254,7 @@ class ScorePackageWrangler(Wrangler):
         self.write_cache(confirm=False, display=False)
 
     def fix_packages(self, confirm=True, display=True):
-        r'''Fixes visible score packages.
+        r'''Fixes packages.
 
         Returns none.
         '''
@@ -281,14 +281,14 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def list_every_metadata_py(self):
-        r'''Lists ``__metadata__.py`` in every score.
+        r'''Lists ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._list_every_metadata_py()
 
     def make_package(self):
-        r'''Makes score package.
+        r'''Makes package.
 
         Returns none.
         '''
@@ -310,28 +310,28 @@ class ScorePackageWrangler(Wrangler):
         self._session._hide_next_redraw = True
 
     def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in every score.
+        r'''Opens ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         self._open_every_metadata_py()
 
     def remove_packages(self):
-        r'''Removes one or more score packages.
+        r'''Removes one or more packages.
         
         Returns none.
         '''
         self._remove_assets()
 
     def rename_package(self):
-        r'''Renames score package.
+        r'''Renames package.
 
         Returns none.
         '''
         self._rename_asset()
 
     def rewrite_every_metadata_py(self, confirm=True, display=True):
-        r'''Rewrites ``__metadata__.py`` in each score.
+        r'''Rewrites ``__metadata__.py`` in every package.
 
         Returns none.
         '''
