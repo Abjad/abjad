@@ -109,6 +109,7 @@ class Controller(ScoreManagerObject):
             
     def _make_metadata_py_menu_section(self, menu):
         commands = []
+        commands.append(('__metadata__.py - list', 'mdls'))
         commands.append(('__metadata__.py - open', 'mdo'))
         commands.append(('__metadata__.py - rewrite', 'mdw'))
         menu.make_command_section(

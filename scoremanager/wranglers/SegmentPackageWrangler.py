@@ -47,6 +47,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             'de*': self.edit_every_definition_py,
             #
             'ki*': self.interpret_every_make_py,
+            'ko*': self.open_every_make_py,
+            'ks*': self.write_every_make_py_stub,
             #
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
@@ -75,11 +77,13 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     def _make_all_segments_menu_section(self, menu):
         commands = []
         commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __make.py__ - interpret', 'ki*'))
+        commands.append(('all packages - __make.py__ - open', 'ko*'))
+        commands.append(('all packages - __make.py__ - write stub', 'ks*'))
         commands.append(('all packages - __metadata__.py - list', 'mdls*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('all packages - definition.py - edit', 'de*'))
-        commands.append(('all packages - make.py - interpret', 'ki*'))
         commands.append(('all packages - output.ly - interpret', 'oli*'))
         commands.append(('all packages - output.pdf - open', 'opo*'))
         commands.append(('all packages - version', 'vr*'))
@@ -108,7 +112,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         self._make_all_segments_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_metadata_py_menu_section(menu)
         self._make_segments_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu
@@ -251,13 +254,19 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         manager = self._get_manager(path)
         manager._run()
 
+    def open_every_make_py(self):
+        r'''Opens ``__make__.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('__make__.py')
+
     def open_every_output_pdf(self):
         r'''Opens ``output.pdf`` file in every package.
 
         Returns none.
         '''
         self._open_in_every_package('output.pdf')
-        self._session._hide_next_redraw = True
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
@@ -279,6 +288,13 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._rename_asset()
+
+    def write_every_make_py_stub(self):
+        r'''Writes stub ``__make__.py`` in every package.
+
+        Returns none.
+        '''
+        self._io_manager._print_not_yet_implemented()
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

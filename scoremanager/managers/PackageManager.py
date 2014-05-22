@@ -60,13 +60,16 @@ class PackageManager(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'no': self.open_init_py,
-            'ns': self.write_stub_init_py,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
+            #
+            'mdls': self.list_metadata_py,
             'mdo': self.open_metadata_py,
             'mdw': self.rewrite_metadata_py,
+            #
+            'no': self.open_init_py,
+            'ns': self.write_stub_init_py,
             })
         return result
 
@@ -923,6 +926,14 @@ class PackageManager(AssetController):
             metadatum = self._get_metadatum(result)
             message = '{!r}'.format(metadatum)
             self._io_manager._display(message)
+
+    def list_metadata_py(self):
+        r'''Lists ``__metadata__.py``.
+
+        Returns none.
+        '''
+        with self._io_manager._make_interaction():
+            self._io_manager._display(self._metadata_py_path)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
