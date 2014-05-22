@@ -2,10 +2,11 @@
 import os
 import shutil
 from abjad.tools import systemtools
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.ScoreInternalPackageManager import \
+    ScoreInternalPackageManager
 
 
-class SegmentPackageManager(PackageManager):
+class SegmentPackageManager(ScoreInternalPackageManager):
     r'''Segment package manager.
     '''
 
@@ -45,9 +46,6 @@ class SegmentPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<': self.go_to_previous_package,
-            '>': self.go_to_next_package,
-            #
             'de': self.edit_definition_py,
             'ds': self.write_stub_definition_py,
             #
@@ -198,20 +196,6 @@ class SegmentPackageManager(PackageManager):
         with self._io_manager._make_interaction():
             self._io_manager.edit(self._definition_py_path)
 
-    def go_to_next_package(self):
-        r'''Goes to next package.
-
-        Returns none.
-        '''
-        self._go_to_next_package()
-
-    def go_to_previous_package(self):
-        r'''Goes to previous package.
-
-        Returns none.
-        '''
-        self._go_to_previous_package()
-
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.
 
@@ -271,13 +255,6 @@ class SegmentPackageManager(PackageManager):
                 return
             self._io_manager.run_lilypond(file_path)
 
-    def list_versions_directory(self):
-        r'''Lists ``versions/`` directory.
-
-        Returns none.
-        '''
-        self._list_versions_directory()
-
     def open_make_py(self):
         r'''Opens ``__make__.py``.
 
@@ -319,16 +296,6 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._open_versioned_file('output.pdf')
-
-    def version_package(self, confirm=True, display=True):
-        r'''Versions package.
-        
-        Copies any of ``definition.py``, ``output.ly`` and ``output.pdf`` 
-        to versions directory, if they exist.
-
-        Returns none.
-        '''
-        self._version_package(confirm=confirm, display=display)
 
     # TODO: reimplement as boilerplate
     def write_stub_definition_py(self, confirm=True, display=True):

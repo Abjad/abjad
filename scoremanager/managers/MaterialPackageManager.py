@@ -9,10 +9,11 @@ from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
 from scoremanager import wizards
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.managers.ScoreInternalPackageManager import \
+    ScoreInternalPackageManager
 
 
-class MaterialPackageManager(PackageManager):
+class MaterialPackageManager(ScoreInternalPackageManager):
     r'''Material package manager.
 
 
@@ -93,9 +94,6 @@ class MaterialPackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<': self.go_to_previous_package,
-            '>': self.go_to_next_package,
-            #
             'aes': self.set_autoeditor,
             'aeu': self.unset_autoeditor,
             #
@@ -123,9 +121,6 @@ class MaterialPackageManager(PackageManager):
             'vilo': self.open_versioned_illustration_ly,
             'vipo': self.open_versioned_illustration_pdf,
             'voo': self.open_versioned_output_py,
-            #
-            'vr': self.version_package,
-            'vrls': self.list_versions_directory,
             })
         return result
 
@@ -567,20 +562,6 @@ class MaterialPackageManager(PackageManager):
         '''
         self._io_manager.edit(self._illustrate_py_path)
 
-    def go_to_next_package(self):
-        r'''Goes to next package.
-
-        Returns none.
-        '''
-        self._go_to_next_package()
-
-    def go_to_previous_package(self):
-        r'''Goes to previous package.
-
-        Returns none.
-        '''
-        self._go_to_previous_package()
-
     def illustrate_material(self, confirm=True, display=True):
         r'''Illustrates material.
 
@@ -643,13 +624,6 @@ class MaterialPackageManager(PackageManager):
             message = 'illustration.ly file does not exist.'
             self._io_manager._display([message, ''])
         self._session._hide_next_redraw = True
-
-    def list_versions_directory(self):
-        r'''Lists ``versions/`` directory.
-
-        Returns none.
-        '''
-        self._list_versions_directory()
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.
@@ -771,17 +745,6 @@ class MaterialPackageManager(PackageManager):
         if True:
             self._remove_metadatum('use_autoeditor')
             self._session._hide_next_redraw = False
-
-    def version_package(self, confirm=True, display=True):
-        r'''Versions package.
-        
-        Copies any of ``definition.py``, ``output.py``, 
-        ``illustration.ly`` and ``illustration.pdf`` to versions directory,
-        if they exist.
-
-        Returns none.
-        '''
-        self._version_package(confirm=confirm, display=display)
 
     def write_output_py(
         self,

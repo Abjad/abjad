@@ -15,6 +15,12 @@ class PackageWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            #
+            'cp': self.copy_package,
+            'new': self.make_package,
+            'ren': self.rename_package,
+            'rm': self.remove_packages,
+            #
             'mdls*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
             'mdw*': self.rewrite_every_metadata_py,

@@ -68,11 +68,6 @@ class MaterialPackageWrangler(PackageWrangler):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
-            'cp': self.copy_package,
-            'new': self.make_package,
-            'ren': self.rename_package,
-            'rm': self.remove_packages,
-            #
             'ili*': self.interpret_every_illustration_ly,
             #
             'ipo*': self.open_every_illustration_pdf,
