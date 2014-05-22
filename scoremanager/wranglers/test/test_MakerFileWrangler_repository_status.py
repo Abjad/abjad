@@ -10,9 +10,9 @@ def test_MakerFileWrangler_repository_status_01():
 
     input_ = 'k rst q'
     score_manager._run(pending_input=input_)
-    title = 'On branch master'
+    contents = score_manager._transcript.contents
 
-    assert title in score_manager._transcript.titles
+    assert 'On branch master' in contents
 
 
 def test_MakerFileWrangler_repository_status_02():
@@ -21,9 +21,9 @@ def test_MakerFileWrangler_repository_status_02():
 
     input_ = 'red~example~score k rst q'
     score_manager._run(pending_input=input_)
-    title = 'On branch master'
+    contents = score_manager._transcript.contents
 
-    assert title in score_manager._transcript.titles
+    assert 'On branch master' in contents
 
 
 def test_MakerFileWrangler_repository_status_03():

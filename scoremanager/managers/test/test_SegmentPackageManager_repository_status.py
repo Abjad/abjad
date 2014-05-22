@@ -10,9 +10,9 @@ def test_SegmentPackageManager_repository_status_01():
 
     input_ = 'red~example~score g rst q'
     score_manager._run(pending_input=input_)
-    string = 'On branch master'
+    contents = score_manager._transcript.contents
 
-    assert string in score_manager._transcript.titles
+    assert 'On branch master' in contents
     assert score_manager._session.proceed_count == 0
 
 
