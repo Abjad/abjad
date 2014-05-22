@@ -219,7 +219,6 @@ class PackageManager(AssetController):
     def _get_metadata(self):
         metadata = None
         if os.path.isfile(self._metadata_py_path):
-            print(self._metadata_py_path)
             with open(self._metadata_py_path, 'r') as file_pointer:
                 file_contents_string = file_pointer.read()
             try:
