@@ -547,8 +547,8 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> section._append(('foo - write stub', 'stub'))
-            <MenuEntry: 'foo - write stub'>
+            >>> section._append(('foo - stub', 'stub'))
+            <MenuEntry: 'foo - stub'>
 
         ::
 
@@ -557,7 +557,7 @@ class MenuSection(AbjadObject):
             <MenuEntry: 'foo - add'>
             <MenuEntry: 'foo - delete'>
             <MenuEntry: 'foo - modify'>
-            <MenuEntry: 'foo - write stub'>
+            <MenuEntry: 'foo - stub'>
 
         Returns menu entry.
         '''

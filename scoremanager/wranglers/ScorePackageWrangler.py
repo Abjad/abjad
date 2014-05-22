@@ -170,9 +170,11 @@ class ScorePackageWrangler(PackageWrangler):
                 return True
         return False
 
-    def _make_all_score_packages_menu_section(self, menu):
+    def _make_all_packages_menu_section(self, menu):
         commands = []
+        commands.append(('all packages - __init__.py - list', 'nls*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __init__.py - stub', 'ns*'))
         commands.append(('all packages - __metadata__.py - list', 'mdls*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
@@ -207,7 +209,7 @@ class ScorePackageWrangler(PackageWrangler):
         menu = superclass._make_main_menu()
         breadcrumb_callback=self._get_scores_to_display_string
         menu._breadcrumb_callback = breadcrumb_callback
-        self._make_all_score_packages_menu_section(menu)
+        self._make_all_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)
         return menu

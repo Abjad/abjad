@@ -25,7 +25,9 @@ class PackageWrangler(Wrangler):
             'mdo*': self.open_every_metadata_py,
             'mdw*': self.rewrite_every_metadata_py,
             #
+            'nls*': self.list_every_init_py,
             'no*': self.open_every_init_py,
+            'ns*': self.write_every_init_py_stub,
             })
         return result
 
@@ -41,6 +43,32 @@ class PackageWrangler(Wrangler):
         return paths
 
     ### PUBLIC METHODS ###
+
+    def list_every_init_py(self):
+        r'''Lists ``__init__.py`` in every package.
+
+        Returns none.
+        '''
+        with self._io_manager._make_interaction():
+            file_name = '__init__.py'
+            paths = []
+            for segment_path in self._list_visible_asset_paths():
+                path = os.path.join(segment_path, file_name)
+                if os.path.isfile(path):
+                    paths.append(path)
+            if not paths:
+                message = 'no {} files found.'
+                message = message.format(file_name)
+                self._io_manager._display(message)
+                return
+            messages = []
+            for path in paths:
+                message = '    ' + path
+                messages.append(message)
+            message = '{} {} files found.'
+            message.format(len(paths), file_name)
+            messages.append(message)
+            self._io_manager._display(message)
 
     def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every package.
@@ -106,3 +134,10 @@ class PackageWrangler(Wrangler):
                 messages.append(message)
                 self._session._hide_next_redraw = False
                 self._io_manager._display(messages)
+
+    def write_every_init_py_stub(self):
+        r'''Writes stub ``__init__.py`` in every package.
+
+        Returns none.
+        '''
+        self._io_manager._print_not_yet_implemented()

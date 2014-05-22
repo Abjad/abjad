@@ -231,11 +231,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             commands.append((string, 'iei'))
             string = '__illustrate__.py - interpret'
             commands.append((string, 'ii'))
-            string = '__illustrate__.py - write stub'
+            string = '__illustrate__.py - stub'
             commands.append((string, 'is'))
         else:
             is_hidden = True
-            string = '__illustrate__.py - write stub'
+            string = '__illustrate__.py - stub'
             commands.append((string, 'is'))
         menu.make_command_section(
             is_hidden=is_hidden,
@@ -294,7 +294,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands = []
         commands.append(('definition.py - edit', 'de'))
         commands.append(('definition.py - interpret', 'di'))
-        commands.append(('definition.py - write stub', 'ds'))
+        commands.append(('definition.py - stub', 'ds'))
         if commands:
             use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(

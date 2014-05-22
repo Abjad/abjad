@@ -68,6 +68,7 @@ class PackageManager(AssetController):
             'mdo': self.open_metadata_py,
             'mdw': self.rewrite_metadata_py,
             #
+            'nls': self.list_init_py,
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
             })
@@ -934,6 +935,14 @@ class PackageManager(AssetController):
         '''
         with self._io_manager._make_interaction():
             self._io_manager._display(self._metadata_py_path)
+
+    def list_init_py(self):
+        r'''Lists ``__init__.py``.
+
+        Returns none.
+        '''
+        with self._io_manager._make_interaction():
+            self._io_manager._display(self._init_py_file_path)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.

@@ -17,6 +17,10 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
+            'nls': self.list_init_py,
+            'no': self.open_init_py,
+            'ns': self.write_stub_init_py,
+            #
             'vr*': self.version_every_package,
             })
         return result
@@ -36,6 +40,20 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._go_to_previous_package()
+
+    def list_init_py(self):
+        r'''Lists ``__init__.py``.
+
+        Returns none.
+        '''
+        self._current_package_manager.list_init_py()
+
+    def open_init_py(self):
+        r'''Opens ``__init__.py``.
+
+        Returns none.
+        '''
+        self._current_package_manager.open_init_py()
 
     def version_every_package(self, confirm=True, display=True):
         r'''Versions every package.
@@ -58,3 +76,10 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             manager.version_package(confirm=False, display=False)
         self._io_manager._display('')
         self._session._hide_next_redraw = True
+
+    def write_stub_init_py(self):
+        r'''Writes stub ``__init__.py``.
+
+        Returns none.
+        '''
+        self._current_package_manager.write_stub_init_py()

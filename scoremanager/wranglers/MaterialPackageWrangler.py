@@ -148,9 +148,11 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
                 result.append(path)
         return result
 
-    def _make_all_materials_menu_section(self, menu):
+    def _make_all_packages_menu_section(self, menu):
         commands = []
+        commands.append(('all packages - __init__.py - list', 'nls*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __init__.py - stub', 'ns*'))
         commands.append(('all packages - __metadata__.py - list', 'mdls*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
@@ -166,7 +168,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     def _make_main_menu(self):
         superclass = super(MaterialPackageWrangler, self)
         menu = superclass._make_main_menu()
-        self._make_all_materials_menu_section(menu)
+        self._make_all_packages_menu_section(menu)
         self._make_material_command_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu

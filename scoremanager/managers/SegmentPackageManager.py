@@ -94,7 +94,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 )
         commands = []
         commands.append(('definition.py - edit', 'de'))
-        commands.append(('definition.py - write stub', 'ds'))
+        commands.append(('definition.py - stub', 'ds'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -120,7 +120,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         commands = []
         commands.append(('__make__.py - interpret', 'ki'))
         commands.append(('__make__.py - open', 'ko'))
-        commands.append(('__make__.py - write stub', 'ks'))
+        commands.append(('__make__.py - stub', 'ks'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

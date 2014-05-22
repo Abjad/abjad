@@ -50,9 +50,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             'ko*': self.open_every_make_py,
             'ks*': self.write_every_make_py_stub,
             #
-            'no': self.open_init_py,
-            'ns': self.write_stub_init_py,
-            #
             'oli*': self.interpret_every_output_ly,
             'opo*': self.open_every_output_pdf,
             })
@@ -74,12 +71,14 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
                 return True
         return False
 
-    def _make_all_segments_menu_section(self, menu):
+    def _make_all_packages_menu_section(self, menu):
         commands = []
+        commands.append(('all packages - __init__.py - list', 'nls*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __init__.py - stub', 'ns*'))
         commands.append(('all packages - __make.py__ - interpret', 'ki*'))
         commands.append(('all packages - __make.py__ - open', 'ko*'))
-        commands.append(('all packages - __make.py__ - write stub', 'ks*'))
+        commands.append(('all packages - __make.py__ - stub', 'ks*'))
         commands.append(('all packages - __metadata__.py - list', 'mdls*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
@@ -109,7 +108,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     def _make_main_menu(self):
         superclass = super(SegmentPackageWrangler, self)
         menu = superclass._make_main_menu()
-        self._make_all_segments_menu_section(menu)
+        self._make_all_packages_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_segments_menu_section(menu)
@@ -268,13 +267,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('output.pdf')
 
-    def open_init_py(self):
-        r'''Opens ``__init__.py``.
-
-        Returns none.
-        '''
-        self._current_package_manager.open_init_py()
-
     def remove_packages(self):
         r'''Removes one or more packages.
         
@@ -295,10 +287,3 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._io_manager._print_not_yet_implemented()
-
-    def write_stub_init_py(self):
-        r'''Writes stub ``__init__.py``.
-
-        Returns none.
-        '''
-        self._current_package_manager.write_stub_init_py()
