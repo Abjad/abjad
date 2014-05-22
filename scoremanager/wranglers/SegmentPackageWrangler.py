@@ -2,10 +2,11 @@
 import collections
 import os
 from abjad.tools import systemtools
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.ScoreInternalPackageWrangler import \
+    ScoreInternalPackageWrangler
 
 
-class SegmentPackageWrangler(PackageWrangler):
+class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     r'''Segment package wrangler.
 
     ..  container:: example
@@ -43,9 +44,6 @@ class SegmentPackageWrangler(PackageWrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<': self.go_to_previous_package,
-            '>': self.go_to_next_package,
-            #
             'de*': self.edit_every_definition_py,
             #
             'ki*': self.interpret_every_make_py,
@@ -55,8 +53,6 @@ class SegmentPackageWrangler(PackageWrangler):
             #
             'oli*': self.interpret_every_output_ly,
             'opo*': self.open_every_output_pdf,
-            #
-            'vr*': self.version_package,
             })
         return result
 
@@ -158,20 +154,6 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         self._open_in_every_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
-
-    def go_to_next_package(self):
-        r'''Goes to next package.
-
-        Returns none.
-        '''
-        self._go_to_next_package()
-
-    def go_to_previous_package(self):
-        r'''Goes to previous package.
-
-        Returns none.
-        '''
-        self._go_to_previous_package()
 
     def interpret_every_make_py(self):
         r'''Interprets ``__make.py__`` in every package.
@@ -297,13 +279,6 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def version_package(self, confirm=True, display=True):
-        r'''Versions package.
-
-        Returns none.
-        '''
-        self._version_package(confirm=confirm, display=display)
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

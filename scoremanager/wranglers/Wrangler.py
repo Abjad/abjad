@@ -15,7 +15,6 @@ from scoremanager.core.AssetController import AssetController
 
 class Wrangler(AssetController):
     r'''Wrangler.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -1073,24 +1072,6 @@ class Wrangler(AssetController):
     def _set_is_navigating_to_sibling_asset(self):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
-
-    def _version_package(self, confirm=True, display=True):
-        managers = self._list_visible_asset_managers()
-        messages = []
-        messages.append('will copy ...')
-        messages.append('')
-        for manager in managers:
-            messages.extend(manager._make_version_package_messages())
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
-            return
-        for manager in self._list_visible_asset_managers():
-            manager.version_package(confirm=False, display=False)
-        self._io_manager._display('')
-        self._session._hide_next_redraw = True
 
     def _write_view_inventory(
         self, 

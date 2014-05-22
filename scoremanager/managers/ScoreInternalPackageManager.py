@@ -32,6 +32,10 @@ class ScoreInternalPackageManager(PackageManager):
             })
         return result
 
+    @property
+    def _versions_directory(self):
+        return os.path.join(self._path, 'versions')
+
     ### PUBLIC METHODS ###
 
     def go_to_next_package(self):

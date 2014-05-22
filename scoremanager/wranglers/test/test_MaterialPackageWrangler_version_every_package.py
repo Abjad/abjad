@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_SegmentPackageWrangler_version_package_01():
+def test_MaterialPackageWrangler_version_every_package_01():
     
     target_paths = []
     segments = ('segment_01', 'segment_02', 'segment_03')
@@ -23,6 +23,9 @@ def test_SegmentPackageWrangler_version_package_01():
             target_name = '{}_{}{}'.format(root, '0002', extension)
             target_path = os.path.join(versions_directory, target_name)
             target_paths.append(target_path)
+
+    for path in target_paths:
+        assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=target_paths):
         input_ = 'red~example~score g vr* y q'

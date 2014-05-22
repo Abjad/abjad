@@ -3,10 +3,11 @@ import collections
 import os
 import traceback
 from abjad.tools import systemtools
-from scoremanager.wranglers.PackageWrangler import PackageWrangler
+from scoremanager.wranglers.ScoreInternalPackageWrangler import \
+    ScoreInternalPackageWrangler
 
 
-class MaterialPackageWrangler(PackageWrangler):
+class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     r'''Material package wrangler.
 
     ..  container:: example
@@ -65,14 +66,9 @@ class MaterialPackageWrangler(PackageWrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<': self.go_to_previous_package,
-            '>': self.go_to_next_package,
-            #
             'ili*': self.interpret_every_illustration_ly,
             #
             'ipo*': self.open_every_illustration_pdf,
-            #
-            'vr*': self.version_package,
             })
         return result
 
@@ -160,7 +156,7 @@ class MaterialPackageWrangler(PackageWrangler):
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('all packages - illustration.ly - interpret', 'ili*'))
         commands.append(('all packages - illustration.pdf - open', 'ipo*'))
-        commands.append(('all packages - version artifacts', 'vr*'))
+        commands.append(('all packages - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -221,20 +217,6 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         self._copy_asset()
 
-    def go_to_next_package(self):
-        r'''Goes to next package.
-
-        Returns none.
-        '''
-        self._go_to_next_package()
-
-    def go_to_previous_package(self):
-        r'''Goes to previous package.
-
-        Returns none.
-        '''
-        self._go_to_previous_package()
-
     def interpret_every_illustration_ly(self):
         r'''Interprets ``illustration.ly`` in every package.
 
@@ -287,13 +269,3 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def version_package(self, confirm=True, display=True):
-        r'''Versions package.
-        
-        Copies any of the ``output.py``, ``illustration.ly`` and 
-        ``illustration.pdf`` files that exist in each material package.
-
-        Returns none.
-        '''
-        self._version_package(confirm=confirm, display=display)

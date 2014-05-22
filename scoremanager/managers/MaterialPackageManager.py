@@ -150,10 +150,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._illustration_pdf_file_path,
             )
 
-    @property
-    def _versions_directory(self):
-        return os.path.join(self._path, 'versions')
-
     ### PRIVATE METHODS ###
 
     def _can_make_output_material(self):

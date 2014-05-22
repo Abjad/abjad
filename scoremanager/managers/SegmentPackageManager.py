@@ -60,9 +60,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'vdo': self.open_versioned_definition_py,
             'volo': self.open_versioned_output_ly,
             'vopo': self.open_versioned_output_pdf,
-            #
-            'vrls': self.list_versions_directory,
-            'vr': self.version_package,
             })
         return result
 
@@ -85,10 +82,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             self._output_lilypond_file_path,
             self._output_pdf_file_path,
             )
-
-    @property
-    def _versions_directory(self):
-        return os.path.join(self._path, 'versions')
 
     ### PRIVATE METHODS ###
 

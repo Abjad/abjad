@@ -5,6 +5,7 @@ from scoremanager.wranglers.Wrangler import Wrangler
 
 class PackageWrangler(Wrangler):
     r'''Package wrangler.
+
     '''
 
     ### PRIVATE PROPERTIES ###
@@ -15,7 +16,6 @@ class PackageWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            #
             'cp': self.copy_package,
             'new': self.make_package,
             'ren': self.rename_package,
