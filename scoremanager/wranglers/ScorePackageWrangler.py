@@ -2,10 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.Wrangler import Wrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
-class ScorePackageWrangler(Wrangler):
+class ScorePackageWrangler(PackageWrangler):
     r'''Score package wrangler.
 
     ..  container:: example
@@ -84,15 +84,14 @@ class ScorePackageWrangler(Wrangler):
         result = result.copy()
         result.update({
             'cp': self.copy_package,
-            'co': self.open_cache,
-            'cw': self.write_cache,
-            'fix*': self.fix_packages,
-            'mdls*': self.list_every_metadata_py,
-            'mdo*': self.open_every_metadata_py,
-            'mdw*': self.rewrite_every_metadata_py,
             'new': self.make_package,
             'ren': self.rename_package,
             'rm': self.remove_packages,
+            #
+            'co': self.open_cache,
+            'cw': self.write_cache,
+            #
+            'fix*': self.fix_packages,
             })
         return result
 
@@ -280,13 +279,6 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager._display(messages)
         self._session._hide_next_redraw = True
 
-    def list_every_metadata_py(self):
-        r'''Lists ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._list_every_metadata_py()
-
     def make_package(self):
         r'''Makes package.
 
@@ -309,13 +301,6 @@ class ScorePackageWrangler(Wrangler):
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
 
-    def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_every_metadata_py()
-
     def remove_packages(self):
         r'''Removes one or more packages.
         
@@ -329,13 +314,6 @@ class ScorePackageWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def rewrite_every_metadata_py(self, confirm=True, display=True):
-        r'''Rewrites ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def write_cache(self, confirm=True, display=True):
         r'''Writes cache.

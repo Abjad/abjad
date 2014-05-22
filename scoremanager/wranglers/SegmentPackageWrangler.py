@@ -2,10 +2,10 @@
 import collections
 import os
 from abjad.tools import systemtools
-from scoremanager.wranglers.Wrangler import Wrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
-class SegmentPackageWrangler(Wrangler):
+class SegmentPackageWrangler(PackageWrangler):
     r'''Segment package wrangler.
 
     ..  container:: example
@@ -55,10 +55,6 @@ class SegmentPackageWrangler(Wrangler):
             #
             #
             'ki*': self.interpret_every_make_py,
-            #
-            'mdls*': self.list_every_metadata_py,
-            'mdo*': self.open_every_metadata_py,
-            'mdw*': self.rewrite_every_metadata_py,
             #
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
@@ -256,13 +252,6 @@ class SegmentPackageWrangler(Wrangler):
             manager.interpret_output_ly(confirm=False, display=True)
         self._session._hide_next_redraw = True
 
-    def list_every_metadata_py(self):
-        r'''Lists ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._list_every_metadata_py()
-
     def make_package(self):
         r'''Makes package.
 
@@ -284,13 +273,6 @@ class SegmentPackageWrangler(Wrangler):
         self._make_package(path)
         manager = self._get_manager(path)
         manager._run()
-
-    def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_each_package('__metadata__.py')
 
     def open_every_output_pdf(self):
         r'''Opens ``output.pdf`` file in every package.
@@ -320,13 +302,6 @@ class SegmentPackageWrangler(Wrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def rewrite_every_metadata_py(self, confirm=True, display=True):
-        r'''Rewrites ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        self._rewrite_every_metadata_py(confirm=confirm, display=display)
 
     def version_package(self, confirm=True, display=True):
         r'''Versions package.
