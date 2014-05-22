@@ -159,20 +159,7 @@
 33. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-34. Extend 'all score packages' options in Score PackageManager main menu.
-    Change ...
-        score packages - fix (fix)
-    ... to ...
-        score packages - __init__.py - open (no*)
-        score packages - __init__.py - rewrite (inrw*)
-        score packages - __metadata__.py - open (mdo*)
-        score packages - fix (fix*)
-    ... and also to ...
-        all - __metadata__.py - rewrite (mdw**)
-        all - score pdf - open (pdfo**)
-    ... instead.
-
-35. Improve (k > cp) user experience. Change ...
+34. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -181,7 +168,7 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-36. Improve (vls) user experience. Change ...
+35. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -191,13 +178,13 @@
             2. examples
     ... instead.
 
-37. Make (rrv) work in Git directories.
+36. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-38. Improve (rad) user experience. Change
+37. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
@@ -213,19 +200,19 @@
 
     ... instead.
 
-39. Glue 'go' menu sections together.
+38. Glue 'go' menu sections together.
 
-40. Wrap view tests with FilesystemState.
+39. Wrap view tests with FilesystemState.
 
-41. Add 'all segments - list versions directories'.
+40. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-42. Implement a dry_run=False keyword on bundled every*() methods.
+41. Implement a dry_run=False keyword on bundled every*() methods.
 
-43. Remove Transcript.signature.
+42. Remove Transcript.signature.
 
-44. Added 'with self._io_manager._make_interaction()' to essentially all
+43. Added 'with self._io_manager._make_interaction()' to essentially all
     public methods.
 
-45. Improve (m mdrw) user experience.
+44. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
