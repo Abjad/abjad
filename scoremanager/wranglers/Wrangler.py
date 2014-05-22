@@ -477,7 +477,7 @@ class Wrangler(AssetController):
             manager._asset_identifier = asset_identifier
         return manager
 
-    def _interpret_in_each_package(self, file_name):
+    def _interpret_in_every_package(self, file_name):
         paths = []
         for segment_path in self._list_visible_asset_paths():
             path = os.path.join(segment_path, file_name)
@@ -790,13 +790,18 @@ class Wrangler(AssetController):
             name='__views__.py',
             )
 
-    def _open_in_each_package(self, file_name, verb='open'):
+    def _open_in_every_package(self, file_name, verb='open'):
         with self._io_manager._make_interaction():
             paths = []
             for segment_path in self._list_visible_asset_paths():
                 path = os.path.join(segment_path, file_name)
                 if os.path.isfile(path):
                     paths.append(path)
+            if not paths:
+                message = 'no {} files found.'
+                message = message.format(file_name)
+                self._io_manager._display(message)
+                return
             messages = []
             message = 'will {} ...'.format(verb)
             messages.append(message)

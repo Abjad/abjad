@@ -177,10 +177,11 @@ class ScorePackageWrangler(PackageWrangler):
 
     def _make_all_score_packages_menu_section(self, menu):
         commands = []
-        commands.append(('scores - __metadata__.py - list', 'mdls*'))
-        commands.append(('scores - __metadata__.py - open', 'mdo*'))
-        commands.append(('scores - __metadata__.py - rewrite', 'mdw*'))
-        commands.append(('scores - fix', 'fix*'))
+        commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
+        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
+        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all packages - fix', 'fix*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

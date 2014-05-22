@@ -84,14 +84,15 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_all_segments_menu_section(self, menu):
         commands = []
-        commands.append(('segments - definition.py - edit', 'de*'))
-        commands.append(('segments - make.py - interpret', 'ki*'))
-        commands.append(('segments - __metadata__.py - list', 'mdls*'))
-        commands.append(('segments - __metadata__.py - open', 'mdo*'))
-        commands.append(('segments - __metadata__.py - rewrite', 'mdw*'))
-        commands.append(('segments - output.ly - interpret', 'oli*'))
-        commands.append(('segments - output.pdf - open', 'opo*'))
-        commands.append(('segments - version', 'vr*'))
+        commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
+        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
+        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all packages - definition.py - edit', 'de*'))
+        commands.append(('all packages - make.py - interpret', 'ki*'))
+        commands.append(('all packages - output.ly - interpret', 'oli*'))
+        commands.append(('all packages - output.pdf - open', 'opo*'))
+        commands.append(('all packages - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -161,7 +162,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._open_in_each_package('definition.py', verb='edit')
+        self._open_in_every_package('definition.py', verb='edit')
         self._session._hide_next_redraw = True
 
     def go_to_next_package(self):
@@ -279,7 +280,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._open_in_each_package('output.pdf')
+        self._open_in_every_package('output.pdf')
         self._session._hide_next_redraw = True
 
     def open_init_py(self):

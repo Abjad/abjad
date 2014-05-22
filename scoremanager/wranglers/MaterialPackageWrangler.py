@@ -77,8 +77,6 @@ class MaterialPackageWrangler(PackageWrangler):
             #
             'ipo*': self.open_every_illustration_pdf,
             #
-            'no*': self.open_every_init_py,
-            #
             'vr*': self.version_package,
             })
         return result
@@ -161,13 +159,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_all_materials_menu_section(self, menu):
         commands = []
-        commands.append(('materials - illustration.ly - interpret', 'ili*'))
-        commands.append(('materials - illustration.pdf - open', 'ipo*'))
-        commands.append(('materials - __init__.py - open', 'no*'))
-        commands.append(('materials - __metadata__.py - list', 'mdls*'))
-        commands.append(('materials - __metadata__.py - open', 'mdo*'))
-        commands.append(('materials - __metadata__.py - rewrite', 'mdw*'))
-        commands.append(('materials - version artifacts', 'vr*'))
+        commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
+        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
+        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all packages - illustration.ly - interpret', 'ili*'))
+        commands.append(('all packages - illustration.pdf - open', 'ipo*'))
+        commands.append(('all packages - version artifacts', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -247,7 +245,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._interpret_in_each_package('illustration.ly')
+        self._interpret_in_every_package('illustration.ly')
         self._session._hide_next_redraw = True
 
     def make_package(self):
@@ -278,15 +276,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._open_in_each_package('illustration.pdf')
+        self._open_in_every_package('illustration.pdf')
         self._session._hide_next_redraw = True
-
-    def open_every_init_py(self):
-        r'''Opens ``__init__.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_each_package('__init__.py')
 
     def remove_packages(self):
         r'''Removes one or more packages.

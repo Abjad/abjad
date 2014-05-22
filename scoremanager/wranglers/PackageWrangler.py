@@ -18,6 +18,8 @@ class PackageWrangler(Wrangler):
             'mdls*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
             'mdw*': self.rewrite_every_metadata_py,
+            #
+            'no*': self.open_every_init_py,
             })
         return result
 
@@ -47,6 +49,13 @@ class PackageWrangler(Wrangler):
             message = '{} __metadata__.py files found.'
             message = message.format(len(paths))
             self._io_manager._display(message)
+
+    def open_every_init_py(self):
+        r'''Opens ``__init__.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('__init__.py')
 
     def open_every_metadata_py(self, confirm=True, display=True):
         r'''Opens ``__metadata__.py`` in every package.
