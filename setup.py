@@ -10,7 +10,12 @@ version_file_path = os.path.join(
     'abjad',
     '_version.py'
     )
-execfile(version_file_path, {}, locals())
+with open(version_file_path, 'r') as file_pointer:
+    file_contents_string = file_pointer.read()
+local_dict = {}
+exec(file_contents_string, None, local_dict)
+__version__ = local_dict['__version__']
+
 
 description = 'Abjad is a Python API for Formalized Score Control.'
 
