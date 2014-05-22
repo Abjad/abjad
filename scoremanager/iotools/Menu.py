@@ -264,57 +264,44 @@ class Menu(Controller):
 
     def _make_bicolumnar(self, lines):
         terminal_height = 50
-        left_column_lines = lines[:terminal_height]
-        left_column_lines = [_.strip() for _ in left_column_lines]
-        max_left_column_line_length = max(len(_) for _ in left_column_lines)
-        column_width = min(max_left_column_line_length + 8, 55)
         if len(lines) < terminal_height:
             return lines
-        if 2 * terminal_height < len(lines):
-            message = 'too many lines to lay out in two columns: {!r}.'
-            message = message.format(len(lines))
-            raise ValueError(message)
-        split_lines = []
-        for line in lines:
-            line = line.strip()
-            if column_width < len(line):
-                width = column_width - 6
-                new_lines = textwrap.wrap(line, width=width)
-                tab_string = self._make_tab(1)
-                split_lines.append(tab_string + new_lines[0])
-                for new_line in new_lines[1:]:
-                    split_lines.append(5 * ' ' + new_line)
-            elif line == '':
-                split_lines.append(line)
-            else:
-                tab_string = self._make_tab(1)
-                split_lines.append(tab_string + line)
-        lines = split_lines
-        left_column_lines = lines[:terminal_height]
-        for i, line in enumerate(reversed(left_column_lines)):
-            if line == '':
-                break
-        terminal_height -= i
-        left_column_lines = lines[:terminal_height-1]
-        right_column_lines = lines[terminal_height:]
-        pair = (left_column_lines, right_column_lines)
-        generator = sequencetools.zip_sequences(pair, truncate=False)
-        massaged_lines = []
-        for element in generator:
-            if len(element) == 2:
-                left_line, right_line = element
-                left_line = left_line.rstrip()
-                extra_count = column_width - len(left_line)
-                extra_space = extra_count * ' '
-                left_line = left_line + extra_space
-                right_line = right_line.strip()
-            else:
-                assert len(element) == 1
-                left_line = element[0]
-                right_line = ''
-            massaged_line = left_line + right_line
-            massaged_lines.append(massaged_line)
-        return massaged_lines
+        lines = [_.strip() for _ in lines]
+        all_packages_lines = [_ for _ in lines if _.startswith('all')]
+        lines = [_ for _ in lines if not _.startswith('all')]
+        midpoint = int(len(lines)/2)
+        while lines[midpoint] != '':
+            midpoint += 1
+        assert lines[midpoint] == ''
+        left_lines = lines[:midpoint]
+        right_lines = lines[midpoint+1:]
+        assert len(left_lines) + len(right_lines) == len(lines) - 1
+        left_count, right_count = len(left_lines), len(right_lines)
+        assert right_count <= left_count, repr((left_count, right_count))
+        left_width = max(len(_.strip()) for _ in left_lines)
+        left_lines = [_.ljust(left_width) for _ in left_lines]
+        left_margin_width, gutter_width = 4, 4 
+        left_margin = left_margin_width * ' '
+        gutter = gutter_width * ' '
+        conjoined_lines = []
+        for _ in sequencetools.zip_sequences(
+            [left_lines, right_lines],
+            truncate=False,
+            ):
+            if len(_) == 1:
+                left_line = _[0]
+                conjoined_line = left_margin + left_line
+            elif len(_) == 2:
+                left_line, right_line = _
+                conjoined_line = left_margin + left_line + gutter + right_line
+            conjoined_lines.append(conjoined_line)
+        if all_packages_lines:
+            blank_line = left_margin
+            conjoined_lines.append(blank_line)
+        for line in all_packages_lines:
+            conjoined_line = left_margin + line
+            conjoined_lines.append(conjoined_line)
+        return conjoined_lines
 
     def _make_menu_lines(self):
         result = []
