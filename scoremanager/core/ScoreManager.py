@@ -5,7 +5,7 @@ from scoremanager.core.Controller import Controller
 
 
 class ScoreManager(Controller):
-    r'''Score manager.
+    r'''Score Manager.
 
     ..  container:: example
 
@@ -37,7 +37,7 @@ class ScoreManager(Controller):
     @property
     def _breadcrumb(self):
         if not self._session.is_in_score:
-            return 'score manager'
+            return 'Score Manager'
 
     @property
     @systemtools.Memoize

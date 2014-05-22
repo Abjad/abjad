@@ -10,7 +10,7 @@ def test_SegmentPackageWrangler_go_back_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013)',
@@ -24,8 +24,8 @@ def test_SegmentPackageWrangler_go_back_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - segments',
-        'Score manager - scores',
+        'Score Manager - scores',
+        'Score Manager - segments',
+        'Score Manager - scores',
         ]
     assert score_manager._transcript.titles == titles

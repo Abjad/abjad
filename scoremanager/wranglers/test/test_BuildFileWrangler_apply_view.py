@@ -21,7 +21,7 @@ def test_BuildFileWrangler_apply_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Score manager - build files (_test)',
+        'Score Manager - build files (_test)',
         '',
         '   1: segment-01.ly (Red Example Score)',
         '   2: segment-02.ly (Red Example Score)',

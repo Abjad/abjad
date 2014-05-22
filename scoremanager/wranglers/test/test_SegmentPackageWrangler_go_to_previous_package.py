@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_previous_package_01():
     input_ = 'red~example~score g < < < < q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - C',

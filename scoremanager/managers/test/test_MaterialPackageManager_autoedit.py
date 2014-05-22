@@ -15,7 +15,7 @@ def test_MaterialPackageManager_autoedit_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score manager - materials -'
+    string = 'Score Manager - materials -'
     string += ' example markup inventory (Abjad) - markup inventory'
     assert string in contents
 

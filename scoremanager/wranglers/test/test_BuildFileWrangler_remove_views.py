@@ -41,9 +41,9 @@ def test_BuildFileWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - build files',
-        'Score manager - build files - select view(s) to remove:',
-        'Score manager - build files',
+        'Score Manager - scores',
+        'Score Manager - build files',
+        'Score Manager - build files - select view(s) to remove:',
+        'Score Manager - build files',
         ]
     assert score_manager._transcript.titles == titles

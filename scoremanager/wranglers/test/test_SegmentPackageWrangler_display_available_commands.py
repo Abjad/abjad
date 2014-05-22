@@ -19,4 +19,4 @@ def test_SegmentPackageWrangler_display_available_commands_02():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score manager - segments - available commands' in contents
+    assert 'Score Manager - segments - available commands' in contents

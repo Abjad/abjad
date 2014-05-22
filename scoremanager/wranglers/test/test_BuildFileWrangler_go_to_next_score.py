@@ -10,7 +10,7 @@ def test_BuildFileWrangler_go_to_next_score_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build files',
         'Blue Example Score (2013)',
@@ -24,8 +24,8 @@ def test_BuildFileWrangler_go_to_next_score_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - build files',
+        'Score Manager - scores',
+        'Score Manager - build files',
         'Blue Example Score (2013)',
         ]
     assert score_manager._transcript.titles == titles

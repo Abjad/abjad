@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_go_to_next_score_01():
     input_ = '>> >> q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Blue Example Score (2013)',
         'Étude Example Score (2013)',
         ]

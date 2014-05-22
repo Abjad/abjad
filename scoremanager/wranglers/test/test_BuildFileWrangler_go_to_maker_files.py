@@ -11,7 +11,7 @@ def test_BuildFileWrangler_go_to_maker_files_01():
     input_ = 'red~example~score u k q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build files',
         'Red Example Score (2013) - maker files',

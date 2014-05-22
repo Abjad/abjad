@@ -36,12 +36,12 @@ def test_MaterialPackageWrangler_make_package_01():
     input_ = 'm new b q'
     score_manager._run(pending_input=input_)
     first_lines = [
-        'Score manager - scores',
+        'Score Manager - scores',
         '> m',
-        'Score manager - materials',
+        'Score Manager - materials',
         '> new',
         'Enter material package name> b',
-        'Score manager - materials',
+        'Score Manager - materials',
         '> q',
         ]
     

@@ -41,9 +41,9 @@ def test_SegmentPackageWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - segments',
-        'Score manager - segments - select view(s) to remove:',
-        'Score manager - segments',
+        'Score Manager - scores',
+        'Score Manager - segments',
+        'Score Manager - segments - select view(s) to remove:',
+        'Score Manager - segments',
         ]
     assert score_manager._transcript.titles == titles

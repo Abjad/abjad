@@ -132,9 +132,9 @@
 25. Allow arbitrary metadata in view patterns.
 
 26. Change ...
-        Score manager - stylesheets (_test) - select view to remove:
+        Score Manager - stylesheets (_test) - select view to remove:
     ... to ...
-        Score manager - stylesheets - select view to remove:
+        Score Manager - stylesheets - select view to remove:
     ... instead.
 
 27. Change 'default' to '<return>' in test input strings.

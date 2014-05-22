@@ -9,7 +9,7 @@ def test_ScorePackageManager_go_to_next_score_01():
     input_ = 'red~example~score >> q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Blue Example Score (2013)',
         ]

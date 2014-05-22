@@ -10,4 +10,4 @@ def test_ScorePackageWrangler_display_available_commands_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score manager - scores - available commands' in contents
+    assert 'Score Manager - scores - available commands' in contents

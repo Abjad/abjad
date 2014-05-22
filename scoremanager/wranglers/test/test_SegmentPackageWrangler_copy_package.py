@@ -18,9 +18,9 @@ def test_SegmentPackageWrangler_copy_package_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - segments',
-        'Score manager - segments - select storehouse:',
+        'Score Manager - scores',
+        'Score Manager - segments',
+        'Score Manager - segments - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

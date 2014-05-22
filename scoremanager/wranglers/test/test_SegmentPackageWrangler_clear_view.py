@@ -17,7 +17,7 @@ def test_SegmentPackageWrangler_clear_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Score manager - segments (_test)',
+        'Score Manager - segments (_test)',
         '',
         '   1: A (Red Example Score)',
         '',

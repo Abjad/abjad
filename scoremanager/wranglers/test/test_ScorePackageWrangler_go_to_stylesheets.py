@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_stylesheets_01():
     input_ = 'y q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
-        'Score manager - stylesheets',
+        'Score Manager - scores',
+        'Score Manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

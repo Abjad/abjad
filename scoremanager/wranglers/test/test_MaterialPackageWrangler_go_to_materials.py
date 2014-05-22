@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_go_to_materials_01():
     input_ = 'red~example~score m m q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials',
@@ -26,8 +26,8 @@ def test_MaterialPackageWrangler_go_to_materials_02():
     input_ = 'm m q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
-        'Score manager - materials',
-        'Score manager - materials',
+        'Score Manager - scores',
+        'Score Manager - materials',
+        'Score Manager - materials',
         ]
     assert score_manager._transcript.titles == titles

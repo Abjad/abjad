@@ -10,7 +10,7 @@ def test_MaterialPackageManager_go_to_segment_packages_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory (AE)',

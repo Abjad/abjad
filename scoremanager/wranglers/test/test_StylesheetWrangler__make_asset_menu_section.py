@@ -11,7 +11,7 @@ def test_StylesheetWrangler__make_asset_menu_section_01():
     input_ = 'blue~example~score y q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - stylesheets',
         ]

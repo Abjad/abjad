@@ -10,8 +10,8 @@ def test_ScorePackageManager_go_home_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
-        'Score manager - scores',
+        'Score Manager - scores',
         ]
     assert score_manager._transcript.titles == titles

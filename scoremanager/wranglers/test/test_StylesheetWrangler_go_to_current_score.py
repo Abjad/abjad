@@ -10,7 +10,7 @@ def test_StylesheetWrangler_go_to_current_score_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets',
         'Red Example Score (2013)',
@@ -24,8 +24,8 @@ def test_StylesheetWrangler_go_to_current_score_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - stylesheets',
-        'Score manager - stylesheets',
+        'Score Manager - scores',
+        'Score Manager - stylesheets',
+        'Score Manager - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

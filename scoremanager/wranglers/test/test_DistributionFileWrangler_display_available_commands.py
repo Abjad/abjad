@@ -19,5 +19,5 @@ def test_DistributionFileWrangler_display_available_commands_02():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score manager - distribution files - available commands'
+    string = 'Score Manager - distribution files - available commands'
     assert string in contents

@@ -19,4 +19,4 @@ def test_BuildFileWrangler_display_available_commands_02():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score manager - build files - available commands' in contents
+    assert 'Score Manager - build files - available commands' in contents

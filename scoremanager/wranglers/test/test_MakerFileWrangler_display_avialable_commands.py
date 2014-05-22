@@ -19,4 +19,4 @@ def test_MakerFileWrangler_display_avialable_commands_02():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score manager - maker files - available commands' in contents
+    assert 'Score Manager - maker files - available commands' in contents

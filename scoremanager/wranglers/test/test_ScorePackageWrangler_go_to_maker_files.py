@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_maker_files_01():
     input_ = 'k q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
-        'Score manager - maker files',
+        'Score Manager - scores',
+        'Score Manager - maker files',
         ]
     assert score_manager._transcript.titles == titles

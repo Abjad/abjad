@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_clear_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Score manager - materials (_test)',
+        'Score Manager - materials (_test)',
         '',
         '   1: instrumentation (Red Example Score)',
         '',

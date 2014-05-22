@@ -41,9 +41,9 @@ def test_MaterialPackageWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - materials',
-        'Score manager - materials - select view(s) to remove:',
-        'Score manager - materials',
+        'Score Manager - scores',
+        'Score Manager - materials',
+        'Score Manager - materials - select view(s) to remove:',
+        'Score Manager - materials',
         ]
     assert score_manager._transcript.titles == titles

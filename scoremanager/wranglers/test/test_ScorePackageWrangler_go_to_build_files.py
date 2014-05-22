@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_build_files_01():
     input_ = 'u q'
     score_manager._run(pending_input=input_)
     titles = [
-        'Score manager - scores',
-        'Score manager - build files',
+        'Score Manager - scores',
+        'Score Manager - build files',
         ]
     assert score_manager._transcript.titles == titles

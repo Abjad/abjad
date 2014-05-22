@@ -15,7 +15,7 @@ def test_MakerFileWrangler_make_view_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score manager - maker files - views - _test - edit:'
+    string = 'Score Manager - maker files - views - _test - edit:'
     assert string in contents
 
 

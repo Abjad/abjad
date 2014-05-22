@@ -22,7 +22,7 @@ def test_MakerFileWrangler_clear_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Score manager - maker files (_test)',
+        'Score Manager - maker files (_test)',
         '',
         '   1: RedExampleScoreTemplate.py (Red Example Score)',
         '',

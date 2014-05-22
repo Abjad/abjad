@@ -42,9 +42,9 @@ def test_DistributionFileWrangler_remove_views_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - distribution files',
-        'Score manager - distribution files - select view(s) to remove:',
-        'Score manager - distribution files',
+        'Score Manager - scores',
+        'Score Manager - distribution files',
+        'Score Manager - distribution files - select view(s) to remove:',
+        'Score Manager - distribution files',
         ]
     assert score_manager._transcript.titles == titles

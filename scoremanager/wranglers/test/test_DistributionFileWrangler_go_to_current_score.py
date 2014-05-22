@@ -10,7 +10,7 @@ def test_DistributionFileWrangler_go_to_current_score_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - distribution files',
         'Red Example Score (2013)',
@@ -24,8 +24,8 @@ def test_DistributionFileWrangler_go_to_current_score_02():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - distribution files',
-        'Score manager - distribution files',
+        'Score Manager - scores',
+        'Score Manager - distribution files',
+        'Score Manager - distribution files',
         ]
     assert score_manager._transcript.titles == titles

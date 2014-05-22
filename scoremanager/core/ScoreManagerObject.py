@@ -4,7 +4,7 @@ from abjad.tools import stringtools
 
 
 class ScoreManagerObject(object):
-    r'''Score manager object.
+    r'''Score Manager object.
 
     '''
 

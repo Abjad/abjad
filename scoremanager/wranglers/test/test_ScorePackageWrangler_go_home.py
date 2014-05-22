@@ -10,7 +10,7 @@ def test_ScorePackageWrangler_go_home_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
-        'Score manager - scores',
+        'Score Manager - scores',
+        'Score Manager - scores',
         ]
     assert score_manager._transcript.titles == titles

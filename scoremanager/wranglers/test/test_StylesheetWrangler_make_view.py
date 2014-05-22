@@ -15,7 +15,7 @@ def test_StylesheetWrangler_make_view_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score manager - stylesheets - views - _test - edit:'
+    string = 'Score Manager - stylesheets - views - _test - edit:'
     assert string in contents
 
 

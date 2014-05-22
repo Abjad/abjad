@@ -15,7 +15,7 @@ def test_BuildFileWrangler_make_view_01():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score manager - build files - views - _test - edit:'
+    string = 'Score Manager - build files - views - _test - edit:'
     assert string in contents
 
 
@@ -45,7 +45,7 @@ def test_BuildFileWrangler_make_view_03():
     score_manager._run(pending_input=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score manager - build files (_test)' in contents
+    assert 'Score Manager - build files (_test)' in contents
 
     input_ = 'u vls vrm _test default q'
     score_manager._run(pending_input=input_)

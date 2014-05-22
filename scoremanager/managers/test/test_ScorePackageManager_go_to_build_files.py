@@ -10,7 +10,7 @@ def test_ScorePackageManager_go_to_build_files_01():
     score_manager._run(pending_input=input_)
 
     titles = [
-        'Score manager - scores',
+        'Score Manager - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build files',
         ]
