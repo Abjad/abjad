@@ -199,7 +199,7 @@ And make it easy to retrieve containers later:
 ::
 
    >>> score['Flute']
-   Staff-"Flute"{4}
+   Staff("c'8 d'8 e'8 f'8")
 
 
 But container names do not appear in notational output:

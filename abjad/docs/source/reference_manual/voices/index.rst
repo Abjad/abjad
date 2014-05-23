@@ -40,7 +40,7 @@ The interpreter representation of a voice contains three parts:
 ::
 
    >>> voice
-   Voice{3}
+   <Voice{3}>
 
 
 ``Voice`` tells you the voice's class.
@@ -300,3 +300,4 @@ based on a LilyPond voice:
        g'4
        f'4
    }
+

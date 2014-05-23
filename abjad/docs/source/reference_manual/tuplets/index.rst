@@ -57,7 +57,7 @@ The string representation of a tuplet contains four parts:
 ::
 
    >>> print tuplet
-   {* 3:2 fs'8, g'8, r8 *}
+   Tuplet(Multiplier(2, 3), "fs'8 g'8 r8")
 
 
 Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted

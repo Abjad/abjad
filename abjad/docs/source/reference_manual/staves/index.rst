@@ -39,7 +39,7 @@ The interpreter representation of a staff contains three parts:
 ::
 
    >>> staff
-   Staff{3}
+   <Staff{3}>
 
 
 ``Staff`` tells you the staff's class.
@@ -329,3 +329,4 @@ You can make a staff treat its contents as simultaneous with
    >>> show(staff)
 
 .. image:: images/index-10.png
+

@@ -194,3 +194,4 @@ Use ``contents_string`` to get the contents string of a LiliyPond comment:
 
    >>> comment_1.contents_string
    'This is a LilyPond comment before a note.'
+

@@ -60,7 +60,7 @@ The interpreter representation of an Abjad score contains three parts:
 ::
 
    >>> score
-   Score<<2>>
+   <Score<<2>>>
 
 
 ``Score`` tells you the score's class.
@@ -106,7 +106,7 @@ Slice a score to select its components:
 ::
 
    >>> score[:]
-   SimultaneousSelection(Staff{5}, Staff{4})
+   SimultaneousSelection(Staff("e'4 d'4 e'4 f'4 g'1"), Staff("c'2. b8 a8 b1"))
 
 
 
@@ -194,7 +194,7 @@ Use ``pop()`` to remove a score component by index:
 ::
 
    >>> score.pop(1)
-   Staff{4}
+   Staff("c'2. b8 a8 b1")
 
 
 ::
@@ -279,3 +279,4 @@ Score names appear in LilyPond input but not in notational output:
    >>> show(score)
 
 .. image:: images/index-6.png
+

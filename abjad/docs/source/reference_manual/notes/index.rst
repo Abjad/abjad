@@ -107,3 +107,4 @@ Set the written duration of notes like this:
    >>> show(note)
 
 .. image:: images/index-6.png
+

@@ -214,3 +214,4 @@ Or use ``pitchtools``:
 
    >>> pitchtools.NumberedPitchClass(named_pitch)
    NumberedPitchClass(1)
+

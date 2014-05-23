@@ -16,16 +16,22 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 ::
 
    >>> lilypond_file
-   LilyPondFile(Staff{4})
+   <LilyPondFile(4)>
 
 
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-18 15:36
+   % 2014-05-23 12:15
    
-   \version "2.17.97"
+   \version "2.19.6"
    \language "english"
+   
+   \header {}
+   
+   \layout {}
+   
+   \paper {}
    
    \score {
        \new Staff {
@@ -53,19 +59,19 @@ Basic LilyPond files also come equipped with header, layout and paper blocks:
 ::
 
    >>> lilypond_file.header_block
-   HeaderBlock()
+   <Block(name='header')>
 
 
 ::
 
    >>> lilypond_file.layout_block
-   LayoutBlock()
+   <Block(name='layout')>
 
 
 ::
 
    >>> lilypond_file.paper_block
-   PaperBlock()
+   <Block(name='paper')>
 
 
 
@@ -83,13 +89,38 @@ Set default LilyPond global staff size and paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-18 15:36
-   
-   \version "2.17.97"
+   \version "2.19.6"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
    #(set-global-staff-size 14)
+   
+   \header {
+       tagline = \markup {}
+   }
+   
+   \layout {
+       indent = #0
+       ragged-right = ##t
+       \context {
+           \Score
+           \remove Bar_number_engraver
+           \override SpacingSpanner #'strict-grace-spacing = ##t
+           \override SpacingSpanner #'strict-note-spacing = ##t
+           \override SpacingSpanner #'uniform-stretching = ##t
+           \override TupletBracket #'bracket-visibility = ##t
+           \override TupletBracket #'minimum-length = #3
+           \override TupletBracket #'padding = #2
+           \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+           \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+           proportionalNotationDuration = #(ly:make-moment 1 32)
+           tupletFullLength = ##t
+       }
+   }
+   
+   \paper {
+       left-margin = 1\in
+   }
    
    \score {
        \new Staff {
@@ -124,17 +155,53 @@ information:
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-18 15:36
-   
-   \version "2.17.97"
+   \version "2.19.6"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
-   #(set-global-staff-size 14)
+   #(set-global-staff-size 12)
    
    \header {
        composer = \markup { Josquin }
+       tagline = \markup {}
        title = \markup { Missa sexti tonus }
+   }
+   
+   \layout {
+       indent = #0
+       ragged-right = ##t
+       \context {
+           \Score
+           \remove Bar_number_engraver
+           \override SpacingSpanner #'strict-grace-spacing = ##t
+           \override SpacingSpanner #'strict-note-spacing = ##t
+           \override SpacingSpanner #'uniform-stretching = ##t
+           \override TupletBracket #'bracket-visibility = ##t
+           \override TupletBracket #'minimum-length = #3
+           \override TupletBracket #'padding = #2
+           \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+           \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+           proportionalNotationDuration = #(ly:make-moment 1 32)
+           tupletFullLength = ##t
+       }
+       \context {
+           \Score
+           \remove Bar_number_engraver
+           \override SpacingSpanner #'strict-grace-spacing = ##t
+           \override SpacingSpanner #'strict-note-spacing = ##t
+           \override SpacingSpanner #'uniform-stretching = ##t
+           \override TupletBracket #'bracket-visibility = ##t
+           \override TupletBracket #'minimum-length = #3
+           \override TupletBracket #'padding = #2
+           \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+           \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+           proportionalNotationDuration = #(ly:make-moment 1 32)
+           tupletFullLength = ##t
+       }
+   }
+   
+   \paper {
+       left-margin = 1\in
    }
    
    \score {
@@ -152,3 +219,4 @@ information:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
+

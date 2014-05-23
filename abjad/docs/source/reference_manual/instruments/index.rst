@@ -102,7 +102,7 @@ any instrument:
 ::
 
    >>> violin.instrument_name_markup
-   Markup(('Violin',))
+   Markup(contents=('Violin',))
 
 
 ::
@@ -130,7 +130,7 @@ markup of any instrument:
 ::
 
    >>> violin.short_instrument_name_markup
-   Markup(('Vn.',))
+   Markup(contents=('Vn.',))
 
 
 ::
@@ -189,7 +189,7 @@ notated:
 ::
 
    >>> violin.allowable_clefs
-   ClefInventory([Clef('treble')])
+   ClefInventory([Clef(name='treble')])
 
 
 ::
@@ -224,3 +224,4 @@ You can change the properties of any instrument at initialization:
    >>> show(staff)
 
 .. image:: images/index-8.png
+
