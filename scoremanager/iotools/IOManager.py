@@ -80,20 +80,12 @@ class IOManager(IOManager):
             if 'yes'.startswith(result.lower()):
                 return True
 
-    def _display(
-        self,
-        lines,
-        capitalize=True,
-        ):
+    def _display(self, lines, capitalize=True):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if self._session._hide_next_redraw:
+        if self._session.hide_next_redraw:
             return
-        # TODO: eventually use the following
-        #if (self._session._hide_next_redraw and
-        #    not self._session.is_in_interaction):
-        #    return
         if capitalize:
             lines = [
                 stringtools.capitalize_start(line)
