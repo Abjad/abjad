@@ -39,8 +39,8 @@ class Wizard(Controller):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(controller=self)
-        with context:
+        controller = iotools.ControllerContext(controller=self)
+        with controller:
             selector = self._selector
             class_name = selector._run()
             if self._session.is_backtracking:

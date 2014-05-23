@@ -426,11 +426,11 @@ class Menu(Controller):
         if input_:
             self._session._pending_input = input_
         clear_terminal, hide_current_run = True, False
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             controller=self,
             reset_hide_hidden_commands=False,
             )
-        with context:
+        with controller:
             while True:
                 self._should_clear_terminal = clear_terminal
                 self._hide_current_run = hide_current_run

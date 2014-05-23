@@ -261,12 +261,12 @@ class Autoeditor(Controller):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
-        with context:
+        with controller:
             if self._session.is_backtracking:
                 return
             result = None

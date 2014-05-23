@@ -209,12 +209,12 @@ class UserInputGetter(Controller, PromptMakerMixin):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,
             is_in_confirmation_environment=True,
             )
-        with context:
+        with controller:
             self._present_prompts_and_evaluate_input(
                 include_chevron=self._include_chevron,
                 )

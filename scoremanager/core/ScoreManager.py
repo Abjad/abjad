@@ -89,7 +89,7 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             controller=self,
             consume_local_backtrack=True,
             on_exit_callbacks=(self._session._clean_up,)
@@ -101,7 +101,7 @@ class ScoreManager(Controller):
         if self._session.is_test:
             state = systemtools.FilesystemState(keep=[path])
         interaction = self._io_manager._make_interaction()
-        with context, directory_change, state, interaction:
+        with controller, directory_change, state, interaction:
             while True:
                 result = self._score_package_wrangler._get_sibling_score_path()
                 if not result:

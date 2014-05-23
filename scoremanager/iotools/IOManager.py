@@ -421,8 +421,8 @@ class IOManager(IOManager):
                 message = 'can not interpret {}.'.format(path)
                 raise Exception(message)
             directory = os.path.dirname(path)
-            context = systemtools.TemporaryDirectoryChange(directory)
-            with context:
+            directory = systemtools.TemporaryDirectoryChange(directory)
+            with directory:
                 result = self.spawn_subprocess(command)
             if result != 0:
                 self._display('')

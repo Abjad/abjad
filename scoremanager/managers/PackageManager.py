@@ -728,12 +728,12 @@ class PackageManager(AssetController):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,
             )
-        directory_change = systemtools.TemporaryDirectoryChange(self._path)
-        with context, directory_change:
+        directory = systemtools.TemporaryDirectoryChange(self._path)
+        with controller, directory:
                 self._enter_run()
                 while True:
                     result = self._session.wrangler_navigation_directive

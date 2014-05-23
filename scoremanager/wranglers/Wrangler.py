@@ -989,16 +989,16 @@ class Wrangler(AssetController):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        context = iotools.ControllerContext(
+        controller = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,
             on_enter_callbacks=(self._enter_run,),
             )
-        directory_change = systemtools.NullContextManager()
+        directory = systemtools.NullContextManager()
         if self._session.is_in_score:
             path = self._get_current_directory()
-            directory_change = systemtools.TemporaryDirectoryChange(path)
-        with context, directory_change:
+            directory = systemtools.TemporaryDirectoryChange(path)
+        with controller, directory:
             result = None
             while True:
                 result = self._get_sibling_asset_path()

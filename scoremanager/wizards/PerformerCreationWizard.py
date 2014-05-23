@@ -111,12 +111,12 @@ class PerformerCreationWizard(Wizard):
             self._session._pending_input = input_
         try_again = False
         performers = []
-        context = iotools.ControllerContext(controller=self)
+        controller = iotools.ControllerContext(controller=self)
         selector = iotools.Selector(session=self._session)
         selector = selector.make_score_tools_performer_name_selector(
             is_ranged=self._is_ranged,
             )
-        with context:
+        with controller:
             while True:
                 result = selector._run()
                 if self._session.is_backtracking:

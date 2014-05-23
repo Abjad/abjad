@@ -213,5 +213,3 @@
 
 43. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
-
-44. Change 'with context:' to 'with controller:' for ControllerContext usage.
