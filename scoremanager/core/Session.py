@@ -560,7 +560,10 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._hide_next_redraw
+        if self.is_in_task:
+            return False
+        else:
+            return self._hide_next_redraw
 
     @property
     def initial_input(self):
