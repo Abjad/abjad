@@ -51,8 +51,8 @@ class AbjadConfiguration(Configuration):
         Configuration.__init__(self)
         # TODO: uncommenting this fails ScoreManagegerConfiguration init
         # verify the PDF output directory
-        #if not os.path.exists(self.abjad_output_directory):
-        #    os.mkdir(self.abjad_output_directory)
+        if not os.path.exists(self.abjad_output_directory):
+            os.makedirs(self.abjad_output_directory)
 
     ### PRIVATE PROPERTIES ###
 

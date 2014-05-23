@@ -113,14 +113,23 @@ class Parser(AbjadObject):
     def logger_path(self):
         r'''The output path for the parser's logfile.
         '''
-        return os.path.join(self.output_path, 'parselog.txt')
+        import sys
+        file_name = 'parselog_{}_{}.txt'.format(
+            type(self).__name__,
+            '-'.join(str(x) for x in sys.version_info),
+            )
+        return os.path.join(self.output_path, file_name)
 
     @property
     def output_path(self):
         r'''The output path for files associated with the parser.
         '''
-        class_path = inspect.getfile(type(self))
-        return class_path.rpartition(os.path.sep)[0]
+        from abjad import abjad_configuration
+        abjad_configuration_directory = \
+            abjad_configuration.abjad_configuration_directory
+        if not os.path.isdir(abjad_configuration_directory):
+            os.makedirs(abjad_configuration_directory)
+        return abjad_configuration_directory
 
     @property
     def parser(self):
@@ -139,7 +148,7 @@ class Parser(AbjadObject):
         r'''The output path for the parser's pickled parsing tables.
         '''
         import sys
-        file_name = '_{}_parse_tables_{}.pkl'.format(
+        file_name = 'parse_tables_{}_{}.pkl'.format(
             type(self).__name__,
             '-'.join(str(x) for x in sys.version_info),
             )
