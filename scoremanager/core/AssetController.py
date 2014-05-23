@@ -90,9 +90,9 @@ class AssetController(Controller):
 
     def _make_go_menu_section(self, menu):
         commands = []
-        commands.append(('go - all', '**'))
         commands.append(('go - back', 'b'))
         commands.append(('go - home', 'h'))
+        commands.append(('go - library', '**'))
         commands.append(('go - quit', 'q'))
         commands.append(('go - score', 's'))
         menu.make_command_section(

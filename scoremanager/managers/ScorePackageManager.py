@@ -39,7 +39,7 @@ class ScorePackageManager(PackageManager):
         result.update({
             'fix': self.fix_package,
             'p': self.go_to_setup,
-            'spdfo': self.open_score_pdf,
+            'spo': self.open_score_pdf,
             })
         return result
 
@@ -171,7 +171,7 @@ class ScorePackageManager(PackageManager):
     def _make_score_menu_section(self, menu):
         commands = []
         commands.append(('package - fix', 'fix'))
-        commands.append(('package - score pdf - open', 'spdfo'))
+        commands.append(('package - score.pdf - open', 'spo'))
         commands.append(('package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,

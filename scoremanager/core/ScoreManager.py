@@ -58,9 +58,9 @@ class ScoreManager(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'nls**': self.list_every_init_py,
-            'no**': self.open_every_init_py,
-            'ns**': self.write_every_init_py_stub,
+            'nls*': self.list_every_init_py,
+            'no*': self.open_every_init_py,
+            'ns*': self.write_every_init_py_stub,
             })
         return result
 
@@ -98,9 +98,9 @@ class ScoreManager(AssetController):
 
     def _make_init_py_menu_section(self, menu):
         commands = []
-        commands.append(('__init__.py - list', 'nls**'))
-        commands.append(('__init__.py - open', 'no**'))
-        commands.append(('__init__.py - stub', 'ns**'))
+        commands.append(('__init__.py - list', 'nls*'))
+        commands.append(('__init__.py - open', 'no*'))
+        commands.append(('__init__.py - stub', 'ns*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -161,60 +161,60 @@ class ScoreManager(AssetController):
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def commit_to_repository(self, confirm=True, display=True):
         r'''Commit modified files to repository.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def list_every_init_py(self):
         r'''Lists every ``__init__.py``.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def open_every_init_py(self):
         r'''Opens every ``__init__.py``.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def repository_clean(self, confirm=True, display=True):
         r'''Removes unadded files from filesystem.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def repository_status(self):
         r'''Displays repository status.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts files to repository.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def update_from_repository(self, confirm=True, display=True):
         r'''Updates from repository.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
 
     def write_every_init_py_stub(self, confirm=True, display=True):
         r'''Writes stub to every ``__init__.py``.
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()
