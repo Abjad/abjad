@@ -448,7 +448,12 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return self._settings['abjad_output_directory']
+        if 'abjad_output_directory' in self._settings:
+            return self._settings['abjad_output_directory']
+        return os.path.join(
+            self.abjad_configuration_directory,
+            'output'
+            )
 
     @property
     def abjad_root_directory(self):
