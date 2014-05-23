@@ -621,7 +621,7 @@ Now let's take a look at the code that puts our score together:
        detach(instrumenttools.Instrument, score['Piano Staff'])
    
        klavier = instrumenttools.Piano(
-           instrument_name='Katzenklavier', 
+           instrument_name='Katzenklavier',
            short_instrument_name='kk.',
            )
        attach(klavier, score['Piano Staff'])
@@ -681,13 +681,13 @@ name, change the global staff size, paper size, staff spacing and so forth.
 
    >>> lilypond_file = make_mozart_lilypond_file()
    >>> print lilypond_file
-   LilyPondFile(Score-"Two-Staff Piano Score"<<1>>)
+   <LilyPondFile(4)>
 
 
 ::
 
    >>> print lilypond_file.header_block
-   HeaderBlock(2)
+   <Block(name='header')>
 
 
 ::
@@ -706,7 +706,7 @@ name, change the global staff size, paper size, staff spacing and so forth.
 ::
 
    >>> print lilypond_file.layout_block
-   LayoutBlock(1)
+   <Block(name='layout')>
 
 
 ::
@@ -720,7 +720,7 @@ name, change the global staff size, paper size, staff spacing and so forth.
 ::
 
    >>> print lilypond_file.paper_block
-   PaperBlock(2)
+   <Block(name='paper')>
 
 
 ::
@@ -739,3 +739,4 @@ And now the final result:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
+
