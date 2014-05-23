@@ -9,10 +9,10 @@ def test_DistributionFileWrangler_remove_views_01():
     '''
 
     input_ = 'd vnew _test_100 rm all'
-    input_ += ' add red-example-score.pdf~(Red~Example~Score) done default' 
+    input_ += ' add red-example-score.pdf~(Red~Example~Score) done <return>' 
     input_ += ' d vnew _test_101 rm all'
     input_ += ' add red-example-score-program-notes.pdf~(Red~Example~Score)'
-    input_ += ' done default'
+    input_ += ' done <return>'
     input_ += ' q' 
     score_manager._run(input_=input_)
 
@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_remove_views_01():
     assert '_test_100' in contents
     assert '_test_101' in contents
 
-    input_ = 'd vrm _test_100-_test_101 default q'
+    input_ = 'd vrm _test_100-_test_101 <return> q'
     score_manager._run(input_=input_)
 
     input_ = 'd vls q'

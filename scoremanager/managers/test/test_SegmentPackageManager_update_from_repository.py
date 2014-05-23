@@ -7,6 +7,6 @@ score_manager._session._is_repository_test = True
 
 def test_SegmentPackageManager_update_from_repository_01():
 
-    input_ = 'red~example~score g A rup default q'
+    input_ = 'red~example~score g A rup <return> q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_update_from_repository

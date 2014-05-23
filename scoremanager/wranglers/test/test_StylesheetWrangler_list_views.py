@@ -8,8 +8,8 @@ def test_StylesheetWrangler_list_views_01():
     r'''Makes sure only one stylesheet is visible with view.
     '''
     
-    input_ = 'y vls vnew _test rm all add clean-letter-14.ily done default'
-    input_ += ' vls vrm _test default vls q'
+    input_ = 'y vls vnew _test rm all add clean-letter-14.ily done <return>'
+    input_ += ' vls vrm _test <return> vls q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

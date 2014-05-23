@@ -41,7 +41,7 @@ def test_DistributionFileWrangler_make_view_03():
     pytest.skip('port me forward.')
 
     input_ = 'd vnew _test rm all'
-    input_ += ' add red-example-score.pdf~(Red~Example~Score) done default q' 
+    input_ += ' add red-example-score.pdf~(Red~Example~Score) done <return> q' 
     score_manager._run(input_=input_)
 
     lines =['> done', '']
@@ -50,7 +50,7 @@ def test_DistributionFileWrangler_make_view_03():
     lines = ['View inventory written to disk.', '']
     assert score_manager._transcript[-4].lines == lines
         
-    input_ = 'd vls vrm _test default q'
+    input_ = 'd vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents

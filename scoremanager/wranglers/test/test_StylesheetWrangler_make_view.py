@@ -40,7 +40,7 @@ def test_StylesheetWrangler_make_view_03():
     '''
     pytest.skip('port me forward.')
 
-    input_ = 'y vnew _test rm all add clean-letter-14.ily done default q' 
+    input_ = 'y vnew _test rm all add clean-letter-14.ily done <return> q' 
     score_manager._run(input_=input_)
 
     lines =['> done', '']
@@ -49,7 +49,7 @@ def test_StylesheetWrangler_make_view_03():
     lines = ['View inventory written to disk.', '']
     assert score_manager._transcript[-4].lines == lines
         
-    input_ = 'y vls vrm _test default q'
+    input_ = 'y vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents

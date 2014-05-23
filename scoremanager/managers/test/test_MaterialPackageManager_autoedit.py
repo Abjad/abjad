@@ -44,9 +44,9 @@ def test_MaterialPackageManager_autoedit_02():
     assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testtempoinventory aes TempoInventory default'
+        input_ = 'm new testtempoinventory aes TempoInventory <return>'
         input_ += ' ae add d (1, 4) units 60 done add d (1, 4) units 90 done'
-        input_ += ' done y default q'
+        input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -79,7 +79,7 @@ def test_MaterialPackageManager_autoedit_03():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testpri'
-        input_ += ' aes PitchRangeInventory default done y default q'
+        input_ += ' aes PitchRangeInventory <return> done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -112,11 +112,11 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm new testpri aes PitchRangeInventory default'
+    input_ = 'm new testpri aes PitchRangeInventory <return>'
     input_ += ' ae add range [A0, C8] done'
     input_ += ' add range [C2, F#5] done'
     input_ += ' add range [C2, G5] done'
-    input_ += ' rm 1 mv 1 2 b y default q'
+    input_ += ' rm 1 mv 1 2 b y <return> q'
 
     with systemtools.FilesystemState(remove=[path]):
         score_manager._run(input_=input_)
@@ -157,9 +157,9 @@ def test_MaterialPackageManager_autoedit_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new testmarkupinventory aes markup default"
+        input_ = "m new testmarkupinventory aes markup <return>"
         input_ += " ae add arg r'\\italic~{~serenamente~}' done"
-        input_ += " add arg r'\\italic~{~presto~}' done done y default q"
+        input_ += " add arg r'\\italic~{~presto~}' done done y <return> q"
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -192,8 +192,8 @@ def test_MaterialPackageManager_autoedit_06():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
-        input_ += ' aes OctaveTranspositionMappingInventory default'
-        input_ += ' done y default q'
+        input_ += ' aes OctaveTranspositionMappingInventory <return>'
+        input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -236,11 +236,11 @@ def test_MaterialPackageManager_autoedit_07():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
-        input_ += ' aes OctaveTranspositionMappingInventory default'
+        input_ += ' aes OctaveTranspositionMappingInventory <return>'
         input_ += ' ae add add source [A0, C4) target 15 done'
         input_ += ' add source [C4, C8) target 27 done done'
         input_ += ' add add source [A0, C8] target -18 done'
-        input_ += ' done done y default q'
+        input_ += ' done done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -270,7 +270,7 @@ def test_MaterialPackageManager_autoedit_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testlist aes list default ae 17 foo done b default q'
+        input_ = 'm new testlist aes list <return> ae 17 foo done b <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -299,8 +299,8 @@ def test_MaterialPackageManager_autoedit_09():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testlist aes list default'
-        input_ += ' ae add 17 add foo done y default q'
+        input_ = 'm new testlist aes list <return>'
+        input_ += ' ae add 17 add foo done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -340,11 +340,11 @@ def test_MaterialPackageManager_autoedit_10():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testrhythmmaker aes TaleaRhythmMaker default'
+        input_ = 'm new testrhythmmaker aes TaleaRhythmMaker <return>'
         input_ += ' ae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
-        input_ += ' done y default q'
+        input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -383,9 +383,9 @@ def test_MaterialPackageManager_autoedit_11():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = "m new testarticulationhandler"
-        input_ += " aes ReiteratedArticulationHandler default"
+        input_ += " aes ReiteratedArticulationHandler <return>"
         input_ += " ae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
-        input_ += " done y default q"
+        input_ += " done y <return> q"
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -421,8 +421,8 @@ def test_MaterialPackageManager_autoedit_12():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testdynamichandler'
-        input_ += ' aes ReiteratedDynamicHandler default'
-        input_ += ' ae dy f md (1, 16) done y default q'
+        input_ += ' aes ReiteratedDynamicHandler <return>'
+        input_ += ' ae dy f md (1, 16) done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)

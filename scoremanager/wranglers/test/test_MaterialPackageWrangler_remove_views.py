@@ -9,9 +9,9 @@ def test_MaterialPackageWrangler_remove_views_01():
     '''
 
     input_ = 'm vnew _test_100 rm all'
-    input_ += ' add instrumentation~(Red~Example~Score) done default' 
+    input_ += ' add instrumentation~(Red~Example~Score) done <return>' 
     input_ += ' m vnew _test_101 rm all'
-    input_ += ' add tempo~inventory~(Red~Example~Score) done default'
+    input_ += ' add tempo~inventory~(Red~Example~Score) done <return>'
     input_ += ' q' 
     score_manager._run(input_=input_)
 
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_remove_views_01():
     assert '_test_100' in contents
     assert '_test_101' in contents
 
-    input_ = 'm vrm _test_100-_test_101 default q'
+    input_ = 'm vrm _test_100-_test_101 <return> q'
     score_manager._run(input_=input_)
 
     input_ = 'm vls q'

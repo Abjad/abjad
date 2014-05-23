@@ -13,8 +13,8 @@ def test_SegmentPackageWrangler_apply_view_01():
     '''
     
     input_ = 'g vnew _test rm all'
-    input_ += ' add A~(Red~Example~Score) done default'
-    input_ += ' vap _test vrm _test default q'
+    input_ += ' add A~(Red~Example~Score) done <return>'
+    input_ += ' vap _test vrm _test <return> q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
@@ -39,8 +39,8 @@ def test_SegmentPackageWrangler_apply_view_02():
     '''
     
     input_ = 'red~example~score g vnew _test'
-    input_ += ' rm all add A done default'
-    input_ += ' vap _test vrm _test default q'
+    input_ += ' rm all add A done <return>'
+    input_ += ' vap _test vrm _test <return> q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

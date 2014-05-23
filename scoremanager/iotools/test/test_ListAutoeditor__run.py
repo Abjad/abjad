@@ -244,7 +244,7 @@ def test_ListAutoeditor__run_12():
         session=session,
         target=target,
         )
-    input_ = 'add first~pattern default add second~pattern default done'
+    input_ = 'add first~pattern <return> add second~pattern <return> done'
     autoeditor._run(input_=input_)
 
     view = scoremanager.iotools.View([

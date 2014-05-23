@@ -9,7 +9,7 @@ def test_SegmentPackageManager_list_versions_directory_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score g 1 vrls default q'
+    input_ = 'red~example~score g 1 vrls <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

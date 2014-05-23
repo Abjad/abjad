@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_BuildFileWrangler_generate_back_cover_source_01():
     r'''Works when back cover LaTeX doesn't yet exist.
 
-    Supplies papersize={8.5in, 11in} as a default.
+    Supplies papersize={8.5in, 11in} as a <return>.
     '''
 
     source_path = os.path.join(

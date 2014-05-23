@@ -8,8 +8,8 @@ def test_MakerFileWrangler_list_views_01():
     
     input_ = 'k vls vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
-    input_ += ' done default'
-    input_ += ' vls vrm _test default vls q'
+    input_ += ' done <return>'
+    input_ += ' vls vrm _test <return> vls q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

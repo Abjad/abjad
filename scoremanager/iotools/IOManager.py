@@ -162,7 +162,9 @@ class IOManager(IOManager):
                         print('')
             else:
                 input_ = self._pop_from_pending_input()
-                if input_ == 'default':
+                # TODO: eventually allow only <return>
+                if input_ in ('default', '<return>'):
+                #if input_ == '<return>':
                     found_default_token = True
             if not found_default_token:
                 self._session.command_history.append(input_)

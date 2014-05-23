@@ -59,7 +59,7 @@ def test_SegmentPackageWrangler_make_view_04():
     pytest.skip('port me forward.')
 
     input_ = 'g vnew _test rm all'
-    input_ += ' add A~(Red~Example~Score) done default q' 
+    input_ += ' add A~(Red~Example~Score) done <return> q' 
     score_manager._run(input_=input_)
 
     lines =['> done', '']
@@ -68,7 +68,7 @@ def test_SegmentPackageWrangler_make_view_04():
     lines = ['View inventory written to disk.', '']
     assert score_manager._transcript[-4].lines == lines
         
-    input_ = 'g vls vrm _test default q'
+    input_ = 'g vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents

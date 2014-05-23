@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'mdls* default q'
+    input_ = 'mdls* <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

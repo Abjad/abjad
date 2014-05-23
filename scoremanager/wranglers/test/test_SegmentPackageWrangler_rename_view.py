@@ -9,7 +9,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_rename_view_01():
 
     input_ = 'g vnew _test_100 rm all'
-    input_ += ' add A~(Red~Example~Score) done default q' 
+    input_ += ' add A~(Red~Example~Score) done <return> q' 
     score_manager._run(input_=input_)
         
     input_ = 'g vls q'
@@ -18,7 +18,7 @@ def test_SegmentPackageWrangler_rename_view_01():
     assert '_test_100' in contents
     assert '_test_101' not in contents
 
-    input_ = 'g vren _test_100 _test_101 default q'
+    input_ = 'g vren _test_100 _test_101 <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -28,7 +28,7 @@ def test_SegmentPackageWrangler_rename_view_01():
     assert '_test_100' not in contents
     assert '_test_101' in contents
 
-    input_ = 'g vrm _test_101 default q'
+    input_ = 'g vrm _test_101 <return> q'
     score_manager._run(input_=input_)
 
     input_ = 'g vls q'

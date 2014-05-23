@@ -520,7 +520,7 @@ class Session(abctools.AbjadObject):
         result = []
         for command in self.command_history:
             if command == '':
-                result.append('default')
+                result.append('<return>')
             else:
                 result.append(command)
         return result

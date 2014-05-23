@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageManager_remove_metadatum_01():
 
     # make sure no flavor metadatum found
-    input_ = 'red~example~score g A mdg flavor default q'
+    input_ = 'red~example~score g A mdg flavor <return> q'
     score_manager._run(input_=input_)
     assert 'None' in score_manager._transcript.contents
 
@@ -16,15 +16,15 @@ def test_SegmentPackageManager_remove_metadatum_01():
     score_manager._run(input_=input_)
 
     # maker sure flavor metadatum now equal to 'cherry'
-    input_ = 'red~example~score g A mdg flavor default q'
+    input_ = 'red~example~score g A mdg flavor <return> q'
     score_manager._run(input_=input_)
     assert "'cherry'" in score_manager._transcript.contents
 
     # remove flavor metadatum
-    input_ = 'red~example~score g A mdrm flavor default q'
+    input_ = 'red~example~score g A mdrm flavor <return> q'
     score_manager._run(input_=input_)
 
     # make sure no flavor metadatum found
-    input_ = 'red~example~score g A mdg flavor default q'
+    input_ = 'red~example~score g A mdg flavor <return> q'
     score_manager._run(input_=input_)
     assert 'None' in score_manager._transcript.contents

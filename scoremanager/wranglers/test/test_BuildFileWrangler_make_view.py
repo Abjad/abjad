@@ -47,7 +47,7 @@ def test_BuildFileWrangler_make_view_03():
 
     assert 'Score Manager - build files (_test)' in contents
 
-    input_ = 'u vls vrm _test default q'
+    input_ = 'u vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents

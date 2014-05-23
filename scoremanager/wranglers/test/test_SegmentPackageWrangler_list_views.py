@@ -11,8 +11,8 @@ def test_SegmentPackageWrangler_list_views_01():
     '''
     
     input_ = 'g vls vnew _test rm all'
-    input_ += ' add A~(Red~Example~Score) done default'
-    input_ += ' vls vrm _test default vls q'
+    input_ += ' add A~(Red~Example~Score) done <return>'
+    input_ += ' vls vrm _test <return> vls q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

@@ -12,8 +12,8 @@ def test_StylesheetWrangler_apply_view_01():
     Makes sure only one stylesheet is visible after view is applied.
     '''
     
-    input_ = 'y vnew _test rm all add clean-letter-14.ily done default'
-    input_ += ' vap _test vrm _test default q'
+    input_ = 'y vnew _test rm all add clean-letter-14.ily done <return>'
+    input_ += ' vap _test vrm _test <return> q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
@@ -38,8 +38,8 @@ def test_StylesheetWrangler_apply_view_02():
     '''
     
     input_ = 'red~example~score y vnew _test'
-    input_ += ' rm all add stylesheet-addendum.ily done default'
-    input_ += ' vap _test vrm _test default q'
+    input_ += ' rm all add stylesheet-addendum.ily done <return>'
+    input_ += ' vap _test vrm _test <return> q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

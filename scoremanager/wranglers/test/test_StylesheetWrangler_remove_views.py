@@ -8,8 +8,8 @@ def test_StylesheetWrangler_remove_views_01():
     r'''Makes two views. Removes two views at one time.
     '''
 
-    input_ = 'y vnew _test_100 rm all add clean-letter-14.ily done default' 
-    input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done default'
+    input_ = 'y vnew _test_100 rm all add clean-letter-14.ily done <return>' 
+    input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done <return>'
     input_ += ' q' 
     score_manager._run(input_=input_)
 
@@ -20,7 +20,7 @@ def test_StylesheetWrangler_remove_views_01():
     assert '_test_100' in contents
     assert '_test_101' in contents
 
-    input_ = 'y vrm _test_100-_test_101 default q'
+    input_ = 'y vrm _test_100-_test_101 <return> q'
     score_manager._run(input_=input_)
 
     input_ = 'y vls q'

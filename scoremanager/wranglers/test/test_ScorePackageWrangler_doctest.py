@@ -6,7 +6,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_doctest_01():
 
-    input_ = 'pyd default q'
+    input_ = 'pyd <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_write_cache_01():
     ScoreManager._run() always preserves cache during tests.
     '''
 
-    input_ = 'cw default q'
+    input_ = 'cw <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'Wrote' in contents

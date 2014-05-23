@@ -10,8 +10,8 @@ def test_StylesheetWrangler_clear_view_01():
     r'''Makes sure more than one stylesheet is visible without view.
     '''
     
-    input_ = 'y vnew _test rm all add clean-letter-14.ily done default'
-    input_ += ' vap _test vcl vrm _test default q'
+    input_ = 'y vnew _test rm all add clean-letter-14.ily done <return>'
+    input_ += ' vap _test vcl vrm _test <return> q'
     score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

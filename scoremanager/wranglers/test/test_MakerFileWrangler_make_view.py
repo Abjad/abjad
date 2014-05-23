@@ -42,7 +42,7 @@ def test_MakerFileWrangler_make_view_03():
 
     input_ = 'k vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
-    input_ += ' done default q' 
+    input_ += ' done <return> q' 
     score_manager._run(input_=input_)
 
     lines =['> done', '']
@@ -51,7 +51,7 @@ def test_MakerFileWrangler_make_view_03():
     lines = ['View inventory written to disk.', '']
     assert score_manager._transcript[-4].lines == lines
         
-    input_ = 'k vls vrm _test default q'
+    input_ = 'k vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
