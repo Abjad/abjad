@@ -92,7 +92,7 @@ class Session(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, pending_input=None, is_test=False):
+    def __init__(self, input_=None, is_test=False):
         from scoremanager import core
         from scoremanager import iotools
         self._attempted_repository_status = False
@@ -108,7 +108,7 @@ class Session(abctools.AbjadObject):
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
-        self._initial_input = pending_input
+        self._initial_input = input_
         self._io_manager = iotools.IOManager(session=self)
         self._is_repository_test = False
         self._is_autoadding = False
@@ -133,7 +133,7 @@ class Session(abctools.AbjadObject):
         self._last_command_was_composite = False
         self._last_score_package_path = None
         self._menu_header_width = 160
-        self._pending_input = pending_input
+        self._pending_input = input_
         self._proceed_count = 0
         self._score_manager = None
         self._transcript = iotools.Transcript()
@@ -154,11 +154,11 @@ class Session(abctools.AbjadObject):
         '''
         summary = []
         if self.initial_input is not None:
-            string = 'initial_pending_input={!r}'
+            string = 'initial_input_={!r}'
             string = string.format(self.initial_input)
             summary.append(string)
         if self.pending_input not in (None, ''):
-            string = 'pending_input={!r}'
+            string = 'input_={!r}'
             string = string.format(self.pending_input)
             summary.append(string)
         summary = ', '.join(summary)

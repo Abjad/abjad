@@ -18,5 +18,5 @@ def test_ScorePackageWrangler_repository_clean_01():
             file_pointer.write('')
         assert os.path.isfile(foo_path)
         input_ = 'rcn y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert not os.path.exists(foo_path)

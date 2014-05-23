@@ -9,7 +9,7 @@ def test_BuildFileWrangler_open_lilypond_log_01():
     '''
 
     input_ = 'red~example~score u log q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file
 
@@ -19,6 +19,6 @@ def test_BuildFileWrangler_open_lilypond_log_02():
     '''
 
     input_ = 'u log q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

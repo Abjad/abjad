@@ -20,7 +20,7 @@ class ListAutoeditor(Autoeditor):
 
     ::
 
-        >>> autoeditor._run(pending_input='rm 1 q')
+        >>> autoeditor._run(input_='rm 1 q')
 
     ::
 

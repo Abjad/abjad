@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_write_stub_init_py_01():
 
     input_ = 'red~example~score g ns y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Will write stub to' in contents

@@ -9,7 +9,7 @@ def test_StylesheetWrangler_go_to_materials_01():
     '''
 
     input_ = 'red~example~score y m q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     titles = [
         'Score Manager - scores',
         'Red Example Score (2013)',
@@ -24,7 +24,7 @@ def test_StylesheetWrangler_go_to_materials_02():
     '''
 
     input_ = 'y m q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     titles = [
         'Score Manager - scores',
         'Score Manager - stylesheets',

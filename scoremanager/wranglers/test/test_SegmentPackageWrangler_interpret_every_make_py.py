@@ -28,7 +28,7 @@ def test_SegmentPackageWrangler_interpret_every_make_py_01():
 
     with systemtools.FilesystemState(keep=original_paths):
         input_ = 'red~example~score g ki* y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         strings = []
         strings.extend(paths)

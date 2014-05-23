@@ -18,6 +18,6 @@ def test_SegmentPackageManager_write_stub_definition_py_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score g A ds y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.isfile(path)
         assert not filecmp.cmp(path, path + '.backup')

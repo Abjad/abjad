@@ -14,12 +14,12 @@ def test_ScorePackageWrangler_copy_package_01():
 
     with systemtools.FilesystemState(remove=[pretty_path]):
         input_ = 'cp Red~Example~Score Pretty~Example~Score y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(pretty_path)
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=pretty_path, session=score_manager._session)
         title = 'Pretty Example Score'
         manager._add_metadatum('title', title)
         input_ = 'rm Pretty~Example~Score remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert not os.path.exists(pretty_path)

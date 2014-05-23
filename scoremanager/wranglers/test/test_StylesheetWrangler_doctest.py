@@ -9,7 +9,7 @@ def test_StylesheetWrangler_doctest_01():
     '''
 
     input_ = 'y pyd q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     strings = [
@@ -25,7 +25,7 @@ def test_StylesheetWrangler_doctest_02():
     '''
 
     input_ = 'red~example~score y pyd q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     strings = [

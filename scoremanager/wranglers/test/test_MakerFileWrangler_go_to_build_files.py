@@ -9,7 +9,7 @@ def test_MakerFileWrangler_go_to_build_files_01():
     '''
 
     input_ = 'red~example~score k u q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     titles = [
         'Score Manager - scores',
         'Red Example Score (2013)',

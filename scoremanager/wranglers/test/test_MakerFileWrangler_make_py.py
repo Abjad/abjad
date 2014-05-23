@@ -16,5 +16,5 @@ def test_MakerFileWrangler_make_py_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score k new FooMaker.py q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)

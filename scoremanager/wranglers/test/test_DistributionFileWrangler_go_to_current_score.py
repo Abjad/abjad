@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_DistributionFileWrangler_go_to_current_score_01():
 
     input_ = 'red~example~score d s q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -21,7 +21,7 @@ def test_DistributionFileWrangler_go_to_current_score_01():
 def test_DistributionFileWrangler_go_to_current_score_02():
 
     input_ = 'd s q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',

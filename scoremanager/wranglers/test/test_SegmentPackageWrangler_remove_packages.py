@@ -22,7 +22,7 @@ def test_SegmentPackageWrangler_remove_packages_01():
     assert os.path.exists(backup_path)
 
     input_ = 'red~example~score g rm A remove q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     assert not os.path.exists(path)
     assert os.path.exists(backup_path)
     shutil.move(backup_path, path)

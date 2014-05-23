@@ -47,7 +47,7 @@ def test_BuildFileWrangler_collect_segment_lilypond_files_01():
 
     # call (mc)
     input_ = 'red~example~score u mc y default q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     # make sure new segment files are currently in build directory
     for file_path in file_paths:

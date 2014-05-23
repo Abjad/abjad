@@ -24,7 +24,7 @@ def test_SegmentPackageManager_interpret_make_py_01():
             os.remove(path)
         assert not any(os.path.exists(_) for _ in output_paths)
         input_ = 'red~example~score g A ki y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert all(os.path.isfile(_) for _ in output_paths)
         #assert systemtools.TestManager.compare_lys(
         #    ly_path,

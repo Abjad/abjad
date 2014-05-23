@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_go_to_materials_01():
     '''
 
     input_ = 'm q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     titles = [
         'Score Manager - scores',
         'Score Manager - materials',

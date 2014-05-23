@@ -28,6 +28,6 @@ def test_SegmentPackageManager_interpret_output_ly_01():
         os.remove(output_path)
         assert not os.path.exists(output_path)
         input_ = 'red~example~score g A oli y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.isfile(output_path)
         #assert diff-pdf(output_path, backup_output_path)

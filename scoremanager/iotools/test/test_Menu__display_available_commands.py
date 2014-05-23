@@ -7,7 +7,7 @@ def test_Menu__display_available_commands_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'system - available commands' in contents
@@ -20,7 +20,7 @@ def test_Menu__display_available_commands_02():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? asdf q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -36,7 +36,7 @@ def test_Menu__display_available_commands_03():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? log q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -51,7 +51,7 @@ def test_Menu__display_available_commands_04():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score ? q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',

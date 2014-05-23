@@ -7,7 +7,7 @@ def test_ScorePackageManager_doctest_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score pyd q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     strings = [

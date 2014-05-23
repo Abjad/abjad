@@ -13,7 +13,7 @@ def test_DistributionFileWrangler_copy_file_01():
     '''
 
     input_ = 'd cp red-example-score.pdf q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -43,7 +43,7 @@ def test_DistributionFileWrangler_copy_file_02():
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score d cp'
         input_ += ' red-example-score.pdf copied-red-example-score.pdf y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)

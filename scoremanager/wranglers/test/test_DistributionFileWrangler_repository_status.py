@@ -9,7 +9,7 @@ def test_DistributionFileWrangler_repository_status_01():
     '''
 
     input_ = 'd rst q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'On branch master' in contents
@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_repository_status_02():
     '''
 
     input_ = 'red~example~score d rst q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'On branch master' in contents
@@ -35,6 +35,6 @@ def test_DistributionFileWrangler_repository_status_03():
         return
 
     input_ = '{} d rst q'.format(score_name)
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     assert '> rst' in score_manager._transcript.first_lines

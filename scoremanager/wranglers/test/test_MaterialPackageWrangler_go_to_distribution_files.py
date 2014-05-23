@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_go_to_distribution_files_01():
     '''
 
     input_ = 'red~example~score m d q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     titles = [
         'Score Manager - scores',
         'Red Example Score (2013)',

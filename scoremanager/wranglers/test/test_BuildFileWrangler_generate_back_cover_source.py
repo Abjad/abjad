@@ -30,7 +30,7 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
     with systemtools.FilesystemState(
         keep=[source_path], remove=[destination_path]):
         input_ = 'blue~example~score u bcg q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.isfile(destination_path)
         destination_contents = ''.join(file(destination_path).readlines())
         assert 'PAPER_SIZE' not in destination_contents
@@ -62,7 +62,7 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
 
     with systemtools.FilesystemState(keep=[source_path, destination_path]):
         input_ = 'red~example~score u bcg y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.isfile(destination_path)
         destination_contents = ''.join(file(destination_path).readlines())
         assert 'PAPER_SIZE' not in destination_contents

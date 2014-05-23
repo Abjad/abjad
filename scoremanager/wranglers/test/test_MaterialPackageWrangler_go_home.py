@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageWrangler_go_home_01():
 
     input_ = 'red~example~score m h q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -21,7 +21,7 @@ def test_MaterialPackageWrangler_go_home_01():
 def test_MaterialPackageWrangler_go_home_02():
 
     input_ = 'm h q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',

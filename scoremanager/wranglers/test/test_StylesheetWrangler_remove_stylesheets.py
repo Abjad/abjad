@@ -18,7 +18,7 @@ def test_StylesheetWrangler_remove_stylesheets_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'y rm clean-letter-14.ily remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert not os.path.exists(path)
         assert os.path.exists(path + '.backup')
         shutil.copyfile(path + '.backup', path)

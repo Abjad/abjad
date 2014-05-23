@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageWrangler_list_every_metadata_py_01():
 
     input_ = 'red~example~score m mdls* y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     materials = [
         'instrumentation',
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_list_every_metadata_py_01():
 def test_MaterialPackageWrangler_list_every_metadata_py_02():
 
     input_ = 'm mdls* y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     path = score_manager._configuration.example_score_packages_directory

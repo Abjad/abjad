@@ -23,7 +23,7 @@ def test_Menu__run_01():
         title='section',
         )
 
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
     assert menu._transcript.last_menu_lines == \
     ['Test',
       '',
@@ -36,22 +36,22 @@ def test_Menu__run_01():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app')
+    result = menu._run(input_='app')
     assert result == 'apple'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app, che-ban')
+    result = menu._run(input_='app, che-ban')
     assert result is None
 
 
@@ -74,29 +74,29 @@ def test_Menu__run_02():
         name='test',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = ['Test', '']
     assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app')
+    result = menu._run(input_='app')
     assert result == 'apple'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app, che-ban')
+    result = menu._run(input_='app, che-ban')
     assert result is None
 
 
@@ -119,7 +119,7 @@ def test_Menu__run_03():
         name='test',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = [
         'Test',
@@ -135,22 +135,22 @@ def test_Menu__run_03():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result == 'apple'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app')
+    result = menu._run(input_='app')
     assert result == 'apple'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app, che-ban')
+    result = menu._run(input_='app, che-ban')
     assert result is None
 
 
@@ -173,7 +173,7 @@ def test_Menu__run_04():
         name='test',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = [
         'Test',
@@ -189,23 +189,23 @@ def test_Menu__run_04():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app')
+    result = menu._run(input_='app')
     assert result == ['apple']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='app, che-ban')
+    result = menu._run(input_='app, che-ban')
     assert result == ['apple', 'cherry', 'banana']
 
 
@@ -229,7 +229,7 @@ def test_Menu__run_05():
         return_value_attribute='key',
         )
 
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = [
         'Test',
@@ -245,34 +245,34 @@ def test_Menu__run_05():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == 'add'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == 'add'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result is None
 
 
@@ -293,41 +293,41 @@ def test_Menu__run_06():
         menu_entries=commands,
         name='test',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == 'first command'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == 'first command'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result is None
 
 
@@ -351,7 +351,7 @@ def test_Menu__run_07():
         return_value_attribute='key',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = ['Test', '']
     assert menu._transcript.last_menu_lines == strings
@@ -359,34 +359,34 @@ def test_Menu__run_07():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == 'add'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == 'add'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result is None
 
 
@@ -411,38 +411,38 @@ def test_Menu__run_08():
         )
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == 'first command'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == 'first command'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result is None
 
 
@@ -466,7 +466,7 @@ def test_Menu__run_09():
         return_value_attribute='key',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = [
         'Test',
@@ -482,34 +482,34 @@ def test_Menu__run_09():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result == 'add'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == 'add'
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == 'add'
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result is None
 
 
@@ -533,7 +533,7 @@ def test_Menu__run_10():
         return_value_attribute='key',
         title='section',
         )
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
 
     strings = [
         'Test',
@@ -549,34 +549,34 @@ def test_Menu__run_10():
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == ['add']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == ['add']
 
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result == ['add', 'mod', 'rm']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result == ['add', 'mod', 'rm']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result == ['add', 'mod', 'rm']
 
 
@@ -601,37 +601,37 @@ def test_Menu__run_11():
         )
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='foo')
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='q')
+    result = menu._run(input_='q')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1')
+    result = menu._run(input_='1')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add')
+    result = menu._run(input_='add')
     assert result == ['first command']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir')
+    result = menu._run(input_='fir')
     assert result == ['first command']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='1, 3-2')
+    result = menu._run(input_='1, 3-2')
     assert result is None
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='add, mod-rm')
+    result = menu._run(input_='add, mod-rm')
     assert result == ['first command', 'third command', 'second command']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, thi-sec')
+    result = menu._run(input_='fir, thi-sec')
     assert result == ['first command', 'third command', 'second command']
 
     menu._session._reinitialize()
-    result = menu._run(pending_input='fir, mod-sec')
+    result = menu._run(input_='fir, mod-sec')
     assert result == ['first command', 'third command', 'second command']

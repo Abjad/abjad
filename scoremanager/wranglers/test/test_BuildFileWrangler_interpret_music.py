@@ -26,6 +26,6 @@ def test_BuildFileWrangler_interpret_music_01():
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score u mi q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.isfile(path)
         #assert systemtools.TestManager.compare_lys(path, backup_path)

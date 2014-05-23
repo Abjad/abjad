@@ -26,7 +26,7 @@ def test_ScorePackageWrangler_make_package_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'new example~score q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.ScorePackageManager

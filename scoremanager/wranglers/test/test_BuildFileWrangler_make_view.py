@@ -12,7 +12,7 @@ def test_BuildFileWrangler_make_view_01():
     '''
 
     input_ = 'u vnew _test q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Score Manager - build files - views - _test - edit:'
@@ -25,7 +25,7 @@ def test_BuildFileWrangler_make_view_02():
     '''
 
     input_ = 'u vnew _test q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     string = 'front-cover.pdf (Red Example Score)'
@@ -42,19 +42,19 @@ def test_BuildFileWrangler_make_view_03():
 
     input_ = 'u vnew _test rm all'
     input_ += ' add front-cover.pdf~(Red~Example~Score) done q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Score Manager - build files (_test)' in contents
 
     input_ = 'u vls vrm _test default q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' in contents
 
     input_ = 'u vls q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' not in contents

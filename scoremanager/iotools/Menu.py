@@ -421,10 +421,10 @@ class Menu(Controller):
         entry_index = (entry_index + 1) % len(section)
         return section._menu_entry_return_values[entry_index]
 
-    def _run(self, pending_input=None):
+    def _run(self, input_=None):
         from scoremanager import iotools
-        if pending_input:
-            self._session._pending_input = pending_input
+        if input_:
+            self._session._pending_input = input_
         clear_terminal, hide_current_run = True, False
         context = iotools.ControllerContext(
             controller=self,

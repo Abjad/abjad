@@ -15,7 +15,7 @@ def test_ScorePackageManager_edit_title_01():
 
     with systemtools.FilesystemState(keep=[metadata_file_path]):
         input_ = 'étude~example~score p title Foo~Example~Score default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         string = 'Foo Example Score (2013) - setup'
         assert string in contents

@@ -10,7 +10,7 @@ def test_DistributionFileWrangler_invoke_shell_01():
     '''
 
     input_ = 'd !pwd q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     path = os.path.join(
         score_manager._configuration.score_manager_directory,
@@ -24,7 +24,7 @@ def test_DistributionFileWrangler_invoke_shell_02():
     '''
 
     input_ = 'red~example~score d !pwd q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory,

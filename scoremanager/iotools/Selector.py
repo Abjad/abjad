@@ -91,10 +91,10 @@ class Selector(Controller):
             entries.append(entry)
         return entries
 
-    def _run(self, pending_input=None):
+    def _run(self, input_=None):
         from scoremanager import iotools
-        if pending_input:
-            self._session._pending_input = pending_input
+        if input_:
+            self._session._pending_input = input_
         with iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,

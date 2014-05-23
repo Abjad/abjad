@@ -9,7 +9,7 @@ def test_ScorePackageManager_repository_status_01():
     '''
 
     input_ = 'red~example~score rst q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'On branch master' in contents
@@ -25,7 +25,7 @@ def test_ScorePackageManager_repository_status_02():
         return
 
     input_ = '{} rst q'.format(name)
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     string = '...'
 
     assert string in score_manager._transcript.contents

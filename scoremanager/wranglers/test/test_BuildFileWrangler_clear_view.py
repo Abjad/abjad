@@ -17,7 +17,7 @@ def test_BuildFileWrangler_clear_view_01():
     input_ = 'u vnew _test rm all'
     input_ += ' add segment-01.ly~(Red~Example~Score) done default'
     input_ += ' vap _test vcl vrm _test default q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     lines = [
@@ -45,7 +45,7 @@ def test_BuildFileWrangler_clear_view_02():
     input_ = 'red~example~score u vnew _test rm all'
     input_ += ' add segment-01.ly done default'
     input_ += ' vap _test vcl vrm _test default q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     lines = [

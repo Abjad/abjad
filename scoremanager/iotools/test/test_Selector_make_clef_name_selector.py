@@ -11,4 +11,4 @@ def test_Selector_make_clef_name_selector_01():
     selector._session._is_test = True
 
     input_ = 'tre'
-    assert selector._run(pending_input=input_) == 'treble'
+    assert selector._run(input_=input_) == 'treble'

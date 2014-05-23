@@ -18,7 +18,7 @@ def test_MaterialPackageManager_interpret_definition_py_01():
         )
 
     input_ = 'red~example~score m magic~numbers di q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Interpreted' in contents

@@ -14,5 +14,5 @@ def test_StylesheetWrangler_make_stylesheet_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'y new 1 test-stylesheet q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)

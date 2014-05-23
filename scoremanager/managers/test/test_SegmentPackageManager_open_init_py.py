@@ -9,7 +9,7 @@ def test_SegmentPackageManager_open_init_py_01():
     '''
 
     input_ = 'red~example~score g A no q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Can not find' in contents

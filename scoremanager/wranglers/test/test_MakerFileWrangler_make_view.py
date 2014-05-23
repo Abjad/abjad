@@ -12,7 +12,7 @@ def test_MakerFileWrangler_make_view_01():
     '''
 
     input_ = 'k vnew _test q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Score Manager - maker files - views - _test - edit:'
@@ -25,7 +25,7 @@ def test_MakerFileWrangler_make_view_02():
     '''
 
     input_ = 'k vnew _test q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     string = 'RedExampleScoreTemplate.py (Red Example Score)'
@@ -43,7 +43,7 @@ def test_MakerFileWrangler_make_view_03():
     input_ = 'k vnew _test rm all'
     input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
     input_ += ' done default q' 
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     lines =['> done', '']
     assert score_manager._transcript[-5].lines == lines
@@ -52,13 +52,13 @@ def test_MakerFileWrangler_make_view_03():
     assert score_manager._transcript[-4].lines == lines
         
     input_ = 'k vls vrm _test default q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' in contents
 
     input_ = 'k vls q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'view found' in contents or 'views found' in contents
     assert '_test' not in contents

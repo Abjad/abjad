@@ -16,5 +16,5 @@ def test_DistributionFileWrangler_make_file_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score d new test-file.txt q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)

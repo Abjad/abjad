@@ -8,15 +8,15 @@ def test_PerformerCreationWizard__run_01():
     session = scoremanager.core.Session()
     wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'q'
-    assert wizard._run(pending_input=input_) is None
+    assert wizard._run(input_=input_) is None
 
     wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'b'
-    assert wizard._run(pending_input=input_) is None
+    assert wizard._run(input_=input_) is None
 
     wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'h'
-    assert wizard._run(pending_input=input_) is None
+    assert wizard._run(input_=input_) is None
 
 
 def test_PerformerCreationWizard__run_02():
@@ -24,7 +24,7 @@ def test_PerformerCreationWizard__run_02():
     session = scoremanager.core.Session()
     wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
     input_ = 'vn default'
-    assert wizard._run(pending_input=input_) == \
+    assert wizard._run(input_=input_) == \
         instrumenttools.Performer(
             name='violinist',
             instruments=[instrumenttools.Violin()],
@@ -41,7 +41,7 @@ def test_PerformerCreationWizard__run_03():
         session=session,
         )
     input_ = 'vn, va default default'
-    assert wizard._run(pending_input=input_) == [
+    assert wizard._run(input_=input_) == [
         instrumenttools.Performer(
             name='violinist',
             instruments=[instrumenttools.Violin()],
@@ -63,7 +63,7 @@ def test_PerformerCreationWizard__run_04():
         session=session,
         )
     input_ = 'vn, va skip skip'
-    assert wizard._run(pending_input=input_) == [
+    assert wizard._run(input_=input_) == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(name='violist'),
         ]
@@ -79,7 +79,7 @@ def test_PerformerCreationWizard__run_05():
         session=session,
         )
     input_ = 'vn, va skip more xyl'
-    assert wizard._run(pending_input=input_) == [
+    assert wizard._run(input_=input_) == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(
             name='violist',
@@ -102,7 +102,7 @@ def test_PerformerCreationWizard__run_06():
         short_instrument_name='caxixi',
         )
     input_ = 'vn more untuned cax'
-    wizard._run(pending_input=input_)
+    wizard._run(input_=input_)
     assert wizard.target == [
         instrumenttools.Performer(
             name='violinist',

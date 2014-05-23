@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Session___repr___01():
 
-    session = scoremanager.core.Session(pending_input='foo')
-    string = "Session(initial_pending_input='foo',"
-    string += " pending_input='foo')"
+    session = scoremanager.core.Session(input_='foo')
+    string = "Session(initial_input_='foo',"
+    string += " input_='foo')"
     assert repr(session) == string

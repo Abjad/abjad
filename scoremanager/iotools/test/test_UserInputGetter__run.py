@@ -9,7 +9,7 @@ def test_UserInputGetter__run_01():
     '''
 
     input_ = 'red~example~score u mc foo q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = "Value for 'ok?' must be 'y' or 'n'."
@@ -21,7 +21,7 @@ def test_UserInputGetter__run_02():
     '''
 
     input_ = 'red~example~score u mc n q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Value for' not in contents
@@ -32,7 +32,7 @@ def test_UserInputGetter__run_03():
     '''
 
     input_ = 'red~example~score u mc N q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Value for' not in contents

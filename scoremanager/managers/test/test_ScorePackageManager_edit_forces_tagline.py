@@ -19,6 +19,6 @@ def test_ScorePackageManager_edit_forces_tagline_01():
 
     with systemtools.FilesystemState(keep=[metadata_path]):
         input_ = 'red~example~score p tagline for~foo~bar q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         session = scoremanager.core.Session(is_test=True)
         assert manager._get_metadatum('forces_tagline') == 'for foo bar'

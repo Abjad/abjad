@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_go_back_01():
 
     input_ = 'red~example~score g b q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',
@@ -21,7 +21,7 @@ def test_SegmentPackageWrangler_go_back_01():
 def test_SegmentPackageWrangler_go_back_02():
 
     input_ = 'g b q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     titles = [
         'Score Manager - scores',

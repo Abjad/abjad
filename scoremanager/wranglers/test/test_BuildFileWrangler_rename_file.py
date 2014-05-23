@@ -28,14 +28,14 @@ def test_BuildFileWrangler_rename_file_01():
 
     input_ = 'u ren score.pdf~(Red~Example~Score)'
     input_ += ' foo-score.pdf y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'u ren foo-score.pdf~(Red~Example~Score)'
     input_ += ' score.pdf y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)
 
@@ -61,13 +61,13 @@ def test_BuildFileWrangler_rename_file_02():
 
     input_ = 'red~example~score u ren score.pdf'
     input_ += ' foo-score.pdf y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
     input_ = 'red~example~score u ren foo-score.pdf'
     input_ += ' score.pdf y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)

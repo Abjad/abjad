@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_MaterialPackageWrangler_display_available_commands_01():
     
     input_ = 'red~example~score m ? q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'materials - available commands' in contents
@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_display_available_commands_01():
 def test_MaterialPackageWrangler_display_available_commands_02():
     
     input_ = 'm ? q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Score Manager - materials - available commands' in contents

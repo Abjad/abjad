@@ -26,6 +26,6 @@ def test_SegmentPackageWrangler_version_every_package_01():
 
     with systemtools.FilesystemState(remove=target_paths):
         input_ = 'red~example~score g vr* y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         for path in target_paths:
             assert os.path.isfile(path)

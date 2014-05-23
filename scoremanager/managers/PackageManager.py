@@ -724,10 +724,10 @@ class PackageManager(AssetController):
         self._io_manager.spawn_subprocess(command)
         self._io_manager._display('')
 
-    def _run(self, pending_input=None):
+    def _run(self, input_=None):
         from scoremanager import iotools
-        if pending_input:
-            self._session._pending_input = pending_input
+        if input_:
+            self._session._pending_input = input_
         context = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,

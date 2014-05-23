@@ -13,9 +13,9 @@ def test_Selector__run_01():
         )
     selector._session._is_test = True
 
-    assert selector._run(pending_input='apple') == 'apple'
-    assert selector._run(pending_input='banana') == 'banana'
-    assert selector._run(pending_input='cherry') == 'cherry'
+    assert selector._run(input_='apple') == 'apple'
+    assert selector._run(input_='banana') == 'banana'
+    assert selector._run(input_='cherry') == 'cherry'
 
 
 def test_Selector__run_02():
@@ -27,4 +27,4 @@ def test_Selector__run_02():
         )
     selector._session._is_test = True
 
-    assert selector._run(pending_input='cax') == 'caxixi'
+    assert selector._run(input_='cax') == 'caxixi'

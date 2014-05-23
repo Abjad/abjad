@@ -12,7 +12,7 @@ def test_MaterialPackageManager_autoedit_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'm example~markup~inventory ae q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Score Manager - materials -'
@@ -47,7 +47,7 @@ def test_MaterialPackageManager_autoedit_02():
         input_ = 'm new testtempoinventory aes TempoInventory default'
         input_ += ' ae add d (1, 4) units 60 done add d (1, 4) units 90 done'
         input_ += ' done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -56,7 +56,7 @@ def test_MaterialPackageManager_autoedit_02():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testtempoinventory remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_03():
@@ -80,7 +80,7 @@ def test_MaterialPackageManager_autoedit_03():
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testpri'
         input_ += ' aes PitchRangeInventory default done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -89,7 +89,7 @@ def test_MaterialPackageManager_autoedit_03():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_04():
@@ -119,7 +119,7 @@ def test_MaterialPackageManager_autoedit_04():
     input_ += ' rm 1 mv 1 2 b y default q'
 
     with systemtools.FilesystemState(remove=[path]):
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -128,7 +128,7 @@ def test_MaterialPackageManager_autoedit_04():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testpri remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_05():
@@ -160,7 +160,7 @@ def test_MaterialPackageManager_autoedit_05():
         input_ = "m new testmarkupinventory aes markup default"
         input_ += " ae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y default q"
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -169,7 +169,7 @@ def test_MaterialPackageManager_autoedit_05():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testmarkupinventory remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_06():
@@ -194,7 +194,7 @@ def test_MaterialPackageManager_autoedit_06():
         input_ = 'm new testoctavetrans'
         input_ += ' aes OctaveTranspositionMappingInventory default'
         input_ += ' done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -203,7 +203,7 @@ def test_MaterialPackageManager_autoedit_06():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_07():
@@ -241,7 +241,7 @@ def test_MaterialPackageManager_autoedit_07():
         input_ += ' add source [C4, C8) target 27 done done'
         input_ += ' add add source [A0, C8] target -18 done'
         input_ += ' done done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -250,7 +250,7 @@ def test_MaterialPackageManager_autoedit_07():
         output_material = manager._execute_output_py()
         assert output_material == inventory
         input_ = 'm rm testoctavetrans remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_08():
@@ -271,7 +271,7 @@ def test_MaterialPackageManager_autoedit_08():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testlist aes list default ae 17 foo done b default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -280,7 +280,7 @@ def test_MaterialPackageManager_autoedit_08():
         output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_09():
@@ -301,7 +301,7 @@ def test_MaterialPackageManager_autoedit_09():
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testlist aes list default'
         input_ += ' ae add 17 add foo done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -310,7 +310,7 @@ def test_MaterialPackageManager_autoedit_09():
         output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
         input_ = 'm rm testlist remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_10():
@@ -345,7 +345,7 @@ def test_MaterialPackageManager_autoedit_10():
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
         input_ += ' done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -354,7 +354,7 @@ def test_MaterialPackageManager_autoedit_10():
         output_material = manager._execute_output_py()
         assert output_material == maker
         input_ = 'm rm testrhythmmaker remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_11():
@@ -386,7 +386,7 @@ def test_MaterialPackageManager_autoedit_11():
         input_ += " aes ReiteratedArticulationHandler default"
         input_ += " ae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done y default q"
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -395,7 +395,7 @@ def test_MaterialPackageManager_autoedit_11():
         output_material = manager._execute_output_py()
         assert output_material == handler
         input_ = 'm rm testarticulationhandler remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
 
 
 def test_MaterialPackageManager_autoedit_12():
@@ -423,7 +423,7 @@ def test_MaterialPackageManager_autoedit_12():
         input_ = 'm new testdynamichandler'
         input_ += ' aes ReiteratedDynamicHandler default'
         input_ += ' ae dy f md (1, 16) done y default q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -432,4 +432,4 @@ def test_MaterialPackageManager_autoedit_12():
         output_material = manager._execute_output_py()
         assert output_material == handler
         input_ = 'm rm testdynamichandler remove q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)

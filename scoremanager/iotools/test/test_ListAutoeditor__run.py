@@ -11,7 +11,7 @@ def test_ListAutoeditor__run_01():
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     input_ = "17 99 'foo' done q"
     autoeditor._is_autoadding = True
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     assert autoeditor.target == [17, 99, 'foo']
 
@@ -27,7 +27,7 @@ def test_ListAutoeditor__run_02():
         target=target,
         )
     input_ = 'add nm treble done add nm bass done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     inventory = indicatortools.ClefInventory(['treble', 'bass'])
     assert autoeditor.target == inventory
@@ -44,7 +44,7 @@ def test_ListAutoeditor__run_03():
         target=target,
         )
     input_ = '2 nm alto done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     new_inventory = indicatortools.ClefInventory(['treble', 'alto'])
     assert autoeditor.target == new_inventory
@@ -61,7 +61,7 @@ def test_ListAutoeditor__run_04():
         target=target,
         )
     input_ = r'add arg \italic~{~serenamente~possibile~} done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
@@ -86,7 +86,7 @@ def test_ListAutoeditor__run_05():
     input_ += r' arg \italic~{~serenamente~possibile~}'
     input_ += ' direction up done'
     input_ += r' add arg \italic~{~presto~} done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
@@ -117,7 +117,7 @@ def test_ListAutoeditor__run_06():
     input_ = 'add d (1, 4) units 60 done'
     input_ +=  ' add d (1, 4) units 72 done'
     input_ += ' add d (1, 4) units 84 done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60),
         Tempo(Duration(1, 4), 72),
@@ -141,7 +141,7 @@ def test_ListAutoeditor__run_07():
     input_ = 'add d Duration(1, 4) units 60 done'
     input_ += ' add d Duration(1, 4) units 72 done'
     input_ += ' add d Duration(1, 4) units 84 done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60),
         Tempo(Duration(1, 4), 72),
@@ -164,7 +164,7 @@ def test_ListAutoeditor__run_08():
     input_ += ' add range [C1, C7] done'
     input_ += ' add range [C2, C8] done'
     input_ += ' rm 1 mv 1 2 q'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
     assert autoeditor.target == pitchtools.PitchRangeInventory([
         pitchtools.PitchRange('[C2, C8]'),
         pitchtools.PitchRange('[C1, C7]'),
@@ -183,7 +183,7 @@ def test_ListAutoeditor__run_09():
         )
     input_ = 'add source [A0, F#4] target 22 done'
     input_ += ' add source (F#4, C8] target 26 done done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping([
         ('[A0, F#4]', 22),
@@ -204,7 +204,7 @@ def test_ListAutoeditor__run_10():
         )
     input_ = 'add source [A0, F#4] target 22 done'
     input_ +=  ' add source (F#4, C8] target 26 done done done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping(
             [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
@@ -224,7 +224,7 @@ def test_ListAutoeditor__run_11():
         target=target,
         )
     input_ = 'add flute add piccolo done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     inventory = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -245,7 +245,7 @@ def test_ListAutoeditor__run_12():
         target=target,
         )
     input_ = 'add first~pattern default add second~pattern default done'
-    autoeditor._run(pending_input=input_)
+    autoeditor._run(input_=input_)
 
     view = scoremanager.iotools.View([
         'first pattern',

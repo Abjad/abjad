@@ -20,7 +20,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u dg y y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' in contents
         assert 'Will assemble segments in this order:' in contents
@@ -44,7 +44,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'blue~example~score u dg y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         message = 'SegmentPackageWrangler views.py is corrupt.' 
         assert message not in contents
@@ -66,7 +66,7 @@ def test_BuildFileWrangler_generate_draft_source_03():
     with systemtools.FilesystemState(keep=[path]):
 
         input_ = 'etude~example~score u dg y y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'Overwrite' in contents
         assert 'No segments found:' in contents

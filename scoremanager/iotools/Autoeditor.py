@@ -257,10 +257,10 @@ class Autoeditor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def _run(self, pending_input=None):
+    def _run(self, input_=None):
         from scoremanager import iotools
-        if pending_input:
-            self._session._pending_input = pending_input
+        if input_:
+            self._session._pending_input = input_
         context = iotools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,

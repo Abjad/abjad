@@ -27,5 +27,5 @@ def test_MaterialPackageManager_version_package_01():
 
     with systemtools.FilesystemState(remove=paths):
         input_ = 'red~example~score m magic~numbers vr y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert all(os.path.isfile(_) for _ in paths)

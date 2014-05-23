@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_interpret_every_output_ly_01():
 
     with systemtools.FilesystemState(keep=pdf_paths):
         input_ = 'red~example~score g oli* y q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         strings = []
         strings.extend(paths)

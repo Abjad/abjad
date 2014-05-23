@@ -7,6 +7,6 @@ def test_ScorePackageWrangler_open_cache_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'co q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
 
     assert score_manager._session._attempted_to_open_file

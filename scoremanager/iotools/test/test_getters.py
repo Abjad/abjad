@@ -14,7 +14,7 @@ def test_getters_01():
         session=session,
         )
     input_ = 'asdf (1, 16)'
-    assert getter._run(pending_input=input_) == Duration(1, 16)
+    assert getter._run(input_=input_) == Duration(1, 16)
 
 
 def test_getters_02():
@@ -26,4 +26,4 @@ def test_getters_02():
         session=session,
         )
     input_ = 'None'
-    assert getter._run(pending_input=input_) is None
+    assert getter._run(input_=input_) is None

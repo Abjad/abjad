@@ -9,7 +9,7 @@ def test_UserInputGetter__display_help_01():
     '''
 
     input_ = 'red~example~score m new ? q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string  = 'Value  must be space-delimited lowercase string.'
@@ -21,7 +21,7 @@ def test_UserInputGetter__display_help_02():
     '''
 
     input_ = 'red~example~score m new help q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Value  must be space-delimited lowercase string.'

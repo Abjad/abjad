@@ -9,7 +9,7 @@ def test_MaterialPackageManager_repository_status_01():
     '''
 
     input_ = 'red~example~score m rst q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'On branch master' in contents

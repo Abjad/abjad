@@ -18,5 +18,5 @@ def test_ScorePackageManager_edit_paper_dimensions_01():
         manager = manager(path=path, session=score_manager._session)
         manager._get_metadatum('paper_dimensions') == '8.5 x 11 in'
         input_ = 'red~example~score p paper~dimensions A4 q'
-        score_manager._run(pending_input=input_)
+        score_manager._run(input_=input_)
         assert manager._get_metadatum('paper_dimensions') == 'A4'

@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_pytest_01():
     '''
 
     input_ = 'red~example~score m tempo~inventory pyt q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 
     strings = [
@@ -26,7 +26,7 @@ def test_MaterialPackageWrangler_pytest_02():
     '''
 
     input_ = 'red~example~score m pyt q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 
     strings = [
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_pytest_03():
     '''
 
     input_ = 'm pyt q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 
     strings = [

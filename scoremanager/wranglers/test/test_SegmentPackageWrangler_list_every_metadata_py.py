@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_list_every_metadata_py_01():
 
     input_ = 'red~example~score g mdls* y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     segments = [
         'segment_01',
@@ -34,7 +34,7 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
 def test_SegmentPackageWrangler_list_every_metadata_py_02():
 
     input_ = 'g mdls* y q'
-    score_manager._run(pending_input=input_)
+    score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     path = score_manager._configuration.example_score_packages_directory
