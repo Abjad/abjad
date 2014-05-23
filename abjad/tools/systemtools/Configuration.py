@@ -67,8 +67,7 @@ class Configuration(AbjadObject):
                 not new_config_lines[0].strip()):
                 new_config_lines.pop(0)
             if old_config_lines != new_config_lines:
-                with open(self.configuration_file_path, 'w') as f:
-                    config.write(f)
+                config.write()
         # turn the ConfigObj instance into a standard dict,
         # and replace its empty string values with Nones,
         # caching the result on this AbjadConfiguration instance.
