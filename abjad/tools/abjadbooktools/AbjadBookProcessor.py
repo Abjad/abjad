@@ -225,7 +225,7 @@ class AbjadBookProcessor(AbjadObject):
                 starting_line_number = stopping_line_number = i
                 hide = 'hide=true' in line
                 scale = None
-                if 'scale=' in block[0]:
+                if 'scale=' in line:
                     pattern = re.compile('scale=([0-9]*\.[0-9]+|[0-9]+)')
                     match = pattern.search(block[0])
                     if match is not None:
