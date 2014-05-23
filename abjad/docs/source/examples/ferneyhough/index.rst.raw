@@ -44,19 +44,19 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
 <abjad>
 tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
-staff = scoretools.RhythmicStaff([tuplet])
+staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
 <abjad>
 tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
-staff = scoretools.RhythmicStaff([tuplet])
+staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
 <abjad>
 tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
-staff = scoretools.RhythmicStaff([tuplet])
+staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
@@ -69,13 +69,13 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 
 <abjad>
 normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
-staff = scoretools.RhythmicStaff([normal_tuplet])
+staff = scoretools.Staff([normal_tuplet], context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
 <abjad>
 subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
-staff = scoretools.RhythmicStaff([subdivided_tuplet])
+staff = scoretools.Staff([subdivided_tuplet], context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
@@ -98,7 +98,7 @@ subdivided:
 
 <abjad>
 tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
-staff = scoretools.RhythmicStaff(tuplets)
+staff = scoretools.Staff(tuplets, context_name='RhythmicStaff')
 show(staff)
 </abjad>
 
@@ -110,7 +110,7 @@ Let's try:
 <abjad>
 score = Score()
 for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
-    score.append(scoretools.RhythmicStaff(tuplet_row))
+    score.append(scoretools.Staff(tuplet_row, context_name='RhythmicStaff'))
 
 show(score)
 </abjad>

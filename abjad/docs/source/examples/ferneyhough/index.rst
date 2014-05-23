@@ -65,7 +65,7 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
-   >>> staff = scoretools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -74,7 +74,7 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
-   >>> staff = scoretools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -83,7 +83,7 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
-   >>> staff = scoretools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-3.png
@@ -99,7 +99,7 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 ::
 
    >>> normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
-   >>> staff = scoretools.RhythmicStaff([normal_tuplet])
+   >>> staff = scoretools.Staff([normal_tuplet], context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-4.png
@@ -108,7 +108,7 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 ::
 
    >>> subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
-   >>> staff = scoretools.RhythmicStaff([subdivided_tuplet])
+   >>> staff = scoretools.Staff([subdivided_tuplet], context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-5.png
@@ -133,8 +133,8 @@ subdivided:
 ::
 
    def make_row_of_nested_tuplets(
-       tuplet_duration, 
-       outer_tuplet_proportions, 
+       tuplet_duration,
+       outer_tuplet_proportions,
        column_count,
        ):
        r'''Makes row of nested tuplets.
@@ -145,8 +145,8 @@ subdivided:
        for n in range(column_count):
            inner_tuplet_subdivision_count = n + 1
            nested_tuplet = make_nested_tuplet(
-               tuplet_duration, 
-               outer_tuplet_proportions, 
+               tuplet_duration,
+               outer_tuplet_proportions,
                inner_tuplet_subdivision_count,
                )
            row_of_nested_tuplets.append(nested_tuplet)
@@ -156,7 +156,7 @@ subdivided:
 ::
 
    >>> tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
-   >>> staff = scoretools.RhythmicStaff(tuplets)
+   >>> staff = scoretools.Staff(tuplets, context_name='RhythmicStaff')
    >>> show(staff)
 
 .. image:: images/index-6.png
@@ -185,7 +185,7 @@ Let's try:
 
    >>> score = Score()
    >>> for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
-   ...     score.append(scoretools.RhythmicStaff(tuplet_row))
+   ...     score.append(scoretools.Staff(tuplet_row, context_name='RhythmicStaff'))
    ... 
    >>> show(score)
 
@@ -211,7 +211,8 @@ function:
        rows_of_nested_tuplets = make_rows_of_nested_tuplets(
            tuplet_duration, row_count, column_count)
        for row_of_nested_tuplets in rows_of_nested_tuplets:
-           staff = scoretools.RhythmicStaff(row_of_nested_tuplets)
+           staff = Staff(row_of_nested_tuplets)
+           staff.context_name = 'RhythmicStaff'
            time_signature = indicatortools.TimeSignature((1, 4))
            attach(time_signature, staff)
            score.append(staff)
@@ -301,3 +302,4 @@ Let's adjust the overall size of our output, and put everything together:
    >>> show(lilypond_file)
 
 .. image:: images/index-10.png
+
