@@ -65,7 +65,7 @@ The score template
            clef = indicatortools.Clef('treble')
            attach(clef, bell_staff)
            bells = instrumenttools.Instrument(
-               instrument_name='Campana in La', 
+               instrument_name='Campana in La',
                short_instrument_name='Camp.',
                pitch_range='[C4, C6]',
                )
@@ -204,7 +204,7 @@ function:
            shadowed_contour_reservoir)
    
        # add six dotted-whole notes and the durated contours to each string voice
-       for instrument_name, descents in durated_reservoir.iteritems():
+       for instrument_name, descents in durated_reservoir.items():
            instrument_voice = score['%s Voice' % instrument_name]
            instrument_voice.extend("R1. R1. R1. R1. R1. R1.")
            for descent in descents:
@@ -252,7 +252,7 @@ overall scale:
        }
    
        reservoir = {}
-       for instrument_name, pitch_range in pitch_ranges.iteritems():
+       for instrument_name, pitch_range in pitch_ranges.items():
            pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
            pitches = sorted(pitch_set, reverse=True)
            pitch_descents = []
@@ -307,7 +307,7 @@ pitch class:
    
        shadowed_reservoir = {}
    
-       for instrument_name, pitch_contours in pitch_contour_reservoir.iteritems():
+       for instrument_name, pitch_contours in pitch_contour_reservoir.items():
            # The viola does not receive any diads
            if instrument_name == 'Viola':
                shadowed_reservoir['Viola'] = pitch_contours
@@ -447,7 +447,9 @@ Let's look at the second violins too:
    >>> attach(time_signature, staff)
    >>> show(staff)
 
-.. image:: images/index-2.png
+.. image:: images/index-2-page1.png
+
+.. image:: images/index-2-page2.png
 
 
 And, last we'll take a peek at the violas.  They have some longer notes, so
@@ -474,7 +476,11 @@ the bar lines accidentally:
    >>> attach(time_signature, staff)
    >>> show(staff)
 
-.. image:: images/index-3.png
+.. image:: images/index-3-page1.png
+
+.. image:: images/index-3-page2.png
+
+.. image:: images/index-3-page3.png
 
 
 You can see how each part is twice as slow as the previous, and starts a little
@@ -958,10 +964,11 @@ additionally to hide empty staves if they appear in the first system:
    
        lilypond_file.global_staff_size = 8
    
-       context_block = lilypondfiletools.ContextBlock()
-       context_block.context_name = r'Staff \RemoveEmptyStaves'
+       context_block = lilypondfiletools.ContextBlock(
+           source_context_name=r'Staff \RemoveEmptyStaves',
+           )
        override(context_block).vertical_axis_group.remove_first = True
-       lilypond_file.layout_block.context_blocks.append(context_block)
+       lilypond_file.layout_block.items.append(context_block)
    
        slash_separator = indicatortools.LilyPondCommand('slashSeparator')
        lilypond_file.paper_block.system_separator_markup = slash_separator
