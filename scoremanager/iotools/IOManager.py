@@ -88,6 +88,10 @@ class IOManager(IOManager):
             lines = [lines]
         if self._session._hide_next_redraw:
             return
+        # TODO: eventually use the following
+        #if (self._session._hide_next_redraw and
+        #    not self._session.is_in_interaction):
+        #    return
         if capitalize:
             lines = [
                 stringtools.capitalize_start(line)
@@ -243,13 +247,17 @@ class IOManager(IOManager):
             )
         return getter
 
-    def _make_interaction(self, display=True):
+    def _make_interaction(self, display=True, dry_run=False):
         r'''Makes interaction context manager.
 
         Returns interaction context manager.
         '''
         from scoremanager import iotools
-        context = iotools.Interaction(controller=self.client, display=display)
+        context = iotools.Interaction(
+            controller=self.client, 
+            display=display,
+            dry_run=dry_run,
+            )
         return context
 
     def _make_menu(

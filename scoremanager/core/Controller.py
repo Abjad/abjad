@@ -149,6 +149,12 @@ class Controller(ScoreManagerObject):
         for key in sorted(dictionary):
             new_dictionary[key] = dictionary[key]
         return new_dictionary
+        
+    @staticmethod
+    def _trim_path(path, width=80):
+        if width and width < len(path):
+            path = '...' + path[-width:]
+        return path
 
     ### PUBLIC METHODS ###
 

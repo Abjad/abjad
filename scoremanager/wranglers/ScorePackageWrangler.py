@@ -306,7 +306,27 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
+        with self._io_manager._make_interaction(display=display):
+            managers = self._list_visible_asset_managers()
+            paths = []
+            for manager in managers:
+                inputs, outputs = manager.open_score_pdf(dry_run=True)
+                paths.extend(inputs)
+            if display:
+                messages = ['will open ...']
+                tab = self._io_manager._make_tab()
+                paths = [tab + _ for _ in paths]
+                messages.extend(paths)
+                self._session._hide_next_redraw = False
+                self._io_manager._display(messages)
+            if confirm:
+                result = self._io_manager._confirm()
+                if self._session.is_backtracking:
+                    return
+                if not result:
+                    return
+            if paths:
+                self._io_manager.open_file(paths)
 
     def remove_packages(self):
         r'''Removes one or more packages.

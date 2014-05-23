@@ -45,6 +45,7 @@ class Session(abctools.AbjadObject):
         '_hide_hidden_commands',
         '_hide_next_redraw',
         '_initial_input',
+        '_interaction_depth',
         '_io_manager',
         '_is_autoadding',
         '_is_backtracking_locally',
@@ -83,6 +84,7 @@ class Session(abctools.AbjadObject):
         'current_score_package_manager',
         'hide_next_redraw',
         'hide_hidden_commands',
+        'interaction_depth',
         'is_autoadding',
         'is_in_confirmation_environment',
         'is_in_editor',
@@ -110,6 +112,7 @@ class Session(abctools.AbjadObject):
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_input = input_
+        self._interaction_depth = 0
         self._io_manager = iotools.IOManager(session=self)
         self._is_repository_test = False
         self._is_autoadding = False
@@ -573,6 +576,21 @@ class Session(abctools.AbjadObject):
         return self._initial_input
 
     @property
+    def interaction_depth(self):
+        r'''Gets interaction depth.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.interaction_depth
+                0
+
+        Returns nonnegative integer.
+        '''
+        return self._interaction_depth
+
+    @property
     def io_manager(self):
         r'''Gets session IO manager.
 
@@ -741,6 +759,22 @@ class Session(abctools.AbjadObject):
             if isinstance(controller, iotools.Autoeditor):
                 return True
         return False
+
+    @property
+    def is_in_interaction(self):
+        r'''Is true when interaction depth is greater than zero.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_interaction
+                False
+
+        Returns boolean.
+        '''
+        return bool(self.interaction_depth)
 
     @property
     def is_in_score(self):

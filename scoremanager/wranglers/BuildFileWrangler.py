@@ -207,16 +207,6 @@ class BuildFileWrangler(Wrangler):
             name='score',
             )
 
-    def _open_file_ending_with(self, string):
-        with self._io_manager._make_interaction():
-            path = self._get_file_path_ending_with(string)
-            if path:
-                self._io_manager.open_file(path)
-            else:
-                message = 'file ending in {!r} not found.'
-                message = message.format(string)
-                self._io_manager._display(message)
-
     def _trim_lilypond_file(self, file_path):
         lines = []
         with open(file_path, 'r') as file_pointer:

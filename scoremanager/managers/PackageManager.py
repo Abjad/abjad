@@ -212,6 +212,12 @@ class PackageManager(AssetController):
                 version_numbers.append(version_number)
         return version_numbers
 
+    def _get_file_path_ending_with(self, string):
+        for file_name in self._list():
+            if file_name.endswith(string):
+                file_path = os.path.join(self._path, file_name)
+                return file_path
+
     def _get_last_version_number(self):
         versions_directory = self._versions_directory
         if not os.path.exists(versions_directory):

@@ -101,7 +101,8 @@ class ScorePackageManager(PackageManager):
         paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_manager(path)
-            output_material_class_name = manager._get_metadatum('output_material_class_name')
+            output_material_class_name = manager._get_metadatum(
+                'output_material_class_name')
             if output_material_class_name == 'TempoInventory':
                 output_material = manager._execute_output_py()
                 return output_material
@@ -398,10 +399,28 @@ class ScorePackageManager(PackageManager):
                 break
         self._session._is_in_score_setup_menu = False
 
-    def open_score_pdf(self):
-        r'''Opens score PDF.
+    def open_score_pdf(self, dry_run=False):
+        r'''Opens ``score.pdf``.
 
         Returns none.
         '''
-        wrangler = self._session._score_manager._build_file_wrangler
-        wrangler._open_file_ending_with('score.pdf')
+        with self._io_manager._make_interaction(dry_run=dry_run):
+            file_name = 'score.pdf'
+            directory = self._get_distribution_directory()
+            manager = self._io_manager._make_package_manager(directory)
+            path = manager._get_file_path_ending_with(file_name)
+            if not path:
+                directory = self._get_build_directory()
+                manager = self._io_manager._make_package_manager(directory)
+                path = manager._get_file_path_ending_with(file_name)
+            if dry_run:
+                inputs, outputs = [], []
+                if path:
+                    inputs = [path]
+                return inputs, outputs
+            if path:
+                self._io_manager.open_file(path)
+            else:
+                message = "no score.pdf file found"
+                message += ' in either distribution/ or build/ directories.'
+                self._io_manager._display(message)

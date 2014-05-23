@@ -513,7 +513,7 @@ class Wrangler(AssetController):
     def _list(self, public_entries_only=False):
         result = []
         path = self._get_current_directory()
-        if not os.path.exists(path):
+        if not path or not os.path.exists(path):
             return result
         if public_entries_only:
             for directory_entry in sorted(os.listdir(path)):
@@ -788,6 +788,16 @@ class Wrangler(AssetController):
             commands=commands,
             name='__views__.py',
             )
+
+    def _open_file_ending_with(self, string):
+        with self._io_manager._make_interaction():
+            path = self._get_file_path_ending_with(string)
+            if path:
+                self._io_manager.open_file(path)
+            else:
+                message = 'file ending in {!r} not found.'
+                message = message.format(string)
+                self._io_manager._display(message)
 
     def _open_in_every_package(self, file_name, verb='open'):
         with self._io_manager._make_interaction():

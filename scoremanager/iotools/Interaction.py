@@ -11,29 +11,32 @@ class Interaction(ContextManager):
     __slots__ = (
         '_controller',
         '_display',
+        '_dry_run',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, controller=None, display=True):
+    def __init__(self, controller=None, display=True, dry_run=False):
         self._controller = controller
         self._display = display
+        self._dry_run = dry_run
 
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters controller stack context manager.
+        r'''Enters interaction manager.
 
         Returns none.
         '''
-        pass
+        self._controller._session._interaction_depth += 1
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        r'''Exits controller stack context manager.
+        r'''Exits interaction manager.
 
         Returns none.
         '''
-        if self.display:
+        self._controller._session._interaction_depth -= 1
+        if self.display and not self.dry_run:
             self.controller._session._hide_next_redraw = False
             self.controller._io_manager._display('')
         self.controller._session._hide_next_redraw = True
@@ -56,3 +59,15 @@ class Interaction(ContextManager):
         Returns boolean.
         '''
         return self._display
+
+    @property
+    def dry_run(self):
+        r'''Is true when interaction is dry run. Otherwise false.
+
+        Nothing will be displayed during dry run.
+
+        Inputs and outputs will be returned from dry run.
+
+        Returns boolean.
+        '''
+        return self._dry_run
