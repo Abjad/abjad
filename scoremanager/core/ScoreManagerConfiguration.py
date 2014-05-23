@@ -43,7 +43,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         ]
 
     def _get_option_definitions(self):
-        parent_options = AbjadConfiguration._get_option_definitions(self)
+        #parent_options = AbjadConfiguration._get_option_definitions(self)
         options = {
             'score_manager_library': {
                 'comment': [
@@ -87,8 +87,9 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 'spec': "string(default='Name')",
             },
         }
-        parent_options.update(options)
-        return parent_options
+        #parent_options.update(options)
+        #return parent_options
+        return options
 
     @property
     def _user_library_directory_name(self):
