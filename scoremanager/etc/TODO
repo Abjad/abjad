@@ -214,6 +214,4 @@
 43. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
 
-44. Change _print_not_yet_implemented() to _display_not_yet_implemneted().
-
-45. Change 'user entered lone return' to '<return>'.
+44. Change 'user entered lone return' to '<return>'.

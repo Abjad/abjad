@@ -190,7 +190,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
             elif isinstance(directive, str):
                 self._evaluate_input(directive)
             else:
-                self._io_manager._print_not_yet_implemented()
+                self._io_manager._display_not_yet_implemented()
 
     def _present_prompts_and_evaluate_input(
         self,

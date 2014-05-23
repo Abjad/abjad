@@ -328,7 +328,7 @@ class IOManager(IOManager):
         self._session._pending_input = pending_input
         return input_
 
-    def _print_not_yet_implemented(self):
+    def _display_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.
 
         Returns none.

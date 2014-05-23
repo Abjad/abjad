@@ -140,4 +140,4 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager._print_not_yet_implemented()
+        self._io_manager._display_not_yet_implemented()

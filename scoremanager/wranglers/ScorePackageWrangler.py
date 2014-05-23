@@ -86,7 +86,8 @@ class ScorePackageWrangler(PackageWrangler):
             'co': self.open_cache,
             'cw': self.write_cache,
             #
-            'fix*': self.fix_packages,
+            'fix*': self.fix_every_package,
+            'spo*': self.open_every_score_pdf,
             })
         return result
 
@@ -179,6 +180,7 @@ class ScorePackageWrangler(PackageWrangler):
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('all packages - fix', 'fix*'))
+        commands.append(('all packages - score.pdf - open', 'spo*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -250,8 +252,8 @@ class ScorePackageWrangler(PackageWrangler):
         self._copy_asset(new_storehouse=path)
         self.write_cache(confirm=False, display=False)
 
-    def fix_packages(self, confirm=True, display=True):
-        r'''Fixes packages.
+    def fix_every_package(self, confirm=True, display=True):
+        r'''Fixes every package.
 
         Returns none.
         '''
@@ -298,6 +300,13 @@ class ScorePackageWrangler(PackageWrangler):
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
         self._session._hide_next_redraw = True
+
+    def open_every_score_pdf(self, confirm=True, display=True):
+        r'''Opens ``score.pdf`` in every package.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
 
     def remove_packages(self):
         r'''Removes one or more packages.
