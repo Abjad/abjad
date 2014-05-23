@@ -6,7 +6,7 @@ from abjad.tools import documentationtools
 
 classes = documentationtools.list_all_scoremanager_classes()
 @pytest.mark.parametrize('obj', classes)
-def test___doc___01(obj):
+def test_scoremanager___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
 
