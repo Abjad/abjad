@@ -99,23 +99,23 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     ### PRIVATE METHODS ###
 
     def _make_missing_directories(self):
-        directorys = (
+        directories = (
             self.user_library_directory,
             self.user_library_material_packages_directory,
             self.user_library_makers_directory,
             )
-        for directory in directorys:
+        for directory in directories:
             if not os.path.exists(directory):
                 os.makedirs(directory)
                 file_path = os.path.join(directory, '__init__.py')
                 with open(file_path, 'w') as file_pointer:
                     file_pointer.write('')
-        directorys = (
+        directories = (
             self.user_score_packages_directory,
             self.user_library_stylesheets_directory,
             self.transcripts_directory,
             )
-        for directory in directorys:
+        for directory in directories:
             if not os.path.exists(directory):
                 os.makedirs(directory)
 
