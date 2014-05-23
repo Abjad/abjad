@@ -132,7 +132,7 @@ class Menu(Controller):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('s', 'h', 'q', 'b', '?', 'r'):
+        elif input_ in ('**', 's', 'h', 'q', 'b', '?', 'r'):
             return input_
         elif input_.startswith('!'):
             return input_

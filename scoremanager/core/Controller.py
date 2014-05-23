@@ -8,6 +8,7 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 class Controller(ScoreManagerObject):
     r'''Controller.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -31,6 +32,7 @@ class Controller(ScoreManagerObject):
     @property
     def _input_to_method(self):
         result = {
+            '**': self.go_to_library,
             'b': self.go_back,
             'h': self.go_home,
             'q': self.quit,
@@ -174,6 +176,14 @@ class Controller(ScoreManagerObject):
         if self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
+
+    def go_to_library(self):
+        r'''Goes to library.
+
+        Returns none.
+        '''
+        self._session._is_backtracking_to_library = True
+        self._session._hide_hidden_commands = True
 
     def quit(self):
         r'''Quits.

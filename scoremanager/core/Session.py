@@ -48,6 +48,7 @@ class Session(abctools.AbjadObject):
         '_io_manager',
         '_is_autoadding',
         '_is_backtracking_locally',
+        '_is_backtracking_to_library',
         '_is_backtracking_to_score',
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
@@ -113,6 +114,7 @@ class Session(abctools.AbjadObject):
         self._is_repository_test = False
         self._is_autoadding = False
         self._is_backtracking_locally = False
+        self._is_backtracking_to_library = False
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
         self._is_in_confirmation_environment = False
@@ -632,11 +634,14 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return (self.is_quitting or
-            self.is_backtracking_to_score_manager or
+        return (
+            self.is_autonavigating_within_score or
             self.is_backtracking_locally or 
+            self.is_backtracking_to_library or
+            self.is_backtracking_to_score_manager or
             self.is_backtracking_to_score or
-            self.is_autonavigating_within_score)
+            self.is_quitting
+            )
 
     @property
     def is_backtracking_locally(self):
@@ -653,6 +658,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_backtracking_locally
+
+    @property
+    def is_backtracking_to_library(self):
+        r'''Is true when session is backtracking to library.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_backtracking_to_library
+                False
+
+        Returns boolean.
+        '''
+        return self._is_backtracking_to_library
 
     @property
     def is_backtracking_to_score(self):
