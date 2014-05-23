@@ -14,4 +14,4 @@ def test_ScorePackageWrangler__make_main_menu_01():
         local_context=locals(),
         )
 
-    assert count < 3999
+    assert count < 5999
