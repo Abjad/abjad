@@ -104,7 +104,7 @@ class CodeBlock(AbjadObject):
         >>> for x in output_proxies:
         ...     x
         ...
-        MIDIOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\header {\n\ttagline = \\markup {}\n}\n\n\\layout {}\n\n\\paper {}\n\n\\score {}\n\n\\score {\n\tdqf16..\n\t\\midi {}\n}')
+        MIDIOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\header {\n\ttagline = \\markup {}\n}\n\n\\layout {}\n\n\\paper {}\n\n\\score {\n\tdqf16..\n\t\\midi {}\n}')
 
     Returns code block instance.
     '''
