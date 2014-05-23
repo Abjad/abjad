@@ -22,7 +22,7 @@ First let's create an empty score with a pair of staves connected by a brace:
 ::
 
    >>> score = Score([])
-   >>> piano_staff = scoretools.PianoStaff([])
+   >>> piano_staff = scoretools.StaffGroup([], context_name='PianoStaff')
    >>> upper_staff = Staff([])
    >>> lower_staff = Staff([])
 
@@ -291,3 +291,4 @@ The final result:
    >>> show(score)
 
 .. image:: images/index-4.png
+
