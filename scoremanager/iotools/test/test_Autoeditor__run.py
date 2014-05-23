@@ -478,8 +478,8 @@ def test_Autoeditor__run_22():
         session=session,
         target=target,
         )
-    input_ = 'ps add accordionist default add bassoonist default'
-    input_ += ' add cellist default done done'
+    input_ = 'ps add accordionist <return> add bassoonist <return>'
+    input_ += ' add cellist <return> done done'
     autoeditor._run(input_=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
@@ -512,7 +512,7 @@ def test_Autoeditor__run_23():
         session=session,
         target=target,
         )
-    input_ = 'ps add 1-3 default default default done done'
+    input_ = 'ps add 1-3 <return> <return> <return> done done'
     autoeditor._run(input_=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier([
@@ -541,7 +541,7 @@ def test_Autoeditor__run_24():
         session=session,
         target=target,
         )
-    input_ = 'ps add acc default add bass default add bassoon default'
+    input_ = 'ps add acc <return> add bass <return> add bassoon <return>'
     input_ += ' rm 3 rm 2 done done'
     autoeditor._run(input_=input_)
 
@@ -570,7 +570,7 @@ def test_Autoeditor__run_25():
         session=session,
         target=target,
         )
-    input_ = 'ps add 1-3 default default default rm 3-2 done done'
+    input_ = 'ps add 1-3 <return> <return> <return> rm 3-2 done done'
     autoeditor._run(input_=input_)
 
     specifier = instrumenttools.InstrumentationSpecifier(
@@ -597,7 +597,7 @@ def test_Autoeditor__run_26():
         session=session,
         target=target,
         )
-    input_ = 'ps add accordionist default add bassist default'
+    input_ = 'ps add accordionist <return> add bassist <return>'
     input_ += ' add bassoonist bassoon mv 1 2 mv 2 3 done done'
     autoeditor._run(input_=input_)
 

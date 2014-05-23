@@ -23,8 +23,7 @@ def test_PerformerCreationWizard__run_02():
 
     session = scoremanager.core.Session()
     wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
-    #input_ = 'vn <return>'
-    input_ = 'vn default'
+    input_ = 'vn <return>'
     assert wizard._run(input_=input_) == \
         instrumenttools.Performer(
             name='violinist',
@@ -41,8 +40,7 @@ def test_PerformerCreationWizard__run_03():
         is_ranged=True,
         session=session,
         )
-    #input_ = 'vn, va <return> <return>'
-    input_ = 'vn, va default default'
+    input_ = 'vn, va <return> <return>'
     assert wizard._run(input_=input_) == [
         instrumenttools.Performer(
             name='violinist',

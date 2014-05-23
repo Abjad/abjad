@@ -137,29 +137,26 @@
         Score Manager - stylesheets - select view to remove:
     ... instead.
 
-27. Change 'default' to '<return>' in test input strings.
-    Makes test more readable.
-
-28. Make (rst) work again. Right now runs on archipel and then quits.
+27. Make (rst) work again. Right now runs on archipel and then quits.
     Maybe add private Subversion tests.
 
-29. Allow 5-99 (or any other large number) to work when removing items.
+28. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-30. Move score_manager_library/views/*_views__.py files to
+29. Move score_manager_library/views/*_views__.py files to
     ~/.score_manager/ directory.
 
 
-31. Fix menu title that results from the following:
+30. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-32. There is no such thing as 'My build file library'.
+31. There is no such thing as 'My build file library'.
     Remove 'My build file library' from (u > cp > 1).
 
-33. Make bicolumnar layout work for asset screens.
+32. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-34. Improve (k > cp) user experience. Change ...
+33. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -168,7 +165,7 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-35. Improve (vls) user experience. Change ...
+34. Improve (vls) user experience. Change ...
         2 views found:
         cary & sekka
         examples
@@ -178,13 +175,13 @@
             2. examples
     ... instead.
 
-36. Make (rrv) work in Git directories.
+35. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-37. Improve (rad) user experience. Change
+36. Improve (rad) user experience. Change
         > rad
 
         red_example_score/segments/segment_01 ...
@@ -200,21 +197,21 @@
 
     ... instead.
 
-38. Glue 'go' menu sections together.
+37. Glue 'go' menu sections together.
 
-39. Wrap view tests with FilesystemState.
+38. Wrap view tests with FilesystemState.
 
-40. Add 'all segments - list versions directories'.
+39. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-41. Implement a dry_run=False keyword on bundled every*() methods.
+40. Implement a dry_run=False keyword on bundled every*() methods.
 
-42. Remove Transcript.signature.
+41. Remove Transcript.signature.
 
-43. Added 'with self._io_manager._make_interaction()' to essentially all
+42. Added 'with self._io_manager._make_interaction()' to essentially all
     public methods.
 
-44. Improve (m mdrw) user experience.
+43. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
 
-45. Change 'with context:' to 'with controller:' for ControllerContext usage.
+44. Change 'with context:' to 'with controller:' for ControllerContext usage.

@@ -474,7 +474,7 @@ class Menu(Controller):
     def _user_enters_nothing(self, input_):
         return (
             not input_ or 
-            (3 <= len(input_) and 'default'.startswith(input_))
+            (3 <= len(input_) and '<return>'.startswith(input_))
             )
 
     ### PUBLIC PROPERTIES ###
