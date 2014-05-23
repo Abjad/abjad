@@ -51,21 +51,12 @@ class AbjadConfiguration(Configuration):
         Configuration.__init__(self)
         # TODO: uncommenting this fails ScoreManagegerConfiguration init
         # verify the PDF output directory
-        #if not os.path.exists(self.abjad_output_directory):
-        #    os.mkdir(self.abjad_output_directory)
+        if not os.path.exists(self.abjad_output_directory):
+            os.makedirs(self.abjad_output_directory)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _initial_comment(self):
-        line_1 = 'Abjad configuration file created by Abjad on {}.'
-        line_1 = line_1.format(self._current_time)
-        line_2 = 'File is interpreted by ConfigObj'
-        line_2 += ' and should follow ini syntax.'
-        return [line_1, line_2]
-
-    @property
-    def _option_definitions(self):
+    def _get_option_definitions(self):
         options = {
             'abjad_output_directory': {
                 'comment': [
@@ -137,6 +128,17 @@ class AbjadConfiguration(Configuration):
 
         }
         return options
+
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _initial_comment(self):
+        line_1 = 'Abjad configuration file created by Abjad on {}.'
+        line_1 = line_1.format(self._current_time)
+        line_2 = 'File is interpreted by ConfigObj'
+        line_2 += ' and should follow ini syntax.'
+        return [line_1, line_2]
 
     ### PUBLIC METHODS ###
 
@@ -448,7 +450,12 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return self._settings['abjad_output_directory']
+        if 'abjad_output_directory' in self._settings:
+            return self._settings['abjad_output_directory']
+        return os.path.join(
+            self.abjad_configuration_directory,
+            'output'
+            )
 
     @property
     def abjad_root_directory(self):

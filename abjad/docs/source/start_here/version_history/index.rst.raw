@@ -15,6 +15,108 @@ Python 3.4+ compatibility
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
+Mutation improvements
+^^^^^^^^^^^^^^^^^^^^^
+
+Added `transpose()` method to MutationAgent.
+
+You can now say:
+
+::
+
+    >>> staff = Staff("<c' e' g'>4 d'4 <e' g' c''>4")
+    >>> mutate(staff).transpose(+6)
+    >>> print format(staff)
+    \new Staff {
+            <gf' bf' df''>4
+            af'4
+            <bf' df'' gf''>4
+    }
+
+Made mutate(expr).rewrite_meter() more robust
+
+`pitchtools` improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+More flexible instantiation
+better scale degree handling
+better transposition logic
+
+`spannertools` improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+New `indicatortools` classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Arpeggio
+    KeyCluster
+    LaissezVibrer
+
+New `datastructuretools` classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ContextMap
+
+`lilypondfiletools` improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Abjad 2.15 features a simpler lilypondfiletools API
+
+        lilypondfiletools.BookBlock
+        lilypondfiletools.BookpartBlock
+        lilypondfiletools.ContextBlock
+        lilypondfiletools.HeaderBlock
+        lilypondfiletools.LayoutBlock
+        lilypondfiletools.MIDIBlock
+        lilypondfiletools.PaperBlock
+    
+        lilypondfiletools.ContextBlock
+        lilypondfiletools.Block
+
+Improved rhythmmakertools
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Abjad 2.15 features a simpler and more powerful rhythm-maker API
+
+    Addd new rhythm maker: RatioTaleaRhythmMaker.
+    
+    ::
+    
+        rhythm_maker = rhythmmakertools.RatioTaleaRhythmMaker(
+            ratio_talea=[(1, -1), (3, 1), (1, 2, 1)],
+            )
+
+
+Improved scoretools
+^^^^^^^^^^^^^^^^^^^
+
+Simplified scoretools API:
+
+* scoretools.Score
+* scoretools.StaffGroup
+* scoretools.Staff
+* scoretools.Voice
+
+
+        >>> staff_group = StaffGroup()
+        >>> staff_group.context_name = 'PianoStaff'
+
+
+    Activated Measure.should_scale_contents property.
+    
+
+
+Parameterized tests
+^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
+Thanks
+^^^^^^
+
+Thanks to George K. Thiruvathukal <thiruvathukal@gmail.com>
 
 
 Older versions

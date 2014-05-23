@@ -6,7 +6,7 @@ from abjad.tools import documentationtools
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test___repr___01(class_):
+def test_abjad___repr___01(class_):
     r'''All concrete classes have an interpreter representation.
     '''
 

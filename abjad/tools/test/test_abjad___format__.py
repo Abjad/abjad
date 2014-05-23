@@ -9,7 +9,7 @@ from abjad.tools import tonalanalysistools
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test___format___01(class_):
+def test_abjad___format___01(class_):
     r'''All concrete classes have a storage format.
     '''
 
@@ -29,7 +29,7 @@ _classes_to_temporarily_skip = (
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test___format___02(class_):
+def test_abjad___format___02(class_):
     r'''All storage-formattable classes have evaluable storage format.
     '''
 

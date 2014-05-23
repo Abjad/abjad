@@ -114,6 +114,12 @@ class Configuration(AbjadObject):
         '''
         self._settings[i] = arg
 
+    ### PRIVATE METHODS ###
+
+    @abc.abstractmethod
+    def _get_option_definitions(self):
+        raise NotImplementedError
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -132,17 +138,13 @@ class Configuration(AbjadObject):
 
     @property
     def _option_comments(self):
-        options = self._option_definitions
+        options = self._get_option_definitions()
         comments = [(key, options[key]['comment']) for key in options]
         return dict(comments)
 
-    @abc.abstractproperty
-    def _option_definitions(self):
-        raise NotImplementedError
-
     @property
     def _option_specification(self):
-        options = self._option_definitions
+        options = self._get_option_definitions()
         specs = [(key, options[key]['spec']) for key in options]
         return dict(specs)
 
