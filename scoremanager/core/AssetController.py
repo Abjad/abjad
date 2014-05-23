@@ -6,6 +6,7 @@ from scoremanager.core.Controller import Controller
 
 class AssetController(Controller):
     r'''Asset controller.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -24,6 +25,7 @@ class AssetController(Controller):
             '<<': self.go_to_previous_score,
             '>>': self.go_to_next_score,
             #
+            '**': self.go_to_library,
             'd': self.go_to_distribution_files,
             'g': self.go_to_segments,
             'k': self.go_to_maker_files,
@@ -88,6 +90,7 @@ class AssetController(Controller):
 
     def _make_go_menu_section(self, menu):
         commands = []
+        commands.append(('go - all', '**'))
         commands.append(('go - back', 'b'))
         commands.append(('go - home', 'h'))
         commands.append(('go - quit', 'q'))
