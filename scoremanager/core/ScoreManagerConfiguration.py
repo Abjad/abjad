@@ -42,8 +42,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ' and should follow ini syntax.',
         ]
 
-    @property
-    def _option_definitions(self):
+    def _get_option_definitions(self):
+        parent_options = AbjadConfiguration._get_option_definitions(self)
         options = {
             'score_manager_library': {
                 'comment': [
@@ -87,7 +87,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 'spec': "string(default='Name')",
             },
         }
-        return options
+        parent_options.update(options)
+        return parent_options
 
     @property
     def _user_library_directory_name(self):

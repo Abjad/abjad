@@ -54,18 +54,9 @@ class AbjadConfiguration(Configuration):
         if not os.path.exists(self.abjad_output_directory):
             os.makedirs(self.abjad_output_directory)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _initial_comment(self):
-        line_1 = 'Abjad configuration file created by Abjad on {}.'
-        line_1 = line_1.format(self._current_time)
-        line_2 = 'File is interpreted by ConfigObj'
-        line_2 += ' and should follow ini syntax.'
-        return [line_1, line_2]
-
-    @property
-    def _option_definitions(self):
+    def _get_option_definitions(self):
         options = {
             'abjad_output_directory': {
                 'comment': [
@@ -137,6 +128,17 @@ class AbjadConfiguration(Configuration):
 
         }
         return options
+
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _initial_comment(self):
+        line_1 = 'Abjad configuration file created by Abjad on {}.'
+        line_1 = line_1.format(self._current_time)
+        line_2 = 'File is interpreted by ConfigObj'
+        line_2 += ' and should follow ini syntax.'
+        return [line_1, line_2]
 
     ### PUBLIC METHODS ###
 
