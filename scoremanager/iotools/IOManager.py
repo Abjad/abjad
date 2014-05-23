@@ -58,10 +58,12 @@ class IOManager(IOManager):
     ### PRIVATE METHODS ###
 
     def _clear_terminal(self):
-        if not self._session.hide_next_redraw:
-            if not self._session.pending_input:
-                superclass = super(IOManager, self)
-                superclass.clear_terminal()
+        if self._session.is_in_task:
+            return
+        if self._session.hide_next_redraw:
+            return
+        superclass = super(IOManager, self)
+        superclass.clear_terminal()
 
     def _confirm(
         self,
@@ -247,7 +249,7 @@ class IOManager(IOManager):
             )
         return getter
 
-    def _make_interaction(self, display=True, dry_run=False):
+    def _make_interaction(self, display=True, dry_run=False, task=True):
         r'''Makes interaction context manager.
 
         Returns interaction context manager.
@@ -257,6 +259,7 @@ class IOManager(IOManager):
             controller=self.client, 
             display=display,
             dry_run=dry_run,
+            task=task,
             )
         return context
 

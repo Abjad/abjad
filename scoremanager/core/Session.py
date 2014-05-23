@@ -75,6 +75,7 @@ class Session(abctools.AbjadObject):
         '_pending_input',
         '_proceed_count',
         '_score_manager',
+        '_task_depth',
         '_transcript',
         )
 
@@ -141,6 +142,7 @@ class Session(abctools.AbjadObject):
         self._pending_input = input_
         self._proceed_count = 0
         self._score_manager = None
+        self._task_depth = 0
         self._transcript = iotools.Transcript()
 
     ### SPECIAL METHODS ###
@@ -809,6 +811,21 @@ class Session(abctools.AbjadObject):
         return self._is_in_score_setup_menu
 
     @property
+    def is_in_task(self):
+        r'''Is true when session is in task. Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_task
+                False
+
+        Returns boolean.
+        '''
+        return bool(self.task_depth)
+
+    @property
     def is_in_user_input_getter(self):
         r'''Is true when session is in user input getter. Otherwise false:
 
@@ -1213,6 +1230,21 @@ class Session(abctools.AbjadObject):
         Returns score manager or none.
         '''
         return self._score_manager
+
+    @property
+    def task_depth(self):
+        r'''Gets task depth.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.task_depth
+                0
+
+        Returns nonnegative integer.
+        '''
+        return self._task_depth
 
     @property
     def testable_command_history_string(self):

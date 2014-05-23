@@ -12,14 +12,22 @@ class Interaction(ContextManager):
         '_controller',
         '_display',
         '_dry_run',
+        '_task',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, controller=None, display=True, dry_run=False):
+    def __init__(
+        self, 
+        controller=None, 
+        display=True, 
+        dry_run=False,
+        task=True,
+        ):
         self._controller = controller
         self._display = display
         self._dry_run = dry_run
+        self._task = task
 
     ### SPECIAL METHODS ###
 
@@ -29,6 +37,8 @@ class Interaction(ContextManager):
         Returns none.
         '''
         self._controller._session._interaction_depth += 1
+        if self.task:
+            self._controller._session._task_depth += 1
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits interaction manager.
@@ -36,6 +46,8 @@ class Interaction(ContextManager):
         Returns none.
         '''
         self._controller._session._interaction_depth -= 1
+        if self.task:
+            self._controller._session._task_depth -= 1
         if self.display and not self.dry_run:
             self.controller._session._hide_next_redraw = False
             self.controller._io_manager._display('')
@@ -71,3 +83,16 @@ class Interaction(ContextManager):
         Returns boolean.
         '''
         return self._dry_run
+
+    @property
+    def task(self):
+        r'''Is true when interaction is a task. Otherwise false.
+
+        Main menus are not tasks; public methods are tasks.
+
+        Tasks are not implemented around a while-true loop; main menus are
+        implemented around a while-true loop.
+
+        Returns boolean.
+        '''
+        return self._task
