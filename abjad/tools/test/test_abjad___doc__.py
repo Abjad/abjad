@@ -33,7 +33,7 @@ ignored_classes = (
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('obj', classes)
-def test___doc___01(obj):
+def test_abjad___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
 
@@ -53,7 +53,7 @@ def test___doc___01(obj):
 
 functions = documentationtools.list_all_abjad_functions()
 @pytest.mark.parametrize('obj', functions)
-def test___doc___02(obj):
+def test_abjad___doc___02(obj):
     r'''All functions have a docstring.
     '''
 

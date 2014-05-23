@@ -39,7 +39,7 @@ _classes_to_fix = (
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test_pickle_01(class_):
+def test_abjad_pickle_01(class_):
     r'''All storage-formattable classes are pickable.
     '''
 

@@ -11,7 +11,7 @@ from abjad.tools import mathtools
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test___init___01(class_):
+def test_abjad___init___01(class_):
     r'''All concrete classes initialize from empty input.
     '''
 
@@ -34,7 +34,7 @@ valid_types = (
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('obj', classes)
-def test___init___02(obj):
+def test_abjad___init___02(obj):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
 
@@ -60,7 +60,7 @@ def test___init___02(obj):
 
 functions = documentationtools.list_all_abjad_functions()
 @pytest.mark.parametrize('obj', functions)
-def test___init___03(obj):
+def test_abjad___init___03(obj):
     r'''Make sure function keyword argument values are immutable.
     '''
     if isinstance(obj, functools.partial):
