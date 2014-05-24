@@ -215,3 +215,5 @@
     Include 'Will rewrite ...' messaging.
 
 44. Add "Command unknown: 'asdf'." message.
+
+45. Make '<return>' show up in Session.command_history.
