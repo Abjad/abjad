@@ -288,8 +288,6 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('title', result)
         wrangler = self._session._score_manager._score_package_wrangler
         wrangler.write_cache(confirm=False, display=False)
-        # TODO: wrap entire suite in redraw context manager
-        #self._session._is_pending_output_removal = True
 
     def edit_year(self):
         r'''Edits year.
@@ -308,8 +306,6 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('year', result)
         wrangler = self._session._score_manager._score_package_wrangler
         wrangler.write_cache(confirm=False, display=False)
-        # TODO: wrap entire suite in redraw context manager
-        #self._session._is_pending_output_removal = True
 
     def fix_package(self, confirm=True, display=True):
         r'''Fixes package.

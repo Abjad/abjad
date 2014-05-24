@@ -129,7 +129,7 @@ class Menu(Controller):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('**', 's', 'h', 'q', 'b', '?', 'r', '<return>'):
+        elif input_ in ('**', 's', 'h', 'q', 'b', '?', '<return>'):
             self._session._is_pending_output_removal = True
             return input_
         elif input_.startswith('!'):
@@ -428,7 +428,7 @@ class Menu(Controller):
                     result = self._display()
                 if self._session.is_quitting:
                     return result
-                if result in ('r', '<return>'):
+                if result == '<return>':
                     self._session._is_pending_output_removal = True
                 elif (isinstance(result, str) and 
                     result in self._input_to_method):

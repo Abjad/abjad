@@ -233,23 +233,6 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
-    # TODO: see if this can be removed
-    def _get_controller_with(self, ui=None):
-        from scoremanager import core
-        for controller in reversed(self.controller_stack):
-            if isinstance(controller, core.ScoreManager):
-                controller = controller._score_package_wrangler
-            if not ui:
-                return controller
-            input_to_action = getattr(
-                controller,
-                '_input_to_method',
-                None,
-                )
-            if input_to_action:
-                if ui in input_to_action:
-                    return controller
-
     def _print_transcript(
         self,
         include_input=True,

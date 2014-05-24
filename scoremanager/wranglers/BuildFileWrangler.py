@@ -87,7 +87,6 @@ class BuildFileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
-    # TODO: migrate to IOManager
     def _call_lilypond_on_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
@@ -96,7 +95,6 @@ class BuildFileWrangler(Wrangler):
             message = 'file ending in {!r} not found.'
             message = message.format(string)
 
-    # TODO: migrate to IOManager
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:

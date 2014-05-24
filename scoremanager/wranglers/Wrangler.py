@@ -130,7 +130,7 @@ class Wrangler(AssetController):
         force_lowercase=True,
         new_storehouse=None
         ):
-        old_path = self._get_visible_asset_path(infinitive_phrase='to copy')
+        old_path = self._select_visible_asset_path(infinitive_phrase='to copy')
         if not old_path:
             return
         old_name = os.path.basename(old_path)
@@ -390,54 +390,6 @@ class Wrangler(AssetController):
             return self._get_next_asset_path()
         if self._session.is_navigating_to_previous_asset:
             return self._get_previous_asset_path()
-
-    # TODO: rename interactive method with something other than _get*
-    def _get_visible_asset_path(self, infinitive_phrase=None):
-        getter = self._io_manager._make_getter()
-        prompt_string = 'enter {}'.format(self._asset_identifier)
-        if infinitive_phrase:
-            prompt_string = prompt_string + ' ' + infinitive_phrase
-        if hasattr(self, '_make_asset_menu_section'):
-            dummy_menu = self._io_manager._make_menu()
-            self._make_asset_menu_section(dummy_menu)
-            asset_section = dummy_menu._asset_section
-        else:
-            menu = self._make_asset_selection_menu()
-            asset_section = menu['assets']
-        getter.append_menu_section_item(
-            prompt_string, 
-            asset_section,
-            )
-        numbers = getter._run()
-        if self._session.is_backtracking:
-            return
-        if not len(numbers) == 1:
-            return
-        number = numbers[0]
-        index = number - 1
-        paths = [_.return_value for _ in asset_section.menu_entries]
-        path = paths[index]
-        return path
-
-    # TODO: rename interactive method with something other than _get*
-    def _get_visible_asset_paths(self):
-        getter = self._io_manager._make_getter()
-        plural_identifier = stringtools.pluralize(self._asset_identifier)
-        prompt_string = 'enter {}(s) to remove'
-        prompt_string = prompt_string.format(plural_identifier)
-        menu = self._make_asset_selection_menu()
-        asset_section = menu['assets']
-        getter.append_menu_section_range(
-            prompt_string, 
-            asset_section,
-            )
-        numbers = getter._run()
-        if self._session.is_backtracking:
-            return
-        indices = [_ - 1 for _ in numbers]
-        paths = [_.return_value for _ in asset_section.menu_entries]
-        paths = sequencetools.retain_elements(paths, indices)
-        return paths
 
     def _get_visible_storehouses(self):
         menu = self._make_asset_selection_menu()
@@ -927,7 +879,7 @@ class Wrangler(AssetController):
 
     def _remove_assets(self, confirm=True, display=True):
         from scoremanager import managers
-        paths = self._get_visible_asset_paths()
+        paths = self._select_visible_asset_paths()
         if not paths:
             return
         if confirm:
@@ -967,7 +919,7 @@ class Wrangler(AssetController):
         file_name_callback=None, 
         force_lowercase=True,
         ):
-        path = self._get_visible_asset_path(infinitive_phrase='to rename')
+        path = self._select_visible_asset_path(infinitive_phrase='to rename')
         if not path:
             return
         file_name = os.path.basename(path)
@@ -1069,6 +1021,52 @@ class Wrangler(AssetController):
         if self._session.is_backtracking:
             return
         return result
+
+    def _select_visible_asset_path(self, infinitive_phrase=None):
+        getter = self._io_manager._make_getter()
+        prompt_string = 'enter {}'.format(self._asset_identifier)
+        if infinitive_phrase:
+            prompt_string = prompt_string + ' ' + infinitive_phrase
+        if hasattr(self, '_make_asset_menu_section'):
+            dummy_menu = self._io_manager._make_menu()
+            self._make_asset_menu_section(dummy_menu)
+            asset_section = dummy_menu._asset_section
+        else:
+            menu = self._make_asset_selection_menu()
+            asset_section = menu['assets']
+        getter.append_menu_section_item(
+            prompt_string, 
+            asset_section,
+            )
+        numbers = getter._run()
+        if self._session.is_backtracking:
+            return
+        if not len(numbers) == 1:
+            return
+        number = numbers[0]
+        index = number - 1
+        paths = [_.return_value for _ in asset_section.menu_entries]
+        path = paths[index]
+        return path
+
+    def _select_visible_asset_paths(self):
+        getter = self._io_manager._make_getter()
+        plural_identifier = stringtools.pluralize(self._asset_identifier)
+        prompt_string = 'enter {}(s) to remove'
+        prompt_string = prompt_string.format(plural_identifier)
+        menu = self._make_asset_selection_menu()
+        asset_section = menu['assets']
+        getter.append_menu_section_range(
+            prompt_string, 
+            asset_section,
+            )
+        numbers = getter._run()
+        if self._session.is_backtracking:
+            return
+        indices = [_ - 1 for _ in numbers]
+        paths = [_.return_value for _ in asset_section.menu_entries]
+        paths = sequencetools.retain_elements(paths, indices)
+        return paths
 
     def _set_is_navigating_to_sibling_asset(self):
         message = 'implement on concrete wrangler classes.'

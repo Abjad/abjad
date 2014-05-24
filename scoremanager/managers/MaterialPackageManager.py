@@ -667,71 +667,62 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         from scoremanager import iotools
-        # not wrapped in interaction because redraw is important afterwards
-        #with self._io_manager._make_interaction(display=display):
-        if True:
-            selector = self._io_manager.selector
-            selector = selector.make_inventory_class_selector()
-            # TODO: maybe wrap these three lines in a context manager
-            self._session._is_pending_output_removal = True
-            class_ = selector._run()
-            self._session._is_pending_output_removal = True
-            if not class_:
-                return
-            self._add_metadatum('use_autoeditor', True)
-            self._add_metadatum('output_material_class_name', class_.__name__)
-            output_material = self._execute_output_py()
-            if type(output_material) is class_:
-                return
-            if confirm:
-                if output_material is not None:
-                    messages = []
-                    message = 'existing output.py file contains {}.'
-                    message = message.format(type(output_material).__name__)
-                    messages.append(message)
-                    message = 'overwrite existing output.py file?'
-                    messages.append(message)
-                    self._io_manager._display(messages)
-                    result = self._io_manager._confirm()
-                    if self._session.is_backtracking:
-                        return
-                    if not result:
-                        return
-            empty_target = class_()
-            if type(empty_target) is list:
-                storage_format = repr(empty_target)
-            else:
-                storage_format = format(empty_target, 'storage')
-            body_lines = '{} = {}'.format(
-                self._package_name,
-                storage_format,
-                )
-            body_lines = body_lines.split('\n')
-            body_lines = [_ + '\n' for _ in body_lines]
-            import_statements = [self._abjad_import_statement]
-            if 'handlertools.' in storage_format:
-                statement = 'from experimental.tools import handlertools'
-                import_statements.append(statement)
-            if ' makers.' in storage_format:
-                statement = 'from scoremanager import makers'
-                import_statements.append(statement)
-            self.write_output_py(
-                body_lines=body_lines,
-                import_statements=import_statements,
-                output_material=empty_target,
-                confirm=False,
-                display=False,
-                )
+        selector = self._io_manager.selector
+        selector = selector.make_inventory_class_selector()
+        class_ = selector._run()
+        if not class_:
+            return
+        self._add_metadatum('use_autoeditor', True)
+        self._add_metadatum('output_material_class_name', class_.__name__)
+        output_material = self._execute_output_py()
+        if type(output_material) is class_:
+            return
+        if confirm:
+            if output_material is not None:
+                messages = []
+                message = 'existing output.py file contains {}.'
+                message = message.format(type(output_material).__name__)
+                messages.append(message)
+                message = 'overwrite existing output.py file?'
+                messages.append(message)
+                self._io_manager._display(messages)
+                result = self._io_manager._confirm()
+                if self._session.is_backtracking:
+                    return
+                if not result:
+                    return
+        empty_target = class_()
+        if type(empty_target) is list:
+            storage_format = repr(empty_target)
+        else:
+            storage_format = format(empty_target, 'storage')
+        body_lines = '{} = {}'.format(
+            self._package_name,
+            storage_format,
+            )
+        body_lines = body_lines.split('\n')
+        body_lines = [_ + '\n' for _ in body_lines]
+        import_statements = [self._abjad_import_statement]
+        if 'handlertools.' in storage_format:
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
+        if ' makers.' in storage_format:
+            statement = 'from scoremanager import makers'
+            import_statements.append(statement)
+        self.write_output_py(
+            body_lines=body_lines,
+            import_statements=import_statements,
+            output_material=empty_target,
+            confirm=False,
+            display=False,
+            )
 
     def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
 
         Returns none.
         '''
-        #with self._io_manager._make_interaction(display=display):
-        # no interaction because redraw is important
-        if True:
-            self._remove_metadatum('use_autoeditor')
+        self._remove_metadatum('use_autoeditor')
 
     def write_output_py(
         self,
