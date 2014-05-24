@@ -185,10 +185,6 @@ class IOManager(IOManager):
         breadcrumb=None,
         target=None,
         ):
-        r'''Makes autoeditor with optional `target`.
-
-        Returns autoeditor or list autoeditor.
-        '''
         from scoremanager import iotools
         prototype = (
             list,
@@ -216,10 +212,6 @@ class IOManager(IOManager):
         include_chevron=True,
         include_newlines=False,
         ):
-        r'''Makes getter.
-
-        Returns getter.
-        '''
         from scoremanager import iotools
         getter = iotools.UserInputGetter(
             session=self._session,
@@ -230,41 +222,27 @@ class IOManager(IOManager):
         return getter
 
     def _make_interaction(self, display=True, dry_run=False, task=True):
-        r'''Makes interaction context manager.
-
-        Returns interaction context manager.
-        '''
         from scoremanager import iotools
-        context = iotools.Interaction(
+        return iotools.Interaction(
             controller=self.client, 
             display=display,
             dry_run=dry_run,
             task=task,
             )
-        return context
 
     def _make_menu(
         self,
         breadcrumb_callback=None,
         name=None,
         ):
-        r'''Makes menu.
-
-        Returns menu.
-        '''
         from scoremanager import iotools
-        menu = iotools.Menu(
+        return iotools.Menu(
             breadcrumb_callback=breadcrumb_callback,
             name=name,
             session=self._session,
             )
-        return menu
 
     def _make_package_manager(self, path):
-        r'''Makes package manager.
-
-        Returns package manager.
-        '''
         from scoremanager import managers
         return managers.PackageManager(
             path=path,
@@ -277,16 +255,22 @@ class IOManager(IOManager):
         is_ranged=False,
         items=None,
         ):
-        r'''Makes selector.
-
-        Returns selector.
-        '''
         from scoremanager import iotools
         return iotools.Selector(
             breadcrumb=breadcrumb,
             is_ranged=is_ranged,
             items=items,
             session=self._session,
+            )
+
+    def _make_silent(self):
+        from scoremanager import iotools
+        return iotools.Interaction(
+            confirm=False,
+            controller=None,
+            display=False,
+            dry_run=False,
+            task=False,
             )
 
     def _make_tab(self, n=1):

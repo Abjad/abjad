@@ -563,9 +563,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
-        state = systemtools.FilesystemState(remove=[path])
-        interaction = self._io_manager._make_interaction(display=display)
-        with interaction, state:
+        with systemtools.FilesystemState(remove=[path]):
             lines = self._make_temporary_illustrate_py_lines()
             contents = '\n'.join(lines)
             self._io_manager.write(path, contents)

@@ -1291,13 +1291,12 @@ class Wrangler(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
-            paths = self._list_visible_asset_paths()
-            paths = self._extract_common_parent_directories(paths)
-            paths.sort()
-            for path in paths:
-                manager = self._io_manager._make_package_manager(path)
-                manager.repository_clean(display=display)
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        paths.sort()
+        for path in paths:
+            manager = self._io_manager._make_package_manager(path)
+            manager.repository_clean(display=display)
 
     def repository_status(self):
         r'''Displays repository status.

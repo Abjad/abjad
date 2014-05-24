@@ -94,22 +94,21 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
-            paths = self._list_metadata_py_files_in_all_directories()
-            if display:
-                messages = []
-                messages.append('will open ...')
-                for path in paths:
-                    message = '    ' + path
-                    messages.append(message)
-                self._io_manager._display(messages)
-            if confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
-            self._io_manager.open_file(paths)
+        paths = self._list_metadata_py_files_in_all_directories()
+        if display:
+            messages = []
+            messages.append('will open ...')
+            for path in paths:
+                message = '    ' + path
+                messages.append(message)
+            self._io_manager._display(messages)
+        if confirm:
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
+        self._io_manager.open_file(paths)
 
 
     def rewrite_every_metadata_py(self, confirm=True, display=True):
@@ -117,20 +116,19 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
-            directories = self._list_all_directories_with_metadata_pys()
-            messages = []
-            for directory in directories:
-                path = os.path.join(directory, '__metadata__.py')
-                message = 'rewriting {} ...'.format(path)
-                messages.append(message)
-                manager = self._io_manager._make_package_manager(directory)
-                manager.rewrite_metadata_py(confirm=False, display=False)
-            if display:
-                message = '{} __metadata__.py files rewritten.'
-                message = message.format(len(directories))
-                messages.append(message)
-                self._io_manager._display(messages)
+        directories = self._list_all_directories_with_metadata_pys()
+        messages = []
+        for directory in directories:
+            path = os.path.join(directory, '__metadata__.py')
+            message = 'rewriting {} ...'.format(path)
+            messages.append(message)
+            manager = self._io_manager._make_package_manager(directory)
+            manager.rewrite_metadata_py(confirm=False, display=False)
+        if display:
+            message = '{} __metadata__.py files rewritten.'
+            message = message.format(len(directories))
+            messages.append(message)
+            self._io_manager._display(messages)
 
     def write_every_init_py_stub(self):
         r'''Writes stub ``__init__.py`` in every package.
