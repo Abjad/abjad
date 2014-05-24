@@ -10,4 +10,14 @@ def test_UserInputGetter_back_01():
 
     input_ = 'red~example~score m tempo~inventory ae 1 d b q'
     score_manager._run(input_=input_)
-    assert score_manager._transcript.signature == (16, (10, 13))
+
+    titles = [
+        'Score Manager - scores',
+        'Red Example Score (2013)',
+        'Red Example Score (2013) - materials',
+        'Red Example Score (2013) - materials - tempo inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory',
+        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory - tempo',
+        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory - tempo',
+        ]
+    assert score_manager._transcript.titles == titles

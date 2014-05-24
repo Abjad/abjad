@@ -47,7 +47,8 @@ class Interaction(ContextManager):
         if self.task:
             self._controller._session._task_depth -= 1
         if self.display and not self.dry_run:
-            self.controller._io_manager._display('')
+            if self._controller._session._task_depth == 0:
+                self.controller._io_manager._display('')
 
     ### PUBLIC PROPERTIES ###
 

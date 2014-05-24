@@ -72,7 +72,8 @@ class AssetController(Controller):
             statement = result[1:]
             self.invoke_shell(statement=statement)
         elif result in self._input_to_method:
-            self._input_to_method[result]()
+            with self._io_manager._make_interaction():
+                self._input_to_method[result]()
         else:
             self._handle_numeric_user_input(result)
 
