@@ -36,7 +36,6 @@ class Interaction(ContextManager):
 
         Returns none.
         '''
-        self._controller._session._interaction_depth += 1
         if self.task:
             self._controller._session._task_depth += 1
 
@@ -45,7 +44,6 @@ class Interaction(ContextManager):
 
         Returns none.
         '''
-        self._controller._session._interaction_depth -= 1
         if self.task:
             self._controller._session._task_depth -= 1
         if self.display and not self.dry_run:
