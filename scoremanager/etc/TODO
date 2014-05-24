@@ -206,14 +206,12 @@
 
 40. Implement a dry_run=False keyword on bundled every*() methods.
 
-41. Remove Transcript.signature.
-
-42. Added 'with self._io_manager._make_interaction()' to essentially all
+41. Added 'with self._io_manager._make_interaction()' to essentially all
     public methods.
 
-43. Improve (m mdrw) user experience.
+42. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
 
-44. Add "Command unknown: 'asdf'." message.
+43. Add "Command unknown: 'asdf'." message.
 
-45. Make '<return>' show up in Session.command_history.
+44. Make '<return>' show up in Session.command_history.

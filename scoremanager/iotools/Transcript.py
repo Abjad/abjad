@@ -115,29 +115,6 @@ class Transcript(AbjadObject):
         return self.last_menu_lines[0]
 
     @property
-    def signature(self):
-        r'''Gets transcript signature.
-
-        Returns tuple.
-        '''
-        result = []
-        short_transcript = [entry.lines for entry in self.entries]
-        result.append(len(short_transcript))
-        indices_already_encountered = set([])
-        for i in range(len(short_transcript)):
-            if i not in indices_already_encountered:
-                shared_indices = [i]
-                reference_element = short_transcript[i]
-                for j, current_element in enumerate(short_transcript):
-                    if current_element == reference_element:
-                        if i != j:
-                            shared_indices.append(j)
-                if 1 < len(shared_indices):
-                    result.append(tuple(shared_indices))
-                indices_already_encountered.update(shared_indices)
-        return tuple(result)
-
-    @property
     def start_time(self):
         r'''Gets transcript start time.
 

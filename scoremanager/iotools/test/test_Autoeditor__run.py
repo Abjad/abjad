@@ -157,54 +157,6 @@ def test_Autoeditor__run_09():
     assert autoeditor.target == pitchtools.PitchRange('(A0, C8]')
 
 
-def test_Autoeditor__run_10():
-    r'''While editing pitch range: quit, score, home & junk all work.
-
-    Note that back doesn't yet work here
-    because 'b' interprets as named chromatic pitch.
-    '''
-
-    session = scoremanager.core.Session(is_test=True)
-    target = pitchtools.PitchRange()
-    autoeditor = scoremanager.iotools.Autoeditor(
-        session=session,
-        target=target,
-        )
-    input_ = 'q'
-    autoeditor._run(input_=input_)
-    assert autoeditor._transcript.signature == (2,)
-
-    session = scoremanager.core.Session(is_test=True)
-    target = pitchtools.PitchRange()
-    autoeditor = scoremanager.iotools.Autoeditor(
-        session=session,
-        target=target,
-        )
-    input_ = 's q'
-    autoeditor._run(input_=input_)
-    assert autoeditor._transcript.signature == (4, (0, 2))
-
-    session = scoremanager.core.Session(is_test=True)
-    target = pitchtools.PitchRange()
-    autoeditor = scoremanager.iotools.Autoeditor(
-        session=session,
-        target=target,
-        )
-    input_ = 'h'
-    autoeditor._run(input_=input_)
-    assert autoeditor._transcript.signature == (2,)
-
-    session = scoremanager.core.Session(is_test=True)
-    target = pitchtools.PitchRange()
-    autoeditor = scoremanager.iotools.Autoeditor(
-        session=session,
-        target=target,
-        )
-    input_ = 'foo q'
-    autoeditor._run(input_=input_)
-    assert autoeditor._transcript.signature == (4, (0, 2))
-
-
 def test_Autoeditor__run_11():
     r'''Edits hairpin handler.
     '''
