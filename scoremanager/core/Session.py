@@ -38,9 +38,11 @@ class Session(abctools.AbjadObject):
         '_attempted_to_revert_to_repository',
         '_attempted_to_update_from_repository',
         '_command_history',
+        '_confirm',
         '_configuration',
         '_controller_stack',
         '_controllers_visited',
+        '_display',
         '_display_pitch_ranges_with_numbered_pitches',
         '_hide_hidden_commands',
         '_initial_input',
@@ -104,8 +106,10 @@ class Session(abctools.AbjadObject):
         self._attempted_to_update_from_repository = False
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
+        self._confirm = True
         self._controller_stack = []
         self._controllers_visited = []
+        self._display = True
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
         self._initial_input = input_
@@ -301,6 +305,22 @@ class Session(abctools.AbjadObject):
         return ' '.join(self.explicit_command_history)
 
     @property
+    def confirm(self):
+        r'''Is true when confirmation messaging should be displayed.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.confirm
+                True
+
+        Returns boolean.
+        '''
+        return self._confirm
+
+    @property
     def controller_stack(self):
         r'''Gets session controller stack.
 
@@ -472,6 +492,22 @@ class Session(abctools.AbjadObject):
         if found_score_stylesheet:
             path = os.path.join(stylesheets_directory, entry)
             return path
+
+    @property
+    def display(self):
+        r'''Is true when messaging should be displayed.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.display
+                True
+
+        Returns boolean.
+        '''
+        return self._display
 
     @property
     def display_pitch_ranges_with_numbered_pitches(self):

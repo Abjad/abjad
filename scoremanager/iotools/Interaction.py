@@ -9,9 +9,12 @@ class Interaction(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_confirm',
         '_controller',
         '_display',
         '_dry_run',
+        '_original_confirm',
+        '_original_display',
         '_task',
         )
 
@@ -19,14 +22,18 @@ class Interaction(ContextManager):
 
     def __init__(
         self, 
+        confirm=True,
         controller=None, 
         display=True, 
         dry_run=False,
         task=True,
         ):
+        self._confirm = confirm
         self._controller = controller
         self._display = display
         self._dry_run = dry_run
+        self._original_confirm = None
+        self._original_display = None
         self._task = task
 
     ### SPECIAL METHODS ###
@@ -38,6 +45,10 @@ class Interaction(ContextManager):
         '''
         if self.task:
             self._controller._session._task_depth += 1
+        self._original_confirm = self._controller._session.confirm
+        self._original_display = self._controller._session.display
+        self._controller._session._confirm = self.confirm
+        self._controller._session._display = self.display
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits interaction manager.
@@ -49,8 +60,19 @@ class Interaction(ContextManager):
         if self.display and not self.dry_run:
             if self._controller._session._task_depth == 0:
                 self.controller._io_manager._display('')
+        self._controller._session._confirm = self._original_confirm
+        self._controller._session._display = self._original_display
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def confirm(self):
+        r'''Is true when interaction should display confirmation messaging.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._confirm
 
     @property
     def controller(self):
