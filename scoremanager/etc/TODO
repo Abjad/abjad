@@ -213,3 +213,5 @@
 
 43. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
+
+44. Add "Command unknown: 'asdf'." message.
