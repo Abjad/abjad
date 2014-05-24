@@ -132,7 +132,6 @@ class PackageWrangler(Wrangler):
                 message = '{} __metadata__.py files rewritten.'
                 message = message.format(len(directories))
                 messages.append(message)
-                self._session._hide_next_redraw = False
                 self._io_manager._display(messages)
 
     def write_every_init_py_stub(self):

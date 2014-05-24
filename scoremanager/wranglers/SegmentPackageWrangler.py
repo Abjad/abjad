@@ -155,7 +155,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('definition.py', verb='edit')
-        self._session._hide_next_redraw = True
 
     def interpret_every_make_py(self):
         r'''Interprets ``__make.py__`` in every package.
@@ -227,9 +226,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
                 return
             self._io_manager._display('')
         for manager in self._list_visible_asset_managers():
-            self._session._hide_next_redraw = False
             manager.interpret_output_ly(confirm=False, display=True)
-        self._session._hide_next_redraw = True
 
     def make_package(self):
         r'''Makes package.

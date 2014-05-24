@@ -277,7 +277,6 @@ class ScorePackageWrangler(PackageWrangler):
         messages.append(message)
         messages.append('')
         self._io_manager._display(messages)
-        self._session._hide_next_redraw = True
 
     def make_package(self):
         r'''Makes package.
@@ -299,7 +298,6 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
-        self._session._hide_next_redraw = True
 
     def open_every_score_pdf(self, confirm=True, display=True):
         r'''Opens ``score.pdf`` in every package.
@@ -364,4 +362,3 @@ class ScorePackageWrangler(PackageWrangler):
         if display:
             message = 'wrote {}.'.format(cache_file_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True

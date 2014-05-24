@@ -75,7 +75,6 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         for manager in self._list_visible_asset_managers():
             manager.version_package(confirm=False, display=False)
         self._io_manager._display('')
-        self._session._hide_next_redraw = True
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

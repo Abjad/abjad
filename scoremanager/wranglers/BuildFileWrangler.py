@@ -237,7 +237,6 @@ class BuildFileWrangler(Wrangler):
             message = 'file ending in {!r} not found.'
             message = message.format(string)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
             return
         input_directory = os.path.dirname(file_path)
         basename = os.path.basename(file_path)
@@ -258,7 +257,6 @@ class BuildFileWrangler(Wrangler):
             command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
         self._io_manager._display('')
-        self._session._hide_next_redraw = True
 
     ### PUBLIC METHODS ###
 
@@ -327,7 +325,6 @@ class BuildFileWrangler(Wrangler):
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
         self._io_manager._display('')
-        self._session._hide_next_redraw = True
 
     # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
     def collect_segment_pdfs(self):
@@ -485,7 +482,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     # TODO: factor our code shared with self.generate_music_source()
     def generate_draft_source(self):
@@ -585,7 +581,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     # TODO: factor out shared code with self.generate_back_cover_source()
     def generate_front_cover_source(self):
@@ -625,7 +620,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
         
     # TODO: factor our code shared with self.generate_draft_source()
     def generate_music_source(self):
@@ -750,7 +744,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     def generate_preface_source(self):
         r'''Generates preface LaTeX source.
@@ -789,7 +782,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     # TODO: factor out code in common with other generate methods
     def generate_score_source(self):
@@ -836,7 +828,6 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     def interpret_back_cover(self):
         r'''Interprets back cover LaTeX source.

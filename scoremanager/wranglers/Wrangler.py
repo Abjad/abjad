@@ -1119,8 +1119,6 @@ class Wrangler(AssetController):
         for path in paths:
             manager = self._initialize_manager(path)
             manager.add_to_repository(confirm=False, display=False)
-        if display:
-            self._session._hide_next_redraw = True
 
     def apply_view(self):
         r'''Applies view.
@@ -1140,7 +1138,6 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, view_name)
-        self._session._hide_next_redraw = False
 
     def clear_view(self):
         r'''Clears view.
@@ -1156,7 +1153,6 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
-        self._session._hide_next_redraw = False
 
     def commit_to_repository(self, confirm=True, display=True):
         r'''Commits files to repository.
@@ -1182,7 +1178,6 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
-            self._session._hide_next_redraw = False
             manager.commit_to_repository(
                 commit_message=commit_message,
                 confirm=False,
@@ -1198,7 +1193,6 @@ class Wrangler(AssetController):
         if not view_inventory:
             message = 'no views found.'
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
             return
         messages = []
         names = list(view_inventory.keys())
@@ -1212,7 +1206,6 @@ class Wrangler(AssetController):
         messages.extend(names)
         messages.append('')
         self._io_manager._display(messages, capitalize=False)
-        self._session._hide_next_redraw = True
 
     def make_view(self):
         r'''Makes view.
@@ -1259,7 +1252,6 @@ class Wrangler(AssetController):
         else:
             message = 'no __views.py__ found.'
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     def remove_views(self):
         r'''Removes view(s) from ``__views__.py``.
@@ -1318,7 +1310,6 @@ class Wrangler(AssetController):
             paths.sort()
             for path in paths:
                 manager = self._io_manager._make_package_manager(path)
-                self._session._hide_next_redraw = False
                 manager.repository_clean(display=display)
 
     def repository_status(self):
@@ -1332,9 +1323,7 @@ class Wrangler(AssetController):
         paths.sort()
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            self._session._hide_next_redraw = False
             manager.repository_status()
-        self._session._hide_next_redraw = True
 
     def revert_to_repository(self, confirm=True, display=True):
         r'''Reverts files to repository.
@@ -1348,7 +1337,6 @@ class Wrangler(AssetController):
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            self._session._hide_next_redraw = False
             manager.revert_to_repository(confirm=False, display=False)
 
     def update_from_repository(self, confirm=True, display=True):
@@ -1359,5 +1347,4 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
-            self._session._hide_next_redraw = False
             manager.update_from_repository(confirm=False, display=False)

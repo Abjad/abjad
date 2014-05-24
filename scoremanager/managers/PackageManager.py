@@ -555,7 +555,6 @@ class PackageManager(AssetController):
                 message = 'no {} files in versions directory.'
                 message = message.format(file_name_prototype)
                 self._io_manager._display([message, ''])
-                self._session._hide_next_redraw = True
                 return
             prompt = 'version number ({})'
             prompt = prompt.format(version_numbers)

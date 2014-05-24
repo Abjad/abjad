@@ -63,7 +63,6 @@ class ScoreInternalPackageManager(PackageManager):
                 message = 'no versions directory found {}.'
                 message = message.format(self._versions_directory)
                 self._io_manager._display([message, ''])
-                self._session._hide_next_redraw = True
                 return
             file_names = []
             for directory_entry in os.listdir(versions_directory):

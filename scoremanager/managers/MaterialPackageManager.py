@@ -587,7 +587,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         result = self._io_manager.interpret_file(self._definition_py_path)
         message = 'no exceptions raised; use (oo) to write output py.'
         self._io_manager._display([message, ''])
-        self._session._hide_next_redraw = True
 
     def interpret_illustrate_py(self, confirm=True, display=True):
         r'''Interprets ``__illustrate.py__``.
@@ -601,7 +600,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             )
         if result == 0:
             self._io_manager._display('')
-        self._session._hide_next_redraw = True
 
     def interpret_illustration_ly(self, confirm=True, display=True):
         r'''Interprets ``illustration.ly``.
@@ -619,7 +617,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager._display([message, ''])
-        self._session._hide_next_redraw = True
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.
@@ -694,7 +691,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 return
             if confirm:
                 if output_material is not None:
-                    self._session._hide_next_redraw = False
                     messages = []
                     message = 'existing output.py file contains {}.'
                     message = message.format(type(output_material).__name__)
@@ -732,7 +728,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 confirm=False,
                 display=False,
                 )
-            self._session._hide_next_redraw = False
 
     def unset_autoeditor(self, confirm=True, display=True):
         r'''Unsets autoeditor.
@@ -743,7 +738,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         # no interaction because redraw is important
         if True:
             self._remove_metadatum('use_autoeditor')
-            self._session._hide_next_redraw = False
 
     def write_output_py(
         self,
@@ -831,7 +825,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if display:
             message = 'wrote stub to {}.'.format(self._definition_py_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
 
     def write_stub_illustrate_py(self, confirm=True, display=True):
         r'''Writes stub ``__illustrate.py__``.
@@ -869,4 +862,3 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             message = 'wrote stub to {}.'
             message = message.format(self._illustrate_py_path)
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True

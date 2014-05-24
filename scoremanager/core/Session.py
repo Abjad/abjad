@@ -43,7 +43,6 @@ class Session(abctools.AbjadObject):
         '_controllers_visited',
         '_display_pitch_ranges_with_numbered_pitches',
         '_hide_hidden_commands',
-        '_hide_next_redraw',
         '_initial_input',
         '_interaction_depth',
         '_io_manager',
@@ -84,7 +83,6 @@ class Session(abctools.AbjadObject):
         'command_history',
         'controller_stack',
         'current_score_package_manager',
-        'hide_next_redraw',
         'hide_hidden_commands',
         'interaction_depth',
         'is_autoadding',
@@ -112,7 +110,6 @@ class Session(abctools.AbjadObject):
         self._controllers_visited = []
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
-        self._hide_next_redraw = False
         self._initial_input = input_
         self._interaction_depth = 0
         self._io_manager = iotools.IOManager(session=self)
@@ -209,7 +206,6 @@ class Session(abctools.AbjadObject):
                 lines.append(line)
         lines.append('')
         self.io_manager._display(lines, capitalize=False)
-        self._hide_next_redraw = True
 
     def _format_controller_breadcrumbs(self):
         if not self.controller_stack:
@@ -548,24 +544,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._hide_hidden_commands
-
-    @property
-    def hide_next_redraw(self):
-        r'''Gets and sets flag to hide next redraw.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.hide_next_redraw
-                False
-
-        Returns boolean.
-        '''
-        if self.is_in_task:
-            return False
-        else:
-            return self._hide_next_redraw
 
     @property
     def initial_input(self):

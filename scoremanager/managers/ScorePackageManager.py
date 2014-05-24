@@ -374,14 +374,12 @@ class ScorePackageManager(PackageManager):
                     return
                 self._io_manager._display('')
             self.rewrite_metadata_py(confirm=confirm, display=display)
-        self._session._hide_next_redraw = False
         if display:
             if package_needed_to_be_fixed:
                 message = 'Fixed package.'.format(self._path)
             else:
                 message = 'No fixes required.'
             self._io_manager._display([message, ''])
-            self._session._hide_next_redraw = True
         return package_needed_to_be_fixed
 
     def go_to_setup(self):

@@ -225,7 +225,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._interpret_in_every_package('illustration.ly')
-        self._session._hide_next_redraw = True
 
     def make_package(self):
         r'''Makes package.
@@ -246,7 +245,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         if not path:
             return
         self._make_package(path)
-        self._session._hide_next_redraw = False
         manager = self._get_manager(path)
         manager._run()
 
@@ -256,7 +254,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('illustration.pdf')
-        self._session._hide_next_redraw = True
 
     def remove_packages(self):
         r'''Removes one or more packages.
