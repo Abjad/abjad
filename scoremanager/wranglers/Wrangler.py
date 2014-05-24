@@ -1031,7 +1031,7 @@ class Wrangler(AssetController):
                 return
             elif not result:
                 continue
-            elif result == 'user entered lone return':
+            elif result == '<return>':
                 return
             else:
                 break

@@ -158,7 +158,7 @@ class Autoeditor(Controller):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str), repr(result)
-        if result == 'user entered lone return':
+        if result == '<return>':
             self._session._is_backtracking_locally = True
             return
         manifest = self._attribute_manifest

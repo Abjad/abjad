@@ -66,7 +66,7 @@ class AssetController(Controller):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str), repr(result)
-        if result == 'user entered lone return':
+        if result == '<return>':
             pass
         elif result.startswith('!'):
             statement = result[1:]

@@ -174,7 +174,7 @@ class Menu(Controller):
         self._session._hide_next_redraw = False
         directive = self._handle_directive(directive)
         if directive is None and user_entered_lone_return:
-            result = 'user entered lone return'
+            result = '<return>'
         elif directive is None and not user_entered_lone_return:
             result = None
         else:

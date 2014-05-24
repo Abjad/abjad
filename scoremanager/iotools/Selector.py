@@ -104,7 +104,7 @@ class Selector(Controller):
                 result = menu._run()
                 if self._session.is_backtracking:
                     return
-                if result and not result == 'user entered lone return':
+                if result and not result == '<return>':
                     return result
 
     ### PUBLIC PROPERTIES ###

@@ -141,7 +141,7 @@ class ScorePackageManager(PackageManager):
             self.edit_title()
         elif result == 'year':
             self.edit_year()
-        elif result == 'user entered lone return':
+        elif result == '<return>':
             pass
         else:
             raise ValueError(result)
