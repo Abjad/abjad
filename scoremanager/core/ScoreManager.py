@@ -157,14 +157,14 @@ class ScoreManager(AssetController):
 
     ### PUBLIC METHODS ###
 
-    def add_to_repository(self, confirm=True, display=True):
+    def add_to_repository(self):
         r'''Adds files to repository.
 
         Returns none.
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def commit_to_repository(self, confirm=True, display=True):
+    def commit_to_repository(self):
         r'''Commit modified files to repository.
 
         Returns none.
@@ -199,21 +199,21 @@ class ScoreManager(AssetController):
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def revert_to_repository(self, confirm=True, display=True):
+    def revert_to_repository(self):
         r'''Reverts files to repository.
 
         Returns none.
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def update_from_repository(self, confirm=True, display=True):
+    def update_from_repository(self):
         r'''Updates from repository.
 
         Returns none.
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def write_every_init_py_stub(self, confirm=True, display=True):
+    def write_every_init_py_stub(self):
         r'''Writes stub to every ``__init__.py``.
 
         Returns none.

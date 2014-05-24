@@ -123,7 +123,8 @@ class PackageWrangler(Wrangler):
             message = 'rewriting {} ...'.format(path)
             messages.append(message)
             manager = self._io_manager._make_package_manager(directory)
-            manager.rewrite_metadata_py(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                manager.rewrite_metadata_py()
         if display:
             message = '{} __metadata__.py files rewritten.'
             message = message.format(len(directories))

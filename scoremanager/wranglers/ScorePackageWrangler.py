@@ -159,7 +159,8 @@ class ScorePackageWrangler(PackageWrangler):
             path = result
             manager = self._initialize_manager(path)
             package_name = os.path.basename(path)
-            manager.fix_package(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                manager.fix_package()
             if self._session.is_backtracking:
                 return
             manager._run()
@@ -252,7 +253,7 @@ class ScorePackageWrangler(PackageWrangler):
         self._copy_asset(new_storehouse=path)
         self.write_cache(confirm=False, display=False)
 
-    def fix_every_package(self, confirm=True, display=True):
+    def fix_every_package(self):
         r'''Fixes every package.
 
         Returns none.
@@ -262,10 +263,7 @@ class ScorePackageWrangler(PackageWrangler):
         messages = []
         for path in paths:
             manager = self._initialize_manager(path)
-            needed_to_be_fixed = manager.fix_package(
-                confirm=confirm,
-                display=display,
-                )
+            needed_to_be_fixed = manager.fix_package()
             if not needed_to_be_fixed:
                 title = manager._get_title()
                 message = '{} OK.'

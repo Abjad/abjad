@@ -307,7 +307,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self._session._score_manager._score_package_wrangler
         wrangler.write_cache(confirm=False, display=False)
 
-    def fix_package(self, confirm=True, display=True):
+    def fix_package(self):
         r'''Fixes package.
 
         Returns none.
@@ -316,14 +316,14 @@ class ScorePackageManager(PackageManager):
         for path in self._get_top_level_directorys():
             if not os.path.exists(path):
                 package_needed_to_be_fixed = True
-                if display:
+                if self._session.display:
                     messages = []
                     message = 'can not find {}.'.format(path)
                     messages.append(message)
                     message = 'create {}?'.format(path)
                     messages.append(message)
                     self._io_manager._display(messages)
-                if confirm:
+                if self._session.confirm:
                     result = self._io_manager._confirm()
                     if self._session.is_backtracking:
                         return
@@ -335,7 +335,7 @@ class ScorePackageManager(PackageManager):
                     file_pointer.write('')
         if not os.path.exists(self._init_py_file_path):
             package_needed_to_be_fixed = True
-            if display:
+            if self._session.display:
                 messages = []
                 path = self._init_py_file_path
                 message = 'can not find {}.'.format(path)
@@ -343,16 +343,16 @@ class ScorePackageManager(PackageManager):
                 message = 'create {}?'.format(path)
                 messages.append(message)
                 self._io_manager._display(messages)
-            if confirm:
+            if self._session.confirm:
                 if self._session.is_backtracking:
                     return
                 if not result:
                     return
                 result = self._io_manager._confirm()
-            self.write_stub_init_py(confirm=confirm, display=display)
+            self.write_stub_init_py()
         if not os.path.exists(self._metadata_py_path):
             package_needed_to_be_fixed = True
-            if display:
+            if self._session.display:
                 messages = []
                 path = self._metadata_py_path
                 message = 'can not find {}.'.format(path)
@@ -360,14 +360,14 @@ class ScorePackageManager(PackageManager):
                 message = 'create {}?'.format(path)
                 messages.append(message)
                 self._io_manager._display(messages)
-            if confirm:
+            if self._session.confirm:
                 result = self._io_manager._confirm()
                 if self._session.is_backtracking:
                     return
                 if not result:
                     return
-            self.rewrite_metadata_py(confirm=confirm, display=display)
-        if display:
+            self.rewrite_metadata_py()
+        if self._session.display:
             if package_needed_to_be_fixed:
                 message = 'fixed package.'.format(self._path)
             else:

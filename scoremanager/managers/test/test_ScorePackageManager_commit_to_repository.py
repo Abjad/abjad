@@ -15,7 +15,7 @@ def test_ScorePackageManager_commit_to_repository_01():
         )
 
     manager._session._is_repository_test = True
-    manager.commit_to_repository(confirm=False, display=False)
+    manager.commit_to_repository()
     assert manager._session._attempted_to_commit_to_repository
 
 
@@ -32,5 +32,5 @@ def test_ScorePackageManager_commit_to_repository_02():
         return
 
     manager._session._is_repository_test = True
-    manager.commit_to_repository(confirm=False, display=False)
+    manager.commit_to_repository()
     assert manager._session._attempted_to_commit_to_repository

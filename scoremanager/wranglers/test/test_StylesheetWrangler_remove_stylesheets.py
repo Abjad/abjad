@@ -26,4 +26,4 @@ def test_StylesheetWrangler_remove_stylesheets_01():
             path=path,
             session=score_manager._session,
             )
-        manager.add_to_repository(confirm=False, display=False)
+        manager.add_to_repository()

@@ -142,11 +142,8 @@ class PackageManager(AssetController):
         assert ' ' not in metadatum_name, repr(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.rewrite_metadata_py(
-            metadata=metadata,
-            confirm=False,
-            display=False,
-            )
+        with self._io_manager._make_silent():
+            self.rewrite_metadata_py(metadata=metadata)
 
     def _enter_run(self):
         self._session._is_navigating_to_next_asset = False
@@ -581,8 +578,8 @@ class PackageManager(AssetController):
             message = 'file not found: {}'.format(file_path)
             self._io_manager._display(message)
 
-    def _remove(self, confirm=True, display=True):
-        if confirm:
+    def _remove(self):
+        if self._session.confirm:
             message = '{} will be removed.'
             message = message.format(self._path)
             self._io_manager._display(message)
@@ -623,11 +620,8 @@ class PackageManager(AssetController):
         except KeyError:
             pass
         if was_removed:
-            self.rewrite_metadata_py(
-                metadata=metadata,
-                confirm=False,
-                display=False,
-                )
+            with self._io_manager._make_silent():
+                self.rewrite_metadata_py(metadata=metadata)
 
     def _rename(self, new_path):
         if self._is_in_git_repository():
@@ -784,10 +778,12 @@ class PackageManager(AssetController):
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
-            self.add_to_repository(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                self.add_to_repository()
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
-            self.revert_to_repository(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                self.revert_to_repository()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
         assert self._is_up_to_date()
@@ -824,7 +820,8 @@ class PackageManager(AssetController):
                 file_pointer.write(string)
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
-            self.revert_to_repository(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                self.revert_to_repository()
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
@@ -861,7 +858,7 @@ class PackageManager(AssetController):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def add_to_repository(self, confirm=True, display=True):
+    def add_to_repository(self):
         r'''Adds files to repository.
 
         Returns none.
@@ -878,12 +875,7 @@ class PackageManager(AssetController):
             assert isinstance(command, str)
             self._io_manager.run_command(command)
 
-    def commit_to_repository(
-        self,
-        commit_message=None,
-        confirm=True,
-        display=True,
-        ):
+    def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.
 
         Returns none.
@@ -899,7 +891,7 @@ class PackageManager(AssetController):
                 commit_message = getter._run()
                 if self._session.is_backtracking:
                     return
-                if confirm:
+                if self._session.confirm:
                     message = 'commit message will be: "{}"'
                     message = message.format(commit_message)
                     self._io_manager._display(message)
@@ -1007,7 +999,7 @@ class PackageManager(AssetController):
                 capitalize=False,
                 )
 
-    def revert_to_repository(self, confirm=True, display=True):
+    def revert_to_repository(self):
         r'''Reverts files to repository.
 
         Returns none.
@@ -1017,27 +1009,22 @@ class PackageManager(AssetController):
             self._session._attempted_to_revert_to_repository = True
             if self._session.is_repository_test:
                 return
-            if display:
+            if self._session.display:
                 message = 'reverting {} ...'
                 message = message.format(self._path)
                 self._io_manager._display(message)
             self._revert_from_repository()
 
-    def rewrite_metadata_py(
-        self,
-        confirm=True,
-        metadata=None,
-        display=True,
-        ):
+    def rewrite_metadata_py(self, metadata=None):
         r'''Rewrites ``__metadata.py__``.
 
         Returns none.
         '''
-        if display:
+        if self._session.display:
             message = 'will rewrite {}.'
             message = message.format(self._metadata_py_path)
             self._io_manager._display(message)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
@@ -1047,7 +1034,7 @@ class PackageManager(AssetController):
             metadata = self._get_metadata()
         self._write_metadata_py(metadata)
 
-    def update_from_repository(self, confirm=True, display=True):
+    def update_from_repository(self):
         r'''Updates files from repository.
 
         Returns none.
@@ -1064,17 +1051,17 @@ class PackageManager(AssetController):
             command = self._repository_update_command
             self._io_manager.run_command(command)
 
-    def write_stub_init_py(self, confirm=True, display=True):
+    def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.
 
         Returns none.
         '''
         path = self._init_py_file_path
-        if display:
+        if self._session.display:
             message = 'will write stub to {}.'
             message = message.format(path)
             self._io_manager._display(message)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return

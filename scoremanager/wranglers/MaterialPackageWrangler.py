@@ -199,11 +199,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         manager = self._initialize_manager(path)
         initializer_path = os.path.join(path, '__init__.py')
         self._io_manager.write_stub(initializer_path)
-        manager.rewrite_metadata_py(
-            metadata=metadata, 
-            confirm=False,
-            display=False,
-            )
+        with self._io_manager._make_silent():
+            manager.rewrite_metadata_py(metadata=metadata)
         if definition_py_stub:
             with self._io_manager._make_silent():
                 manager.write_stub_definition_py()

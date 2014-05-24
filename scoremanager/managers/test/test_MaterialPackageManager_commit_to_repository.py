@@ -11,7 +11,7 @@ def test_MaterialPackageManager_commit_to_repository_01():
     manager = wrangler._find_git_manager()
 
     manager._session._is_repository_test = True
-    manager.commit_to_repository(confirm=False, display=False)
+    manager.commit_to_repository()
     assert manager._session._attempted_to_commit_to_repository
 
 
@@ -24,5 +24,5 @@ def test_MaterialPackageManager_commit_to_repository_02():
         return
 
     manager._session._is_repository_test = True
-    manager.commit_to_repository(confirm=False, display=False)
+    manager.commit_to_repository()
     assert manager._session._attempted_to_commit_to_repository

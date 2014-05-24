@@ -30,7 +30,7 @@ def test_MaterialPackageWrangler_remove_packages_01():
         path=path,
         session=score_manager._session,
         )
-    manager.add_to_repository(confirm=False, display=False)
+    manager.add_to_repository()
 
     assert os.path.exists(path)
     assert not os.path.exists(backup_path)

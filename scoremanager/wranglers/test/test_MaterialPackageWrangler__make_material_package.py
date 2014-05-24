@@ -28,7 +28,8 @@ def test_MaterialPackageWrangler__make_material_package_01():
         assert manager._interpret_definition_py() is None
         output_material = manager._execute_output_py()
         assert output_material is None
-        manager._remove(confirm=False, display=False)
+        manager._session._confirm = False
+        manager._remove()
 
 
 def test_MaterialPackageWrangler__make_material_package_02():
@@ -55,4 +56,5 @@ def test_MaterialPackageWrangler__make_material_package_02():
         assert manager._interpret_definition_py() is None
         output_material = manager._execute_output_py()
         assert output_material is None
-        manager._remove(confirm=False, display=True)
+        manager._session._confirm = False
+        manager._remove()
