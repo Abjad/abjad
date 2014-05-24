@@ -191,8 +191,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
                 return
             for manager in managers:
                 manager.interpret_make_py(confirm=False, display=False)
-            if not managers:
-                self._io_manager._display('')
 
     def interpret_every_output_ly(
         self,
@@ -208,23 +206,19 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         entries = sorted(os.listdir(segments_directory))
         if confirm:
             messages = []
-            messages.append('')
             messages.append('will interpret ...')
-            messages.append('')
             segment_paths = self._list_visible_asset_paths()
             for segment_path in segment_paths:
                 input_path = os.path.join(segment_path, 'output.ly')
                 output_path = os.path.join(segment_path, 'output.pdf')
                 messages.append('  INPUT: {}'.format(input_path))
                 messages.append(' OUTPUT: {}'.format(output_path))
-                messages.append('')
             self._io_manager._display(messages)
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
                 return
-            self._io_manager._display('')
         for manager in self._list_visible_asset_managers():
             manager.interpret_output_ly(confirm=False, display=True)
 

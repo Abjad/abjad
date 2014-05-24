@@ -63,7 +63,6 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         managers = self._list_visible_asset_managers()
         messages = []
         messages.append('will copy ...')
-        messages.append('')
         for manager in managers:
             messages.extend(manager._make_version_package_messages())
         self._io_manager._display(messages)
@@ -74,7 +73,6 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             return
         for manager in self._list_visible_asset_managers():
             manager.version_package(confirm=False, display=False)
-        self._io_manager._display('')
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

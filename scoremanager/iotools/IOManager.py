@@ -388,7 +388,6 @@ class IOManager(IOManager):
             exec(file_contents_string)
         except:
             traceback.print_exc()
-            self._display('')
             return 'corrupt'
         result = []
         for name in attribute_names:
@@ -417,9 +416,7 @@ class IOManager(IOManager):
             directory = systemtools.TemporaryDirectoryChange(directory)
             with directory:
                 result = self.spawn_subprocess(command)
-            if result != 0:
-                self._display('')
-            elif display:
+            if display:
                 message = 'interpreted {}.'.format(path)
                 self._display(message)
             return result

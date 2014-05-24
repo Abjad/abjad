@@ -418,7 +418,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             target_path = os.path.join(versions_directory, name)
             message = '   TO: {}'.format(target_path)
             messages.append(message)
-            messages.append('')
         return messages
 
     def _make_versions_directory_menu_section(self, menu):
@@ -450,12 +449,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             new_package_name,
             )
         messages = []
-        messages.append('')
         messages.append('will change ...')
-        messages.append('')
         messages.append(' FROM: {}'.format(self._path))
         messages.append('   TO: {}'.format(new_directory))
-        messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
@@ -586,7 +582,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         result = self._io_manager.interpret_file(self._definition_py_path)
         message = 'no exceptions raised; use (oo) to write output py.'
-        self._io_manager._display([message, ''])
+        self._io_manager._display(message)
 
     def interpret_illustrate_py(self, confirm=True, display=True):
         r'''Interprets ``__illustrate.py__``.
@@ -598,8 +594,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             confirm=confirm,
             display=display,
             )
-        if result == 0:
-            self._io_manager._display('')
 
     def interpret_illustration_ly(self, confirm=True, display=True):
         r'''Interprets ``illustration.ly``.
@@ -616,7 +610,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 )
         else:
             message = 'illustration.ly file does not exist.'
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.
@@ -824,7 +818,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             file_pointer.write(contents)
         if display:
             message = 'wrote stub to {}.'.format(self._definition_py_path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
 
     def write_stub_illustrate_py(self, confirm=True, display=True):
         r'''Writes stub ``__illustrate.py__``.
@@ -861,4 +855,4 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if display:
             message = 'wrote stub to {}.'
             message = message.format(self._illustrate_py_path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)

@@ -271,11 +271,9 @@ class ScorePackageWrangler(PackageWrangler):
                 message = '{} OK.'
                 message = message.format(title)
                 messages.append(message)
-        messages.append('')
         message = '{} score packages checked.'
         message = message.format(len(paths))
         messages.append(message)
-        messages.append('')
         self._io_manager._display(messages)
 
     def make_package(self):
@@ -361,4 +359,4 @@ class ScorePackageWrangler(PackageWrangler):
         self._io_manager.write(cache_file_path, contents)
         if display:
             message = 'wrote {}.'.format(cache_file_path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)

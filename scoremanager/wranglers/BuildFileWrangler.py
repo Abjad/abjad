@@ -236,7 +236,7 @@ class BuildFileWrangler(Wrangler):
         if not file_path:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
             return
         input_directory = os.path.dirname(file_path)
         basename = os.path.basename(file_path)
@@ -256,7 +256,6 @@ class BuildFileWrangler(Wrangler):
             self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
-        self._io_manager._display('')
 
     ### PUBLIC METHODS ###
 
@@ -305,14 +304,12 @@ class BuildFileWrangler(Wrangler):
         if source_file_paths:
             messages = []
             messages.append('will copy ...')
-            messages.append('')
             pairs = zip(source_file_paths, target_file_paths)
             for source_file_path, target_file_path in pairs:
                 message = ' FROM: {}'.format(source_file_path)
                 messages.append(message)
                 message = '   TO: {}'.format(target_file_path)
                 messages.append(message)
-                messages.append('')
             self._io_manager._display(messages)
             if not self._io_manager._confirm():
                 return
@@ -324,7 +321,6 @@ class BuildFileWrangler(Wrangler):
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
-        self._io_manager._display('')
 
     # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
     def collect_segment_pdfs(self):
@@ -368,14 +364,12 @@ class BuildFileWrangler(Wrangler):
         if directory_entries:
             messages = []
             messages.append('will copy ...')
-            messages.append('')
             pairs = zip(source_file_paths, target_file_paths)
             for source_file_path, target_file_path in pairs:
                 message = ' FROM: {}'.format(source_file_path)
                 messages.append(message)
                 message = '   TO: {}'.format(target_file_path)
                 messages.append(message)
-                messages.append('')
             self._io_manager._display(messages)
             if not self._io_manager._confirm():
                 return
@@ -480,8 +474,8 @@ class BuildFileWrangler(Wrangler):
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            message = 'overwrote {}.'.format(destination_path)
+            self._io_manager._display(message)
 
     # TODO: factor our code shared with self.generate_music_source()
     def generate_draft_source(self):
@@ -526,16 +520,13 @@ class BuildFileWrangler(Wrangler):
             pdf_name = segment_name.replace('_', '-')
             pdf_names.append(pdf_name)
         messages = []
-        messages.append('')
         if view_name:
             message = 'the {!r} segment view is currently selected.'
             message = message.format(view_name)
             messages.append(message)
-            messages.append('')
         if pdf_names:
             message = 'will assemble segments in this order:'
             messages.append(message)
-            messages.append('')
             for segment_name in segment_names:
                 message = '    ' + segment_name
                 messages.append(message)
@@ -543,14 +534,12 @@ class BuildFileWrangler(Wrangler):
             message = 'no segments found:'
             message += ' will generate source without segments.'
             messages.append(message)
-        messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager._display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory,
             'boilerplate',
@@ -580,7 +569,7 @@ class BuildFileWrangler(Wrangler):
             self._remove_file_line(destination_path, line_to_remove)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
 
     # TODO: factor out shared code with self.generate_back_cover_source()
     def generate_front_cover_source(self):
@@ -619,7 +608,7 @@ class BuildFileWrangler(Wrangler):
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
             message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
         
     # TODO: factor our code shared with self.generate_draft_source()
     def generate_music_source(self):
@@ -664,16 +653,13 @@ class BuildFileWrangler(Wrangler):
             lilypond_name = segment_name.replace('_', '-')
             lilypond_names.append(lilypond_name)
         messages = []
-        messages.append('')
         if view_name:
             message = 'the {!r} segment view is currently selected.'
             message = message.format(view_name)
             messages.append(message)
-            messages.append('')
         if lilypond_names:
             message = 'will assemble segments in this order:'
             messages.append(message)
-            messages.append('')
             for segment_name in segment_names:
                 message = '    ' + segment_name
                 messages.append(message)
@@ -681,14 +667,12 @@ class BuildFileWrangler(Wrangler):
             message = 'no segments found:'
             message += ' will generate source without segments.'
             messages.append(message)
-        messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager._display('')
         source_path = os.path.join(
             self._configuration.score_manager_directory,
             'boilerplate',
@@ -742,8 +726,8 @@ class BuildFileWrangler(Wrangler):
             new = forces_tagline
             self._replace_in_file(destination_path, old, new)
         if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            message = 'overwrote {}.'.format(destination_path)
+            self._io_manager._display(message)
 
     def generate_preface_source(self):
         r'''Generates preface LaTeX source.
@@ -780,8 +764,8 @@ class BuildFileWrangler(Wrangler):
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
         if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            message = 'overwrote {}.'.format(destination_path)
+            self._io_manager._display(message)
 
     # TODO: factor out code in common with other generate methods
     def generate_score_source(self):
@@ -826,8 +810,8 @@ class BuildFileWrangler(Wrangler):
 #        self._replace_in_file(destination_path, old, new)
 
         if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display([message, ''])
+            message = 'overwrote {}.'.format(destination_path)
+            self._io_manager._display(message)
 
     def interpret_back_cover(self):
         r'''Interprets back cover LaTeX source.

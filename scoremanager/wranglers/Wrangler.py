@@ -134,7 +134,6 @@ class Wrangler(AssetController):
         if not old_path:
             return
         old_name = os.path.basename(old_path)
-        self._io_manager._display('')
         if new_storehouse:
             pass
         elif self._session.is_in_score:
@@ -168,12 +167,9 @@ class Wrangler(AssetController):
             message = 'already exists: {}'.format(new_path)
             return
         messages = []
-        messages.append('')
         messages.append('will copy ...')
-        messages.append('')
         messages.append(' FROM: {}'.format(old_path))
         messages.append('   TO: {}'.format(new_path))
-        messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
@@ -330,7 +326,7 @@ class Wrangler(AssetController):
             if os.path.exists(path):
                 line = 'path already exists: {!r}.'
                 line = line.format(path)
-                self._io_manager._display([line, ''])
+                self._io_manager._display(line)
             else:
                 return path
 
@@ -485,7 +481,6 @@ class Wrangler(AssetController):
         _, extension = os.path.splitext(file_name)
         messages = []
         messages.append('will interpret ...')
-        messages.append('')
         for path in paths:
             message = ' INPUT: {}'.format(path)
             messages.append(message)
@@ -493,14 +488,12 @@ class Wrangler(AssetController):
                 output_path = path.replace('.ly', '.pdf')
                 message = 'OUTPUT: {}'.format(output_path)
                 messages.append(message)
-            messages.append('')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
             return
         if not result:
             return
-        self._io_manager._display('')
         for path in paths:
             self._io_manager.interpret_file(path)
 
@@ -947,7 +940,6 @@ class Wrangler(AssetController):
                 messages.append(message)
             else:
                 messages.append('will remove ...')
-                messages.append('')
                 for path in paths:
                     message = '    {}'.format(path)
                     messages.append(message)
@@ -981,7 +973,7 @@ class Wrangler(AssetController):
         if not path:
             return
         file_name = os.path.basename(path)
-        message = 'Existing file name> {}'
+        message = 'existing file name> {}'
         message = message.format(file_name)
         self._io_manager._display(message)
         manager = self._initialize_manager(
@@ -1168,7 +1160,7 @@ class Wrangler(AssetController):
         if self._session.is_backtracking:
             return
         if confirm:
-            line = 'commit message will be: "{}"\n'.format(commit_message)
+            line = 'commit message will be: "{}"'.format(commit_message)
             self._io_manager._display(line)
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
@@ -1192,7 +1184,7 @@ class Wrangler(AssetController):
         view_inventory = self._read_view_inventory()
         if not view_inventory:
             message = 'no views found.'
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
             return
         messages = []
         names = list(view_inventory.keys())
@@ -1204,7 +1196,6 @@ class Wrangler(AssetController):
         message = message.format(view_count, view_string)
         messages.append(message)
         messages.extend(names)
-        messages.append('')
         self._io_manager._display(messages, capitalize=False)
 
     def make_view(self):
@@ -1251,7 +1242,7 @@ class Wrangler(AssetController):
             self._io_manager.open_file(self._views_py_path)
         else:
             message = 'no __views.py__ found.'
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
 
     def remove_views(self):
         r'''Removes view(s) from ``__views__.py``.

@@ -554,7 +554,7 @@ class PackageManager(AssetController):
             if not version_numbers:
                 message = 'no {} files in versions directory.'
                 message = message.format(file_name_prototype)
-                self._io_manager._display([message, ''])
+                self._io_manager._display(message)
                 return
             prompt = 'version number ({})'
             prompt = prompt.format(version_numbers)
@@ -586,7 +586,7 @@ class PackageManager(AssetController):
         if confirm:
             message = '{} will be removed.'
             message = message.format(self._path)
-            self._io_manager._display([message, ''])
+            self._io_manager._display(message)
             getter = self._io_manager._make_getter()
             getter.append_string("type 'remove' to proceed")
             result = getter._run()
@@ -672,7 +672,6 @@ class PackageManager(AssetController):
         lines.append(line)
         line = 'new name:     {}'.format(new_package_name)
         lines.append(line)
-        lines.append('')
         self._io_manager._display(lines)
         result = self._io_manager._confirm()
         if self._session.is_backtracking:
@@ -727,7 +726,6 @@ class PackageManager(AssetController):
             raise ValueError(self)
         command = ' && '.join(commands)
         self._io_manager.spawn_subprocess(command)
-        self._io_manager._display('')
 
     def _run(self, input_=None):
         from scoremanager import iotools
@@ -905,7 +903,7 @@ class PackageManager(AssetController):
                 if self._session.is_backtracking:
                     return
                 if confirm:
-                    message = 'commit message will be: "{}"\n'
+                    message = 'commit message will be: "{}"'
                     message = message.format(commit_message)
                     self._io_manager._display(message)
                     result = self._io_manager._confirm()

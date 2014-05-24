@@ -333,7 +333,6 @@ class ScorePackageManager(PackageManager):
                         return
                     if not result:
                         return
-                    self._io_manager._display('')
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
                 with open(gitignore_path, 'w') as file_pointer:
@@ -349,7 +348,6 @@ class ScorePackageManager(PackageManager):
                 messages.append(message)
                 self._io_manager._display(messages)
             if confirm:
-                self._io_manager._display('')
                 if self._session.is_backtracking:
                     return
                 if not result:
@@ -372,14 +370,13 @@ class ScorePackageManager(PackageManager):
                     return
                 if not result:
                     return
-                self._io_manager._display('')
             self.rewrite_metadata_py(confirm=confirm, display=display)
         if display:
             if package_needed_to_be_fixed:
-                message = 'Fixed package.'.format(self._path)
+                message = 'fixed package.'.format(self._path)
             else:
-                message = 'No fixes required.'
-            self._io_manager._display([message, ''])
+                message = 'no fixes required.'
+            self._io_manager._display(message)
         return package_needed_to_be_fixed
 
     def go_to_setup(self):

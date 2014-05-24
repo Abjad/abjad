@@ -280,7 +280,7 @@ class AssetController(Controller):
                 identifier = stringtools.pluralize('asset', count=count)
                 message = '{} testable {} found ...'
                 message = message.format(count, identifier)
-                self._io_manager._display([message, ''])
+                self._io_manager._display(message)
                 script = developerscripttools.RunDoctestsScript()
                 strings = script.process_args(
                     file_paths=assets,
