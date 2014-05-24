@@ -554,7 +554,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._illustrate_py_path)
 
-    def illustrate_material(self, confirm=True, display=True):
+    def illustrate_material(self):
         r'''Illustrates material.
 
         Creates ``illustration.pdf`` and ``illustration.ly`` files.
@@ -567,11 +567,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             lines = self._make_temporary_illustrate_py_lines()
             contents = '\n'.join(lines)
             self._io_manager.write(path, contents)
-            self._io_manager.interpret_file(
-                path, 
-                confirm=confirm, 
-                display=display,
-                )
+            self._io_manager.interpret_file(path)
 
     def interpret_definition_py(self):
         r'''Interprets ``definition.py``.
@@ -582,18 +578,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = 'no exceptions raised; use (oo) to write output py.'
         self._io_manager._display(message)
 
-    def interpret_illustrate_py(self, confirm=True, display=True):
+    def interpret_illustrate_py(self):
         r'''Interprets ``__illustrate.py__``.
 
         Returns none.
         '''
-        result = self._io_manager.interpret_file(
-            self._illustrate_py_path,
-            confirm=confirm,
-            display=display,
-            )
+        result = self._io_manager.interpret_file(self._illustrate_py_path)
 
-    def interpret_illustration_ly(self, confirm=True, display=True):
+    def interpret_illustration_ly(self):
         r'''Interprets ``illustration.ly``.
 
         Returns none.
@@ -601,11 +593,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         from scoremanager import managers
         path = self._illustration_ly_file_path
         if os.path.isfile(path):
-            self._io_manager.run_lilypond(
-                path, 
-                confirm=confirm, 
-                display=display,
-                )
+            self._io_manager.run_lilypond(path)
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
@@ -659,7 +647,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
-    def set_autoeditor(self, confirm=True, display=True):
+    def set_autoeditor(self):
         r'''Sets autoeditor.
 
         Returns none.
@@ -675,7 +663,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         output_material = self._execute_output_py()
         if type(output_material) is class_:
             return
-        if confirm:
+        if self._session.confirm:
             if output_material is not None:
                 messages = []
                 message = 'existing output.py file contains {}.'
@@ -707,15 +695,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if ' makers.' in storage_format:
             statement = 'from scoremanager import makers'
             import_statements.append(statement)
-        self.write_output_py(
-            body_lines=body_lines,
-            import_statements=import_statements,
-            output_material=empty_target,
-            confirm=False,
-            display=False,
-            )
+        with self._io_manager._make_silent():
+            self.write_output_py(
+                body_lines=body_lines,
+                import_statements=import_statements,
+                output_material=empty_target,
+                )
 
-    def unset_autoeditor(self, confirm=True, display=True):
+    def unset_autoeditor(self):
         r'''Unsets autoeditor.
 
         Returns none.
@@ -727,14 +714,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         import_statements=None,
         body_lines=None,
         output_material=None,
-        confirm=True,
-        display=True,
         ):
         r'''Writes ``output.py``.
 
         Returns none.
         '''
-        if confirm:
+        if self._session.confirm:
             message = 'will write output material to {}.'
             message = message.format(self._output_py_path)
             self._io_manager._display(message)
@@ -780,12 +765,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material_class_name,
             )
 
-    def write_stub_definition_py(self, confirm=True, display=True):
+    def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.
 
         Returns none.
         '''
-        if confirm:
+        if self._session.confirm:
             message = 'will write stub to {}.'
             message = message.format(self._definition_py_path)
             self._io_manager._display(message)
@@ -805,16 +790,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if display:
+        if self._session.display:
             message = 'wrote stub to {}.'.format(self._definition_py_path)
             self._io_manager._display(message)
 
-    def write_stub_illustrate_py(self, confirm=True, display=True):
+    def write_stub_illustrate_py(self):
         r'''Writes stub ``__illustrate.py__``.
 
         Returns none.
         '''
-        if confirm:
+        if self._session.confirm:
             message = 'will write stub to {}.'
             message = message.format(self._illustrate_py_path)
             self._io_manager._display(message)
@@ -841,7 +826,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._illustrate_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if display:
+        if self._session.display:
             message = 'wrote stub to {}.'
             message = message.format(self._illustrate_py_path)
             self._io_manager._display(message)

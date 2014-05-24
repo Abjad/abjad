@@ -1286,7 +1286,7 @@ class Wrangler(AssetController):
         view_inventory[new_view_name] = view
         self._write_view_inventory(view_inventory)
 
-    def repository_clean(self, confirm=True, display=True):
+    def repository_clean(self):
         r'''Removes files not yet added to repository.
 
         Returns none.
@@ -1296,7 +1296,7 @@ class Wrangler(AssetController):
         paths.sort()
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            manager.repository_clean(display=display)
+            manager.repository_clean()
 
     def repository_status(self):
         r'''Displays repository status.

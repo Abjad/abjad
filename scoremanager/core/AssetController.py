@@ -214,21 +214,21 @@ class AssetController(Controller):
             message = message.format(path)
             self._io_manager._display(message)
 
-    def _repository_clean(self, confirm=True, display=True):
+    def _repository_clean(self):
         paths = self._get_unadded_asset_paths()
         if not paths:
-            if display:
+            if self._session.display:
                 message = 'no unadded assets.'
                 self._io_manager._display(message)
             return
-        if display:
+        if self._session.display:
             messages = []
             messages.append('will remove ...')
             for path in paths:
                 message = '    ' + path
                 messages.append(message)
             self._io_manager._display(messages)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return

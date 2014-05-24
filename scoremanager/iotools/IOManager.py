@@ -267,7 +267,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         return iotools.Interaction(
             confirm=False,
-            controller=None,
+            controller=self.client,
             display=False,
             dry_run=False,
             task=False,

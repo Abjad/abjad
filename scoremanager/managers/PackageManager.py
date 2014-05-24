@@ -806,7 +806,8 @@ class PackageManager(AssetController):
             assert os.path.exists(path_4)
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_3, path_4]
-            self.repository_clean(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                self.repository_clean()
         assert self._is_up_to_date()
         return True
 
@@ -969,12 +970,12 @@ class PackageManager(AssetController):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def repository_clean(self, confirm=True, display=True):
+    def repository_clean(self):
         r'''Removes files not yet added to repository.
 
         Returns none.
         '''
-        self._repository_clean(confirm=confirm, display=display)
+        self._repository_clean()
 
     def repository_status(self):
         r'''Displays repository status.

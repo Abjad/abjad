@@ -205,7 +205,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             display=False,
             )
         if definition_py_stub:
-            manager.write_stub_definition_py(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                manager.write_stub_definition_py()
 
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_materials = True
