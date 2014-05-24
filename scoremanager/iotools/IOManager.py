@@ -76,8 +76,6 @@ class IOManager(IOManager):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        #if self._session.hide_next_redraw:
-        #    return
         if capitalize:
             lines = [
                 stringtools.capitalize_start(line)

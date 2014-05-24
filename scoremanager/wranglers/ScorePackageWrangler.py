@@ -317,7 +317,6 @@ class ScorePackageWrangler(PackageWrangler):
                 tab = self._io_manager._make_tab()
                 paths = [tab + _ for _ in paths]
                 messages.extend(paths)
-                #self._session._hide_next_redraw = False
                 self._io_manager._display(messages)
             if confirm:
                 result = self._io_manager._confirm()

@@ -38,11 +38,9 @@ class Menu(Controller):
     __slots__ = (
         '_asset_section',
         '_breadcrumb_callback',
-        '_hide_current_run',
         '_menu_sections',
         '_name',
         '_predetermined_input',
-        '_should_clear_terminal',
         '_title',
         )
 
@@ -60,7 +58,6 @@ class Menu(Controller):
         self._menu_sections = []
         self._name = name
         self._predetermined_input = None
-        self._should_clear_terminal = False
         self._title = title
 
     ### SPECIAL METHODS ###
@@ -171,7 +168,6 @@ class Menu(Controller):
             user_entered_lone_return = True
         directive = self._change_input_to_directive(input_)
         directive = self._strip_default_notice_from_strings(directive)
-        self._session._hide_next_redraw = False
         directive = self._handle_directive(directive)
         if directive is None and user_entered_lone_return:
             result = '<return>'
@@ -207,7 +203,6 @@ class Menu(Controller):
             capitalize=False,
             )
         self._session._hide_hidden_commands = True
-        self._session._hide_next_redraw = True
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
@@ -390,8 +385,6 @@ class Menu(Controller):
                 continue
             section_menu_lines = section._make_menu_lines()
             result.extend(section_menu_lines)
-        if self._hide_current_run:
-            result = []
         return result
 
     def _make_tab(self, n=1):
@@ -399,13 +392,12 @@ class Menu(Controller):
 
     def _make_title_lines(self):
         result = []
-        if not self._hide_current_run:
-            if self.title is not None:
-                title = self.title
-            else:
-                title = self._session.menu_header
-            result.append(stringtools.capitalize_start(title))
-            result.append('')
+        if self.title is not None:
+            title = self.title
+        else:
+            title = self._session.menu_header
+        result.append(stringtools.capitalize_start(title))
+        result.append('')
         return result
 
     def _return_value_to_location_pair(self, return_value):
@@ -425,23 +417,18 @@ class Menu(Controller):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        clear_terminal, hide_current_run = True, False
         controller = iotools.ControllerContext(
             controller=self,
             reset_hide_hidden_commands=False,
             )
         with controller:
             while True:
-                self._should_clear_terminal = clear_terminal
-                self._hide_current_run = hide_current_run
-                clear_terminal, hide_current_run = False, True
                 result = self._predetermined_input
                 if not result:
                     result = self._display()
                 if self._session.is_quitting:
                     return result
                 if result in ('r', '<return>'):
-                    clear_terminal, hide_current_run = True, False
                     self._session._is_pending_output_removal = True
                 elif (isinstance(result, str) and 
                     result in self._input_to_method):
