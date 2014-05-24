@@ -681,7 +681,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if True:
             selector = self._io_manager.selector
             selector = selector.make_inventory_class_selector()
+            # TODO: maybe wrap these three lines in a context manager
+            self._session._is_pending_output_removal = True
             class_ = selector._run()
+            self._session._is_pending_output_removal = True
             if not class_:
                 return
             self._add_metadatum('use_autoeditor', True)

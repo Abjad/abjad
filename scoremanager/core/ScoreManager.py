@@ -132,6 +132,7 @@ class ScoreManager(AssetController):
             state = systemtools.FilesystemState(keep=[path])
         interaction = self._io_manager._make_interaction(task=False)
         with controller, directory_change, state, interaction:
+            self._session._is_pending_output_removal = True
             while True:
                 result = self._score_package_wrangler._get_sibling_score_path()
                 if not result:

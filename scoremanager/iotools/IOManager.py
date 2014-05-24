@@ -57,14 +57,6 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    def _clear_terminal(self):
-        if self._session.is_in_task:
-            return
-        if self._session.hide_next_redraw:
-            return
-        superclass = super(IOManager, self)
-        superclass.clear_terminal()
-
     def _confirm(
         self,
         prompt_string='ok?',
@@ -84,8 +76,8 @@ class IOManager(IOManager):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if self._session.hide_next_redraw:
-            return
+        #if self._session.hide_next_redraw:
+        #    return
         if capitalize:
             lines = [
                 stringtools.capitalize_start(line)

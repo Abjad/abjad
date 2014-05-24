@@ -32,7 +32,6 @@ def test_Wrangler__read_view_inventory_01():
         'Blue Example Score (2013) - segments',
         'SegmentPackageWrangler __views.py__ is corrupt:',
         'No views found.',
-        'Blue Example Score (2013) - segments',
         ]
 
     assert score_manager._transcript.titles == titles

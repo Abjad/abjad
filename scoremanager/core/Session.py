@@ -65,7 +65,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
         '_is_navigating_to_score_stylesheets',
-        '_is_pending_redraw',
+        '_is_pending_output_removal',
         '_is_quitting',
         '_is_repository_test',
         '_is_test',
@@ -134,7 +134,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_navigating_to_score_stylesheets = False
-        self._is_pending_redraw = False
+        self._is_pending_output_removal = True
         self._is_quitting = False
         self._is_test = is_test
         self._last_asset_path = None
@@ -1049,19 +1049,19 @@ class Session(abctools.AbjadObject):
         return False
 
     @property
-    def is_pending_redraw(self):
+    def is_pending_output_removal(self):
         r'''Is true when session is pending redraw. Otherwise false.
 
         ..  container:: example
 
             ::
 
-                >>> session.is_pending_redraw
-                False
+                >>> session.is_pending_output_removal
+                True
 
         Returns boolean.
         '''
-        return self._is_pending_redraw
+        return self._is_pending_output_removal
 
     @property
     def is_quitting(self):

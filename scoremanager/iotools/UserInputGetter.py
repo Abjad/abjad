@@ -178,6 +178,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
             if self._session.is_backtracking:
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
+                self._session._is_pending_output_removal = True
             elif directive is None:
                 continue
             elif directive == 'help':

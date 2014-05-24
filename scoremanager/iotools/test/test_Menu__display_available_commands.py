@@ -25,7 +25,6 @@ def test_Menu__display_available_commands_02():
     titles = [
         'Score Manager - scores',
         'Score Manager - scores - available commands',
-        'Score Manager - scores',
         ]
     assert score_manager._transcript.titles == titles
 

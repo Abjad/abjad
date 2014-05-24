@@ -1010,6 +1010,7 @@ class Wrangler(AssetController):
             directory = systemtools.TemporaryDirectoryChange(path)
         with controller, directory:
             result = None
+            self._session._is_pending_output_removal = True
             while True:
                 result = self._get_sibling_asset_path()
                 if not result:

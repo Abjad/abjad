@@ -132,7 +132,8 @@ class Menu(Controller):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('**', 's', 'h', 'q', 'b', '?', 'r'):
+        elif input_ in ('**', 's', 'h', 'q', 'b', '?', 'r', '<return>'):
+            self._session._is_pending_output_removal = True
             return input_
         elif input_.startswith('!'):
             return input_
@@ -151,20 +152,19 @@ class Menu(Controller):
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
 
-    def _clear_terminal(self):
-        if self._should_clear_terminal:
-            self._io_manager._clear_terminal()
-
     def _display(self):
         from scoremanager import iotools
-        self._clear_terminal()
-        if not self._session.hide_hidden_commands:
-            self._display_available_commands()
-        menu_lines = self._make_menu_lines()
-        self._io_manager._display(
-            menu_lines,
-            capitalize=False,
-            )
+        if self._session.is_pending_output_removal:
+            self._io_manager.clear_terminal()
+            self._session._is_pending_output_removal = False
+            if not self._session.hide_hidden_commands:
+                self._display_available_commands()
+            else:
+                menu_lines = self._make_menu_lines()
+                self._io_manager._display(
+                    menu_lines,
+                    capitalize=False,
+                    )
         user_entered_lone_return = False
         input_ = self._io_manager._handle_input('')
         if input_ == '':
@@ -201,7 +201,7 @@ class Menu(Controller):
         title = stringtools.capitalize_start(title)
         menu_lines[0:0] = [title, '']
         menu_lines.append('')
-        self._clear_terminal()
+        self._io_manager.clear_terminal()
         self._io_manager._display(
             menu_lines,
             capitalize=False,
@@ -440,8 +440,9 @@ class Menu(Controller):
                     result = self._display()
                 if self._session.is_quitting:
                     return result
-                if result == 'r':
+                if result in ('r', '<return>'):
                     clear_terminal, hide_current_run = True, False
+                    self._session._is_pending_output_removal = True
                 elif (isinstance(result, str) and 
                     result in self._input_to_method):
                     self._input_to_method[result]()
