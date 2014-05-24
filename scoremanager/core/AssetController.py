@@ -1,6 +1,7 @@
 import os
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.core.Controller import Controller
 
 
@@ -52,6 +53,13 @@ class AssetController(Controller):
             })
         return result
 
+    @property
+    def _navigation_commands(self):
+        return (
+            '**', 'd', 'g', 'k', 'm', 'u', 'y',
+            'b', 's', 'h', 'q',
+            )
+
     ### PRIVATE METHODS ###
 
     def _go_to_next_package(self):
@@ -72,7 +80,12 @@ class AssetController(Controller):
             statement = result[1:]
             self.invoke_shell(statement=statement)
         elif result in self._input_to_method:
-            with self._io_manager._make_interaction():
+            if result in self._navigation_commands:
+                context = systemtools.NullContextManager()
+            else:
+                context = self._io_manager._make_interaction()
+            #with self._io_manager._make_interaction():
+            with context:
                 self._input_to_method[result]()
         else:
             self._handle_numeric_user_input(result)
