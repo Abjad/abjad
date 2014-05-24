@@ -783,40 +783,38 @@ class Wrangler(AssetController):
             )
 
     def _open_file_ending_with(self, string):
-        with self._io_manager._make_interaction():
-            path = self._get_file_path_ending_with(string)
-            if path:
-                self._io_manager.open_file(path)
-            else:
-                message = 'file ending in {!r} not found.'
-                message = message.format(string)
-                self._io_manager._display(message)
+        path = self._get_file_path_ending_with(string)
+        if path:
+            self._io_manager.open_file(path)
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._io_manager._display(message)
 
     def _open_in_every_package(self, file_name, verb='open'):
-        with self._io_manager._make_interaction():
-            paths = []
-            for segment_path in self._list_visible_asset_paths():
-                path = os.path.join(segment_path, file_name)
-                if os.path.isfile(path):
-                    paths.append(path)
-            if not paths:
-                message = 'no {} files found.'
-                message = message.format(file_name)
-                self._io_manager._display(message)
-                return
-            messages = []
-            message = 'will {} ...'.format(verb)
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, file_name)
+            if os.path.isfile(path):
+                paths.append(path)
+        if not paths:
+            message = 'no {} files found.'
+            message = message.format(file_name)
+            self._io_manager._display(message)
+            return
+        messages = []
+        message = 'will {} ...'.format(verb)
+        messages.append(message)
+        for path in paths:
+            message = '   ' + path
             messages.append(message)
-            for path in paths:
-                message = '   ' + path
-                messages.append(message)
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
-            self._io_manager.open_file(paths)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
+        self._io_manager.open_file(paths)
 
     def _path_to_annotation(self, path):
         score_storehouses = (

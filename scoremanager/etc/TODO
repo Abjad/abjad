@@ -206,12 +206,9 @@
 
 40. Implement a dry_run=False keyword on bundled every*() methods.
 
-41. Added 'with self._io_manager._make_interaction()' to essentially all
-    public methods.
-
-42. Improve (m mdrw) user experience.
+41. Improve (m mdrw) user experience.
     Include 'Will rewrite ...' messaging.
 
-43. Add "Command unknown: 'asdf'." message.
+42. Add "Command unknown: 'asdf'." message.
 
-44. Make '<return>' show up in Session.command_history.
+43. Make '<return>' show up in Session.command_history.

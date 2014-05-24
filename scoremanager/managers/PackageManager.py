@@ -547,40 +547,39 @@ class PackageManager(AssetController):
                 )
 
     def _open_versioned_file(self, file_name_prototype):
-        with self._io_manager._make_interaction():
-            getter = self._io_manager._make_getter()
-            version_numbers = self._get_existing_version_numbers(
-                file_name_prototype)
-            if not version_numbers:
-                message = 'no {} files in versions directory.'
-                message = message.format(file_name_prototype)
-                self._io_manager._display(message)
-                return
-            prompt = 'version number ({})'
-            prompt = prompt.format(version_numbers)
-            getter.append_integer(prompt)
-            version_number = getter._run()
-            if self._session.is_backtracking:
-                return
-            if version_number < 0:
-                version_number = version_numbers[version_number]
-            version_string = str(version_number).zfill(4)
-            root, extension = os.path.splitext(file_name_prototype)
-            file_name = '{}_{}{}'.format(
-                root,
-                version_string,
-                extension,
-                )
-            file_path = os.path.join(
-                self._path,
-                'versions',
-                file_name,
-                )
-            if os.path.isfile(file_path):
-                self._io_manager.open_file(file_path)
-            else:
-                message = 'file not found: {}'.format(file_path)
-                self._io_manager._display(message)
+        getter = self._io_manager._make_getter()
+        version_numbers = self._get_existing_version_numbers(
+            file_name_prototype)
+        if not version_numbers:
+            message = 'no {} files in versions directory.'
+            message = message.format(file_name_prototype)
+            self._io_manager._display(message)
+            return
+        prompt = 'version number ({})'
+        prompt = prompt.format(version_numbers)
+        getter.append_integer(prompt)
+        version_number = getter._run()
+        if self._session.is_backtracking:
+            return
+        if version_number < 0:
+            version_number = version_numbers[version_number]
+        version_string = str(version_number).zfill(4)
+        root, extension = os.path.splitext(file_name_prototype)
+        file_name = '{}_{}{}'.format(
+            root,
+            version_string,
+            extension,
+            )
+        file_path = os.path.join(
+            self._path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            self._io_manager.open_file(file_path)
+        else:
+            message = 'file not found: {}'.format(file_path)
+            self._io_manager._display(message)
 
     def _remove(self, confirm=True, display=True):
         if confirm:
@@ -848,19 +847,18 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            getter = self._io_manager._make_getter()
-            getter.append_snake_case_string(
-                'metadatum name',
-                allow_empty=False,
-                )
-            getter.append_expr('metadatum value')
-            result = getter._run()
-            if self._session.is_backtracking:
-                return
-            if result:
-                metadatum_name, metadatum_value = result
-                self._add_metadatum(metadatum_name, metadatum_value)
+        getter = self._io_manager._make_getter()
+        getter.append_snake_case_string(
+            'metadatum name',
+            allow_empty=False,
+            )
+        getter.append_expr('metadatum value')
+        result = getter._run()
+        if self._session.is_backtracking:
+            return
+        if result:
+            metadatum_name, metadatum_value = result
+            self._add_metadatum(metadatum_name, metadatum_value)
 
     def add_to_repository(self, confirm=True, display=True):
         r'''Adds files to repository.
@@ -868,8 +866,7 @@ class PackageManager(AssetController):
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        interaction = self._io_manager._make_interaction(display=display)
-        with change, interaction:
+        with change:
             self._session._attempted_to_add_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -891,8 +888,7 @@ class PackageManager(AssetController):
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        interaction = self._io_manager._make_interaction(display=display)
-        with change, interaction:
+        with change:
             self._session._attempted_to_commit_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -922,31 +918,28 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            getter = self._io_manager._make_getter()
-            getter.append_string('metadatum name')
-            result = getter._run()
-            if self._session.is_backtracking:
-                return
-            metadatum = self._get_metadatum(result)
-            message = '{!r}'.format(metadatum)
-            self._io_manager._display(message)
+        getter = self._io_manager._make_getter()
+        getter.append_string('metadatum name')
+        result = getter._run()
+        if self._session.is_backtracking:
+            return
+        metadatum = self._get_metadatum(result)
+        message = '{!r}'.format(metadatum)
+        self._io_manager._display(message)
 
     def list_metadata_py(self):
         r'''Lists ``__metadata__.py``.
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            self._io_manager._display(self._metadata_py_path)
+        self._io_manager._display(self._metadata_py_path)
 
     def list_init_py(self):
         r'''Lists ``__init__.py``.
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            self._io_manager._display(self._init_py_file_path)
+        self._io_manager._display(self._init_py_file_path)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
@@ -967,15 +960,14 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            getter = self._io_manager._make_getter()
-            getter.append_string('metadatum name')
-            result = getter._run()
-            if self._session.is_backtracking:
-                return
-            if result:
-                metadatum_name = result
-                self._remove_metadatum(metadatum_name)
+        getter = self._io_manager._make_getter()
+        getter.append_string('metadatum name')
+        result = getter._run()
+        if self._session.is_backtracking:
+            return
+        if result:
+            metadatum_name = result
+            self._remove_metadatum(metadatum_name)
 
     def repository_clean(self, confirm=True, display=True):
         r'''Removes files not yet added to repository.
@@ -990,8 +982,7 @@ class PackageManager(AssetController):
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        interaction = self._io_manager._make_interaction()
-        with change, interaction:
+        with change:
             self._session._attempted_repository_status = True
             message = self._path + '...'
             self._io_manager._display(message, capitalize=False)
@@ -1021,8 +1012,7 @@ class PackageManager(AssetController):
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        interaction = self._io_manager._make_interaction()
-        with change, interaction:
+        with change:
             self._session._attempted_to_revert_to_repository = True
             if self._session.is_repository_test:
                 return
@@ -1042,20 +1032,19 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
-            if display:
-                message = 'will rewrite {}.'
-                message = message.format(self._metadata_py_path)
-                self._io_manager._display(message)
-            if confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
-            if metadata is None:
-                metadata = self._get_metadata()
-            self._write_metadata_py(metadata)
+        if display:
+            message = 'will rewrite {}.'
+            message = message.format(self._metadata_py_path)
+            self._io_manager._display(message)
+        if confirm:
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
+        if metadata is None:
+            metadata = self._get_metadata()
+        self._write_metadata_py(metadata)
 
     def update_from_repository(self, confirm=True, display=True):
         r'''Updates files from repository.
@@ -1063,8 +1052,7 @@ class PackageManager(AssetController):
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        interaction = self._io_manager._make_interaction(display=display)
-        with change, interaction:
+        with change:
             self._session._attempted_to_update_from_repository = True
             if self._session.is_repository_test:
                 return
@@ -1080,16 +1068,15 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction(display=display):
-            path = self._init_py_file_path
-            if display:
-                message = 'will write stub to {}.'
-                message = message.format(path)
-                self._io_manager._display(message)
-            if confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
-            self._io_manager.write_stub(self._init_py_file_path)
+        path = self._init_py_file_path
+        if display:
+            message = 'will write stub to {}.'
+            message = message.format(path)
+            self._io_manager._display(message)
+        if confirm:
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
+        self._io_manager.write_stub(self._init_py_file_path)

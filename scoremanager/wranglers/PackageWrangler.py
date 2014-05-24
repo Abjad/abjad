@@ -49,40 +49,38 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            file_name = '__init__.py'
-            paths = []
-            for segment_path in self._list_visible_asset_paths():
-                path = os.path.join(segment_path, file_name)
-                if os.path.isfile(path):
-                    paths.append(path)
-            if not paths:
-                message = 'no {} files found.'
-                message = message.format(file_name)
-                self._io_manager._display(message)
-                return
-            messages = []
-            for path in paths:
-                message = '    ' + path
-                messages.append(message)
-            message = '{} {} files found.'
-            message.format(len(paths), file_name)
-            messages.append(message)
+        file_name = '__init__.py'
+        paths = []
+        for segment_path in self._list_visible_asset_paths():
+            path = os.path.join(segment_path, file_name)
+            if os.path.isfile(path):
+                paths.append(path)
+        if not paths:
+            message = 'no {} files found.'
+            message = message.format(file_name)
             self._io_manager._display(message)
+            return
+        messages = []
+        for path in paths:
+            message = '    ' + path
+            messages.append(message)
+        message = '{} {} files found.'
+        message.format(len(paths), file_name)
+        messages.append(message)
+        self._io_manager._display(message)
 
     def list_every_metadata_py(self):
         r'''Lists ``__metadata__.py`` in every package.
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            directories = self._list_all_directories_with_metadata_pys()
-            paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-            messages = paths[:]
-            self._io_manager._display(messages)
-            message = '{} __metadata__.py files found.'
-            message = message.format(len(paths))
-            self._io_manager._display(message)
+        directories = self._list_all_directories_with_metadata_pys()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        messages = paths[:]
+        self._io_manager._display(messages)
+        message = '{} __metadata__.py files found.'
+        message = message.format(len(paths))
+        self._io_manager._display(message)
 
     def open_every_init_py(self):
         r'''Opens ``__init__.py`` in every package.

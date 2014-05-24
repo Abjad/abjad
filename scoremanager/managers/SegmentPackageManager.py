@@ -186,8 +186,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            self._io_manager.edit(self._definition_py_path)
+        self._io_manager.edit(self._definition_py_path)
 
     def interpret_make_py(self, confirm=True, display=True):
         r'''Interprets ``__make__.py``.

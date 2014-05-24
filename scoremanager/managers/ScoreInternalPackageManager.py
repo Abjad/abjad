@@ -57,33 +57,32 @@ class ScoreInternalPackageManager(PackageManager):
 
         Returns none.
         '''
-        with self._io_manager._make_interaction():
-            versions_directory = self._versions_directory
-            if not os.path.exists(versions_directory):
-                message = 'no versions directory found {}.'
-                message = message.format(self._versions_directory)
-                self._io_manager._display(message)
-                return
-            file_names = []
-            for directory_entry in os.listdir(versions_directory):
-                if not directory_entry.startswith('_'):
-                    file_names.append(directory_entry)
-            file_names.sort(key=lambda _: self._file_name_to_version_number(_))
-            messages = []
-            def group_helper(file_name):
-                root, extension = os.path.splitext(file_name)
-                return root[-4:]
-            for x in itertools.groupby(
-                file_names,
-                key=lambda _: self._file_name_to_version_number(_),
-                ):
-                key, file_names = x
-                message = ' '.join(file_names)
-                messages.append(message)
-            if not messages:
-                message = 'versions directory is empty.'
-                messages.append(message)
-            self._io_manager._display(messages, capitalize=False)
+        versions_directory = self._versions_directory
+        if not os.path.exists(versions_directory):
+            message = 'no versions directory found {}.'
+            message = message.format(self._versions_directory)
+            self._io_manager._display(message)
+            return
+        file_names = []
+        for directory_entry in os.listdir(versions_directory):
+            if not directory_entry.startswith('_'):
+                file_names.append(directory_entry)
+        file_names.sort(key=lambda _: self._file_name_to_version_number(_))
+        messages = []
+        def group_helper(file_name):
+            root, extension = os.path.splitext(file_name)
+            return root[-4:]
+        for x in itertools.groupby(
+            file_names,
+            key=lambda _: self._file_name_to_version_number(_),
+            ):
+            key, file_names = x
+            message = ' '.join(file_names)
+            messages.append(message)
+        if not messages:
+            message = 'versions directory is empty.'
+            messages.append(message)
+        self._io_manager._display(messages, capitalize=False)
 
     def version_package(self, confirm=True, display=True):
         r'''Versions package.
