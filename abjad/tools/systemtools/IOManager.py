@@ -548,7 +548,7 @@ class IOManager(object):
             return result
 
     @staticmethod
-    def run_lilypond(lilypond_file_name, lilypond_path=None):
+    def run_lilypond(lilypond_file_name, lilypond_path=None, flags=None):
         r'''Runs LilyPond on `lilypond_file_name`.
 
         Returns none.
@@ -560,13 +560,23 @@ class IOManager(object):
             if not lilypond_path:
                 lilypond_path = 'lilypond'
         log_file_path = os.path.join(abjad_output_directory, 'lily.log')
-        command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
-        command = command.format(
-            lilypond_path,
-            os.path.splitext(lilypond_file_name)[0],
-            lilypond_file_name,
-            log_file_path,
-            )
+        if flags:
+            command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = command.format(
+                lilypond_path,
+                flags,
+                os.path.splitext(lilypond_file_name)[0],
+                lilypond_file_name,
+                log_file_path,
+                )
+        else:
+            command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = command.format(
+                lilypond_path,
+                os.path.splitext(lilypond_file_name)[0],
+                lilypond_file_name,
+                log_file_path,
+                )
         exit_code = IOManager.spawn_subprocess(command)
         postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
         try:
