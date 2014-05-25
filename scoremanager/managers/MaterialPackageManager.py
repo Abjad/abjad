@@ -790,9 +790,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if self._session.display:
-            message = 'wrote stub to {}.'.format(self._definition_py_path)
-            self._io_manager._display(message)
+        message = 'wrote stub to {}.'.format(self._definition_py_path)
+        self._io_manager._display(message)
 
     def write_stub_illustrate_py(self):
         r'''Writes stub ``__illustrate.py__``.
@@ -826,7 +825,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._illustrate_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if self._session.display:
-            message = 'wrote stub to {}.'
-            message = message.format(self._illustrate_py_path)
-            self._io_manager._display(message)
+        message = 'wrote stub to {}.'
+        message = message.format(self._illustrate_py_path)
+        self._io_manager._display(message)

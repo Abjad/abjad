@@ -199,16 +199,15 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = 'no __make__.py found.'
             self._io_manager._display(message)
             return
-        if self._session.display:
-            messages = []
-            messages.append('will interpret ...')
-            message = '  INPUT: {}'.format(self._make_py_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            self._io_manager._display(messages)
+        messages = []
+        messages.append('will interpret ...')
+        message = '  INPUT: {}'.format(self._make_py_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+        messages.append(message)
+        self._io_manager._display(messages)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
@@ -223,14 +222,13 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            messages.append('will interpret ...')
-            message = '  INPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            self._io_manager._display(messages)
+        messages = []
+        messages.append('will interpret ...')
+        message = '  INPUT: {}'.format(self._output_lilypond_file_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+        messages.append(message)
+        self._io_manager._display(messages)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
@@ -290,12 +288,11 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            message = 'will write stub to {}.'
-            message = message.format(self._definition_py_path)
-            messages.append(message)
-            self._io_manager._display(message)
+        messages = []
+        message = 'will write stub to {}.'
+        message = message.format(self._definition_py_path)
+        messages.append(message)
+        self._io_manager._display(message)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
@@ -317,10 +314,9 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            message = 'will write stub to {}.'.format(self._make_py_path)
-            self._io_manager._display(message)
+        messages = []
+        message = 'will write stub to {}.'.format(self._make_py_path)
+        self._io_manager._display(message)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:

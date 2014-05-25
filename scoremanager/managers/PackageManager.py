@@ -1009,10 +1009,9 @@ class PackageManager(AssetController):
             self._session._attempted_to_revert_to_repository = True
             if self._session.is_repository_test:
                 return
-            if self._session.display:
-                message = 'reverting {} ...'
-                message = message.format(self._path)
-                self._io_manager._display(message)
+            message = 'reverting {} ...'
+            message = message.format(self._path)
+            self._io_manager._display(message)
             self._revert_from_repository()
 
     def rewrite_metadata_py(self, metadata=None):
@@ -1020,10 +1019,9 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        if self._session.display:
-            message = 'will rewrite {}.'
-            message = message.format(self._metadata_py_path)
-            self._io_manager._display(message)
+        message = 'will rewrite {}.'
+        message = message.format(self._metadata_py_path)
+        self._io_manager._display(message)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
@@ -1057,10 +1055,9 @@ class PackageManager(AssetController):
         Returns none.
         '''
         path = self._init_py_file_path
-        if self._session.display:
-            message = 'will write stub to {}.'
-            message = message.format(path)
-            self._io_manager._display(message)
+        message = 'will write stub to {}.'
+        message = message.format(path)
+        self._io_manager._display(message)
         if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:

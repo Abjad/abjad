@@ -1086,9 +1086,8 @@ class Wrangler(AssetController):
         lines.append(line)
         contents = '\n'.join(lines)
         self._io_manager.write(self._views_py_path, contents)
-        if self._session.display:
-            message = 'view inventory written to disk.'
-            self._io_manager._display(message)
+        message = 'view inventory written to disk.'
+        self._io_manager._display(message)
 
     ### PUBLIC METHODS ###
 
