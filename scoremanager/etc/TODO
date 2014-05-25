@@ -213,5 +213,14 @@
 
 43. Make '<return>' show up in Session.command_history.
 
-44. Replace all confirm=True and display=True keywords with the interaction
-    context.
+44. Change all ...
+        if self._session.display:
+            ...
+            self._io_manager._display()
+    ... to just ...
+        self._io_manager._display()
+    ... instead.
+    This will be possible to do by having IOManager._display()
+    check self._session.display and then returning when
+    self._session.display is false.
+    Same with confirm.

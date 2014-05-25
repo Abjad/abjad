@@ -185,7 +185,7 @@ class ScoreManager(AssetController):
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def repository_clean(self, confirm=True, display=True):
+    def repository_clean(self):
         r'''Removes unadded files from filesystem.
 
         Returns none.

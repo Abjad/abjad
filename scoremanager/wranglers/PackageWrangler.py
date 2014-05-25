@@ -89,20 +89,20 @@ class PackageWrangler(Wrangler):
         '''
         self._open_in_every_package('__init__.py')
 
-    def open_every_metadata_py(self, confirm=True, display=True):
+    def open_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every package.
 
         Returns none.
         '''
         paths = self._list_metadata_py_files_in_all_directories()
-        if display:
+        if self._session.display:
             messages = []
             messages.append('will open ...')
             for path in paths:
                 message = '    ' + path
                 messages.append(message)
             self._io_manager._display(messages)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
@@ -110,8 +110,7 @@ class PackageWrangler(Wrangler):
                 return
         self._io_manager.open_file(paths)
 
-
-    def rewrite_every_metadata_py(self, confirm=True, display=True):
+    def rewrite_every_metadata_py(self):
         r'''Rewrites ``__metadata__.py`` in every package.
 
         Returns none.
@@ -125,7 +124,7 @@ class PackageWrangler(Wrangler):
             manager = self._io_manager._make_package_manager(directory)
             with self._io_manager._make_silent():
                 manager.rewrite_metadata_py()
-        if display:
+        if self._session.display:
             message = '{} __metadata__.py files rewritten.'
             message = message.format(len(directories))
             messages.append(message)

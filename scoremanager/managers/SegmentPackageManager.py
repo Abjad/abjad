@@ -188,7 +188,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._definition_py_path)
 
-    def interpret_make_py(self, confirm=True, display=True):
+    def interpret_make_py(self):
         r'''Interprets ``__make__.py``.
 
         Makes ``output.ly`` and ``output.pdf``.
@@ -199,7 +199,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = 'no __make__.py found.'
             self._io_manager._display(message)
             return
-        if display:
+        if self._session.display:
             messages = []
             messages.append('will interpret ...')
             message = '  INPUT: {}'.format(self._make_py_path)
@@ -209,24 +209,21 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
             messages.append(message)
             self._io_manager._display(messages)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
             if not result:
                 return
-        self._io_manager.interpret_file(
-            self._make_py_path, 
-            confirm=False, 
-            display=False,
-            )
+        with self._io_manager._make_silent():
+            self._io_manager.interpret_file(self._make_py_path)
 
-    def interpret_output_ly(self, confirm=True, display=True):
+    def interpret_output_ly(self):
         r'''Interprets ``output.ly``.
 
         Returns none.
         '''
-        if display:
+        if self._session.display:
             messages = []
             messages.append('will interpret ...')
             message = '  INPUT: {}'.format(self._output_lilypond_file_path)
@@ -234,7 +231,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
             messages.append(message)
             self._io_manager._display(messages)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
@@ -288,18 +285,18 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._open_versioned_file('output.pdf')
 
     # TODO: reimplement as boilerplate
-    def write_stub_definition_py(self, confirm=True, display=True):
+    def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.
 
         Returns none.
         '''
-        if display:
+        if self._session.display:
             messages = []
             message = 'will write stub to {}.'
             message = message.format(self._definition_py_path)
             messages.append(message)
             self._io_manager._display(message)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
@@ -315,16 +312,16 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             file_pointer.write(contents)
 
     # TODO: reimplement as boilerplate
-    def write_stub_make_py(self, confirm=True, display=True):
+    def write_stub_make_py(self):
         r'''Writes stub ``__make__.py``.
 
         Returns none.
         '''
-        if display:
+        if self._session.display:
             messages = []
             message = 'will write stub to {}.'.format(self._make_py_path)
             self._io_manager._display(message)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return

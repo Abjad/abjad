@@ -84,14 +84,14 @@ class ScoreInternalPackageManager(PackageManager):
             messages.append(message)
         self._io_manager._display(messages, capitalize=False)
 
-    def version_package(self, confirm=True, display=True):
+    def version_package(self):
         r'''Versions package.
         
         Returns none.
         '''
         if not os.path.isdir(self._versions_directory):
             os.mkdir(self._versions_directory)
-        if confirm:
+        if self._session.confirm:
             messages = []
             messages.append('will copy ...')
             messages.extend(self._make_version_package_messages())

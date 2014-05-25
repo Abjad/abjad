@@ -251,7 +251,8 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         path = self._configuration.user_score_packages_directory
         self._copy_asset(new_storehouse=path)
-        self.write_cache(confirm=False, display=False)
+        with self._io_manager._make_silent():
+            self.write_cache()
 
     def fix_every_package(self):
         r'''Fixes every package.
@@ -285,7 +286,8 @@ class ScorePackageWrangler(PackageWrangler):
         if not path:
             return
         self._make_asset(path)
-        self.write_cache(confirm=False, display=False)
+        with self._io_manager._make_silent():
+            self.write_cache()
 
     def open_cache(self):
         r'''Opens cache.
@@ -295,7 +297,7 @@ class ScorePackageWrangler(PackageWrangler):
         file_path = self._configuration.cache_file_path
         self._io_manager.open_file(file_path)
 
-    def open_every_score_pdf(self, confirm=True, display=True):
+    def open_every_score_pdf(self):
         r'''Opens ``score.pdf`` in every package.
 
         Returns none.
@@ -305,13 +307,13 @@ class ScorePackageWrangler(PackageWrangler):
         for manager in managers:
             inputs, outputs = manager.open_score_pdf(dry_run=True)
             paths.extend(inputs)
-        if display:
+        if self._session.display:
             messages = ['will open ...']
             tab = self._io_manager._make_tab()
             paths = [tab + _ for _ in paths]
             messages.extend(paths)
             self._io_manager._display(messages)
-        if confirm:
+        if self._session.confirm:
             result = self._io_manager._confirm()
             if self._session.is_backtracking:
                 return
@@ -334,7 +336,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         self._rename_asset()
 
-    def write_cache(self, confirm=True, display=True):
+    def write_cache(self):
         r'''Writes cache.
 
         Returns none.
@@ -354,6 +356,6 @@ class ScorePackageWrangler(PackageWrangler):
         contents = '\n'.join(lines)
         cache_file_path = self._configuration.cache_file_path
         self._io_manager.write(cache_file_path, contents)
-        if display:
+        if self._session.display:
             message = 'wrote {}.'.format(cache_file_path)
             self._io_manager._display(message)

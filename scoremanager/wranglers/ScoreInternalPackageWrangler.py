@@ -55,7 +55,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         '''
         self._current_package_manager.open_init_py()
 
-    def version_every_package(self, confirm=True, display=True):
+    def version_every_package(self):
         r'''Versions every package.
 
         Returns none.
@@ -72,7 +72,8 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         if not result:
             return
         for manager in self._list_visible_asset_managers():
-            manager.version_package(confirm=False, display=False)
+            with self._io_manager._make_silent():
+                manager.version_package()
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

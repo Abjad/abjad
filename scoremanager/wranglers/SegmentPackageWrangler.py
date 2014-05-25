@@ -123,8 +123,9 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         assert not os.path.exists(path)
         os.mkdir(path)
         manager = self._initialize_manager(path)
-        manager.write_stub_definition_py(confirm=False, display=False)
-        manager.write_stub_make_py(confirm=False, display=False)
+        with self._io_manager._make_silent():
+            manager.write_stub_definition_py()
+            manager.write_stub_make_py()
 
     def _make_segments_menu_section(self, menu):
         commands = []
@@ -188,22 +189,18 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             return
         if not result:
             return
-        for manager in managers:
-            manager.interpret_make_py(confirm=False, display=False)
+        with self._io_manager._make_silent():
+            for manager in managers:
+                manager.interpret_make_py()
 
-    def interpret_every_output_ly(
-        self,
-        confirm=True,
-        display=True,
-        open_every_output_pdf=True,
-        ):
+    def interpret_every_output_ly(self, open_every_output_pdf=True):
         r'''Interprets ``output.ly`` in every package.
 
         Returns none.
         '''
         segments_directory = self._get_current_directory()
         entries = sorted(os.listdir(segments_directory))
-        if confirm:
+        if self._session.confirm:
             messages = []
             messages.append('will interpret ...')
             segment_paths = self._list_visible_asset_paths()
@@ -218,8 +215,9 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
                 return
             if not result:
                 return
-        for manager in self._list_visible_asset_managers():
-            manager.interpret_output_ly(confirm=False, display=True)
+        with self._io_manager._make_silent():
+            for manager in self._list_visible_asset_managers():
+                manager.interpret_output_ly()
 
     def make_package(self):
         r'''Makes package.

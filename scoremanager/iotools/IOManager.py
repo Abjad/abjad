@@ -380,7 +380,7 @@ class IOManager(IOManager):
         result = tuple(result)
         return result
 
-    def interpret_file(self, path, confirm=True, display=True):
+    def interpret_file(self, path):
         r'''Invokes Python or LilyPond on `path`.
 
         Returns integer success code.
@@ -398,7 +398,7 @@ class IOManager(IOManager):
             directory = systemtools.TemporaryDirectoryChange(directory)
             with directory:
                 result = self.spawn_subprocess(command)
-            if display:
+            if self._session.display:
                 message = 'interpreted {}.'.format(path)
                 self._display(message)
             return result
@@ -474,7 +474,7 @@ class IOManager(IOManager):
             capitalize=capitalize,
             )
 
-    def run_lilypond(self, path, confirm=True, display=True):
+    def run_lilypond(self, path):
         r'''Runs LilyPond on file `path`.
 
         Returns none.
