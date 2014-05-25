@@ -457,9 +457,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory,
@@ -498,9 +496,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         wrangler = self._session._score_manager._segment_package_wrangler
         view_name = wrangler._read_view_name()
@@ -534,9 +530,7 @@ class BuildFileWrangler(Wrangler):
             messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         source_path = os.path.join(
             self._configuration.score_manager_directory,
@@ -590,9 +584,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory,
@@ -631,9 +623,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         wrangler = self._session._score_manager._segment_package_wrangler
         view_name = wrangler._read_view_name()
@@ -667,9 +657,7 @@ class BuildFileWrangler(Wrangler):
             messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         source_path = os.path.join(
             self._configuration.score_manager_directory,
@@ -747,9 +735,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory,
@@ -788,9 +774,7 @@ class BuildFileWrangler(Wrangler):
             message = 'overwrite {}?'
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         source_path = os.path.join(
             self._configuration.score_manager_directory,

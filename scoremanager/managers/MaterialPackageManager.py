@@ -454,9 +454,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         messages.append('   TO: {}'.format(new_directory))
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         self._rename(new_directory)
         for directory_entry in os.listdir(new_directory):
@@ -663,20 +661,17 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         output_material = self._execute_output_py()
         if type(output_material) is class_:
             return
-        if self._session.confirm:
-            if output_material is not None:
-                messages = []
-                message = 'existing output.py file contains {}.'
-                message = message.format(type(output_material).__name__)
-                messages.append(message)
-                message = 'overwrite existing output.py file?'
-                messages.append(message)
-                self._io_manager._display(messages)
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
+        if output_material is not None:
+            messages = []
+            message = 'existing output.py file contains {}.'
+            message = message.format(type(output_material).__name__)
+            messages.append(message)
+            message = 'overwrite existing output.py file?'
+            messages.append(message)
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
+                return
         empty_target = class_()
         if type(empty_target) is list:
             storage_format = repr(empty_target)
@@ -719,15 +714,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.confirm:
-            message = 'will write output material to {}.'
-            message = message.format(self._output_py_path)
-            self._io_manager._display(message)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        message = 'will write output material to {}.'
+        message = message.format(self._output_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         if import_statements is None:
             assert body_lines is None
         else:
@@ -770,15 +762,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.confirm:
-            message = 'will write stub to {}.'
-            message = message.format(self._definition_py_path)
-            self._io_manager._display(message)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        message = 'will write stub to {}.'
+        message = message.format(self._definition_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         lines = []
         lines.append(self._configuration.unicode_directive)
         lines.append(self._abjad_import_statement)
@@ -790,24 +779,20 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._definition_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if self._session.display:
-            message = 'wrote stub to {}.'.format(self._definition_py_path)
-            self._io_manager._display(message)
+        message = 'wrote stub to {}.'.format(self._definition_py_path)
+        self._io_manager._display(message)
 
     def write_stub_illustrate_py(self):
         r'''Writes stub ``__illustrate.py__``.
 
         Returns none.
         '''
-        if self._session.confirm:
-            message = 'will write stub to {}.'
-            message = message.format(self._illustrate_py_path)
-            self._io_manager._display(message)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        message = 'will write stub to {}.'
+        message = message.format(self._illustrate_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         lines = []
         lines.append(self._abjad_import_statement)
         line = 'from output import {}'
@@ -826,7 +811,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         with open(self._illustrate_py_path, 'w') as file_pointer:
             file_pointer.write(contents)
-        if self._session.display:
-            message = 'wrote stub to {}.'
-            message = message.format(self._illustrate_py_path)
-            self._io_manager._display(message)
+        message = 'wrote stub to {}.'
+        message = message.format(self._illustrate_py_path)
+        self._io_manager._display(message)

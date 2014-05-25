@@ -307,18 +307,14 @@ class ScorePackageWrangler(PackageWrangler):
         for manager in managers:
             inputs, outputs = manager.open_score_pdf(dry_run=True)
             paths.extend(inputs)
-        if self._session.display:
-            messages = ['will open ...']
-            tab = self._io_manager._make_tab()
-            paths = [tab + _ for _ in paths]
-            messages.extend(paths)
-            self._io_manager._display(messages)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = ['will open ...']
+        tab = self._io_manager._make_tab()
+        paths = [tab + _ for _ in paths]
+        messages.extend(paths)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         if paths:
             self._io_manager.open_file(paths)
 
@@ -356,6 +352,5 @@ class ScorePackageWrangler(PackageWrangler):
         contents = '\n'.join(lines)
         cache_file_path = self._configuration.cache_file_path
         self._io_manager.write(cache_file_path, contents)
-        if self._session.display:
-            message = 'wrote {}.'.format(cache_file_path)
-            self._io_manager._display(message)
+        message = 'wrote {}.'.format(cache_file_path)
+        self._io_manager._display(message)

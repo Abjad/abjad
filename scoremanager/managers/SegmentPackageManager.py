@@ -199,22 +199,18 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = 'no __make__.py found.'
             self._io_manager._display(message)
             return
-        if self._session.display:
-            messages = []
-            messages.append('will interpret ...')
-            message = '  INPUT: {}'.format(self._make_py_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            self._io_manager._display(messages)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        messages.append('will interpret ...')
+        message = '  INPUT: {}'.format(self._make_py_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+        messages.append(message)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         with self._io_manager._make_silent():
             self._io_manager.interpret_file(self._make_py_path)
 
@@ -223,20 +219,16 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            messages.append('will interpret ...')
-            message = '  INPUT: {}'.format(self._output_lilypond_file_path)
-            messages.append(message)
-            message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-            messages.append(message)
-            self._io_manager._display(messages)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        messages.append('will interpret ...')
+        message = '  INPUT: {}'.format(self._output_lilypond_file_path)
+        messages.append(message)
+        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
+        messages.append(message)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         file_path = self._output_lilypond_file_path
         if not os.path.isfile(file_path):
             return
@@ -290,18 +282,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            message = 'will write stub to {}.'
-            message = message.format(self._definition_py_path)
-            messages.append(message)
-            self._io_manager._display(message)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        message = 'will write stub to {}.'
+        message = message.format(self._definition_py_path)
+        messages.append(message)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         lines = []
         lines.append(self._configuration.unicode_directive)
         lines.append(self._abjad_import_statement)
@@ -317,16 +305,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        if self._session.display:
-            messages = []
-            message = 'will write stub to {}.'.format(self._make_py_path)
-            self._io_manager._display(message)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        message = 'will write stub to {}.'.format(self._make_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         lines = []
         lines.append(self._configuration.unicode_directive)
         lines.append('import os')

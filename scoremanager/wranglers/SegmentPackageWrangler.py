@@ -185,9 +185,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             messages.append(' OUTPUT: {}'.format(output_pdf_path))
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         with self._io_manager._make_silent():
             for manager in managers:
@@ -200,21 +198,18 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         '''
         segments_directory = self._get_current_directory()
         entries = sorted(os.listdir(segments_directory))
-        if self._session.confirm:
-            messages = []
-            messages.append('will interpret ...')
-            segment_paths = self._list_visible_asset_paths()
-            for segment_path in segment_paths:
-                input_path = os.path.join(segment_path, 'output.ly')
-                output_path = os.path.join(segment_path, 'output.pdf')
-                messages.append('  INPUT: {}'.format(input_path))
-                messages.append(' OUTPUT: {}'.format(output_path))
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        messages.append('will interpret ...')
+        segment_paths = self._list_visible_asset_paths()
+        for segment_path in segment_paths:
+            input_path = os.path.join(segment_path, 'output.ly')
+            output_path = os.path.join(segment_path, 'output.pdf')
+            messages.append('  INPUT: {}'.format(input_path))
+            messages.append(' OUTPUT: {}'.format(output_path))
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         with self._io_manager._make_silent():
             for manager in self._list_visible_asset_managers():
                 manager.interpret_output_ly()

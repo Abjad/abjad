@@ -57,11 +57,9 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    def _confirm(
-        self,
-        prompt_string='ok?',
-        include_chevron=False,
-        ):
+    def _confirm(self, prompt_string='ok?', include_chevron=False):
+        if not self._session.confirm:
+            return True
         getter = self._make_getter(
             include_chevron=include_chevron,
             include_newlines=False,
@@ -74,6 +72,8 @@ class IOManager(IOManager):
 
     def _display(self, lines, capitalize=True):
         assert isinstance(lines, (str, list))
+        if not self._session.display:
+            return
         if isinstance(lines, str):
             lines = [lines]
         if capitalize:
@@ -398,9 +398,8 @@ class IOManager(IOManager):
             directory = systemtools.TemporaryDirectoryChange(directory)
             with directory:
                 result = self.spawn_subprocess(command)
-            if self._session.display:
-                message = 'interpreted {}.'.format(path)
-                self._display(message)
+            message = 'interpreted {}.'.format(path)
+            self._display(message)
             return result
 
     def invoke_shell(self, statement=None):

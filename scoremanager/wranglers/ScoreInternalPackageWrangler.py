@@ -67,9 +67,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             messages.extend(manager._make_version_package_messages())
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         for manager in self._list_visible_asset_managers():
             with self._io_manager._make_silent():
