@@ -894,8 +894,7 @@ class Wrangler(AssetController):
                 for path in paths:
                     message = '    {}'.format(path)
                     messages.append(message)
-            if self._session.display:
-                self._io_manager._display(messages)
+            self._io_manager._display(messages)
             if count == 1:
                 confirmation_string = 'remove'
             else:
