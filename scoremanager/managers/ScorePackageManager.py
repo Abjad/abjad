@@ -325,12 +325,11 @@ class ScorePackageManager(PackageManager):
                 message = 'create {}?'.format(path)
                 messages.append(message)
                 self._io_manager._display(messages)
-                if self._session.confirm:
-                    result = self._io_manager._confirm()
-                    if self._session.is_backtracking:
-                        return
-                    if not result:
-                        return
+                result = self._io_manager._confirm()
+                if self._session.is_backtracking:
+                    return
+                if not result:
+                    return
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
                 with open(gitignore_path, 'w') as file_pointer:
@@ -344,12 +343,11 @@ class ScorePackageManager(PackageManager):
             message = 'create {}?'.format(path)
             messages.append(message)
             self._io_manager._display(messages)
-            if self._session.confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
             self.write_stub_init_py()
         if not os.path.exists(self._metadata_py_path):
             package_needed_to_be_fixed = True
@@ -360,12 +358,11 @@ class ScorePackageManager(PackageManager):
             message = 'create {}?'.format(path)
             messages.append(message)
             self._io_manager._display(messages)
-            if self._session.confirm:
-                result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
-                    return
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking:
+                return
+            if not result:
+                return
             self.rewrite_metadata_py()
         if package_needed_to_be_fixed:
             message = 'fixed package.'.format(self._path)

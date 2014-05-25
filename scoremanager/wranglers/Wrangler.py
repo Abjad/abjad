@@ -883,27 +883,27 @@ class Wrangler(AssetController):
         paths = self._select_visible_asset_paths()
         if not paths:
             return
-        if self._session.confirm:
-            count = len(paths)
-            messages = []
-            if count == 1:
-                message = 'will remove {}'.format(paths[0])
+        count = len(paths)
+        messages = []
+        if count == 1:
+            message = 'will remove {}'.format(paths[0])
+            messages.append(message)
+        else:
+            messages.append('will remove ...')
+            for path in paths:
+                message = '    {}'.format(path)
                 messages.append(message)
-            else:
-                messages.append('will remove ...')
-                for path in paths:
-                    message = '    {}'.format(path)
-                    messages.append(message)
-            self._io_manager._display(messages)
-            if count == 1:
-                confirmation_string = 'remove'
-            else:
-                confirmation_string = 'remove {}'
-                confirmation_string = confirmation_string.format(count)
-            prompt_string = "type {!r} to proceed"
-            prompt_string = prompt_string.format(confirmation_string)
-            getter = self._io_manager._make_getter()
-            getter.append_string(prompt_string)
+        self._io_manager._display(messages)
+        if count == 1:
+            confirmation_string = 'remove'
+        else:
+            confirmation_string = 'remove {}'
+            confirmation_string = confirmation_string.format(count)
+        prompt_string = "type {!r} to proceed"
+        prompt_string = prompt_string.format(confirmation_string)
+        getter = self._io_manager._make_getter()
+        getter.append_string(prompt_string)
+        if self._session.confirm:
             result = getter._run()
             if self._session.is_backtracking:
                 return
@@ -1151,14 +1151,13 @@ class Wrangler(AssetController):
         commit_message = getter._run()
         if self._session.is_backtracking:
             return
-        if self._session.confirm:
-            line = 'commit message will be: "{}"'.format(commit_message)
-            self._io_manager._display(line)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        line = 'commit message will be: "{}"'.format(commit_message)
+        self._io_manager._display(line)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)

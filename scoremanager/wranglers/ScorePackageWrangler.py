@@ -312,12 +312,11 @@ class ScorePackageWrangler(PackageWrangler):
         paths = [tab + _ for _ in paths]
         messages.extend(paths)
         self._io_manager._display(messages)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
         if paths:
             self._io_manager.open_file(paths)
 

@@ -579,12 +579,12 @@ class PackageManager(AssetController):
             self._io_manager._display(message)
 
     def _remove(self):
+        message = '{} will be removed.'
+        message = message.format(self._path)
+        self._io_manager._display(message)
+        getter = self._io_manager._make_getter()
+        getter.append_string("type 'remove' to proceed")
         if self._session.confirm:
-            message = '{} will be removed.'
-            message = message.format(self._path)
-            self._io_manager._display(message)
-            getter = self._io_manager._make_getter()
-            getter.append_string("type 'remove' to proceed")
             result = getter._run()
             if self._session.is_backtracking:
                 return
@@ -891,15 +891,14 @@ class PackageManager(AssetController):
                 commit_message = getter._run()
                 if self._session.is_backtracking:
                     return
-                if self._session.confirm:
-                    message = 'commit message will be: "{}"'
-                    message = message.format(commit_message)
-                    self._io_manager._display(message)
-                    result = self._io_manager._confirm()
-                    if self._session.is_backtracking:
-                        return
-                    if not result:
-                        return
+                message = 'commit message will be: "{}"'
+                message = message.format(commit_message)
+                self._io_manager._display(message)
+                result = self._io_manager._confirm()
+                if self._session.is_backtracking:
+                    return
+                if not result:
+                    return
             message = self._get_score_package_directory_name()
             message = message + ' ...'
             command = 'svn commit -m "{}" {}'
@@ -1058,10 +1057,9 @@ class PackageManager(AssetController):
         message = 'will write stub to {}.'
         message = message.format(path)
         self._io_manager._display(message)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
         self._io_manager.write_stub(self._init_py_file_path)
