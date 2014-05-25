@@ -5,11 +5,12 @@ import tempfile
 from IPython.core.display import display_png
 
 
-def _get_png(expr):
-    r'''Calls lilypond and converts output to (multi-page) PNGs.
+def show(expr):
+    r'''A replacement for Ajbad's show function for IPython Notebook.
     '''
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
+    assert '__illustrate__' in dir(expr)
     temporary_directory = tempfile.mkdtemp()
     temporary_file_path = os.path.join(
         temporary_directory,
@@ -26,14 +27,6 @@ def _get_png(expr):
             file_contents = file_pointer.read()
             pngs.append(file_contents)
     shutil.rmtree(temporary_directory)
-    return pngs
-
-
-def show(expr):
-    r'''A replacement for Ajbad's show function for IPython Notebook.
-    '''
-    assert '__illustrate__' in dir(expr)
-    pngs = _get_png(expr)
     for png in pngs:
         display_png(png, raw=True)
 
