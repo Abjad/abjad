@@ -226,12 +226,11 @@ class AssetController(Controller):
             message = '    ' + path
             messages.append(message)
         self._io_manager._display(messages)
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
         remove_command = self._shell_remove_command
         paths = ' '.join(paths)
         command = '{} {}'

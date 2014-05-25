@@ -91,16 +91,15 @@ class ScoreInternalPackageManager(PackageManager):
         '''
         if not os.path.isdir(self._versions_directory):
             os.mkdir(self._versions_directory)
-        if self._session.confirm:
-            messages = []
-            messages.append('will copy ...')
-            messages.extend(self._make_version_package_messages())
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
-                return
+        messages = []
+        messages.append('will copy ...')
+        messages.extend(self._make_version_package_messages())
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking:
+            return
+        if not result:
+            return
         next_version_string = self._get_next_version_string()
         for source_path in self._source_paths:
             if not os.path.isfile(source_path):
