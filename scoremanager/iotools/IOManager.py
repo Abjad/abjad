@@ -57,11 +57,9 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    def _confirm(
-        self,
-        prompt_string='ok?',
-        include_chevron=False,
-        ):
+    def _confirm(self, prompt_string='ok?', include_chevron=False):
+        if not self._session.confirm:
+            return True
         getter = self._make_getter(
             include_chevron=include_chevron,
             include_newlines=False,
