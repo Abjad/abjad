@@ -212,14 +212,3 @@
 42. Add "Command unknown: 'asdf'." message.
 
 43. Make '<return>' show up in Session.command_history.
-
-44. Change all ...
-        if self._session.confirm:
-            ...
-            self._io_manager._confirm()
-    ... to just ...
-        self._io_manager._confirm()
-    ... instead.
-    This will be possible to do by having IOManager._confirm()
-    check self._session.confirm and then returning when
-    self._session.confirm is false.

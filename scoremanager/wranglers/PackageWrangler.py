@@ -102,9 +102,7 @@ class PackageWrangler(Wrangler):
             messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         self._io_manager.open_file(paths)
 

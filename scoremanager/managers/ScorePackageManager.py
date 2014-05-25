@@ -326,9 +326,7 @@ class ScorePackageManager(PackageManager):
                 messages.append(message)
                 self._io_manager._display(messages)
                 result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
+                if self._session.is_backtracking or not result:
                     return
                 os.makedirs(path)
                 gitignore_path = os.path.join(path, '.gitignore')
@@ -344,9 +342,7 @@ class ScorePackageManager(PackageManager):
             messages.append(message)
             self._io_manager._display(messages)
             result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
             self.write_stub_init_py()
         if not os.path.exists(self._metadata_py_path):
@@ -359,9 +355,7 @@ class ScorePackageManager(PackageManager):
             messages.append(message)
             self._io_manager._display(messages)
             result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
             self.rewrite_metadata_py()
         if package_needed_to_be_fixed:

@@ -227,9 +227,7 @@ class AssetController(Controller):
             messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         remove_command = self._shell_remove_command
         paths = ' '.join(paths)

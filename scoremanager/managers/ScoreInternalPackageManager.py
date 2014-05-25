@@ -96,9 +96,7 @@ class ScoreInternalPackageManager(PackageManager):
         messages.extend(self._make_version_package_messages())
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         next_version_string = self._get_next_version_string()
         for source_path in self._source_paths:

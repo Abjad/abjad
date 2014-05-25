@@ -185,9 +185,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             messages.append(' OUTPUT: {}'.format(output_pdf_path))
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         with self._io_manager._make_silent():
             for manager in managers:
@@ -210,9 +208,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             messages.append(' OUTPUT: {}'.format(output_path))
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         with self._io_manager._make_silent():
             for manager in self._list_visible_asset_managers():

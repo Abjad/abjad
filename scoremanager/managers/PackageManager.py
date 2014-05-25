@@ -667,9 +667,7 @@ class PackageManager(AssetController):
         lines.append(line)
         self._io_manager._display(lines)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         new_directory = self._path.replace(
             base_name,
@@ -895,9 +893,7 @@ class PackageManager(AssetController):
                 message = message.format(commit_message)
                 self._io_manager._display(message)
                 result = self._io_manager._confirm()
-                if self._session.is_backtracking:
-                    return
-                if not result:
+                if self._session.is_backtracking or not result:
                     return
             message = self._get_score_package_directory_name()
             message = message + ' ...'
@@ -1021,11 +1017,10 @@ class PackageManager(AssetController):
         message = 'will rewrite {}.'
         message = message.format(self._metadata_py_path)
         self._io_manager._display(message)
+        # WEIRD: why can't this confirm check be removed?
         if self._session.confirm:
             result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         if metadata is None:
             metadata = self._get_metadata()
@@ -1058,8 +1053,6 @@ class PackageManager(AssetController):
         message = message.format(path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         self._io_manager.write_stub(self._init_py_file_path)

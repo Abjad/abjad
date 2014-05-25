@@ -209,9 +209,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         with self._io_manager._make_silent():
             self._io_manager.interpret_file(self._make_py_path)
@@ -229,9 +227,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         messages.append(message)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         file_path = self._output_lilypond_file_path
         if not os.path.isfile(file_path):
@@ -292,9 +288,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         messages.append(message)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         lines = []
         lines.append(self._configuration.unicode_directive)
@@ -315,9 +309,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         message = 'will write stub to {}.'.format(self._make_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         lines = []
         lines.append(self._configuration.unicode_directive)

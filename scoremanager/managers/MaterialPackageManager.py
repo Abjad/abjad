@@ -454,9 +454,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         messages.append('   TO: {}'.format(new_directory))
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         self._rename(new_directory)
         for directory_entry in os.listdir(new_directory):
@@ -672,9 +670,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             messages.append(message)
             self._io_manager._display(messages)
             result = self._io_manager._confirm()
-            if self._session.is_backtracking:
-                return
-            if not result:
+            if self._session.is_backtracking or not result:
                 return
         empty_target = class_()
         if type(empty_target) is list:
@@ -722,9 +718,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = message.format(self._output_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         if import_statements is None:
             assert body_lines is None
@@ -772,9 +766,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = message.format(self._definition_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         lines = []
         lines.append(self._configuration.unicode_directive)
@@ -799,9 +791,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = message.format(self._illustrate_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
-        if self._session.is_backtracking:
-            return
-        if not result:
+        if self._session.is_backtracking or not result:
             return
         lines = []
         lines.append(self._abjad_import_statement)
