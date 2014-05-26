@@ -94,7 +94,7 @@ class AltoFlute(Instrument):
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[G3, G6]'
+                        range_string='[G3, G6]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
                     )
@@ -168,7 +168,7 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute.pitch_range
-                PitchRange('[G3, G6]')
+                PitchRange(range_string='[G3, G6]')
 
             ::
 

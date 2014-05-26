@@ -113,9 +113,9 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm new testpri aes PitchRangeInventory <return>'
-    input_ += ' ae add range [A0, C8] done'
-    input_ += ' add range [C2, F#5] done'
-    input_ += ' add range [C2, G5] done'
+    input_ += ' ae add [A0, C8]'
+    input_ += ' add [C2, F#5]'
+    input_ += ' add [C2, G5]'
     input_ += ' rm 1 mv 1 2 b y <return> q'
 
     with systemtools.FilesystemState(remove=[path]):

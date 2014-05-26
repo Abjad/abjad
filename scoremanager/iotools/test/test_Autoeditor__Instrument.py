@@ -44,7 +44,8 @@ def test_Autoeditor__Instrument_02():
         )
     input_ = 'q'
     autoeditor._run(input_=input_)
-    assert autoeditor.target.pitch_range == pitchtools.PitchRange(-19, 36)
+    range_ = pitchtools.PitchRange.from_pitches(-19, 36)
+    assert autoeditor.target.pitch_range == range_
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.Marimba()
@@ -54,7 +55,8 @@ def test_Autoeditor__Instrument_02():
         )
     input_ = 'rg [C2, C7] q'
     autoeditor._run(input_=input_)
-    assert autoeditor.target.pitch_range == pitchtools.PitchRange(-24, 36)
+    range_ = pitchtools.PitchRange.from_pitches(-24, 36)
+    assert autoeditor.target.pitch_range == range_
 
 
 def test_Autoeditor__Instrument_03():

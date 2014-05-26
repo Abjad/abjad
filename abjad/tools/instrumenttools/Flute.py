@@ -127,7 +127,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.pitch_range
-                PitchRange('[C4, D7]')
+                PitchRange(range_string='[C4, D7]')
 
             ::
 

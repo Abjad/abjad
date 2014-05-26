@@ -128,7 +128,7 @@ class MezzoSopranoVoice(Instrument):
             ::
 
                 >>> mezzo_soprano.pitch_range
-                PitchRange('[A3, C6]')
+                PitchRange(range_string='[A3, C6]')
 
             ::
 

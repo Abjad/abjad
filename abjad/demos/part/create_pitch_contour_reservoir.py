@@ -8,11 +8,11 @@ def create_pitch_contour_reservoir():
 
     scale = tonalanalysistools.Scale('a', 'minor')
     pitch_ranges = {
-        'First Violin': pitchtools.PitchRange(("c'", "a'''")),
-        'Second Violin': pitchtools.PitchRange(('a', "a''")),
-        'Viola': pitchtools.PitchRange(('e', "a'")),
-        'Cello': pitchtools.PitchRange(('a,', 'a')),
-        'Bass': pitchtools.PitchRange(('c', 'a')),
+        'First Violin': pitchtools.PitchRange('[C4, A6]'),
+        'Second Violin': pitchtools.PitchRange('[A3, A5]'),
+        'Viola': pitchtools.PitchRange('[E3, A4]'),
+        'Cello': pitchtools.PitchRange('[A2, A3]'),
+        'Bass': pitchtools.PitchRange('[C3, A3]'),
     }
 
     reservoir = {}

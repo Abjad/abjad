@@ -10,7 +10,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
         >>> mc = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         >>> mc
-        OctaveTranspositionMappingComponent(source_pitch_range=PitchRange('[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
+        OctaveTranspositionMappingComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
     Initializes from input parameters separately, from a pair, from
     a string or from another mapping component.
@@ -88,7 +88,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             systemtools.AttributeDetail(
                 name='source_pitch_range',
                 menu_key='pr',
-                editor=iotools.getters.get_symbolic_pitch_range_string,
+                editor=iotools.getters.get_pitch_range_string,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
@@ -129,7 +129,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         ::
 
             >>> mc.source_pitch_range
-            PitchRange('[A0, C8]')
+            PitchRange(range_string='[A0, C8]')
 
         Returns pitch range or none.
         '''
@@ -138,7 +138,11 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @source_pitch_range.setter
     def source_pitch_range(self, source_pitch_range):
         from abjad.tools import pitchtools
-        self._source_pitch_range = pitchtools.PitchRange(source_pitch_range)
+        if isinstance(source_pitch_range, str):
+            source_pitch_range = pitchtools.PitchRange(source_pitch_range)
+        elif isinstance(source_pitch_range, pitchtools.PitchRange):
+            source_pitch_range = copy.copy(source_pitch_range)
+        self._source_pitch_range = source_pitch_range
 
     @property
     def target_octave_start_pitch(self):

@@ -45,7 +45,8 @@ class PitchArrayRow(AbjadObject):
     def __init__(self, cells=None):
         from abjad.tools import pitchtools
         self._parent_array = None
-        self._pitch_range = pitchtools.PitchRange(None, None)
+        #self._pitch_range = pitchtools.PitchRange(None, None)
+        self._pitch_range = pitchtools.PitchRange()
         self._cells = []
         cells = cells or []
         self.extend(cells)

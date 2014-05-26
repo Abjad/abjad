@@ -315,15 +315,9 @@ class Autoeditor(Controller):
             return
         if attribute_value in (None, []):
             return
-        # TODO: reimplement as something in PitchRange._attribute_manifest
-        if isinstance(self.target, pitchtools.PitchRange):
-            assert attribute_name == 'range'
-            new_target = type(self.target)(attribute_value)
-            self._target = new_target
-        else:
-            kwargs = {attribute_name: attribute_value}
-            new_target = new(self.target, **kwargs)
-            self._target = new_target
+        kwargs = {attribute_name: attribute_value}
+        new_target = new(self.target, **kwargs)
+        self._target = new_target
 
     def _target_args_to_target_summary_lines(self, target):
         result = []

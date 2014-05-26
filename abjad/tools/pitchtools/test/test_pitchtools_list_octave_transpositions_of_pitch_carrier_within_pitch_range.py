@@ -7,7 +7,7 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
     '''
 
     chord = Chord([0, 2, 4], (1, 4))
-    pitch_range = pitchtools.PitchRange(0, 48)
+    pitch_range = pitchtools.PitchRange.from_pitches(0, 48)
     transpositions = pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(
         chord, pitch_range)
 
@@ -30,7 +30,7 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
     '''
 
     pitch_numbers = [0, 2, 4]
-    pitch_range = pitchtools.PitchRange(0, 48)
+    pitch_range = pitchtools.PitchRange.from_pitches(0, 48)
     transpositions = pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(
         pitch_numbers, pitch_range)
 

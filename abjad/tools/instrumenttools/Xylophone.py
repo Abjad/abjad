@@ -125,7 +125,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.pitch_range
-                PitchRange('[C4, C7]')
+                PitchRange(range_string='[C4, C7]')
 
             ::
 

@@ -15,10 +15,10 @@ class PitchRange(AbjadObject):
 
     ::
 
-        >>> pitch_range = pitchtools.PitchRange(-12, 36)
+        >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
         >>> print(format(pitch_range))
         pitchtools.PitchRange(
-            '[C3, C7]'
+            range_string='[C3, C7]',
             )
 
     ::
@@ -40,7 +40,7 @@ class PitchRange(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _symbolic_pitch_range_string_regex_body = '''
+    _range_string_regex_body = '''
         ([\[(])         # open bracket or open parenthesis
         ({}|{}|-?\d+)   # pitch
         ,               # comma
@@ -54,8 +54,8 @@ class PitchRange(AbjadObject):
             Pitch._pitch_name_regex_body,
             )
 
-    _symbolic_pitch_range_string_regex = re.compile(
-        '^{}$'.format(_symbolic_pitch_range_string_regex_body),
+    _range_string_regex = re.compile(
+        '^{}$'.format(_range_string_regex_body),
         re.VERBOSE,
         )
 
@@ -66,60 +66,10 @@ class PitchRange(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
-        from abjad.tools import pitchtools
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            if args[0].start_pitch_is_included_in_range:
-                boundedness = 'inclusive'
-            else:
-                boundedness = 'exclusive'
-            start = (args[0].start_pitch, boundedness)
-            self._start = start
-            assert isinstance(args[0], type(self)), repr(args[0])
-            if args[0].stop_pitch_is_included_in_range:
-                boundedness = 'inclusive'
-            else:
-                boundedness = 'exclusive'
-            stop = (args[0].stop_pitch, boundedness)
-            self._stop = stop
-        elif len(args) == 1 and isinstance(args[0], str):
-            self._initialize_by_symbolic_pitch_range_string(*args)
-        elif len(args) == 1 and isinstance(args[0], collections.Sequence):
-            start, stop = args[0]
-            type(self).__init__(self, start, stop)
-        elif len(args) == 0:
-            start_pitch = pitchtools.NamedPitch('A0')
-            stop_pitch = pitchtools.NamedPitch('C8')
-            self._start = (start_pitch, 'inclusive')
-            self._stop = (stop_pitch, 'inclusive')
-        else:
-            assert len(args) == 2, repr(args)
-            start, stop = args
-            prototype = (pitchtools.Pitch, int, float, str)
-            if start is None:
-                start = start
-            elif isinstance(start, prototype):
-                pitch = pitchtools.NamedPitch(start)
-                start = (pitch, 'inclusive')
-            else:
-                assert len(start) == 2, repr(start)
-                pitch, containment = start
-                assert containment in ('inclusive', 'exclusive')
-                pitch = pitchtools.NamedPitch(pitch)
-                start = (pitch, containment)
-            self._start = start
-            if stop is None:
-                stop = stop
-            elif isinstance(stop, prototype):
-                pitch = pitchtools.NamedPitch(stop)
-                stop = (pitch, 'inclusive')
-            else:
-                assert len(stop) == 2, repr(stop)
-                pitch, containment = stop
-                assert containment in ('inclusive', 'exclusive')
-                pitch = pitchtools.NamedPitch(pitch)
-                stop = (pitch, containment)
-            self._stop = stop
+    def __init__(self, range_string='[A0, C8]'):
+        start, stop = self._parse_range_string(range_string)
+        self._start = start
+        self._stop = stop
 
     ### SPECIAL METHODS ###
 
@@ -130,8 +80,8 @@ class PitchRange(AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        if hasattr(arg, '_has_effective_indicator') and \
-            arg._has_effective_indicator(indicatortools.IsUnpitched):
+        if (hasattr(arg, '_has_effective_indicator') and
+            arg._has_effective_indicator(indicatortools.IsUnpitched)):
             return True
         elif isinstance(arg, (int, float)):
             pitch = pitchtools.NamedPitch(arg)
@@ -144,6 +94,11 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, scoretools.Chord):
             sounding_pitches = inspect_(arg).get_sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)
+            try:
+                arg = type(self)(arg)
+                return self.__lt__(arg)
+            except TypeError:
+                pass
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True
         elif isinstance(arg, scoretools.Container):
@@ -160,8 +115,8 @@ class PitchRange(AbjadObject):
         return False
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a pitch range with start and stop equal to those
-        of this pitch range. Otherwise false.
+        r'''Is true when `arg` is a pitch range with start and stop equal 
+        to those of this pitch range. Otherwise false.
 
         Returns boolean.
         '''
@@ -336,9 +291,9 @@ class PitchRange(AbjadObject):
         from scoremanager import iotools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='range',
-                menu_key='rp',
-                editor=iotools.getters.get_symbolic_pitch_range_string,
+                name='range_string',
+                menu_key='rs',
+                editor=iotools.getters.get_pitch_range_string,
                 ),
             )
 
@@ -360,27 +315,6 @@ class PitchRange(AbjadObject):
         else:
             return '('
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self.one_line_named_pitch_repr,
-                ),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.one_line_named_pitch_repr,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
@@ -389,14 +323,14 @@ class PitchRange(AbjadObject):
             pitch = pitchtools.NamedPitch(pitch)
         elif isinstance(pitch, str):
             pitch = pitchtools.NamedPitch(pitch)
-        if self._start is None and self._stop is None:
+        if self.start_pitch is None and self.stop_pitch is None:
             return True
-        elif self._start is None:
+        elif self.start_pitch is None:
             if self.stop_pitch_is_included_in_range:
                 return pitch <= self.stop_pitch
             else:
                 return pitch < self.stop_pitch
-        elif self._stop is None:
+        elif self.stop_pitch is None:
             if self.start_pitch_is_included_in_range:
                 return self.start_pitch <= pitch
             else:
@@ -413,16 +347,15 @@ class PitchRange(AbjadObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
-    def _initialize_by_symbolic_pitch_range_string(
-        self,
-        symbolic_pitch_range_string,
-        ):
+    def _parse_range_string(self, range_string):
         from abjad.tools import pitchtools
-        match = self._symbolic_pitch_range_string_regex.match(
-            symbolic_pitch_range_string)
+        assert isinstance(range_string, str), repr(range_string)
+        range_string = range_string.replace('-inf', '-1000')
+        range_string = range_string.replace('+inf', '1000')
+        match = self._range_string_regex.match(range_string)
         if match is None:
             message = 'can not instantiate pitch range: {!r}'
-            message = message.format(symbolic_pitch_range_string)
+            message = message.format(range_string)
             raise ValueError(message)
         groups = match.groups()
         start_punctuation = groups[0]
@@ -433,20 +366,34 @@ class PitchRange(AbjadObject):
             self._start_punctuation_to_inclusivity_string[start_punctuation]
         stop_inclusivity_string = \
             self._stop_punctuation_to_inclusivity_string[stop_punctuation]
-        start_pair = (start_pitch_string, start_inclusivity_string)
-        stop_pair = (stop_pitch_string, stop_inclusivity_string)
-        type(self).__init__(self, start_pair, stop_pair)
+        if start_pitch_string == '-1000':
+            start_pitch = None
+        else:
+            try:
+                start_pitch = pitchtools.NamedPitch(start_pitch_string)
+            except TypeError:
+                start_pitch = pitchtools.NumberedPitch(int(start_pitch_string))
+        if stop_pitch_string == '1000':
+            stop_pitch = None
+        else:
+            try:
+                stop_pitch = pitchtools.NamedPitch(stop_pitch_string)
+            except TypeError:
+                stop_pitch = pitchtools.NumberedPitch(int(stop_pitch_string))
+        start_pair = (start_pitch, start_inclusivity_string)
+        stop_pair = (stop_pitch, stop_inclusivity_string)
+        return start_pair, stop_pair
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def is_symbolic_pitch_range_string(cls, expr):
+    def is_range_string(cls, expr):
         '''Is true when `expr` is a symbolic pitch range string.
         Otherwise false:
 
         ::
 
-            >>> pitchtools.PitchRange.is_symbolic_pitch_range_string(
+            >>> pitchtools.PitchRange.is_range_string(
             ...     '[A0, C8]')
             True
 
@@ -458,7 +405,7 @@ class PitchRange(AbjadObject):
         '''
         if not isinstance(expr, str):
             return False
-        return bool(cls._symbolic_pitch_range_string_regex.match(expr))
+        return bool(cls._range_string_regex.match(expr))
 
     def voice_pitch_class(self, pitch_class):
         r"""Voices `pitch_class` in this pitch-range.
@@ -512,9 +459,13 @@ class PitchRange(AbjadObject):
         result.append(self._open_bracket_string)
         if self.start_pitch:
             result.append(self.start_pitch.pitch_class_octave_label)
-            result.append(', ')
+        else:
+            result.append('-inf')
+        result.append(', ')
         if self.stop_pitch:
             result.append(self.stop_pitch.pitch_class_octave_label)
+        else:
+            result.append('+inf')
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result
@@ -632,26 +583,30 @@ class PitchRange(AbjadObject):
             ::
 
                 >>> pitchtools.PitchRange.from_pitches(-18, 19)
-                PitchRange('[F#2, G5]')
+                PitchRange(range_string='[F#2, G5]')
         
         Returns pitch range.
         '''
         from abjad.tools import pitchtools
-        start_pitch = pitchtools.NamedPitch(start_pitch)
-        stop_pitch = pitchtools.NamedPitch(stop_pitch)
+        if start_pitch is None:
+            start_pitch_string = '-inf'
+        else:
+            start_pitch_string = str(pitchtools.NamedPitch(start_pitch))
+        if stop_pitch is None:
+            stop_pitch_string = '+inf'
+        else:
+            stop_pitch_string = str(pitchtools.NamedPitch(stop_pitch))
         start_containment = '['
         if not start_pitch_is_included_in_range:
             start_containment = '('
         stop_containment = ']'
         if not stop_pitch_is_included_in_range:
             stop_containment = ')'
-        start = (start_pitch, start_containment)
-        stop = (stop_pitch, stop_containment)
         string = '{}{}, {}{}'
         string = string.format(
             start_containment,
-            start_pitch,
-            stop_pitch,
+            start_pitch_string,
+            stop_pitch_string,
             stop_containment,
             )
         pitch_range = PitchRange(string)

@@ -6,141 +6,149 @@ def test_pitchtools_PitchRange___contains___01():
     r'''Closed / closed range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-    assert -99 not in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99 not in pr
+    range_ = pitchtools.PitchRange('[A0, C8]')
+    assert -99 not in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___02():
     r'''Closed / open range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'exclusive'))
-    assert -99 not in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48 not in pr
-    assert  99 not in pr
+    range_ = pitchtools.PitchRange('[A0, C8)')
+    assert -99 not in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 not in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___03():
     r'''Closed / infinite range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), None)
-    assert -99 not in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99      in pr
+    #range_ = pitchtools.PitchRange((-39, 'inclusive'), None)
+    range_ = pitchtools.PitchRange('[-39, +inf]')
+    assert -99 not in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 in range_
 
 
 def test_pitchtools_PitchRange___contains___04():
     r'''Open / closed range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'inclusive'))
-    assert -99 not in pr
-    assert -39 not in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99 not in pr
+    range_ = pitchtools.PitchRange('(A0, C8]')
+    assert -99 not in range_
+    assert -39 not in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___05():
     r'''Open / open range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'exclusive'))
-    assert -99 not in pr
-    assert -39 not in pr
-    assert    0      in pr
-    assert  48 not in pr
-    assert  99 not in pr
+    range_ = pitchtools.PitchRange('(-39, 48)')
+    assert -99 not in range_
+    assert -39 not in range_
+    assert 0 in range_
+    assert 48 not in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___06():
     r'''Open / infinite range.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'exclusive'), None)
-    assert -99 not in pr
-    assert -39 not in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99      in pr
+    #range_ = pitchtools.PitchRange((-39, 'exclusive'), None)
+    range_ = pitchtools.PitchRange('(-39, +inf]')
+    assert -99 not in range_
+    assert -39 not in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 in range_
 
 
 def test_pitchtools_PitchRange___contains___07():
     r'''Infinite / closed range.
     '''
 
-    pr = pitchtools.PitchRange(None, (48, 'inclusive'))
-    assert -99      in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99 not in pr
+    #range_ = pitchtools.PitchRange(None, (48, 'inclusive'))
+    range_ = pitchtools.PitchRange('[-inf, C8]')
+    assert -99 in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___08():
     r'''Infinite / open range.
     '''
 
-    pr = pitchtools.PitchRange(None, (48, 'exclusive'))
-    assert -99      in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48 not in pr
-    assert  99 not in pr
+    #range_ = pitchtools.PitchRange(None, (48, 'exclusive'))
+    range_ = pitchtools.PitchRange('[-inf, C8)')
+    assert -99 in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 not in range_
+    assert 99 not in range_
 
 
 def test_pitchtools_PitchRange___contains___09():
     r'''Infinite / infinite range.
     '''
 
-    pr = pitchtools.PitchRange(None, None)
-    assert -99      in pr
-    assert -39      in pr
-    assert    0      in pr
-    assert  48      in pr
-    assert  99      in pr
+    #range_ = pitchtools.PitchRange(None, None)
+    range_ = pitchtools.PitchRange('[-inf, +inf]')
+    assert -99 in range_
+    assert -39 in range_
+    assert 0 in range_
+    assert 48 in range_
+    assert 99 in range_
 
 
 def test_pitchtools_PitchRange___contains___10():
     r'''Chord containement.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-    assert Chord([-99, -98, -97], (1, 4)) not in pr
-    assert Chord([-39, -38, -37], (1, 4)) in pr
-    assert Chord([0, 2, 3], (1, 4)) in pr
-    assert Chord([46, 47, 48], (1, 4)) in pr
-    assert Chord([48, 49, 50], (1, 4)) not in pr
+    #range_ = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+    range_ = pitchtools.PitchRange('[-39, 48]')
+    assert Chord([-99, -98, -97], (1, 4)) not in range_
+    assert Chord([-39, -38, -37], (1, 4)) in range_
+    assert Chord([0, 2, 3], (1, 4)) in range_
+    assert Chord([46, 47, 48], (1, 4)) in range_
+    assert Chord([48, 49, 50], (1, 4)) not in range_
 
 
 def test_pitchtools_PitchRange___contains___11():
     r'''Note containement.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-    assert Note(-99, (1, 4)) not in pr
-    assert Note(-39, (1, 4))      in pr
-    assert Note(  0, (1, 4))      in pr
-    assert Note( 48, (1, 4))      in pr
-    assert Note( 99, (1, 4)) not in pr
+    #range_ = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+    range_ = pitchtools.PitchRange('[-39, 48]')
+    assert Note(-99, (1, 4)) not in range_
+    assert Note(-39, (1, 4)) in range_
+    assert Note(  0, (1, 4)) in range_
+    assert Note( 48, (1, 4)) in range_
+    assert Note( 99, (1, 4)) not in range_
 
 
 def test_pitchtools_PitchRange___contains___12():
     r'''Rest and skip containement.
     '''
 
-    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-    assert Rest((1, 4)) in pr
-    assert scoretools.Skip((1, 4)) in pr
+    #range_ = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+    range_ = pitchtools.PitchRange('[-39, 48]')
+    assert Rest((1, 4)) in range_
+    assert scoretools.Skip((1, 4)) in range_
 
 
 def test_pitchtools_PitchRange___contains___13():
@@ -149,8 +157,8 @@ def test_pitchtools_PitchRange___contains___13():
 
     pitch_numbers = range(10)
 
-    assert pitch_numbers in pitchtools.PitchRange(-39, 48)
-    assert not pitch_numbers in pitchtools.PitchRange(36, 48)
+    assert pitch_numbers in pitchtools.PitchRange.from_pitches(-39, 48)
+    assert not pitch_numbers in pitchtools.PitchRange.from_pitches(36, 48)
 
 
 def test_pitchtools_PitchRange___contains___14():

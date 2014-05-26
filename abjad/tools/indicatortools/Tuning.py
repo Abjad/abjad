@@ -58,7 +58,7 @@ class Tuning(AbjadObject):
             >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
             >>> string_number = indicatortools.StringNumber((2, 3))
             >>> tuning.get_pitch_ranges_by_string_number(string_number)
-            (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
+            (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
         Returns pitch ranges.
         '''
@@ -220,16 +220,16 @@ class Tuning(AbjadObject):
             pitchtools.PitchRangeInventory(
                 [
                     pitchtools.PitchRange(
-                        '[G3, G5]'
+                        range_string='[G3, G5]',
                         ),
                     pitchtools.PitchRange(
-                        '[D4, D6]'
+                        range_string='[D4, D6]',
                         ),
                     pitchtools.PitchRange(
-                        '[A4, A6]'
+                        range_string='[A4, A6]',
                         ),
                     pitchtools.PitchRange(
-                        '[E5, E7]'
+                        range_string='[E5, E7]',
                         ),
                     ]
                 )
@@ -239,7 +239,7 @@ class Tuning(AbjadObject):
         from abjad.tools import pitchtools
         result = []
         for pitch in self.pitches:
-            pitch_range = pitchtools.PitchRange(pitch, pitch + 24)
+            pitch_range = pitchtools.PitchRange.from_pitches(pitch, pitch + 24)
             result.append(pitch_range)
         result = pitchtools.PitchRangeInventory(result)
         return result

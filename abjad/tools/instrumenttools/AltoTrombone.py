@@ -99,7 +99,7 @@ class AltoTrombone(Instrument):
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[A2, Bb5]'
+                        range_string='[A2, Bb5]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                     )
@@ -173,7 +173,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.pitch_range
-                PitchRange('[A2, Bb5]')
+                PitchRange(range_string='[A2, Bb5]')
 
             ::
 

@@ -50,8 +50,14 @@ class Instrument(AbjadObject):
         allowable_clefs = allowable_clefs or ['treble']
         allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
         self._allowable_clefs = allowable_clefs
-        pitch_range = pitch_range or pitchtools.PitchRange('[A0, C8]')
-        pitch_range = pitchtools.PitchRange(pitch_range)
+        if isinstance(pitch_range, str):
+            pitch_range = pitchtools.PitchRange(pitch_range)
+        elif isinstance(pitch_range, pitchtools.PitchRange):
+            pitch_range = copy.copy(pitch_range)
+        elif pitch_range is None:
+            pitch_range = pitchtools.PitchRange()
+        else:
+            raise TypeError(pitch_range)
         self._pitch_range = pitch_range
         sounding_pitch_of_written_middle_c = \
             sounding_pitch_of_written_middle_c or pitchtools.NamedPitch("c'")
@@ -155,7 +161,7 @@ class Instrument(AbjadObject):
                 name='pitch_range',
                 display_string='range',
                 menu_key='rg',
-                editor=iotools.getters.get_symbolic_pitch_range_string,
+                editor=iotools.getters.get_pitch_range_string,
                 ),
             systemtools.AttributeDetail(
                 name='short_instrument_name',

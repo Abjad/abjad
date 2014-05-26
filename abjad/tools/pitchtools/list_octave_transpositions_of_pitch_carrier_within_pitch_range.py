@@ -12,7 +12,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
     ::
 
         >>> chord = Chord("<c' d' e'>4")
-        >>> pitch_range = pitchtools.PitchRange(0, 48)
+        >>> pitch_range = pitchtools.PitchRange.from_pitches(0, 48)
 
     ::
 

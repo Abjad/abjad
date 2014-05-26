@@ -793,7 +793,7 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    def append_symbolic_pitch_range_string(
+    def append_pitch_range_string(
         self,
         spaced_attribute_name,
         default_value=None,
@@ -806,8 +806,7 @@ class PromptMakerMixin(AbjadObject):
         help_template += ' Ex: [A0, C8].'
         self._make_prompt(
             spaced_attribute_name,
-            validation_function=\
-                pitchtools.PitchRange.is_symbolic_pitch_range_string,
+            validation_function=pitchtools.PitchRange.is_range_string,
             help_template=help_template,
             default_value=default_value,
             )

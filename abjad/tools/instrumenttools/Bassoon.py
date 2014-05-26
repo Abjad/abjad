@@ -132,7 +132,7 @@ class Bassoon(Instrument):
             ::
 
                 >>> bassoon.pitch_range
-                PitchRange('[Bb1, Eb5]')
+                PitchRange(range_string='[Bb1, Eb5]')
 
             ::
 

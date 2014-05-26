@@ -49,7 +49,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ]
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[C4, D7]'
+                                        range_string='[C4, D7]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                                     ),
@@ -70,7 +70,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ]
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[G3, G6]'
+                                        range_string='[G3, G6]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
                                     ),
@@ -111,7 +111,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ),
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[E2, E5]'
+                                        range_string='[E2, E5]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('c'),
                                     ),
@@ -271,7 +271,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ]
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[C4, D7]'
+                                        range_string='[C4, D7]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                                     ),
@@ -292,7 +292,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ]
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[G3, G6]'
+                                        range_string='[G3, G6]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
                                     ),
@@ -333,7 +333,7 @@ class InstrumentationSpecifier(AbjadObject):
                                             ),
                                         ),
                                     pitch_range=pitchtools.PitchRange(
-                                        '[E2, E5]'
+                                        range_string='[E2, E5]',
                                         ),
                                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('c'),
                                     ),
@@ -346,15 +346,3 @@ class InstrumentationSpecifier(AbjadObject):
         Returns performer inventory.
         '''
         return self._performers
-
-#    @performers.setter
-#    def performers(self, performers):
-#        from abjad.tools import instrumenttools
-#        assert isinstance(performers,
-#            (list, datastructuretools.TypedList, type(None)))
-#        if performers is None:
-#            self._performers[:] = []
-#        else:
-#            assert all(isinstance(x, instrumenttools.Performer)
-#                for x in performers)
-#            self._performers[:] = list(performers[:])

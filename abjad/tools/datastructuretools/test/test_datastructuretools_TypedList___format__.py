@@ -57,13 +57,13 @@ def test_datastructuretools_TypedList___format___02():
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[C4, D7]'
+                        range_string='[C4, D7]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                     ),
                 'bar',
                 pitchtools.PitchRange(
-                    '[A0, C8]'
+                    range_string='[A0, C8]',
                     ),
                 'blah',
                 ]
@@ -107,13 +107,13 @@ def test_datastructuretools_TypedList___format___03():
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[C4, D7]'
+                        range_string='[C4, D7]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                     ),
                 'bar',
                 pitchtools.PitchRange(
-                    '[A0, C8]'
+                    range_string='[A0, C8]',
                     ),
                 'blah',
                 ]

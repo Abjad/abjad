@@ -212,12 +212,12 @@ def get_strings(
     getter.append_strings(space_delimited_attribute_name)
     return getter
 
-def get_symbolic_pitch_range_string(
+def get_pitch_range_string(
     space_delimited_attribute_name,
     session=None,
     prepopulated_value=None,
     allow_none=True,
     ):
     getter = UserInputGetter(session=session, allow_none=allow_none)
-    getter.append_symbolic_pitch_range_string(space_delimited_attribute_name)
+    getter.append_pitch_range_string(space_delimited_attribute_name)
     return getter

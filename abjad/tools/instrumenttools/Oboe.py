@@ -128,7 +128,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.pitch_range
-                PitchRange('[Bb3, A6]')
+                PitchRange(range_string='[Bb3, A6]')
 
             ::
 

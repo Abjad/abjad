@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
 class PitchRangeInventory(TypedList):
@@ -13,7 +13,7 @@ class PitchRangeInventory(TypedList):
         ...     '[C4, C6]',
         ...     ])
         >>> inventory
-        PitchRangeInventory([PitchRange('[C3, C6]'), PitchRange('[C4, C6]')])
+        PitchRangeInventory([PitchRange(range_string='[C3, C6]'), PitchRange(range_string='[C4, C6]')])
 
     Pitch range inventories implement list interface and are mutable.
     '''
@@ -114,6 +114,15 @@ class PitchRangeInventory(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @property
-    def _item_callable(self):
-        return PitchRange
+    @staticmethod
+    def _item_callable(expr):
+        from abjad.tools import pitchtools
+        if isinstance(expr, str):
+            range_ = pitchtools.PitchRange(expr)
+        elif isinstance(expr, tuple):
+            range_ = pitchtools.PitchRange.from_pitches(*expr)
+        elif isinstance(expr, pitchtools.PitchRange):
+            range_ = copy.copy(expr)
+        else:
+            raise TypeError(expr)
+        return range_

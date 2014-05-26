@@ -162,9 +162,9 @@ def test_ListAutoeditor__run_08():
         session=session,
         target=target,
         )
-    input_ = 'add range [C0, C6] done'
-    input_ += ' add range [C1, C7] done'
-    input_ += ' add range [C2, C8] done'
+    input_ = 'add [C0, C6]'
+    input_ += ' add [C1, C7]'
+    input_ += ' add [C2, C8]'
     input_ += ' rm 1 mv 1 2 q'
     autoeditor._run(input_=input_)
     assert autoeditor.target == pitchtools.PitchRangeInventory([

@@ -37,7 +37,7 @@ class Performer(AbjadObject):
                                 ]
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[C4, D7]'
+                            range_string='[C4, D7]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                         ),
@@ -58,7 +58,7 @@ class Performer(AbjadObject):
                                 ]
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[D5, C8]'
+                            range_string='[D5, C8]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''"),
                         ),

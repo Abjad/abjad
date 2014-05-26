@@ -140,7 +140,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.pitch_range
-                PitchRange('[C2, C7]')
+                PitchRange(range_string='[C2, C7]')
 
             ::
 

@@ -130,7 +130,7 @@ class Contrabassoon(Instrument):
             ::
 
                 >>> contrabassoon.pitch_range
-                PitchRange('[Bb0, Bb4]')
+                PitchRange(range_string='[Bb0, Bb4]')
 
             ::
 

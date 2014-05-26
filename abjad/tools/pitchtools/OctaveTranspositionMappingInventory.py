@@ -25,13 +25,13 @@ class OctaveTranspositionMappingInventory(TypedList):
                     [
                         pitchtools.OctaveTranspositionMappingComponent(
                             source_pitch_range=pitchtools.PitchRange(
-                                '[A0, C4)'
+                                range_string='[A0, C4)',
                                 ),
                             target_octave_start_pitch=pitchtools.NumberedPitch(15),
                             ),
                         pitchtools.OctaveTranspositionMappingComponent(
                             source_pitch_range=pitchtools.PitchRange(
-                                '[C4, C8)'
+                                range_string='[C4, C8)',
                                 ),
                             target_octave_start_pitch=pitchtools.NumberedPitch(27),
                             ),
@@ -41,7 +41,7 @@ class OctaveTranspositionMappingInventory(TypedList):
                     [
                         pitchtools.OctaveTranspositionMappingComponent(
                             source_pitch_range=pitchtools.PitchRange(
-                                '[A0, C8]'
+                                range_string='[A0, C8]',
                                 ),
                             target_octave_start_pitch=pitchtools.NumberedPitch(-18),
                             ),
