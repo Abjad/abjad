@@ -53,52 +53,29 @@ class Tempo(AbjadObject):
     ### INITIALIZER ###
 
     # TODO: remove kwargs?
-    def __init__(self, *args, **kwargs):
+    def __init__(
+        self, 
+        duration=None,
+        units_per_minute=None,
+        textual_indication=None,
+        **kwargs
+        ):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Score
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            tempo_indication = args[0]
-            duration = durationtools.Duration(tempo_indication.duration)
-            textual_indication = tempo_indication.textual_indication
-            units_per_minute = tempo_indication.units_per_minute
-        elif len(args) == 1 and isinstance(args[0], str):
-            duration = None
-            textual_indication = args[0]
-            units_per_minute = None
-            assert isinstance(textual_indication, (str, type(None)))
-        elif len(args) == 1 and isinstance(args[0], tuple) and \
-            len(args[0]) == 2:
-            textual_indication = None
-            duration, units_per_minute = args[0]
-        elif len(args) == 1 and isinstance(args[0], tuple) and \
-            len(args[0]) == 3:
-            textual_indication, duration, units_per_minute = args[0]
-        elif len(args) in [2, 3]:
-            if len(args) == 3:
-                textual_indication, duration, units_per_minute = args
-            else:
-                textual_indication = None
-                duration, units_per_minute = args
-        elif len(args) == 0:
-            duration = durationtools.Duration(1, 4)
-            units_per_minute = 60
-            textual_indication = None
-        else:
-            message = 'can not initialize tempo indication.'
-            raise ValueError(message)
         assert isinstance(textual_indication, (str, type(None)))
         if duration:
             try:
                 duration = durationtools.Duration(duration)
             except TypeError:
                 duration = durationtools.Duration(*duration)
-        assert isinstance(units_per_minute, (int, float,
-            durationtools.Duration, list, tuple, type(None)))
+        prototype = (
+            int, float, durationtools.Duration, list, tuple, type(None),
+            )
+        assert isinstance(units_per_minute, prototype)
         if isinstance(units_per_minute, (list, tuple)):
             assert len(units_per_minute) == 2
-            assert all(
-                isinstance(x, (int, float, durationtools.Duration))
-                for x in units_per_minute)
+            prototype = (int, float, durationtools.Duration)
+            assert all(isinstance(x, prototype) for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
         self._duration = duration
         self._textual_indication = textual_indication
@@ -136,9 +113,9 @@ class Tempo(AbjadObject):
         Returns new tempo.
         '''
         return type(self)(
-            self.textual_indication,
-            self.duration,
-            self.units_per_minute,
+            textual_indication=self.textual_indication,
+            duration=self.duration,
+            units_per_minute=self.units_per_minute,
             )
 
     def __div__(self, expr):
@@ -175,12 +152,12 @@ class Tempo(AbjadObject):
 
         ::
 
-            >>> tempo = Tempo('Allegro', (1, 4), 84)
+            >>> tempo = Tempo((1, 4), 84, 'Allegro')
             >>> print(format(tempo))
             indicatortools.Tempo(
-                'Allegro',
-                durationtools.Duration(1, 4),
-                84
+                duration=durationtools.Duration(1, 4),
+                units_per_minute=84,
+                textual_indication='Allegro',
                 )
 
         Returns string.
@@ -217,7 +194,7 @@ class Tempo(AbjadObject):
 
             >>> tempo = Tempo(Duration(1, 4), 84)
             >>> tempo * 2
-            Tempo(Duration(1, 4), 168)
+            Tempo(duration=Duration(1, 4), units_per_minute=168)
 
         Returns new tempo.
         '''
@@ -227,7 +204,10 @@ class Tempo(AbjadObject):
             raise ImpreciseTempoError
         new_units_per_minute = multiplier * self.units_per_minute
         new_duration = durationtools.Duration(self.duration)
-        new_tempo = type(self)(new_duration, new_units_per_minute)
+        new_tempo = type(self)(
+            duration=new_duration, 
+            units_per_minute=new_units_per_minute,
+            )
         return new_tempo
 
     def __rmul__(self, multiplier):
@@ -237,7 +217,7 @@ class Tempo(AbjadObject):
 
             >>> tempo = Tempo(Duration(1, 4), 84)
             >>> 2 * tempo
-            Tempo(Duration(1, 4), 168)
+            Tempo(duration=Duration(1, 4), units_per_minute=168)
 
         Returns new tempo.
         '''
@@ -247,7 +227,10 @@ class Tempo(AbjadObject):
             raise ImpreciseTempoError
         new_units_per_minute = multiplier * self.units_per_minute
         new_duration = durationtools.Duration(self.duration)
-        new_tempo = type(self)(new_duration, new_units_per_minute)
+        new_tempo = type(self)(
+            duration=new_duration, 
+            units_per_minute=new_units_per_minute,
+            )
         return new_tempo
 
     def __str__(self):
@@ -287,7 +270,10 @@ class Tempo(AbjadObject):
             new_duration = \
                 durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = \
-                type(self)(new_duration, new_units_per_minute)
+                type(self)(
+                    duration=new_duration, 
+                    units_per_minute=new_units_per_minute,
+                    )
             return new_tempo_indication
 
     def __truediv__(self, expr):
@@ -362,23 +348,23 @@ class Tempo(AbjadObject):
             is_indented=False,
             )
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = []
-        is_indented = False
-        if self.textual_indication:
-            positional_argument_values.append(self.textual_indication)
-            is_indented = True
-        if self.duration:
-            positional_argument_values.append(self.duration)
-        if self.units_per_minute:
-            positional_argument_values.append(self.units_per_minute)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=is_indented,
-            positional_argument_values=positional_argument_values,
-            )
+#    @property
+#    def _storage_format_specification(self):
+#        from abjad.tools import systemtools
+#        positional_argument_values = []
+#        is_indented = False
+#        if self.textual_indication:
+#            positional_argument_values.append(self.textual_indication)
+#            is_indented = True
+#        if self.duration:
+#            positional_argument_values.append(self.duration)
+#        if self.units_per_minute:
+#            positional_argument_values.append(self.units_per_minute)
+#        return systemtools.StorageFormatSpecification(
+#            self,
+#            is_indented=is_indented,
+#            positional_argument_values=positional_argument_values,
+#            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -405,11 +391,11 @@ class Tempo(AbjadObject):
 
             >>> Tempo(Duration(1, 4), 60).is_imprecise
             False
-            >>> Tempo('Langsam', 4, 60).is_imprecise
+            >>> Tempo(4, 60, 'Langsam').is_imprecise
             False
-            >>> Tempo('Langsam').is_imprecise
+            >>> Tempo(textual_indication='Langsam').is_imprecise
             True
-            >>> Tempo('Langsam', 4, (35, 50)).is_imprecise
+            >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
             True
             >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
             True
@@ -509,30 +495,6 @@ class Tempo(AbjadObject):
                 )
         return durationtools.Duration(duration * whole_note_duration)
 
-    def is_tempo_token(self, expr):
-        r'''Is true when `expr` can initialize tempo.
-
-        ::
-
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> tempo.is_tempo_token((Duration(1, 4), 84))
-            True
-
-        Otherwise false:
-
-        ::
-
-            >>> tempo.is_tempo_token(84)
-            False
-
-        Returns boolean.
-        '''
-        try:
-            tempo = type(self)(expr)
-            return isinstance(tempo, type(self))
-        except:
-            return False
-
     def list_related_tempos(
         self,
         maximum_numerator=None,
@@ -631,7 +593,10 @@ class Tempo(AbjadObject):
                 assert mathtools.is_integer_equivalent_expr(
                     new_units_per_minute)
                 new_units_per_minute = int(new_units_per_minute)
-                new_tempo = type(self)(self.duration, new_units_per_minute)
+                new_tempo = type(self)(
+                    duration=self.duration, 
+                    units_per_minute=new_units_per_minute,
+                    )
                 pair = (new_tempo, ratio)
                 if pair not in pairs:
                     pairs.append(pair)

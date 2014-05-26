@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+import copy
 import itertools
 import numbers
 from abjad.tools import durationtools
@@ -615,8 +616,14 @@ class QEventSequence(AbjadObject):
         assert len(leaves)
         if tempo is None:
             assert leaves[0]._get_effective(indicatortools.Tempo) is not None
+        #else:
+        #    #tempo = indicatortools.Tempo(tempo)
+        elif isinstance(tempo, indicatortools.Tempo):
+            tempo = copy.copy(tempo)
+        elif isinstance(tempo, tuple):
+            tempo = indicatortools.Tempo(*tempo)
         else:
-            tempo = indicatortools.Tempo(tempo)
+            raise TypeError(tempo)
         # sort by silence and tied leaves
         groups = []
         for rvalue, rgroup in itertools.groupby(

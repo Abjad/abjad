@@ -7,7 +7,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__indicators__Tempo_01():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = Tempo("As fast as possible")
+    tempo = Tempo(textual_indication="As fast as possible")
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
@@ -86,9 +86,9 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
-        "Like a majestic swan, alive with youth and vigour!",
-        (1, 4),
-        60,
+        duration=(1, 4),
+        units_per_minute=60,
+        textual_indication="Like a majestic swan, alive with youth and vigour!",
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
@@ -116,8 +116,9 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
-        "Faster than a thousand suns",
-        (1, 16), (34, 55),
+        duration=(1, 16), 
+        units_per_minute=(34, 55),
+        textual_indication="Faster than a thousand suns",
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 

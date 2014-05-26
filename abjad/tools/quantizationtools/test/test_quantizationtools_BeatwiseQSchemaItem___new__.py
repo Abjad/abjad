@@ -48,5 +48,5 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___04():
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___05():
 
-    tempo = Tempo('lento')
+    tempo = Tempo(textual_indication='lento')
     pytest.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')

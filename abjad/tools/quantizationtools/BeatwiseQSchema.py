@@ -50,7 +50,10 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+            tempo=indicatortools.Tempo(
+                duration=durationtools.Duration(1, 4), 
+                units_per_minute=60,
+                ),
             )
 
     Each time-step in a ``BeatwiseQSchema`` is composed of three settings:
@@ -275,9 +278,10 @@ class BeatwiseQSchema(QSchema):
             quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-        self._tempo = indicatortools.Tempo(
-            kwargs.get('tempo',
-                ((1, 4), 60)))
+        tempo = kwargs.get('tempo', ((1, 4), 60))
+        if isinstance(tempo, tuple):
+            tempo = indicatortools.Tempo(*tempo)
+        self._tempo = tempo
         QSchema.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###

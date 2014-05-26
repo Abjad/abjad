@@ -33,7 +33,10 @@ class QTargetBeat(AbjadObject):
                 definition={   3: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 56),
+            tempo=indicatortools.Tempo(
+                duration=durationtools.Duration(1, 4), 
+                units_per_minute=56,
+                ),
             )
 
     Not composer-safe.
@@ -75,7 +78,9 @@ class QTargetBeat(AbjadObject):
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
         tempo = tempo or indicatortools.Tempo(durationtools.Duration(1, 4), 60)
-        tempo = indicatortools.Tempo(tempo)
+        #tempo = indicatortools.Tempo(tempo)
+        if isinstance(tempo, tuple):
+            tempo = indicatortools.Tempo(*tempo)
         assert not tempo.is_imprecise
 
         q_events = []
@@ -230,7 +235,7 @@ class QTargetBeat(AbjadObject):
         ::
 
             >>> q_target_beat.tempo
-            Tempo(Duration(1, 4), 56)
+            Tempo(duration=Duration(1, 4), units_per_minute=56)
 
         Returns tempo.
         '''

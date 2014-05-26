@@ -8,7 +8,7 @@ def test_indicatortools_Tempo_is_imprecise_01( ):
     '''
 
     assert not Tempo(Duration(1, 4), 60).is_imprecise
-    assert not Tempo('Langsam', 4, 60).is_imprecise
-    assert Tempo('Langsam').is_imprecise
-    assert Tempo('Langsam', 4, (35, 50)).is_imprecise
+    assert not Tempo(4, 60, 'Langsam').is_imprecise
+    assert Tempo(textual_indication='Langsam').is_imprecise
+    assert Tempo(4, (35, 50), 'Langsam').is_imprecise
     assert Tempo(Duration(1, 4), (35, 50)).is_imprecise

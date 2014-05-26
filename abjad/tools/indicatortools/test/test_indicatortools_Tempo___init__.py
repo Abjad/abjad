@@ -18,20 +18,6 @@ def test_indicatortools_Tempo___init___02():
     assert format(tempo, 'lilypond') == '\\tempo 16.=52.5'
 
 
-def test_indicatortools_Tempo___init___03():
-    r'''Initializes tempo from tempo.
-    '''
-
-    tempo = Tempo(Duration(3, 32), 52)
-    new = Tempo(tempo)
-
-    assert tempo == new
-    assert tempo is not new
-
-    assert tempo.duration == new.duration
-    assert tempo.duration is not new.duration
-
-
 def test_indicatortools_Tempo___init___04():
     r'''Initializes tempo from integer pair.
     '''
@@ -44,7 +30,7 @@ def test_indicatortools_Tempo___init___05():
     r'''Initializes tempo from textual indication.
     '''
 
-    tempo = Tempo('Langsam')
+    tempo = Tempo(textual_indication='Langsam')
     assert format(tempo, 'lilypond') == '\\tempo Langsam'
 
 
@@ -60,21 +46,5 @@ def test_indicatortools_Tempo___init___07():
     r'''Initializes tempo from text, duration and range.
     '''
 
-    tempo = Tempo('Quick', Duration(1, 4), (120, 133))
-    assert format(tempo, 'lilypond') == '\\tempo Quick 4=120-133'
-
-
-def test_indicatortools_Tempo___init___08():
-    r'''Initializes tempo from length-2 tuple.
-    '''
-
-    tempo = Tempo((Duration(1, 4), (120, 133)))
-    assert format(tempo, 'lilypond') == '\\tempo 4=120-133'
-
-
-def test_indicatortools_Tempo___init___09():
-    r'''Initializes tempo from length-3 tuple.
-    '''
-
-    tempo = Tempo(('Quick', Duration(1, 4), (120, 133)))
+    tempo = Tempo(Duration(1, 4), (120, 133), 'Quick')
     assert format(tempo, 'lilypond') == '\\tempo Quick 4=120-133'

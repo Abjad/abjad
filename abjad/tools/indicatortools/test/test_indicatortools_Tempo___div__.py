@@ -23,7 +23,7 @@ def test_indicatortools_Tempo___div___02():
 
 def test_indicatortools_Tempo___div___03():
 
-    tempo_indication_1 = Tempo('Langsam')
+    tempo_indication_1 = Tempo(textual_indication='Langsam')
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
 
     statement = "tempo_indication_1 / tempo_indication_2"
