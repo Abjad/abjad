@@ -310,26 +310,16 @@ class Autoeditor(Controller):
                     return
 
     def _set_target_attribute(self, attribute_name, attribute_value):
-        from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         if self._session.is_quitting:
             return
         if attribute_value in (None, []):
             return
-        # TODO: see GitHub #366:
-        # TODO: reimplement OctaveTranspositionMapping.__init__()
-        prototype = (
-            pitchtools.OctaveTranspositionMapping,
-            )
         # TODO: reimplement as something in PitchRange._attribute_manifest
         if isinstance(self.target, pitchtools.PitchRange):
             assert attribute_name == 'range'
             new_target = type(self.target)(attribute_value)
             self._target = new_target
-        elif isinstance(self.target, prototype):
-            self._copy_target_attributes_to_memory()
-            self._attributes_in_memory[attribute_name] = attribute_value
-            self._initialize_target_from_attributes_in_memory()
         else:
             kwargs = {attribute_name: attribute_value}
             new_target = new(self.target, **kwargs)
