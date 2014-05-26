@@ -87,7 +87,6 @@ class OctaveTranspositionMapping(TypedList):
 
     @staticmethod
     def _item_callable(expr):
-        #return OctaveTranspositionMappingComponent
         from abjad.tools import pitchtools
         if isinstance(expr, tuple):
             component = pitchtools.OctaveTranspositionMappingComponent(*expr)
