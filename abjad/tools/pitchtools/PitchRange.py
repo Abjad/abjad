@@ -95,16 +95,10 @@ class PitchRange(AbjadObject):
         else:
             assert len(args) == 2, repr(args)
             start, stop = args
+            prototype = (pitchtools.Pitch, int, float, str)
             if start is None:
                 start = start
-            # TODO: define prototype = whatever to clean up statement
-            elif isinstance(start, (
-                pitchtools.Pitch,
-                int,
-                int,
-                float,
-                str,
-                )):
+            elif isinstance(start, prototype):
                 pitch = pitchtools.NamedPitch(start)
                 start = (pitch, 'inclusive')
             else:
@@ -116,21 +110,13 @@ class PitchRange(AbjadObject):
             self._start = start
             if stop is None:
                 stop = stop
-            # TODO: define prototype = whatever to clean up statement
-            elif isinstance(stop, (
-                pitchtools.Pitch,
-                int,
-                int,
-                float,
-                str,
-                )):
+            elif isinstance(stop, prototype):
                 pitch = pitchtools.NamedPitch(stop)
                 stop = (pitch, 'inclusive')
             else:
                 assert len(stop) == 2, repr(stop)
                 pitch, containment = stop
-                assert containment in ('inclusive', 'exclusive'), \
-                    repr(containment)
+                assert containment in ('inclusive', 'exclusive')
                 pitch = pitchtools.NamedPitch(pitch)
                 stop = (pitch, containment)
             self._stop = stop
@@ -554,6 +540,21 @@ class PitchRange(AbjadObject):
         return result
 
     @property
+    def range_string(self):
+        r'''Gets range string of pitch range.
+
+        ::
+
+            >>> pitch_range.range_string
+            '[C3, C7]'
+
+        Aliased to `one_line_named_pitch_repr`.
+
+        Returns string.
+        '''
+        return self.one_line_named_pitch_repr
+
+    @property
     def start_pitch(self):
         r'''Start pitch of pitch range.
 
@@ -614,3 +615,44 @@ class PitchRange(AbjadObject):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_pitches(
+        start_pitch, 
+        stop_pitch, 
+        start_pitch_is_included_in_range=True,
+        stop_pitch_is_included_in_range=True,
+        ):
+        r'''Initializes pitch range from numbers.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitchtools.PitchRange.from_pitches(-18, 19)
+                PitchRange('[F#2, G5]')
+        
+        Returns pitch range.
+        '''
+        from abjad.tools import pitchtools
+        start_pitch = pitchtools.NamedPitch(start_pitch)
+        stop_pitch = pitchtools.NamedPitch(stop_pitch)
+        start_containment = '['
+        if not start_pitch_is_included_in_range:
+            start_containment = '('
+        stop_containment = ']'
+        if not stop_pitch_is_included_in_range:
+            stop_containment = ')'
+        start = (start_pitch, start_containment)
+        stop = (stop_pitch, stop_containment)
+        string = '{}{}, {}{}'
+        string = string.format(
+            start_containment,
+            start_pitch,
+            stop_pitch,
+            stop_containment,
+            )
+        pitch_range = PitchRange(string)
+        return pitch_range
