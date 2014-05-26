@@ -237,9 +237,9 @@ def test_MaterialPackageManager_autoedit_07():
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
-        input_ += ' ae add add source [A0, C4) target 15 done'
-        input_ += ' add source [C4, C8) target 27 done done'
-        input_ += ' add add source [A0, C8] target -18 done'
+        input_ += " ae add add ('[A0, C4)', 15)"
+        input_ += " add ('[C4, C8)', 27) done"
+        input_ += " add add ('[A0, C8]', -18)"
         input_ += ' done done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)

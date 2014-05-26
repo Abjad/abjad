@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
-from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
 class OctaveTranspositionMappingComponent(AbjadObject):
@@ -12,7 +10,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
         >>> mc = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         >>> mc
-        OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        OctaveTranspositionMappingComponent(source_pitch_range=PitchRange('[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
     Initializes from input parameters separately, from a pair, from
     a string or from another mapping component.
@@ -22,35 +20,24 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     input part. (See the docs for that function.)
 
     Octave transposition mapping components are mutable.
+
+    .. todo:: make components immutable.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: reimplement explicit initializer
-    def __init__(self, *args):
-        if len(args) == 0:
-            source_pitch_range = '[A0, C8]'
-            target_octave_start_pitch = 0
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            source_pitch_range, target_octave_start_pitch = args[0]
-        elif len(args) == 1 and isinstance(args[0], str):
-            assert ' => ' in args[0]
-            source_pitch_range, target_octave_start_pitch = \
-                args[0].split(' => ')
-            try:
-                target_octave_start_pitch = eval(target_octave_start_pitch)
-            except NameError:
-                target_octave_start_pitch = NamedPitch(
-                    target_octave_start_pitch)
-                target_octave_start_pitch = \
-                    target_octave_start_pitch.pitch_number
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            source_pitch_range = args[0].source_pitch_range
-            target_octave_start_pitch = args[0].target_octave_start_pitch
-        elif len(args) == 2:
-            source_pitch_range, target_octave_start_pitch = args
+    def __init__(
+        self, 
+        source_pitch_range='[A0, C8]', 
+        target_octave_start_pitch=0,
+        ):
+        from abjad.tools import pitchtools
+        if isinstance(source_pitch_range, pitchtools.PitchRange):
+            source_pitch_range = copy.copy(source_pitch_range)
         else:
-            raise ValueError(repr(args))
+            source_pitch_range = pitchtools.PitchRange(source_pitch_range)
+        target_octave_start_pitch = pitchtools.NumberedPitch(
+            target_octave_start_pitch)
         self.source_pitch_range = source_pitch_range
         self.target_octave_start_pitch = target_octave_start_pitch
 
@@ -91,14 +78,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         '''
         return super(OctaveTranspositionMappingComponent, self).__hash__()
 
-    def __ne__(self, expr):
-        r'''Is true when octave transposition mapping component does not equal
-        `expr`. Otherwise false.
-
-        Returns boolean.
-        '''
-        return not self == expr
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -128,10 +107,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             )
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
     def _list_format(self):
         return ((
             self.source_pitch_range.start_pitch.pitch_number,
@@ -143,29 +118,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return '{} => {:d}'.format(
             self.source_pitch_range.one_line_named_pitch_repr,
             self.target_octave_start_pitch,
-            )
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self.source_pitch_range.one_line_named_pitch_repr,
-                self.target_octave_start_pitch.pitch_number,
-                ),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.source_pitch_range,
-                self.target_octave_start_pitch,
-                ),
             )
 
     ### PUBLIC PROPERTIES ###
@@ -185,7 +137,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @source_pitch_range.setter
     def source_pitch_range(self, source_pitch_range):
-        self._source_pitch_range = PitchRange(source_pitch_range)
+        from abjad.tools import pitchtools
+        self._source_pitch_range = pitchtools.PitchRange(source_pitch_range)
 
     @property
     def target_octave_start_pitch(self):
@@ -202,5 +155,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @target_octave_start_pitch.setter
     def target_octave_start_pitch(self, target_octave_start_pitch):
-        self._target_octave_start_pitch = NumberedPitch(
+        from abjad.tools import pitchtools
+        self._target_octave_start_pitch = pitchtools.NumberedPitch(
             target_octave_start_pitch)

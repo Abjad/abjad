@@ -183,8 +183,8 @@ def test_ListAutoeditor__run_09():
         session=session,
         target=target,
         )
-    input_ = 'add source [A0, F#4] target 22 done'
-    input_ += ' add source (F#4, C8] target 26 done done done'
+    input_ = "add ('[A0, F#4]', 22)"
+    input_ += " add ('(F#4, C8]', 26) done"
     autoeditor._run(input_=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping([
@@ -204,8 +204,8 @@ def test_ListAutoeditor__run_10():
         session=session,
         target=target,
         )
-    input_ = 'add source [A0, F#4] target 22 done'
-    input_ +=  ' add source (F#4, C8] target 26 done done done'
+    input_ = "add ('[A0, F#4]', 22)"
+    input_ +=  " add ('(F#4, C8]', 26) done"
     autoeditor._run(input_=input_)
 
     mapping = pitchtools.OctaveTranspositionMapping(

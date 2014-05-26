@@ -317,10 +317,8 @@ class Autoeditor(Controller):
         if attribute_value in (None, []):
             return
         # TODO: see GitHub #366:
-        # TODO: reimplementOctaveTranspositionMappingComponent.__init__()
         # TODO: reimplement OctaveTranspositionMapping.__init__()
         prototype = (
-            pitchtools.OctaveTranspositionMappingComponent,
             pitchtools.OctaveTranspositionMapping,
             )
         # TODO: reimplement as something in PitchRange._attribute_manifest
