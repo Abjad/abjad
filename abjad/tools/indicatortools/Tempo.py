@@ -52,17 +52,19 @@ class Tempo(AbjadObject):
 
     ### INITIALIZER ###
 
-    # TODO: remove kwargs?
     def __init__(
         self, 
         duration=None,
         units_per_minute=None,
         textual_indication=None,
-        **kwargs
         ):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Score
         assert isinstance(textual_indication, (str, type(None)))
+        arguments = (duration, units_per_minute, textual_indication)
+        if all(_ is None for _ in arguments):
+            duration = (1, 4)
+            units_per_minute = 60
         if duration:
             try:
                 duration = durationtools.Duration(duration)
