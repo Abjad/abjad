@@ -42,6 +42,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ' and should follow ini syntax.',
         ]
 
+    @property
+    def _user_library_directory_name(self):
+        directory = self.user_library_directory
+        directory_name = os.path.split(directory)[-1]
+        return directory_name
+
+    ### PRIVATE METHODS ###
+
     def _get_option_definitions(self):
         #parent_options = AbjadConfiguration._get_option_definitions(self)
         options = {
@@ -90,14 +98,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         #parent_options.update(options)
         #return parent_options
         return options
-
-    @property
-    def _user_library_directory_name(self):
-        directory = self.user_library_directory
-        directory_name = os.path.split(directory)[-1]
-        return directory_name
-
-    ### PRIVATE METHODS ###
 
     def _make_missing_directories(self):
         directories = (

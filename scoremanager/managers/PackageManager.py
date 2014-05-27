@@ -915,19 +915,19 @@ class PackageManager(AssetController):
         message = '{!r}'.format(metadatum)
         self._io_manager._display(message)
 
-    def list_metadata_py(self):
-        r'''Lists ``__metadata__.py``.
-
-        Returns none.
-        '''
-        self._io_manager._display(self._metadata_py_path)
-
     def list_init_py(self):
         r'''Lists ``__init__.py``.
 
         Returns none.
         '''
         self._io_manager._display(self._init_py_file_path)
+
+    def list_metadata_py(self):
+        r'''Lists ``__metadata__.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display(self._metadata_py_path)
 
     def open_init_py(self):
         r'''Opens ``__init__.py``.
