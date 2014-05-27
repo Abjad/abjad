@@ -157,7 +157,7 @@ def test_Autoeditor__run_09():
     assert autoeditor.target == pitchtools.PitchRange('(A0, C8]')
 
 
-def test_Autoeditor__run_11():
+def test_Autoeditor__run_10():
     r'''Edits hairpin handler.
     '''
 
@@ -179,7 +179,7 @@ def test_Autoeditor__run_11():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_12():
+def test_Autoeditor__run_11():
     r'''Edits hairpins handler.
     '''
 
@@ -201,7 +201,7 @@ def test_Autoeditor__run_12():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_13():
+def test_Autoeditor__run_12():
     r'''Edits patterned articulations handler.
     '''
 
@@ -226,7 +226,7 @@ def test_Autoeditor__run_13():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_14():
+def test_Autoeditor__run_13():
     r'''Edits reiterated articulation handler.
     '''
 
@@ -252,7 +252,7 @@ def test_Autoeditor__run_14():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_15():
+def test_Autoeditor__run_14():
     r'''Edits reiterated articulation handler.
     '''
 
@@ -274,7 +274,7 @@ def test_Autoeditor__run_15():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_16():
+def test_Autoeditor__run_15():
     r'''Edits reiterated dynamic handler.
     '''
 
@@ -296,7 +296,7 @@ def test_Autoeditor__run_16():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_17():
+def test_Autoeditor__run_16():
     r'''Edits terraced dynamics handler.
     '''
 
@@ -318,7 +318,7 @@ def test_Autoeditor__run_17():
     assert autoeditor.target == handler
 
 
-def test_Autoeditor__run_18():
+def test_Autoeditor__run_17():
     r'''Edits talea rhythm-maker.
     '''
 
@@ -345,7 +345,7 @@ def test_Autoeditor__run_18():
     assert autoeditor.target == maker
 
 
-def test_Autoeditor__run_19():
+def test_Autoeditor__run_18():
     r'''Adds instruments to performer instrument inventory.
     '''
 
@@ -370,7 +370,7 @@ def test_Autoeditor__run_19():
     assert autoeditor.target == performer
 
 
-def test_Autoeditor__run_20():
+def test_Autoeditor__run_19():
     r'''Removes instruments from performer instrument inventory.
     '''
 
@@ -394,7 +394,7 @@ def test_Autoeditor__run_20():
     assert autoeditor.target == performer
 
 
-def test_Autoeditor__run_21():
+def test_Autoeditor__run_20():
     r'''Moves instruments in performer instrument inventory.
     '''
 
@@ -419,8 +419,8 @@ def test_Autoeditor__run_21():
     assert autoeditor.target == performer
 
 
-# TODO: migrate to PerformerInventory test
-def test_Autoeditor__run_22():
+# TODO: remove InstrumentationSpecifier
+def test_Autoeditor__run_21():
     r'''Adds three performers to instrumentation specifier.
     '''
 
@@ -451,8 +451,8 @@ def test_Autoeditor__run_22():
     assert autoeditor.target == specifier
 
 
-# TODO: migrate to PerformerInventory test
-def test_Autoeditor__run_23():
+# TODO: remove InstrumentationSpecifier
+def test_Autoeditor__run_22():
     r'''Adds three performers to instrumentation specifier.
 
     Tests range handling.
@@ -482,8 +482,8 @@ def test_Autoeditor__run_23():
     assert autoeditor.target == specifier
 
 
-# TODO: migrate to PerformerInventory test
-def test_Autoeditor__run_24():
+# TODO: remove InstrumentationSpecifier
+def test_Autoeditor__run_23():
     r'''Edits instrumentation specifier. Adds three performers. Removes two.
     '''
 
@@ -509,8 +509,8 @@ def test_Autoeditor__run_24():
     assert autoeditor.target == specifier
 
 
-# TODO: migrate to PerformerInventory test
-def test_Autoeditor__run_25():
+# TODO: remove InstrumentationSpecifier
+def test_Autoeditor__run_24():
     r'''Edits instrumentation specifier. Adds and removes.
 
     Tests range handling.
@@ -537,8 +537,8 @@ def test_Autoeditor__run_25():
     assert autoeditor.target == specifier
 
 
-# TODO: migrate to PerformerInventory test
-def test_Autoeditor__run_26():
+# TODO: remove InstrumentationSpecifier
+def test_Autoeditor__run_25():
     r'''Edits instrumentation specifier. Adds three performers.
     Makes two moves.
     '''
