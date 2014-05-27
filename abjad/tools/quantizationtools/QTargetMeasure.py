@@ -33,7 +33,10 @@ class QTargetMeasure(AbjadObject):
                     },
                 ),
             time_signature=indicatortools.TimeSignature((4, 4)),
-            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+            tempo=indicatortools.Tempo(
+                duration=durationtools.Duration(1, 4), 
+                units_per_minute=60,
+                ),
             use_full_measure=False,
             )
 
@@ -105,7 +108,9 @@ class QTargetMeasure(AbjadObject):
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
         tempo = tempo or indicatortools.Tempo((1, 4), 60)
-        tempo = indicatortools.Tempo(tempo)
+        #tempo = indicatortools.Tempo(tempo)
+        if isinstance(tempo, tuple):
+            tempo = indicatortools.Tempo(*tempo)
         assert not tempo.is_imprecise
         time_signature = time_signature or (4, 4)
         time_signature = indicatortools.TimeSignature(time_signature)
@@ -177,7 +182,10 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+                tempo=indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4), 
+                    units_per_minute=60,
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -186,7 +194,10 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+                tempo=indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4), 
+                    units_per_minute=60,
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -195,7 +206,10 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+                tempo=indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4), 
+                    units_per_minute=60,
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -204,7 +218,10 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+                tempo=indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4), 
+                    units_per_minute=60,
+                    ),
                 )
 
         Returns tuple.
@@ -260,7 +277,7 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> q_target_measure.tempo
-            Tempo(Duration(1, 4), 60)
+            Tempo(duration=Duration(1, 4), units_per_minute=60)
 
         Return ``Tempo`` instance.
         '''

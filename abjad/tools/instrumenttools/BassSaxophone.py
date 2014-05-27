@@ -127,7 +127,7 @@ class BassSaxophone(Instrument):
             ::
 
                 >>> bass_saxophone.pitch_range
-                PitchRange('[Ab2, E4]')
+                PitchRange(range_string='[Ab2, E4]')
 
             ::
 

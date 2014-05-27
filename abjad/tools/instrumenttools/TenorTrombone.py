@@ -129,7 +129,7 @@ class TenorTrombone(Instrument):
             ::
 
                 >>> tenor_trombone.pitch_range
-                PitchRange('[E2, Eb5]')
+                PitchRange(range_string='[E2, Eb5]')
 
             ::
 

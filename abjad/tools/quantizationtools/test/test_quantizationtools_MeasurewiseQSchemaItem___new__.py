@@ -52,5 +52,5 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___05():
 
-    tempo = Tempo('lento')
+    tempo = Tempo(textual_indication='lento')
     pytest.raises('item = quantizationtools.MeasurewiseQSchemaItem(tempo=tempo)')

@@ -49,7 +49,10 @@ class MeasurewiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
+            tempo=indicatortools.Tempo(
+                duration=durationtools.Duration(1, 4), 
+                units_per_minute=60,
+                ),
             time_signature=indicatortools.TimeSignature((4, 4)),
             use_full_measure=False,
             )
@@ -244,12 +247,12 @@ class MeasurewiseQSchema(QSchema):
             'search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-        self._tempo = indicatortools.Tempo(
-            kwargs.get('tempo',
-                ((1, 4), 60)))
+        tempo = kwargs.get('tempo', ((1, 4), 60))
+        if isinstance(tempo, tuple):
+            tempo = indicatortools.Tempo(*tempo)
+        self._tempo = tempo
         self._time_signature = indicatortools.TimeSignature(
-            kwargs.get('time_signature',
-                (4, 4)))
+            kwargs.get('time_signature', (4, 4)))
         self._use_full_measure = bool(kwargs.get('use_full_measure'))
         QSchema.__init__(self, *args, **kwargs)
 

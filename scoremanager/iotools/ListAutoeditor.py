@@ -141,23 +141,7 @@ class ListAutoeditor(Autoeditor):
         else:
             self._target = self._target_class([])
 
-    # TODO: encapsulate section-making code into separate methods
-    def _make_main_menu(self):
-        name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
-        menu_entries = self._make_target_attribute_tokens()
-        if menu_entries:
-            section = menu.make_keyed_attribute_section(
-                menu_entries=menu_entries,
-                name='keyed attribute section',
-                )
-        menu_entries = self._get_target_summary_lines()
-        if menu_entries:
-            section = menu.make_numbered_section(
-                menu_entries=menu_entries,
-                name='numbered section',
-                )
-            self._numbered_section = section
+    def _make_command_menu_section(self, menu):
         commands = []
         commands.append(('elements - add', 'add'))
         if 1 < len(self._items):
@@ -168,8 +152,32 @@ class ListAutoeditor(Autoeditor):
             commands=commands,
             name='add, move, remove',
             )
+
+    def _make_keyed_attributes_menu_section(self, menu):
+        menu_entries = self._make_target_attribute_tokens()
+        if menu_entries:
+            section = menu.make_keyed_attribute_section(
+                menu_entries=menu_entries,
+                name='keyed attributes',
+                )
+
+    def _make_main_menu(self):
+        name = self._spaced_class_name
+        menu = self._io_manager._make_menu(name=name)
+        self._make_keyed_attributes_menu_section(menu)
+        self._make_numbered_entries_menu_section(menu)
+        self._make_command_menu_section(menu)
         self._make_done_menu_section(menu)
         return menu
+
+    def _make_numbered_entries_menu_section(self, menu):
+        menu_entries = self._get_target_summary_lines()
+        if menu_entries:
+            section = menu.make_numbered_section(
+                menu_entries=menu_entries,
+                name='numbered entries',
+                )
+            self._numbered_section = section
 
     ### PUBLIC PROPERTIES ###
 
@@ -211,12 +219,21 @@ class ListAutoeditor(Autoeditor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
+            #print 'BAR'
             getter = self._io_manager._make_getter()
+            #print self._item_getter_configuration_method
+            #print self._asset_identifier
             self._item_getter_configuration_method(
                 getter,
                 self._asset_identifier,
                 )
+            lines = []
+            lines.append('from abjad import *')
+            lines.append('evaluated_input = {}')
+            getter.prompts[0].setup_statements.extend(lines)
+            #print getter.prompts
             item_initialization_token = getter._run()
+            #print(repr(item_initialization_token))
             if self._session.is_backtracking:
                 return
             if item_initialization_token == 'done':

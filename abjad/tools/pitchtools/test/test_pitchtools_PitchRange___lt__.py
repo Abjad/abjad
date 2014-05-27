@@ -4,7 +4,7 @@ from abjad import *
 
 def test_pitchtools_PitchRange___lt___01():
 
-    pitch_range = pitchtools.PitchRange(-39, 48)
+    pitch_range = pitchtools.PitchRange.from_pitches(-39, 48)
 
     assert not pitch_range < -99
     assert not pitch_range < -39
@@ -15,7 +15,7 @@ def test_pitchtools_PitchRange___lt___01():
 
 def test_pitchtools_PitchRange___lt___02():
 
-    pitch_range = pitchtools.PitchRange(-39, 48)
+    pitch_range = pitchtools.PitchRange.from_pitches(-39, 48)
 
     assert not pitch_range < NamedPitch(-99)
     assert not pitch_range < NamedPitch(-39)

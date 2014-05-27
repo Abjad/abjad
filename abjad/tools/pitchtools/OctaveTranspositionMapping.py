@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
-    import OctaveTranspositionMappingComponent
 
 
 class OctaveTranspositionMapping(TypedList):
@@ -60,16 +59,16 @@ class OctaveTranspositionMapping(TypedList):
             pitchtools.OctaveTranspositionMapping(
                 [
                     pitchtools.OctaveTranspositionMappingComponent(
-                        pitchtools.PitchRange(
-                            '[A0, C4)'
+                        source_pitch_range=pitchtools.PitchRange(
+                            range_string='[A0, C4)',
                             ),
-                        pitchtools.NumberedPitch(15)
+                        target_octave_start_pitch=pitchtools.NumberedPitch(15),
                         ),
                     pitchtools.OctaveTranspositionMappingComponent(
-                        pitchtools.PitchRange(
-                            '[C4, C8)'
+                        source_pitch_range=pitchtools.PitchRange(
+                            range_string='[C4, C8)',
                             ),
-                        pitchtools.NumberedPitch(27)
+                        target_octave_start_pitch=pitchtools.NumberedPitch(27),
                         ),
                     ]
                 )
@@ -86,9 +85,16 @@ class OctaveTranspositionMapping(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @property
-    def _item_callable(self):
-        return OctaveTranspositionMappingComponent
+    @staticmethod
+    def _item_callable(expr):
+        from abjad.tools import pitchtools
+        if isinstance(expr, tuple):
+            component = pitchtools.OctaveTranspositionMappingComponent(*expr)
+        elif isinstance(expr, pitchtools.OctaveTranspositionMappingComponent):
+            component = copy.copy(expr)
+        else:
+            raise TypeError(repr(expr))
+        return component
 
     @property
     def _one_line_menu_summary(self):

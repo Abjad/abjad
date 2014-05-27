@@ -129,7 +129,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.pitch_range
-                PitchRange('[E2, F4]')
+                PitchRange(range_string='[E2, F4]')
 
             ::
 

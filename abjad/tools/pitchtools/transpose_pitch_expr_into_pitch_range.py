@@ -6,8 +6,9 @@ def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
 
     ::
 
-        >>> pitchtools.transpose_pitch_expr_into_pitch_range(
-        ...     [-2, -1, 13, 14], pitchtools.PitchRange(0, 12))
+        >>> pitches = [-2, -1, 13, 14]
+        >>> range_ = pitchtools.PitchRange('[C4, C5]')
+        >>> pitchtools.transpose_pitch_expr_into_pitch_range(pitches, range_)
         [10, 11, 1, 2]
 
     Returns new `pitch_expr` object.

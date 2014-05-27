@@ -234,7 +234,12 @@ class SetMethodMixin(AbjadObject):
         Returns tempo set expression.
         '''
         from experimental.tools import musicexpressiontools
-        source_expression = indicatortools.Tempo(source_expression)
+        if isinstance(source_expression, indicatortools.Tempo):
+            source_expression = copy.copy(source_expression)
+        elif isinstance(source_expression, tuple):
+            source_expression = indicatortools.Tempo(*source_expression)
+        else:
+            raise TypeError(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'tempo'

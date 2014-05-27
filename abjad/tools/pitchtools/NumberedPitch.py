@@ -53,14 +53,16 @@ class NumberedPitch(Pitch):
         return type(self)(semitones)
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a numbered pitch with pitch number equal to that
-        of this numbered pitch. Otherwise false.
+        r'''Is true when `arg` can be coerced to a numbered pitch and when
+        this numbered pitch equals `arg`. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._pitch_number == arg._pitch_number
-        return self._pitch_number == arg
+        try:
+            arg = type(self)(arg)
+        except (ValueError, TypeError):
+            return False
+        return self.pitch_number == arg.pitch_number
 
     def __float__(self):
         r'''Changes numbered pitch to float.
@@ -91,18 +93,16 @@ class NumberedPitch(Pitch):
         return self._pitch_number
 
     def __lt__(self, arg):
-        r'''Is true when `arg` is a numbered pitch with pitch number greater than
-        that of this numbered pitch. Otherwise false.
+        r'''Is true when `arg` can be coerced to a numbered pitch and when this
+        numbered pitch is less than `arg`. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._pitch_number < arg._pitch_number
         try:
             arg = type(self)(arg)
         except (ValueError, TypeError):
             return False
-        return self._pitch_number < arg._pitch_number
+        return self.pitch_number < arg.pitch_number
 
     def __neg__(self):
         r'''Negates numbered pitch.

@@ -147,7 +147,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.pitch_range
-                PitchRange('[C2, G5]')
+                PitchRange(range_string='[C2, G5]')
 
             ::
 

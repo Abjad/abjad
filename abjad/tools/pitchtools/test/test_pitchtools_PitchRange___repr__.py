@@ -9,7 +9,7 @@ def test_pitchtools_PitchRange___repr___01():
     r'''Pitch range reprs are evaluable.
     '''
 
-    pitch_range_1 = pitchtools.PitchRange(-12, 36)
+    pitch_range_1 = pitchtools.PitchRange.from_pitches(-12, 36)
     pitch_range_2 = eval(repr(pitch_range_1))
 
     assert isinstance(pitch_range_1, PitchRange)
@@ -21,5 +21,5 @@ def test_pitchtools_PitchRange___repr___01():
 
 def test_pitchtools_PitchRange___repr___02():
 
-    pitch_range = pitchtools.PitchRange(-12, 36)
-    assert repr(pitch_range) == r'''PitchRange('[C3, C7]')'''
+    pitch_range = pitchtools.PitchRange.from_pitches(-12, 36)
+    assert repr(pitch_range) == "PitchRange(range_string='[C3, C7]')"

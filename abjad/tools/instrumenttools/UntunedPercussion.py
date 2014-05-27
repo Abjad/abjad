@@ -168,7 +168,7 @@ class UntunedPercussion(Instrument):
             ::
 
                 >>> untuned_percussion.pitch_range
-                PitchRange('[A0, C8]')
+                PitchRange(range_string='[A0, C8]')
 
             ::
 

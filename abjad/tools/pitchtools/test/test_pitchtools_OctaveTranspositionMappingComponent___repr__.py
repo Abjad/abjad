@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
-	import OctaveTranspositionMappingComponent
+from abjad.tools.pitchtools import *
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___repr___01():

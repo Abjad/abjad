@@ -44,7 +44,7 @@ def test_indicatortools_Tempo___mul___02():
 
 def test_indicatortools_Tempo___mul___03():
 
-    tempo_indication_1 = Tempo('Langsam')
+    tempo_indication_1 = Tempo(textual_indication='Langsam')
     pytest.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
 
 

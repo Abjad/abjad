@@ -140,7 +140,7 @@ class Harp(Instrument):
             ::
 
                 >>> harp.pitch_range
-                PitchRange('[B0, G#7]')
+                PitchRange(range_string='[B0, G#7]')
 
             ::
 

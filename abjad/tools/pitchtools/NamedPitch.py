@@ -160,6 +160,12 @@ class NamedPitch(Pitch):
                 self.alteration_in_semitones >= arg.alteration_in_semitones)
         elif isinstance(arg, pitchtools.PitchRange):
             return self >= arg.stop_pitch
+        else:
+            try:
+                arg = type(self)(arg)
+                return self.__ge__(arg)
+            except (TypeError, ValueError):
+                pass
         return False
 
     def __getnewargs__(self):
@@ -181,6 +187,12 @@ class NamedPitch(Pitch):
                 self.alteration_in_semitones > arg.alteration_in_semitones)
         elif isinstance(arg, pitchtools.PitchRange):
             return self > arg.stop_pitch
+        else:
+            try:
+                arg = type(self)(arg)
+                return self.__gt__(arg)
+            except (TypeError, ValueError):
+                pass
         return False
 
     def __hash__(self):
@@ -221,6 +233,12 @@ class NamedPitch(Pitch):
             return True
         elif isinstance(arg, pitchtools.PitchRange):
             return self <= arg.start_pitch
+        else:
+            try:
+                arg = type(self)(arg)
+                return self.__le__(arg)
+            except (TypeError, ValueError):
+                pass
         return False
 
     def __lt__(self, arg):
@@ -237,6 +255,12 @@ class NamedPitch(Pitch):
             return self < arg.start_pitch
         elif arg is None:
             return True
+        else:
+            try:
+                arg = type(self)(arg)
+                return self.__lt__(arg)
+            except (TypeError, ValueError):
+                pass
         return False
 
     def __ne__(self, arg):

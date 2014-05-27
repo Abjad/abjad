@@ -24,9 +24,9 @@ def test_indicatortools_Tempo___eq___03():
     r'''Tempos also compare textual indications.
     '''
 
-    tempo_1 = Tempo('Langsam', Duration(3, 32), 52)
-    tempo_2 = Tempo('Langsam', Duration(3, 32), 52)
-    tempo_3 = Tempo('Slow', Duration(3, 32), 52)
+    tempo_1 = Tempo(Duration(3, 32), 52, 'Langsam')
+    tempo_2 = Tempo(Duration(3, 32), 52, 'Langsam')
+    tempo_3 = Tempo(Duration(3, 32), 52, 'Slow')
     assert tempo_1 == tempo_2
 
     assert not tempo_1 == tempo_3

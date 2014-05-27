@@ -250,7 +250,7 @@ class Octave(AbjadObject):
         ::
 
             >>> pitchtools.Octave(5).pitch_range
-            PitchRange('[C5, C6)')
+            PitchRange(range_string='[C5, C6)')
 
         Returns pitch range.
         '''

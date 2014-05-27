@@ -128,7 +128,7 @@ class TenorVoice(Instrument):
             ::
 
                 >>> tenor.pitch_range
-                PitchRange('[C3, D5]')
+                PitchRange(range_string='[C3, D5]')
 
             ::
 

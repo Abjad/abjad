@@ -10,7 +10,7 @@ def test_pitchtools_PitchRange___format___01():
         format(pitch_range),
         r'''
         pitchtools.PitchRange(
-            '[A0, C8]'
+            range_string='[A0, C8]',
             )
         ''',
         )

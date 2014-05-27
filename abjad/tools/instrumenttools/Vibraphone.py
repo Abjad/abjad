@@ -125,7 +125,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.pitch_range
-                PitchRange('[F3, F6]')
+                PitchRange(range_string='[F3, F6]')
 
             ::
 

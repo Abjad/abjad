@@ -110,7 +110,7 @@ class Accordion(Instrument):
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[E1, C8]'
+                        range_string='[E1, C8]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                     )
@@ -184,7 +184,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.pitch_range
-                PitchRange('[E1, C8]')
+                PitchRange(range_string='[E1, C8]')
 
             ::
 

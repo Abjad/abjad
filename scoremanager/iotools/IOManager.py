@@ -87,6 +87,15 @@ class IOManager(IOManager):
             for line in lines:
                 print(line)
 
+    def _display_not_yet_implemented(self):
+        r'''Prints not-yet-implemented message.
+
+        Returns none.
+        '''
+        with self._make_interaction():
+            message = 'not yet implemented.'
+            self._display(message)
+
     @staticmethod
     def _get_greatest_version_number(version_directory):
         if not os.path.isdir(version_directory):
@@ -302,15 +311,6 @@ class IOManager(IOManager):
         input_ = input_.replace('~', ' ')
         self._session._pending_input = pending_input
         return input_
-
-    def _display_not_yet_implemented(self):
-        r'''Prints not-yet-implemented message.
-
-        Returns none.
-        '''
-        with self._make_interaction():
-            message = 'not yet implemented.'
-            self._display(message)
 
     ### PUBLIC PROPERTIES ###
 

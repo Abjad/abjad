@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -8,8 +9,8 @@ class TempoInventory(TypedList):
     ::
 
         >>> inventory = indicatortools.TempoInventory([
-        ...     ('Andante', Duration(1, 8), 72),
-        ...     ('Allegro', Duration(1, 8), 84),
+        ...     (Duration(1, 8), 72, 'Andante'),
+        ...     (Duration(1, 8), 84, 'Allegro'),
         ...     ])
 
     ::
@@ -17,8 +18,8 @@ class TempoInventory(TypedList):
         >>> for tempo in inventory:
         ...     tempo
         ...
-        Tempo('Andante', Duration(1, 8), 72)
-        Tempo('Allegro', Duration(1, 8), 84)
+        Tempo(duration=Duration(1, 8), units_per_minute=72, textual_indication='Andante')
+        Tempo(duration=Duration(1, 8), units_per_minute=84, textual_indication='Allegro')
 
     Tempo inventories implement list interface and are mutable.
     '''
@@ -89,7 +90,13 @@ class TempoInventory(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @property
-    def _item_callable(self):
+    @staticmethod
+    def _item_callable(expr):
         from abjad.tools import indicatortools
-        return indicatortools.Tempo
+        if isinstance(expr, tuple):
+            tempo = indicatortools.Tempo(*expr)
+        elif isinstance(expr, indicatortools.Tempo):
+            tempo = copy.copy(expr)
+        else:
+            raise TypeError(repr(expr))
+        return tempo

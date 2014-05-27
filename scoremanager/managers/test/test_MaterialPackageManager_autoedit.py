@@ -45,7 +45,7 @@ def test_MaterialPackageManager_autoedit_02():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testtempoinventory aes TempoInventory <return>'
-        input_ += ' ae add d (1, 4) units 60 done add d (1, 4) units 90 done'
+        input_ += ' ae add ((1, 4), 60) add ((1, 4), 90) done'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -113,9 +113,9 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm new testpri aes PitchRangeInventory <return>'
-    input_ += ' ae add range [A0, C8] done'
-    input_ += ' add range [C2, F#5] done'
-    input_ += ' add range [C2, G5] done'
+    input_ += ' ae add [A0, C8]'
+    input_ += ' add [C2, F#5]'
+    input_ += ' add [C2, G5]'
     input_ += ' rm 1 mv 1 2 b y <return> q'
 
     with systemtools.FilesystemState(remove=[path]):
@@ -237,9 +237,9 @@ def test_MaterialPackageManager_autoedit_07():
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testoctavetrans'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
-        input_ += ' ae add add source [A0, C4) target 15 done'
-        input_ += ' add source [C4, C8) target 27 done done'
-        input_ += ' add add source [A0, C8] target -18 done'
+        input_ += " ae add add ('[A0, C4)', 15)"
+        input_ += " add ('[C4, C8)', 27) done"
+        input_ += " add add ('[A0, C8]', -18)"
         input_ += ' done done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)

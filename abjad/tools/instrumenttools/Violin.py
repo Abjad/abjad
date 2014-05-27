@@ -141,7 +141,7 @@ class Violin(Instrument):
             ::
 
                 >>> violin.pitch_range
-                PitchRange('[G3, G7]')
+                PitchRange(range_string='[G3, G7]')
 
             ::
 

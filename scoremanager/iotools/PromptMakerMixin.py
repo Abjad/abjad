@@ -596,6 +596,24 @@ class PromptMakerMixin(AbjadObject):
             )
         self._setup_statements[-1] = setup_statements
 
+    def append_pitch_range_string(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends symbolic pitch range string.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be symbolic pitch range string.'
+        help_template += ' Ex: [A0, C8].'
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=pitchtools.PitchRange.is_range_string,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_positive_integer_power_of_two(
         self,
         spaced_attribute_name,
@@ -793,26 +811,6 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    def append_symbolic_pitch_range_string(
-        self,
-        spaced_attribute_name,
-        default_value=None,
-        ):
-        r'''Appends symbolic pitch range string.
-
-        Returns prompt.
-        '''
-        help_template = 'value must be symbolic pitch range string.'
-        help_template += ' Ex: [A0, C8].'
-        self._make_prompt(
-            spaced_attribute_name,
-            validation_function=\
-                pitchtools.PitchRange.is_symbolic_pitch_range_string,
-            help_template=help_template,
-            default_value=default_value,
-            )
-
-    # TODO: fix bug to make (Duration(1, 4), 72) work
     def append_tempo(
         self,
         spaced_attribute_name,

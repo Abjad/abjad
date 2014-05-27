@@ -95,7 +95,7 @@ class AltoSaxophone(Instrument):
                             ]
                         ),
                     pitch_range=pitchtools.PitchRange(
-                        '[Db3, A5]'
+                        range_string='[Db3, A5]',
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef'),
                     )
@@ -169,7 +169,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.pitch_range
-                PitchRange('[Db3, A5]')
+                PitchRange(range_string='[Db3, A5]')
 
             ::
 

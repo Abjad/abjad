@@ -140,7 +140,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.pitch_range
-                PitchRange('[A0, C8]')
+                PitchRange(range_string='[A0, C8]')
 
             ::
 

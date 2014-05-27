@@ -12,10 +12,10 @@ def test_pitchtools_PitchRangeInventory___format___01():
         pitchtools.PitchRangeInventory(
             [
                 pitchtools.PitchRange(
-                    '[A0, C8]'
+                    range_string='[A0, C8]',
                     ),
                 pitchtools.PitchRange(
-                    '[C4, D5]'
+                    range_string='[C4, D5]',
                     ),
                 ]
             )
