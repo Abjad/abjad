@@ -811,7 +811,6 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    # TODO: fix bug to make (Duration(1, 4), 72) work
     def append_tempo(
         self,
         spaced_attribute_name,

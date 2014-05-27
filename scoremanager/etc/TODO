@@ -212,3 +212,5 @@
 42. Add "Command unknown: 'asdf'." message.
 
 43. Make '<return>' show up in Session.command_history.
+
+44. Change 'testtempoinventory' to 'test~tempo~inventory'.

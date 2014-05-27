@@ -116,7 +116,7 @@ def test_ListAutoeditor__run_06():
         target=target,
         )
     input_ = 'add ((1, 4), 60)'
-    input_ +=  ' add ((1, 4), 72)'
+    input_ +=  ' add (Duration(1, 4), 72)'
     input_ += ' add ((1, 4), 84) done'
     autoeditor._run(input_=input_)
     inventory = indicatortools.TempoInventory([

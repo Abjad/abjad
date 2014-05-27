@@ -219,12 +219,21 @@ class ListAutoeditor(Autoeditor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
+            #print 'BAR'
             getter = self._io_manager._make_getter()
+            #print self._item_getter_configuration_method
+            #print self._asset_identifier
             self._item_getter_configuration_method(
                 getter,
                 self._asset_identifier,
                 )
+            lines = []
+            lines.append('from abjad import *')
+            lines.append('evaluated_input = {}')
+            getter.prompts[0].setup_statements.extend(lines)
+            #print getter.prompts
             item_initialization_token = getter._run()
+            #print(repr(item_initialization_token))
             if self._session.is_backtracking:
                 return
             if item_initialization_token == 'done':
