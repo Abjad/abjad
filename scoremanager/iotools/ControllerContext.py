@@ -9,6 +9,7 @@ class ControllerContext(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_clear_terminal',
         '_consume_local_backtrack',
         '_controller',
         '_is_in_confirmation_environment',
@@ -22,6 +23,7 @@ class ControllerContext(ContextManager):
 
     def __init__(
         self,
+        clear_terminal=False,
         consume_local_backtrack=False,
         controller=None,
         is_in_confirmation_environment=False,
@@ -29,6 +31,7 @@ class ControllerContext(ContextManager):
         on_exit_callbacks=None,
         reset_hide_hidden_commands=True,
         ):
+        self._clear_terminal = clear_terminal
         self._consume_local_backtrack = consume_local_backtrack
         self._controller = controller
         self._is_in_confirmation_environment = is_in_confirmation_environment
@@ -51,6 +54,8 @@ class ControllerContext(ContextManager):
             self._is_in_confirmation_environment
         if self._reset_hide_hidden_commands:
             self._session._hide_hidden_commands = True
+        if self._clear_terminal:
+            self._session._is_pending_output_removal = True
         for on_enter_callback in self._on_enter_callbacks:
             on_enter_callback()
 
@@ -67,6 +72,8 @@ class ControllerContext(ContextManager):
             self._session._is_backtracking_locally = False
         for on_exit_callback in self._on_exit_callbacks:
             on_exit_callback()
+        if self._clear_terminal:
+            self._session._is_pending_output_removal = True
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.

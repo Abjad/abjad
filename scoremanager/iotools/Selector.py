@@ -96,19 +96,16 @@ class Selector(Controller):
         if input_:
             self._session._pending_input = input_
         with iotools.ControllerContext(
+            clear_terminal=True,
             consume_local_backtrack=True,
             controller=self,
             ):
-            # TODO: wrap in redraw context manager
-            self._session._is_pending_output_removal = True
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()
                 if self._session.is_backtracking:
-                    self._session._is_pending_output_removal = True
                     return
                 if result and not result == '<return>':
-                    self._session._is_pending_output_removal = True
                     return result
 
     ### PUBLIC PROPERTIES ###
