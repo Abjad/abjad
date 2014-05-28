@@ -28,7 +28,7 @@ def test_MaterialPackageManager_autoedit_02():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testtempoinventory',
+        'test_tempo_inventory',
         )
     directory_entries = [
         '__init__.py',
@@ -44,7 +44,7 @@ def test_MaterialPackageManager_autoedit_02():
     assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testtempoinventory aes TempoInventory <return>'
+        input_ = 'm new test~tempo~inventory aes TempoInventory <return>'
         input_ += ' ae add ((1, 4), 60) add ((1, 4), 90) done'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
@@ -55,7 +55,7 @@ def test_MaterialPackageManager_autoedit_02():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testtempoinventory remove q'
+        input_ = 'm rm test~tempo~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -67,7 +67,7 @@ def test_MaterialPackageManager_autoedit_03():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testpri',
+        'test_pitch_range_inventory',
         )
     directory_entries = [
         '__init__.py',
@@ -78,7 +78,7 @@ def test_MaterialPackageManager_autoedit_03():
     inventory = pitchtools.PitchRangeInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testpri'
+        input_ = 'm new test~pitch~range~inventory'
         input_ += ' aes PitchRangeInventory <return> done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -88,7 +88,7 @@ def test_MaterialPackageManager_autoedit_03():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testpri remove q'
+        input_ = 'm rm test~pitch~range~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -100,7 +100,7 @@ def test_MaterialPackageManager_autoedit_04():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testpri',
+        'test_pitch_range_inventory',
         )
     directory_entries = [
         '__init__.py',
@@ -112,7 +112,8 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm new testpri aes PitchRangeInventory <return>'
+    input_ = 'm new test~pitch~range~inventory'
+    input_ += ' aes PitchRangeInventory <return>'
     input_ += ' ae add [A0, C8]'
     input_ += ' add [C2, F#5]'
     input_ += ' add [C2, G5]'
@@ -127,7 +128,7 @@ def test_MaterialPackageManager_autoedit_04():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testpri remove q'
+        input_ = 'm rm test~pitch~range~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -137,7 +138,7 @@ def test_MaterialPackageManager_autoedit_05():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testmarkupinventory',
+        'test_markup_inventory',
         )
     inventory = markuptools.MarkupInventory(
         [
@@ -157,7 +158,7 @@ def test_MaterialPackageManager_autoedit_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new testmarkupinventory aes markup <return>"
+        input_ = "m new test~markup~inventory aes markup <return>"
         input_ += " ae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y <return> q"
         score_manager._run(input_=input_)
@@ -168,7 +169,7 @@ def test_MaterialPackageManager_autoedit_05():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testmarkupinventory remove q'
+        input_ = 'm rm test~markup~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -180,7 +181,7 @@ def test_MaterialPackageManager_autoedit_06():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testoctavetrans',
+        'test_transposition_inventory',
         )
     directory_entries = [
         '__init__.py',
@@ -191,7 +192,7 @@ def test_MaterialPackageManager_autoedit_06():
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testoctavetrans'
+        input_ = 'm new test~transposition~inventory'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
@@ -202,7 +203,7 @@ def test_MaterialPackageManager_autoedit_06():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testoctavetrans remove q'
+        input_ = 'm rm test~transposition~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -214,7 +215,7 @@ def test_MaterialPackageManager_autoedit_07():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testoctavetrans',
+        'test_transposition_inventory',
         )
     directory_entries = [
         '__init__.py',
@@ -235,7 +236,7 @@ def test_MaterialPackageManager_autoedit_07():
         ])
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testoctavetrans'
+        input_ = 'm new test~transposition~inventory'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
         input_ += " ae add add ('[A0, C4)', 15)"
         input_ += " add ('[C4, C8)', 27) done"
@@ -249,7 +250,7 @@ def test_MaterialPackageManager_autoedit_07():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == inventory
-        input_ = 'm rm testoctavetrans remove q'
+        input_ = 'm rm test~transposition~inventory remove q'
         score_manager._run(input_=input_)
 
 
@@ -260,7 +261,7 @@ def test_MaterialPackageManager_autoedit_08():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testlist',
+        'test_list',
         )
     directory_entries = [
         '__init__.py',
@@ -270,7 +271,8 @@ def test_MaterialPackageManager_autoedit_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testlist aes list <return> ae 17 foo done b <return> q'
+        input_ = 'm new test~list aes list <return>'
+        input_ += ' ae 17 foo done b <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
@@ -279,7 +281,7 @@ def test_MaterialPackageManager_autoedit_08():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
-        input_ = 'm rm testlist remove q'
+        input_ = 'm rm test~list remove q'
         score_manager._run(input_=input_)
 
 
@@ -289,7 +291,7 @@ def test_MaterialPackageManager_autoedit_09():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testlist',
+        'test_list',
         )
     directory_entries = [
         '__init__.py',
@@ -299,7 +301,7 @@ def test_MaterialPackageManager_autoedit_09():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testlist aes list <return>'
+        input_ = 'm new test~list aes list <return>'
         input_ += ' ae add 17 add foo done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -309,7 +311,7 @@ def test_MaterialPackageManager_autoedit_09():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == [17, 'foo']
-        input_ = 'm rm testlist remove q'
+        input_ = 'm rm test~list remove q'
         score_manager._run(input_=input_)
 
 
@@ -321,7 +323,7 @@ def test_MaterialPackageManager_autoedit_10():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testrhythmmaker',
+        'test_rhythm_maker',
         )
     directory_entries = [
         '__init__.py',
@@ -340,7 +342,7 @@ def test_MaterialPackageManager_autoedit_10():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testrhythmmaker aes TaleaRhythmMaker <return>'
+        input_ = 'm new test~rhythm~maker aes TaleaRhythmMaker <return>'
         input_ += ' ae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
@@ -353,7 +355,7 @@ def test_MaterialPackageManager_autoedit_10():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == maker
-        input_ = 'm rm testrhythmmaker remove q'
+        input_ = 'm rm test~rhythm~maker remove q'
         score_manager._run(input_=input_)
 
 
@@ -365,7 +367,7 @@ def test_MaterialPackageManager_autoedit_11():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testarticulationhandler',
+        'test_articulation_handler',
         )
     directory_entries = [
         '__init__.py',
@@ -382,7 +384,7 @@ def test_MaterialPackageManager_autoedit_11():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new testarticulationhandler"
+        input_ = "m new test~articulation~handler"
         input_ += " aes ReiteratedArticulationHandler <return>"
         input_ += " ae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done y <return> q"
@@ -394,7 +396,7 @@ def test_MaterialPackageManager_autoedit_11():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == handler
-        input_ = 'm rm testarticulationhandler remove q'
+        input_ = 'm rm test~articulation~handler remove q'
         score_manager._run(input_=input_)
 
 
@@ -406,7 +408,7 @@ def test_MaterialPackageManager_autoedit_12():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
-        'testdynamichandler',
+        'test_dynamic_handler',
         )
     directory_entries = [
         '__init__.py',
@@ -420,7 +422,7 @@ def test_MaterialPackageManager_autoedit_12():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testdynamichandler'
+        input_ = 'm new test~dynamic~handler'
         input_ += ' aes ReiteratedDynamicHandler <return>'
         input_ += ' ae dy f md (1, 16) done y <return> q'
         score_manager._run(input_=input_)
@@ -431,5 +433,5 @@ def test_MaterialPackageManager_autoedit_12():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
         assert output_material == handler
-        input_ = 'm rm testdynamichandler remove q'
+        input_ = 'm rm test~dynamic~handler remove q'
         score_manager._run(input_=input_)
