@@ -171,6 +171,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 break
             elif input_ == '?':
                 self._display_help()
+                continue
             elif input_ in self._input_to_method:
                 self._input_to_method[input_]()
             assert isinstance(input_, str), repr(input_)

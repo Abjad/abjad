@@ -146,14 +146,15 @@ class Wrangler(AssetController):
                 return
         prompt_string = 'new {} name'
         prompt_string = prompt_string.format(self._asset_identifier)
-        # TODO: add additional help string: "leave blank to keep name"
         getter = self._io_manager._make_getter()
         getter.append_string(prompt_string)
+        help_template = getter.prompts[0].help_template
+        help_template = help_template + ' Press <return> to preserve name.'
+        getter.prompts[0]._help_template = help_template
         name = getter._run()
         if self._session.is_backtracking:
             return
-        if not name:
-            name = old_name
+        name = name or old_name
         name = stringtools.strip_diacritics(name)
         if file_name_callback:
             name = file_name_callback(name)

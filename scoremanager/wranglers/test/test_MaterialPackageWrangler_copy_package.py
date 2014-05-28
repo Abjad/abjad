@@ -10,9 +10,9 @@ def test_MaterialPackageWrangler_copy_package_01():
     r'''Works in library.
     
     Partial test because we can't be sure any user score packages will be
-    present. And because Score PackageManager allows copying into user score packges
-    only (because copying into example score packages could pollute the example
-    score packages).
+    present. And because Score PackageManager allows copying into user score 
+    packges only (because copying into example score packages could pollute the
+    example score packages).
     '''
 
     input_ = 'm cp instrumentation~(Red~Example~Score) q'
@@ -51,3 +51,15 @@ def test_MaterialPackageWrangler_copy_package_02():
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied_instrumentation' in contents
+
+
+def test_MaterialPackageWrangler_copy_package_03():
+    r'''Includes preservation message in getter help.
+    '''
+
+    input_ = 'red~example~score m cp tempo~inventory ? q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    string = 'Value must be string. Press <return> to preserve name.'
+    assert string in contents
