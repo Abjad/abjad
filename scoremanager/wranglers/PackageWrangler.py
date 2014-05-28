@@ -112,21 +112,29 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         directories = self._list_all_directories_with_metadata_pys()
-        messages = ['will rewrite ...']
+        managers = []
         for directory in directories:
-            path = os.path.join(directory, '__metadata__.py')
-            message = '    {}'.format(path)
-            messages.append(message)
+            manager = self._io_manager._make_package_manager(directory)
+            managers.append(manager)
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.rewrite_metadata_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(
+            inputs, 
+            outputs, 
+            verb='rewrite',
+            )
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
         with self._io_manager._make_silent():
-            for directory in directories:
-                manager = self._io_manager._make_package_manager(directory)
+            for manager in managers:
                 manager.rewrite_metadata_py()
         message = '{} __metadata__.py files rewritten.'
-        message = message.format(len(directories))
+        message = message.format(len(managers))
         self._io_manager._display(message)
 
     def write_every_init_py_stub(self):

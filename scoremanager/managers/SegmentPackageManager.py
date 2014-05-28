@@ -213,7 +213,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             message = 'no __make__.py found.'
             self._io_manager._display(message)
             return
-        messages = self._format_input_output_messages(inputs, outputs)
+        messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
@@ -232,7 +232,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         outputs = [self._output_pdf_file_path]
         if dry_run:
             return inputs, outputs
-        messages = self._format_input_output_messages(inputs, outputs)
+        messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

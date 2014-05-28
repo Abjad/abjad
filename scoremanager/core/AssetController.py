@@ -63,20 +63,33 @@ class AssetController(Controller):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _format_input_output_messages(inputs, outputs):
+    def _format_messaging(inputs, outputs, verb='interpret'):
         messages = []
-        messages.append('will interpret ...')
-        for inputs_, outputs_ in zip(inputs, outputs):
-            for path_list in inputs_:
+        message = 'will {} ...'.format(verb)
+        messages.append(message)
+        if outputs:
+            input_label = '  INPUT: '
+        else:
+            input_label = '    '
+        output_label = ' OUTPUT: '
+        if not outputs:
+            for path_list in inputs:
                 if isinstance(path_list, str):
                     path_list = [path_list]
                 for path in path_list:
-                    messages.append('  INPUT: {}'.format(path))
-            for path_list in outputs_:
-                if isinstance(path_list, str):
-                    path_list = [path_list]
-                for path in path_list:
-                    messages.append(' OUTPUT: {}'.format(path))
+                    messages.append('{}{}'.format(input_label, path))
+        else:
+            for inputs_, outputs_ in zip(inputs, outputs):
+                for path_list in inputs_:
+                    if isinstance(path_list, str):
+                        path_list = [path_list]
+                    for path in path_list:
+                        messages.append('{}{}'.format(input_label, path))
+                for path_list in outputs_:
+                    if isinstance(path_list, str):
+                        path_list = [path_list]
+                    for path in path_list:
+                        messages.append('{}{}'.format(output_label, path))
         return messages
 
     def _go_to_next_package(self):

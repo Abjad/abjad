@@ -158,7 +158,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             inputs_, outputs_ = manager.interpret_make_py(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
-        messages = self._format_input_output_messages(inputs, outputs)
+        messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
@@ -180,7 +180,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             inputs_, outputs_ = manager.interpret_make_py(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
-        messages = self._format_input_output_messages(inputs, outputs)
+        messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

@@ -1009,14 +1009,17 @@ class PackageManager(AssetController):
             self._io_manager._display(message)
             self._revert_from_repository()
 
-    def rewrite_metadata_py(self, metadata=None):
+    def rewrite_metadata_py(self, dry_run=False, metadata=None):
         r'''Rewrites ``__metadata.py__``.
 
         Returns none.
         '''
-        message = 'will rewrite {}.'
-        message = message.format(self._metadata_py_path)
-        self._io_manager._display(message)
+        inputs, outputs = [], []
+        inputs.append(self._metadata_py_path)
+        if dry_run:
+            return inputs, outputs
+        messages = self._format_messaging(inputs, outputs, verb='rewrite')
+        self._io_manager._display(messages)
         # WEIRD: why can't this confirm check be removed?
         if self._session.confirm:
             result = self._io_manager._confirm()
