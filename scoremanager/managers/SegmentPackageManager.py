@@ -197,25 +197,23 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._definition_py_path)
 
-    def interpret_make_py(self):
+    def interpret_make_py(self, dry_run=False):
         r'''Interprets ``__make__.py``.
 
         Makes ``output.ly`` and ``output.pdf``.
 
         Returns none.
         '''
+        inputs = [self._make_py_path]
+        outputs = [(
+            self._output_lilypond_file_path, self._output_pdf_file_path)]
+        if dry_run:
+            return inputs, outputs
         if not os.path.isfile(self._make_py_path):
             message = 'no __make__.py found.'
             self._io_manager._display(message)
             return
-        messages = []
-        messages.append('will interpret ...')
-        message = '  INPUT: {}'.format(self._make_py_path)
-        messages.append(message)
-        message = ' OUTPUT: {}'.format(self._output_lilypond_file_path)
-        messages.append(message)
-        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-        messages.append(message)
+        messages = self._format_input_output_messages(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

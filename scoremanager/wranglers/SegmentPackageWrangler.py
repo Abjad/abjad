@@ -153,24 +153,12 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         managers = self._list_visible_asset_managers()
-        make_py_paths = []
-        output_ly_paths = []
-        output_pdf_paths = []
+        inputs, outputs = [], []
         for manager in managers:
-            make_py_paths.append(manager._make_py_path)
-            output_ly_paths.append(manager._output_lilypond_file_path)
-            output_pdf_paths.append(manager._output_pdf_file_path)
-        # TODO: gather message with dry_run=True keyword
-        messages = []
-        messages.append('will interpret ...')
-        triples = zip(make_py_paths, output_ly_paths, output_pdf_paths)
-        for triple in triples:
-            make_py_path = triple[0]
-            output_ly_path = triple[1]
-            output_pdf_path = triple[2]
-            messages.append('  INPUT: {}'.format(make_py_path))
-            messages.append(' OUTPUT: {}'.format(output_ly_path))
-            messages.append(' OUTPUT: {}'.format(output_pdf_path))
+            inputs_, outputs_ = manager.interpret_make_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_input_output_messages(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

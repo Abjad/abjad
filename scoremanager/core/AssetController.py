@@ -62,6 +62,23 @@ class AssetController(Controller):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _format_input_output_messages(inputs, outputs):
+        messages = []
+        messages.append('will interpret ...')
+        for inputs_, outputs_ in zip(inputs, outputs):
+            for path_list in inputs_:
+                if isinstance(path_list, str):
+                    path_list = [path_list]
+                for path in path_list:
+                    messages.append('  INPUT: {}'.format(path))
+            for path_list in outputs_:
+                if isinstance(path_list, str):
+                    path_list = [path_list]
+                for path in path_list:
+                    messages.append(' OUTPUT: {}'.format(path))
+        return messages
+
     def _go_to_next_package(self):
         self._session._is_navigating_to_next_asset = True
         self._session._hide_hidden_commands = True
