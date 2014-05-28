@@ -24,10 +24,8 @@ def test_SegmentPackageManager_repository_status_02():
     manager = wrangler._find_svn_manager()
     if not manager:
         return
-
     manager.repository_status()
-    titles = manager._transcript.titles
+    contents = manager._transcript.contents
 
-    assert titles[0].endswith('...')
-    assert len(titles) == 1
-    assert score_manager._session.proceed_count == 0
+    assert '...' in contents
+    assert manager._session.proceed_count == 0

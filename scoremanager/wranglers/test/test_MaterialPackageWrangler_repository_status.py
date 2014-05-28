@@ -36,12 +36,10 @@ def test_MaterialPackageWrangler_repository_status_03():
     manager = wrangler._find_svn_manager(inside_score=False)
     if not manager:
         return
-
     manager.repository_status()
-    titles = manager._transcript.titles
+    contents = manager._transcript.contents
 
-    assert titles[0].endswith('...')
-    assert len(titles) == 1
+    assert '...' in contents
 
 
 def test_MaterialPackageWrangler_repository_status_04():
@@ -53,9 +51,7 @@ def test_MaterialPackageWrangler_repository_status_04():
     manager = wrangler._find_svn_manager(inside_score=True)
     if not manager:
         return
-
     manager.repository_status()
-    titles = manager._transcript.titles
+    contents = manager._transcript.contents
 
-    assert titles[0].endswith('...')
-    assert len(titles) == 1
+    assert '...' in contents

@@ -161,6 +161,7 @@ class Menu(Controller):
                 self._io_manager._display(
                     menu_lines,
                     capitalize=False,
+                    is_menu=True,
                     )
         user_entered_lone_return = False
         input_ = self._io_manager._handle_input('')
@@ -204,6 +205,7 @@ class Menu(Controller):
         self._io_manager._display(
             menu_lines,
             capitalize=False,
+            is_menu=True,
             )
         self._session._hide_hidden_commands = True
 

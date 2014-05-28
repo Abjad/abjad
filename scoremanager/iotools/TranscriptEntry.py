@@ -12,14 +12,16 @@ class TranscriptEntry(AbjadObject):
 
     __slots__ = (
         '_current_time',
+        '_is_menu',
         '_lines',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, lines):
+    def __init__(self, lines, is_menu=False):
         current_time = datetime.datetime.fromtimestamp(time.time())
         self._current_time = current_time
+        self._is_menu = is_menu
         self._lines = lines[:]
 
     ### SPECIAL METHODS ###
@@ -65,6 +67,14 @@ class TranscriptEntry(AbjadObject):
         Returns boolean.
         '''
         return self.lines and '>' in self.lines[0]
+
+    @property
+    def is_menu(self):
+        r'''Is true when entry is menu. First line will then be menu title.
+
+        Returns boolean.
+        '''
+        return self._is_menu
 
     @property
     def is_system_display(self):

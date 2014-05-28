@@ -37,9 +37,9 @@ class Transcript(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _append_entry(self, lines):
+    def _append_entry(self, lines, is_menu=False):
         from scoremanager import iotools
-        entry = iotools.TranscriptEntry(lines)
+        entry = iotools.TranscriptEntry(lines, is_menu=is_menu)
         self.entries.append(entry)
 
     def _write(self, transcripts_directory=None):
@@ -142,8 +142,6 @@ class Transcript(AbjadObject):
         '''
         result = []
         for entry in self:
-            if entry.is_system_display:
-                title = entry.title
-                if title and not title.startswith('Unknown command:'):
-                    result.append(title)
+            if entry.is_menu:
+                result.append(entry.title)
         return result

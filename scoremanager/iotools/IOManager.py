@@ -70,7 +70,7 @@ class IOManager(IOManager):
             if 'yes'.startswith(result.lower()):
                 return True
 
-    def _display(self, lines, capitalize=True):
+    def _display(self, lines, capitalize=True, is_menu=False):
         assert isinstance(lines, (str, list))
         if not self._session.display:
             return
@@ -82,7 +82,7 @@ class IOManager(IOManager):
                 for line in lines
                 ]
         if lines:
-            self._session.transcript._append_entry(lines)
+            self._session.transcript._append_entry(lines, is_menu=is_menu)
         if not self._session.pending_input:
             for line in lines:
                 print(line)
