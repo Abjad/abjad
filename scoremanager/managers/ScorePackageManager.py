@@ -43,6 +43,17 @@ class ScorePackageManager(PackageManager):
             })
         return result
 
+    @property
+    def _setup_input_to_method(self):
+        result = {
+            'catalog number': self.edit_catalog_number,
+            'paper dimensions': self.edit_paper_dimensions,
+            'tagline': self.edit_forces_tagline,
+            'title': self.edit_title,
+            'year': self.edit_year,
+            }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
@@ -128,21 +139,12 @@ class ScorePackageManager(PackageManager):
             self._get_stylesheets_directory(),
             )
 
-    # TODO: reimplement options as dictionary
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
-        if result == 'catalog number':
-            self.edit_catalog_number()
-        elif result == 'paper dimensions':
-            self.edit_paper_dimensions()
-        elif result == 'tagline':
-            self.edit_forces_tagline()
-        elif result == 'title':
-            self.edit_title()
-        elif result == 'year':
-            self.edit_year()
-        elif result == '<return>':
+        if result == '<return>':
             pass
+        elif result in self._setup_input_to_method:
+            self._setup_input_to_method[result]()
         else:
             raise ValueError(result)
 
