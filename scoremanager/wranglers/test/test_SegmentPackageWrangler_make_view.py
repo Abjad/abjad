@@ -71,11 +71,11 @@ def test_SegmentPackageWrangler_make_view_04():
     input_ = 'g vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'view found' in contents or 'views found' in contents
+    assert 'found' in contents or 'found' in contents
     assert '_test' in contents
 
     input_ = 'y vls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'view found' in contents or 'views found' in contents
+    assert 'found' in contents or 'found' in contents
     assert '_test' not in contents

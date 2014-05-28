@@ -1188,15 +1188,15 @@ class Wrangler(AssetController):
             return
         messages = []
         names = list(view_inventory.keys())
-        view_count = len(view_inventory)
-        view_string = 'view'
-        if view_count != 1:
-            view_string = stringtools.pluralize(view_string)
-        message = '{} {} found:'
-        message = message.format(view_count, view_string)
+        identifier = stringtools.pluralize('view', len(view_inventory))
+        message = '{} found:'.format(identifier)
         messages.append(message)
-        messages.extend(names)
-        self._io_manager._display(messages, capitalize=False)
+        for i, name in enumerate(names):
+            number = i + 1
+            message = '    {}: {}'
+            message = message.format(number, name)
+            messages.append(message)
+        self._io_manager._display(messages)
 
     def make_view(self):
         r'''Makes view.

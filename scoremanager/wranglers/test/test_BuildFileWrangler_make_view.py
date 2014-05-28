@@ -50,11 +50,11 @@ def test_BuildFileWrangler_make_view_03():
     input_ = 'u vls vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'view found' in contents or 'views found' in contents
+    assert 'found' in contents or 'found' in contents
     assert '_test' in contents
 
     input_ = 'u vls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'view found' in contents or 'views found' in contents
+    assert 'found' in contents or 'found' in contents
     assert '_test' not in contents

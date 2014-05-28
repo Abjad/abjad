@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_remove_views_01():
     input_ = 'm vls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'views found' in contents
+    assert 'found' in contents
     assert '_test_100' in contents
     assert '_test_101' in contents
 
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_remove_views_01():
     input_ = 'm vls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-    assert 'view found' in contents or 'views found' in contents
+    assert 'found' in contents or 'found' in contents
     assert '_test_100' not in contents
     assert '_test_101' not in contents
 

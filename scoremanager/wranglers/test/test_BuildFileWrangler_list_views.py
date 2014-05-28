@@ -14,7 +14,7 @@ def test_BuildFileWrangler_list_views_01():
 
     view_list_entries = [
         _ for _ in transcript
-        if ('view found' in _.contents or 'views found' in _.contents)
+        if ('found' in _.contents or 'found' in _.contents)
         ]
     assert len(view_list_entries) == 3
 

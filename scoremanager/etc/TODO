@@ -165,25 +165,15 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-34. Improve (vls) user experience. Change ...
-        2 views found:
-        cary & sekka
-        examples
-    ... to ...
-        Views found:
-            1. cary & sekka
-            2. examples
-    ... instead.
-
-35. Make (rrv) work in Git directories.
+34. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-36. Glue 'go' menu sections together.
+35. Glue 'go' menu sections together.
 
-37. Wrap view tests with FilesystemState.
+36. Wrap view tests with FilesystemState.
 
-38. Add 'all segments - list versions directories'.
+37. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
