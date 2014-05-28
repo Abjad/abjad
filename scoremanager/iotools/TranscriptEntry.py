@@ -61,14 +61,6 @@ class TranscriptEntry(AbjadObject):
         return self._current_time
 
     @property
-    def is_input(self):
-        r'''Is true when entry is user input. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self.lines and '>' in self.lines[0]
-
-    @property
     def is_menu(self):
         r'''Is true when entry is menu. First line will then be menu title.
 
@@ -77,26 +69,9 @@ class TranscriptEntry(AbjadObject):
         return self._is_menu
 
     @property
-    def is_system_display(self):
-        r'''Is true when entry is system display. Otherwise false.
-
-        Returns boolean.
-        '''
-        return not self.is_input
-
-    @property
     def lines(self):
         r'''Gets entry lines.
 
         Returns list.
         '''
         return self._lines
-
-    @property
-    def title(self):
-        r'''Gets title of entry.
-
-        Returns string.
-        '''
-        if not self.lines[0] == ['']:
-            return self.lines[0]

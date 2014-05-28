@@ -35,17 +35,13 @@ def test_MaterialPackageWrangler_make_package_01():
 
     input_ = 'm new b q'
     score_manager._run(input_=input_)
-    first_lines = [
+
+    titles = [
         'Score Manager - scores',
-        '> m',
         'Score Manager - materials',
-        '> new',
-        'Enter material package name> b',
         'Score Manager - materials',
-        '> q',
         ]
-    
-    assert score_manager._transcript.first_lines == first_lines
+    assert score_manager._transcript.titles == titles
 
 
 def test_MaterialPackageWrangler_make_package_02():

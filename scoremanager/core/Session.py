@@ -237,16 +237,9 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
-    def _print_transcript(
-        self,
-        include_input=True,
-        include_system_display=True,
-        ):
+    def _print_transcript(self):
         for entry in self.transcript:
-            if entry.is_input and include_input:
-                print(entry)
-            elif entry.is_system_display and include_system_display:
-                print(entry)
+            print(entry)
 
     def _print_transcript_titles(self):
         for title in self.transcript.titles:

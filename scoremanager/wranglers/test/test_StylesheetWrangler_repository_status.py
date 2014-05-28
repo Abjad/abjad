@@ -36,5 +36,6 @@ def test_StylesheetWrangler_repository_status_03():
 
     input_ = '{} y rst q'.format(score_name)
     score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
 
-    assert '> rst' in score_manager._transcript.first_lines
+    assert '> rst' in contents

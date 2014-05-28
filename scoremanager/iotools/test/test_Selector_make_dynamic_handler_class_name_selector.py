@@ -11,15 +11,17 @@ def test_Selector_make_dynamic_handler_class_name_selector_01():
     selector._session._is_test = True
     input_ = 'q'
     selector._run(input_=input_)
-    transcript = selector._transcript
+    contents = selector._transcript.contents
 
-    assert transcript.last_menu_lines == [
+    lines = [
         'Select:',
         '',
         '   1: ReiteratedDynamicHandler',
         '   2: TerracedDynamicsHandler',
         '',
         ]
+    for line in lines:
+        assert line in contents
 
 
 def test_Selector_make_dynamic_handler_class_name_selector_02():

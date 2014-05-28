@@ -77,44 +77,6 @@ class Transcript(AbjadObject):
         return self._entries
 
     @property
-    def first_lines(self):
-        r'''Gets transcript first lines.
-
-        Returns list of strings.
-        '''
-        result = [_[0] for _ in self]
-        result = [_ for _ in result if not _ == '']
-        return result
-
-    @property
-    def input_entries(self):
-        r'''Gets user input entries in transcript.
-
-        Returns list.
-        '''
-        result = []
-        for entry in self:
-            if entry.is_input:
-                result.append(entry)
-        return result
-
-    @property
-    def last_menu_lines(self):
-        r'''Gets last menu lines.
-
-        Returns lines of -3 entry.
-        '''
-        return self[-2].lines
-
-    @property
-    def last_title(self):
-        r'''Gets last title.
-
-        Returns line 0 of last menu lines.
-        '''
-        return self.last_menu_lines[0]
-
-    @property
     def start_time(self):
         r'''Gets transcript start time.
 
@@ -123,25 +85,10 @@ class Transcript(AbjadObject):
         return self._start_time
 
     @property
-    def system_display_entries(self):
-        r'''Gets system display entries in transcript.
-
-        Returns list.
-        '''
-        result = []
-        for entry in self:
-            if entry.is_system_display:
-                result.append(entry)
-        return result
-
-    @property
     def titles(self):
         r'''Gets titles of system display entries in transcript.
 
         Returns list.
         '''
-        result = []
-        for entry in self:
-            if entry.is_menu:
-                result.append(entry.title)
+        result = [_.lines[0] for _ in self if _.is_menu]
         return result
