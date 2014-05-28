@@ -526,6 +526,9 @@ class Wrangler(AssetController):
                     parts.extend(self._score_storehouse_path_infix_parts)
                 storehouse_path = os.path.join(*parts)
                 result.append(storehouse_path)
+        elif (example_score_packages and
+            not self._score_storehouse_path_infix_parts):
+            result.append(self._configuration.example_score_packages_directory)
         if user_score_packages and self._score_storehouse_path_infix_parts:
             for directory in \
                 self._configuration.list_score_directories(user=True):

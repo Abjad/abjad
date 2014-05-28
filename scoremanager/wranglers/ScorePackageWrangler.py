@@ -45,8 +45,6 @@ class ScorePackageWrangler(PackageWrangler):
         from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
-        path = self._configuration.example_score_packages_directory
-        self._abjad_storehouse_path = path
         self._asset_identifier = 'score package'
         self._basic_breadcrumb = 'scores'
         self._include_asset_name = False
