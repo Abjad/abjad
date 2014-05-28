@@ -184,27 +184,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             name='material',
             )
 
-    # TODO: migrate to MaterialPackageManager
-    def _make_package(
-        self,
-        path,
-        metadata=None,
-        definition_py_stub=True,
-        ):
-        from scoremanager import managers
-        assert os.path.sep in path
-        metadata = collections.OrderedDict(metadata or {})
-        assert not os.path.exists(path)
-        os.mkdir(path)
-        manager = self._initialize_manager(path)
-        initializer_path = os.path.join(path, '__init__.py')
-        self._io_manager.write_stub(initializer_path)
-        with self._io_manager._make_silent():
-            manager.rewrite_metadata_py(metadata=metadata)
-        if definition_py_stub:
-            with self._io_manager._make_silent():
-                manager.write_stub_definition_py()
-
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_materials = True
 
@@ -242,8 +221,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             return
         if not path:
             return
-        self._make_package(path)
         manager = self._get_manager(path)
+        manager._make_package()
         manager._run()
 
     def open_every_illustration_pdf(self):

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import copy
 import os
 import shutil
@@ -352,6 +353,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 commands=commands,
                 name='output.py',
                 )
+
+    def _make_package(self, metadata=None):
+        metadata = collections.OrderedDict(metadata or {})
+        assert not os.path.exists(self._path)
+        os.mkdir(self._path)
+        with self._io_manager._make_silent():
+            self.write_stub_init_py()
+            self.rewrite_metadata_py(metadata=metadata)
+            self.write_stub_definition_py()
 
     def _make_package_configuration_menu_section(self, menu):
         commands = []
