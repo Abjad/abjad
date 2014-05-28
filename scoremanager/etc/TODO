@@ -181,27 +181,9 @@
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-36. Improve (rad) user experience. Change
-        > rad
+36. Glue 'go' menu sections together.
 
-        red_example_score/segments/segment_01 ...
-        red_example_score/segments/segment_02 ...
-        red_example_score/segments/segment_03 ...
-        Press return to continue. 
-    ... to ...
-        > rad
+37. Wrap view tests with FilesystemState.
 
-        Added red_example_score/segments/segment_01 to repository ...
-        Added red_example_score/segments/segment_02 to repository ...
-        Added red_example_score/segments/segment_03 to repository ...
-
-    ... instead.
-
-37. Glue 'go' menu sections together.
-
-38. Wrap view tests with FilesystemState.
-
-39. Add 'all segments - list versions directories'.
+38. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
-
-40. Implement a dry_run=False keyword on bundled every*() methods.

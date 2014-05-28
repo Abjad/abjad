@@ -65,6 +65,11 @@ class AssetController(Controller):
     @staticmethod
     def _format_messaging(inputs, outputs, verb='interpret'):
         messages = []
+        if not inputs and not outputs:
+            message = 'no files to {}.'
+            message = message.format(verb)
+            messages.append(message)
+            return messages
         message = 'will {} ...'.format(verb)
         messages.append(message)
         if outputs:

@@ -856,13 +856,17 @@ class PackageManager(AssetController):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def add_to_repository(self):
+    def add_to_repository(self, dry_run=False):
         r'''Adds files to repository.
 
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
+            inputs = self._get_unadded_asset_paths()
+            outputs = []
+            if dry_run:
+                return inputs, outputs
             self._session._attempted_to_add_to_repository = True
             if self._session.is_repository_test:
                 return

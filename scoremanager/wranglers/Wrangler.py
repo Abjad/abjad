@@ -1096,12 +1096,28 @@ class Wrangler(AssetController):
         self._session._attempted_to_add_to_repository = True
         if self._session.is_repository_test:
             return
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            manager = self._initialize_manager(path)
-            with self._io_manager._make_silent():
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.add_to_repository(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='add')
+        self._io_manager._display(messages)
+        if not inputs:
+            return
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        with self._io_manager._make_silent():
+            for manager in managers:
                 manager.add_to_repository()
-
+        count = len(inputs)
+        identifier = stringtools.pluralize('file', count)
+        message = 'added {} {} to repository.'
+        message = message.format(count, identifier)
+        self._io_manager._display(message)
+        
     def apply_view(self):
         r'''Applies view.
 
