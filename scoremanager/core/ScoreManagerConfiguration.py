@@ -590,20 +590,20 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     ### PUBLIC METHODS ###
 
-    def list_score_directorys(
+    def list_score_directories(
         self,
         abjad=False,
         user=False,
         ):
-        r'''Lists score directorys.
+        r'''Lists score directories.
 
         ..  container:: example
 
-            Lists Abjad score directorys:
+            Lists Abjad score directories:
 
             ::
 
-                >>> for x in configuration.list_score_directorys(
+                >>> for x in configuration.list_score_directories(
                 ...     abjad=True,
                 ...     ):
                 ...     x

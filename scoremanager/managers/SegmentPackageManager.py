@@ -276,7 +276,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.pdf')
 
-    # TODO: reimplement as boilerplate
     def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.
 
@@ -290,16 +289,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.append(self._abjad_import_statement)
-        lines.append('')
-        lines.append('')
-        contents = '\n'.join(lines)
-        with open(self._definition_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
+        source_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            'definition.py',
+            )
+        destination_path = self._definition_py_path
+        shutil.copyfile(source_path, destination_path)
 
-    # TODO: reimplement as boilerplate
     def write_stub_make_py(self):
         r'''Writes stub ``__make__.py``.
 
@@ -311,21 +308,10 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.append('import os')
-        lines.append(self._abjad_import_statement)
-        lines.append('from definition import segment_maker')
-        lines.append('')
-        lines.append('')
-        lines.append('lilypond_file = segment_maker()')
-        lines.append('current_directory = os.path.dirname(__file__)')
-        line = "ly_file_path = os.path.join(current_directory, 'output.ly')"
-        lines.append(line)
-        lines.append('persist(lilypond_file).as_ly(ly_file_path)')
-        line = "pdf_file_path = os.path.join(current_directory, 'output.pdf')"
-        lines.append(line)
-        lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
-        contents = '\n'.join(lines)
-        with open(self._make_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
+        source_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            '__make__.py',
+            )
+        destination_path = self._make_py_path
+        shutil.copyfile(source_path, destination_path)

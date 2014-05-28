@@ -129,7 +129,7 @@ class ScorePackageManager(PackageManager):
         else:
             return self._get_metadatum('title') or '(untitled score)'
 
-    def _get_top_level_directorys(self):
+    def _get_top_level_directories(self):
         return (
             self._get_build_directory(),
             self._get_distribution_directory(),
@@ -318,7 +318,7 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         package_needed_to_be_fixed = False
-        for path in self._get_top_level_directorys():
+        for path in self._get_top_level_directories():
             if not os.path.exists(path):
                 package_needed_to_be_fixed = True
                 messages = []

@@ -485,13 +485,13 @@ class Wrangler(AssetController):
         user_score_packages=True,
         ):
         result = []
-        directorys = self._list_storehouse_paths(
+        directories = self._list_storehouse_paths(
             abjad_library=abjad_library,
             example_score_packages=example_score_packages,
             user_library=user_library,
             user_score_packages=user_score_packages,
             )
-        for directory in directorys:
+        for directory in directories:
             if not directory:
                 continue
             if not os.path.exists(directory):
@@ -520,7 +520,7 @@ class Wrangler(AssetController):
         if (example_score_packages and
             self._score_storehouse_path_infix_parts):
             for score_directory in \
-                self._configuration.list_score_directorys(abjad=True):
+                self._configuration.list_score_directories(abjad=True):
                 parts = [score_directory]
                 if self._score_storehouse_path_infix_parts:
                     parts.extend(self._score_storehouse_path_infix_parts)
@@ -528,7 +528,7 @@ class Wrangler(AssetController):
                 result.append(storehouse_path)
         if user_score_packages and self._score_storehouse_path_infix_parts:
             for directory in \
-                self._configuration.list_score_directorys(user=True):
+                self._configuration.list_score_directories(user=True):
                 parts = [directory]
                 if self._score_storehouse_path_infix_parts:
                     parts.extend(self._score_storehouse_path_infix_parts)
