@@ -1,9 +1,14 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 
 # must be is_test=False to test views
 score_manager = scoremanager.core.ScoreManager(is_test=False)
+views_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__BuildFileWrangler_views__.py',
+    )
 
 
 def test_BuildFileWrangler_clear_view_01():
@@ -17,7 +22,9 @@ def test_BuildFileWrangler_clear_view_01():
     input_ = 'u vnew _test rm all'
     input_ += ' add segment-01.ly~(Red~Example~Score) done <return>'
     input_ += ' vap _test vcl vrm _test <return> q'
-    score_manager._run(input_=input_)
+
+    with systemtools.FilesystemState(keep=[views_file]):
+        score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     lines = [
@@ -45,7 +52,9 @@ def test_BuildFileWrangler_clear_view_02():
     input_ = 'red~example~score u vnew _test rm all'
     input_ += ' add segment-01.ly done <return>'
     input_ += ' vap _test vcl vrm _test <return> q'
-    score_manager._run(input_=input_)
+
+    with systemtools.FilesystemState(keep=[views_file]):
+        score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     lines = [

@@ -173,7 +173,5 @@
 
 35. Glue 'go' menu sections together.
 
-36. Wrap view tests with FilesystemState.
-
-37. Add 'all segments - list versions directories'.
+36. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.

@@ -1,10 +1,14 @@
 # -*- encoding: utf-8 -*-
+import os
 import pytest
 from abjad import *
 import scoremanager
-
 # is_test=True is ok when testing the creation of views
 score_manager = scoremanager.core.ScoreManager(is_test=True)
+views_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__BuildFileWrangler_views__.py',
+    )
 
 
 def test_BuildFileWrangler_make_view_01():
@@ -12,7 +16,8 @@ def test_BuildFileWrangler_make_view_01():
     '''
 
     input_ = 'u vnew _test q' 
-    score_manager._run(input_=input_)
+    with systemtools.FilesystemState(keep=[views_file]):
+        score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     string = 'Score Manager - build files - views - _test - edit:'
@@ -25,7 +30,8 @@ def test_BuildFileWrangler_make_view_02():
     '''
 
     input_ = 'u vnew _test q' 
-    score_manager._run(input_=input_)
+    with systemtools.FilesystemState(keep=[views_file]):
+        score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
     string = 'front-cover.pdf (Red Example Score)'
@@ -42,7 +48,8 @@ def test_BuildFileWrangler_make_view_03():
 
     input_ = 'u vnew _test rm all'
     input_ += ' add front-cover.pdf~(Red~Example~Score) done q' 
-    score_manager._run(input_=input_)
+    with systemtools.FilesystemState(keep=[views_file]):
+        score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Score Manager - build files (_test)' in contents
