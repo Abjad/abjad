@@ -1,11 +1,6 @@
 1.  Implement an 'all whatever - edit' command.
 
-2.  Add (lyrm!) for 'lilypond ly - remove from repository'.
-    This will work together with (lyrm) for 'lilypond ly - remove'.
-    The difference will be that (lyrm!) will (try to) act on the repository 
-    where (lyrm) will only ever work on the filesystem.
-
-3.  Write py.test tests for the following properties and methods:
+2.  Write py.test tests for the following properties and methods:
         PackageManager._repository_add_command
         PackageManager._repository_status_command
         PackageManager._get_added_asset_paths()
@@ -13,7 +8,7 @@
         PackageManager._get_repository_root_directory()
         PackageManager._is_up_to_date()
 
-4.  Add 'output py - check (omc)' command.
+3.  Add 'output py - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -23,35 +18,32 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-5.  Implement a 'views.py - rewrite' (vmrw) command.
+4.  Implement a 'views.py - rewrite' (vmrw) command.
 
-6.  Implement PackageManager.check_contents().
+5.  Implement PackageManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-7.  Do something to put an empty .gitignore file in every directory everywhere.
-    Provide a user interface.
-    
-8.  Eventually implement a Score PackageManager start-up behavior that will
+6.  Eventually implement a Score PackageManager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-9: Bug:
+7: Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
 
-10. Bug:
+8.  Bug:
     File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 203, in _get_sibling_score_directory
         index = paths.index(score_path)
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
 
-11. Implement an Autoeditor method to allow an none-allowing attribute to be 
+9.  Implement an Autoeditor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -79,7 +71,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-12. Bug:
+10. Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -87,76 +79,66 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-13. Make (rrv) work for Subversion-managed directories.
+11. Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-14. Make sure new-style.ily doesn't alias (new).
+12. Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-15. When in (new) score, change 'Enter package name>' to
+13. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-16. Block (new) score when view is hiding user scores.
+14. Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-17. Allow more flexible input for score (new).
+15. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-18. Implement stringtools.delimit_words(delimitor=' ').
+16. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-19. Maybe change Wrangler._current_package_manager to
-    Wrangler._current_manager?
-
-20. Make (mdo) work for wranglers.
+17. Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-21. Make menu title breadcrumbs correctly reflect changes in view
+18. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-22. Refuse to apply view when invalid regular expression is found.
+19. Refuse to apply view when invalid regular expression is found.
 
-23. Imlement 'views - autoedit' (vae) command.
+20. Implement 'views - autoedit' (vae) command.
 
-24. Compile regular expressions at view entry add time.
+21. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-25. Allow arbitrary metadata in view patterns.
+22. Allow arbitrary metadata in view patterns.
 
-26. Change ...
-        Score Manager - stylesheets (_test) - select view to remove:
+23. Change ...
+        Score Manager - stylesheets (_test) - select view(s) to remove:
     ... to ...
-        Score Manager - stylesheets - select view to remove:
+        Score Manager - stylesheets - select view(s) to remove:
     ... instead.
 
-27. Make (rst) work again. Right now runs on archipel and then quits.
-    Maybe add private Subversion tests.
-
-28. Allow 5-99 (or any other large number) to work when removing items.
+24. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-29. Move score_manager_library/views/*_views__.py files to
-    ~/.score_manager/ directory.
-
-
-30. Fix menu title that results from the following:
+25. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-31. There is no such thing as 'My build file library'.
-    Remove 'My build file library' from (u > cp > 1).
+26. There is no such thing as 'My build files'.
+    Remove 'My build files' from (u > cp > 1).
 
-32. Make bicolumnar layout work for asset screens.
+27. Make bicolumnar layout work for asset screens.
     Right now it just works for the (?) screen.
 
-33. Improve (k > cp) user experience. Change ...
+28. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -165,13 +147,13 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-34. Make (rrv) work in Git directories.
+29. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-35. Glue 'go' menu sections together.
+30. Glue 'go' menu sections together.
 
-36. Add 'all segments - list versions directories'.
+31. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
