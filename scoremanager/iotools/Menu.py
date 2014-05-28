@@ -172,6 +172,9 @@ class Menu(Controller):
         if directive is None and user_entered_lone_return:
             result = '<return>'
         elif directive is None and not user_entered_lone_return:
+            message = 'unknown command: {!r}.'
+            message = message.format(input_)
+            self._io_manager._display([message, ''])
             result = None
         else:
             result = directive

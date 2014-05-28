@@ -144,6 +144,6 @@ class Transcript(AbjadObject):
         for entry in self:
             if entry.is_system_display:
                 title = entry.title
-                if title:
+                if title and not title.startswith('Unknown command:'):
                     result.append(title)
         return result

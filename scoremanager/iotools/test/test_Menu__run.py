@@ -24,15 +24,6 @@ def test_Menu__run_01():
         )
 
     result = menu._run(input_='foo')
-    assert menu._transcript.last_menu_lines == \
-    ['Test',
-      '',
-      '      Section',
-      '',
-      '      apple',
-      '      banana',
-      '      cherry',
-      '']
     assert result is None
 
     menu._session._reinitialize()
@@ -75,10 +66,8 @@ def test_Menu__run_02():
         name='test',
         title='section',
         )
-    result = menu._run(input_='foo')
 
-    strings = ['Test', '']
-    assert menu._transcript.last_menu_lines == strings
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
@@ -121,19 +110,8 @@ def test_Menu__run_03():
         name='test',
         title='section',
         )
-    result = menu._run(input_='foo')
 
-    strings = [
-        'Test',
-        '',
-        '      Section',
-        '',
-        '   1: apple',
-        '   2: banana',
-        '   3: cherry',
-        '',
-        ]
-    assert menu._transcript.last_menu_lines == strings
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
@@ -176,19 +154,8 @@ def test_Menu__run_04():
         name='test',
         title='section',
         )
-    result = menu._run(input_='foo')
 
-    strings = [
-        'Test',
-        '',
-        '      Section',
-        '',
-        '      apple',
-        '      banana',
-        '      cherry',
-        '',
-        ]
-    assert menu._transcript.last_menu_lines == strings
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
@@ -234,18 +201,6 @@ def test_Menu__run_05():
         )
 
     result = menu._run(input_='foo')
-
-    strings = [
-        'Test',
-        '',
-        '      Section',
-        '',
-        '      first command (add)',
-        '      second command (rm)',
-        '      third command (mod)',
-        '',
-        ]
-    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -298,9 +253,7 @@ def test_Menu__run_06():
         menu_entries=commands,
         name='test',
         )
-    result = menu._run(input_='foo')
 
-    menu._session._reinitialize()
     result = menu._run(input_='foo')
     assert result is None
 
@@ -357,11 +310,8 @@ def test_Menu__run_07():
         return_value_attribute='key',
         title='section',
         )
+
     result = menu._run(input_='foo')
-
-    strings = ['Test', '']
-    assert menu._transcript.last_menu_lines == strings
-
     assert result is None
 
     menu._session._reinitialize()
@@ -474,19 +424,8 @@ def test_Menu__run_09():
         return_value_attribute='key',
         title='section',
         )
-    result = menu._run(input_='foo')
 
-    strings = [
-        'Test',
-        '',
-        '      Section',
-        '',
-        '   1: first command (add)',
-        '   2: second command (rm)',
-        '   3: third command (mod)',
-        '',
-        ]
-    assert menu._transcript.last_menu_lines == strings
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
@@ -542,19 +481,8 @@ def test_Menu__run_10():
         return_value_attribute='key',
         title='section',
         )
-    result = menu._run(input_='foo')
 
-    strings = [
-        'Test',
-        '',
-        '      Section',
-        '',
-        '      first command (add)',
-        '      second command (rm)',
-        '      third command (mod)',
-        '',
-        ]
-    assert menu._transcript.last_menu_lines == strings
+    result = menu._run(input_='foo')
     assert result is None
 
     menu._session._reinitialize()
@@ -645,3 +573,30 @@ def test_Menu__run_11():
     menu._session._reinitialize()
     result = menu._run(input_='fir, mod-sec')
     assert result == ['first command', 'third command', 'second command']
+
+
+def test_Menu__run_12():
+    r'''Displays unknown command message.
+    '''
+
+    session = scoremanager.core.Session(is_test=True)
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        session=session,
+        )
+    commands = []
+    commands.append(('first command', 'add'))
+    commands.append(('second command', 'rm'))
+    commands.append(('third command', 'mod'))
+    section = menu._make_section(
+        is_ranged=True,
+        menu_entries=commands,
+        name='test',
+        title='section',
+        )
+    input_ = 'asdf'
+    menu._run(input_=input_)
+    contents = menu._transcript.contents
+
+    assert "Unknown command: 'asdf'." in contents
