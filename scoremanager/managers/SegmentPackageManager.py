@@ -221,17 +221,18 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         with self._io_manager._make_silent():
             self._io_manager.interpret_file(self._make_py_path)
 
-    def interpret_output_ly(self):
+    def interpret_output_ly(self, dry_run=False):
         r'''Interprets ``output.ly``.
+
+        Makes ``output.pdf``.
 
         Returns none.
         '''
-        messages = []
-        messages.append('will interpret ...')
-        message = '  INPUT: {}'.format(self._output_lilypond_file_path)
-        messages.append(message)
-        message = ' OUTPUT: {}'.format(self._output_pdf_file_path)
-        messages.append(message)
+        inputs = [self._output_lilypond_file_path]
+        outputs = [self._output_pdf_file_path]
+        if dry_run:
+            return inputs, outputs
+        messages = self._format_input_output_messages(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
