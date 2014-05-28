@@ -95,6 +95,63 @@ class BuildFileWrangler(Wrangler):
             message = 'file ending in {!r} not found.'
             message = message.format(string)
 
+    def _collect_segment_files(self, file_name):
+        segments_directory = self._session.current_segments_directory
+        build_directory = self._get_current_directory()
+        directory_entries = sorted(os.listdir(segments_directory))
+        source_file_paths, target_file_paths = [], []
+        _, extension = os.path.splitext(file_name)
+        for directory_entry in directory_entries:
+            segment_directory = os.path.join(
+                segments_directory,
+                directory_entry,
+                )
+            if not os.path.isdir(segment_directory):
+                continue
+            source_file_path = os.path.join(
+                segment_directory,
+                file_name,
+                )
+            if not os.path.isfile(source_file_path):
+                continue
+            score_path = self._session.current_score_directory
+            score_package = self._configuration.path_to_package_path(
+                score_path)
+            score_name = score_package.replace('_', '-')
+            directory_entry = directory_entry.replace('_', '-')
+            if 'segment' in directory_entry:
+                target_file_name = directory_entry + extension
+            else:
+                target_file_name = '{}-{}{}'.format(
+                    score_name,
+                    directory_entry,
+                    extension
+                    )
+            target_file_path = os.path.join(
+                build_directory,
+                target_file_name,
+                )
+            source_file_paths.append(source_file_path)
+            target_file_paths.append(target_file_path)
+        if source_file_paths:
+            messages = []
+            messages.append('will copy ...')
+            pairs = zip(source_file_paths, target_file_paths)
+            for source_file_path, target_file_path in pairs:
+                message = ' FROM: {}'.format(source_file_path)
+                messages.append(message)
+                message = '   TO: {}'.format(target_file_path)
+                messages.append(message)
+            self._io_manager._display(messages)
+            if not self._io_manager._confirm():
+                return
+            if self._session.is_backtracking:
+                return
+        if not os.path.exists(build_directory):
+            os.mkdir(build_directory)
+        pairs = zip(source_file_paths, target_file_paths)
+        return pairs
+
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
@@ -257,7 +314,6 @@ class BuildFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    # TODO: factor our duplicate code with self.collect_segment_pdfs()
     def collect_segment_lilypond_files(self):
         r'''Copies LilyPond files from segment packages to build directory.
 
@@ -270,109 +326,21 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        segments_directory = self._session.current_segments_directory
-        build_directory = self._get_current_directory()
-        directory_entries = sorted(os.listdir(segments_directory))
-        source_file_paths, target_file_paths = [], []
-        for directory_entry in directory_entries:
-            segment_directory = os.path.join(
-                segments_directory,
-                directory_entry,
-                )
-            if not os.path.isdir(segment_directory):
-                continue
-            source_file_path = os.path.join(
-                segment_directory,
-                'output.ly',
-                )
-            if not os.path.isfile(source_file_path):
-                continue
-            score_path = self._session.current_score_directory
-            score_package = self._configuration.path_to_package_path(
-                score_path)
-            score_name = score_package.replace('_', '-')
-            directory_entry = directory_entry.replace('_', '-')
-            target_file_name = directory_entry + '.ly'
-            target_file_path = os.path.join(
-                build_directory,
-                target_file_name,
-                )
-            source_file_paths.append(source_file_path)
-            target_file_paths.append(target_file_path)
-        if source_file_paths:
-            messages = []
-            messages.append('will copy ...')
-            pairs = zip(source_file_paths, target_file_paths)
-            for source_file_path, target_file_path in pairs:
-                message = ' FROM: {}'.format(source_file_path)
-                messages.append(message)
-                message = '   TO: {}'.format(target_file_path)
-                messages.append(message)
-            self._io_manager._display(messages)
-            if not self._io_manager._confirm():
-                return
-            if self._session.is_backtracking:
-                return
-        if not os.path.exists(build_directory):
-            os.mkdir(build_directory)
-        pairs = zip(source_file_paths, target_file_paths)
+        pairs = self._collect_segment_files('output.ly')
+        if not pairs:
+            return
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
 
-    # TODO: factor out duplicate code w/ self.collect_segment_lilypond_files()
     def collect_segment_pdfs(self):
         r'''Copies segment PDFs from segment packages to build directory.
 
         Returns none.
         '''
-        segments_directory = self._session.current_segments_directory
-        build_directory = self._get_current_directory()
-        directory_entries = sorted(os.listdir(segments_directory))
-        source_file_paths, target_file_paths = [], []
-        for directory_entry in directory_entries:
-            segment_directory = os.path.join(
-                segments_directory,
-                directory_entry,
-                )
-            if not os.path.isdir(segment_directory):
-                continue
-            source_file_path = os.path.join(
-                segment_directory,
-                'output.pdf',
-                )
-            if not os.path.isfile(source_file_path):
-                continue
-            manager = self._session.current_score_package_manager
-            score_name = manager._package_name
-            if 'segment' in directory_entry:
-                target_file_name = directory_entry + '.pdf'
-            else:
-                target_file_name = '{}-{}.pdf'.format(
-                    score_name,
-                    directory_entry,
-                    )
-            target_file_name = target_file_name.replace('_', '-')
-            target_file_path = os.path.join(
-                build_directory,
-                target_file_name,
-                )
-            source_file_paths.append(source_file_path)
-            target_file_paths.append(target_file_path)
-        if directory_entries:
-            messages = []
-            messages.append('will copy ...')
-            pairs = zip(source_file_paths, target_file_paths)
-            for source_file_path, target_file_path in pairs:
-                message = ' FROM: {}'.format(source_file_path)
-                messages.append(message)
-                message = '   TO: {}'.format(target_file_path)
-                messages.append(message)
-            self._io_manager._display(messages)
-            if not self._io_manager._confirm():
-                return
-            if self._session.is_backtracking:
-                return
+        pairs = self._collect_segment_files('output.pdf')
+        if not pairs:
+            return
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
 
