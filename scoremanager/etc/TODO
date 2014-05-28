@@ -205,6 +205,3 @@
     Add 'all materials - list versions directories'.
 
 40. Implement a dry_run=False keyword on bundled every*() methods.
-
-41. Improve (m mdrw) user experience.
-    Include 'Will rewrite ...' messaging.

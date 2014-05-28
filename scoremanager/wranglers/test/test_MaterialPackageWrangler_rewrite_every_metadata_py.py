@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_MaterialPackageWrangler_rewrite_every_metadata_py_01():
 
-    input_ = 'red~example~score m mdw* <return> q'
+    input_ = 'red~example~score m mdw* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -18,13 +18,13 @@ def test_MaterialPackageWrangler_rewrite_every_metadata_py_01():
         'materials',
         )
     assert materials_directory in contents
-    assert 'Rewriting' in contents
+    assert 'Will rewrite ...' in contents
     assert '__metadata__.py files rewritten.' in contents
 
 
 def test_MaterialPackageWrangler_rewrite_every_metadata_py_02():
 
-    input_ = 'm mdw* <return> q'
+    input_ = 'm mdw* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -35,5 +35,5 @@ def test_MaterialPackageWrangler_rewrite_every_metadata_py_02():
         'materials',
         )
     assert materials_directory in contents
-    assert 'Rewriting' in contents
+    assert 'Will rewrite ...' in contents
     assert '__metadata__.py files rewritten.' in contents

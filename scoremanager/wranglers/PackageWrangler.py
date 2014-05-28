@@ -112,18 +112,22 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         directories = self._list_all_directories_with_metadata_pys()
-        messages = []
+        messages = ['will rewrite ...']
         for directory in directories:
             path = os.path.join(directory, '__metadata__.py')
-            message = 'rewriting {} ...'.format(path)
+            message = '    {}'.format(path)
             messages.append(message)
-            manager = self._io_manager._make_package_manager(directory)
-            with self._io_manager._make_silent():
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        with self._io_manager._make_silent():
+            for directory in directories:
+                manager = self._io_manager._make_package_manager(directory)
                 manager.rewrite_metadata_py()
         message = '{} __metadata__.py files rewritten.'
         message = message.format(len(directories))
-        messages.append(message)
-        self._io_manager._display(messages)
+        self._io_manager._display(message)
 
     def write_every_init_py_stub(self):
         r'''Writes stub ``__init__.py`` in every package.

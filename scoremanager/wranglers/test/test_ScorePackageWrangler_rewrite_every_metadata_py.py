@@ -7,7 +7,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
 
-    input_ = 'mdw* <return> q'
+    input_ = 'mdw* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -20,5 +20,5 @@ def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
     for path in paths:
         assert path in contents
 
-    assert 'Rewriting' in contents
+    assert 'Will rewrite ...' in contents
     assert '__metadata__.py files rewritten.' in contents
