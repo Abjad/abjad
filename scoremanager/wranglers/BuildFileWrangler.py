@@ -2,8 +2,6 @@
 import os
 import shutil
 from abjad.tools import lilypondfiletools
-from abjad.tools import sequencetools
-from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
@@ -51,37 +49,43 @@ class BuildFileWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            'cp': self.copy_file,
+            'new': self.make_file,
+            'ren': self.rename_file,
+            'rm': self.remove_files,
+            #
             'bce': self.edit_back_cover_source,
             'bcg': self.generate_back_cover_source,
             'bci': self.interpret_back_cover,
             'bco': self.open_back_cover_pdf,
-            'cp': self.copy_file,
+            #
             'dc': self.collect_segment_pdfs,
             'de': self.edit_draft_source,
             'dg': self.generate_draft_source,
             'di': self.interpret_draft,
             'do': self.open_draft_pdf,
+            #
             'fce': self.edit_front_cover_source,
             'fceio': self.edit_interpret_open_front_cover_source,
             'fcg': self.generate_front_cover_source,
             'fci': self.interpret_front_cover,
             'fco': self.open_front_cover_pdf,
+            #
             'mc': self.collect_segment_lilypond_files,
             'me': self.edit_music_source,
             'mg': self.generate_music_source,
             'mi': self.interpret_music,
             'mo': self.open_music_pdf,
-            'new': self.make_file,
+            #
             'pe': self.edit_preface_source,
             'pg': self.generate_preface_source,
             'pi': self.interpret_preface,
             'po': self.open_preface_pdf,
+            #
             'se': self.edit_score_source,
             'sg': self.generate_score_source,
             'si': self.interpret_score,
             'so': self.open_score_pdf,
-            'ren': self.rename_file,
-            'rm': self.remove_files,
             })
         return result
 
@@ -94,6 +98,7 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
+            self._io_manager._display(message)
 
     def _collect_segment_files(self, file_name):
         segments_directory = self._session.current_segments_directory
@@ -152,6 +157,39 @@ class BuildFileWrangler(Wrangler):
         pairs = zip(source_file_paths, target_file_paths)
         return pairs
 
+    def _confirm_segment_names(self):
+        wrangler = self._session._score_manager._segment_package_wrangler
+        view_name = wrangler._read_view_name()
+        view_inventory = wrangler._read_view_inventory()
+        if not view_inventory or view_name not in view_inventory:
+            view_name = None
+        segment_paths = wrangler._list_visible_asset_paths()
+        segment_paths = segment_paths or []
+        segment_names = []
+        for segment_path in segment_paths:
+            segment_name = os.path.basename(segment_path)
+            segment_names.append(segment_name)
+        messages = []
+        if view_name:
+            message = 'the {!r} segment view is currently selected.'
+            message = message.format(view_name)
+            messages.append(message)
+        if segment_names:
+            message = 'will assemble segments in this order:'
+            messages.append(message)
+            for segment_name in segment_names:
+                message = '    ' + segment_name
+                messages.append(message)
+        else:
+            message = 'no segments found:'
+            message += ' will generate source without segments.'
+            messages.append(message)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return False
+        return segment_names
+
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
@@ -159,6 +197,7 @@ class BuildFileWrangler(Wrangler):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
+            self._io_manager._display(message)
 
     def _enter_run(self):
         self._session._is_navigating_to_score_build_files = False
@@ -180,7 +219,7 @@ class BuildFileWrangler(Wrangler):
             message = message.format(destination_path)
             result = self._io_manager._confirm(message)
             if self._session.is_backtracking or not result:
-                return
+                return False
         source_path = os.path.join(
             self._configuration.score_manager_directory,
             'boilerplate',
@@ -194,6 +233,7 @@ class BuildFileWrangler(Wrangler):
         if previously_existed:
             message = 'overwrote {}.'.format(destination_path)
             self._io_manager._display(message)
+        return True
 
     def _make_back_cover_menu_section(self, menu):
         commands = []
@@ -347,14 +387,15 @@ class BuildFileWrangler(Wrangler):
     ### PUBLIC METHODS ###
 
     def collect_segment_lilypond_files(self):
-        r'''Copies LilyPond files from segment packages to build directory.
+        r'''Copies ``output.ly`` files from segment packages to build 
+        directory.
 
-        Trims top-level comments, includes and directives from each LilyPond
-        file.
+        Trims top-level comments, includes and directives from each
+        ``output.ly`` file.
 
-        Trims header and paper block from each LilyPond file.
+        Trims header and paper block from each ``output.ly`` file.
 
-        Leaves score block in each LilyPond file.
+        Leaves score block in each ``output.ly`` file.
 
         Returns none.
         '''
@@ -366,7 +407,8 @@ class BuildFileWrangler(Wrangler):
             self._trim_lilypond_file(target_file_path)
 
     def collect_segment_pdfs(self):
-        r'''Copies segment PDFs from segment packages to build directory.
+        r'''Copies ``output.pdf`` files from segment packages to build 
+        directory.
 
         Returns none.
         '''
@@ -377,37 +419,37 @@ class BuildFileWrangler(Wrangler):
             shutil.copyfile(source_file_path, target_file_path)
 
     def copy_file(self):
-        r'''Copies build file.
+        r'''Copies file.
 
         Returns none.
         '''
         self._copy_asset(force_lowercase=False)
 
     def edit_back_cover_source(self):
-        r'''Edits back cover LaTeX source.
+        r'''Edits ``back-cover.tex``.
 
         Returns none.
         '''
         self._edit_file_ending_with('back-cover.tex')
 
     def edit_draft_source(self):
-        r'''Edits draft LaTeX source.
+        r'''Edits ``draft.tex``.
 
         Returns none.
         '''
         self._edit_file_ending_with('draft.tex')
 
     def edit_front_cover_source(self):
-        r'''Edits front cover LaTeX source.
+        r'''Edits ``front-cover.tex``.
 
         Returns none.
         '''
         self._edit_file_ending_with('front-cover.tex')
 
     def edit_interpret_open_front_cover_source(self):
-        r'''Edits front cover LaTeX source;
-        interprets front cover LaTeX source;
-        opens front cover PDF.
+        r'''Edits ``front-cover.tex``;
+        interprets ``front-cover.tex``;
+        opens ``front-cover.pdf``.
 
         Returns none.
         '''
@@ -416,102 +458,52 @@ class BuildFileWrangler(Wrangler):
         self.open_front_cover_pdf()
 
     def edit_music_source(self):
-        r'''Edits music LilyPond source.
+        r'''Edits ``music.ly``.
 
         Returns none.
         '''
         self._edit_file_ending_with('music.ly')
 
     def edit_preface_source(self):
-        r'''Edits preface LaTeX source.
+        r'''Edits ``preface.tex``.
 
         Returns none.
         '''
         self._edit_file_ending_with('preface.tex')
 
     def edit_score_source(self):
-        r'''Edits score LaTeX source.
+        r'''Edits ``score.tex``.
 
         Returns none.
         '''
         self._edit_file_ending_with('score.tex')
 
     def generate_back_cover_source(self):
-        r'''Generates back cover LaTeX source.
+        r'''Generates ``back-cover.tex``.
 
         Returns none.
         '''
         self._generate_latex_source('back-cover.tex')
 
-    # TODO: factor our code shared with self.generate_music_source()
     def generate_draft_source(self):
-        r'''Generates draft LaTeX source.
+        r'''Generates ``draft.tex``.
 
         Returns none.
         '''
+        result = self._generate_latex_source('draft.tex')
+        if self._session.is_backtracking or not result:
+            return
+        result = self._confirm_segment_names()
+        if self._session.is_backtracking or not isinstance(result, list):
+            return
+        segment_names = result
+        pdf_names = [_.replace('_', '-') for _ in segment_names]
         manager = self._session.current_score_package_manager
-        width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory()
-        assert width and height and unit
-        assert build_directory
         destination_path = os.path.join(
             manager._path,
             'build',
             'draft.tex',
             )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        wrangler = self._session._score_manager._segment_package_wrangler
-        view_name = wrangler._read_view_name()
-        view_inventory = wrangler._read_view_inventory()
-        if not view_inventory or view_name not in view_inventory:
-            view_name = None
-        segment_paths = wrangler._list_visible_asset_paths()
-        segment_paths = segment_paths or []
-        segment_names = []
-        for segment_path in segment_paths:
-            segment_name = os.path.basename(segment_path)
-            segment_names.append(segment_name)
-        pdf_names = []
-        for segment_name in segment_names:
-            pdf_name = segment_name.replace('_', '-')
-            pdf_names.append(pdf_name)
-        messages = []
-        if view_name:
-            message = 'the {!r} segment view is currently selected.'
-            message = message.format(view_name)
-            messages.append(message)
-        if pdf_names:
-            message = 'will assemble segments in this order:'
-            messages.append(message)
-            for segment_name in segment_names:
-                message = '    ' + segment_name
-                messages.append(message)
-        else:
-            message = 'no segments found:'
-            message += ' will generate source without segments.'
-            messages.append(message)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'draft.tex',
-            )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
         lines = []
         for pdf_name in pdf_names:
             line = r'\includepdf[pages=-]{{{}.pdf}}'
@@ -524,88 +516,37 @@ class BuildFileWrangler(Wrangler):
         else:
             line_to_remove = '%%% SEGMENTS %%%\n'
             self._remove_file_line(destination_path, line_to_remove)
-        if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
 
     def generate_front_cover_source(self):
-        r'''Generates front cover LaTeX source.
+        r'''Generates ``front-cover.tex``.
 
         Returns none.
         '''
         self._generate_latex_source('front-cover.tex')
         
-    # TODO: factor our code shared with self.generate_draft_source()
     def generate_music_source(self):
-        r'''Generates music LilyPond source.
+        r'''Generates ``music.ly``.
 
         Returns none.
         '''
+        result = self._generate_latex_source('music.ly')
+        if self._session.is_backtracking or not result:
+            return
+        result = self._confirm_segment_names()
+        if self._session.is_backtracking or not isinstance(result, list):
+            return
+        segment_names = result
+        lilypond_names = [_.replace('_', '-') for _ in segment_names]
         manager = self._session.current_score_package_manager
-        #width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory()
-        #assert width and height and unit
-        assert build_directory
         destination_path = os.path.join(
             manager._path,
             'build',
             'music.ly',
             )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        wrangler = self._session._score_manager._segment_package_wrangler
-        view_name = wrangler._read_view_name()
-        view_inventory = wrangler._read_view_inventory()
-        if not view_inventory or view_name not in view_inventory:
-            view_name = None
-        segment_paths = wrangler._list_visible_asset_paths()
-        segment_paths = segment_paths or []
-        segment_names = []
-        for segment_path in segment_paths:
-            segment_name = os.path.basename(segment_path)
-            segment_names.append(segment_name)
-        lilypond_names = []
-        for segment_name in segment_names:
-            lilypond_name = segment_name.replace('_', '-')
-            lilypond_names.append(lilypond_name)
-        messages = []
-        if view_name:
-            message = 'the {!r} segment view is currently selected.'
-            message = message.format(view_name)
-            messages.append(message)
-        if lilypond_names:
-            message = 'will assemble segments in this order:'
-            messages.append(message)
-            for segment_name in segment_names:
-                message = '    ' + segment_name
-                messages.append(message)
-        else:
-            message = 'no segments found:'
-            message += ' will generate source without segments.'
-            messages.append(message)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'music.ly',
-            )
-        shutil.copyfile(source_path, destination_path)
         lines = []
         for lilypond_name in lilypond_names:
             file_name = lilypond_name + '.ly'
-            #path = file_name
             line = r'   \include "{}"'
-            #line = line.format(path)
             line = line.format(file_name)
             lines.append(line)
         if lines:
@@ -618,7 +559,6 @@ class BuildFileWrangler(Wrangler):
         stylesheet_path = self._session.current_stylesheet_path
         if stylesheet_path:
             old = '% STYLESHEET_INCLUDE_STATEMENT'
-            #new = r'\include "{}"'.format(stylesheet_path)
             new = r'\include "../stylesheets/stylesheet.ily"'
             self._replace_in_file(destination_path, old, new)
         language_token = lilypondfiletools.LilyPondLanguageToken()
@@ -646,68 +586,65 @@ class BuildFileWrangler(Wrangler):
             old = 'FORCES_TAGLINE'
             new = forces_tagline
             self._replace_in_file(destination_path, old, new)
-        if previously_existed:
-            message = 'overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
 
     def generate_preface_source(self):
-        r'''Generates preface LaTeX source.
+        r'''Generates ``preface.tex``.
 
         Returns none.
         '''
         self._generate_latex_source('preface.tex')
 
     def generate_score_source(self):
-        r'''Generates score LaTeX source.
+        r'''Generates ``score.tex``.
 
         Returns none.
         '''
         self._generate_latex_source('score.tex')
 
     def interpret_back_cover(self):
-        r'''Interprets back cover LaTeX source.
+        r'''Interprets ``back-cover.tex``.
 
         Returns none.
         '''
         self._interpret_file_ending_with('back-cover.tex')
 
     def interpret_draft(self):
-        r'''Interprets draft score LaTeX source.
+        r'''Interprets ``draft.tex``.
 
         Returns none.
         '''
         self._interpret_file_ending_with('draft.tex')
 
     def interpret_front_cover(self):
-        r'''Interprets front cover LaTeX source.
+        r'''Interprets ``front-cover.tex``.
 
         Returns none.
         '''
         self._interpret_file_ending_with('front-cover.tex')
 
     def interpret_music(self):
-        r'''Interprets music LilyPond source.
+        r'''Interprets ``music.ly``.
 
         Returns none.
         '''
         self._call_lilypond_on_file_ending_with('music.ly')
         
     def interpret_preface(self):
-        r'''Interprets preface LaTeX source.
+        r'''Interprets ``preface.tex``.
 
         Returns none.
         '''
         self._interpret_file_ending_with('preface.tex')
 
     def interpret_score(self):
-        r'''Interprets score LaTeX source.
+        r'''Interprets ``score.tex``.
 
         Returns none.
         '''
         self._interpret_file_ending_with('score.tex')
 
     def make_file(self):
-        r'''Makes empty file in build directory.
+        r'''Makes empty file.
 
         Returns none.
         '''
@@ -716,56 +653,56 @@ class BuildFileWrangler(Wrangler):
             )
 
     def open_back_cover_pdf(self):
-        r'''Opens back cover PDF.
+        r'''Opens ``back-cover.pdf``.
 
         Returns none.
         '''
         self._open_file_ending_with('back-cover.pdf')
 
     def open_draft_pdf(self):
-        r'''Opens draft score PDF.
+        r'''Opens ``draft.pdf``.
 
         Return none.
         '''
         self._open_file_ending_with('draft.pdf')
 
     def open_front_cover_pdf(self):
-        r'''Opens front cover PDF.
+        r'''Opens ``front-cover.pdf``.
 
         Returns none.
         '''
         self._open_file_ending_with('front-cover.pdf')
 
     def open_music_pdf(self):
-        r'''Opens music PDF.
+        r'''Opens ``music.pdf``.
 
         Returns none.
         '''
         self._open_file_ending_with('music.pdf')
 
     def open_preface_pdf(self):
-        r'''Opens preface PDF.
+        r'''Opens ``preface.pdf``.
 
         Returns none.
         '''
         self._open_file_ending_with('preface.pdf')
 
     def open_score_pdf(self):
-        r'''Opens score PDF.
+        r'''Opens ``score.pdf``.
 
         Returns none.
         '''
         self._open_file_ending_with('score.pdf')
 
     def remove_files(self):
-        r'''Removes one or more build files.
+        r'''Removes one or more files.
 
         Returns none.
         '''
         self._remove_assets()
 
     def rename_file(self):
-        r'''Renames build file.
+        r'''Renames file.
 
         Returns none.
         '''
