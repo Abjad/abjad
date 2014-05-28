@@ -163,6 +163,38 @@ class BuildFileWrangler(Wrangler):
     def _enter_run(self):
         self._session._is_navigating_to_score_build_files = False
 
+    def _generate_latex_source(self, file_name):
+        manager = self._session.current_score_package_manager
+        assert manager is not None
+        width, height, unit = manager._parse_paper_dimensions()
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            file_name,
+            )
+        previously_existed = False
+        if os.path.exists(destination_path):
+            previously_existed = True
+            messages = []
+            message = 'overwrite {}?'
+            message = message.format(destination_path)
+            result = self._io_manager._confirm(message)
+            if self._session.is_backtracking or not result:
+                return
+        source_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            file_name,
+            )
+        shutil.copyfile(source_path, destination_path)
+        old = '{PAPER_SIZE}'
+        new = '{{{}{}, {}{}}}'
+        new = new.format(width, unit, height, unit)
+        self._replace_in_file(destination_path, old, new)
+        if previously_existed:
+            message = 'overwrote {}.'.format(destination_path)
+            self._io_manager._display(message)
+
     def _make_back_cover_menu_section(self, menu):
         commands = []
         commands.append(('back cover - edit latex source', 'bce'))
@@ -282,7 +314,7 @@ class BuildFileWrangler(Wrangler):
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
 
-    def _typeset_file_ending_with(self, string):
+    def _interpret_file_ending_with(self, string):
         r'''Typesets TeX file.
         Calls ``pdflatex`` on file TWICE.
         Some LaTeX packages like ``tikz`` require two passes.
@@ -404,42 +436,12 @@ class BuildFileWrangler(Wrangler):
         '''
         self._edit_file_ending_with('score.tex')
 
-    # TODO: factor out shared code with self.generate_front_cover_source()
     def generate_back_cover_source(self):
         r'''Generates back cover LaTeX source.
 
         Returns none.
         '''
-        manager = self._session.current_score_package_manager
-        assert manager is not None
-        width, height, unit = manager._parse_paper_dimensions()
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            'back-cover.tex',
-            )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'back-cover.tex',
-            )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
-        if previously_existed:
-            message = 'overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
+        self._generate_latex_source('back-cover.tex')
 
     # TODO: factor our code shared with self.generate_music_source()
     def generate_draft_source(self):
@@ -510,11 +512,6 @@ class BuildFileWrangler(Wrangler):
         new = '{{{}{}, {}{}}}'
         new = new.format(width, unit, height, unit)
         self._replace_in_file(destination_path, old, new)
-
-#        old = '{BUILD_DIRECTORY}'
-#        new = '{{{}}}'.format(build_directory)
-#        self._replace_in_file(destination_path, old, new)
-
         lines = []
         for pdf_name in pdf_names:
             line = r'\includepdf[pages=-]{{{}.pdf}}'
@@ -531,42 +528,12 @@ class BuildFileWrangler(Wrangler):
             message = 'Overwrote {}.'.format(destination_path)
             self._io_manager._display(message)
 
-    # TODO: factor out shared code with self.generate_back_cover_source()
     def generate_front_cover_source(self):
         r'''Generates front cover LaTeX source.
 
         Returns none.
         '''
-        manager = self._session.current_score_package_manager
-        assert manager is not None
-        width, height, unit = manager._parse_paper_dimensions()
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            'front-cover.tex',
-            )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'front-cover.tex',
-            )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
-        if previously_existed:
-            message = 'Overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
+        self._generate_latex_source('front-cover.tex')
         
     # TODO: factor our code shared with self.generate_draft_source()
     def generate_music_source(self):
@@ -688,101 +655,35 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        manager = self._session.current_score_package_manager
-        assert manager is not None
-        width, height, unit = manager._parse_paper_dimensions()
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            'preface.tex',
-            )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'preface.tex',
-            )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
-        if previously_existed:
-            message = 'overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
+        self._generate_latex_source('preface.tex')
 
-    # TODO: factor out code in common with other generate methods
     def generate_score_source(self):
         r'''Generates score LaTeX source.
 
         Returns none.
         '''
-        manager = self._session.current_score_package_manager
-        width, height, unit = manager._parse_paper_dimensions()
-        build_directory = self._get_current_directory()
-        assert width and height and unit
-        assert build_directory
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            'score.tex',
-            )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            'score.tex',
-            )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
-
-#        old = '{BUILD_DIRECTORY}'
-#        new = '{{{}}}'.format(build_directory)
-#        self._replace_in_file(destination_path, old, new)
-
-        if previously_existed:
-            message = 'overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
+        self._generate_latex_source('score.tex')
 
     def interpret_back_cover(self):
         r'''Interprets back cover LaTeX source.
 
         Returns none.
         '''
-        self._typeset_file_ending_with('back-cover.tex')
+        self._interpret_file_ending_with('back-cover.tex')
 
     def interpret_draft(self):
         r'''Interprets draft score LaTeX source.
 
         Returns none.
         '''
-        self._typeset_file_ending_with('draft.tex')
+        self._interpret_file_ending_with('draft.tex')
 
     def interpret_front_cover(self):
         r'''Interprets front cover LaTeX source.
 
         Returns none.
         '''
-        self._typeset_file_ending_with('front-cover.tex')
+        self._interpret_file_ending_with('front-cover.tex')
 
     def interpret_music(self):
         r'''Interprets music LilyPond source.
@@ -796,14 +697,14 @@ class BuildFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._typeset_file_ending_with('preface.tex')
+        self._interpret_file_ending_with('preface.tex')
 
     def interpret_score(self):
         r'''Interprets score LaTeX source.
 
         Returns none.
         '''
-        self._typeset_file_ending_with('score.tex')
+        self._interpret_file_ending_with('score.tex')
 
     def make_file(self):
         r'''Makes empty file in build directory.
