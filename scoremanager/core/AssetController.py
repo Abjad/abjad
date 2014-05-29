@@ -113,22 +113,36 @@ class AssetController(Controller):
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str), repr(result)
         if result == '<return>':
-            pass
-        elif result.startswith('!'):
-            statement = result[1:]
-            self.invoke_shell(statement=statement)
-        elif result in self._input_to_method:
-            if result in self._navigation_commands:
-                context = systemtools.NullContextManager()
-            else:
-                context = self._io_manager._make_interaction()
-            with context:
+            return
+        with self._io_manager._make_interaction():
+            if result.startswith('!'):
+                statement = result[1:]
+                self.invoke_shell(statement=statement)
+            elif result in self._input_to_method:
                 self._input_to_method[result]()
-        else:
-            self._handle_numeric_user_input(result)
+            else:
+                self._handle_numeric_user_input(result)
 
     def _handle_numeric_user_input(self, result):
         pass
+
+    @staticmethod
+    def _list_directory(path, public_entries_only=False):
+        result = []
+        if not path or not os.path.exists(path):
+            return result
+        if public_entries_only:
+            for directory_entry in sorted(os.listdir(path)):
+                if directory_entry[0].isalpha():
+                    if not directory_entry.endswith('.pyc'):
+                        if not directory_entry in ('test',):
+                            result.append(directory_entry)
+        else:
+            for directory_entry in sorted(os.listdir(path)):
+                if not directory_entry.startswith('.'):
+                    if not directory_entry.endswith('.pyc'):
+                        result.append(directory_entry)
+        return result
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []

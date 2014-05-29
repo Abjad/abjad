@@ -459,19 +459,10 @@ class Wrangler(AssetController):
     def _list(self, public_entries_only=False):
         result = []
         path = self._get_current_directory()
-        if not path or not os.path.exists(path):
-            return result
-        if public_entries_only:
-            for directory_entry in sorted(os.listdir(path)):
-                if directory_entry[0].isalpha():
-                    if not directory_entry.endswith('.pyc'):
-                        if not directory_entry in ('test',):
-                            result.append(directory_entry)
-        else:
-            for directory_entry in sorted(os.listdir(path)):
-                if not directory_entry.startswith('.'):
-                    if not directory_entry.endswith('.pyc'):
-                        result.append(directory_entry)
+        result = self._list_directory(
+            path, 
+            public_entries_only=public_entries_only,
+            )
         return result
 
     def _list_all_directories_with_metadata_pys(self):

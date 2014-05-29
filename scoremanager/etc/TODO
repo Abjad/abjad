@@ -141,21 +141,3 @@
     Add 'all materials - list versions directories'.
 
 28. Open audio files with audio player. Use (d) for examples to test.
-
-29. Get rid of extra blank that displays when (q) is called from getter.
-
-30. Change ...
-        => illustration.ly
-        => illustration.pdf
-        => output.py
-        => user_input.py
-        => __init__.py
-        => __metadata__.py
-    ... to ...
-        1. illustration.ly
-        2. illustration.pdf
-        3. output.py
-        4. user_input.py
-        5. __init__.py
-        6. __metadata__.py
-    ... instead.

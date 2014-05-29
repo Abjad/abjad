@@ -149,6 +149,8 @@ class ScoreManager(AssetController):
                         self._handle_main_menu_result(result)
                 self._update_session_variables()
                 if self._session.is_quitting:
+                    if not self._transcript[-1][-1] == '':
+                        self._io_manager._display('')
                     return
     
     def _update_session_variables(self):

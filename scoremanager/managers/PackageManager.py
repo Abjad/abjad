@@ -330,6 +330,16 @@ class PackageManager(AssetController):
             raise ValueError(self)
         return paths
 
+    def _handle_numeric_user_input(self, result):
+        if os.path.isfile(result):
+            self._io_manager.open_file(result)
+        elif os.path.isdir(result):
+            entries = self._list_directory(result)
+            self._io_manager._display(entries, capitalize=False)
+        else:
+            message = 'neither file nor directory: {}?'.format(result)
+            raise ValueError(message)
+
     def _initialize_file_name_getter(self):
         getter = self._io_manager._make_getter()
         asset_identifier = getattr(self, '_asset_identifier', None)
@@ -492,7 +502,7 @@ class PackageManager(AssetController):
             path = os.path.join(self._path, clean_directory_entry)
             menu_entry = (directory_entry, None, None, path)
             menu_entries.append(menu_entry)
-        menu.make_information_section(menu_entries=menu_entries)
+        menu.make_asset_section(menu_entries=menu_entries)
 
     def _make_main_menu(self):
         superclass = super(PackageManager, self)

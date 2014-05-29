@@ -411,29 +411,28 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        with self._make_interaction():
-            lines = []
-            prompt = True
-            if statement is None:
-                statement = self._handle_input(
-                    '$',
-                    include_chevron=False,
-                    include_newline=False,
-                    )
-            statement = statement.strip()
-            process = subprocess.Popen(
-                statement,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
+        lines = []
+        prompt = True
+        if statement is None:
+            statement = self._handle_input(
+                '$',
+                include_chevron=False,
+                include_newline=False,
                 )
-            try:
-                lines = [str(x) for x in process.stdout.readlines()]
-            except:
-                lines.append('expression not executable.')
-            lines = lines or []
-            lines = [_.strip() for _ in lines]
-            self._display(lines, capitalize=False)
+        statement = statement.strip()
+        process = subprocess.Popen(
+            statement,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        try:
+            lines = [str(x) for x in process.stdout.readlines()]
+        except:
+            lines.append('expression not executable.')
+        lines = lines or []
+        lines = [_.strip() for _ in lines]
+        self._display(lines, capitalize=False)
 
     def open_file(self, path):
         r'''Opens file `path`.
