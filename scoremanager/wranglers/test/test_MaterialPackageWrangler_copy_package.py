@@ -60,6 +60,8 @@ def test_MaterialPackageWrangler_copy_package_03():
     input_ = 'red~example~score m cp tempo~inventory ? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
-
-    string = 'Value must be string. Press <return> to preserve name.'
+        
+    string = 'Existing material package name> tempo_inventory'
+    assert string in contents
+    string = 'Value must be string. Press <return> to preserve existing name.'
     assert string in contents

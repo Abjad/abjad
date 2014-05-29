@@ -144,12 +144,16 @@ class Wrangler(AssetController):
                 return
             if not new_storehouse:
                 return
+        message = 'existing {} name> {}'
+        message = message.format(self._asset_identifier, old_name)
+        self._io_manager._display(message)
         prompt_string = 'new {} name'
         prompt_string = prompt_string.format(self._asset_identifier)
         getter = self._io_manager._make_getter()
         getter.append_string(prompt_string)
         help_template = getter.prompts[0].help_template
-        help_template = help_template + ' Press <return> to preserve name.'
+        string = 'Press <return> to preserve existing name.'
+        help_template = help_template + ' ' + string
         getter.prompts[0]._help_template = help_template
         name = getter._run()
         if self._session.is_backtracking:

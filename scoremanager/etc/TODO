@@ -154,3 +154,5 @@
     Add 'all materials - list versions directories'.
 
 30. Open audio files with audio player. Use (d) for examples to test.
+
+31. Get rid of extra blank that displays when (q) is called from getter.
