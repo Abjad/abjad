@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import math
 import os
 import textwrap
 from abjad.tools import mathtools
@@ -157,7 +158,18 @@ class Menu(Controller):
             if not self._session.hide_available_commands:
                 self._display_available_commands()
             else:
-                menu_lines = self._make_menu_lines()
+                menu_lines = []
+                menu_lines.extend(self._make_title_lines())
+                asset_section_lines = self._make_section_lines(
+                    asset_section=True)
+                asset_section_lines = self._make_bicolumnar(
+                    asset_section_lines, strip=False)
+                menu_lines.extend(asset_section_lines)
+                if menu_lines and not all(_ == ' ' for _ in menu_lines[-1]):
+                    menu_lines.append('')
+                nonasset_section_lines = self._make_section_lines(
+                    asset_section=False)
+                menu_lines.extend(nonasset_section_lines)
                 self._io_manager._display(
                     menu_lines,
                     capitalize=False,
@@ -195,7 +207,10 @@ class Menu(Controller):
             menu_lines.append('')
         if menu_lines:
             menu_lines.pop()
-        menu_lines = self._make_bicolumnar(menu_lines)
+        menu_lines = self._make_bicolumnar(
+            menu_lines,
+            break_only_at_blank_lines=True,
+            )
         title = self._session.menu_header
         title = title + ' - available commands'
         title = stringtools.capitalize_start(title)
@@ -207,7 +222,6 @@ class Menu(Controller):
             capitalize=False,
             is_menu=True,
             )
-        #self._session._hide_available_commands = True
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
@@ -262,26 +276,44 @@ class Menu(Controller):
             return False
         return True
 
-    def _make_bicolumnar(self, lines):
-        #terminal_height = 50
+    def _make_bicolumnar(
+        self, 
+        lines, 
+        break_only_at_blank_lines=False,
+        strip=True,
+        ):
         terminal_height = 40
         if len(lines) < terminal_height:
             return lines
-        lines = [_.strip() for _ in lines]
+        if strip:
+            lines = [_.strip() for _ in lines]
         all_packages_lines = [_ for _ in lines if _.startswith('all')]
         lines = [_ for _ in lines if not _.startswith('all')]
         midpoint = int(len(lines)/2)
-        while lines[midpoint] != '':
-            midpoint += 1
-        assert lines[midpoint] == ''
+        if break_only_at_blank_lines:
+            while lines[midpoint] != '':
+                midpoint += 1
+            assert lines[midpoint] == ''
         left_lines = lines[:midpoint]
-        right_lines = lines[midpoint+1:]
-        assert len(left_lines) + len(right_lines) == len(lines) - 1
+        if break_only_at_blank_lines:
+            right_lines = lines[midpoint+1:]
+            assert len(left_lines) + len(right_lines) == len(lines) - 1
+        else:
+            right_lines = lines[midpoint:]
         left_count, right_count = len(left_lines), len(right_lines)
-        assert right_count <= left_count, repr((left_count, right_count))
-        left_width = max(len(_.strip()) for _ in left_lines)
-        left_lines = [_.ljust(left_width) for _ in left_lines]
-        left_margin_width, gutter_width = 4, 4 
+        #assert right_count <= left_count, repr((left_count, right_count))
+        if strip:
+            left_width = max(len(_.strip()) for _ in left_lines)
+            right_width = max(len(_.strip()) for _ in right_lines)
+        else:
+            left_width = max(len(_) for _ in left_lines)
+            right_width = max(len(_) for _ in right_lines)
+        left_lines = [self._ljust(_, left_width) for _ in left_lines]
+        right_lines = [self._ljust(_, right_width) for _ in right_lines]
+        if strip:
+            left_margin_width, gutter_width = 4, 4 
+        else:
+            left_margin_width, gutter_width = 0, 4 
         left_margin = left_margin_width * ' '
         gutter = gutter_width * ' '
         conjoined_lines = []
@@ -303,6 +335,17 @@ class Menu(Controller):
             conjoined_line = left_margin + line
             conjoined_lines.append(conjoined_line)
         return conjoined_lines
+
+    @staticmethod
+    def _ljust(string, width):
+        start_width = len(stringtools.strip_diacritics(string))
+        if start_width < width:
+            needed = width - start_width
+            suffix = needed * ' '
+            result = string + suffix
+        else:
+            result = string
+        return result
 
     def _make_menu_lines(self):
         result = []
@@ -368,26 +411,22 @@ class Menu(Controller):
             self.menu_sections.insert(0, noncommand_section)
         return section
 
-    def _make_section_lines(self):
+    def _make_section_lines(self, asset_section=True):
         result = []
         section_names = []
         for section in self.menu_sections:
-            if not len(section):
-                message = '{!r} contains {!r}.'
-                message = message.format(self, section)
-                raise Exception(message)
-            if not section.name:
-                message = '{!r} contains {!r}.'
-                message = message.format(self, section)
-                raise Exception(message)
             if section.name in section_names:
-                message = '{!r} with duplicate section: {!r}.'
+                message = '{!r} contains duplicate {!r}.'
                 message = message.format(self, section)
                 raise Exception(message)
             else:
                 section_names.append(section.name)
             hide = self._session.hide_available_commands
             if hide and section.is_hidden:
+                continue
+            if asset_section and not section.is_asset_section:
+                continue
+            if not asset_section and section.is_asset_section:
                 continue
             section_menu_lines = section._make_menu_lines()
             result.extend(section_menu_lines)
