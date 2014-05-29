@@ -44,7 +44,7 @@ class Session(abctools.AbjadObject):
         '_controllers_visited',
         '_display',
         '_display_pitch_ranges_with_numbered_pitches',
-        '_hide_hidden_commands',
+        '_hide_available_commands',
         '_initial_input',
         '_io_manager',
         '_is_autoadding',
@@ -84,7 +84,7 @@ class Session(abctools.AbjadObject):
         'command_history',
         'controller_stack',
         'current_score_package_manager',
-        'hide_hidden_commands',
+        'hide_available_commands',
         'is_autoadding',
         'is_in_confirmation_environment',
         'is_in_editor',
@@ -111,7 +111,7 @@ class Session(abctools.AbjadObject):
         self._controllers_visited = []
         self._display = True
         self._display_pitch_ranges_with_numbered_pitches = False
-        self._hide_hidden_commands = True
+        self._hide_available_commands = True
         self._initial_input = input_
         self._io_manager = iotools.IOManager(session=self)
         self._is_repository_test = False
@@ -540,19 +540,19 @@ class Session(abctools.AbjadObject):
         return result
 
     @property
-    def hide_hidden_commands(self):
+    def hide_available_commands(self):
         r'''Is true when hidden commands are hidden. Otherwise false.
 
         ..  container:: example
 
             ::
 
-                >>> session.hide_hidden_commands
+                >>> session.hide_available_commands
                 True
 
         Returns boolean.
         '''
-        return self._hide_hidden_commands
+        return self._hide_available_commands
 
     @property
     def initial_input(self):

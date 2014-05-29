@@ -99,12 +99,12 @@ class AssetController(Controller):
 
     def _go_to_next_package(self):
         self._session._is_navigating_to_next_asset = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
         self._set_is_navigating_to_sibling_asset()
 
     def _go_to_previous_package(self):
         self._session._is_navigating_to_previous_asset = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
         self._set_is_navigating_to_sibling_asset()
 
     def _handle_main_menu_result(self, result):
@@ -279,8 +279,8 @@ class AssetController(Controller):
         '''
         if (not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
-            hide = self._session.hide_hidden_commands
-            self._session._hide_hidden_commands = not hide
+            hide = self._session.hide_available_commands
+            self._session._hide_available_commands = not hide
 
     def display_session_variables(self):
         r'''Displays session variables.
@@ -374,7 +374,7 @@ class AssetController(Controller):
         '''
         self._session._is_navigating_to_next_score = True
         self._session._is_backtracking_to_score_manager = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
 
     def go_to_previous_score(self):
         r'''Goes to previous score.
@@ -383,7 +383,7 @@ class AssetController(Controller):
         '''
         self._session._is_navigating_to_previous_score = True
         self._session._is_backtracking_to_score_manager = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
 
     def go_to_segments(self):
         r'''Goes to segment packages.

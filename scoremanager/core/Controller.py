@@ -164,7 +164,7 @@ class Controller(ScoreManagerObject):
         Returns none.
         '''
         self._session._is_backtracking_locally = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
 
     def go_home(self):
         r'''Goes home.
@@ -172,7 +172,7 @@ class Controller(ScoreManagerObject):
         Returns none.
         '''
         self._session._is_backtracking_to_score_manager = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
 
     def go_to_current_score(self):
         r'''Goes to current score.
@@ -181,7 +181,7 @@ class Controller(ScoreManagerObject):
         '''
         if self._session.is_in_score:
             self._session._is_backtracking_to_score = True
-            self._session._hide_hidden_commands = True
+            self._session._hide_available_commands = True
 
     def go_to_library(self):
         r'''Goes to library.
@@ -189,7 +189,7 @@ class Controller(ScoreManagerObject):
         Returns none.
         '''
         self._session._is_backtracking_to_library = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True
 
     def quit(self):
         r'''Quits.
@@ -197,4 +197,4 @@ class Controller(ScoreManagerObject):
         Returns none.
         '''
         self._session._is_quitting = True
-        self._session._hide_hidden_commands = True
+        self._session._hide_available_commands = True

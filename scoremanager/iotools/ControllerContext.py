@@ -15,7 +15,6 @@ class ControllerContext(ContextManager):
         '_is_in_confirmation_environment',
         '_on_enter_callbacks',
         '_on_exit_callbacks',
-        '_reset_hide_hidden_commands',
         '_session',
         )
 
@@ -29,7 +28,6 @@ class ControllerContext(ContextManager):
         is_in_confirmation_environment=False,
         on_enter_callbacks=None,
         on_exit_callbacks=None,
-        reset_hide_hidden_commands=True,
         ):
         self._clear_terminal = clear_terminal
         self._consume_local_backtrack = consume_local_backtrack
@@ -37,7 +35,6 @@ class ControllerContext(ContextManager):
         self._is_in_confirmation_environment = is_in_confirmation_environment
         self._on_enter_callbacks = on_enter_callbacks or ()
         self._on_exit_callbacks = on_exit_callbacks or ()
-        self._reset_hide_hidden_commands = reset_hide_hidden_commands
         self._session = self._controller._session
 
     ### SPECIAL METHODS ###
@@ -52,8 +49,6 @@ class ControllerContext(ContextManager):
             self._session._controllers_visited.append(self._controller)
         self._session._is_in_confirmation_environment = \
             self._is_in_confirmation_environment
-        if self._reset_hide_hidden_commands:
-            self._session._hide_hidden_commands = True
         if self._clear_terminal:
             self._session._is_pending_output_removal = True
         for on_enter_callback in self._on_enter_callbacks:
@@ -66,8 +61,6 @@ class ControllerContext(ContextManager):
         '''
         self._session._controller_stack.pop()
         self._session._is_in_confirmation_environment = False
-        if self._reset_hide_hidden_commands:
-            self._session._hide_hidden_commands = True
         if self._consume_local_backtrack:
             self._session._is_backtracking_locally = False
         for on_exit_callback in self._on_exit_callbacks:

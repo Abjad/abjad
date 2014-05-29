@@ -154,7 +154,7 @@ class Menu(Controller):
         if self._session.is_pending_output_removal:
             self._io_manager.clear_terminal()
             self._session._is_pending_output_removal = False
-            if not self._session.hide_hidden_commands:
+            if not self._session.hide_available_commands:
                 self._display_available_commands()
             else:
                 menu_lines = self._make_menu_lines()
@@ -207,7 +207,7 @@ class Menu(Controller):
             capitalize=False,
             is_menu=True,
             )
-        self._session._hide_hidden_commands = True
+        #self._session._hide_available_commands = True
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
@@ -263,7 +263,8 @@ class Menu(Controller):
         return True
 
     def _make_bicolumnar(self, lines):
-        terminal_height = 50
+        #terminal_height = 50
+        terminal_height = 40
         if len(lines) < terminal_height:
             return lines
         lines = [_.strip() for _ in lines]
@@ -385,7 +386,7 @@ class Menu(Controller):
                 raise Exception(message)
             else:
                 section_names.append(section.name)
-            hide = self._session.hide_hidden_commands
+            hide = self._session.hide_available_commands
             if hide and section.is_hidden:
                 continue
             section_menu_lines = section._make_menu_lines()
@@ -422,10 +423,7 @@ class Menu(Controller):
         from scoremanager import iotools
         if input_:
             self._session._pending_input = input_
-        controller = iotools.ControllerContext(
-            controller=self,
-            reset_hide_hidden_commands=False,
-            )
+        controller = iotools.ControllerContext(controller=self)
         with controller:
             while True:
                 result = self._predetermined_input
