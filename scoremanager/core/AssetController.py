@@ -127,41 +127,18 @@ class AssetController(Controller):
     def _handle_numeric_user_input(self, result):
         pass
 
-    def _make_go_edits_menu_section(self, menu):
-        commands = []
-        commands.append(('score stylesheet - edit', 'sse'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='score stylesheet',
-            )
-
-    def _make_go_menu_section(self, menu):
+    def _make_go_menu_section(self, menu, packages=False):
         commands = []
         commands.append(('go - back', 'b'))
         commands.append(('go - home', 'h'))
         commands.append(('go - library', '**'))
         commands.append(('go - quit', 'q'))
         commands.append(('go - score', 's'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='go',
-            )
-
-    def _make_go_scores_menu_section(self, menu):
-        commands = []
+        if packages:
+            commands.append(('go - next package', '>'))
+            commands.append(('go - previous package', '<'))
         commands.append(('go - next score', '>>'))
         commands.append(('go - previous score', '<<'))
-        menu.make_command_section(
-            is_alphabetized=False,
-            is_hidden=True,
-            commands=commands,
-            name='go - scores',
-            )
-
-    def _make_go_wranglers_menu_section(self, menu):
-        commands = []
         commands.append(('go - build', 'u'))
         commands.append(('go - distribution', 'd'))
         commands.append(('go - makers', 'k'))
@@ -171,7 +148,7 @@ class AssetController(Controller):
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='go - wranglers',
+            name='go',
             )
 
     def _make_init_py_menu_section(self, menu):
@@ -189,10 +166,8 @@ class AssetController(Controller):
         name = self._spaced_class_name
         menu = self._io_manager._make_menu(name=name)
         if self._session.is_in_score:
-            self._make_go_edits_menu_section(menu)
+            self._make_score_stylesheet_menu_section(menu)
         self._make_go_menu_section(menu)
-        self._make_go_wranglers_menu_section(menu)
-        self._make_go_scores_menu_section(menu)
         self._make_repository_menu_section(menu)
         self._make_system_menu_section(menu)
         return menu
@@ -211,20 +186,19 @@ class AssetController(Controller):
             name='repository',
             )
 
-    def _make_sibling_asset_tour_menu_section(self, menu):
-        section = menu['go - scores']
-        menu.menu_sections.remove(section)
+    def _make_score_stylesheet_menu_section(self, menu):
         commands = []
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - next asset', '>'))
-        commands.append(('go - previous score', '<<'))
-        commands.append(('go - previous asset', '<'))
+        commands.append(('score stylesheet - edit', 'sse'))
         menu.make_command_section(
-            is_alphabetized=False,
             is_hidden=True,
             commands=commands,
-            name='go - scores',
+            name='score stylesheet',
             )
+
+    def _make_sibling_asset_tour_menu_section(self, menu):
+        section = menu['go']
+        menu.menu_sections.remove(section)
+        self._make_go_menu_section(menu, packages=True)
 
     def _make_system_menu_section(self, menu):
         commands = []

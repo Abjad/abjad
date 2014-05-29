@@ -150,9 +150,7 @@
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-29. Glue 'go' menu sections together.
-
-30. Add 'all segments - list versions directories'.
+29. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-31. Open audio files with audio player. Use (d) for examples to test.
+30. Open audio files with audio player. Use (d) for examples to test.
