@@ -1044,9 +1044,8 @@ class PackageManager(AssetController):
             if self._session.is_repository_test:
                 return
             line = self._get_score_package_directory_name()
-            if display:
-                line = line + ' ...'
-                self._io_manager._display(line, capitalize=False)
+            line = line + ' ...'
+            self._io_manager._display(line, capitalize=False)
             command = self._repository_update_command
             self._io_manager.run_command(command)
 

@@ -56,7 +56,8 @@ class Autoeditor(Controller):
 
     @property
     def _attribute_manifest(self):
-        return self.target._attribute_manifest
+        #return self.target._attribute_manifest
+        return getattr(self.target, '_attribute_manifest', [])
 
     ### PRIVATE METHODS ###
 

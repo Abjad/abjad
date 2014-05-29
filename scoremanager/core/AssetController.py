@@ -85,6 +85,9 @@ class AssetController(Controller):
                     messages.append('{}{}'.format(input_label, path))
         else:
             for inputs_, outputs_ in zip(inputs, outputs):
+                if isinstance(inputs_, str):
+                    inputs_ = [inputs_]
+                assert isinstance(inputs_, (tuple, list)), repr(inputs_)
                 for path_list in inputs_:
                     if isinstance(path_list, str):
                         path_list = [path_list]

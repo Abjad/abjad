@@ -88,13 +88,8 @@ class IOManager(IOManager):
                 print(line)
 
     def _display_not_yet_implemented(self):
-        r'''Prints not-yet-implemented message.
-
-        Returns none.
-        '''
-        with self._make_interaction():
-            message = 'not yet implemented.'
-            self._display(message)
+        message = 'not yet implemented.'
+        self._display(message)
 
     @staticmethod
     def _get_greatest_version_number(version_directory):
@@ -345,6 +340,9 @@ class IOManager(IOManager):
         Returns none.
         '''
         if not os.path.isfile(path):
+            message = 'file not found: {}.'
+            message = message.format(path)
+            self._display(message)
             return
         if line_number is None:
             command = 'vim + {}'.format(path)
@@ -369,6 +367,9 @@ class IOManager(IOManager):
         try:
             exec(file_contents_string)
         except:
+            message = 'Exception raised in {}.'
+            message = message.format(path)
+            self._display(message)
             traceback.print_exc()
             return 'corrupt'
         result = []
@@ -385,22 +386,25 @@ class IOManager(IOManager):
 
         Returns integer success code.
         '''
-        with self._make_interaction():
-            _, extension = os.path.splitext(path)
-            if extension == '.py':
-                command = 'python {}'.format(path)
-            elif extension == '.ly':
-                command = 'lilypond {}'.format(path)
-            else:
-                message = 'can not interpret {}.'.format(path)
-                raise Exception(message)
-            directory = os.path.dirname(path)
-            directory = systemtools.TemporaryDirectoryChange(directory)
-            with directory:
-                result = self.spawn_subprocess(command)
-            message = 'interpreted {}.'.format(path)
+        if not os.path.exists(path):
+            message = 'file not found: {}'.format(path)
             self._display(message)
-            return result
+            return False
+        _, extension = os.path.splitext(path)
+        if extension == '.py':
+            command = 'python {}'.format(path)
+        elif extension == '.ly':
+            command = 'lilypond {}'.format(path)
+        else:
+            message = 'can not interpret {}.'.format(path)
+            raise Exception(message)
+        directory = os.path.dirname(path)
+        directory = systemtools.TemporaryDirectoryChange(directory)
+        with directory:
+            result = self.spawn_subprocess(command)
+        message = 'interpreted {}.'.format(path)
+        self._display(message)
+        return result
 
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.
@@ -478,21 +482,20 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        with self._make_interaction():
-            if self.find_executable('lily'):
-                executable = 'lily'
-            elif self.find_executable('lilypond'):
-                executable = 'lilypond'
-            else:
-                message = 'cannot find LilyPond executable.'
-                raise ValueError(message)
-            command = '{} {}'.format(
-                executable,
-                path,
-                )
-            input_directory = os.path.dirname(path)
-            with systemtools.TemporaryDirectoryChange(input_directory):
-                self.spawn_subprocess(command)
+        if self.find_executable('lily'):
+            executable = 'lily'
+        elif self.find_executable('lilypond'):
+            executable = 'lilypond'
+        else:
+            message = 'cannot find LilyPond executable.'
+            raise ValueError(message)
+        command = '{} {}'.format(
+            executable,
+            path,
+            )
+        input_directory = os.path.dirname(path)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            self.spawn_subprocess(command)
 
     def write(self, path, string):
         r'''Writes `string` to `path`.

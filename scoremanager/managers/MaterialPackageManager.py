@@ -583,8 +583,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         result = self._io_manager.interpret_file(self._definition_py_path)
-        message = 'no exceptions raised; use (oo) to write output py.'
-        self._io_manager._display(message)
+        if result:
+            message = 'no exceptions raised; use (oo) to write output py.'
+            self._io_manager._display(message)
 
     def interpret_illustrate_py(self):
         r'''Interprets ``__illustrate.py__``.
