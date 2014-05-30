@@ -249,21 +249,21 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if not os.path.isfile(self._illustration_ly_file_path):
             return
         commands = []
-        commands.append(('illustration ly - interpret', 'ili'))
-        commands.append(('illustration ly - open', 'ilo'))
+        commands.append(('illustration.ly - interpret', 'ili'))
+        commands.append(('illustration.ly - open', 'ilo'))
         menu.make_command_section(
             commands=commands,
-            name='illustration ly',
+            name='illustration.ly',
             )
 
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustration_pdf_file_path):
-            commands.append(('illustration pdf - open', 'ipo'))
+            commands.append(('illustration.pdf - open', 'ipo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
-                name='illustration pdf',
+                name='illustration.pdf',
                 )
 
     def _make_main_menu(self):

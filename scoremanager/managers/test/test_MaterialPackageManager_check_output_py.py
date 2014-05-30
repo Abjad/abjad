@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 def test_MaterialPackageManager_check_output_py_01():
 
-    output_py = os.path.join(
+    output_py_path = os.path.join(
         score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
