@@ -69,6 +69,9 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             'ili*': self.interpret_every_illustration_ly,
             #
             'ipo*': self.open_every_illustration_pdf,
+            #
+            'oc*': self.check_every_output_py,
+            'oo*': self.open_every_output_py,
             })
         return result
 
@@ -158,6 +161,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('all packages - illustration.ly - interpret', 'ili*'))
         commands.append(('all packages - illustration.pdf - open', 'ipo*'))
+        commands.append(('all packages - output.py - check', 'oc*'))
+        commands.append(('all packages - output.py - open', 'oo*'))
         commands.append(('all packages - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
@@ -188,6 +193,25 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._session._is_navigating_to_score_materials = True
 
     ### PUBLIC METHODS ###
+
+    def check_every_output_py(self):
+        r'''Checks ``output.py`` in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.check_output_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='check')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        for manager in managers:
+            manager.check_output_py()
 
     def copy_package(self):
         r'''Copies package.
@@ -231,6 +255,13 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('illustration.pdf')
+
+    def open_every_output_py(self):
+        r'''Opens ``output.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('output.py')
 
     def remove_packages(self):
         r'''Removes one or more packages.

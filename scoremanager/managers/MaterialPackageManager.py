@@ -113,6 +113,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ae': self.autoedit,
             'i': self.illustrate_material,
             #
+            'oc': self.check_output_py,
             'oo': self.open_output_py,
             'ow': self.write_output_py,
             #
@@ -342,11 +343,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return lines
 
     def _make_output_py_menu_section(self, menu):
-        if not os.path.isfile(self._init_py_file_path):
-            return
         commands = []
         commands.append(('output.py - write', 'ow'))
         if os.path.isfile(self._output_py_path):
+            commands.append(('output.py - check', 'oc'))
             commands.append(('output.py - open', 'oo'))
         if commands:
             menu.make_command_section(
@@ -365,16 +365,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_package_configuration_menu_section(self, menu):
         commands = []
-        use_autoeditor = self._get_metadatum('use_autoeditor')
-        if use_autoeditor:
+        if self._get_metadatum('use_autoeditor'):
             commands.append(('package - autoeditor - unset', 'aeu'))
         else:
             commands.append(('package - autoeditor - set', 'aes'))
         if commands:
-            path = self._definition_py_path
-            has_definition_py = os.path.isfile(path)
             menu.make_command_section(
-                is_hidden=has_definition_py,
+                is_hidden=True,
                 commands=commands,
                 name='package configuration',
                 )
@@ -539,6 +536,24 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             body_lines=body_lines,
             output_material=autoeditor.target,
             )
+
+    def check_output_py(self, dry_run=False):
+        r'''Checks ``output.py``.
+
+        Display errors generated during interpretation.
+        '''
+        inputs, outputs = [], []
+        if dry_run:
+            inputs.append(self._output_py_path)
+            return inputs, outputs
+        stderr_lines = self._io_manager.check_file(self._output_py_path)
+        if stderr_lines:
+            messages = [self._output_py_path + ' FAILED:']
+            messages.extend('    ' + _ for _ in stderr_lines)
+            self._io_manager._display(messages)
+        else:
+            message = '{} OK.'.format(self._output_py_path)
+            self._io_manager._display(message)
 
     def edit_and_interpret_illustrate_py(self):
         r'''Edits and then interprets ``__illustrate.py__``.

@@ -429,8 +429,8 @@ class Wrangler(AssetController):
 
     def _interpret_in_every_package(self, file_name):
         paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, file_name)
+        for path in self._list_visible_asset_paths():
+            path = os.path.join(path, file_name)
             if os.path.isfile(path):
                 paths.append(path)
         _, extension = os.path.splitext(file_name)
@@ -741,8 +741,8 @@ class Wrangler(AssetController):
 
     def _open_in_every_package(self, file_name, verb='open'):
         paths = []
-        for segment_path in self._list_visible_asset_paths():
-            path = os.path.join(segment_path, file_name)
+        for path in self._list_visible_asset_paths():
+            path = os.path.join(path, file_name)
             if os.path.isfile(path):
                 paths.append(path)
         if not paths:
