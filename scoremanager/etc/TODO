@@ -4,7 +4,6 @@
         PackageManager._repository_add_command
         PackageManager._repository_status_command
         PackageManager._get_added_asset_paths()
-        PackageManager._get_unadded_asset_paths()
 
 3.  Add 'output py - check (omc)' command.
     The command will simply call Python on output.py and print
