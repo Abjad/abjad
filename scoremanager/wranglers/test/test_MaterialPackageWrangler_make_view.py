@@ -54,7 +54,7 @@ def test_MaterialPackageWrangler_make_view_03():
         assert score_manager._transcript.titles == titles
 
 
-def test_MaterialPackageWrangler_make_view_05():
+def test_MaterialPackageWrangler_make_view_04():
     r'''Makes view in library. Removes view.
 
     Makes sure no extra new lines appear before or after 

@@ -6,7 +6,6 @@
         PackageManager._get_added_asset_paths()
         PackageManager._get_unadded_asset_paths()
         PackageManager._get_repository_root_directory()
-        PackageManager._is_up_to_date()
 
 3.  Add 'output py - check (omc)' command.
     The command will simply call Python on output.py and print
