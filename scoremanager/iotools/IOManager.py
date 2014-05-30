@@ -330,6 +330,17 @@ class IOManager(IOManager):
 
     ### PUBLIC METHODS ###
 
+    def check_file(self, path):
+        r'''Checks file `path`.
+
+        Silently interprets file `path` with Python or LilyPond.
+
+        Returns stderr lines; nonempty list means interpretation raised errors.
+        '''
+        with self._make_silent():
+            stdout_lines, stderr_lines = self.interpret_file(path)
+        return stderr_lines
+
     def edit(self, path, line_number=None):
         r'''Edits file `path`.
 
@@ -384,7 +395,7 @@ class IOManager(IOManager):
     def interpret_file(self, path):
         r'''Invokes Python or LilyPond on `path`.
 
-        Returns integer success code.
+        Displays any in-file messaging during interpretation.
         '''
         if not os.path.exists(path):
             message = 'file not found: {}'.format(path)
@@ -401,10 +412,30 @@ class IOManager(IOManager):
         directory = os.path.dirname(path)
         directory = systemtools.TemporaryDirectoryChange(directory)
         with directory:
-            result = self.spawn_subprocess(command)
+            #result = self.spawn_subprocess(command)
+            #process = self.make_subprocess(command)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                )
+        stdout_lines = []
+        for stdout_line in process.stdout.readlines():
+            stdout_line = str(stdout_line)
+            stdout_line = stdout_line.strip()
+            stdout_lines.append(stdout_line)
+        self._display(stdout_lines, capitalize=False)
+        stderr_lines = []
+        for stderr_line in process.stderr.readlines():
+            stderr_line = str(stderr_line)
+            stderr_line = stderr_line.strip()
+            stderr_lines.append(stderr_line)
+        self._display(stderr_lines, capitalize=False)
         message = 'interpreted {}.'.format(path)
         self._display(message)
-        return result
+        #return result
+        return stdout_lines, stderr_lines
 
     def invoke_shell(self, statement=None):
         r'''Invokes shell on `statement`.
