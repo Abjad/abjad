@@ -1,11 +1,6 @@
 1.  Implement an 'all whatever - edit' command.
 
-2.  Write py.test tests for the following properties and methods:
-        PackageManager._repository_add_command
-        PackageManager._repository_status_command
-        PackageManager._get_added_asset_paths()
-
-3.  Add 'output py - check (omc)' command.
+2.  Add 'output py - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -15,19 +10,19 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-4.  Implement a 'views.py - rewrite' (vmrw) command.
+3.  Implement a 'views.py - rewrite' (vmrw) command.
 
-5.  Implement PackageManager.check_contents().
+4.  Implement PackageManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-6.  Eventually implement a Score PackageManager start-up behavior that will
+5.  Eventually implement a Score PackageManager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-7.  Implement an Autoeditor method to allow an none-allowing attribute to be 
+6.  Implement an Autoeditor method to allow an none-allowing attribute to be 
     (re)set to none.
     Example: change ...
         1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
@@ -55,7 +50,7 @@
         7: tie specifier (ts):
     ... using the editor.
 
-8.  Bug:
+7.  Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -63,63 +58,63 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-9.  Make (rrv) work for Subversion-managed directories.
+8.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-10. Make sure new-style.ily doesn't alias (new).
+9.  Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-11. When in (new) score, change 'Enter package name>' to
+10. When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-12. Block (new) score when view is hiding user scores.
+11. Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-13. Allow more flexible input for score (new).
+12. Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-14. Implement stringtools.delimit_words(delimitor=' ').
+13. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-15. Make (mdo) work for wranglers.
+14. Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-16. Make menu title breadcrumbs correctly reflect changes in view
+15. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-17. Refuse to apply view when invalid regular expression is found.
+16. Refuse to apply view when invalid regular expression is found.
 
-18. Implement 'views - autoedit' (vae) command.
+17. Implement 'views - autoedit' (vae) command.
 
-19. Compile regular expressions at view entry add time.
+18. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-20. Allow arbitrary metadata in view patterns.
+19. Allow arbitrary metadata in view patterns.
 
-21. Change ...
+20. Change ...
         Score Manager - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Score Manager - stylesheets - select view(s) to remove:
     ... instead.
 
-22. Allow 5-99 (or any other large number) to work when removing items.
+21. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-23. Fix menu title that results from the following:
+22. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-24. There is no such thing as 'My build files'.
+23. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-25. Improve (k > cp) user experience. Change ...
+24. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -128,13 +123,13 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-26. Make (rrv) work in Git directories.
+25. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-27. Add 'all segments - list versions directories'.
+26. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-28. Open audio files with audio player. Use (d) for examples to test.
+27. Open audio files with audio player. Use (d) for examples to test.
