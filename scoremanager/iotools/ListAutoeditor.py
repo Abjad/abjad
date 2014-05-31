@@ -172,12 +172,13 @@ class ListAutoeditor(Autoeditor):
 
     def _make_numbered_entries_menu_section(self, menu):
         menu_entries = self._get_target_summary_lines()
-        if menu_entries:
-            section = menu.make_numbered_section(
-                menu_entries=menu_entries,
-                name='numbered entries',
-                )
-            self._numbered_section = section
+        if not menu_entries:
+            return
+        section = menu.make_numbered_section(
+            menu_entries=menu_entries,
+            name='numbered entries',
+            )
+        self._numbered_section = section
 
     ### PUBLIC PROPERTIES ###
 
@@ -261,22 +262,19 @@ class ListAutoeditor(Autoeditor):
             items = [result]
         self._items.extend(items)
 
-    def edit_item(self, item_number):
-        r'''Edits item in list.
+    def edit_item(self, number):
+        r'''Edits item `number` in list.
 
         Returns none.
         '''
         from scoremanager import iotools
-        item = self._get_item_from_item_number(item_number)
+        item = self._get_item_from_item_number(number)
         if item is None:
             return
         item_editor_class = self._item_editor_class or iotools.Autoeditor
-        item_editor = item_editor_class(
-            session=self._session,
-            target=item,
-            )
+        item_editor = item_editor_class(session=self._session, target=item)
         item_editor._run()
-        item_index = int(item_number) - 1
+        item_index = int(number) - 1
         self._items[item_index] = item_editor.target
 
     def move_item(self):

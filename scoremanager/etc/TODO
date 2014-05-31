@@ -10,35 +10,7 @@
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-4.  Implement an Autoeditor method to allow an none-allowing attribute to be 
-    (re)set to none.
-    Example: change ...
-        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
-        2: split divisions by counts (sdc):
-        3: extra counts per division (xcd):
-        4: beam specifier (bs):
-        5: burnish specifier (rs):
-        6: duration spelling specifier (dss):
-        7: tie specifier (ts):
-    ... to ...
-        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
-        2: split divisions by counts (sdc):
-        3: extra counts per division (xcd):
-        4: beam specifier (bs): BeamSpecifier(beam_each_division=True, beam_divisions_together=False)
-        5: burnish specifier (rs):
-        6: duration spelling specifier (dss):
-        7: tie specifier (ts):
-    ... and then back to ...
-        1: talea (t): Talea(counts=(1, 2, 3, 4), denominator=16)
-        2: split divisions by counts (sdc):
-        3: extra counts per division (xcd):
-        4: beam specifier (bs):
-        5: burnish specifier (rs):
-        6: duration spelling specifier (dss):
-        7: tie specifier (ts):
-    ... using the editor.
-
-5.  Bug:
+4.  Bug:
     (edit talea rhythm-maker > xcd > 2)
     function = lambda x: all(predicates.is_integer(y) for y in x)
     TypeError: 'int' object is not iterable
@@ -46,63 +18,63 @@
     then the getter receives only a single integer the getter 
     should not explode.
 
-6.  Make (rrv) work for Subversion-managed directories.
+5.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-7.  Make sure new-style.ily doesn't alias (new).
+6.  Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-8.  When in (new) score, change 'Enter package name>' to
+7.  When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-9.  Block (new) score when view is hiding user scores.
+8.  Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-10. Allow more flexible input for score (new).
+9.  Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-11. Implement stringtools.delimit_words(delimitor=' ').
+10. Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-12. Make (mdo) work for wranglers.
+11. Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-13. Make menu title breadcrumbs correctly reflect changes in view
+12. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-14. Refuse to apply view when invalid regular expression is found.
+13. Refuse to apply view when invalid regular expression is found.
 
-15. Implement 'views - autoedit' (vae) command.
+14. Implement 'views - autoedit' (vae) command.
 
-16. Compile regular expressions at view entry add time.
+15. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-17. Allow arbitrary metadata in view patterns.
+16. Allow arbitrary metadata in view patterns.
 
-18. Change ...
+17. Change ...
         Score Manager - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Score Manager - stylesheets - select view(s) to remove:
     ... instead.
 
-19. Allow 5-99 (or any other large number) to work when removing items.
+18. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-20. Fix menu title that results from the following:
+19. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-21. There is no such thing as 'My build files'.
+20. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-22. Improve (k > cp) user experience. Change ...
+21. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -111,13 +83,15 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-23. Make (rrv) work in Git directories.
+22. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-24. Add 'all segments - list versions directories'.
+23. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-25. Open audio files with audio player. Use (d) for examples to test.
+24. Open audio files with audio player. Use (d) for examples to test.
+
+25. Wrap metadata tests with FilesystemState context.

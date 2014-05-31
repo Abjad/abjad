@@ -60,11 +60,11 @@ class IOManager(IOManager):
     def _confirm(self, prompt_string='ok?', include_chevron=False):
         if not self._session.confirm:
             return True
-        getter = self._make_getter(
+        getter = self._make_getter(include_newlines=False)
+        getter.append_yes_no_string(
+            prompt_string,
             include_chevron=include_chevron,
-            include_newlines=False,
             )
-        getter.append_yes_no_string(prompt_string)
         result = getter._run()
         if isinstance(result, str):
             if 'yes'.startswith(result.lower()):

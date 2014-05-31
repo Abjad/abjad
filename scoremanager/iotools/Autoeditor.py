@@ -13,6 +13,7 @@ class Autoeditor(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_attribute_section',
         '_attributes_in_memory',
         '_breadcrumb',
         '_is_autoadding',
@@ -162,6 +163,9 @@ class Autoeditor(Controller):
         if result == '<return>':
             self._session._is_backtracking_locally = True
             return
+        elif result == 'none':
+            self.set_attributes_to_none()
+            return
         manifest = self._attribute_manifest
         attribute_name = manifest._menu_key_to_attribute_name(result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
@@ -200,18 +204,32 @@ class Autoeditor(Controller):
                 kwargs[name] = value
         self._target = type(self.target)(*args, **kwargs)
 
+    def _make_attributes_menu_section(self, menu):
+        menu_entries = self._make_target_attribute_tokens()
+        if not menu_entries:
+            return
+        section = menu.make_keyed_attribute_section(
+            is_numbered=True,
+            menu_entries=menu_entries,
+            name='attributes',
+            )
+        self._attribute_section = section
+
     def _make_main_menu(self):
         name = self._spaced_class_name
         menu = self._io_manager._make_menu(name=name, subtitle='EDIT:')
-        menu_entries = self._make_target_attribute_tokens()
-        if menu_entries:
-            section = menu.make_keyed_attribute_section(
-                is_numbered=True,
-                menu_entries=menu_entries,
-                name='keyed attributes',
-                )
-        self._make_done_menu_section(menu)
+        self._make_attributes_menu_section(menu)
+        self._make_command_menu_section(menu)
         return menu
+
+    def _make_command_menu_section(self, menu):
+        commands = []
+        commands.append(('done', 'done'))
+        commands.append(('set to none', 'none'))
+        menu.make_navigation_section(
+            commands=commands,
+            name='done',
+            )
 
     def _make_target_attribute_tokens(self):
         result = []
@@ -312,12 +330,17 @@ class Autoeditor(Controller):
 
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import pitchtools
+        # TODO: maybe remove this check
         if self._session.is_quitting:
             return
-        if attribute_value in (None, []):
-            return
         kwargs = {attribute_name: attribute_value}
-        new_target = new(self.target, **kwargs)
+        try:
+            new_target = new(self.target, **kwargs)
+        except (AssertionError, TypeError, ValueError):
+            message = 'can not set {!r} to {!r}.'
+            message = message.format(attribute_name, attribute_value)
+            self._io_manager._display(message)
+            return -1
         self._target = new_target
 
     def _target_args_to_target_summary_lines(self, target):
@@ -381,3 +404,32 @@ class Autoeditor(Controller):
         Returns object or none.
         '''
         return self._target
+
+    ### PUBLIC METHODS ###
+
+    def set_attributes_to_none(self):
+        r'''Sets attributes to none.
+
+        Returns none.
+        '''
+        getter = self._io_manager._make_getter()
+        name = 'enter attribute numbers to set to none'
+        getter = self._io_manager._make_getter()
+        getter.append_menu_section_range(name, self._attribute_section)
+        numbers = getter._run()
+        if self._session.is_backtracking or not numbers:
+            return
+        indices = [_ - 1 for _ in numbers]
+        manifest = self._attribute_manifest
+        results = []
+        for index in indices:
+            attribute_detail = manifest[index]
+            result = self._set_target_attribute(attribute_detail.name, None)
+            results.append(result)
+        if any(_ == -1 for _ in results):
+            self._io_manager._display('')
+            prompt_string = 'press return to continue'
+            self._io_manager._confirm(
+                include_chevron=True,
+                prompt_string=prompt_string,
+                )

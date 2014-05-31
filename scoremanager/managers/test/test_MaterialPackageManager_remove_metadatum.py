@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_MaterialPackageManager_remove_metadatum_01():
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
 
     # make sure no flavor metadatum found
     input_ = 'red~example~score m magic~numbers mdg flavor <return> q'
