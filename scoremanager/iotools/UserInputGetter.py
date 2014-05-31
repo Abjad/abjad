@@ -88,12 +88,6 @@ class UserInputGetter(Controller, PromptMakerMixin):
 
     ### PRIVATE METHODS ###
 
-    def _display_help(self):
-        lines = []
-        lines.append(self._current_prompt.help_string)
-        lines.append('')
-        self._io_manager._display(lines)
-
     def _evaluate_input(self, input_):
         section = self._current_prompt.target_menu_section
         setup_statements = self._current_prompt.setup_statements
@@ -117,7 +111,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
                     command = setup_statement.format(repr(input_))
                     exec(command)
                 except ValueError:
-                    self._display_help()
+                    self.display_help()
         else:
             try:
                 evaluated_input = eval(input_)
@@ -126,7 +120,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         if not 'evaluated_input' in locals():
             return
         if not self._validate_evaluated_input(evaluated_input):
-            self._display_help()
+            self.display_help()
             return
         self._evaluated_input.append(evaluated_input)
         self._prompt_index += 1
@@ -170,7 +164,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 self._prompt_index += 1
                 break
             elif input_ == '?':
-                self._display_help()
+                self.display_help()
                 continue
             elif input_ in self._input_to_method:
                 self._input_to_method[input_]()
@@ -183,7 +177,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
             elif directive is None:
                 continue
             elif directive == 'help':
-                self._display_help()
+                self.display_help()
             elif directive == 'previous':
                 self._move_to_previous_prompt()
                 break
@@ -230,7 +224,10 @@ class UserInputGetter(Controller, PromptMakerMixin):
         if evaluated_input is None and self.allow_none:
             return True
         validation_function = self._current_prompt.validation_function
-        return validation_function(evaluated_input)
+        try:
+            return validation_function(evaluated_input)
+        except TypeError:
+            return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -295,3 +292,15 @@ class UserInputGetter(Controller, PromptMakerMixin):
         Returns list of prompts.
         '''
         return self._prompts
+
+    ### PUBLIC METHODS ###
+
+    def display_help(self):
+        r'''Displays help.
+
+        Returns none.
+        '''
+        lines = []
+        lines.append(self._current_prompt.help_string)
+        lines.append('')
+        self._io_manager._display(lines)

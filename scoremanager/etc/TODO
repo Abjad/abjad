@@ -10,71 +10,63 @@
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-4.  Bug:
-    (edit talea rhythm-maker > xcd > 2)
-    function = lambda x: all(predicates.is_integer(y) for y in x)
-    TypeError: 'int' object is not iterable
-    The getter is checking for (a tuple or list of) integers;
-    then the getter receives only a single integer the getter 
-    should not explode.
-
-5.  Make (rrv) work for Subversion-managed directories.
+4.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-6.  Make sure new-style.ily doesn't alias (new).
+5.  Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-7.  When in (new) score, change 'Enter package name>' to
+6.  When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-8.  Block (new) score when view is hiding user scores.
+7.  Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-9.  Allow more flexible input for score (new).
+8.  Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-10. Implement stringtools.delimit_words(delimitor=' ').
+9.  Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-11. Make (mdo) work for wranglers.
+10. Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-12. Make menu title breadcrumbs correctly reflect changes in view
+11. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-13. Refuse to apply view when invalid regular expression is found.
+12. Refuse to apply view when invalid regular expression is found.
 
-14. Implement 'views - autoedit' (vae) command.
+13. Implement 'views - autoedit' (vae) command.
 
-15. Compile regular expressions at view entry add time.
+14. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-16. Allow arbitrary metadata in view patterns.
+15. Allow arbitrary metadata in view patterns.
 
-17. Change ...
+16. Change ...
         Score Manager - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Score Manager - stylesheets - select view(s) to remove:
     ... instead.
 
-18. Allow 5-99 (or any other large number) to work when removing items.
+17. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-19. Fix menu title that results from the following:
+18. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-20. There is no such thing as 'My build files'.
+19. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-21. Improve (k > cp) user experience. Change ...
+20. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -83,15 +75,15 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-22. Make (rrv) work in Git directories.
+21. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-23. Add 'all segments - list versions directories'.
+22. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-24. Open audio files with audio player. Use (d) for examples to test.
+23. Open audio files with audio player. Use (d) for examples to test.
 
-25. Wrap metadata tests with FilesystemState context.
+24. Wrap metadata tests with FilesystemState context.

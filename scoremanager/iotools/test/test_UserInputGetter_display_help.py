@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_UserInputGetter__display_help_01():
+def test_UserInputGetter_display_help_01():
     r'''Question mark displays help.
     '''
 
@@ -12,11 +12,11 @@ def test_UserInputGetter__display_help_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string  = 'Value  must be space-delimited lowercase string.'
+    string  = 'Value must be space-delimited lowercase string.'
     assert string in contents
 
 
-def test_UserInputGetter__display_help_02():
+def test_UserInputGetter_display_help_02():
     r'''Help string displays help.
     '''
 
@@ -24,5 +24,5 @@ def test_UserInputGetter__display_help_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Value  must be space-delimited lowercase string.'
+    string = 'Value must be space-delimited lowercase string.'
     assert string in contents
