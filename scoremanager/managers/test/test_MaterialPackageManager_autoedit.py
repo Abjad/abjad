@@ -13,11 +13,9 @@ def test_MaterialPackageManager_autoedit_01():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'm example~markup~inventory ae q'
     score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
 
-    string = 'Score Manager - materials -'
-    string += ' example markup inventory (Abjad) - markup inventory'
-    assert string in contents
+    title = 'Score Manager - materials - example markup inventory (Abjad)'
+    assert title in score_manager._transcript.titles
 
 
 def test_MaterialPackageManager_autoedit_02():

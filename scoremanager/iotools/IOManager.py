@@ -238,12 +238,14 @@ class IOManager(IOManager):
         self,
         breadcrumb_callback=None,
         name=None,
+        subtitle=None,
         ):
         from scoremanager import iotools
         return iotools.Menu(
             breadcrumb_callback=breadcrumb_callback,
             name=name,
             session=self._session,
+            subtitle=subtitle,
             )
 
     def _make_package_manager(self, path):

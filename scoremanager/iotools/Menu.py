@@ -42,6 +42,7 @@ class Menu(Controller):
         '_menu_sections',
         '_name',
         '_predetermined_input',
+        '_subtitle',
         '_title',
         )
 
@@ -52,6 +53,7 @@ class Menu(Controller):
         breadcrumb_callback=None,
         name=None,
         session=None,
+        subtitle=None,
         title=None,
         ):
         Controller.__init__(self, session=session)
@@ -59,6 +61,7 @@ class Menu(Controller):
         self._menu_sections = []
         self._name = name
         self._predetermined_input = None
+        self._subtitle = subtitle
         self._title = title
 
     ### SPECIAL METHODS ###
@@ -442,6 +445,10 @@ class Menu(Controller):
         else:
             title = self._session.menu_header
         result.append(stringtools.capitalize_start(title))
+        if self.subtitle is not None:
+            line = '      ' + self.subtitle
+            result.append('')
+            result.append(line)
         result.append('')
         return result
 
@@ -539,6 +546,21 @@ class Menu(Controller):
         Returns list.
         '''
         return self._name
+
+    @property
+    def subtitle(self):
+        r'''Gets menu subtitle.
+
+        ..  container:: example
+
+            ::
+
+                >>> menu.subtitle is None
+                True
+
+        Returns string or none.
+        '''
+        return self._subtitle
 
     @property
     def title(self):

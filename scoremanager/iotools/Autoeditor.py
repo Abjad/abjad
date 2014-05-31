@@ -202,7 +202,7 @@ class Autoeditor(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name, subtitle='EDIT:')
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             section = menu.make_keyed_attribute_section(
@@ -344,13 +344,11 @@ class Autoeditor(Controller):
     def breadcrumb(self):
         r'''Gets autoeditor breadcrumb.
 
-        Returns string.
+        Autoeditor contributes no breadcrumb.
+
+        Returns none.
         '''
-        if self._breadcrumb is None:
-            class_name = type(self.target).__name__
-            return stringtools.to_space_delimited_lowercase(class_name)
-        else:
-            return self._breadcrumb
+        pass
 
     @property
     def is_autoadding(self):

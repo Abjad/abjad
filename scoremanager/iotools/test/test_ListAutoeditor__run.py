@@ -2,6 +2,7 @@
 import pytest
 from abjad import *
 import scoremanager
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ListAutoeditor__run_01():
@@ -255,3 +256,21 @@ def test_ListAutoeditor__run_12():
         ])
 
     assert autoeditor.target == view
+
+
+def test_ListAutoeditor__run_13():
+
+    input_ = 'red~example~score m instrumentation ae q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    titles = [
+        'Score Manager - scores',
+        'Red Example Score (2013)',
+        'Red Example Score (2013) - materials',
+        'Red Example Score (2013) - materials - instrumentation (AE)',
+        'Red Example Score (2013) - materials - instrumentation (AE)',
+        ]
+    assert score_manager._transcript.titles == titles
+
+    assert 'EDIT:' in score_manager._transcript.contents

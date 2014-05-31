@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_UserInputGetter_back_01():
+def test_UserInputGetter_go_back_01():
     r'''Back works.
     '''
 
@@ -16,8 +16,8 @@ def test_UserInputGetter_back_01():
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory (AE)',
-        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory',
-        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory - tempo',
-        'Red Example Score (2013) - materials - tempo inventory (AE) - tempo inventory - tempo',
+        'Red Example Score (2013) - materials - tempo inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (AE)',
         ]
     assert score_manager._transcript.titles == titles

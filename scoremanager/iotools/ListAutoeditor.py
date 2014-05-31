@@ -163,7 +163,7 @@ class ListAutoeditor(Autoeditor):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name, subtitle='EDIT:')
         self._make_keyed_attributes_menu_section(menu)
         self._make_numbered_entries_menu_section(menu)
         self._make_command_menu_section(menu)
