@@ -16,6 +16,18 @@ class ScoreInternalPackageManager(PackageManager):
     Implements sibling package navigation functionality.
     '''
 
+    ### INITIALIZER ###
+
+    def __init__(self, path=None, session=None):
+        superclass = super(ScoreInternalPackageManager, self)
+        superclass.__init__(path=path, session=session)
+        required_directories = list(self._required_directories)
+        required_directories.append('versions')
+        self._required_directories = tuple(required_directories)
+        optional_files = list(self._optional_files)
+        optional_files.append('definition.py')
+        self._optional_files = tuple(optional_files)
+
     ### PRIVATE PROPERTIES ###
 
     @property

@@ -13,15 +13,7 @@ class AssetController(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allowable_contents',
         )
-
-    ### INITIALIZER ###
-
-    def __init__(self, session=None):
-        superclass = super(AssetController, self)
-        superclass.__init__(session=session)
-        self._allowable_contents = ()
 
     ### PRIVATE PROPERTIES ###
 

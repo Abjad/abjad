@@ -47,10 +47,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     ### INTIALIZER ###
 
     def __init__(self, path=None, session=None):
-        if path is not None:
-            assert os.path.sep in path
         superclass = super(MaterialPackageManager, self)
         superclass.__init__(path=path, session=session)
+        optional_files = list(self._optional_files)
+        optional_files.extend([
+            '__illustrate__.py',
+            'illustration.ly',
+            'illustration.pdf',
+            'output.py',
+            ])
+        self._optional_files = tuple(optional_files)
         self._output_py_import_statements = [
             self._abjad_import_statement,
             ]

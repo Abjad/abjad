@@ -21,6 +21,13 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(SegmentPackageManager, self)
         superclass.__init__(path=path, session=session)
+        optional_files = list(self._optional_files)
+        optional_files.extend([
+            '__make__.py',
+            'output.ly',
+            'output.pdf',
+            ])
+        self._optional_files = tuple(optional_files)
 
     ### PRIVATE PROPERTIES ###
 

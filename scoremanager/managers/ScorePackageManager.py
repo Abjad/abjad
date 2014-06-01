@@ -19,6 +19,21 @@ class ScorePackageManager(PackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(ScorePackageManager, self)
         superclass.__init__(path=path, session=session)
+        optional_directories = list(self._optional_directories)
+        optional_directories.extend([
+            'etc',
+            ])
+        self._optional_directories = tuple(optional_directories)
+        required_directories = list(self._required_directories)
+        required_directories.extend([
+            'build',
+            'distribution',
+            'makers',
+            'materials',
+            'segments',
+            'stylesheets',
+            ])
+        self._required_directories = tuple(required_directories)
 
     ### PRIVATE PROPERTIES ###
 

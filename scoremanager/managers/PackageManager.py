@@ -10,7 +10,6 @@ from scoremanager.core.AssetController import AssetController
 
 class PackageManager(AssetController):
     r'''Package manager.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -18,8 +17,12 @@ class PackageManager(AssetController):
     __slots__ = (
         '_asset_identifier',
         '_main_menu',
+        '_optional_directories',
+        '_optional_files',
         '_package_name',
         '_path',
+        '_required_directories',
+        '_required_files',
         )
 
     ### INITIALIZER ###
@@ -30,6 +33,16 @@ class PackageManager(AssetController):
         superclass = super(PackageManager, self)
         superclass.__init__(session=session)
         self._asset_identifier = None
+        self._optional_directories = (
+            '__pycache__',
+            'test',
+            )
+        self._optional_files = ()
+        self._required_directories = ()
+        self._required_files = (
+            '__init__.py', 
+            '__metadata__.py',
+            )
         self._package_name = os.path.basename(path)
         self._path = path
 
@@ -897,7 +910,140 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
+        required_directories, required_files = [], []
+        optional_directories, optional_files = [], []
+        unrecognized_directories, unrecognized_files = [], []
+        for name in self._list():
+            path = os.path.join(self._path, name)
+            if os.path.isdir(path):
+                if name in self._required_directories:
+                    required_directories.append(path)
+                elif name in self._optional_directories:
+                    optional_directories.append(path)
+                else:
+                    unrecognized_directories.append(path)
+            elif os.path.isfile(path):
+                if name in self._required_files:
+                    required_files.append(path)
+                elif name in self._optional_files:
+                    optional_files.append(path)
+                else:
+                    unrecognized_files.append(path)
+            else:
+                raise TypeError(path)
+        missing_directories, missing_files = [], []
+        recognized_directories = required_directories + optional_directories
+        recognized_files = required_files + optional_files
+        for required_directory in self._required_directories:
+            path = os.path.join(self._path, required_directory)
+            if path not in recognized_directories:
+                missing_directories.append(path)
+        for required_file in self._required_files:
+            path = os.path.join(self._path, required_file)
+            if path not in recognized_files:
+                missing_files.append(path)
+        messages = []
+
+        messages_ = self._format_ratio_check_messages(
+            required_directories,
+            self._required_directories,
+            'required directory',
+            participal='found',
+            )
+        messages.extend(messages_)
+        if missing_directories:
+            messages_ = self._format_ratio_check_messages(
+                missing_directories,
+                self._required_directories,
+                'required directory',
+                'MISSING',
+                )
+            messages.extend(messages_)
+        messages_ = self._format_ratio_check_messages(
+            required_files,
+            self._required_files,
+            'required file',
+            'found',
+            )
+        messages.extend(messages_)
+        if missing_files:
+            messages_ = self._format_ratio_check_messages(
+                missing_files,
+                self._required_files,
+                'required file',
+                'MISSING',
+                )
+            messages.extend(messages_)
+
+        messages_ = self._format_counted_check_messages(
+            optional_directories,
+            'optional directory',
+            participal='found',
+            )
+        messages.extend(messages_)
+        messages_ = self._format_counted_check_messages(
+            optional_files,
+            'optional file',
+            participal='found',
+            )
+        messages.extend(messages_)
+
+        messages_ = self._format_counted_check_messages(
+            unrecognized_directories,
+            'unrecognized directory',
+            participal='found',
+            )
+        messages.extend(messages_)
+        messages_ = self._format_counted_check_messages(
+            unrecognized_files,
+            'unrecognized file',
+            participal='found',
+            )
+        messages.extend(messages_)
+        self._io_manager._display(messages)
+
+    def _format_counted_check_messages(
+        self, 
+        paths, 
+        identifier,
+        participal,
+        ):
+        messages = []
+        if paths:
+            tab = self._io_manager._make_tab()
+            count = len(paths)
+            identifier = stringtools.pluralize(identifier, count)
+            message = '{} {} {}:'
+            message = message.format(count, identifier, participal)
+            messages.append(message)
+            for path in paths:
+                message = tab + path
+                messages.append(message)
+        return messages
+
+    def _format_ratio_check_messages(
+        self, 
+        found_paths, 
+        total_paths, 
+        identifier,
+        participal='found',
+        ):
+        messages = []
+        denominator = len(total_paths)
+        numerator = len(found_paths)
+        identifier = stringtools.pluralize(identifier, denominator)
+        if denominator:
+            message = '{} of {} {} {}:'
+        else:
+            message = '{} of {} {} {}.'
+        message = message.format(
+            numerator, denominator, identifier, participal)
+        messages.append(message)
+        tab = self._io_manager._make_tab()
+        for path in sorted(found_paths):
+            message = tab + path
+            messages.append(message)
+        return messages
 
     def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.
