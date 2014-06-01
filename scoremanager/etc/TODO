@@ -1,14 +1,15 @@
 1.  Implement an 'all whatever - edit' command.
 
-2.  Implement PackageManager.check_contents().
-    With corresponding 'check - contents' (cc) command.
-    The method will list the contents of a directory, compare
-    to a known list of acceptable files and globs, and display
-    any foreign contents.
+2.  Reinstate FileWrangler.
+    Implement FileWrangler.check_file_names().
+    With corresponding 'all files - check' (ck*) command.
+    The method will check every file name against a list of acceptable globs.
+    The method will display any unrecognized files.
 
-3.  Eventually implement a Score PackageManager start-up behavior that will
-    run and check the filesystem layout of all assets everywhere and
-    prompt the composer to fix as required before composition begins.
+3.  Autorun ScorePackageManager.fix() on ScorePackageManager start.
+    Autorun MaterialPackageWrangler.fix() on ScorePackageManager start.
+    Autorun SegmentPackageWrangler.fix() on ScorePackageManager start.
+    Will prompt composer to fix everything on ScorePackageManager start.
 
 4.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
