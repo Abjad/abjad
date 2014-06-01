@@ -88,3 +88,14 @@
 23. Open audio files with audio player. Use (d) for examples to test.
 
 24. Wrap metadata tests with FilesystemState context.
+
+25. Move SargassoMeasureMaker to the makers directory on an example score.
+    Remove scoremanager/makers directory.
+
+26. Remove scoremanager/wizards directory.
+    Migrate InstrumentCreationWizard to some class in instrumenttools.
+    Migrate PerformerCreationWizard to some class in instrumenttools.
+    
+27. Collapse all Score Manager classes to a single package.
+
+28. Change ScoreManager to AbjadIDE.
