@@ -60,6 +60,9 @@ class PackageManager(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            'ck': self.check_package,
+            'fix': self.fix_package,
+            #
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
@@ -334,7 +337,7 @@ class PackageManager(AssetController):
         if os.path.isfile(result):
             self._io_manager.open_file(result)
         elif os.path.isdir(result):
-            entries = self._list_directory(result)
+            entries = self._io_manager._list_directory(result)
             self._io_manager._display(entries, capitalize=False)
         else:
             message = 'neither file nor directory: {}?'.format(result)
@@ -542,10 +545,12 @@ class PackageManager(AssetController):
             result.append((display_string, None, metadata[key], key))
         return result
 
-    def _make_package_menu_section(self, menu):
+    def _make_package_menu_section(self, menu, commands_only=False):
         commands = []
-        commands.append(('package - version', 'vr'))
-        commands.append(('package - versions list', 'vrls'))
+        commands.append(('package - check', 'ck'))
+        commands.append(('package - fix', 'fix'))
+        if commands_only:
+            return commands
         if commands:
             menu.make_command_section(
                 is_hidden=True,
@@ -887,6 +892,13 @@ class PackageManager(AssetController):
             assert isinstance(command, str)
             self._io_manager.run_command(command)
 
+    def check_package(self):
+        r'''Checks package.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
+
     def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.
 
@@ -914,6 +926,13 @@ class PackageManager(AssetController):
             command = 'svn commit -m "{}" {}'
             command = command.format(commit_message, self._path)
             self._io_manager.run_command(command, capitalize=False)
+
+    def fix_package(self):
+        r'''Fixes package.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
 
     def get_metadatum(self):
         r'''Gets metadatum from ``__metadata.py__``.

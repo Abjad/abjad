@@ -36,6 +36,23 @@ class ScoreInternalPackageManager(PackageManager):
     def _versions_directory(self):
         return os.path.join(self._path, 'versions')
 
+    ### PRIVATE METHODS ###
+
+    def _make_package_menu_section(self, menu, commands_only=False):
+        superclass = super(ScoreInternalPackageManager,self)
+        commands = superclass._make_package_menu_section(
+            menu, commands_only=True)
+        commands.append(('package - version', 'vr'))
+        commands.append(('package - versions list', 'vrls'))
+        if commands_only:
+            return commands
+        if commands:
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='package',
+                )
+
     ### PUBLIC METHODS ###
 
     def go_to_next_package(self):

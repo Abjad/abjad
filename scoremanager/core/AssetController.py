@@ -13,7 +13,15 @@ class AssetController(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_allowable_contents',
         )
+
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        superclass = super(AssetController, self)
+        superclass.__init__(session=session)
+        self._allowable_contents = ()
 
     ### PRIVATE PROPERTIES ###
 
@@ -33,6 +41,8 @@ class AssetController(Controller):
             'm': self.go_to_materials,
             'u': self.go_to_build_files,
             'y': self.go_to_stylesheets,
+            #
+            'cc': self.check_contents,
             #
             'sse': self.edit_score_stylesheet,
             #
@@ -125,24 +135,6 @@ class AssetController(Controller):
 
     def _handle_numeric_user_input(self, result):
         pass
-
-    @staticmethod
-    def _list_directory(path, public_entries_only=False):
-        result = []
-        if not path or not os.path.exists(path):
-            return result
-        if public_entries_only:
-            for directory_entry in sorted(os.listdir(path)):
-                if directory_entry[0].isalpha():
-                    if not directory_entry.endswith('.pyc'):
-                        if not directory_entry in ('test',):
-                            result.append(directory_entry)
-        else:
-            for directory_entry in sorted(os.listdir(path)):
-                if not directory_entry.startswith('.'):
-                    if not directory_entry.endswith('.pyc'):
-                        result.append(directory_entry)
-        return result
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
@@ -262,6 +254,13 @@ class AssetController(Controller):
         self._io_manager.run_command(command)
 
     ### PUBLIC METHODS ###
+
+    def check_contents(self):
+        r'''Checks contents.
+
+        Returns none.
+        '''
+        pass
 
     def display_available_commands(self):
         r'''Displays available commands.

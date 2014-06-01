@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import functools
 import os
 from abjad.tools import indicatortools
 from abjad.tools import systemtools
@@ -37,7 +36,6 @@ class ScorePackageManager(PackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'fix': self.fix_package,
             'p': self.go_to_setup,
             'spo': self.open_score_pdf,
             })
@@ -155,7 +153,7 @@ class ScorePackageManager(PackageManager):
         self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
-        self._make_score_menu_section(menu)
+        self._make_package_menu_section(menu)
         return menu
 
     def _make_main_menu_section(self, menu):
@@ -171,15 +169,16 @@ class ScorePackageManager(PackageManager):
             name='main',
             )
 
-    def _make_score_menu_section(self, menu):
-        commands = []
-        commands.append(('package - fix', 'fix'))
+    def _make_package_menu_section(self, menu):
+        superclass = super(ScorePackageManager, self)
+        commands = superclass._make_package_menu_section(
+            menu, commands_only=True)
         commands.append(('package - score.pdf - open', 'spo'))
         commands.append(('package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='score package',
+            name='package',
             )
 
     def _make_setup_menu(self):

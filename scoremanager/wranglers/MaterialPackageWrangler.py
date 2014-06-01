@@ -152,22 +152,17 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         return result
 
     def _make_all_packages_menu_section(self, menu):
-        commands = []
-        commands.append(('all packages - __init__.py - list', 'nls*'))
-        commands.append(('all packages - __init__.py - open', 'no*'))
-        commands.append(('all packages - __init__.py - stub', 'ns*'))
-        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
-        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
-        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        superclass = super(MaterialPackageWrangler, self)
+        commands = superclass._make_all_packages_menu_section(
+            menu, commands_only=True)
         commands.append(('all packages - illustration.ly - interpret', 'ili*'))
         commands.append(('all packages - illustration.pdf - open', 'ipo*'))
         commands.append(('all packages - output.py - check', 'oc*'))
         commands.append(('all packages - output.py - open', 'oo*'))
-        commands.append(('all packages - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
-            name='zzz',
+            name='all packages',
             )
 
     def _make_main_menu(self):

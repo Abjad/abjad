@@ -5,7 +5,6 @@ from scoremanager.wranglers.Wrangler import Wrangler
 
 class PackageWrangler(Wrangler):
     r'''Package wrangler.
-
     '''
 
     ### PRIVATE PROPERTIES ###
@@ -20,6 +19,9 @@ class PackageWrangler(Wrangler):
             'new': self.make_package,
             'ren': self.rename_package,
             'rm': self.remove_packages,
+            #
+            'ck*': self.check_every_package,
+            'fix*': self.fix_every_package,
             #
             'mdls*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
@@ -42,7 +44,63 @@ class PackageWrangler(Wrangler):
         paths.sort()
         return paths
 
+    def _make_all_packages_menu_section(self, menu, commands_only=False):
+        commands = []
+        commands.append(('all packages - __init__.py - list', 'nls*'))
+        commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __init__.py - stub', 'ns*'))
+        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
+        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
+        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all packages - check', 'ck*'))
+        commands.append(('all packages - fix', 'fix*'))
+        if commands_only:
+            return commands
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='all packages',
+            )
+
     ### PUBLIC METHODS ###
+
+    def check_every_package(self):
+        r'''Checks every package.
+
+        Returns none.
+        '''
+        paths = self._list_visible_asset_paths()
+        messages = []
+        for path in paths:
+            manager = self._initialize_manager(path)
+            manager.check_package()
+        message = '{} packages checked.'
+        message = message.format(len(paths))
+        messages.append(message)
+        self._io_manager._display(messages)
+
+    def fix_every_package(self):
+        r'''Fixes every package.
+
+        Returns none.
+        '''
+        paths = self._list_visible_asset_paths()
+        messages = []
+        for path in paths:
+            manager = self._initialize_manager(path)
+            needed_to_be_fixed = manager.fix_package()
+            if not needed_to_be_fixed:
+                if hasattr(manager, '_get_title'):
+                    title = manager._get_title()
+                else:
+                    title = manager._package_name
+                message = '{} OK.'
+                message = message.format(title)
+                messages.append(message)
+        message = '{} packages checked.'
+        message = message.format(len(paths))
+        messages.append(message)
+        self._io_manager._display(messages)
 
     def list_every_init_py(self):
         r'''Lists ``__init__.py`` in every package.

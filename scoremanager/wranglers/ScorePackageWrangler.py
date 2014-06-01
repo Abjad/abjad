@@ -84,7 +84,6 @@ class ScorePackageWrangler(PackageWrangler):
             'co': self.open_cache,
             'cw': self.write_cache,
             #
-            'fix*': self.fix_every_package,
             'spo*': self.open_every_score_pdf,
             })
         return result
@@ -171,19 +170,14 @@ class ScorePackageWrangler(PackageWrangler):
         return False
 
     def _make_all_packages_menu_section(self, menu):
-        commands = []
-        commands.append(('all packages - __init__.py - list', 'nls*'))
-        commands.append(('all packages - __init__.py - open', 'no*'))
-        commands.append(('all packages - __init__.py - stub', 'ns*'))
-        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
-        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
-        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
-        commands.append(('all packages - fix', 'fix*'))
+        superclass = super(ScorePackageWrangler, self)
+        commands = superclass._make_all_packages_menu_section(
+            menu, commands_only=True)
         commands.append(('all packages - score.pdf - open', 'spo*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='zzz',
+            name='all packages',
             )
 
     def _make_asset_menu_section(self, menu):
@@ -251,27 +245,6 @@ class ScorePackageWrangler(PackageWrangler):
         self._copy_asset(new_storehouse=path)
         with self._io_manager._make_silent():
             self.write_cache()
-
-    def fix_every_package(self):
-        r'''Fixes every package.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        paths = self._list_visible_asset_paths()
-        messages = []
-        for path in paths:
-            manager = self._initialize_manager(path)
-            needed_to_be_fixed = manager.fix_package()
-            if not needed_to_be_fixed:
-                title = manager._get_title()
-                message = '{} OK.'
-                message = message.format(title)
-                messages.append(message)
-        message = '{} score packages checked.'
-        message = message.format(len(paths))
-        messages.append(message)
-        self._io_manager._display(messages)
 
     def make_package(self):
         r'''Makes package.

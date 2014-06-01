@@ -72,24 +72,19 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         return False
 
     def _make_all_packages_menu_section(self, menu):
-        commands = []
-        commands.append(('all packages - __init__.py - list', 'nls*'))
-        commands.append(('all packages - __init__.py - open', 'no*'))
-        commands.append(('all packages - __init__.py - stub', 'ns*'))
+        superclass = super(SegmentPackageWrangler, self)
+        commands = superclass._make_all_packages_menu_section(
+            menu, commands_only=True)
         commands.append(('all packages - __make.py__ - interpret', 'ki*'))
         commands.append(('all packages - __make.py__ - open', 'ko*'))
         commands.append(('all packages - __make.py__ - stub', 'ks*'))
-        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
-        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
-        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
         commands.append(('all packages - definition.py - edit', 'de*'))
         commands.append(('all packages - output.ly - interpret', 'oli*'))
         commands.append(('all packages - output.pdf - open', 'opo*'))
-        commands.append(('all packages - version', 'vr*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
-            name='zzz',
+            name='all packages',
             )
 
     def _make_asset(self, path, metadata=None):

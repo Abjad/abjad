@@ -25,6 +25,21 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             })
         return result
 
+    ### PRIVATE METHODS ###
+
+    def _make_all_packages_menu_section(self, menu, commands_only=False):
+        superclass = super(ScoreInternalPackageWrangler, self)
+        commands = superclass._make_all_packages_menu_section(
+            menu, commands_only=True)
+        commands.append(('all packages - version', 'vr*'))
+        if commands_only:
+            return commands
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='all packages',
+            )
+
     ### PUBLIC METHODS ###
 
     def go_to_next_package(self):

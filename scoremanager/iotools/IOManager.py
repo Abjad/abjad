@@ -183,6 +183,24 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
+    @staticmethod
+    def _list_directory(path, public_entries_only=False):
+        result = []
+        if not path or not os.path.exists(path):
+            return result
+        if public_entries_only:
+            for directory_entry in sorted(os.listdir(path)):
+                if directory_entry[0].isalpha():
+                    if not directory_entry.endswith('.pyc'):
+                        if not directory_entry in ('test',):
+                            result.append(directory_entry)
+        else:
+            for directory_entry in sorted(os.listdir(path)):
+                if not directory_entry.startswith('.'):
+                    if not directory_entry.endswith('.pyc'):
+                        result.append(directory_entry)
+        return result
+
     def _make_autoeditor(
         self, 
         allow_item_edit=True,

@@ -461,7 +461,7 @@ class Wrangler(AssetController):
     def _list(self, public_entries_only=False):
         result = []
         path = self._get_current_directory()
-        result = self._list_directory(
+        result = self._io_manager._list_directory(
             path, 
             public_entries_only=public_entries_only,
             )
