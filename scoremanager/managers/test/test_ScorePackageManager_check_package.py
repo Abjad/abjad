@@ -12,7 +12,7 @@ def test_ScorePackageManager_check_package_01():
     contents = score_manager._transcript.contents
 
     lines = [
-        'No unrecognized assets found.',
+        'No problem assets found.',
         ]
     for line in lines:
         assert line in contents

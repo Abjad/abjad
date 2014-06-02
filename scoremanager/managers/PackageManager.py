@@ -184,6 +184,49 @@ class PackageManager(AssetController):
                 if os.path.isfile(path):
                     return directory_entry
 
+    def _format_counted_check_messages(
+        self, 
+        paths, 
+        identifier,
+        participal,
+        ):
+        messages = []
+        if paths:
+            tab = self._io_manager._make_tab()
+            count = len(paths)
+            identifier = stringtools.pluralize(identifier, count)
+            message = '{} {} {}:'
+            message = message.format(count, identifier, participal)
+            messages.append(message)
+            for path in paths:
+                message = tab + path
+                messages.append(message)
+        return messages
+
+    def _format_ratio_check_messages(
+        self, 
+        found_paths, 
+        total_paths, 
+        identifier,
+        participal='found',
+        ):
+        messages = []
+        denominator = len(total_paths)
+        numerator = len(found_paths)
+        identifier = stringtools.pluralize(identifier, denominator)
+        if denominator:
+            message = '{} of {} {} {}:'
+        else:
+            message = '{} of {} {} {}.'
+        message = message.format(
+            numerator, denominator, identifier, participal)
+        messages.append(message)
+        tab = self._io_manager._make_tab()
+        for path in sorted(found_paths):
+            message = tab + path
+            messages.append(message)
+        return messages
+
     def _get_added_asset_paths(self):
         if self._is_in_git_repository():
             command = 'git status --porcelain {}'
@@ -905,17 +948,22 @@ class PackageManager(AssetController):
             assert isinstance(command, str)
             self._io_manager.run_command(command)
 
-    def check_package(self, return_messages=False, unrecognized_only=None):
+    def check_package(
+        self, 
+        problems_only=None,
+        return_messages=False, 
+        supply_missing=None,
+        ):
         r'''Checks package.
 
         Returns none.
         '''
-        if unrecognized_only is None:
-            prompt = 'show only unrecognized assets?'
+        if problems_only is None:
+            prompt = 'show problem assets only?'
             result = self._io_manager._confirm(prompt)
             if self._session.is_backtracking or result is None:
                 return
-            unrecognized_only = bool(result)
+            problems_only = bool(result)
         required_directories, required_files = [], []
         optional_directories, optional_files = [], []
         unrecognized_directories, unrecognized_files = [], []
@@ -949,7 +997,7 @@ class PackageManager(AssetController):
             if path not in recognized_files:
                 missing_files.append(path)
         messages = []
-        if not unrecognized_only:
+        if not problems_only:
             messages_ = self._format_ratio_check_messages(
                 required_directories,
                 self._required_directories,
@@ -962,10 +1010,10 @@ class PackageManager(AssetController):
                 missing_directories,
                 self._required_directories,
                 'required directory',
-                'MISSING',
+                'missing',
                 )
             messages.extend(messages_)
-        if not unrecognized_only:
+        if not problems_only:
             messages_ = self._format_ratio_check_messages(
                 required_files,
                 self._required_files,
@@ -978,10 +1026,10 @@ class PackageManager(AssetController):
                 missing_files,
                 self._required_files,
                 'required file',
-                'MISSING',
+                'missing',
                 )
             messages.extend(messages_)
-        if not unrecognized_only:
+        if not problems_only:
             messages_ = self._format_counted_check_messages(
                 optional_directories,
                 'optional directory',
@@ -1006,56 +1054,79 @@ class PackageManager(AssetController):
             participal='found',
             )
         messages.extend(messages_)
-        if not unrecognized_directories + unrecognized_files:
-            message = 'no unrecognized assets found.'
+        if (problems_only and 
+            not missing_directories and
+            not missing_files and
+            not unrecognized_directories and 
+            not unrecognized_files):
+            message = 'no problem assets found.'
             messages.append(message)
         if return_messages:
             return messages
         else:
             self._io_manager._display(messages)
-
-    def _format_counted_check_messages(
-        self, 
-        paths, 
-        identifier,
-        participal,
-        ):
-        messages = []
-        if paths:
-            tab = self._io_manager._make_tab()
-            count = len(paths)
-            identifier = stringtools.pluralize(identifier, count)
-            message = '{} {} {}:'
-            message = message.format(count, identifier, participal)
-            messages.append(message)
-            for path in paths:
-                message = tab + path
-                messages.append(message)
-        return messages
-
-    def _format_ratio_check_messages(
-        self, 
-        found_paths, 
-        total_paths, 
-        identifier,
-        participal='found',
-        ):
-        messages = []
-        denominator = len(total_paths)
-        numerator = len(found_paths)
-        identifier = stringtools.pluralize(identifier, denominator)
-        if denominator:
-            message = '{} of {} {} {}:'
-        else:
-            message = '{} of {} {} {}.'
-        message = message.format(
-            numerator, denominator, identifier, participal)
-        messages.append(message)
+        if not missing_directories + missing_files:
+            return
+        if supply_missing is None:
+            directory_count = len(missing_directories)
+            file_count = len(missing_files)
+            directories = stringtools.pluralize('directory', directory_count)
+            files = stringtools.pluralize('file', file_count)
+            if missing_directories and missing_files:
+                prompt = 'supply missing {} and {}?'.format(directories, files)
+            elif missing_directories:
+                prompt = 'supply missing {}?'.format(directories)
+            elif missing_files:
+                prompt = 'supply missing {}?'.format(files)
+            else:
+                raise ValueError
+            result = self._io_manager._confirm(prompt)
+            if self._session.is_backtracking or result is None:
+                return
+            supply_missing = bool(result)
+        if not supply_missing:
+            return
         tab = self._io_manager._make_tab()
-        for path in sorted(found_paths):
-            message = tab + path
+        messages = []
+        messages.append('made:')
+        for missing_directory in missing_directories:
+            os.makedirs(missing_directory)
+            gitignore_path = os.path.join(missing_directory, '.gitignore')
+            with open(gitignore_path, 'w') as file_pointer:
+                file_pointer.write('')
+            message = tab + missing_directory
             messages.append(message)
-        return messages
+        for missing_file in missing_files:
+            if missing_file.endswith('__init__.py'):
+                lines = []
+                lines.append(self._configuration.unicode_directive)
+            elif missing_file.endswith('__metadata__.py'):
+                lines = []
+                lines.append(self._configuration.unicode_directive)
+                lines.append('import collections')
+                lines.append('')
+                lines.append('')
+                lines.append('metadata = collections.OrderedDict([])')
+            elif missing_file.endswith('__views__.py'):
+                lines = []
+                lines.append(self._configuration.unicode_directive)
+                lines.append(self._abjad_import_statement)
+                lines.append('from scoremanager import iotools')
+                lines.append('')
+                lines.append('')
+                line = 'view_inventory ='
+                line += ' datastructuretools.TypedOrderedDict([])'
+                lines.append(line)
+            else:
+                message = 'do not know how to make stub for {}.'
+                message = message.format(missing_file)
+                raise ValueError(message)
+            contents = '\n'.join(lines)
+            with open(missing_file, 'w') as file_pointer:
+                file_pointer.write(contents)
+            message = tab + missing_file
+            messages.append(message)
+        self._io_manager._display(messages)
 
     def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.

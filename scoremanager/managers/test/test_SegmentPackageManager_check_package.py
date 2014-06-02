@@ -12,11 +12,11 @@ def test_SegmentPackageManager_check_package_01():
     contents = score_manager._transcript.contents
 
     lines = [
-        '1 of 2 required files MISSING:',
-        'No unrecognized assets found.',
+        '1 of 2 required files missing:',
         ]
     for line in lines:
         assert line in contents
+    assert 'No problem assets found.' not in contents
     assert 'required directory found' not in contents
     assert 'required files found' not in contents
     assert 'optional files found' not in contents
@@ -31,7 +31,7 @@ def test_SegmentPackageManager_check_package_02():
     lines = [
         '1 of 1 required directory found:',
         '1 of 2 required files found:',
-        '1 of 2 required files MISSING:',
+        '1 of 2 required files missing:',
         '4 optional files found:',
         ]
     for line in lines:

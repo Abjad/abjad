@@ -12,7 +12,7 @@ def test_MaterialPackageManager_check_package_01():
     contents = score_manager._transcript.contents
 
     lines = [
-        'No unrecognized assets found.',
+        'No problem assets found.',
         ]
     for line in lines:
         assert line in contents
@@ -32,7 +32,7 @@ def test_MaterialPackageManager_check_package_02():
         '1 of 1 required directory found:',
         '2 of 2 required files found:',
         '3 optional files found:',
-        'No unrecognized assets found.',
         ]
     for line in lines:
         assert line in contents
+    assert 'No problem assets found.' not in contents

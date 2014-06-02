@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
@@ -64,17 +65,17 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def check_every_package(self, unrecognized_only=None):
+    def check_every_package(self, problems_only=None):
         r'''Checks every package.
 
         Returns none.
         '''
-        if unrecognized_only is None:
-            prompt = 'show only unrecognized assets?'
+        if problems_only is None:
+            prompt = 'show problem assets only?'
             result = self._io_manager._confirm(prompt)
             if self._session.is_backtracking or result is None:
                 return
-            unrecognized_only = bool(result)
+            problems_only = bool(result)
         paths = self._list_visible_asset_paths()
         messages = []
         tab = self._io_manager._make_tab()
@@ -88,18 +89,18 @@ class PackageWrangler(Wrangler):
             messages.append(message)
             messages_ = manager.check_package(
                 return_messages=True,
-                unrecognized_only=unrecognized_only,
+                problems_only=problems_only,
                 )
-            messages_ = [tab + _ for _ in messages_]
+            messages_ = [
+                tab + stringtools.capitalize_start(_) 
+                for _ in messages_
+                ]
             if messages_:
                 messages.extend(messages_)
             else:
-                message = 'No unrecognized assets found.'
+                message = 'No problem assets found.'
                 message = tab + message
                 messages.append(message)
-        message = '{} packages checked.'
-        message = message.format(len(paths))
-        messages.append(message)
         self._io_manager._display(messages)
 
     def fix_every_package(self):
