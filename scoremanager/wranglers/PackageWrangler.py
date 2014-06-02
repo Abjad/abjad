@@ -65,7 +65,7 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def check_every_package(self, problems_only=None):
+    def check_every_package(self, problems_only=None, supply_missing=None):
         r'''Checks every package.
 
         Returns none.
@@ -79,13 +79,11 @@ class PackageWrangler(Wrangler):
         paths = self._list_visible_asset_paths()
         messages = []
         tab = self._io_manager._make_tab()
+        found_problem = False
         for path in paths:
             manager = self._initialize_manager(path)
-            if hasattr(manager, '_get_title'):
-                name = manager._get_title(year=True)
-            else:
-                name = manager._package_name
-            message = '{}:'.format(name)
+            string = self._path_to_asset_menu_display_string(manager._path)
+            message = 'in {}:'.format(string)
             messages.append(message)
             messages_ = manager.check_package(
                 return_messages=True,
@@ -96,11 +94,40 @@ class PackageWrangler(Wrangler):
                 for _ in messages_
                 ]
             if messages_:
+                found_problem = True
                 messages.extend(messages_)
             else:
                 message = 'No problem assets found.'
                 message = tab + message
                 messages.append(message)
+        self._io_manager._display(messages)
+        if not found_problem:
+            return
+        if supply_missing is None:
+            prompt = 'supply missing directories and files?'
+            result = self._io_manager._confirm(prompt)
+            if self._session.is_backtracking or result is None:
+                return
+            supply_missing = bool(result)
+        if not supply_missing:
+            return
+        messages = []
+        for path in paths:
+            manager = self._initialize_manager(path)
+            with self._io_manager._make_silent():
+                messages_ = manager.check_package(
+                    return_supply_messages=True,
+                    supply_missing=True,
+                    )
+            if messages_:
+                string = self._path_to_asset_menu_display_string(manager._path)
+                message = 'in {}:'.format(string)
+                messages.append(message)
+                messages_ = [
+                    tab + stringtools.capitalize_start(_) 
+                    for _ in messages_
+                    ]
+                messages.extend(messages_)
         self._io_manager._display(messages)
 
     def fix_every_package(self):

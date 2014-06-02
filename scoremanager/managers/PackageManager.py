@@ -952,6 +952,7 @@ class PackageManager(AssetController):
         self, 
         problems_only=None,
         return_messages=False, 
+        return_supply_messages=False,
         supply_missing=None,
         ):
         r'''Checks package.
@@ -1126,7 +1127,10 @@ class PackageManager(AssetController):
                 file_pointer.write(contents)
             message = tab + missing_file
             messages.append(message)
-        self._io_manager._display(messages)
+        if return_supply_messages:
+            return messages
+        else:
+            self._io_manager._display(messages)
 
     def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.
