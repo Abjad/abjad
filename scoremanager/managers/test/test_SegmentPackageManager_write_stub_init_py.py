@@ -11,14 +11,14 @@ def test_SegmentPackageManager_write_stub_init_py_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory,
-        'red_example_score',
+        'blue_example_score',
         'segments',
         'segment_01',
         '__init__.py',
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'red~example~score g A ns y q'
+        input_ = 'blue~example~score g segment~01 ns y q'
         score_manager._run(input_=input_)
         assert os.path.isfile(path)
         contents = score_manager._transcript.contents

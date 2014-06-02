@@ -11,5 +11,6 @@ def test_SegmentPackageWrangler_open_every_init_py_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'No __init__.py files found.'
+    string = 'Will open ...'
     assert string in contents
+    assert score_manager._session._attempted_to_open_file
