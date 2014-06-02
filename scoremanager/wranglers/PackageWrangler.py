@@ -64,16 +64,39 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def check_every_package(self):
+    def check_every_package(self, unrecognized_only=None):
         r'''Checks every package.
 
         Returns none.
         '''
+        if unrecognized_only is None:
+            prompt = 'show only unrecognized assets?'
+            result = self._io_manager._confirm(prompt)
+            if self._session.is_backtracking or result is None:
+                return
+            unrecognized_only = bool(result)
         paths = self._list_visible_asset_paths()
         messages = []
+        tab = self._io_manager._make_tab()
         for path in paths:
             manager = self._initialize_manager(path)
-            manager.check_package()
+            if hasattr(manager, '_get_title'):
+                name = manager._get_title(year=True)
+            else:
+                name = manager._package_name
+            message = '{}:'.format(name)
+            messages.append(message)
+            messages_ = manager.check_package(
+                return_messages=True,
+                unrecognized_only=unrecognized_only,
+                )
+            messages_ = [tab + _ for _ in messages_]
+            if messages_:
+                messages.extend(messages_)
+            else:
+                message = 'No unrecognized assets found.'
+                message = tab + message
+                messages.append(message)
         message = '{} packages checked.'
         message = message.format(len(paths))
         messages.append(message)

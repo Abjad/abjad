@@ -69,6 +69,8 @@ class IOManager(IOManager):
         if isinstance(result, str):
             if 'yes'.startswith(result.lower()):
                 return True
+            if 'no'.startswith(result.lower()):
+                return False
 
     def _display(self, lines, capitalize=True, is_menu=False):
         assert isinstance(lines, (str, list))

@@ -905,11 +905,17 @@ class PackageManager(AssetController):
             assert isinstance(command, str)
             self._io_manager.run_command(command)
 
-    def check_package(self):
+    def check_package(self, return_messages=False, unrecognized_only=None):
         r'''Checks package.
 
         Returns none.
         '''
+        if unrecognized_only is None:
+            prompt = 'show only unrecognized assets?'
+            result = self._io_manager._confirm(prompt)
+            if self._session.is_backtracking or result is None:
+                return
+            unrecognized_only = bool(result)
         required_directories, required_files = [], []
         optional_directories, optional_files = [], []
         unrecognized_directories, unrecognized_files = [], []
@@ -943,14 +949,14 @@ class PackageManager(AssetController):
             if path not in recognized_files:
                 missing_files.append(path)
         messages = []
-
-        messages_ = self._format_ratio_check_messages(
-            required_directories,
-            self._required_directories,
-            'required directory',
-            participal='found',
-            )
-        messages.extend(messages_)
+        if not unrecognized_only:
+            messages_ = self._format_ratio_check_messages(
+                required_directories,
+                self._required_directories,
+                'required directory',
+                participal='found',
+                )
+            messages.extend(messages_)
         if missing_directories:
             messages_ = self._format_ratio_check_messages(
                 missing_directories,
@@ -959,13 +965,14 @@ class PackageManager(AssetController):
                 'MISSING',
                 )
             messages.extend(messages_)
-        messages_ = self._format_ratio_check_messages(
-            required_files,
-            self._required_files,
-            'required file',
-            'found',
-            )
-        messages.extend(messages_)
+        if not unrecognized_only:
+            messages_ = self._format_ratio_check_messages(
+                required_files,
+                self._required_files,
+                'required file',
+                'found',
+                )
+            messages.extend(messages_)
         if missing_files:
             messages_ = self._format_ratio_check_messages(
                 missing_files,
@@ -974,20 +981,19 @@ class PackageManager(AssetController):
                 'MISSING',
                 )
             messages.extend(messages_)
-
-        messages_ = self._format_counted_check_messages(
-            optional_directories,
-            'optional directory',
-            participal='found',
-            )
-        messages.extend(messages_)
-        messages_ = self._format_counted_check_messages(
-            optional_files,
-            'optional file',
-            participal='found',
-            )
-        messages.extend(messages_)
-
+        if not unrecognized_only:
+            messages_ = self._format_counted_check_messages(
+                optional_directories,
+                'optional directory',
+                participal='found',
+                )
+            messages.extend(messages_)
+            messages_ = self._format_counted_check_messages(
+                optional_files,
+                'optional file',
+                participal='found',
+                )
+            messages.extend(messages_)
         messages_ = self._format_counted_check_messages(
             unrecognized_directories,
             'unrecognized directory',
@@ -1000,7 +1006,13 @@ class PackageManager(AssetController):
             participal='found',
             )
         messages.extend(messages_)
-        self._io_manager._display(messages)
+        if not unrecognized_directories + unrecognized_files:
+            message = 'no unrecognized assets found.'
+            messages.append(message)
+        if return_messages:
+            return messages
+        else:
+            self._io_manager._display(messages)
 
     def _format_counted_check_messages(
         self, 
