@@ -360,6 +360,9 @@ class PackageManager(AssetController):
         line = line.lstrip(os.path.sep)
         return line
 
+    def _get_top_level_wranglers(self):
+        return ()
+
     def _get_unadded_asset_paths(self):
         if self._is_in_git_repository():
             command = 'git status --porcelain {}'
@@ -1066,6 +1069,19 @@ class PackageManager(AssetController):
             return messages
         else:
             self._io_manager._display(messages)
+        wranglers = self._get_top_level_wranglers()
+        for wrangler in wranglers:
+            if not hasattr(wrangler, 'check_every_package'):
+                continue
+            path = wrangler._get_current_directory()
+            base_name = os.path.basename(path)
+            message = '{}:'.format(base_name)
+            self._io_manager._display(message)
+            wrangler.check_every_package(
+                indent=1,
+                problems_only=problems_only,
+                supply_missing=False,
+                )
         if not missing_directories + missing_files:
             return
         if supply_missing is None:

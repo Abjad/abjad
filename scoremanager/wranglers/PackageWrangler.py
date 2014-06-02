@@ -65,7 +65,12 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def check_every_package(self, problems_only=None, supply_missing=None):
+    def check_every_package(
+        self, 
+        indent=0,
+        problems_only=None, 
+        supply_missing=None,
+        ):
         r'''Checks every package.
 
         Returns none.
@@ -78,19 +83,22 @@ class PackageWrangler(Wrangler):
             problems_only = bool(result)
         paths = self._list_visible_asset_paths()
         messages = []
-        tab = self._io_manager._make_tab()
+        first_tab = self._io_manager._make_tab(indent)
+        second_tab = self._io_manager._make_tab(indent+1)
         found_problem = False
         for path in paths:
             manager = self._initialize_manager(path)
             string = self._path_to_asset_menu_display_string(manager._path)
-            message = 'in {}:'.format(string)
+            message = '{}:'.format(string)
+            message = stringtools.capitalize_start(message)
+            message = first_tab + message
             messages.append(message)
             messages_ = manager.check_package(
                 return_messages=True,
                 problems_only=problems_only,
                 )
             messages_ = [
-                tab + stringtools.capitalize_start(_) 
+                second_tab + stringtools.capitalize_start(_) 
                 for _ in messages_
                 ]
             if messages_:
@@ -98,7 +106,7 @@ class PackageWrangler(Wrangler):
                 messages.extend(messages_)
             else:
                 message = 'No problem assets found.'
-                message = tab + message
+                message = second_tab + message
                 messages.append(message)
         self._io_manager._display(messages)
         if not found_problem:
@@ -121,10 +129,11 @@ class PackageWrangler(Wrangler):
                     )
             if messages_:
                 string = self._path_to_asset_menu_display_string(manager._path)
-                message = 'in {}:'.format(string)
+                message = '{}:'.format(string)
+                message = first_tab + message
                 messages.append(message)
                 messages_ = [
-                    tab + stringtools.capitalize_start(_) 
+                    second_tab + stringtools.capitalize_start(_) 
                     for _ in messages_
                     ]
                 messages.extend(messages_)
