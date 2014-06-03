@@ -20,7 +20,7 @@ def test_BuildFileWrangler_make_view_01():
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score Manager - build files - views - _test - edit:'
+    string = 'Score Manager - build files - views (EDITING)'
     assert string in contents
 
 

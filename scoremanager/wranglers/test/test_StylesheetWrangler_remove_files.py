@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_StylesheetWrangler_remove_stylesheets_01():
+def test_StylesheetWrangler_remove_files_01():
     r'''Do not use FilesystemState here because test
     adds back to repository.
     '''

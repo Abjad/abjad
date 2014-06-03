@@ -19,7 +19,7 @@ def test_SegmentPackageWrangler_make_view_01():
         input_ = 'g vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Score Manager - segments - views - _test - edit:'
+        string = 'Score Manager - segments - views (EDITING)'
         assert string in contents
 
 

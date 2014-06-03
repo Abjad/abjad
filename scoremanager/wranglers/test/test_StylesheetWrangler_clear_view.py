@@ -24,10 +24,10 @@ def test_StylesheetWrangler_clear_view_01():
             '',
             '   1: clean-letter-14.ily (Abjad)',
             '',
-            '      stylesheets - copy (cp)',
-            '      stylesheets - new (new)',
-            '      stylesheets - remove (rm)',
-            '      stylesheets - rename (ren)',
+            '      files - copy (cp)',
+            '      files - new (new)',
+            '      files - remove (rm)',
+            '      files - rename (ren)',
             '',
             ]
         assert any(_.lines == lines for _ in transcript)

@@ -19,7 +19,7 @@ def test_DistributionFileWrangler_make_view_01():
         input_ = 'd vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Score Manager - distribution files - views - _test - edit:'
+        string = 'Score Manager - distribution files - views (EDITING)'
         assert string in contents
 
 

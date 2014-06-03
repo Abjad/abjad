@@ -31,10 +31,10 @@ def test_MakerFileWrangler_clear_view_01():
             '',
             '   1: RedExampleScoreTemplate.py (Red Example Score)',
             '',
-            '      maker files - copy (cp)',
-            '      maker files - new (new)',
-            '      maker files - remove (rm)',
-            '      maker files - rename (ren)',
+            '      files - copy (cp)',
+            '      files - new (new)',
+            '      files - remove (rm)',
+            '      files - rename (ren)',
             '',
             ]
         assert any(_.lines == lines for _ in transcript)
@@ -60,10 +60,10 @@ def test_MakerFileWrangler_clear_view_02():
             '',
             '   1: RedExampleScoreTemplate.py',
             '',
-            '      maker files - copy (cp)',
-            '      maker files - new (new)',
-            '      maker files - remove (rm)',
-            '      maker files - rename (ren)',
+            '      files - copy (cp)',
+            '      files - new (new)',
+            '      files - remove (rm)',
+            '      files - rename (ren)',
             '',
             ]
         assert any(_.lines == lines for _ in transcript)

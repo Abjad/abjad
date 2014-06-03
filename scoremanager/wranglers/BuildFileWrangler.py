@@ -3,10 +3,10 @@ import os
 import shutil
 from abjad.tools import lilypondfiletools
 from abjad.tools import systemtools
-from scoremanager.wranglers.Wrangler import Wrangler
+from scoremanager.wranglers.FileWrangler import FileWrangler
 
 
-class BuildFileWrangler(Wrangler):
+class BuildFileWrangler(FileWrangler):
     r'''Build wrangler.
 
     ..  container:: example
@@ -30,16 +30,10 @@ class BuildFileWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
         superclass = super(BuildFileWrangler, self)
         superclass.__init__(session=session)
-        self._abjad_storehouse_path = None
-        self._user_storehouse_path = None
-        self._score_storehouse_path_infix_parts = ('build',)
         self._basic_breadcrumb = 'build files'
-        self._human_readable = False
-        self._include_extensions = True
-        self._asset_identifier = 'file'
+        self._score_storehouse_path_infix_parts = ('build',)
 
     ### PRIVATE PROPERTIES ###
 
@@ -49,11 +43,6 @@ class BuildFileWrangler(Wrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'cp': self.copy_file,
-            'new': self.make_file,
-            'ren': self.rename_file,
-            'rm': self.remove_files,
-            #
             'bce': self.edit_back_cover_source,
             'bcg': self.generate_back_cover_source,
             'bci': self.interpret_back_cover,
@@ -260,17 +249,6 @@ class BuildFileWrangler(Wrangler):
             name='draft',
             )
 
-    def _make_files_menu_section(self, menu):
-        commands = []
-        commands.append(('files - copy', 'cp'))
-        commands.append(('files - new', 'new'))
-        commands.append(('files - rename', 'ren'))
-        commands.append(('files - remove', 'rm'))
-        menu.make_command_section(
-            commands=commands,
-            name='files',
-            )
-
     def _make_front_cover_menu_section(self, menu):
         commands = []
         commands.append(('front cover - edit latex source', 'fce'))
@@ -287,7 +265,6 @@ class BuildFileWrangler(Wrangler):
     def _make_main_menu(self):
         superclass = super(BuildFileWrangler, self)
         menu = superclass._make_main_menu()
-        self._make_files_menu_section(menu)
         if self._session.is_in_score:
             self._make_back_cover_menu_section(menu)
             self._make_draft_menu_section(menu)
@@ -417,13 +394,6 @@ class BuildFileWrangler(Wrangler):
             return
         for source_file_path, target_file_path in pairs:
             shutil.copyfile(source_file_path, target_file_path)
-
-    def copy_file(self):
-        r'''Copies file.
-
-        Returns none.
-        '''
-        self._copy_asset(force_lowercase=False)
 
     def edit_back_cover_source(self):
         r'''Edits ``back-cover.tex``.
@@ -643,15 +613,6 @@ class BuildFileWrangler(Wrangler):
         '''
         self._interpret_file_ending_with('score.tex')
 
-    def make_file(self):
-        r'''Makes empty file.
-
-        Returns none.
-        '''
-        self._make_file(
-            prompt_string='file name', 
-            )
-
     def open_back_cover_pdf(self):
         r'''Opens ``back-cover.pdf``.
 
@@ -693,17 +654,3 @@ class BuildFileWrangler(Wrangler):
         Returns none.
         '''
         self._open_file_ending_with('score.pdf')
-
-    def remove_files(self):
-        r'''Removes one or more files.
-
-        Returns none.
-        '''
-        self._remove_assets()
-
-    def rename_file(self):
-        r'''Renames file.
-
-        Returns none.
-        '''
-        self._rename_asset()
