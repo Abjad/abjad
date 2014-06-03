@@ -10,7 +10,7 @@ def test_SegmentPackageManager_go_to_maker_files_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - A',

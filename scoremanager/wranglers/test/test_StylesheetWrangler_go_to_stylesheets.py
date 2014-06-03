@@ -11,7 +11,7 @@ def test_StylesheetWrangler_go_to_stylesheets_01():
     input_ = 'red~example~score y y q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets',
         'Red Example Score (2013) - stylesheets',
@@ -26,8 +26,8 @@ def test_StylesheetWrangler_go_to_stylesheets_02():
     input_ = 'y y q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
-        'Score Manager - stylesheets',
-        'Score Manager - stylesheets',
+        'Abjad IDE - scores',
+        'Abjad IDE - stylesheets',
+        'Abjad IDE - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

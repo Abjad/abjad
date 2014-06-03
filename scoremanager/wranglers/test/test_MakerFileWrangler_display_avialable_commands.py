@@ -19,4 +19,4 @@ def test_MakerFileWrangler_display_avialable_commands_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score Manager - maker files - available commands' in contents
+    assert 'Abjad IDE - maker files - available commands' in contents

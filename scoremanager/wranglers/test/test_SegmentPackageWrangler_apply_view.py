@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_apply_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Score Manager - segments (_test)',
+            'Abjad IDE - segments (_test)',
             '',
             '   1: A (Red Example Score)',
             '',

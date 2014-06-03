@@ -11,7 +11,7 @@ def test_DistributionFileWrangler_go_to_build_files_01():
     input_ = 'red~example~score d u q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - distribution files',
         'Red Example Score (2013) - build files',

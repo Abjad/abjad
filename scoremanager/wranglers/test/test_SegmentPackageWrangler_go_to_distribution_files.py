@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_distribution_files_01():
     input_ = 'red~example~score g d q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - distribution files',

@@ -18,9 +18,9 @@ def test_BuildFileWrangler_copy_file_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - build files',
-        'Score Manager - build files - select storehouse:',
+        'Abjad IDE - scores',
+        'Abjad IDE - build files',
+        'Abjad IDE - build files - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

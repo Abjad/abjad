@@ -11,7 +11,7 @@ def test_IOManager_handle_input_01():
     input_ = '>> . . . q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Blue Example Score (2013)',
         'Étude Example Score (2013)',
         'Red Example Score (2013)',

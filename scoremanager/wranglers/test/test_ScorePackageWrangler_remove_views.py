@@ -47,8 +47,8 @@ def test_ScorePackageWrangler_remove_views_02():
         input_ = 'vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - select view(s) to remove:',
-            'Score Manager - scores',
+            'Abjad IDE - scores',
+            'Abjad IDE - select view(s) to remove:',
+            'Abjad IDE - scores',
             ]
         assert score_manager._transcript.titles == titles

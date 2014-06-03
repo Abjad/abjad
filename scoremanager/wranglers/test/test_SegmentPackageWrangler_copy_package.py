@@ -18,9 +18,9 @@ def test_SegmentPackageWrangler_copy_package_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - segments',
-        'Score Manager - segments - select storehouse:',
+        'Abjad IDE - scores',
+        'Abjad IDE - segments',
+        'Abjad IDE - segments - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

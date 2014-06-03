@@ -10,4 +10,4 @@ def test_ScorePackageWrangler_display_available_commands_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score Manager - scores - available commands' in contents
+    assert 'Abjad IDE - scores - available commands' in contents

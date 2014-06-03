@@ -47,9 +47,9 @@
 14. Allow arbitrary metadata in view patterns.
 
 15. Change ...
-        Score Manager - stylesheets (_test) - select view(s) to remove:
+        Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
-        Score Manager - stylesheets - select view(s) to remove:
+        Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
 16. Allow 5-99 (or any other large number) to work when removing items.
@@ -90,6 +90,6 @@
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-26. Collapse all Score Manager classes to a single package.
+26. Collapse all Abjad IDE classes to a single package.
 
 27. Change ScoreManager to AbjadIDE.

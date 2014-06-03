@@ -20,7 +20,7 @@ def test_StylesheetWrangler_clear_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Score Manager - stylesheets (_test)',
+            'Abjad IDE - stylesheets (_test)',
             '',
             '   1: clean-letter-14.ily (Abjad)',
             '',

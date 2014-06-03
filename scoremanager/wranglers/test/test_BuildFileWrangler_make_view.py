@@ -20,7 +20,7 @@ def test_BuildFileWrangler_make_view_01():
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score Manager - build files - views (EDITING)'
+    string = 'Abjad IDE - build files - views (EDITING)'
     assert string in contents
 
 
@@ -52,7 +52,7 @@ def test_BuildFileWrangler_make_view_03():
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score Manager - build files (_test)' in contents
+    assert 'Abjad IDE - build files (_test)' in contents
 
     input_ = 'u vls vrm _test <return> q'
     score_manager._run(input_=input_)

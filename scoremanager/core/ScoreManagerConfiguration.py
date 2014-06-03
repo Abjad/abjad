@@ -4,7 +4,7 @@ from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 
 
 class ScoreManagerConfiguration(AbjadConfiguration):
-    r'''Score Manager configuration.
+    r'''Abjad IDE configuration.
 
     ..  container:: example
 
@@ -36,7 +36,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return [
             '-*- coding: utf-8 -*-',
             '',
-            'Score Manager tools configuration file created on {}.'.format(
+            'Abjad IDE tools configuration file created on {}.'.format(
                 self._current_time),
             'This file is interpreted by ConfigObj'
             ' and should follow ini syntax.',

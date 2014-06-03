@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_stylesheets_01():
     input_ = 'y q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
-        'Score Manager - stylesheets',
+        'Abjad IDE - scores',
+        'Abjad IDE - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

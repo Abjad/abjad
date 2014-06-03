@@ -10,10 +10,10 @@ def test_DistributionFileWrangler_go_home_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - distribution files',
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -24,8 +24,8 @@ def test_DistributionFileWrangler_go_home_02():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - distribution files',
-        'Score Manager - scores',
+        'Abjad IDE - scores',
+        'Abjad IDE - distribution files',
+        'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

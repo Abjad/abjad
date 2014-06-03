@@ -23,8 +23,8 @@ def test_Menu__display_available_commands_02():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - scores - available commands',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores - available commands',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -38,8 +38,8 @@ def test_Menu__display_available_commands_03():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - scores - available commands',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores - available commands',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -53,7 +53,7 @@ def test_Menu__display_available_commands_04():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - available commands',
         ]

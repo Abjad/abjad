@@ -9,10 +9,10 @@ def test_SegmentPackageManager_go_home_01():
     input_ = 'red~example~score g A h q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - A',
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_segments_01():
     input_ = 'red~example~score g g q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments',
@@ -26,8 +26,8 @@ def test_SegmentPackageWrangler_go_to_segments_02():
     input_ = 'g g q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
-        'Score Manager - segments',
-        'Score Manager - segments',
+        'Abjad IDE - scores',
+        'Abjad IDE - segments',
+        'Abjad IDE - segments',
         ]
     assert score_manager._transcript.titles == titles

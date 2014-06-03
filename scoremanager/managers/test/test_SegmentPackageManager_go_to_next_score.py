@@ -9,7 +9,7 @@ def test_SegmentPackageManager_go_to_next_score_01():
     input_ = 'red~example~score g A >> q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - A',

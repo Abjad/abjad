@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 
 
 class Session(abctools.AbjadObject):
-    r'''Score Manager session.
+    r'''Abjad IDE session.
 
     ..  container:: example
 

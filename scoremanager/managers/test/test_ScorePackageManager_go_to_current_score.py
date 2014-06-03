@@ -10,7 +10,7 @@ def test_ScorePackageManager_go_to_current_score_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013)',
         ]

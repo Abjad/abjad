@@ -47,9 +47,9 @@ def test_SegmentPackageWrangler_remove_views_02():
         input_ = 'g vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - segments',
-            'Score Manager - segments - select view(s) to remove:',
-            'Score Manager - segments',
+            'Abjad IDE - scores',
+            'Abjad IDE - segments',
+            'Abjad IDE - segments - select view(s) to remove:',
+            'Abjad IDE - segments',
             ]
         assert score_manager._transcript.titles == titles

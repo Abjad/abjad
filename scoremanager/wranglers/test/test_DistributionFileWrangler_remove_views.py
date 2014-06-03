@@ -49,9 +49,9 @@ def test_DistributionFileWrangler_remove_views_02():
         input_ = 'd vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - distribution files',
-            'Score Manager - distribution files - select view(s) to remove:',
-            'Score Manager - distribution files',
+            'Abjad IDE - scores',
+            'Abjad IDE - distribution files',
+            'Abjad IDE - distribution files - select view(s) to remove:',
+            'Abjad IDE - distribution files',
             ]
         assert score_manager._transcript.titles == titles

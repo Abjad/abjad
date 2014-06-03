@@ -47,9 +47,9 @@ def test_BuildFileWrangler_remove_views_02():
         input_ = 'u vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - build files',
-            'Score Manager - build files - select view(s) to remove:',
-            'Score Manager - build files',
+            'Abjad IDE - scores',
+            'Abjad IDE - build files',
+            'Abjad IDE - build files - select view(s) to remove:',
+            'Abjad IDE - build files',
             ]
         assert score_manager._transcript.titles == titles

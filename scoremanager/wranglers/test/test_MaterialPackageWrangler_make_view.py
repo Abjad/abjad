@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_make_view_01():
         input_ = 'm vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Score Manager - materials - views (EDITING)'
+        string = 'Abjad IDE - materials - views (EDITING)'
         assert string in contents
 
 
@@ -45,7 +45,7 @@ def test_MaterialPackageWrangler_make_view_03():
         input_ = 'red~example~score m vnew _test 1 q' 
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
+            'Abjad IDE - scores',
             'Red Example Score (2013)',
             'Red Example Score (2013) - materials',
             'Red Example Score (2013) - materials - views (EDITING)',

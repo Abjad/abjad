@@ -19,4 +19,4 @@ def test_MaterialPackageWrangler_display_available_commands_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score Manager - materials - available commands' in contents
+    assert 'Abjad IDE - materials - available commands' in contents

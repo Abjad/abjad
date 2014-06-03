@@ -5,7 +5,7 @@ from scoremanager.core.AssetController import AssetController
 
 
 class ScoreManager(AssetController):
-    r'''Score Manager.
+    r'''Abjad IDE.
 
     ..  container:: example
 
@@ -38,7 +38,7 @@ class ScoreManager(AssetController):
     @property
     def _breadcrumb(self):
         if not self._session.is_in_score:
-            return 'Score Manager'
+            return 'Abjad IDE'
 
     @property
     @systemtools.Memoize

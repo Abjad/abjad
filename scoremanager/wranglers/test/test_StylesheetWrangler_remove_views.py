@@ -45,9 +45,9 @@ def test_StylesheetWrangler_remove_views_02():
         input_ = 'y vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - stylesheets',
-            'Score Manager - stylesheets - select view(s) to remove:',
-            'Score Manager - stylesheets',
+            'Abjad IDE - scores',
+            'Abjad IDE - stylesheets',
+            'Abjad IDE - stylesheets - select view(s) to remove:',
+            'Abjad IDE - stylesheets',
             ]
         assert score_manager._transcript.titles == titles

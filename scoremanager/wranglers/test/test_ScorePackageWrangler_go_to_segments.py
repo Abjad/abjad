@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_segments_01():
     input_ = 'g q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
-        'Score Manager - segments',
+        'Abjad IDE - scores',
+        'Abjad IDE - segments',
         ]
     assert score_manager._transcript.titles == titles

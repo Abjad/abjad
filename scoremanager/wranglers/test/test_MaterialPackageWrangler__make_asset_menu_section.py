@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler__make_asset_menu_section_01():
     input_ = 'blue~example~score m q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - materials',
         ]

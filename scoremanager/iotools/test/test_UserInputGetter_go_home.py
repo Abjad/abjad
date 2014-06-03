@@ -10,12 +10,12 @@ def test_UserInputGetter_go_home_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory (AE)',
         'Red Example Score (2013) - materials - tempo inventory (AE)',
         'Red Example Score (2013) - materials - tempo inventory (AE)',
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

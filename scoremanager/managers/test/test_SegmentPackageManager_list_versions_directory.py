@@ -4,7 +4,7 @@ import scoremanager
 
 
 def test_SegmentPackageManager_list_versions_directory_01():
-    r'''Score Manager displays informative string when no versions
+    r'''Abjad IDE displays informative string when no versions
     directory exists and raises no exceptions.
     '''
 

@@ -10,7 +10,7 @@ def test_ScorePackageWrangler_go_home_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - scores',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

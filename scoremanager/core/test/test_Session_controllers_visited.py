@@ -21,7 +21,7 @@ segment_package_path = os.path.join(
 
 
 def test_Session_controllers_visited_01():
-    r'''Score Manager.
+    r'''Abjad IDE.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
