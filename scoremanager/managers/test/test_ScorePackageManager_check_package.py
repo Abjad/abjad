@@ -12,13 +12,16 @@ def test_ScorePackageManager_check_package_01():
     contents = score_manager._transcript.contents
 
     lines = [
-        'No problem assets found.',
+        'Build (18 files): OK',
+        'Distribution (2 files): OK',
+        'Makers (2 files): OK',
+        'Materials (5 packages):',
+        'Segments (3 packages):',
+        'Stylesheets (2 files): OK',
         ]
     for line in lines:
         assert line in contents
-    assert 'required directories found' not in contents
-    assert 'required files found' not in contents
-    assert 'optional directory found' not in contents
+    assert 'found' not in contents
 
 
 def test_ScorePackageManager_check_package_02():

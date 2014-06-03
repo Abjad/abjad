@@ -11,15 +11,9 @@ def test_MaterialPackageManager_check_package_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    lines = [
-        'No problem assets found.',
-        ]
-    for line in lines:
-        assert line in contents
-    assert 'optional files found' not in contents
-    assert 'optional directories found' not in contents
-    assert 'required directory found' not in contents
-    assert 'required files found' not in contents
+    assert 'Top level (6 assets): OK' in contents
+    assert 'found' not in contents
+    assert 'missing' not in contents
 
 
 def test_MaterialPackageManager_check_package_02():

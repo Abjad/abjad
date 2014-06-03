@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
@@ -65,7 +66,29 @@ class FileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
+        paths = self._list_visible_asset_paths()
+        invalid_paths = []
+        for path in paths:
+            file_name = os.path.basename(path)
+            if not self._is_valid_directory_entry(file_name):
+                invalid_paths.append(path)
+        directory = self._get_current_directory()
+        directory = os.path.basename(directory)
+        messages = []
+        if not invalid_paths:
+            count = len(paths)
+            message = '{} ({} files): OK'.format(directory, count)
+            messages.append(message)
+        else:
+            
+            message = '{}:'.format(directory)
+            messages.append(message)
+            tab = self._io_manager._make_tab()
+            for invalid_path in invalid_paths:
+                message = tab + invalid_path
+                messages.append(message)
+        self._io_manager._display(messages)
+        return invalid_paths
 
     def copy_file(self):
         r'''Copies file.

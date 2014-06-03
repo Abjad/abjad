@@ -25,9 +25,7 @@ class Wrangler(AssetController):
         '_asset_identifier',
         '_basic_breadcrumb',
         '_force_lowercase',
-        '_human_readable',
         '_include_asset_name',
-        '_include_extensions',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -47,9 +45,7 @@ class Wrangler(AssetController):
         self._asset_identifier = None
         self._basic_breadcrumb = None
         self._force_lowercase = True
-        self._human_readable = True
         self._include_asset_name = True
-        self._include_extensions = False
         self._manager_class = managers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
@@ -791,41 +787,6 @@ class Wrangler(AssetController):
         else:
             annotation = None
         return annotation
-
-    def _path_to_asset_menu_display_string(self, path):
-        if self._human_readable:
-            asset_name = self._path_to_human_readable_name(path)
-        else:
-            asset_name = os.path.basename(path)
-        if 'segments' in path:
-            manager = self._io_manager._make_package_manager(path=path)
-            name = manager._get_metadatum('name')
-            asset_name = name or asset_name
-        if self._session.is_in_score:
-            string = asset_name
-        else:
-            annotation = self._path_to_annotation(path)
-            if self._include_asset_name:
-                string = '{} ({})'.format(asset_name, annotation)
-            else:
-                string = annotation
-        if getattr(self, '_annotate_autoeditor', False):
-            use_autoeditor = False
-            manager = self._io_manager._make_package_manager(path=path)
-            metadata = manager._get_metadata()
-            if metadata:
-                use_autoeditor = metadata.get('use_autoeditor')
-            if use_autoeditor:
-                string = string + ' (AE)'
-        return string
-
-    def _path_to_human_readable_name(self, path):
-        path = os.path.normpath(path)
-        name = os.path.basename(path)
-        include_extensions = self._include_extensions
-        if not include_extensions:
-            name, extension = os.path.splitext(name)
-        return stringtools.to_space_delimited_lowercase(name)
 
     def _read_view(self):
         view_name = self._read_view_name()

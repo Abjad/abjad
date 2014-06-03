@@ -971,7 +971,8 @@ class PackageManager(AssetController):
         required_directories, required_files = [], []
         optional_directories, optional_files = [], []
         unrecognized_directories, unrecognized_files = [], []
-        for name in self._list():
+        names = self._list()
+        for name in names:
             path = os.path.join(self._path, name)
             if os.path.isdir(path):
                 if name in self._required_directories:
@@ -1058,30 +1059,41 @@ class PackageManager(AssetController):
             participal='found',
             )
         messages.extend(messages_)
+        tab = self._io_manager._make_tab()
+        messages = [tab + _ for _ in messages]
+        name = self._path_to_asset_menu_display_string(self._path)
+        count = len(names)
         if (problems_only and 
             not missing_directories and
             not missing_files and
             not unrecognized_directories and 
             not unrecognized_files):
-            message = 'no problem assets found.'
+            if return_messages:
+                message = '{}: OK'.format(name)
+            else:
+                message = 'top level ({} assets): OK'.format(count)
+            message = stringtools.capitalize_start(message)
             messages.append(message)
+        else:
+            if return_messages:
+                message = '{}:'.format(name)
+            else:
+                message = 'top level ({} assets):'.format(count)
+            messages.insert(0, message)
         if return_messages:
             return messages
         else:
             self._io_manager._display(messages)
         wranglers = self._get_top_level_wranglers()
         for wrangler in wranglers:
-            if not hasattr(wrangler, 'check_every_package'):
-                continue
-            path = wrangler._get_current_directory()
-            base_name = os.path.basename(path)
-            message = '{}:'.format(base_name)
-            self._io_manager._display(message)
-            wrangler.check_every_package(
-                indent=1,
-                problems_only=problems_only,
-                supply_missing=False,
-                )
+            if hasattr(wrangler, 'check_every_package'):
+                wrangler.check_every_package(
+                    indent=1,
+                    problems_only=problems_only,
+                    supply_missing=False,
+                    )
+            else:
+                wrangler.check_every_file()
         if not missing_directories + missing_files:
             return
         if supply_missing is None:
