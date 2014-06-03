@@ -21,11 +21,9 @@ class Wrangler(AssetController):
 
     __slots__ = (
         '_abjad_storehouse_path',
-        '_annotate_year',
         '_asset_identifier',
         '_basic_breadcrumb',
         '_force_lowercase',
-        '_include_asset_name',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -41,11 +39,9 @@ class Wrangler(AssetController):
         superclass = super(Wrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
-        self._annotate_year = False
         self._asset_identifier = None
         self._basic_breadcrumb = None
         self._force_lowercase = True
-        self._include_asset_name = True
         self._manager_class = managers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
@@ -760,33 +756,6 @@ class Wrangler(AssetController):
         if self._session.is_backtracking or not result:
             return
         self._io_manager.open_file(paths)
-
-    def _path_to_annotation(self, path):
-        score_storehouses = (
-            self._configuration.example_score_packages_directory,
-            self._configuration.user_score_packages_directory,
-            )
-        if path.startswith(score_storehouses):
-            score_path = self._configuration._path_to_score_path(path)
-            manager = self._io_manager._make_package_manager(path=score_path)
-            metadata = manager._get_metadata()
-            if metadata:
-                year = metadata.get('year')
-                title = metadata.get('title')
-                if self._annotate_year and year:
-                    annotation = '{} ({})'.format(title, year)
-                else:
-                    annotation = str(title)
-            else:
-                package_name = os.path.basename(path)
-                annotation = package_name
-        elif path.startswith(self._user_storehouse_path):
-            annotation = self._configuration.composer_last_name
-        elif path.startswith(self._abjad_storehouse_path):
-            annotation = 'Abjad'
-        else:
-            annotation = None
-        return annotation
 
     def _read_view(self):
         view_name = self._read_view_name()

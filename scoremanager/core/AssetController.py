@@ -13,7 +13,9 @@ class AssetController(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotate_year',
         '_human_readable',
+        '_include_asset_name',
         '_include_extensions',
         )
 
@@ -22,7 +24,9 @@ class AssetController(Controller):
     def __init__(self, session=None):                                           
         superclass = super(AssetController, self)                                    
         superclass.__init__(session=session)                                    
+        self._annotate_year = False
         self._human_readable = True
+        self._include_asset_name = True
         self._include_extensions = False
 
     ### PRIVATE PROPERTIES ###
@@ -233,6 +237,33 @@ class AssetController(Controller):
             message = 'can not find file: {}.'
             message = message.format(path)
             self._io_manager._display(message)
+
+    def _path_to_annotation(self, path):
+        score_storehouses = (
+            self._configuration.example_score_packages_directory,
+            self._configuration.user_score_packages_directory,
+            )
+        if path.startswith(score_storehouses):
+            score_path = self._configuration._path_to_score_path(path)
+            manager = self._io_manager._make_package_manager(path=score_path)
+            metadata = manager._get_metadata()
+            if metadata:
+                year = metadata.get('year')
+                title = metadata.get('title')
+                if self._annotate_year and year:
+                    annotation = '{} ({})'.format(title, year)
+                else:
+                    annotation = str(title)
+            else:
+                package_name = os.path.basename(path)
+                annotation = package_name
+        elif path.startswith(self._user_storehouse_path):
+            annotation = self._configuration.composer_last_name
+        elif path.startswith(self._abjad_storehouse_path):
+            annotation = 'Abjad'
+        else:
+            annotation = None
+        return annotation
 
     def _path_to_asset_menu_display_string(self, path):
         if self._human_readable:

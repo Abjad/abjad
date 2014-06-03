@@ -83,11 +83,12 @@ class PackageWrangler(Wrangler):
             problems_only = bool(result)
         managers = self._list_visible_asset_managers()
         messages = []
-        path = self._get_current_directory()
-        name = os.path.basename(path)
-        count = len(managers)
-        message = '{} ({} packages):'.format(name, count)
-        messages.append(message)
+        if self._session.is_in_score:
+            path = self._get_current_directory()
+            name = os.path.basename(path)
+            count = len(managers)
+            message = '{} ({} packages):'.format(name, count)
+            messages.append(message)
         first_tab = self._io_manager._make_tab(indent)
         second_tab = self._io_manager._make_tab(indent+1)
         found_problem = False
