@@ -1,73 +1,67 @@
 1.  Implement an 'all whatever - edit' command.
 
-2.  Reinstate FileWrangler.
-    Implement FileWrangler.check_file_names().
-    With corresponding 'all files - check' (ck*) command.
-    The method will check every file name against a list of acceptable globs.
-    The method will display any unrecognized files.
-
-3.  Autorun ScorePackageManager.fix() on ScorePackageManager start.
+2.  Autorun ScorePackageManager.fix() on ScorePackageManager start.
     Autorun MaterialPackageWrangler.fix() on ScorePackageManager start.
     Autorun SegmentPackageWrangler.fix() on ScorePackageManager start.
     Will prompt composer to fix everything on ScorePackageManager start.
 
-4.  Make (rrv) work for Subversion-managed directories.
+3.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-5.  Make sure new-style.ily doesn't alias (new).
+4.  Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-6.  When in (new) score, change 'Enter package name>' to
+5.  When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-7.  Block (new) score when view is hiding user scores.
+6.  Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-8.  Allow more flexible input for score (new).
+7.  Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-9.  Implement stringtools.delimit_words(delimitor=' ').
+8.  Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-10. Make (mdo) work for wranglers.
+9.  Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-11. Make menu title breadcrumbs correctly reflect changes in view
+10. Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-12. Refuse to apply view when invalid regular expression is found.
+11. Refuse to apply view when invalid regular expression is found.
 
-13. Implement 'views - autoedit' (vae) command.
+12. Implement 'views - autoedit' (vae) command.
 
-14. Compile regular expressions at view entry add time.
+13. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-15. Allow arbitrary metadata in view patterns.
+14. Allow arbitrary metadata in view patterns.
 
-16. Change ...
+15. Change ...
         Score Manager - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Score Manager - stylesheets - select view(s) to remove:
     ... instead.
 
-17. Allow 5-99 (or any other large number) to work when removing items.
+16. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-18. Fix menu title that results from the following:
+17. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-19. There is no such thing as 'My build files'.
+18. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-20. Improve (k > cp) user experience. Change ...
+19. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -76,26 +70,26 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-21. Make (rrv) work in Git directories.
+20. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-22. Add 'all segments - list versions directories'.
+21. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-23. Open audio files with audio player. Use (d) for examples to test.
+22. Open audio files with audio player. Use (d) for examples to test.
 
-24. Wrap metadata tests with FilesystemState context.
+23. Wrap metadata tests with FilesystemState context.
 
-25. Move SargassoMeasureMaker to the makers directory on an example score.
+24. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-26. Remove scoremanager/wizards directory.
+25. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-27. Collapse all Score Manager classes to a single package.
+26. Collapse all Score Manager classes to a single package.
 
-28. Change ScoreManager to AbjadIDE.
+27. Change ScoreManager to AbjadIDE.
