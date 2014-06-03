@@ -4,16 +4,16 @@ from abjad.tools import systemtools
 from scoremanager.core.AssetController import AssetController
 
 
-class ScoreManager(AssetController):
+class AbjadIDE(AssetController):
     r'''Abjad IDE.
 
     ..  container:: example
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
+            >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
             >>> score_manager
-            ScoreManager()
+            AbjadIDE()
 
     '''
 
@@ -29,7 +29,7 @@ class ScoreManager(AssetController):
         if session is None:
             session = core.Session()
             session._is_test = is_test
-        superclass = super(ScoreManager, self)
+        superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
         self._session._score_manager = self
 
@@ -108,7 +108,7 @@ class ScoreManager(AssetController):
             )
 
     def _make_main_menu(self):
-        superclass = super(ScoreManager, self)
+        superclass = super(AbjadIDE, self)
         menu = superclass._make_main_menu()
         self._make_init_py_menu_section(menu)
         return menu

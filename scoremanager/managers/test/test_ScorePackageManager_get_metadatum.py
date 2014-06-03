@@ -5,7 +5,7 @@ import scoremanager
 
 def test_ScorePackageManager_get_metadatum_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
     # make sure no flavor_type metadatum found
     input_ = 'red~example~score mdg flavor_type <return> q'

@@ -10,7 +10,7 @@ def test_MaterialPackageManager_autoedit_01():
     '''Edit menu has correct header.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'm example~markup~inventory ae q'
     score_manager._run(input_=input_)
 
@@ -22,7 +22,7 @@ def test_MaterialPackageManager_autoedit_02():
     r'''Edits tempo inventory.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -61,7 +61,7 @@ def test_MaterialPackageManager_autoedit_03():
     r'''Edits empty pitch range inventory.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -94,7 +94,7 @@ def test_MaterialPackageManager_autoedit_04():
     r'''Edits populated pitch range inventory.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -132,7 +132,7 @@ def test_MaterialPackageManager_autoedit_04():
 
 def test_MaterialPackageManager_autoedit_05():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -175,7 +175,7 @@ def test_MaterialPackageManager_autoedit_06():
     r'''Edits empty octave transposition mapping inventory.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -209,7 +209,7 @@ def test_MaterialPackageManager_autoedit_07():
     r'''Edits populated octave transposition mapping inventory.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -255,7 +255,7 @@ def test_MaterialPackageManager_autoedit_07():
 def test_MaterialPackageManager_autoedit_08():
     pytest.skip('make autoadding work again.')
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -285,7 +285,7 @@ def test_MaterialPackageManager_autoedit_08():
 
 def test_MaterialPackageManager_autoedit_09():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -317,7 +317,7 @@ def test_MaterialPackageManager_autoedit_10():
     r'''Edits talea rhythm-maker.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -361,7 +361,7 @@ def test_MaterialPackageManager_autoedit_11():
     r'''Edits retierated articulation handler.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -402,7 +402,7 @@ def test_MaterialPackageManager_autoedit_12():
     r'''Edits dynamic handler.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,

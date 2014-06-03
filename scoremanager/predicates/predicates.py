@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import re
 from abjad import *
-from scoremanager.core.ScoreManagerConfiguration \
-    import ScoreManagerConfiguration
-configuration = ScoreManagerConfiguration()
+from scoremanager.core.AbjadIDEConfiguration \
+    import AbjadIDEConfiguration
+configuration = AbjadIDEConfiguration()
 
 
 def is_argument_range_string(expr):

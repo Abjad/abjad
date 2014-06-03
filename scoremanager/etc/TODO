@@ -92,4 +92,4 @@
     
 26. Collapse all Abjad IDE classes to a single package.
 
-27. Change ScoreManager to AbjadIDE.
+27. Change AbjadIDE to AbjadIDE.

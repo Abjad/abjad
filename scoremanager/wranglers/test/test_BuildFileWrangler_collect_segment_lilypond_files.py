@@ -4,7 +4,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_collect_segment_lilypond_files_01():

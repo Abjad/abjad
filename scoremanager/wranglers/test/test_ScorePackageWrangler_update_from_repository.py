@@ -5,7 +5,7 @@ import scoremanager
 
 def test_ScorePackageWrangler_update_from_repository_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'rup <return> q'
     score_manager._run(input_=input_)

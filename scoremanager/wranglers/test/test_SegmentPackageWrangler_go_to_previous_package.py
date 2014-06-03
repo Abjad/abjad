@@ -7,7 +7,7 @@ def test_SegmentPackageWrangler_go_to_previous_package_01():
     r'''Previous material package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score g < < < < q'
     score_manager._run(input_=input_)
     titles = [

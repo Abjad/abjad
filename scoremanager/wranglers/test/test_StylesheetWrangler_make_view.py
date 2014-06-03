@@ -4,7 +4,7 @@ import pytest
 from abjad import *
 import scoremanager
 # is_test=True is ok when testing the creation of views
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',

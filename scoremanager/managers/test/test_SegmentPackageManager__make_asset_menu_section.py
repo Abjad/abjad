@@ -7,7 +7,7 @@ def test_SegmentPackageManager__make_asset_menu_section_01():
     r'''Behaves gracefully when no assets are found.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'blue~example~score g segment~01 q'
     score_manager._run(input_=input_)
     titles = [

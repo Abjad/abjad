@@ -5,7 +5,7 @@ import scoremanager
 
 def test_UserInputGetter_go_to_current_score_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory ae 1 d s q'
     score_manager._run(input_=input_)
 

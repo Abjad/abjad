@@ -3,10 +3,10 @@ import os
 import re
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.AbjadIDEObject import AbjadIDEObject
 
 
-class Controller(ScoreManagerObject):
+class Controller(AbjadIDEObject):
     r'''Controller.
 
     '''

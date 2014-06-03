@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Menu__display_available_commands_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = '? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
@@ -18,7 +18,7 @@ def test_Menu__display_available_commands_02():
     r'''Hidden menu persists after junk.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = '? asdf q'
     score_manager._run(input_=input_)
 
@@ -33,7 +33,7 @@ def test_Menu__display_available_commands_03():
     r'''Hidden menu persists after 'LilyPond log view.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = '? log q'
     score_manager._run(input_=input_)
 
@@ -48,7 +48,7 @@ def test_Menu__display_available_commands_04():
     r'''Hidden menu is available when managing score package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score ? q'
     score_manager._run(input_=input_)
 
