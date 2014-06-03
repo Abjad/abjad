@@ -80,7 +80,6 @@ class FileWrangler(Wrangler):
             message = '{} ({} files): OK'.format(directory, count)
             messages.append(message)
         else:
-            
             message = '{}:'.format(directory)
             messages.append(message)
             tab = self._io_manager._make_tab()
@@ -88,7 +87,7 @@ class FileWrangler(Wrangler):
                 message = tab + invalid_path
                 messages.append(message)
         self._io_manager._display(messages)
-        return invalid_paths
+        return messages
 
     def copy_file(self):
         r'''Copies file.

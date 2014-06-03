@@ -962,6 +962,7 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
+        from scoremanager import iotools
         if problems_only is None:
             prompt = 'show problem assets only?'
             result = self._io_manager._confirm(prompt)
@@ -1062,38 +1063,48 @@ class PackageManager(AssetController):
         tab = self._io_manager._make_tab()
         messages = [tab + _ for _ in messages]
         name = self._path_to_asset_menu_display_string(self._path)
+        found_problems = missing_directories or \
+            missing_files or \
+            unrecognized_directories or \
+            unrecognized_files
         count = len(names)
-        if (problems_only and 
-            not missing_directories and
-            not missing_files and
-            not unrecognized_directories and 
-            not unrecognized_files):
-            if return_messages:
-                message = '{}: OK'.format(name)
-            else:
-                message = 'top level ({} assets): OK'.format(count)
-            message = stringtools.capitalize_start(message)
-            messages.append(message)
-        else:
-            if return_messages:
-                message = '{}:'.format(name)
-            else:
-                message = 'top level ({} assets):'.format(count)
+        wranglers = self._get_top_level_wranglers()
+        if wranglers or not return_messages:
+            message = 'top level ({} assets):'.format(count)
+            if not found_problems:
+                message = '{} OK'.format(message)
             messages.insert(0, message)
+            messages = [stringtools.capitalize_start(_) for _ in messages]
+            messages = [tab + _ for _ in messages]
+        message = '{}:'.format(name)
+        if not wranglers and not found_problems and return_messages:
+            message = '{} OK'.format(message)
+        messages.insert(0, message)
+        if wranglers:
+            controller = iotools.ControllerContext(
+                controller=self,
+                current_score_directory=self._path,
+                )
+            silence = self._io_manager._make_silent()
+            with controller, silence:
+                tab = self._io_manager._make_tab()
+                for wrangler in wranglers:
+                    if hasattr(wrangler, 'check_every_package'):
+                        messages_ = wrangler.check_every_package(
+                            indent=1,
+                            problems_only=problems_only,
+                            supply_missing=False,
+                            )
+                    else:
+                        messages_ = wrangler.check_every_file()
+                    messages_ = [
+                        stringtools.capitalize_start(_) for _ in messages_]
+                    messages_ = [tab + _ for _ in messages_]
+                    messages.extend(messages_)
         if return_messages:
             return messages
         else:
             self._io_manager._display(messages)
-        wranglers = self._get_top_level_wranglers()
-        for wrangler in wranglers:
-            if hasattr(wrangler, 'check_every_package'):
-                wrangler.check_every_package(
-                    indent=1,
-                    problems_only=problems_only,
-                    supply_missing=False,
-                    )
-            else:
-                wrangler.check_every_file()
         if not missing_directories + missing_files:
             return
         if supply_missing is None:
