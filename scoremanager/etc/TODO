@@ -44,24 +44,22 @@
 13. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-14. Allow arbitrary metadata in view patterns.
-
-15. Change ...
+14. Change ...
         Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
-16. Allow 5-99 (or any other large number) to work when removing items.
+15. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-17. Fix menu title that results from the following:
+16. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-18. There is no such thing as 'My build files'.
+17. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-19. Improve (k > cp) user experience. Change ...
+18. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -70,24 +68,24 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-20. Make (rrv) work in Git directories.
+19. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-21. Add 'all segments - list versions directories'.
+20. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-22. Open audio files with audio player. Use (d) for examples to test.
+21. Open audio files with audio player. Use (d) for examples to test.
 
-23. Wrap metadata tests with FilesystemState context.
+22. Wrap metadata tests with FilesystemState context.
 
-24. Move SargassoMeasureMaker to the makers directory on an example score.
+23. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-25. Remove scoremanager/wizards directory.
+24. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-26. Collapse all Abjad IDE classes to a single package.
+25. Collapse all Abjad IDE classes to a single package.
