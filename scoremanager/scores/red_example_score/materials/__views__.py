@@ -5,5 +5,11 @@ from scoremanager import iotools
 
 view_inventory=datastructuretools.TypedOrderedDict(
     [
+        (
+            'autoeditable',
+            iotools.View(
+                ['md:use_autoeditor']
+                ),
+            ),
         ]
     )

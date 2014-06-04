@@ -64,3 +64,31 @@ def test_MaterialPackageWrangler_apply_view_02():
             '',
             ]
         assert any(_.lines == lines for _ in transcript)
+
+
+def test_MaterialPackageWrangler_apply_view_03():
+    r'''Works with metadata.
+
+    The 'autoeditable' view resident in the materials directory
+    is defined equal to 'md:use_autoeditor'.
+    '''
+
+    with systemtools.FilesystemState(keep=[views_file]):
+        input_ = 'red~example~score m vap autoeditable vcl q'
+        score_manager._run(input_=input_)
+        transcript = score_manager._transcript
+
+        lines = [
+            'Red Example Score (2013) - materials (autoeditable)',
+            '',
+            '   1: instrumentation (AE)',
+            '   2: pitch range inventory (AE)',
+            '   3: tempo inventory (AE)',
+            '',
+            '      materials - copy (cp)',
+            '      materials - new (new)',
+            '      materials - remove (rm)',
+            '      materials - rename (ren)',
+            '',
+            ]
+        assert any(_.lines == lines for _ in transcript)

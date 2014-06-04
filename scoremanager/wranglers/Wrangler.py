@@ -184,6 +184,21 @@ class Wrangler(AssetController):
     def _enter_run(self):
         pass
 
+    def _evaluate_metadata_view_criterion(self, criterion, entry):
+        display_string, _, _, path = entry
+        manager = self._io_manager._make_package_manager(path)
+        count = criterion.count('md:')
+        for _ in xrange(count+1):
+            parts = criterion.split()
+            for part in parts:
+                if part.startswith('md:'):
+                    metadatum_name = part[3:]
+                    metadatum = manager._get_metadatum(metadatum_name)
+                    metadatum = repr(metadatum)
+                    criterion = criterion.replace(part, metadatum)
+        result = eval(criterion)
+        return result
+
     def _extract_common_parent_directories(self, paths):
         parent_directories = []
         example_score_packages_directory = \
@@ -207,6 +222,11 @@ class Wrangler(AssetController):
         entries = entries[:]
         filtered_entries = []
         for item in view:
+            if 'md:' in item:
+                for entry in entries:
+                    if self._evaluate_metadata_view_criterion(item, entry):
+                        filtered_entries.append(entry)
+                continue
             try:
                 pattern = re.compile(item)
             except TypeError:
@@ -1079,6 +1099,7 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
+        self._session._is_pending_output_removal = True
 
     def commit_to_repository(self):
         r'''Commits files to repository.
