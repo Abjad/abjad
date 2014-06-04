@@ -120,6 +120,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ae': self.autoedit,
             'i': self.illustrate_material,
             #
+            'mae': self.autoedit_maker,
+            'mi': self.interpret_maker_py,
+            #
             'oc': self.check_output_py,
             'oo': self.open_output_py,
             'ow': self.write_output_py,
@@ -230,6 +233,20 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines = lines or ['(empty)']
         return menu.make_material_summary_section(lines=lines)
 
+    def _make_definition_py_menu_section(self, menu):
+        name = 'definition.py'
+        commands = []
+        commands.append(('definition.py - edit', 'de'))
+        commands.append(('definition.py - interpret', 'di'))
+        commands.append(('definition.py - stub', 'ds'))
+        if commands:
+            use_autoeditor = self._get_metadatum('use_autoeditor')
+            menu.make_command_section(
+                is_hidden=use_autoeditor,
+                commands=commands,
+                name='definition.py',
+                )
+
     def _make_illustrate_py_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustrate_py_path):
@@ -281,7 +298,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_init_py_menu_section(menu)
-        self._make_material_definition_menu_section(menu)
+        self._make_maker_py_menu_section(menu)
+        self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
         self._make_material_menu_section(menu)
@@ -298,18 +316,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             pass
         return menu
 
-    def _make_material_definition_menu_section(self, menu):
-        name = 'definition.py'
+    def _make_maker_py_menu_section(self, menu):
         commands = []
-        commands.append(('definition.py - edit', 'de'))
-        commands.append(('definition.py - interpret', 'di'))
-        commands.append(('definition.py - stub', 'ds'))
+        commands.append(('maker.py - autoedit', 'mae'))
+        commands.append(('maker.py - interpret', 'mi'))
         if commands:
-            use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
-                is_hidden=use_autoeditor,
+                is_hidden=False,
                 commands=commands,
-                name='definition.py',
+                name='maker.py',
                 )
 
     def _make_material_menu_section(self, menu):
@@ -544,6 +559,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material=autoeditor.target,
             )
 
+    def autoedit_maker(self):
+        r'''Autoedits maker.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
+
     def check_output_py(self, dry_run=False):
         r'''Checks ``output.py``.
 
@@ -628,6 +650,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
+
+    def interpret_maker_py(self):
+        r'''Interprets ``maker.py``.
+
+        Writes ``output.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.
