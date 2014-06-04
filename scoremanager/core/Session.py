@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 
 
 class Session(abctools.AbjadObject):
-    r'''Score Manager session.
+    r'''Abjad IDE session.
 
     ..  container:: example
 
@@ -42,6 +42,7 @@ class Session(abctools.AbjadObject):
         '_configuration',
         '_controller_stack',
         '_controllers_visited',
+        '_current_score_directory',
         '_display',
         '_display_pitch_ranges_with_numbered_pitches',
         '_hide_available_commands',
@@ -105,10 +106,11 @@ class Session(abctools.AbjadObject):
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
         self._command_history = []
-        self._configuration = core.ScoreManagerConfiguration()
+        self._configuration = core.AbjadIDEConfiguration()
         self._confirm = True
         self._controller_stack = []
         self._controllers_visited = []
+        self._current_score_directory = None
         self._display = True
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_available_commands = True
@@ -408,7 +410,9 @@ class Session(abctools.AbjadObject):
 
         Returns string or none.
         '''
-        if self.current_score_package_manager:
+        if self._current_score_directory:
+            return self._current_score_directory
+        elif self.current_score_package_manager:
             return self.current_score_package_manager._path
 
     @property

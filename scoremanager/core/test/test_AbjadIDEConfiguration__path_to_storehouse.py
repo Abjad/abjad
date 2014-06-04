@@ -2,10 +2,10 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
+configuration = scoremanager.core.AbjadIDEConfiguration()
 
 
-def test_ScoreManagerConfiguration__path_to_storehouse_01():
+def test_AbjadIDEConfiguration__path_to_storehouse_01():
     
     storehouse = os.path.join(
         configuration.user_library_directory,
@@ -21,7 +21,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_01():
     assert configuration._path_to_storehouse(path_1) == storehouse
 
 
-def test_ScoreManagerConfiguration__path_to_storehouse_02():
+def test_AbjadIDEConfiguration__path_to_storehouse_02():
     
     storehouse = os.path.join(
         configuration.user_score_packages_directory,
@@ -38,7 +38,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_02():
     assert configuration._path_to_storehouse(path_1) == storehouse
 
 
-def test_ScoreManagerConfiguration__path_to_storehouse_03():
+def test_AbjadIDEConfiguration__path_to_storehouse_03():
     
     storehouse = os.path.join(
         configuration.example_score_packages_directory,
@@ -55,7 +55,7 @@ def test_ScoreManagerConfiguration__path_to_storehouse_03():
     assert configuration._path_to_storehouse(path_1) == storehouse
 
 
-def test_ScoreManagerConfiguration__path_to_storehouse_04():
+def test_AbjadIDEConfiguration__path_to_storehouse_04():
     
     storehouse = configuration.abjad_stylesheets_directory
 

@@ -19,6 +19,8 @@ class ScorePackageManager(PackageManager):
     def __init__(self, path=None, session=None):
         superclass = super(ScorePackageManager, self)
         superclass.__init__(path=path, session=session)
+        self._annotate_year = True
+        self._include_asset_name = False
         optional_directories = list(self._optional_directories)
         optional_directories.extend([
             'etc',

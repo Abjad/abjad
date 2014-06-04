@@ -1,7 +1,7 @@
 Note that as of r9,872 it takes only 181 function calls to initialize 
 the score manager ...
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
+    >>> expr = 'score_manager = scoremanager.core.AbjadIDE(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     181 function calls in 0.000 seconds
 
@@ -19,7 +19,7 @@ on successive tests:
     241391 function calls in 0.220 seconds
 
 CONCLUSION: don't know what's going on here but it's clear that the score 
-manager takes quite a few unnecessary steps on start-up. ScoreManager start 
+manager takes quite a few unnecessary steps on start-up. AbjadIDE start 
 up should be as simple as listing the names of all scores in the system, 
 possibly with the additional work of inspecting each score package metadatum file 
 for date of composition. All of that should take far fewer than 820,000 
@@ -51,7 +51,7 @@ because stack inspection is expensive.
 
 As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
+    >>> expr = 'score_manager = scoremanager.core.AbjadIDE(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
@@ -60,10 +60,10 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
         1    0.000    0.000    0.008    0.008 <string>:1(<module>)
-        1    0.000    0.000    0.008    0.008 ScoreManager.py:11(__init__)
+        1    0.000    0.000    0.008    0.008 AbjadIDE.py:11(__init__)
         6    0.000    0.000    0.008    0.001 PackagesystemAssetWrangler.py:8(__init__)
         6    0.000    0.000    0.008    0.001 package_path_to_path.py:4(package_path_to_path)
-        6    0.000    0.000    0.007    0.001 ScoreManagerConfiguration.py:22(__init__)
+        6    0.000    0.000    0.007    0.001 AbjadIDEConfiguration.py:22(__init__)
         6    0.000    0.000    0.007    0.001 Configuration.py:16(__init__)
         2    0.000    0.000    0.003    0.001 MaterialManagerWrangler.py:12(__init__)
         1    0.000    0.000    0.003    0.003 MaterialPackageWrangler.py:37(__init__)
@@ -74,7 +74,7 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
 ... as opposed to the 181 function calls it took in r9,872.
 
-This is most likely due to the integration of ScoreManagerConfiguration.
+This is most likely due to the integration of AbjadIDEConfiguration.
 This increase from 181 to 6,658 is probably nothing to worry about.
 
 But note that it takes between 325,000 and 323,000 function calls to start 
@@ -100,7 +100,7 @@ task of starting the score manager and then immediately quitting.
 Turning on the quick-and-dirty caching code included in r10,250 gives the 
 following results:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
+    >>> expr = 'score_manager = scoremanager.core.AbjadIDE(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
@@ -144,14 +144,14 @@ turned on.
 Revision r10,251 fives an inefficiency in 
 package_path_to_path() and the same inefficiency in 
 path_to_package_path(). Specifically, a 
-ScoreManagerConfiguration object was being instantiated for each and every
+AbjadIDEConfiguration object was being instantiated for each and every
 call to both of these functions; note that there is disk read time incurred 
-every time a ScoreManagerConfiguration object is istantiated.
+every time a AbjadIDEConfiguration object is istantiated.
 
 RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
+    >>> expr = 'score_manager = scoremanager.core.AbjadIDE(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
@@ -180,7 +180,7 @@ Revision r10,252 turns caching back on.
 RESULTS: pytest battery time decreases from 46 seconds to 37 seconds. 
 Also these:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
+    >>> expr = 'score_manager = scoremanager.core.AbjadIDE(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
@@ -221,7 +221,7 @@ Here are function counts for the same thing:
 
 With where-tracking turned off:
 
-    >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
+    >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
     >>> statement = 'score_manager._make_main_menu()'
     >>> print score_manager._session.io_manager.count_function_calls(
         statement,
@@ -232,7 +232,7 @@ With where-tracking turned off:
 
 With where-tracking turned on:
 
-    >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
+    >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
     >>> statement = 'score_manager._make_main_menu()'
     >>> print score_manager._session.io_manager.count_function_calls(
         statement,

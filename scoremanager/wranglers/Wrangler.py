@@ -21,12 +21,9 @@ class Wrangler(AssetController):
 
     __slots__ = (
         '_abjad_storehouse_path',
-        '_annotate_year',
-        '_basic_breadcrumb',
         '_asset_identifier',
-        '_human_readable',
-        '_include_asset_name',
-        '_include_extensions',
+        '_basic_breadcrumb',
+        '_force_lowercase',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -42,12 +39,9 @@ class Wrangler(AssetController):
         superclass = super(Wrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
-        self._annotate_year = False
         self._asset_identifier = None
         self._basic_breadcrumb = None
-        self._human_readable = True
-        self._include_asset_name = True
-        self._include_extensions = False
+        self._force_lowercase = True
         self._manager_class = managers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
@@ -128,10 +122,9 @@ class Wrangler(AssetController):
     def _copy_asset(
         self, 
         extension=None,
-        file_name_callback=None, 
-        force_lowercase=True,
         new_storehouse=None
         ):
+        extension = extension or getattr(self, '_extension', '')
         old_path = self._select_visible_asset_path(infinitive_phrase='to copy')
         if not old_path:
             return
@@ -162,10 +155,10 @@ class Wrangler(AssetController):
             return
         name = name or old_name
         name = stringtools.strip_diacritics(name)
-        if file_name_callback:
-            name = file_name_callback(name)
+        if hasattr(self, '_file_name_callback'):
+            name = self._file_name_callback(name)
         name = name.replace(' ', '_')
-        if force_lowercase:
+        if self._force_lowercase:
             name = name.lower()
         if extension and not name.endswith(extension):
             name = name + extension
@@ -640,12 +633,11 @@ class Wrangler(AssetController):
 
     def _make_file(
         self, 
-        extension='', 
-        file_name_callback=None,
-        force_lowercase=True,
+        extension=None, 
         prompt_string='file name', 
         ):
         from scoremanager import managers
+        extension = extension or getattr(self, '_extension', '')
         if self._session.is_in_score:
             path = self._get_current_directory()
         else:
@@ -662,10 +654,10 @@ class Wrangler(AssetController):
         if not name:
             return
         name = stringtools.strip_diacritics(name)
-        if file_name_callback:
-            name = file_name_callback(name)
+        if hasattr(self, '_file_name_callback'):
+            name = self._file_name_callback(name)
         name = name.replace(' ', '_')
-        if force_lowercase:
+        if self._force_lowercase:
             name = name.lower()
         if not name.endswith(extension):
             name = name + extension
@@ -765,68 +757,6 @@ class Wrangler(AssetController):
             return
         self._io_manager.open_file(paths)
 
-    def _path_to_annotation(self, path):
-        score_storehouses = (
-            self._configuration.example_score_packages_directory,
-            self._configuration.user_score_packages_directory,
-            )
-        if path.startswith(score_storehouses):
-            score_path = self._configuration._path_to_score_path(path)
-            manager = self._io_manager._make_package_manager(path=score_path)
-            metadata = manager._get_metadata()
-            if metadata:
-                year = metadata.get('year')
-                title = metadata.get('title')
-                if self._annotate_year and year:
-                    annotation = '{} ({})'.format(title, year)
-                else:
-                    annotation = str(title)
-            else:
-                package_name = os.path.basename(path)
-                annotation = package_name
-        elif path.startswith(self._user_storehouse_path):
-            annotation = self._configuration.composer_last_name
-        elif path.startswith(self._abjad_storehouse_path):
-            annotation = 'Abjad'
-        else:
-            annotation = None
-        return annotation
-
-    def _path_to_asset_menu_display_string(self, path):
-        if self._human_readable:
-            asset_name = self._path_to_human_readable_name(path)
-        else:
-            asset_name = os.path.basename(path)
-        if 'segments' in path:
-            manager = self._io_manager._make_package_manager(path=path)
-            name = manager._get_metadatum('name')
-            asset_name = name or asset_name
-        if self._session.is_in_score:
-            string = asset_name
-        else:
-            annotation = self._path_to_annotation(path)
-            if self._include_asset_name:
-                string = '{} ({})'.format(asset_name, annotation)
-            else:
-                string = annotation
-        if getattr(self, '_annotate_autoeditor', False):
-            use_autoeditor = False
-            manager = self._io_manager._make_package_manager(path=path)
-            metadata = manager._get_metadata()
-            if metadata:
-                use_autoeditor = metadata.get('use_autoeditor')
-            if use_autoeditor:
-                string = string + ' (AE)'
-        return string
-
-    def _path_to_human_readable_name(self, path):
-        path = os.path.normpath(path)
-        name = os.path.basename(path)
-        include_extensions = self._include_extensions
-        if not include_extensions:
-            name, extension = os.path.splitext(name)
-        return stringtools.to_space_delimited_lowercase(name)
-
     def _read_view(self):
         view_name = self._read_view_name()
         if not view_name:
@@ -914,8 +844,8 @@ class Wrangler(AssetController):
         self,
         extension=None,
         file_name_callback=None, 
-        force_lowercase=True,
         ):
+        extension = extension or getattr(self, '_extension', '')
         path = self._select_visible_asset_path(infinitive_phrase='to rename')
         if not path:
             return
@@ -930,7 +860,7 @@ class Wrangler(AssetController):
         manager._rename_interactively(
             extension=extension,
             file_name_callback=file_name_callback,
-            force_lowercase=force_lowercase,
+            force_lowercase=self._force_lowercase,
             )
         self._session._is_backtracking_locally = False
 
@@ -1212,7 +1142,7 @@ class Wrangler(AssetController):
         view = iotools.View(
             items=display_strings,
             )
-        breadcrumb = 'views - {} - edit:'
+        breadcrumb = 'views (EDITING)'
         breadcrumb = breadcrumb.format(view_name)
         autoeditor = self._io_manager._make_autoeditor(
             allow_item_edit=False,

@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_copy_package_01():
@@ -18,9 +18,9 @@ def test_SegmentPackageWrangler_copy_package_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - segments',
-        'Score Manager - segments - select storehouse:',
+        'Abjad IDE - scores',
+        'Abjad IDE - segments',
+        'Abjad IDE - segments - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

@@ -5,11 +5,11 @@ import scoremanager
 
 def test_MaterialPackageWrangler_go_to_next_package_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score m > > > > > > q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',
@@ -27,11 +27,11 @@ def test_MaterialPackageWrangler_go_to_next_package_02():
     asset.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score m > > g > > q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',

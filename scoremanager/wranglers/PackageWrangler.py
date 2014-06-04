@@ -81,26 +81,19 @@ class PackageWrangler(Wrangler):
             if self._session.is_backtracking or result is None:
                 return
             problems_only = bool(result)
-        paths = self._list_visible_asset_paths()
+        managers = self._list_visible_asset_managers()
         messages = []
         first_tab = self._io_manager._make_tab(indent)
         second_tab = self._io_manager._make_tab(indent+1)
         found_problem = False
-        for path in paths:
-            manager = self._initialize_manager(path)
-            string = self._path_to_asset_menu_display_string(manager._path)
-            message = '{}:'.format(string)
-            message = stringtools.capitalize_start(message)
-            message = first_tab + message
-            messages.append(message)
-            messages_ = manager.check_package(
-                return_messages=True,
-                problems_only=problems_only,
-                )
-            messages_ = [
-                second_tab + stringtools.capitalize_start(_) 
-                for _ in messages_
-                ]
+        for manager in managers:
+            with self._io_manager._make_silent():
+                messages_ = manager.check_package(
+                    return_messages=True,
+                    problems_only=problems_only,
+                    )
+            messages_ = [stringtools.capitalize_start(_) for _ in messages_]
+            messages_ = [first_tab + _ for _ in messages_]
             if messages_:
                 found_problem = True
                 messages.extend(messages_)
@@ -108,9 +101,19 @@ class PackageWrangler(Wrangler):
                 message = 'No problem assets found.'
                 message = second_tab + message
                 messages.append(message)
+
+        found_problems = bool(messages)
+        if self._session.is_in_score:
+            path = self._get_current_directory()
+            name = os.path.basename(path)
+            count = len(managers)
+            message = '{} ({} packages):'.format(name, count)
+            if not found_problems:
+                message = '{} OK'.format(message)
+            messages.insert(0, message)
         self._io_manager._display(messages)
         if not found_problem:
-            return
+            return messages
         if supply_missing is None:
             prompt = 'supply missing directories and files?'
             result = self._io_manager._confirm(prompt)
@@ -118,24 +121,23 @@ class PackageWrangler(Wrangler):
                 return
             supply_missing = bool(result)
         if not supply_missing:
-            return
+            return messages
         messages = []
-        for path in paths:
-            manager = self._initialize_manager(path)
+        for manager in managers:
             with self._io_manager._make_silent():
                 messages_ = manager.check_package(
                     return_supply_messages=True,
                     supply_missing=True,
                     )
             if messages_:
-                string = self._path_to_asset_menu_display_string(manager._path)
-                message = '{}:'.format(string)
-                message = first_tab + message
+                tab = self._io_manager._make_tab()
+                name = self._path_to_asset_menu_display_string(manager._path)
+                message = '{} ({} packages):'.format(name, count)
+                message = tab + message
                 messages.append(message)
                 messages_ = [
-                    second_tab + stringtools.capitalize_start(_) 
-                    for _ in messages_
-                    ]
+                    stringtools.capitalize_start(_) for _ in messages_] 
+                messages_ = [tab + tab + _ for _ in messages_]
                 messages.extend(messages_)
         self._io_manager._display(messages)
 

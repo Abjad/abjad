@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_UserInputGetter_go_back_01():
@@ -12,7 +12,7 @@ def test_UserInputGetter_go_back_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory (AE)',

@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must be is_test=False for view tests
-score_manager = scoremanager.core.ScoreManager(is_test=False)
+score_manager = scoremanager.core.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MakerFileWrangler_views__.py',
@@ -25,14 +25,14 @@ def test_MakerFileWrangler_apply_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Score Manager - maker files (_test)',
+            'Abjad IDE - maker files (_test)',
             '',
             '   1: RedExampleScoreTemplate.py (Red Example Score)',
             '',
-            '      maker files - copy (cp)',
-            '      maker files - new (new)',
-            '      maker files - remove (rm)',
-            '      maker files - rename (ren)',
+            '      files - copy (cp)',
+            '      files - new (new)',
+            '      files - remove (rm)',
+            '      files - rename (ren)',
             '',
             ]
         assert any(_.lines == lines for _ in transcript)
@@ -56,10 +56,10 @@ def test_MakerFileWrangler_apply_view_02():
             '',
             '   1: RedExampleScoreTemplate.py',
             '',
-            '      maker files - copy (cp)',
-            '      maker files - new (new)',
-            '      maker files - remove (rm)',
-            '      maker files - rename (ren)',
+            '      files - copy (cp)',
+            '      files - new (new)',
+            '      files - remove (rm)',
+            '      files - rename (ren)',
             '',
             ]
         assert any(_.lines == lines for _ in transcript)

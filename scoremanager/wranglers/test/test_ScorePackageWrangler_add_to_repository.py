@@ -7,7 +7,7 @@ def test_ScorePackageWrangler_add_to_repository_01():
     r'''Flow control reaches add.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'rad <return> q'
     score_manager._run(input_=input_)

@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must be is_test=False to test views
-score_manager = scoremanager.core.ScoreManager(is_test=False)
+score_manager = scoremanager.core.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__DistributionFileWrangler_views__.py',
@@ -26,7 +26,7 @@ def test_DistributionFileWrangler_clear_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Score Manager - distribution files (_test)',
+            'Abjad IDE - distribution files (_test)',
             '',
             '   1: red-example-score.pdf (Red Example Score)',
             '',

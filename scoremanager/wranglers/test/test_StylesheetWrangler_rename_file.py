@@ -2,11 +2,11 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+configuration = scoremanager.core.AbjadIDEConfiguration()
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_StylesheetWrangler_rename_stylesheet_01():
+def test_StylesheetWrangler_rename_file_01():
     r'''Works in library.
     '''
 
@@ -33,7 +33,7 @@ def test_StylesheetWrangler_rename_stylesheet_01():
     assert os.path.exists(path)
 
 
-def test_StylesheetWrangler_rename_stylesheet_02():
+def test_StylesheetWrangler_rename_file_02():
     r'''Works in library.
     '''
 

@@ -3,10 +3,10 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_StylesheetWrangler_copy_stylesheet_01():
+def test_StylesheetWrangler_copy_file_01():
 
     source_path = os.path.join(
         score_manager._configuration.abjad_stylesheets_directory,

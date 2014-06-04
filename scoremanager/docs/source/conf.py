@@ -211,7 +211,7 @@ html_show_sourcelink = True
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'AbjadScoreManagerdoc'
+htmlhelp_basename = 'AbjadAbjadIDEdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -283,8 +283,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'AbjadScoreManager', u'Abjad Score PackageManager Documentation',
-   u'Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer', 'AbjadScoreManager', 'One line description of project.',
+  ('index', 'AbjadAbjadIDE', u'Abjad Score PackageManager Documentation',
+   u'Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer', 'AbjadAbjadIDE', 'One line description of project.',
    'Miscellaneous'),
 ]
 

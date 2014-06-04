@@ -3,17 +3,17 @@ import os
 from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 
 
-class ScoreManagerConfiguration(AbjadConfiguration):
-    r'''Score Manager configuration.
+class AbjadIDEConfiguration(AbjadConfiguration):
+    r'''Abjad IDE configuration.
 
     ..  container:: example
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
+            >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
             >>> configuration = score_manager._configuration
             >>> configuration
-            ScoreManagerConfiguration()
+            AbjadIDEConfiguration()
 
     '''
 
@@ -36,7 +36,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return [
             '-*- coding: utf-8 -*-',
             '',
-            'Score Manager tools configuration file created on {}.'.format(
+            'Abjad IDE tools configuration file created on {}.'.format(
                 self._current_time),
             'This file is interpreted by ConfigObj'
             ' and should follow ini syntax.',
@@ -379,7 +379,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        #superclass = super(ScoreManagerConfiguration, self)
+        #superclass = super(AbjadIDEConfiguration, self)
         #return superclass.configuration_file_path
         return os.path.join(
             self.configuration_directory,
@@ -438,7 +438,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        superclass = super(ScoreManagerConfiguration, self)
+        superclass = super(AbjadIDEConfiguration, self)
         return superclass.home_directory
 
     @property

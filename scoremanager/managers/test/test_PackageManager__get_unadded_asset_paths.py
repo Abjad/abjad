@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_PackageManager__get_unadded_asset_paths_01():

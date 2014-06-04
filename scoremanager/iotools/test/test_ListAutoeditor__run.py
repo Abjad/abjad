@@ -2,7 +2,7 @@
 import pytest
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_ListAutoeditor__run_01():
@@ -265,7 +265,7 @@ def test_ListAutoeditor__run_13():
     contents = score_manager._transcript.contents
 
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',

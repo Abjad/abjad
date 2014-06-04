@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_display_available_commands_01():
@@ -19,4 +19,4 @@ def test_BuildFileWrangler_display_available_commands_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Score Manager - build files - available commands' in contents
+    assert 'Abjad IDE - build files - available commands' in contents

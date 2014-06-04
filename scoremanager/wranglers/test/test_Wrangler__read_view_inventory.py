@@ -3,7 +3,7 @@ import filecmp
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 configuration = score_manager._configuration
 
 
@@ -27,7 +27,7 @@ def test_Wrangler__read_view_inventory_01():
     input_ = 'blue~example~score g vls <return> q'
     score_manager._run(input_=input_)
     titles = [
-        'Score Manager - scores',
+        'Abjad IDE - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - segments',
         ]

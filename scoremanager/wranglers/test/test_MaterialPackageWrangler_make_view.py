@@ -4,7 +4,7 @@ import pytest
 from abjad import *
 import scoremanager
 # is_test=True is ok when testing the creation of views
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_make_view_01():
         input_ = 'm vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Score Manager - materials - views - _test - edit:'
+        string = 'Abjad IDE - materials - views (EDITING)'
         assert string in contents
 
 
@@ -45,11 +45,11 @@ def test_MaterialPackageWrangler_make_view_03():
         input_ = 'red~example~score m vnew _test 1 q' 
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
+            'Abjad IDE - scores',
             'Red Example Score (2013)',
             'Red Example Score (2013) - materials',
-            'Red Example Score (2013) - materials - views - _test - edit:',
-            'Red Example Score (2013) - materials - views - _test - edit:',
+            'Red Example Score (2013) - materials - views (EDITING)',
+            'Red Example Score (2013) - materials - views (EDITING)',
             ]
         assert score_manager._transcript.titles == titles
 

@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_copy_file_01():
@@ -16,9 +16,9 @@ def test_DistributionFileWrangler_copy_file_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - distribution files',
-        'Score Manager - distribution files - select storehouse:',
+        'Abjad IDE - scores',
+        'Abjad IDE - distribution files',
+        'Abjad IDE - distribution files - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

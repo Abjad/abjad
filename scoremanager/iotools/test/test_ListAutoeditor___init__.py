@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
+configuration = scoremanager.core.AbjadIDEConfiguration()
 
 
 def test_ListAutoeditor___init___01():

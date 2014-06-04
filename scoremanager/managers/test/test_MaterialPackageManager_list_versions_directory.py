@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialPackageManager_list_versions_directory_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score m magic~numbers vrls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
@@ -16,7 +16,7 @@ def test_MaterialPackageManager_list_versions_directory_01():
     
 def test_MaterialPackageManager_list_versions_directory_02():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory vrls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents

@@ -3,8 +3,8 @@ import abc
 from abjad.tools import stringtools
 
 
-class ScoreManagerObject(object):
-    r'''Score Manager object.
+class AbjadIDEObject(object):
+    r'''Abjad IDE object.
 
     '''
 
@@ -26,7 +26,7 @@ class ScoreManagerObject(object):
     def __init__(self, session=None):
         from scoremanager import core
         from scoremanager import iotools
-        self._configuration = core.ScoreManagerConfiguration()
+        self._configuration = core.AbjadIDEConfiguration()
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(
             client=self,

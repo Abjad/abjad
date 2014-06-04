@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 foo_path = os.path.join(
     score_manager._configuration.example_score_packages_directory,

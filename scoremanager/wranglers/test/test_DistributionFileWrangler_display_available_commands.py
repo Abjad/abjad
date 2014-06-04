@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_display_available_commands_01():
@@ -19,5 +19,5 @@ def test_DistributionFileWrangler_display_available_commands_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Score Manager - distribution files - available commands'
+    string = 'Abjad IDE - distribution files - available commands'
     assert string in contents

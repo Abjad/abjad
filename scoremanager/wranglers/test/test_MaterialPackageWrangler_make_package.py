@@ -4,7 +4,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 package_path = os.path.join(
     score_manager._configuration.user_library_material_packages_directory,
@@ -37,9 +37,9 @@ def test_MaterialPackageWrangler_make_package_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - materials',
-        'Score Manager - materials',
+        'Abjad IDE - scores',
+        'Abjad IDE - materials',
+        'Abjad IDE - materials',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -76,7 +76,7 @@ def test_MaterialPackageWrangler_make_package_03():
     r'''Creates empty material definition py.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,

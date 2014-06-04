@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_copy_package_01():
@@ -19,9 +19,9 @@ def test_MaterialPackageWrangler_copy_package_01():
     score_manager._run(input_=input_)
 
     titles = [
-        'Score Manager - scores',
-        'Score Manager - materials',
-        'Score Manager - materials - select storehouse:',
+        'Abjad IDE - scores',
+        'Abjad IDE - materials',
+        'Abjad IDE - materials - select storehouse:',
         ]
     assert score_manager._transcript.titles == titles
 

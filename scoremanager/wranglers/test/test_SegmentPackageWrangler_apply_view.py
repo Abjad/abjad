@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must have is_test=False to test view application
-score_manager = scoremanager.core.ScoreManager(is_test=False)
+score_manager = scoremanager.core.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__SegmentPackageWrangler_views__.py',
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_apply_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Score Manager - segments (_test)',
+            'Abjad IDE - segments (_test)',
             '',
             '   1: A (Red Example Score)',
             '',

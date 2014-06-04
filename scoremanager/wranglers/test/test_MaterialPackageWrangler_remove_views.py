@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
@@ -47,9 +47,9 @@ def test_MaterialPackageWrangler_remove_views_02():
         input_ = 'm vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - materials',
-            'Score Manager - materials - select view(s) to remove:',
-            'Score Manager - materials',
+            'Abjad IDE - scores',
+            'Abjad IDE - materials',
+            'Abjad IDE - materials - select view(s) to remove:',
+            'Abjad IDE - materials',
             ]
         assert score_manager._transcript.titles == titles

@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must be is_test=False for view tests
-score_manager = scoremanager.core.ScoreManager(is_test=False)
+score_manager = scoremanager.core.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__ScorePackageWrangler_views__.py',
@@ -21,7 +21,7 @@ def test_ScorePackageWrangler_apply_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Score Manager - scores (_test)',
+            'Abjad IDE - scores (_test)',
             '',
             '   1: Red Example Score (2013)',
             '',

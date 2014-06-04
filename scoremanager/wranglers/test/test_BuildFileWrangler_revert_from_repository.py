@@ -7,7 +7,7 @@ def test_BuildFileWrangler_revert_from_repository_01():
     r'''Flow control reaches method in score.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score u rrv <return> q'
     score_manager._run(input_=input_)
@@ -18,7 +18,7 @@ def test_BuildFileWrangler_revert_from_repository_02():
     r'''Flow control reaches method in library.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'u rrv <return> q'
     score_manager._run(input_=input_)

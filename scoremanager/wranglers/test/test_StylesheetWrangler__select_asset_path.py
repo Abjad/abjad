@@ -6,7 +6,7 @@ import scoremanager
 
 def test_StylesheetWrangler__select_asset_path_01():
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager = scoremanager.core.AbjadIDE(is_test=True)
     wrangler = score_manager._stylesheet_wrangler
     input_ = 'clean'
     wrangler._session._pending_input = input_

@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager(is_test=True)
+score_manager = scoremanager.core.AbjadIDE(is_test=True)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__BuildFileWrangler_views__.py',
@@ -47,9 +47,9 @@ def test_BuildFileWrangler_remove_views_02():
         input_ = 'u vrm b q'
         score_manager._run(input_=input_)
         titles = [
-            'Score Manager - scores',
-            'Score Manager - build files',
-            'Score Manager - build files - select view(s) to remove:',
-            'Score Manager - build files',
+            'Abjad IDE - scores',
+            'Abjad IDE - build files',
+            'Abjad IDE - build files - select view(s) to remove:',
+            'Abjad IDE - build files',
             ]
         assert score_manager._transcript.titles == titles

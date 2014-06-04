@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must be is_test=False for view tests
-score_manager = scoremanager.core.ScoreManager(is_test=False)
+score_manager = scoremanager.core.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_apply_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Score Manager - materials (_test)',
+            'Abjad IDE - materials (_test)',
             '',
             '   1: instrumentation (Red Example Score)',
             '   2: tempo inventory (Red Example Score)',
