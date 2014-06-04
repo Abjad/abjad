@@ -11,5 +11,17 @@ view_inventory=datastructuretools.TypedOrderedDict(
                 ['md:use_autoeditor']
                 ),
             ),
+        (
+            'inventories',
+            iotools.View(
+                ["'inventory' in :ds:"]
+                ),
+            ),
+        (
+            'magic',
+            iotools.View(
+                ["'magic_' in :path:"]
+                ),
+            ),
         ]
     )

@@ -92,3 +92,54 @@ def test_MaterialPackageWrangler_apply_view_03():
             '',
             ]
         assert any(_.lines == lines for _ in transcript)
+
+
+def test_MaterialPackageWrangler_apply_view_04():
+    r'''Works with :ds: display string token.
+
+    The 'inventories' view is defined equal to "'inventory' in :ds:".
+    '''
+
+    with systemtools.FilesystemState(keep=[views_file]):
+        input_ = 'red~example~score m vap inventories vcl q'
+        score_manager._run(input_=input_)
+        transcript = score_manager._transcript
+
+        lines = [
+            'Red Example Score (2013) - materials (inventories)',
+            '',
+            '   1: pitch range inventory (AE)',
+            '   2: tempo inventory (AE)',
+            '',
+            '      materials - copy (cp)',
+            '      materials - new (new)',
+            '      materials - remove (rm)',
+            '      materials - rename (ren)',
+            '',
+            ]
+        assert any(_.lines == lines for _ in transcript)
+
+
+def test_MaterialPackageWrangler_apply_view_05():
+    r'''Works with :path: display string token.
+
+    The 'magic' view is defined equal to "'magic_' in :path:".
+    '''
+
+    with systemtools.FilesystemState(keep=[views_file]):
+        input_ = 'red~example~score m vap magic vcl q'
+        score_manager._run(input_=input_)
+        transcript = score_manager._transcript
+
+        lines = [
+            'Red Example Score (2013) - materials (magic)',
+            '',
+            '   1: magic numbers',
+            '',
+            '      materials - copy (cp)',
+            '      materials - new (new)',
+            '      materials - remove (rm)',
+            '      materials - rename (ren)',
+            '',
+            ]
+        assert any(_.lines == lines for _ in transcript)

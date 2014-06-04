@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import subprocess
+import traceback
 from abjad.tools import datastructuretools
 from abjad.tools import developerscripttools
 from abjad.tools import sequencetools
@@ -184,6 +185,18 @@ class Wrangler(AssetController):
     def _enter_run(self):
         pass
 
+    def _evaluate_display_string_view_criterion(self, criterion, entry):
+        display_string, _, _, path = entry
+        token = ':ds:'
+        assert token in criterion, repr(criterion)
+        criterion = criterion.replace(token, repr(display_string))
+        try:
+            result = eval(criterion)
+        except:
+            traceback.print_exc()
+            return False
+        return result
+
     def _evaluate_metadata_view_criterion(self, criterion, entry):
         display_string, _, _, path = entry
         manager = self._io_manager._make_package_manager(path)
@@ -196,7 +209,23 @@ class Wrangler(AssetController):
                     metadatum = manager._get_metadatum(metadatum_name)
                     metadatum = repr(metadatum)
                     criterion = criterion.replace(part, metadatum)
-        result = eval(criterion)
+        try:
+            result = eval(criterion)
+        except:
+            traceback.print_exc()
+            return False
+        return result
+
+    def _evaluate_path_view_criterion(self, criterion, entry):
+        display_string, _, _, path = entry
+        token = ':path:'
+        assert token in criterion, repr(criterion)
+        criterion = criterion.replace(token, repr(path))
+        try:
+            result = eval(criterion)
+        except:
+            traceback.print_exc()
+            return False
         return result
 
     def _extract_common_parent_directories(self, paths):
@@ -222,9 +251,20 @@ class Wrangler(AssetController):
         entries = entries[:]
         filtered_entries = []
         for item in view:
-            if 'md:' in item:
+            if ':ds:' in item:
+                for entry in entries:
+                    if self._evaluate_display_string_view_criterion(
+                        item, entry):
+                        filtered_entries.append(entry)
+                continue
+            elif 'md:' in item:
                 for entry in entries:
                     if self._evaluate_metadata_view_criterion(item, entry):
+                        filtered_entries.append(entry)
+                continue
+            elif ':path:' in item:
+                for entry in entries:
+                    if self._evaluate_path_view_criterion(item, entry):
                         filtered_entries.append(entry)
                 continue
             try:
@@ -1156,7 +1196,7 @@ class Wrangler(AssetController):
         getter = self._io_manager._make_getter()
         getter.append_string('view name')
         view_name = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or not view_name:
             return
         menu_entries = self._make_asset_menu_entries(apply_view=False)
         display_strings = [_[0] for _ in menu_entries]
@@ -1171,7 +1211,7 @@ class Wrangler(AssetController):
             target=view,
             )
         autoeditor._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or autoeditor.target is None:
             return
         view = autoeditor.target
         view_inventory = self._read_view_inventory()
