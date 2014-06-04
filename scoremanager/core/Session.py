@@ -88,7 +88,7 @@ class Session(abctools.AbjadObject):
         'hide_available_commands',
         'is_autoadding',
         'is_in_confirmation_environment',
-        'is_in_editor',
+        'is_in_autoeditor',
         'is_in_user_input_getter',
         'last_asset_path',
         'last_score_package_path',
@@ -725,14 +725,14 @@ class Session(abctools.AbjadObject):
         return self._is_in_confirmation_environment
 
     @property
-    def is_in_editor(self):
+    def is_in_autoeditor(self):
         r'''Is true when session is in editor. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_in_editor
+                >>> session.is_in_autoeditor
                 False
 
         Returns boolean.
@@ -1149,7 +1149,10 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        return '\n'.join(self._format_controller_breadcrumbs())
+        header = '\n'.join(self._format_controller_breadcrumbs())
+        if self.is_in_autoeditor and header.endswith('(AE)'):
+            header = header.replace('(AE)', '(EDIT)')
+        return header
 
     @property
     def menu_header_width(self):

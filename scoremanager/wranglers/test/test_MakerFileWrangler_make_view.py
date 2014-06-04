@@ -19,7 +19,7 @@ def test_MakerFileWrangler_make_view_01():
         input_ = 'k vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Abjad IDE - maker files - views (EDITING)'
+        string = 'Abjad IDE - maker files - views (EDIT)'
         assert string in contents
 
 

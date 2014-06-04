@@ -397,6 +397,9 @@ class PackageManager(AssetController):
             self._io_manager.open_file(result)
         elif os.path.isdir(result):
             entries = self._io_manager._list_directory(result)
+            if not entries:
+                message = 'Empty directory.'
+                entries = [message]
             self._io_manager._display(entries, capitalize=False)
         else:
             message = 'neither file nor directory: {}?'.format(result)

@@ -336,7 +336,7 @@ class AssetController(Controller):
         Returns none.
         '''
         if (not self._session.is_in_confirmation_environment and
-            not self._session.is_in_editor):
+            not self._session.is_in_autoeditor):
             hide = self._session.hide_available_commands
             self._session._hide_available_commands = not hide
 

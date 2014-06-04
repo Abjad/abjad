@@ -217,7 +217,7 @@ class Autoeditor(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name, subtitle='EDIT:')
+        menu = self._io_manager._make_menu(name=name)
         self._make_attributes_menu_section(menu)
         self._make_command_menu_section(menu)
         return menu

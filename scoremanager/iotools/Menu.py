@@ -275,7 +275,7 @@ class Menu(Controller):
     def _is_in_open_environment(self):
         if self._session.is_in_confirmation_environment:
             return False
-        if self._session.is_in_editor:
+        if self._session.is_in_autoeditor:
             return False
         return True
 
@@ -438,6 +438,7 @@ class Menu(Controller):
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
+    # ZZZ
     def _make_title_lines(self):
         result = []
         if self.title is not None:

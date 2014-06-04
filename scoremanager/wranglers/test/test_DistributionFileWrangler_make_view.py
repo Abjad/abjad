@@ -19,7 +19,7 @@ def test_DistributionFileWrangler_make_view_01():
         input_ = 'd vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Abjad IDE - distribution files - views (EDITING)'
+        string = 'Abjad IDE - distribution files - views (EDIT)'
         assert string in contents
 
 

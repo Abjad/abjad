@@ -19,7 +19,7 @@ def test_SegmentPackageWrangler_make_view_01():
         input_ = 'g vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Abjad IDE - segments - views (EDITING)'
+        string = 'Abjad IDE - segments - views (EDIT)'
         assert string in contents
 
 

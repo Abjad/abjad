@@ -269,8 +269,6 @@ def test_ListAutoeditor__run_13():
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - instrumentation (AE)',
-        'Red Example Score (2013) - materials - instrumentation (AE)',
+        'Red Example Score (2013) - materials - instrumentation (EDIT)',
         ]
     assert score_manager._transcript.titles == titles
-
-    assert 'EDIT:' in score_manager._transcript.contents
