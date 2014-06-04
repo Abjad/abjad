@@ -89,3 +89,5 @@
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
 25. Collapse all Abjad IDE classes to a single package.
+
+26. Display messaging for (rup).

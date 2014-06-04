@@ -42,6 +42,15 @@ class FileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _make_all_menu_section(self, menu):
+        commands = []
+        commands.append(('all files - check', 'ck*'))
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='all',
+            )
+
     def _make_files_menu_section(self, menu):
         commands = []
         commands.append(('files - copy', 'cp'))
@@ -56,6 +65,7 @@ class FileWrangler(Wrangler):
     def _make_main_menu(self):
         superclass = super(FileWrangler, self)
         menu = superclass._make_main_menu()
+        self._make_all_menu_section(menu)
         self._make_files_menu_section(menu)
         return menu
 
