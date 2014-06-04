@@ -54,6 +54,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             '__illustrate__.py',
             'illustration.ly',
             'illustration.pdf',
+            'maker.py',
             'output.py',
             ])
         self._optional_files = tuple(optional_files)

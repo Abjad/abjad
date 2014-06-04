@@ -1279,15 +1279,17 @@ class PackageManager(AssetController):
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
-            self._session._attempted_repository_status = True
-            message = self._path + '...'
-            self._io_manager._display(message, capitalize=False)
             command = self._repository_status_command
             if not command:
                 message = 'path not in repository: {}.'
                 message = message.format(self._path)
                 self._io_manager._display(message)
                 return
+            messages = []
+            self._session._attempted_repository_status = True
+            message = 'Repository status for {} ...'
+            message = message.format(self._path)
+            messages.append(message)
             process = self._io_manager.make_subprocess(command)
             path = self._path
             path = path + os.path.sep
@@ -1297,10 +1299,14 @@ class PackageManager(AssetController):
                 clean_line = line.strip()
                 clean_line = clean_line.replace(path, '')
                 clean_lines.append(clean_line)
-            self._io_manager._display(
-                clean_lines,
-                capitalize=False,
-                )
+            if clean_lines:
+                messages.extend(clean_lines)
+            else:
+                first_message = messages[0]
+                first_message = first_message + ' OK'
+                messages[0] = first_message
+                clean_lines.append(message)
+            self._io_manager._display(messages, capitalize=False)
 
     def revert_to_repository(self):
         r'''Reverts files to repository.
