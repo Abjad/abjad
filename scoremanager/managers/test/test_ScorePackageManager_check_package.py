@@ -41,12 +41,18 @@ def test_ScorePackageManager_check_package_02():
 
 def test_ScorePackageManager_check_package_03():
 
-    input_ = 'blue~example~score ck y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    extra_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'extra_file.txt',
+        )
 
-    lines = [
-        '1 unrecognized file found:',
-        ]
-    for line in lines:
-        assert line in contents
+    with systemtools.FilesystemState(remove=[extra_file]):
+        with open(extra_file, 'w') as file_pointer:
+            file_pointer.write('')
+        input_ = 'red~example~score ck y q'
+        score_manager._run(input_=input_)
+        contents = score_manager._transcript.contents
+
+    line = '1 unrecognized file found:'
+    assert line in contents
