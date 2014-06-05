@@ -156,16 +156,12 @@ class ScorePackageWrangler(PackageWrangler):
             path = result
             manager = self._initialize_manager(path)
             if not self._session.is_test:
-                #with self._io_manager._make_silent():
-                #    manager.fix_package()
                 with self._io_manager._make_silent():
                     result = manager.check_package(
                         return_supply_messages=True,
                         supply_missing=True,
                         )
                 messages, supplied_directories, supplied_files = result
-                #if messages:
-                #    self._io_manager._display(messages)
                 messages = []
                 tab = self._io_manager._make_tab()
                 if supplied_directories:
@@ -190,9 +186,6 @@ class ScorePackageWrangler(PackageWrangler):
                     self._io_manager._confirm(prompt_string=prompt_string)
                     if self._session.is_backtracking:
                         return
-                # TODO: remove this backtracking check
-                if self._session.is_backtracking:
-                    return
             manager._run()
 
     def _is_valid_directory_entry(self, expr):

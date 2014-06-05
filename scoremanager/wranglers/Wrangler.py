@@ -616,9 +616,12 @@ class Wrangler(AssetController):
         manager = self._initialize_manager(path)
         if hasattr(manager, '_write_stub'):
             self._io_manager.write_stub(path)
-        elif hasattr(manager, 'fix_package'):
+        else:
             with self._io_manager._make_silent():
-                manager.fix_package()
+                manager.check_package(
+                    return_supply_messages=True,
+                    supply_missing=True,
+                    )
 
     def _make_asset_menu_entries(
         self,

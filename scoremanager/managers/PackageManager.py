@@ -74,7 +74,6 @@ class PackageManager(AssetController):
         result = result.copy()
         result.update({
             'ck': self.check_package,
-            'fix': self.fix_package,
             #
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
@@ -610,7 +609,6 @@ class PackageManager(AssetController):
     def _make_package_menu_section(self, menu, commands_only=False):
         commands = []
         commands.append(('package - check', 'ck'))
-        commands.append(('package - fix', 'fix'))
         if commands_only:
             return commands
         if commands:
@@ -1211,13 +1209,6 @@ class PackageManager(AssetController):
             command = 'svn commit -m "{}" {}'
             command = command.format(commit_message, self._path)
             self._io_manager.run_command(command, capitalize=False)
-
-    def fix_package(self):
-        r'''Fixes package.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
 
     def get_metadatum(self):
         r'''Gets metadatum from ``__metadata.py__``.
