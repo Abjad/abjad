@@ -65,7 +65,8 @@ class FilesystemState(ContextManager):
                 filecmp.cmp(path, backup_path)
                 os.remove(backup_path)
             elif os.path.isdir(backup_path):
-                shutil.rmtree(path)
+                if os.path.exists(path):
+                    shutil.rmtree(path)
                 shutil.copytree(backup_path, path)
                 shutil.rmtree(backup_path)
             else:
