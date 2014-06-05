@@ -34,9 +34,11 @@ class FilesystemState(ContextManager):
 
         Returns none.
         '''
-        assert not any(os.path.exists(_) for _ in self.remove)
-        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
-        assert all(os.path.isfile(_) or os.path.isdir(_) for _ in self.keep)
+        for path in self.remove:
+            assert not os.path.exists(path), repr(path)
+        for path in self.keep:
+            assert os.path.exists(path), repr(path)
+            assert os.path.isfile(path) or os.path.isdir(path), repr(path)
         for path in self.keep:
             backup_path = path + '.backup'
             if os.path.isfile(path):
@@ -56,7 +58,8 @@ class FilesystemState(ContextManager):
         Returns none.
         '''
         backup_paths = (_ + '.backup' for _ in self.keep)
-        assert all(os.path.exists(_) for _ in backup_paths)
+        for path in backup_paths:
+            assert os.path.exists(path), repr(path)
         for path in self.keep:
             backup_path = path + '.backup'
             assert os.path.exists(backup_path), repr(backup_path)
@@ -83,8 +86,10 @@ class FilesystemState(ContextManager):
                     message = 'neither file nor directory: {}.'
                     message = message.format(path)
                     raise TypeError(message)
-        assert all(os.path.exists(_) for _ in self.keep), repr(self.keep)
-        assert not any(os.path.exists(_) for _ in backup_paths)
+        for path in self.keep:
+            assert os.path.exists(path), repr(path)
+        for path in backup_paths:
+            assert not os.path.exists(path), repr(path)
 
     ### PUBLIC PROPERTIES ###
 
