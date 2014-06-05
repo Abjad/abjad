@@ -1,65 +1,60 @@
 1.  Implement an 'all whatever - edit' command.
 
-2.  Autorun ScorePackageManager.fix() on ScorePackageManager start.
-    Autorun MaterialPackageWrangler.fix() on ScorePackageManager start.
-    Autorun SegmentPackageWrangler.fix() on ScorePackageManager start.
-    Will prompt composer to fix everything on ScorePackageManager start.
-
-3.  Make (rrv) work for Subversion-managed directories.
+2.  Make (rrv) work for Subversion-managed directories.
     Use (bet > rst) and then (bet > rrv) to reproduce the bug.
     Also make (rrv) work for Git-managed directories;
     maybe 'git checkout ...' should be the underlying implementation.
 
-4.  Make sure new-style.ily doesn't alias (new).
+3.  Make sure new-style.ily doesn't alias (new).
     This blocks the creation of new stylesheets.
 
-5.  When in (new) score, change 'Enter package name>' to
+4.  When in (new) score, change 'Enter package name>' to
     'Enter score package name>'.
 
-6.  Block (new) score when view is hiding user scores.
+5.  Block (new) score when view is hiding user scores.
     Otherwise the score package gets created but is hidden.
 
-7.  Allow more flexible input for score (new).
+6.  Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-8.  Implement stringtools.delimit_words(delimitor=' ').
+7.  Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-9.  Make (mdo) work for wranglers.
+8.  Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-10. Make menu title breadcrumbs correctly reflect changes in view
+9.  Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-11. Refuse to apply view when invalid regular expression is found.
+10. Refuse to apply view when invalid regular expression is found.
 
-12. Implement 'views - autoedit' (vae) command.
+11. Implement 'views - autoedit' (vae) command.
 
-13. Compile regular expressions at view entry add time.
+12. Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-14. Change ...
+13. Change ...
         Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
-15. Allow 5-99 (or any other large number) to work when removing items.
+14. Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-16. Fix menu title that results from the following:
+15. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-17. There is no such thing as 'My build files'.
+16. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-18. Improve (k > cp) user experience. Change ...
+17. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -68,26 +63,26 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-19. Make (rrv) work in Git directories.
+18. Make (rrv) work in Git directories.
     Can test with (red~example~score g oli y).
     This will modify all segment output.pdf files.
     Using (rrv) should then run 'git checkout' on each of the output.pdf files.
     But that does not currently work.
 
-20. Add 'all segments - list versions directories'.
+19. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-21. Open audio files with audio player. Use (d) for examples to test.
+20. Open audio files with audio player. Use (d) for examples to test.
 
-22. Wrap metadata tests with FilesystemState context.
+21. Wrap metadata tests with FilesystemState context.
 
-23. Move SargassoMeasureMaker to the makers directory on an example score.
+22. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-24. Remove scoremanager/wizards directory.
+23. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-25. Collapse all Abjad IDE classes to a single package.
+24. Collapse all Abjad IDE classes to a single package.
 
-26. Display messaging for (rup).
+25. Display messaging for (rup).
