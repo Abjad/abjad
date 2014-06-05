@@ -12,9 +12,9 @@ def test_ScorePackageManager_check_package_01():
     contents = score_manager._transcript.contents
 
     lines = [
-        'Build (18 files): OK',
-        'Distribution (2 files): OK',
-        'Makers (2 files): OK',
+        'Build files (18 files): OK',
+        'Distribution files (2 files): OK',
+        'Maker files (2 files): OK',
         'Materials (5 packages):',
         'Segments (3 packages):',
         'Stylesheets (2 files): OK',

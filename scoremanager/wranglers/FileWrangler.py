@@ -82,15 +82,13 @@ class FileWrangler(Wrangler):
             file_name = os.path.basename(path)
             if not self._is_valid_directory_entry(file_name):
                 invalid_paths.append(path)
-        directory = self._get_current_directory()
-        directory = os.path.basename(directory)
         messages = []
         if not invalid_paths:
             count = len(paths)
-            message = '{} ({} files): OK'.format(directory, count)
+            message = '{} ({} files): OK'.format(self._breadcrumb, count)
             messages.append(message)
         else:
-            message = '{}:'.format(directory)
+            message = '{}:'.format(self._breadcrumb)
             messages.append(message)
             tab = self._io_manager._make_tab()
             for invalid_path in invalid_paths:
