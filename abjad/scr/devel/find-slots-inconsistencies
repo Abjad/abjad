@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
 def shorten_class_name(abjad_class):
@@ -19,7 +19,7 @@ def find_inconsistencies():
     abjad_classes = ClassCrawler(tools_path)()
     graph = InheritanceGraph(
         addresses=abjad_classes, 
-        root_addresses=[AbjadObject, ScoreManagerObject],
+        root_addresses=[AbjadObject, Controller],
         )
     bad_arcs = []
     for parent, children in graph.parent_children_mapping.iteritems():

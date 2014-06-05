@@ -84,11 +84,11 @@ class BuildApiScript(DeveloperScript):
         def tools_package_path_index(self):
             return 2
 
-    class ScoreManagerAPIGenerator(AbjadAPIGenerator):
-        r'''API generator for the score manager package.
+    class AbjadIDEAPIGenerator(AbjadAPIGenerator):
+        r'''API generator for the Abjad IDE package.
         '''
 
-        _api_title = 'Abjad Score Manager API'
+        _api_title = 'Abjad IDE API'
 
         @property
         def docs_api_index_path(self):
@@ -254,8 +254,8 @@ class BuildApiScript(DeveloperScript):
 
     def _build_scoremanager_api(self, api_format='html', clean=False):
         from abjad import abjad_configuration
-        api_generator = BuildApiScript.ScoreManagerAPIGenerator()
-        api_title = 'score manager'
+        api_generator = BuildApiScript.AbjadIDEAPIGenerator()
+        api_title = 'Abjad IDE'
         docs_directory = os.path.join(
             abjad_configuration.abjad_root_directory,
             'scoremanager',
@@ -327,7 +327,7 @@ class BuildApiScript(DeveloperScript):
             )
         parser.add_argument('-S', '--scoremanager',
             action='store_true',
-            help='build the score manager API'
+            help='build the Abjad IDE API'
             )
         parser.add_argument('-C', '--clean',
             action='store_true',

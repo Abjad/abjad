@@ -25,7 +25,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'core': 'Core composition packages',
         'demos': 'Demos and example packages',
         'internals': 'Abjad internal packages',
-        'score manager': 'Score manager packages',
+        'score manager': 'Abjad IDE packages',
         'unstable': 'Unstable packages (load manually)',
     }
 
