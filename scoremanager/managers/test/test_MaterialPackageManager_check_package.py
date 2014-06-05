@@ -37,7 +37,7 @@ def test_MaterialPackageManager_check_package_02():
     assert 'No problem assets found.' not in contents
 
 
-def test_SegmentPackageWrangler_check_every_package_03():
+def test_MaterialPackageManager_check_package_03():
     r'''Supplies missing directory and missing file.
     '''
 

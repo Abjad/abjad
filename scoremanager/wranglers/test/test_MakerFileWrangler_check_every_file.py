@@ -27,7 +27,7 @@ def test_MakerFileWrangler_check_every_file_02():
     assert 'Maker files' in contents
 
 
-def test_BuildFileWrangler_check_every_file_03():
+def test_MakerFileWrangler_check_every_file_03():
     r'''Reports unrecognized file. Maker files must be upper camel case.
     '''
 

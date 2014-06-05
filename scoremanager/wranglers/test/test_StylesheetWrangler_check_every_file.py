@@ -27,7 +27,7 @@ def test_StylesheetWrangler_check_every_file_02():
     assert 'Stylesheets' in contents
 
 
-def test_BuildFileWrangler_check_every_file_03():
+def test_StylesheetWrangler_check_every_file_03():
     r'''Reports unrecognized file. Stylesheets must end in .ily instead of .ly.
     '''
 

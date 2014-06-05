@@ -44,7 +44,7 @@ def test_MaterialPackageWrangler_check_every_package_02():
     for line in lines:
         assert line in contents
 
-def test_SegmentPackageWrangler_check_every_package_03():
+def test_MaterialPackageWrangler_check_every_package_03():
     r'''Supplies missing directory and missing file.
     '''
 

@@ -27,7 +27,7 @@ def test_DistributionFileWrangler_check_every_file_02():
     assert 'Distribution files' in contents
 
 
-def test_BuildFileWrangler_check_every_file_03():
+def test_DistributionFileWrangler_check_every_file_03():
     r'''Reports unrecognized file. Distribution files must be dash case.
     '''
 

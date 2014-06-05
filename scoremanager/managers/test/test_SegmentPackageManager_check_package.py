@@ -66,7 +66,7 @@ def test_SegmentPackageManager_check_package_02():
         assert line in contents
 
 
-def test_SegmentPackageWrangler_check_every_package_03():
+def test_SegmentPackageManager_check_package_03():
     r'''Supplies missing directory and missing file.
     '''
 

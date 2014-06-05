@@ -65,8 +65,8 @@ def test_ScorePackageManager_check_package_03():
     assert line in contents
 
 
-def test_SegmentPackageWrangler_check_every_package_04():
-    r'''Supplies missing directory and missing file.
+def test_ScorePackageManager_check_package_04():
+    r'''Supplies missing directory and missing file in immediate package.
     '''
 
     score_directory = os.path.join(
@@ -83,3 +83,25 @@ def test_SegmentPackageWrangler_check_every_package_04():
         score_manager._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(build_directory)
+
+
+def test_ScorePackageManager_check_package_05():
+    r'''Supplies missing directory and missing file in nested package.
+    '''
+
+    segment_directory = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'segments',
+        'segment_02',
+        )
+    versions_directory = os.path.join(segment_directory, 'versions')
+    initializer = os.path.join(segment_directory, '__init__.py')
+        
+    with systemtools.FilesystemState(keep=[versions_directory, initializer]):
+        os.remove(initializer)
+        shutil.rmtree(versions_directory)
+        input_ = 'red~example~score ck y y q'
+        score_manager._run(input_=input_)
+        assert os.path.isfile(initializer)
+        assert os.path.isdir(versions_directory)
