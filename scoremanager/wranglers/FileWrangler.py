@@ -115,7 +115,8 @@ class FileWrangler(Wrangler):
                 message = tab + tab + invalid_path
                 messages.append(message)
         self._io_manager._display(messages)
-        return messages
+        missing_files, missing_directories = [], []
+        return messages, missing_files, missing_directories
 
     def copy_file(self):
         r'''Copies file.

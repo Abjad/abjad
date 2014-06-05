@@ -22,7 +22,7 @@ def test_SegmentPackageManager_check_package_01():
     with systemtools.FilesystemState(keep=[versions_directory, initializer]):
         os.remove(initializer)
         shutil.rmtree(versions_directory)
-        input_ = 'red~example~score g B ck y q'
+        input_ = 'red~example~score g B ck y n q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
@@ -52,7 +52,7 @@ def test_SegmentPackageManager_check_package_02():
     with systemtools.FilesystemState(keep=[versions_directory, initializer]):
         os.remove(initializer)
         shutil.rmtree(versions_directory)
-        input_ = 'red~example~score g B ck n q'
+        input_ = 'red~example~score g B ck n n q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 

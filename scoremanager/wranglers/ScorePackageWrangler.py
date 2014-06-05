@@ -155,11 +155,44 @@ class ScorePackageWrangler(PackageWrangler):
         if result in paths:
             path = result
             manager = self._initialize_manager(path)
-            package_name = os.path.basename(path)
-            with self._io_manager._make_silent():
-                manager.fix_package()
-            if self._session.is_backtracking:
-                return
+            if not self._session.is_test:
+                #with self._io_manager._make_silent():
+                #    manager.fix_package()
+                with self._io_manager._make_silent():
+                    result = manager.check_package(
+                        return_supply_messages=True,
+                        supply_missing=True,
+                        )
+                messages, supplied_directories, supplied_files = result
+                #if messages:
+                #    self._io_manager._display(messages)
+                messages = []
+                tab = self._io_manager._make_tab()
+                if supplied_directories:
+                    identifier = 'directory'
+                    count = len(supplied_directories)
+                    identifier = stringtools.pluralize(identifier, count)
+                    message = 'Made missing {}:'.format(identifier)
+                    messages.append(message)
+                    directories = [tab + _ for _ in supplied_directories]
+                    messages.extend(directories)
+                if supplied_files:
+                    identifier = 'file'
+                    count = len(supplied_files)
+                    identifier = stringtools.pluralize(identifier, count)
+                    message = 'Made missing {}:'.format(identifier)
+                    messages.append(message)
+                    files = [tab + _ for _ in supplied_files]
+                    messages.extend(files)
+                if messages:
+                    self._io_manager._display(messages)
+                    prompt_string = 'press any key to continue.'
+                    self._io_manager._confirm(prompt_string=prompt_string)
+                    if self._session.is_backtracking:
+                        return
+                # TODO: remove this backtracking check
+                if self._session.is_backtracking:
+                    return
             manager._run()
 
     def _is_valid_directory_entry(self, expr):

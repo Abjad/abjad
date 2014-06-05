@@ -972,8 +972,11 @@ class PackageManager(AssetController):
             if self._session.is_backtracking or result is None:
                 return
             problems_only = bool(result)
-        required_directories, required_files = [], []
+        tab = self._io_manager._make_tab()
         optional_directories, optional_files = [], []
+        missing_directories, missing_files = [], []
+        required_directories, required_files = [], []
+        supplied_directories, supplied_files = [], []
         unrecognized_directories, unrecognized_files = [], []
         names = self._list()
         for name in names:
@@ -994,7 +997,6 @@ class PackageManager(AssetController):
                     unrecognized_files.append(path)
             else:
                 raise TypeError(path)
-        missing_directories, missing_files = [], []
         recognized_directories = required_directories + optional_directories
         recognized_files = required_files + optional_files
         for required_directory in self._required_directories:
@@ -1093,23 +1095,27 @@ class PackageManager(AssetController):
                 tab = self._io_manager._make_tab()
                 for wrangler in wranglers:
                     if hasattr(wrangler, 'check_every_package'):
-                        messages_ = wrangler.check_every_package(
+                        result = wrangler.check_every_package(
                             indent=1,
                             problems_only=problems_only,
                             supply_missing=False,
                             )
                     else:
-                        messages_ = wrangler.check_every_file()
+                        result = wrangler.check_every_file()
+                    messages_, missing_directories_, missing_files_ = result
+                    missing_directories.extend(missing_directories_)
+                    missing_files.extend(missing_files_)
                     messages_ = [
                         stringtools.capitalize_start(_) for _ in messages_]
                     messages_ = [tab + _ for _ in messages_]
                     messages.extend(messages_)
         if return_messages:
-            return messages
+            return messages, missing_directories, missing_files
         else:
             self._io_manager._display(messages)
         if not missing_directories + missing_files:
-            return
+            #return
+            return messages, missing_directories, missing_files
         if supply_missing is None:
             directory_count = len(missing_directories)
             file_count = len(missing_files)
@@ -1128,8 +1134,8 @@ class PackageManager(AssetController):
                 return
             supply_missing = bool(result)
         if not supply_missing:
-            return
-        tab = self._io_manager._make_tab()
+            #return
+            return messages, missing_directories, missing_files
         messages = []
         messages.append('Made:')
         for missing_directory in missing_directories:
@@ -1139,6 +1145,7 @@ class PackageManager(AssetController):
                 file_pointer.write('')
             message = tab + missing_directory
             messages.append(message)
+            supplied_directories.append(missing_directory)
         for missing_file in missing_files:
             if missing_file.endswith('__init__.py'):
                 lines = []
@@ -1169,10 +1176,13 @@ class PackageManager(AssetController):
                 file_pointer.write(contents)
             message = tab + missing_file
             messages.append(message)
+            supplied_files.append(missing_file)
         if return_supply_messages:
-            return messages
+            #return messages
+            return messages, supplied_directories, supplied_files
         else:
             self._io_manager._display(messages)
+        return messages, supplied_directories, supplied_files
 
     def commit_to_repository(self, commit_message=None):
         r'''Commits files to repository.
