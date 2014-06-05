@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageManager_check_package_01():
+    r'''Reports problems only.
+    '''
 
     input_ = 'red~example~score ck y q'
     score_manager._run(input_=input_)
@@ -25,6 +28,8 @@ def test_ScorePackageManager_check_package_01():
 
 
 def test_ScorePackageManager_check_package_02():
+    r'''Reports everything.
+    '''
 
     input_ = 'red~example~score ck n q'
     score_manager._run(input_=input_)
@@ -40,6 +45,8 @@ def test_ScorePackageManager_check_package_02():
 
 
 def test_ScorePackageManager_check_package_03():
+    r'''Reports unrecognized file.
+    '''
 
     extra_file = os.path.join(
         score_manager._configuration.example_score_packages_directory,
@@ -56,3 +63,23 @@ def test_ScorePackageManager_check_package_03():
 
     line = '1 unrecognized file found:'
     assert line in contents
+
+
+def test_SegmentPackageWrangler_check_every_package_04():
+    r'''Supplies missing directory and missing file.
+    '''
+
+    score_directory = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        )
+    build_directory = os.path.join(score_directory, 'build')
+    initializer = os.path.join(score_directory, '__init__.py')
+        
+    with systemtools.FilesystemState(keep=[build_directory, initializer]):
+        os.remove(initializer)
+        shutil.rmtree(build_directory)
+        input_ = 'red~example~score ck y y q'
+        score_manager._run(input_=input_)
+        assert os.path.isfile(initializer)
+        assert os.path.isdir(build_directory)
