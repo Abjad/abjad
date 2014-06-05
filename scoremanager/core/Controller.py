@@ -1,27 +1,67 @@
 # -*- encoding: utf -*-
+import abc
 import os
-import re
-from abjad.tools import developerscripttools
 from abjad.tools import stringtools
-from scoremanager.core.AbjadIDEObject import AbjadIDEObject
 
 
-class Controller(AbjadIDEObject):
+class Controller(object):
     r'''Controller.
-
     '''
 
     ### CLASS VARIABLES ###
 
+    __meta__ = abc.ABCMeta
+
     __slots__ = (
+        '_configuration',
+        '_controller_context',
+        '_io_manager',
+        '_session',
+        '_transcript',
         )
 
     ### INTIIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, session=None):
-        assert session is not None
-        superclass = super(Controller, self)
-        superclass.__init__(session=session)
+        from scoremanager import core
+        from scoremanager import iotools
+        self._configuration = core.Configuration()
+        self._session = session or core.Session()
+        self._io_manager = iotools.IOManager(
+            client=self,
+            session=self._session,
+            )
+        self._transcript = self._session.transcript
+        self._controller_context = iotools.ControllerContext(controller=self)
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        r'''Is true when types are the same. Otherwise false.
+
+        Returns boolean.
+        '''
+        return type(self) is type(expr)
+
+    def __hash__(self):
+        r'''Hashes controller.
+        '''
+        return hash((type(self), self._session))
+
+    def __ne__(self, expr):
+        r'''Is true when types are not the same. Otherwise false.
+
+        Returns boolean.
+        '''
+        return not self == expr
+
+    def __repr__(self):
+        r'''Gets interpreter representation of controller.
+
+        Returns string.
+        '''
+        return '{}()'.format(type(self).__name__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -39,6 +79,10 @@ class Controller(AbjadIDEObject):
             's': self.go_to_current_score,
             }
         return result
+
+    @property
+    def _spaced_class_name(self):
+        return stringtools.to_space_delimited_lowercase(type(self).__name__)
 
     ### PRIVATE METHODS ###
 
