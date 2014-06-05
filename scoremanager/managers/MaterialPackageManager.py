@@ -23,7 +23,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         ::
 
             >>> import os
-            >>> configuration = scoremanager.core.AbjadIDEConfiguration()
+            >>> configuration = scoremanager.core.Configuration()
             >>> session = scoremanager.core.Session()
             >>> path = os.path.join(
             ...     configuration.abjad_material_packages_directory,

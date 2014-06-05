@@ -1131,7 +1131,7 @@ class PackageManager(AssetController):
             return
         tab = self._io_manager._make_tab()
         messages = []
-        messages.append('made:')
+        messages.append('Made:')
         for missing_directory in missing_directories:
             os.makedirs(missing_directory)
             gitignore_path = os.path.join(missing_directory, '.gitignore')

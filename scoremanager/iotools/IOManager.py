@@ -36,7 +36,7 @@ class IOManager(IOManager):
     def __init__(self, client=None, session=None):
         from scoremanager import core
         self._client = client
-        self._configuration = core.AbjadIDEConfiguration()
+        self._configuration = core.Configuration()
         self._session = session
 
     ### SPECIAL METHODS ###

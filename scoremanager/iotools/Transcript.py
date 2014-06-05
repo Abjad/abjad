@@ -21,7 +21,7 @@ class Transcript(AbjadObject):
 
     def __init__(self):
         from scoremanager import core
-        self._configuration = core.AbjadIDEConfiguration()
+        self._configuration = core.Configuration()
         self._entries = []
         current_time = datetime.datetime.fromtimestamp(time.time())
         self._start_time = current_time

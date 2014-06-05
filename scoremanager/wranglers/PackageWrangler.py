@@ -132,11 +132,10 @@ class PackageWrangler(Wrangler):
             if messages_:
                 tab = self._io_manager._make_tab()
                 name = self._path_to_asset_menu_display_string(manager._path)
-                message = '{} ({} packages):'.format(name, count)
+                message = '{}:'.format(name)
+                message = stringtools.capitalize_start(message)
                 message = tab + message
                 messages.append(message)
-                messages_ = [
-                    stringtools.capitalize_start(_) for _ in messages_] 
                 messages_ = [tab + tab + _ for _ in messages_]
                 messages.extend(messages_)
         self._io_manager._display(messages)

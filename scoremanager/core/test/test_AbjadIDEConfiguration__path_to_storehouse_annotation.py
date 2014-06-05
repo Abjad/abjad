@@ -2,10 +2,10 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.AbjadIDEConfiguration()
+configuration = scoremanager.core.Configuration()
 
 
-def test_AbjadIDEConfiguration__path_to_storehouse_annotation_01():
+def test_Configuration__path_to_storehouse_annotation_01():
     r'''User library paths annotate composer last name.
     '''
 
@@ -26,7 +26,7 @@ def test_AbjadIDEConfiguration__path_to_storehouse_annotation_01():
     assert annotation == configuration.composer_last_name
 
 
-def test_AbjadIDEConfiguration__path_to_storehouse_annotation_02():
+def test_Configuration__path_to_storehouse_annotation_02():
     r'''Abjad library paths annotate 'Abjad'.
     '''
 
@@ -39,7 +39,7 @@ def test_AbjadIDEConfiguration__path_to_storehouse_annotation_02():
     assert annotation == 'Abjad'
 
 
-def test_AbjadIDEConfiguration__path_to_storehouse_annotation_03():
+def test_Configuration__path_to_storehouse_annotation_03():
     r'''Score paths annotate score title.
     '''
 

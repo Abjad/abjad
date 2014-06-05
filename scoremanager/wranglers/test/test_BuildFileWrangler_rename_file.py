@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.AbjadIDEConfiguration()
+configuration = scoremanager.core.Configuration()
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 

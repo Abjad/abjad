@@ -3,7 +3,7 @@ import os
 import pytest
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.AbjadIDEConfiguration()
+configuration = scoremanager.core.Configuration()
 
 score_package_path = os.path.join(
     configuration.example_score_packages_directory,

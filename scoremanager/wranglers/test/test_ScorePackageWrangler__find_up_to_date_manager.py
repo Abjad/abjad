@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.AbjadIDEConfiguration()
+configuration = scoremanager.core.Configuration()
 session = scoremanager.core.Session()
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 

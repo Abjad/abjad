@@ -63,7 +63,7 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
         1    0.000    0.000    0.008    0.008 AbjadIDE.py:11(__init__)
         6    0.000    0.000    0.008    0.001 PackagesystemAssetWrangler.py:8(__init__)
         6    0.000    0.000    0.008    0.001 package_path_to_path.py:4(package_path_to_path)
-        6    0.000    0.000    0.007    0.001 AbjadIDEConfiguration.py:22(__init__)
+        6    0.000    0.000    0.007    0.001 Configuration.py:22(__init__)
         6    0.000    0.000    0.007    0.001 Configuration.py:16(__init__)
         2    0.000    0.000    0.003    0.001 MaterialManagerWrangler.py:12(__init__)
         1    0.000    0.000    0.003    0.003 MaterialPackageWrangler.py:37(__init__)
@@ -74,7 +74,7 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
 ... as opposed to the 181 function calls it took in r9,872.
 
-This is most likely due to the integration of AbjadIDEConfiguration.
+This is most likely due to the integration of Configuration.
 This increase from 181 to 6,658 is probably nothing to worry about.
 
 But note that it takes between 325,000 and 323,000 function calls to start 
@@ -144,9 +144,9 @@ turned on.
 Revision r10,251 fives an inefficiency in 
 package_path_to_path() and the same inefficiency in 
 path_to_package_path(). Specifically, a 
-AbjadIDEConfiguration object was being instantiated for each and every
+Configuration object was being instantiated for each and every
 call to both of these functions; note that there is disk read time incurred 
-every time a AbjadIDEConfiguration object is istantiated.
+every time a Configuration object is istantiated.
 
 RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:

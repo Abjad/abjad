@@ -257,9 +257,13 @@ class AssetController(Controller):
             else:
                 package_name = os.path.basename(path)
                 annotation = package_name
-        elif path.startswith(self._user_storehouse_path):
+        #elif (hasattr(self, '_user_storehouse_path') and
+        #    path.startswith(self._user_storehouse_path)):
+        elif path.startswith(self._configuration.user_library_directory):
             annotation = self._configuration.composer_last_name
-        elif path.startswith(self._abjad_storehouse_path):
+        #elif (hasattr(self, '_abjad_storehouse_path') and
+        #    path.startswith(self._abjad_storehouse_path)):
+        elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:
             annotation = None

@@ -106,7 +106,7 @@ class Session(abctools.AbjadObject):
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
         self._command_history = []
-        self._configuration = core.AbjadIDEConfiguration()
+        self._configuration = core.Configuration()
         self._confirm = True
         self._controller_stack = []
         self._controllers_visited = []

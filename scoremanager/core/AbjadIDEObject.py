@@ -26,7 +26,7 @@ class AbjadIDEObject(object):
     def __init__(self, session=None):
         from scoremanager import core
         from scoremanager import iotools
-        self._configuration = core.AbjadIDEConfiguration()
+        self._configuration = core.Configuration()
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(
             client=self,

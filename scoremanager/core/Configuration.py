@@ -3,7 +3,7 @@ import os
 from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 
 
-class AbjadIDEConfiguration(AbjadConfiguration):
+class Configuration(AbjadConfiguration):
     r'''Abjad IDE configuration.
 
     ..  container:: example
@@ -13,7 +13,7 @@ class AbjadIDEConfiguration(AbjadConfiguration):
             >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
             >>> configuration = score_manager._configuration
             >>> configuration
-            AbjadIDEConfiguration()
+            Configuration()
 
     '''
 
@@ -379,7 +379,7 @@ class AbjadIDEConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        #superclass = super(AbjadIDEConfiguration, self)
+        #superclass = super(Configuration, self)
         #return superclass.configuration_file_path
         return os.path.join(
             self.configuration_directory,
@@ -438,7 +438,7 @@ class AbjadIDEConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        superclass = super(AbjadIDEConfiguration, self)
+        superclass = super(Configuration, self)
         return superclass.home_directory
 
     @property
