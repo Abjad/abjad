@@ -34,26 +34,9 @@ class StylesheetWrangler(FileWrangler):
         self._asset_identifier = 'stylesheet'
         self._basic_breadcrumb = 'stylesheets'
         self._extension = '.ily'
-        #self._human_readable = False
-        #self._include_extensions = True
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory
-
-#    ### PRIVATE PROPERTIES ###
-#
-#    @property
-#    def _input_to_method(self):
-#        superclass = super(StylesheetWrangler, self)
-#        result = superclass._input_to_method
-#        result = result.copy()
-#        result.update({
-#            'cp': self.copy_stylesheet,
-#            'new': self.make_stylesheet,
-#            'ren': self.rename_stylesheet,
-#            'rm': self.remove_stylesheets,
-#            })
-#        return result
 
     ### PRIVATE METHODS ###
 
@@ -72,64 +55,3 @@ class StylesheetWrangler(FileWrangler):
             if directory_entry.endswith('.ily'):
                 return True
         return False
-
-#    def _make_main_menu(self):
-#        superclass = super(StylesheetWrangler, self)
-#        menu = superclass._make_main_menu()
-#        self._make_stylesheets_menu_section(menu)
-#        return menu
-#
-#    def _make_stylesheets_menu_section(self, menu):
-#        commands = []
-#        commands.append(('stylesheets - copy', 'cp'))
-#        commands.append(('stylesheets - new', 'new'))
-#        commands.append(('stylesheets - rename', 'ren'))
-#        commands.append(('stylesheets - remove', 'rm'))
-#        menu.make_command_section(
-#            commands=commands,
-#            name='stylesheets',
-#            )
-
-#    ### PUBLIC METHODS ###
-#
-#    def copy_stylesheet(self):
-#        r'''Copies stylesheet.
-#
-#        Returns none.
-#        '''
-#        self._copy_asset(
-#            extension='.ily',
-#            file_name_callback=self._file_name_callback,
-#            )
-#
-#    def edit_stylesheet(self, path):
-#        r'''Edits stylesheet.
-#
-#        Returns none.
-#        '''
-#        self._io_manager.edit(path)
-#
-#    def make_stylesheet(self):
-#        r'''Makes stylesheet.
-#
-#        Returns none.
-#        '''
-#        self._make_file(
-#            extension='.ily',
-#            file_name_callback=self._file_name_callback,
-#            prompt_string='stylesheet name', 
-#            )
-#
-#    def remove_stylesheets(self):
-#        r'''Removes one or more stylesheets.
-#
-#        Returns none.
-#        '''
-#        self._remove_assets()
-#
-#    def rename_stylesheet(self):
-#        r'''Renames stylesheet.
-#
-#        Returns none.
-#        '''
-#        self._rename_asset()

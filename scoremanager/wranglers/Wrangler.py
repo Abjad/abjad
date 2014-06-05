@@ -534,6 +534,7 @@ class Wrangler(AssetController):
         example_score_packages=True,
         user_library=True,
         user_score_packages=True,
+        valid_only=True,
         ):
         result = []
         directories = self._list_storehouse_paths(
@@ -549,8 +550,9 @@ class Wrangler(AssetController):
                 continue
             directory_entries =  sorted(os.listdir(directory))
             for directory_entry in directory_entries:
-                if not self._is_valid_directory_entry(directory_entry):
-                    continue
+                if valid_only:
+                    if not self._is_valid_directory_entry(directory_entry):
+                        continue
                 path = os.path.join(directory, directory_entry)
                 result.append(path)
         return result

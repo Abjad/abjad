@@ -2,6 +2,7 @@
 import os
 import shutil
 from abjad.tools import lilypondfiletools
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.wranglers.FileWrangler import FileWrangler
 

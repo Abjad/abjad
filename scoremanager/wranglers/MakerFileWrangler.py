@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import os
+from abjad.tools import stringtools
 from scoremanager.wranglers.FileWrangler import FileWrangler
 
 
@@ -40,3 +42,10 @@ class MakerFileWrangler(FileWrangler):
 
     def _enter_run(self):
         self._session._is_navigating_to_score_maker_files = False
+
+    def _is_valid_directory_entry(self, directory_entry):
+        name, extension = os.path.splitext(directory_entry)
+        if stringtools.is_upper_camel_case(name):
+            if extension == '.py':
+                return True
+        return False

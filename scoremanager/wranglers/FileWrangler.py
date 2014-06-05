@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
@@ -42,6 +43,14 @@ class FileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _is_valid_directory_entry(self, directory_entry):
+        superclass = super(FileWrangler, self)
+        if superclass._is_valid_directory_entry(directory_entry):
+            name, extension = os.path.splitext(directory_entry)
+            if stringtools.is_dash_case(name):
+                return True
+        return False
+
     def _make_all_menu_section(self, menu):
         commands = []
         commands.append(('all files - check', 'ck*'))
@@ -76,7 +85,11 @@ class FileWrangler(Wrangler):
 
         Returns none.
         '''
-        paths = self._list_visible_asset_paths()
+        paths = self._list_asset_paths(valid_only=False)
+        paths = [_ for _ in paths if os.path.basename(_)[0].isalpha()]
+        current_directory = self._get_current_directory()
+        if current_directory:
+            paths = [_ for _ in paths if _.startswith(current_directory)]
         invalid_paths = []
         for path in paths:
             file_name = os.path.basename(path)
@@ -90,9 +103,16 @@ class FileWrangler(Wrangler):
         else:
             message = '{}:'.format(self._breadcrumb)
             messages.append(message)
+            identifier = 'file'
+            count = len(invalid_paths)
+            identifier = stringtools.pluralize(identifier, count)
+            message = '{} unrecognized {} found:'
+            message = message.format(count, identifier)
             tab = self._io_manager._make_tab()
+            message = tab + message
+            messages.append(message)
             for invalid_path in invalid_paths:
-                message = tab + invalid_path
+                message = tab + tab + invalid_path
                 messages.append(message)
         self._io_manager._display(messages)
         return messages
