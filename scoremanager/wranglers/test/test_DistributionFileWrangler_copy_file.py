@@ -7,20 +7,22 @@ score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 def test_DistributionFileWrangler_copy_file_01():
     r'''In library: partial test because we can't be sure any user 
-    score packages will be present. And because Score PackageManager allows copying 
-    into user score packges only (because copying into example score packages
-    could pollute the example score packages).
+    score packages will be present. And because Score PackageManager allows 
+    copying into user score packges only (because copying into example score 
+    packages could pollute the example score packages).
     '''
 
     input_ = 'd cp red-example-score.pdf q'
     score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - distribution files',
-        'Abjad IDE - distribution files - select storehouse:',
+        'Abjad IDE - distribution files',
         ]
     assert score_manager._transcript.titles == titles
+    assert 'Select storehouse:' in contents
 
 
 def test_DistributionFileWrangler_copy_file_02():

@@ -17,13 +17,15 @@ def test_MaterialPackageWrangler_copy_package_01():
 
     input_ = 'm cp instrumentation~(Red~Example~Score) q'
     score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - materials',
-        'Abjad IDE - materials - select storehouse:',
+        'Abjad IDE - materials',
         ]
     assert score_manager._transcript.titles == titles
+    assert 'Select storehouse:' in contents
 
 
 def test_MaterialPackageWrangler_copy_package_02():

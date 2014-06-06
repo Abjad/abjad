@@ -44,10 +44,13 @@ def test_StylesheetWrangler_remove_views_02():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'y vrm b q'
         score_manager._run(input_=input_)
-        titles = [
-            'Abjad IDE - scores',
-            'Abjad IDE - stylesheets',
-            'Abjad IDE - stylesheets - select view(s) to remove:',
-            'Abjad IDE - stylesheets',
-            ]
-        assert score_manager._transcript.titles == titles
+        contents = score_manager._transcript.contents
+
+    titles = [
+        'Abjad IDE - scores',
+        'Abjad IDE - stylesheets',
+        'Abjad IDE - stylesheets',
+        'Abjad IDE - stylesheets',
+        ]
+    assert score_manager._transcript.titles == titles
+    assert 'Select view(s) to remove:' in contents

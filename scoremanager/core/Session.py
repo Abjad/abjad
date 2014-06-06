@@ -211,6 +211,7 @@ class Session(abctools.AbjadObject):
         self.io_manager._display(lines, capitalize=False)
 
     def _format_controller_breadcrumbs(self):
+        from scoremanager import iotools
         if not self.controller_stack:
             return ['']
         result_lines = []
@@ -221,6 +222,8 @@ class Session(abctools.AbjadObject):
             result_lines.append(breadcrumb)
         hanging_indent_width = 5
         for controller in self.controller_stack[1:]:
+            if isinstance(controller, iotools.Selector):
+                continue
             breadcrumb = getattr(controller, 'breadcrumb', None)
             breadcrumb = breadcrumb or controller._breadcrumb
             if not breadcrumb:

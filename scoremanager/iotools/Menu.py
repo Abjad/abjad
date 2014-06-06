@@ -438,7 +438,6 @@ class Menu(Controller):
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
-    # ZZZ
     def _make_title_lines(self):
         result = []
         if self.title is not None:
@@ -447,7 +446,7 @@ class Menu(Controller):
             title = self._session.menu_header
         result.append(stringtools.capitalize_start(title))
         if self.subtitle is not None:
-            line = '      ' + self.subtitle
+            line = '  ' + self.subtitle
             result.append('')
             result.append(line)
         result.append('')

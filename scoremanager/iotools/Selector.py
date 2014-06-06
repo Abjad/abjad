@@ -4,6 +4,7 @@ import os
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import rhythmmakertools
+from abjad.tools import stringtools
 from scoremanager.core.Controller import Controller
 
 
@@ -75,7 +76,8 @@ class Selector(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
+        subtitle = stringtools.capitalize_start(self.breadcrumb)
+        menu = self._io_manager._make_menu(name=name, subtitle=subtitle)
         self._make_asset_menu_section(menu)
         return menu
 

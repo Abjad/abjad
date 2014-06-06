@@ -48,10 +48,13 @@ def test_MakerFileWrangler_remove_views_02():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'k vrm b q'
         score_manager._run(input_=input_)
-        titles = [
-            'Abjad IDE - scores',
-            'Abjad IDE - maker files',
-            'Abjad IDE - maker files - select view(s) to remove:',
-            'Abjad IDE - maker files',
-            ]
-        assert score_manager._transcript.titles == titles
+        contents = score_manager._transcript.contents
+
+    titles = [
+        'Abjad IDE - scores',
+        'Abjad IDE - maker files',
+        'Abjad IDE - maker files',
+        'Abjad IDE - maker files',
+        ]
+    assert score_manager._transcript.titles == titles
+    assert 'Select view(s) to remove:' in contents

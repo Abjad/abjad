@@ -46,9 +46,13 @@ def test_ScorePackageWrangler_remove_views_02():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'vrm b q'
         score_manager._run(input_=input_)
-        titles = [
-            'Abjad IDE - scores',
-            'Abjad IDE - select view(s) to remove:',
-            'Abjad IDE - scores',
-            ]
-        assert score_manager._transcript.titles == titles
+        contents = score_manager._transcript.contents
+
+    # TODO: all three titles should be 'Abjad IDE - scores'
+    titles = [
+        'Abjad IDE - scores',
+        'Abjad IDE',
+        'Abjad IDE - scores',
+        ]
+    assert score_manager._transcript.titles == titles
+    assert 'Select view(s) to remove:' in contents

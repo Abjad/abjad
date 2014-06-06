@@ -15,4 +15,7 @@ def test_StylesheetWrangler_make_file_01():
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'y new My~stylesheets test-stylesheet q'
         score_manager._run(input_=input_)
+        contents = score_manager._transcript.contents
         assert os.path.exists(path)
+
+    assert 'Select storehouse:' in contents

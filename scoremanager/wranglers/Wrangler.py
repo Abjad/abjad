@@ -960,7 +960,6 @@ class Wrangler(AssetController):
     def _select_asset_path(self):
         menu = self._make_asset_selection_menu()
         while True:
-            breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run()
             if self._session.is_backtracking:
                 return

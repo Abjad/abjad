@@ -9,20 +9,22 @@ def test_BuildFileWrangler_copy_file_01():
     r'''Works in library.
     
     Partial test because we can't be sure any user score packages will be
-    present. And because Score PackageManager allows copying into user score packges
-    only (because copying into example score packages could pollute the example
-    score packages).
+    present. And because Score PackageManager allows copying into user score 
+    packges only (because copying into example score packages could pollute the 
+    example score packages).
     '''
 
     input_ = 'u cp score.pdf~(Red~Example~Score) q'
     score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - build files',
-        'Abjad IDE - build files - select storehouse:',
+        'Abjad IDE - build files',
         ]
     assert score_manager._transcript.titles == titles
+    assert 'Select storehouse:' in contents
 
 
 def test_BuildFileWrangler_copy_file_02():

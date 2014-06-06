@@ -9,20 +9,22 @@ def test_SegmentPackageWrangler_copy_package_01():
     r'''Works in library.
     
     Partial test because we can't be sure any user score packages will be
-    present. And because Score PackageManager allows copying into user score packges
-    only (because copying into example score packages could pollute the example
-    score packages).
+    present. And because Score PackageManager allows copying into user score 
+    packges only (because copying into example score packages could pollute the
+    example score packages).
     '''
 
     input_ = 'g cp A~(Red~Example~Score) q'
     score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - segments',
-        'Abjad IDE - segments - select storehouse:',
+        'Abjad IDE - segments',
         ]
     assert score_manager._transcript.titles == titles
+    assert 'Select storehouse:' in contents
 
 
 def test_SegmentPackageWrangler_copy_package_02():
