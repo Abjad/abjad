@@ -43,7 +43,7 @@ def test_MaterialPackageManager_autoedit_02():
     assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~tempo~inventory aes TempoInventory <return>'
+        input_ = 'm new test~tempo~inventory y aes TempoInventory <return>'
         input_ += ' ae add ((1, 4), 60) add ((1, 4), 90) done'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
@@ -78,7 +78,7 @@ def test_MaterialPackageManager_autoedit_03():
     inventory = pitchtools.PitchRangeInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~pitch~range~inventory'
+        input_ = 'm new test~pitch~range~inventory y'
         input_ += ' aes PitchRangeInventory <return> done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -113,7 +113,7 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm new test~pitch~range~inventory'
+    input_ = 'm new test~pitch~range~inventory y'
     input_ += ' aes PitchRangeInventory <return>'
     input_ += ' ae add [A0, C8]'
     input_ += ' add [C2, F#5]'
@@ -160,7 +160,7 @@ def test_MaterialPackageManager_autoedit_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new test~markup~inventory aes markup <return>"
+        input_ = "m new test~markup~inventory y aes markup <return>"
         input_ += " ae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y <return> q"
         score_manager._run(input_=input_)
@@ -195,7 +195,7 @@ def test_MaterialPackageManager_autoedit_06():
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~transposition~inventory'
+        input_ = 'm new test~transposition~inventory y'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
@@ -240,7 +240,7 @@ def test_MaterialPackageManager_autoedit_07():
         ])
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~transposition~inventory'
+        input_ = 'm new test~transposition~inventory y'
         input_ += ' aes OctaveTranspositionMappingInventory <return>'
         input_ += " ae add add ('[A0, C4)', 15)"
         input_ += " add ('[C4, C8)', 27) done"
@@ -276,7 +276,7 @@ def test_MaterialPackageManager_autoedit_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list aes list <return>'
+        input_ = 'm new test~list y aes list <return>'
         input_ += ' ae 17 foo done b <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -307,7 +307,7 @@ def test_MaterialPackageManager_autoedit_09():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list aes list <return>'
+        input_ = 'm new test~list y aes list <return>'
         input_ += ' ae add 17 add foo done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -349,7 +349,7 @@ def test_MaterialPackageManager_autoedit_10():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~rhythm~maker aes TaleaRhythmMaker <return>'
+        input_ = 'm new test~rhythm~maker y aes TaleaRhythmMaker <return>'
         input_ += ' ae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
@@ -392,7 +392,7 @@ def test_MaterialPackageManager_autoedit_11():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new test~articulation~handler"
+        input_ = "m new test~articulation~handler y"
         input_ += " aes ReiteratedArticulationHandler <return>"
         input_ += " ae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done y <return> q"
@@ -431,7 +431,7 @@ def test_MaterialPackageManager_autoedit_12():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~dynamic~handler'
+        input_ = 'm new test~dynamic~handler y'
         input_ += ' aes ReiteratedDynamicHandler <return>'
         input_ += ' ae dy f md (1, 16) done y <return> q'
         score_manager._run(input_=input_)

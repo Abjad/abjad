@@ -1,38 +1,34 @@
-1.  Allow more flexible input for score (new).
-    Space-delimited, underscore-delimited, hyphen-delimited should
-    all be fine. Use stringtools.delimite_words().
-
-2.  Make (mdo) work for wranglers.
-    There is now a metadata py in which wranglers store
+1.  Make (mdo) work for wranglers.
+    There is now a __metadata__.py file in which wranglers store
     things like 'current_view'. The (mdo) command should
-    allow the composer to read that metadata py.
+    allow the composer to read that __metadata__.py file.
 
-3.  Make menu title breadcrumbs correctly reflect changes in view
+2.  Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-4. Refuse to apply view when invalid regular expression is found.
+3.  Refuse to apply view when invalid regular expression is found.
 
-5.  Implement 'views - autoedit' (vae) command.
+4.  Implement 'views - autoedit' (vae) command.
 
-6.  Compile regular expressions at view entry add time.
+5.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-7.  Change ...
+6.  Change ...
         Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
-8.  Allow 5-99 (or any other large number) to work when removing items.
-    Example (y > vnew > foo > rm > 5-99).
-
-9.  Fix menu title that results from the following:
+7.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-10. There is no such thing as 'My build files'.
+8.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-11. Improve (k > cp) user experience. Change ...
+9.  Allow 5-99 (or any other large number) to work when removing items.
+    Example (y > vnew > foo > rm > 5-99).
+
+10. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -44,19 +40,19 @@
 11. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-13. Open audio files with audio player. Use (d) for examples to test.
+12. Open audio files with audio player. Use (d) for examples to test.
 
-14. Wrap metadata tests with FilesystemState context.
+13. Wrap metadata tests with FilesystemState context.
 
-15. Move SargassoMeasureMaker to the makers directory on an example score.
+14. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-16. Remove scoremanager/wizards directory.
+15. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-17. Collapse all Abjad IDE classes to a single package.
+16. Collapse all Abjad IDE classes to a single package.
 
-18. Improve (rup) messaging.
+17. Improve (rup) messaging.
 
-19.  Implement an 'all whatever - edit' command.
+18. Implement an 'all whatever - edit' command.

@@ -63,9 +63,8 @@ def test_MaterialPackageWrangler_make_package_02():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'testnotes q'
-        wrangler._session._pending_input = input_
-        wrangler.make_package()
+        input_ = 'm new testnotes y q'
+        score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialPackageManager
@@ -98,7 +97,7 @@ def test_MaterialPackageWrangler_make_package_03():
     contents = '\n'.join(lines)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         with open(definition_py_path, 'r') as file_pointer:
@@ -113,7 +112,7 @@ def test_MaterialPackageWrangler_make_package_04():
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -128,7 +127,7 @@ def test_MaterialPackageWrangler_make_package_05():
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -146,7 +145,7 @@ def test_MaterialPackageWrangler_make_package_06():
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_py_path)
@@ -176,7 +175,7 @@ def test_MaterialPackageWrangler_make_package_07():
         ]
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes <return> testnotes dms <return> q'
+        input_ = 'm new testnotes y <return> testnotes dms <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
@@ -195,7 +194,7 @@ def test_MaterialPackageWrangler_make_package_08():
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_py_path)
@@ -213,7 +212,7 @@ def test_MaterialPackageWrangler_make_package_09():
     '''
 
     with systemtools.FilesystemState(remove=[package_path]):
-        input_ = 'm new testnotes q'
+        input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_py_path)

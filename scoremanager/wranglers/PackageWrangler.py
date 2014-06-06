@@ -196,6 +196,11 @@ class PackageWrangler(Wrangler):
         path = self._get_available_path(storehouse_path=storehouse_path)
         if self._session.is_backtracking or not path:
             return
+        message = 'path will be {}.'.format(path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
         manager = self._get_manager(path)
         manager._make_package()
         with self._io_manager._make_silent():

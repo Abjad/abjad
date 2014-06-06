@@ -15,7 +15,7 @@ def test_Autoeditor_set_attributes_to_none_01():
         )
 
     with systemtools.FilesystemState(remove=[material_package_path]):
-        input_ = 'red~example~score m new test~rhythm~maker'
+        input_ = 'red~example~score m new test~rhythm~maker y'
         input_ += ' aes TaleaRhythmMaker'
         input_ += ' ae t c (1, 2, 3, 4) done bs done done y'
         input_ += ' m test~rhythm~maker q'

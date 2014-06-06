@@ -24,7 +24,7 @@ def test_SegmentPackageWrangler_make_package_01():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'red~example~score g new segment~04 q'
+        input_ = 'red~example~score g new segment~04 y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path)

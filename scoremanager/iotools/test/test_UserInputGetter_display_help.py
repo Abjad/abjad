@@ -12,7 +12,7 @@ def test_UserInputGetter_display_help_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string  = 'Value must be space-delimited lowercase string.'
+    string  = 'Value must be string.'
     assert string in contents
 
 
@@ -24,5 +24,5 @@ def test_UserInputGetter_display_help_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    string = 'Value must be space-delimited lowercase string.'
+    string = 'Value must be string.'
     assert string in contents

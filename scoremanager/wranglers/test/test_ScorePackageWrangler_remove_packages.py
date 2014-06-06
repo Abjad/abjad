@@ -15,7 +15,7 @@ def test_ScorePackageWrangler_remove_packages_01():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'new example~score~100 q'
+        input_ = 'new example~score~100 y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         manager = scoremanager.managers.ScorePackageManager
@@ -41,10 +41,10 @@ def test_ScorePackageWrangler_remove_packages_02():
         )
 
     with systemtools.FilesystemState(remove=[path_100, path_101]):
-        input_ = 'new example~score~100 q'
+        input_ = 'new example~score~100 y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path_100)
-        input_ = 'new example~score~101 q'
+        input_ = 'new example~score~101 y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path_101)
         manager = scoremanager.managers.ScorePackageManager

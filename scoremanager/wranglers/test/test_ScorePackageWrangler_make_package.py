@@ -25,7 +25,7 @@ def test_ScorePackageWrangler_make_package_01():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'new example~score q'
+        input_ = 'new example~score y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path)
@@ -64,9 +64,39 @@ def test_ScorePackageWrangler_make_package_02():
     with systemtools.FilesystemState(
         keep=[cache, views_file], remove=[score_package]
         ):
-        input_ = 'vnew _test_view done vap _test_view new example~score q'
+        input_ = 'vnew _test_view done vap _test_view new example~score y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(score_package)
 
     assert score_manager._transcript.titles == titles
+
+
+def test_ScorePackageWrangler_make_package_03():
+    r'''Accepts flexible package name input.
+    '''
+
+    score_package = os.path.join(
+        score_manager._configuration.user_score_packages_directory,
+        'example_score_1',
+        )
+
+    with systemtools.FilesystemState(remove=[score_package]):
+        input_ = 'new ExampleScore1 y q'
+        score_manager._run(input_=input_)
+        assert os.path.exists(score_package)
+
+    with systemtools.FilesystemState(remove=[score_package]):
+        input_ = 'new exampleScore1 y q'
+        score_manager._run(input_=input_)
+        assert os.path.exists(score_package)
+
+    with systemtools.FilesystemState(remove=[score_package]):
+        input_ = 'new EXAMPLE_SCORE_1 y q'
+        score_manager._run(input_=input_)
+        assert os.path.exists(score_package)
+
+    with systemtools.FilesystemState(remove=[score_package]):
+        input_ = 'new example_score_1 y q'
+        score_manager._run(input_=input_)
+        assert os.path.exists(score_package)
