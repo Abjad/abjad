@@ -371,7 +371,9 @@ class Wrangler(AssetController):
         ):
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
-            prompt_string = prompt_string or 'enter package name'
+            #prompt_string = prompt_string or 'enter package name'
+            default_prompt = 'enter {} name'.format(self._asset_identifier)
+            prompt_string = prompt_string or default_prompt
             getter = self._io_manager._make_getter()
             getter.append_space_delimited_lowercase_string(prompt_string)
             name = getter._run()
