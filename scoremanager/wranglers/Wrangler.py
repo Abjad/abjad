@@ -1318,11 +1318,9 @@ class Wrangler(AssetController):
         if self._session.is_repository_test:
             return
         paths = self._list_visible_asset_paths()
-        paths = self._extract_common_parent_directories(paths)
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            with self._io_manager._make_silent():
-                manager.revert_to_repository()
+            manager.revert_to_repository()
 
     def rewrite_views_py(self):
         r'''Rewrites ``__views__.py``.

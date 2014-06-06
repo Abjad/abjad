@@ -4,8 +4,6 @@ import scoremanager
 
 
 def test_ScorePackageWrangler_revert_to_repository_01():
-    r'''Flow control reaches revert.
-    '''
 
     score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True

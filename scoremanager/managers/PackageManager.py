@@ -782,7 +782,7 @@ class PackageManager(AssetController):
         commands = []
         if self._is_git_versioned():
             for path in paths:
-                command = 'git reset -- {}'.format(path)
+                command = 'git checkout {}'.format(path)
                 commands.append(command)
         elif self._is_svn_versioned():
             for path in paths:
@@ -856,7 +856,9 @@ class PackageManager(AssetController):
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
             with self._io_manager._make_silent():
-                self.revert_to_repository()
+                # TODO: update this call
+                #self.revert_to_repository()
+                self._unadd_added_assets()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
         assert self._is_up_to_date()
@@ -898,6 +900,24 @@ class PackageManager(AssetController):
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
+
+    def _unadd_added_assets(self):
+        paths = []
+        paths.extend(self._get_added_asset_paths())
+        paths.extend(self._get_modified_asset_paths())
+        commands = []
+        if self._is_git_versioned():
+            for path in paths:
+                command = 'git reset -- {}'.format(path)
+                commands.append(command)
+        elif self._is_svn_versioned():
+            for path in paths:
+                command = 'svn revert {}'.format(path)
+                commands.append(command)
+        else:
+            raise ValueError(self)
+        command = ' && '.join(commands)
+        self._io_manager.spawn_subprocess(command)
 
     def _write_metadata_py(self, metadata):
         lines = []

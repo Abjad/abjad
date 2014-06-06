@@ -4,8 +4,6 @@ import scoremanager
 
 
 def test_BuildFileWrangler_revert_from_repository_01():
-    r'''Flow control reaches method in score.
-    '''
 
     score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
@@ -15,8 +13,6 @@ def test_BuildFileWrangler_revert_from_repository_01():
 
 
 def test_BuildFileWrangler_revert_from_repository_02():
-    r'''Flow control reaches method in library.
-    '''
 
     score_manager = scoremanager.core.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
