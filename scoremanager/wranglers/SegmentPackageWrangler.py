@@ -184,28 +184,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             for manager in managers:
                 manager.interpret_output_ly()
 
-    def make_package(self):
-        r'''Makes package.
-
-        Returns none.
-        '''
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._select_storehouse_path()
-        prompt_string = 'enter segment package name'
-        path = self._get_available_path(
-            prompt_string=prompt_string,
-            storehouse_path=storehouse_path,
-            )
-        if self._session.is_backtracking:
-            return
-        if not path:
-            return
-        manager = self._get_manager(path)
-        manager._make_package()
-        manager._run()
-
     def open_every_make_py(self):
         r'''Opens ``__make__.py`` in every package.
 

@@ -58,7 +58,7 @@ def test_ScorePackageWrangler_make_package_02():
         'Abjad IDE - views (EDIT)',
         'Abjad IDE',
         'Abjad IDE - scores (_test_view)',
-        'Abjad IDE - scores',
+        '(untitled score)',
         ]
     
     with systemtools.FilesystemState(

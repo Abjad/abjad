@@ -28,6 +28,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'output.pdf',
             ])
         self._optional_files = tuple(optional_files)
+        required_files = list(self._required_files)
+        required_files.extend([
+            '__make__.py',
+            'definition.py',
+            ])
+        self._required_files = tuple(required_files)
 
     ### PRIVATE PROPERTIES ###
 
@@ -157,13 +163,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 name='output.pdf',
                 )
 
-    def _make_package(self, metadata=None):
-        metadata = collections.OrderedDict(metadata or {})
+    def _make_package(self):
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
         with self._io_manager._make_silent():
-            self.write_stub_definition_py()
-            self.write_stub_make_py()
+            self.check_package(
+                return_supply_messages=True,
+                supply_missing=True,
+                )
 
     def _make_version_package_messages(self):
         last_version_number = self._get_last_version_number()

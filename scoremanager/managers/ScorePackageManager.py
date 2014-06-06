@@ -196,6 +196,15 @@ class ScorePackageManager(PackageManager):
             name='main',
             )
 
+    def _make_package(self):
+        assert not os.path.exists(self._path)
+        os.mkdir(self._path)
+        with self._io_manager._make_silent():
+            self.check_package(
+                return_supply_messages=True,
+                supply_missing=True,
+                )
+
     def _make_package_menu_section(self, menu):
         superclass = super(ScorePackageManager, self)
         commands = superclass._make_package_menu_section(

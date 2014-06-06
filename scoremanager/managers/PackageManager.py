@@ -1185,6 +1185,24 @@ class PackageManager(AssetController):
                 line = 'view_inventory ='
                 line += ' datastructuretools.TypedOrderedDict([])'
                 lines.append(line)
+            elif missing_file.endswith('definition.py'):
+                source_path = os.path.join(
+                    self._configuration.score_manager_directory,
+                    'boilerplate',
+                    'definition.py',
+                    )
+                with open(source_path, 'r') as file_pointer:
+                    lines = file_pointer.readlines()
+                lines = [_.strip() for _ in lines]
+            elif missing_file.endswith('__make__.py'):
+                source_path = os.path.join(
+                    self._configuration.score_manager_directory,
+                    'boilerplate',
+                    '__make__.py',
+                    )
+                with open(source_path, 'r') as file_pointer:
+                    lines = file_pointer.readlines()
+                lines = [_.strip() for _ in lines]
             else:
                 message = 'do not know how to make stub for {}.'
                 message = message.format(missing_file)

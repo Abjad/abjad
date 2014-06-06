@@ -57,10 +57,9 @@ def test_SegmentPackageManager_check_package_02():
         contents = score_manager._transcript.contents
 
     lines = [
-        '1 of 1 required directory missing:',
-        '1 of 2 required files found:',
-        '1 of 2 required files missing:',
-        '4 optional files found:',
+        '1 of 1 required directory found:',
+        '4 of 4 required files found:',
+        '2 optional files found:',
         ]
     for line in lines:
         assert line in contents

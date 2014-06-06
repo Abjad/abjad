@@ -184,6 +184,26 @@ class PackageWrangler(Wrangler):
         message = message.format(len(paths))
         self._io_manager._display(message)
 
+    def make_package(self):
+        r'''Makes package.
+
+        Returns none.
+        '''
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
+        path = self._get_available_path(storehouse_path=storehouse_path)
+        if self._session.is_backtracking or not path:
+            return
+        manager = self._get_manager(path)
+        manager._make_package()
+        with self._io_manager._make_silent():
+            self.clear_view()
+        if hasattr(self, 'write_cache'):
+            self.write_cache()
+        manager._run()
+
     def open_every_init_py(self):
         r'''Opens ``__init__.py`` in every package.
 

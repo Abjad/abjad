@@ -272,19 +272,17 @@ class ScorePackageWrangler(PackageWrangler):
         with self._io_manager._make_silent():
             self.write_cache()
 
-    def make_package(self):
-        r'''Makes package.
-
-        Returns none.
-        '''
-        path = self._get_available_path()
-        if self._session.is_backtracking:
-            return
-        if not path:
-            return
-        self._make_asset(path)
-        with self._io_manager._make_silent():
-            self.write_cache()
+#    def make_package(self):
+#        r'''Makes package.
+#
+#        Returns none.
+#        '''
+#        path = self._get_available_path()
+#        if self._session.is_backtracking or not path:
+#            return
+#        self._make_asset(path)
+#        with self._io_manager._make_silent():
+#            self.write_cache()
 
     def open_cache(self):
         r'''Opens cache.

@@ -381,7 +381,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
         with self._io_manager._make_silent():
-            self.write_stub_init_py()
+            self.check_package(
+                return_supply_messages=True,
+                supply_missing=True,
+                )
             self.rewrite_metadata_py(metadata=metadata)
             self.write_stub_definition_py()
 

@@ -33,6 +33,7 @@ def test_MaterialPackageManager_autoedit_02():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     inventory = indicatortools.TempoInventory([
         ((1, 4), 60),
@@ -72,6 +73,7 @@ def test_MaterialPackageManager_autoedit_03():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     inventory = pitchtools.PitchRangeInventory()
 
@@ -105,6 +107,7 @@ def test_MaterialPackageManager_autoedit_04():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     inventory = pitchtools.PitchRangeInventory([
         pitchtools.PitchRange('[C2, G5]'),
@@ -153,6 +156,7 @@ def test_MaterialPackageManager_autoedit_05():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
 
     with systemtools.FilesystemState(remove=[path]):
@@ -186,6 +190,7 @@ def test_MaterialPackageManager_autoedit_06():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
@@ -220,6 +225,7 @@ def test_MaterialPackageManager_autoedit_07():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     mapping_1 = pitchtools.OctaveTranspositionMapping([
         ('[A0, C4)', 15),
@@ -266,6 +272,7 @@ def test_MaterialPackageManager_autoedit_08():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
 
     with systemtools.FilesystemState(remove=[path]):
@@ -296,6 +303,7 @@ def test_MaterialPackageManager_autoedit_09():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
 
     with systemtools.FilesystemState(remove=[path]):
@@ -328,6 +336,7 @@ def test_MaterialPackageManager_autoedit_10():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),
@@ -372,6 +381,7 @@ def test_MaterialPackageManager_autoedit_11():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['^', '.'],
@@ -413,6 +423,7 @@ def test_MaterialPackageManager_autoedit_12():
         '__metadata__.py',
         'definition.py',
         'output.py',
+        'versions',
         ]
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',

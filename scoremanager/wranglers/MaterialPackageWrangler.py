@@ -222,28 +222,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._interpret_in_every_package('illustration.ly')
 
-    def make_package(self):
-        r'''Makes package.
-
-        Returns none.
-        '''
-        if self._session.is_in_score:
-            storehouse_path = self._current_storehouse_path
-        else:
-            storehouse_path = self._user_storehouse_path
-        prompt_string = 'enter material package name'
-        path = self._get_available_path(
-            prompt_string=prompt_string,
-            storehouse_path=storehouse_path,
-            )
-        if self._session.is_backtracking:
-            return
-        if not path:
-            return
-        manager = self._get_manager(path)
-        manager._make_package()
-        manager._run()
-
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` in every package.
 
