@@ -1,47 +1,44 @@
-1.  Block (new) score when view is hiding user scores.
-    Otherwise the score package gets created but is hidden.
-
-2.  Allow more flexible input for score (new).
+1.  Allow more flexible input for score (new).
     Space-delimited, underscore-delimited, hyphen-delimited should
     all be fine. Use stringtools.delimite_words().
 
-3.  Implement stringtools.delimit_words(delimitor=' ').
+2.  Implement stringtools.delimit_words(delimitor=' ').
     This will take any of the usual string forms as input (space-,
     hyphen- and underscore-delimited together with upper- and lower-
     camelcase) and (find and) change the delimitor between
     words according to the keyword.
 
-4.  Make (mdo) work for wranglers.
+3.  Make (mdo) work for wranglers.
     There is now a metadata py in which wranglers store
     things like 'current_view'. The (mdo) command should
     allow the composer to read that metadata py.
 
-5.  Make menu title breadcrumbs correctly reflect changes in view
+4.  Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-6. Refuse to apply view when invalid regular expression is found.
+5. Refuse to apply view when invalid regular expression is found.
 
-7.  Implement 'views - autoedit' (vae) command.
+6.  Implement 'views - autoedit' (vae) command.
 
-8.  Compile regular expressions at view entry add time.
+7.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-9.  Change ...
+8.  Change ...
         Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
-10. Allow 5-99 (or any other large number) to work when removing items.
+9.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-11. Fix menu title that results from the following:
+10. Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-12. There is no such thing as 'My build files'.
+11. There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-13. Improve (k > cp) user experience. Change ...
+12. Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -50,22 +47,22 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-13. Add 'all segments - list versions directories'.
+12. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-15. Open audio files with audio player. Use (d) for examples to test.
+14. Open audio files with audio player. Use (d) for examples to test.
 
-16. Wrap metadata tests with FilesystemState context.
+15. Wrap metadata tests with FilesystemState context.
 
-17. Move SargassoMeasureMaker to the makers directory on an example score.
+16. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-18. Remove scoremanager/wizards directory.
+17. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-19. Collapse all Abjad IDE classes to a single package.
+18. Collapse all Abjad IDE classes to a single package.
 
-20. Improve (rup) messaging.
+19. Improve (rup) messaging.
 
-21.  Implement an 'all whatever - edit' command.
+20.  Implement an 'all whatever - edit' command.

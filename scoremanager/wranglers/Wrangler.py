@@ -624,6 +624,9 @@ class Wrangler(AssetController):
                     return_supply_messages=True,
                     supply_missing=True,
                     )
+        with self._io_manager._make_silent():
+            self.clear_view()
+        self._session._is_pending_output_removal = True
 
     def _make_asset_menu_entries(
         self,
@@ -906,6 +909,7 @@ class Wrangler(AssetController):
             manager = managers.PackageManager(path=path, session=self._session)
             with self._io_manager._make_silent():
                 manager._remove()
+        self._session._is_pending_output_removal = True
 
     def _rename_asset(
         self,
