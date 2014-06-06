@@ -1348,5 +1348,4 @@ class Wrangler(AssetController):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
-            with self._io_manager._make_silent():
-                manager.update_from_repository()
+            manager.update_from_repository()
