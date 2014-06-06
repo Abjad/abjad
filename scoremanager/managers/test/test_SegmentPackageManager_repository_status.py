@@ -12,8 +12,8 @@ def test_SegmentPackageManager_repository_status_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'On branch master' in contents
-    assert score_manager._session.proceed_count == 0
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_SegmentPackageManager_repository_status_02():
@@ -27,5 +27,5 @@ def test_SegmentPackageManager_repository_status_02():
     manager.repository_status()
     contents = manager._transcript.contents
 
-    assert '...' in contents
-    assert manager._session.proceed_count == 0
+    assert 'Repository status for' in contents
+    assert '... OK' in contents

@@ -12,7 +12,8 @@ def test_DistributionFileWrangler_repository_status_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'On branch master' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_DistributionFileWrangler_repository_status_02():
@@ -23,7 +24,8 @@ def test_DistributionFileWrangler_repository_status_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'On branch master' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_DistributionFileWrangler_repository_status_03():
@@ -38,4 +40,5 @@ def test_DistributionFileWrangler_repository_status_03():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert '> rst' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents

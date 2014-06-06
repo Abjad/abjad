@@ -12,7 +12,8 @@ def test_MaterialPackageWrangler_repository_status_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'On branch master' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_MaterialPackageWrangler_repository_status_02():
@@ -24,7 +25,8 @@ def test_MaterialPackageWrangler_repository_status_02():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'On branch master' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_MaterialPackageWrangler_repository_status_03():
@@ -39,7 +41,8 @@ def test_MaterialPackageWrangler_repository_status_03():
     manager.repository_status()
     contents = manager._transcript.contents
 
-    assert '...' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents
 
 
 def test_MaterialPackageWrangler_repository_status_04():
@@ -54,4 +57,5 @@ def test_MaterialPackageWrangler_repository_status_04():
     manager.repository_status()
     contents = manager._transcript.contents
 
-    assert '...' in contents
+    assert 'Repository status for' in contents
+    assert '... OK' in contents

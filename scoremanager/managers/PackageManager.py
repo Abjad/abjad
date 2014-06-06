@@ -1300,7 +1300,12 @@ class PackageManager(AssetController):
                 clean_line = line.strip()
                 clean_line = clean_line.replace(path, '')
                 clean_lines.append(clean_line)
-            if clean_lines:
+            everything_ok = False
+            for line in clean_lines:
+                if 'nothing to commit' in line:
+                    everything_ok = True
+                    break
+            if clean_lines and not everything_ok:
                 messages.extend(clean_lines)
             else:
                 first_message = messages[0]
