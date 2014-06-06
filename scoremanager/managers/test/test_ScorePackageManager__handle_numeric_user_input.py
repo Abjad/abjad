@@ -14,7 +14,7 @@ def test_ScorePackageManager__handle_numeric_user_input_01():
 
 def test_ScorePackageManager__handle_numeric_user_input_02():
 
-    input_ = 'red~example~score segments q'
+    input_ = 'red~example~score 7 q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

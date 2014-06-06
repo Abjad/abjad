@@ -125,6 +125,9 @@ class Menu(Controller):
     ### PRIVATE METHODS ###
 
     def _change_input_to_directive(self, input_):
+        r'''Match against any asset section last.
+        This avoids file name new-stylesheet.ily aliasing command (new).
+        '''
         input_ = stringtools.strip_diacritics(input_)
         if self._user_enters_nothing(input_):
             default_value = None
@@ -138,17 +141,33 @@ class Menu(Controller):
             return input_
         elif input_.startswith('!'):
             return input_
+        asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
+                continue
+            if section.is_asset_section:
+                asset_section = section
                 continue
             for menu_entry in section:
                 if menu_entry.matches(input_):
                     return self._enclose_in_list(menu_entry.return_value)
+        if asset_section is not None:
+            for menu_entry in asset_section:
+                if menu_entry.matches(input_):
+                    return self._enclose_in_list(menu_entry.return_value)
+        asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
                 continue
+            if section.is_asset_section:
+                asset_section = section
+                continue
             for menu_entry in section:
                 if menu_entry.matches(input_.lower()):
+                    return self._enclose_in_list(menu_entry.return_value)
+        if asset_section is not None:
+            for menu_entry in asset_section:
+                if menu_entry.matches(input_):
                     return self._enclose_in_list(menu_entry.return_value)
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
