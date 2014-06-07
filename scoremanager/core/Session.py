@@ -220,7 +220,6 @@ class Session(abctools.AbjadObject):
         breadcrumb = breadcrumb or first_controller._breadcrumb
         if breadcrumb:
             result_lines.append(breadcrumb)
-        hanging_indent_width = 5
         for controller in self.controller_stack[1:]:
             if isinstance(controller, iotools.Selector):
                 continue
@@ -232,14 +231,10 @@ class Session(abctools.AbjadObject):
                 candidate_line = result_lines[-1] + ' - ' + breadcrumb
             else:
                 candidate_line = breadcrumb
-            if len(candidate_line) <= self.menu_header_width:
-                if result_lines:
-                    result_lines[-1] = candidate_line
-                else:
-                    result_lines.append(candidate_line)
+            if result_lines:
+                result_lines[-1] = candidate_line
             else:
-                result_line = hanging_indent_width * ' ' + breadcrumb
-                result_lines.append(result_line)
+                result_lines.append(candidate_line)
         return result_lines
 
     def _print_transcript(self):

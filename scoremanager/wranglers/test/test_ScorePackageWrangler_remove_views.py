@@ -48,10 +48,9 @@ def test_ScorePackageWrangler_remove_views_02():
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
-    # TODO: all three titles should be 'Abjad IDE - scores'
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE',
+        'Abjad IDE - scores',
         'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

@@ -1247,9 +1247,7 @@ class Wrangler(AssetController):
             infinitive_phrase=infinitive_phrase,
             is_ranged=True,
             )
-        if self._session.is_backtracking:
-            return
-        if not view_names:
+        if self._session.is_backtracking or not view_names:
             return
         view_inventory = self._read_view_inventory()
         if not view_inventory:

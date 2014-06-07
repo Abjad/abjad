@@ -59,7 +59,10 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def _breadcrumb(self):
-        return
+        if not self._session.is_in_score:
+            superclass = super(ScorePackageWrangler, self)
+            breadcrumb = superclass._breadcrumb
+            return breadcrumb
 
     @property
     def _current_storehouse_path(self):
@@ -228,8 +231,6 @@ class ScorePackageWrangler(PackageWrangler):
     def _make_main_menu(self):
         superclass = super(ScorePackageWrangler, self)
         menu = superclass._make_main_menu()
-        breadcrumb_callback=self._get_scores_to_display_string
-        menu._breadcrumb_callback = breadcrumb_callback
         self._make_all_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)

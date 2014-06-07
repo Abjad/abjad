@@ -812,8 +812,6 @@ class PackageManager(AssetController):
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
             with self._io_manager._make_silent():
-                # TODO: update this call
-                #self.revert_to_repository()
                 self._unadd_added_assets()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []

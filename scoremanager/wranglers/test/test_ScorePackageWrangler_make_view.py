@@ -19,7 +19,7 @@ def test_ScorePackageWrangler_make_view_01():
         input_ = 'vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Abjad IDE - views - _test (EDIT)'
+        string = 'Abjad IDE - scores - views - _test (EDIT)'
         assert string in contents
 
 

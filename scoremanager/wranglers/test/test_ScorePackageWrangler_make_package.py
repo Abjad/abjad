@@ -52,11 +52,10 @@ def test_ScorePackageWrangler_make_package_02():
         score_manager._configuration.wrangler_views_directory,
         '__ScorePackageWrangler_views__.py',
         )
-    # TODO: probably change 'Abjad IDE' title to something more informative
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE - views - _test_view (EDIT)',
-        'Abjad IDE',
+        'Abjad IDE - scores - views - _test_view (EDIT)',
+        'Abjad IDE - scores',
         'Abjad IDE - scores (_test_view)',
         '(untitled score)',
         ]
