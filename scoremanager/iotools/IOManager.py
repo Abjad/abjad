@@ -216,7 +216,7 @@ class IOManager(IOManager):
             datastructuretools.TypedOrderedDict,
             )
         if isinstance(target, prototype):
-            class_ = iotools.ListAutoeditor
+            class_ = iotools.CollectionAutoeditor
             return class_(
                 allow_item_edit=allow_item_edit,
                 breadcrumb=breadcrumb,

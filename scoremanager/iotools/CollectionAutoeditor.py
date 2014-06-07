@@ -7,16 +7,16 @@ from abjad.tools import stringtools
 from scoremanager.iotools.Autoeditor import Autoeditor
 
 
-class ListAutoeditor(Autoeditor):
+class CollectionAutoeditor(Autoeditor):
     r'''List editor.
 
     ::
 
         >>> session = scoremanager.core.Session()
-        >>> autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
+        >>> autoeditor = scoremanager.iotools.CollectionAutoeditor(session=session)
         >>> autoeditor._target = ['first', 'second', 'third']
         >>> autoeditor
-        <ListAutoeditor(target=list)>
+        <CollectionAutoeditor(target=list)>
 
     ::
 
@@ -25,7 +25,7 @@ class ListAutoeditor(Autoeditor):
     ::
 
         >>> autoeditor
-        <ListAutoeditor(target=list)>
+        <CollectionAutoeditor(target=list)>
 
     '''
 
@@ -54,7 +54,7 @@ class ListAutoeditor(Autoeditor):
         from scoremanager import iotools
         if target is None:
             target = []
-        superclass = super(ListAutoeditor, self)
+        superclass = super(CollectionAutoeditor, self)
         superclass.__init__(
             breadcrumb=breadcrumb,
             session=session, 
@@ -81,7 +81,7 @@ class ListAutoeditor(Autoeditor):
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.ListAutoeditor
+                self._item_creator_class = iotools.CollectionAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
 
@@ -132,7 +132,7 @@ class ListAutoeditor(Autoeditor):
             if self.allow_item_edit:
                 self.edit_item(result)
         else:
-            superclass = super(ListAutoeditor, self)
+            superclass = super(CollectionAutoeditor, self)
             superclass._handle_main_menu_result(result)
 
     def _initialize_target(self):
