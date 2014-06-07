@@ -1,34 +1,29 @@
-1.  Make (mdo) work for wranglers.
-    There is now a __metadata__.py file in which wranglers store
-    things like 'current_view'. The (mdo) command should
-    allow the composer to read that __metadata__.py file.
-
-2.  Make menu title breadcrumbs correctly reflect changes in view
+1.  Make menu title breadcrumbs correctly reflect changes in view
     and changes in view name.
 
-3.  Refuse to apply view when invalid regular expression is found.
+2.  Refuse to apply view when invalid regular expression is found.
 
-4.  Implement 'views - autoedit' (vae) command.
+3.  Implement 'views - autoedit' (vae) command.
 
-5.  Compile regular expressions at view entry add time.
+4.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-6.  Change ...
+5.  Change ...
         Abjad IDE - stylesheets (_test) - select view(s) to remove:
     ... to ...
         Abjad IDE - stylesheets - select view(s) to remove:
     ... instead.
 
-7.  Fix menu title that results from the following:
+6.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-8.  There is no such thing as 'My build files'.
+7.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-9.  Allow 5-99 (or any other large number) to work when removing items.
+8.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-10. Improve (k > cp) user experience. Change ...
+9.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -37,22 +32,22 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-11. Add 'all segments - list versions directories'.
+10. Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-12. Open audio files with audio player. Use (d) for examples to test.
+11. Open audio files with audio player. Use (d) for examples to test.
 
-13. Wrap metadata tests with FilesystemState context.
+12. Wrap metadata tests with FilesystemState context.
 
-14. Move SargassoMeasureMaker to the makers directory on an example score.
+13. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-15. Remove scoremanager/wizards directory.
+14. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-16. Collapse all Abjad IDE classes to a single package.
+15. Collapse all Abjad IDE classes to a single package.
 
-17. Improve (rup) messaging.
+16. Improve (rup) messaging.
 
-18. Implement an 'all whatever - edit' command.
+17. Implement an 'all whatever - edit' command.
