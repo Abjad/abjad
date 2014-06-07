@@ -90,10 +90,6 @@ class Wrangler(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'mdo': self.open_metadata_py,
-            'mdls': self.list_metadata_py,
-            'mdw': self.write_metadata_py,
-            #
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vls': self.list_views,
@@ -758,17 +754,6 @@ class Wrangler(AssetController):
         self._make_views_py_menu_section(menu)
         return menu
 
-    def _make_views_menu_section(self, menu):
-        commands = []
-        commands.append(('__metadata__.py - list', 'mdls'))
-        commands.append(('__metadata__.py - open', 'mdo'))
-        commands.append(('__metadata__.py - write', 'mdw'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='views',
-            )
-            
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,

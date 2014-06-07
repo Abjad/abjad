@@ -51,6 +51,10 @@ class AssetController(Controller):
             #
             'cc': self.check_contents,
             #
+            'mdo': self.open_metadata_py,
+            'mdls': self.list_metadata_py,
+            'mdw': self.write_metadata_py,
+            #
             'sse': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
@@ -194,6 +198,16 @@ class AssetController(Controller):
             name='__init__.py',
             )
 
+    def _make_main_menu(self):
+        name = self._spaced_class_name
+        menu = self._io_manager._make_menu(name=name)
+        if self._session.is_in_score:
+            self._make_score_stylesheet_menu_section(menu)
+        self._make_go_menu_section(menu)
+        self._make_repository_menu_section(menu)
+        self._make_system_menu_section(menu)
+        return menu
+            
     @staticmethod
     def _make_metadata_lines(metadata):
         if metadata:
@@ -218,16 +232,28 @@ class AssetController(Controller):
             result = 'metadata = collections.OrderedDict([])'
         return result
 
-    def _make_main_menu(self):
-        name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
-        if self._session.is_in_score:
-            self._make_score_stylesheet_menu_section(menu)
-        self._make_go_menu_section(menu)
-        self._make_repository_menu_section(menu)
-        self._make_system_menu_section(menu)
-        return menu
+    def _make_metadata_menu_section(self, menu):
+        commands = []
+        commands.append(('metadata - add', 'mda'))
+        commands.append(('metadata - get', 'mdg'))
+        commands.append(('metadata - remove', 'mdrm'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='metadata',
+            )
             
+    def _make_metadata_py_menu_section(self, menu):
+        commands = []
+        commands.append(('__metadata__.py - list', 'mdls'))
+        commands.append(('__metadata__.py - open', 'mdo'))
+        commands.append(('__metadata__.py - rewrite', 'mdw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='__metadata__.py',
+            )
+
     def _make_repository_menu_section(self, menu):
         commands = []
         commands.append(('repository - add', 'rad'))

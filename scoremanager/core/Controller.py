@@ -142,28 +142,6 @@ class Controller(object):
             name='zzz - done',
             )
 
-    def _make_metadata_menu_section(self, menu):
-        commands = []
-        commands.append(('metadata - add', 'mda'))
-        commands.append(('metadata - get', 'mdg'))
-        commands.append(('metadata - remove', 'mdrm'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='metadata',
-            )
-            
-    def _make_metadata_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__metadata__.py - list', 'mdls'))
-        commands.append(('__metadata__.py - open', 'mdo'))
-        commands.append(('__metadata__.py - rewrite', 'mdw'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='__metadata__.py',
-            )
-
     @staticmethod
     def _remove_file_line(file_path, line_to_remove):
         lines_to_keep = []

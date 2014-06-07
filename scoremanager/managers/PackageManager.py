@@ -79,10 +79,6 @@ class PackageManager(AssetController):
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
             #
-            'mdls': self.list_metadata_py,
-            'mdo': self.open_metadata_py,
-            'mdw': self.write_metadata_py,
-            #
             'nls': self.list_init_py,
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
