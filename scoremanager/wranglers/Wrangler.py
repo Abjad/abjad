@@ -2,7 +2,6 @@
 import copy
 import doctest
 import os
-import re
 import shutil
 import subprocess
 import traceback
@@ -193,44 +192,44 @@ class Wrangler(AssetController):
     def _enter_run(self):
         pass
 
-    def _evaluate_display_string_view_criterion(self, criterion, entry):
+    def _match_display_string_view_pattern(self, pattern, entry):
         display_string, _, _, path = entry
         token = ':ds:'
-        assert token in criterion, repr(criterion)
-        criterion = criterion.replace(token, repr(display_string))
+        assert token in pattern, repr(pattern)
+        pattern = pattern.replace(token, repr(display_string))
         try:
-            result = eval(criterion)
+            result = eval(pattern)
         except:
             traceback.print_exc()
             return False
         return result
 
-    def _evaluate_metadata_view_criterion(self, criterion, entry):
+    def _match_metadata_view_pattern(self, pattern, entry):
         display_string, _, _, path = entry
         manager = self._io_manager._make_package_manager(path)
-        count = criterion.count('md:')
+        count = pattern.count('md:')
         for _ in xrange(count+1):
-            parts = criterion.split()
+            parts = pattern.split()
             for part in parts:
                 if part.startswith('md:'):
                     metadatum_name = part[3:]
                     metadatum = manager._get_metadatum(metadatum_name)
                     metadatum = repr(metadatum)
-                    criterion = criterion.replace(part, metadatum)
+                    pattern = pattern.replace(part, metadatum)
         try:
-            result = eval(criterion)
+            result = eval(pattern)
         except:
             traceback.print_exc()
             return False
         return result
 
-    def _evaluate_path_view_criterion(self, criterion, entry):
+    def _match_path_view_pattern(self, pattern, entry):
         display_string, _, _, path = entry
         token = ':path:'
-        assert token in criterion, repr(criterion)
-        criterion = criterion.replace(token, repr(path))
+        assert token in pattern, repr(pattern)
+        pattern = pattern.replace(token, repr(path))
         try:
-            result = eval(criterion)
+            result = eval(pattern)
         except:
             traceback.print_exc()
             return False
@@ -258,40 +257,24 @@ class Wrangler(AssetController):
             return entries
         entries = entries[:]
         filtered_entries = []
-        for item in view:
-            if ':ds:' in item:
+        for pattern in view:
+            if ':ds:' in pattern:
                 for entry in entries:
-                    if self._evaluate_display_string_view_criterion(
-                        item, entry):
+                    if self._match_display_string_view_pattern(pattern, entry):
                         filtered_entries.append(entry)
-                continue
-            elif 'md:' in item:
+            elif 'md:' in pattern:
                 for entry in entries:
-                    if self._evaluate_metadata_view_criterion(item, entry):
+                    if self._match_metadata_view_pattern(pattern, entry):
                         filtered_entries.append(entry)
-                continue
-            elif ':path:' in item:
+            elif ':path:' in pattern:
                 for entry in entries:
-                    if self._evaluate_path_view_criterion(item, entry):
+                    if self._match_path_view_pattern(pattern, entry):
                         filtered_entries.append(entry)
-                continue
-            try:
-                pattern = re.compile(item)
-            except TypeError:
-                pattern = None
-                message = 'invalid regular expression: {!r}.'
-                message  = message.format(item)
-                self._io_manager._display(message)
-            for entry in entries:
-                display_string, _, _, path = entry
-                if self._session.is_in_score:
-                    string = self._get_without_annotation(display_string)
-                else:
-                    string = display_string
-                if item == string:
-                    filtered_entries.append(entry)
-                elif pattern and pattern.match(string):
-                    filtered_entries.append(entry)
+            else:
+                for entry in entries:
+                    display_string, _, _, path = entry
+                    if pattern == display_string:
+                        filtered_entries.append(entry)
         return filtered_entries
 
     def _find_git_manager(self, inside_score=True, must_have_file=False):
@@ -471,15 +454,6 @@ class Wrangler(AssetController):
             storehouses.add(storehouse)
         storehouses = list(sorted(storehouses))
         return storehouses
-
-    @staticmethod
-    def _get_without_annotation(display_string):
-        if not display_string.endswith(')'):
-            return display_string
-        index = display_string.find('(')
-        result = display_string[:index]
-        result = result.strip()
-        return result
 
     def _handle_numeric_user_input(self, result):
         self._io_manager.open_file(result)
@@ -1079,6 +1053,15 @@ class Wrangler(AssetController):
     def _set_is_navigating_to_sibling_asset(self):
         message = 'implement on concrete wrangler classes.'
         raise Exception(message)
+
+    @staticmethod
+    def _strip_annotation(display_string):
+        if not display_string.endswith(')'):
+            return display_string
+        index = display_string.find('(')
+        result = display_string[:index]
+        result = result.strip()
+        return result
 
     def _write_view_inventory(self, view_inventory):
         lines = []

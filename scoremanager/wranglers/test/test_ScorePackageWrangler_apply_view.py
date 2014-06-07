@@ -16,7 +16,7 @@ def test_ScorePackageWrangler_apply_view_01():
     
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'vnew _test rm all'
-        input_ += ' add Red~Example~Score done <return>'
+        input_ += ' add Red~Example~Score~(2013) done <return>'
         input_ += ' vap _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript

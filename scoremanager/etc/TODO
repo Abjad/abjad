@@ -1,23 +1,21 @@
-1.  Make menu title breadcrumbs correctly reflect changes in view
-    and changes in view name.
+1.  Make menu title correctly reflect changes in view.
+    Make menu title correctly reflect changes in view name.
 
-2.  Refuse to apply view when invalid regular expression is found.
+2.  Implement 'views - autoedit' (vae) command.
 
-3.  Implement 'views - autoedit' (vae) command.
-
-4.  Compile regular expressions at view entry add time.
+3.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-5.  Fix menu title that results from the following:
+4.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-6.  There is no such thing as 'My build files'.
+5.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-7.  Allow 5-99 (or any other large number) to work when removing items.
+6.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-8.  Improve (k > cp) user experience. Change ...
+7.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -26,22 +24,22 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-9.  Add 'all segments - list versions directories'.
+8.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-10. Open audio files with audio player. Use (d) for examples to test.
+9.  Open audio files with audio player. Use (d) for examples to test.
 
-11. Wrap metadata tests with FilesystemState context.
+10. Wrap metadata tests with FilesystemState context.
 
-12. Move SargassoMeasureMaker to the makers directory on an example score.
+11. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-13. Remove scoremanager/wizards directory.
+12. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-14. Collapse all Abjad IDE classes to a single package.
+13. Collapse all Abjad IDE classes to a single package.
 
-15. Improve (rup) messaging.
+14. Improve (rup) messaging.
 
-16. Implement an 'all whatever - edit' command.
+15. Implement an 'all whatever - edit' command.
