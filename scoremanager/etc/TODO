@@ -1,21 +1,18 @@
-1.  Make menu title correctly reflect changes in view.
-    Make menu title correctly reflect changes in view name.
+1.  Implement 'views - autoedit' (vae) command.
 
-2.  Implement 'views - autoedit' (vae) command.
-
-3.  Compile regular expressions at view entry add time.
+2.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-4.  Fix menu title that results from the following:
+3.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-5.  There is no such thing as 'My build files'.
+4.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-6.  Allow 5-99 (or any other large number) to work when removing items.
+5.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-7.  Improve (k > cp) user experience. Change ...
+6.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -24,22 +21,22 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-8.  Add 'all segments - list versions directories'.
+7.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-9.  Open audio files with audio player. Use (d) for examples to test.
+8.  Open audio files with audio player. Use (d) for examples to test.
 
-10. Wrap metadata tests with FilesystemState context.
+9.  Wrap metadata tests with FilesystemState context.
 
-11. Move SargassoMeasureMaker to the makers directory on an example score.
+10. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-12. Remove scoremanager/wizards directory.
+11. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-13. Collapse all Abjad IDE classes to a single package.
+12. Collapse all Abjad IDE classes to a single package.
 
-14. Improve (rup) messaging.
+13. Improve (rup) messaging.
 
-15. Implement an 'all whatever - edit' command.
+14. Implement an 'all whatever - edit' command.

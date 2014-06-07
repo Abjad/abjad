@@ -1280,6 +1280,15 @@ class Wrangler(AssetController):
         del(view_inventory[old_view_name])
         view_inventory[new_view_name] = view
         self._write_view_inventory(view_inventory)
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_package_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        current_view = manager._get_metadatum(metadatum_name)
+        if current_view == old_view_name:
+            manager._add_metadatum(metadatum_name, new_view_name)
 
     def repository_clean(self):
         r'''Removes files not yet added to repository.
