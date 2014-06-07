@@ -4,9 +4,9 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_rewrite_metadata_py_01():
+def test_SegmentPackageManager_write_metadata_py_01():
 
-    input_ = 'red~example~score m magic~numbers mdw <return> q'
+    input_ = 'red~example~score g A mdw <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

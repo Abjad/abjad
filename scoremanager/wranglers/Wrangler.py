@@ -90,6 +90,10 @@ class Wrangler(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            'mdo': self.open_metadata_py,
+            'mdls': self.list_metadata_py,
+            'mdw': self.write_metadata_py,
+            #
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vls': self.list_views,
@@ -101,6 +105,14 @@ class Wrangler(AssetController):
             'vw': self.rewrite_views_py,
             })
         return result
+
+    @property
+    def _metadata_py_path(self):
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+        else:
+            manager = self._views_package_manager
+        return manager._metadata_py_path
 
     @property
     def _views_package_manager(self):
@@ -741,10 +753,22 @@ class Wrangler(AssetController):
         superclass = super(Wrangler, self)
         menu = superclass._make_main_menu()
         self._make_asset_menu_section(menu)
+        self._make_metadata_py_menu_section(menu)
         self._make_views_menu_section(menu)
         self._make_views_py_menu_section(menu)
         return menu
 
+    def _make_views_menu_section(self, menu):
+        commands = []
+        commands.append(('__metadata__.py - list', 'mdls'))
+        commands.append(('__metadata__.py - open', 'mdo'))
+        commands.append(('__metadata__.py - write', 'mdw'))
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='views',
+            )
+            
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,

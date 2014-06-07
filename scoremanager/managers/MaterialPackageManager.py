@@ -385,7 +385,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 return_supply_messages=True,
                 supply_missing=True,
                 )
-            self.rewrite_metadata_py(metadata=metadata)
+            self.write_metadata_py(metadata=metadata)
             self.write_stub_definition_py()
 
     def _make_package_configuration_menu_section(self, menu):

@@ -81,7 +81,7 @@ class PackageManager(AssetController):
             #
             'mdls': self.list_metadata_py,
             'mdo': self.open_metadata_py,
-            'mdw': self.rewrite_metadata_py,
+            'mdw': self.write_metadata_py,
             #
             'nls': self.list_init_py,
             'no': self.open_init_py,
@@ -158,7 +158,7 @@ class PackageManager(AssetController):
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
         with self._io_manager._make_silent():
-            self.rewrite_metadata_py(metadata=metadata)
+            self.write_metadata_py(metadata=metadata)
 
     def _enter_run(self):
         self._session._is_navigating_to_next_asset = False
@@ -281,22 +281,6 @@ class PackageManager(AssetController):
         if not file_names:
             return
         return max(self._file_name_to_version_number(_) for _ in file_names)
-
-    def _get_metadata(self):
-        metadata = None
-        if os.path.isfile(self._metadata_py_path):
-            with open(self._metadata_py_path, 'r') as file_pointer:
-                file_contents_string = file_pointer.read()
-            try:
-                local_dict = {}
-                exec(file_contents_string, globals(), local_dict)
-                metadata = local_dict.get('metadata')
-            except:
-                message = 'can not interpret metadata py: {!r}.'
-                message = message.format(self)
-                print(message)
-        metadata = metadata or collections.OrderedDict()
-        return metadata
 
     def _get_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
@@ -574,30 +558,6 @@ class PackageManager(AssetController):
         self._make_asset_menu_section(menu)
         return menu
 
-    @staticmethod
-    def _make_metadata_lines(metadata):
-        if metadata:
-            lines = []
-            for key, value in sorted(metadata.items()):
-                key = repr(key)
-                if hasattr(value, '_get_multiline_repr'):
-                    repr_lines = \
-                        value._get_multiline_repr(include_tools_package=True)
-                    value = '\n    '.join(repr_lines)
-                    lines.append('({}, {})'.format(key, value))
-                else:
-                    if hasattr(value, '_storage_format_specification'):
-                        string = format(value)
-                    else:
-                        string = repr(value)
-                    lines.append('({}, {})'.format(key, string))
-            lines = ',\n    '.join(lines)
-            result = 'metadata = collections.OrderedDict([\n    {},\n    ])'
-            result = result.format(lines)
-        else:
-            result = 'metadata = collections.OrderedDict([])'
-        return result
-
     def _make_metadata_menu_entries(self):
         result = []
         metadata = self._get_metadata()
@@ -696,7 +656,7 @@ class PackageManager(AssetController):
             pass
         if was_removed:
             with self._io_manager._make_silent():
-                self.rewrite_metadata_py(metadata=metadata)
+                self.write_metadata_py(metadata=metadata)
 
     def _rename(self, new_path):
         if self._is_in_git_repository():
@@ -918,18 +878,6 @@ class PackageManager(AssetController):
             raise ValueError(self)
         command = ' && '.join(commands)
         self._io_manager.spawn_subprocess(command)
-
-    def _write_metadata_py(self, metadata):
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.append('import collections')
-        lines.append('')
-        lines.append('')
-        contents = '\n'.join(lines)
-        metadata_lines = self._make_metadata_lines(metadata)
-        contents = contents + '\n' + metadata_lines
-        with open(self._metadata_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
 
     ### PUBLIC METHODS ###
 
@@ -1269,26 +1217,12 @@ class PackageManager(AssetController):
         '''
         self._io_manager._display(self._init_py_file_path)
 
-    def list_metadata_py(self):
-        r'''Lists ``__metadata__.py``.
-
-        Returns none.
-        '''
-        self._io_manager._display(self._metadata_py_path)
-
     def open_init_py(self):
         r'''Opens ``__init__.py``.
 
         Returns none.
         '''
         self._open_file(self._init_py_file_path)
-
-    def open_metadata_py(self):
-        r'''Opens ``__metadata__.py``.
-
-        Returns none.
-        '''
-        self._open_file(self._metadata_py_path)
 
     def remove_metadatum(self):
         r'''Removes metadatum from ``__metadata__.py``.
@@ -1366,26 +1300,6 @@ class PackageManager(AssetController):
             message = message.format(self._path)
             self._io_manager._display(message)
             self._revert_from_repository()
-
-    def rewrite_metadata_py(self, dry_run=False, metadata=None):
-        r'''Rewrites ``__metadata.py__``.
-
-        Returns none.
-        '''
-        inputs, outputs = [], []
-        inputs.append(self._metadata_py_path)
-        if dry_run:
-            return inputs, outputs
-        messages = self._format_messaging(inputs, outputs, verb='rewrite')
-        self._io_manager._display(messages)
-        # WEIRD: why can't this confirm check be removed?
-        if self._session.confirm:
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking or not result:
-                return
-        if metadata is None:
-            metadata = self._get_metadata()
-        self._write_metadata_py(metadata)
 
     def update_from_repository(self):
         r'''Updates files from repository.

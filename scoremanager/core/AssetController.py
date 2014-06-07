@@ -1,3 +1,4 @@
+import collections
 import os
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
@@ -116,6 +117,22 @@ class AssetController(Controller):
                         messages.append('{}{}'.format(output_label, path))
         return messages
 
+    def _get_metadata(self):
+        metadata = None
+        if os.path.isfile(self._metadata_py_path):
+            with open(self._metadata_py_path, 'r') as file_pointer:
+                file_contents_string = file_pointer.read()
+            try:
+                local_dict = {}
+                exec(file_contents_string, globals(), local_dict)
+                metadata = local_dict.get('metadata')
+            except:
+                message = 'can not interpret metadata py: {!r}.'
+                message = message.format(self)
+                self._io_manager._display(message)
+        metadata = metadata or collections.OrderedDict()
+        return metadata
+
     def _go_to_next_package(self):
         self._session._is_navigating_to_next_asset = True
         self._session._hide_available_commands = True
@@ -176,6 +193,30 @@ class AssetController(Controller):
             is_hidden=True,
             name='__init__.py',
             )
+
+    @staticmethod
+    def _make_metadata_lines(metadata):
+        if metadata:
+            lines = []
+            for key, value in sorted(metadata.items()):
+                key = repr(key)
+                if hasattr(value, '_get_multiline_repr'):
+                    repr_lines = \
+                        value._get_multiline_repr(include_tools_package=True)
+                    value = '\n    '.join(repr_lines)
+                    lines.append('({}, {})'.format(key, value))
+                else:
+                    if hasattr(value, '_storage_format_specification'):
+                        string = format(value)
+                    else:
+                        string = repr(value)
+                    lines.append('({}, {})'.format(key, string))
+            lines = ',\n    '.join(lines)
+            result = 'metadata = collections.OrderedDict([\n    {},\n    ])'
+            result = result.format(lines)
+        else:
+            result = 'metadata = collections.OrderedDict([])'
+        return result
 
     def _make_main_menu(self):
         name = self._spaced_class_name
@@ -324,6 +365,18 @@ class AssetController(Controller):
         command = '{} {}'
         command = command.format(remove_command, paths)
         self._io_manager.run_command(command)
+
+    def _write_metadata_py(self, metadata):
+        lines = []
+        lines.append(self._configuration.unicode_directive)
+        lines.append('import collections')
+        lines.append('')
+        lines.append('')
+        contents = '\n'.join(lines)
+        metadata_lines = self._make_metadata_lines(metadata)
+        contents = contents + '\n' + metadata_lines
+        with open(self._metadata_py_path, 'w') as file_pointer:
+            file_pointer.write(contents)
 
     ### PUBLIC METHODS ###
 
@@ -494,6 +547,13 @@ class AssetController(Controller):
         '''
         self._io_manager.invoke_shell(statement=statement)
 
+    def list_metadata_py(self):
+        r'''Lists ``__metadata__.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display(self._metadata_py_path)
+
     def open_lilypond_log(self):
         r'''Opens LilyPond log.
 
@@ -504,6 +564,13 @@ class AssetController(Controller):
         if self._session.is_test:
             return
         systemtools.IOManager.open_last_log()
+
+    def open_metadata_py(self):
+        r'''Opens ``__metadata__.py``.
+
+        Returns none.
+        '''
+        self._open_file(self._metadata_py_path)
 
     def pytest(self):
         r'''Pytests Python files.
@@ -536,3 +603,23 @@ class AssetController(Controller):
             assets = ' '.join(assets)
             command = 'py.test -rf {}'.format(assets)
             self._io_manager.run_command(command, capitalize=False)
+
+    def write_metadata_py(self, dry_run=False, metadata=None):
+        r'''Writes ``__metadata.py__``.
+
+        Returns none.
+        '''
+        inputs, outputs = [], []
+        inputs.append(self._metadata_py_path)
+        if dry_run:
+            return inputs, outputs
+        messages = self._format_messaging(inputs, outputs, verb='rewrite')
+        self._io_manager._display(messages)
+        # WEIRD: why can't this confirm check be removed?
+        if self._session.confirm:
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
+                return
+        if metadata is None:
+            metadata = self._get_metadata()
+        self._write_metadata_py(metadata)
