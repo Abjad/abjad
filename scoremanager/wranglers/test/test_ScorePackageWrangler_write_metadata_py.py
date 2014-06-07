@@ -5,18 +5,15 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_write_metadata_py_01():
+def test_ScorePackageWrangler_write_metadata_py_01():
 
     metadata_py_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
-        'red_example_score',
-        'materials',
-        'magic_numbers',
+        score_manager._configuration.wrangler_views_directory,
         '__metadata__.py',
         )
 
     with systemtools.FilesystemState(keep=[metadata_py_path]):
-        input_ = 'red~example~score m magic~numbers mdw <return> q'
+        input_ = 'mdw y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
