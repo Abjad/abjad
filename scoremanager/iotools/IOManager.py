@@ -213,6 +213,7 @@ class IOManager(IOManager):
         prototype = (
             list,
             datastructuretools.TypedList,
+            datastructuretools.TypedOrderedDict,
             )
         if isinstance(target, prototype):
             class_ = iotools.ListAutoeditor

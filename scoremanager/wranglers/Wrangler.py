@@ -89,6 +89,7 @@ class Wrangler(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            'vae': self.autoedit_views,
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vls': self.list_views,
@@ -759,6 +760,7 @@ class Wrangler(AssetController):
     def _make_views_menu_section(self, menu):
         commands = []
         commands.append(('views - apply', 'vap'))
+        commands.append(('views - autoedit', 'vae'))
         commands.append(('views - clear', 'vcl'))
         commands.append(('views - list', 'vls'))
         commands.append(('views - new', 'vnew'))
@@ -1128,6 +1130,18 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, view_name)
+
+    def autoedit_views(self):
+        r'''Autoedits views.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
+#        inventory = self._read_view_inventory()
+#        print(inventory, 'INV')
+#        autoeditor = self._io_manager._make_autoeditor(target=inventory)
+#        print(autoeditor, 'AED')
+#        autoeditor._run()
 
     def clear_view(self):
         r'''Clears view.
