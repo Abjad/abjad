@@ -1224,7 +1224,7 @@ class Wrangler(AssetController):
         view = iotools.View(
             items=display_strings,
             )
-        breadcrumb = 'views (EDIT)'
+        breadcrumb = 'views - {} (EDIT)'.format(view_name)
         breadcrumb = breadcrumb.format(view_name)
         autoeditor = self._io_manager._make_autoeditor(
             allow_item_edit=False,

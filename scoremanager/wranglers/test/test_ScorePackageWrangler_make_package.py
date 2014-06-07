@@ -55,7 +55,7 @@ def test_ScorePackageWrangler_make_package_02():
     # TODO: probably change 'Abjad IDE' title to something more informative
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE - views (EDIT)',
+        'Abjad IDE - views - _test_view (EDIT)',
         'Abjad IDE',
         'Abjad IDE - scores (_test_view)',
         '(untitled score)',

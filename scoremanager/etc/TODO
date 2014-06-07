@@ -8,22 +8,16 @@
 4.  Compile regular expressions at view entry add time.
     Refuse to write invalid regular expression.
 
-5.  Change ...
-        Abjad IDE - stylesheets (_test) - select view(s) to remove:
-    ... to ...
-        Abjad IDE - stylesheets - select view(s) to remove:
-    ... instead.
-
-6.  Fix menu title that results from the following:
+5.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-7.  There is no such thing as 'My build files'.
+6.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-8.  Allow 5-99 (or any other large number) to work when removing items.
+7.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-9.  Improve (k > cp) user experience. Change ...
+8.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -32,22 +26,22 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-10. Add 'all segments - list versions directories'.
+9.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-11. Open audio files with audio player. Use (d) for examples to test.
+10. Open audio files with audio player. Use (d) for examples to test.
 
-12. Wrap metadata tests with FilesystemState context.
+11. Wrap metadata tests with FilesystemState context.
 
-13. Move SargassoMeasureMaker to the makers directory on an example score.
+12. Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-14. Remove scoremanager/wizards directory.
+13. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-15. Collapse all Abjad IDE classes to a single package.
+14. Collapse all Abjad IDE classes to a single package.
 
-16. Improve (rup) messaging.
+15. Improve (rup) messaging.
 
-17. Implement an 'all whatever - edit' command.
+16. Implement an 'all whatever - edit' command.

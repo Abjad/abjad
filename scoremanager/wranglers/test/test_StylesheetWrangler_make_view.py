@@ -19,7 +19,7 @@ def test_StylesheetWrangler_make_view_01():
         input_ = 'y vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'Abjad IDE - stylesheets - views (EDIT)'
+        string = 'Abjad IDE - stylesheets - views - _test (EDIT)'
         assert string in contents
 
 
