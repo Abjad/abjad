@@ -15,7 +15,7 @@ def test_StylesheetWrangler_rename_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'y vnew _test_100 rm all'
+        input_ = 'y vnew _test_100 rm 1-99'
         input_ += ' add clean-letter-14.ily done <return> q' 
         score_manager._run(input_=input_)
             

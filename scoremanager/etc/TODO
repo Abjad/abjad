@@ -1,7 +1,4 @@
-1.  Allow 5-99 (or any other large number) to work when removing items.
-    Example (y > vnew > foo > rm > 5-99).
-
-2.  Improve (k > cp) user experience. Change ...
+1.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -10,25 +7,25 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-3.  Add 'all segments - list versions directories'.
+2.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-4.  Open audio files with audio player. Use (d) for examples to test.
+3.  Open audio files with audio player. Use (d) for examples to test.
 
-5.  Wrap metadata tests with FilesystemState context.
+4.  Wrap metadata tests with FilesystemState context.
 
-6.  Move SargassoMeasureMaker to the makers directory on an example score.
+5.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-7.  Remove scoremanager/wizards directory.
+6.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-8.  Collapse all Abjad IDE classes to a single package.
+7.  Collapse all Abjad IDE classes to a single package.
 
-9.  Improve (rup) messaging.
+8.  Improve (rup) messaging.
 
-10. Implement an 'all whatever - edit' command.
+9.  Implement an 'all whatever - edit' command.
 
-11. Reinstate ListAutoeditor.
+10. Reinstate ListAutoeditor.
     Harmonize CollectionAutoeditor, DictionaryAutoeditor, ListAutoeditor.

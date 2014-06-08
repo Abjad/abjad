@@ -237,6 +237,13 @@ class MenuSection(AbjadObject):
             if menu_entry.matches(argument_string):
                 menu_entry_number = index + 1
                 return menu_entry_number
+        try:
+            number = int(argument_string)
+        except TypeError:
+            return
+        greatest_menu_entry_number = len(self)
+        if greatest_menu_entry_number < number:
+            return greatest_menu_entry_number
 
     def _make_menu_lines(self):
         menu_lines = []

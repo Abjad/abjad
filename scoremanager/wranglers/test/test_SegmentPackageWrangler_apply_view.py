@@ -17,7 +17,7 @@ def test_SegmentPackageWrangler_apply_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'g vnew _test rm all'
+        input_ = 'g vnew _test rm 1-99'
         input_ += ' add A~(Red~Example~Score) done <return>'
         input_ += ' vap _test vrm _test <return> q'
         score_manager._run(input_=input_)
