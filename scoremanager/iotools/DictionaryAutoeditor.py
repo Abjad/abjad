@@ -7,18 +7,19 @@ from abjad.tools import stringtools
 from scoremanager.iotools.Autoeditor import Autoeditor
 
 
-class CollectionAutoeditor(Autoeditor):
-    r'''List editor.
+class DictionaryAutoeditor(Autoeditor):
+    r'''Dictionary editor.
 
     ::
 
         >>> session = scoremanager.core.Session()
-        >>> autoeditor = scoremanager.iotools.CollectionAutoeditor(
+        >>> autoeditor = scoremanager.iotools.DictionaryAutoeditor(
         ...     session=session,
         ...     )
-        >>> autoeditor._target = ['first', 'second', 'third']
+        >>> dictionary = {'flavor': 'cherry', 'age': 94}
+        >>> autoeditor._target = dictionary
         >>> autoeditor
-        <CollectionAutoeditor(target=list)>
+        <DictionaryAutoeditor(target=dict)>
 
     ::
 
@@ -27,7 +28,7 @@ class CollectionAutoeditor(Autoeditor):
     ::
 
         >>> autoeditor
-        <CollectionAutoeditor(target=list)>
+        <DictionaryAutoeditor(target=dict)>
 
     '''
 
@@ -56,7 +57,7 @@ class CollectionAutoeditor(Autoeditor):
         from scoremanager import iotools
         if target is None:
             target = []
-        superclass = super(CollectionAutoeditor, self)
+        superclass = super(DictionaryAutoeditor, self)
         superclass.__init__(
             breadcrumb=breadcrumb,
             session=session, 
@@ -83,7 +84,7 @@ class CollectionAutoeditor(Autoeditor):
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.CollectionAutoeditor
+                self._item_creator_class = iotools.DictionaryAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
 
@@ -134,7 +135,7 @@ class CollectionAutoeditor(Autoeditor):
             if self.allow_item_edit:
                 self.edit_item(result)
         else:
-            superclass = super(CollectionAutoeditor, self)
+            superclass = super(DictionaryAutoeditor, self)
             superclass._handle_main_menu_result(result)
 
     def _initialize_target(self):
@@ -301,6 +302,8 @@ class CollectionAutoeditor(Autoeditor):
 
         Returns none.
         '''
+        self._io_manager._display_not_yet_implemented()
+        return
         getter = self._io_manager._make_getter()
         items_identifier = stringtools.pluralize(self._asset_identifier)
         getter.append_menu_section_range(
