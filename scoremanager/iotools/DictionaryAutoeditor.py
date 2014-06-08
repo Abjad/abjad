@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
@@ -83,7 +84,8 @@ class DictionaryAutoeditor(Autoeditor):
             dummy_item = self.target._item_callable()
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
-            if isinstance(dummy_item, datastructuretools.TypedList):
+            prototype = (datastructuretools.TypedOrderedDictionary,)
+            if isinstance(dummy_item, prototype):
                 self._item_creator_class = iotools.DictionaryAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
@@ -99,13 +101,14 @@ class DictionaryAutoeditor(Autoeditor):
     def _input_to_method(self):
         result = {
             'add': self.add_items,
+            'ren': self.rename_item,
             'rm': self.remove_items,
             'mv': self.move_item,
             }
         return result
 
     @property
-    def _items(self):
+    def _collection(self):
         return self.target
 
     @property
@@ -115,15 +118,20 @@ class DictionaryAutoeditor(Autoeditor):
 
     ### PRIVATE METHODS ###
 
-    def _get_item_from_item_number(self, item_number):
+    def _get_item_from_item_number(self, number):
+        number = int(number)
+        assert isinstance(number, int), repr(number)
+        items = list(self._collection.items())
         try:
-            return self._items[int(item_number) - 1]
-        except:
+            item = items[number-1]
+        except IndexError:
             pass
+        assert isinstance(item, tuple) and len(item) == 2
+        return item
 
     def _get_target_summary_lines(self):
         result = []
-        for item in self._items:
+        for item in self._collection:
             result.append(self._io_manager._get_one_line_menu_summary(item))
         return result
 
@@ -141,15 +149,15 @@ class DictionaryAutoeditor(Autoeditor):
     def _initialize_target(self):
         if self.target is not None:
             return
-        else:
-            self._target = self._target_class([])
+        self._target = self._target_class([])
 
     def _make_command_menu_section(self, menu):
         commands = []
         commands.append(('elements - add', 'add'))
-        if 1 < len(self._items):
+        if 1 < len(self._collection):
             commands.append(('elements - move', 'mv'))
-        if 0 < len(self._items):
+        if 0 < len(self._collection):
+            commands.append(('elements - rename', 'ren'))
             commands.append(('elements - remove', 'rm'))
         section = menu.make_command_section(
             commands=commands,
@@ -199,11 +207,22 @@ class DictionaryAutoeditor(Autoeditor):
     ### PUBLIC METHODS ###
 
     def add_items(self):
-        r'''Adds items to list.
+        r'''Adds items to dictionary.
 
         Returns none.
         '''
         from scoremanager import iotools
+        getter = self._io_manager._make_getter()
+        getter.append_expr('enter dictionary key')
+        result = getter._run()
+        if self._session.is_backtracking or result is None:
+            return
+        if not isinstance(result, collections.Hashable):
+            message = 'dictionary key must be hashable.'
+            self._io_manager._display(message)
+            self._io_manager._confirm()
+            return
+        key = result
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
             if self._item_class:
@@ -223,10 +242,7 @@ class DictionaryAutoeditor(Autoeditor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
-            #print 'BAR'
             getter = self._io_manager._make_getter()
-            #print self._item_getter_configuration_method
-            #print self._asset_identifier
             self._item_getter_configuration_method(
                 getter,
                 self._asset_identifier,
@@ -235,9 +251,7 @@ class DictionaryAutoeditor(Autoeditor):
             lines.append('from abjad import *')
             lines.append('evaluated_input = {}')
             getter.prompts[0].setup_statements.extend(lines)
-            #print getter.prompts
             item_initialization_token = getter._run()
-            #print(repr(item_initialization_token))
             if self._session.is_backtracking:
                 return
             if item_initialization_token == 'done':
@@ -263,10 +277,13 @@ class DictionaryAutoeditor(Autoeditor):
             items = result
         else:
             items = [result]
-        self._items.extend(items)
+        assert isinstance(items, list), repr(items)
+        assert len(items) == 1, repr(items)
+        value = items[0]
+        self._collection[key] = value
 
     def edit_item(self, number):
-        r'''Edits item `number` in list.
+        r'''Edits item `number` in dictionary.
 
         Returns none.
         '''
@@ -274,45 +291,89 @@ class DictionaryAutoeditor(Autoeditor):
         item = self._get_item_from_item_number(number)
         if item is None:
             return
-        item_editor_class = self._item_editor_class or iotools.Autoeditor
-        item_editor = item_editor_class(session=self._session, target=item)
-        item_editor._run()
-        item_index = int(number) - 1
-        self._items[item_index] = item_editor.target
+        key, value = item
+        if self._item_editor_class is not None:
+            item_editor_class = self._item_editor_class
+            autoeditor = item_editor_class(session=self._session, target=value)
+        else:
+            autoeditor = self._io_manager._make_autoeditor(target=value)
+        autoeditor._run()
+        value = autoeditor.target
+        self._collection[key] = value
 
     def move_item(self):
-        r'''Moves items in list.
+        r'''Moves items in ordered dictionary.
 
         Returns none.
         '''
         getter = self._io_manager._make_getter()
-        getter.append_integer_in_range('old number', 1, len(self._items))
-        getter.append_integer_in_range('new number', 1, len(self._items))
+        getter.append_integer_in_range('old number', 1, len(self._collection))
+        getter.append_integer_in_range('new number', 1, len(self._collection))
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
-        item = self._items[old_index]
-        self._items.remove(item)
-        self._items.insert(new_index, item)
+        item = self._get_item_from_item_number(old_number)
+        assert isinstance(item, tuple) and len(item) == 2
+        items = list(self._collection.items())
+        del(items[old_index])
+        items.insert(new_index, item)
+        class_ = type(self._collection)
+        dictionary = class_(items)
+        self._target = dictionary
 
     def remove_items(self):
-        r'''Removes items from list.
+        r'''Removes items from dictionary.
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
-        return
         getter = self._io_manager._make_getter()
         items_identifier = stringtools.pluralize(self._asset_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or argument_range is None:
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
-        items = self._items[:]
-        items = sequencetools.remove_elements(items, indices)
-        self._items[:] = items
+        keys = list(self._collection.keys())
+        keys = sequencetools.retain_elements(keys, indices)
+        for key in keys:
+            del(self._collection[key])
+
+    def rename_item(self):
+        r'''Renames item.
+
+        Returns none.
+        '''
+        getter = self._io_manager._make_getter()
+        getter.append_expr('item to rename')
+        result = getter._run()
+        if self._session.is_backtracking or result is None:
+            return
+        if isinstance(result, int):
+            item = self._get_item_from_item_number(result)
+            if not item:
+                return
+        elif isinstance(result, str):
+            item = self._collection.get(result)
+        else:
+            return
+        if not item:
+            return
+        key, value = item
+        getter = self._io_manager._make_getter()
+        getter.append_string('new name')
+        result = getter._run()
+        if self._session.is_backtracking or result is None:
+            return
+        new_name = result
+        new_item = (new_name, value)
+        keys = list(self._collection.keys())
+        index = keys.index(key)
+        items = list(self._collection.items())
+        items[index] = new_item
+        class_ = type(self._collection)
+        dictionary = class_(items)
+        self._target = dictionary

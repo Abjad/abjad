@@ -288,7 +288,7 @@ class CollectionAutoeditor(Autoeditor):
         getter.append_integer_in_range('old number', 1, len(self._items))
         getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
