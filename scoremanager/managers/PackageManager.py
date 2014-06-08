@@ -1124,8 +1124,7 @@ class PackageManager(AssetController):
                 lines.append('from scoremanager import iotools')
                 lines.append('')
                 lines.append('')
-                line = 'view_inventory ='
-                line += ' datastructuretools.TypedOrderedDict([])'
+                line = 'view_inventory = iotools.ViewInventory([])'
                 lines.append(line)
             elif missing_file.endswith('definition.py'):
                 source_path = os.path.join(

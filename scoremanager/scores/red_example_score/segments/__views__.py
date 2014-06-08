@@ -3,7 +3,7 @@ from abjad import *
 from scoremanager import iotools
 
 
-view_inventory=datastructuretools.TypedOrderedDict(
+view_inventory=iotools.ViewInventory(
     [
         (
             'backward',

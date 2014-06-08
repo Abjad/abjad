@@ -212,8 +212,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         prototype = (
             list,
-            datastructuretools.TypedList,
-            datastructuretools.TypedOrderedDict,
+            datastructuretools.TypedCollection,
             )
         if isinstance(target, prototype):
             class_ = iotools.CollectionAutoeditor

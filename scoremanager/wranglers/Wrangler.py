@@ -1218,9 +1218,7 @@ class Wrangler(AssetController):
             return
         menu_entries = self._make_asset_menu_entries(apply_view=False)
         display_strings = [_[0] for _ in menu_entries]
-        view = iotools.View(
-            items=display_strings,
-            )
+        view = iotools.View(items=display_strings)
         breadcrumb = 'views - {} (EDIT)'.format(view_name)
         breadcrumb = breadcrumb.format(view_name)
         autoeditor = self._io_manager._make_autoeditor(
@@ -1234,9 +1232,7 @@ class Wrangler(AssetController):
         view = autoeditor.target
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
-            view_inventory = datastructuretools.TypedOrderedDict(
-                item_class=iotools.View,
-                )
+            view_inventory = iotools.ViewInventory()
         view_inventory[view_name] = view
         self._write_view_inventory(view_inventory)
 

@@ -84,9 +84,8 @@ class DictionaryAutoeditor(Autoeditor):
             dummy_item = self.target._item_callable()
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
-            prototype = (datastructuretools.TypedOrderedDictionary,)
-            if isinstance(dummy_item, prototype):
-                self._item_creator_class = iotools.DictionaryAutoeditor
+            if isinstance(dummy_item, datastructuretools.TypedList):
+                self._item_creator_class = iotools.CollectionAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
 
@@ -129,10 +128,21 @@ class DictionaryAutoeditor(Autoeditor):
         assert isinstance(item, tuple) and len(item) == 2
         return item
 
+    def _dictionary_item_to_menu_summary(self, item):
+        key, value = item
+        try:
+            value = [str(_) for _ in value]
+            value = ', '.join(value)
+            value = '[{}]'.format(value)
+        except TypeError:
+            pass
+        string = '{}: {}'.format(key, value)
+        return string
+
     def _get_target_summary_lines(self):
         result = []
-        for item in self._collection:
-            result.append(self._io_manager._get_one_line_menu_summary(item))
+        for item in self._collection.items():
+            result.append(self._dictionary_item_to_menu_summary(item))
         return result
 
     def _handle_main_menu_result(self, result):
@@ -213,16 +223,10 @@ class DictionaryAutoeditor(Autoeditor):
         '''
         from scoremanager import iotools
         getter = self._io_manager._make_getter()
-        getter.append_expr('enter dictionary key')
-        result = getter._run()
-        if self._session.is_backtracking or result is None:
+        getter.append_string('enter dictionary key')
+        key = getter._run()
+        if self._session.is_backtracking or not key:
             return
-        if not isinstance(result, collections.Hashable):
-            message = 'dictionary key must be hashable.'
-            self._io_manager._display(message)
-            self._io_manager._confirm()
-            return
-        key = result
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
             if self._item_class:
@@ -252,11 +256,12 @@ class DictionaryAutoeditor(Autoeditor):
             lines.append('evaluated_input = {}')
             getter.prompts[0].setup_statements.extend(lines)
             item_initialization_token = getter._run()
-            if self._session.is_backtracking:
+            if self._session.is_backtracking or not item_initialization_token:
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
                 return
+            print(repr(self._item_class))
             if self._item_class:
                 if isinstance(item_initialization_token, str):
                     exec(self._abjad_import_statement)
