@@ -53,6 +53,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._annotate_autoeditor = True
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'
+        self._in_user_library = True
         self._manager_class = managers.MaterialPackageManager
         self._score_storehouse_path_infix_parts = ('materials',)
         path = configuration.user_library_material_packages_directory

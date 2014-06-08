@@ -34,6 +34,7 @@ class MakerFileWrangler(FileWrangler):
         self._basic_breadcrumb = 'maker files'
         self._extension = '.py'
         self._force_lowercase = False
+        self._in_user_library = True
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
             self._configuration.user_library_makers_directory

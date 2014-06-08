@@ -34,6 +34,7 @@ class StylesheetWrangler(FileWrangler):
         self._asset_identifier = 'stylesheet'
         self._basic_breadcrumb = 'stylesheets'
         self._extension = '.ily'
+        self._in_user_library = True
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory
