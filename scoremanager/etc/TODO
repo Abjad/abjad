@@ -1,13 +1,10 @@
-1.  Fix menu title that results from the following:
-    (red~example~score m tempo~inventory ae 1 d b q).
-
-2.  There is no such thing as 'My build files'.
+1.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-3.  Allow 5-99 (or any other large number) to work when removing items.
+2.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-4.  Improve (k > cp) user experience. Change ...
+3.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -16,25 +13,25 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-5.  Add 'all segments - list versions directories'.
+4.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-6.  Open audio files with audio player. Use (d) for examples to test.
+5.  Open audio files with audio player. Use (d) for examples to test.
 
-7.  Wrap metadata tests with FilesystemState context.
+6.  Wrap metadata tests with FilesystemState context.
 
-8.  Move SargassoMeasureMaker to the makers directory on an example score.
+7.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-9. Remove scoremanager/wizards directory.
+8.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-10. Collapse all Abjad IDE classes to a single package.
+9.  Collapse all Abjad IDE classes to a single package.
 
-11. Improve (rup) messaging.
+10. Improve (rup) messaging.
 
-12. Implement an 'all whatever - edit' command.
+11. Implement an 'all whatever - edit' command.
 
-13. Reinstate ListAutoeditor.
+12. Reinstate ListAutoeditor.
     Harmonize CollectionAutoeditor, DictionaryAutoeditor, ListAutoeditor.
