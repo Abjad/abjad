@@ -25,7 +25,7 @@ class PackageWrangler(Wrangler):
             #
             'mdls*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
-            'mdw*': self.rewrite_every_metadata_py,
+            'mdw*': self.write_every_metadata_py,
             #
             'nls*': self.list_every_init_py,
             'no*': self.open_every_init_py,
@@ -51,7 +51,7 @@ class PackageWrangler(Wrangler):
         commands.append(('all packages - __init__.py - stub', 'ns*'))
         commands.append(('all packages - __metadata__.py - list', 'mdls*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
-        commands.append(('all packages - __metadata__.py - rewrite', 'mdw*'))
+        commands.append(('all packages - __metadata__.py - write', 'mdw*'))
         commands.append(('all packages - check', 'ck*'))
         if commands_only:
             return commands
@@ -233,7 +233,7 @@ class PackageWrangler(Wrangler):
             return
         self._io_manager.open_file(paths)
 
-    def rewrite_every_metadata_py(self):
+    def write_every_metadata_py(self):
         r'''Rewrites ``__metadata__.py`` in every package.
 
         Returns none.
@@ -251,7 +251,7 @@ class PackageWrangler(Wrangler):
         messages = self._format_messaging(
             inputs, 
             outputs, 
-            verb='rewrite',
+            verb='write',
             )
         self._io_manager._display(messages)
         result = self._io_manager._confirm()

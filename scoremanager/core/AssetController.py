@@ -247,7 +247,7 @@ class AssetController(Controller):
         commands = []
         commands.append(('__metadata__.py - list', 'mdls'))
         commands.append(('__metadata__.py - open', 'mdo'))
-        commands.append(('__metadata__.py - rewrite', 'mdw'))
+        commands.append(('__metadata__.py - write', 'mdw'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -639,7 +639,7 @@ class AssetController(Controller):
         inputs.append(self._metadata_py_path)
         if dry_run:
             return inputs, outputs
-        messages = self._format_messaging(inputs, outputs, verb='rewrite')
+        messages = self._format_messaging(inputs, outputs, verb='write')
         self._io_manager._display(messages)
         # WEIRD: why can't this confirm check be removed?
         if self._session.confirm:

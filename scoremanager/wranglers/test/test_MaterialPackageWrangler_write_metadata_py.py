@@ -19,5 +19,5 @@ def test_MaterialPackageWrangler_write_metadata_py_01():
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
-    assert 'Will rewrite ...' in contents
+    assert 'Will write ...' in contents
     assert metadata_py_path in contents

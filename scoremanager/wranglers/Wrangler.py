@@ -98,7 +98,7 @@ class Wrangler(AssetController):
             'vrm': self.remove_views,
             #
             'vo': self.open_views_py,
-            'vw': self.rewrite_views_py,
+            'vw': self.write_views_py,
             })
         return result
 
@@ -775,7 +775,7 @@ class Wrangler(AssetController):
     def _make_views_py_menu_section(self, menu):
         commands = []
         commands.append(('__views.py__ - open', 'vo'))
-        commands.append(('__views.py__ - rewrite', 'vw'))
+        commands.append(('__views.py__ - write', 'vw'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -1344,14 +1344,14 @@ class Wrangler(AssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.revert_to_repository()
 
-    def rewrite_views_py(self):
+    def write_views_py(self):
         r'''Rewrites ``__views__.py``.
 
         Returns none.
         '''
         inputs, outputs = [], []
         inputs.append(self._views_py_path)
-        messages = self._format_messaging(inputs, outputs, verb='rewrite')
+        messages = self._format_messaging(inputs, outputs, verb='write')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

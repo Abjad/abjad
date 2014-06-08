@@ -4,11 +4,11 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_DistributionFileWrangler_rewrite_views_py_01():
+def test_DistributionFileWrangler_write_views_py_01():
 
     input_ = 'red~example~score d vw y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Will rewrite ...' in contents
+    assert 'Will write ...' in contents
     assert 'Rewrote' in contents
