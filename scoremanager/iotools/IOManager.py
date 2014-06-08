@@ -224,7 +224,6 @@ class IOManager(IOManager):
             class_ = iotools.Autoeditor
             kwargs.pop('allow_item_edit')
         autoeditor = class_(**kwargs)
-        print(repr(autoeditor), autoeditor._allow_item_edit)
         return autoeditor
 
     def _make_getter(

@@ -1,18 +1,13 @@
-1.  Implement 'views - autoedit' (vae) command.
-
-2.  Compile regular expressions at view entry add time.
-    Refuse to write invalid regular expression.
-
-3.  Fix menu title that results from the following:
+1.  Fix menu title that results from the following:
     (red~example~score m tempo~inventory ae 1 d b q).
 
-4.  There is no such thing as 'My build files'.
+2.  There is no such thing as 'My build files'.
     Remove 'My build files' from (u > cp > 1).
 
-5.  Allow 5-99 (or any other large number) to work when removing items.
+3.  Allow 5-99 (or any other large number) to work when removing items.
     Example (y > vnew > foo > rm > 5-99).
 
-6.  Improve (k > cp) user experience. Change ...
+4.  Improve (k > cp) user experience. Change ...
         Enter maker file to copy> 1
         New maker file name> RedExampleScoreRhythmMaker.py
     ... to ...
@@ -21,24 +16,24 @@
         New maker file name> RedExampleScoreRhythmMaker.py
     ... instead.
 
-7.  Add 'all segments - list versions directories'.
+5.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
 
-8.  Open audio files with audio player. Use (d) for examples to test.
+6.  Open audio files with audio player. Use (d) for examples to test.
 
-9.  Wrap metadata tests with FilesystemState context.
+7.  Wrap metadata tests with FilesystemState context.
 
-10. Move SargassoMeasureMaker to the makers directory on an example score.
+8.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-11. Remove scoremanager/wizards directory.
+9. Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-12. Collapse all Abjad IDE classes to a single package.
+10. Collapse all Abjad IDE classes to a single package.
 
-13. Improve (rup) messaging.
+11. Improve (rup) messaging.
 
-14. Implement an 'all whatever - edit' command.
+12. Implement an 'all whatever - edit' command.
 
-15. Change view name to appear between brackets instead of parentheses.
+13. Change view name to appear between brackets instead of parentheses.
