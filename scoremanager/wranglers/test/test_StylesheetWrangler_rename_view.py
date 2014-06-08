@@ -60,8 +60,8 @@ def test_StylesheetWrangler_rename_view_02():
         'Abjad IDE - stylesheets - views - _test (EDIT)',
         'Abjad IDE - stylesheets - views - _test (EDIT)',
         'Abjad IDE - stylesheets',
-        'Abjad IDE - stylesheets (_test)',
-        'Abjad IDE - stylesheets (_test)',
-        'Abjad IDE - stylesheets (_fancy_test)',
+        'Abjad IDE - stylesheets [_test]',
+        'Abjad IDE - stylesheets [_test]',
+        'Abjad IDE - stylesheets [_fancy_test]',
         ]
     assert score_manager._transcript.titles == titles

@@ -27,7 +27,7 @@ def test_MakerFileWrangler_clear_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Abjad IDE - maker files (_test)',
+            'Abjad IDE - maker files [_test]',
             '',
             '   1: RedExampleScoreTemplate.py (Red Example Score)',
             '',
@@ -56,7 +56,7 @@ def test_MakerFileWrangler_clear_view_02():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - maker files (_test)',
+            'Red Example Score (2013) - maker files [_test]',
             '',
             '   1: RedExampleScoreTemplate.py',
             '',

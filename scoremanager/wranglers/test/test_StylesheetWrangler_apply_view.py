@@ -22,7 +22,7 @@ def test_StylesheetWrangler_apply_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Abjad IDE - stylesheets (_test)',
+            'Abjad IDE - stylesheets [_test]',
             '',
             '   1: clean-letter-14.ily (Abjad)',
             '',
@@ -48,7 +48,7 @@ def test_StylesheetWrangler_apply_view_02():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Red Example Score (2013) - stylesheets (_test)',
+            'Red Example Score (2013) - stylesheets [_test]',
             '',
             '   1: stylesheet-addendum.ily',
             '',

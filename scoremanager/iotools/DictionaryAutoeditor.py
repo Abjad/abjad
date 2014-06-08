@@ -133,7 +133,6 @@ class DictionaryAutoeditor(Autoeditor):
         try:
             value = [str(_) for _ in value]
             value = ', '.join(value)
-            value = '[{}]'.format(value)
         except TypeError:
             pass
         string = '{}: {}'.format(key, value)

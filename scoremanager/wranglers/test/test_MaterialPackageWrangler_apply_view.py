@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_apply_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Abjad IDE - materials (_test)',
+            'Abjad IDE - materials [_test]',
             '',
             '   1: instrumentation (Red Example Score)',
             '   2: tempo inventory (Red Example Score)',
@@ -53,7 +53,7 @@ def test_MaterialPackageWrangler_apply_view_02():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials (_test)',
+            'Red Example Score (2013) - materials [_test]',
             '',
             '   1: instrumentation (AE)',
             '',
@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler_apply_view_03():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials (autoeditable)',
+            'Red Example Score (2013) - materials [autoeditable]',
             '',
             '   1: instrumentation (AE)',
             '   2: pitch range inventory (AE)',
@@ -106,7 +106,7 @@ def test_MaterialPackageWrangler_apply_view_04():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials (inventories)',
+            'Red Example Score (2013) - materials [inventories]',
             '',
             '   1: pitch range inventory (AE)',
             '   2: tempo inventory (AE)',
@@ -132,7 +132,7 @@ def test_MaterialPackageWrangler_apply_view_05():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials (magic)',
+            'Red Example Score (2013) - materials [magic]',
             '',
             '   1: magic numbers',
             '',

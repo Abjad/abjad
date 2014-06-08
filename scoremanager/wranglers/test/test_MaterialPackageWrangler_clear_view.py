@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_clear_view_01():
         transcript = score_manager._transcript
 
         lines = [
-            'Abjad IDE - materials (_test)',
+            'Abjad IDE - materials [_test]',
             '',
             '   1: instrumentation (Red Example Score)',
             '',
@@ -60,7 +60,7 @@ def test_MaterialPackageWrangler_clear_view_02():
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials (_test)',
+            'Red Example Score (2013) - materials [_test]',
             '',
             '   1: instrumentation',
             '',

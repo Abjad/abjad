@@ -28,7 +28,7 @@ def test_BuildFileWrangler_clear_view_01():
     transcript = score_manager._transcript
 
     lines = [
-        'Abjad IDE - build files (_test)',
+        'Abjad IDE - build files [_test]',
         '',
         '   1: segment-01.ly (Red Example Score)',
         '',
@@ -58,7 +58,7 @@ def test_BuildFileWrangler_clear_view_02():
     transcript = score_manager._transcript
 
     lines = [
-        'Red Example Score (2013) - build files (_test)',
+        'Red Example Score (2013) - build files [_test]',
         '',
         '   1: segment-01.ly',
         '',

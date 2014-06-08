@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_apply_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Abjad IDE - distribution files (_test)',
+            'Abjad IDE - distribution files [_test]',
             '',
             '   1: red-example-score.pdf (Red Example Score)',
             '',
@@ -49,7 +49,7 @@ def test_DistributionFileWrangler_apply_view_02():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Red Example Score (2013) - distribution files (_test)',
+            'Red Example Score (2013) - distribution files [_test]',
             '',
             '   1: red-example-score.pdf',
             '',

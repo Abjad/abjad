@@ -56,7 +56,7 @@ def test_ScorePackageWrangler_make_package_02():
         'Abjad IDE - scores',
         'Abjad IDE - scores - views - _test_view (EDIT)',
         'Abjad IDE - scores',
-        'Abjad IDE - scores (_test_view)',
+        'Abjad IDE - scores [_test_view]',
         '(untitled score)',
         ]
     

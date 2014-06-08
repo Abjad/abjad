@@ -25,7 +25,7 @@ def test_ScorePackageWrangler_clear_view_01():
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Abjad IDE - scores (_test)',
+            'Abjad IDE - scores [_test]',
             '',
             '   1: Red Example Score (2013)',
             '',
