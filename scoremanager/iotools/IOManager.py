@@ -210,25 +210,22 @@ class IOManager(IOManager):
         target=None,
         ):
         from scoremanager import iotools
-        prototype = (
-            list,
-            datastructuretools.TypedCollection,
-            )
-        if isinstance(target, prototype):
+        kwargs = {
+            'allow_item_edit': allow_item_edit,
+            'breadcrumb': breadcrumb,
+            'session': self._session,
+            'target': target,
+            }
+        if isinstance(target, (dict, datastructuretools.TypedOrderedDict)):
+            class_ = iotools.DictionaryAutoeditor
+        elif isinstance(target, (list, datastructuretools.TypedCollection)):
             class_ = iotools.CollectionAutoeditor
-            return class_(
-                allow_item_edit=allow_item_edit,
-                breadcrumb=breadcrumb,
-                session=self._session,
-                target=target,
-                )
         else:
             class_ = iotools.Autoeditor
-            return class_(
-                breadcrumb=breadcrumb,
-                session=self._session,
-                target=target,
-                )
+            kwargs.pop('allow_item_edit')
+        autoeditor = class_(**kwargs)
+        print(repr(autoeditor), autoeditor._allow_item_edit)
+        return autoeditor
 
     def _make_getter(
         self,

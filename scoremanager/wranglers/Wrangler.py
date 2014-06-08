@@ -824,6 +824,7 @@ class Wrangler(AssetController):
         return view_inventory.get(view_name)
 
     def _read_view_inventory(self):
+        from scoremanager import iotools
         if self._views_py_path is None:
             return
         if not os.path.exists(self._views_py_path):
@@ -846,6 +847,8 @@ class Wrangler(AssetController):
             return
         assert len(result) == 1
         view_inventory = result[0]
+        items = list(view_inventory.items())
+        view_inventory = iotools.ViewInventory(items)
         return view_inventory
 
     def _read_view_name(self):
@@ -1136,12 +1139,15 @@ class Wrangler(AssetController):
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
-#        inventory = self._read_view_inventory()
-#        print(inventory, 'INV')
-#        autoeditor = self._io_manager._make_autoeditor(target=inventory)
-#        print(autoeditor, 'AED')
-#        autoeditor._run()
+        inventory = self._read_view_inventory()
+        autoeditor = self._io_manager._make_autoeditor(
+            breadcrumb='views',
+            target=inventory,
+            )
+        autoeditor._run()
+        inventory = autoeditor.target
+        self._write_view_inventory(inventory)
+        self._session._is_pending_output_removal = True
 
     def clear_view(self):
         r'''Clears view.
@@ -1219,7 +1225,7 @@ class Wrangler(AssetController):
         menu_entries = self._make_asset_menu_entries(apply_view=False)
         display_strings = [_[0] for _ in menu_entries]
         view = iotools.View(items=display_strings)
-        breadcrumb = 'views - {} (EDIT)'.format(view_name)
+        breadcrumb = 'views - {}'.format(view_name)
         breadcrumb = breadcrumb.format(view_name)
         autoeditor = self._io_manager._make_autoeditor(
             allow_item_edit=False,

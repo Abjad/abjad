@@ -1148,8 +1148,11 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         header = '\n'.join(self._format_controller_breadcrumbs())
-        if self.is_in_autoeditor and header.endswith('(AE)'):
-            header = header.replace('(AE)', '(EDIT)')
+        if self.is_in_autoeditor:
+            if header.endswith('(AE)'):
+                header = header.replace('(AE)', '(EDIT)')
+            else:
+                header = '{} (EDIT)'.format(header)
         return header
 
     @property
