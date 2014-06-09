@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager import iotools
+from scoremanager import ide
 
 
-view_inventory=iotools.ViewInventory(
+view_inventory=ide.ViewInventory(
     [
         ]
     )

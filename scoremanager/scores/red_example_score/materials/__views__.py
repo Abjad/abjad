@@ -1,25 +1,25 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager import iotools
+from scoremanager import ide
 
 
-view_inventory=iotools.ViewInventory(
+view_inventory=ide.ViewInventory(
     [
         (
             'autoeditable',
-            iotools.View(
+            ide.View(
                 ['md:use_autoeditor']
                 ),
             ),
         (
             'inventories',
-            iotools.View(
+            ide.View(
                 ["'inventory' in :ds:"]
                 ),
             ),
         (
             'magic',
-            iotools.View(
+            ide.View(
                 ["'magic_' in :path:"]
                 ),
             ),

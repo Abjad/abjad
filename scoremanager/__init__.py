@@ -17,7 +17,7 @@ appear on your filesystem after checkout:
     boilerplate/
     docs/
     etc/
-    iotools/
+    ide/
     materials/
     predicates/
     scores/
@@ -55,9 +55,9 @@ all tests pass.
 '''
 import sys
 if sys.version_info[0] == 2:
-    import iotools
+    import ide
     import predicates
 else:
-    from scoremanager import iotools
+    from scoremanager import ide
     from scoremanager import predicates
 del sys

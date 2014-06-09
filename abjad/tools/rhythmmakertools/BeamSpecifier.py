@@ -146,17 +146,17 @@ class BeamSpecifier(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import iotools
+        from scoremanager import ide
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='beam_divisions_together',
                 menu_key='bdt',
-                editor=iotools.getters.get_boolean,
+                editor=ide.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='beam_each_division',
                 menu_key='bed',
-                editor=iotools.getters.get_boolean,
+                editor=ide.getters.get_boolean,
                 ),
             )
 

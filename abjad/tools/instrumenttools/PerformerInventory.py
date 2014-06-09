@@ -33,7 +33,7 @@ class PerformerInventory(TypedList):
 
     @staticmethod
     def _make_item_creator_class():
-        from scoremanager.iotools.Controller import Controller
+        from scoremanager.ide.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = (
@@ -124,13 +124,13 @@ class PerformerInventory(TypedList):
                 return menu
             def _run(self, input_=None):
                 from abjad.tools import instrumenttools
-                from scoremanager import iotools
+                from scoremanager import ide
                 if input_:
                     self._session._pending_input = input_
                 try_again = False
                 performers = []
-                controller = iotools.ControllerContext(controller=self)
-                selector = iotools.Selector(session=self._session)
+                controller = ide.ControllerContext(controller=self)
+                selector = ide.Selector(session=self._session)
                 selector = selector.make_score_tools_performer_name_selector(
                     is_ranged=self._is_ranged,
                     )

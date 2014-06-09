@@ -139,7 +139,7 @@ class Instrument(AbjadObject):
     def _attribute_manifest(self):
         from abjad.tools import indicatortools
         from abjad.tools import systemtools
-        from scoremanager import iotools
+        from scoremanager import ide
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='allowable_clefs',
@@ -150,34 +150,34 @@ class Instrument(AbjadObject):
             systemtools.AttributeDetail(
                 name='instrument_name',
                 menu_key='in',
-                editor=iotools.getters.get_string,
+                editor=ide.getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='instrument_name_markup',
                 menu_key='im',
-                editor=iotools.getters.get_markup,
+                editor=ide.getters.get_markup,
                 ),
             systemtools.AttributeDetail(
                 name='pitch_range',
                 display_string='range',
                 menu_key='rg',
-                editor=iotools.getters.get_pitch_range_string,
+                editor=ide.getters.get_pitch_range_string,
                 ),
             systemtools.AttributeDetail(
                 name='short_instrument_name',
                 menu_key='sn',
-                editor=iotools.getters.get_string,
+                editor=ide.getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='short_instrument_name_markup',
                 menu_key='sm',
-                editor=iotools.getters.get_markup,
+                editor=ide.getters.get_markup,
                 ),
             systemtools.AttributeDetail(
                 name='sounding_pitch_of_written_middle_c',
                 display_string='sounding pitch of written middle C',
                 menu_key='sp',
-                editor=iotools.getters.get_named_pitch,
+                editor=ide.getters.get_named_pitch,
                 ),
             )
 

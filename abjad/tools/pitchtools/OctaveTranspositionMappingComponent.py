@@ -83,18 +83,18 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import iotools
+        from scoremanager import ide
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='source_pitch_range',
                 menu_key='pr',
-                editor=iotools.getters.get_pitch_range_string,
+                editor=ide.getters.get_pitch_range_string,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
                 name='target_octave_start_pitch',
                 menu_key='sp',
-                editor=iotools.getters.get_integer,
+                editor=ide.getters.get_integer,
                 is_keyword=False,
                 ),
             )

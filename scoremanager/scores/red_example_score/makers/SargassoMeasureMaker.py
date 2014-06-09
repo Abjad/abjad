@@ -223,47 +223,47 @@ class SargassoMeasureMaker(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import iotools
+        from scoremanager import ide
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='measure_denominator',
                 menu_key='md',
-                editor=iotools.getters.get_positive_integer_power_of_two,
+                editor=ide.getters.get_positive_integer_power_of_two,
                 ),
             systemtools.AttributeDetail(
                 name='measure_numerator_talea',
                 menu_key='mnt',
-                editor=iotools.getters.get_positive_integers,
+                editor=ide.getters.get_positive_integers,
                 ),
             systemtools.AttributeDetail(
                 name='measure_division_denominator',
                 menu_key='mdd',
-                editor=iotools.getters.get_nonnegative_integer,
+                editor=ide.getters.get_nonnegative_integer,
                 ),
              systemtools.AttributeDetail(
                 name='measure_division_talea',
                 menu_key='mdt',
-                editor=iotools.getters.get_nonnegative_integers,
+                editor=ide.getters.get_nonnegative_integers,
                 ),
              systemtools.AttributeDetail(
                 name='total_duration',
                 menu_key='td',
-                editor=iotools.getters.get_duration,
+                editor=ide.getters.get_duration,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_scaled',
                 menu_key='sc',
-                editor=iotools.getters.get_boolean,
+                editor=ide.getters.get_boolean,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_split',
                 menu_key='sp',
-                editor=iotools.getters.get_boolean,
+                editor=ide.getters.get_boolean,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_shuffled',
                 menu_key='sh',
-                editor=iotools.getters.get_boolean,
+                editor=ide.getters.get_boolean,
                 ),
             )
 
