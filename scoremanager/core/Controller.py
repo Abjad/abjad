@@ -70,6 +70,10 @@ class Controller(object):
         return 'from abjad import *'
 
     @property
+    def _breadcrumb(self):
+        pass
+
+    @property
     def _input_to_method(self):
         result = {
             '**': self.go_to_library,

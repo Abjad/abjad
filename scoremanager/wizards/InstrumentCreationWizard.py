@@ -2,10 +2,10 @@
 from abjad.tools import instrumenttools
 from abjad.tools.topleveltools import new
 from scoremanager import iotools
-from scoremanager.wizards.Wizard import Wizard
+from scoremanager.core.Controller import Controller
 
 
-class InstrumentCreationWizard(Wizard):
+class InstrumentCreationWizard(Controller):
     r'''Instrument creation wizard.
     '''
 
@@ -13,6 +13,7 @@ class InstrumentCreationWizard(Wizard):
 
     __slots__ = (
         '_is_ranged',
+        '_target',
         )
 
     ### INITIALIZER ###
@@ -23,14 +24,9 @@ class InstrumentCreationWizard(Wizard):
         session=None,
         target=None,
         ):
-        Wizard.__init__(self, session=session, target=target)
+        Controller.__init__(self, session=session)
         self._is_ranged = is_ranged
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'instrument creation wizard'
+        self_target = target
 
     ### PRIVATE METHODS ###
 
@@ -99,3 +95,13 @@ class InstrumentCreationWizard(Wizard):
                 result = instruments[0]
             self._target = result
             return self.target
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target(self):
+        r'''Gets wizard target.
+
+        Returns object or none.
+        '''
+        return self._target

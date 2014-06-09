@@ -2,10 +2,10 @@
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from scoremanager import iotools
-from scoremanager.wizards.Wizard import Wizard
+from scoremanager.core.Controller import Controller
 
 
-class PerformerCreationWizard(Wizard):
+class PerformerCreationWizard(Controller):
     r'''Performer creation wizard.
     '''
 
@@ -13,19 +13,15 @@ class PerformerCreationWizard(Wizard):
 
     __slots__ = (
         '_is_ranged',
+        '_target',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, is_ranged=False, session=None, target=None):
-        Wizard.__init__(self, session=session, target=target)
+        Controller.__init__(self, session=session)
         self._is_ranged = is_ranged
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'performer creation wizard'
+        self._target = target
 
     ### PRIVATE METHODS ###
 
@@ -155,3 +151,13 @@ class PerformerCreationWizard(Wizard):
                 raise ValueError
             self._target = final_result
             return self.target
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target(self):
+        r'''Gets wizard target.
+
+        Returns object or none.
+        '''
+        return self._target
