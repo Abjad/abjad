@@ -87,6 +87,7 @@ class FileWrangler(Wrangler):
         '''
         paths = self._list_asset_paths(valid_only=False)
         paths = [_ for _ in paths if os.path.basename(_)[0].isalpha()]
+        paths = [_ for _ in paths if not _.endswith('.pyc')]
         current_directory = self._get_current_directory()
         if current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
