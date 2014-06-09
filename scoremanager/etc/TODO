@@ -1,8 +1,5 @@
-1.  Move SargassoMeasureMaker to the makers directory on an example score.
-    Remove scoremanager/makers directory.
-
-2.  Remove scoremanager/wizards directory.
+1.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-3.  Collapse all Abjad IDE classes to a single package.
+2.  Collapse all Abjad IDE classes to a single package.

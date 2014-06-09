@@ -258,7 +258,7 @@ class Selector(Controller):
         Returns selector.
         '''
         from experimental.tools import handlertools
-        from scoremanager import makers
+#        from scoremanager import makers
         classes = []
         for class_ in documentationtools.list_all_abjad_classes():
             if issubclass(class_, datastructuretools.TypedList):
@@ -272,11 +272,11 @@ class Selector(Controller):
             modules=modules):
             if hasattr(class_, '_attribute_manifest'):
                 classes.append(class_)
-        modules = (makers,)
-        for class_ in documentationtools.list_all_scoremanager_classes(
-            modules=modules):
-            if hasattr(class_, '_attribute_manifest'):
-                classes.append(class_)
+#        modules = (makers,)
+#        for class_ in documentationtools.list_all_scoremanager_classes(
+#            modules=modules):
+#            if hasattr(class_, '_attribute_manifest'):
+#                classes.append(class_)
         classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(

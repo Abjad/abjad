@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager import makers
+from scoremanager.scores.red_example_score.makers import SargassoMeasureMaker
 
 
-example_sargasso_measures = makers.SargassoMeasureMaker(
+example_sargasso_measures = SargassoMeasureMaker(
     measure_denominator=4,
     measure_numerator_talea=(2, 2, 2, 2, 1, 1, 4, 4),
     measure_division_denominator=16,

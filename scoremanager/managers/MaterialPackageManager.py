@@ -754,9 +754,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if 'handlertools.' in storage_format:
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-        if ' makers.' in storage_format:
-            statement = 'from scoremanager import makers'
-            import_statements.append(statement)
+#        if ' makers.' in storage_format:
+#            statement = 'from scoremanager import makers'
+#            import_statements.append(statement)
         with self._io_manager._make_silent():
             self.write_output_py(
                 body_lines=body_lines,
@@ -809,9 +809,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if any('handlertools' in _ for _ in body_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-        if any(' makers.' in _ for _ in body_lines):
-            statement = 'from scoremanager import makers'
-            import_statements.append(statement)
+#        if any(' makers.' in _ for _ in body_lines):
+#            statement = 'from scoremanager import makers'
+#            import_statements.append(statement)
         import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
