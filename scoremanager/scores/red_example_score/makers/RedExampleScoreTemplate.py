@@ -3,6 +3,8 @@ from abjad import *
 
 
 class RedExampleScoreTemplate(abctools.AbjadObject):
+    r'''Red Example Score score template.
+    '''
 
     ### INITIALIZER ###
 
@@ -12,6 +14,10 @@ class RedExampleScoreTemplate(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls template.
+
+        Returns LilyPondFile object.
+        '''
 
         # make rh voice and staff
         rh_voice = Voice(
