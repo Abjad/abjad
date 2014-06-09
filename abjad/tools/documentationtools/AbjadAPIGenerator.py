@@ -56,6 +56,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             '__pycache__',
             '.git',
             '.svn',
+            'makers',
             'test',
             ]
         ignored_directory_names.extend(self._undocumented_packages)
