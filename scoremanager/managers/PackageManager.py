@@ -169,7 +169,10 @@ class PackageManager(AssetController):
         root, extension = os.path.splitext(file_name)
         assert 4 <= len(root), repr(file_name)
         version_number_string = root[-4:]
-        version_number = int(version_number_string)
+        try:
+            version_number = int(version_number_string)
+        except ValueError:
+            version_number = None
         return version_number
 
     def _find_first_file_name(self):

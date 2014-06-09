@@ -81,7 +81,7 @@ class ScoreInternalPackageManager(PackageManager):
         '''
         self._go_to_previous_package()
 
-    def list_versions_directory(self):
+    def list_versions_directory(self, messages_only=False):
         r'''Lists versions directory.
 
         Returns none.
@@ -94,7 +94,7 @@ class ScoreInternalPackageManager(PackageManager):
             return
         file_names = []
         for directory_entry in os.listdir(versions_directory):
-            if not directory_entry.startswith('_'):
+            if directory_entry[0].isalnum():
                 file_names.append(directory_entry)
         file_names.sort(key=lambda _: self._file_name_to_version_number(_))
         messages = []
@@ -111,7 +111,10 @@ class ScoreInternalPackageManager(PackageManager):
         if not messages:
             message = 'versions directory is empty.'
             messages.append(message)
-        self._io_manager._display(messages, capitalize=False)
+        if messages_only:
+            return messages
+        else:
+            self._io_manager._display(messages, capitalize=False)
 
     def version_package(self):
         r'''Versions package.

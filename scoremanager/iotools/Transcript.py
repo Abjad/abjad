@@ -63,10 +63,7 @@ class Transcript(AbjadObject):
 
         Returns string.
         '''
-        lines = []
-        for entry in self:
-            lines.extend(entry.lines)
-        return '\n'.join(lines)
+        return '\n'.join(self.lines)
 
     @property
     def entries(self):
@@ -75,6 +72,17 @@ class Transcript(AbjadObject):
         Returns list of transcript entries.
         '''
         return self._entries
+
+    @property
+    def lines(self):
+        r'''Gets all transcript lines.
+
+        Returns list.
+        '''
+        lines = []
+        for entry in self:
+            lines.extend(entry.lines)
+        return lines
 
     @property
     def start_time(self):

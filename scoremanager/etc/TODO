@@ -1,20 +1,16 @@
-1.  Add 'all segments - list versions directories'.
-    Add 'all materials - list versions directories'.
-    Implement ScoreInternalPackageWrangler.list_every_versions_directory().
+1.  Open audio files with audio player. Use (d) for examples to test.
 
-2.  Open audio files with audio player. Use (d) for examples to test.
+2.  Wrap metadata tests with FilesystemState context.
 
-3.  Wrap metadata tests with FilesystemState context.
-
-4.  Move SargassoMeasureMaker to the makers directory on an example score.
+3.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-5.  Remove scoremanager/wizards directory.
+4.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-6.  Collapse all Abjad IDE classes to a single package.
+5.  Collapse all Abjad IDE classes to a single package.
 
-7.  Improve (rup) messaging.
+6.  Improve (rup) messaging.
 
-8.  Implement an 'all whatever - edit' command.
+7.  Implement an 'all whatever - edit' command.

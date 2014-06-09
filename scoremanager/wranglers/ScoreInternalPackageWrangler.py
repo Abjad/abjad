@@ -22,6 +22,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             'ns': self.write_stub_init_py,
             #
             'vr*': self.version_every_package,
+            'vrls*': self.list_every_versions_directory,
             })
         return result
 
@@ -31,6 +32,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         superclass = super(ScoreInternalPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
+        commands.append(('all packages - versions - list directory', 'vrls*'))
         commands.append(('all packages - version', 'vr*'))
         if commands_only:
             return commands
@@ -55,6 +57,23 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._go_to_previous_package()
+
+    def list_every_versions_directory(self):
+        r'''Lists versions directory in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        messages = []
+        tab = self._io_manager._make_tab()
+        for manager in managers:
+            string = self._path_to_asset_menu_display_string(manager._path)
+            message = string + ':'
+            messages.append(message)
+            messages_ = manager.list_versions_directory(messages_only=True)
+            messages_ = [tab + _ for _ in messages_]
+            messages.extend(messages_)
+        self._io_manager._display(messages)
 
     def list_init_py(self):
         r'''Lists ``__init__.py``.
