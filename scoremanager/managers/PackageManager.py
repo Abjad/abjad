@@ -1297,21 +1297,29 @@ class PackageManager(AssetController):
             self._io_manager._display(message)
             self._revert_from_repository()
 
-    def update_from_repository(self):
+    def update_from_repository(self, messages_only=False):
         r'''Updates files from repository.
 
         Returns none.
         '''
+        messages = []
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
             self._session._attempted_to_update_from_repository = True
             if self._session.is_repository_test:
-                return
-            line = self._get_score_package_directory_name()
-            line = line + ' ...'
-            self._io_manager._display(line, capitalize=False)
+                return messages
             command = self._repository_update_command
-            self._io_manager.run_command(command)
+            messages = self._io_manager.run_command(
+                command, 
+                messages_only=True,
+                )
+        if messages and messages[-1].startswith('At revision'):
+            messages = messages[-1:]
+        elif messages and 'Already up-to-date' in messages[-1]:
+            messages = messages[-1:]
+        if messages_only:
+            return messages
+        self._io_manager._display(messages)
 
     def write_stub_init_py(self):
         r'''Writes stub ``__init__.py``.

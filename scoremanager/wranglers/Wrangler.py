@@ -1348,7 +1348,18 @@ class Wrangler(AssetController):
 
         Returns none.
         '''
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            manager = self._initialize_manager(path)
-            manager.update_from_repository()
+        tab = self._io_manager._make_tab()
+        managers = self._list_visible_asset_managers()
+        for manager in managers:
+            messages = []
+            message = self._path_to_asset_menu_display_string(manager._path)
+            message = self._strip_annotation(message)
+            message = message + ':'
+            messages_ = manager.update_from_repository(messages_only=True)
+            if len(messages_) == 1:
+                message = message + ' ' + messages_[0]
+                messages.append(message)
+            else:
+                messages_ = [tab + _ for _ in messages_]
+                messages.extend(messages_)
+            self._io_manager._display(messages, capitalize=False)

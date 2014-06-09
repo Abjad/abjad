@@ -521,7 +521,7 @@ class IOManager(IOManager):
             return
         self.spawn_subprocess(command)
 
-    def run_command(self, command, capitalize=True):
+    def run_command(self, command, capitalize=True, messages_only=False):
         r'''Makes subprocess with `command` and then runs and displays
         output of subprocess.
 
@@ -531,10 +531,9 @@ class IOManager(IOManager):
         lines = [str(line).strip() for line in process.stdout.readlines()]
         if not lines:
             return
-        self._display(
-            lines,
-            capitalize=capitalize,
-            )
+        if messages_only:
+            return lines
+        self._display(lines, capitalize=capitalize)
 
     def run_lilypond(self, path):
         r'''Runs LilyPond on file `path`.
