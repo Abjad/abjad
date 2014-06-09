@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_ScorePackageWrangler_write_every_metadata_py_01():
+def test_ScorePackageWrangler_rewrite_every_metadata_py_01():
 
     input_ = 'mdw* y q'
     score_manager._run(input_=input_)

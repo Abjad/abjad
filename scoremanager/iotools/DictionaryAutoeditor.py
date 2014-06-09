@@ -85,7 +85,7 @@ class DictionaryAutoeditor(Autoeditor):
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.CollectionAutoeditor
+                self._item_creator_class = iotools.ListAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
 

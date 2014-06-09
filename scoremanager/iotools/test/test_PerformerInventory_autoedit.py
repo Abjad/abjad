@@ -10,7 +10,7 @@ def test_PerformerInventory_autoedit_01():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
-    autoeditor = scoremanager.iotools.CollectionAutoeditor(
+    autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -43,7 +43,7 @@ def test_PerformerInventory_autoedit_02():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
-    autoeditor = scoremanager.iotools.CollectionAutoeditor(
+    autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -71,7 +71,7 @@ def test_PerformerInventory_autoedit_03():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
-    autoeditor = scoremanager.iotools.CollectionAutoeditor(
+    autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -99,7 +99,7 @@ def test_PerformerInventory_autoedit_04():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
-    autoeditor = scoremanager.iotools.CollectionAutoeditor(
+    autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )
@@ -125,7 +125,7 @@ def test_PerformerInventory_autoedit_05():
 
     session = scoremanager.core.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
-    autoeditor = scoremanager.iotools.CollectionAutoeditor(
+    autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
         target=target,
         )

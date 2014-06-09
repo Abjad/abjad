@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import abc
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
@@ -8,30 +9,14 @@ from scoremanager.iotools.Autoeditor import Autoeditor
 
 
 class CollectionAutoeditor(Autoeditor):
-    r'''List editor.
+    r'''Collection editor.
 
-    ::
-
-        >>> session = scoremanager.core.Session()
-        >>> autoeditor = scoremanager.iotools.CollectionAutoeditor(
-        ...     session=session,
-        ...     )
-        >>> autoeditor._target = ['first', 'second', 'third']
-        >>> autoeditor
-        <CollectionAutoeditor(target=list)>
-
-    ::
-
-        >>> autoeditor._run(input_='rm 1 q')
-
-    ::
-
-        >>> autoeditor
-        <CollectionAutoeditor(target=list)>
-
+    Abstract base class for ListAutoeditor and DictionaryAutoeditor.
     '''
 
     ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = (
         '_allow_item_edit',

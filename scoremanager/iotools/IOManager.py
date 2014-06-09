@@ -219,7 +219,7 @@ class IOManager(IOManager):
         if isinstance(target, (dict, datastructuretools.TypedOrderedDict)):
             class_ = iotools.DictionaryAutoeditor
         elif isinstance(target, (list, datastructuretools.TypedCollection)):
-            class_ = iotools.CollectionAutoeditor
+            class_ = iotools.ListAutoeditor
         else:
             class_ = iotools.Autoeditor
             kwargs.pop('allow_item_edit')

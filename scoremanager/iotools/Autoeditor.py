@@ -122,7 +122,7 @@ class Autoeditor(Controller):
         elif issubclass(attribute_detail.editor, datastructuretools.TypedList):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
-            autoeditor = iotools.CollectionAutoeditor(
+            autoeditor = iotools.ListAutoeditor(
                 session=self._session,
                 target=target,
                 )

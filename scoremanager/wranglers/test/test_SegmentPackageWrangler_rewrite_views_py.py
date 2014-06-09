@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_write_views_py_01():
+def test_SegmentPackageWrangler_rewrite_views_py_01():
 
     input_ = 'red~example~score g vw y q'
     score_manager._run(input_=input_)
