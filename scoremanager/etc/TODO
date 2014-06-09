@@ -1,16 +1,14 @@
-1.  Open audio files with audio player. Use (d) for examples to test.
+1.  Wrap metadata tests with FilesystemState context.
 
-2.  Wrap metadata tests with FilesystemState context.
-
-3.  Move SargassoMeasureMaker to the makers directory on an example score.
+2.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-4.  Remove scoremanager/wizards directory.
+3.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-5.  Collapse all Abjad IDE classes to a single package.
+4.  Collapse all Abjad IDE classes to a single package.
 
-6.  Improve (rup) messaging.
+5.  Improve (rup) messaging.
 
-7.  Implement an 'all whatever - edit' command.
+6.  Implement an 'all whatever - edit' command.

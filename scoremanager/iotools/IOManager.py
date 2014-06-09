@@ -493,15 +493,26 @@ class IOManager(IOManager):
         if not isinstance(path, list) and not os.path.isfile(path):
             return
         if (isinstance(path, list) and
-            all(x.endswith('.pdf') for x in path)):
-            paths = path
-            paths = ' '.join(paths)
+            all(_.endswith('.pdf') for _ in path)):
+            paths = ' '.join(path)
+            command = 'open {}'.format(paths)
+        elif (isinstance(path, list) and
+            all(_.endswith('.mp3') for _ in path)):
+            paths = ' '.join(path)
+            command = 'open {}'.format(paths)
+        elif (isinstance(path, list) and
+            all(_.endswith('.aif') for _ in path)):
+            paths = ' '.join(path)
             command = 'open {}'.format(paths)
         elif isinstance(path, list):
             paths = path
             paths = ' '.join(paths)
             command = 'vim {}'.format(paths)
         elif path.endswith('.pdf'):
+            command = 'open {}'.format(path)
+        elif path.endswith('.mp3'):
+            command = 'open {}'.format(path)
+        elif path.endswith('.aif'):
             command = 'open {}'.format(path)
         else:
             command = 'vim -R {}'.format(path)
