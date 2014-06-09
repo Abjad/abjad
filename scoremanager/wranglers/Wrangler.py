@@ -94,7 +94,6 @@ class Wrangler(AssetController):
             'vae': self.autoedit_views,
             'vap': self.apply_view,
             'vcl': self.clear_view,
-            'vls': self.list_views,
             'vnew': self.make_view,
             'vren': self.rename_view,
             'vrm': self.remove_views,
@@ -765,7 +764,6 @@ class Wrangler(AssetController):
         commands.append(('views - apply', 'vap'))
         commands.append(('views - autoedit', 'vae'))
         commands.append(('views - clear', 'vcl'))
-        commands.append(('views - list', 'vls'))
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))
         commands.append(('views - rename', 'vren'))
@@ -1143,6 +1141,8 @@ class Wrangler(AssetController):
         Returns none.
         '''
         inventory = self._read_view_inventory()
+        if inventory is None:
+            return
         autoeditor = self._io_manager._make_autoeditor(
             breadcrumb='views',
             target=inventory,
@@ -1191,28 +1191,6 @@ class Wrangler(AssetController):
             manager = self._initialize_manager(path)
             with self._io_manager._make_silent():
                 manager.commit_to_repository(commit_message=commit_message)
-
-    def list_views(self):
-        r'''Lists views in ``__views__.py``.
-
-        Returns none.
-        '''
-        view_inventory = self._read_view_inventory()
-        if not view_inventory:
-            message = 'no views found.'
-            self._io_manager._display(message)
-            return
-        messages = []
-        names = list(view_inventory.keys())
-        identifier = stringtools.pluralize('view', len(view_inventory))
-        message = '{} found:'.format(identifier)
-        messages.append(message)
-        for i, name in enumerate(names):
-            number = i + 1
-            message = '    {}: {}'
-            message = message.format(number, name)
-            messages.append(message)
-        self._io_manager._display(messages)
 
     def make_view(self):
         r'''Makes view.

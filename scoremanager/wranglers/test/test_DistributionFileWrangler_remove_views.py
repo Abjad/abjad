@@ -23,20 +23,18 @@ def test_DistributionFileWrangler_remove_views_01():
         input_ += ' q' 
         score_manager._run(input_=input_)
 
-        input_ = 'd vls q'
+        input_ = 'd vae q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        assert 'found' in contents
         assert '_test_100' in contents
         assert '_test_101' in contents
 
         input_ = 'd vrm _test_100-_test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'd vls q'
+        input_ = 'd vae q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        assert 'found' in contents or 'found' in contents
         assert '_test_100' not in contents
         assert '_test_101' not in contents
 

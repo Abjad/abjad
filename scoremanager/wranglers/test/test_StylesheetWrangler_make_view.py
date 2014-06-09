@@ -54,13 +54,13 @@ def test_StylesheetWrangler_make_view_03():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'y vls vrm _test <return> q'
+        input_ = 'y vea b vrm _test <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents
         assert '_test' in contents
 
-        input_ = 'y vls q'
+        input_ = 'y vae q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents
