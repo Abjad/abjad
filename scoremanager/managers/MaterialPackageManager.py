@@ -9,7 +9,6 @@ from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
-from scoremanager import wizards
 from scoremanager.managers.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
 
@@ -530,15 +529,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         output_material = self._execute_output_py()
-        if (hasattr(self, '_make_output_material') and
-            output_material is None and
-            self._make_output_material() and
-            isinstance(self._make_output_material(), wizards.Wizard)
-            ):
-            autoeditor = self._make_output_material(target=output_material)
-        else:
-            autoeditor = self._get_output_material_editor(
-                target=output_material)
+        autoeditor = self._get_output_material_editor(target=output_material)
         if not autoeditor:
             return
         autoeditor._run()

@@ -11,7 +11,7 @@ Do the following to install the Abjad IDE on your system:
     6. build the Abjad IDE API.
     7. run doctest.
 
-1. Verify the Abjad IDE directories. The following 13 directories should
+1. Verify the Abjad IDE directories. The following 12 directories should
 appear on your filesystem after checkout:
 
     boilerplate/
@@ -25,7 +25,6 @@ appear on your filesystem after checkout:
     scores/
     scr/
     test/
-    wizards/
     wranglers/
 
 2. Add the scoremanager/scr/ directory to your PATH. This tells your shell
@@ -64,13 +63,11 @@ if sys.version_info[0] == 2:
     import iotools
     import managers
     import predicates
-    import wizards
     import wranglers
 else:
     from scoremanager import core
     from scoremanager import iotools
     from scoremanager import managers
     from scoremanager import predicates
-    from scoremanager import wizards
     from scoremanager import wranglers
 del sys

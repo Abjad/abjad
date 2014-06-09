@@ -105,8 +105,6 @@ class Autoeditor(Controller):
         prepopulated_value,
         ):
         from scoremanager import iotools
-        from scoremanager import iotools
-        from scoremanager import wizards
         if isinstance(attribute_detail.editor, types.FunctionType):
             autoeditor = attribute_detail.editor(
                 space_delimited_attribute_name,
@@ -135,11 +133,6 @@ class Autoeditor(Controller):
                 )
         elif issubclass(attribute_detail.editor, iotools.Selector):
             autoeditor = attribute_detail.editor(session=self._session)
-        elif issubclass(attribute_detail.editor, wizards.Wizard):
-            autoeditor = attribute_detail.editor(
-                session=self._session,
-                target=prepopulated_value,
-                )
         else:
             message = 'what is {!r}?'
             message = message.format(attribute_detail.editor)
