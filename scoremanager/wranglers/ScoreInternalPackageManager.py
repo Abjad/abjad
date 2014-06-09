@@ -2,7 +2,7 @@
 import itertools
 import os
 import shutil
-from scoremanager.managers.PackageManager import PackageManager
+from scoremanager.wranglers.PackageManager import PackageManager
 
 
 class ScoreInternalPackageManager(PackageManager):

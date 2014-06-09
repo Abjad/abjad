@@ -61,13 +61,11 @@ if sys.version_info[0] == 2:
     import core
     import exceptions
     import iotools
-    import managers
     import predicates
     import wranglers
 else:
     from scoremanager import core
     from scoremanager import iotools
-    from scoremanager import managers
     from scoremanager import predicates
     from scoremanager import wranglers
 del sys

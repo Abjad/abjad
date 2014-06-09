@@ -32,7 +32,7 @@ def test_ScorePackageWrangler_check_every_package_01():
         '        A: OK',
         '        B: OK',
         '        C: OK',
-        '    Stylesheets (2 files): OK',
+        '    Stylesheets (3 files): OK',
         ]
 
     input_ = 'ck* y n q'

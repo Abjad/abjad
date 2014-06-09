@@ -20,7 +20,7 @@ def test_ScorePackageManager_check_package_01():
         'Maker files (3 files): OK',
         'Materials (5 packages):',
         'Segments (3 packages):',
-        'Stylesheets (2 files): OK',
+        'Stylesheets (3 files): OK',
         ]
     for line in lines:
         assert line in contents

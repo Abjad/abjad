@@ -16,7 +16,7 @@ def test_ScorePackageWrangler_copy_package_01():
         input_ = 'cp Red~Example~Score Pretty~Example~Score y q'
         score_manager._run(input_=input_)
         assert os.path.exists(pretty_path)
-        manager = scoremanager.managers.ScorePackageManager
+        manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=pretty_path, session=score_manager._session)
         title = 'Pretty Example Score'
         manager._add_metadatum('title', title)

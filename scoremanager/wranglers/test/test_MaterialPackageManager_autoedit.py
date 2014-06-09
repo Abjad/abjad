@@ -49,7 +49,7 @@ def test_MaterialPackageManager_autoedit_02():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -83,7 +83,7 @@ def test_MaterialPackageManager_autoedit_03():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -124,7 +124,7 @@ def test_MaterialPackageManager_autoedit_04():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -166,7 +166,7 @@ def test_MaterialPackageManager_autoedit_05():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -201,7 +201,7 @@ def test_MaterialPackageManager_autoedit_06():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -249,7 +249,7 @@ def test_MaterialPackageManager_autoedit_07():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -281,7 +281,7 @@ def test_MaterialPackageManager_autoedit_08():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -312,7 +312,7 @@ def test_MaterialPackageManager_autoedit_09():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -357,7 +357,7 @@ def test_MaterialPackageManager_autoedit_10():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -399,7 +399,7 @@ def test_MaterialPackageManager_autoedit_11():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()
@@ -437,7 +437,7 @@ def test_MaterialPackageManager_autoedit_12():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_py()

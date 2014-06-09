@@ -44,7 +44,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
         configuration = self._configuration
@@ -54,7 +54,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'
         self._in_user_library = True
-        self._manager_class = managers.MaterialPackageManager
+        self._manager_class = wranglers.MaterialPackageManager
         self._score_storehouse_path_infix_parts = ('materials',)
         path = configuration.user_library_material_packages_directory
         self._user_storehouse_path = path
@@ -83,10 +83,10 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
     def _get_material_package_manager(self, class_name, path):
         import scoremanager
-        from scoremanager import managers
+        from scoremanager import wranglers
         assert os.path.sep in path
         assert class_name is not None
-        command = 'manager = scoremanager.managers.{}'
+        command = 'manager = scoremanager.wranglers.{}'
         command += '(path=path, session=self._session)'
         command = command.format(class_name)
         try:
@@ -131,7 +131,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         user_score_packages=True,
         output_material_class_name='',
         ):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         paths = superclass._list_asset_paths(
             abjad_library=abjad_library,
@@ -143,7 +143,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             return paths
         result = []
         for path in paths:
-            manager = managers.PackageManager(
+            manager = wranglers.PackageManager(
                 path=path,
                 session=self._session,
                 )

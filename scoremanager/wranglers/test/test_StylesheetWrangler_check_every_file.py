@@ -13,7 +13,7 @@ def test_StylesheetWrangler_check_every_file_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Stylesheets (2 files): OK' in contents
+    assert 'Stylesheets (3 files): OK' in contents
 
 
 def test_StylesheetWrangler_check_every_file_02():

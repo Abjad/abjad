@@ -50,7 +50,7 @@ def test_Session_controllers_visited_02():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
@@ -71,7 +71,7 @@ def test_Session_controllers_visited_03():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             session=session,
             path=score_package_path,
             ),
@@ -93,7 +93,7 @@ def test_Session_controllers_visited_04():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
@@ -115,12 +115,12 @@ def test_Session_controllers_visited_05():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
-        scoremanager.managers.MaterialPackageManager(
+        scoremanager.wranglers.MaterialPackageManager(
             path=tempo_inventory_package_path,
             session=session,
             ),
@@ -141,7 +141,7 @@ def test_Session_controllers_visited_06():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
@@ -163,12 +163,12 @@ def test_Session_controllers_visited_07():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
         scoremanager.wranglers.SegmentPackageWrangler(session=session),
-        scoremanager.managers.SegmentPackageManager(
+        scoremanager.wranglers.SegmentPackageManager(
             path=segment_package_path,
             session=session,
             ),
@@ -189,7 +189,7 @@ def test_Session_controllers_visited_08():
         scoremanager.core.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.managers.ScorePackageManager(
+        scoremanager.wranglers.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),

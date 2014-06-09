@@ -22,7 +22,7 @@ def test_StylesheetWrangler_remove_files_01():
         assert not os.path.exists(path)
         assert os.path.exists(path + '.backup')
         shutil.copyfile(path + '.backup', path)
-        manager = scoremanager.managers.PackageManager(
+        manager = scoremanager.wranglers.PackageManager(
             path=path,
             session=score_manager._session,
             )

@@ -3,7 +3,7 @@ import collections
 import os
 import shutil
 from abjad.tools import systemtools
-from scoremanager.managers.ScoreInternalPackageManager import \
+from scoremanager.wranglers.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
 
 

@@ -67,7 +67,7 @@ def test_MaterialPackageWrangler_make_package_02():
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
 
@@ -179,7 +179,7 @@ def test_MaterialPackageWrangler_make_package_07():
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialPackageManager
+        manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_py() is None

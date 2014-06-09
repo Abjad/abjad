@@ -18,7 +18,7 @@ def test_ScorePackageWrangler_remove_packages_01():
         input_ = 'new example~score~100 y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
-        manager = scoremanager.managers.ScorePackageManager
+        manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=path, session=score_manager._session)
         title = 'Example Score 100'
         manager._add_metadatum('title', title)
@@ -47,11 +47,11 @@ def test_ScorePackageWrangler_remove_packages_02():
         input_ = 'new example~score~101 y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path_101)
-        manager = scoremanager.managers.ScorePackageManager
+        manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=path_100, session=score_manager._session)
         title = 'Example Score 100'
         manager._add_metadatum('title', title)
-        manager = scoremanager.managers.ScorePackageManager
+        manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=path_101, session=score_manager._session)
         title = 'Example Score 101'
         manager._add_metadatum('title', title)

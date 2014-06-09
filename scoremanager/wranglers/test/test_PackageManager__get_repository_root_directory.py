@@ -11,7 +11,7 @@ def test_PackageManager__get_repository_root_directory_01():
         score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         )
-    manager = scoremanager.managers.PackageManager(
+    manager = scoremanager.wranglers.PackageManager(
         path=score_path,
         session=score_manager._session,
         )

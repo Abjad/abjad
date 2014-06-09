@@ -35,7 +35,7 @@ class Wrangler(AssetController):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         assert session is not None
         superclass = super(Wrangler, self)
         superclass.__init__(session=session)
@@ -44,7 +44,7 @@ class Wrangler(AssetController):
         self._basic_breadcrumb = None
         self._force_lowercase = True
         self._in_user_library = False
-        self._manager_class = managers.PackageManager
+        self._manager_class = wranglers.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
         self._user_storehouse_path = None
@@ -692,7 +692,7 @@ class Wrangler(AssetController):
         extension=None, 
         prompt_string='file name', 
         ):
-        from scoremanager import managers
+        from scoremanager import wranglers
         extension = extension or getattr(self, '_extension', '')
         if self._session.is_in_score:
             path = self._get_current_directory()
@@ -866,7 +866,7 @@ class Wrangler(AssetController):
         return manager._get_metadatum(metadatum_name)
 
     def _remove_assets(self):
-        from scoremanager import managers
+        from scoremanager import wranglers
         paths = self._select_visible_asset_paths()
         if not paths:
             return
@@ -897,7 +897,7 @@ class Wrangler(AssetController):
             if not result == confirmation_string:
                 return
         for path in paths:
-            manager = managers.PackageManager(path=path, session=self._session)
+            manager = wranglers.PackageManager(path=path, session=self._session)
             with self._io_manager._make_silent():
                 manager._remove()
         self._session._is_pending_output_removal = True
@@ -987,7 +987,7 @@ class Wrangler(AssetController):
         return result
 
     def _select_view(self, infinitive_phrase=None, is_ranged=False):
-        from scoremanager import managers
+        from scoremanager import wranglers
         view_inventory = self._read_view_inventory()
         if view_inventory is None:
             message = 'no views found.'

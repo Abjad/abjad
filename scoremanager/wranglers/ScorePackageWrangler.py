@@ -42,14 +42,14 @@ class ScorePackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_identifier = 'score package'
         self._basic_breadcrumb = 'scores'
         self._include_asset_name = False
         self._annotate_year = True
-        self._manager_class = managers.ScorePackageManager
+        self._manager_class = wranglers.ScorePackageManager
         self._only_example_scores_during_test = True
         self._sort_by_annotation = False
         path = self._configuration.user_score_packages_directory
@@ -110,7 +110,7 @@ class ScorePackageWrangler(PackageWrangler):
         return manager
 
     def _find_svn_score_name(self):
-        from scoremanager import managers
+        from scoremanager import wranglers
         manager = self._find_up_to_date_manager(
             repository='svn',
             system=False,

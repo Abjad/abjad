@@ -20,7 +20,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_01():
 
     storehouse = configuration.example_score_packages_directory
 
-    assert isinstance(manager, scoremanager.managers.ScorePackageManager)
+    assert isinstance(manager, scoremanager.wranglers.ScorePackageManager)
     assert manager._is_git_versioned()
     assert manager._is_up_to_date()
     assert manager._path.startswith(storehouse)
@@ -43,7 +43,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_02():
 
     storehouse = configuration.user_score_packages_directory
 
-    assert isinstance(manager, scoremanager.managers.ScorePackageManager)
+    assert isinstance(manager, scoremanager.wranglers.ScorePackageManager)
     assert manager._is_svn_versioned()
     assert manager._is_up_to_date()
     assert manager._path.startswith(storehouse)

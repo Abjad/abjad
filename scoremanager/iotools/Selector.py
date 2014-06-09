@@ -189,12 +189,12 @@ class Selector(Controller):
 
         Returns selector.
         '''
-        from scoremanager import managers
+        from scoremanager import wranglers
         storehouse_paths = storehouse_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory in storehouse_paths:
-            manager = managers.PackageManager(
+            manager = wranglers.PackageManager(
                 path=directory,
                 session=self._session,
                 )

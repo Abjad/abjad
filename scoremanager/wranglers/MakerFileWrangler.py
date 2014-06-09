@@ -28,7 +28,7 @@ class MakerFileWrangler(FileWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
         self._basic_breadcrumb = 'maker files'

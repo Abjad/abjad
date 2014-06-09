@@ -26,7 +26,7 @@ def test_SegmentPackageWrangler_remove_packages_01():
     assert not os.path.exists(path)
     assert os.path.exists(backup_path)
     shutil.move(backup_path, path)
-    manager = scoremanager.managers.PackageManager(
+    manager = scoremanager.wranglers.PackageManager(
         path=path,
         session=score_manager._session,
         )

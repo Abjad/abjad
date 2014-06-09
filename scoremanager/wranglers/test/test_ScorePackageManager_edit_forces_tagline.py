@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_ScorePackageManager_edit_catalog_number_01():
+def test_ScorePackageManager_edit_forces_tagline_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory,
@@ -13,14 +13,12 @@ def test_ScorePackageManager_edit_catalog_number_01():
         )
     metadata_path = os.path.join(path, '__metadata__.py')
 
-    manager = scoremanager.managers.ScorePackageManager
+    manager = scoremanager.wranglers.ScorePackageManager
     manager = manager(path=path, session=score_manager._session)
-    assert manager._get_metadatum('catalog_number') == '#165'
+    assert manager._get_metadatum('forces_tagline') == 'for piano'
 
     with systemtools.FilesystemState(keep=[metadata_path]):
-        input_ = 'red~example~score p catalog~number for~foo~bar q'
+        input_ = 'red~example~score p tagline for~foo~bar q'
         score_manager._run(input_=input_)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager
-        manager = manager(path=path, session=session)
-        assert manager._get_metadatum('catalog_number') == 'for foo bar'
+        assert manager._get_metadatum('forces_tagline') == 'for foo bar'

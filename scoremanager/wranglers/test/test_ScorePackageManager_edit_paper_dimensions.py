@@ -14,7 +14,7 @@ def test_ScorePackageManager_edit_paper_dimensions_01():
     metadata_path = os.path.join(path, '__metadata__.py')
 
     with systemtools.FilesystemState(keep=[metadata_path]):
-        manager = scoremanager.managers.ScorePackageManager
+        manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=path, session=score_manager._session)
         manager._get_metadatum('paper_dimensions') == '8.5 x 11 in'
         input_ = 'red~example~score p paper~dimensions A4 q'

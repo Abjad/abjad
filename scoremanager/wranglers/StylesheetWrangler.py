@@ -26,7 +26,7 @@ class StylesheetWrangler(FileWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = \

@@ -29,6 +29,6 @@ def test_SegmentPackageWrangler_make_package_01():
         contents = score_manager._transcript.contents
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.SegmentPackageManager
+        manager = scoremanager.wranglers.SegmentPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

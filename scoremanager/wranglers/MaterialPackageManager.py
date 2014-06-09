@@ -9,7 +9,7 @@ from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
-from scoremanager.managers.ScoreInternalPackageManager import \
+from scoremanager.wranglers.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
 
 
@@ -28,7 +28,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             ...     configuration.abjad_material_packages_directory,
             ...     'example_numbers',
             ...     )
-            >>> manager = scoremanager.managers.MaterialPackageManager(
+            >>> manager = scoremanager.wranglers.MaterialPackageManager(
             ...     path=path,
             ...     session=session,
             ...     )
@@ -145,9 +145,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     @property
     def _score_package_manager(self):
-        from scoremanager import managers
+        from scoremanager import wranglers
         score_path = self._configuration._path_to_score_path(self._path)
-        return managers.ScorePackageManager(
+        return wranglers.ScorePackageManager(
             path=score_path,
             session=self._session,
             )
@@ -637,7 +637,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        from scoremanager import managers
+        from scoremanager import wranglers
         path = self._illustration_ly_file_path
         if os.path.isfile(path):
             self._io_manager.run_lilypond(path)

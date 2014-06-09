@@ -26,7 +26,7 @@ class DistributionFileWrangler(FileWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
+        from scoremanager import wranglers
         superclass = super(DistributionFileWrangler, self)
         superclass.__init__(session=session)
         self._basic_breadcrumb = 'distribution files'
