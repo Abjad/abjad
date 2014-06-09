@@ -1,14 +1,10 @@
 # -*- encoding: utf-8 -*-
-import collections
-import types
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.iotools.Autoeditor import Autoeditor
+from scoremanager.iotools.CollectionAutoeditor import CollectionAutoeditor
 
 
-class DictionaryAutoeditor(Autoeditor):
+class DictionaryAutoeditor(CollectionAutoeditor):
     r'''Dictionary editor.
 
     ::
@@ -33,87 +29,16 @@ class DictionaryAutoeditor(Autoeditor):
 
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = (
-        '_allow_item_edit',
-        '_item_class',
-        '_item_creator_class',
-        '_item_creator_class_kwargs',
-        '_item_editor_class',
-        '_item_getter_configuration_method',
-        '_asset_identifier',
-        '_numbered_section',
-        )
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self, 
-        allow_item_edit=True,
-        breadcrumb=None,
-        session=None, 
-        target=None,
-        ):
-        from scoremanager import iotools
-        if target is None:
-            target = []
-        superclass = super(DictionaryAutoeditor, self)
-        superclass.__init__(
-            breadcrumb=breadcrumb,
-            session=session, 
-            target=target,
-            )
-        self._allow_item_edit = allow_item_edit
-        self._item_class = None
-        self._item_creator_class = None
-        self._item_creator_class_kwargs = {}
-        self._item_editor_class = None
-        self._item_getter_configuration_method = \
-            iotools.UserInputGetter.append_expr
-        self._asset_identifier = 'element'
-        if hasattr(target, '_item_creator_class'):
-            self._item_creator_class = target._item_creator_class
-            kwargs = getattr(target, '_item_creator_class_kwargs', None)
-            self._item_creator_class_kwargs = kwargs
-        elif getattr(target, '_item_callable', None):
-            assert self.target._item_callable
-            if not isinstance(self.target._item_callable, type):
-                return
-            self._item_class = self.target._item_callable
-            dummy_item = self.target._item_callable()
-            helper = stringtools.upper_camel_case_to_space_delimited_lowercase
-            asset_identifier = helper(type(dummy_item).__name__)
-            if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.ListAutoeditor
-            else:
-                self._item_creator_class = iotools.Autoeditor
-
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        return systemtools.AttributeManifest()
-
-    @property
     def _input_to_method(self):
-        result = {
-            'add': self.add_items,
+        superclass = super(DictionaryAutoeditor, self)
+        result = superclass._input_to_method
+        result.update({
             'ren': self.rename_item,
-            'rm': self.remove_items,
-            'mv': self.move_item,
-            }
+            })
         return result
-
-    @property
-    def _collection(self):
-        return self.target
-
-    @property
-    def _target_name(self):
-        if self.target is not None:
-            return 'edit'
 
     ### PRIVATE METHODS ###
 
@@ -144,74 +69,16 @@ class DictionaryAutoeditor(Autoeditor):
             result.append(self._dictionary_item_to_menu_summary(item))
         return result
 
-    def _handle_main_menu_result(self, result):
-        assert isinstance(result, str), repr(result)
-        if result in self._input_to_method:
-            self._input_to_method[result]()
-        elif mathtools.is_integer_equivalent_expr(result):
-            if self.allow_item_edit:
-                self.edit_item(result)
-        else:
-            superclass = super(DictionaryAutoeditor, self)
-            superclass._handle_main_menu_result(result)
-
-    def _initialize_target(self):
-        if self.target is not None:
-            return
-        self._target = self._target_class([])
-
     def _make_command_menu_section(self, menu):
-        commands = []
-        commands.append(('elements - add', 'add'))
-        if 1 < len(self._collection):
-            commands.append(('elements - move', 'mv'))
+        superclass = super(DictionaryAutoeditor, self)
+        commands = superclass._make_command_menu_section(
+            menu, commands_only=True)
         if 0 < len(self._collection):
-            commands.append(('elements - rename', 'ren'))
-            commands.append(('elements - remove', 'rm'))
+            commands.append(('element - rename', 'ren'))
         section = menu.make_command_section(
             commands=commands,
-            name='add, move, remove',
+            name='commands'
             )
-
-    def _make_keyed_attributes_menu_section(self, menu):
-        menu_entries = self._make_target_attribute_tokens()
-        if menu_entries:
-            section = menu.make_keyed_attribute_section(
-                menu_entries=menu_entries,
-                name='keyed attributes',
-                )
-
-    def _make_main_menu(self):
-        name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
-        self._make_keyed_attributes_menu_section(menu)
-        self._make_numbered_entries_menu_section(menu)
-        self._make_command_menu_section(menu)
-        self._make_done_menu_section(menu)
-        return menu
-
-    def _make_numbered_entries_menu_section(self, menu):
-        menu_entries = self._get_target_summary_lines()
-        if not menu_entries:
-            return
-        section = menu.make_numbered_section(
-            menu_entries=menu_entries,
-            name='numbered entries',
-            )
-        self._numbered_section = section
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def allow_item_edit(self):
-        r'''Is true when list items can be edited.
-
-        Set to false to allow rearrangement of list items
-        without giving user the ability to edit list items.
-
-        Returns boolean.
-        '''
-        return self._allow_item_edit
 
     ### PUBLIC METHODS ###
 
@@ -304,28 +171,6 @@ class DictionaryAutoeditor(Autoeditor):
         autoeditor._run()
         value = autoeditor.target
         self._collection[key] = value
-
-    def move_item(self):
-        r'''Moves items in ordered dictionary.
-
-        Returns none.
-        '''
-        getter = self._io_manager._make_getter()
-        getter.append_integer_in_range('old number', 1, len(self._collection))
-        getter.append_integer_in_range('new number', 1, len(self._collection))
-        result = getter._run()
-        if self._session.is_backtracking or result is None:
-            return
-        old_number, new_number = result
-        old_index, new_index = old_number - 1, new_number - 1
-        item = self._get_item_from_item_number(old_number)
-        assert isinstance(item, tuple) and len(item) == 2
-        items = list(self._collection.items())
-        del(items[old_index])
-        items.insert(new_index, item)
-        class_ = type(self._collection)
-        dictionary = class_(items)
-        self._target = dictionary
 
     def remove_items(self):
         r'''Removes items from dictionary.

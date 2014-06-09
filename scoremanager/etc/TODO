@@ -26,6 +26,3 @@
 8.  Improve (rup) messaging.
 
 9.  Implement an 'all whatever - edit' command.
-
-10. Reinstate ListAutoeditor.
-    Harmonize CollectionAutoeditor, DictionaryAutoeditor, ListAutoeditor.

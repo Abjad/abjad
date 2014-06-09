@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import abc
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -68,7 +67,7 @@ class CollectionAutoeditor(Autoeditor):
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
-                self._item_creator_class = iotools.CollectionAutoeditor
+                self._item_creator_class = iotools.ListAutoeditor
             else:
                 self._item_creator_class = iotools.Autoeditor
 
@@ -84,12 +83,11 @@ class CollectionAutoeditor(Autoeditor):
         result = {
             'add': self.add_items,
             'rm': self.remove_items,
-            'mv': self.move_item,
             }
         return result
 
     @property
-    def _items(self):
+    def _collection(self):
         return self.target
 
     @property
@@ -101,13 +99,13 @@ class CollectionAutoeditor(Autoeditor):
 
     def _get_item_from_item_number(self, item_number):
         try:
-            return self._items[int(item_number) - 1]
+            return self._collection[int(item_number) - 1]
         except:
             pass
 
     def _get_target_summary_lines(self):
         result = []
-        for item in self._items:
+        for item in self._collection:
             result.append(self._io_manager._get_one_line_menu_summary(item))
         return result
 
@@ -125,19 +123,18 @@ class CollectionAutoeditor(Autoeditor):
     def _initialize_target(self):
         if self.target is not None:
             return
-        else:
-            self._target = self._target_class([])
+        self._target = self._target_class([])
 
-    def _make_command_menu_section(self, menu):
+    def _make_command_menu_section(self, menu, commands_only=False):
         commands = []
         commands.append(('elements - add', 'add'))
-        if 1 < len(self._items):
-            commands.append(('elements - move', 'mv'))
-        if 0 < len(self._items):
+        if 0 < len(self._collection):
             commands.append(('elements - remove', 'rm'))
+        if commands_only:
+            return commands
         section = menu.make_command_section(
             commands=commands,
-            name='add, move, remove',
+            name='commands',
             )
 
     def _make_keyed_attributes_menu_section(self, menu):
@@ -207,10 +204,7 @@ class CollectionAutoeditor(Autoeditor):
                 return
             result = result or item_creator.target
         elif self._item_getter_configuration_method:
-            #print 'BAR'
             getter = self._io_manager._make_getter()
-            #print self._item_getter_configuration_method
-            #print self._asset_identifier
             self._item_getter_configuration_method(
                 getter,
                 self._asset_identifier,
@@ -219,9 +213,7 @@ class CollectionAutoeditor(Autoeditor):
             lines.append('from abjad import *')
             lines.append('evaluated_input = {}')
             getter.prompts[0].setup_statements.extend(lines)
-            #print getter.prompts
             item_initialization_token = getter._run()
-            #print(repr(item_initialization_token))
             if self._session.is_backtracking:
                 return
             if item_initialization_token == 'done':
@@ -247,7 +239,7 @@ class CollectionAutoeditor(Autoeditor):
             items = result
         else:
             items = [result]
-        self._items.extend(items)
+        self._collection.extend(items)
 
     def edit_item(self, number):
         r'''Edits item `number` in list.
@@ -262,24 +254,7 @@ class CollectionAutoeditor(Autoeditor):
         item_editor = item_editor_class(session=self._session, target=item)
         item_editor._run()
         item_index = int(number) - 1
-        self._items[item_index] = item_editor.target
-
-    def move_item(self):
-        r'''Moves items in list.
-
-        Returns none.
-        '''
-        getter = self._io_manager._make_getter()
-        getter.append_integer_in_range('old number', 1, len(self._items))
-        getter.append_integer_in_range('new number', 1, len(self._items))
-        result = getter._run()
-        if self._session.is_backtracking or result is None:
-            return
-        old_number, new_number = result
-        old_index, new_index = old_number - 1, new_number - 1
-        item = self._items[old_index]
-        self._items.remove(item)
-        self._items.insert(new_index, item)
+        self._collection[item_index] = item_editor.target
 
     def remove_items(self):
         r'''Removes items from list.
@@ -295,6 +270,6 @@ class CollectionAutoeditor(Autoeditor):
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
-        items = self._items[:]
+        items = self._collection[:]
         items = sequencetools.remove_elements(items, indices)
-        self._items[:] = items
+        self._collection[:] = items
