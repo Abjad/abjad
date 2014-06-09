@@ -22,8 +22,6 @@ def test_MakerFileWrangler_list_metadata_py_01():
 
 
 def test_MakerFileWrangler_list_metadata_py_02():
-    r'''Outside score.
-    '''
 
     metadata_py_path = os.path.join(
         score_manager._configuration.wrangler_views_directory,

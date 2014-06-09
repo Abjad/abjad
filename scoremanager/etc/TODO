@@ -1,14 +1,12 @@
-1.  Wrap metadata tests with FilesystemState context.
-
-2.  Move SargassoMeasureMaker to the makers directory on an example score.
+1.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-3.  Remove scoremanager/wizards directory.
+2.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-4.  Collapse all Abjad IDE classes to a single package.
+3.  Collapse all Abjad IDE classes to a single package.
 
-5.  Improve (rup) messaging.
+4.  Improve (rup) messaging.
 
-6.  Implement an 'all whatever - edit' command.
+5.  Implement an 'all whatever - edit' command.

@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_list_every_metadata_py_01():
+def test_SegmentPackageWrangler_write_every_metadata_py_01():
 
     package_names = [
         'segment_01',
@@ -23,25 +23,22 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
             )
         paths.append(path)
 
-    input_ = 'red~example~score g mdls* y q'
+    with systemtools.FilesystemState(keep=paths):
+        input_ = 'red~example~score g mdw* y q'
+        score_manager._run(input_=input_)
+        contents = score_manager._transcript.contents
+
+    assert 'Will write ...' in contents
+    for path in paths:
+        assert path in contents
+    assert '3 __metadata__.py files rewritten.' in contents
+
+
+def test_SegmentPackageWrangler_write_every_metadata_py_02():
+
+    input_ = 'g mdw* n q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    for path in paths:
-        assert path in contents
-    assert '3 __metadata__.py files found.' in contents
-
-
-def test_SegmentPackageWrangler_list_every_metadata_py_02():
-
-    input_ = 'g mdls* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
-
-    path = score_manager._configuration.example_score_packages_directory
-    paths = [
-        os.path.join(path, 'red_example_score'),
-        ]
-    for path in paths:
-        assert path in contents
-    assert '__metadata__.py files found.' in contents
+    assert 'Will write ...' in contents
+    assert '__metadata__.py' in contents

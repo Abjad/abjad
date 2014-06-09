@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)

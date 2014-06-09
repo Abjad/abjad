@@ -6,8 +6,6 @@ score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_list_metadata_py_01():
-    r'''Outside score.
-    '''
 
     metadata_py_path = os.path.join(
         score_manager._configuration.wrangler_views_directory,

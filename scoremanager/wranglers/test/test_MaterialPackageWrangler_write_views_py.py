@@ -4,9 +4,9 @@ import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_StylesheetWrangler_rewrite_views_py_01():
+def test_MaterialPackageWrangler_write_views_py_01():
 
-    input_ = 'red~example~score y vw y q'
+    input_ = 'red~example~score m vw y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

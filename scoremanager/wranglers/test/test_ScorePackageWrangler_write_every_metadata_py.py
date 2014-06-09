@@ -1,14 +1,15 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.AbjadIDE(is_test=True)
 
 
-def test_DistributionFileWrangler_rewrite_views_py_01():
+def test_ScorePackageWrangler_write_every_metadata_py_01():
 
-    input_ = 'red~example~score d vw y q'
+    input_ = 'mdw* n q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
     assert 'Will write ...' in contents
-    assert 'Rewrote' in contents
+    assert '__metadata__.py' in contents
