@@ -11,7 +11,7 @@ Do the following to install the Abjad IDE on your system:
     6. build the Abjad IDE API.
     7. run doctest.
 
-1. Verify the Abjad IDE directories. The following 12 directories should
+1. Verify the Abjad IDE directories. The following 11 directories should
 appear on your filesystem after checkout:
 
     boilerplate/
@@ -19,7 +19,6 @@ appear on your filesystem after checkout:
     docs/
     etc/
     iotools/
-    managers/
     materials/
     predicates/
     scores/
