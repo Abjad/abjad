@@ -33,40 +33,6 @@ class Wizard(Controller):
     def _breadcrumb(self):
         pass
 
-    ### PRIVATE METHODS ###
-
-    def _run(self, input_=None):
-        from scoremanager import iotools
-        if input_:
-            self._session._pending_input = input_
-        controller = iotools.ControllerContext(controller=self)
-        with controller:
-            selector = self._selector
-            class_name = selector._run()
-            if self._session.is_backtracking:
-                return
-            exec('from abjad import *')
-            if class_name.endswith('Handler'):
-                statement = 'target = handlertools.{}()'
-                statement = statement.format(class_name)
-                exec('from experimental.tools import handlertools')
-                exec(statement)
-            elif class_name.endswith('RhythmMaker'):
-                statement = 'target = rhythmmakertools.{}()'
-                statement = statement.format(class_name)
-                exec(statement)
-            else:
-                raise ValueError(class_name)
-            assert target
-            autoeditor = iotools.Autoeditor(
-                session=self._session,
-                target=target,
-                )
-            autoeditor._is_autoadvancing = True
-            autoeditor._is_autostarting = True
-            autoeditor._run()
-            self._target = autoeditor.target
-
     ### PUBLIC PROPERTIES ###
 
     @property
