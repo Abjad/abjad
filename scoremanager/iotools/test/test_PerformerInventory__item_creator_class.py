@@ -1,47 +1,49 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+inventory = instrumenttools.PerformerInventory
+item_creator_class = inventory._make_item_creator_class()
 
 
-def test_PerformerCreationWizard__run_01():
+def test_PerformerInventory__item_creator_class_01():
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
+    item_creator = item_creator_class(session=session)
     input_ = 'q'
-    assert wizard._run(input_=input_) is None
+    assert item_creator._run(input_=input_) is None
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
+    item_creator = item_creator_class(session=session)
     input_ = 'b'
-    assert wizard._run(input_=input_) is None
+    assert item_creator._run(input_=input_) is None
 
-    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
+    item_creator = item_creator_class(session=session)
     input_ = 'h'
-    assert wizard._run(input_=input_) is None
+    assert item_creator._run(input_=input_) is None
 
 
-def test_PerformerCreationWizard__run_02():
+def test_PerformerInventory__item_creator_class_02():
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(session=session)
+    item_creator = item_creator_class(session=session)
     input_ = 'vn <return>'
-    assert wizard._run(input_=input_) == \
+    assert item_creator._run(input_=input_) == \
         instrumenttools.Performer(
             name='violinist',
             instruments=[instrumenttools.Violin()],
             )
 
 
-def test_PerformerCreationWizard__run_03():
+def test_PerformerInventory__item_creator_class_03():
     r'''Ranged.
     '''
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(
+    item_creator = item_creator_class(
         is_ranged=True,
         session=session,
         )
     input_ = 'vn, va <return> <return>'
-    assert wizard._run(input_=input_) == [
+    assert item_creator._run(input_=input_) == [
         instrumenttools.Performer(
             name='violinist',
             instruments=[instrumenttools.Violin()],
@@ -53,33 +55,33 @@ def test_PerformerCreationWizard__run_03():
         ]
 
 
-def test_PerformerCreationWizard__run_04():
+def test_PerformerInventory__item_creator_class_04():
     r'''Skipping instruments.
     '''
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(
+    item_creator = item_creator_class(
         is_ranged=True,
         session=session,
         )
     input_ = 'vn, va skip skip'
-    assert wizard._run(input_=input_) == [
+    assert item_creator._run(input_=input_) == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(name='violist'),
         ]
 
 
-def test_PerformerCreationWizard__run_05():
+def test_PerformerInventory__item_creator_class_05():
     r'''More instruments.
     '''
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(
+    item_creator = item_creator_class(
         is_ranged=True,
         session=session,
         )
     input_ = 'vn, va skip more xyl'
-    assert wizard._run(input_=input_) == [
+    assert item_creator._run(input_=input_) == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(
             name='violist',
@@ -88,12 +90,12 @@ def test_PerformerCreationWizard__run_05():
         ]
 
 
-def test_PerformerCreationWizard__run_06():
+def test_PerformerInventory__item_creator_class_06():
     r'''Auxiliary percussion.
     '''
 
     session = scoremanager.core.Session()
-    wizard = scoremanager.wizards.PerformerCreationWizard(
+    item_creator = item_creator_class(
         is_ranged=True,
         session=session,
         )
@@ -102,8 +104,8 @@ def test_PerformerCreationWizard__run_06():
         short_instrument_name='caxixi',
         )
     input_ = 'vn more untuned cax'
-    wizard._run(input_=input_)
-    assert wizard.target == [
+    item_creator._run(input_=input_)
+    assert item_creator.target == [
         instrumenttools.Performer(
             name='violinist',
             instruments=[caxixi],
