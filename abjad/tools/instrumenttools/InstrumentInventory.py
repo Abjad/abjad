@@ -65,11 +65,11 @@ class InstrumentInventory(TypedList):
         exec(command)
         return instrument
 
-    ### WIZARD ###
+    ### ITEM CREATOR ###
 
-    def _make_wizard(self):
+    def _make_item_creator_class(self):
         from scoremanager.core.Controller import Controller
-        class InstrumentCreationWizard(Controller):
+        class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target',)
             ### INITIALIZER ###
@@ -154,16 +154,14 @@ class InstrumentInventory(TypedList):
             @property
             def target(self):
                 return self._target
-        return InstrumentCreationWizard
+        return ItemCreator
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_creator_class(self):
-        #from scoremanager import wizards
-        #return wizards.InstrumentCreationWizard
-        wizard = self._make_wizard()
-        return wizard
+        item_creator_class = self._make_item_creator_class()
+        return item_creator_class
 
     @property
     def _item_creator_class_kwargs(self):

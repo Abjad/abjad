@@ -37,11 +37,14 @@ class PerformerCreationWizard(Controller):
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                wizard = wizards.InstrumentCreationWizard(
+                inventory = instrumenttools.InstrumentInventory()
+                item_creator_class = inventory._make_item_creator_class()
+                #wizard = wizards.InstrumentCreationWizard(
+                item_creator = item_creator_class(
                     session=self._session,
                     is_ranged=True,
                     )
-                instruments = wizard._run()
+                instruments = item_creator._run()
                 if self._session.is_backtracking:
                     break
                 if instruments is not None:
