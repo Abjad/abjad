@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import systemtools
-from scoremanager.core.AssetController import AssetController
+from scoremanager.iotools.AssetController import AssetController
 
 
 class AbjadIDE(AssetController):
@@ -11,7 +11,7 @@ class AbjadIDE(AssetController):
 
         ::
 
-            >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
+            >>> score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
             >>> score_manager
             AbjadIDE()
 
@@ -25,9 +25,9 @@ class AbjadIDE(AssetController):
     ### INITIALIZER ###
 
     def __init__(self, session=None, is_test=False):
-        from scoremanager import core
+        from scoremanager import iotools
         if session is None:
-            session = core.Session()
+            session = iotools.Session()
             session._is_test = is_test
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)

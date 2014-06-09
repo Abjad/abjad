@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageManager_go_to_build_files_01():

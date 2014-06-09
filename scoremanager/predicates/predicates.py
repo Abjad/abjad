@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import re
 from abjad import *
-from scoremanager.core.Configuration \
+from scoremanager.iotools.Configuration \
     import Configuration
 configuration = Configuration()
 

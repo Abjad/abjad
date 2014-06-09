@@ -5,7 +5,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import stringtools
-from scoremanager.core.Controller import Controller
+from scoremanager.iotools.Controller import Controller
 
 
 class Selector(Controller):

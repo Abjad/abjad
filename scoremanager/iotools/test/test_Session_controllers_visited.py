@@ -3,7 +3,7 @@ import os
 import pytest
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
+configuration = scoremanager.iotools.Configuration()
 
 score_package_path = os.path.join(
     configuration.example_score_packages_directory,
@@ -24,13 +24,13 @@ def test_Session_controllers_visited_01():
     r'''Abjad IDE.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         ]
@@ -41,13 +41,13 @@ def test_Session_controllers_visited_02():
     r'''Score package manager.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -62,13 +62,13 @@ def test_Session_controllers_visited_03():
     r'''Build file wrangler.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score u q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -84,13 +84,13 @@ def test_Session_controllers_visited_04():
     r'''Material package manager.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -106,13 +106,13 @@ def test_Session_controllers_visited_05():
     r'''Material package manager.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -132,13 +132,13 @@ def test_Session_controllers_visited_06():
     r'''Segment wrangler.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -154,13 +154,13 @@ def test_Session_controllers_visited_07():
     r'''Segment package manager.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g 1 q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(
@@ -180,13 +180,13 @@ def test_Session_controllers_visited_08():
     r'''Stylesheet file wrangler.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score y q'
     score_manager._run(input_=input_)
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     controllers = [
-        scoremanager.core.AbjadIDE(session=session, is_test=True),
+        scoremanager.iotools.AbjadIDE(session=session, is_test=True),
         scoremanager.wranglers.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         scoremanager.wranglers.ScorePackageManager(

@@ -14,7 +14,7 @@ class BuildFileWrangler(FileWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> wrangler = scoremanager.wranglers.BuildFileWrangler(
             ...     session=session,
             ...     )

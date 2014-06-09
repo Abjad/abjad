@@ -2,12 +2,12 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
+configuration = scoremanager.iotools.Configuration()
 
 
 def test_MaterialPackageWrangler__get_available_path_01():
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     storehouse = configuration.user_library_material_packages_directory
     input_ = 'foo'
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler__get_available_path_01():
 
 def test_MaterialPackageWrangler__get_available_path_02():
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     session._set_test_score('red_example_score')
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     input_ = 'foo'
@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler__get_available_path_02():
 
 def test_MaterialPackageWrangler__get_available_path_03():
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     input_ = 'q'

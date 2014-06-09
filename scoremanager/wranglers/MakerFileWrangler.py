@@ -11,7 +11,7 @@ class MakerFileWrangler(FileWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> wrangler = scoremanager.wranglers.MakerFileWrangler(
             ...     session=session,
             ...     )

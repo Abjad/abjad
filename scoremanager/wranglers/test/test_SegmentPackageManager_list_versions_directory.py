@@ -8,7 +8,7 @@ def test_SegmentPackageManager_list_versions_directory_01():
     directory exists and raises no exceptions.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g 1 vrls <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents

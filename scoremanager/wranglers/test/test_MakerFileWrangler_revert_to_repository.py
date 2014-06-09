@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MakerFileWrangler_revert_to_repository_01():
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score k rrv <return> q'
     score_manager._run(input_=input_)
@@ -14,7 +14,7 @@ def test_MakerFileWrangler_revert_to_repository_01():
 
 def test_MakerFileWrangler_revert_to_repository_02():
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'k rrv <return> q'
     score_manager._run(input_=input_)

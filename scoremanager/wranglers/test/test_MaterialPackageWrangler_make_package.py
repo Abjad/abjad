@@ -4,7 +4,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 package_path = os.path.join(
     score_manager._configuration.user_library_material_packages_directory,
@@ -48,7 +48,7 @@ def test_MaterialPackageWrangler_make_package_02():
     r'''Creates package and populates package correctly.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     configuration = score_manager._configuration
     path = os.path.join(
@@ -66,7 +66,7 @@ def test_MaterialPackageWrangler_make_package_02():
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session(is_test=True)
+        session = scoremanager.iotools.Session(is_test=True)
         manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -76,7 +76,7 @@ def test_MaterialPackageWrangler_make_package_03():
     r'''Creates empty material definition py.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory,
@@ -178,7 +178,7 @@ def test_MaterialPackageWrangler_make_package_07():
         input_ = 'm new testnotes y <return> testnotes dms <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(package_path)
-        session = scoremanager.core.Session(is_test=True)
+        session = scoremanager.iotools.Session(is_test=True)
         manager = scoremanager.wranglers.MaterialPackageManager
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries

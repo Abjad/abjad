@@ -12,7 +12,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> wrangler = scoremanager.wranglers.ScorePackageWrangler(
             ...     session=session,
             ...     )
@@ -23,7 +23,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> session._set_test_score('red_example_score')
             >>> wrangler_in_score = scoremanager.wranglers.ScorePackageWrangler(
             ...     session=session,

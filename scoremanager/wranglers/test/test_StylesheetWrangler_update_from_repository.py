@@ -7,7 +7,7 @@ def test_StylesheetWrangler_update_from_repository_01():
     r'''Works in score.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'red~example~score y rup <return> q'
     score_manager._run(input_=input_)
@@ -18,7 +18,7 @@ def test_StylesheetWrangler_update_from_repository_02():
     r'''Works in library.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
     input_ = 'y rup <return> q'
     score_manager._run(input_=input_)

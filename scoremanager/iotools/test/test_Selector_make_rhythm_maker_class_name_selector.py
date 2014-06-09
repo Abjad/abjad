@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-session = scoremanager.core.Session(is_test=True)
+session = scoremanager.iotools.Session(is_test=True)
 
 
 def test_Selector_make_rhythm_maker_class_name_selector_01():

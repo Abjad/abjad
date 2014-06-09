@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageManager_edit_catalog_number_01():
@@ -20,7 +20,7 @@ def test_ScorePackageManager_edit_catalog_number_01():
     with systemtools.FilesystemState(keep=[metadata_path]):
         input_ = 'red~example~score p catalog~number for~foo~bar q'
         score_manager._run(input_=input_)
-        session = scoremanager.core.Session(is_test=True)
+        session = scoremanager.iotools.Session(is_test=True)
         manager = scoremanager.wranglers.ScorePackageManager
         manager = manager(path=path, session=session)
         assert manager._get_metadatum('catalog_number') == 'for foo bar'

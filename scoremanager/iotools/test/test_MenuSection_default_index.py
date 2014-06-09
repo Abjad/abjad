@@ -2,7 +2,7 @@
 import pytest
 from abjad import *
 import scoremanager
-session = scoremanager.core.Session()
+session = scoremanager.iotools.Session()
 
 
 def test_MenuSection_default_index_01():

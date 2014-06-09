@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.Controller import Controller
+from scoremanager.iotools.Controller import Controller
 
 
 class Menu(Controller):
@@ -16,7 +16,7 @@ class Menu(Controller):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> menu = scoremanager.iotools.Menu(session=session)
             >>> commands = []
             >>> commands.append(('foo - add', 'add'))

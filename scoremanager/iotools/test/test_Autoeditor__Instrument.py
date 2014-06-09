@@ -8,7 +8,7 @@ def test_Autoeditor__Instrument_01():
     Unless short instrument name markup is set explicitly.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Accordion()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -19,7 +19,7 @@ def test_Autoeditor__Instrument_01():
     instrument = autoeditor.target
     assert instrument.short_instrument_name == 'foo'
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Accordion()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -36,7 +36,7 @@ def test_Autoeditor__Instrument_02():
     r'''Edits instrument range.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Marimba()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -47,7 +47,7 @@ def test_Autoeditor__Instrument_02():
     range_ = pitchtools.PitchRange.from_pitches(-19, 36)
     assert autoeditor.target.pitch_range == range_
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Marimba()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -64,7 +64,7 @@ def test_Autoeditor__Instrument_03():
     change instrument name markup.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Accordion()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -75,7 +75,7 @@ def test_Autoeditor__Instrument_03():
     instrument = autoeditor.target
     assert instrument.instrument_name == 'foo'
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Accordion()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -92,7 +92,7 @@ def test_Autoeditor__Instrument_04():
     r'''While editing instrument: main screen.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Accordion()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -124,7 +124,7 @@ def test_Autoeditor__Instrument_05():
     r'''Edits sounding pitch of written middle C.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.FrenchHorn()
     assert target.sounding_pitch_of_written_middle_c == NamedPitch('f')
     autoeditor = scoremanager.iotools.Autoeditor(

@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_make_package_01():
@@ -28,7 +28,7 @@ def test_SegmentPackageWrangler_make_package_01():
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path)
-        session = scoremanager.core.Session(is_test=True)
+        session = scoremanager.iotools.Session(is_test=True)
         manager = scoremanager.wranglers.SegmentPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

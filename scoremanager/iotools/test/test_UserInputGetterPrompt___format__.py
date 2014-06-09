@@ -5,7 +5,7 @@ import scoremanager
 
 def test_UserInputGetterPrompt___format___01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.iotools.Session()
     getter = scoremanager.iotools.UserInputGetter(session=session)
     getter.append_string('value')
     prompt = getter.prompts[0]

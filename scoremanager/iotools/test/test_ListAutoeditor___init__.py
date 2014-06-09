@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
+configuration = scoremanager.iotools.Configuration()
 
 
 def test_ListAutoeditor___init___01():
@@ -11,7 +11,7 @@ def test_ListAutoeditor___init___01():
     '''
 
     os.chdir(configuration.score_manager_directory)
-    session = scoremanager.core.Session()
+    session = scoremanager.iotools.Session()
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     assert isinstance(autoeditor, scoremanager.iotools.ListAutoeditor)
 
@@ -22,6 +22,6 @@ def test_ListAutoeditor___init___02():
     '''
 
     os.chdir(configuration.abjad_directory)
-    session = scoremanager.core.Session()
+    session = scoremanager.iotools.Session()
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     assert isinstance(autoeditor, scoremanager.iotools.ListAutoeditor)

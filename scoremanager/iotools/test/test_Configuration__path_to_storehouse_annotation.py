@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
+configuration = scoremanager.iotools.Configuration()
 
 
 def test_Configuration__path_to_storehouse_annotation_01():

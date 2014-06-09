@@ -10,7 +10,7 @@ from abjad.tools import developerscripttools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.AssetController import AssetController
+from scoremanager.iotools.AssetController import AssetController
 
 
 class Wrangler(AssetController):
@@ -304,7 +304,7 @@ class Wrangler(AssetController):
         system=True,
         repository='git',
         ):
-        from scoremanager import core
+        from scoremanager import iotools
         from scoremanager import wranglers
         abjad_library = False
         example_score_packages = False
@@ -340,7 +340,7 @@ class Wrangler(AssetController):
                 path = os.path.join(scores_directory, directory_entry)
                 if os.path.isdir(path):
                     asset_paths.append(path)
-        session = core.Session()
+        session = iotools.Session()
         for asset_path in asset_paths:
             manager = self._manager_class(
                 path=asset_path,

@@ -14,7 +14,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> wrangler = scoremanager.wranglers.MaterialPackageWrangler(
             ...     session=session,
             ...     )
@@ -25,7 +25,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> session._set_test_score('red_example_score')
             >>> wrangler_in_score = scoremanager.wranglers.MaterialPackageWrangler(
             ...     session=session,

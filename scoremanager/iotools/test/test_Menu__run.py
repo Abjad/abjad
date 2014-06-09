@@ -7,7 +7,7 @@ def test_Menu__run_01():
     r'''String menu_entry defaults.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -50,7 +50,7 @@ def test_Menu__run_02():
     r'''Hidden menu section.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -94,7 +94,7 @@ def test_Menu__run_03():
     r'''Numbered menu section.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -138,7 +138,7 @@ def test_Menu__run_04():
     r'''Menu section with range selection turned on.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -183,7 +183,7 @@ def test_Menu__run_05():
     r'''Keyed menu section with key returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -239,7 +239,7 @@ def test_Menu__run_06():
     r'''Keyed menu section with display string returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -293,7 +293,7 @@ def test_Menu__run_07():
     r'''Hidden keyed menu section with key returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -350,7 +350,7 @@ def test_Menu__run_08():
     r'''Hidden keyed menu section with display string returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -407,7 +407,7 @@ def test_Menu__run_09():
     r'''Numbered keyed menu section with key returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -464,7 +464,7 @@ def test_Menu__run_10():
     r'''Ranged keyed menu section with with key returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -521,7 +521,7 @@ def test_Menu__run_11():
     r'''RK menu section with display string returned.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',
@@ -579,7 +579,7 @@ def test_Menu__run_12():
     r'''Displays unknown command message.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     menu = scoremanager.iotools.Menu(
         breadcrumb_callback='name',
         name='test',

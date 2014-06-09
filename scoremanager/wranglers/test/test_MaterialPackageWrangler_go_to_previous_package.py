@@ -7,7 +7,7 @@ def test_MaterialPackageWrangler_go_to_previous_package_01():
     r'''Previous material package.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m < < < < < < q'
     score_manager._run(input_=input_)
     titles = [
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_go_to_previous_package_02():
     sibling asset.
     '''
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m < < g < < q'
     score_manager._run(input_=input_)
     titles = [

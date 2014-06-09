@@ -33,7 +33,7 @@ class PerformerInventory(TypedList):
 
     @staticmethod
     def _make_item_creator_class():
-        from scoremanager.core.Controller import Controller
+        from scoremanager.iotools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = (

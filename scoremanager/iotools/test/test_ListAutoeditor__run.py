@@ -2,14 +2,14 @@
 import pytest
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_ListAutoeditor__run_01():
     r'''Edits built-in list.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.ListAutoeditor(session=session)
     input_ = "17 99 'foo' done q"
     autoeditor._is_autoadding = True
@@ -22,7 +22,7 @@ def test_ListAutoeditor__run_02():
     r'''Edits empty clef inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = indicatortools.ClefInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -39,7 +39,7 @@ def test_ListAutoeditor__run_03():
     r'''Edits nonempty clef inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = indicatortools.ClefInventory(['treble', 'bass'])
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -56,7 +56,7 @@ def test_ListAutoeditor__run_04():
     r'''Edits empty markup inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = markuptools.MarkupInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -78,7 +78,7 @@ def test_ListAutoeditor__run_05():
     r'''Edits nonempty markup inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = markuptools.MarkupInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -110,7 +110,7 @@ def test_ListAutoeditor__run_06():
     Works with duration pairs.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = indicatortools.TempoInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -135,7 +135,7 @@ def test_ListAutoeditor__run_07():
     '''
     pytest.skip('make me work again.')
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = indicatortools.TempoInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -157,7 +157,7 @@ def test_ListAutoeditor__run_08():
     r'''Edits empty pitch range inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = pitchtools.PitchRangeInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -178,7 +178,7 @@ def test_ListAutoeditor__run_09():
     r'''Edits empty octave transposition mapping.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -199,7 +199,7 @@ def test_ListAutoeditor__run_10():
     r'''Edits empty octave transposition mapping.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = pitchtools.OctaveTranspositionMapping()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -220,7 +220,7 @@ def test_ListAutoeditor__run_11():
     r'''Edits instrument inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.InstrumentInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -241,7 +241,7 @@ def test_ListAutoeditor__run_12():
     r'''Edits view.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = scoremanager.iotools.View()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,

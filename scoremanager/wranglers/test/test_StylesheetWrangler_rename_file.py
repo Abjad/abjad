@@ -2,8 +2,8 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+configuration = scoremanager.iotools.Configuration()
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_StylesheetWrangler_rename_file_01():

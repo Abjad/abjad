@@ -9,7 +9,7 @@ def test_Autoeditor__run_01():
     '''
 
     target = Clef('alto')
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
@@ -25,7 +25,7 @@ def test_Autoeditor__run_02():
     '''
 
     target = Tempo()
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
@@ -40,7 +40,7 @@ def test_Autoeditor__run_03():
     r'''Edits tempo duration with pair.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Tempo(),
@@ -55,7 +55,7 @@ def test_Autoeditor__run_04():
     r'''Edits tempo duration with duration object.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Tempo(),
@@ -70,7 +70,7 @@ def test_Autoeditor__run_05():
     r'''Edits markup contents.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Markup(),
@@ -86,7 +86,7 @@ def test_Autoeditor__run_06():
     r'''Edits markup contents and direction.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=Markup(),
@@ -102,7 +102,7 @@ def test_Autoeditor__run_07():
     '''
 
     target = Markup('foo bar')
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
@@ -118,7 +118,7 @@ def test_Autoeditor__run_08():
     '''
 
     target = pitchtools.OctaveTranspositionMappingComponent()
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
         target=target,
@@ -134,7 +134,7 @@ def test_Autoeditor__run_09():
     r'''Edits pitch range.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = pitchtools.PitchRange()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -145,7 +145,7 @@ def test_Autoeditor__run_09():
 
     assert autoeditor.target == pitchtools.PitchRange('[F#3, C5)')
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = pitchtools.PitchRange()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -161,7 +161,7 @@ def test_Autoeditor__run_10():
     r'''Edits hairpin handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -183,7 +183,7 @@ def test_Autoeditor__run_11():
     r'''Edits hairpins handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.NoteAndChordHairpinsHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -205,7 +205,7 @@ def test_Autoeditor__run_12():
     r'''Edits patterned articulations handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -230,7 +230,7 @@ def test_Autoeditor__run_13():
     r'''Edits reiterated articulation handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -256,7 +256,7 @@ def test_Autoeditor__run_14():
     r'''Edits reiterated articulation handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.ReiteratedArticulationHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -278,7 +278,7 @@ def test_Autoeditor__run_15():
     r'''Edits reiterated dynamic handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.ReiteratedDynamicHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -300,7 +300,7 @@ def test_Autoeditor__run_16():
     r'''Edits terraced dynamics handler.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = handlertools.TerracedDynamicsHandler()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -322,7 +322,7 @@ def test_Autoeditor__run_17():
     r'''Edits talea rhythm-maker.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = rhythmmakertools.TaleaRhythmMaker()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -349,7 +349,7 @@ def test_Autoeditor__run_18():
     r'''Adds instruments to performer instrument inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Performer()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -374,7 +374,7 @@ def test_Autoeditor__run_19():
     r'''Removes instruments from performer instrument inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Performer()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,
@@ -398,7 +398,7 @@ def test_Autoeditor__run_20():
     r'''Moves instruments in performer instrument inventory.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.Performer()
     autoeditor = scoremanager.iotools.Autoeditor(
         session=session,

@@ -3,8 +3,8 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+configuration = scoremanager.iotools.Configuration()
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_rename_file_01():

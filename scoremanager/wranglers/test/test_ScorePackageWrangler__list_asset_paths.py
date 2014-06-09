@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-session = scoremanager.core.Session(is_test=True)
+session = scoremanager.iotools.Session(is_test=True)
 
 
 def test_ScorePackageWrangler__list_asset_paths_01():

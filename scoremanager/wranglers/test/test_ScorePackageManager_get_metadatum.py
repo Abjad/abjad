@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.AbjadIDE(is_test=True) 
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True) 
 metadata_py_path = os.path.join(
     score_manager._configuration.example_score_packages_directory,
     'red_example_score',

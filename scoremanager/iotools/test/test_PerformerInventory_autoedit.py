@@ -8,7 +8,7 @@ def test_PerformerInventory_autoedit_01():
     r'''Adds three performers to instrumentation specifier.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -41,7 +41,7 @@ def test_PerformerInventory_autoedit_02():
     Tests range handling.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -69,7 +69,7 @@ def test_PerformerInventory_autoedit_03():
     r'''Edits instrumentation specifier. Adds three performers. Removes two.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -97,7 +97,7 @@ def test_PerformerInventory_autoedit_04():
     Tests range handling.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,
@@ -123,7 +123,7 @@ def test_PerformerInventory_autoedit_05():
     Makes two moves.
     '''
 
-    session = scoremanager.core.Session(is_test=True)
+    session = scoremanager.iotools.Session(is_test=True)
     target = instrumenttools.PerformerInventory()
     autoeditor = scoremanager.iotools.ListAutoeditor(
         session=session,

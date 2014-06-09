@@ -11,11 +11,10 @@ Do the following to install the Abjad IDE on your system:
     6. build the Abjad IDE API.
     7. run doctest.
 
-1. Verify the Abjad IDE directories. The following 11 directories should
+1. Verify the Abjad IDE directories. The following 10 directories should
 appear on your filesystem after checkout:
 
     boilerplate/
-    core/
     docs/
     etc/
     iotools/
@@ -57,13 +56,11 @@ all tests pass.
 '''
 import sys
 if sys.version_info[0] == 2:
-    import core
     import exceptions
     import iotools
     import predicates
     import wranglers
 else:
-    from scoremanager import core
     from scoremanager import iotools
     from scoremanager import predicates
     from scoremanager import wranglers

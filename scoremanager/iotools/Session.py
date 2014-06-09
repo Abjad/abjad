@@ -13,7 +13,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session = scoremanager.core.Session()
+            >>> session = scoremanager.iotools.Session()
             >>> session
             Session()
 
@@ -23,7 +23,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session_in_score = scoremanager.core.Session()
+            >>> session_in_score = scoremanager.iotools.Session()
             >>> session_in_score._set_test_score('red_example_score')
 
     '''
@@ -97,7 +97,6 @@ class Session(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, input_=None, is_test=False):
-        from scoremanager import core
         from scoremanager import iotools
         self._attempted_repository_status = False
         self._attempted_to_add_to_repository = False
@@ -106,7 +105,7 @@ class Session(abctools.AbjadObject):
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
         self._command_history = []
-        self._configuration = core.Configuration()
+        self._configuration = iotools.Configuration()
         self._confirm = True
         self._controller_stack = []
         self._controllers_visited = []

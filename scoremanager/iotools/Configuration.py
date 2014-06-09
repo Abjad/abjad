@@ -10,7 +10,7 @@ class Configuration(AbjadConfiguration):
 
         ::
 
-            >>> score_manager = scoremanager.core.AbjadIDE(is_test=True)
+            >>> score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
             >>> configuration = score_manager._configuration
             >>> configuration
             Configuration()
@@ -165,7 +165,7 @@ class Configuration(AbjadConfiguration):
         import scoremanager
         score_path = self._path_to_score_path(path)
         if score_path:
-            session = scoremanager.core.Session
+            session = scoremanager.iotools.Session
             manager = scoremanager.wranglers.ScorePackageManager(
                 path=score_path,
                 session=session,

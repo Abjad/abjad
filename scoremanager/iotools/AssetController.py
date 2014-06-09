@@ -3,7 +3,7 @@ import os
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.Controller import Controller
+from scoremanager.iotools.Controller import Controller
 
 
 class AssetController(Controller):

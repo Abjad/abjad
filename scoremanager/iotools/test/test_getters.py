@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-session = scoremanager.core.Session()
+session = scoremanager.iotools.Session()
 
 
 

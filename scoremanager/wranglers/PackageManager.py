@@ -5,7 +5,7 @@ import os
 import shutil
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.AssetController import AssetController
+from scoremanager.iotools.AssetController import AssetController
 
 
 class PackageManager(AssetController):

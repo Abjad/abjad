@@ -20,8 +20,8 @@ class Transcript(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        from scoremanager import core
-        self._configuration = core.Configuration()
+        from scoremanager import iotools
+        self._configuration = iotools.Configuration()
         self._entries = []
         current_time = datetime.datetime.fromtimestamp(time.time())
         self._start_time = current_time

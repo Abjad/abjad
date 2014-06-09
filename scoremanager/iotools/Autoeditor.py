@@ -3,7 +3,7 @@ import types
 from abjad.tools import datastructuretools
 from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
-from scoremanager.core.Controller import Controller
+from scoremanager.iotools.Controller import Controller
 
 
 class Autoeditor(Controller):

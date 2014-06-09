@@ -2,9 +2,9 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.Configuration()
-session = scoremanager.core.Session()
-score_manager = scoremanager.core.AbjadIDE(is_test=True)
+configuration = scoremanager.iotools.Configuration()
+session = scoremanager.iotools.Session()
+score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler__find_up_to_date_manager_01():

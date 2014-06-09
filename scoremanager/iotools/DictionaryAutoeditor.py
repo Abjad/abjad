@@ -9,7 +9,7 @@ class DictionaryAutoeditor(CollectionAutoeditor):
 
     ::
 
-        >>> session = scoremanager.core.Session()
+        >>> session = scoremanager.iotools.Session()
         >>> autoeditor = scoremanager.iotools.DictionaryAutoeditor(
         ...     session=session,
         ...     )

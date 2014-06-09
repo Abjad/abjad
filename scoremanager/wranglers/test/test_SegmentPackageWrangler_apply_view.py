@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must have is_test=False to test view application
-score_manager = scoremanager.core.AbjadIDE(is_test=False)
+score_manager = scoremanager.iotools.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__SegmentPackageWrangler_views__.py',

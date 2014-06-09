@@ -22,8 +22,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         ::
 
             >>> import os
-            >>> configuration = scoremanager.core.Configuration()
-            >>> session = scoremanager.core.Session()
+            >>> configuration = scoremanager.iotools.Configuration()
+            >>> session = scoremanager.iotools.Session()
             >>> path = os.path.join(
             ...     configuration.abjad_material_packages_directory,
             ...     'example_numbers',

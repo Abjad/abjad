@@ -68,7 +68,7 @@ class InstrumentInventory(TypedList):
     ### ITEM CREATOR ###
 
     def _make_item_creator_class(self):
-        from scoremanager.core.Controller import Controller
+        from scoremanager.iotools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target',)

@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialPackageManager_edit_illustrate_py_01():
 
-    score_manager = scoremanager.core.AbjadIDE(is_test=True)
+    score_manager = scoremanager.iotools.AbjadIDE(is_test=True)
     input_ = 'm example~numbers ie q'
     score_manager._run(input_=input_)
 
