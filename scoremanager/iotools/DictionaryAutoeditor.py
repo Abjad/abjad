@@ -89,59 +89,13 @@ class DictionaryAutoeditor(CollectionAutoeditor):
         '''
         from scoremanager import iotools
         getter = self._io_manager._make_getter()
-        getter.append_string('enter dictionary key')
+        getter.append_string('enter item name')
         key = getter._run()
         if self._session.is_backtracking or not key:
             return
-        if self._item_creator_class:
-            item_creator_class = self._item_creator_class
-            if self._item_class:
-                target = self._item_class()
-            else:
-                target = None
-            item_creator = item_creator_class(
-                session=self._session,
-                target=target,
-                **self._item_creator_class_kwargs
-                )
-            result = item_creator._run()
-            if self._session.is_backtracking:
-                return
-            if result == 'done':
-                self._session._is_autoadding = False
-                return
-            result = result or item_creator.target
-        elif self._item_getter_configuration_method:
-            getter = self._io_manager._make_getter()
-            self._item_getter_configuration_method(
-                getter,
-                self._asset_identifier,
-                )
-            lines = []
-            lines.append('from abjad import *')
-            lines.append('evaluated_input = {}')
-            getter.prompts[0].setup_statements.extend(lines)
-            item_initialization_token = getter._run()
-            if self._session.is_backtracking or not item_initialization_token:
-                return
-            if item_initialization_token == 'done':
-                self._session._is_autoadding = False
-                return
-            print(repr(self._item_class))
-            if self._item_class:
-                if isinstance(item_initialization_token, str):
-                    exec(self._abjad_import_statement)
-                    try:
-                        expression = eval(item_initialization_token)
-                    except (NameError, SyntaxError):
-                        expression = item_initialization_token
-                else:
-                    expression = item_initialization_token
-                result = self._item_class(expression)
-            else:
-                result = item_initialization_token
-        else:
-            result = self._item_class()
+        result = self._get_item_to_add()
+        if self._session.is_backtracking:
+            return
         if result is None:
             result = []
         if type(result) is list:
