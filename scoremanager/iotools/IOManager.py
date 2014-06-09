@@ -265,8 +265,8 @@ class IOManager(IOManager):
             )
 
     def _make_package_manager(self, path):
-        from scoremanager import wranglers
-        return wranglers.PackageManager(
+        from scoremanager import iotools
+        return iotools.PackageManager(
             path=path,
             session=self._session,
             )

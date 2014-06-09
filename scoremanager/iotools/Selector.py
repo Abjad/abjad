@@ -189,12 +189,12 @@ class Selector(Controller):
 
         Returns selector.
         '''
-        from scoremanager import wranglers
+        from scoremanager import iotools
         storehouse_paths = storehouse_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory in storehouse_paths:
-            manager = wranglers.PackageManager(
+            manager = iotools.PackageManager(
                 path=directory,
                 session=self._session,
                 )
@@ -291,8 +291,8 @@ class Selector(Controller):
 
         Returns selector.
         '''
-        from scoremanager import wranglers
-        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+        from scoremanager import iotools
+        wrangler = iotools.MaterialPackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
             output_material_class_name=output_material_class_name,
             )

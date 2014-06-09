@@ -166,7 +166,7 @@ class Configuration(AbjadConfiguration):
         score_path = self._path_to_score_path(path)
         if score_path:
             session = scoremanager.iotools.Session
-            manager = scoremanager.wranglers.ScorePackageManager(
+            manager = scoremanager.iotools.ScorePackageManager(
                 path=score_path,
                 session=session,
                 )

@@ -251,14 +251,14 @@ class Session(abctools.AbjadObject):
         self._is_repository_test = is_add_to_repository_test
 
     def _set_test_score(self, score_package_name):
-        from scoremanager import wranglers
+        from scoremanager import iotools
         assert not self.controller_stack
         path = os.path.join(
             self._configuration.example_score_packages_directory,
             score_package_name,
             )
         assert os.path.exists(path)
-        manager = wranglers.ScorePackageManager(
+        manager = iotools.ScorePackageManager(
             path=path,
             session=self,
             )
@@ -323,7 +323,7 @@ class Session(abctools.AbjadObject):
                 >>> session.controller_stack
                 []
 
-        Returns list of objects all of which are either wranglers or wranglers.
+        Returns list of objects all of which are either wranglers or iotools.
         '''
         return self._controller_stack
 
@@ -434,9 +434,9 @@ class Session(abctools.AbjadObject):
 
         Returns score package manager or none.
         '''
-        from scoremanager import wranglers
+        from scoremanager import iotools
         for controller in reversed(self.controller_stack):
-            if isinstance(controller, wranglers.ScorePackageManager):
+            if isinstance(controller, iotools.ScorePackageManager):
                 return controller
 
     @property

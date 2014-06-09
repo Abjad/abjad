@@ -43,14 +43,14 @@ class AbjadIDE(AssetController):
     @property
     @systemtools.Memoize
     def _build_file_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.BuildFileWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.BuildFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _distribution_file_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.DistributionFileWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.DistributionFileWrangler(session=self._session)
 
     @property
     def _input_to_method(self):
@@ -67,32 +67,32 @@ class AbjadIDE(AssetController):
     @property
     @systemtools.Memoize
     def _maker_file_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MakerFileWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.MakerFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _material_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.MaterialPackageWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.MaterialPackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _score_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.ScorePackageWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.ScorePackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _segment_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.SegmentPackageWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.SegmentPackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
     def _stylesheet_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.StylesheetWrangler(session=self._session)
+        from scoremanager import iotools
+        return iotools.StylesheetWrangler(session=self._session)
 
     ### PRIVATE METHODS ###
 

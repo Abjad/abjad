@@ -31,7 +31,7 @@ def test_Session_controllers_visited_01():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -48,9 +48,9 @@ def test_Session_controllers_visited_02():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
@@ -69,13 +69,13 @@ def test_Session_controllers_visited_03():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             session=session,
             path=score_package_path,
             ),
-        scoremanager.wranglers.BuildFileWrangler(session=session),
+        scoremanager.iotools.BuildFileWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -91,13 +91,13 @@ def test_Session_controllers_visited_04():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
-        scoremanager.wranglers.MaterialPackageWrangler(session=session),
+        scoremanager.iotools.MaterialPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -113,14 +113,14 @@ def test_Session_controllers_visited_05():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
-        scoremanager.wranglers.MaterialPackageWrangler(session=session),
-        scoremanager.wranglers.MaterialPackageManager(
+        scoremanager.iotools.MaterialPackageWrangler(session=session),
+        scoremanager.iotools.MaterialPackageManager(
             path=tempo_inventory_package_path,
             session=session,
             ),
@@ -139,13 +139,13 @@ def test_Session_controllers_visited_06():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
-        scoremanager.wranglers.SegmentPackageWrangler(session=session),
+        scoremanager.iotools.SegmentPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -161,14 +161,14 @@ def test_Session_controllers_visited_07():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
-        scoremanager.wranglers.SegmentPackageWrangler(session=session),
-        scoremanager.wranglers.SegmentPackageManager(
+        scoremanager.iotools.SegmentPackageWrangler(session=session),
+        scoremanager.iotools.SegmentPackageManager(
             path=segment_package_path,
             session=session,
             ),
@@ -187,12 +187,12 @@ def test_Session_controllers_visited_08():
     session = scoremanager.iotools.Session(is_test=True)
     controllers = [
         scoremanager.iotools.AbjadIDE(session=session, is_test=True),
-        scoremanager.wranglers.ScorePackageWrangler(session=session),
+        scoremanager.iotools.ScorePackageWrangler(session=session),
         scoremanager.iotools.Menu(session=session),
-        scoremanager.wranglers.ScorePackageManager(
+        scoremanager.iotools.ScorePackageManager(
             path=score_package_path,
             session=session,
             ),
-        scoremanager.wranglers.StylesheetWrangler(session=session),
+        scoremanager.iotools.StylesheetWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
