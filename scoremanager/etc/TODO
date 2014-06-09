@@ -1,28 +1,20 @@
-1.  Improve (k > cp) user experience. Change ...
-        Enter maker file to copy> 1
-        New maker file name> RedExampleScoreRhythmMaker.py
-    ... to ...
-        Enter maker file to copy> 1
-        (Name of maker file to copy: RedExampleScoreTemplate.py)
-        New maker file name> RedExampleScoreRhythmMaker.py
-    ... instead.
-
-2.  Add 'all segments - list versions directories'.
+1.  Add 'all segments - list versions directories'.
     Add 'all materials - list versions directories'.
+    Implement ScoreInternalPackageWrangler.list_every_versions_directory().
 
-3.  Open audio files with audio player. Use (d) for examples to test.
+2.  Open audio files with audio player. Use (d) for examples to test.
 
-4.  Wrap metadata tests with FilesystemState context.
+3.  Wrap metadata tests with FilesystemState context.
 
-5.  Move SargassoMeasureMaker to the makers directory on an example score.
+4.  Move SargassoMeasureMaker to the makers directory on an example score.
     Remove scoremanager/makers directory.
 
-6.  Remove scoremanager/wizards directory.
+5.  Remove scoremanager/wizards directory.
     Migrate InstrumentCreationWizard to some class in instrumenttools.
     Migrate PerformerCreationWizard to some class in instrumenttools.
     
-7.  Collapse all Abjad IDE classes to a single package.
+6.  Collapse all Abjad IDE classes to a single package.
 
-8.  Improve (rup) messaging.
+7.  Improve (rup) messaging.
 
-9.  Implement an 'all whatever - edit' command.
+8.  Implement an 'all whatever - edit' command.
