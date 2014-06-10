@@ -107,7 +107,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'dae': self.autoopen_definition_py,
             'dc': self.check_definition_py,
             'do': self.open_definition_py,
-            'di': self.interpret_definition_py,
             'ds': self.write_stub_definition_py,
             #
             'ie': self.edit_illustrate_py,
@@ -214,18 +213,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if not os.path.isfile(self._definition_py_path):
             return True
         return False
-
-    def _interpret_definition_py(self):
-        if not os.path.isfile(self._definition_py_path):
-            return
-        result = self._io_manager.execute_file(
-            path=self._definition_py_path,
-            attribute_names=(self._material_package_name,),
-            )
-        if result:
-            assert len(result) == 1
-            result = result[0]
-            return result
 
     def _make_autoeditor_summary_menu_section(self, menu):
         if not self._get_metadatum('use_autoeditor'):
@@ -657,16 +644,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             contents = '\n'.join(lines)
             self._io_manager.write(path, contents)
             self._io_manager.interpret_file(path)
-
-    def interpret_definition_py(self):
-        r'''Interprets ``definition.py``.
-
-        Returns none.
-        '''
-        result = self._io_manager.interpret_file(self._definition_py_path)
-        if result:
-            message = 'no exceptions raised; use (oo) to write output py.'
-            self._io_manager._display(message)
 
     def interpret_illustrate_py(self):
         r'''Interprets ``__illustrate.py__``.

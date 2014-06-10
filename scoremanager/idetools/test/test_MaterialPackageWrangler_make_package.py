@@ -182,8 +182,6 @@ def test_MaterialPackageWrangler_make_package_07():
         manager = scoremanager.idetools.MaterialPackageManager
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries
-        assert manager._interpret_definition_py() is None
-        assert manager._execute_output_py() is None
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
 
