@@ -296,7 +296,7 @@ class SargassoMeasureMaker(AbjadObject):
 
     def _make_output_material_lines(self, output_material):
         lines = []
-        lines.append('{} = ['.format(self._material_package_name))
+        lines.append('{} = ['.format(self._package_name))
         for measure in output_material[:-1]:
             line = measure._one_line_input_string
             line = 'scoretools.' + line

@@ -136,10 +136,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return os.path.join(self._path, 'maker.py')
 
     @property
-    def _material_package_name(self):
-        return os.path.basename(self._path)
-
-    @property
     def _output_py_path(self):
         return os.path.join(self._path, 'output.py')
 
@@ -175,14 +171,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _execute_definition_py(self):
         result = self._io_manager.execute_file(
             path = self._definition_py_path,
-            attribute_names=('target',)
+            attribute_names=(self._package_name,)
             )
         if result and len(result) == 1:
             target = result[0]
             return target
 
     def _execute_output_py(self):
-        attribute_names = (self._material_package_name,)
+        attribute_names = (self._package_name,)
         result = self._io_manager.execute_file(
             path = self._output_py_path,
             attribute_names=attribute_names,
@@ -210,9 +206,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if not os.path.isfile(self._output_py_path):
                 return
         output_material = self._execute_output_py()
-        autoeditor = self._io_manager._make_autoeditor(target=output_material)
-        if not autoeditor:
+        if output_material is None:
             return
+        autoeditor = self._io_manager._make_autoeditor(target=output_material)
         lines = autoeditor._get_target_summary_lines()
         lines = lines or ['(empty)']
         return menu.make_material_summary_section(lines=lines)
@@ -243,7 +239,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             lines = [repr(target)]
         lines = list(lines)
-        lines[0] = 'target = {}'.format(lines[0])
+        lines[0] = '{} = {}'.format(self._package_name, lines[0])
         return lines
 
     def _make_illustrate_py_menu_section(self, menu):
@@ -316,7 +312,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         result = self._retrieve_import_statements_and_output_material()
         import_statements, output_material = result
         body_string = '{} = {}'
-        output_material_name = self._material_package_name
+        output_material_name = self._package_name
         output_material = self._get_storage_format(output_material)
         body_string = body_string.format(
             output_material_name,
@@ -330,7 +326,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             lines = [repr(output_material)]
         lines = list(lines)
-        lines[0] = '{} = {}'.format(self._material_package_name, lines[0])
+        lines[0] = '{} = {}'.format(self._package_name, lines[0])
         return lines
 
     def _make_output_py_menu_section(self, menu):
@@ -368,7 +364,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines.append('import os')
         lines.append(self._abjad_import_statement)
         line = 'from output import {}'
-        line = line.format(self._material_package_name)
+        line = line.format(self._package_name)
         lines.append(line)
         if os.path.isfile(self._illustrate_py_path):
             lines.append('from illustrate import __illustrate__')
@@ -378,7 +374,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             line = 'lilypond_file = __illustrate__({})'
         else:
             line = 'lilypond_file = {}.__illustrate__()'
-        line = line.format(self._material_package_name)
+        line = line.format(self._package_name)
         lines.append(line)
         lines.append('path = os.path.abspath(__file__)')
         lines.append('directory = os.path.dirname(path)')
@@ -464,7 +460,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
             'output_py_import_statements',
-            self._material_package_name,
+            self._package_name,
             )
         result = self._io_manager.execute_file(
             path=self._definition_py_path,
@@ -723,12 +719,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines.append('')
         lines.extend(output_material_lines)
         contents = '\n'.join(lines)
+        clear = not os.path.isfile(self._output_py_path)
         self._io_manager.write(self._output_py_path, contents)
         output_material_class_name = type(output_material).__name__
         self._add_metadatum(
             'output_material_class_name', 
             output_material_class_name,
             )
+        
+        self._session._is_pending_output_removal = clear
 
     def set_output_py_autoeditor(self):
         r'''Sets autoeditor.
@@ -810,7 +809,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines.append('')
         lines.extend(target_lines)
         contents = '\n'.join(lines)
+        clear = not os.path.isfile(self._definition_py_path)
         self._io_manager.write(self._definition_py_path, contents)
+        self._session._is_pending_output_removal = clear
 
     def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.
@@ -829,7 +830,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines.append('output_py_import_statements = []')
         lines.append('')
         lines.append('')
-        line = '{} = None'.format(self._material_package_name)
+        line = '{} = None'.format(self._package_name)
         lines.append(line)
         contents = '\n'.join(lines)
         with open(self._definition_py_path, 'w') as file_pointer:
