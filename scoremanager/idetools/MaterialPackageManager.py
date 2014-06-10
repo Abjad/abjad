@@ -120,12 +120,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'oae': self.autoedit_output_py,
             'oi': self.illustrate_output_py,
             #
-            'mae': self.autoedit_maker_py,
-            'mc': self.check_maker_py,
-            'mi': self.interpret_maker_py,
-            'mo': self.open_maker_py,
-            'ms': self.write_stub_maker_py,
-            #
             'oc': self.check_output_py,
             'oo': self.open_output_py,
             'ow': self.write_output_py,
@@ -298,7 +292,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_init_py_menu_section(menu)
-        self._make_maker_py_menu_section(menu)
         self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
@@ -313,24 +306,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         except KeyError:
             pass
         return menu
-
-    def _make_maker_py_menu_section(self, menu):
-        commands = []
-        if os.path.isfile(self._maker_py_path):
-            commands.append(('maker.py - autoedit', 'mae'))
-            commands.append(('maker.py - check', 'mc'))
-            commands.append(('maker.py - interpret', 'mi'))
-            commands.append(('maker.py - open', 'mo'))
-            is_hidden = False
-        else:
-            commands.append(('maker.py - stub', 'ms'))
-            is_hidden = True
-        if commands:
-            menu.make_command_section(
-                is_hidden=is_hidden,
-                commands=commands,
-                name='maker.py',
-                )
 
     def _make_output_material(self):
         return
@@ -517,13 +492,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def autoedit_maker_py(self):
-        r'''Autoedits ``maker.py``.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
 
@@ -570,24 +538,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._io_manager._display(messages)
         else:
             message = '{} OK.'.format(self._definition_py_path)
-            self._io_manager._display(message)
-
-    def check_maker_py(self, dry_run=False):
-        r'''Checks ``maker.py``.
-
-        Display errors generated during interpretation.
-        '''
-        inputs, outputs = [], []
-        if dry_run:
-            inputs.append(self._maker_py_path)
-            return inputs, outputs
-        stderr_lines = self._io_manager.check_file(self._maker_py_path)
-        if stderr_lines:
-            messages = [self._maker_py_path + ' FAILED:']
-            messages.extend('    ' + _ for _ in stderr_lines)
-            self._io_manager._display(messages)
-        else:
-            message = '{} OK.'.format(self._maker_py_path)
             self._io_manager._display(message)
 
     def check_output_py(self, dry_run=False):
@@ -665,15 +615,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
 
-    def interpret_maker_py(self):
-        r'''Interprets ``maker.py``.
-
-        Writes ``output.py``.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.
 
@@ -688,13 +629,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.open_file(self._illustration_pdf_path)
 
-    def open_maker_py(self):
-        r'''Opens ``maker.py``.
-
-        Returns none.
-        '''
-        self._io_manager.open_file(self._maker_py_path)
-    
     def open_output_py(self):
         r'''Opens ``output.py``.
 
@@ -893,25 +827,3 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = 'wrote stub to {}.'
         message = message.format(self._illustrate_py_path)
         self._io_manager._display(message)
-
-    def write_stub_maker_py(self):
-        r'''Writes stub ``maker.py``.
-
-        Returns none.
-        '''
-        message = 'will write stub to {}.'
-        message = message.format(self._maker_py_path)
-        self._io_manager._display(message)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.append(self._abjad_import_statement)
-        lines.append('')
-        lines.append('')
-        lines.append('maker = None')
-        contents = '\n'.join(lines)
-        with open(self._maker_py_path, 'w') as file_pointer:
-            file_pointer.write(contents)
-        self._session._is_pending_output_removal = True
