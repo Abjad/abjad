@@ -11,4 +11,4 @@ def test_BuildFileWrangler_write_views_py_01():
     contents = score_manager._transcript.contents
 
     assert 'Will write ...' in contents
-    assert 'Rewrote' in contents
+    assert 'Wrote' in contents

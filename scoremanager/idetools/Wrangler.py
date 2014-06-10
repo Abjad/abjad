@@ -194,49 +194,6 @@ class Wrangler(AssetController):
     def _enter_run(self):
         pass
 
-    def _match_display_string_view_pattern(self, pattern, entry):
-        display_string, _, _, path = entry
-        token = ':ds:'
-        assert token in pattern, repr(pattern)
-        pattern = pattern.replace(token, repr(display_string))
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            return False
-        return result
-
-    def _match_metadata_view_pattern(self, pattern, entry):
-        display_string, _, _, path = entry
-        manager = self._io_manager._make_package_manager(path)
-        count = pattern.count('md:')
-        for _ in xrange(count+1):
-            parts = pattern.split()
-            for part in parts:
-                if part.startswith('md:'):
-                    metadatum_name = part[3:]
-                    metadatum = manager._get_metadatum(metadatum_name)
-                    metadatum = repr(metadatum)
-                    pattern = pattern.replace(part, metadatum)
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            return False
-        return result
-
-    def _match_path_view_pattern(self, pattern, entry):
-        display_string, _, _, path = entry
-        token = ':path:'
-        assert token in pattern, repr(pattern)
-        pattern = pattern.replace(token, repr(path))
-        try:
-            result = eval(pattern)
-        except:
-            traceback.print_exc()
-            return False
-        return result
-
     def _extract_common_parent_directories(self, paths):
         parent_directories = []
         example_score_packages_directory = \
@@ -783,6 +740,49 @@ class Wrangler(AssetController):
             name='__views__.py',
             )
 
+    def _match_display_string_view_pattern(self, pattern, entry):
+        display_string, _, _, path = entry
+        token = ':ds:'
+        assert token in pattern, repr(pattern)
+        pattern = pattern.replace(token, repr(display_string))
+        try:
+            result = eval(pattern)
+        except:
+            traceback.print_exc()
+            return False
+        return result
+
+    def _match_metadata_view_pattern(self, pattern, entry):
+        display_string, _, _, path = entry
+        manager = self._io_manager._make_package_manager(path)
+        count = pattern.count('md:')
+        for _ in xrange(count+1):
+            parts = pattern.split()
+            for part in parts:
+                if part.startswith('md:'):
+                    metadatum_name = part[3:]
+                    metadatum = manager._get_metadatum(metadatum_name)
+                    metadatum = repr(metadatum)
+                    pattern = pattern.replace(part, metadatum)
+        try:
+            result = eval(pattern)
+        except:
+            traceback.print_exc()
+            return False
+        return result
+
+    def _match_path_view_pattern(self, pattern, entry):
+        display_string, _, _, path = entry
+        token = ':path:'
+        assert token in pattern, repr(pattern)
+        pattern = pattern.replace(token, repr(path))
+        try:
+            result = eval(pattern)
+        except:
+            traceback.print_exc()
+            return False
+        return result
+
     def _open_file_ending_with(self, string):
         path = self._get_file_path_ending_with(string)
         if path:
@@ -1325,24 +1325,6 @@ class Wrangler(AssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.revert_to_repository()
 
-    def write_views_py(self):
-        r'''Rewrites ``__views__.py``.
-
-        Returns none.
-        '''
-        inputs, outputs = [], []
-        inputs.append(self._views_py_path)
-        messages = self._format_messaging(inputs, outputs, verb='write')
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        view_inventory = self._read_view_inventory()
-        with self._io_manager._make_silent():
-            self._write_view_inventory(view_inventory)
-        message = 'rewrote {}.'.format(self._views_py_path)
-        self._io_manager._display(message)
-
     def update_from_repository(self):
         r'''Updates files from repository.
 
@@ -1363,3 +1345,21 @@ class Wrangler(AssetController):
                 messages_ = [tab + _ for _ in messages_]
                 messages.extend(messages_)
             self._io_manager._display(messages, capitalize=False)
+
+    def write_views_py(self):
+        r'''Rewrites ``__views__.py``.
+
+        Returns none.
+        '''
+        inputs, outputs = [], []
+        inputs.append(self._views_py_path)
+        messages = self._format_messaging(inputs, outputs, verb='write')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        view_inventory = self._read_view_inventory()
+        with self._io_manager._make_silent():
+            self._write_view_inventory(view_inventory)
+        message = 'wrote {}.'.format(self._views_py_path)
+        self._io_manager._display(message)

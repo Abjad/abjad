@@ -706,22 +706,6 @@ class Session(abctools.AbjadObject):
         return self._is_backtracking_to_score_manager
 
     @property
-    def is_in_confirmation_environment(self):
-        r'''Is true when session is in confirmation environment.
-        Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_in_confirmation_environment
-                False
-
-        Returns boolean.
-        '''
-        return self._is_in_confirmation_environment
-
-    @property
     def is_in_autoeditor(self):
         r'''Is true when session is in editor. Otherwise false:
 
@@ -739,6 +723,22 @@ class Session(abctools.AbjadObject):
             if isinstance(controller, idetools.Autoeditor):
                 return True
         return False
+
+    @property
+    def is_in_confirmation_environment(self):
+        r'''Is true when session is in confirmation environment.
+        Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_confirmation_environment
+                False
+
+        Returns boolean.
+        '''
+        return self._is_in_confirmation_environment
 
     @property
     def is_in_score(self):

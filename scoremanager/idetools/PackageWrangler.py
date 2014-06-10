@@ -233,6 +233,13 @@ class PackageWrangler(Wrangler):
             return
         self._io_manager.open_file(paths)
 
+    def write_every_init_py_stub(self):
+        r'''Writes stub ``__init__.py`` in every package.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
+
     def write_every_metadata_py(self):
         r'''Rewrites ``__metadata__.py`` in every package.
 
@@ -263,10 +270,3 @@ class PackageWrangler(Wrangler):
         message = '{} __metadata__.py files rewritten.'
         message = message.format(len(managers))
         self._io_manager._display(message)
-
-    def write_every_init_py_stub(self):
-        r'''Writes stub ``__init__.py`` in every package.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()

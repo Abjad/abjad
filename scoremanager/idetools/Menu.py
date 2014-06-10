@@ -298,6 +298,17 @@ class Menu(Controller):
             return False
         return True
 
+    @staticmethod
+    def _ljust(string, width):
+        start_width = len(stringtools.strip_diacritics(string))
+        if start_width < width:
+            needed = width - start_width
+            suffix = needed * ' '
+            result = string + suffix
+        else:
+            result = string
+        return result
+
     def _make_bicolumnar(
         self, 
         lines, 
@@ -365,17 +376,6 @@ class Menu(Controller):
             conjoined_line = left_margin + line
             conjoined_lines.append(conjoined_line)
         return conjoined_lines
-
-    @staticmethod
-    def _ljust(string, width):
-        start_width = len(stringtools.strip_diacritics(string))
-        if start_width < width:
-            needed = width - start_width
-            suffix = needed * ' '
-            result = string + suffix
-        else:
-            result = string
-        return result
 
     def _make_menu_lines(self):
         result = []

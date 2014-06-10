@@ -208,13 +208,6 @@ class Autoeditor(Controller):
             )
         self._attribute_section = section
 
-    def _make_main_menu(self):
-        name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
-        self._make_attributes_menu_section(menu)
-        self._make_command_menu_section(menu)
-        return menu
-
     def _make_command_menu_section(self, menu):
         commands = []
         commands.append(('done', 'done'))
@@ -223,6 +216,13 @@ class Autoeditor(Controller):
             commands=commands,
             name='done',
             )
+
+    def _make_main_menu(self):
+        name = self._spaced_class_name
+        menu = self._io_manager._make_menu(name=name)
+        self._make_attributes_menu_section(menu)
+        self._make_command_menu_section(menu)
+        return menu
 
     def _make_target_attribute_tokens(self):
         result = []

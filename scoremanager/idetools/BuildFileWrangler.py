@@ -225,6 +225,36 @@ class BuildFileWrangler(FileWrangler):
             self._io_manager._display(message)
         return True
 
+    def _interpret_file_ending_with(self, string):
+        r'''Typesets TeX file.
+        Calls ``pdflatex`` on file TWICE.
+        Some LaTeX packages like ``tikz`` require two passes.
+        '''
+        file_path = self._get_file_path_ending_with(string)
+        if not file_path:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._io_manager._display(message)
+            return
+        input_directory = os.path.dirname(file_path)
+        basename = os.path.basename(file_path)
+        input_file_name_stem, extension = os.path.splitext(basename)
+        output_directory = input_directory
+        command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
+        command = command.format(
+            input_file_name_stem,
+            output_directory,
+            input_directory,
+            input_file_name_stem,
+            )
+        command_called_twice = '{}; {}'.format(command, command)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            self._io_manager.spawn_subprocess(command_called_twice)
+            command = 'rm {}/*.aux'.format(output_directory)
+            self._io_manager.spawn_subprocess(command)
+            command = 'rm {}/*.log'.format(output_directory)
+            self._io_manager.spawn_subprocess(command)
+
     def _make_back_cover_menu_section(self, menu):
         commands = []
         commands.append(('back cover - edit latex source', 'bce'))
@@ -331,36 +361,6 @@ class BuildFileWrangler(FileWrangler):
         lines = ''.join(lines)
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
-
-    def _interpret_file_ending_with(self, string):
-        r'''Typesets TeX file.
-        Calls ``pdflatex`` on file TWICE.
-        Some LaTeX packages like ``tikz`` require two passes.
-        '''
-        file_path = self._get_file_path_ending_with(string)
-        if not file_path:
-            message = 'file ending in {!r} not found.'
-            message = message.format(string)
-            self._io_manager._display(message)
-            return
-        input_directory = os.path.dirname(file_path)
-        basename = os.path.basename(file_path)
-        input_file_name_stem, extension = os.path.splitext(basename)
-        output_directory = input_directory
-        command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
-        command = command.format(
-            input_file_name_stem,
-            output_directory,
-            input_directory,
-            input_file_name_stem,
-            )
-        command_called_twice = '{}; {}'.format(command, command)
-        with systemtools.TemporaryDirectoryChange(input_directory):
-            self._io_manager.spawn_subprocess(command_called_twice)
-            command = 'rm {}/*.aux'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
-            command = 'rm {}/*.log'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
 
     ### PUBLIC METHODS ###
 

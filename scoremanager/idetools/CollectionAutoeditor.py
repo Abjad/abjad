@@ -79,16 +79,16 @@ class CollectionAutoeditor(Autoeditor):
         return systemtools.AttributeManifest()
 
     @property
+    def _collection(self):
+        return self.target
+
+    @property
     def _input_to_method(self):
         result = {
             'add': self.add_items,
             'rm': self.remove_items,
             }
         return result
-
-    @property
-    def _collection(self):
-        return self.target
 
     @property
     def _target_name(self):

@@ -144,16 +144,6 @@ class ScorePackageManager(PackageManager):
         else:
             return self._get_metadatum('title') or '(untitled score)'
 
-    def _get_top_level_wranglers(self):
-        return (
-            self._session._score_manager._build_file_wrangler,
-            self._session._score_manager._distribution_file_wrangler,
-            self._session._score_manager._maker_file_wrangler,
-            self._session._score_manager._material_package_wrangler,
-            self._session._score_manager._segment_package_wrangler,
-            self._session._score_manager._stylesheet_wrangler,
-            )
-
     def _get_top_level_directories(self):
         return (
             self._get_build_directory(),
@@ -162,6 +152,16 @@ class ScorePackageManager(PackageManager):
             self._get_materials_directory(),
             self._get_segments_directory(),
             self._get_stylesheets_directory(),
+            )
+
+    def _get_top_level_wranglers(self):
+        return (
+            self._session._score_manager._build_file_wrangler,
+            self._session._score_manager._distribution_file_wrangler,
+            self._session._score_manager._maker_file_wrangler,
+            self._session._score_manager._material_package_wrangler,
+            self._session._score_manager._segment_package_wrangler,
+            self._session._score_manager._stylesheet_wrangler,
             )
 
     def _handle_setup_menu_result(self, result):

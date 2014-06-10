@@ -42,6 +42,16 @@ class DictionaryAutoeditor(CollectionAutoeditor):
 
     ### PRIVATE METHODS ###
 
+    def _dictionary_item_to_menu_summary(self, item):
+        key, value = item
+        try:
+            value = [str(_) for _ in value]
+            value = ', '.join(value)
+        except TypeError:
+            pass
+        string = '{}: {}'.format(key, value)
+        return string
+
     def _get_item_from_item_number(self, number):
         number = int(number)
         assert isinstance(number, int), repr(number)
@@ -52,16 +62,6 @@ class DictionaryAutoeditor(CollectionAutoeditor):
             pass
         assert isinstance(item, tuple) and len(item) == 2
         return item
-
-    def _dictionary_item_to_menu_summary(self, item):
-        key, value = item
-        try:
-            value = [str(_) for _ in value]
-            value = ', '.join(value)
-        except TypeError:
-            pass
-        string = '{}: {}'.format(key, value)
-        return string
 
     def _get_target_summary_lines(self):
         result = []
