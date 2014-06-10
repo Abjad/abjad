@@ -36,17 +36,17 @@ class TerracedDynamicsHandler(DynamicHandler):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import ide
+        from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='dynamics',
                 menu_key='dy',
-                editor=ide.getters.get_dynamics,
+                editor=idetools.getters.get_dynamics,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
                 menu_key='md',
-                editor=ide.getters.get_duration,
+                editor=idetools.getters.get_duration,
                 ),
             )
 

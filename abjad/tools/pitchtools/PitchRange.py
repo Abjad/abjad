@@ -288,12 +288,12 @@ class PitchRange(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import ide
+        from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='range_string',
                 menu_key='rs',
-                editor=ide.getters.get_pitch_range_string,
+                editor=idetools.getters.get_pitch_range_string,
                 ),
             )
 

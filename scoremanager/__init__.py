@@ -4,7 +4,7 @@
 Do the following to install the Abjad IDE on your system:
 
     1. verify the Abjad IDE directories.
-    2. add scoremanager/scr/ to your PATH for the start-abjad-ide script.
+    2. add scoremanager/scr/ to your PATH for the start-abjad-idetools script.
     3. create a user-specific scores/ directory.
     4. start and stop the Abjad IDE.
     5. run pytest.
@@ -17,7 +17,7 @@ appear on your filesystem after checkout:
     boilerplate/
     docs/
     etc/
-    ide/
+    idetools/
     materials/
     predicates/
     scores/
@@ -25,7 +25,7 @@ appear on your filesystem after checkout:
     test/
 
 2. Add the scoremanager/scr/ directory to your PATH. This tells your shell
-where the start-abjad-ide script is housed:
+where the start-abjad-idetools script is housed:
 
     export PATH=$ABJAD/scoremanager/scr:$PATH
 
@@ -35,12 +35,12 @@ scores environment variable to your scores directory:
 
     export SCORES=$DOCUMENTS/scores
 
-4. Start and stop the Abjad IDE. Type start-abjad-ide from the commandline and
+4. Start and stop the Abjad IDE. Type start-abjad-idetools from the commandline and
 the Abjad IDE should start. What you see here probably won't be very
 interesting because you won't yet have any scores created on your system. But
 you should see three Abjad example scores as well as three or four menu
 options. The menu options will allow you to manage materials, stylesheets,
-scores and other assets. If the shell can't find start-abjad-ide then make
+scores and other assets. If the shell can't find start-abjad-idetools then make
 sure you added the scroremanager/scr/ directory to your PATH. After the Abjad
 IDE starts correctly enter 'q' to quit the Abjad IDE.
 
@@ -55,9 +55,9 @@ all tests pass.
 '''
 import sys
 if sys.version_info[0] == 2:
-    import ide
+    import idetools
     import predicates
 else:
-    from scoremanager import ide
+    from scoremanager import idetools
     from scoremanager import predicates
 del sys

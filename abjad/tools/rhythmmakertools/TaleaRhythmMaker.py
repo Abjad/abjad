@@ -338,7 +338,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def _attribute_manifest(self):
         from abjad.tools import rhythmmakertools
         from abjad.tools import systemtools
-        from scoremanager import ide
+        from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='talea',
@@ -348,12 +348,12 @@ class TaleaRhythmMaker(RhythmMaker):
             systemtools.AttributeDetail(
                 name='split_divisions_by_counts',
                 menu_key='sdc',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division',
                 menu_key='xcd',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='beam_specifier',

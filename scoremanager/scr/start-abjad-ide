@@ -3,6 +3,6 @@ import sys
 import scoremanager
 
 
-score_manager = scoremanager.ide.AbjadIDE(is_test=False)
+score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
 input_ = ' '.join(sys.argv[1:]) 
 score_manager._run(input_=input_)

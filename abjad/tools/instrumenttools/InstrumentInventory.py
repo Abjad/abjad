@@ -68,7 +68,7 @@ class InstrumentInventory(TypedList):
     ### ITEM CREATOR ###
 
     def _make_item_creator_class(self):
-        from scoremanager.ide.Controller import Controller
+        from scoremanager.idetools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target',)
@@ -101,10 +101,10 @@ class InstrumentInventory(TypedList):
             def _name_untuned_percussion(self, instrument):
                 from abjad.tools import instrumenttools
                 from abjad.tools.instrumenttools import UntunedPercussion
-                from scoremanager import ide
+                from scoremanager import idetools
                 if isinstance(instrument, instrumenttools.UntunedPercussion):
                     items = UntunedPercussion.known_untuned_percussion[:]
-                    selector = ide.Selector(
+                    selector = idetools.Selector(
                         session=self._session,
                         items=items,
                         )
@@ -119,13 +119,13 @@ class InstrumentInventory(TypedList):
                 return instrument
             def _run(self, input_=None):
                 from abjad.tools import instrumenttools
-                from scoremanager import ide
+                from scoremanager import idetools
                 if input_:
                     self._session._pending_input = input_
-                controller = ide.ControllerContext(controller=self)
+                controller = idetools.ControllerContext(controller=self)
                 with controller:
                     items = instrumenttools.Instrument._list_instrument_names()
-                    selector = ide.Selector(
+                    selector = idetools.Selector(
                         session=self._session,
                         items=items,
                         is_ranged=self._is_ranged,

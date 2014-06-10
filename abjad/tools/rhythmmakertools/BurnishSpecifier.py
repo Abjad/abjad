@@ -299,42 +299,42 @@ class BurnishSpecifier(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import ide
+        from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='burnish_divisions',
                 menu_key='bd',
-                editor=ide.getters.get_boolean,
+                editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='burnish_output',
                 menu_key='bo',
-                editor=ide.getters.get_boolean,
+                editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='lefts',
                 menu_key='l',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='middles',
                 menu_key='m',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='rights',
                 menu_key='r',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='left_lengths',
                 menu_key='ll',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='right_lengths',
                 menu_key='rl',
-                editor=ide.getters.get_integers,
+                editor=idetools.getters.get_integers,
                 ),
             )
 
