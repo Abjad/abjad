@@ -13,7 +13,7 @@ def test_UserInputGetter_go_home_01():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory (OAE)',
+        'Red Example Score (2013) - materials - tempo inventory (O)',
         'Red Example Score (2013) - materials - tempo inventory (EDIT)',
         'Red Example Score (2013) - materials - tempo inventory (EDIT)',
         'Abjad IDE - scores',

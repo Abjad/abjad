@@ -60,7 +60,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'de': self.edit_definition_py,
+            'do': self.open_definition_py,
             'ds': self.write_stub_definition_py,
             #
             'ki': self.interpret_make_py,
@@ -107,7 +107,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition.py - edit', 'de'))
+        commands.append(('definition.py - edit', 'do'))
         commands.append(('definition.py - stub', 'ds'))
         menu.make_command_section(
             commands=commands,
@@ -204,7 +204,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     ### PUBLIC METHODS ###
 
-    def edit_definition_py(self):
+    def open_definition_py(self):
         r'''Edits ``definition.py``.
 
         Returns none.

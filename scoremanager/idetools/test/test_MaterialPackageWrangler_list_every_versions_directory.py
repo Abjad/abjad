@@ -12,13 +12,13 @@ def test_MaterialPackageWrangler_list_every_versions_directory_01():
 
     lines = [
         '> vrls*',
-        'Instrumentation (OAE):',
+        'Instrumentation (O):',
         '    output_0001.py',
         'Magic numbers:',
         '    definition_0001.py output_0001.py',
-        'Pitch range inventory (OAE):',
+        'Pitch range inventory (O):',
         '    illustration_0001.ly illustration_0001.pdf output_0001.py',
-        'Tempo inventory (OAE):',
+        'Tempo inventory (O):',
         '    illustration_0001.ly illustration_0001.pdf output_0001.py',
         '    illustration_0002.ly illustration_0002.pdf output_0002.py',
         '    illustration_0003.ly illustration_0003.pdf output_0003.py',

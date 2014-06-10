@@ -50,7 +50,7 @@ class BuildFileWrangler(FileWrangler):
             'bco': self.open_back_cover_pdf,
             #
             'dc': self.collect_segment_pdfs,
-            'de': self.edit_draft_source,
+            'do': self.edit_draft_source,
             'dg': self.generate_draft_source,
             'di': self.interpret_draft,
             'do': self.open_draft_pdf,
@@ -270,7 +270,7 @@ class BuildFileWrangler(FileWrangler):
     def _make_draft_menu_section(self, menu):
         commands = []
         commands.append(('draft - collect segment files', 'dc'))
-        commands.append(('draft - edit latex source', 'de'))
+        commands.append(('draft - edit latex source', 'do'))
         commands.append(('draft - generate latex source', 'dg'))
         commands.append(('draft - interpret latex source', 'di'))
         commands.append(('draft - open pdf', 'do'))

@@ -69,7 +69,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_in_score:
             name = self._space_delimited_lowercase_name
             if use_autoeditor:
-                return '{} (OAE)'.format(name)
+                return '{} (O)'.format(name)
             else:
                 return name
         name = self._space_delimited_lowercase_name
@@ -88,11 +88,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return os.path.join(self._path, '__illustrate__.py')
 
     @property
-    def _illustration_ly_file_path(self):
+    def _illustration_ly_path(self):
         return os.path.join(self._path, 'illustration.ly')
 
     @property
-    def _illustration_pdf_file_path(self):
+    def _illustration_pdf_path(self):
         return os.path.join(self._path, 'illustration.pdf')
 
     @property
@@ -104,7 +104,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'oaes': self.set_output_py_autoeditor,
             'oaeu': self.unset_output_py_autoeditor,
             #
-            'de': self.edit_definition_py,
+            'dae': self.autoopen_definition_py,
+            'dc': self.check_definition_py,
+            'do': self.open_definition_py,
             'di': self.interpret_definition_py,
             'ds': self.write_stub_definition_py,
             #
@@ -119,8 +121,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'oae': self.autoedit_output_py,
             'oi': self.illustrate_output_py,
             #
-            'mae': self.autoedit_maker,
+            'mae': self.autoedit_maker_py,
+            'mc': self.check_maker_py,
             'mi': self.interpret_maker_py,
+            'mo': self.open_maker_py,
+            'ms': self.write_stub_maker_py,
             #
             'oc': self.check_output_py,
             'oo': self.open_output_py,
@@ -134,6 +139,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'voo': self.open_versioned_output_py,
             })
         return result
+
+    @property
+    def _maker_py_path(self):
+        return os.path.join(self._path, 'maker.py')
 
     @property
     def _material_package_name(self):
@@ -157,8 +166,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return (
             self._definition_py_path,
             self._output_py_path,
-            self._illustration_ly_file_path,
-            self._illustration_pdf_file_path,
+            self._illustration_ly_path,
+            self._illustration_pdf_path,
             )
 
     ### PRIVATE METHODS ###
@@ -235,13 +244,18 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _make_definition_py_menu_section(self, menu):
         name = 'definition.py'
         commands = []
-        commands.append(('definition.py - edit', 'de'))
-        commands.append(('definition.py - interpret', 'di'))
-        commands.append(('definition.py - stub', 'ds'))
+        if os.path.isfile(self._definition_py_path):
+            is_hidden = False
+            commands.append(('definition.py - autoedit', 'dae'))
+            commands.append(('definition.py - check', 'dc'))
+            commands.append(('definition.py - edit', 'do'))
+            commands.append(('definition.py - interpret', 'di'))
+        else:
+            is_hidden = True
+            commands.append(('definition.py - stub', 'ds'))
         if commands:
-            use_autoeditor = self._get_metadatum('use_autoeditor')
             menu.make_command_section(
-                is_hidden=use_autoeditor,
+                is_hidden=is_hidden,
                 commands=commands,
                 name='definition.py',
                 )
@@ -269,7 +283,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             )
 
     def _make_illustration_ly_menu_section(self, menu):
-        if not os.path.isfile(self._illustration_ly_file_path):
+        if not os.path.isfile(self._illustration_ly_path):
             return
         commands = []
         commands.append(('illustration.ly - interpret', 'ili'))
@@ -281,7 +295,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
-        if os.path.isfile(self._illustration_pdf_file_path):
+        if os.path.isfile(self._illustration_pdf_path):
             commands.append(('illustration.pdf - open', 'ipo'))
         if commands:
             menu.make_command_section(
@@ -302,7 +316,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
         self._make_output_py_menu_section(menu)
-        self._make_package_configuration_menu_section(menu)
         self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
@@ -316,11 +329,18 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_maker_py_menu_section(self, menu):
         commands = []
-        commands.append(('maker.py - autoedit', 'mae'))
-        commands.append(('maker.py - interpret', 'mi'))
+        if os.path.isfile(self._maker_py_path):
+            commands.append(('maker.py - autoedit', 'mae'))
+            commands.append(('maker.py - check', 'mc'))
+            commands.append(('maker.py - interpret', 'mi'))
+            commands.append(('maker.py - open', 'mo'))
+            is_hidden = False
+        else:
+            commands.append(('maker.py - stub', 'ms'))
+            is_hidden = True
         if commands:
             menu.make_command_section(
-                is_hidden=False,
+                is_hidden=is_hidden,
                 commands=commands,
                 name='maker.py',
                 )
@@ -353,11 +373,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _make_output_py_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_py_path):
-            if self._get_metadatum('use_autoeditor'):
-                commands.append(('output.py - autoedit', 'oae'))
             commands.append(('output.py - check', 'oc'))
             commands.append(('output.py - illustrate', 'oi'))
             commands.append(('output.py - open', 'oo'))
+        if self._get_metadatum('use_autoeditor'):
+            commands.append(('output.py - autoedit', 'oae'))
+            commands.append(('output.py - autoeditor - unset', 'oaeu'))
+        else:
+            commands.append(('output.py - autoeditor - set', 'oaes'))
         commands.append(('output.py - write', 'ow'))
         if commands:
             menu.make_command_section(
@@ -377,19 +400,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self.write_metadata_py(metadata=metadata)
             self.write_stub_definition_py()
 
-    def _make_package_configuration_menu_section(self, menu):
-        commands = []
-        if self._get_metadatum('use_autoeditor'):
-            commands.append(('package - autoeditor - unset', 'oaeu'))
-        else:
-            commands.append(('package - autoeditor - set', 'oaes'))
-        if commands:
-            menu.make_command_section(
-                is_hidden=True,
-                commands=commands,
-                name='package configuration',
-                )
-
     def _make_temporary_illustrate_py_lines(self):
         lines = []
         lines.append(self._configuration.unicode_directive)
@@ -408,11 +418,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             line = 'lilypond_file = {}.__illustrate__()'
         line = line.format(self._material_package_name)
         lines.append(line)
-        lines.append('file_path = os.path.abspath(__file__)')
-        lines.append('directory = os.path.dirname(file_path)')
-        line = "file_path = os.path.join(directory, 'illustration.pdf')"
+        lines.append('path = os.path.abspath(__file__)')
+        lines.append('directory = os.path.dirname(path)')
+        line = "path = os.path.join(directory, 'illustration.pdf')"
         lines.append(line)
-        lines.append("persist(lilypond_file).as_pdf(file_path)")
+        lines.append("persist(lilypond_file).as_pdf(path)")
         return lines
 
     def _make_version_package_messages(self):
@@ -480,11 +490,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._rename(new_directory)
         for directory_entry in os.listdir(new_directory):
             if directory_entry.endswith('.py'):
-                file_path = os.path.join(new_directory, directory_entry)
+                path = os.path.join(new_directory, directory_entry)
                 result = os.path.splitext(base_name)
                 old_package_name, extension = result
                 self._replace_in_file(
-                    file_path,
+                    path,
                     old_package_name,
                     new_package_name,
                     )
@@ -512,6 +522,20 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._session._is_navigating_to_score_materials = True
 
     ### PUBLIC METHODS ###
+
+    def autoopen_definition_py(self):
+        r'''Autoedits ``definition.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
+
+    def autoedit_maker_py(self):
+        r'''Autoedits ``maker.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display_not_yet_implemented()
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -543,12 +567,41 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material=autoeditor.target,
             )
 
-    def autoedit_maker(self):
-        r'''Autoedits maker.
+    def check_definition_py(self, dry_run=False):
+        r'''Checks ``definition.py``.
 
-        Returns none.
+        Display errors generated during interpretation.
         '''
-        self._io_manager._display_not_yet_implemented()
+        inputs, outputs = [], []
+        if dry_run:
+            inputs.append(self._definition_py_path)
+            return inputs, outputs
+        stderr_lines = self._io_manager.check_file(self._definition_py_path)
+        if stderr_lines:
+            messages = [self._definition_py_path + ' FAILED:']
+            messages.extend('    ' + _ for _ in stderr_lines)
+            self._io_manager._display(messages)
+        else:
+            message = '{} OK.'.format(self._definition_py_path)
+            self._io_manager._display(message)
+
+    def check_maker_py(self, dry_run=False):
+        r'''Checks ``maker.py``.
+
+        Display errors generated during interpretation.
+        '''
+        inputs, outputs = [], []
+        if dry_run:
+            inputs.append(self._maker_py_path)
+            return inputs, outputs
+        stderr_lines = self._io_manager.check_file(self._maker_py_path)
+        if stderr_lines:
+            messages = [self._maker_py_path + ' FAILED:']
+            messages.extend('    ' + _ for _ in stderr_lines)
+            self._io_manager._display(messages)
+        else:
+            message = '{} OK.'.format(self._maker_py_path)
+            self._io_manager._display(message)
 
     def check_output_py(self, dry_run=False):
         r'''Checks ``output.py``.
@@ -576,7 +629,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self.edit_illustrate_py()
         self.interpret_illustrate_py()
 
-    def edit_definition_py(self):
+    def open_definition_py(self):
         r'''Edits ``definition.py``.
 
         Returns none.
@@ -628,7 +681,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         from scoremanager import idetools
-        path = self._illustration_ly_file_path
+        path = self._illustration_ly_path
         if os.path.isfile(path):
             self._io_manager.run_lilypond(path)
         else:
@@ -649,15 +702,22 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        self._io_manager.open_file(self._illustration_ly_file_path)
+        self._io_manager.open_file(self._illustration_ly_path)
 
     def open_illustration_pdf(self):
-        r'''Opens `illustration.pdf``.
+        r'''Opens ``illustration.pdf``.
 
         Returns none.
         '''
-        self._io_manager.open_file(self._illustration_pdf_file_path)
+        self._io_manager.open_file(self._illustration_pdf_path)
 
+    def open_maker_py(self):
+        r'''Opens ``maker.py``.
+
+        Returns none.
+        '''
+        self._io_manager.open_file(self._maker_py_path)
+    
     def open_output_py(self):
         r'''Opens ``output.py``.
 
@@ -787,9 +847,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if any('handlertools' in _ for _ in body_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-#        if any(' makers.' in _ for _ in body_lines):
-#            statement = 'from scoremanager import makers'
-#            import_statements.append(statement)
         import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
@@ -859,3 +916,25 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         message = 'wrote stub to {}.'
         message = message.format(self._illustrate_py_path)
         self._io_manager._display(message)
+
+    def write_stub_maker_py(self):
+        r'''Writes stub ``maker.py``.
+
+        Returns none.
+        '''
+        message = 'will write stub to {}.'
+        message = message.format(self._maker_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        lines = []
+        lines.append(self._configuration.unicode_directive)
+        lines.append(self._abjad_import_statement)
+        lines.append('')
+        lines.append('')
+        lines.append('maker = None')
+        contents = '\n'.join(lines)
+        with open(self._maker_py_path, 'w') as file_pointer:
+            file_pointer.write(contents)
+        self._session._is_pending_output_removal = True

@@ -44,7 +44,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'de*': self.edit_every_definition_py,
+            'do*': self.edit_every_definition_py,
             #
             'ki*': self.interpret_every_make_py,
             'ko*': self.open_every_make_py,
@@ -78,7 +78,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         commands.append(('all packages - __make.py__ - interpret', 'ki*'))
         commands.append(('all packages - __make.py__ - open', 'ko*'))
         commands.append(('all packages - __make.py__ - stub', 'ks*'))
-        commands.append(('all packages - definition.py - edit', 'de*'))
+        commands.append(('all packages - definition.py - edit', 'do*'))
         commands.append(('all packages - output.ly - interpret', 'oli*'))
         commands.append(('all packages - output.pdf - open', 'opo*'))
         menu.make_command_section(

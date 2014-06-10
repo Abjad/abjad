@@ -268,7 +268,7 @@ def test_ListAutoeditor__run_13():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - instrumentation (OAE)',
+        'Red Example Score (2013) - materials - instrumentation (O)',
         'Red Example Score (2013) - materials - instrumentation (EDIT)',
         ]
     assert score_manager._transcript.titles == titles

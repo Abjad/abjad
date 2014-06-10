@@ -19,7 +19,7 @@ def test_MaterialPackageManager_unset_autoeditor_01():
         input_ += ' oaes TempoInventory <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'test tempo inventory (OAE)'
+        string = 'test tempo inventory (O)'
         assert string in contents
         input_ = 'red~example~Score m test~tempo~inventory oaeu q'
         score_manager._run(input_=input_)

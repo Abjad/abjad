@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_SegmentPackageWrangler_edit_every_definition_py_01():
 
-    input_ = 'red~example~score g de* y q'
+    input_ = 'red~example~score g do* y q'
     score_manager._run(input_=input_)
 
     assert score_manager._session._attempted_to_open_file
