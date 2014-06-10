@@ -105,6 +105,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'dae': self.autoedit_definition_py,
             'dc': self.check_definition_py,
             'do': self.open_definition_py,
+            'dp': self.output_definition_py,
             'ds': self.write_stub_definition_py,
             #
             'ie': self.edit_illustrate_py,
@@ -120,7 +121,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             #
             'oc': self.check_output_py,
             'oo': self.open_output_py,
-            'ow': self.write_output_py,
             #
             'ipo': self.open_illustration_pdf,
             #
@@ -226,7 +226,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             commands.append(('definition.py - check', 'dc'))
             commands.append(('definition.py - interpret', 'di'))
             commands.append(('definition.py - open', 'do'))
-            commands.append(('definition.py - output', 'ow'))
+            commands.append(('definition.py - output', 'dp'))
         else:
             is_hidden = True
             commands.append(('definition.py - stub', 'ds'))
@@ -344,7 +344,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             commands.append(('output.py - autoeditor - unset', 'oaeu'))
         else:
             commands.append(('output.py - autoeditor - set', 'oaes'))
-        #commands.append(('output.py - write', 'ow'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -504,23 +503,19 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if self._session.is_backtracking or not class_:
                 return
             target = class_()
-            print(repr(target))
-            autoeditor = self._io_manager._make_autoeditor(target=target)
-            autoeditor._run()
-            if self._session.is_backtracking:
-                return
-            target = autoeditor.target
-            # ZZZ
-            import_statements = [self._abjad_import_statement]
-            target_lines = self._make_definition_target_lines(target)
-            self.write_definition_py(
-                import_statements=import_statements,
-                target=target,
-                target_lines=target_lines,
-                )
-            self._session._is_pending_output_removal = True
-        else:
-            self._io_manager._display_not_yet_implemented()
+        autoeditor = self._io_manager._make_autoeditor(target=target)
+        autoeditor._run()
+        if self._session.is_backtracking:
+            return
+        target = autoeditor.target
+        import_statements = [self._abjad_import_statement]
+        target_lines = self._make_definition_target_lines(target)
+        self.write_definition_py(
+            import_statements=import_statements,
+            target=target,
+            target_lines=target_lines,
+            )
+        self._session._is_pending_output_removal = True
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -537,7 +532,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         output_material = autoeditor.target
         output_py_import_statements = self._output_py_import_statements
         output_material_lines = self._make_output_material_lines(output_material)
-        self.write_output_py(
+        self.output_definition_py(
             import_statements=output_py_import_statements,
             output_material_lines=output_material_lines,
             output_material=output_material,
@@ -685,89 +680,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
-    def set_output_py_autoeditor(self):
-        r'''Sets autoeditor.
-
-        Returns none.
-        '''
-        selector = self._io_manager.selector
-        selector = selector.make_autoeditable_class_selector()
-        class_ = selector._run()
-        if self._session.is_backtracking or not class_:
-            return
-        self._add_metadatum('use_autoeditor', True)
-        self._add_metadatum('output_material_class_name', class_.__name__)
-        output_material = self._execute_output_py()
-        if type(output_material) is class_:
-            return
-        if output_material is not None:
-            messages = []
-            message = 'existing output.py file contains {}.'
-            message = message.format(type(output_material).__name__)
-            messages.append(message)
-            message = 'overwrite existing output.py file?'
-            messages.append(message)
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking or not result:
-                return
-        empty_target = class_()
-        if type(empty_target) is list:
-            storage_format = repr(empty_target)
-        else:
-            storage_format = format(empty_target, 'storage')
-        output_material_lines = '{} = {}'.format(
-            self._package_name,
-            storage_format,
-            )
-        output_material_lines = output_material_lines.split('\n')
-        output_material_lines = [_ + '\n' for _ in output_material_lines]
-        import_statements = [self._abjad_import_statement]
-        if 'handlertools.' in storage_format:
-            import_statements.append(self._handlertools_import_statement)
-        with self._io_manager._make_silent():
-            self.write_output_py(
-                output_material_lines=output_material_lines,
-                import_statements=import_statements,
-                output_material=empty_target,
-                )
-
-    def unset_output_py_autoeditor(self):
-        r'''Unsets autoeditor.
-
-        Returns none.
-        '''
-        self._remove_metadatum('use_autoeditor')
-
-    def write_definition_py(
-        self,
-        import_statements=None,
-        target=None,
-        target_lines=None,
-        ):
-        r'''Writes ``definition.py``.
-
-        Returns none.
-        '''
-        assert isinstance(import_statements, list), repr(import_statements)
-        assert isinstance(target_lines, list), repr(target_lines)
-        message = 'will write {} to {}.'
-        name = type(target).__name__
-        message = message.format(name, self._definition_py_path)
-        self._io_manager._display(message)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.extend(import_statements)
-        lines.append('')
-        lines.append('')
-        lines.extend(target_lines)
-        contents = '\n'.join(lines)
-        self._io_manager.write(self._definition_py_path, contents)
-
-    def write_output_py(
+    def output_definition_py(
         self,
         import_statements=None,
         output_material_lines=None,
@@ -816,6 +729,88 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
+
+    def set_output_py_autoeditor(self):
+        r'''Sets autoeditor.
+
+        Returns none.
+        '''
+        selector = self._io_manager.selector
+        selector = selector.make_autoeditable_class_selector()
+        class_ = selector._run()
+        if self._session.is_backtracking or not class_:
+            return
+        self._add_metadatum('use_autoeditor', True)
+        self._add_metadatum('output_material_class_name', class_.__name__)
+        output_material = self._execute_output_py()
+        if type(output_material) is class_:
+            return
+        if output_material is not None:
+            messages = []
+            message = 'existing output.py file contains {}.'
+            message = message.format(type(output_material).__name__)
+            messages.append(message)
+            message = 'overwrite existing output.py file?'
+            messages.append(message)
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
+                return
+        empty_target = class_()
+        if type(empty_target) is list:
+            storage_format = repr(empty_target)
+        else:
+            storage_format = format(empty_target, 'storage')
+        output_material_lines = '{} = {}'.format(
+            self._package_name,
+            storage_format,
+            )
+        output_material_lines = output_material_lines.split('\n')
+        output_material_lines = [_ + '\n' for _ in output_material_lines]
+        import_statements = [self._abjad_import_statement]
+        if 'handlertools.' in storage_format:
+            import_statements.append(self._handlertools_import_statement)
+        with self._io_manager._make_silent():
+            self.output_definition_py(
+                output_material_lines=output_material_lines,
+                import_statements=import_statements,
+                output_material=empty_target,
+                )
+
+    def unset_output_py_autoeditor(self):
+        r'''Unsets autoeditor.
+
+        Returns none.
+        '''
+        self._remove_metadatum('use_autoeditor')
+
+    def write_definition_py(
+        self,
+        import_statements=None,
+        target=None,
+        target_lines=None,
+        ):
+        r'''Writes ``definition.py``.
+
+        Returns none.
+        '''
+        assert isinstance(import_statements, list), repr(import_statements)
+        assert isinstance(target_lines, list), repr(target_lines)
+        message = 'will write {} to {}.'
+        name = type(target).__name__
+        message = message.format(name, self._definition_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        lines = []
+        lines.append(self._configuration.unicode_directive)
+        lines.extend(import_statements)
+        lines.append('')
+        lines.append('')
+        lines.extend(target_lines)
+        contents = '\n'.join(lines)
+        self._io_manager.write(self._definition_py_path, contents)
 
     def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.

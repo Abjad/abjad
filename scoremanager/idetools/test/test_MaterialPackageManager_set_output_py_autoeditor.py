@@ -6,7 +6,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_set_autoeditor_01():
+def test_MaterialPackageManager_set_output_py_autoeditor_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory,
@@ -24,7 +24,7 @@ def test_MaterialPackageManager_set_autoeditor_01():
         assert string in contents
 
 
-def test_MaterialPackageManager_set_autoeditor_02():
+def test_MaterialPackageManager_set_output_py_autoeditor_02():
     r'''Preserves existing output.py file when appropriate.
     '''
 
@@ -43,7 +43,7 @@ def test_MaterialPackageManager_set_autoeditor_02():
         assert filecmp.cmp(path, path + '.backup')
 
 
-def test_MaterialPackageManager_set_autoeditor_03():
+def test_MaterialPackageManager_set_output_py_autoeditor_03():
     r'''Warns before clobbering existing output.py file.
     '''
 

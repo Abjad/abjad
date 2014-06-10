@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_unset_autoeditor_01():
+def test_MaterialPackageManager_unset_output_py_autoeditor_01():
 
     path = os.path.join(
         score_manager._configuration.example_score_packages_directory,

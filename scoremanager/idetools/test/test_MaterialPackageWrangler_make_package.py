@@ -154,7 +154,7 @@ def test_MaterialPackageWrangler_make_package_06():
             boilerplate_definition_py_path,
             definition_py_path,
             )
-        input_ = 'm testnotes ow y q'
+        input_ = 'm testnotes dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(output_py_path)
         input_ = 'm rm testnotes remove q'
@@ -223,7 +223,7 @@ def test_MaterialPackageWrangler_make_package_09():
             definition_py_path,
             boilerplate_definition_py_path,
             )
-        input_ = 'm testnotes ow y q'
+        input_ = 'm testnotes dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(output_py_path)
         assert not filecmp.cmp(output_py_path, exception_file_path)
