@@ -78,6 +78,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return os.path.join(self._path, 'definition.py')
 
     @property
+    def _handlertools_import_statement(self):
+        return 'from experimental.tools import handlertools'
+
+    @property
     def _illustrate_py_path(self):
         return os.path.join(self._path, '__illustrate__.py')
 
@@ -98,7 +102,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'oaes': self.set_output_py_autoeditor,
             'oaeu': self.unset_output_py_autoeditor,
             #
-            'dae': self.autoopen_definition_py,
+            'dae': self.autoedit_definition_py,
             'dc': self.check_definition_py,
             'do': self.open_definition_py,
             'ds': self.write_stub_definition_py,
@@ -170,7 +174,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _execute_definition_py(self):
         result = self._io_manager.execute_file(
-            path = self._output_py_path,
+            path = self._definition_py_path,
             attribute_names=('target',)
             )
         if result and len(result) == 1:
@@ -220,8 +224,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             is_hidden = False
             commands.append(('definition.py - autoedit', 'dae'))
             commands.append(('definition.py - check', 'dc'))
-            commands.append(('definition.py - edit', 'do'))
             commands.append(('definition.py - interpret', 'di'))
+            commands.append(('definition.py - open', 'do'))
+            commands.append(('definition.py - output', 'ow'))
         else:
             is_hidden = True
             commands.append(('definition.py - stub', 'ds'))
@@ -339,7 +344,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             commands.append(('output.py - autoeditor - unset', 'oaeu'))
         else:
             commands.append(('output.py - autoeditor - set', 'oaes'))
-        commands.append(('output.py - write', 'ow'))
+        #commands.append(('output.py - write', 'ow'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -481,18 +486,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     ### PUBLIC METHODS ###
 
-    def autoopen_definition_py(self):
+    def autoedit_definition_py(self):
         r'''Autoedits ``definition.py``.
 
         Returns none.
         '''
         target = self._execute_definition_py()
         if target is None:
-            messages = []
-            messages.append('no autoedit target found.')
-            messages.append('would you like to create one?')
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
+            message = 'no autoedit target found;'
+            message += ' would you like to create one?'
+            result = self._io_manager._confirm(prompt_string=message)
             if self._session.is_backtracking or not result:
                 return
             selector = self._io_manager.selector
@@ -501,6 +504,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if self._session.is_backtracking or not class_:
                 return
             target = class_()
+            print(repr(target))
             autoeditor = self._io_manager._make_autoeditor(target=target)
             autoeditor._run()
             if self._session.is_backtracking:
@@ -511,9 +515,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             target_lines = self._make_definition_target_lines(target)
             self.write_definition_py(
                 import_statements=import_statements,
-                target_lines=target_lines,
                 target=target,
+                target_lines=target_lines,
                 )
+            self._session._is_pending_output_removal = True
+        else:
+            self._io_manager._display_not_yet_implemented()
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -717,8 +724,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         output_material_lines = [_ + '\n' for _ in output_material_lines]
         import_statements = [self._abjad_import_statement]
         if 'handlertools.' in storage_format:
-            statement = 'from experimental.tools import handlertools'
-            import_statements.append(statement)
+            import_statements.append(self._handlertools_import_statement)
         with self._io_manager._make_silent():
             self.write_output_py(
                 output_material_lines=output_material_lines,
@@ -736,8 +742,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def write_definition_py(
         self,
         import_statements=None,
-        target_lines=None,
         target=None,
+        target_lines=None,
         ):
         r'''Writes ``definition.py``.
 
@@ -746,7 +752,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         assert isinstance(import_statements, list), repr(import_statements)
         assert isinstance(target_lines, list), repr(target_lines)
         message = 'will write {} to {}.'
-        name = type(target.__name__)
+        name = type(target).__name__
         message = message.format(name, self._definition_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
@@ -754,27 +760,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             return
         lines = []
         lines.append(self._configuration.unicode_directive)
-        if target_lines is None:
-            triple = self._make_output_material_triple()
-            import_statements = triple[0]
-            output_py_body_string = triple[1]
-            target = triple[2]
-            target_lines = [output_py_body_string]
-        import_statements = import_statements or []
-        if any('handlertools' in _ for _ in target_lines):
-            statement = 'from experimental.tools import handlertools'
-            import_statements.append(statement)
         lines.extend(import_statements)
         lines.append('')
         lines.append('')
         lines.extend(target_lines)
         contents = '\n'.join(lines)
-        self._io_manager.write(self._output_py_path, contents)
-        output_material_class_name = type(target).__name__
-        self._add_metadatum(
-            'output_material_class_name', 
-            output_material_class_name,
-            )
+        self._io_manager.write(self._definition_py_path, contents)
 
     def write_output_py(
         self,
@@ -813,8 +804,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material_lines = [output_py_body_string]
         import_statements = import_statements or []
         if any('handlertools' in _ for _ in output_material_lines):
-            statement = 'from experimental.tools import handlertools'
-            import_statements.append(statement)
+            import_statements.append(self._handlertools_import_statement)
         lines.extend(import_statements)
         lines.append('')
         lines.append('')
