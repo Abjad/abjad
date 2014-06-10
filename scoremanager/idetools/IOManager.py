@@ -57,12 +57,12 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    def _confirm(self, prompt_string='ok?', include_chevron=False):
+    def _confirm(self, message='ok?', include_chevron=False):
         if not self._session.confirm:
             return True
         getter = self._make_getter(include_newlines=False)
         getter.append_yes_no_string(
-            prompt_string,
+            message,
             include_chevron=include_chevron,
             )
         result = getter._run()
@@ -122,7 +122,7 @@ class IOManager(IOManager):
 
     def _handle_input(
         self,
-        prompt_string,
+        message,
         default_value=None,
         include_chevron=True,
         include_newline=False,
@@ -140,17 +140,17 @@ class IOManager(IOManager):
         found_default_token = False
         try:
             if capitalize_prompt:
-                prompt_string = stringtools.capitalize_start(
-                    prompt_string)
+                message = stringtools.capitalize_start(
+                    message)
             if include_chevron:
-                prompt_string = prompt_string + prompt_character + ' '
+                message = message + prompt_character + ' '
             else:
-                prompt_string = prompt_string + ' '
+                message = message + ' '
             if not self._session.pending_input:
                 if sys.version_info[0] == 2:
-                    input_ = raw_input(prompt_string)
+                    input_ = raw_input(message)
                 else:
-                    input_ = input(prompt_string)
+                    input_ = input(message)
                 if include_newline:
                     if not input_ == 'help':
                         print('')
@@ -164,7 +164,7 @@ class IOManager(IOManager):
                 last_semantic_command = self._session.last_semantic_command
                 input_ = last_semantic_command
             if found_default_token:
-                menu_chunk = [prompt_string.strip()]
+                menu_chunk = [message.strip()]
                 if include_newline:
                     if not input_ == 'help':
                         menu_chunk.append('')
@@ -176,7 +176,7 @@ class IOManager(IOManager):
                 self._session.transcript._append_entry(menu_chunk)
             else:
                 menu_chunk = []
-                menu_chunk.append('{}{}'.format(prompt_string, input_))
+                menu_chunk.append('{}{}'.format(message, input_))
                 if include_newline:
                     if not input_ == 'help':
                         menu_chunk.append('')

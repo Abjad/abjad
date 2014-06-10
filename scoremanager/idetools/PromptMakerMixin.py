@@ -44,7 +44,7 @@ class PromptMakerMixin(AbjadObject):
             help_template=help_template,
             help_template_arguments=help_template_arguments,
             include_chevron=include_chevron,
-            prompt_string=spaced_attribute_name,
+            message=spaced_attribute_name,
             setup_statements=setup_statements,
             target_menu_section=target_menu_section,
             validation_function=validation_function,

@@ -495,7 +495,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if target is None:
             message = 'no autoedit target found;'
             message += ' would you like to create one?'
-            result = self._io_manager._confirm(prompt_string=message)
+            result = self._io_manager._confirm(message=message)
             if self._session.is_backtracking or not result:
                 return
             selector = self._io_manager.selector

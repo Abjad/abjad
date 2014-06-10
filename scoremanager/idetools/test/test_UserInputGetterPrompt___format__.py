@@ -22,7 +22,7 @@ def test_UserInputGetterPrompt___format___01():
             help_template='value must be string.',
             help_template_arguments=[],
             include_chevron=True,
-            prompt_string='value',
+            message='value',
             setup_statements=[],
             )
         '''

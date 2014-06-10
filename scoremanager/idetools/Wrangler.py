@@ -152,10 +152,10 @@ class Wrangler(AssetController):
         message = 'existing {} name> {}'
         message = message.format(self._asset_identifier, old_name)
         self._io_manager._display(message)
-        prompt_string = 'new {} name'
-        prompt_string = prompt_string.format(self._asset_identifier)
+        message = 'new {} name'
+        message = message.format(self._asset_identifier)
         getter = self._io_manager._make_getter()
-        getter.append_string(prompt_string)
+        getter.append_string(message)
         help_template = getter.prompts[0].help_template
         string = 'Press <return> to preserve existing name.'
         help_template = help_template + ' ' + string
@@ -316,15 +316,15 @@ class Wrangler(AssetController):
 
     def _get_available_path(
         self,
-        prompt_string=None,
+        message=None,
         storehouse_path=None,
         ):
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
             default_prompt = 'enter {} name'.format(self._asset_identifier)
-            prompt_string = prompt_string or default_prompt
+            message = message or default_prompt
             getter = self._io_manager._make_getter()
-            getter.append_string(prompt_string)
+            getter.append_string(message)
             name = getter._run()
             if self._session.is_backtracking or not name:
                 return
@@ -647,7 +647,7 @@ class Wrangler(AssetController):
     def _make_file(
         self, 
         extension=None, 
-        prompt_string='file name', 
+        message='file name', 
         ):
         from scoremanager import idetools
         extension = extension or getattr(self, '_extension', '')
@@ -660,7 +660,7 @@ class Wrangler(AssetController):
             if not path:
                 return
         getter = self._io_manager._make_getter()
-        getter.append_string(prompt_string)
+        getter.append_string(message)
         name = getter._run()
         if self._session.is_backtracking:
             return
@@ -886,10 +886,10 @@ class Wrangler(AssetController):
         else:
             confirmation_string = 'remove {}'
             confirmation_string = confirmation_string.format(count)
-        prompt_string = "type {!r} to proceed"
-        prompt_string = prompt_string.format(confirmation_string)
+        message = "type {!r} to proceed"
+        message = message.format(confirmation_string)
         getter = self._io_manager._make_getter()
-        getter.append_string(prompt_string)
+        getter.append_string(message)
         if self._session.confirm:
             result = getter._run()
             if self._session.is_backtracking:
@@ -1012,9 +1012,9 @@ class Wrangler(AssetController):
 
     def _select_visible_asset_path(self, infinitive_phrase=None):
         getter = self._io_manager._make_getter()
-        prompt_string = 'enter {}'.format(self._asset_identifier)
+        message = 'enter {}'.format(self._asset_identifier)
         if infinitive_phrase:
-            prompt_string = prompt_string + ' ' + infinitive_phrase
+            message = message + ' ' + infinitive_phrase
         if hasattr(self, '_make_asset_menu_section'):
             dummy_menu = self._io_manager._make_menu()
             self._make_asset_menu_section(dummy_menu)
@@ -1023,7 +1023,7 @@ class Wrangler(AssetController):
             menu = self._make_asset_selection_menu()
             asset_section = menu['assets']
         getter.append_menu_section_item(
-            prompt_string, 
+            message, 
             asset_section,
             )
         numbers = getter._run()
@@ -1040,12 +1040,12 @@ class Wrangler(AssetController):
     def _select_visible_asset_paths(self):
         getter = self._io_manager._make_getter()
         plural_identifier = stringtools.pluralize(self._asset_identifier)
-        prompt_string = 'enter {}(s) to remove'
-        prompt_string = prompt_string.format(plural_identifier)
+        message = 'enter {}(s) to remove'
+        message = message.format(plural_identifier)
         menu = self._make_asset_selection_menu()
         asset_section = menu['assets']
         getter.append_menu_section_range(
-            prompt_string, 
+            message, 
             asset_section,
             )
         numbers = getter._run()

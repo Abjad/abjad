@@ -185,8 +185,8 @@ class ScorePackageWrangler(PackageWrangler):
                     messages.extend(files)
                 if messages:
                     self._io_manager._display(messages)
-                    prompt_string = 'press any key to continue.'
-                    self._io_manager._confirm(prompt_string=prompt_string)
+                    message = 'press any key to continue.'
+                    self._io_manager._confirm(message=message)
                     if self._session.is_backtracking:
                         return
             manager._run()

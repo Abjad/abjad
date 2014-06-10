@@ -421,8 +421,8 @@ class Autoeditor(Controller):
             results.append(result)
         if any(_ == -1 for _ in results):
             self._io_manager._display('')
-            prompt_string = 'press return to continue'
+            message = 'press return to continue'
             self._io_manager._confirm(
                 include_chevron=True,
-                prompt_string=prompt_string,
+                message=message,
                 )

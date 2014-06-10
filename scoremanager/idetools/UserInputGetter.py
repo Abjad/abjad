@@ -24,7 +24,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         '_number_prompts',
         '_prompt_character',
         '_prompt_index',
-        '_prompt_strings',
+        '_messages',
         '_prompts',
         )
 
@@ -126,34 +126,34 @@ class UserInputGetter(Controller, PromptMakerMixin):
         self._prompt_index += 1
         self._current_prompt_is_done = True
 
-    def _indent_and_number_prompt_string(self, prompt_string):
+    def _indent_and_number_message(self, message):
         if self.number_prompts:
             prompt_number = self._prompt_index + 1
-            prompt_string = '({}/{}) {}'.format(
-                prompt_number, len(self), prompt_string)
-        return prompt_string
+            message = '({}/{}) {}'.format(
+                prompt_number, len(self), message)
+        return message
 
-    def _load_prompt_string(self):
-        prompt_string = self._current_prompt.prompt_string
+    def _load_message(self):
+        message = self._current_prompt.message
         if self.capitalize_prompts:
-            prompt_string = stringtools.capitalize_start(prompt_string)
-        self._prompt_strings.append(prompt_string)
+            message = stringtools.capitalize_start(message)
+        self._messages.append(message)
 
     def _move_to_previous_prompt(self):
         self._evaluated_input.pop()
         self._prompt_index = self._prompt_index - 1
 
     def _present_prompt_and_evaluate_input(self, include_chevron=True):
-        self._load_prompt_string()
+        self._load_message()
         self._current_prompt_is_done = False
         while not self._current_prompt_is_done:
-            prompt_string = self._prompt_strings[-1]
-            prompt_string = self._indent_and_number_prompt_string(
-                prompt_string)
+            message = self._messages[-1]
+            message = self._indent_and_number_message(
+                message)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
             input_ = self._io_manager._handle_input(
-                prompt_string,
+                message,
                 default_value=default_value,
                 include_chevron=include_chevron,
                 include_newline=self.include_newlines,
@@ -193,7 +193,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         include_chevron=True,
         ):
         self._prompt_index = 0
-        self._prompt_strings = []
+        self._messages = []
         self._evaluated_input = []
         self._all_prompts_are_done = False
         while (self._prompt_index < len(self) and

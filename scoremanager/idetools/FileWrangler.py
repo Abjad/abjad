@@ -131,7 +131,7 @@ class FileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._make_file(prompt_string='file name')
+        self._make_file(message='file name')
 
     def remove_files(self):
         r'''Removes one or more files.

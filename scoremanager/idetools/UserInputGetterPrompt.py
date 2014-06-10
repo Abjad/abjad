@@ -14,7 +14,7 @@ class UserInputGetterPrompt(AbjadObject):
         '_help_template',
         '_help_template_arguments',
         '_include_chevron',
-        '_prompt_string',
+        '_message',
         '_setup_statements',
         '_target_menu_section',
         '_validation_function',
@@ -29,20 +29,20 @@ class UserInputGetterPrompt(AbjadObject):
         help_template=None,
         help_template_arguments=None,
         include_chevron=True,
-        prompt_string=None,
+        message=None,
         setup_statements=None,
         target_menu_section=None,
         validation_function=None,
         ):
         AbjadObject.__init__(self)
-        assert isinstance(prompt_string, str)
+        assert isinstance(message, str)
         assert isinstance(help_template, str)
         self._default_value = default_value
         self._disallow_range = disallow_range
         self._help_template = help_template
         self._help_template_arguments = help_template_arguments or []
         self._include_chevron = include_chevron
-        self._prompt_string = prompt_string
+        self._message = message
         self._setup_statements = setup_statements or []
         self._target_menu_section = target_menu_section
         self._validation_function = validation_function
@@ -72,7 +72,7 @@ class UserInputGetterPrompt(AbjadObject):
         Returns string.
         '''
         result = self.help_template.format(
-            self.prompt_string,
+            self.message,
             *self.help_template_arguments
             )
         return result
@@ -102,12 +102,12 @@ class UserInputGetterPrompt(AbjadObject):
         return self._include_chevron
 
     @property
-    def prompt_string(self):
+    def message(self):
         r'''Gets prompt string.
 
         Returns string.
         '''
-        return self._prompt_string
+        return self._message
 
     @property
     def setup_statements(self):
