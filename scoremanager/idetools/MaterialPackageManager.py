@@ -2,13 +2,7 @@
 import collections
 import copy
 import os
-import shutil
-import traceback
-from abjad.tools import datastructuretools
-from abjad.tools import mathtools
-from abjad.tools import stringtools
 from abjad.tools import systemtools
-from abjad.tools import topleveltools
 from scoremanager.idetools.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
 
@@ -238,6 +232,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 name='definition.py',
                 )
 
+    def _make_definition_target_lines(self, target):
+        if hasattr(target, '_storage_format_specification'):
+            lines = format(target, 'storage').splitlines()
+        else:
+            lines = [repr(target)]
+        lines = list(lines)
+        lines[0] = 'target = {}'.format(lines[0])
+        lines = [line + '\n' for line in lines]
+        return lines
+
     def _make_illustrate_py_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustrate_py_path):
@@ -304,9 +308,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             pass
         return menu
 
-    def _make_output_material(self):
-        return
-
     def _make_output_material_triple(self):
         result = self._retrieve_import_statements_and_output_material()
         import_statements, output_material = result
@@ -319,7 +320,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             )
         return (import_statements, body_string, output_material)
 
-    def _make_output_py_body_lines(self, output_material):
+    def _make_output_material_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):
             lines = format(output_material, 'storage').splitlines()
         else:
@@ -496,12 +497,25 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             result = self._io_manager._confirm()
             if self._session.is_backtracking or not result:
                 return
-            # ZZZ
             selector = self._io_manager.selector
             selector = selector.make_autoeditable_class_selector()
             class_ = selector._run()
             if self._session.is_backtracking or not class_:
                 return
+            target = class_()
+            autoeditor = self._io_manager._make_autoeditor(target=target)
+            autoeditor._run()
+            if self._session.is_backtracking:
+                return
+            target = autoeditor.target
+            # ZZZ
+            import_statements = [self._abjad_import_statement]
+            target_lines = self._make_definition_target_lines(target)
+            self.write_definition_py(
+                import_statements=import_statements,
+                target_lines=target_lines,
+                target=target,
+                )
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -509,28 +523,19 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         output_material = self._execute_output_py()
-        autoeditor = self._io_manager._make_autoeditor(target=output_material)
-        if not autoeditor:
+        if output_material is None:
             return
+        autoeditor = self._io_manager._make_autoeditor(target=output_material)
         autoeditor._run()
         if self._session.is_backtracking:
             return
+        output_material = autoeditor.target
         output_py_import_statements = self._output_py_import_statements
-        if hasattr(self, '_make_output_py_body_lines'):
-            body_lines = self._make_output_py_body_lines(autoeditor.target)
-        else:
-            line = '{} = {}'
-            target_repr = self._get_storage_format(
-                autoeditor.target)
-            line = line.format(
-                self._material_package_name,
-                target_repr,
-                )
-            body_lines = [line]
+        output_material_lines = self._make_output_material_lines(output_material)
         self.write_output_py(
             import_statements=output_py_import_statements,
-            body_lines=body_lines,
-            output_material=autoeditor.target,
+            output_material_lines=output_material_lines,
+            output_material=output_material,
             )
 
     def check_definition_py(self, dry_run=False):
@@ -706,19 +711,19 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             storage_format = repr(empty_target)
         else:
             storage_format = format(empty_target, 'storage')
-        body_lines = '{} = {}'.format(
+        output_material_lines = '{} = {}'.format(
             self._package_name,
             storage_format,
             )
-        body_lines = body_lines.split('\n')
-        body_lines = [_ + '\n' for _ in body_lines]
+        output_material_lines = output_material_lines.split('\n')
+        output_material_lines = [_ + '\n' for _ in output_material_lines]
         import_statements = [self._abjad_import_statement]
         if 'handlertools.' in storage_format:
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
         with self._io_manager._make_silent():
             self.write_output_py(
-                body_lines=body_lines,
+                output_material_lines=output_material_lines,
                 import_statements=import_statements,
                 output_material=empty_target,
                 )
@@ -730,10 +735,53 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._remove_metadatum('use_autoeditor')
 
+    def write_definition_py(
+        self,
+        import_statements=None,
+        target_lines=None,
+        target=None,
+        ):
+        r'''Writes ``definition.py``.
+
+        Returns none.
+        '''
+        assert isinstance(import_statements, list), repr(import_statements)
+        assert isinstance(target_lines, list), repr(target_lines)
+        message = 'will write {} to {}.'
+        name = type(target.__name__)
+        message = message.format(name, self._definition_py_path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        lines = []
+        lines.append(self._configuration.unicode_directive + '\n')
+        if target_lines is None:
+            triple = self._make_output_material_triple()
+            import_statements = triple[0]
+            output_py_body_string = triple[1]
+            target = triple[2]
+            target_lines = [output_py_body_string]
+        import_statements = import_statements or []
+        if any('handlertools' in _ for _ in target_lines):
+            statement = 'from experimental.tools import handlertools'
+            import_statements.append(statement)
+        import_statements = [x + '\n' for x in import_statements]
+        lines.extend(import_statements)
+        lines.extend(['\n', '\n'])
+        lines.extend(target_lines)
+        contents = ''.join(lines)
+        self._io_manager.write(self._output_py_path, contents)
+        output_material_class_name = type(target).__name__
+        self._add_metadatum(
+            'output_material_class_name', 
+            output_material_class_name,
+            )
+
     def write_output_py(
         self,
         import_statements=None,
-        body_lines=None,
+        output_material_lines=None,
         output_material=None,
         ):
         r'''Writes ``output.py``.
@@ -747,31 +795,31 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking or not result:
             return
         if import_statements is None:
-            assert body_lines is None
+            assert output_material_lines is None
         else:
             assert isinstance(import_statements, list), repr(import_statements)
-        if body_lines is None:
+        if output_material_lines is None:
             assert import_statements is None
             assert output_material is None
         else:
-            assert isinstance(body_lines, list), repr(body_lines)
+            assert isinstance(output_material_lines, list), repr(output_material_lines)
             assert output_material is not None
         lines = []
         lines.append(self._configuration.unicode_directive + '\n')
-        if body_lines is None:
+        if output_material_lines is None:
             triple = self._make_output_material_triple()
             import_statements = triple[0]
             output_py_body_string = triple[1]
             output_material = triple[2]
-            body_lines = [output_py_body_string]
+            output_material_lines = [output_py_body_string]
         import_statements = import_statements or []
-        if any('handlertools' in _ for _ in body_lines):
+        if any('handlertools' in _ for _ in output_material_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
         import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
-        lines.extend(body_lines)
+        lines.extend(output_material_lines)
         contents = ''.join(lines)
         self._io_manager.write(self._output_py_path, contents)
         output_material_class_name = type(output_material).__name__
