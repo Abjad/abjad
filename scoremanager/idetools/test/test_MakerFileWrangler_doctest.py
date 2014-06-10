@@ -31,10 +31,10 @@ def test_MakerFileWrangler_doctest_02():
 
     strings = [
         'Running doctest ...',
-        '3 testable assets found ...',
+        '2 testable assets found ...',
         'RedExampleScoreRhythmMaker.py OK',
         'RedExampleScoreTemplate.py OK',
-        '0 of 0 tests passed in 3 modules.',
+        '0 of 0 tests passed in 2 modules.',
         ]
     for string in strings:
         assert string in contents

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.scores.red_example_score.makers import SargassoMeasureMaker
+from scoremanager.scores.blue_example_score.makers import SargassoMeasureMaker
 
 
 example_sargasso_measures = SargassoMeasureMaker(
