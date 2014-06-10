@@ -174,6 +174,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _check_output_material(material):
         return True
 
+    def _execute_definition_py(self):
+        result = self._io_manager.execute_file(
+            path = self._output_py_path,
+            attribute_names=('target',)
+            )
+        if result and len(result) == 1:
+            target = result[0]
+            return target
+
     def _execute_output_py(self):
         attribute_names = (self._material_package_name,)
         result = self._io_manager.execute_file(
@@ -183,18 +192,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if result and len(result) == 1:
             output_material = result[0]
             return output_material
-
-    def _get_output_material_editor(self, target):
-        if target is None:
-            return
-        from scoremanager import idetools
-        prototype = (datastructuretools.TypedList, list)
-        if isinstance(target, prototype):
-            class_ = idetools.ListAutoeditor
-        else:
-            class_ = idetools.Autoeditor
-        autoeditor = class_(session=self._session, target=target)
-        return autoeditor
 
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -215,7 +212,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if not os.path.isfile(self._output_py_path):
                 return
         output_material = self._execute_output_py()
-        autoeditor = self._get_output_material_editor(target=output_material)
+        autoeditor = self._io_manager._make_autoeditor(target=output_material)
         if not autoeditor:
             return
         lines = autoeditor._get_target_summary_lines()
@@ -490,7 +487,21 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        self._io_manager._display_not_yet_implemented()
+        target = self._execute_definition_py()
+        if target is None:
+            messages = []
+            messages.append('no autoedit target found.')
+            messages.append('would you like to create one?')
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
+                return
+            # ZZZ
+            selector = self._io_manager.selector
+            selector = selector.make_autoeditable_class_selector()
+            class_ = selector._run()
+            if self._session.is_backtracking or not class_:
+                return
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -498,7 +509,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         output_material = self._execute_output_py()
-        autoeditor = self._get_output_material_editor(target=output_material)
+        autoeditor = self._io_manager._make_autoeditor(target=output_material)
         if not autoeditor:
             return
         autoeditor._run()
@@ -669,11 +680,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        from scoremanager import idetools
         selector = self._io_manager.selector
         selector = selector.make_autoeditable_class_selector()
         class_ = selector._run()
-        if not class_:
+        if self._session.is_backtracking or not class_:
             return
         self._add_metadatum('use_autoeditor', True)
         self._add_metadatum('output_material_class_name', class_.__name__)
