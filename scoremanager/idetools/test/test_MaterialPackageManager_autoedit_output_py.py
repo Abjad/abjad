@@ -160,7 +160,7 @@ def test_MaterialPackageManager_autoedit_output_py_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new test~markup~inventory y oaes markup <return>"
+        input_ = "m new test~markup~inventory y oaes MarkupInventory <return>"
         input_ += " oae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y <return> q"
         score_manager._run(input_=input_)

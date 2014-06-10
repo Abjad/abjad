@@ -737,7 +737,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         from scoremanager import idetools
         selector = self._io_manager.selector
-        selector = selector.make_inventory_class_selector()
+        selector = selector.make_autoeditable_class_selector()
         class_ = selector._run()
         if not class_:
             return
