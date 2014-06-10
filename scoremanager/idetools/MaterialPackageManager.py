@@ -239,7 +239,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             lines = [repr(target)]
         lines = list(lines)
         lines[0] = 'target = {}'.format(lines[0])
-        lines = [line + '\n' for line in lines]
         return lines
 
     def _make_illustrate_py_menu_section(self, menu):
@@ -327,7 +326,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             lines = [repr(output_material)]
         lines = list(lines)
         lines[0] = '{} = {}'.format(self._material_package_name, lines[0])
-        lines = [line + '\n' for line in lines]
         return lines
 
     def _make_output_py_menu_section(self, menu):
@@ -755,7 +753,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking or not result:
             return
         lines = []
-        lines.append(self._configuration.unicode_directive + '\n')
+        lines.append(self._configuration.unicode_directive)
         if target_lines is None:
             triple = self._make_output_material_triple()
             import_statements = triple[0]
@@ -766,11 +764,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if any('handlertools' in _ for _ in target_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-        import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
-        lines.extend(['\n', '\n'])
+        lines.append('')
+        lines.append('')
         lines.extend(target_lines)
-        contents = ''.join(lines)
+        contents = '\n'.join(lines)
         self._io_manager.write(self._output_py_path, contents)
         output_material_class_name = type(target).__name__
         self._add_metadatum(
@@ -802,10 +800,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             assert import_statements is None
             assert output_material is None
         else:
-            assert isinstance(output_material_lines, list), repr(output_material_lines)
+            assert isinstance(output_material_lines, list), repr(
+                output_material_lines)
             assert output_material is not None
         lines = []
-        lines.append(self._configuration.unicode_directive + '\n')
+        lines.append(self._configuration.unicode_directive)
         if output_material_lines is None:
             triple = self._make_output_material_triple()
             import_statements = triple[0]
@@ -816,11 +815,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if any('handlertools' in _ for _ in output_material_lines):
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-        import_statements = [x + '\n' for x in import_statements]
         lines.extend(import_statements)
-        lines.extend(['\n', '\n'])
+        lines.append('')
+        lines.append('')
         lines.extend(output_material_lines)
-        contents = ''.join(lines)
+        contents = '\n'.join(lines)
         self._io_manager.write(self._output_py_path, contents)
         output_material_class_name = type(output_material).__name__
         self._add_metadatum(
