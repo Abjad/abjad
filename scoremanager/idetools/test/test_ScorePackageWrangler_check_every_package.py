@@ -21,7 +21,7 @@ def test_ScorePackageWrangler_check_every_package_01():
         '    Top level (9 assets): OK',
         '    Build files (18 files): OK',
         '    Distribution files (2 files): OK',
-        '    Maker files (3 files): OK',
+        '    Maker files (2 files): OK',
         '    Materials (5 packages):',
         '        Instrumentation: OK',
         '        Magic numbers: OK',

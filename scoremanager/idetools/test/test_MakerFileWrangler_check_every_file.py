@@ -13,7 +13,7 @@ def test_MakerFileWrangler_check_every_file_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'Maker files (3 files): OK' in contents
+    assert 'Maker files (2 files): OK' in contents
 
 
 def test_MakerFileWrangler_check_every_file_02():
