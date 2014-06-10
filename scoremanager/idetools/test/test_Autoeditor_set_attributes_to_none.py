@@ -16,8 +16,8 @@ def test_Autoeditor_set_attributes_to_none_01():
 
     with systemtools.FilesystemState(remove=[material_package_path]):
         input_ = 'red~example~score m new test~rhythm~maker y'
-        input_ += ' aes TaleaRhythmMaker'
-        input_ += ' ae t c (1, 2, 3, 4) done bs done done y'
+        input_ += ' oaes TaleaRhythmMaker'
+        input_ += ' oae t c (1, 2, 3, 4) done bs done done y'
         input_ += ' m test~rhythm~maker q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -33,7 +33,7 @@ def test_Autoeditor_set_attributes_to_none_01():
         for line in lines:
             assert line in contents
         input_ = 'red~example~score m test~rhythm~maker'
-        input_ += ' ae none bs done y'
+        input_ += ' oae none bs done y'
         input_ += ' m test~rhythm~maker q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

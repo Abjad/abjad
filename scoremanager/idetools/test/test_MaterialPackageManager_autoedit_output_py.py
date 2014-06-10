@@ -6,19 +6,19 @@ from experimental import *
 import scoremanager
 
 
-def test_MaterialPackageManager_autoedit_01():
+def test_MaterialPackageManager_autoedit_output_py_01():
     '''Edit menu has correct header.
     '''
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'm example~markup~inventory ae q'
+    input_ = 'm example~markup~inventory oae q'
     score_manager._run(input_=input_)
 
     title = 'Abjad IDE - materials - example markup inventory (Abjad)'
     assert title in score_manager._transcript.titles
 
 
-def test_MaterialPackageManager_autoedit_02():
+def test_MaterialPackageManager_autoedit_output_py_02():
     r'''Edits tempo inventory.
     '''
 
@@ -43,8 +43,8 @@ def test_MaterialPackageManager_autoedit_02():
     assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~tempo~inventory y aes TempoInventory <return>'
-        input_ += ' ae add ((1, 4), 60) add ((1, 4), 90) done'
+        input_ = 'm new test~tempo~inventory y oaes TempoInventory <return>'
+        input_ += ' oae add ((1, 4), 60) add ((1, 4), 90) done'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -58,7 +58,7 @@ def test_MaterialPackageManager_autoedit_02():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_03():
+def test_MaterialPackageManager_autoedit_output_py_03():
     r'''Edits empty pitch range inventory.
     '''
 
@@ -79,7 +79,7 @@ def test_MaterialPackageManager_autoedit_03():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new test~pitch~range~inventory y'
-        input_ += ' aes PitchRangeInventory <return> done y <return> q'
+        input_ += ' oaes PitchRangeInventory <return> done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
@@ -92,7 +92,7 @@ def test_MaterialPackageManager_autoedit_03():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_04():
+def test_MaterialPackageManager_autoedit_output_py_04():
     r'''Edits populated pitch range inventory.
     '''
 
@@ -114,8 +114,8 @@ def test_MaterialPackageManager_autoedit_04():
         pitchtools.PitchRange('[C2, F#5]'),
         ])
     input_ = 'm new test~pitch~range~inventory y'
-    input_ += ' aes PitchRangeInventory <return>'
-    input_ += ' ae add [A0, C8]'
+    input_ += ' oaes PitchRangeInventory <return>'
+    input_ += ' oae add [A0, C8]'
     input_ += ' add [C2, F#5]'
     input_ += ' add [C2, G5]'
     input_ += ' rm 1 mv 1 2 b y <return> q'
@@ -133,7 +133,7 @@ def test_MaterialPackageManager_autoedit_04():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_05():
+def test_MaterialPackageManager_autoedit_output_py_05():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
@@ -160,8 +160,8 @@ def test_MaterialPackageManager_autoedit_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new test~markup~inventory y aes markup <return>"
-        input_ += " ae add arg r'\\italic~{~serenamente~}' done"
+        input_ = "m new test~markup~inventory y oaes markup <return>"
+        input_ += " oae add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y <return> q"
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -175,7 +175,7 @@ def test_MaterialPackageManager_autoedit_05():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_06():
+def test_MaterialPackageManager_autoedit_output_py_06():
     r'''Edits empty octave transposition mapping inventory.
     '''
 
@@ -196,7 +196,7 @@ def test_MaterialPackageManager_autoedit_06():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new test~transposition~inventory y'
-        input_ += ' aes OctaveTranspositionMappingInventory <return>'
+        input_ += ' oaes OctaveTranspositionMappingInventory <return>'
         input_ += ' done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -210,7 +210,7 @@ def test_MaterialPackageManager_autoedit_06():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_07():
+def test_MaterialPackageManager_autoedit_output_py_07():
     r'''Edits populated octave transposition mapping inventory.
     '''
 
@@ -241,8 +241,8 @@ def test_MaterialPackageManager_autoedit_07():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new test~transposition~inventory y'
-        input_ += ' aes OctaveTranspositionMappingInventory <return>'
-        input_ += " ae add add ('[A0, C4)', 15)"
+        input_ += ' oaes OctaveTranspositionMappingInventory <return>'
+        input_ += " oae add add ('[A0, C4)', 15)"
         input_ += " add ('[C4, C8)', 27) done"
         input_ += " add add ('[A0, C8]', -18)"
         input_ += ' done done y <return> q'
@@ -258,7 +258,7 @@ def test_MaterialPackageManager_autoedit_07():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_08():
+def test_MaterialPackageManager_autoedit_output_py_08():
     pytest.skip('make autoadding work again.')
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
@@ -276,8 +276,8 @@ def test_MaterialPackageManager_autoedit_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list y aes list <return>'
-        input_ += ' ae 17 foo done b <return> q'
+        input_ = 'm new test~list y oaes list <return>'
+        input_ += ' oae 17 foo done b <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
@@ -290,7 +290,7 @@ def test_MaterialPackageManager_autoedit_08():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_09():
+def test_MaterialPackageManager_autoedit_output_py_09():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
@@ -307,8 +307,8 @@ def test_MaterialPackageManager_autoedit_09():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list y aes list <return>'
-        input_ += ' ae add 17 add foo done y <return> q'
+        input_ = 'm new test~list y oaes list <return>'
+        input_ += ' oae add 17 add foo done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
@@ -321,7 +321,7 @@ def test_MaterialPackageManager_autoedit_09():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_10():
+def test_MaterialPackageManager_autoedit_output_py_10():
     r'''Edits talea rhythm-maker.
     '''
 
@@ -349,8 +349,8 @@ def test_MaterialPackageManager_autoedit_10():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~rhythm~maker y aes TaleaRhythmMaker <return>'
-        input_ += ' ae talea counts (-1, 2, -3, 4) denominator 16 done'
+        input_ = 'm new test~rhythm~maker y oaes TaleaRhythmMaker <return>'
+        input_ += ' oae talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
         input_ += ' done y <return> q'
@@ -366,7 +366,7 @@ def test_MaterialPackageManager_autoedit_10():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_11():
+def test_MaterialPackageManager_autoedit_output_py_11():
     r'''Edits retierated articulation handler.
     '''
 
@@ -393,8 +393,8 @@ def test_MaterialPackageManager_autoedit_11():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = "m new test~articulation~handler y"
-        input_ += " aes ReiteratedArticulationHandler <return>"
-        input_ += " ae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
+        input_ += " oaes ReiteratedArticulationHandler <return>"
+        input_ += " oae al ['^', '.'] nd (1, 64) xd (1, 4) np c xp c''''"
         input_ += " done y <return> q"
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -408,7 +408,7 @@ def test_MaterialPackageManager_autoedit_11():
         score_manager._run(input_=input_)
 
 
-def test_MaterialPackageManager_autoedit_12():
+def test_MaterialPackageManager_autoedit_output_py_12():
     r'''Edits dynamic handler.
     '''
 
@@ -432,8 +432,8 @@ def test_MaterialPackageManager_autoedit_12():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new test~dynamic~handler y'
-        input_ += ' aes ReiteratedDynamicHandler <return>'
-        input_ += ' ae dy f md (1, 16) done y <return> q'
+        input_ += ' oaes ReiteratedDynamicHandler <return>'
+        input_ += ' oae dy f md (1, 16) done y <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)

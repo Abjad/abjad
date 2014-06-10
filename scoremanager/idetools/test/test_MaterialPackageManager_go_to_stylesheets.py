@@ -13,7 +13,7 @@ def test_MaterialPackageManager_go_to_stylesheets_01():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (OAE)',
         'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles

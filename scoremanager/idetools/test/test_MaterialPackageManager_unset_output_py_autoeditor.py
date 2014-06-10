@@ -16,12 +16,12 @@ def test_MaterialPackageManager_unset_autoeditor_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score m new test~tempo~inventory y'
-        input_ += ' aes TempoInventory <return> q'
+        input_ += ' oaes TempoInventory <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'test tempo inventory (AE)'
+        string = 'test tempo inventory (OAE)'
         assert string in contents
-        input_ = 'red~example~Score m test~tempo~inventory aeu q'
+        input_ = 'red~example~Score m test~tempo~inventory oaeu q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         string = 'test tempo inventory\n'

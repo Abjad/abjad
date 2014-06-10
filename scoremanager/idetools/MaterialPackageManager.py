@@ -69,7 +69,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_in_score:
             name = self._space_delimited_lowercase_name
             if use_autoeditor:
-                return '{} (AE)'.format(name)
+                return '{} (OAE)'.format(name)
             else:
                 return name
         name = self._space_delimited_lowercase_name
@@ -101,8 +101,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'aes': self.set_autoeditor,
-            'aeu': self.unset_autoeditor,
+            'oaes': self.set_output_py_autoeditor,
+            'oaeu': self.unset_output_py_autoeditor,
             #
             'de': self.edit_definition_py,
             'di': self.interpret_definition_py,
@@ -116,8 +116,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ili': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
             #
-            'ae': self.autoedit,
-            'i': self.illustrate_material,
+            'oae': self.autoedit_output_py,
+            'oi': self.illustrate_output_py,
             #
             'mae': self.autoedit_maker,
             'mi': self.interpret_maker_py,
@@ -301,7 +301,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_py_menu_section(menu)
-        self._make_material_menu_section(menu)
         self._make_output_py_menu_section(menu)
         self._make_package_configuration_menu_section(menu)
         self._make_package_menu_section(menu)
@@ -324,18 +323,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 is_hidden=False,
                 commands=commands,
                 name='maker.py',
-                )
-
-    def _make_material_menu_section(self, menu):
-        commands = []         
-        if os.path.isfile(self._output_py_path):
-            if self._get_metadatum('use_autoeditor'):
-                commands.append(('material - autoedit', 'ae'))
-            commands.append(('material - illustrate', 'i'))
-        if commands:
-            menu.make_command_section(
-                commands=commands,
-                name='material',
                 )
 
     def _make_output_material(self):
@@ -365,10 +352,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_output_py_menu_section(self, menu):
         commands = []
-        commands.append(('output.py - write', 'ow'))
         if os.path.isfile(self._output_py_path):
+            if self._get_metadatum('use_autoeditor'):
+                commands.append(('output.py - autoedit', 'oae'))
             commands.append(('output.py - check', 'oc'))
+            commands.append(('output.py - illustrate', 'oi'))
             commands.append(('output.py - open', 'oo'))
+        commands.append(('output.py - write', 'ow'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -390,9 +380,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _make_package_configuration_menu_section(self, menu):
         commands = []
         if self._get_metadatum('use_autoeditor'):
-            commands.append(('package - autoeditor - unset', 'aeu'))
+            commands.append(('package - autoeditor - unset', 'oaeu'))
         else:
-            commands.append(('package - autoeditor - set', 'aes'))
+            commands.append(('package - autoeditor - set', 'oaes'))
         if commands:
             menu.make_command_section(
                 is_hidden=True,
@@ -512,10 +502,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _run_first_time(self):
         if self._session.pending_input:
-            pending_input = 'ae ' + self._session.pending_input
+            pending_input = 'oae ' + self._session.pending_input
             self._session._pending_input = pending_input
         else:
-            self._session._pending_input = 'ae'
+            self._session._pending_input = 'oae'
         self._run()
 
     def _set_is_navigating_to_sibling_asset(self):
@@ -523,8 +513,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     ### PUBLIC METHODS ###
 
-    def autoedit(self):
-        r'''Autoedits.
+    def autoedit_output_py(self):
+        r'''Autoedits ``output.py``.
 
         Returns none.
         '''
@@ -600,8 +590,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._illustrate_py_path)
 
-    def illustrate_material(self):
-        r'''Illustrates material.
+    def illustrate_output_py(self):
+        r'''Illustrates ``output.py``.
 
         Creates ``illustration.pdf`` and ``illustration.ly`` files.
 
@@ -703,7 +693,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
-    def set_autoeditor(self):
+    def set_output_py_autoeditor(self):
         r'''Sets autoeditor.
 
         Returns none.
@@ -745,9 +735,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if 'handlertools.' in storage_format:
             statement = 'from experimental.tools import handlertools'
             import_statements.append(statement)
-#        if ' makers.' in storage_format:
-#            statement = 'from scoremanager import makers'
-#            import_statements.append(statement)
         with self._io_manager._make_silent():
             self.write_output_py(
                 body_lines=body_lines,
@@ -755,7 +742,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 output_material=empty_target,
                 )
 
-    def unset_autoeditor(self):
+    def unset_output_py_autoeditor(self):
         r'''Unsets autoeditor.
 
         Returns none.

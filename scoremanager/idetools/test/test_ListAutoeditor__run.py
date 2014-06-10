@@ -260,7 +260,7 @@ def test_ListAutoeditor__run_12():
 
 def test_ListAutoeditor__run_13():
 
-    input_ = 'red~example~score m instrumentation ae q'
+    input_ = 'red~example~score m instrumentation oae q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -268,7 +268,7 @@ def test_ListAutoeditor__run_13():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - instrumentation (AE)',
+        'Red Example Score (2013) - materials - instrumentation (OAE)',
         'Red Example Score (2013) - materials - instrumentation (EDIT)',
         ]
     assert score_manager._transcript.titles == titles

@@ -5,7 +5,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_illustrate_material_01():
+def test_MaterialPackageManager_illustrate_output_py_01():
 
     illustration_ly = os.path.join(
         score_manager._configuration.example_score_packages_directory,
@@ -27,7 +27,7 @@ def test_MaterialPackageManager_illustrate_material_01():
         os.remove(illustration_pdf)
         assert not os.path.exists(illustration_ly)
         assert not os.path.exists(illustration_pdf)
-        input_ = 'red~example~score m tempo~inventory i q'
+        input_ = 'red~example~score m tempo~inventory oi q'
         score_manager._run(input_=input_)
         assert os.path.isfile(illustration_ly)
         assert os.path.isfile(illustration_pdf)

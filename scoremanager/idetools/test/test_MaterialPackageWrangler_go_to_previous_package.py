@@ -15,10 +15,10 @@ def test_MaterialPackageWrangler_go_to_previous_package_01():
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - time signatures',
-        'Red Example Score (2013) - materials - tempo inventory (AE)',
-        'Red Example Score (2013) - materials - pitch range inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (OAE)',
+        'Red Example Score (2013) - materials - pitch range inventory (OAE)',
         'Red Example Score (2013) - materials - magic numbers',
-        'Red Example Score (2013) - materials - instrumentation (AE)',
+        'Red Example Score (2013) - materials - instrumentation (OAE)',
         'Red Example Score (2013) - materials - time signatures',
         ]
     assert score_manager._transcript.titles == titles
@@ -37,7 +37,7 @@ def test_MaterialPackageWrangler_go_to_previous_package_02():
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - time signatures',
-        'Red Example Score (2013) - materials - tempo inventory (AE)',
+        'Red Example Score (2013) - materials - tempo inventory (OAE)',
         'Red Example Score (2013) - segments',
         'Red Example Score (2013) - segments - C',
         'Red Example Score (2013) - segments - B',

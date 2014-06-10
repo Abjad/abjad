@@ -63,6 +63,13 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
             package_name,
             )
         paths.append(path)
+    path = os.path.join(
+        wrangler._configuration.example_score_packages_directory,
+        'blue_example_score',
+        'materials',
+        'sargasso_measures',
+        )
+    paths.append(path)
 
     result = wrangler._list_asset_paths(
         abjad_library=False,
@@ -71,4 +78,6 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
         user_score_packages=False,
         )
 
-    assert result == paths
+    for path in paths:
+        assert path in result
+    assert len(paths) == len(result)

@@ -17,10 +17,10 @@ def test_MaterialPackageManager_set_autoeditor_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score m new test~tempo~inventory y'
-        input_ += ' aes TempoInventory <return> q'
+        input_ += ' oaes TempoInventory <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
-        string = 'test tempo inventory (AE)'
+        string = 'test tempo inventory (OAE)'
         assert string in contents
 
 
@@ -38,7 +38,7 @@ def test_MaterialPackageManager_set_autoeditor_02():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score m tempo~inventory'
-        input_ += ' aeu aes TempoInventory <return> q'
+        input_ += ' oaeu oaes TempoInventory <return> q'
         score_manager._run(input_=input_)
         assert filecmp.cmp(path, path + '.backup')
 
@@ -57,7 +57,7 @@ def test_MaterialPackageManager_set_autoeditor_03():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score m tempo~inventory'
-        input_ += ' aeu aes ClefInventory n q'
+        input_ += ' oaeu oaes ClefInventory n q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         line = 'Existing output.py file contains TempoInventory.'

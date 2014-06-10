@@ -360,7 +360,7 @@ class AssetController(Controller):
             if metadata:
                 use_autoeditor = metadata.get('use_autoeditor')
             if use_autoeditor:
-                string = string + ' (AE)'
+                string = string + ' (OAE)'
         return string
 
     def _path_to_human_readable_name(self, path):
