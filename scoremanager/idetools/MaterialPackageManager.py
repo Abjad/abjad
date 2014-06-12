@@ -421,6 +421,18 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             name='versions directory',
             )
 
+    def _object_to_import_statements(self, object_):
+        import_statements = []
+        module = object_.__class__.__module__
+        assert isinstance(module, str)
+        parts = module.split('.')
+        if 'makers' in parts:
+            index = parts.index('makers')
+            storehouse = parts[index-1]
+            import_statement = 'import {}'.format(storehouse)
+            import_statements.append(import_statement)
+        return import_statements
+
     def _rename_interactively(
         self,
         extension=None,
@@ -504,7 +516,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking:
             return
         target = autoeditor.target
-        import_statements = [self._abjad_import_statement]
+        import_statements = []
+        import_statements.append(self._abjad_import_statement)
+        import_statements.extend(self._object_to_import_statements(target))
         target_lines = self._make_definition_target_lines(target)
         self.write_definition_py(
             import_statements=import_statements,

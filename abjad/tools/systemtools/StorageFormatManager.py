@@ -156,8 +156,7 @@ class StorageFormatManager(object):
         class_name = type(specification.instance).__name__
         if as_storage_format:
             tools_package_name = specification.tools_package_name
-            class_name_prefix = '{}.{}'.format(
-                tools_package_name, class_name)
+            class_name_prefix = '{}.{}'.format(tools_package_name, class_name)
         else:
             class_name_prefix = class_name
 
