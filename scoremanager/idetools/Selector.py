@@ -180,6 +180,10 @@ class Selector(Controller):
             modules=modules):
             if hasattr(class_, '_attribute_manifest'):
                 classes.append(class_)
+        if self._session._score_manager is not None:
+            wrangler = self._session._score_manager._maker_file_wrangler
+            maker_classes = wrangler._list_maker_classes()
+            #print(maker_classes)
         classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(

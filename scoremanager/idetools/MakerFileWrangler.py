@@ -50,3 +50,11 @@ class MakerFileWrangler(FileWrangler):
             if extension == '.py':
                 return True
         return False
+
+    def _list_maker_classes(self):
+        paths = self._list_storehouse_paths()
+        packages = []
+        for path in paths:
+            package = self._configuration.path_to_package(path)
+            packages.append(package)
+        return packages

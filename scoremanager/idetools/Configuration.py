@@ -122,13 +122,13 @@ class Configuration(AbjadConfiguration):
 
     def _path_to_score_path(self, path):
         if path.startswith(self.user_score_packages_directory):
-            prefix_length = len(self.user_score_packages_directory)
+            prefix = len(self.user_score_packages_directory)
         elif path.startswith(self.example_score_packages_directory):
-            prefix_length = len(self.example_score_packages_directory)
+            prefix = len(self.example_score_packages_directory)
         else:
             return
-        path_prefix = path[:prefix_length]
-        path_suffix = path[prefix_length+1:]
+        path_prefix = path[:prefix]
+        path_suffix = path[prefix+1:]
         score_name = path_suffix.split(os.path.sep)[0]
         score_path = os.path.join(path_prefix, score_name)
         return score_path
@@ -137,20 +137,20 @@ class Configuration(AbjadConfiguration):
         is_in_score = False
         if path.startswith(self.user_score_packages_directory):
             is_in_score = True
-            prefix_length = len(self.user_score_packages_directory)
+            prefix = len(self.user_score_packages_directory)
         elif path.startswith(self.example_score_packages_directory):
             is_in_score = True
-            prefix_length = len(self.example_score_packages_directory)
+            prefix = len(self.example_score_packages_directory)
         elif path.startswith(self.user_library_directory):
-            prefix_length = len(self.user_library_directory)
+            prefix = len(self.user_library_directory)
         elif path.startswith(self.abjad_stylesheets_directory):
             return self.abjad_stylesheets_directory
         else:
             message = 'unidentifiable path: {!r}.'
             message = message.format(path)
             raise Exception(message)
-        path_prefix = path[:prefix_length]
-        remainder = path[prefix_length+1:]
+        path_prefix = path[:prefix]
+        remainder = path[prefix+1:]
         path_parts = remainder.split(os.path.sep)
         assert 1 <= len(path_parts)
         if is_in_score:
@@ -650,15 +650,13 @@ class Configuration(AbjadConfiguration):
         assert isinstance(path, str), repr(path)
         path = os.path.normpath(path)
         if path.endswith('.py'):
-            path = path[:-3]
-        if path.startswith(
-            self.example_score_packages_directory):
-            prefix_length = len(self.example_score_packages_directory) + 1
-        elif path.startswith(
-            self.user_library_material_packages_directory):
-            prefix_length = \
-                len(self.user_library_material_packages_directory) + 1
-            remainder = path[prefix_length:]
+            #path = path[:-3]
+            path, extension = os.path.splitext(path)
+        if path.startswith(self.example_score_packages_directory):
+            prefix = len(self.example_score_packages_directory) + 1
+        elif path.startswith(self.user_library_material_packages_directory):
+            prefix = len(self.user_library_material_packages_directory) + 1
+            remainder = path[prefix:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
@@ -672,25 +670,22 @@ class Configuration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif path.startswith(
-            self.abjad_material_packages_directory):
-            prefix_length = len(self.abjad_root_directory) + 1
+        elif path.startswith(self.abjad_material_packages_directory):
+            prefix = len(self.abjad_root_directory) + 1
         elif path.startswith(self.score_manager_directory):
-            prefix_length = \
-                len(os.path.dirname(self.score_manager_directory)) + 1
-        elif path.startswith(
-            self.user_score_packages_directory):
-            prefix_length = len(self.user_score_packages_directory) + 1
-        elif path.startswith(
-            self.user_library_stylesheets_directory):
-            prefix_length = \
-                len(os.path.dirname(
-                self.user_library_stylesheets_directory)) + 1
+            prefix = len(os.path.dirname(self.score_manager_directory)) + 1
+        elif path.startswith(self.user_score_packages_directory):
+            prefix = len(self.user_score_packages_directory) + 1
+        elif path.startswith(self.user_library_stylesheets_directory):
+            prefix = len(
+                os.path.dirname(self.user_library_stylesheets_directory)) + 1
         elif path.startswith(self.abjad_stylesheets_directory):
-            prefix_length = len(self.abjad_root_directory) + 1
+            prefix = len(self.abjad_root_directory) + 1
+        elif path.startswith(self.user_library_directory):
+            prefix = len(os.path.dirname(self.user_library_directory)) + 1
         else:
             message = 'can not change path to package: {!r}.'
             raise Exception(message.format(path))
-        package = path[prefix_length:]
+        package = path[prefix:]
         package = package.replace(os.path.sep, '.')
         return package
