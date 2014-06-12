@@ -183,7 +183,9 @@ class Selector(Controller):
         if self._session._score_manager is not None:
             wrangler = self._session._score_manager._maker_file_wrangler
             maker_classes = wrangler._list_maker_classes()
-            #print(maker_classes)
+            for class_ in maker_classes:
+                if hasattr(class_, '_attribute_manifest'):
+                    classes.append(class_)
         classes.append(list)
         classes.sort(key=lambda x: x.__name__)
         selector = type(self)(

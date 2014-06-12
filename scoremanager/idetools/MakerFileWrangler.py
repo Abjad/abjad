@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
+import traceback
+from abjad.tools import documentationtools
 from abjad.tools import stringtools
 from scoremanager.idetools.FileWrangler import FileWrangler
 
@@ -52,9 +54,23 @@ class MakerFileWrangler(FileWrangler):
         return False
 
     def _list_maker_classes(self):
+        modules = self._list_maker_modules()
+        classes = documentationtools.list_all_experimental_classes(
+            modules=modules)
+        return classes
+
+    def _list_maker_modules(self):
         paths = self._list_storehouse_paths()
         packages = []
         for path in paths:
             package = self._configuration.path_to_package(path)
             packages.append(package)
-        return packages
+        modules = []
+        for package in packages:
+            statement = 'import {} as _module'.format(package)
+            try:
+                exec(statement)
+                modules.append(_module)
+            except ImportError:
+                pass
+        return modules
