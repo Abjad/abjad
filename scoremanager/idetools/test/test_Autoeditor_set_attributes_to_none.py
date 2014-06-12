@@ -7,14 +7,14 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_Autoeditor_set_attributes_to_none_01():
 
-    material_package_path = os.path.join(
+    material_path = os.path.join(
         score_manager._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'test_rhythm_maker',
         )
 
-    with systemtools.FilesystemState(remove=[material_package_path]):
+    with systemtools.FilesystemState(remove=[material_path]):
         input_ = 'red~example~score m new test~rhythm~maker y'
         input_ += ' oaes TaleaRhythmMaker'
         input_ += ' oae t c (1, 2, 3, 4) done bs done done y'

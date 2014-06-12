@@ -110,7 +110,7 @@ class BuildFileWrangler(FileWrangler):
             if not os.path.isfile(source_file_path):
                 continue
             score_path = self._session.current_score_directory
-            score_package = self._configuration.path_to_package_path(
+            score_package = self._configuration.path_to_package(
                 score_path)
             score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')

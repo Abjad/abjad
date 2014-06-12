@@ -623,7 +623,7 @@ class Configuration(AbjadConfiguration):
                         scores_directory,
                         directory_entry,
                         )
-                    package_path = self.path_to_package_path(
+                    package_path = self.path_to_package(
                         directory,
                         )
                     path = os.path.join(
@@ -644,7 +644,7 @@ class Configuration(AbjadConfiguration):
                     result.append(path)
         return result
 
-    def path_to_package_path(self, path):
+    def path_to_package(self, path):
         r'''Changes `path` to package path.
 
         Returns string.

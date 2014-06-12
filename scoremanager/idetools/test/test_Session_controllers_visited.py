@@ -5,16 +5,16 @@ from abjad import *
 import scoremanager
 configuration = scoremanager.idetools.Configuration()
 
-score_package_path = os.path.join(
+score_path = os.path.join(
     configuration.example_score_packages_directory,
     'red_example_score',
     )
-tempo_inventory_package_path = os.path.join(
-    score_package_path,
+tempo_inventory_path = os.path.join(
+    score_path,
     'tempo_inventory',
     )
-segment_package_path = os.path.join(
-    score_package_path,
+segment_path = os.path.join(
+    score_path,
     'segments',
     'segment_01',
     )
@@ -51,7 +51,7 @@ def test_Session_controllers_visited_02():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         ]
@@ -73,7 +73,7 @@ def test_Session_controllers_visited_03():
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
             session=session,
-            path=score_package_path,
+            path=score_path,
             ),
         scoremanager.idetools.BuildFileWrangler(session=session),
         ]
@@ -94,7 +94,7 @@ def test_Session_controllers_visited_04():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         scoremanager.idetools.MaterialPackageWrangler(session=session),
@@ -116,12 +116,12 @@ def test_Session_controllers_visited_05():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         scoremanager.idetools.MaterialPackageWrangler(session=session),
         scoremanager.idetools.MaterialPackageManager(
-            path=tempo_inventory_package_path,
+            path=tempo_inventory_path,
             session=session,
             ),
         ]
@@ -142,7 +142,7 @@ def test_Session_controllers_visited_06():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         scoremanager.idetools.SegmentPackageWrangler(session=session),
@@ -164,12 +164,12 @@ def test_Session_controllers_visited_07():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         scoremanager.idetools.SegmentPackageWrangler(session=session),
         scoremanager.idetools.SegmentPackageManager(
-            path=segment_package_path,
+            path=segment_path,
             session=session,
             ),
         ]
@@ -190,7 +190,7 @@ def test_Session_controllers_visited_08():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         scoremanager.idetools.ScorePackageManager(
-            path=score_package_path,
+            path=score_path,
             session=session,
             ),
         scoremanager.idetools.StylesheetWrangler(session=session),

@@ -97,14 +97,6 @@ class Controller(object):
                     return True
         return False
 
-    @staticmethod
-    def _is_package_path(path):
-        if os.path.isdir(path):
-            for directory_entry in os.listdir(path):
-                if directory_entry == '__init__.py':
-                    return True
-        return False
-
     def _list_directories_with_metadata_pys(self, path=None):
         path = path or self._path
         paths = []

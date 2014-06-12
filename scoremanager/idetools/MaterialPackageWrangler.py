@@ -98,17 +98,17 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         configuration = self._configuration
         library_path = \
             configuration.user_library_material_packages_directory
-        package_path = self._configuration.path_to_package_path(library_path)
+        package = self._configuration.path_to_package(library_path)
         command = command.format(
-            package_path,
+            package,
             class_name,
             )
         try:
             exec(command)
         except ImportError:
             return
-        package_path = self._configuration.path_to_package_path(path)
-        manager = class_(package_path, session=self._session)
+        package = self._configuration.path_to_package(path)
+        manager = class_(package, session=self._session)
         return manager
 
     def _handle_numeric_user_input(self, result):

@@ -74,7 +74,7 @@ class ScorePackageManager(PackageManager):
     def _enter_run(self):
         superclass = super(ScorePackageManager, self)
         superclass._enter_run()
-        self._session._last_score_package_path = self._path
+        self._session._last_score_path = self._path
 
     def _exit_run(self):
         superclass = super(ScorePackageManager, self)

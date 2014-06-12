@@ -72,7 +72,7 @@ class Session(abctools.AbjadObject):
         '_is_test',
         '_last_asset_path',
         '_last_command_was_composite',
-        '_last_score_package_path',
+        '_last_score_path',
         '_menu_header_width',
         '_pending_input',
         '_proceed_count',
@@ -91,7 +91,7 @@ class Session(abctools.AbjadObject):
         'is_in_autoeditor',
         'is_in_user_input_getter',
         'last_asset_path',
-        'last_score_package_path',
+        'last_score_path',
         )
 
     ### INITIALIZER ###
@@ -138,7 +138,7 @@ class Session(abctools.AbjadObject):
         self._is_test = is_test
         self._last_asset_path = None
         self._last_command_was_composite = False
-        self._last_score_package_path = None
+        self._last_score_path = None
         self._menu_header_width = 160
         self._pending_input = input_
         self._proceed_count = 0
@@ -1099,7 +1099,7 @@ class Session(abctools.AbjadObject):
         return self._last_command_was_composite
 
     @property
-    def last_score_package_path(self):
+    def last_score_path(self):
         r'''Gets last score package path.
 
         Set on score package manager entry and persists
@@ -1109,12 +1109,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.last_score_package_path is None
+                >>> session.last_score_path is None
                 True
 
         Returns string or none.
         '''
-        return self._last_score_package_path
+        return self._last_score_path
 
     @property
     def last_semantic_command(self):

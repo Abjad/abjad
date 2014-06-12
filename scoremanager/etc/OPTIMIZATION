@@ -143,7 +143,7 @@ turned on.
 
 Revision r10,251 fives an inefficiency in 
 package_path_to_path() and the same inefficiency in 
-path_to_package_path(). Specifically, a 
+path_to_package(). Specifically, a 
 Configuration object was being instantiated for each and every
 call to both of these functions; note that there is disk read time incurred 
 every time a Configuration object is istantiated.

@@ -6,14 +6,14 @@ from abjad import *
 import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
-package_path = os.path.join(
+path = os.path.join(
     score_manager._configuration.user_library_material_packages_directory,
     'testnotes',
     )
-initializer_file_path = os.path.join(package_path, '__init__.py')
-metadata_py_path = os.path.join(package_path, '__metadata__.py')
-definition_py_path = os.path.join(package_path, 'definition.py')
-output_py_path = os.path.join(package_path, 'output.py')
+initializer_file_path = os.path.join(path, '__init__.py')
+metadata_py_path = os.path.join(path, '__metadata__.py')
+definition_py_path = os.path.join(path, 'definition.py')
+output_py_path = os.path.join(path, 'output.py')
 
 exception_file_path = os.path.join(
     score_manager._configuration.boilerplate_directory,
@@ -111,10 +111,10 @@ def test_MaterialPackageWrangler_make_package_04():
     definition.py are created. Removes package.
     '''
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         assert os.path.exists(initializer_file_path)
         assert os.path.exists(metadata_py_path)
         assert os.path.exists(definition_py_path)
@@ -126,17 +126,17 @@ def test_MaterialPackageWrangler_make_package_05():
     Removes package.
     '''
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
-        assert not os.path.exists(package_path)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_make_package_06():
@@ -144,10 +144,10 @@ def test_MaterialPackageWrangler_make_package_06():
     Creates output material. Removes package.
     '''
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
         assert not os.path.exists(output_py_path)
         shutil.copyfile(
@@ -159,7 +159,7 @@ def test_MaterialPackageWrangler_make_package_06():
         assert os.path.exists(output_py_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
-        assert not os.path.exists(package_path)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_make_package_07():
@@ -174,13 +174,13 @@ def test_MaterialPackageWrangler_make_package_07():
         'versions',
         ]
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y <return> testnotes dms <return> q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
         manager = scoremanager.idetools.MaterialPackageManager
-        manager = manager(path=package_path, session=session)
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
@@ -191,16 +191,16 @@ def test_MaterialPackageWrangler_make_package_08():
     score manager starts when definition py is corrupt. Removes package.
     '''
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
         shutil.copyfile(exception_file_path, definition_py_path)
         assert filecmp.cmp(definition_py_path, exception_file_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
-        assert not os.path.exists(package_path)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_make_package_09():
@@ -209,10 +209,10 @@ def test_MaterialPackageWrangler_make_package_09():
     starts when output py is corrupt. Removes package.
     '''
 
-    with systemtools.FilesystemState(remove=[package_path]):
+    with systemtools.FilesystemState(remove=[path]):
         input_ = 'm new testnotes y q'
         score_manager._run(input_=input_)
-        assert os.path.exists(package_path)
+        assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
         assert not os.path.exists(output_py_path)
         shutil.copyfile(
@@ -231,4 +231,4 @@ def test_MaterialPackageWrangler_make_package_09():
         assert filecmp.cmp(output_py_path, exception_file_path)
         input_ = 'm rm testnotes remove q'
         score_manager._run(input_=input_)
-        assert not os.path.exists(package_path)
+        assert not os.path.exists(path)

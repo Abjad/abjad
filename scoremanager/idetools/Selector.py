@@ -286,13 +286,13 @@ class Selector(Controller):
         paths = wrangler._list_asset_paths(
             output_material_class_name=output_material_class_name,
             )
-        package_paths = []
+        packages = []
         for path in paths:
-            package_path = self._configuration.path_to_package_path(path)
-            package_paths.append(package_path)
+            package = self._configuration.path_to_package(path)
+            packages.append(package)
         selector = Selector(
             session=self._session,
-            items=package_paths,
+            items=packages,
             )
         return selector
 
