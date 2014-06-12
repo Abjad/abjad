@@ -623,9 +623,6 @@ class Configuration(AbjadConfiguration):
                         scores_directory,
                         directory_entry,
                         )
-                    package_path = self.path_to_package(
-                        directory,
-                        )
                     path = os.path.join(
                         self.example_score_packages_directory,
                         directory_entry,
@@ -636,7 +633,6 @@ class Configuration(AbjadConfiguration):
             directory_entries = sorted(os.listdir(scores_directory))
             for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
-                    package_path = directory_entry
                     path = os.path.join(
                         self.user_score_packages_directory,
                         directory_entry,
@@ -645,7 +641,7 @@ class Configuration(AbjadConfiguration):
         return result
 
     def path_to_package(self, path):
-        r'''Changes `path` to package path.
+        r'''Changes `path` to package.
 
         Returns string.
         '''
@@ -693,8 +689,8 @@ class Configuration(AbjadConfiguration):
         elif path.startswith(self.abjad_stylesheets_directory):
             prefix_length = len(self.abjad_root_directory) + 1
         else:
-            message = 'can not change path to package path: {!r}.'
+            message = 'can not change path to package: {!r}.'
             raise Exception(message.format(path))
-        package_path = path[prefix_length:]
-        package_path = package_path.replace(os.path.sep, '.')
-        return package_path
+        package = path[prefix_length:]
+        package = package.replace(os.path.sep, '.')
+        return package
