@@ -111,11 +111,9 @@ class SargassoMeasureMaker(AbjadObject):
             meter_multipliers = []
             for measure_index, multiplied_measure_numerator in \
                 enumerate(multiplied_measure_numerators):
-                possible_multipliers = \
-                    SargassoMeasureMaterialManager._get_possible_meter_multipliers(
+                possible_multipliers = self._get_possible_meter_multipliers(
                     multiplied_measure_numerator)
-                meter_multiplier = \
-                    SargassoMeasureMaterialManager._select_meter_multiplier(
+                meter_multiplier = self._select_meter_multiplier(
                     possible_multipliers, measure_index)
                 meter_multipliers.append(meter_multiplier)
             #print meter_multipliers
@@ -164,8 +162,7 @@ class SargassoMeasureMaker(AbjadObject):
         #for x in divided_measure_tokens: print x
 
         if measures_are_shuffled:
-            divided_measure_tokens = \
-                SargassoMeasureMaterialManager._permute_divided_measure_tokens(
+            divided_measure_tokens = self._permute_divided_measure_tokens(
                 divided_measure_tokens)
 
         meter_tokens = []
@@ -201,16 +198,15 @@ class SargassoMeasureMaker(AbjadObject):
         return measures
 
     def __illustrate__(self, **kwargs):
-        r'''Illustrates sargasso measures.
+        r'''Illustrates sargasso measure maker.
 
         Returns LilyPond file.
         '''
+        measures = self()
         staff = scoretools.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
-        illustration.file_initial_system_comments = []
-        illustration.file_initial_system_includes = []
         measures = score._get_components(scoretools.Measure)
         for measure in measures:
             beam = spannertools.Beam()
@@ -283,8 +279,7 @@ class SargassoMeasureMaker(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _get_possible_meter_multipliers(multiplied_measure_numerator):
+    def _get_possible_meter_multipliers(self, multiplied_measure_numerator):
         possible_meter_multipliers = []
         for denominator in range(
                 multiplied_measure_numerator,
@@ -306,21 +301,22 @@ class SargassoMeasureMaker(AbjadObject):
         lines = [line + '\n' for line in lines]
         return lines
 
-    @staticmethod
-    def _permute_divided_measure_tokens(divided_measure_tokens):
+    def _permute_divided_measure_tokens(self, divided_measure_tokens):
         modulus_of_permutation = 5
         len_divided_measure_tokens = len(divided_measure_tokens)
         assert mathtools.are_relatively_prime(
             [modulus_of_permutation, len_divided_measure_tokens])
         permutation = [(5 * x) % len_divided_measure_tokens
             for x in range(len_divided_measure_tokens)]
-        divided_measure_tokens = \
-            sequencetools.permute_sequence(
+        divided_measure_tokens = sequencetools.permute_sequence(
                 divided_measure_tokens, permutation)
         return divided_measure_tokens
 
-    @staticmethod
-    def _select_meter_multiplier(possible_meter_multipliers, measure_index):
+    def _select_meter_multiplier(
+        self, 
+        possible_meter_multipliers, 
+        measure_index,
+        ):
         possible_meter_multipliers = \
             datastructuretools.CyclicTuple(possible_meter_multipliers)
         meter_multiplier = possible_meter_multipliers[5 * measure_index]

@@ -274,19 +274,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             name='__illustrate__.py',
             )
 
-    def _make_illustration_ly_menu_section(self, menu):
-        if not os.path.isfile(self._illustration_ly_path):
-            return
-        commands = []
-        commands.append(('illustration.ly - interpret', 'ili'))
-        commands.append(('illustration.ly - open', 'ilo'))
-        menu.make_command_section(
-            commands=commands,
-            name='illustration.ly',
-            )
-
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
+        if os.path.isfile(self._illustration_ly_path):
+            commands.append(('illustration.ly - interpret', 'ili'))
+            commands.append(('illustration.ly - open', 'ilo'))
         if os.path.isfile(self._illustration_pdf_path):
             commands.append(('illustration.pdf - open', 'ipo'))
         if commands:
@@ -300,7 +292,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         menu = superclass._make_main_menu()
         self._make_autoeditor_summary_menu_section(menu)
         self._make_illustrate_py_menu_section(menu)
-        self._make_illustration_ly_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_definition_py_menu_section(menu)
@@ -323,11 +314,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         import_statements, output_material = result
         body_string = '{} = {}'
         output_material_name = self._package_name
-        #output_material = self._get_storage_format(output_material)
         storage_format = self._get_storage_format(output_material)
         body_string = body_string.format(
             output_material_name,
-            #output_material,
             storage_format,
             )
         return (import_statements, body_string, output_material)
