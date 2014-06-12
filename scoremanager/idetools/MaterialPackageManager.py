@@ -240,6 +240,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             lines = [repr(target)]
         lines = list(lines)
         lines[0] = '{} = {}'.format(self._package_name, lines[0])
+        if ' makers.' in lines[0]:
+            module = target.__class__.__module__
+            parts = module.split('.')
+            index = parts.index('makers')
+            storehouse = parts[index-1]
+            line = lines[0]
+            unqualified = ' makers.'
+            qualified = ' {}.makers.'.format(storehouse)
+            line = line.replace(unqualified, qualified)
+            lines[0] = line
         return lines
 
     def _make_illustrate_py_menu_section(self, menu):
@@ -313,10 +323,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         import_statements, output_material = result
         body_string = '{} = {}'
         output_material_name = self._package_name
-        output_material = self._get_storage_format(output_material)
+        #output_material = self._get_storage_format(output_material)
+        storage_format = self._get_storage_format(output_material)
         body_string = body_string.format(
             output_material_name,
-            output_material,
+            #output_material,
+            storage_format,
             )
         return (import_statements, body_string, output_material)
 
@@ -540,10 +552,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking:
             return
         output_material = autoeditor.target
-        output_py_import_statements = self._output_py_import_statements
-        output_material_lines = self._make_output_material_lines(output_material)
+        import_statements = self._output_py_import_statements
+        import_statements.extend(
+            self._object_to_import_statements(output_material))
+        output_material_lines = self._make_output_material_lines(
+            output_material)
         self.output_definition_py(
-            import_statements=output_py_import_statements,
+            import_statements=import_statements,
             output_material_lines=output_material_lines,
             output_material=output_material,
             )
@@ -693,10 +708,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def output_definition_py(
         self,
         import_statements=None,
-        output_material_lines=None,
         output_material=None,
+        output_material_lines=None,
         ):
-        r'''Writes ``output.py``.
+        r'''Outputs ``definition.py`` to ``output.py``.
 
         Returns none.
         '''
@@ -726,8 +741,24 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material = triple[2]
             output_material_lines = [output_py_body_string]
         import_statements = import_statements or []
+        if self._abjad_import_statement not in import_statements:
+            import_statements.append(self._abjad_import_statement)
+        statements_ = self._object_to_import_statements(output_material)
+        for statement_ in statements_:
+            if statement_ not in import_statements:
+                import_statements.append(statement_)
         if any('handlertools' in _ for _ in output_material_lines):
             import_statements.append(self._handlertools_import_statement)
+        if ' makers.' in output_material_lines[0]:
+            module = output_material.__class__.__module__
+            parts = module.split('.')
+            index = parts.index('makers')
+            storehouse = parts[index-1]
+            line = output_material_lines[0]
+            unqualified = ' makers.'
+            qualified = ' {}.makers.'.format(storehouse)
+            line = line.replace(unqualified, qualified)
+            output_material_lines[0] = line
         lines.extend(import_statements)
         lines.append('')
         lines.append('')
@@ -740,7 +771,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
-        
         self._session._is_pending_output_removal = clear
 
     def set_output_py_autoeditor(self):
@@ -785,9 +815,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             import_statements.append(self._handlertools_import_statement)
         with self._io_manager._make_silent():
             self.output_definition_py(
-                output_material_lines=output_material_lines,
                 import_statements=import_statements,
                 output_material=empty_target,
+                output_material_lines=output_material_lines,
                 )
 
     def unset_output_py_autoeditor(self):
