@@ -303,6 +303,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_versions_directory_menu_section(menu)
         return menu
 
+    def _make_output_material_lines(self, output_material):
+        if hasattr(output_material, '_storage_format_specification'):
+            lines = format(output_material, 'storage').splitlines()
+        else:
+            lines = [repr(output_material)]
+        lines = list(lines)
+        lines[0] = '{} = {}'.format(self._package_name, lines[0])
+        return lines
+
     def _make_output_material_triple(self):
         result = self._retrieve_import_statements_and_output_material()
         import_statements, output_material = result
@@ -314,15 +323,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             storage_format,
             )
         return (import_statements, body_string, output_material)
-
-    def _make_output_material_lines(self, output_material):
-        if hasattr(output_material, '_storage_format_specification'):
-            lines = format(output_material, 'storage').splitlines()
-        else:
-            lines = [repr(output_material)]
-        lines = list(lines)
-        lines[0] = '{} = {}'.format(self._package_name, lines[0])
-        return lines
 
     def _make_output_py_menu_section(self, menu):
         commands = []
@@ -590,13 +590,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self.edit_illustrate_py()
         self.interpret_illustrate_py()
 
-    def open_definition_py(self):
-        r'''Edits ``definition.py``.
-
-        Returns none.
-        '''
-        self._io_manager.edit(self._definition_py_path)
-
     def edit_illustrate_py(self):
         r'''Edits ``__illustrate.py__``.
 
@@ -638,6 +631,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
+
+    def open_definition_py(self):
+        r'''Edits ``definition.py``.
+
+        Returns none.
+        '''
+        self._io_manager.edit(self._definition_py_path)
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.

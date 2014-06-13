@@ -204,13 +204,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     ### PUBLIC METHODS ###
 
-    def open_definition_py(self):
-        r'''Edits ``definition.py``.
-
-        Returns none.
-        '''
-        self._io_manager.edit(self._definition_py_path)
-
     def interpret_make_py(self, dry_run=False):
         r'''Interprets ``__make__.py``.
 
@@ -255,6 +248,13 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         if not os.path.isfile(file_path):
             return
         self._io_manager.run_lilypond(file_path)
+
+    def open_definition_py(self):
+        r'''Edits ``definition.py``.
+
+        Returns none.
+        '''
+        self._io_manager.edit(self._definition_py_path)
 
     def open_make_py(self):
         r'''Opens ``__make__.py``.

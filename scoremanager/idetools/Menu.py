@@ -173,58 +173,14 @@ class Menu(Controller):
             return self._handle_argument_range_input(input_)
 
     def _display(self):
-        if self._session.is_pending_output_removal:
-            self._io_manager.clear_terminal()
-            self._session._is_pending_output_removal = False
-            if not self._session.hide_available_commands:
-                self._display_available_commands()
-            else:
-                menu_lines = []
-                menu_lines.extend(self._make_title_lines())
-                section = None
-                try:
-                    section = self['material summary']
-                except KeyError:
-                    pass
-                if section is not None:
-                    lines = section._make_menu_lines()
-                    menu_lines.extend(lines)
-                has_asset_section = False
-                for section in self:
-                    if section.is_asset_section:
-                        has_asset_section = True
-                        break
-                if has_asset_section:
-                    assert section.is_asset_section
-                    lines = section._make_menu_lines()
-                    lines = self._make_bicolumnar(lines, strip=False)
-                    menu_lines.extend(lines)
-                if menu_lines and not all(_ == ' ' for _ in menu_lines[-1]):
-                    menu_lines.append('')
-                lines = self._make_section_lines()
-                menu_lines.extend(lines)
-                self._io_manager._display(
-                    menu_lines,
-                    capitalize=False,
-                    is_menu=True,
-                    )
-        user_entered_lone_return = False
-        input_ = self._io_manager._handle_input('')
-        if input_ == '':
-            user_entered_lone_return = True
-        directive = self._change_input_to_directive(input_)
-        directive = self._strip_default_notice_from_strings(directive)
-        directive = self._handle_directive(directive)
-        if directive is None and user_entered_lone_return:
-            result = '<return>'
-        elif directive is None and not user_entered_lone_return:
-            message = 'unknown command: {!r}.'
-            message = message.format(input_)
-            self._io_manager._display([message, ''])
-            result = None
+        if not self._session.is_pending_output_removal:
+            return
+        self._io_manager.clear_terminal()
+        self._session._is_pending_output_removal = False
+        if not self._session.hide_available_commands:
+            self._display_available_commands()
         else:
-            result = directive
-        return result
+            self._display_visible_sections()
 
     def _display_available_commands(self):
         menu_lines = []
@@ -250,6 +206,37 @@ class Menu(Controller):
         menu_lines[0:0] = [title, '']
         menu_lines.append('')
         self._io_manager.clear_terminal()
+        self._io_manager._display(
+            menu_lines,
+            capitalize=False,
+            is_menu=True,
+            )
+
+    def _display_visible_sections(self):
+        menu_lines = []
+        menu_lines.extend(self._make_title_lines())
+        section = None
+        try:
+            section = self['material summary']
+        except KeyError:
+            pass
+        if section is not None:
+            lines = section._make_menu_lines()
+            menu_lines.extend(lines)
+        has_asset_section = False
+        for section in self:
+            if section.is_asset_section:
+                has_asset_section = True
+                break
+        if has_asset_section:
+            assert section.is_asset_section
+            lines = section._make_menu_lines()
+            lines = self._make_bicolumnar(lines, strip=False)
+            menu_lines.extend(lines)
+        if menu_lines and not all(_ == ' ' for _ in menu_lines[-1]):
+            menu_lines.append('')
+        lines = self._make_section_lines()
+        menu_lines.extend(lines)
         self._io_manager._display(
             menu_lines,
             capitalize=False,
@@ -295,6 +282,23 @@ class Menu(Controller):
             variable = self._wrangler_navigation_to_session_variable[directive]
             setattr(self._session, variable, True)
         return directive
+
+    def _handle_user_input(self):
+        input_ = self._io_manager._handle_input('')
+        user_entered_lone_return = input_ == ''
+        directive = self._change_input_to_directive(input_)
+        directive = self._strip_default_notice_from_strings(directive)
+        directive = self._handle_directive(directive)
+        if directive is None and user_entered_lone_return:
+            result = '<return>'
+        elif directive is None and not user_entered_lone_return:
+            message = 'unknown command: {!r}.'
+            message = message.format(input_)
+            self._io_manager._display([message, ''])
+            result = None
+        else:
+            result = directive
+        return result
 
     def _has_numbered_section(self):
         return any(x.is_numbered for x in self.menu_sections)
@@ -388,16 +392,6 @@ class Menu(Controller):
             conjoined_lines.append(conjoined_line)
         return conjoined_lines
 
-#    def _make_menu_lines(self):
-#        result = []
-#        if not self.name:
-#            message = '{!r} has no name: {!r}.'
-#            message = message.format(self, self.menu_sections)
-#            raise Exception(message)
-#        result.extend(self._make_title_lines())
-#        result.extend(self._make_section_lines())
-#        return result
-
     def _make_section(
         self,
         default_index=None,
@@ -452,7 +446,6 @@ class Menu(Controller):
             self.menu_sections.insert(0, noncommand_section)
         return section
 
-    #def _make_section_lines(self, asset_section=True):
     def _make_section_lines(self):
         result = []
         section_names = []
@@ -468,10 +461,6 @@ class Menu(Controller):
             hide = self._session.hide_available_commands
             if hide and section.is_hidden:
                 continue
-            #if asset_section and not section.is_asset_section:
-            #    continue
-            #if not asset_section and section.is_asset_section:
-            #    continue
             if section.is_asset_section:
                 continue
             if section.name == 'material summary':
@@ -519,7 +508,8 @@ class Menu(Controller):
             while True:
                 result = self._predetermined_input
                 if not result:
-                    result = self._display()
+                    self._display()
+                    result = self._handle_user_input()
                 if self._session.is_quitting:
                     return result
                 if result == '<return>':
