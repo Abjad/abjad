@@ -172,67 +172,6 @@ class Menu(Controller):
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
 
-    def _display_available_commands(self):
-        menu_lines = []
-        for section in self.menu_sections:
-            if not section.is_command_section:
-                continue
-            for menu_entry in section:
-                key = menu_entry.key
-                display_string = menu_entry.display_string
-                menu_line = self._make_tab(1)
-                menu_line += '{} ({})'.format(display_string, key)
-                menu_lines.append(menu_line)
-            menu_lines.append('')
-        if menu_lines:
-            menu_lines.pop()
-        menu_lines = self._make_bicolumnar(
-            menu_lines,
-            break_only_at_blank_lines=True,
-            )
-        title = self._session.menu_header
-        title = title + ' - available commands'
-        title = stringtools.capitalize_start(title)
-        menu_lines[0:0] = [title, '']
-        menu_lines.append('')
-        self._io_manager.clear_terminal()
-        self._io_manager._display(
-            menu_lines,
-            capitalize=False,
-            is_menu=True,
-            )
-
-    def _display_visible_sections(self):
-        menu_lines = []
-        menu_lines.extend(self._make_title_lines())
-        section = None
-        try:
-            section = self['material summary']
-        except KeyError:
-            pass
-        if section is not None:
-            lines = section._make_menu_lines()
-            menu_lines.extend(lines)
-        has_asset_section = False
-        for section in self:
-            if section.is_asset_section:
-                has_asset_section = True
-                break
-        if has_asset_section:
-            assert section.is_asset_section
-            lines = section._make_menu_lines()
-            lines = self._make_bicolumnar(lines, strip=False)
-            menu_lines.extend(lines)
-        if menu_lines and not all(_ == ' ' for _ in menu_lines[-1]):
-            menu_lines.append('')
-        lines = self._make_section_lines()
-        menu_lines.extend(lines)
-        self._io_manager._display(
-            menu_lines,
-            capitalize=False,
-            is_menu=True,
-            )
-
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
             return [expr]
@@ -303,6 +242,12 @@ class Menu(Controller):
             return False
         return True
 
+    def _is_recognized_input(self, expr):
+        if isinstance(expr, str):
+            if expr in self._input_to_method:
+                return True
+        return False
+
     @staticmethod
     def _ljust(string, width):
         start_width = len(stringtools.strip_diacritics(string))
@@ -313,6 +258,41 @@ class Menu(Controller):
         else:
             result = string
         return result
+
+    def _make_asset_lines(self):
+        has_asset_section = False
+        for section in self:
+            if section.is_asset_section:
+                has_asset_section = True
+                break
+        if not has_asset_section:
+            return []
+        assert section.is_asset_section
+        lines = section._make_lines()
+        lines = self._make_bicolumnar(lines, strip=False)
+        return lines
+
+    def _make_available_command_section_lines(self):
+        lines = []
+        for section in self.menu_sections:
+            if not section.is_command_section:
+                continue
+            for menu_entry in section:
+                key = menu_entry.key
+                display_string = menu_entry.display_string
+                menu_line = self._make_tab(1)
+                menu_line += '{} ({})'.format(display_string, key)
+                lines.append(menu_line)
+            lines.append('')
+        if lines:
+            lines.pop()
+        lines = self._make_bicolumnar(lines, break_only_at_blank_lines=True)
+        title = self._session.menu_header
+        title = title + ' - available commands'
+        title = stringtools.capitalize_start(title)
+        lines[0:0] = [title, '']
+        lines.append('')
+        return lines
 
     def _make_bicolumnar(
         self, 
@@ -382,6 +362,37 @@ class Menu(Controller):
             conjoined_lines.append(conjoined_line)
         return conjoined_lines
 
+    def _make_command_section_lines(self):
+        result = []
+        section_names = []
+        for section in self.menu_sections:
+            #print section.name
+            # TODO: check for duplicate section names at initialization
+            if section.name in section_names:
+                message = '{!r} contains duplicate {!r}.'
+                message = message.format(self, section)
+                raise Exception(message)
+            else:
+                section_names.append(section.name)
+            hide = not self._session.display_available_commands
+            if hide and section.is_hidden:
+                continue
+            if section.is_asset_section:
+                continue
+            if section.name == 'material summary':
+                continue
+            section_menu_lines = section._make_lines()
+            result.extend(section_menu_lines)
+        return result
+
+    def _make_material_summary_lines(self):
+        try:
+            section = self['material summary']
+        except KeyError:
+            return []
+        lines = section._make_lines()
+        return lines
+
     def _make_section(
         self,
         default_index=None,
@@ -436,29 +447,6 @@ class Menu(Controller):
             self.menu_sections.insert(0, noncommand_section)
         return section
 
-    def _make_section_lines(self):
-        result = []
-        section_names = []
-        for section in self.menu_sections:
-            #print section.name
-            # TODO: check for duplicate section names at initialization
-            if section.name in section_names:
-                message = '{!r} contains duplicate {!r}.'
-                message = message.format(self, section)
-                raise Exception(message)
-            else:
-                section_names.append(section.name)
-            hide = not self._session.display_available_commands
-            if hide and section.is_hidden:
-                continue
-            if section.is_asset_section:
-                continue
-            if section.name == 'material summary':
-                continue
-            section_menu_lines = section._make_menu_lines()
-            result.extend(section_menu_lines)
-        return result
-
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
@@ -476,13 +464,24 @@ class Menu(Controller):
         result.append('')
         return result
 
+    def _make_visible_section_lines(self):
+        lines = []
+        lines.extend(self._make_title_lines())
+        lines.extend(self._make_material_summary_lines())
+        lines.extend(self._make_asset_lines())
+        if lines and not all(_ == ' ' for _ in lines[-1]):
+            lines.append('')
+        lines.extend(self._make_command_section_lines())
+        return lines
+
     def _redraw(self):
         self._session._pending_redraw = False
         self._io_manager.clear_terminal()
         if self._session.display_available_commands:
-            self._display_available_commands()
+            lines = self._make_available_command_section_lines()
         else:
-            self._display_visible_sections()
+            lines = self._make_visible_section_lines()
+        self._io_manager._display(lines, capitalize=False, is_menu=True)
 
     def _return_value_to_location_pair(self, return_value):
         for i, section in enumerate(self.menu_sections):
@@ -507,10 +506,9 @@ class Menu(Controller):
                     result = self._handle_user_input()
                 if self._session.is_quitting:
                     return result
-                if result == '<return>':
+                elif result == '<return>':
                     self._session._pending_redraw = True
-                elif (isinstance(result, str) and 
-                    result in self._input_to_method):
+                elif self._is_recognized_input(result):
                     self._input_to_method[result]()
                     return
                 else:

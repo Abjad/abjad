@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MenuSection__make_menu_lines_01():
+def test_MenuSection__make_lines_01():
     r'''Include one-line summary of tempo.
     '''
 

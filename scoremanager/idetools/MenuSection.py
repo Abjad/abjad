@@ -245,7 +245,7 @@ class MenuSection(AbjadObject):
         if greatest_menu_entry_number < number:
             return greatest_menu_entry_number
 
-    def _make_menu_lines(self):
+    def _make_lines(self):
         menu_lines = []
         menu_lines.extend(self._make_title_lines())
         for i, menu_entry in enumerate(self):
