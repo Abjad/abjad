@@ -54,7 +54,7 @@ class ControllerContext(ContextManager):
         self._session._is_in_confirmation_environment = \
             self._is_in_confirmation_environment
         if self._clear_terminal:
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
         if self._current_score_directory is not None:
             self._old_current_score_directory = \
                 self._session._current_score_directory
@@ -78,7 +78,7 @@ class ControllerContext(ContextManager):
         for on_exit_callback in self._on_exit_callbacks:
             on_exit_callback()
         if self._clear_terminal:
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.

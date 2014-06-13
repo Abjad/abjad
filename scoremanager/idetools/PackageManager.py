@@ -760,7 +760,7 @@ class PackageManager(AssetController):
         directory = systemtools.TemporaryDirectoryChange(self._path)
         with controller, directory:
                 self._enter_run()
-                self._session._is_pending_output_removal = True
+                self._session._pending_redraw = True
                 while True:
                     result = self._session.wrangler_navigation_directive
                     if not result:

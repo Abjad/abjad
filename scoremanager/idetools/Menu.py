@@ -137,7 +137,7 @@ class Menu(Controller):
             if default_value is not None:
                 return self._enclose_in_list(default_value)
         elif input_ in ('**', 's', 'h', 'q', 'b', '?', '<return>'):
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
             return input_
         elif input_.startswith('!'):
             return input_
@@ -171,14 +171,6 @@ class Menu(Controller):
                     return self._enclose_in_list(menu_entry.return_value)
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
-
-    def _display(self):
-        self._session._is_pending_output_removal = False
-        self._io_manager.clear_terminal()
-        if self._session.show_available_commands:
-            self._display_available_commands()
-        else:
-            self._display_visible_sections()
 
     def _display_available_commands(self):
         menu_lines = []
@@ -456,7 +448,7 @@ class Menu(Controller):
                 raise Exception(message)
             else:
                 section_names.append(section.name)
-            hide = not self._session.show_available_commands
+            hide = not self._session.display_available_commands
             if hide and section.is_hidden:
                 continue
             if section.is_asset_section:
@@ -484,6 +476,14 @@ class Menu(Controller):
         result.append('')
         return result
 
+    def _redraw(self):
+        self._session._pending_redraw = False
+        self._io_manager.clear_terminal()
+        if self._session.display_available_commands:
+            self._display_available_commands()
+        else:
+            self._display_visible_sections()
+
     def _return_value_to_location_pair(self, return_value):
         for i, section in enumerate(self.menu_sections):
             if return_value in section._menu_entry_return_values:
@@ -502,13 +502,13 @@ class Menu(Controller):
             while True:
                 result = self._predetermined_input
                 if not result:
-                    if self._session.is_pending_output_removal:
-                        self._display()
+                    if self._session.pending_redraw:
+                        self._redraw()
                     result = self._handle_user_input()
                 if self._session.is_quitting:
                     return result
                 if result == '<return>':
-                    self._session._is_pending_output_removal = True
+                    self._session._pending_redraw = True
                 elif (isinstance(result, str) and 
                     result in self._input_to_method):
                     self._input_to_method[result]()

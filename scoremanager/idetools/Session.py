@@ -65,7 +65,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
         '_is_navigating_to_score_stylesheets',
-        '_is_pending_output_removal',
+        '_pending_redraw',
         '_is_quitting',
         '_is_repository_test',
         '_is_test',
@@ -76,7 +76,7 @@ class Session(abctools.AbjadObject):
         '_pending_input',
         '_proceed_count',
         '_score_manager',
-        '_show_available_commands',
+        '_display_available_commands',
         '_task_depth',
         '_transcript',
         )
@@ -91,7 +91,7 @@ class Session(abctools.AbjadObject):
         'is_in_user_input_getter',
         'last_asset_path',
         'last_score_path',
-        'show_available_commands',
+        'display_available_commands',
         )
 
     ### INITIALIZER ###
@@ -112,7 +112,7 @@ class Session(abctools.AbjadObject):
         self._current_score_directory = None
         self._display = True
         self._display_pitch_ranges_with_numbered_pitches = False
-        self._show_available_commands = False
+        self._display_available_commands = False
         self._initial_input = input_
         self._io_manager = idetools.IOManager(session=self)
         self._is_repository_test = False
@@ -133,7 +133,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_navigating_to_score_stylesheets = False
-        self._is_pending_output_removal = True
+        self._pending_redraw = True
         self._is_quitting = False
         self._is_test = is_test
         self._last_asset_path = None
@@ -504,6 +504,21 @@ class Session(abctools.AbjadObject):
         return self._display
 
     @property
+    def display_available_commands(self):
+        r'''Is true when available commands will display. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.display_available_commands
+                False
+
+        Returns boolean.
+        '''
+        return self._display_available_commands
+
+    @property
     def display_pitch_ranges_with_numbered_pitches(self):
         r'''Is true when session should display pitch ranges with numbered
         pitches. Otherwise false.
@@ -539,21 +554,6 @@ class Session(abctools.AbjadObject):
             else:
                 result.append(command)
         return result
-
-    @property
-    def show_available_commands(self):
-        r'''Is true when hidden commands are hidden. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.show_available_commands
-                False
-
-        Returns boolean.
-        '''
-        return self._show_available_commands
 
     @property
     def initial_input(self):
@@ -1006,21 +1006,6 @@ class Session(abctools.AbjadObject):
         return False
 
     @property
-    def is_pending_output_removal(self):
-        r'''Is true when session is pending redraw. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_pending_output_removal
-                True
-
-        Returns boolean.
-        '''
-        return self._is_pending_output_removal
-
-    @property
     def is_quitting(self):
         r'''Gets and sets flag that user specified quit.
 
@@ -1183,6 +1168,21 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         return self._pending_input
+
+    @property
+    def pending_redraw(self):
+        r'''Is true when session is pending redraw. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.pending_redraw
+                True
+
+        Returns boolean.
+        '''
+        return self._pending_redraw
 
     @property
     def proceed_count(self):

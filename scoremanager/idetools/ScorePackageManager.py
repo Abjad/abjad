@@ -353,11 +353,11 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         self._session._is_in_score_setup_menu = True
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
         while True:
             menu = self._make_setup_menu()
             result = menu._run()
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
             if self._session.is_backtracking:
                 break
             elif not result:

@@ -569,7 +569,7 @@ class Wrangler(AssetController):
                     )
         with self._io_manager._make_silent():
             self.clear_view()
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
 
     def _make_asset_menu_entries(
         self,
@@ -900,7 +900,7 @@ class Wrangler(AssetController):
             manager = idetools.PackageManager(path=path, session=self._session)
             with self._io_manager._make_silent():
                 manager._remove()
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
 
     def _rename_asset(
         self,
@@ -938,7 +938,7 @@ class Wrangler(AssetController):
             directory = systemtools.TemporaryDirectoryChange(path)
         with controller, directory:
             result = None
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
             while True:
                 result = self._get_sibling_asset_path()
                 if not result:
@@ -1147,7 +1147,7 @@ class Wrangler(AssetController):
         autoeditor._run()
         inventory = autoeditor.target
         self._write_view_inventory(inventory)
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
 
     def clear_view(self):
         r'''Clears view.
@@ -1163,7 +1163,7 @@ class Wrangler(AssetController):
             manager = self._views_package_manager
             metadatum_name = '{}_view_name'.format(type(self).__name__)
         manager._add_metadatum(metadatum_name, None)
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
 
     def commit_to_repository(self):
         r'''Commits files to repository.

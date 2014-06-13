@@ -275,7 +275,7 @@ class Autoeditor(Controller):
             controller=self,
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             ):
-            self._session._is_pending_output_removal = True
+            self._session._pending_redraw = True
             if self._session.is_backtracking:
                 return
             result = None
@@ -308,12 +308,12 @@ class Autoeditor(Controller):
                     if self._session.is_backtracking:
                         return
                     elif not result:
-                        self._session._is_pending_output_removal = True
+                        self._session._pending_redraw = True
                         continue
                 if result == 'done':
                     break
                 self._handle_main_menu_result(result)
-                self._session._is_pending_output_removal = True
+                self._session._pending_redraw = True
                 if self._session.is_backtracking:
                     return
 

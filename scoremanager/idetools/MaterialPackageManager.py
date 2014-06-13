@@ -520,7 +520,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             target=target,
             target_lines=target_lines,
             )
-        self._session._is_pending_output_removal = True
+        self._session._pending_redraw = True
 
     def autoedit_output_py(self):
         r'''Autoedits ``output.py``.
@@ -754,7 +754,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'output_material_class_name', 
             output_material_class_name,
             )
-        self._session._is_pending_output_removal = clear
+        self._session._pending_redraw = clear
 
     def set_output_py_autoeditor(self):
         r'''Sets autoeditor.
@@ -838,7 +838,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         contents = '\n'.join(lines)
         clear = not os.path.isfile(self._definition_py_path)
         self._io_manager.write(self._definition_py_path, contents)
-        self._session._is_pending_output_removal = clear
+        self._session._pending_redraw = clear
 
     def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.
