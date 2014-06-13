@@ -91,8 +91,10 @@ class Infinity(AbjadObject):
     def __sub__(self, expr):
         r'''Subtracts `expr` from infinity.
 
-        Returns infinity.
+        Returns infinity or 0 if `expr` is also infinity.
         '''
+        if expr is self:
+            return 0
         return self
 
     ### PRIVATE PROPERTIES ###
