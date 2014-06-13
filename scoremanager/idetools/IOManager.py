@@ -72,6 +72,27 @@ class IOManager(IOManager):
             if 'no'.startswith(result.lower()):
                 return False
 
+    def _controller(
+        self,
+        clear_terminal=False,
+        consume_local_backtrack=False,
+        controller=None,
+        current_score_directory=None,
+        is_in_confirmation_environment=False,
+        on_enter_callbacks=None,
+        on_exit_callbacks=None,
+        ):
+        from scoremanager import idetools
+        return idetools.ControllerContext(
+            clear_terminal=clear_terminal,
+            consume_local_backtrack=consume_local_backtrack,
+            controller=controller,
+            current_score_directory=current_score_directory,
+            is_in_confirmation_environment=is_in_confirmation_environment,
+            on_enter_callbacks=on_enter_callbacks,
+            on_exit_callbacks=on_exit_callbacks,
+            )
+
     def _display(self, lines, capitalize=True, is_menu=False):
         assert isinstance(lines, (str, list))
         if not self._session.display:

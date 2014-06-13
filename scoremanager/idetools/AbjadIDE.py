@@ -119,7 +119,7 @@ class AbjadIDE(AssetController):
         type(self).__init__(self, session=self._session)
         if input_:
             self._session._pending_input = input_
-        controller = idetools.ControllerContext(
+        controller = self._io_manager._controller(
             controller=self,
             consume_local_backtrack=True,
             on_exit_callbacks=(self._session._clean_up,)

@@ -753,8 +753,7 @@ class PackageManager(AssetController):
         self._io_manager.spawn_subprocess(command)
 
     def _run(self):
-        from scoremanager import idetools
-        controller = idetools.ControllerContext(
+        controller = self._io_manager._controller(
             consume_local_backtrack=True,
             controller=self,
             )
@@ -926,7 +925,6 @@ class PackageManager(AssetController):
 
         Returns none.
         '''
-        from scoremanager import idetools
         if problems_only is None:
             prompt = 'show problem assets only?'
             result = self._io_manager._confirm(prompt)
@@ -1047,7 +1045,7 @@ class PackageManager(AssetController):
             message = '{} OK'.format(message)
         messages.insert(0, message)
         if wranglers:
-            controller = idetools.ControllerContext(
+            controller = self._io_manager._controller(
                 controller=self,
                 current_score_directory=self._path,
                 )

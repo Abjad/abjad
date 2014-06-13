@@ -32,6 +32,7 @@ class Controller(object):
             session=self._session,
             )
         self._transcript = self._session.transcript
+        # TODO: maybe remove this property?
         self._controller_context = idetools.ControllerContext(controller=self)
 
     ### SPECIAL METHODS ###

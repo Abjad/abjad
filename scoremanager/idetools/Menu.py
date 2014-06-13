@@ -500,9 +500,7 @@ class Menu(Controller):
         return section._menu_entry_return_values[entry_index]
 
     def _run(self):
-        from scoremanager import idetools
-        controller = idetools.ControllerContext(controller=self)
-        with controller:
+        with self._io_manager._controller(controller=self):
             while True:
                 result = self._predetermined_input
                 if not result:

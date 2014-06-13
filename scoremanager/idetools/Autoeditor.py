@@ -270,13 +270,11 @@ class Autoeditor(Controller):
         return getattr(self.target, attribute_name, None)
 
     def _run(self):
-        from scoremanager import idetools
-        controller = idetools.ControllerContext(
+        with self._io_manager._controller(
             consume_local_backtrack=True,
             controller=self,
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
-            )
-        with controller:
+            ):
             self._session._is_pending_output_removal = True
             if self._session.is_backtracking:
                 return

@@ -202,13 +202,12 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 include_chevron=include_chevron)
 
     def _run(self):
-        from scoremanager import idetools
-        controller = idetools.ControllerContext(
+        with self._io_manager._controller(
             consume_local_backtrack=True,
             controller=self,
             is_in_confirmation_environment=True,
-            )
-        with controller:
+            ):
+            # TODO: shorten names and make this into a single line
             self._present_prompts_and_evaluate_input(
                 include_chevron=self._include_chevron,
                 )

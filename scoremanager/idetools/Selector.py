@@ -94,8 +94,7 @@ class Selector(Controller):
         return entries
 
     def _run(self):
-        from scoremanager import idetools
-        with idetools.ControllerContext(
+        with self._io_manager._controller(
             clear_terminal=True,
             consume_local_backtrack=True,
             controller=self,
