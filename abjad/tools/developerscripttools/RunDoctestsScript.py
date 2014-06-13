@@ -3,6 +3,7 @@ from __future__ import print_function
 import doctest
 import importlib
 import os
+import sys
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
@@ -190,10 +191,14 @@ class RunDoctestsScript(DirectoryScript):
             )
         if print_to_terminal:
             print(string)
+            if total_successes == total_tests:
+                sys.exit(0)
+            else:
+                sys.exit(1)
         else:
             result.append(string)
-        if not print_to_terminal:
             return result
+
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
