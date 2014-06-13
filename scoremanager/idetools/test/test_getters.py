@@ -13,8 +13,8 @@ def test_getters_01():
         'foo bar',
         session=session,
         )
-    input_ = 'asdf (1, 16)'
-    assert getter._run(input_=input_) == Duration(1, 16)
+    getter._session._pending_input = 'asdf (1, 16)'
+    assert getter._run() == Duration(1, 16)
 
 
 def test_getters_02():
@@ -25,5 +25,5 @@ def test_getters_02():
         'foo bar',
         session=session,
         )
-    input_ = 'None'
-    assert getter._run(input_=input_) is None
+    getter._session._pending_input = 'None'
+    assert getter._run() is None

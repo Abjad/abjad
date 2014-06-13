@@ -9,8 +9,8 @@ def test_Selector_make_dynamic_handler_class_name_selector_01():
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_dynamic_handler_class_name_selector()
     selector._session._is_test = True
-    input_ = 'q'
-    selector._run(input_=input_)
+    selector._session._pending_input = 'q'
+    selector._run()
     contents = selector._transcript.contents
 
     lines = [
@@ -30,7 +30,7 @@ def test_Selector_make_dynamic_handler_class_name_selector_02():
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_dynamic_handler_class_name_selector()
     selector._session._is_test = True
+    selector._session._pending_input = 'terraced'
+    result = selector._run()
 
-    input_ = 'terraced'
-    result = selector._run(input_=input_)
     assert result == 'TerracedDynamicsHandler'

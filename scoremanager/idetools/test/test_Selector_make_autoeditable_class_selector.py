@@ -8,7 +8,7 @@ def test_Selector_make_autoeditable_class_selector_01():
 
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_autoeditable_class_selector()
-    input_ = 'MarkupInventory'
-    result = selector._run(input_=input_)
+    selector._session._pending_input = 'MarkupInventory'
+    result = selector._run()
 
     assert result == markuptools.MarkupInventory

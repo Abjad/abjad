@@ -16,7 +16,8 @@ def test_PerformerInventory_autoedit_01():
         )
     input_ = 'ps add accordionist <return> add bassoonist <return>'
     input_ += ' add cellist <return> done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     specifier = instrumenttools.PerformerInventory([
         instrumenttools.Performer(
@@ -48,7 +49,8 @@ def test_PerformerInventory_autoedit_02():
         target=target,
         )
     input_ = 'ps add 1-3 <return> <return> <return> done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     specifier = instrumenttools.PerformerInventory([
         instrumenttools.Performer(
@@ -77,7 +79,8 @@ def test_PerformerInventory_autoedit_03():
         )
     input_ = 'ps add acc <return> add bass <return> add bassoon <return>'
     input_ += ' rm 3 rm 2 done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     specifier = instrumenttools.PerformerInventory(
         [
@@ -104,7 +107,8 @@ def test_PerformerInventory_autoedit_04():
         target=target,
         )
     input_ = 'ps add 1-3 <return> <return> <return> rm 3-2 done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     specifier = instrumenttools.PerformerInventory(
         [
@@ -131,7 +135,8 @@ def test_PerformerInventory_autoedit_05():
         )
     input_ = 'ps add accordionist <return> add bassist <return>'
     input_ += ' add bassoonist bassoon mv 1 2 mv 2 3 done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     specifier = instrumenttools.PerformerInventory([
         instrumenttools.Performer(

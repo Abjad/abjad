@@ -9,18 +9,18 @@ def test_Selector_make_score_tools_performer_name_selector_01():
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
-    input_ = 'q'
-    assert selector._run(input_=input_) is None
+    selector._session._pending_input = 'q'
+    assert selector._run() is None
 
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
-    input_ = 'b'
-    assert selector._run(input_=input_) is None
+    selector._session._pending_input = 'b'
+    assert selector._run() is None
 
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
-    input_ = 'h'
-    assert selector._run(input_=input_) is None
+    selector._session._pending_input = 'h'
+    assert selector._run() is None
 
 
 def test_Selector_make_score_tools_performer_name_selector_02():
@@ -29,8 +29,8 @@ def test_Selector_make_score_tools_performer_name_selector_02():
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
-    input_ = 'vn'
-    assert selector._run(input_=input_) == 'violinist'
+    selector._session._pending_input = 'vn'
+    assert selector._run() == 'violinist'
 
 
 def test_Selector_make_score_tools_performer_name_selector_03():
@@ -41,5 +41,5 @@ def test_Selector_make_score_tools_performer_name_selector_03():
         is_ranged=True)
     selector._session._is_test = True
     result = ['violinist', 'violist']
-    input_ = 'vn, va'
-    assert selector._run(input_=input_) == result
+    selector._session._pending_input = 'vn, va'
+    assert selector._run() == result

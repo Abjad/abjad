@@ -15,7 +15,8 @@ def test_Autoeditor__run_01():
         target=target,
         )
     input_ = 'nm tenor done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == Clef('tenor')
 
@@ -31,7 +32,8 @@ def test_Autoeditor__run_02():
         target=target,
         )
     input_ = 'done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target is target
 
@@ -46,7 +48,8 @@ def test_Autoeditor__run_03():
         target=Tempo(),
         )
     input_ = 'duration (1, 8) units 98 done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == Tempo(Duration(1, 8), 98)
 
@@ -61,7 +64,8 @@ def test_Autoeditor__run_04():
         target=Tempo(),
         )
     input_ = 'duration Duration(1, 8) units 98 done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == Tempo(Duration(1, 8), 98)
 
@@ -76,7 +80,8 @@ def test_Autoeditor__run_05():
         target=Markup(),
         )
     input_ = 'arg foo~text done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     markup = markuptools.Markup('foo text')
     assert autoeditor.target == markup
@@ -92,7 +97,8 @@ def test_Autoeditor__run_06():
         target=Markup(),
         )
     input_ = '''arg '"foo~text~here"' dir up done'''
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == Markup('"foo text here"', direction=Up)
 
@@ -108,7 +114,8 @@ def test_Autoeditor__run_07():
         target=target,
         )
     input_ = 'arg entirely~new~text direction up done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == Markup('entirely new text', direction=Up)
 
@@ -124,7 +131,8 @@ def test_Autoeditor__run_08():
         target=target,
         )
     input_ = 'source [A0, C8] target -18 q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
     assert autoeditor.target == component
@@ -141,7 +149,8 @@ def test_Autoeditor__run_09():
         target=target,
         )
     input_ = '1 [F#3, C5) q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == pitchtools.PitchRange('[F#3, C5)')
 
@@ -152,7 +161,8 @@ def test_Autoeditor__run_09():
         target=target,
         )
     input_ = '1 (A0, C8] q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     assert autoeditor.target == pitchtools.PitchRange('(A0, C8]')
 
@@ -169,7 +179,8 @@ def test_Autoeditor__run_10():
         target=target,
         )
     input_ = "ht ('p', '<', 'f') Duration(1, 8) done"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),
@@ -191,7 +202,8 @@ def test_Autoeditor__run_11():
         target=target,
         )
     input_ = "ht [('p', '<', 'f')] Duration(1, 8) done"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.NoteAndChordHairpinsHandler(
         hairpin_tokens=[('p', '<', 'f')],
@@ -213,7 +225,8 @@ def test_Autoeditor__run_12():
         target=target,
         )
     input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.PatternedArticulationsHandler(
         articulation_lists=[['.', '^'], ['.']],
@@ -239,7 +252,8 @@ def test_Autoeditor__run_13():
         target=target,
         )
     input_ = "['.', '^'] (1, 16) (1, 8) cs'' c''' done"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
@@ -265,7 +279,8 @@ def test_Autoeditor__run_14():
         target=target,
         )
     input_ = "['.', '^'] None None None None done"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],
@@ -286,7 +301,8 @@ def test_Autoeditor__run_15():
         target=target
         )
     input_ = '1 f Duration(1, 8) q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',
@@ -308,7 +324,8 @@ def test_Autoeditor__run_16():
         target=target,
         )
     input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     handler = handlertools.TerracedDynamicsHandler(
         dynamics=['p', 'f', 'f'],
@@ -329,7 +346,8 @@ def test_Autoeditor__run_17():
         target=target,
         )
     input_ = 't c (-1, 2, -3, 4) d 16 done sdc (6,) xcd (2, 3) done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),
@@ -356,7 +374,8 @@ def test_Autoeditor__run_18():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -381,7 +400,8 @@ def test_Autoeditor__run_19():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo rm piccolo done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -405,7 +425,8 @@ def test_Autoeditor__run_20():
         target=target,
         )
     input_ = 'nm flutist i add flute add piccolo mv 1 2 done done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
 
     instruments = instrumenttools.InstrumentInventory([
         instrumenttools.Piccolo(),

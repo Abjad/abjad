@@ -499,10 +499,8 @@ class Menu(Controller):
         entry_index = (entry_index + 1) % len(section)
         return section._menu_entry_return_values[entry_index]
 
-    def _run(self, input_=None):
+    def _run(self):
         from scoremanager import idetools
-        if input_:
-            self._session._pending_input = input_
         controller = idetools.ControllerContext(controller=self)
         with controller:
             while True:

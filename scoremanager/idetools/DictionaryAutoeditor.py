@@ -18,15 +18,6 @@ class DictionaryAutoeditor(CollectionAutoeditor):
         >>> autoeditor
         <DictionaryAutoeditor(target=dict)>
 
-    ::
-
-        >>> autoeditor._run(input_='rm 1 q')
-
-    ::
-
-        >>> autoeditor
-        <DictionaryAutoeditor(target=dict)>
-
     '''
 
     ### PRIVATE PROPERTIES ###

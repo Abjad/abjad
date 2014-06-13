@@ -201,10 +201,8 @@ class UserInputGetter(Controller, PromptMakerMixin):
             self._present_prompt_and_evaluate_input(
                 include_chevron=include_chevron)
 
-    def _run(self, input_=None):
+    def _run(self):
         from scoremanager import idetools
-        if input_:
-            self._session._pending_input = input_
         controller = idetools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,

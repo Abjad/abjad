@@ -9,6 +9,5 @@ def test_Selector_make_clef_name_selector_01():
     selector = scoremanager.idetools.Selector(session=session)
     selector = selector.make_clef_name_selector()
     selector._session._is_test = True
-
-    input_ = 'tre'
-    assert selector._run(input_=input_) == 'treble'
+    selector._session._pending_input = 'tre'
+    assert selector._run() == 'treble'

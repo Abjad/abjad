@@ -15,15 +15,6 @@ class ListAutoeditor(CollectionAutoeditor):
         >>> autoeditor
         <ListAutoeditor(target=list)>
 
-    ::
-
-        >>> autoeditor._run(input_='rm 1 q')
-
-    ::
-
-        >>> autoeditor
-        <ListAutoeditor(target=list)>
-
     '''
 
     ### PRIVATE METHODS ###

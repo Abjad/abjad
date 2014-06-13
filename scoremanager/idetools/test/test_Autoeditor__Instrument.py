@@ -15,7 +15,8 @@ def test_Autoeditor__Instrument_01():
         target=target,
         )
     input_ = "sn 'foo' q"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     instrument = autoeditor.target
     assert instrument.short_instrument_name == 'foo'
 
@@ -26,7 +27,8 @@ def test_Autoeditor__Instrument_01():
         target=target,
         )
     input_ = "sm 'bar' sn 'foo' q"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     instrument = autoeditor.target
     assert instrument.short_instrument_name == 'foo'
     assert instrument.short_instrument_name_markup == Markup('bar')
@@ -43,7 +45,8 @@ def test_Autoeditor__Instrument_02():
         target=target,
         )
     input_ = 'q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     range_ = pitchtools.PitchRange.from_pitches(-19, 36)
     assert autoeditor.target.pitch_range == range_
 
@@ -54,7 +57,8 @@ def test_Autoeditor__Instrument_02():
         target=target,
         )
     input_ = 'rg [C2, C7] q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     range_ = pitchtools.PitchRange.from_pitches(-24, 36)
     assert autoeditor.target.pitch_range == range_
 
@@ -71,7 +75,8 @@ def test_Autoeditor__Instrument_03():
         target=target,
         )
     input_ = "in 'foo' q"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     instrument = autoeditor.target
     assert instrument.instrument_name == 'foo'
 
@@ -82,7 +87,8 @@ def test_Autoeditor__Instrument_03():
         target=target,
         )
     input_ = "im 'bar' in 'foo' q"
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     instrument = autoeditor.target
     assert instrument.instrument_name == 'foo'
     assert instrument.instrument_name_markup == Markup('bar')
@@ -99,7 +105,8 @@ def test_Autoeditor__Instrument_04():
         target=target
         )
     input_ = 'q'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     contents = autoeditor._transcript.contents
 
     lines = [
@@ -132,7 +139,8 @@ def test_Autoeditor__Instrument_05():
         target=target,
         )
     input_ = 'sp bf done'
-    autoeditor._run(input_=input_)
+    autoeditor._session._pending_input = input_
+    autoeditor._run()
     instrument = autoeditor.target
     horn = instrumenttools.FrenchHorn(
         sounding_pitch_of_written_middle_c=NamedPitch('bf')

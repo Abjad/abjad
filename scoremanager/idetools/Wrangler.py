@@ -926,10 +926,8 @@ class Wrangler(AssetController):
             )
         self._session._is_backtracking_locally = False
 
-    def _run(self, input_=None):
+    def _run(self):
         from scoremanager import idetools
-        if input_:
-            self._session._pending_input = input_
         controller = idetools.ControllerContext(
             consume_local_backtrack=True,
             controller=self,
