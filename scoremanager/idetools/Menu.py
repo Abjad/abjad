@@ -173,11 +173,9 @@ class Menu(Controller):
             return self._handle_argument_range_input(input_)
 
     def _display(self):
-        if not self._session.is_pending_output_removal:
-            return
-        self._io_manager.clear_terminal()
         self._session._is_pending_output_removal = False
-        if not self._session.hide_available_commands:
+        self._io_manager.clear_terminal()
+        if self._session.show_available_commands:
             self._display_available_commands()
         else:
             self._display_visible_sections()
@@ -458,7 +456,7 @@ class Menu(Controller):
                 raise Exception(message)
             else:
                 section_names.append(section.name)
-            hide = self._session.hide_available_commands
+            hide = not self._session.show_available_commands
             if hide and section.is_hidden:
                 continue
             if section.is_asset_section:
@@ -504,7 +502,8 @@ class Menu(Controller):
             while True:
                 result = self._predetermined_input
                 if not result:
-                    self._display()
+                    if self._session.is_pending_output_removal:
+                        self._display()
                     result = self._handle_user_input()
                 if self._session.is_quitting:
                     return result
