@@ -88,6 +88,13 @@ class Infinity(AbjadObject):
         '''
         return self._value < expr
 
+    def __sub__(self, expr):
+        r'''Subtracts `expr` from infinity.
+
+        Returns infinity.
+        '''
+        return self
+
     ### PRIVATE PROPERTIES ###
 
     @property
