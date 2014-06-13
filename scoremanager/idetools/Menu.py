@@ -173,7 +173,6 @@ class Menu(Controller):
             return self._handle_argument_range_input(input_)
 
     def _display(self):
-        from scoremanager import idetools
         if self._session.is_pending_output_removal:
             self._io_manager.clear_terminal()
             self._session._is_pending_output_removal = False
@@ -182,16 +181,28 @@ class Menu(Controller):
             else:
                 menu_lines = []
                 menu_lines.extend(self._make_title_lines())
-                asset_section_lines = self._make_section_lines(
-                    asset_section=True)
-                asset_section_lines = self._make_bicolumnar(
-                    asset_section_lines, strip=False)
-                menu_lines.extend(asset_section_lines)
+                section = None
+                try:
+                    section = self['material summary']
+                except KeyError:
+                    pass
+                if section is not None:
+                    lines = section._make_menu_lines()
+                    menu_lines.extend(lines)
+                has_asset_section = False
+                for section in self:
+                    if section.is_asset_section:
+                        has_asset_section = True
+                        break
+                if has_asset_section:
+                    assert section.is_asset_section
+                    lines = section._make_menu_lines()
+                    lines = self._make_bicolumnar(lines, strip=False)
+                    menu_lines.extend(lines)
                 if menu_lines and not all(_ == ' ' for _ in menu_lines[-1]):
                     menu_lines.append('')
-                nonasset_section_lines = self._make_section_lines(
-                    asset_section=False)
-                menu_lines.extend(nonasset_section_lines)
+                lines = self._make_section_lines()
+                menu_lines.extend(lines)
                 self._io_manager._display(
                     menu_lines,
                     capitalize=False,
@@ -377,15 +388,15 @@ class Menu(Controller):
             conjoined_lines.append(conjoined_line)
         return conjoined_lines
 
-    def _make_menu_lines(self):
-        result = []
-        if not self.name:
-            message = '{!r} has no name: {!r}.'
-            message = message.format(self, self.menu_sections)
-            raise Exception(message)
-        result.extend(self._make_title_lines())
-        result.extend(self._make_section_lines())
-        return result
+#    def _make_menu_lines(self):
+#        result = []
+#        if not self.name:
+#            message = '{!r} has no name: {!r}.'
+#            message = message.format(self, self.menu_sections)
+#            raise Exception(message)
+#        result.extend(self._make_title_lines())
+#        result.extend(self._make_section_lines())
+#        return result
 
     def _make_section(
         self,
@@ -441,10 +452,13 @@ class Menu(Controller):
             self.menu_sections.insert(0, noncommand_section)
         return section
 
-    def _make_section_lines(self, asset_section=True):
+    #def _make_section_lines(self, asset_section=True):
+    def _make_section_lines(self):
         result = []
         section_names = []
         for section in self.menu_sections:
+            #print section.name
+            # TODO: check for duplicate section names at initialization
             if section.name in section_names:
                 message = '{!r} contains duplicate {!r}.'
                 message = message.format(self, section)
@@ -454,9 +468,13 @@ class Menu(Controller):
             hide = self._session.hide_available_commands
             if hide and section.is_hidden:
                 continue
-            if asset_section and not section.is_asset_section:
+            #if asset_section and not section.is_asset_section:
+            #    continue
+            #if not asset_section and section.is_asset_section:
+            #    continue
+            if section.is_asset_section:
                 continue
-            if not asset_section and section.is_asset_section:
+            if section.name == 'material summary':
                 continue
             section_menu_lines = section._make_menu_lines()
             result.extend(section_menu_lines)

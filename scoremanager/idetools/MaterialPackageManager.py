@@ -301,12 +301,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
-        try:
-            section = menu['material summary']
-            menu.menu_sections.remove(section)
-            menu.menu_sections.insert(0, section)
-        except KeyError:
-            pass
         return menu
 
     def _make_output_material_triple(self):
