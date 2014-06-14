@@ -1,0 +1,51 @@
+23. Streamline all 39 classfiles.
+
+22. Answer all inline TODOs.
+
+21. Audit all public methods for py.test files.
+
+20. Audit material interface by hand.
+    Audit segment interface by hand.
+
+19. Audit all star commands.
+
+18. Audit (**).
+
+17. Change (h) to (S).
+    Implement (U), (D), (M), (G), (Y).
+
+16. Make (**) work.
+
+15. Change (?) to (??).
+
+14. Implement '__metadata__.py - autoedit' (mdae).
+
+13. Implement '__metadata__.py - check' (mdc).
+
+12. Implement 'views - write' (vw).
+    Implement 'views - check' (vc).
+
+11. Replace (vap) and (vcl) with (vs).
+
+10. Remove (vnew). Remove (vrm). Remove (vren).
+    Use (vae) instead.
+
+9.  Clean up InstrumentInventory.
+    Clean up PerformerInventory.
+
+8.  Integrate candidacy protocol.
+
+7.  Integrate diff-pdf.
+
+6.  Implement TestManager.compare_lys().
+
+5.  Reinstate autoadvance.
+
+4.  Implement !-suffixation.
+
+3.  Reinstate command concatenation.
+
+2.  Unskip all skipped tests.
+
+1.  Remove (oaes) and (oaeu).
+    Migrate output.py managed files to definition.py managed files.
