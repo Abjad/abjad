@@ -32,7 +32,7 @@ def test_MaterialPackageWrangler_make_view_02():
         input_ = 'm vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-        string = 'instrumentation (Red Example Score)'
+        string = 'instrumentation'
         assert string in transcript.contents
 
 

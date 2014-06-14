@@ -28,7 +28,8 @@ def test_DistributionFileWrangler_clear_view_01():
         lines = [
             'Abjad IDE - distribution files [_test]',
             '',
-            '   1: red-example-score.pdf (Red Example Score)',
+            '    Red Example Score:',
+            '       1: red-example-score.pdf',
             '',
             '      files - copy (cp)',
             '      files - new (new)',

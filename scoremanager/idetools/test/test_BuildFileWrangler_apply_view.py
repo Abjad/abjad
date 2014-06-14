@@ -27,9 +27,10 @@ def test_BuildFileWrangler_apply_view_01():
         lines = [
             'Abjad IDE - build files [_test]',
             '',
-            '   1: segment-01.ly (Red Example Score)',
-            '   2: segment-02.ly (Red Example Score)',
-            '   3: segment-03.ly (Red Example Score)',
+            '    Red Example Score:',
+            '       1: segment-01.ly',
+            '       2: segment-02.ly',
+            '       3: segment-03.ly',
             '',
             '      files - copy (cp)',
             '      files - new (new)',

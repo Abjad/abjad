@@ -32,7 +32,7 @@ def test_SegmentPackageWrangler_make_view_02():
         input_ = 'g vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-        string = 'A (Red Example Score)'
+        string = 'A'
         assert string in transcript.contents
 
 

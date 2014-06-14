@@ -30,7 +30,8 @@ def test_BuildFileWrangler_clear_view_01():
     lines = [
         'Abjad IDE - build files [_test]',
         '',
-        '   1: segment-01.ly (Red Example Score)',
+        '    Red Example Score:',
+        '       1: segment-01.ly',
         '',
         '      files - copy (cp)',
         '      files - new (new)',

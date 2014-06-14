@@ -22,7 +22,8 @@ def test_StylesheetWrangler_clear_view_01():
         lines = [
             'Abjad IDE - stylesheets [_test]',
             '',
-            '   1: clean-letter-14.ily (Abjad)',
+            '    Abjad:',
+            '       1: clean-letter-14.ily',
             '',
             '      files - copy (cp)',
             '      files - new (new)',

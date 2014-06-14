@@ -22,7 +22,8 @@ def test_SegmentPackageWrangler_clear_view_01():
         lines = [
             'Abjad IDE - segments [_test]',
             '',
-            '   1: A (Red Example Score)',
+            '    Red Example Score:',
+            '       1: A',
             '',
             '      segments - copy (cp)',
             '      segments - new (new)',

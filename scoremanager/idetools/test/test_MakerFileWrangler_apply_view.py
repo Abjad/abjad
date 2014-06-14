@@ -27,7 +27,8 @@ def test_MakerFileWrangler_apply_view_01():
         lines = [
             'Abjad IDE - maker files [_test]',
             '',
-            '   1: RedExampleScoreTemplate.py (Red Example Score)',
+            '    Red Example Score:',
+            '       1: RedExampleScoreTemplate.py',
             '',
             '      files - copy (cp)',
             '      files - new (new)',

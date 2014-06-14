@@ -34,6 +34,7 @@ class MenuSection(AbjadObject):
     __slots__ = (
         '_default_index',
         '_display_prepopulated_values',
+        '_group_by_annotation',
         '_indent_level',
         '_is_alphabetized',
         '_is_asset_section',
@@ -65,6 +66,7 @@ class MenuSection(AbjadObject):
         self,
         default_index=None,
         display_prepopulated_values=False,
+        group_by_annotation=True,
         indent_level=1,
         is_alphabetized=True,
         is_asset_section=False,
@@ -88,6 +90,7 @@ class MenuSection(AbjadObject):
         assert return_value_attribute in self.return_value_attributes
         self._default_index = default_index
         self._display_prepopulated_values = display_prepopulated_values
+        self._group_by_annotation = group_by_annotation
         self._indent_level = indent_level
         self._is_alphabetized = is_alphabetized
         self._is_asset_section = is_asset_section
@@ -246,10 +249,10 @@ class MenuSection(AbjadObject):
             return greatest_menu_entry_number
 
     def _make_lines(self):
-        menu_lines = []
-        menu_lines.extend(self._make_title_lines())
+        lines = []
+        lines.extend(self._make_title_lines())
         for i, menu_entry in enumerate(self):
-            menu_line = self._make_tab(self.indent_level)
+            line = self._make_tab(self.indent_level)
             display_string = menu_entry.display_string
             key = menu_entry.key
             prepopulated_value = menu_entry.prepopulated_value
@@ -260,21 +263,21 @@ class MenuSection(AbjadObject):
                 number_width = len(str(number_indicator))
                 reduced_tab_width = tab_width - number_width
                 reduced_tab = reduced_tab_width * ' '
-                menu_line = reduced_tab + number_indicator
-            menu_line += display_string
+                line = reduced_tab + number_indicator
+            line += display_string
             if key:
                 if i == self.default_index:
-                    menu_line += ' [{}]'.format(key)
+                    line += ' [{}]'.format(key)
                 else:
-                    menu_line += ' ({})'.format(key)
+                    line += ' ({})'.format(key)
             if self.display_prepopulated_values:
-                menu_line += ':'
+                line += ':'
                 if prepopulated_value not in (None, 'None'):
-                    menu_line += ' {}'.format(prepopulated_value)
-            menu_lines.append(menu_line)
+                    line += ' {}'.format(prepopulated_value)
+            lines.append(line)
         if self.menu_entries:
-            menu_lines.append('')
-        return menu_lines
+            lines.append('')
+        return lines
 
     def _make_tab(self, n=1):
         tab_string = 6 * n * ' '
@@ -335,6 +338,20 @@ class MenuSection(AbjadObject):
         Returns boolean.
         '''
         return self._display_prepopulated_values
+
+    @property
+    def group_by_annotation(self):
+        r'''Is true when entries should group by annotation.
+        Otherwise false:
+
+        ::
+
+            >>> section.group_by_annotation
+            True
+
+        Returns boolean.
+        '''
+        return self._group_by_annotation
 
     @property
     def indent_level(self):

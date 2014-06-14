@@ -34,7 +34,7 @@ def test_BuildFileWrangler_make_view_02():
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
-    string = 'front-cover.pdf (Red Example Score)'
+    string = 'front-cover.pdf'
     assert string in transcript.contents
 
 

@@ -25,6 +25,7 @@ def test_MenuSection___format___01():
         r'''
         idetools.MenuSection(
             display_prepopulated_values=False,
+            group_by_annotation=True,
             indent_level=1,
             is_alphabetized=True,
             is_asset_section=False,

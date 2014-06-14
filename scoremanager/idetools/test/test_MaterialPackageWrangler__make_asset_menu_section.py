@@ -33,4 +33,4 @@ def test_MaterialPackageWrangler__make_asset_menu_section_03():
 
     input_ = 'm q'
     score_manager._run(input_=input_)
-    assert '(Red Example Score)' in score_manager._transcript.contents
+    assert 'Red Example Score:' in score_manager._transcript.contents

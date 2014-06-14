@@ -32,7 +32,7 @@ def test_StylesheetWrangler_make_view_02():
         input_ = 'y vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-        string = 'clean-letter-14.ily (Abjad)'
+        string = 'clean-letter-14.ily'
         assert string in transcript.contents
 
 

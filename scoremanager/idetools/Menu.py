@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import math
 import os
+import re
 import textwrap
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -185,6 +186,26 @@ class Menu(Controller):
             if section._menu_entry_return_values:
                 return section._menu_entry_return_values[0]
 
+    def _group_by_annotation(self, lines):
+        new_lines = []
+        current_annotation = ''
+        pattern = re.compile('(.*)(\s+)\((.+)\)')
+        tab = self._io_manager._make_tab()
+        for line in lines:
+            line = line.replace(' (O)', '')
+            match = pattern.match(line)
+            if match:
+                display_string, _, annotation = match.groups()
+                if not annotation == current_annotation:
+                    current_annotation = annotation
+                    new_line = '{}{}:'.format(tab, current_annotation)
+                    new_lines.append(new_line)
+                new_line = tab + display_string
+                new_lines.append(new_line)
+            else:
+                new_lines.append(line)
+        return new_lines
+
     def _handle_argument_range_input(self, input_):
         if not self._has_ranged_section():
             return
@@ -269,6 +290,8 @@ class Menu(Controller):
             return []
         assert section.is_asset_section
         lines = section._make_lines()
+        if section.group_by_annotation:
+            lines = self._group_by_annotation(lines)
         lines = self._make_bicolumnar(lines, strip=False)
         return lines
 

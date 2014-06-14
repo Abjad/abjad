@@ -32,7 +32,7 @@ def test_DistributionFileWrangler_make_view_02():
         input_ = 'd vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-        string = 'red-example-score.pdf (Red Example Score)'
+        string = 'red-example-score.pdf'
         assert string in transcript.contents
 
 
