@@ -58,7 +58,7 @@ class Wrangler(AssetController):
         if not view_name:
             return breadcrumb
         view_inventory = self._read_view_inventory()
-        if view_name in view_inventory:
+        if view_inventory is not None and view_name in view_inventory:
             breadcrumb = '{} [{}]'.format(breadcrumb, view_name)
         return breadcrumb
 

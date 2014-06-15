@@ -38,20 +38,22 @@
 
 17. Change (?) to (??).
 
-18. Make (**) work.
+18. Fix double score name printing that follows (ck* y y).
 
-19. Change (h) to (S).
+19. Make (**) work.
+
+20. Change (h) to (S).
     Implement (U), (D), (M), (G), (Y).
 
-20. Audit (**).
+21. Audit (**).
 
-21. Audit all star commands.
+22. Audit all star commands.
 
-22. Audit material interface by hand.
+23. Audit material interface by hand.
     Audit segment interface by hand.
 
-23. Audit all public methods for py.test files.
+24. Audit all public methods for py.test files.
 
-24. Answer all inline TODOs.
+25. Answer all inline TODOs.
 
-25. Streamline all 39 classfiles.
+26. Streamline all 39 classfiles.

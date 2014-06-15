@@ -419,7 +419,9 @@ class IOManager(IOManager):
         except:
             message = 'Exception raised in {}.'
             message = message.format(path)
-            self._display(message)
+            # use print instead of display
+            # to force to terminal even when called in silent context
+            print(message)
             traceback.print_exc()
             return 'corrupt'
         result = []
