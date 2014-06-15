@@ -102,7 +102,7 @@ class AbjadIDE(AssetController):
         commands.append(('__init__.py - open', 'no*'))
         commands.append(('__init__.py - stub', 'ns*'))
         menu.make_command_section(
-            is_hidden=True,
+            is_hidden=False,
             commands=commands,
             name='__init__.py',
             )
@@ -137,12 +137,12 @@ class AbjadIDE(AssetController):
                 result = self._score_package_wrangler._get_sibling_score_path()
                 if not result:
                     result = self._session.wrangler_navigation_directive
-                if not result:
-                    self._score_package_wrangler._run()
-                else:
+                if result:
                     self._score_package_wrangler._handle_main_menu_result(
                         result)
-                if self._session.is_backtracking_to_library:
+                elif not self._session.is_backtracking_to_library:
+                    self._score_package_wrangler._run()
+                else:
                     menu = self._make_main_menu()
                     result = menu._run()
                     if result:

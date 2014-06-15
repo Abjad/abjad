@@ -206,7 +206,8 @@ class Controller(object):
 
         Returns none.
         '''
-        self._session._is_backtracking_to_library = True
+        library = self._session._is_backtracking_to_library
+        self._session._is_backtracking_to_library = not library
         self._session._display_available_commands = False
 
     def quit(self):

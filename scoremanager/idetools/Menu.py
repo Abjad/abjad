@@ -389,7 +389,7 @@ class Menu(Controller):
         result = []
         section_names = []
         for section in self.menu_sections:
-            #print section.name
+            #print(section.name)
             # TODO: check for duplicate section names at initialization
             if section.name in section_names:
                 message = '{!r} contains duplicate {!r}.'
