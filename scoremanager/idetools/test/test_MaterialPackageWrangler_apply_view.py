@@ -48,7 +48,7 @@ def test_MaterialPackageWrangler_apply_view_02():
     
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'red~example~score m vnew _test rm all'
-        input_ += ' add instrumentation~(O) done <return>'
+        input_ += ' add instrumentation done <return>'
         input_ += ' vap _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -69,22 +69,18 @@ def test_MaterialPackageWrangler_apply_view_02():
 
 def test_MaterialPackageWrangler_apply_view_03():
     r'''Works with metadata.
-
-    The 'autoeditable' view resident in the materials directory
-    is defined equal to 'md:use_autoeditor'.
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score m vap autoeditable vcl q'
+        input_ = 'red~example~score m vap inventories vcl q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
         lines = [
-            'Red Example Score (2013) - materials [autoeditable]',
+            'Red Example Score (2013) - materials [inventories]',
             '',
-            '   1: instrumentation',
-            '   2: pitch range inventory',
-            '   3: tempo inventory',
+            '   1: pitch range inventory',
+            '   2: tempo inventory',
             '',
             '      materials - copy (cp)',
             '      materials - new (new)',
