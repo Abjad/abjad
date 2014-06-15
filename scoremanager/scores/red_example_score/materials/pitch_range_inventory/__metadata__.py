@@ -4,5 +4,4 @@ import collections
 
 metadata = collections.OrderedDict([
     ('output_material_class_name', 'PitchRangeInventory'),
-    ('use_autoeditor', True),
     ])

@@ -102,7 +102,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'oaes': self.set_output_py_autoeditor,
             'oaeu': self.unset_output_py_autoeditor,
             #
-            'dae': self.autoedit_definition_py,
+            'da': self.autoedit_definition_py,
             'dc': self.check_definition_py,
             'do': self.open_definition_py,
             'dp': self.output_definition_py,
@@ -218,9 +218,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands = []
         if os.path.isfile(self._definition_py_path):
             is_hidden = False
-            commands.append(('definition.py - autoedit', 'dae'))
+            commands.append(('definition.py - autoedit', 'da'))
             commands.append(('definition.py - check', 'dc'))
-            commands.append(('definition.py - interpret', 'di'))
             commands.append(('definition.py - open', 'do'))
             commands.append(('definition.py - output', 'dp'))
         else:

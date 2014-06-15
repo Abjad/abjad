@@ -31,7 +31,7 @@ def test_MaterialPackageManager_autoedit_definition_py_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score m new test~tempo~inventory y'
-        input_ += ' dae y TempoInventory'
+        input_ += ' da y TempoInventory'
         input_ += ' add ((1, 4), 60) add ((1, 4), 90) done y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)

@@ -1,51 +1,60 @@
-23. Streamline all 39 classfiles.
-
-22. Answer all inline TODOs.
-
-21. Audit all public methods for py.test files.
-
-20. Audit material interface by hand.
-    Audit segment interface by hand.
-
-19. Audit all star commands.
-
-18. Audit (**).
-
-17. Change (h) to (S).
-    Implement (U), (D), (M), (G), (Y).
-
-16. Make (**) work.
-
-15. Change (?) to (??).
-
-14. Implement '__metadata__.py - autoedit' (mdae).
-
-13. Implement '__metadata__.py - check' (mdc).
-
-12. Implement 'views - write' (vw).
-    Implement 'views - check' (vc).
-
-11. Replace (vap) and (vcl) with (vs).
-
-10. Remove (vnew). Remove (vrm). Remove (vren).
-    Use (vae) instead.
-
-9.  Clean up InstrumentInventory.
-    Clean up PerformerInventory.
-
-8.  Integrate candidacy protocol.
-
-7.  Integrate diff-pdf.
-
-6.  Implement TestManager.compare_lys().
-
-5.  Reinstate autoadvance.
-
-4.  Implement !-suffixation.
-
-3.  Reinstate command concatenation.
-
-2.  Unskip all skipped tests.
-
 1.  Remove (oaes) and (oaeu).
     Migrate output.py managed files to definition.py managed files.
+    Make definition.py a mandatory part of every material package.
+    Remove 'use_autoeditor' tags from all __metadata__.py files.
+
+2.  Make (m 1 da b) stop prompting to write definition.py if definition.py
+    has not changed. (m 1 da b) should continue to prompt to write
+    definition.py if definition.py has changed during editing.
+
+3.  Open __metadata__.py in editable mode; do not open read-only.
+    Do continue to open output.py read-only.
+
+4.  Unskip all skipped tests.
+
+5.  Reinstate command concatenation.
+
+6.  Implement !-suffixation.
+
+7.  Reinstate autoadvance.
+
+8.  Implement TestManager.compare_lys().
+
+9.  Integrate diff-pdf.
+
+10. Integrate candidacy protocol.
+
+11. Clean up InstrumentInventory.
+    Clean up PerformerInventory.
+
+12. Remove (vnew). Remove (vrm). Remove (vren).
+    Use (vae) instead.
+
+13. Replace (vap) and (vcl) with (vs).
+
+14. Implement 'views - write' (vw).
+    Implement 'views - check' (vc).
+
+15. Implement '__metadata__.py - check' (mdc).
+
+16. Implement '__metadata__.py - autoedit' (mdae).
+
+17. Change (?) to (??).
+
+18. Make (**) work.
+
+19. Change (h) to (S).
+    Implement (U), (D), (M), (G), (Y).
+
+20. Audit (**).
+
+21. Audit all star commands.
+
+22. Audit material interface by hand.
+    Audit segment interface by hand.
+
+23. Audit all public methods for py.test files.
+
+24. Answer all inline TODOs.
+
+25. Streamline all 39 classfiles.
