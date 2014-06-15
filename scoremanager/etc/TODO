@@ -1,59 +1,57 @@
-1.  Make definition.py a mandatory part of every material package.
-
-2.  Make (m 1 da b) stop prompting to write definition.py if definition.py
+1.  Make (m 1 da b) stop prompting to write definition.py if definition.py
     has not changed. (m 1 da b) should continue to prompt to write
     definition.py if definition.py has changed during editing.
 
-3.  Open __metadata__.py in editable mode; do not open read-only.
+2.  Open __metadata__.py in editable mode; do not open read-only.
     Do continue to open output.py read-only.
 
-4.  Unskip all skipped tests.
+3.  Unskip all skipped tests.
 
-5.  Reinstate command concatenation.
+4.  Reinstate command concatenation.
 
-6.  Implement !-suffixation.
+5.  Implement !-suffixation.
 
-7.  Reinstate autoadvance.
+6.  Reinstate autoadvance.
 
-8.  Implement TestManager.compare_lys().
+7.  Implement TestManager.compare_lys().
 
-9.  Integrate diff-pdf.
+8.  Integrate diff-pdf.
 
-10. Integrate candidacy protocol.
+9.  Integrate candidacy protocol.
 
-11. Clean up InstrumentInventory.
+10. Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-12. Remove (vnew). Remove (vrm). Remove (vren).
+11. Remove (vnew). Remove (vrm). Remove (vren).
     Use (vae) instead.
 
-13. Replace (vap) and (vcl) with (vs).
+12. Replace (vap) and (vcl) with (vs).
 
-14. Implement 'views - write' (vw).
+13. Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-15. Implement '__metadata__.py - check' (mdc).
+14. Implement '__metadata__.py - check' (mdc).
 
-16. Implement '__metadata__.py - autoedit' (mdae).
+15. Implement '__metadata__.py - autoedit' (mdae).
 
-17. Change (?) to (??).
+16. Change (?) to (??).
 
-18. Take another pass at (ck) and (ck*) messaging.
+17. Take another pass at (ck) and (ck*) messaging.
 
-19. Make (**) work.
+18. Make (**) work.
 
-20. Change (h) to (S).
+19. Change (h) to (S).
     Implement (U), (D), (M), (G), (Y).
 
-21. Audit (**).
+20. Audit (**).
 
-22. Audit all star commands.
+21. Audit all star commands.
 
-23. Audit material interface by hand.
+22. Audit material interface by hand.
     Audit segment interface by hand.
 
-24. Audit all public methods for py.test files.
+23. Audit all public methods for py.test files.
 
-25. Answer all inline TODOs.
+24. Answer all inline TODOs.
 
-26. Streamline all 39 classfiles.
+25. Streamline all 39 classfiles.

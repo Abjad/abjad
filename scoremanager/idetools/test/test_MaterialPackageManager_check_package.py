@@ -29,8 +29,8 @@ def test_MaterialPackageManager_check_package_02():
 
     lines = [
         '1 of 1 required directory found:',
-        '2 of 2 required files found:',
-        '4 optional files found:',
+        '3 of 3 required files found:',
+        '3 optional files found:',
         ]
     for line in lines:
         assert line in contents

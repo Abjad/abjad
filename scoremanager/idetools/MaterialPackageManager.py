@@ -54,6 +54,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._output_py_import_statements = [
             self._abjad_import_statement,
             ]
+        required_files = list(self._required_files)
+        required_files.extend([
+            'definition.py',
+            ])
+        self._required_files = tuple(required_files)
 
     ### PRIVATE PROPERTIES ###
 
