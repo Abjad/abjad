@@ -1,7 +1,4 @@
-1.  Remove (oaes) and (oaeu).
-    Migrate output.py managed files to definition.py managed files.
-    Make definition.py a mandatory part of every material package.
-    Remove 'use_autoeditor' tags from all __metadata__.py files.
+1.  Make definition.py a mandatory part of every material package.
 
 2.  Make (m 1 da b) stop prompting to write definition.py if definition.py
     has not changed. (m 1 da b) should continue to prompt to write

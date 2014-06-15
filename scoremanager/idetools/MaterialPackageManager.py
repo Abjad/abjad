@@ -59,14 +59,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     @property
     def _breadcrumb(self):
-        use_autoeditor = self._get_metadatum('use_autoeditor')
-        if self._session.is_in_score:
-            name = self._space_delimited_lowercase_name
-            if use_autoeditor:
-                return '{} (O)'.format(name)
-            else:
-                return name
         name = self._space_delimited_lowercase_name
+        if self._session.is_in_score:
+            return name
         configuration = self._configuration
         annotation = configuration._path_to_storehouse_annotation(self._path)
         string = '{} ({})'
@@ -99,9 +94,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'oaes': self.set_output_py_autoeditor,
-            'oaeu': self.unset_output_py_autoeditor,
-            #
             'da': self.autoedit_definition_py,
             'dc': self.check_definition_py,
             'do': self.open_definition_py,
@@ -115,14 +107,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             #
             'ili': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
-            #
-            'oae': self.autoedit_output_py,
-            'oi': self.illustrate_output_py,
+            'ipo': self.open_illustration_pdf,
             #
             'oc': self.check_output_py,
+            'oi': self.illustrate_output_py,
             'oo': self.open_output_py,
-            #
-            'ipo': self.open_illustration_pdf,
             #
             'vdo': self.open_versioned_definition_py,
             'vilo': self.open_versioned_illustration_ly,
@@ -199,12 +188,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             return True
         return False
 
+    # TODO: decide whether the keep this method or not
     def _make_autoeditor_summary_menu_section(self, menu):
-        if not self._get_metadatum('use_autoeditor'):
-            if os.path.isfile(self._definition_py_path):
-                return
-            if not os.path.isfile(self._output_py_path):
-                return
+        return
         output_material = self._execute_output_py()
         if output_material is None:
             return
@@ -329,11 +315,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             commands.append(('output.py - check', 'oc'))
             commands.append(('output.py - illustrate', 'oi'))
             commands.append(('output.py - open', 'oo'))
-        if self._get_metadatum('use_autoeditor'):
-            commands.append(('output.py - autoedit', 'oae'))
-            commands.append(('output.py - autoeditor - unset', 'oaeu'))
-        else:
-            commands.append(('output.py - autoeditor - set', 'oaes'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -754,60 +735,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material_class_name,
             )
         self._session._pending_redraw = clear
-
-    def set_output_py_autoeditor(self):
-        r'''Sets autoeditor.
-
-        Returns none.
-        '''
-        selector = self._io_manager.selector
-        selector = selector.make_autoeditable_class_selector()
-        class_ = selector._run()
-        if self._session.is_backtracking or not class_:
-            return
-        self._add_metadatum('use_autoeditor', True)
-        self._add_metadatum('output_material_class_name', class_.__name__)
-        output_material = self._execute_output_py()
-        if type(output_material) is class_:
-            return
-        if output_material is not None:
-            messages = []
-            message = 'existing output.py file contains {}.'
-            message = message.format(type(output_material).__name__)
-            messages.append(message)
-            message = 'overwrite existing output.py file?'
-            messages.append(message)
-            self._io_manager._display(messages)
-            result = self._io_manager._confirm()
-            if self._session.is_backtracking or not result:
-                return
-        empty_target = class_()
-        if type(empty_target) is list:
-            storage_format = repr(empty_target)
-        else:
-            storage_format = format(empty_target, 'storage')
-        output_material_lines = '{} = {}'.format(
-            self._package_name,
-            storage_format,
-            )
-        output_material_lines = output_material_lines.split('\n')
-        output_material_lines = [_ + '\n' for _ in output_material_lines]
-        import_statements = [self._abjad_import_statement]
-        if 'handlertools.' in storage_format:
-            import_statements.append(self._handlertools_import_statement)
-        with self._io_manager._make_silent():
-            self.output_definition_py(
-                import_statements=import_statements,
-                output_material=empty_target,
-                output_material_lines=output_material_lines,
-                )
-
-    def unset_output_py_autoeditor(self):
-        r'''Unsets autoeditor.
-
-        Returns none.
-        '''
-        self._remove_metadatum('use_autoeditor')
 
     def write_definition_py(
         self,

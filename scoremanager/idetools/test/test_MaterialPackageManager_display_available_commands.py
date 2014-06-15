@@ -10,4 +10,4 @@ def test_MaterialPackageManager_display_available_commands_01():
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
-    assert 'tempo inventory (O) - available commands' in contents
+    assert 'tempo inventory - available commands' in contents

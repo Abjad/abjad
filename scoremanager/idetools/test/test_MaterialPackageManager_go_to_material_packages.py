@@ -13,7 +13,7 @@ def test_MaterialPackageManager_go_to_material_packages_01():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory (O)',
+        'Red Example Score (2013) - materials - tempo inventory',
         'Red Example Score (2013) - materials',
         ]
     assert score_manager._transcript.titles == titles

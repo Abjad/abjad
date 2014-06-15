@@ -6,12 +6,6 @@ from scoremanager import idetools
 view_inventory=idetools.ViewInventory(
     [
         (
-            'autoeditable',
-            idetools.View(
-                ['md:use_autoeditor']
-                ),
-            ),
-        (
             'inventories',
             idetools.View(
                 ["'inventory' in :ds:"]

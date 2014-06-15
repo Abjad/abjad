@@ -192,7 +192,7 @@ class Menu(Controller):
         pattern = re.compile('(.*)(\s+)\((.+)\)')
         tab = self._io_manager._make_tab()
         for line in lines:
-            line = line.replace(' (O)', '')
+            line = line.replace('', '')
             match = pattern.match(line)
             if match:
                 display_string, _, annotation = match.groups()

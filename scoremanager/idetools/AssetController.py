@@ -324,12 +324,8 @@ class AssetController(Controller):
             else:
                 package_name = os.path.basename(path)
                 annotation = package_name
-        #elif (hasattr(self, '_user_storehouse_path') and
-        #    path.startswith(self._user_storehouse_path)):
         elif path.startswith(self._configuration.user_library_directory):
             annotation = self._configuration.composer_last_name
-        #elif (hasattr(self, '_abjad_storehouse_path') and
-        #    path.startswith(self._abjad_storehouse_path)):
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:
@@ -353,14 +349,6 @@ class AssetController(Controller):
                 string = '{} ({})'.format(asset_name, annotation)
             else:
                 string = annotation
-        if getattr(self, '_annotate_autoeditor', False):
-            use_autoeditor = False
-            manager = self._io_manager._make_package_manager(path=path)
-            metadata = manager._get_metadata()
-            if metadata:
-                use_autoeditor = metadata.get('use_autoeditor')
-            if use_autoeditor:
-                string = string + ' (O)'
         return string
 
     def _path_to_human_readable_name(self, path):
