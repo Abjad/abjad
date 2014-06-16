@@ -17,7 +17,7 @@ def test_PerformerInventory__item_creator_class_01():
     assert item_creator._run(input_=input_) is None
 
     item_creator = item_creator_class(session=session)
-    input_ = 'h'
+    input_ = 'S'
     assert item_creator._run(input_=input_) is None
 
 

@@ -78,7 +78,7 @@ class Controller(object):
         result = {
             '**': self.go_to_library,
             'b': self.go_back,
-            'h': self.go_home,
+            'S': self.go_home,
             'q': self.quit,
             's': self.go_to_current_score,
             }

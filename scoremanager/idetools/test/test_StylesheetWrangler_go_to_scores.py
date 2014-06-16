@@ -4,28 +4,28 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_go_home_01():
+def test_StylesheetWrangler_go_home_01():
 
-    input_ = 'red~example~score g h q'
+    input_ = 'red~example~score y S q'
     score_manager._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - stylesheets',
         'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_SegmentPackageWrangler_go_home_02():
+def test_StylesheetWrangler_go_home_02():
 
-    input_ = 'g h q'
+    input_ = 'y S q'
     score_manager._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE - segments',
+        'Abjad IDE - stylesheets',
         'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

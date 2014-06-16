@@ -60,7 +60,7 @@ def test_MaterialPackageWrangler__get_available_path_03():
     result = wrangler._get_available_path()
     assert result is None
 
-    input_ = 'h'
+    input_ = 'S'
     wrangler._session._pending_input = input_
     result = wrangler._get_available_path()
     assert result is None

@@ -78,7 +78,7 @@ class AssetController(Controller):
     def _navigation_commands(self):
         return (
             '**', 'd', 'g', 'k', 'm', 'u', 'y',
-            'b', 's', 'h', 'q',
+            'b', 's', 'S', 'q',
             )
 
     ### PRIVATE METHODS ###
@@ -166,7 +166,7 @@ class AssetController(Controller):
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
         commands.append(('go - back', 'b'))
-        commands.append(('go - home', 'h'))
+        commands.append(('go - home', 'S'))
         commands.append(('go - library', '**'))
         commands.append(('go - quit', 'q'))
         commands.append(('go - score', 's'))

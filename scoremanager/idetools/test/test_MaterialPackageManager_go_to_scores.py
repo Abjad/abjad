@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_UserInputGetter_go_home_01():
+def test_MaterialPackageManager_go_home_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score m tempo~inventory da 1 d h q'
+    input_ = 'red~example~score m tempo~inventory S q'
     score_manager._run(input_=input_)
 
     titles = [
@@ -14,8 +14,6 @@ def test_UserInputGetter_go_home_01():
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
         'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles
