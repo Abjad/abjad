@@ -6,6 +6,7 @@ from abjad.tools import stringtools
 
 class Controller(object):
     r'''Controller.
+
     '''
 
     ### CLASS VARIABLES ###

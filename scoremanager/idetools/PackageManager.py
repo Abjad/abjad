@@ -5,10 +5,11 @@ import os
 import shutil
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.idetools.AssetController import AssetController
+from scoremanager.idetools.ScoreInternalAssetController import \
+    ScoreInternalAssetController
 
 
-class PackageManager(AssetController):
+class PackageManager(ScoreInternalAssetController):
     r'''Package manager.
     '''
 

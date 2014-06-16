@@ -15,6 +15,7 @@ class AbjadIDE(AssetController):
             >>> score_manager
             AbjadIDE()
 
+
     '''
 
     ### CLASS VARIABLES ###

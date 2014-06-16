@@ -38,16 +38,7 @@ class AssetController(Controller):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '<<': self.go_to_previous_score,
-            '>>': self.go_to_next_score,
-            #
             '**': self.go_to_library,
-            'd': self.go_to_distribution_files,
-            'g': self.go_to_segments,
-            'k': self.go_to_maker_files,
-            'm': self.go_to_materials,
-            'u': self.go_to_build_files,
-            'y': self.go_to_stylesheets,
             #
             'D': self.go_to_all_distribution_files,
             'G': self.go_to_all_segments,
@@ -61,8 +52,6 @@ class AssetController(Controller):
             'mdo': self.open_metadata_py,
             'mdls': self.list_metadata_py,
             'mdw': self.write_metadata_py,
-            #
-            'sse': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
             '??': self.display_available_commands,
@@ -84,9 +73,8 @@ class AssetController(Controller):
     @property
     def _navigation_commands(self):
         return (
-            '**', 'd', 'g', 'k', 'm', 'u', 'y',
-            'b', 's', 'S', 'q',
-            'D', 'G', 'K', 'M', 'U', 'Y',
+            'b', 'q',
+            '**', 'D', 'G', 'K', 'M', 'S', 'U', 'Y',
             )
 
     ### PRIVATE METHODS ###
@@ -470,18 +458,6 @@ class AssetController(Controller):
                 )
             self._io_manager._display(strings, capitalize=False)
 
-    def edit_score_stylesheet(self):
-        r'''Edits score stylesheet.
-
-        Returns none.
-        '''
-        path = self._session.current_stylesheet_path
-        if path:
-            self._io_manager.edit(path)
-        else:
-            message = 'no file ending in *stylesheet.ily found.'
-            self._io_manager._display(message)
-
     def go_to_all_build_files(self):
         r'''Goes to all build files.
 
@@ -529,66 +505,6 @@ class AssetController(Controller):
         '''
         self.go_to_all_scores()
         self._session._is_navigating_to_stylesheets = True
-
-    def go_to_build_files(self):
-        r'''Goes to build files.
-
-        Returns none.
-        '''
-        self._session._score_manager._build_file_wrangler._run()
-
-    def go_to_distribution_files(self):
-        r'''Goes to distribution files.
-
-        Returns none.
-        '''
-        self._session._score_manager._distribution_file_wrangler._run()
-
-    def go_to_maker_files(self):
-        r'''Goes to maker files.
-
-        Returns none.
-        '''
-        self._session._score_manager._maker_file_wrangler._run()
-
-    def go_to_materials(self):
-        r'''Goes to material packages.
-
-        Returns none.
-        '''
-        self._session._score_manager._material_package_wrangler._run()
-
-    def go_to_next_score(self):
-        r'''Goes to next score.
-
-        Returns none.
-        '''
-        self._session._is_navigating_to_next_score = True
-        self._session._is_navigating_to_scores = True
-        self._session._display_available_commands = False
-
-    def go_to_previous_score(self):
-        r'''Goes to previous score.
-
-        Returns none.
-        '''
-        self._session._is_navigating_to_previous_score = True
-        self._session._is_navigating_to_scores = True
-        self._session._display_available_commands = False
-
-    def go_to_segments(self):
-        r'''Goes to segment packages.
-
-        Returns none.
-        '''
-        self._session._score_manager._segment_package_wrangler._run()
-
-    def go_to_stylesheets(self):
-        r'''Goes to stylesheets.
-
-        Returns none.
-        '''
-        self._session._score_manager._stylesheet_wrangler._run()
 
     def invoke_python(self, statement=None):
         r'''Invokes Python on `statement`.

@@ -10,10 +10,11 @@ from abjad.tools import developerscripttools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.idetools.AssetController import AssetController
+from scoremanager.idetools.ScoreInternalAssetController import \
+    ScoreInternalAssetController
 
 
-class Wrangler(AssetController):
+class Wrangler(ScoreInternalAssetController):
     r'''Wrangler.
     '''
 
