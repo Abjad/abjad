@@ -488,9 +488,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'u'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_build_files = True
 
     def go_to_all_distribution_files(self):
         r'''Goes to all distribution files.

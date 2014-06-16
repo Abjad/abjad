@@ -83,7 +83,10 @@ class ScorePackageManager(PackageManager):
             self._session._is_backtracking_to_score = False
             result = False
         elif self._session.is_autonavigating_within_score:
-            result = False
+            if self._session.is_backtracking_to_score_manager:
+                result = True
+            else:
+                result = False
         return result
 
     def _get_build_directory(self):

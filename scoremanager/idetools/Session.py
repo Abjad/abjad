@@ -49,6 +49,7 @@ class Session(abctools.AbjadObject):
         '_io_manager',
         '_is_autoadding',
         '_is_backtracking_locally',
+        '_is_backtracking_to_all_build_files',
         '_is_backtracking_to_library',
         '_is_backtracking_to_score',
         '_is_backtracking_to_score_manager',
@@ -118,6 +119,7 @@ class Session(abctools.AbjadObject):
         self._is_repository_test = False
         self._is_autoadding = False
         self._is_backtracking_locally = False
+        self._is_backtracking_to_all_build_files = False
         self._is_backtracking_to_library = False
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
