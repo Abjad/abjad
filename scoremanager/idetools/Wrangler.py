@@ -91,7 +91,7 @@ class Wrangler(AssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'vae': self.autoedit_views,
+            'va': self.autoedit_views,
             'vap': self.apply_view,
             'vcl': self.clear_view,
             'vnew': self.make_view,
@@ -719,7 +719,7 @@ class Wrangler(AssetController):
     def _make_views_menu_section(self, menu):
         commands = []
         commands.append(('views - apply', 'vap'))
-        commands.append(('views - autoedit', 'vae'))
+        commands.append(('views - autoedit', 'va'))
         commands.append(('views - clear', 'vcl'))
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))

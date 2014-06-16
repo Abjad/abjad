@@ -60,7 +60,7 @@ def test_StylesheetWrangler_make_view_03():
         assert 'found' in contents or 'found' in contents
         assert '_test' in contents
 
-        input_ = 'y vae q'
+        input_ = 'y va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

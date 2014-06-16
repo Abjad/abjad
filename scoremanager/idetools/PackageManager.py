@@ -772,18 +772,9 @@ class PackageManager(AssetController):
                     if self._exit_run():
                         break
 
-    def _run_asset_manager(
-        self,
-        path,
-        ):
-        manager = self._manager_class(
-            path=path,
-            session=self._session,
-            )
+    def _run_asset_manager(self, path):
+        manager = self._manager_class(path=path, session=self._session)
         manager._run()
-
-    def _run_first_time(self, **kwargs):
-        self._run(**kwargs)
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):

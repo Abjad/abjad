@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_rename_view_01():
         input_ += ' add instrumentation~(Red~Example~Score) done <return> q' 
         score_manager._run(input_=input_)
             
-        input_ = 'm vae q'
+        input_ = 'm va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' in contents
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_rename_view_01():
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
-        input_ = 'm vae q'
+        input_ = 'm va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents
@@ -37,7 +37,7 @@ def test_MaterialPackageWrangler_rename_view_01():
         input_ = 'm vrm _test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'm vae q'
+        input_ = 'm va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_101' not in contents

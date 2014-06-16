@@ -19,7 +19,7 @@ def test_DistributionFileWrangler_rename_view_01():
         input_ += ' <return> q' 
         score_manager._run(input_=input_)
             
-        input_ = 'd vae q'
+        input_ = 'd va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' in contents
@@ -29,7 +29,7 @@ def test_DistributionFileWrangler_rename_view_01():
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
-        input_ = 'd vae q'
+        input_ = 'd va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents
@@ -38,7 +38,7 @@ def test_DistributionFileWrangler_rename_view_01():
         input_ = 'd vrm _test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'd vae q'
+        input_ = 'd va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_101' not in contents

@@ -460,14 +460,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             )
         return result
 
-    def _run_first_time(self):
-        if self._session.pending_input:
-            pending_input = 'oae ' + self._session.pending_input
-            self._session._pending_input = pending_input
-        else:
-            self._session._pending_input = 'oae'
-        self._run()
-
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_score_materials = True
 

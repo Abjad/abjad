@@ -23,7 +23,7 @@ def test_MakerFileWrangler_remove_views_01():
         input_ += ' q' 
         score_manager._run(input_=input_)
 
-        input_ = 'k vae q'
+        input_ = 'k va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' in contents
@@ -32,7 +32,7 @@ def test_MakerFileWrangler_remove_views_01():
         input_ = 'k vrm _test_100-_test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'k vae q'
+        input_ = 'k va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents

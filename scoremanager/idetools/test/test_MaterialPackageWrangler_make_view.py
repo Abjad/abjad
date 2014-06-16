@@ -73,13 +73,13 @@ def test_MaterialPackageWrangler_make_view_04():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'm vae b vrm _test <return> q'
+        input_ = 'm va b vrm _test <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents
         assert '_test' in contents
 
-        input_ = 'm vae q'
+        input_ = 'm va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

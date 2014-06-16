@@ -23,7 +23,7 @@
     Clean up PerformerInventory.
 
 11. Remove (vnew). Remove (vrm). Remove (vren).
-    Use (vae) instead.
+    Use (va) instead.
 
 12. Replace (vap) and (vcl) with (vs).
 
@@ -52,3 +52,7 @@
 23. Answer all inline TODOs.
 
 24. Streamline all 39 classfiles.
+
+25. Extended ControllerContext with directory=None keyword.
+    This will allow ControllerContext to act like TemporaryDirectoryChange.
+    This will then remove some TemporaryDirectoryChange in _run() methods.

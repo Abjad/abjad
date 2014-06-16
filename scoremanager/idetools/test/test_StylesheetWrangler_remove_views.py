@@ -19,7 +19,7 @@ def test_StylesheetWrangler_remove_views_01():
         input_ += ' q' 
         score_manager._run(input_=input_)
 
-        input_ = 'y vae q'
+        input_ = 'y va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' in contents
@@ -28,7 +28,7 @@ def test_StylesheetWrangler_remove_views_01():
         input_ = 'y vrm _test_100-_test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'y vae q'
+        input_ = 'y va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents
