@@ -872,7 +872,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_previous_score
 
     @property
-    def is_navigating_to_score_build_files(self):
+    def is_navigating_to_build_files(self):
         r'''Is true when session is navigating to build directory.
         Otherwise false.
 
@@ -880,7 +880,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_build_files
+                >>> session.is_navigating_to_build_files
                 False
 
         Returns boolean.
@@ -888,7 +888,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_build_files
 
     @property
-    def is_navigating_to_score_distribution_files(self):
+    def is_navigating_to_distribution_files(self):
         r'''Is true when session is navigating to distribution directory.
         Otherwise false.
 
@@ -896,7 +896,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_distribution_files
+                >>> session.is_navigating_to_distribution_files
                 False
 
         Returns boolean.
@@ -904,7 +904,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_distribution_files
 
     @property
-    def is_navigating_to_score_maker_files(self):
+    def is_navigating_to_maker_files(self):
         r'''Is true when session is navigating to score makers.
         Otherwise false.
 
@@ -912,7 +912,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_maker_files
+                >>> session.is_navigating_to_maker_files
                 False
 
         Returns boolean.
@@ -920,7 +920,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_maker_files
 
     @property
-    def is_navigating_to_score_materials(self):
+    def is_navigating_to_materials(self):
         r'''Is true when session is navigating to score materials.
         Otherwise false.
 
@@ -928,7 +928,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_materials
+                >>> session.is_navigating_to_materials
                 False
 
         Returns boolean.
@@ -936,7 +936,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_materials
 
     @property
-    def is_navigating_to_score_segments(self):
+    def is_navigating_to_segments(self):
         r'''Is true when session is navigating to score segments.
         Otherwise false.
 
@@ -944,7 +944,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_segments
+                >>> session.is_navigating_to_segments
                 False
 
         Returns boolean.
@@ -952,7 +952,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_segments
 
     @property
-    def is_navigating_to_score_stylesheets(self):
+    def is_navigating_to_stylesheets(self):
         r'''Is true when session is navigating to score stylesheets.
         Otherwise false.
 
@@ -960,7 +960,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_stylesheets
+                >>> session.is_navigating_to_stylesheets
                 False
 
         Returns boolean.
@@ -1279,15 +1279,15 @@ class Session(abctools.AbjadObject):
 
         Returns u, d, k, m, g, y or none.
         '''
-        if self.is_navigating_to_score_build_files:
+        if self.is_navigating_to_build_files:
             return 'u'
-        elif self.is_navigating_to_score_distribution_files:
+        elif self.is_navigating_to_distribution_files:
             return 'd'
-        elif self.is_navigating_to_score_maker_files:
+        elif self.is_navigating_to_maker_files:
             return 'k'
-        elif self.is_navigating_to_score_materials:
+        elif self.is_navigating_to_materials:
             return 'm'
-        elif self.is_navigating_to_score_segments:
+        elif self.is_navigating_to_segments:
             return 'g'
-        elif self.is_navigating_to_score_stylesheets:
+        elif self.is_navigating_to_stylesheets:
             return 'y'
