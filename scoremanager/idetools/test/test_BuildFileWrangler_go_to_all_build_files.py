@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_BuildFileWrangler_go_to_build_files_01():
+def test_BuildFileWrangler_go_to_all_build_files_01():
     r'''From score build files to all build files.
     '''
 

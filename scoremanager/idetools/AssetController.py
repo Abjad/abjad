@@ -496,9 +496,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'd'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_distribution_files = True
 
     def go_to_all_maker_files(self):
         r'''Goes to all maker files.
@@ -506,9 +504,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'k'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_maker_files = True
 
     def go_to_all_materials(self):
         r'''Goes to all materials.
@@ -516,9 +512,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'm'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_materials = True
 
     def go_to_all_segments(self):
         r'''Goes to all segments.
@@ -526,9 +520,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'g'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_segments = True
 
     def go_to_all_stylesheets(self):
         r'''Goes to all stylesheets.
@@ -536,9 +528,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        input_ = self._session._pending_input or ''
-        input_ = input_ + ' ' + 'y'
-        self._session._pending_input = input_
+        self._session._is_navigating_to_score_stylesheets = True
 
     def go_to_build_files(self):
         r'''Goes to build files.
@@ -574,7 +564,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._is_navigating_to_next_score = True
-        self._session._is_backtracking_to_score_manager = True
+        self._session._is_backtracking_to_abjad_ide = True
         self._session._display_available_commands = False
 
     def go_to_previous_score(self):
@@ -583,7 +573,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._is_navigating_to_previous_score = True
-        self._session._is_backtracking_to_score_manager = True
+        self._session._is_backtracking_to_abjad_ide = True
         self._session._display_available_commands = False
 
     def go_to_segments(self):
