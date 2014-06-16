@@ -54,7 +54,7 @@ class AbjadIDE(AssetController):
 
     @property
     def _input_to_method(self):
-        superclass = super(AssetController, self)
+        superclass = super(AbjadIDE, self)
         result = superclass._input_to_method
         result = result.copy()
         result.update({
