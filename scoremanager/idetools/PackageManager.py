@@ -524,16 +524,14 @@ class PackageManager(AssetController):
                         entries.append(entry)
         if not smart_sort:
             return entries
-        dunder_files, files, directories = [], [], []
+        files, directories = [], []
         for entry in entries:
             path = os.path.join(self._path, entry)
-            if entry.startswith('_'):
-                dunder_files.append(entry)
-            elif os.path.isdir(path):
+            if os.path.isdir(path):
                 directories.append(entry + '/')
             else:
                 files.append(entry)
-        result = files + dunder_files + directories
+        result = files + directories
         return result
 
     def _list_visible_asset_paths(self):
