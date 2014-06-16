@@ -200,7 +200,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             )
 
     def _set_is_navigating_to_sibling_asset(self):
-        self._session._is_navigating_to_score_segments = True
+        self._session._is_navigating_to_segments = True
 
     ### PUBLIC METHODS ###
 

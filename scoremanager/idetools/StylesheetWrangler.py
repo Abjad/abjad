@@ -42,7 +42,7 @@ class StylesheetWrangler(FileWrangler):
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_stylesheets = False
+        self._session._is_navigating_to_stylesheets = False
 
     @staticmethod
     def _file_name_callback(file_name):

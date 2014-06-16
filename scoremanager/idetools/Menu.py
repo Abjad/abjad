@@ -114,12 +114,12 @@ class Menu(Controller):
     @property
     def _wrangler_navigation_to_session_variable(self):
         result = {
-            'd': '_is_navigating_to_score_distribution_files',
-            'g': '_is_navigating_to_score_segments',
-            'k': '_is_navigating_to_score_maker_files',
-            'm': '_is_navigating_to_score_materials',
-            'u': '_is_navigating_to_score_build_files',
-            'y': '_is_navigating_to_score_stylesheets',
+            'd': '_is_navigating_to_distribution_files',
+            'g': '_is_navigating_to_segments',
+            'k': '_is_navigating_to_maker_files',
+            'm': '_is_navigating_to_materials',
+            'u': '_is_navigating_to_build_files',
+            'y': '_is_navigating_to_stylesheets',
         }
         return result
 

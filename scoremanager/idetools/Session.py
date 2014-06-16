@@ -56,16 +56,16 @@ class Session(abctools.AbjadObject):
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
         '_is_in_user_input_getter',
-        '_is_navigating_to_score_build_files',
-        '_is_navigating_to_score_distribution_files',
+        '_is_navigating_to_build_files',
+        '_is_navigating_to_distribution_files',
         '_is_navigating_to_next_asset',
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_asset',
         '_is_navigating_to_previous_score',
-        '_is_navigating_to_score_maker_files',
-        '_is_navigating_to_score_materials',
-        '_is_navigating_to_score_segments',
-        '_is_navigating_to_score_stylesheets',
+        '_is_navigating_to_maker_files',
+        '_is_navigating_to_materials',
+        '_is_navigating_to_segments',
+        '_is_navigating_to_stylesheets',
         '_pending_redraw',
         '_is_quitting',
         '_is_repository_test',
@@ -125,16 +125,16 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_abjad_ide = False
         self._is_in_confirmation_environment = False
         self._is_in_score_setup_menu = False
-        self._is_navigating_to_score_build_files = False
-        self._is_navigating_to_score_distribution_files = False
+        self._is_navigating_to_build_files = False
+        self._is_navigating_to_distribution_files = False
         self._is_navigating_to_next_asset = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_asset = False
         self._is_navigating_to_previous_score = False
-        self._is_navigating_to_score_maker_files = False
-        self._is_navigating_to_score_materials = False
-        self._is_navigating_to_score_segments = False
-        self._is_navigating_to_score_stylesheets = False
+        self._is_navigating_to_maker_files = False
+        self._is_navigating_to_materials = False
+        self._is_navigating_to_segments = False
+        self._is_navigating_to_stylesheets = False
         self._pending_redraw = True
         self._is_quitting = False
         self._is_test = is_test
@@ -885,7 +885,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_build_files
+        return self._is_navigating_to_build_files
 
     @property
     def is_navigating_to_score_distribution_files(self):
@@ -901,7 +901,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_distribution_files
+        return self._is_navigating_to_distribution_files
 
     @property
     def is_navigating_to_score_maker_files(self):
@@ -917,7 +917,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_maker_files
+        return self._is_navigating_to_maker_files
 
     @property
     def is_navigating_to_score_materials(self):
@@ -933,7 +933,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_materials
+        return self._is_navigating_to_materials
 
     @property
     def is_navigating_to_score_segments(self):
@@ -949,7 +949,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_segments
+        return self._is_navigating_to_segments
 
     @property
     def is_navigating_to_score_stylesheets(self):
@@ -965,7 +965,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_stylesheets
+        return self._is_navigating_to_stylesheets
 
     @property
     def is_navigating_to_sibling_asset(self):

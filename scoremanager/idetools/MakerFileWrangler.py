@@ -44,7 +44,7 @@ class MakerFileWrangler(FileWrangler):
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_maker_files = False
+        self._session._is_navigating_to_maker_files = False
 
     def _is_valid_directory_entry(self, directory_entry):
         name, extension = os.path.splitext(directory_entry)

@@ -488,7 +488,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_build_files = True
+        self._session._is_navigating_to_build_files = True
 
     def go_to_all_distribution_files(self):
         r'''Goes to all distribution files.
@@ -496,7 +496,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_distribution_files = True
+        self._session._is_navigating_to_distribution_files = True
 
     def go_to_all_maker_files(self):
         r'''Goes to all maker files.
@@ -504,7 +504,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_maker_files = True
+        self._session._is_navigating_to_maker_files = True
 
     def go_to_all_materials(self):
         r'''Goes to all materials.
@@ -512,7 +512,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_materials = True
+        self._session._is_navigating_to_materials = True
 
     def go_to_all_segments(self):
         r'''Goes to all segments.
@@ -520,7 +520,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_segments = True
+        self._session._is_navigating_to_segments = True
 
     def go_to_all_stylesheets(self):
         r'''Goes to all stylesheets.
@@ -528,7 +528,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self.go_to_all_scores()
-        self._session._is_navigating_to_score_stylesheets = True
+        self._session._is_navigating_to_stylesheets = True
 
     def go_to_build_files(self):
         r'''Goes to build files.

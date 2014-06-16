@@ -58,7 +58,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_segments = False
+        self._session._is_navigating_to_segments = False
 
     def _handle_numeric_user_input(self, result):
         manager = self._initialize_manager(result)
@@ -122,7 +122,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             )
 
     def _set_is_navigating_to_sibling_asset(self):
-        self._session._is_navigating_to_score_segments = True
+        self._session._is_navigating_to_segments = True
 
     ### PUBLIC METHODS ###
 

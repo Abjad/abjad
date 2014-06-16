@@ -32,7 +32,7 @@
 
 14. Implement '__metadata__.py - check' (mdc).
 
-15. Implement '__metadata__.py - autoedit' (mdae).
+15. Implement '__metadata__.py - autoedit' (mda).
 
 16. Take another pass at (ck) and (ck*) messaging.
 

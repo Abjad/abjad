@@ -190,7 +190,7 @@ class BuildFileWrangler(FileWrangler):
             self._io_manager._display(message)
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_build_files = False
+        self._session._is_navigating_to_build_files = False
 
     def _generate_latex_source(self, file_name):
         manager = self._session.current_score_package_manager

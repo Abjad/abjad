@@ -35,4 +35,4 @@ class DistributionFileWrangler(FileWrangler):
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_distribution_files = False
+        self._session._is_navigating_to_distribution_files = False

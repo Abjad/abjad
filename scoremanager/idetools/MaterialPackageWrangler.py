@@ -79,7 +79,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
-        self._session._is_navigating_to_score_materials = False
+        self._session._is_navigating_to_materials = False
 
     def _get_material_package_manager(self, class_name, path):
         import scoremanager
@@ -186,7 +186,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             )
 
     def _set_is_navigating_to_sibling_asset(self):
-        self._session._is_navigating_to_score_materials = True
+        self._session._is_navigating_to_materials = True
 
     ### PUBLIC METHODS ###
 
