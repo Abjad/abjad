@@ -36,21 +36,19 @@
 
 16. Take another pass at (ck) and (ck*) messaging.
 
-17. Make (**) work.
+17. Audit (**).
 
-18. Audit (**).
+18. Audit all star commands.
 
-19. Audit all star commands.
-
-20. Audit material interface by hand.
+19. Audit material interface by hand.
     Audit segment interface by hand.
 
-21. Audit all public methods for py.test files.
+20. Audit all public methods for py.test files.
 
-22. Answer all inline TODOs.
+21. Answer all inline TODOs.
 
-23. Streamline all 39 classfiles.
+22. Streamline all 39 classfiles.
 
-24. Extended ControllerContext with directory=None keyword.
+23. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.

@@ -4,15 +4,15 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_AbjadIDE_go_to_all_distribution_files_01():
-    r'''From library to all distribution files.
+def test_AbjadIDE_go_to_library_01():
+    r'''From library to library.
     '''
 
-    input_ = '** D q'
+    input_ = '** ** q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE',
-        'Abjad IDE - distribution files',
+        'Abjad IDE',
         ]
     assert score_manager._transcript.titles == titles
