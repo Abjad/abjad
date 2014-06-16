@@ -140,7 +140,7 @@ class AbjadIDE(AssetController):
                 if result:
                     self._score_package_wrangler._handle_main_menu_result(
                         result)
-                elif not self._session.is_backtracking_to_library:
+                elif not self._session.is_navigating_to_library:
                     self._score_package_wrangler._run()
                 else:
                     menu = self._make_main_menu()

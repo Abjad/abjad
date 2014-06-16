@@ -181,6 +181,7 @@ class Controller(object):
 
         Returns none.
         '''
+        self._session._is_navigating_to_library = False
         self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
@@ -206,8 +207,8 @@ class Controller(object):
 
         Returns none.
         '''
-        library = self._session._is_backtracking_to_library
-        self._session._is_backtracking_to_library = not library
+        library = self._session._is_navigating_to_library
+        self._session._is_navigating_to_library = not library
         self._session._display_available_commands = False
 
     def quit(self):
