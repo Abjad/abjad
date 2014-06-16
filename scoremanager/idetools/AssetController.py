@@ -49,6 +49,13 @@ class AssetController(Controller):
             'u': self.go_to_build_files,
             'y': self.go_to_stylesheets,
             #
+            'D': self.go_to_all_distribution_files,
+            'G': self.go_to_all_segments,
+            'K': self.go_to_all_maker_files,
+            'M': self.go_to_all_materials,
+            'U': self.go_to_all_build_files,
+            'Y': self.go_to_all_stylesheets,
+            #
             'cc': self.check_contents,
             #
             'mdo': self.open_metadata_py,
@@ -79,6 +86,7 @@ class AssetController(Controller):
         return (
             '**', 'd', 'g', 'k', 'm', 'u', 'y',
             'b', 's', 'S', 'q',
+            'D', 'G', 'K', 'M', 'U', 'Y',
             )
 
     ### PRIVATE METHODS ###
@@ -165,22 +173,28 @@ class AssetController(Controller):
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
-        commands.append(('go - back', 'b'))
-        commands.append(('go - home', 'S'))
-        commands.append(('go - library', '**'))
-        commands.append(('go - quit', 'q'))
+        commands.append(('go - all', '**'))
+        commands.append(('go - all - build', 'U'))
+        commands.append(('go - all - distribution', 'D'))
+        commands.append(('go - all - makers', 'K'))
+        commands.append(('go - all - materials', 'M'))
+        commands.append(('go - all - scores', 'S'))
+        commands.append(('go - all - segments', 'G'))
+        commands.append(('go - all - stylesheets', 'Y'))
         commands.append(('go - score', 's'))
+        commands.append(('go - score - build', 'u'))
+        commands.append(('go - score - distribution', 'd'))
+        commands.append(('go - score - makers', 'k'))
+        commands.append(('go - score - materials', 'm'))
+        commands.append(('go - score - segments', 'g'))
+        commands.append(('go - score - stylesheets', 'y'))
+        commands.append(('go - system - back', 'b'))
+        commands.append(('go - system - quit', 'q'))
         if packages:
-            commands.append(('go - next package', '>'))
-            commands.append(('go - previous package', '<'))
-        commands.append(('go - next score', '>>'))
-        commands.append(('go - previous score', '<<'))
-        commands.append(('go - build', 'u'))
-        commands.append(('go - distribution', 'd'))
-        commands.append(('go - makers', 'k'))
-        commands.append(('go - materials', 'm'))
-        commands.append(('go - segments', 'g'))
-        commands.append(('go - stylesheets', 'y'))
+            commands.append(('go - system - next package', '>'))
+            commands.append(('go - system - previous package', '<'))
+        commands.append(('go - system - next score', '>>'))
+        commands.append(('go - system - previous score', '<<'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -467,6 +481,66 @@ class AssetController(Controller):
         else:
             message = 'no file ending in *stylesheet.ily found.'
             self._io_manager._display(message)
+
+    def go_to_all_build_files(self):
+        r'''Goes to all build files.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'u'
+        self._session._pending_input = input_
+
+    def go_to_all_distribution_files(self):
+        r'''Goes to all distribution files.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'd'
+        self._session._pending_input = input_
+
+    def go_to_all_maker_files(self):
+        r'''Goes to all maker files.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'k'
+        self._session._pending_input = input_
+
+    def go_to_all_materials(self):
+        r'''Goes to all materials.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'm'
+        self._session._pending_input = input_
+
+    def go_to_all_segments(self):
+        r'''Goes to all segments.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'g'
+        self._session._pending_input = input_
+
+    def go_to_all_stylesheets(self):
+        r'''Goes to all stylesheets.
+
+        Returns none.
+        '''
+        self.go_to_all_scores()
+        input_ = self._session._pending_input or ''
+        input_ = input_ + ' ' + 'y'
+        self._session._pending_input = input_
 
     def go_to_build_files(self):
         r'''Goes to build files.

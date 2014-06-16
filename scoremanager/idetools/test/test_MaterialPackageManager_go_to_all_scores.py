@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_go_home_01():
+def test_MaterialPackageManager_go_to_all_scores_01():
 
     input_ = 'red~example~score m tempo~inventory S q'
     score_manager._run(input_=input_)

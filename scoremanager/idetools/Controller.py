@@ -78,9 +78,9 @@ class Controller(object):
         result = {
             '**': self.go_to_library,
             'b': self.go_back,
-            'S': self.go_home,
             'q': self.quit,
             's': self.go_to_current_score,
+            'S': self.go_to_all_scores,
             }
         return result
 
@@ -176,20 +176,20 @@ class Controller(object):
 
     ### PUBLIC METHODS ###
 
+    def go_to_all_scores(self):
+        r'''Goes to all scores.
+
+        Returns none.
+        '''
+        self._session._is_backtracking_to_score_manager = True
+        self._session._display_available_commands = False
+
     def go_back(self):
         r'''Goes back.
 
         Returns none.
         '''
         self._session._is_backtracking_locally = True
-        self._session._display_available_commands = False
-
-    def go_home(self):
-        r'''Goes home.
-
-        Returns none.
-        '''
-        self._session._is_backtracking_to_score_manager = True
         self._session._display_available_commands = False
 
     def go_to_current_score(self):
