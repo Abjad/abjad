@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import collections
 import os
 from abjad.tools import developerscripttools
@@ -8,7 +9,6 @@ from scoremanager.idetools.Controller import Controller
 
 class AssetController(Controller):
     r'''Asset controller.
-
     '''
 
     ### CLASS VARIABLES ###
