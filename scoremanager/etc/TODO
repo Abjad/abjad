@@ -34,24 +34,22 @@
 
 15. Implement '__metadata__.py - autoedit' (mdae).
 
-16. Change (?) to (??).
+16. Take another pass at (ck) and (ck*) messaging.
 
-17. Take another pass at (ck) and (ck*) messaging.
+17. Make (**) work.
 
-18. Make (**) work.
-
-19. Change (h) to (S).
+18. Change (h) to (S).
     Implement (U), (D), (M), (G), (Y).
 
-20. Audit (**).
+19. Audit (**).
 
-21. Audit all star commands.
+20. Audit all star commands.
 
-22. Audit material interface by hand.
+21. Audit material interface by hand.
     Audit segment interface by hand.
 
-23. Audit all public methods for py.test files.
+22. Audit all public methods for py.test files.
 
-24. Answer all inline TODOs.
+23. Answer all inline TODOs.
 
-25. Streamline all 39 classfiles.
+24. Streamline all 39 classfiles.

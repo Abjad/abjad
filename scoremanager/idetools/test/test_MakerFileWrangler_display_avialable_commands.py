@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MakerFileWrangler_display_avialable_commands_01():
     
-    input_ = 'red~example~score k ? q'
+    input_ = 'red~example~score k ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -15,7 +15,7 @@ def test_MakerFileWrangler_display_avialable_commands_01():
 
 def test_MakerFileWrangler_display_avialable_commands_02():
     
-    input_ = 'k ? q'
+    input_ = 'k ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

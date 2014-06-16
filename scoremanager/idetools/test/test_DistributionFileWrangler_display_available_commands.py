@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_DistributionFileWrangler_display_available_commands_01():
     
-    input_ = 'red~example~score d ? q'
+    input_ = 'red~example~score d ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -15,7 +15,7 @@ def test_DistributionFileWrangler_display_available_commands_01():
 
 def test_DistributionFileWrangler_display_available_commands_02():
     
-    input_ = 'd ? q'
+    input_ = 'd ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

@@ -58,7 +58,7 @@ class AssetController(Controller):
             'sse': self.edit_score_stylesheet,
             #
             '!': self.invoke_shell,
-            '?': self.display_available_commands,
+            '??': self.display_available_commands,
             'log': self.open_lilypond_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
@@ -284,7 +284,7 @@ class AssetController(Controller):
 
     def _make_system_menu_section(self, menu):
         commands = []
-        commands.append(('system - available commands', '?'))
+        commands.append(('system - available commands', '??'))
         commands.append(('system - doctest', 'pyd'))
         commands.append(('system - session variables', 'sv'))
         commands.append(('system - LilyPond log', 'log'))

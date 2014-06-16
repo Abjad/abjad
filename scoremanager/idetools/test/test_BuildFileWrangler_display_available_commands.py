@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_BuildFileWrangler_display_available_commands_01():
     
-    input_ = 'red~example~score u ? q'
+    input_ = 'red~example~score u ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -15,7 +15,7 @@ def test_BuildFileWrangler_display_available_commands_01():
 
 def test_BuildFileWrangler_display_available_commands_02():
     
-    input_ = 'u ? q'
+    input_ = 'u ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
