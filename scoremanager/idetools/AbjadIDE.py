@@ -155,7 +155,7 @@ class AbjadIDE(AssetController):
     
     def _update_session_variables(self):
         self._session._is_backtracking_to_score = False
-        self._session._is_backtracking_to_abjad_ide = False
+        self._session._is_navigating_to_scores = False
 
     ### PUBLIC METHODS ###
 

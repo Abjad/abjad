@@ -181,7 +181,7 @@ class Controller(object):
 
         Returns none.
         '''
-        self._session._is_backtracking_to_abjad_ide = True
+        self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
     def go_back(self):

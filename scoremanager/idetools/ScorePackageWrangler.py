@@ -146,11 +146,11 @@ class ScorePackageWrangler(PackageWrangler):
     def _get_sibling_score_path(self):
         if self._session.is_navigating_to_next_score:
             self._session._is_navigating_to_next_score = False
-            self._session._is_backtracking_to_abjad_ide = False
+            self._session._is_navigating_to_scores = False
             return self._get_sibling_score_directory(next_=True)
         if self._session.is_navigating_to_previous_score:
             self._session._is_navigating_to_previous_score = False
-            self._session._is_backtracking_to_abjad_ide = False
+            self._session._is_navigating_to_scores = False
             return self._get_sibling_score_directory(next_=False)
 
     def _handle_numeric_user_input(self, result):

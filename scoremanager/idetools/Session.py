@@ -52,7 +52,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_all_build_files',
         '_is_backtracking_to_library',
         '_is_backtracking_to_score',
-        '_is_backtracking_to_abjad_ide',
+        '_is_navigating_to_scores',
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
         '_is_in_user_input_getter',
@@ -122,7 +122,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_all_build_files = False
         self._is_backtracking_to_library = False
         self._is_backtracking_to_score = False
-        self._is_backtracking_to_abjad_ide = False
+        self._is_navigating_to_scores = False
         self._is_in_confirmation_environment = False
         self._is_in_score_setup_menu = False
         self._is_navigating_to_build_files = False
@@ -705,7 +705,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_backtracking_to_abjad_ide
+        return self._is_navigating_to_scores
 
     @property
     def is_in_autoeditor(self):

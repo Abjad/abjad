@@ -564,7 +564,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._is_navigating_to_next_score = True
-        self._session._is_backtracking_to_abjad_ide = True
+        self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
     def go_to_previous_score(self):
@@ -573,7 +573,7 @@ class AssetController(Controller):
         Returns none.
         '''
         self._session._is_navigating_to_previous_score = True
-        self._session._is_backtracking_to_abjad_ide = True
+        self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
     def go_to_segments(self):
