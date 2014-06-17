@@ -1,49 +1,47 @@
-1.  Reinstate command concatenation.
+1.  Implement !-suffixation.
 
-2.  Implement !-suffixation.
+2.  Reinstate autoadvance.
 
-3.  Reinstate autoadvance.
+3.  Implement TestManager.compare_lys().
 
-4.  Implement TestManager.compare_lys().
+4.  Integrate diff-pdf.
 
-5.  Integrate diff-pdf.
+5.  Integrate candidacy protocol.
 
-6.  Integrate candidacy protocol.
-
-7.  Clean up InstrumentInventory.
+6.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-8.  Remove (vnew). Remove (vrm). Remove (vren).
+7.  Remove (vnew). Remove (vrm). Remove (vren).
     Use (va) instead.
 
-9.  Replace (vcl) with (vs).
+8.  Replace (vcl) with (vs).
 
-10. Implement 'views - write' (vw).
+9.  Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-11. Implement '__metadata__.py - check' (mdc).
+10. Implement '__metadata__.py - check' (mdc).
 
-12. Implement '__metadata__.py - autoedit' (mda).
+11. Implement '__metadata__.py - autoedit' (mda).
 
-13. Take another pass at (ck) and (ck*) messaging.
+12. Take another pass at (ck) and (ck*) messaging.
 
-14. Audit (**).
+13. Audit (**).
 
-15. Audit all star commands.
+14. Audit all star commands.
 
-16. Audit material interface by hand.
+15. Audit material interface by hand.
     Audit segment interface by hand.
 
-17. Audit all public methods for py.test files.
+16. Audit all public methods for py.test files.
 
-18. Answer all inline TODOs.
+17. Answer all inline TODOs.
 
-19.  Unskip all skipped tests.
+18.  Unskip all skipped tests.
 
-20. Streamline all 39 classfiles.
+19. Streamline all 39 classfiles.
 
-21. Extended ControllerContext with directory=None keyword.
+20. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-22. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+21. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
