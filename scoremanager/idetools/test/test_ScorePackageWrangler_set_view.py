@@ -10,14 +10,14 @@ views_file = os.path.join(
     )
 
 
-def test_ScorePackageWrangler_apply_view_01():
+def test_ScorePackageWrangler_set_view_01():
     r'''Makes sure only select scores are visible.
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'vnew _test rm all'
         input_ += ' add Red~Example~Score~(2013) done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

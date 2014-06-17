@@ -10,7 +10,7 @@ views_file = os.path.join(
     )
 
 
-def test_MaterialPackageWrangler_apply_view_01():
+def test_MaterialPackageWrangler_set_view_01():
     r'''Works in library.
     
     Makes sure only select material packages are visible.
@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_apply_view_01():
         input_ = 'm vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -40,7 +40,7 @@ def test_MaterialPackageWrangler_apply_view_01():
         assert any(_.lines for _ in transcript)
 
 
-def test_MaterialPackageWrangler_apply_view_02():
+def test_MaterialPackageWrangler_set_view_02():
     r'''Works in score.
     
     Makes sure only select material package is visible.
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_apply_view_02():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'red~example~score m vnew _test rm all'
         input_ += ' add instrumentation done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -67,12 +67,12 @@ def test_MaterialPackageWrangler_apply_view_02():
         assert any(_.lines == lines for _ in transcript)
 
 
-def test_MaterialPackageWrangler_apply_view_03():
+def test_MaterialPackageWrangler_set_view_03():
     r'''Works with metadata.
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score m vap inventories vcl q'
+        input_ = 'red~example~score m vs inventories vcl q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -91,14 +91,14 @@ def test_MaterialPackageWrangler_apply_view_03():
         assert any(_.lines == lines for _ in transcript)
 
 
-def test_MaterialPackageWrangler_apply_view_04():
+def test_MaterialPackageWrangler_set_view_04():
     r'''Works with :ds: display string token.
 
     The 'inventories' view is defined equal to "'inventory' in :ds:".
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score m vap inventories vcl q'
+        input_ = 'red~example~score m vs inventories vcl q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -117,14 +117,14 @@ def test_MaterialPackageWrangler_apply_view_04():
         assert any(_.lines == lines for _ in transcript)
 
 
-def test_MaterialPackageWrangler_apply_view_05():
+def test_MaterialPackageWrangler_set_view_05():
     r'''Works with :path: display string token.
 
     The 'magic' view is defined equal to "'magic_' in :path:".
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score m vap magic vcl q'
+        input_ = 'red~example~score m vs magic vcl q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 

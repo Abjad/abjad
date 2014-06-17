@@ -93,7 +93,7 @@ class Wrangler(ScoreInternalAssetController):
         result = result.copy()
         result.update({
             'va': self.autoedit_views,
-            'vap': self.apply_view,
+            'vs': self.set_view,
             'vcl': self.clear_view,
             'vnew': self.make_view,
             'vren': self.rename_view,
@@ -575,11 +575,11 @@ class Wrangler(ScoreInternalAssetController):
     def _make_asset_menu_entries(
         self,
         apply_current_directory=True,
-        apply_view=True,
+        set_view=True,
         ):
         paths = self._list_asset_paths()
         current_directory = self._get_current_directory()
-        if (apply_current_directory or apply_view) and current_directory:
+        if (apply_current_directory or set_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
         strings = [self._path_to_asset_menu_display_string(_) for _ in paths]
         pairs = list(zip(strings, paths))
@@ -606,7 +606,7 @@ class Wrangler(ScoreInternalAssetController):
         for string, path in pairs:
             entry = (string, None, None, path)
             entries.append(entry)
-        if apply_view and not self._session.is_test:
+        if set_view and not self._session.is_test:
             entries = self._filter_asset_menu_entries_by_view(entries)
         if self._session.is_test:
             if getattr(self, '_only_example_scores_during_test', False):
@@ -719,12 +719,12 @@ class Wrangler(ScoreInternalAssetController):
 
     def _make_views_menu_section(self, menu):
         commands = []
-        commands.append(('views - apply', 'vap'))
         commands.append(('views - autoedit', 'va'))
         commands.append(('views - clear', 'vcl'))
         commands.append(('views - new', 'vnew'))
         commands.append(('views - remove', 'vrm'))
         commands.append(('views - rename', 'vren'))
+        commands.append(('views - set', 'vs'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -1114,7 +1114,7 @@ class Wrangler(ScoreInternalAssetController):
         message = message.format(count, identifier)
         self._io_manager._display(message)
         
-    def apply_view(self):
+    def set_view(self):
         r'''Applies view.
 
         Writes view name to ``__metadata.py__``.
@@ -1201,7 +1201,7 @@ class Wrangler(ScoreInternalAssetController):
         view_name = getter._run()
         if self._session.is_backtracking or not view_name:
             return
-        menu_entries = self._make_asset_menu_entries(apply_view=False)
+        menu_entries = self._make_asset_menu_entries(set_view=False)
         display_strings = [_[0] for _ in menu_entries]
         view = idetools.View(items=display_strings)
         breadcrumb = 'views - {}'.format(view_name)

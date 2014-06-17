@@ -6,29 +6,27 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
-    '__MakerFileWrangler_views__.py',
+    '__DistributionFileWrangler_views__.py',
     )
 
 
-def test_MakerFileWrangler_apply_view_01():
-    r'''Works in library.
+def test_DistributionFileWrangler_set_view_01():
+    r'''Applies view to library.
     
-    Makes sure only select maker file is visible.
+    Makes sure only select distribution file is visible.
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'k vnew _test rm all'
-        input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
-        input_ += ' done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ = 'd vnew _test rm all'
+        input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
+        input_ += ' <return> vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-
         lines = [
-            'Abjad IDE - maker files [_test]',
+            'Abjad IDE - distribution files [_test]',
             '',
             '    Red Example Score:',
-            '       1: RedExampleScoreTemplate.py',
+            '       1: red-example-score.pdf',
             '',
             '      files - copy (cp)',
             '      files - new (new)',
@@ -39,23 +37,22 @@ def test_MakerFileWrangler_apply_view_01():
         assert any(_.lines == lines for _ in transcript)
 
 
-def test_MakerFileWrangler_apply_view_02():
-    r'''Works in score package makers directory.
+def test_DistributionFileWrangler_set_view_02():
+    r'''Applies view to single view directory.
     
-    Makes sure only select maker file is visible.
+    Makes sure only select distribution file are visible.
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score k vnew _test rm all'
-        input_ += ' add RedExampleScoreTemplate.py done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ = 'red~example~score d vnew _test rm all'
+        input_ += ' add red-example-score.pdf done <return>'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
-
         lines = [
-            'Red Example Score (2013) - maker files [_test]',
+            'Red Example Score (2013) - distribution files [_test]',
             '',
-            '   1: RedExampleScoreTemplate.py',
+            '   1: red-example-score.pdf',
             '',
             '      files - copy (cp)',
             '      files - new (new)',

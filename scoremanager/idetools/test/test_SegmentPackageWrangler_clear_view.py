@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_clear_view_01():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'g vnew _test rm all'
         input_ += ' add A~(Red~Example~Score) done <return>'
-        input_ += ' vap _test vcl vrm _test <return> q'
+        input_ += ' vs _test vcl vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

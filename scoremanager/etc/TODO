@@ -25,7 +25,7 @@
 11. Remove (vnew). Remove (vrm). Remove (vren).
     Use (va) instead.
 
-12. Replace (vap) and (vcl) with (vs).
+12. Replace (vcl) with (vs).
 
 13. Implement 'views - write' (vw).
     Implement 'views - check' (vc).

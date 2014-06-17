@@ -341,7 +341,7 @@ class ScorePackageWrangler(PackageWrangler):
         lines.append('start_menu_entries = [')
         menu_entries = self._make_asset_menu_entries(
             apply_current_directory=False,
-            apply_view=False,
+            set_view=False,
             )
         for menu_entry in menu_entries:
             lines.append('{},'.format(menu_entry))

@@ -63,7 +63,7 @@ def test_ScorePackageWrangler_make_package_02():
     with systemtools.FilesystemState(
         keep=[cache, views_file], remove=[score_package]
         ):
-        input_ = 'vnew _test_view done vap _test_view new example~score y q'
+        input_ = 'vnew _test_view done vs _test_view new example~score y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(score_package)

@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_clear_view_01():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'm vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done <return>'
-        input_ += ' vap _test vcl vrm _test <return> q'
+        input_ += ' vs _test vcl vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -55,7 +55,7 @@ def test_MaterialPackageWrangler_clear_view_02():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'red~example~score m vnew _test rm all'
         input_ += ' add instrumentation done <return>'
-        input_ += ' vap _test vcl vrm _test <return> q'
+        input_ += ' vs _test vcl vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 

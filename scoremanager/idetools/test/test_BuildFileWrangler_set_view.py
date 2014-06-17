@@ -6,27 +6,31 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
-    '__DistributionFileWrangler_views__.py',
+    '__BuildFileWrangler_views__.py',
     )
 
 
-def test_DistributionFileWrangler_apply_view_01():
-    r'''Applies view to library.
+def test_BuildFileWrangler_set_view_01():
+    r'''Works in library.
     
-    Makes sure only select distribution file is visible.
+    Makes sure only select build files are visible.
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'd vnew _test rm all'
-        input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
-        input_ += ' <return> vap _test vrm _test <return> q'
+        input_ = 'u vnew _test rm all'
+        input_ += ' add segment-01.ly~(Red~Example~Score)'
+        input_ += ' add segment-02.ly~(Red~Example~Score)'
+        input_ += ' add segment-03.ly~(Red~Example~Score) done <return>'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Abjad IDE - distribution files [_test]',
+            'Abjad IDE - build files [_test]',
             '',
             '    Red Example Score:',
-            '       1: red-example-score.pdf',
+            '       1: segment-01.ly',
+            '       2: segment-02.ly',
+            '       3: segment-03.ly',
             '',
             '      files - copy (cp)',
             '      files - new (new)',
@@ -37,22 +41,22 @@ def test_DistributionFileWrangler_apply_view_01():
         assert any(_.lines == lines for _ in transcript)
 
 
-def test_DistributionFileWrangler_apply_view_02():
-    r'''Applies view to single view directory.
+def test_BuildFileWrangler_set_view_02():
+    r'''Works in score package build directory.
     
-    Makes sure only select distribution file are visible.
+    Makes sure only select build file is visible.
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'red~example~score d vnew _test rm all'
-        input_ += ' add red-example-score.pdf done <return>'
-        input_ += ' vap _test vrm _test <return> q'
+        input_ = 'red~example~score u vnew _test rm all'
+        input_ += ' add segment-01.ly done <return>'
+        input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
-            'Red Example Score (2013) - distribution files [_test]',
+            'Red Example Score (2013) - build files [_test]',
             '',
-            '   1: red-example-score.pdf',
+            '   1: segment-01.ly',
             '',
             '      files - copy (cp)',
             '      files - new (new)',
