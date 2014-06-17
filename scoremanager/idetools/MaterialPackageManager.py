@@ -407,6 +407,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             storehouse = parts[index-1]
             import_statement = 'import {}'.format(storehouse)
             import_statements.append(import_statement)
+        if 'handlertools' in parts:
+            import_statements.append(self._handlertools_import_statement)
         return import_statements
 
     def _rename_interactively(
@@ -478,9 +480,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if self._session.is_backtracking or not class_:
                 return
             target = class_()
+        target_copy = copy.deepcopy(target)
         autoeditor = self._io_manager._make_autoeditor(target=target)
         autoeditor._run()
         if self._session.is_backtracking:
+            return
+        if autoeditor.target == target_copy:
+            self._session._pending_redraw = True
             return
         target = autoeditor.target
         import_statements = []

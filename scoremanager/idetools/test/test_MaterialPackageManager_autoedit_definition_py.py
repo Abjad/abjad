@@ -455,3 +455,15 @@ def test_MaterialPackageManager_autoedit_definition_py_13():
         assert manager._list() == directory_entries
         target = manager._execute_definition_py()
         assert target == inventory
+
+
+def test_MaterialPackageManager_autoedit_definition_py_14():
+    r'''Skips rewrite when target has not changed.
+    '''
+
+    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    input_ = 'red~example~score instrumentation da done q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    assert 'Will write' not in contents

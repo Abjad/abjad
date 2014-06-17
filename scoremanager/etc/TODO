@@ -1,56 +1,52 @@
-1.  Make (m 1 da b) stop prompting to write definition.py if definition.py
-    has not changed. (m 1 da b) should continue to prompt to write
-    definition.py if definition.py has changed during editing.
-
-2.  Open __metadata__.py in editable mode; do not open read-only.
+1.  Open __metadata__.py in editable mode; do not open read-only.
     Do continue to open output.py read-only.
 
-3.  Unskip all skipped tests.
+2.  Unskip all skipped tests.
 
-4.  Reinstate command concatenation.
+3.  Reinstate command concatenation.
 
-5.  Implement !-suffixation.
+4.  Implement !-suffixation.
 
-6.  Reinstate autoadvance.
+5.  Reinstate autoadvance.
 
-7.  Implement TestManager.compare_lys().
+6.  Implement TestManager.compare_lys().
 
-8.  Integrate diff-pdf.
+7.  Integrate diff-pdf.
 
-9.  Integrate candidacy protocol.
+8.  Integrate candidacy protocol.
 
-10. Clean up InstrumentInventory.
+9.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-11. Remove (vnew). Remove (vrm). Remove (vren).
+10. Remove (vnew). Remove (vrm). Remove (vren).
     Use (va) instead.
 
-12. Replace (vcl) with (vs).
+11. Replace (vcl) with (vs).
 
-13. Implement 'views - write' (vw).
+12. Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-14. Implement '__metadata__.py - check' (mdc).
+13. Implement '__metadata__.py - check' (mdc).
 
-15. Implement '__metadata__.py - autoedit' (mda).
+14. Implement '__metadata__.py - autoedit' (mda).
 
-16. Take another pass at (ck) and (ck*) messaging.
+15. Take another pass at (ck) and (ck*) messaging.
 
-17. Audit (**).
+16. Audit (**).
 
-18. Audit all star commands.
+17. Audit all star commands.
 
-19. Audit material interface by hand.
+18. Audit material interface by hand.
     Audit segment interface by hand.
 
-20. Audit all public methods for py.test files.
+19. Audit all public methods for py.test files.
 
-21. Answer all inline TODOs.
+20. Answer all inline TODOs.
 
-22. Streamline all 39 classfiles.
+21. Streamline all 39 classfiles.
 
-23. Extended ControllerContext with directory=None keyword.
+22. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-24. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+23. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
