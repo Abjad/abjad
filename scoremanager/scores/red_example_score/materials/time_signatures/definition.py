@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from red_example_score.materials.magic_numbers.output import magic_numbers
-output_py_import_statements = ['from abjad import *']
 
 
 numerators = magic_numbers[:8]

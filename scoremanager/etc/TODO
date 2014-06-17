@@ -54,7 +54,3 @@
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
 24. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
-
-25. Remove output_py_import_statements = ['from abjad import *']
-    from MaterialPackageManager.
-    Should always include Abjad import directive by default.

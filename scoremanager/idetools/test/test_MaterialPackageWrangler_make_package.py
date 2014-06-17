@@ -90,7 +90,6 @@ def test_MaterialPackageWrangler_make_package_03():
     lines = []
     lines.append('# -*- encoding: utf-8 -*-')
     lines.append('from abjad import *')
-    lines.append('output_py_import_statements = []')
     lines.append('')
     lines.append('')
     lines.append('testnotes = None')

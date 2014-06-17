@@ -31,11 +31,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_output_py_import_statements',
-        )
+#    ### CLASS VARIABLES ###
+#
+#    __slots__ = (
+#        '_output_py_import_statements',
+#        )
 
     ### INTIALIZER ###
 
@@ -51,9 +51,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'output.py',
             ])
         self._optional_files = tuple(optional_files)
-        self._output_py_import_statements = [
-            self._abjad_import_statement,
-            ]
+#        self._output_py_import_statements = [
+#            self._abjad_import_statement,
+#            ]
         required_files = list(self._required_files)
         required_files.extend([
             'definition.py',
@@ -303,13 +303,15 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return lines
 
     def _make_output_material_triple(self):
-        result = self._retrieve_import_statements_and_output_material()
+        #result = self._retrieve_import_statements_and_output_material()
+        result = self._retrieve_output_material()
         if result == 'corrupt':
             message = '{} is corrupt.'.format(self._definition_py_path)
             self._io_manager._display(message)
             self._io_manager._acknowledge()
             return
-        import_statements, output_material = result
+        #import_statements, output_material = result
+        output_material = result
         body_string = '{} = {}'
         output_material_name = self._package_name
         storage_format = self._get_storage_format(output_material)
@@ -317,7 +319,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             output_material_name,
             storage_format,
             )
-        return (import_statements, body_string, output_material)
+        #return (import_statements, body_string, output_material)
+        return (body_string, output_material)
 
     def _make_output_py_menu_section(self, menu):
         commands = []
@@ -454,16 +457,26 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                     new_package_name,
                     )
 
-    def _retrieve_import_statements_and_output_material(self):
-        attribute_names = (
-            'output_py_import_statements',
-            self._package_name,
-            )
+#    def _retrieve_import_statements_and_output_material(self):
+#        attribute_names = (
+#            'output_py_import_statements',
+#            self._package_name,
+#            )
+#        result = self._io_manager.execute_file(
+#            path=self._definition_py_path,
+#            attribute_names=attribute_names,
+#            )
+#        return result
+
+    def _retrieve_output_material(self):
+        attribute_names = (self._package_name,)
         result = self._io_manager.execute_file(
             path=self._definition_py_path,
             attribute_names=attribute_names,
             )
-        return result
+        assert len(result) == 1
+        output_material = result[0]
+        return output_material
 
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_materials = True
@@ -517,7 +530,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking:
             return
         output_material = autoeditor.target
-        import_statements = self._output_py_import_statements
+        #import_statements = self._output_py_import_statements
+        import_statements = [self._abjad_import_directive]
         import_statements.extend(
             self._object_to_import_statements(output_material))
         output_material_lines = self._make_output_material_lines(
@@ -699,9 +713,16 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             triple = self._make_output_material_triple()
             if triple is None:
                 return
-            import_statements = triple[0]
-            output_py_body_string = triple[1]
-            output_material = triple[2]
+
+#            import_statements = triple[0]
+#            output_py_body_string = triple[1]
+#            output_material = triple[2]
+
+            assert len(triple) == 2
+            import_statements = []
+            output_py_body_string = triple[0]
+            output_material = triple[1]
+
             output_material_lines = [output_py_body_string]
         import_statements = import_statements or []
         if self._abjad_import_statement not in import_statements:
@@ -780,7 +801,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines = []
         lines.append(self._configuration.unicode_directive)
         lines.append(self._abjad_import_statement)
-        lines.append('output_py_import_statements = []')
         lines.append('')
         lines.append('')
         line = '{} = None'.format(self._package_name)
