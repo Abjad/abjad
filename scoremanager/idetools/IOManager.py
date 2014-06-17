@@ -104,15 +104,11 @@ class IOManager(IOManager):
         if isinstance(lines, str):
             lines = [lines]
         if capitalize:
-            lines = [
-                stringtools.capitalize_start(line)
-                for line in lines
-                ]
+            lines = [stringtools.capitalize_start(_) for _ in lines ]
         if lines:
             self._session.transcript._append_entry(lines, is_menu=is_menu)
-        if not self._session.pending_input:
-            for line in lines:
-                print(line)
+        for line in lines:
+            print(line)
 
     def _display_not_yet_implemented(self):
         message = 'not yet implemented.'
@@ -163,15 +159,16 @@ class IOManager(IOManager):
             default_value = ''
         readline.set_startup_hook(lambda: readline.insert_text(default_value))
         found_default_token = False
+        # TODO: replace try-finally with startup hook context manager
         try:
             if capitalize_prompt:
-                message = stringtools.capitalize_start(
-                    message)
+                message = stringtools.capitalize_start(message)
             if include_chevron:
                 message = message + prompt_character + ' '
             else:
                 message = message + ' '
             if not self._session.pending_input:
+                was_pending_input = False
                 if sys.version_info[0] == 2:
                     input_ = raw_input(message)
                 else:
@@ -180,6 +177,7 @@ class IOManager(IOManager):
                     if not input_ == 'help':
                         print('')
             else:
+                was_pending_input = True
                 input_ = self._pop_from_pending_input()
                 if input_ == '<return>':
                     found_default_token = True
@@ -194,11 +192,17 @@ class IOManager(IOManager):
                     if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
+                if was_pending_input:
+                    for string in menu_chunk:
+                        print string
                 menu_chunk = ['> ']
                 if include_newline:
                     if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
+                if was_pending_input:
+                    for string in menu_chunk:
+                        print string
             else:
                 menu_chunk = []
                 menu_chunk.append('{}{}'.format(message, input_))
@@ -206,6 +210,9 @@ class IOManager(IOManager):
                     if not input_ == 'help':
                         menu_chunk.append('')
                 self._session.transcript._append_entry(menu_chunk)
+                if was_pending_input:
+                    for string in menu_chunk:
+                        print string
             return input_
         finally:
             readline.set_startup_hook()
