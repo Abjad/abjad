@@ -1,52 +1,49 @@
-1.  Open __metadata__.py in editable mode; do not open read-only.
-    Do continue to open output.py read-only.
+1.  Reinstate command concatenation.
 
-2.  Unskip all skipped tests.
+2.  Implement !-suffixation.
 
-3.  Reinstate command concatenation.
+3.  Reinstate autoadvance.
 
-4.  Implement !-suffixation.
+4.  Implement TestManager.compare_lys().
 
-5.  Reinstate autoadvance.
+5.  Integrate diff-pdf.
 
-6.  Implement TestManager.compare_lys().
+6.  Integrate candidacy protocol.
 
-7.  Integrate diff-pdf.
-
-8.  Integrate candidacy protocol.
-
-9.  Clean up InstrumentInventory.
+7.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-10. Remove (vnew). Remove (vrm). Remove (vren).
+8.  Remove (vnew). Remove (vrm). Remove (vren).
     Use (va) instead.
 
-11. Replace (vcl) with (vs).
+9.  Replace (vcl) with (vs).
 
-12. Implement 'views - write' (vw).
+10. Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-13. Implement '__metadata__.py - check' (mdc).
+11. Implement '__metadata__.py - check' (mdc).
 
-14. Implement '__metadata__.py - autoedit' (mda).
+12. Implement '__metadata__.py - autoedit' (mda).
 
-15. Take another pass at (ck) and (ck*) messaging.
+13. Take another pass at (ck) and (ck*) messaging.
 
-16. Audit (**).
+14. Audit (**).
 
-17. Audit all star commands.
+15. Audit all star commands.
 
-18. Audit material interface by hand.
+16. Audit material interface by hand.
     Audit segment interface by hand.
 
-19. Audit all public methods for py.test files.
+17. Audit all public methods for py.test files.
 
-20. Answer all inline TODOs.
+18. Answer all inline TODOs.
 
-21. Streamline all 39 classfiles.
+19.  Unskip all skipped tests.
 
-22. Extended ControllerContext with directory=None keyword.
+20. Streamline all 39 classfiles.
+
+21. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-23. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+22. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.

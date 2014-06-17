@@ -542,7 +542,7 @@ class IOManager(IOManager):
         elif path.endswith('.aif'):
             command = 'open {}'.format(path)
         else:
-            command = 'vim -R {}'.format(path)
+            command = 'vim {}'.format(path)
         self._session._attempted_to_open_file = True
         if self._session.is_test:
             return
