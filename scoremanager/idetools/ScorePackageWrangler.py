@@ -159,7 +159,7 @@ class ScorePackageWrangler(PackageWrangler):
             path = result
             manager = self._initialize_manager(path)
             if not self._session.is_test:
-                with self._io_manager._make_silent():
+                with self._io_manager._silent():
                     result = manager.check_package(
                         return_supply_messages=True,
                         supply_missing=True,
@@ -271,7 +271,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         path = self._configuration.user_score_packages_directory
         self._copy_asset(new_storehouse=path)
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.write_cache()
 
 #    def make_package(self):
@@ -283,7 +283,7 @@ class ScorePackageWrangler(PackageWrangler):
 #        if self._session.is_backtracking or not path:
 #            return
 #        self._make_asset(path)
-#        with self._io_manager._make_silent():
+#        with self._io_manager._silent():
 #            self.write_cache()
 
     def open_cache(self):

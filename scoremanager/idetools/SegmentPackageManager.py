@@ -166,7 +166,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_package(self):
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.check_package(
                 return_supply_messages=True,
                 supply_missing=True,
@@ -225,7 +225,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self._io_manager.interpret_file(self._make_py_path)
 
     def interpret_output_ly(self, dry_run=False):

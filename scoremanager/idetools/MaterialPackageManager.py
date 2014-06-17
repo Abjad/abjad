@@ -335,7 +335,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         metadata = collections.OrderedDict(metadata or {})
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.check_package(
                 return_supply_messages=True,
                 supply_missing=True,

@@ -104,7 +104,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         if self._session.is_backtracking or not result:
             return
         for manager in self._list_visible_asset_managers():
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 manager.version_package()
 
     def write_stub_init_py(self):

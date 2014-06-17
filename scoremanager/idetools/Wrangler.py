@@ -563,12 +563,12 @@ class Wrangler(ScoreInternalAssetController):
         if hasattr(manager, '_write_stub'):
             self._io_manager.write_stub(path)
         else:
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 manager.check_package(
                     return_supply_messages=True,
                     supply_missing=True,
                     )
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.clear_view()
         self._session._pending_redraw = True
 
@@ -899,7 +899,7 @@ class Wrangler(ScoreInternalAssetController):
                 return
         for path in paths:
             manager = idetools.PackageManager(path=path, session=self._session)
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 manager._remove()
         self._session._pending_redraw = True
 
@@ -1105,7 +1105,7 @@ class Wrangler(ScoreInternalAssetController):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             for manager in managers:
                 manager.add_to_repository()
         count = len(inputs)
@@ -1187,7 +1187,7 @@ class Wrangler(ScoreInternalAssetController):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_manager(path)
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 manager.commit_to_repository(commit_message=commit_message)
 
     def make_view(self):
@@ -1357,7 +1357,7 @@ class Wrangler(ScoreInternalAssetController):
         if self._session.is_backtracking or not result:
             return
         view_inventory = self._read_view_inventory()
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self._write_view_inventory(view_inventory)
         message = 'wrote {}.'.format(self._views_py_path)
         self._io_manager._display(message)

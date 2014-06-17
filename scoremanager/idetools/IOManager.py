@@ -310,7 +310,7 @@ class IOManager(IOManager):
             session=self._session,
             )
 
-    def _make_silent(self):
+    def _silent(self):
         from scoremanager import idetools
         return idetools.Interaction(
             confirm=False,
@@ -380,7 +380,7 @@ class IOManager(IOManager):
 
         Returns stderr lines; nonempty list means interpretation raised errors.
         '''
-        with self._make_silent():
+        with self._silent():
             stdout_lines, stderr_lines = self.interpret_file(path)
         return stderr_lines
 

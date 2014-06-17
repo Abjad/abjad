@@ -154,7 +154,7 @@ class PackageManager(ScoreInternalAssetController):
         assert ' ' not in metadatum_name, repr(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.write_metadata_py(metadata=metadata)
 
     def _enter_run(self):
@@ -653,7 +653,7 @@ class PackageManager(ScoreInternalAssetController):
         except KeyError:
             pass
         if was_removed:
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 self.write_metadata_py(metadata=metadata)
 
     def _rename(self, new_path):
@@ -797,11 +797,11 @@ class PackageManager(ScoreInternalAssetController):
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 self.add_to_repository()
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 self._unadd_added_assets()
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
@@ -821,7 +821,7 @@ class PackageManager(ScoreInternalAssetController):
             assert os.path.exists(path_4)
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_3, path_4]
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 self.repository_clean()
         assert self._is_up_to_date()
         return True
@@ -839,7 +839,7 @@ class PackageManager(ScoreInternalAssetController):
                 file_pointer.write(string)
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 self.revert_to_repository()
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
@@ -1039,7 +1039,7 @@ class PackageManager(ScoreInternalAssetController):
                 controller=self,
                 current_score_directory=self._path,
                 )
-            silence = self._io_manager._make_silent()
+            silence = self._io_manager._silent()
             with controller, silence:
                 tab = self._io_manager._make_tab()
                 for wrangler in wranglers:

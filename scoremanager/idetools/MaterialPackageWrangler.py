@@ -266,7 +266,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             for manager in managers:
                 manager.output_definition_py()
 

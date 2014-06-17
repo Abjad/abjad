@@ -202,7 +202,7 @@ class ScorePackageManager(PackageManager):
     def _make_package(self):
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.check_package(
                 return_supply_messages=True,
                 supply_missing=True,
@@ -275,7 +275,7 @@ class ScorePackageManager(PackageManager):
         superclass = super(ScorePackageManager, self)
         superclass._remove()
         wrangler = self._session._score_manager._score_package_wrangler
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             wrangler.write_cache()
 
     ### PUBLIC METHODS ###
@@ -328,7 +328,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('title', result)
         wrangler = self._session._score_manager._score_package_wrangler
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             wrangler.write_cache()
 
     def edit_year(self):
@@ -347,7 +347,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('year', result)
         wrangler = self._session._score_manager._score_package_wrangler
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             wrangler.write_cache()
 
     def go_to_setup(self):

@@ -86,7 +86,7 @@ class PackageWrangler(Wrangler):
         managers = self._list_visible_asset_managers()
         found_problem = False
         for manager in managers:
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 result = manager.check_package(
                     return_messages=True,
                     problems_only=problems_only,
@@ -125,7 +125,7 @@ class PackageWrangler(Wrangler):
             return messages, missing_directories, missing_files
         messages = []
         for manager in managers:
-            with self._io_manager._make_silent():
+            with self._io_manager._silent():
                 result = manager.check_package(
                     return_supply_messages=True,
                     supply_missing=True,
@@ -196,7 +196,7 @@ class PackageWrangler(Wrangler):
             return
         manager = self._get_manager(path)
         manager._make_package()
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             self.clear_view()
         if hasattr(self, 'write_cache'):
             self.write_cache()
@@ -257,7 +257,7 @@ class PackageWrangler(Wrangler):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        with self._io_manager._make_silent():
+        with self._io_manager._silent():
             for manager in managers:
                 manager.write_metadata_py()
         message = '{} __metadata__.py files rewritten.'
