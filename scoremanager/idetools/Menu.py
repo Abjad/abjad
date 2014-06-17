@@ -236,7 +236,28 @@ class Menu(Controller):
     def _handle_user_input(self):
         input_ = self._io_manager._handle_input('')
         user_entered_lone_return = input_ == ''
-        directive = self._change_input_to_directive(input_)
+
+        parts = input_.split()
+        length = len(parts)
+        directive = None
+        for i in range(len(parts)):
+            count = length - i
+            candidate = ' '.join(parts[:count])
+            #print(repr(candidate), 'CAND')
+            directive = self._change_input_to_directive(candidate)
+            #print(repr(directive), 'DIR')
+            if directive is not None:
+                if count < length:
+                    remaining_count = length - count
+                    remaining_input = ' '.join(parts[-remaining_count:])
+                    #print(repr(remaining_input), 'REM')
+                    pending_input = self._session._pending_input or ''
+                    pending_input = pending_input + remaining_input
+                    self._session._pending_input = pending_input
+                    self._session._pending_redraw = True
+                break
+
+        #directive = self._change_input_to_directive(input_)
         directive = self._strip_default_notice_from_strings(directive)
         directive = self._handle_directive(directive)
         if directive is None and user_entered_lone_return:

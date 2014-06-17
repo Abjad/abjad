@@ -480,12 +480,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             if self._session.is_backtracking or not class_:
                 return
             target = class_()
-        target_copy = copy.deepcopy(target)
+            old_target = None
+        else:
+            old_target = copy.deepcopy(target)
         autoeditor = self._io_manager._make_autoeditor(target=target)
         autoeditor._run()
         if self._session.is_backtracking:
             return
-        if autoeditor.target == target_copy:
+        if autoeditor.target == old_target:
             self._session._pending_redraw = True
             return
         target = autoeditor.target
