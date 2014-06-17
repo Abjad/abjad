@@ -660,14 +660,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
-    # TODO: remove input parameters altogether
-    def output_definition_py(
-        self,
-        dry_run=False,
-        import_statements=None,
-        output_material=None,
-        output_material_lines=None,
-        ):
+    def output_definition_py(self, dry_run=False):
         r'''Outputs ``definition.py`` to ``output.py``.
 
         Returns none.
@@ -685,18 +678,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             return
         lines = []
         lines.append(self._configuration.unicode_directive)
-        if output_material_lines is None:
-            pair = self._make_output_material_pair()
-            if pair is None:
-                return
-            assert len(pair) == 2
-            import_statements = []
-            output_py_body_string = pair[0]
-            output_material = pair[1]
-            output_material_lines = [output_py_body_string]
-        import_statements = import_statements or []
-        if self._abjad_import_statement not in import_statements:
-            import_statements.append(self._abjad_import_statement)
+        pair = self._make_output_material_pair()
+        if pair is None:
+            return
+        output_py_body_string = pair[0]
+        output_material = pair[1]
+        output_material_lines = [output_py_body_string]
+        import_statements = [self._abjad_import_statement]
         statements_ = self._object_to_import_statements(output_material)
         for statement_ in statements_:
             if statement_ not in import_statements:
