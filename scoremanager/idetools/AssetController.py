@@ -153,6 +153,10 @@ class AssetController(Controller):
                 self.invoke_shell(statement=statement)
             elif result in self._input_to_method:
                 self._input_to_method[result]()
+            elif result.endswith('!') and result[:-1] in self._input_to_method:
+                result = result[:-1]
+                with self._io_manager._make_interaction(confirm=False):
+                    self._input_to_method[result]()
             else:
                 self._handle_numeric_user_input(result)
 

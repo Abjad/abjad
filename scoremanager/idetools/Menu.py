@@ -130,6 +130,10 @@ class Menu(Controller):
         This avoids file name new-stylesheet.ily aliasing command (new).
         '''
         input_ = stringtools.strip_diacritics(input_)
+        if input_.startswith('!'):
+            return input_
+        ends_with_bang = input_.endswith('!')
+        input_ = input_.strip('!')
         if self._user_enters_nothing(input_):
             default_value = None
             for section in self.menu_sections:
@@ -140,8 +144,8 @@ class Menu(Controller):
         elif input_ in ('**', 's', 'S', 'q', 'b', '??', '<return>'):
             self._session._pending_redraw = True
             return input_
-        elif input_.startswith('!'):
-            return input_
+        #elif input_.startswith('!'):
+        #    return input_
         asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
@@ -151,11 +155,19 @@ class Menu(Controller):
                 continue
             for menu_entry in section:
                 if menu_entry.matches(input_):
-                    return self._enclose_in_list(menu_entry.return_value)
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    #return self._enclose_in_list(menu_entry.return_value)
+                    return self._enclose_in_list(return_value)
         if asset_section is not None:
             for menu_entry in asset_section:
                 if menu_entry.matches(input_):
-                    return self._enclose_in_list(menu_entry.return_value)
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    #return self._enclose_in_list(menu_entry.return_value)
+                    return self._enclose_in_list(return_value)
         asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
@@ -281,6 +293,8 @@ class Menu(Controller):
     def _is_recognized_input(self, expr):
         if isinstance(expr, str):
             if expr in self._input_to_method:
+                return True
+            if expr.endswith('!') and expr[:-1] in self._input_to_method:
                 return True
         return False
 

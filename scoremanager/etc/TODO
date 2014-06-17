@@ -1,47 +1,51 @@
-1.  Implement !-suffixation.
+1.  Reinstate autoadvance.
 
-2.  Reinstate autoadvance.
+2.  Implement TestManager.compare_lys().
 
-3.  Implement TestManager.compare_lys().
+3.  Integrate diff-pdf.
 
-4.  Integrate diff-pdf.
+4.  Integrate candidacy protocol.
 
-5.  Integrate candidacy protocol.
-
-6.  Clean up InstrumentInventory.
+5.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-7.  Remove (vnew). Remove (vrm). Remove (vren).
+6.  Remove (vnew). Remove (vrm). Remove (vren).
     Use (va) instead.
 
-8.  Replace (vcl) with (vs).
+7.  Replace (vcl) with (vs).
 
-9.  Implement 'views - write' (vw).
+8.  Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-10. Implement '__metadata__.py - check' (mdc).
+9.  Implement '__metadata__.py - check' (mdc).
 
-11. Implement '__metadata__.py - autoedit' (mda).
+10. Implement '__metadata__.py - autoedit' (mda).
 
-12. Take another pass at (ck) and (ck*) messaging.
+11. Take another pass at (ck) and (ck*) messaging.
 
-13. Audit (**).
+12. Audit (**).
 
-14. Audit all star commands.
+13. Audit all star commands.
 
-15. Audit material interface by hand.
+14. Audit material interface by hand.
     Audit segment interface by hand.
 
-16. Audit all public methods for py.test files.
+15. Audit all public methods for py.test files.
 
-17. Answer all inline TODOs.
+16. Answer all inline TODOs.
 
-18.  Unskip all skipped tests.
+17.  Unskip all skipped tests.
 
-19. Streamline all 39 classfiles.
+18. Streamline all 39 classfiles.
 
-20. Extended ControllerContext with directory=None keyword.
+19. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-21. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+20. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+
+21. Make (red m tempo da rm 4 done!) work.
+    Right now the (done!) raises an exception.
+
+22. Customize user input getter prompt to alert composer to differences in
+    getter environment.

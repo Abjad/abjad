@@ -273,9 +273,16 @@ class IOManager(IOManager):
             )
         return getter
 
-    def _make_interaction(self, display=True, dry_run=False, task=True):
+    def _make_interaction(
+        self, 
+        confirm=True, 
+        display=True, 
+        dry_run=False, 
+        task=True,
+        ):
         from scoremanager import idetools
         return idetools.Interaction(
+            confirm=confirm,
             controller=self.client, 
             display=display,
             dry_run=dry_run,
