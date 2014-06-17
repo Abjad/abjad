@@ -670,8 +670,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
+    # TODO: remove input parameters altogether
     def output_definition_py(
         self,
+        dry_run=False,
         import_statements=None,
         output_material=None,
         output_material_lines=None,
@@ -680,26 +682,17 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        #print(import_statements)
-        #print(output_material)
-        #print(output_material_lines)
+        inputs, outputs = [], []
+        inputs = [self._definition_py_path]
+        outputs = [(self._output_py_path,)]
+        if dry_run:
+            return inputs, outputs
         message = 'will write output material to {}.'
         message = message.format(self._output_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-#        if import_statements is None:
-#            assert output_material_lines is None
-#        else:
-#            assert isinstance(import_statements, list), repr(import_statements)
-#        if output_material_lines is None:
-#            assert import_statements is None
-#            assert output_material is None
-#        else:
-#            assert isinstance(output_material_lines, list), repr(
-#                output_material_lines)
-#            assert output_material is not None
         lines = []
         lines.append(self._configuration.unicode_directive)
         if output_material_lines is None:

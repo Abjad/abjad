@@ -1,0 +1,34 @@
+# -*- encoding: utf-8 -*-
+import os
+from abjad import *
+import scoremanager
+score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+
+
+def test_MaterialPackageWrangler_output_every_definition_py_01():
+
+    input_ = 'red~example~score m dp* y q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    package_names = [
+        'instrumentation',
+        'magic_numbers',
+        'pitch_range_inventory',
+        'tempo_inventory',
+        'time_signatures',
+        ]
+    paths = []
+    for package_name in package_names:
+        path = os.path.join(
+            score_manager._configuration.example_score_packages_directory,
+            'red_example_score',
+            'materials',
+            package_name,
+            'definition.py',
+            )
+        paths.append(path)
+
+    assert 'Will output ...' in contents
+    for path in paths:
+        assert path in contents

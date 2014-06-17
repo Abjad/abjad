@@ -59,7 +59,4 @@
     from MaterialPackageManager.
     Should always include Abjad import directive by default.
 
-26. Add MaterialPackageWrangler commands:
-    'all packages - definition.py - check' (dc*)
-    'all packages - definition.py - open' (do*)
-    'all packages - definition.py - output' (dp*)
+26. Change IOManager._make_silent() to IOManager._silent().

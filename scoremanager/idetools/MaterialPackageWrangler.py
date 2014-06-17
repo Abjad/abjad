@@ -67,8 +67,11 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'ili*': self.interpret_every_illustration_ly,
+            'dc*': self.check_every_definition_py,
+            'do*': self.open_every_definition_py,
+            'dp*': self.output_every_definition_py,
             #
+            'ili*': self.interpret_every_illustration_ly,
             'ipo*': self.open_every_illustration_pdf,
             #
             'oc*': self.check_every_output_py,
@@ -156,6 +159,9 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         superclass = super(MaterialPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
+        commands.append(('all packages - definition.py - check', 'dc*'))
+        commands.append(('all packages - definition.py - open', 'do*'))
+        commands.append(('all packages - definition.py - output', 'dp*'))
         commands.append(('all packages - illustration.ly - interpret', 'ili*'))
         commands.append(('all packages - illustration.pdf - open', 'ipo*'))
         commands.append(('all packages - output.py - check', 'oc*'))
@@ -190,6 +196,27 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    # TODO: factoroutput check_every_output_py shared code
+    def check_every_definition_py(self):
+        r'''Checks ``definition.py`` in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.check_definition_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='check')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        for manager in managers:
+            manager.check_definition_py()
+
+    # TODO: factor out check_every_definition_py shared code
     def check_every_output_py(self):
         r'''Checks ``output.py`` in every package.
 
@@ -222,6 +249,33 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._interpret_in_every_package('illustration.ly')
+
+    def output_every_definition_py(self):
+        r'''Outputs ``definition.py`` to ``output.py`` in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.output_definition_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='output')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        with self._io_manager._make_silent():
+            for manager in managers:
+                manager.output_definition_py()
+
+    def open_every_definition_py(self):
+        r'''Opens ``definition.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('definition.py')
 
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` in every package.
