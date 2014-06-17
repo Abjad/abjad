@@ -57,6 +57,10 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
+    def _acknowledge(self):
+        message = 'press any key to continue.'
+        self._confirm(message=message)
+
     def _confirm(self, message='ok?', include_chevron=False):
         if not self._session.confirm:
             return True

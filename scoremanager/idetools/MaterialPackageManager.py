@@ -304,6 +304,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_output_material_triple(self):
         result = self._retrieve_import_statements_and_output_material()
+        if result == 'corrupt':
+            message = '{} is corrupt.'.format(self._definition_py_path)
+            self._io_manager._display(message)
+            self._io_manager._acknowledge()
+            return
         import_statements, output_material = result
         body_string = '{} = {}'
         output_material_name = self._package_name
@@ -675,27 +680,32 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
+        #print(import_statements)
+        #print(output_material)
+        #print(output_material_lines)
         message = 'will write output material to {}.'
         message = message.format(self._output_py_path)
         self._io_manager._display(message)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        if import_statements is None:
-            assert output_material_lines is None
-        else:
-            assert isinstance(import_statements, list), repr(import_statements)
-        if output_material_lines is None:
-            assert import_statements is None
-            assert output_material is None
-        else:
-            assert isinstance(output_material_lines, list), repr(
-                output_material_lines)
-            assert output_material is not None
+#        if import_statements is None:
+#            assert output_material_lines is None
+#        else:
+#            assert isinstance(import_statements, list), repr(import_statements)
+#        if output_material_lines is None:
+#            assert import_statements is None
+#            assert output_material is None
+#        else:
+#            assert isinstance(output_material_lines, list), repr(
+#                output_material_lines)
+#            assert output_material is not None
         lines = []
         lines.append(self._configuration.unicode_directive)
         if output_material_lines is None:
             triple = self._make_output_material_triple()
+            if triple is None:
+                return
             import_statements = triple[0]
             output_py_body_string = triple[1]
             output_material = triple[2]
