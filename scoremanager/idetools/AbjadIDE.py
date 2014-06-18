@@ -21,6 +21,7 @@ class AbjadIDE(AssetController):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_sort_by_annotation',
         )
 
     ### INITIALIZER ###
@@ -33,6 +34,7 @@ class AbjadIDE(AssetController):
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
         self._session._score_manager = self
+        self._sort_by_annotation = False
 
     ### PRIVATE PROPERTIES ###
 
@@ -97,6 +99,31 @@ class AbjadIDE(AssetController):
 
     ### PRIVATE METHODS ###
 
+    def _list_asset_paths(self):
+        paths = []
+        storehouses = self._list_storehouse_paths()
+        for storehouse in storehouses:
+            if not os.path.exists(storehouse):
+                continue
+            entries = sorted(os.listdir(storehouse))
+            for entry in entries:
+                path = os.path.join(storehouse, entry)
+                paths.append(path)
+        return paths
+
+    def _list_visible_asset_paths(self):
+        pass
+
+    def _list_storehouse_paths(self):
+        paths = []
+        paths.append(self._configuration.user_library_makers_directory)
+        paths.append(self._configuration.abjad_material_packages_directory)
+        paths.append(self._configuration.user_library_material_packages_directory)
+        paths.append(self._configuration.abjad_stylesheets_directory)
+        paths.append(self._configuration.user_library_stylesheets_directory)
+        paths.append(self._configuration.user_score_packages_directory)
+        return paths
+
     def _make_init_py_menu_section(self, menu):
         commands = []
         commands.append(('__init__.py - list', 'nls*'))
@@ -111,6 +138,7 @@ class AbjadIDE(AssetController):
     def _make_main_menu(self):
         superclass = super(AbjadIDE, self)
         menu = superclass._make_main_menu()
+        self._make_asset_menu_section(menu)
         self._make_init_py_menu_section(menu)
         return menu
 

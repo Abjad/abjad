@@ -54,3 +54,10 @@
 
 24. Audit views test and make sure both __views__.py and __metadata__.py
     files are preserved.
+
+25. Remove Configuration.abjad_makers_directory.
+
+26. Change Configuration.abjad_material_packages_directory to
+    Configuration.example_material_packages_directory.
+
+27. Replace 'abjad_library' with something else.

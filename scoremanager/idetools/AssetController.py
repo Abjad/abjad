@@ -77,7 +77,38 @@ class AssetController(Controller):
             '**', 'D', 'G', 'K', 'M', 'S', 'U', 'Y',
             )
 
+    @property
+    def _views_package_manager(self):
+        path = self._configuration.wrangler_views_directory
+        return self._io_manager._make_package_manager(path)
+
     ### PRIVATE METHODS ###
+
+    def _filter_asset_menu_entries_by_view(self, entries):
+        view = self._read_view()
+        if view is None:
+            return entries
+        entries = entries[:]
+        filtered_entries = []
+        for pattern in view:
+            if ':ds:' in pattern:
+                for entry in entries:
+                    if self._match_display_string_view_pattern(pattern, entry):
+                        filtered_entries.append(entry)
+            elif 'md:' in pattern:
+                for entry in entries:
+                    if self._match_metadata_view_pattern(pattern, entry):
+                        filtered_entries.append(entry)
+            elif ':path:' in pattern:
+                for entry in entries:
+                    if self._match_path_view_pattern(pattern, entry):
+                        filtered_entries.append(entry)
+            else:
+                for entry in entries:
+                    display_string, _, _, path = entry
+                    if pattern == display_string:
+                        filtered_entries.append(entry)
+        return filtered_entries
 
     @staticmethod
     def _format_messaging(inputs, outputs, verb='interpret'):
@@ -116,6 +147,15 @@ class AssetController(Controller):
                     for path in path_list:
                         messages.append('{}{}'.format(output_label, path))
         return messages
+
+    def _get_current_directory(self):
+        score_directory = self._session.current_score_directory
+        if score_directory is not None:
+            parts = (score_directory,)
+            parts += self._score_storehouse_path_infix_parts
+            directory = os.path.join(*parts)
+            assert '.' not in directory, repr(directory)
+            return directory
 
     def _get_metadata(self):
         metadata = None
@@ -162,6 +202,52 @@ class AssetController(Controller):
 
     def _handle_numeric_user_input(self, result):
         pass
+
+    def _make_asset_menu_entries(
+        self,
+        apply_current_directory=True,
+        set_view=True,
+        ):
+        paths = self._list_asset_paths()
+        current_directory = self._get_current_directory()
+        if (apply_current_directory or set_view) and current_directory:
+            paths = [_ for _ in paths if _.startswith(current_directory)]
+        strings = [self._path_to_asset_menu_display_string(_) for _ in paths]
+        pairs = list(zip(strings, paths))
+        if not self._session.is_in_score and self._sort_by_annotation:
+            def sort_function(pair):
+                string = pair[0]
+                if '(' not in string:
+                    return string
+                open_parenthesis_index = string.find('(')
+                assert string.endswith(')')
+                annotation = string[open_parenthesis_index:]
+                annotation = annotation.replace("'", '')
+                annotation = stringtools.strip_diacritics(annotation)
+                return annotation
+            pairs.sort(key=lambda _: sort_function(_))
+        else:
+            def sort_function(pair):
+                string = pair[0]
+                string = stringtools.strip_diacritics(string)
+                string = string.replace("'", '')
+                return string
+            pairs.sort(key=lambda _: sort_function(_))
+        entries = []
+        for string, path in pairs:
+            entry = (string, None, None, path)
+            entries.append(entry)
+        if set_view and not self._session.is_test:
+            entries = self._filter_asset_menu_entries_by_view(entries)
+        if self._session.is_test:
+            if getattr(self, '_only_example_scores_during_test', False):
+                entries = [_ for _ in entries if 'Example Score' in _[0]]
+        return entries
+
+    def _make_asset_menu_section(self, menu):
+        menu_entries = self._make_asset_menu_entries()
+        if menu_entries:
+            menu.make_asset_section(menu_entries=menu_entries)
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
@@ -365,6 +451,56 @@ class AssetController(Controller):
         if not include_extensions:
             name, extension = os.path.splitext(name)
         return stringtools.to_space_delimited_lowercase(name)
+
+    def _read_view(self):
+        view_name = self._read_view_name()
+        if not view_name:
+            return
+        view_inventory = self._read_view_inventory()
+        if not view_inventory:
+            return
+        return view_inventory.get(view_name)
+
+    def _read_view_inventory(self):
+        from scoremanager import idetools
+        if self._views_py_path is None:
+            return
+        if not os.path.exists(self._views_py_path):
+            return
+        result = self._io_manager.execute_file(
+            path=self._views_py_path,
+            attribute_names=('view_inventory',),
+            )
+        if result == 'corrupt':
+            messages = []
+            message = '{} __views.py__ is corrupt:'
+            message = message.format(type(self).__name__)
+            messages.append(message)
+            messages.append('')
+            message = '    {}'.format(self._views_py_path)
+            messages.append(message)
+            self._io_manager._display(messages)
+            return
+        if not result:
+            return
+        assert len(result) == 1
+        view_inventory = result[0]
+        items = list(view_inventory.items())
+        view_inventory = idetools.ViewInventory(items)
+        return view_inventory
+
+    def _read_view_name(self):
+        if self._session.is_test:
+            return
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_package_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        if not manager:
+            return
+        return manager._get_metadatum(metadatum_name)
 
     def _repository_clean(self):
         paths = self._get_unadded_asset_paths()
