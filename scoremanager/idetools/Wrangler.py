@@ -411,12 +411,6 @@ class Wrangler(ScoreInternalAssetController):
         for path in paths:
             self._io_manager.interpret_file(path)
 
-    def _is_valid_directory_entry(self, directory_entry):
-        if directory_entry[0].isalpha():
-            if not directory_entry.endswith('.pyc'):
-                return True
-        return False
-
     def _list(self, public_entries_only=False):
         result = []
         path = self._get_current_directory()

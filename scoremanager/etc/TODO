@@ -61,3 +61,6 @@
     Configuration.example_material_packages_directory.
 
 27. Replace 'abjad_library' with something else.
+
+28. Possibly remove '<return>' from all tests.
+    Looks like command is always unknown when tests run.

@@ -34,7 +34,7 @@ class AbjadIDE(AssetController):
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
         self._session._score_manager = self
-        self._sort_by_annotation = False
+        self._sort_by_annotation = True
 
     ### PRIVATE PROPERTIES ###
 
@@ -107,6 +107,8 @@ class AbjadIDE(AssetController):
                 continue
             entries = sorted(os.listdir(storehouse))
             for entry in entries:
+                if not self._is_valid_directory_entry(entry):
+                    continue
                 path = os.path.join(storehouse, entry)
                 paths.append(path)
         return paths
@@ -121,6 +123,7 @@ class AbjadIDE(AssetController):
         paths.append(self._configuration.user_library_material_packages_directory)
         paths.append(self._configuration.abjad_stylesheets_directory)
         paths.append(self._configuration.user_library_stylesheets_directory)
+        paths.append(self._configuration.example_score_packages_directory)
         paths.append(self._configuration.user_score_packages_directory)
         return paths
 

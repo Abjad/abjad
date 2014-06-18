@@ -203,12 +203,22 @@ class AssetController(Controller):
     def _handle_numeric_user_input(self, result):
         pass
 
+    def _is_valid_directory_entry(self, directory_entry):
+        if directory_entry[0].isalpha():
+            if not directory_entry.endswith('.pyc'):
+                return True
+        return False
+
     def _make_asset_menu_entries(
         self,
         apply_current_directory=True,
         set_view=True,
         ):
         paths = self._list_asset_paths()
+#        # TODO: debug
+#        for _ in paths:
+#            print _
+#        print
         current_directory = self._get_current_directory()
         if (apply_current_directory or set_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
@@ -246,6 +256,9 @@ class AssetController(Controller):
 
     def _make_asset_menu_section(self, menu):
         menu_entries = self._make_asset_menu_entries()
+#        # TODO: debug
+#        for _ in menu_entries:
+#            print _
         if menu_entries:
             menu.make_asset_section(menu_entries=menu_entries)
 
@@ -417,8 +430,25 @@ class AssetController(Controller):
             else:
                 package_name = os.path.basename(path)
                 annotation = package_name
-        elif path.startswith(self._configuration.user_library_directory):
-            annotation = self._configuration.composer_last_name
+        #elif path.startswith(self._configuration.user_library_directory):
+        #    annotation = self._configuration.composer_last_name
+        elif path.startswith(
+            self._configuration.user_library_makers_directory):
+            last_name = self._configuration.composer_last_name
+            annotation = '{} maker library'.format(last_name)
+        elif path.startswith(
+            self._configuration.user_library_material_packages_directory):
+            last_name = self._configuration.composer_last_name
+            annotation = '{} material library'.format(last_name)
+        elif path.startswith(
+            self._configuration.user_library_stylesheets_directory):
+            last_name = self._configuration.composer_last_name
+            annotation = '{} stylesheet library'.format(last_name)
+        elif path.startswith(self._configuration.abjad_stylesheets_directory):
+            annotation = 'Abjad stylesheets'
+        elif path.startswith(
+            self._configuration.abjad_material_packages_directory):
+            annotation = 'Example material packages'
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:
