@@ -141,11 +141,12 @@ class Menu(Controller):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('**', 's', 'S', 'q', 'b', '??', '<return>'):
+        elif input_ in ('**', 'S', 'q', 'b', '??', '<return>'):
             self._session._pending_redraw = True
             return input_
-        #elif input_.startswith('!'):
-        #    return input_
+        elif input_ == 's' and self._session.is_in_score:
+            self._session._pending_redraw = True
+            return input_
         asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
