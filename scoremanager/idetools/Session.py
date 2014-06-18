@@ -56,6 +56,12 @@ class Session(abctools.AbjadObject):
         '_is_in_confirmation_environment',
         '_is_in_score_setup_menu',
         '_is_in_user_input_getter',
+        '_is_navigating_to_all_build_files',
+        '_is_navigating_to_all_distribution_files',
+        '_is_navigating_to_all_maker_files',
+        '_is_navigating_to_all_materials',
+        '_is_navigating_to_all_segments',
+        '_is_navigating_to_all_stylesheets',
         '_is_navigating_to_build_files',
         '_is_navigating_to_distribution_files',
         '_is_navigating_to_next_asset',
@@ -66,6 +72,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_materials',
         '_is_navigating_to_segments',
         '_is_navigating_to_stylesheets',
+
         '_pending_redraw',
         '_is_quitting',
         '_is_repository_test',
@@ -125,6 +132,12 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_scores = False
         self._is_in_confirmation_environment = False
         self._is_in_score_setup_menu = False
+        self._is_navigating_to_all_build_files = False
+        self._is_navigating_to_all_distribution_files = False
+        self._is_navigating_to_all_maker_files = False
+        self._is_navigating_to_all_materials = False
+        self._is_navigating_to_all_segments = False
+        self._is_navigating_to_all_stylesheets = False
         self._is_navigating_to_build_files = False
         self._is_navigating_to_distribution_files = False
         self._is_navigating_to_next_asset = False
@@ -1250,6 +1263,25 @@ class Session(abctools.AbjadObject):
                 part = part.replace(' ', '~')
             result.append(part)
         return ' '.join(result)
+
+    @property
+    def top_level_navigation_directive(self):
+        r'''Gets top-level navigation directive.
+
+        Returns single-character string or none.
+        '''
+        if self._is_navigating_to_all_build_files:
+            return 'U'
+        elif self._is_navigating_to_all_distribution_files:
+            return 'D'
+        elif self._is_navigating_to_all_maker_files:
+            return 'K'
+        elif self._is_navigating_to_all_materials:
+            return 'M'
+        elif self._is_navigating_to_all_segments:
+            return 'G'
+        elif self._is_navigating_to_all_stylesheets:
+            return 'Y'
 
     @property
     def transcript(self):

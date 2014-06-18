@@ -49,3 +49,6 @@
 
 22. Customize user input getter prompt to alert composer to differences in
     getter environment.
+
+23. Change _handle_main_menu_result to _handle_input.
+    Check for other implementations of _handle_input.
