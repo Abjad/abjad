@@ -159,7 +159,6 @@ class Menu(Controller):
                     return_value = menu_entry.return_value
                     if ends_with_bang:
                         return_value = return_value + '!'
-                    #return self._enclose_in_list(menu_entry.return_value)
                     return self._enclose_in_list(return_value)
         if asset_section is not None:
             for menu_entry in asset_section:
@@ -167,7 +166,6 @@ class Menu(Controller):
                     return_value = menu_entry.return_value
                     if ends_with_bang:
                         return_value = return_value + '!'
-                    #return self._enclose_in_list(menu_entry.return_value)
                     return self._enclose_in_list(return_value)
         asset_section = None
         for section in self.menu_sections:
@@ -178,11 +176,17 @@ class Menu(Controller):
                 continue
             for menu_entry in section:
                 if menu_entry.matches(input_.lower()):
-                    return self._enclose_in_list(menu_entry.return_value)
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    return self._enclose_in_list(return_value)
         if asset_section is not None:
             for menu_entry in asset_section:
                 if menu_entry.matches(input_):
-                    return self._enclose_in_list(menu_entry.return_value)
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    return self._enclose_in_list(return_value)
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
 
