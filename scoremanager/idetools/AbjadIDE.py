@@ -21,6 +21,7 @@ class AbjadIDE(AssetController):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_simple_score_annotation',
         '_sort_by_annotation',
         )
 
@@ -34,6 +35,7 @@ class AbjadIDE(AssetController):
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
         self._session._score_manager = self
+        self._simple_score_annotation = True
         self._sort_by_annotation = True
 
     ### PRIVATE PROPERTIES ###
@@ -114,7 +116,9 @@ class AbjadIDE(AssetController):
         return paths
 
     def _list_visible_asset_paths(self):
-        pass
+        entries = self._make_asset_menu_entries()
+        paths = [_[-1] for _ in entries]
+        return paths
 
     def _list_storehouse_paths(self):
         paths = []

@@ -215,10 +215,6 @@ class AssetController(Controller):
         set_view=True,
         ):
         paths = self._list_asset_paths()
-#        # TODO: debug
-#        for _ in paths:
-#            print _
-#        print
         current_directory = self._get_current_directory()
         if (apply_current_directory or set_view) and current_directory:
             paths = [_ for _ in paths if _.startswith(current_directory)]
@@ -416,7 +412,8 @@ class AssetController(Controller):
             self._configuration.example_score_packages_directory,
             self._configuration.user_score_packages_directory,
             )
-        if path.startswith(score_storehouses):
+        if (path.startswith(score_storehouses) and
+            not getattr(self, '_simple_score_annotation', False)):
             score_path = self._configuration._path_to_score_path(path)
             manager = self._io_manager._make_package_manager(path=score_path)
             metadata = manager._get_metadata()
@@ -430,8 +427,12 @@ class AssetController(Controller):
             else:
                 package_name = os.path.basename(path)
                 annotation = package_name
-        #elif path.startswith(self._configuration.user_library_directory):
-        #    annotation = self._configuration.composer_last_name
+        elif (path.startswith(score_storehouses) and
+            getattr(self, '_simple_score_annotation', False)):
+            if self._configuration.example_score_packages_directory in path:
+                annotation = 'Example scores'
+            else:
+                annotation = 'Scores'
         elif path.startswith(
             self._configuration.user_library_makers_directory):
             last_name = self._configuration.composer_last_name
