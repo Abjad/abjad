@@ -49,3 +49,13 @@
 
 22. Customize user input getter prompt to alert composer to differences in
     getter environment.
+
+23. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
+
+24. Change red_example_score/build/__metadata__.py from ...
+        metadata = collections.OrderedDict([
+            ('view_name', '_test'),
+            ])
+    ... to ...
+        metadata = collections.OrderedDict([])
+    ... instead.

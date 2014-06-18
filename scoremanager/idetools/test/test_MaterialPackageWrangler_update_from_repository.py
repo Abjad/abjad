@@ -18,6 +18,6 @@ def test_MaterialPackageWrangler_update_from_repository_02():
     r'''Works in library.
     '''
 
-    input_ = 'm rup <return> q'
+    input_ = 'M rup <return> q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_update_from_repository

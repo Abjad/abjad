@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_display_session_variables_01():
 
 def test_MaterialPackageWrangler_display_session_variables_02():
     
-    input_ = 'm sv q'
+    input_ = 'M sv q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

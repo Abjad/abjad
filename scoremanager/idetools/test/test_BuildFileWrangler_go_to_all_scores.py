@@ -20,7 +20,7 @@ def test_BuildFileWrangler_go_to_all_scores_01():
 
 def test_BuildFileWrangler_go_to_all_scores_02():
 
-    input_ = 'u S q'
+    input_ = 'U S q'
     score_manager._run(input_=input_)
 
     titles = [

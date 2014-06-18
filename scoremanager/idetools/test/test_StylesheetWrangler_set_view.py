@@ -17,7 +17,7 @@ def test_StylesheetWrangler_set_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'y vnew _test rm all add clean-letter-14.ily done <return>'
+        input_ = 'Y vnew _test rm all add clean-letter-14.ily done <return>'
         input_ += ' vs _test vrm _test <return> q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript

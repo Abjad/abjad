@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_repository_status_01():
     '''
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'm rst q'
+    input_ = 'M rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

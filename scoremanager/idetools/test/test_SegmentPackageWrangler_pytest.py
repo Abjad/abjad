@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_pytest_01():
     r'''Works on all visible segment packages in library.
     '''
 
-    input_ = 'g pyt q'
+    input_ = 'G pyt q'
     score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 

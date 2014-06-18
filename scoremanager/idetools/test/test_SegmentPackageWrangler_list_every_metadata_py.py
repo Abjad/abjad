@@ -34,7 +34,7 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
 
 def test_SegmentPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'g mdls* y q'
+    input_ = 'G mdls* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

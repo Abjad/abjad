@@ -17,7 +17,7 @@ def test_StylesheetWrangler_remove_files_01():
         )
 
     with systemtools.FilesystemState(keep=[path]):
-        input_ = 'y rm clean-letter-14.ily remove q'
+        input_ = 'Y rm clean-letter-14.ily remove q'
         score_manager._run(input_=input_)
         assert not os.path.exists(path)
         assert os.path.exists(path + '.backup')

@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_go_back_01():
 
 def test_DistributionFileWrangler_go_back_02():
 
-    input_ = 'd b q'
+    input_ = 'D b q'
     score_manager._run(input_=input_)
 
     titles = [

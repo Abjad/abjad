@@ -23,7 +23,7 @@ def test_StylesheetWrangler_go_to_stylesheets_02():
     r'''Goes from stylesheet library to stylesheet library.
     '''
 
-    input_ = 'y y q'
+    input_ = 'Y Y q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

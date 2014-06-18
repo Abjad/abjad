@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_quit_01():
 
 def test_MaterialPackageWrangler_quit_02():
     
-    input_ = 'm q'
+    input_ = 'M q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

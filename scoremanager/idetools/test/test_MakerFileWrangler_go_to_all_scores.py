@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_to_all_scores_01():
 
 def test_MakerFileWrangler_go_to_all_scores_02():
 
-    input_ = 'k S q'
+    input_ = 'K S q'
     score_manager._run(input_=input_)
 
     titles = [

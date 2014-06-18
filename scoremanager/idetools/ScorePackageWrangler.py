@@ -230,8 +230,11 @@ class ScorePackageWrangler(PackageWrangler):
     def _make_main_menu(self):
         superclass = super(ScorePackageWrangler, self)
         menu = superclass._make_main_menu()
-        asset_section = menu['assets']
-        asset_section._group_by_annotation = False
+        try:
+            asset_section = menu['assets']
+            asset_section._group_by_annotation = False
+        except KeyError:
+            pass
         self._make_all_packages_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_cache_menu_section(menu)

@@ -18,7 +18,7 @@ def test_StylesheetWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'y log q'
+    input_ = 'Y log q'
     score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

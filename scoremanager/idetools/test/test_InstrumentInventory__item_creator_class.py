@@ -17,7 +17,7 @@ def test_InstrumentInventory__item_creator_class_01():
 def test_InstrumentInventory__item_creator_class_02():
 
     item_creator = item_creator_class(session=session)
-    input_ = 'untuned vibraslap'
+    input_ = 'Untuned vibraslap'
     item_creator._run(input_=input_)
     vibraslap = instrumenttools.UntunedPercussion(
         instrument_name='vibraslap',

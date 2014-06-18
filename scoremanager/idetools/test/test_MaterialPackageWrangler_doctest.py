@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_doctest_01():
     r'''Works in library.
     '''
 
-    input_ = 'm pyd q'
+    input_ = 'M pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

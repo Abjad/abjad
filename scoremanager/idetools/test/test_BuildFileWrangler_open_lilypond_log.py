@@ -18,7 +18,7 @@ def test_BuildFileWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'u log q'
+    input_ = 'U log q'
     score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

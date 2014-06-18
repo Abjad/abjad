@@ -18,7 +18,7 @@ def test_DistributionFileWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'd log q'
+    input_ = 'D log q'
     score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

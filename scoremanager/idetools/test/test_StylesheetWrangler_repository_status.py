@@ -8,7 +8,7 @@ def test_StylesheetWrangler_repository_status_01():
     r'''Works with stylesheet library.
     '''
 
-    input_ = 'y rst q'
+    input_ = 'Y rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

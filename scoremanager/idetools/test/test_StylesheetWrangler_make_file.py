@@ -13,7 +13,7 @@ def test_StylesheetWrangler_make_file_01():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'y new My~stylesheets test-stylesheet q'
+        input_ = 'Y new My~stylesheets test-stylesheet q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path)
@@ -35,14 +35,14 @@ def test_StylesheetWrangler_make_file_02():
         )
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
-        input_ = 'y new My~stylesheets new-test-stylesheet-1 q'
+        input_ = 'Y new My~stylesheets new-test-stylesheet-1 q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path_1)
-        input_ = 'y new My~stylesheets new-test-stylesheet-2 q'
+        input_ = 'Y new My~stylesheets new-test-stylesheet-2 q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(path_2)
-        input_ = 'y new-test-stylesheet-1.ily q'
+        input_ = 'Y new-test-stylesheet-1.ily q'
         score_manager._run(input_=input_)
         assert score_manager._session._attempted_to_open_file

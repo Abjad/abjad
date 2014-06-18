@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'd pyd q'
+    input_ = 'D pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

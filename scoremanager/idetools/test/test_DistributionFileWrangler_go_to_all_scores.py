@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_go_to_all_scores_01():
 
 def test_DistributionFileWrangler_go_to_all_scores_02():
 
-    input_ = 'd S q'
+    input_ = 'D S q'
     score_manager._run(input_=input_)
 
     titles = [

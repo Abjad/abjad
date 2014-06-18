@@ -14,7 +14,7 @@ def test_BuildFileWrangler_copy_file_01():
     example score packages).
     '''
 
-    input_ = 'u cp score.pdf~(Red~Example~Score) q'
+    input_ = 'U cp score.pdf~(Red~Example~Score) q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

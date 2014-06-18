@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_materials_02():
     r'''From build file library to material library.
     '''
 
-    input_ = 'u m q'
+    input_ = 'U M q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

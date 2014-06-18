@@ -23,7 +23,7 @@ def test_MakerFileWrangler_go_to_materials_02():
     r'''From maker file library to material library.
     '''
 
-    input_ = 'k m q'
+    input_ = 'K M q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

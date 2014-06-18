@@ -8,7 +8,7 @@ def test_BuildFileWrangler_repository_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'u rst q'
+    input_ = 'U rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

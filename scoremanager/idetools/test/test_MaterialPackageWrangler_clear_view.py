@@ -21,7 +21,7 @@ def test_MaterialPackageWrangler_clear_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'm vnew _test rm all'
+        input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done <return>'
         input_ += ' vs _test vcl vrm _test <return> q'
         score_manager._run(input_=input_)

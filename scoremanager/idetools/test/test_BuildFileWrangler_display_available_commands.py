@@ -15,7 +15,7 @@ def test_BuildFileWrangler_display_available_commands_01():
 
 def test_BuildFileWrangler_display_available_commands_02():
     
-    input_ = 'u ?? q'
+    input_ = 'U ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

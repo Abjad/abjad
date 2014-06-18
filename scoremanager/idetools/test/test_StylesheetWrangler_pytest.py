@@ -8,7 +8,7 @@ def test_StylesheetWrangler_pytest_01():
     r'''Works on all visible stylesheets in library.
     '''
 
-    input_ = 'y pyt q'
+    input_ = 'Y pyt q'
     score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 

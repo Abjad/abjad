@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_display_session_variables_01():
 
 def test_SegmentPackageWrangler_display_session_variables_02():
     
-    input_ = 'g sv q'
+    input_ = 'G sv q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_materials_02():
     r'''From material library to material library.
     '''
 
-    input_ = 'm m q'
+    input_ = 'M M q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

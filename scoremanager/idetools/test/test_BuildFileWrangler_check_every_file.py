@@ -20,7 +20,7 @@ def test_BuildFileWrangler_check_every_file_02():
     r'''Works in library.
     '''
 
-    input_ = 'u ck* y q'
+    input_ = 'U ck* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

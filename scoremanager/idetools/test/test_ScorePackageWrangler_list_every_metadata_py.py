@@ -7,7 +7,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'mdls* <return> q'
+    input_ = 'Mdls* <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

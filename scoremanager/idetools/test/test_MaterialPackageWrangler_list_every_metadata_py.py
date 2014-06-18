@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_list_every_metadata_py_01():
 
 def test_MaterialPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'm mdls* y q'
+    input_ = 'M mdls* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

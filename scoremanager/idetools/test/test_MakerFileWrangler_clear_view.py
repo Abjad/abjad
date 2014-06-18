@@ -19,7 +19,7 @@ def test_MakerFileWrangler_clear_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'k vnew _test rm all'
+        input_ = 'K vnew _test rm all'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
         input_ += ' done <return>'
         input_ += ' vs _test vcl vrm _test <return> q'

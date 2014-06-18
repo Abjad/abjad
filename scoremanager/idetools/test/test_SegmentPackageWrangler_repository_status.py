@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_repository_status_01():
     r'''Works with library.
     '''
 
-    input_ = 'g rst q'
+    input_ = 'G rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

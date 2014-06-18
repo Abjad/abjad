@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'g !pwd q'
+    input_ = 'G !pwd q'
     score_manager._run(input_=input_)
 
     path = os.path.join(

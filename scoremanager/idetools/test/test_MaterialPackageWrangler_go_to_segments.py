@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_segments_02():
     r'''Goes from material library to segment library.
     '''
 
-    input_ = 'm g q'
+    input_ = 'M G q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

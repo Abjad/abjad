@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_stylesheets_02():
     r'''Goes from material library to stylesheet library.
     '''
 
-    input_ = 'm y q'
+    input_ = 'M Y q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

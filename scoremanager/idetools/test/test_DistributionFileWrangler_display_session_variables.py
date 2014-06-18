@@ -16,7 +16,7 @@ def test_DistributionFileWrangler_display_session_variables_01():
 
 def test_DistributionFileWrangler_display_session_variables_02():
     
-    input_ = 'd sv q'
+    input_ = 'D sv q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

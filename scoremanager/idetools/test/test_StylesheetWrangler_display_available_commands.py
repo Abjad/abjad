@@ -15,7 +15,7 @@ def test_StylesheetWrangler_display_available_commands_01():
 
 def test_StylesheetWrangler_display_available_commands_02():
     
-    input_ = 'y ?? q'
+    input_ = 'Y ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

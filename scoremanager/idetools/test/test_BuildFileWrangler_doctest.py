@@ -8,7 +8,7 @@ def test_BuildFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'u pyd q'
+    input_ = 'U pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

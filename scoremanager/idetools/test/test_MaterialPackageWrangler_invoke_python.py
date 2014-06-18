@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_invoke_python_01():
 
 def test_MaterialPackageWrangler_invoke_python_02():
     
-    input_ = 'm pyi 2**38 q'
+    input_ = 'M pyi 2**38 q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

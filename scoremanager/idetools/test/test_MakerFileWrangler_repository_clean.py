@@ -33,6 +33,6 @@ def test_MakerFileWrangler_repository_clean_02():
         with open(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
-        input_ = 'k rcn y q'
+        input_ = 'K rcn y q'
         score_manager._run(input_=input_)
         assert not os.path.exists(foo_path)

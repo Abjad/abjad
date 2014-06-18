@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'g pyd q'
+    input_ = 'G pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

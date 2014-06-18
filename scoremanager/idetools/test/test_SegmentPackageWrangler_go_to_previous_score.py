@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler_go_to_previous_score_01():
 
 def test_SegmentPackageWrangler_go_to_previous_score_02():
 
-    input_ = 'g << q'
+    input_ = 'G << q'
     score_manager._run(input_=input_)
 
     titles = [

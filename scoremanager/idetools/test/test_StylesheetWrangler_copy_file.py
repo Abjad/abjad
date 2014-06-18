@@ -18,7 +18,7 @@ def test_StylesheetWrangler_copy_file_01():
         )
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
-        input_ = 'y cp clean-letter-14.ily'
+        input_ = 'Y cp clean-letter-14.ily'
         input_ += ' My~stylesheets test~foo~stylesheet y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

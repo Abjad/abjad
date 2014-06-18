@@ -26,14 +26,14 @@ def test_MakerFileWrangler_rename_file_01():
 
     assert os.path.exists(path)
 
-    input_ = 'k ren RedExampleScoreTemplate.py~(Red~Example~Score)'
+    input_ = 'K ren RedExampleScoreTemplate.py~(Red~Example~Score)'
     input_ += ' FooRedExampleScoreTemplate.py y q'
     score_manager._run(input_=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
-    input_ = 'k ren FooRedExampleScoreTemplate.py~(Red~Example~Score)'
+    input_ = 'K ren FooRedExampleScoreTemplate.py~(Red~Example~Score)'
     input_ += ' RedExampleScoreTemplate.py y q'
     score_manager._run(input_=input_)
     assert not os.path.exists(new_path)

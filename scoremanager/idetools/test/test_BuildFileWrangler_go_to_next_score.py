@@ -20,7 +20,7 @@ def test_BuildFileWrangler_go_to_next_score_01():
 
 def test_BuildFileWrangler_go_to_next_score_02():
 
-    input_ = 'u >> q'
+    input_ = 'U >> q'
     score_manager._run(input_=input_)
 
     titles = [

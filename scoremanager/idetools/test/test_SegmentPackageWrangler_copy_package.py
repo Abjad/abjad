@@ -14,7 +14,7 @@ def test_SegmentPackageWrangler_copy_package_01():
     example score packages).
     '''
 
-    input_ = 'g cp A~(Red~Example~Score) q'
+    input_ = 'G cp A~(Red~Example~Score) q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

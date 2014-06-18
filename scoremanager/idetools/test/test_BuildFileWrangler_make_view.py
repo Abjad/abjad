@@ -15,7 +15,7 @@ def test_BuildFileWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
-    input_ = 'u vnew _test q' 
+    input_ = 'U vnew _test q' 
     with systemtools.FilesystemState(keep=[views_file]):
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
@@ -29,7 +29,7 @@ def test_BuildFileWrangler_make_view_02():
     view creation menu.
     '''
 
-    input_ = 'u vnew _test q' 
+    input_ = 'U vnew _test q' 
     with systemtools.FilesystemState(keep=[views_file]):
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
@@ -46,7 +46,7 @@ def test_BuildFileWrangler_make_view_03():
     '''
     pytest.skip('fix me')
 
-    input_ = 'u vnew _test rm all'
+    input_ = 'U vnew _test rm all'
     input_ += ' add front-cover.pdf~(Red~Example~Score) done q' 
     with systemtools.FilesystemState(keep=[views_file]):
         score_manager._run(input_=input_)
@@ -54,13 +54,13 @@ def test_BuildFileWrangler_make_view_03():
 
     assert 'Abjad IDE - build files [_test]' in contents
 
-    input_ = 'u va b vrm _test <return> q'
+    input_ = 'U va b vrm _test <return> q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'found' in contents or 'found' in contents
     assert '_test' in contents
 
-    input_ = 'u va q'
+    input_ = 'U va q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'found' in contents or 'found' in contents

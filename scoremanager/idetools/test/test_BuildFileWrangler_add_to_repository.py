@@ -20,6 +20,6 @@ def test_BuildFileWrangler_add_to_repository_02():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'u rad <return> q'
+    input_ = 'U rad <return> q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository

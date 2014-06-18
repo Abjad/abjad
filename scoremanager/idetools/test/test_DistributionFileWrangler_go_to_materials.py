@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_go_to_materials_02():
     r'''Goes from distribution file library to material library.
     '''
 
-    input_ = 'd m q'
+    input_ = 'D M q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

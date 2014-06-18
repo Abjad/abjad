@@ -15,7 +15,7 @@ def test_MakerFileWrangler_display_avialable_commands_01():
 
 def test_MakerFileWrangler_display_avialable_commands_02():
     
-    input_ = 'k ?? q'
+    input_ = 'K ?? q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

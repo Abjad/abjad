@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_go_to_all_scores_01():
 
 def test_MaterialPackageWrangler_go_to_all_scores_02():
 
-    input_ = 'm S q'
+    input_ = 'M S q'
     score_manager._run(input_=input_)
 
     titles = [

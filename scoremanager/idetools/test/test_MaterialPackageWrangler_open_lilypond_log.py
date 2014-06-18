@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'm log q'
+    input_ = 'M log q'
     score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

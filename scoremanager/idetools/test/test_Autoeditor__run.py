@@ -31,7 +31,7 @@ def test_Autoeditor__run_02():
         session=session,
         target=target,
         )
-    input_ = 'done'
+    input_ = 'Done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
@@ -47,7 +47,7 @@ def test_Autoeditor__run_03():
         session=session,
         target=Tempo(),
         )
-    input_ = 'duration (1, 8) units 98 done'
+    input_ = 'Duration (1, 8) units 98 done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
@@ -63,7 +63,7 @@ def test_Autoeditor__run_04():
         session=session,
         target=Tempo(),
         )
-    input_ = 'duration Duration(1, 8) units 98 done'
+    input_ = 'Duration Duration(1, 8) units 98 done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 

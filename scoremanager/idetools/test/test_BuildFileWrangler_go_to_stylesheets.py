@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_stylesheets_02():
     r'''Goes from build file library to stylesheet library.
     '''
 
-    input_ = 'u y q'
+    input_ = 'U Y q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

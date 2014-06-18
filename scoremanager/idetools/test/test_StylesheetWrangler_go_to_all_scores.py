@@ -20,7 +20,7 @@ def test_StylesheetWrangler_go_to_all_scores_01():
 
 def test_StylesheetWrangler_go_to_all_scores_02():
 
-    input_ = 'y S q'
+    input_ = 'Y S q'
     score_manager._run(input_=input_)
 
     titles = [

@@ -20,7 +20,7 @@ def test_StylesheetWrangler_check_every_file_02():
     r'''Works in library.
     '''
 
-    input_ = 'y ck* y q'
+    input_ = 'Y ck* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

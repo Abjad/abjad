@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_make_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'm vnew _test q' 
+        input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         string = 'Abjad IDE - materials - views - _test (EDIT)'
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_make_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'm vnew _test q' 
+        input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         string = 'instrumentation'
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_make_view_04():
     pytest.skip('port me forward')
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'm vnew _test rm all'
+        input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done <return> q' 
         score_manager._run(input_=input_)
 
@@ -73,13 +73,13 @@ def test_MaterialPackageWrangler_make_view_04():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'm va b vrm _test <return> q'
+        input_ = 'M va b vrm _test <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents
         assert '_test' in contents
 
-        input_ = 'm va q'
+        input_ = 'M va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

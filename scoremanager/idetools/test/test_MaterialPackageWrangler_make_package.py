@@ -33,7 +33,7 @@ def test_MaterialPackageWrangler_make_package_01():
     r'''Back works in path getter.
     '''
 
-    input_ = 'm new b q'
+    input_ = 'M new b q'
     score_manager._run(input_=input_)
 
     titles = [
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_make_package_02():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
@@ -96,7 +96,7 @@ def test_MaterialPackageWrangler_make_package_03():
     contents = '\n'.join(lines)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         with open(definition_py_path, 'r') as file_pointer:
@@ -111,7 +111,7 @@ def test_MaterialPackageWrangler_make_package_04():
     '''
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         assert os.path.exists(initializer_file_path)
@@ -126,14 +126,14 @@ def test_MaterialPackageWrangler_make_package_05():
     '''
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'm rm testnotes remove q'
+        input_ = 'M rm testnotes remove q'
         score_manager._run(input_=input_)
         assert not os.path.exists(path)
 
@@ -144,7 +144,7 @@ def test_MaterialPackageWrangler_make_package_06():
     '''
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
@@ -153,10 +153,10 @@ def test_MaterialPackageWrangler_make_package_06():
             boilerplate_definition_py_path,
             definition_py_path,
             )
-        input_ = 'm testnotes dp y q'
+        input_ = 'M testnotes dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(output_py_path)
-        input_ = 'm rm testnotes remove q'
+        input_ = 'M rm testnotes remove q'
         score_manager._run(input_=input_)
         assert not os.path.exists(path)
 
@@ -174,14 +174,14 @@ def test_MaterialPackageWrangler_make_package_07():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y <return> testnotes dms <return> q'
+        input_ = 'M new testnotes y <return> testnotes dms <return> q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
         manager = scoremanager.idetools.MaterialPackageManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        input_ = 'm rm testnotes remove q'
+        input_ = 'M rm testnotes remove q'
         score_manager._run(input_=input_)
 
 
@@ -191,13 +191,13 @@ def test_MaterialPackageWrangler_make_package_08():
     '''
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
         shutil.copyfile(exception_file_path, definition_py_path)
         assert filecmp.cmp(definition_py_path, exception_file_path)
-        input_ = 'm rm testnotes remove q'
+        input_ = 'M rm testnotes remove q'
         score_manager._run(input_=input_)
         assert not os.path.exists(path)
 
@@ -209,7 +209,7 @@ def test_MaterialPackageWrangler_make_package_09():
     '''
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new testnotes y q'
+        input_ = 'M new testnotes y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         assert os.path.exists(definition_py_path)
@@ -222,12 +222,12 @@ def test_MaterialPackageWrangler_make_package_09():
             definition_py_path,
             boilerplate_definition_py_path,
             )
-        input_ = 'm testnotes dp y q'
+        input_ = 'M testnotes dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(output_py_path)
         assert not filecmp.cmp(output_py_path, exception_file_path)
         shutil.copyfile(exception_file_path, output_py_path)
         assert filecmp.cmp(output_py_path, exception_file_path)
-        input_ = 'm rm testnotes remove q'
+        input_ = 'M rm testnotes remove q'
         score_manager._run(input_=input_)
         assert not os.path.exists(path)

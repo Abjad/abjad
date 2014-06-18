@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'mdls q'
+    input_ = 'Mdls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

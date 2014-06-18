@@ -11,7 +11,7 @@ def test_MaterialPackageManager_autoedit_definition_py_01():
     '''
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'm example~markup~inventory da q'
+    input_ = 'M example~markup~inventory da q'
     score_manager._run(input_=input_)
 
     title = 'Abjad IDE - materials - example markup inventory (Abjad)'
@@ -42,7 +42,7 @@ def test_MaterialPackageManager_autoedit_definition_py_02():
     assert not os.path.exists(path)
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~tempo~inventory y da y TempoInventory'
+        input_ = 'M new test~tempo~inventory y da y TempoInventory'
         input_ += ' add ((1, 4), 60) add ((1, 4), 90) done y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -71,7 +71,7 @@ def test_MaterialPackageManager_autoedit_definition_py_03():
     inventory = pitchtools.PitchRangeInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~pitch~range~inventory y'
+        input_ = 'M new test~pitch~range~inventory y'
         input_ += ' da y PitchRangeInventory done y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -102,7 +102,7 @@ def test_MaterialPackageManager_autoedit_definition_py_04():
         pitchtools.PitchRange('[C2, G5]'),
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'm new test~pitch~range~inventory y'
+    input_ = 'M new test~pitch~range~inventory y'
     input_ += ' da y PitchRangeInventory'
     input_ += ' add [A0, C8]'
     input_ += ' add [C2, F#5]'
@@ -147,7 +147,7 @@ def test_MaterialPackageManager_autoedit_definition_py_05():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = "m new test~markup~inventory y da y MarkupInventory"
+        input_ = "M new test~markup~inventory y da y MarkupInventory"
         input_ += " add arg r'\\italic~{~serenamente~}' done"
         input_ += " add arg r'\\italic~{~presto~}' done done y dp y q"
         score_manager._run(input_=input_)
@@ -180,7 +180,7 @@ def test_MaterialPackageManager_autoedit_definition_py_06():
     inventory = pitchtools.OctaveTranspositionMappingInventory()
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~transposition~inventory y'
+        input_ = 'M new test~transposition~inventory y'
         input_ += ' da y OctaveTranspositionMappingInventory'
         input_ += ' done y dp y q'
         score_manager._run(input_=input_)
@@ -223,7 +223,7 @@ def test_MaterialPackageManager_autoedit_definition_py_07():
         ])
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~transposition~inventory y'
+        input_ = 'M new test~transposition~inventory y'
         input_ += ' da y OctaveTranspositionMappingInventory'
         input_ += " add add ('[A0, C4)', 15)"
         input_ += " add ('[C4, C8)', 27) done"
@@ -257,7 +257,7 @@ def test_MaterialPackageManager_autoedit_definition_py_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list y da y list 17 foo done dp y q'
+        input_ = 'M new test~list y da y list 17 foo done dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
@@ -285,7 +285,7 @@ def test_MaterialPackageManager_autoedit_definition_py_09():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~list y da y list'
+        input_ = 'M new test~list y da y list'
         input_ += ' add 17 add foo done y dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
@@ -325,7 +325,7 @@ def test_MaterialPackageManager_autoedit_definition_py_10():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~rhythm~maker y da y TaleaRhythmMaker'
+        input_ = 'M new test~rhythm~maker y da y TaleaRhythmMaker'
         input_ += ' add talea counts (-1, 2, -3, 4) denominator 16 done'
         input_ += ' split (6,)'
         input_ += ' extra (2, 3)'
@@ -405,7 +405,7 @@ def test_MaterialPackageManager_autoedit_definition_py_12():
         )
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'm new test~dynamic~handler y'
+        input_ = 'M new test~dynamic~handler y'
         input_ += ' da y ReiteratedDynamicHandler'
         input_ += ' dy f md (1, 16) done y dp y q'
         score_manager._run(input_=input_)

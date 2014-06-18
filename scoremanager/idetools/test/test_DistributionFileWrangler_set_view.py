@@ -17,7 +17,7 @@ def test_DistributionFileWrangler_set_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'd vnew _test rm all'
+        input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' <return> vs _test vrm _test <return> q'
         score_manager._run(input_=input_)

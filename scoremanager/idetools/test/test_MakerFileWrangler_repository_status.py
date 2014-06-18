@@ -8,7 +8,7 @@ def test_MakerFileWrangler_repository_status_01():
     r'''Works with library.
     '''
 
-    input_ = 'k rst q'
+    input_ = 'K rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

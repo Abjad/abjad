@@ -13,7 +13,7 @@ def test_ScorePackageWrangler_write_metadata_py_01():
         )
 
     with systemtools.FilesystemState(keep=[metadata_py_path]):
-        input_ = 'mdw y q'
+        input_ = 'Mdw y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 

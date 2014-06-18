@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'm mdls q'
+    input_ = 'M mdls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_pytest_03():
     r'''Works on all material packages in library.
     '''
 
-    input_ = 'm pyt q'
+    input_ = 'M pyt q'
     score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 

@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_to_previous_score_01():
 
 def test_MakerFileWrangler_go_to_previous_score_02():
 
-    input_ = 'k << q'
+    input_ = 'K << q'
     score_manager._run(input_=input_)
 
     titles = [

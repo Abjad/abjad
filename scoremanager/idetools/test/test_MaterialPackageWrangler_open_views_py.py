@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_open_views_py_01():
 
-    input_ = 'm vo q'
+    input_ = 'M vo q'
     score_manager._run(input_=input_)
 
     assert score_manager._session._attempted_to_open_file

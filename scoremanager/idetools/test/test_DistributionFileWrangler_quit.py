@@ -15,7 +15,7 @@ def test_DistributionFileWrangler_quit_01():
 
 def test_DistributionFileWrangler_quit_02():
     
-    input_ = 'd q'
+    input_ = 'D q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

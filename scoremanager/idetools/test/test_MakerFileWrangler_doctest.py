@@ -8,7 +8,7 @@ def test_MakerFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'k pyd q'
+    input_ = 'K pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

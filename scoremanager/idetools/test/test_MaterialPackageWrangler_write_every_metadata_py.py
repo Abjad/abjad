@@ -38,7 +38,7 @@ def test_MaterialPackageWrangler_write_every_metadata_py_01():
 
 def test_MaterialPackageWrangler_write_every_metadata_py_02():
 
-    input_ = 'm mdw* n q'
+    input_ = 'M mdw* n q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

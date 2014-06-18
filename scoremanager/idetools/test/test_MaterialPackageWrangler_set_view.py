@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_set_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'm vnew _test rm all'
+        input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done <return>'
         input_ += ' vs _test vrm _test <return> q'

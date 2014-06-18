@@ -8,7 +8,7 @@ def test_StylesheetWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'y pyd q'
+    input_ = 'Y pyd q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

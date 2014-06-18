@@ -8,7 +8,7 @@ def test_MakerFileWrangler_pytest_01():
     r'''Works on all test files in all maker file directories.
     '''
 
-    input_ = 'k pyt q'
+    input_ = 'K pyt q'
     score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 

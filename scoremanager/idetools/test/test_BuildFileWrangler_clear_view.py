@@ -19,7 +19,7 @@ def test_BuildFileWrangler_clear_view_01():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
-    input_ = 'u vnew _test rm all'
+    input_ = 'U vnew _test rm all'
     input_ += ' add segment-01.ly~(Red~Example~Score) done <return>'
     input_ += ' vs _test vcl vrm _test <return> q'
 

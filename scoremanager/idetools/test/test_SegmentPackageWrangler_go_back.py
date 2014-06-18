@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler_go_back_01():
 
 def test_SegmentPackageWrangler_go_back_02():
 
-    input_ = 'g b q'
+    input_ = 'G b q'
     score_manager._run(input_=input_)
 
     titles = [

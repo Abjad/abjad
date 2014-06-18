@@ -20,6 +20,6 @@ def test_StylesheetWrangler_update_from_repository_02():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'y rup <return> q'
+    input_ = 'Y rup <return> q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_update_from_repository

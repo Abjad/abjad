@@ -28,7 +28,7 @@ def test_DistributionFileWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'd mdls q'
+    input_ = 'D mdls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

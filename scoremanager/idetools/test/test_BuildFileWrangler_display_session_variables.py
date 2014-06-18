@@ -16,7 +16,7 @@ def test_BuildFileWrangler_display_session_variables_01():
 
 def test_BuildFileWrangler_display_session_variables_02():
     
-    input_ = 'u sv q'
+    input_ = 'U sv q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

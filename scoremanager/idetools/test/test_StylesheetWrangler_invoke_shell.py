@@ -9,7 +9,7 @@ def test_StylesheetWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'y !pwd q'
+    input_ = 'Y !pwd q'
     score_manager._run(input_=input_)
 
     path = os.path.join(

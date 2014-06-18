@@ -9,7 +9,7 @@ def test_BuildFileWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'u !pwd q'
+    input_ = 'U !pwd q'
     score_manager._run(input_=input_)
 
     path = os.path.join(

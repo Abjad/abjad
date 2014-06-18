@@ -14,7 +14,7 @@ def test_DistributionFileWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'd vnew _test_100 rm all'
+        input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' <return> d vnew _test_101 rm all'
         input_ += ' add'
@@ -23,16 +23,16 @@ def test_DistributionFileWrangler_remove_views_01():
         input_ += ' q' 
         score_manager._run(input_=input_)
 
-        input_ = 'd va q'
+        input_ = 'D va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' in contents
         assert '_test_101' in contents
 
-        input_ = 'd vrm _test_100-_test_101 <return> q'
+        input_ = 'D vrm _test_100-_test_101 <return> q'
         score_manager._run(input_=input_)
 
-        input_ = 'd va q'
+        input_ = 'D va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents
@@ -44,7 +44,7 @@ def test_DistributionFileWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'd vrm b q'
+        input_ = 'D vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 

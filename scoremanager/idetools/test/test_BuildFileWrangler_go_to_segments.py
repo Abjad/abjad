@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_segments_02():
     r'''Goes from build file library to segment library.
     '''
 
-    input_ = 'u g q'
+    input_ = 'U G q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

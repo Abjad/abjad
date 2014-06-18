@@ -8,7 +8,7 @@ def test_BuildFileWrangler_pytest_01():
     r'''Works on all build files in library.
     '''
 
-    input_ = 'u pyt q'
+    input_ = 'U pyt q'
     score_manager._run(input_=input_)
     transcript_contents = score_manager._transcript.contents
 

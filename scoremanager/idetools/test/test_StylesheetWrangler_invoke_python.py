@@ -15,7 +15,7 @@ def test_StylesheetWrangler_invoke_python_01():
 
 def test_StylesheetWrangler_invoke_python_02():
     
-    input_ = 'y pyi 2**38 q'
+    input_ = 'Y pyi 2**38 q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

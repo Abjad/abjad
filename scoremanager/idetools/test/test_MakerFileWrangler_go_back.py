@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_back_01():
 
 def test_MakerFileWrangler_go_back_02():
 
-    input_ = 'k b q'
+    input_ = 'K b q'
     score_manager._run(input_=input_)
 
     titles = [

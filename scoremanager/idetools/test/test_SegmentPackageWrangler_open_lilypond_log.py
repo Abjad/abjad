@@ -18,7 +18,7 @@ def test_SegmentPackageWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'g log q'
+    input_ = 'G log q'
     score_manager._run(input_=input_)
     
     assert score_manager._session._attempted_to_open_file

@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_to_maker_files_01():
     r'''From materials directory to build directory.
     '''
 
-    input_ = 'k q'
+    input_ = 'K q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

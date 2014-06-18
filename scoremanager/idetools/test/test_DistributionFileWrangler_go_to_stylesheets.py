@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_go_to_stylesheets_02():
     r'''Goes from distribution file library to stylesheet library.
     '''
 
-    input_ = 'd y q'
+    input_ = 'D Y q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

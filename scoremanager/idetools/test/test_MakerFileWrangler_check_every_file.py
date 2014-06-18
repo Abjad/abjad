@@ -20,7 +20,7 @@ def test_MakerFileWrangler_check_every_file_02():
     r'''Works in library.
     '''
 
-    input_ = 'k ck* y q'
+    input_ = 'K ck* y q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

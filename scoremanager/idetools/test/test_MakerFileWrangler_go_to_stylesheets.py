@@ -23,7 +23,7 @@ def test_MakerFileWrangler_go_to_stylesheets_02():
     r'''Goes from maker file library to stylesheet library.
     '''
 
-    input_ = 'k y q'
+    input_ = 'K Y q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_make_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'g vnew _test q' 
+        input_ = 'G vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         string = 'Abjad IDE - segments - views - _test (EDIT)'
@@ -29,7 +29,7 @@ def test_SegmentPackageWrangler_make_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'g vnew _test q' 
+        input_ = 'G vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         string = 'A'
@@ -64,7 +64,7 @@ def test_SegmentPackageWrangler_make_view_04():
     pytest.skip('port me forward.')
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'g vnew _test rm all'
+        input_ = 'G vnew _test rm all'
         input_ += ' add A~(Red~Example~Score) done <return> q' 
         score_manager._run(input_=input_)
 
@@ -74,13 +74,13 @@ def test_SegmentPackageWrangler_make_view_04():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'g va b vrm _test <return> q'
+        input_ = 'G va b vrm _test <return> q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents
         assert '_test' in contents
 
-        input_ = 'y va q'
+        input_ = 'Y va q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

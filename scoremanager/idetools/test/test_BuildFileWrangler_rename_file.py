@@ -26,14 +26,14 @@ def test_BuildFileWrangler_rename_file_01():
 
     assert os.path.exists(path)
 
-    input_ = 'u ren score.pdf~(Red~Example~Score)'
+    input_ = 'U ren score.pdf~(Red~Example~Score)'
     input_ += ' foo-score.pdf y q'
     score_manager._run(input_=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     # no shutil because need to rename file in repository
-    input_ = 'u ren foo-score.pdf~(Red~Example~Score)'
+    input_ = 'U ren foo-score.pdf~(Red~Example~Score)'
     input_ += ' score.pdf y q'
     score_manager._run(input_=input_)
     assert not os.path.exists(new_path)
