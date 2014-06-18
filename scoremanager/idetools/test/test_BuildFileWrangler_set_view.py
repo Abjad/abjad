@@ -4,10 +4,6 @@ from abjad import *
 import scoremanager
 # must be is_test=False for view tests
 score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
-views_file = os.path.join(
-    score_manager._configuration.wrangler_views_directory,
-    '__BuildFileWrangler_views__.py',
-    )
 
 
 def test_BuildFileWrangler_set_view_01():
@@ -16,7 +12,15 @@ def test_BuildFileWrangler_set_view_01():
     Makes sure only select build files are visible.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__BuildFileWrangler_views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'U vnew _test rm all'
         input_ += ' add segment-01.ly~(Red~Example~Score)'
         input_ += ' add segment-02.ly~(Red~Example~Score)'
@@ -47,7 +51,19 @@ def test_BuildFileWrangler_set_view_02():
     Makes sure only select build file is visible.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score u vnew _test rm all'
         input_ += ' add segment-01.ly done <return>'
         input_ += ' vs _test vrm _test <return> q'

@@ -4,10 +4,6 @@ from abjad import *
 import scoremanager
 # must have is_test=False to test view application
 score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
-views_file = os.path.join(
-    score_manager._configuration.wrangler_views_directory,
-    '__SegmentPackageWrangler_views__.py',
-    )
 
 
 def test_SegmentPackageWrangler_set_view_01():
@@ -16,7 +12,15 @@ def test_SegmentPackageWrangler_set_view_01():
     Makes sure only one segment is visible after view is applied.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__SegmentPackageWrangler_views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'G vnew _test rm 1-99'
         input_ += ' add A~(Red~Example~Score) done <return>'
         input_ += ' vs _test vrm _test <return> q'
@@ -43,7 +47,19 @@ def test_SegmentPackageWrangler_set_view_02():
     Makes sure only one segment is visible after view is applied.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'segments',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'segments',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score g vnew _test'
         input_ += ' rm all add A done <return>'
         input_ += ' vs _test vrm _test <return> q'

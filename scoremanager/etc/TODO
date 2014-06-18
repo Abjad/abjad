@@ -52,10 +52,5 @@
 
 23. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
 
-24. Change red_example_score/build/__metadata__.py from ...
-        metadata = collections.OrderedDict([
-            ('view_name', '_test'),
-            ])
-    ... to ...
-        metadata = collections.OrderedDict([])
-    ... instead.
+24. Audit views test and make sure both __views__.py and __metadata__.py
+    files are preserved.
