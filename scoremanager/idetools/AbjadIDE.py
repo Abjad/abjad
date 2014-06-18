@@ -119,7 +119,7 @@ class AbjadIDE(AssetController):
     def _list_storehouse_paths(self):
         paths = []
         paths.append(self._configuration.user_library_makers_directory)
-        paths.append(self._configuration.abjad_material_packages_directory)
+        paths.append(self._configuration.example_material_packages_directory)
         paths.append(self._configuration.user_library_material_packages_directory)
         paths.append(self._configuration.abjad_stylesheets_directory)
         paths.append(self._configuration.user_library_stylesheets_directory)

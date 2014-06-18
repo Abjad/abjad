@@ -400,7 +400,7 @@ class Session(abctools.AbjadObject):
         if self.current_score_directory:
             return os.path.join(self.current_score_directory, 'materials')
         else:
-            return self._configuration.abjad_material_packages_directory
+            return self._configuration.example_material_packages_directory
 
     @property
     def current_score_directory(self):

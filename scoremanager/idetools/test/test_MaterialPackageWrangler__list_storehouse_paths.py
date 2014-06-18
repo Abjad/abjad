@@ -12,7 +12,7 @@ def test_MaterialPackageWrangler__list_storehouse_paths_01():
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
 
     paths = [
-        wrangler._configuration.abjad_material_packages_directory,
+        wrangler._configuration.example_material_packages_directory,
         ]
 
     result = wrangler._list_storehouse_paths(

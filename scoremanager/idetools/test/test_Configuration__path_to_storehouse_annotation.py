@@ -30,7 +30,7 @@ def test_Configuration__path_to_storehouse_annotation_02():
     r'''Abjad library paths annotate 'Abjad'.
     '''
 
-    path = configuration.abjad_material_packages_directory
+    path = configuration.example_material_packages_directory
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == 'Abjad'
 

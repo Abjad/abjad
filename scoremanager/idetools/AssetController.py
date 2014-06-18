@@ -447,7 +447,7 @@ class AssetController(Controller):
         elif path.startswith(self._configuration.abjad_stylesheets_directory):
             annotation = 'Abjad stylesheets'
         elif path.startswith(
-            self._configuration.abjad_material_packages_directory):
+            self._configuration.example_material_packages_directory):
             annotation = 'Example material packages'
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'

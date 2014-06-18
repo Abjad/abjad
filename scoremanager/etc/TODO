@@ -55,12 +55,10 @@
 24. Audit views test and make sure both __views__.py and __metadata__.py
     files are preserved.
 
-25. Remove Configuration.abjad_makers_directory.
-
-26. Change Configuration.abjad_material_packages_directory to
+25. Change Configuration.example_material_packages_directory to
     Configuration.example_material_packages_directory.
 
-27. Replace 'abjad_library' with something else.
+26. Replace 'abjad_library' with something else.
 
-28. Possibly remove '<return>' from all tests.
+27. Possibly remove '<return>' from all tests.
     Looks like command is always unknown when tests run.

@@ -184,33 +184,14 @@ class Configuration(AbjadConfiguration):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def abjad_makers_directory(self):
-        r'''Gets Abjad makers directory.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.abjad_makers_directory
-                '.../scoremanager/makers'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.score_manager_directory,
-            'makers',
-            )
-        return path
-
-    @property
-    def abjad_material_packages_directory(self):
+    def example_material_packages_directory(self):
         r'''Gets Abjad material packages directory.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_material_packages_directory
+                >>> configuration.example_material_packages_directory
                 '.../scoremanager/materials'
 
         Returns string.
@@ -670,7 +651,7 @@ class Configuration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif path.startswith(self.abjad_material_packages_directory):
+        elif path.startswith(self.example_material_packages_directory):
             prefix = len(self.abjad_root_directory) + 1
         elif path.startswith(self.score_manager_directory):
             prefix = len(os.path.dirname(self.score_manager_directory)) + 1
