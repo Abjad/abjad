@@ -769,7 +769,7 @@ class PackageManager(ScoreInternalAssetController):
                         break
                     elif not result:
                         continue
-                    self._handle_main_menu_result(result)
+                    self._handle_input(result)
                     if self._exit_run():
                         break
 

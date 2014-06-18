@@ -151,7 +151,7 @@ class Autoeditor(Controller):
                 result.append('{}: {}'.format(name, value))
         return result
 
-    def _handle_main_menu_result(self, result):
+    def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
         if result == '<return>':
             self._session._is_backtracking_locally = True
@@ -312,7 +312,7 @@ class Autoeditor(Controller):
                         continue
                 if result == 'done':
                     break
-                self._handle_main_menu_result(result)
+                self._handle_input(result)
                 self._session._pending_redraw = True
                 if self._session.is_backtracking:
                     return

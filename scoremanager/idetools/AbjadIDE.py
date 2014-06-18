@@ -139,7 +139,7 @@ class AbjadIDE(AssetController):
                 if not result:
                     result = self._session.wrangler_navigation_directive
                 if result:
-                    self._score_package_wrangler._handle_main_menu_result(
+                    self._score_package_wrangler._handle_input(
                         result)
                 elif not self._session.is_navigating_to_library:
                     self._score_package_wrangler._run()
@@ -147,7 +147,7 @@ class AbjadIDE(AssetController):
                     menu = self._make_main_menu()
                     result = menu._run()
                     if result:
-                        self._handle_main_menu_result(result)
+                        self._handle_input(result)
                 self._update_session_variables()
                 if self._session.is_quitting:
                     if not self._transcript[-1][-1] == '':

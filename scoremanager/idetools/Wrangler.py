@@ -948,7 +948,7 @@ class Wrangler(ScoreInternalAssetController):
                 if self._session.is_backtracking:
                     return
                 if result:
-                    self._handle_main_menu_result(result)
+                    self._handle_input(result)
                     if self._session.is_backtracking:
                         return
 

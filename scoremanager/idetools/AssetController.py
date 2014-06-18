@@ -143,7 +143,7 @@ class AssetController(Controller):
         self._session._display_available_commands = False
         self._set_is_navigating_to_sibling_asset()
 
-    def _handle_main_menu_result(self, result):
+    def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
         if result == '<return>':
             return

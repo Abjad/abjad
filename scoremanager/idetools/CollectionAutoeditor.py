@@ -161,7 +161,7 @@ class CollectionAutoeditor(Autoeditor):
             result.append(self._io_manager._get_one_line_menu_summary(item))
         return result
 
-    def _handle_main_menu_result(self, result):
+    def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
         if result in self._input_to_method:
             self._input_to_method[result]()
@@ -170,7 +170,7 @@ class CollectionAutoeditor(Autoeditor):
                 self.edit_item(result)
         else:
             superclass = super(CollectionAutoeditor, self)
-            superclass._handle_main_menu_result(result)
+            superclass._handle_input(result)
 
     def _initialize_target(self):
         if self.target is not None:
