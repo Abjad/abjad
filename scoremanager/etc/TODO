@@ -59,3 +59,5 @@
 
 26. Refactor (rcn) to first list all unadded assets and then prompt for
     removal.
+
+27. Remove input arguments from invoke_python() and invoke_shell() signatures.
