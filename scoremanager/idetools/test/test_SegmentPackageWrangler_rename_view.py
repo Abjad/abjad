@@ -14,7 +14,7 @@ def test_SegmentPackageWrangler_rename_view_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'G vnew _test_100 rm all'
-        input_ += ' add A~(Red~Example~Score) done <return> q' 
+        input_ += ' add A~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)
             
         input_ = 'G va q'
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_rename_view_01():
         assert '_test_100' in contents
         assert '_test_101' not in contents
 
-        input_ = 'G vren _test_100 _test_101 <return> q'
+        input_ = 'G vren _test_100 _test_101 q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
@@ -33,7 +33,7 @@ def test_SegmentPackageWrangler_rename_view_01():
         assert '_test_100' not in contents
         assert '_test_101' in contents
 
-        input_ = 'G vrm _test_101 <return> q'
+        input_ = 'G vrm _test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'G va q'

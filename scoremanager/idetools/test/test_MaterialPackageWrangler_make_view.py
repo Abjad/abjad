@@ -64,7 +64,7 @@ def test_MaterialPackageWrangler_make_view_04():
 
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'M vnew _test rm all'
-        input_ += ' add instrumentation~(Red~Example~Score) done <return> q' 
+        input_ += ' add instrumentation~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)
 
         lines =['> done', '']
@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler_make_view_04():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'M va b vrm _test <return> q'
+        input_ = 'M va b vrm _test q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

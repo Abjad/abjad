@@ -22,8 +22,8 @@ def test_SegmentPackageWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'G vnew _test rm 1-99'
-        input_ += ' add A~(Red~Example~Score) done <return>'
-        input_ += ' vs _test vrm _test <return> q'
+        input_ += ' add A~(Red~Example~Score) done'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -61,8 +61,8 @@ def test_SegmentPackageWrangler_set_view_02():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score g vnew _test'
-        input_ += ' rm all add A done <return>'
-        input_ += ' vs _test vrm _test <return> q'
+        input_ += ' rm all add A done'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

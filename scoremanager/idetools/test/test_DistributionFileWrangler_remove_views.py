@@ -16,10 +16,10 @@ def test_DistributionFileWrangler_remove_views_01():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
-        input_ += ' <return> d vnew _test_101 rm all'
+        input_ += ' d vnew _test_101 rm all'
         input_ += ' add'
         input_ += ' red-example-score-program-notes.pdf~(Red~Example~Score)'
-        input_ += ' done <return>'
+        input_ += ' done'
         input_ += ' q' 
         score_manager._run(input_=input_)
 
@@ -29,7 +29,7 @@ def test_DistributionFileWrangler_remove_views_01():
         assert '_test_100' in contents
         assert '_test_101' in contents
 
-        input_ = 'D vrm _test_100-_test_101 <return> q'
+        input_ = 'D vrm _test_100-_test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'D va q'

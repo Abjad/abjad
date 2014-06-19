@@ -15,7 +15,7 @@ metadata_py_path = os.path.join(
 def test_MaterialPackageManager_write_metadata_py_01():
 
     with systemtools.FilesystemState(keep=[metadata_py_path]):
-        input_ = 'red~example~score m magic~numbers mdw <return> q'
+        input_ = 'red~example~score m magic~numbers mdw q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 

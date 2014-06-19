@@ -9,7 +9,7 @@ def test_SegmentPackageManager_list_versions_directory_01():
     '''
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score g 1 vrls <return> q'
+    input_ = 'red~example~score g 1 vrls q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

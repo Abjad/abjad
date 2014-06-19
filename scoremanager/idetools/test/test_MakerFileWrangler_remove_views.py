@@ -16,10 +16,10 @@ def test_MakerFileWrangler_remove_views_01():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'K vnew _test_100 rm all'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
-        input_ += ' done <return>' 
+        input_ += ' done' 
         input_ += ' k vnew _test_101 rm all'
         input_ += ' add RedExampleScoreRhythmMaker.py~(Red~Example~Score)'
-        input_ += ' done <return>'
+        input_ += ' done'
         input_ += ' q' 
         score_manager._run(input_=input_)
 
@@ -29,7 +29,7 @@ def test_MakerFileWrangler_remove_views_01():
         assert '_test_100' in contents
         assert '_test_101' in contents
 
-        input_ = 'K vrm _test_100-_test_101 <return> q'
+        input_ = 'K vrm _test_100-_test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'K va q'

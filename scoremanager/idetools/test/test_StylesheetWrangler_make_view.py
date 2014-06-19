@@ -45,7 +45,7 @@ def test_StylesheetWrangler_make_view_03():
     pytest.skip('port me forward.')
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'Y vnew _test rm all add clean-letter-14.ily done <return> q' 
+        input_ = 'Y vnew _test rm all add clean-letter-14.ily done q' 
         score_manager._run(input_=input_)
 
         lines =['> done', '']
@@ -54,7 +54,7 @@ def test_StylesheetWrangler_make_view_03():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'Y vea b vrm _test <return> q'
+        input_ = 'Y vea b vrm _test q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

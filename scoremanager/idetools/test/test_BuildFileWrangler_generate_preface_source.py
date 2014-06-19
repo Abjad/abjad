@@ -8,7 +8,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 def test_BuildFileWrangler_generate_preface_source_01():
     r'''Works when preface source doesn't yet exist.
 
-    Supplies papersize={8.5in, 11in} as a <return>.
+    Supplies papersize={8.5in, 11in} as a.
     '''
 
     source_path = os.path.join(

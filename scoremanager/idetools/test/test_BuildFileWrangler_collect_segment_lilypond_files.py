@@ -46,7 +46,7 @@ def test_BuildFileWrangler_collect_segment_lilypond_files_01():
         assert not os.path.isfile(file_path)
 
     # call (mc)
-    input_ = 'red~example~score u mc y <return> q'
+    input_ = 'red~example~score u mc y q'
     score_manager._run(input_=input_)
 
     # make sure new segment files are currently in build directory

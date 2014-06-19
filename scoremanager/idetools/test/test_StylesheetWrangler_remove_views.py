@@ -14,8 +14,8 @@ def test_StylesheetWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file]):
-        input_ = 'Y vnew _test_100 rm all add clean-letter-14.ily done <return>' 
-        input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done <return>'
+        input_ = 'Y vnew _test_100 rm all add clean-letter-14.ily done' 
+        input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done'
         input_ += ' q' 
         score_manager._run(input_=input_)
 
@@ -25,7 +25,7 @@ def test_StylesheetWrangler_remove_views_01():
         assert '_test_100' in contents
         assert '_test_101' in contents
 
-        input_ = 'Y vrm _test_100-_test_101 <return> q'
+        input_ = 'Y vrm _test_100-_test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'Y va q'

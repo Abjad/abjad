@@ -54,7 +54,7 @@ def test_BuildFileWrangler_make_view_03():
 
     assert 'Abjad IDE - build files [_test]' in contents
 
-    input_ = 'U va b vrm _test <return> q'
+    input_ = 'U va b vrm _test q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'found' in contents or 'found' in contents

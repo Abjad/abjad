@@ -16,7 +16,7 @@ def test_DistributionFileWrangler_rename_view_01():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
-        input_ += ' <return> q' 
+        input_ += ' q' 
         score_manager._run(input_=input_)
             
         input_ = 'D va q'
@@ -25,7 +25,7 @@ def test_DistributionFileWrangler_rename_view_01():
         assert '_test_100' in contents
         assert '_test_101' not in contents
 
-        input_ = 'D vren _test_100 _test_101 <return> q'
+        input_ = 'D vren _test_100 _test_101 q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
@@ -35,7 +35,7 @@ def test_DistributionFileWrangler_rename_view_01():
         assert '_test_100' not in contents
         assert '_test_101' in contents
 
-        input_ = 'D vrm _test_101 <return> q'
+        input_ = 'D vrm _test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'D va q'

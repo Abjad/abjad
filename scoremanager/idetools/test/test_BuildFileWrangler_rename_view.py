@@ -16,7 +16,7 @@ def test_BuildFileWrangler_rename_view_01():
     with systemtools.FilesystemState(keep=[views_file]):
 
         input_ = 'U vnew _test_100 rm all'
-        input_ += ' add score.pdf~(Red~Example~Score) done <return> q' 
+        input_ += ' add score.pdf~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)
             
         input_ = 'U va q'
@@ -25,7 +25,7 @@ def test_BuildFileWrangler_rename_view_01():
         assert '_test_100' in contents
         assert '_test_101' not in contents
 
-        input_ = 'U vren _test_100 _test_101 <return> q'
+        input_ = 'U vren _test_100 _test_101 q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
 
@@ -35,7 +35,7 @@ def test_BuildFileWrangler_rename_view_01():
         assert '_test_100' not in contents
         assert '_test_101' in contents
 
-        input_ = 'U vrm _test_101 <return> q'
+        input_ = 'U vrm _test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'U va q'

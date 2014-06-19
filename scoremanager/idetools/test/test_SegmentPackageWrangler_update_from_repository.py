@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler_update_from_repository_01():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score g rup <return> q'
+    input_ = 'red~example~score g rup q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_update_from_repository
 
@@ -20,6 +20,6 @@ def test_SegmentPackageWrangler_update_from_repository_02():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'G rup <return> q'
+    input_ = 'G rup q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_update_from_repository

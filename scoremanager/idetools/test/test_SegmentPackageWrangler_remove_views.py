@@ -15,9 +15,9 @@ def test_SegmentPackageWrangler_remove_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'G vnew _test_100 rm all'
-        input_ += ' add A~(Red~Example~Score) done <return>' 
+        input_ += ' add A~(Red~Example~Score) done' 
         input_ += ' g vnew _test_101 rm all'
-        input_ += ' add segment~02~(Red~Example~Score) done <return>'
+        input_ += ' add segment~02~(Red~Example~Score) done'
         input_ += ' q' 
         score_manager._run(input_=input_)
 
@@ -27,7 +27,7 @@ def test_SegmentPackageWrangler_remove_views_01():
         assert '_test_100' in contents
         assert '_test_101' in contents
 
-        input_ = 'G vrm _test_100-_test_101 <return> q'
+        input_ = 'G vrm _test_100-_test_101 q'
         score_manager._run(input_=input_)
 
         input_ = 'G va q'

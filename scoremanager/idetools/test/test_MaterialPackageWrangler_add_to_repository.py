@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_add_to_repository_01():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score m rad <return> q'
+    input_ = 'red~example~score m rad q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository
 
@@ -20,6 +20,6 @@ def test_MaterialPackageWrangler_add_to_repository_02():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'M rad <return> q'
+    input_ = 'M rad q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository

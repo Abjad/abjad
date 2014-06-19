@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_write_cache_01():
     AbjadIDE._run() always preserves cache during tests.
     '''
 
-    input_ = 'cw <return> q'
+    input_ = 'cw q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
     assert 'Wrote' in contents

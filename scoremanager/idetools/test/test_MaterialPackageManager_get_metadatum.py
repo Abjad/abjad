@@ -16,7 +16,7 @@ def test_MaterialPackageManager_get_metadatum_01():
 
     with systemtools.FilesystemState(keep=[metadata_py_path]):
         # make sure no flavor metadatum found
-        input_ = 'red~example~score m magic~numbers mdg flavor <return> q'
+        input_ = 'red~example~score m magic~numbers mdg flavor q'
         score_manager._run(input_=input_)
         assert 'None' in score_manager._transcript.contents
 
@@ -25,6 +25,6 @@ def test_MaterialPackageManager_get_metadatum_01():
         score_manager._run(input_=input_)
 
         # maker sure flavor metadatum now equal to 'cherry'
-        input_ = 'red~example~score m magic~numbers mdg flavor <return> q'
+        input_ = 'red~example~score m magic~numbers mdg flavor q'
         score_manager._run(input_=input_)
         assert "'cherry'" in score_manager._transcript.contents

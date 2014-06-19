@@ -174,7 +174,7 @@ def test_MaterialPackageWrangler_make_package_07():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'M new testnotes y <return> testnotes dms <return> q'
+        input_ = 'M new testnotes y testnotes dms q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)

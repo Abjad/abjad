@@ -258,7 +258,7 @@ def test_ListAutoeditor__run_12():
         session=session,
         target=target,
         )
-    input_ = 'add first~pattern <return> add second~pattern <return> done'
+    input_ = 'add first~pattern add second~pattern done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 

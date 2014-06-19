@@ -47,7 +47,7 @@ def test_MakerFileWrangler_make_view_03():
     with systemtools.FilesystemState(keep=[views_file]):
         input_ = 'K vnew _test rm all'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
-        input_ += ' done <return> q' 
+        input_ += ' done q' 
         score_manager._run(input_=input_)
 
         lines =['> done', '']
@@ -56,7 +56,7 @@ def test_MakerFileWrangler_make_view_03():
         lines = ['View inventory written to disk.', '']
         assert score_manager._transcript[-4].lines == lines
             
-        input_ = 'K va b vrm _test <return> q'
+        input_ = 'K va b vrm _test q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert 'found' in contents or 'found' in contents

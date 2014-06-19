@@ -23,8 +23,8 @@ def test_MaterialPackageWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score)'
-        input_ += ' add tempo~inventory~(Red~Example~Score) done <return>'
-        input_ += ' vs _test vrm _test <return> q'
+        input_ += ' add tempo~inventory~(Red~Example~Score) done'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -64,8 +64,8 @@ def test_MaterialPackageWrangler_set_view_02():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score m vnew _test rm all'
-        input_ += ' add instrumentation done <return>'
-        input_ += ' vs _test vrm _test <return> q'
+        input_ += ' add instrumentation done'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 

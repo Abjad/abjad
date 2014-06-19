@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
-        input_ += ' <return> vs _test vrm _test <return> q'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -61,8 +61,8 @@ def test_DistributionFileWrangler_set_view_02():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score d vnew _test rm all'
-        input_ += ' add red-example-score.pdf done <return>'
-        input_ += ' vs _test vrm _test <return> q'
+        input_ += ' add red-example-score.pdf done'
+        input_ += ' vs _test vrm _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
