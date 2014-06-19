@@ -149,6 +149,8 @@ class AbjadIDE(Wrangler):
         menu = idetools.AssetController._make_main_menu(self)
         self._make_asset_menu_section(menu)
         self._make_init_py_menu_section(menu)
+        self._make_views_menu_section(menu)
+        self._make_views_py_menu_section(menu)
         return menu
 
     def _run(self, input_=None):
@@ -181,6 +183,8 @@ class AbjadIDE(Wrangler):
                 elif not self._session.is_navigating_to_library:
                     self._score_package_wrangler._run()
                 else:
+                    # TODO: remove following line (but test after)
+                    self._is_navigating_to_library = False
                     menu = self._make_main_menu()
                     result = menu._run()
                     if result:
@@ -197,20 +201,6 @@ class AbjadIDE(Wrangler):
 
     ### PUBLIC METHODS ###
 
-#    def add_to_repository(self):
-#        r'''Adds files to repository.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
-#
-#    def commit_to_repository(self):
-#        r'''Commit modified files to repository.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
-
     def list_every_init_py(self):
         r'''Lists every ``__init__.py``.
 
@@ -224,34 +214,6 @@ class AbjadIDE(Wrangler):
         Returns none.
         '''
         self._io_manager._display_not_yet_implemented()
-
-#    def repository_clean(self):
-#        r'''Removes unadded files from filesystem.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
-#
-#    def repository_status(self):
-#        r'''Displays repository status.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
-#
-#    def revert_to_repository(self):
-#        r'''Reverts files to repository.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
-#
-#    def update_from_repository(self):
-#        r'''Updates from repository.
-#
-#        Returns none.
-#        '''
-#        self._io_manager._display_not_yet_implemented()
 
     def write_every_init_py_stub(self):
         r'''Writes stub to every ``__init__.py``.

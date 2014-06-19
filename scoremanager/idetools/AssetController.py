@@ -513,6 +513,8 @@ class AssetController(Controller):
             return
         assert len(result) == 1
         view_inventory = result[0]
+        if view_inventory is None:
+            view_inventory = idetools.ViewInventory()
         items = list(view_inventory.items())
         view_inventory = idetools.ViewInventory(items)
         return view_inventory

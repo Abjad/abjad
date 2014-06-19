@@ -997,9 +997,10 @@ class Wrangler(ScoreInternalAssetController):
 
         Returns none.
         '''
+        from scoremanager import idetools
         inventory = self._read_view_inventory()
         if inventory is None:
-            return
+            inventory = idetools.ViewInventory()
         autoeditor = self._io_manager._make_autoeditor(
             breadcrumb='views',
             target=inventory,

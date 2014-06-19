@@ -590,6 +590,26 @@ class Session(abctools.AbjadObject):
         return self._io_manager
 
     @property
+    def is_at_top_level(self):
+        r'''Is true when IDE is at top level. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_at_top_level
+                True
+
+        Returns boolean.
+        '''
+        from scoremanager import idetools
+        prototype = (idetools.FileWrangler, idetools.PackageWrangler)
+        for controller in self.controller_stack:
+            if isinstance(controller, prototype):
+                return False
+        return True
+
+    @property
     def is_autoadding(self):
         r'''Is true when session is autoadding. Otherwise false.
 
@@ -636,14 +656,17 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return (
+        if (
             self.is_autonavigating_within_score or
             self.is_backtracking_locally or 
-            self.is_navigating_to_library or
             self.is_backtracking_to_score_manager or
             self.is_backtracking_to_score or
             self.is_quitting
-            )
+            ):
+            return True
+        if self.is_navigating_to_library and not self.is_at_top_level:
+            return True
+        return False
 
     @property
     def is_backtracking_locally(self):
