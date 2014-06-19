@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import systemtools
-from scoremanager.idetools.AssetController import AssetController
+from scoremanager.idetools.Wrangler import Wrangler
 
 
-class AbjadIDE(AssetController):
+class AbjadIDE(Wrangler):
     r'''Abjad IDE.
 
     ..  container:: example
@@ -143,8 +143,10 @@ class AbjadIDE(AssetController):
             )
 
     def _make_main_menu(self):
-        superclass = super(AbjadIDE, self)
-        menu = superclass._make_main_menu()
+        from scoremanager import idetools
+        #superclass = super(AbjadIDE, self)
+        #menu = superclass._make_main_menu()
+        menu = idetools.AssetController._make_main_menu(self)
         self._make_asset_menu_section(menu)
         self._make_init_py_menu_section(menu)
         return menu

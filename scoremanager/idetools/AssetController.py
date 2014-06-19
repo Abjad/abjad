@@ -252,9 +252,6 @@ class AssetController(Controller):
 
     def _make_asset_menu_section(self, menu):
         menu_entries = self._make_asset_menu_entries()
-#        # TODO: debug
-#        for _ in menu_entries:
-#            print _
         if menu_entries:
             menu.make_asset_section(menu_entries=menu_entries)
 

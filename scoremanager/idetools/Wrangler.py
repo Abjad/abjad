@@ -16,6 +16,7 @@ from scoremanager.idetools.ScoreInternalAssetController import \
 
 class Wrangler(ScoreInternalAssetController):
     r'''Wrangler.
+
     '''
 
     ### CLASS VARIABLES ###
