@@ -31,6 +31,7 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_attempted_repository_clean',
         '_attempted_repository_status',
         '_attempted_to_add_to_repository',
         '_attempted_to_commit_to_repository',
@@ -66,7 +67,6 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_materials',
         '_is_navigating_to_segments',
         '_is_navigating_to_stylesheets',
-
         '_pending_redraw',
         '_is_quitting',
         '_is_repository_test',
@@ -100,6 +100,7 @@ class Session(abctools.AbjadObject):
 
     def __init__(self, input_=None, is_test=False):
         from scoremanager import idetools
+        self._attempted_repository_clean = False
         self._attempted_repository_status = False
         self._attempted_to_add_to_repository = False
         self._attempted_to_commit_to_repository = False

@@ -4,11 +4,9 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_AbjadIDE_add_to_repository_01():
-    r'''Flow control reaches method.
-    '''
+def test_AbjadIDE_commit_to_repository_01():
 
     score_manager._session._is_repository_test = True
-    input_ = '** rad q'
+    input_ = '** rci q'
     score_manager._run(input_=input_)
-    assert score_manager._session._attempted_to_add_to_repository
+    assert score_manager._session._attempted_to_commit_to_repository

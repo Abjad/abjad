@@ -55,10 +55,7 @@
 24. Audit views test and make sure both __views__.py and __metadata__.py
     files are preserved.
 
-25. Change Configuration.example_material_packages_directory to
-    Configuration.example_material_packages_directory.
+25. Replace 'abjad_library' with something else.
 
-26. Replace 'abjad_library' with something else.
-
-27. Possibly remove '<return>' from all tests.
-    Looks like command is always unknown when tests run.
+26. Refactor (rcn) to first list all unadded assets and then prompt for
+    removal.

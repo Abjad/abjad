@@ -197,19 +197,19 @@ class AbjadIDE(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def add_to_repository(self):
-        r'''Adds files to repository.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
-    def commit_to_repository(self):
-        r'''Commit modified files to repository.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
+#    def add_to_repository(self):
+#        r'''Adds files to repository.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
+#
+#    def commit_to_repository(self):
+#        r'''Commit modified files to repository.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
 
     def list_every_init_py(self):
         r'''Lists every ``__init__.py``.
@@ -225,33 +225,33 @@ class AbjadIDE(Wrangler):
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def repository_clean(self):
-        r'''Removes unadded files from filesystem.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
-    def repository_status(self):
-        r'''Displays repository status.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
-    def revert_to_repository(self):
-        r'''Reverts files to repository.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
-
-    def update_from_repository(self):
-        r'''Updates from repository.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()
+#    def repository_clean(self):
+#        r'''Removes unadded files from filesystem.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
+#
+#    def repository_status(self):
+#        r'''Displays repository status.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
+#
+#    def revert_to_repository(self):
+#        r'''Reverts files to repository.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
+#
+#    def update_from_repository(self):
+#        r'''Updates from repository.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._display_not_yet_implemented()
 
     def write_every_init_py_stub(self):
         r'''Writes stub to every ``__init__.py``.

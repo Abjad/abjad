@@ -1149,6 +1149,9 @@ class Wrangler(ScoreInternalAssetController):
 
         Returns none.
         '''
+        self._session._attempted_repository_clean = True
+        if self._session.is_test and not self._session.is_in_score:
+            return
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         paths.sort()

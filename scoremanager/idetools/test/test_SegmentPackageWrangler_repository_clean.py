@@ -29,10 +29,6 @@ def test_SegmentPackageWrangler_repository_clean_02():
     r'''Out of score.
     '''
 
-    with systemtools.FilesystemState(remove=[foo_path]):
-        with open(foo_path, 'w') as file_pointer:
-            file_pointer.write('')
-        assert os.path.isfile(foo_path)
-        input_ = 'G rcn y q'
-        score_manager._run(input_=input_)
-        assert not os.path.exists(foo_path)
+    input_ = 'G rcn q'
+    score_manager._run(input_=input_)
+    assert score_manager._session._attempted_repository_clean
