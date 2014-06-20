@@ -54,7 +54,10 @@ def test_ScorePackageWrangler_make_package_02():
         )
     titles = [
         'Abjad IDE - scores',
+        'Abjad IDE - scores - views (EDIT)',
         'Abjad IDE - scores - views - _test_view (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
+        'Abjad IDE - scores',
         'Abjad IDE - scores',
         'Abjad IDE - scores [_test_view]',
         '(untitled score)',
@@ -63,7 +66,8 @@ def test_ScorePackageWrangler_make_package_02():
     with systemtools.FilesystemState(
         keep=[cache, views_file], remove=[score_package]
         ):
-        input_ = 'vnew _test_view done vs _test_view new example~score y q'
+        input_ = 'va add _test_view done done'
+        input_ += ' vs _test_view new example~score y q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
         assert os.path.exists(score_package)

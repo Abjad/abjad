@@ -96,7 +96,6 @@ class Wrangler(ScoreInternalAssetController):
             'va': self.autoedit_views,
             'vs': self.set_view,
             'vcl': self.clear_view,
-            'vnew': self.make_view,
             #
             'vo': self.open_views_py,
             'vw': self.write_views_py,
@@ -628,7 +627,6 @@ class Wrangler(ScoreInternalAssetController):
         commands = []
         commands.append(('views - autoedit', 'va'))
         commands.append(('views - clear', 'vcl'))
-        commands.append(('views - new', 'vnew'))
         commands.append(('views - set', 'vs'))
         menu.make_command_section(
             is_hidden=True,
@@ -1045,37 +1043,6 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._initialize_manager(path)
             with self._io_manager._silent():
                 manager.commit_to_repository(commit_message=commit_message)
-
-    def make_view(self):
-        r'''Makes view.
-
-        Returns none.
-        '''
-        from scoremanager import idetools
-        getter = self._io_manager._make_getter()
-        getter.append_string('view name')
-        view_name = getter._run()
-        if self._session.is_backtracking or not view_name:
-            return
-        menu_entries = self._make_asset_menu_entries(set_view=False)
-        display_strings = [_[0] for _ in menu_entries]
-        view = idetools.View(items=display_strings)
-        breadcrumb = 'views - {}'.format(view_name)
-        breadcrumb = breadcrumb.format(view_name)
-        autoeditor = self._io_manager._make_autoeditor(
-            allow_item_edit=False,
-            breadcrumb=breadcrumb,
-            target=view,
-            )
-        autoeditor._run()
-        if self._session.is_backtracking or autoeditor.target is None:
-            return
-        view = autoeditor.target
-        view_inventory = self._read_view_inventory()
-        if view_inventory is None:
-            view_inventory = idetools.ViewInventory()
-        view_inventory[view_name] = view
-        self._write_view_inventory(view_inventory)
 
     def open_views_py(self):
         r'''Opens ``__views__.py``.
