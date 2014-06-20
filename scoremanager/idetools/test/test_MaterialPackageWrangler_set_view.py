@@ -103,7 +103,7 @@ def test_MaterialPackageWrangler_set_view_03():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs inventories vcl q'
+        input_ = 'red~example~score m vs inventories q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -142,7 +142,7 @@ def test_MaterialPackageWrangler_set_view_04():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs inventories vcl q'
+        input_ = 'red~example~score m vs inventories q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -181,7 +181,7 @@ def test_MaterialPackageWrangler_set_view_05():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs magic vcl q'
+        input_ = 'red~example~score m vs magic q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 

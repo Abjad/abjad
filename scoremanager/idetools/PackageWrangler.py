@@ -197,7 +197,7 @@ class PackageWrangler(Wrangler):
         manager = self._get_manager(path)
         manager._make_package()
         with self._io_manager._silent():
-            self.clear_view()
+            self._clear_view()
         if hasattr(self, 'write_cache'):
             self.write_cache()
         manager._run()

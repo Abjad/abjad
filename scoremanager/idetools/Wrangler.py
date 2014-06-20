@@ -95,7 +95,6 @@ class Wrangler(ScoreInternalAssetController):
         result.update({
             'va': self.autoedit_views,
             'vs': self.set_view,
-            'vcl': self.clear_view,
             #
             'vo': self.open_views_py,
             'vw': self.write_views_py,
@@ -122,6 +121,15 @@ class Wrangler(ScoreInternalAssetController):
             return os.path.join(directory, file_name)
 
     ### PRIVATE METHODS ###
+
+    def _clear_view(self):
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_package_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        manager._add_metadatum(metadatum_name, None)
 
     def _copy_asset(
         self, 
@@ -521,7 +529,7 @@ class Wrangler(ScoreInternalAssetController):
                     supply_missing=True,
                     )
         with self._io_manager._silent():
-            self.clear_view()
+            self._clear_view()
         self._session._pending_redraw = True
 
     def _make_asset_selection_breadcrumb(
@@ -626,7 +634,6 @@ class Wrangler(ScoreInternalAssetController):
     def _make_views_menu_section(self, menu):
         commands = []
         commands.append(('views - autoedit', 'va'))
-        commands.append(('views - clear', 'vcl'))
         commands.append(('views - set', 'vs'))
         menu.make_command_section(
             is_hidden=True,
@@ -845,6 +852,7 @@ class Wrangler(ScoreInternalAssetController):
             self._io_manager._display(message)
             return
         view_names = list(view_inventory.keys())
+        view_names.append('none')
         if is_ranged:
             breadcrumb = 'view(s)'
         else:
@@ -976,8 +984,10 @@ class Wrangler(ScoreInternalAssetController):
         '''
         infinitive_phrase = 'to apply'
         view_name = self._select_view(infinitive_phrase=infinitive_phrase)
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or view_name is None:
             return
+        if view_name == 'none':
+            view_name = None
         if self._session.is_in_score:
             manager = self._current_package_manager
             metadatum_name = 'view_name'
@@ -1002,22 +1012,6 @@ class Wrangler(ScoreInternalAssetController):
         autoeditor._run()
         inventory = autoeditor.target
         self._write_view_inventory(inventory)
-        self._session._pending_redraw = True
-
-    def clear_view(self):
-        r'''Clears view.
-
-        Set 'view_name' to none in ``__metadata__.py``.
-
-        Returns none.
-        '''
-        if self._session.is_in_score:
-            manager = self._current_package_manager
-            metadatum_name = 'view_name'
-        else:
-            manager = self._views_package_manager
-            metadatum_name = '{}_view_name'.format(type(self).__name__)
-        manager._add_metadatum(metadatum_name, None)
         self._session._pending_redraw = True
 
     def commit_to_repository(self):

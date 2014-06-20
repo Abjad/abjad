@@ -9,54 +9,52 @@
 5.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-6.  Replace (vcl) with (vs).
-
-7.  Implement 'views - write' (vw).
+6.  Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-8.  Implement '__metadata__.py - check' (mdc).
+7.  Implement '__metadata__.py - check' (mdc).
 
-9.  Implement '__metadata__.py - autoedit' (mda).
+8.  Implement '__metadata__.py - autoedit' (mda).
 
-10. Take another pass at (ck) and (ck*) messaging.
+9.  Take another pass at (ck) and (ck*) messaging.
 
-11. Audit (**).
+10. Audit (**).
 
-12. Audit all star commands.
+11. Audit all star commands.
 
-13. Audit material interface by hand.
+12. Audit material interface by hand.
     Audit segment interface by hand.
 
-14. Audit all public methods for py.test files.
+13. Audit all public methods for py.test files.
 
-15. Answer all inline TODOs.
+14. Answer all inline TODOs.
 
-16. Unskip all skipped tests.
+15. Unskip all skipped tests.
 
-17. Streamline all 39 classfiles.
+16. Streamline all 39 classfiles.
 
-18. Extended ControllerContext with directory=None keyword.
+17. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-19. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
+18. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
 
-20. Make (red m tempo da rm 4 done!) work.
+19. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-21. Customize user input getter prompt to alert composer to differences in
+20. Customize user input getter prompt to alert composer to differences in
     getter environment.
 
-22. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
+21. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
 
-23. Replace 'abjad_library' with something else.
+22. Replace 'abjad_library' with something else.
 
-24. Refactor (rcn) to first list all unadded assets and then prompt for
+23. Refactor (rcn) to first list all unadded assets and then prompt for
     removal.
 
-25. Remove input arguments from invoke_python() and invoke_shell() signatures.
+24. Remove input arguments from invoke_python() and invoke_shell() signatures.
 
-26. Join 'done (done)' to 'elements - add (add)', etc.
+25. Join 'done (done)' to 'elements - add (add)', etc.
     Eliminate blank line between the menu sections.
 
-27. Make 'view inventory written to disk' appear only if something has changed.
+26. Make 'view inventory written to disk' appear only if something has changed.
