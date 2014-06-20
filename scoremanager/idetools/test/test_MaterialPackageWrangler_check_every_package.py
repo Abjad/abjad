@@ -58,7 +58,6 @@ def test_MaterialPackageWrangler_check_every_package_03():
     initializer = os.path.join(material_directory, '__init__.py')
         
     with systemtools.FilesystemState(keep=[versions_directory, initializer]):
-        os.remove(metadata_file)
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score m ck* y y q'

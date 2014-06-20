@@ -103,7 +103,7 @@ class CollectionAutoeditor(Autoeditor):
         except:
             pass
 
-    def _get_item_to_add(self):
+    def _get_item_to_add(self, item_name=None):
         from scoremanager import idetools
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
@@ -116,6 +116,8 @@ class CollectionAutoeditor(Autoeditor):
                 target=target,
                 **self._item_creator_class_kwargs
                 )
+            if item_name:
+                item_creator._breadcrumb = item_name
             result = item_creator._run()
             if self._session.is_backtracking:
                 return

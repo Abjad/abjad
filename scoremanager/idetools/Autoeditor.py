@@ -356,11 +356,9 @@ class Autoeditor(Controller):
     def breadcrumb(self):
         r'''Gets autoeditor breadcrumb.
 
-        Autoeditor contributes no breadcrumb.
-
         Returns none.
         '''
-        pass
+        return self._breadcrumb
 
     @property
     def is_autoadding(self):

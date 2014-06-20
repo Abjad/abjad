@@ -84,7 +84,7 @@ class DictionaryAutoeditor(CollectionAutoeditor):
         key = getter._run()
         if self._session.is_backtracking or not key:
             return
-        result = self._get_item_to_add()
+        result = self._get_item_to_add(item_name=key)
         if self._session.is_backtracking:
             return
         if result is None:
@@ -113,6 +113,7 @@ class DictionaryAutoeditor(CollectionAutoeditor):
             autoeditor = item_editor_class(session=self._session, target=value)
         else:
             autoeditor = self._io_manager._make_autoeditor(target=value)
+        autoeditor._breadcrumb = key
         autoeditor._run()
         value = autoeditor.target
         self._collection[key] = value
