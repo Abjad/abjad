@@ -23,6 +23,7 @@ def test_DistributionFileWrangler_clear_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' vs _test vcl vrm _test q'
@@ -66,6 +67,7 @@ def test_DistributionFileWrangler_clear_view_02():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'red~example~score d vnew _test rm all'
         input_ += ' add red-example-score.pdf done'
         input_ += ' vs _test vcl vrm _test q'

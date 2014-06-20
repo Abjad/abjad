@@ -20,6 +20,7 @@ def test_StylesheetWrangler_make_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -33,6 +34,7 @@ def test_StylesheetWrangler_make_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -49,6 +51,7 @@ def test_StylesheetWrangler_make_view_03():
     pytest.skip('port me forward.')
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test rm all add clean-letter-14.ily done q' 
         score_manager._run(input_=input_)
 

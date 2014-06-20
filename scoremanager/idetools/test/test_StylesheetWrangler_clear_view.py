@@ -19,6 +19,7 @@ def test_StylesheetWrangler_clear_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test rm all'
         input_ += ' add clean-letter-14.ily~(Abjad~stylesheets) done'
         input_ += ' vs _test vcl vrm _test q'

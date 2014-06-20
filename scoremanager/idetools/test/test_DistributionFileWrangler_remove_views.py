@@ -18,6 +18,7 @@ def test_DistributionFileWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' d vnew _test_101 rm all'
@@ -48,6 +49,7 @@ def test_DistributionFileWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'D vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

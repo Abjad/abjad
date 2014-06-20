@@ -18,6 +18,7 @@ def test_DistributionFileWrangler_rename_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' q' 

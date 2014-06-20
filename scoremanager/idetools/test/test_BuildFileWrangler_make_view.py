@@ -21,6 +21,7 @@ def test_BuildFileWrangler_make_view_01():
 
     input_ = 'U vnew _test q' 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -35,6 +36,7 @@ def test_BuildFileWrangler_make_view_02():
 
     input_ = 'U vnew _test q' 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
@@ -65,6 +67,7 @@ def test_BuildFileWrangler_make_view_03():
     input_ = 'U vnew _test rm all'
     input_ += ' add front-cover.pdf~(Red~Example~Score) done q' 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

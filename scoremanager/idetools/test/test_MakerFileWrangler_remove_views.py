@@ -18,6 +18,7 @@ def test_MakerFileWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'K vnew _test_100 rm all'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
         input_ += ' done' 
@@ -48,6 +49,7 @@ def test_MakerFileWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'K vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

@@ -18,6 +18,7 @@ def test_MaterialPackageWrangler_rename_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vnew _test_100 rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)

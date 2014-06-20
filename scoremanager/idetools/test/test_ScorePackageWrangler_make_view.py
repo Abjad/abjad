@@ -20,6 +20,7 @@ def test_ScorePackageWrangler_make_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -32,6 +33,7 @@ def test_ScorePackageWrangler_make_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -48,6 +50,7 @@ def test_ScorePackageWrangler_make_view_03():
     pytest.skip('port me forward.')
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vnew _test rm all'
         input_ += ' add Red~Example~Score done q' 
         score_manager._run(input_=input_)

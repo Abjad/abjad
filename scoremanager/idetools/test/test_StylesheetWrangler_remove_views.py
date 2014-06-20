@@ -18,6 +18,7 @@ def test_StylesheetWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test_100 rm all add clean-letter-14.ily done' 
         input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done'
         input_ += ' q' 
@@ -44,6 +45,7 @@ def test_StylesheetWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

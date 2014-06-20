@@ -28,6 +28,7 @@ def test_BuildFileWrangler_clear_view_01():
     input_ += ' vs _test vcl vrm _test q'
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
@@ -71,6 +72,7 @@ def test_BuildFileWrangler_clear_view_02():
     input_ += ' vs _test vcl vrm _test q'
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

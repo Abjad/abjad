@@ -19,6 +19,7 @@ def test_StylesheetWrangler_rename_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test_100 rm 1-99'
         input_ += ' add clean-letter-14.ily done q' 
         score_manager._run(input_=input_)
@@ -53,6 +54,7 @@ def test_StylesheetWrangler_rename_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'Y vnew _test rm all add clean-letter-14.ily done'
         input_ += ' vs _test vren _test _fancy_test q'
         score_manager._run(input_=input_)

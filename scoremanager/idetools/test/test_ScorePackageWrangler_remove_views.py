@@ -18,6 +18,7 @@ def test_ScorePackageWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vnew _test_100 rm all'
         input_ += ' add Red~Example~Score done' 
         input_ += ' vnew _test_101 rm all'
@@ -46,6 +47,7 @@ def test_ScorePackageWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

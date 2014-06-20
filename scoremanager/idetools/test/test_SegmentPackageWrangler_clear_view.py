@@ -19,6 +19,7 @@ def test_SegmentPackageWrangler_clear_view_01():
     '''
     
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'G vnew _test rm all'
         input_ += ' add A~(Red~Example~Score) done'
         input_ += ' vs _test vcl vrm _test q'

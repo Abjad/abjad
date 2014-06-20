@@ -16,6 +16,7 @@ metadata_file = os.path.join(
 def test_ScorePackageWrangler_rename_view_01():
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'vnew _test_100 rm all'
         input_ += ' add Red~Example~Score done q' 
         score_manager._run(input_=input_)

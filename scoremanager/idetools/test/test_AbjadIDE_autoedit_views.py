@@ -16,6 +16,7 @@ metadata_file = os.path.join(
 def test_AbjadIDE_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
 
         input_ = 'U vnew _test_100 rm all'
         input_ += ' add score.pdf~(Red~Example~Score) done q' 

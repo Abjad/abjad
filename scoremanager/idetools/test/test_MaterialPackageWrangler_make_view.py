@@ -20,6 +20,7 @@ def test_MaterialPackageWrangler_make_view_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -33,6 +34,7 @@ def test_MaterialPackageWrangler_make_view_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -58,6 +60,7 @@ def test_MaterialPackageWrangler_make_view_03():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'red~example~score m vnew _test 1 q' 
         score_manager._run(input_=input_)
         titles = [
@@ -79,6 +82,7 @@ def test_MaterialPackageWrangler_make_view_04():
     pytest.skip('port me forward')
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)

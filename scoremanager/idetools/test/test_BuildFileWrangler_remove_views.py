@@ -18,6 +18,7 @@ def test_BuildFileWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'U vnew _test_100 rm all'
         input_ += ' add front-cover.pdf~(Red~Example~Score) done' 
         input_ += ' u vnew _test_101 rm all'
@@ -46,6 +47,7 @@ def test_BuildFileWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'U vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

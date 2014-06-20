@@ -18,6 +18,7 @@ def test_MaterialPackageWrangler_remove_views_01():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vnew _test_100 rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done' 
         input_ += ' m vnew _test_101 rm all'
@@ -46,6 +47,7 @@ def test_MaterialPackageWrangler_remove_views_02():
     '''
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(metadata_file)
         input_ = 'M vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
