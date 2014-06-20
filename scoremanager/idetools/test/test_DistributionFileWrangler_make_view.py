@@ -9,13 +9,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__DistributionFileWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_DistributionFileWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -28,7 +32,7 @@ def test_DistributionFileWrangler_make_view_02():
     view creation menu.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -44,7 +48,7 @@ def test_DistributionFileWrangler_make_view_03():
     '''
     pytest.skip('port me forward.')
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' q' 

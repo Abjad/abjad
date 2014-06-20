@@ -7,11 +7,15 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__ScorePackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_ScorePackageWrangler_rename_view_01():
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'vnew _test_100 rm all'
         input_ += ' add Red~Example~Score done q' 
         score_manager._run(input_=input_)

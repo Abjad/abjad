@@ -5,10 +5,6 @@ import scoremanager
 
 # must be is_test=False to test views
 score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
-views_file = os.path.join(
-    score_manager._configuration.wrangler_views_directory,
-    '__BuildFileWrangler_views__.py',
-    )
 
 
 def test_BuildFileWrangler_clear_view_01():
@@ -19,11 +15,19 @@ def test_BuildFileWrangler_clear_view_01():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
+    views_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__BuildFileWrangler_views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.wrangler_views_directory,
+        '__metadata__.py',
+        )
     input_ = 'U vnew _test rm all'
     input_ += ' add segment-01.ly~(Red~Example~Score) done'
     input_ += ' vs _test vcl vrm _test q'
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 
@@ -50,11 +54,23 @@ def test_BuildFileWrangler_clear_view_02():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        '__metadata__.py',
+        )
     input_ = 'red~example~score u vnew _test rm all'
     input_ += ' add segment-01.ly done'
     input_ += ' vs _test vcl vrm _test q'
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         score_manager._run(input_=input_)
     transcript = score_manager._transcript
 

@@ -9,13 +9,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_MaterialPackageWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -28,7 +32,7 @@ def test_MaterialPackageWrangler_make_view_02():
     view creation menu.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -41,7 +45,19 @@ def test_MaterialPackageWrangler_make_view_03():
     raise an exception.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score m vnew _test 1 q' 
         score_manager._run(input_=input_)
         titles = [
@@ -62,7 +78,7 @@ def test_MaterialPackageWrangler_make_view_04():
     '''
     pytest.skip('port me forward')
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)

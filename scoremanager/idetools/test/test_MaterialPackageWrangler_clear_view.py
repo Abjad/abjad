@@ -8,6 +8,10 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_MaterialPackageWrangler_clear_view_01():
@@ -20,7 +24,7 @@ def test_MaterialPackageWrangler_clear_view_01():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done'
         input_ += ' vs _test vcl vrm _test q'
@@ -52,7 +56,19 @@ def test_MaterialPackageWrangler_clear_view_02():
     cleared.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score m vnew _test rm all'
         input_ += ' add instrumentation done'
         input_ += ' vs _test vcl vrm _test q'

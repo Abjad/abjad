@@ -9,13 +9,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__SegmentPackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_SegmentPackageWrangler_make_view_01():
     r'''Makes sure view creation menu title is correct.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'G vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -28,7 +32,7 @@ def test_SegmentPackageWrangler_make_view_02():
     view creation menu.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'G vnew _test q' 
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
@@ -43,7 +47,19 @@ def test_SegmentPackageWrangler_make_view_03():
     '''
     pytest.skip('port me forward.')
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'segments',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'segments',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score g vnew _test q' 
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
@@ -63,7 +79,7 @@ def test_SegmentPackageWrangler_make_view_04():
     '''
     pytest.skip('port me forward.')
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'G vnew _test rm all'
         input_ += ' add A~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)

@@ -7,13 +7,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MaterialPackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_MaterialPackageWrangler_rename_view_01():
     r'''Works in library.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'M vnew _test_100 rm all'
         input_ += ' add instrumentation~(Red~Example~Score) done q' 
         score_manager._run(input_=input_)

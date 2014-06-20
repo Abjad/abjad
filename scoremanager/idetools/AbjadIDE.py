@@ -34,6 +34,7 @@ class AbjadIDE(Wrangler):
             session._is_test = is_test
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
+        self._basic_breadcrumb = 'Abjad IDE'
         self._session._score_manager = self
         self._simple_score_annotation = True
         self._sort_by_annotation = True
@@ -43,7 +44,8 @@ class AbjadIDE(Wrangler):
     @property
     def _breadcrumb(self):
         if not self._session.is_in_score:
-            return 'Abjad IDE'
+            superclass = super(AbjadIDE, self)
+            return superclass._breadcrumb
 
     @property
     @systemtools.Memoize
@@ -133,9 +135,9 @@ class AbjadIDE(Wrangler):
 
     def _make_init_py_menu_section(self, menu):
         commands = []
-        commands.append(('__init__.py - list', 'nls*'))
-        commands.append(('__init__.py - open', 'no*'))
-        commands.append(('__init__.py - stub', 'ns*'))
+        commands.append(('all packages - __init__.py - list', 'nls*'))
+        commands.append(('all packages - __init__.py - open', 'no*'))
+        commands.append(('all packages - __init__.py - stub', 'ns*'))
         menu.make_command_section(
             is_hidden=False,
             commands=commands,

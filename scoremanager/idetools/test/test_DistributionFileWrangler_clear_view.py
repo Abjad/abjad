@@ -8,6 +8,10 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__DistributionFileWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_DistributionFileWrangler_clear_view_01():
@@ -18,7 +22,7 @@ def test_DistributionFileWrangler_clear_view_01():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' vs _test vcl vrm _test q'
@@ -49,7 +53,19 @@ def test_DistributionFileWrangler_clear_view_02():
     Then makes sure multiple files are visible once view is cleared.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    views_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'distribution',
+        '__views__.py',
+        )
+    metadata_file = os.path.join(
+        score_manager._configuration.example_score_packages_directory,
+        'red_example_score',
+        'distribution',
+        '__metadata__.py',
+        )
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'red~example~score d vnew _test rm all'
         input_ += ' add red-example-score.pdf done'
         input_ += ' vs _test vcl vrm _test q'

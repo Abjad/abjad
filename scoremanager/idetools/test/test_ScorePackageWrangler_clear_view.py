@@ -8,6 +8,10 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__ScorePackageWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_ScorePackageWrangler_clear_view_01():
@@ -18,7 +22,7 @@ def test_ScorePackageWrangler_clear_view_01():
     Then makes sure multiple scores are visible once view is cleared.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'vnew _test rm all'
         input_ += ' add Red~Example~Score~(2013) done'
         input_ += ' vs _test vcl vrm _test q'

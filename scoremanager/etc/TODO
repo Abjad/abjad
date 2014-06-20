@@ -52,12 +52,9 @@
 
 23. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
 
-24. Audit views test and make sure both __views__.py and __metadata__.py
-    files are preserved.
+24. Replace 'abjad_library' with something else.
 
-25. Replace 'abjad_library' with something else.
-
-26. Refactor (rcn) to first list all unadded assets and then prompt for
+25. Refactor (rcn) to first list all unadded assets and then prompt for
     removal.
 
-27. Remove input arguments from invoke_python() and invoke_shell() signatures.
+26. Remove input arguments from invoke_python() and invoke_shell() signatures.

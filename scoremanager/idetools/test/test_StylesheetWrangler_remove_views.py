@@ -7,13 +7,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_StylesheetWrangler_remove_views_01():
     r'''Makes two views. Removes two views at one time.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'Y vnew _test_100 rm all add clean-letter-14.ily done' 
         input_ += ' y vnew _test_101 rm all add clean-letter-16.ily done'
         input_ += ' q' 
@@ -39,7 +43,7 @@ def test_StylesheetWrangler_remove_views_02():
     r'''Makes sure selector backtracking works.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'Y vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents

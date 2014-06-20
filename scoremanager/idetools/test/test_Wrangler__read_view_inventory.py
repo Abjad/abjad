@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import filecmp
 import os
+import shutil
 from abjad import *
 import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
@@ -11,20 +12,26 @@ def test_Wrangler__read_view_inventory_01():
     r'''Ignores corrupt __views.py__.
     '''
 
-    views_py_path = os.path.join(
+    views_file = os.path.join(
         configuration.example_score_packages_directory,
         'blue_example_score',
         'segments',
         '__views__.py',
         )
-    exception_path = os.path.join(
+    metadata_file = os.path.join(
+        configuration.example_score_packages_directory,
+        'blue_example_score',
+        'segments',
+        '__metadata__.py',
+        )
+    exception_file = os.path.join(
         configuration.boilerplate_directory,
         'exception.py',
         )
 
-    assert filecmp.cmp(views_py_path, exception_path)
-
-    with systemtools.FilesystemState(keep=[views_py_path]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        shutil.copyfile(exception_file, views_file)
+        assert filecmp.cmp(views_file, exception_file)
         input_ = 'blue~example~score g va q'
         score_manager._run(input_=input_)
 

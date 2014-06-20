@@ -1,4 +1,9 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
+from scoremanager import idetools
 
 
-raise Exception
+view_inventory=idetools.ViewInventory(
+    [
+        ]
+    )

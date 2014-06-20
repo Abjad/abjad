@@ -8,13 +8,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_StylesheetWrangler_rename_view_01():
     r'''Works in library.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'Y vnew _test_100 rm 1-99'
         input_ += ' add clean-letter-14.ily done q' 
         score_manager._run(input_=input_)
@@ -48,7 +52,7 @@ def test_StylesheetWrangler_rename_view_02():
     r'''Menu titles are good during rename.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'Y vnew _test rm all add clean-letter-14.ily done'
         input_ += ' vs _test vren _test _fancy_test q'
         score_manager._run(input_=input_)

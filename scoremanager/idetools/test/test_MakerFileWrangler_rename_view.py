@@ -7,13 +7,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__MakerFileWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_MakerFileWrangler_rename_view_01():
     r'''Works in library.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'K vnew _test_100 rm all'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
         input_ += ' done q' 

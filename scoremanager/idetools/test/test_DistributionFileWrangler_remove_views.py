@@ -7,13 +7,17 @@ views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__DistributionFileWrangler_views__.py',
     )
+metadata_file = os.path.join(
+    score_manager._configuration.wrangler_views_directory,
+    '__metadata__.py',
+    )
 
 
 def test_DistributionFileWrangler_remove_views_01():
     r'''Makes two views in library. Removes two views at one time.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vnew _test_100 rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
         input_ += ' d vnew _test_101 rm all'
@@ -43,7 +47,7 @@ def test_DistributionFileWrangler_remove_views_02():
     r'''Makes sure selector backtracking works.
     '''
 
-    with systemtools.FilesystemState(keep=[views_file]):
+    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         input_ = 'D vrm b q'
         score_manager._run(input_=input_)
         contents = score_manager._transcript.contents
