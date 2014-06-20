@@ -152,11 +152,14 @@ class DictionaryAutoeditor(CollectionAutoeditor):
             if not item:
                 return
         elif isinstance(result, str):
-            item = self._collection.get(result)
+            key = result
+            value = self._collection.get(key)
+            item = (key, value)
         else:
             return
         if not item:
             return
+        assert isinstance(item, tuple) and len(item) == 2
         key, value = item
         getter = self._io_manager._make_getter()
         getter.append_string('new name')

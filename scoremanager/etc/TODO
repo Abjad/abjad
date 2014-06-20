@@ -58,3 +58,6 @@
     removal.
 
 26. Remove input arguments from invoke_python() and invoke_shell() signatures.
+
+27. Join 'done (done)' to 'elements - add (add)', etc.
+    Eliminate blank line between the menu sections.
