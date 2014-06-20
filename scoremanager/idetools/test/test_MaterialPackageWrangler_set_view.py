@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_set_view_01():
         input_ = 'M vnew _test rm all'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 
@@ -67,7 +67,7 @@ def test_MaterialPackageWrangler_set_view_02():
         os.remove(metadata_file)
         input_ = 'red~example~score m vnew _test rm all'
         input_ += ' add instrumentation done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
 

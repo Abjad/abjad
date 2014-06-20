@@ -3,8 +3,7 @@ import os
 import pytest
 from abjad import *
 import scoremanager
-# is_test=True is ok when testing the creation of views
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
 views_file = os.path.join(
     score_manager._configuration.wrangler_views_directory,
     '__BuildFileWrangler_views__.py',
@@ -45,42 +44,16 @@ def test_BuildFileWrangler_make_view_02():
 
 
 def test_BuildFileWrangler_make_view_03():
-    r'''Makes view in library. Removes view.
-
-    Makes sure no extra new lines appear before or after 
-    'written to disk' message.
+    r'''Makes view in library.
     '''
-    pytest.skip('fix me')
 
-    views_file = os.path.join(
-        score_manager._configuration.example_scores_directory_path,
-        'red_example_score',
-        'build'
-        '__views__.py',
-        )
-    views_file = os.path.join(
-        score_manager._configuration.example_scores_directory_path,
-        'red_example_score',
-        'build'
-        '__metadata__.py',
-        )
     input_ = 'U vnew _test rm all'
-    input_ += ' add front-cover.pdf~(Red~Example~Score) done q' 
+    input_ += ' add front-cover.pdf~(Red~Example~Score) done'
+    input_ += ' vs _test q' 
+
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
         score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
 
+    contents = score_manager._transcript.contents
     assert 'Abjad IDE - build files [_test]' in contents
-
-    input_ = 'U va b vrm _test q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
-    assert 'found' in contents or 'found' in contents
-    assert '_test' in contents
-
-    input_ = 'U va q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
-    assert 'found' in contents or 'found' in contents
-    assert '_test' not in contents

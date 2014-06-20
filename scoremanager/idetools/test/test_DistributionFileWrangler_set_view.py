@@ -24,7 +24,7 @@ def test_DistributionFileWrangler_set_view_01():
         os.remove(metadata_file)
         input_ = 'D vnew _test rm all'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -64,7 +64,7 @@ def test_DistributionFileWrangler_set_view_02():
         os.remove(metadata_file)
         input_ = 'red~example~score d vnew _test rm all'
         input_ += ' add red-example-score.pdf done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

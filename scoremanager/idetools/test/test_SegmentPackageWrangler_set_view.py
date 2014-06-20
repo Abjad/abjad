@@ -24,7 +24,7 @@ def test_SegmentPackageWrangler_set_view_01():
         os.remove(metadata_file)
         input_ = 'G vnew _test rm 1-99'
         input_ += ' add A~(Red~Example~Score) done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -64,7 +64,7 @@ def test_SegmentPackageWrangler_set_view_02():
         os.remove(metadata_file)
         input_ = 'red~example~score g vnew _test'
         input_ += ' rm all add A done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

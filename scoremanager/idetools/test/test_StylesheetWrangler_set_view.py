@@ -23,7 +23,7 @@ def test_StylesheetWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
         input_ = 'Y vnew _test rm all add clean-letter-14.ily done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -62,7 +62,7 @@ def test_StylesheetWrangler_set_view_02():
         os.remove(metadata_file)
         input_ = 'red~example~score y vnew _test'
         input_ += ' rm all add stylesheet-addendum.ily done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

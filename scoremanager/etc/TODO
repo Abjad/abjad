@@ -61,3 +61,5 @@
 
 27. Join 'done (done)' to 'elements - add (add)', etc.
     Eliminate blank line between the menu sections.
+
+28. Make 'view inventory written to disk' appear only if something has changed.

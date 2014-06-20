@@ -26,7 +26,7 @@ def test_BuildFileWrangler_set_view_01():
         input_ += ' add segment-01.ly~(Red~Example~Score)'
         input_ += ' add segment-02.ly~(Red~Example~Score)'
         input_ += ' add segment-03.ly~(Red~Example~Score) done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [
@@ -68,7 +68,7 @@ def test_BuildFileWrangler_set_view_02():
         os.remove(metadata_file)
         input_ = 'red~example~score u vnew _test rm all'
         input_ += ' add segment-01.ly done'
-        input_ += ' vs _test vrm _test q'
+        input_ += ' vs _test q'
         score_manager._run(input_=input_)
         transcript = score_manager._transcript
         lines = [

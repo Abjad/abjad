@@ -40,14 +40,6 @@ def test_StylesheetWrangler_rename_view_01():
         assert '_test_100' not in contents
         assert '_test_101' in contents
 
-        input_ = 'Y vrm _test_101 q'
-        score_manager._run(input_=input_)
-
-        input_ = 'Y va q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert '_test_101' not in contents
-
 
 def test_StylesheetWrangler_rename_view_02():
     r'''Menu titles are good during rename.

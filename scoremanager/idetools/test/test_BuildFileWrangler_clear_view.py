@@ -11,8 +11,6 @@ def test_BuildFileWrangler_clear_view_01():
     r'''In library: applies view and then clears view.
 
     Makes sure only one file is visible when view is applied.
-    
-    Then makes sure multiple files are visible once view is cleared.
     '''
     
     views_file = os.path.join(
@@ -25,7 +23,7 @@ def test_BuildFileWrangler_clear_view_01():
         )
     input_ = 'U vnew _test rm all'
     input_ += ' add segment-01.ly~(Red~Example~Score) done'
-    input_ += ' vs _test vcl vrm _test q'
+    input_ += ' vs _test q'
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
@@ -51,8 +49,6 @@ def test_BuildFileWrangler_clear_view_02():
     r'''In single build directory: applies view and then clears view.
 
     Makes sure only one file is visible when view is applied.
-    
-    Then makes sure multiple files are visible once view is cleared.
     '''
     
     views_file = os.path.join(
@@ -69,7 +65,7 @@ def test_BuildFileWrangler_clear_view_02():
         )
     input_ = 'red~example~score u vnew _test rm all'
     input_ += ' add segment-01.ly done'
-    input_ += ' vs _test vcl vrm _test q'
+    input_ += ' vs _test q'
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)

@@ -98,7 +98,6 @@ class Wrangler(ScoreInternalAssetController):
             'vcl': self.clear_view,
             'vnew': self.make_view,
             'vren': self.rename_view,
-            'vrm': self.remove_views,
             #
             'vo': self.open_views_py,
             'vw': self.write_views_py,
@@ -631,7 +630,6 @@ class Wrangler(ScoreInternalAssetController):
         commands.append(('views - autoedit', 'va'))
         commands.append(('views - clear', 'vcl'))
         commands.append(('views - new', 'vnew'))
-        commands.append(('views - remove', 'vrm'))
         commands.append(('views - rename', 'vren'))
         commands.append(('views - set', 'vs'))
         menu.make_command_section(
@@ -1091,26 +1089,6 @@ class Wrangler(ScoreInternalAssetController):
         else:
             message = 'no __views.py__ found.'
             self._io_manager._display(message)
-
-    def remove_views(self):
-        r'''Removes view(s) from ``__views__.py``.
-
-        Returns none.
-        '''
-        infinitive_phrase = 'to remove'
-        view_names = self._select_view(
-            infinitive_phrase=infinitive_phrase,
-            is_ranged=True,
-            )
-        if self._session.is_backtracking or not view_names:
-            return
-        view_inventory = self._read_view_inventory()
-        if not view_inventory:
-            return
-        for view_name in view_names:
-            if view_name in view_inventory:
-                del(view_inventory[view_name])
-        self._write_view_inventory(view_inventory)
 
     def rename_view(self):
         r'''Renames view.

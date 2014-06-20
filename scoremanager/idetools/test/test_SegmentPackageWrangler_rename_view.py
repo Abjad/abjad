@@ -37,11 +37,3 @@ def test_SegmentPackageWrangler_rename_view_01():
         contents = score_manager._transcript.contents
         assert '_test_100' not in contents
         assert '_test_101' in contents
-
-        input_ = 'G vrm _test_101 q'
-        score_manager._run(input_=input_)
-
-        input_ = 'G va q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert '_test_101' not in contents
