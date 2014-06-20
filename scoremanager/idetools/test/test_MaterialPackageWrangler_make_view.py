@@ -71,36 +71,3 @@ def test_MaterialPackageWrangler_make_view_03():
             'Red Example Score (2013) - materials - views - _test (EDIT)',
             ]
         assert score_manager._transcript.titles == titles
-
-
-def test_MaterialPackageWrangler_make_view_04():
-    r'''Makes view in library. Removes view.
-
-    Makes sure no extra new lines appear before or after 
-    'written to disk' message.
-    '''
-    pytest.skip('port me forward')
-
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
-        os.remove(metadata_file)
-        input_ = 'M vnew _test rm all'
-        input_ += ' add instrumentation~(Red~Example~Score) done q' 
-        score_manager._run(input_=input_)
-
-        lines =['> done', '']
-        assert score_manager._transcript[-5].lines == lines
-
-        lines = ['View inventory written to disk.', '']
-        assert score_manager._transcript[-4].lines == lines
-            
-        input_ = 'M va b vrm _test q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert 'found' in contents or 'found' in contents
-        assert '_test' in contents
-
-        input_ = 'M va q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert 'found' in contents or 'found' in contents
-        assert '_test' not in contents

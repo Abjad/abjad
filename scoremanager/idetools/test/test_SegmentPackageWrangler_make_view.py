@@ -47,7 +47,6 @@ def test_SegmentPackageWrangler_make_view_03():
 
     Makes sure segment packages are not annotated with score title.
     '''
-    pytest.skip('port me forward.')
 
     views_file = os.path.join(
         score_manager._configuration.example_score_packages_directory,
@@ -72,36 +71,3 @@ def test_SegmentPackageWrangler_make_view_03():
 
         string = 'A (Red Example Score)'
         assert string not in contents
-
-
-def test_SegmentPackageWrangler_make_view_04():
-    r'''Makes view. Removes view.
-
-    Makes sure no extra new lines appear before or after 
-    'written to disk' message.
-    '''
-    pytest.skip('port me forward.')
-
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
-        os.remove(metadata_file)
-        input_ = 'G vnew _test rm all'
-        input_ += ' add A~(Red~Example~Score) done q' 
-        score_manager._run(input_=input_)
-
-        lines =['> done', '']
-        assert score_manager._transcript[-5].lines == lines
-
-        lines = ['View inventory written to disk.', '']
-        assert score_manager._transcript[-4].lines == lines
-            
-        input_ = 'G va b vrm _test q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert 'found' in contents or 'found' in contents
-        assert '_test' in contents
-
-        input_ = 'Y va q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
-        assert 'found' in contents or 'found' in contents
-        assert '_test' not in contents
