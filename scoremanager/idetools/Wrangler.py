@@ -97,7 +97,6 @@ class Wrangler(ScoreInternalAssetController):
             'vs': self.set_view,
             'vcl': self.clear_view,
             'vnew': self.make_view,
-            'vren': self.rename_view,
             #
             'vo': self.open_views_py,
             'vw': self.write_views_py,
@@ -630,7 +629,6 @@ class Wrangler(ScoreInternalAssetController):
         commands.append(('views - autoedit', 'va'))
         commands.append(('views - clear', 'vcl'))
         commands.append(('views - new', 'vnew'))
-        commands.append(('views - rename', 'vren'))
         commands.append(('views - set', 'vs'))
         menu.make_command_section(
             is_hidden=True,
@@ -1089,39 +1087,6 @@ class Wrangler(ScoreInternalAssetController):
         else:
             message = 'no __views.py__ found.'
             self._io_manager._display(message)
-
-    def rename_view(self):
-        r'''Renames view.
-
-        Returns none.
-        '''
-        infinitive_phrase = 'to rename'
-        old_view_name = self._select_view(infinitive_phrase=infinitive_phrase)
-        if self._session.is_backtracking:
-            return
-        view_inventory = self._read_view_inventory()
-        if not view_inventory:
-            return
-        view = view_inventory.get(old_view_name)
-        if not view:
-            return
-        getter = self._io_manager._make_getter()
-        getter.append_string('view name')
-        new_view_name = getter._run()
-        if self._session.is_backtracking:
-            return
-        del(view_inventory[old_view_name])
-        view_inventory[new_view_name] = view
-        self._write_view_inventory(view_inventory)
-        if self._session.is_in_score:
-            manager = self._current_package_manager
-            metadatum_name = 'view_name'
-        else:
-            manager = self._views_package_manager
-            metadatum_name = '{}_view_name'.format(type(self).__name__)
-        current_view = manager._get_metadatum(metadatum_name)
-        if current_view == old_view_name:
-            manager._add_metadatum(metadatum_name, new_view_name)
 
     def repository_clean(self):
         r'''Removes files not yet added to repository.
