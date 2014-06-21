@@ -21,6 +21,7 @@ def test_MakerFileWrangler_set_view_01():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'K va add _test'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
@@ -63,6 +64,7 @@ def test_MakerFileWrangler_set_view_02():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'red~example~score k va add _test'
         input_ += ' add RedExampleScoreTemplate.py done done'

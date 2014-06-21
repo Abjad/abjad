@@ -30,6 +30,7 @@ def test_Wrangler__read_view_inventory_01():
         )
 
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         shutil.copyfile(exception_file, views_file)
         assert filecmp.cmp(views_file, exception_file)

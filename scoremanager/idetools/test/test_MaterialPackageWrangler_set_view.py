@@ -21,6 +21,7 @@ def test_MaterialPackageWrangler_set_view_01():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'M va add _test'
         input_ += ' add instrumentation~(Red~Example~Score)'
@@ -64,6 +65,7 @@ def test_MaterialPackageWrangler_set_view_02():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'red~example~score m va add _test'
         input_ += ' add instrumentation done done'

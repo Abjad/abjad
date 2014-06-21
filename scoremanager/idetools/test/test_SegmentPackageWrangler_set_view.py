@@ -21,6 +21,7 @@ def test_SegmentPackageWrangler_set_view_01():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'G va add _test'
         input_ += ' add A~(Red~Example~Score) done done'
@@ -61,6 +62,7 @@ def test_SegmentPackageWrangler_set_view_02():
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+        os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'red~example~score g va add _test'
         input_ += ' add A done done'
