@@ -517,7 +517,7 @@ class AssetController(Controller):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _repository_clean(self):
+    def _remove_unadded_assets(self):
         paths = self._get_unadded_asset_paths()
         if not paths:
             message = 'no unadded assets.'

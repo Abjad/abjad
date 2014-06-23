@@ -93,12 +93,12 @@ class Wrangler(ScoreInternalAssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'rad*': self.add_every_asset_to_repository,
-            'rci*': self.commit_every_asset_to_repository,
-            'rcn*': self.repository_clean_every_asset,
-            'rst*': self.repository_status_every_asset,
-            'rrv*': self.revert_every_asset_to_repository,
-            'rup*': self.update_every_asset_from_repository,
+            'rad*': self.add_every_asset,
+            'rci*': self.commit_every_asset,
+            'rcn*': self.remove_every_unadded_asset,
+            'rst*': self.display_every_asset_status,
+            'rrv*': self.revert_every_asset,
+            'rup*': self.update_every_asset,
             #
             'va': self.autoedit_views,
             'vs': self.set_view,
@@ -943,18 +943,18 @@ class Wrangler(ScoreInternalAssetController):
 
     ### PUBLIC METHODS ###
 
-    def add_every_asset_to_repository(self):
+    def add_every_asset(self):
         r'''Adds every asset to repository.
 
         Returns none.
         '''
-        self._session._attempted_to_add_to_repository = True
+        self._session._attempted_to_add = True
         if self._session.is_repository_test:
             return
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
         for manager in managers:
-            inputs_, outputs_ = manager.add_to_repository(dry_run=True)
+            inputs_, outputs_ = manager.add(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='add')
@@ -966,7 +966,7 @@ class Wrangler(ScoreInternalAssetController):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.add_to_repository()
+                manager.add()
         count = len(inputs)
         identifier = stringtools.pluralize('file', count)
         message = 'added {} {} to repository.'
@@ -1014,12 +1014,12 @@ class Wrangler(ScoreInternalAssetController):
             self._write_view_inventory(inventory)
         self._session._pending_redraw = True
 
-    def commit_every_asset_to_repository(self):
+    def commit_every_asset(self):
         r'''Commits every asset to repository.
 
         Returns none.
         '''
-        self._session._attempted_to_commit_to_repository = True
+        self._session._attempted_to_commit = True
         if self._session.is_repository_test:
             return
         getter = self._io_manager._make_getter()
@@ -1036,7 +1036,7 @@ class Wrangler(ScoreInternalAssetController):
         for path in paths:
             manager = self._initialize_manager(path)
             with self._io_manager._silent():
-                manager.commit_to_repository(commit_message=commit_message)
+                manager.commit(commit_message=commit_message)
 
     def open_views_py(self):
         r'''Opens ``__views__.py``.
@@ -1049,12 +1049,12 @@ class Wrangler(ScoreInternalAssetController):
             message = 'no __views.py__ found.'
             self._io_manager._display(message)
 
-    def repository_clean_every_asset(self):
+    def remove_every_unadded_asset(self):
         r'''Removes files not yet added to repository of every asset.
 
         Returns none.
         '''
-        self._session._attempted_repository_clean = True
+        self._session._attempted_remove_unadded_assets = True
         if self._session.is_test and not self._session.is_in_score:
             return
         paths = self._list_visible_asset_paths()
@@ -1062,35 +1062,35 @@ class Wrangler(ScoreInternalAssetController):
         paths.sort()
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            manager.repository_clean()
+            manager.remove_unadded_assets()
 
-    def repository_status_every_asset(self):
+    def display_every_asset_status(self):
         r'''Displays repository status of every asset.
 
         Returns none.
         '''
-        self._session._attempted_repository_status = True
+        self._session._attempted_display_status = True
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         paths.sort()
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            manager.repository_status()
+            manager.display_status()
 
-    def revert_every_asset_to_repository(self):
+    def revert_every_asset(self):
         r'''Reverts every asset to repository.
 
         Returns none.
         '''
-        self._session._attempted_to_revert_to_repository = True
+        self._session._attempted_to_revert = True
         if self._session.is_repository_test:
             return
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            manager.revert_to_repository()
+            manager.revert()
 
-    def update_every_asset_from_repository(self):
+    def update_every_asset(self):
         r'''Updates every asset from repository.
 
         Returns none.
@@ -1102,7 +1102,7 @@ class Wrangler(ScoreInternalAssetController):
             message = self._path_to_asset_menu_display_string(manager._path)
             message = self._strip_annotation(message)
             message = message + ':'
-            messages_ = manager.update_from_repository(messages_only=True)
+            messages_ = manager.update(messages_only=True)
             if len(messages_) == 1:
                 message = message + ' ' + messages_[0]
                 messages.append(message)

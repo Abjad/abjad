@@ -31,13 +31,13 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_attempted_repository_clean',
-        '_attempted_repository_status',
-        '_attempted_to_add_to_repository',
-        '_attempted_to_commit_to_repository',
+        '_attempted_remove_unadded_assets',
+        '_attempted_display_status',
+        '_attempted_to_add',
+        '_attempted_to_commit',
         '_attempted_to_open_file',
-        '_attempted_to_revert_to_repository',
-        '_attempted_to_update_from_repository',
+        '_attempted_to_revert',
+        '_attempted_to_update',
         '_command_history',
         '_confirm',
         '_configuration',
@@ -100,13 +100,13 @@ class Session(abctools.AbjadObject):
 
     def __init__(self, input_=None, is_test=False):
         from scoremanager import idetools
-        self._attempted_repository_clean = False
-        self._attempted_repository_status = False
-        self._attempted_to_add_to_repository = False
-        self._attempted_to_commit_to_repository = False
+        self._attempted_remove_unadded_assets = False
+        self._attempted_display_status = False
+        self._attempted_to_add = False
+        self._attempted_to_commit = False
         self._attempted_to_open_file = False
-        self._attempted_to_revert_to_repository = False
-        self._attempted_to_update_from_repository = False
+        self._attempted_to_revert = False
+        self._attempted_to_update = False
         self._command_history = []
         self._configuration = idetools.Configuration()
         self._confirm = True
@@ -250,9 +250,9 @@ class Session(abctools.AbjadObject):
 
     def _reinitialize(self):
         is_test = self._is_test
-        is_add_to_repository_test = self._is_repository_test
+        is_add_test = self._is_repository_test
         type(self).__init__(self, is_test=self.is_test)
-        self._is_repository_test = is_add_to_repository_test
+        self._is_repository_test = is_add_test
 
     def _set_test_score(self, score_package_name):
         from scoremanager import idetools

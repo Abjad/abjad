@@ -26,4 +26,4 @@ def test_StylesheetWrangler_remove_files_01():
             path=path,
             session=score_manager._session,
             )
-        manager.add_to_repository()
+        manager.add()

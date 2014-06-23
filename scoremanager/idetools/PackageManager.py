@@ -84,12 +84,12 @@ class PackageManager(ScoreInternalAssetController):
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
             #
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
-            'rcn': self.repository_clean,
-            'rrv': self.revert_to_repository,
-            'rst': self.repository_status,
-            'rup': self.update_from_repository,
+            'rad': self.add,
+            'rci': self.commit,
+            'rcn': self.remove_unadded_assets,
+            'rrv': self.revert,
+            'rst': self.display_status,
+            'rup': self.update,
             })
         return result
 
@@ -115,7 +115,7 @@ class PackageManager(ScoreInternalAssetController):
         return command
 
     @property
-    def _repository_status_command(self):
+    def _display_status_command(self):
         if not self._path:
             return
         if self._is_in_git_repository(path=self._path):
@@ -791,7 +791,7 @@ class PackageManager(ScoreInternalAssetController):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    def _test_add_to_repository(self):
+    def _test_add(self):
         assert self._is_up_to_date()
         path_1 = os.path.join(self._path, 'tmp_1.py')
         path_2 = os.path.join(self._path, 'tmp_2.py')
@@ -806,7 +806,7 @@ class PackageManager(ScoreInternalAssetController):
             assert self._get_unadded_asset_paths() == [path_1, path_2]
             assert self._get_added_asset_paths() == []
             with self._io_manager._silent():
-                self.add_to_repository()
+                self.add()
             assert self._get_unadded_asset_paths() == []
             assert self._get_added_asset_paths() == [path_1, path_2]
             with self._io_manager._silent():
@@ -816,7 +816,7 @@ class PackageManager(ScoreInternalAssetController):
         assert self._is_up_to_date()
         return True
 
-    def _test_repository_clean(self):
+    def _test_remove_unadded_assets(self):
         assert self._is_up_to_date()
         path_3 = os.path.join(self._path, 'tmp_3.py')
         path_4 = os.path.join(self._path, 'tmp_4.py')
@@ -830,11 +830,11 @@ class PackageManager(ScoreInternalAssetController):
             assert not self._is_up_to_date()
             assert self._get_unadded_asset_paths() == [path_3, path_4]
             with self._io_manager._silent():
-                self.repository_clean()
+                self.remove_unadded_assets()
         assert self._is_up_to_date()
         return True
 
-    def _test_revert_to_repository(self):
+    def _test_revert(self):
         assert self._is_up_to_date()
         assert self._get_modified_asset_paths() == []
         file_name = self._find_first_file_name()
@@ -848,7 +848,7 @@ class PackageManager(ScoreInternalAssetController):
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
             with self._io_manager._silent():
-                self.revert_to_repository()
+                self.revert()
         assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
@@ -891,7 +891,7 @@ class PackageManager(ScoreInternalAssetController):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def add_to_repository(self, dry_run=False):
+    def add(self, dry_run=False):
         r'''Adds files to repository.
 
         Returns none.
@@ -902,7 +902,7 @@ class PackageManager(ScoreInternalAssetController):
             outputs = []
             if dry_run:
                 return inputs, outputs
-            self._session._attempted_to_add_to_repository = True
+            self._session._attempted_to_add = True
             if self._session.is_repository_test:
                 return
             message = self._get_score_package_directory_name()
@@ -1158,14 +1158,14 @@ class PackageManager(ScoreInternalAssetController):
             self._io_manager._display(messages)
         return messages, supplied_directories, supplied_files
 
-    def commit_to_repository(self, commit_message=None):
+    def commit(self, commit_message=None):
         r'''Commits files to repository.
 
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
-            self._session._attempted_to_commit_to_repository = True
+            self._session._attempted_to_commit = True
             if self._session.is_repository_test:
                 return
             if commit_message is None:
@@ -1228,28 +1228,28 @@ class PackageManager(ScoreInternalAssetController):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def repository_clean(self):
+    def remove_unadded_assets(self):
         r'''Removes files not yet added to repository.
 
         Returns none.
         '''
-        self._repository_clean()
+        self._remove_unadded_assets()
 
-    def repository_status(self):
+    def display_status(self):
         r'''Displays repository status.
 
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
-            command = self._repository_status_command
+            command = self._display_status_command
             if not command:
                 message = 'path not in repository: {}.'
                 message = message.format(self._path)
                 self._io_manager._display(message)
                 return
             messages = []
-            self._session._attempted_repository_status = True
+            self._session._attempted_display_status = True
             message = 'Repository status for {} ...'
             message = message.format(self._path)
             messages.append(message)
@@ -1276,14 +1276,14 @@ class PackageManager(ScoreInternalAssetController):
                 clean_lines.append(message)
             self._io_manager._display(messages, capitalize=False)
 
-    def revert_to_repository(self):
+    def revert(self):
         r'''Reverts files to repository.
 
         Returns none.
         '''
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
-            self._session._attempted_to_revert_to_repository = True
+            self._session._attempted_to_revert = True
             if self._session.is_repository_test:
                 return
             message = 'reverting {} ...'
@@ -1291,7 +1291,7 @@ class PackageManager(ScoreInternalAssetController):
             self._io_manager._display(message)
             self._revert_from_repository()
 
-    def update_from_repository(self, messages_only=False):
+    def update(self, messages_only=False):
         r'''Updates files from repository.
 
         Returns none.
@@ -1299,7 +1299,7 @@ class PackageManager(ScoreInternalAssetController):
         messages = []
         change = systemtools.TemporaryDirectoryChange(directory=self._path)
         with change:
-            self._session._attempted_to_update_from_repository = True
+            self._session._attempted_to_update = True
             if self._session.is_repository_test:
                 return messages
             command = self._repository_update_command
