@@ -135,13 +135,19 @@ class AbjadIDE(Wrangler):
 
     def _make_init_py_menu_section(self, menu):
         commands = []
+        commands.append(('all assets - repository - add', 'rad*'))
+        commands.append(('all assets - repository - clean', 'rcn*'))
+        commands.append(('all assets - repository - commit', 'rci*'))
+        commands.append(('all assets - repository - revert', 'rrv*'))
+        commands.append(('all assets - repository - status', 'rst*'))
+        commands.append(('all assets - repository - update', 'rup*'))
         commands.append(('all packages - __init__.py - list', 'nls*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
         commands.append(('all packages - __init__.py - stub', 'ns*'))
         menu.make_command_section(
-            is_hidden=False,
+            is_hidden=True,
             commands=commands,
-            name='__init__.py',
+            name='all',
             )
 
     def _make_main_menu(self):

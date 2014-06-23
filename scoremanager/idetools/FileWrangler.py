@@ -54,6 +54,12 @@ class FileWrangler(Wrangler):
     def _make_all_menu_section(self, menu):
         commands = []
         commands.append(('all files - check', 'ck*'))
+        commands.append(('all files - repository - add', 'rad*'))
+        commands.append(('all files - repository - clean', 'rcn*'))
+        commands.append(('all files - repository - commit', 'rci*'))
+        commands.append(('all files - repository - revert', 'rrv*'))
+        commands.append(('all files - repository - status', 'rst*'))
+        commands.append(('all files - repository - update', 'rup*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,

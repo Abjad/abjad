@@ -20,7 +20,7 @@ def test_MakerFileWrangler_repository_clean_01():
         with open(foo_path, 'w') as file_pointer:
             file_pointer.write('')
         assert os.path.isfile(foo_path)
-        input_ = 'red~example~score k rcn y q'
+        input_ = 'red~example~score k rcn* y q'
         score_manager._run(input_=input_)
         assert not os.path.exists(foo_path)
 
@@ -29,6 +29,6 @@ def test_MakerFileWrangler_repository_clean_02():
     r'''Out of score.
     '''
 
-    input_ = 'K rcn q'
+    input_ = 'K rcn* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_repository_clean

@@ -83,6 +83,13 @@ class PackageManager(ScoreInternalAssetController):
             'nls': self.list_init_py,
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
+            #
+            'rad': self.add_to_repository,
+            'rci': self.commit_to_repository,
+            'rcn': self.repository_clean,
+            'rrv': self.revert_to_repository,
+            'rst': self.repository_status,
+            'rup': self.update_from_repository,
             })
         return result
 
@@ -554,6 +561,7 @@ class PackageManager(ScoreInternalAssetController):
         superclass = super(PackageManager, self)
         menu = superclass._make_main_menu()
         self._make_asset_menu_section(menu)
+        self._make_repository_menu_section(menu)
         return menu
 
     def _make_metadata_menu_entries(self):

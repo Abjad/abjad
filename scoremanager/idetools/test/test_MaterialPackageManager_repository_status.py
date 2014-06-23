@@ -8,7 +8,7 @@ def test_MaterialPackageManager_repository_status_01():
     r'''Works with Git.
     '''
 
-    input_ = 'red~example~score m rst q'
+    input_ = 'red~example~score m tempo~inventory rst q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

@@ -9,6 +9,6 @@ def test_ScorePackageWrangler_add_to_repository_01():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'rad q'
+    input_ = 'rad* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository

@@ -20,6 +20,7 @@ def test_ScorePackageManager_repository_status_02():
     r'''Works with Subversion.
     '''
 
+    score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
     name = score_manager._score_package_wrangler._find_svn_score_name()
     if not name:
         return

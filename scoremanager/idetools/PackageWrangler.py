@@ -53,6 +53,12 @@ class PackageWrangler(Wrangler):
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - write', 'mdw*'))
         commands.append(('all packages - check', 'ck*'))
+        commands.append(('all packages - repository - add', 'rad*'))
+        commands.append(('all packages - repository - clean', 'rcn*'))
+        commands.append(('all packages - repository - commit', 'rci*'))
+        commands.append(('all packages - repository - revert', 'rrv*'))
+        commands.append(('all packages - repository - status', 'rst*'))
+        commands.append(('all packages - repository - update', 'rup*'))
         if commands_only:
             return commands
         menu.make_command_section(

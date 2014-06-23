@@ -9,7 +9,7 @@ def test_StylesheetWrangler_commit_to_repository_01():
     '''
 
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score y rci q'
+    input_ = 'red~example~score y rci* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_commit_to_repository
 
@@ -19,6 +19,6 @@ def test_StylesheetWrangler_commit_to_repository_02():
     '''
 
     score_manager._session._is_repository_test = True
-    input_ = 'Y rci q'
+    input_ = 'Y rci* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_commit_to_repository

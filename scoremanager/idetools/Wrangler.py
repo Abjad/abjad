@@ -93,6 +93,13 @@ class Wrangler(ScoreInternalAssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
+            'rad*': self.add_to_repository,
+            'rci*': self.commit_to_repository,
+            'rcn*': self.repository_clean,
+            'rrv*': self.revert_to_repository,
+            'rst*': self.repository_status,
+            'rup*': self.update_from_repository,
+            #
             'va': self.autoedit_views,
             'vs': self.set_view,
             #

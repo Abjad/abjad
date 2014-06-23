@@ -8,7 +8,7 @@ def test_StylesheetWrangler_repository_status_01():
     r'''Works with stylesheet library.
     '''
 
-    input_ = 'Y rst q'
+    input_ = 'Y rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -20,7 +20,7 @@ def test_StylesheetWrangler_repository_status_02():
     r'''Works with Git-managed score.
     '''
 
-    input_ = 'red~example~score y rst q'
+    input_ = 'red~example~score y rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -36,7 +36,7 @@ def test_StylesheetWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = '{} y rst q'.format(score_name)
+    input_ = '{} y rst* q'.format(score_name)
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

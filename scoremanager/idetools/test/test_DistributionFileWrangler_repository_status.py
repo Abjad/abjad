@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_repository_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'D rst q'
+    input_ = 'D rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_repository_status_02():
     r'''Works with Git-managed score.
     '''
 
-    input_ = 'red~example~score d rst q'
+    input_ = 'red~example~score d rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -36,7 +36,7 @@ def test_DistributionFileWrangler_repository_status_03():
     if not score_name:
         return
 
-    input_ = '{} d rst q'.format(score_name)
+    input_ = '{} d rst* q'.format(score_name)
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

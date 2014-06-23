@@ -60,13 +60,6 @@ class AssetController(Controller):
             'pyi': self.invoke_python,
             'pyt': self.pytest,
             'sv': self.display_session_variables,
-            #
-            'rad': self.add_to_repository,
-            'rci': self.commit_to_repository,
-            'rcn': self.repository_clean,
-            'rrv': self.revert_to_repository,
-            'rst': self.repository_status,
-            'rup': self.update_from_repository,
             })
         return result
 
@@ -303,7 +296,7 @@ class AssetController(Controller):
         if self._session.is_in_score:
             self._make_score_stylesheet_menu_section(menu)
         self._make_go_menu_section(menu)
-        self._make_repository_menu_section(menu)
+        #self._make_repository_menu_section(menu)
         self._make_system_menu_section(menu)
         return menu
             

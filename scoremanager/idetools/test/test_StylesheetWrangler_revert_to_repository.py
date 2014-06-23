@@ -7,7 +7,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 def test_StylesheetWrangler_revert_to_repository_01():
 
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score y rrv q'
+    input_ = 'red~example~score y rrv* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_revert_to_repository
 
@@ -15,6 +15,6 @@ def test_StylesheetWrangler_revert_to_repository_01():
 def test_StylesheetWrangler_revert_to_repository_02():
 
     score_manager._session._is_repository_test = True
-    input_ = 'Y rrv q'
+    input_ = 'Y rrv* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_revert_to_repository

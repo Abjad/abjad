@@ -8,7 +8,7 @@ def test_BuildFileWrangler_repository_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'U rst q'
+    input_ = 'U rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -20,7 +20,7 @@ def test_BuildFileWrangler_repository_status_02():
     r'''Works with Git-managed score.
     '''
 
-    input_ = 'red~example~score u rst q'
+    input_ = 'red~example~score u rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
@@ -35,7 +35,7 @@ def test_BuildFileWrangler_repository_status_03():
     score_name = score_manager._score_package_wrangler._find_svn_score_name()
     if not score_name:
         return
-    input_ = '{} u rst q'.format(score_name)
+    input_ = '{} u rst* q'.format(score_name)
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 

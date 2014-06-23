@@ -9,7 +9,7 @@ def test_DistributionFileWrangler_add_to_repository_01():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score d rad q'
+    input_ = 'red~example~score d rad* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository
 
@@ -20,6 +20,6 @@ def test_DistributionFileWrangler_add_to_repository_02():
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'D rad q'
+    input_ = 'D rad* q'
     score_manager._run(input_=input_)
     assert score_manager._session._attempted_to_add_to_repository

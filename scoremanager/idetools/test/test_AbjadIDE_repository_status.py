@@ -6,7 +6,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_AbjadIDE_repository_status_01():
 
-    input_ = '** rst q'
+    input_ = '** rst* q'
     score_manager._run(input_=input_)
     contents = score_manager._transcript.contents
 
