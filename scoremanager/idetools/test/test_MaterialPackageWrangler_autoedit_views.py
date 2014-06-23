@@ -30,8 +30,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         'Abjad IDE - materials - views - _test (EDIT)',
         '',
         '      elements - add (add)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -43,8 +42,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '',
         '      elements - add (add)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -58,8 +56,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '      elements - add (add)',
         '      elements - move (mv)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -69,11 +66,10 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '',
         "   1: _test: 'example notes' in :ds:, 'example numbers' in :ds:",
         '',
-        '      element - rename (ren)',
         '      elements - add (add)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      elements - rename (ren)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -83,11 +79,10 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '',
         "   1: _new_test: 'example notes' in :ds:, 'example numbers' in :ds:",
         '',
-        '      element - rename (ren)',
         '      elements - add (add)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      elements - rename (ren)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -101,8 +96,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '      elements - add (add)',
         '      elements - move (mv)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -114,8 +108,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '',
         '      elements - add (add)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -125,11 +118,10 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         '',
         "   1: _new_test: 'example numbers' in :ds:",
         '',
-        '      element - rename (ren)',
         '      elements - add (add)',
         '      elements - remove (rm)',
-        '',
-        '      done (done)',
+        '      elements - rename (ren)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)
@@ -138,8 +130,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         'Abjad IDE - materials - views (EDIT)',
         '',
         '      elements - add (add)',
-        '',
-        '      done (done)',
+        '      editing - done (done)',
         '',
         ]
     assert any(_.lines == lines for _ in transcript)

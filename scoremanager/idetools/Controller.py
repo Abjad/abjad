@@ -130,14 +130,6 @@ class Controller(object):
                 assets.append(path)
         return assets
 
-    def _make_done_menu_section(self, menu):
-        commands = []
-        commands.append(('done', 'done'))
-        menu.make_navigation_section(
-            commands=commands,
-            name='zzz - done',
-            )
-
     @staticmethod
     def _remove_file_line(file_path, line_to_remove):
         lines_to_keep = []

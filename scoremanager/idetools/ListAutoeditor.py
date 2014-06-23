@@ -34,8 +34,11 @@ class ListAutoeditor(CollectionAutoeditor):
             menu, commands_only=True)
         if 1 < len(self._collection):
             commands.append(('elements - move', 'mv'))
+        commands = list(sorted(commands))
+        commands.append(('editing - done', 'done'))
         section = menu.make_command_section(
             commands=commands,
+            is_alphabetized=False,
             name='commands'
             )
 

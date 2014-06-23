@@ -65,9 +65,11 @@ class DictionaryAutoeditor(CollectionAutoeditor):
         commands = superclass._make_command_menu_section(
             menu, commands_only=True)
         if 0 < len(self._collection):
-            commands.append(('element - rename', 'ren'))
+            commands.append(('elements - rename', 'ren'))
+        commands.append(('editing - done', 'done'))
         section = menu.make_command_section(
             commands=commands,
+            is_alphabetized=False,
             name='commands'
             )
 

@@ -186,8 +186,10 @@ class CollectionAutoeditor(Autoeditor):
             commands.append(('elements - remove', 'rm'))
         if commands_only:
             return commands
+        commands.append(('editing - done', 'done'))
         section = menu.make_command_section(
             commands=commands,
+            is_alphabetized=False,
             name='commands',
             )
 
@@ -205,7 +207,6 @@ class CollectionAutoeditor(Autoeditor):
         self._make_keyed_attributes_menu_section(menu)
         self._make_numbered_entries_menu_section(menu)
         self._make_command_menu_section(menu)
-        self._make_done_menu_section(menu)
         return menu
 
     def _make_numbered_entries_menu_section(self, menu):
