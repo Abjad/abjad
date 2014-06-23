@@ -283,6 +283,7 @@ class Autoeditor(Controller):
             is_first_pass = True
             while True:
                 if self._session.is_autoadding:
+                    self._session._pending_redraw = True
                     menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_input = result

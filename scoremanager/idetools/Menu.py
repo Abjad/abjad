@@ -556,10 +556,10 @@ class Menu(Controller):
     def _run(self):
         with self._io_manager._controller(controller=self):
             while True:
+                if self._session.pending_redraw:
+                    self._redraw()
                 result = self._predetermined_input
                 if not result:
-                    if self._session.pending_redraw:
-                        self._redraw()
                     result = self._handle_user_input()
                 if self._session.is_quitting:
                     return result
