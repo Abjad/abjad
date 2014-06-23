@@ -517,9 +517,13 @@ class AssetController(Controller):
             return
         return manager._get_metadatum(metadatum_name)
 
-    def _remove_unadded_assets(self):
+    def _remove_unadded_assets(self, dry_run=False):
         paths = self._get_unadded_asset_paths()
-        if not paths:
+        inputs, outputs = [], []
+        if dry_run:
+            inputs, outputs = paths, []
+            return inputs, outputs
+        elif not paths:
             message = 'no unadded assets.'
             self._io_manager._display(message)
             return

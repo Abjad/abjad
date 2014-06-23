@@ -1228,12 +1228,12 @@ class PackageManager(ScoreInternalAssetController):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def remove_unadded_assets(self):
+    def remove_unadded_assets(self, dry_run=False):
         r'''Removes files not yet added to repository.
 
         Returns none.
         '''
-        self._remove_unadded_assets()
+        return self._remove_unadded_assets(dry_run=dry_run)
 
     def display_status(self):
         r'''Displays repository status.

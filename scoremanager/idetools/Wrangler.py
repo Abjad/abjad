@@ -1060,9 +1060,29 @@ class Wrangler(ScoreInternalAssetController):
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         paths.sort()
+        inputs, outputs = [], []
+        managers = []
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
-            manager.remove_unadded_assets()
+            managers.append(manager)
+            inputs_, outputs_ = manager.remove_unadded_assets(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='remove')
+        self._io_manager._display(messages)
+        if not inputs:
+            return
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        with self._io_manager._silent():
+            for manager in managers:
+                manager.remove_unadded_assets()
+        count = len(inputs)
+        identifier = stringtools.pluralize('asset', count)
+        message = 'removed {} unadded {}.'
+        message = message.format(count, identifier)
+        self._io_manager._display(message)
 
     def display_every_asset_status(self):
         r'''Displays repository status of every asset.

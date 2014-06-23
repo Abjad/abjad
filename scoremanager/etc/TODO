@@ -48,6 +48,3 @@
 21. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
 
 22. Replace 'abjad_library' with something else.
-
-23. Refactor (rcn) to first list all unadded assets and then prompt for
-    removal.
