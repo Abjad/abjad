@@ -41,6 +41,3 @@
 
 19. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
-
-20. Customize user input getter prompt to alert composer to differences in
-    getter environment.

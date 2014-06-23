@@ -38,7 +38,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         include_chevron=True,
         include_newlines=False,
         number_prompts=False,
-        prompt_character='>',
+        prompt_character=']>',
         ):
         Controller.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
@@ -143,7 +143,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
         self._evaluated_input.pop()
         self._prompt_index = self._prompt_index - 1
 
-    def _present_prompt_and_evaluate_input(self, include_chevron=True):
+    def _present_prompt(self, include_chevron=True):
         self._load_message()
         self._current_prompt_is_done = False
         while not self._current_prompt_is_done:
@@ -188,18 +188,14 @@ class UserInputGetter(Controller, PromptMakerMixin):
             else:
                 self._io_manager._display_not_yet_implemented()
 
-    def _present_prompts_and_evaluate_input(
-        self,
-        include_chevron=True,
-        ):
+    def _present_prompts(self, include_chevron=True):
         self._prompt_index = 0
         self._messages = []
         self._evaluated_input = []
         self._all_prompts_are_done = False
         while (self._prompt_index < len(self) and
             not self._all_prompts_are_done):
-            self._present_prompt_and_evaluate_input(
-                include_chevron=include_chevron)
+            self._present_prompt(include_chevron=include_chevron)
 
     def _run(self):
         with self._io_manager._controller(
@@ -207,10 +203,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
             controller=self,
             is_in_confirmation_environment=True,
             ):
-            # TODO: shorten names and make this into a single line
-            self._present_prompts_and_evaluate_input(
-                include_chevron=self._include_chevron,
-                )
+            self._present_prompts(include_chevron=self._include_chevron)
             if len(self._evaluated_input) == 1:
                 result = self._evaluated_input[0]
             else:

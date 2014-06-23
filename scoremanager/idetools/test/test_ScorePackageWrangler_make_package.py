@@ -34,7 +34,7 @@ def test_ScorePackageWrangler_make_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
 
-    assert 'Enter score package name>' in contents
+    assert 'Enter score package name]>' in contents
 
 
 def test_ScorePackageWrangler_make_package_02():
