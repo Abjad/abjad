@@ -117,11 +117,6 @@ class AbjadIDE(Wrangler):
                 paths.append(path)
         return paths
 
-    def _list_visible_asset_paths(self):
-        entries = self._make_asset_menu_entries()
-        paths = [_[-1] for _ in entries]
-        return paths
-
     def _list_storehouse_paths(self):
         paths = []
         paths.append(self._configuration.user_library_makers_directory)
@@ -131,6 +126,11 @@ class AbjadIDE(Wrangler):
         paths.append(self._configuration.user_library_stylesheets_directory)
         paths.append(self._configuration.example_score_packages_directory)
         paths.append(self._configuration.user_score_packages_directory)
+        return paths
+
+    def _list_visible_asset_paths(self):
+        entries = self._make_asset_menu_entries()
+        paths = [_[-1] for _ in entries]
         return paths
 
     def _make_init_py_menu_section(self, menu):

@@ -341,16 +341,6 @@ class IOManager(IOManager):
             session=self._session,
             )
 
-    def _silent(self):
-        from scoremanager import idetools
-        return idetools.Interaction(
-            confirm=False,
-            controller=self.client,
-            display=False,
-            dry_run=False,
-            task=False,
-            )
-
     def _make_tab(self, n=1):
         return 4 * n * ' '
 
@@ -380,6 +370,16 @@ class IOManager(IOManager):
         input_ = input_.replace('~', ' ')
         self._session._pending_input = pending_input
         return input_
+
+    def _silent(self):
+        from scoremanager import idetools
+        return idetools.Interaction(
+            confirm=False,
+            controller=self.client,
+            display=False,
+            dry_run=False,
+            task=False,
+            )
 
     ### PUBLIC PROPERTIES ###
 

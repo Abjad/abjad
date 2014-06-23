@@ -246,14 +246,14 @@ class Wrangler(ScoreInternalAssetController):
         ):
         from scoremanager import idetools
         from scoremanager import idetools
-        abjad_library = False
+        abjad_material_packages_and_stylesheets = False
         example_score_packages = False
         user_library = False
         user_score_packages = False
         if system and inside_score:
             example_score_packages = True
         elif system and not inside_score:
-            abjad_library = True
+            abjad_material_packages_and_stylesheets = True
         elif not system and inside_score:
             user_score_packages = True
         elif not system and not inside_score:
@@ -261,7 +261,7 @@ class Wrangler(ScoreInternalAssetController):
         else:
             Exception
         asset_paths = self._list_asset_paths(
-            abjad_library=abjad_library,
+            abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
             user_library=user_library,
             user_score_packages=user_score_packages,
@@ -443,7 +443,7 @@ class Wrangler(ScoreInternalAssetController):
 
     def _list_asset_paths(
         self,
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
         user_library=True,
         user_score_packages=True,
@@ -451,7 +451,7 @@ class Wrangler(ScoreInternalAssetController):
         ):
         result = []
         directories = self._list_storehouse_paths(
-            abjad_library=abjad_library,
+            abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
             user_library=user_library,
             user_score_packages=user_score_packages,
@@ -472,13 +472,13 @@ class Wrangler(ScoreInternalAssetController):
 
     def _list_storehouse_paths(
         self,
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
         user_library=True,
         user_score_packages=True,
         ):
         result = []
-        if (abjad_library and
+        if (abjad_material_packages_and_stylesheets and
             self._abjad_storehouse_path is not None):
             result.append(self._abjad_storehouse_path)
         if user_library and self._user_storehouse_path is not None:
@@ -610,7 +610,7 @@ class Wrangler(ScoreInternalAssetController):
 
     def _make_storehouse_menu_entries(
         self,
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
         user_library=True,
         user_score_packages=True,
@@ -622,7 +622,7 @@ class Wrangler(ScoreInternalAssetController):
             display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = idetools.ScorePackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
-            abjad_library=abjad_library,
+            abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
             user_library=user_library,
             user_score_packages=user_score_packages,
@@ -827,7 +827,7 @@ class Wrangler(ScoreInternalAssetController):
     def _select_storehouse_path(self):
         from scoremanager import idetools
         menu_entries = self._make_storehouse_menu_entries(
-            abjad_library=False,
+            abjad_material_packages_and_stylesheets=False,
             example_score_packages=False,
             user_library=True,
             user_score_packages=False,
@@ -973,27 +973,6 @@ class Wrangler(ScoreInternalAssetController):
         message = message.format(count, identifier)
         self._io_manager._display(message)
         
-    def set_view(self):
-        r'''Applies view.
-
-        Writes view name to ``__metadata.py__``.
-
-        Returns none.
-        '''
-        infinitive_phrase = 'to apply'
-        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
-        if self._session.is_backtracking or view_name is None:
-            return
-        if view_name == 'none':
-            view_name = None
-        if self._session.is_in_score:
-            manager = self._current_package_manager
-            metadatum_name = 'view_name'
-        else:
-            manager = self._views_package_manager
-            metadatum_name = '{}_view_name'.format(type(self).__name__)
-        manager._add_metadatum(metadatum_name, view_name)
-
     def autoedit_views(self):
         r'''Autoedits views.
 
@@ -1037,6 +1016,19 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._initialize_manager(path)
             with self._io_manager._silent():
                 manager.commit(commit_message=commit_message)
+
+    def display_every_asset_status(self):
+        r'''Displays repository status of every asset.
+
+        Returns none.
+        '''
+        self._session._attempted_display_status = True
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        paths.sort()
+        for path in paths:
+            manager = self._io_manager._make_package_manager(path)
+            manager.display_status()
 
     def open_views_py(self):
         r'''Opens ``__views__.py``.
@@ -1084,19 +1076,6 @@ class Wrangler(ScoreInternalAssetController):
         message = message.format(count, identifier)
         self._io_manager._display(message)
 
-    def display_every_asset_status(self):
-        r'''Displays repository status of every asset.
-
-        Returns none.
-        '''
-        self._session._attempted_display_status = True
-        paths = self._list_visible_asset_paths()
-        paths = self._extract_common_parent_directories(paths)
-        paths.sort()
-        for path in paths:
-            manager = self._io_manager._make_package_manager(path)
-            manager.display_status()
-
     def revert_every_asset(self):
         r'''Reverts every asset to repository.
 
@@ -1109,6 +1088,27 @@ class Wrangler(ScoreInternalAssetController):
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
             manager.revert()
+
+    def set_view(self):
+        r'''Applies view.
+
+        Writes view name to ``__metadata.py__``.
+
+        Returns none.
+        '''
+        infinitive_phrase = 'to apply'
+        view_name = self._select_view(infinitive_phrase=infinitive_phrase)
+        if self._session.is_backtracking or view_name is None:
+            return
+        if view_name == 'none':
+            view_name = None
+        if self._session.is_in_score:
+            manager = self._current_package_manager
+            metadatum_name = 'view_name'
+        else:
+            manager = self._views_package_manager
+            metadatum_name = '{}_view_name'.format(type(self).__name__)
+        manager._add_metadatum(metadatum_name, view_name)
 
     def update_every_asset(self):
         r'''Updates every asset from repository.

@@ -27,7 +27,7 @@ def test_StylesheetWrangler__list_asset_paths_01():
         paths.append(path)
 
     result = wrangler._list_asset_paths(
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         example_score_packages=False,
         user_library=False,
         user_score_packages=False,

@@ -78,20 +78,6 @@ class ScoreInternalAssetController(AssetController):
         '''
         self._session._score_manager._material_package_wrangler._run()
 
-    def go_to_segments(self):
-        r'''Goes to segment packages.
-
-        Returns none.
-        '''
-        self._session._score_manager._segment_package_wrangler._run()
-
-    def go_to_stylesheets(self):
-        r'''Goes to stylesheets.
-
-        Returns none.
-        '''
-        self._session._score_manager._stylesheet_wrangler._run()
-
     def go_to_next_score(self):
         r'''Goes to next score.
 
@@ -109,3 +95,17 @@ class ScoreInternalAssetController(AssetController):
         self._session._is_navigating_to_previous_score = True
         self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
+
+    def go_to_segments(self):
+        r'''Goes to segment packages.
+
+        Returns none.
+        '''
+        self._session._score_manager._segment_package_wrangler._run()
+
+    def go_to_stylesheets(self):
+        r'''Goes to stylesheets.
+
+        Returns none.
+        '''
+        self._session._score_manager._stylesheet_wrangler._run()

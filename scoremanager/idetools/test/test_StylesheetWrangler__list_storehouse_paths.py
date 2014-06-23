@@ -16,7 +16,7 @@ def test_StylesheetWrangler__list_storehouse_paths_01():
         ]
 
     result = wrangler._list_storehouse_paths(
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         example_score_packages=False,
         user_library=False,
         user_score_packages=False,
@@ -48,7 +48,7 @@ def test_StylesheetWrangler__list_storehouse_paths_02():
         paths.append(path)
 
     result = wrangler._list_storehouse_paths(
-        abjad_library=False,
+        abjad_material_packages_and_stylesheets=False,
         example_score_packages=True,
         user_library=False,
         user_score_packages=False,

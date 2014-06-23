@@ -128,7 +128,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
     def _list_asset_paths(
         self,
-        abjad_library=True,
+        abjad_material_packages_and_stylesheets=True,
         user_library=True,
         example_score_packages=True,
         user_score_packages=True,
@@ -137,7 +137,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         from scoremanager import idetools
         superclass = super(MaterialPackageWrangler, self)
         paths = superclass._list_asset_paths(
-            abjad_library=abjad_library,
+            abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             user_library=user_library,
             example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
@@ -250,26 +250,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._interpret_in_every_package('illustration.ly')
 
-    def output_every_definition_py(self):
-        r'''Outputs ``definition.py`` to ``output.py`` in every package.
-
-        Returns none.
-        '''
-        managers = self._list_visible_asset_managers()
-        inputs, outputs = [], []
-        for manager in managers:
-            inputs_, outputs_ = manager.output_definition_py(dry_run=True)
-            inputs.extend(inputs_)
-            outputs.extend(outputs_)
-        messages = self._format_messaging(inputs, outputs, verb='output')
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        with self._io_manager._silent():
-            for manager in managers:
-                manager.output_definition_py()
-
     def open_every_definition_py(self):
         r'''Opens ``definition.py`` in every package.
 
@@ -290,6 +270,26 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('output.py')
+
+    def output_every_definition_py(self):
+        r'''Outputs ``definition.py`` to ``output.py`` in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        for manager in managers:
+            inputs_, outputs_ = manager.output_definition_py(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='output')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        with self._io_manager._silent():
+            for manager in managers:
+                manager.output_definition_py()
 
     def remove_packages(self):
         r'''Removes one or more packages.

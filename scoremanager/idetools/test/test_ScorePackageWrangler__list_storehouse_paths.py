@@ -10,7 +10,7 @@ def test_ScorePackageWrangler__list_storehouse_paths_01():
 
     wrangler = scoremanager.idetools.ScorePackageWrangler(session=session)
     result = wrangler._list_storehouse_paths(
-        abjad_library=False,
+        abjad_material_packages_and_stylesheets=False,
         example_score_packages=True,
         user_library=False,
         user_score_packages=False,

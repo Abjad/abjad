@@ -685,22 +685,6 @@ class Session(abctools.AbjadObject):
         return self._is_backtracking_locally
 
     @property
-    def is_navigating_to_library(self):
-        r'''Is true when session is backtracking to library.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_library
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_library
-
-    @property
     def is_backtracking_to_score(self):
         r'''Is true when session is backtracking to score.
         Otherwise false.
@@ -834,6 +818,86 @@ class Session(abctools.AbjadObject):
         return False
 
     @property
+    def is_navigating_to_build_files(self):
+        r'''Is true when session is navigating to build directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_build_files
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_build_files
+
+    @property
+    def is_navigating_to_distribution_files(self):
+        r'''Is true when session is navigating to distribution directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_distribution_files
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_distribution_files
+
+    @property
+    def is_navigating_to_library(self):
+        r'''Is true when session is backtracking to library.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_library
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_library
+
+    @property
+    def is_navigating_to_maker_files(self):
+        r'''Is true when session is navigating to score makers.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_maker_files
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_maker_files
+
+    @property
+    def is_navigating_to_materials(self):
+        r'''Is true when session is navigating to score materials.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_materials
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_materials
+
+    @property
     def is_navigating_to_next_asset(self):
         r'''Is true when session is navigating to next material.
         Otherwise false.
@@ -897,70 +961,6 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_previous_score
 
     @property
-    def is_navigating_to_build_files(self):
-        r'''Is true when session is navigating to build directory.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_build_files
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_build_files
-
-    @property
-    def is_navigating_to_distribution_files(self):
-        r'''Is true when session is navigating to distribution directory.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_distribution_files
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_distribution_files
-
-    @property
-    def is_navigating_to_maker_files(self):
-        r'''Is true when session is navigating to score makers.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_maker_files
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_maker_files
-
-    @property
-    def is_navigating_to_materials(self):
-        r'''Is true when session is navigating to score materials.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_materials
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_materials
-
-    @property
     def is_navigating_to_segments(self):
         r'''Is true when session is navigating to score segments.
         Otherwise false.
@@ -975,22 +975,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_segments
-
-    @property
-    def is_navigating_to_stylesheets(self):
-        r'''Is true when session is navigating to score stylesheets.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_stylesheets
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_stylesheets
 
     @property
     def is_navigating_to_sibling_asset(self):
@@ -1031,6 +1015,22 @@ class Session(abctools.AbjadObject):
         if self.is_navigating_to_previous_score:
             return True
         return False
+
+    @property
+    def is_navigating_to_stylesheets(self):
+        r'''Is true when session is navigating to score stylesheets.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_stylesheets
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_stylesheets
 
     @property
     def is_quitting(self):

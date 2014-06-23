@@ -65,6 +65,17 @@ class PackageManager(ScoreInternalAssetController):
         return self._spaced_class_name
 
     @property
+    def _display_status_command(self):
+        if not self._path:
+            return
+        if self._is_in_git_repository(path=self._path):
+            return 'git status {}'.format(self._path)
+        elif self._is_svn_versioned(path=self._path):
+            return 'svn st {}'.format(self._path)
+        else:
+            return
+
+    @property
     def _init_py_file_path(self):
         return os.path.join(self._path, '__init__.py')
 
@@ -113,17 +124,6 @@ class PackageManager(ScoreInternalAssetController):
         else:
             raise ValueError(self)
         return command
-
-    @property
-    def _display_status_command(self):
-        if not self._path:
-            return
-        if self._is_in_git_repository(path=self._path):
-            return 'git status {}'.format(self._path)
-        elif self._is_svn_versioned(path=self._path):
-            return 'svn st {}'.format(self._path)
-        else:
-            return
 
     @property
     def _repository_update_command(self):
@@ -873,24 +873,6 @@ class PackageManager(ScoreInternalAssetController):
 
     ### PUBLIC METHODS ###
 
-    def add_metadatum(self):
-        r'''Adds metadatum to ``__metadata.py__``.
-
-        Returns none.
-        '''
-        getter = self._io_manager._make_getter()
-        getter.append_snake_case_string(
-            'metadatum name',
-            allow_empty=False,
-            )
-        getter.append_expr('metadatum value')
-        result = getter._run()
-        if self._session.is_backtracking:
-            return
-        if result:
-            metadatum_name, metadatum_value = result
-            self._add_metadatum(metadatum_name, metadatum_value)
-
     def add(self, dry_run=False):
         r'''Adds files to repository.
 
@@ -911,6 +893,24 @@ class PackageManager(ScoreInternalAssetController):
             command = self._repository_add_command
             assert isinstance(command, str)
             self._io_manager.run_command(command)
+
+    def add_metadatum(self):
+        r'''Adds metadatum to ``__metadata.py__``.
+
+        Returns none.
+        '''
+        getter = self._io_manager._make_getter()
+        getter.append_snake_case_string(
+            'metadatum name',
+            allow_empty=False,
+            )
+        getter.append_expr('metadatum value')
+        result = getter._run()
+        if self._session.is_backtracking:
+            return
+        if result:
+            metadatum_name, metadatum_value = result
+            self._add_metadatum(metadatum_name, metadatum_value)
 
     def check_package(
         self, 
@@ -1186,6 +1186,47 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(commit_message, self._path)
             self._io_manager.run_command(command, capitalize=False)
 
+    def display_status(self):
+        r'''Displays repository status.
+
+        Returns none.
+        '''
+        change = systemtools.TemporaryDirectoryChange(directory=self._path)
+        with change:
+            command = self._display_status_command
+            if not command:
+                message = 'path not in repository: {}.'
+                message = message.format(self._path)
+                self._io_manager._display(message)
+                return
+            messages = []
+            self._session._attempted_display_status = True
+            message = 'Repository status for {} ...'
+            message = message.format(self._path)
+            messages.append(message)
+            process = self._io_manager.make_subprocess(command)
+            path = self._path
+            path = path + os.path.sep
+            clean_lines = []
+            for line in process.stdout.readlines():
+                line = str(line)
+                clean_line = line.strip()
+                clean_line = clean_line.replace(path, '')
+                clean_lines.append(clean_line)
+            everything_ok = False
+            for line in clean_lines:
+                if 'nothing to commit' in line:
+                    everything_ok = True
+                    break
+            if clean_lines and not everything_ok:
+                messages.extend(clean_lines)
+            else:
+                first_message = messages[0]
+                first_message = first_message + ' OK'
+                messages[0] = first_message
+                clean_lines.append(message)
+            self._io_manager._display(messages, capitalize=False)
+
     def get_metadatum(self):
         r'''Gets metadatum from ``__metadata.py__``.
 
@@ -1234,47 +1275,6 @@ class PackageManager(ScoreInternalAssetController):
         Returns none.
         '''
         return self._remove_unadded_assets(dry_run=dry_run)
-
-    def display_status(self):
-        r'''Displays repository status.
-
-        Returns none.
-        '''
-        change = systemtools.TemporaryDirectoryChange(directory=self._path)
-        with change:
-            command = self._display_status_command
-            if not command:
-                message = 'path not in repository: {}.'
-                message = message.format(self._path)
-                self._io_manager._display(message)
-                return
-            messages = []
-            self._session._attempted_display_status = True
-            message = 'Repository status for {} ...'
-            message = message.format(self._path)
-            messages.append(message)
-            process = self._io_manager.make_subprocess(command)
-            path = self._path
-            path = path + os.path.sep
-            clean_lines = []
-            for line in process.stdout.readlines():
-                line = str(line)
-                clean_line = line.strip()
-                clean_line = clean_line.replace(path, '')
-                clean_lines.append(clean_line)
-            everything_ok = False
-            for line in clean_lines:
-                if 'nothing to commit' in line:
-                    everything_ok = True
-                    break
-            if clean_lines and not everything_ok:
-                messages.extend(clean_lines)
-            else:
-                first_message = messages[0]
-                first_message = first_message + ' OK'
-                messages[0] = first_message
-                clean_lines.append(message)
-            self._io_manager._display(messages, capitalize=False)
 
     def revert(self):
         r'''Reverts files to repository.

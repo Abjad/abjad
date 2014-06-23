@@ -46,5 +46,3 @@
     getter environment.
 
 21. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.
-
-22. Replace 'abjad_library' with something else.

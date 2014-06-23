@@ -168,6 +168,14 @@ class Controller(object):
 
     ### PUBLIC METHODS ###
 
+    def go_back(self):
+        r'''Goes back.
+
+        Returns none.
+        '''
+        self._session._is_backtracking_locally = True
+        self._session._display_available_commands = False
+
     def go_to_all_scores(self):
         r'''Goes to all scores.
 
@@ -175,14 +183,6 @@ class Controller(object):
         '''
         self._session._is_navigating_to_library = False
         self._session._is_navigating_to_scores = True
-        self._session._display_available_commands = False
-
-    def go_back(self):
-        r'''Goes back.
-
-        Returns none.
-        '''
-        self._session._is_backtracking_locally = True
         self._session._display_available_commands = False
 
     def go_to_current_score(self):
