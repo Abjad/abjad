@@ -117,7 +117,8 @@ class ScorePackageWrangler(PackageWrangler):
             )
         if manager:
             title = manager._get_title()
-            title = stringtools.to_accent_free_snake_case(title)
+            title = stringtools.strip_diacritics(title)
+            title = title.lower()
             return title
 
     def _get_scores_to_display_string(self):

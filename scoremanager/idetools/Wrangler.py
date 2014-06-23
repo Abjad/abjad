@@ -93,12 +93,12 @@ class Wrangler(ScoreInternalAssetController):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            'rad*': self.add_to_repository,
-            'rci*': self.commit_to_repository,
-            'rcn*': self.repository_clean,
-            'rrv*': self.revert_to_repository,
-            'rst*': self.repository_status,
-            'rup*': self.update_from_repository,
+            'rad*': self.add_every_asset_to_repository,
+            'rci*': self.commit_every_asset_to_repository,
+            'rcn*': self.repository_clean_every_asset,
+            'rst*': self.repository_status_every_asset,
+            'rrv*': self.revert_every_asset_to_repository,
+            'rup*': self.update_every_asset_from_repository,
             #
             'va': self.autoedit_views,
             'vs': self.set_view,
@@ -943,8 +943,8 @@ class Wrangler(ScoreInternalAssetController):
 
     ### PUBLIC METHODS ###
 
-    def add_to_repository(self):
-        r'''Adds files to repository.
+    def add_every_asset_to_repository(self):
+        r'''Adds every asset to repository.
 
         Returns none.
         '''
@@ -1014,8 +1014,8 @@ class Wrangler(ScoreInternalAssetController):
             self._write_view_inventory(inventory)
         self._session._pending_redraw = True
 
-    def commit_to_repository(self):
-        r'''Commits files to repository.
+    def commit_every_asset_to_repository(self):
+        r'''Commits every asset to repository.
 
         Returns none.
         '''
@@ -1049,8 +1049,8 @@ class Wrangler(ScoreInternalAssetController):
             message = 'no __views.py__ found.'
             self._io_manager._display(message)
 
-    def repository_clean(self):
-        r'''Removes files not yet added to repository.
+    def repository_clean_every_asset(self):
+        r'''Removes files not yet added to repository of every asset.
 
         Returns none.
         '''
@@ -1064,8 +1064,8 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.repository_clean()
 
-    def repository_status(self):
-        r'''Displays repository status.
+    def repository_status_every_asset(self):
+        r'''Displays repository status of every asset.
 
         Returns none.
         '''
@@ -1077,8 +1077,8 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.repository_status()
 
-    def revert_to_repository(self):
-        r'''Reverts files to repository.
+    def revert_every_asset_to_repository(self):
+        r'''Reverts every asset to repository.
 
         Returns none.
         '''
@@ -1090,8 +1090,8 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.revert_to_repository()
 
-    def update_from_repository(self):
-        r'''Updates files from repository.
+    def update_every_asset_from_repository(self):
+        r'''Updates every asset from repository.
 
         Returns none.
         '''
