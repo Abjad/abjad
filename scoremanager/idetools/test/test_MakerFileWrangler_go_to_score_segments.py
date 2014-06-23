@@ -17,17 +17,3 @@ def test_MakerFileWrangler_go_to_score_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_MakerFileWrangler_go_to_score_segments_02():
-    r'''Goes from maker file library to segment library.
-    '''
-
-    input_ = 'K G q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - maker files',
-        'Abjad IDE - segments',
-        ]
-    assert score_manager._transcript.titles == titles

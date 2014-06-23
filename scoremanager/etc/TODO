@@ -44,5 +44,3 @@
 
 20. Customize user input getter prompt to alert composer to differences in
     getter environment.
-
-21. Change 'From ... to stylesheet library' to 'From ... to all stylesheets'.

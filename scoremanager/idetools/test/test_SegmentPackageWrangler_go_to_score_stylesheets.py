@@ -17,17 +17,3 @@ def test_SegmentPackageWrangler_go_to_score_stylesheets_01():
         'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_SegmentPackageWrangler_go_to_score_stylesheets_02():
-    r'''Goes from segment library to stylesheet library.
-    '''
-
-    input_ = 'G Y q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - segments',
-        'Abjad IDE - stylesheets',
-        ]
-    assert score_manager._transcript.titles == titles

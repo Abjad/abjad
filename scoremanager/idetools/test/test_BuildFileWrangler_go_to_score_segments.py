@@ -17,17 +17,3 @@ def test_BuildFileWrangler_go_to_score_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_BuildFileWrangler_go_to_score_segments_02():
-    r'''Goes from build file library to segment library.
-    '''
-
-    input_ = 'U G q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - build files',
-        'Abjad IDE - segments',
-        ]
-    assert score_manager._transcript.titles == titles

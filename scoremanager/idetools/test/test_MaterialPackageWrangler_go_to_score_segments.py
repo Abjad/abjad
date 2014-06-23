@@ -17,17 +17,3 @@ def test_MaterialPackageWrangler_go_to_score_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_MaterialPackageWrangler_go_to_score_segments_02():
-    r'''Goes from material library to segment library.
-    '''
-
-    input_ = 'M G q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
-        'Abjad IDE - segments',
-        ]
-    assert score_manager._transcript.titles == titles

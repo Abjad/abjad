@@ -17,17 +17,3 @@ def test_MakerFileWrangler_go_to_score_stylesheets_01():
         'Red Example Score (2013) - stylesheets',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_MakerFileWrangler_go_to_score_stylesheets_02():
-    r'''Goes from maker file library to stylesheet library.
-    '''
-
-    input_ = 'K Y q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - maker files',
-        'Abjad IDE - stylesheets',
-        ]
-    assert score_manager._transcript.titles == titles

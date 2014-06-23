@@ -17,17 +17,3 @@ def test_DistributionFileWrangler_go_to_score_segments_01():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
-
-    
-def test_DistributionFileWrangler_go_to_score_segments_02():
-    r'''Goes from distribution file library to segment library.
-    '''
-
-    input_ = 'D G q'
-    score_manager._run(input_=input_)
-    titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - distribution files',
-        'Abjad IDE - segments',
-        ]
-    assert score_manager._transcript.titles == titles
