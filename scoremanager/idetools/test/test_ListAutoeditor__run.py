@@ -12,7 +12,7 @@ def test_ListAutoeditor__run_01():
     session = scoremanager.idetools.Session(is_test=True)
     autoeditor = scoremanager.idetools.ListAutoeditor(session=session)
     input_ = "17 99 'foo' done q"
-    autoeditor._is_autoadding = True
+    autoeditor._session._is_autoadding = True
     autoeditor._session._pending_input = input_
     autoeditor._run()
 

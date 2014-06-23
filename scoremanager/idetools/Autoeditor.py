@@ -282,7 +282,7 @@ class Autoeditor(Controller):
             entry_point = None
             is_first_pass = True
             while True:
-                if self._is_autoadding:
+                if self._session.is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_input = result

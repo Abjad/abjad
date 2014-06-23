@@ -165,6 +165,9 @@ class CollectionAutoeditor(Autoeditor):
 
     def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
+        if result.endswith('!'):
+            self._session._is_autoadding = True
+            result = result.strip('!')
         if result in self._input_to_method:
             self._input_to_method[result]()
         elif mathtools.is_integer_equivalent_expr(result):

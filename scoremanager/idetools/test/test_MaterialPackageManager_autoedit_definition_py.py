@@ -240,7 +240,6 @@ def test_MaterialPackageManager_autoedit_definition_py_07():
 
 
 def test_MaterialPackageManager_autoedit_definition_py_08():
-    pytest.skip('make autoadding work again.')
 
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
@@ -257,7 +256,7 @@ def test_MaterialPackageManager_autoedit_definition_py_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'M new test~list y da y list 17 foo done dp y q'
+        input_ = 'M new test~list y da y list add! 17 foo done done y dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)

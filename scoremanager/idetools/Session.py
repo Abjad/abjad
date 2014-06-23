@@ -622,11 +622,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        from scoremanager import idetools
-        for controller in reversed(self.controller_stack):
-            if isinstance(controller, idetools.Autoeditor):
-                return controller.is_autoadding
-        return False
+        return self._is_autoadding
 
     @property
     def is_autonavigating_within_score(self):
