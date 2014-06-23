@@ -190,7 +190,7 @@ class AssetController(Controller):
         with self._io_manager._make_interaction():
             if result.startswith('!'):
                 statement = result[1:]
-                self.invoke_shell(statement=statement)
+                self._io_manager._invoke_shell(statement)
             elif result in self._input_to_method:
                 self._input_to_method[result]()
             elif result.endswith('!') and result[:-1] in self._input_to_method:
@@ -677,20 +677,17 @@ class AssetController(Controller):
         self.go_to_all_scores()
         self._session._is_navigating_to_stylesheets = True
 
-    def invoke_python(self, statement=None):
-        r'''Invokes Python on `statement`.
+    def invoke_python(self):
+        r'''Invokes Python.
 
         Returns none.
         '''
         messages = []
         prompt = True
-        if statement is None:
-            statement = self._io_manager._handle_input(
-                '>>', 
-                include_newline=False,
-                )
-        else:
-            prompt = False
+        statement = self._io_manager._handle_input(
+            '>>', 
+            include_newline=False,
+            )
         command = 'from abjad import *'
         exec(command)
         try:
@@ -703,12 +700,18 @@ class AssetController(Controller):
         if prompt:
             self._io_manager._display(messages)
 
-    def invoke_shell(self, statement=None):
-        r'''Invokes shell on `statement`.
+    def invoke_shell(self):
+        r'''Invokes shell.
 
         Returns none.
         '''
-        self._io_manager.invoke_shell(statement=statement)
+        statement = self._io_manager._handle_input(
+            '$',
+            include_chevron=False,
+            include_newline=False,
+            )
+        statement = statement.strip()
+        self._io_manager._invoke_shell(statement)
 
     def list_metadata_py(self):
         r'''Lists ``__metadata__.py``.
