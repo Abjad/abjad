@@ -1,4 +1,9 @@
-1.  Reinstate autoadvance.
+1.  Implement interface commands to toggle autoadvance on and off.
+    This can be a complementary type of bang suffix. So (1!), (2!), (3!) or
+    (ht!), (md!), (xd!) will summon the getter for the attribute requested and
+    thereafter autoadvance. Once in autoadvance entering lone (!) or
+    bang-suffixed input like Duration(1, 8)! will enter input and terminate
+    autoadvance.
 
 2.  Implement TestManager.compare_lys().
 
@@ -41,3 +46,22 @@
 
 19. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
+
+20. Supply class name as autoeditor breadcrumb when autoeditor is run
+    independently, as during tests. So change '  (EDIT) to 
+    'NoteAndChordHairpinHandler (EDIT)'.
+
+21. Make autoediting persist when editing nested objects.
+    Test by autoediting TaleaRhythmMaker.
+
+22. Redisplay parent object when editing (nested) child object.
+    Test by autoediting TaleaRhythmMaker.
+
+23. Implement interface commands to autostart autoediting.
+    Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
+    of definition.py files. Implement (va!) to autostart (and thereafter
+    autoadvance) the autoediting of __views__.py files. Implement (mda!)
+    for __metadata__.py files. And in general implement a paired (xa!) for
+    every (xa) command, while noting that (da) and (va) are the only two
+    autoedit commands currently implemented. This will be a complementary type
+    of bang suffix.
