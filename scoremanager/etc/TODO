@@ -65,3 +65,16 @@
     every (xa) command, while noting that (da) and (va) are the only two
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
+
+24. Change 'Abjad stylesheets' and 'abjad_stylesheets' to 'Example stylesheets'
+    and 'example_stylesheets'.
+
+25. Change 'Bača material library' to 'Library: materials' and 'Bača 
+    stylesheet library' to 'Library: stylesheets'.
+
+26. Changed 'user library' and 'user_library' to just 'library'.
+
+27. Implement (add!) to turn autoadding on. Then entering (17), (18), (foo)
+    will create the elements in sequence without the need to reenter (add).
+    Entering (!) or (17!) or (18!) or (foo!) will terminate autoadding; it will
+    then be necessary to enter (add) or (add!) again to resume adding.
