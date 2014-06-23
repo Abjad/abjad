@@ -45,6 +45,7 @@ class Session(abctools.AbjadObject):
         '_controllers_visited',
         '_current_score_directory',
         '_display',
+        '_display_available_commands',
         '_display_pitch_ranges_with_numbered_pitches',
         '_initial_input',
         '_io_manager',
@@ -67,7 +68,6 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_materials',
         '_is_navigating_to_segments',
         '_is_navigating_to_stylesheets',
-        '_pending_redraw',
         '_is_quitting',
         '_is_repository_test',
         '_is_test',
@@ -75,10 +75,11 @@ class Session(abctools.AbjadObject):
         '_last_command_was_composite',
         '_last_score_path',
         '_menu_header_width',
+        '_pending_done',
         '_pending_input',
+        '_pending_redraw',
         '_proceed_count',
         '_score_manager',
-        '_display_available_commands',
         '_task_depth',
         '_transcript',
         )
@@ -137,14 +138,15 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_materials = False
         self._is_navigating_to_segments = False
         self._is_navigating_to_stylesheets = False
-        self._pending_redraw = True
         self._is_quitting = False
         self._is_test = is_test
         self._last_asset_path = None
         self._last_command_was_composite = False
         self._last_score_path = None
         self._menu_header_width = 160
+        self._pending_done = False
         self._pending_input = input_
+        self._pending_redraw = True
         self._proceed_count = 0
         self._score_manager = None
         self._task_depth = 0
@@ -1173,6 +1175,21 @@ class Session(abctools.AbjadObject):
         Returns nonnegative integer.
         '''
         return self._menu_header_width
+
+    @property
+    def pending_done(self):
+        r'''Is true when autoeditor is pending done. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.pending_done
+                False
+
+        Returns boolean.
+        '''
+        return self._pending_done
 
     @property
     def pending_input(self):

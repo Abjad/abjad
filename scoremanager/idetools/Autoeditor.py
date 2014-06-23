@@ -315,6 +315,8 @@ class Autoeditor(Controller):
                     break
                 self._handle_input(result)
                 self._session._pending_redraw = True
+                if self._session.pending_done:
+                    break
                 if self._session.is_backtracking:
                     return
 

@@ -74,16 +74,13 @@
 
 26. Changed 'user library' and 'user_library' to just 'library'.
 
-27. Implement (add!) to turn autoadding on. Then entering (17), (18), (foo)
-    will create the elements in sequence without the need to reenter (add).
-    Entering (!) or (17!) or (18!) or (foo!) will terminate autoadding; it will
-    then be necessary to enter (add) or (add!) again to resume adding.
+27. Make (??) work in autoeditor. Right now it raises an exception.
 
-28. Make (??) work in autoeditor. Right now it raises an exception.
+28. Make (sv) work in autoeditor. Right now command is not recognized.
 
-29. Make (sv) work in autoeditor. Right now command is not recognized.
-
-30. Allow confirmation to show up *after* redraw.
+29. Allow confirmation to show up *after* redraw.
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.
+
+30. Make (!) not crash autoeditor.

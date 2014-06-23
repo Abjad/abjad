@@ -256,7 +256,7 @@ def test_MaterialPackageManager_autoedit_definition_py_08():
         ]
 
     with systemtools.FilesystemState(remove=[path]):
-        input_ = 'M new test~list y da y list add! 17 foo done done y dp y q'
+        input_ = 'M new test~list y da y list add! 17 foo!  dp y q'
         score_manager._run(input_=input_)
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)

@@ -160,6 +160,10 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 prompt_character=self.prompt_character,
                 capitalize_prompt=self.capitalize_prompts,
                 )
+            if input_.endswith('!') and self._session.is_autoadding:
+                input_ = input_.strip('!')
+                self._session._is_autoadding = False
+                self._session._pending_done = True
             if input_ is None:
                 self._prompt_index += 1
                 break
