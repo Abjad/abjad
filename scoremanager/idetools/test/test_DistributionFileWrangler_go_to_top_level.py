@@ -4,30 +4,30 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_go_to_library_01():
-    r'''From score segments to library.
+def test_DistributionFileWrangler_go_to_top_level_01():
+    r'''From score distribution files to library.
     '''
 
-    input_ = 'red~example~score g ** q'
+    input_ = 'red~example~score d ** q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - distribution files',
         'Abjad IDE',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_SegmentPackageWrangler_go_to_library_02():
-    r'''From all segments to library.
+def test_DistributionFileWrangler_go_to_top_level_02():
+    r'''From all distribution files to library.
     '''
 
-    input_ = 'G ** q'
+    input_ = 'D ** q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE - segments',
+        'Abjad IDE - distribution files',
         'Abjad IDE',
         ]
     assert score_manager._transcript.titles == titles

@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_StylesheetWrangler_go_to_library_01():
+def test_StylesheetWrangler_go_to_top_level_01():
     r'''From score stylesheets to library.
     '''
 
@@ -19,7 +19,7 @@ def test_StylesheetWrangler_go_to_library_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_StylesheetWrangler_go_to_library_02():
+def test_StylesheetWrangler_go_to_top_level_02():
     r'''From all stylesheets to library.
     '''
 

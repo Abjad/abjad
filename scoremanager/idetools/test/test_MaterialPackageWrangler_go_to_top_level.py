@@ -4,30 +4,30 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_BuildFileWrangler_go_to_library_01():
-    r'''From score build files to library.
+def test_MaterialPackageWrangler_go_to_top_level_01():
+    r'''From score materials to library.
     '''
 
-    input_ = 'red~example~score u ** q'
+    input_ = 'red~example~score m ** q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build files',
+        'Red Example Score (2013) - materials',
         'Abjad IDE',
         ]
     assert score_manager._transcript.titles == titles
 
 
-def test_BuildFileWrangler_go_to_library_02():
-    r'''From all build files to library.
+def test_MaterialPackageWrangler_go_to_top_level_02():
+    r'''From all materials to library.
     '''
 
-    input_ = 'U ** q'
+    input_ = 'M ** q'
     score_manager._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE - build files',
+        'Abjad IDE - materials',
         'Abjad IDE',
         ]
     assert score_manager._transcript.titles == titles

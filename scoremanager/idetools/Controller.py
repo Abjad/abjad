@@ -76,7 +76,7 @@ class Controller(object):
     @property
     def _input_to_method(self):
         result = {
-            '**': self.go_to_library,
+            '**': self.go_to_top_level,
             'b': self.go_back,
             'q': self.quit,
             's': self.go_to_current_score,
@@ -181,7 +181,7 @@ class Controller(object):
 
         Returns none.
         '''
-        self._session._is_navigating_to_library = False
+        self._session._is_navigating_to_top_level = False
         self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
@@ -194,12 +194,12 @@ class Controller(object):
             self._session._is_backtracking_to_score = True
             self._session._display_available_commands = False
 
-    def go_to_library(self):
+    def go_to_top_level(self):
         r'''Goes to library.
 
         Returns none.
         '''
-        self._session._is_navigating_to_library = True
+        self._session._is_navigating_to_top_level = True
         self._session._display_available_commands = False
 
     def quit(self):

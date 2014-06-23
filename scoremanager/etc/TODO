@@ -72,7 +72,7 @@
 25. Change 'Bača material library' to 'Library: materials' and 'Bača 
     stylesheet library' to 'Library: stylesheets'.
 
-26. Changed 'user library' and 'user_library' to just 'library'.
+26. Change 'user library' and 'user_library' to just 'library'.
 
 27. Make (??) work in autoeditor. Right now it raises an exception.
 

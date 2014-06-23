@@ -38,7 +38,7 @@ class AssetController(Controller):
         result = superclass._input_to_method
         result = result.copy()
         result.update({
-            '**': self.go_to_library,
+            '**': self.go_to_top_level,
             #
             'D': self.go_to_all_distribution_files,
             'G': self.go_to_all_segments,

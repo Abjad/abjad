@@ -187,11 +187,11 @@ class AbjadIDE(Wrangler):
                 if result:
                     self._score_package_wrangler._handle_input(
                         result)
-                elif not self._session.is_navigating_to_library:
+                elif not self._session.is_navigating_to_top_level:
                     self._score_package_wrangler._run()
                 else:
                     # TODO: remove following line (but test after)
-                    self._is_navigating_to_library = False
+                    self._is_navigating_to_top_level = False
                     menu = self._make_main_menu()
                     result = menu._run()
                     if result:
