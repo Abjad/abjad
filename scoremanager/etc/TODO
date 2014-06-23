@@ -56,7 +56,3 @@
 
 25. Join 'done (done)' to 'elements - add (add)', etc.
     Eliminate blank line between the menu sections.
-
-26. Make 'view inventory written to disk' appear only if something has changed.
-
-27. Maybe os.remove(views_file) at beginning of each view test.

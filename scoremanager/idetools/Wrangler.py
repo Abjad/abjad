@@ -1005,13 +1005,15 @@ class Wrangler(ScoreInternalAssetController):
         inventory = self._read_view_inventory()
         if inventory is None:
             inventory = idetools.ViewInventory()
+        old_inventory = inventory.copy()
         autoeditor = self._io_manager._make_autoeditor(
             breadcrumb='views',
             target=inventory,
             )
         autoeditor._run()
         inventory = autoeditor.target
-        self._write_view_inventory(inventory)
+        if old_inventory != inventory:
+            self._write_view_inventory(inventory)
         self._session._pending_redraw = True
 
     def commit_to_repository(self):
