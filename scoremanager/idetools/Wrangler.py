@@ -604,9 +604,8 @@ class Wrangler(ScoreInternalAssetController):
         superclass = super(Wrangler, self)
         menu = superclass._make_main_menu()
         self._make_asset_menu_section(menu)
-        self._make_metadata_py_menu_section(menu)
+        self._make_metadata_menu_section(menu)
         self._make_views_menu_section(menu)
-        self._make_views_py_menu_section(menu)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -640,22 +639,14 @@ class Wrangler(ScoreInternalAssetController):
 
     def _make_views_menu_section(self, menu):
         commands = []
+        commands.append(('__views.py__ - open', 'vo'))
+        commands.append(('__views.py__ - write', 'vw'))
         commands.append(('views - autoedit', 'va'))
         commands.append(('views - set', 'vs'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
             name='views',
-            )
-
-    def _make_views_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__views.py__ - open', 'vo'))
-        commands.append(('__views.py__ - write', 'vw'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='__views__.py',
             )
 
     def _match_display_string_view_pattern(self, pattern, entry):

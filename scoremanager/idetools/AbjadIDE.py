@@ -158,7 +158,6 @@ class AbjadIDE(Wrangler):
         self._make_asset_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_views_menu_section(menu)
-        self._make_views_py_menu_section(menu)
         return menu
 
     def _run(self, input_=None):

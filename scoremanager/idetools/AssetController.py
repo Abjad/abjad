@@ -326,6 +326,9 @@ class AssetController(Controller):
 
     def _make_metadata_menu_section(self, menu):
         commands = []
+        commands.append(('__metadata__.py - list', 'mdls'))
+        commands.append(('__metadata__.py - open', 'mdo'))
+        commands.append(('__metadata__.py - write', 'mdw'))
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
         commands.append(('metadata - remove', 'mdrm'))
@@ -335,17 +338,6 @@ class AssetController(Controller):
             name='metadata',
             )
             
-    def _make_metadata_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__metadata__.py - list', 'mdls'))
-        commands.append(('__metadata__.py - open', 'mdo'))
-        commands.append(('__metadata__.py - write', 'mdw'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='__metadata__.py',
-            )
-
     def _make_repository_menu_section(self, menu):
         commands = []
         commands.append(('repository - add', 'rad'))

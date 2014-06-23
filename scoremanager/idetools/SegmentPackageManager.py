@@ -121,7 +121,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._make_definition_py_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_metadata_py_menu_section(menu)
         self._make_make_py_menu_section(menu)
         self._make_output_ly_menu_section(menu)
         self._make_output_pdf_menu_section(menu)

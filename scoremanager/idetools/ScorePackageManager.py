@@ -182,7 +182,6 @@ class ScorePackageManager(PackageManager):
         self._make_init_py_menu_section(menu)
         self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_metadata_py_menu_section(menu)
         self._make_package_menu_section(menu)
         return menu
 

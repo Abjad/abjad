@@ -105,7 +105,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         menu = superclass._make_main_menu()
         self._make_all_packages_menu_section(menu)
         self._make_init_py_menu_section(menu)
-        self._make_metadata_menu_section(menu)
         self._make_segments_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         return menu

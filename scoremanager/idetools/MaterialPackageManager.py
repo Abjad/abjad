@@ -277,7 +277,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._make_init_py_menu_section(menu)
         self._make_definition_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_metadata_py_menu_section(menu)
         self._make_output_py_menu_section(menu)
         self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
