@@ -155,7 +155,7 @@ class PackageManager(ScoreInternalAssetController):
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
         with self._io_manager._silent():
-            self.write_metadata_py(metadata=metadata)
+            self._write_metadata_py(metadata)
 
     def _enter_run(self):
         self._session._is_navigating_to_next_asset = False
@@ -654,7 +654,7 @@ class PackageManager(ScoreInternalAssetController):
             pass
         if was_removed:
             with self._io_manager._silent():
-                self.write_metadata_py(metadata=metadata)
+                self._write_metadata_py(metadata)
 
     def _rename(self, new_path):
         if self._is_in_git_repository():

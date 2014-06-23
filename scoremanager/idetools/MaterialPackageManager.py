@@ -322,8 +322,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 name='output.py',
                 )
 
-    def _make_package(self, metadata=None):
-        metadata = collections.OrderedDict(metadata or {})
+    def _make_package(self):
+        metadata = collections.OrderedDict()
         assert not os.path.exists(self._path)
         os.mkdir(self._path)
         with self._io_manager._silent():
@@ -331,7 +331,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 return_supply_messages=True,
                 supply_missing=True,
                 )
-            self.write_metadata_py(metadata=metadata)
+            self._write_metadata_py(metadata)
             self.write_stub_definition_py()
 
     def _make_temporary_illustrate_py_lines(self):

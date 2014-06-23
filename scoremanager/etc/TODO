@@ -51,5 +51,3 @@
 
 23. Refactor (rcn) to first list all unadded assets and then prompt for
     removal.
-
-24. Simplify write_metadata_py() signature.

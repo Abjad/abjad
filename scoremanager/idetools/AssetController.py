@@ -770,7 +770,7 @@ class AssetController(Controller):
             command = 'py.test -rf {}'.format(assets)
             self._io_manager.run_command(command, capitalize=False)
 
-    def write_metadata_py(self, dry_run=False, metadata=None):
+    def write_metadata_py(self, dry_run=False):
         r'''Writes ``__metadata.py__``.
 
         Returns none.
@@ -786,6 +786,5 @@ class AssetController(Controller):
             result = self._io_manager._confirm()
             if self._session.is_backtracking or not result:
                 return
-        if metadata is None:
-            metadata = self._get_metadata()
+        metadata = self._get_metadata()
         self._write_metadata_py(metadata)
