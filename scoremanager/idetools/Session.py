@@ -31,6 +31,7 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_after_redraw_message',
         '_attempted_remove_unadded_assets',
         '_attempted_display_status',
         '_attempted_to_add',
@@ -101,6 +102,7 @@ class Session(abctools.AbjadObject):
 
     def __init__(self, input_=None, is_test=False):
         from scoremanager import idetools
+        self._after_redraw_message = None
         self._attempted_remove_unadded_assets = False
         self._attempted_display_status = False
         self._attempted_to_add = False

@@ -740,13 +740,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         assert isinstance(import_statements, list), repr(import_statements)
         assert isinstance(target_lines, list), repr(target_lines)
-        message = 'will write {} to {}.'
-        name = type(target).__name__
-        message = message.format(name, self._definition_py_path)
-        self._io_manager._display(message)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
         lines = []
         lines.append(self._configuration.unicode_directive)
         lines.extend(import_statements)
@@ -754,9 +747,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         lines.append('')
         lines.extend(target_lines)
         contents = '\n'.join(lines)
-        clear = not os.path.isfile(self._definition_py_path)
         self._io_manager.write(self._definition_py_path, contents)
-        self._session._pending_redraw = clear
+        message = 'wrote {} to {}.'
+        name = type(target).__name__
+        message = message .format(name, self._definition_py_path)
+        self._session._pending_redraw = True
+        self._session._after_redraw_message = message
 
     # TODO: replace with boilerplate
     def write_stub_definition_py(self):

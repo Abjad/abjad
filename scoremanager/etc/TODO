@@ -59,8 +59,3 @@
     thereafter autoadvance. Once in autoadvance entering lone (!) or
     bang-suffixed input like Duration(1, 8)! will enter input and terminate
     autoadvance.
-
-22. Allow confirmation to show up *after* redraw.
-    So (m > test list > da > add! > foo > bar > done > done).
-    Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
-    should appear after material package manager redraws menu.

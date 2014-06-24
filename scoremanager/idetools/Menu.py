@@ -400,7 +400,7 @@ class Menu(Controller):
             terminal_height, terminal_width = 24, 80
         if terminal_width <= 80:
             return lines
-        if len(lines) < terminal_height:
+        if len(lines) < terminal_height - 8:
             return lines
         if strip:
             lines = [_.strip() for _ in lines]
@@ -600,6 +600,10 @@ class Menu(Controller):
             while True:
                 if self._session.pending_redraw:
                     self._redraw()
+                    message = self._session._after_redraw_message
+                    if message:
+                        self._io_manager._display(message)
+                        self._session._after_redraw_message = None
                 result = self._predetermined_input
                 if not result:
                     result = self._handle_user_input()
