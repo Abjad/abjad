@@ -52,10 +52,3 @@
     every (xa) command, while noting that (da) and (va) are the only two
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
-
-21. Implement interface commands to toggle autoadvance on and off.
-    This can be a complementary type of bang suffix. So (1!), (2!), (3!) or
-    (ht!), (md!), (xd!) will summon the getter for the attribute requested and
-    thereafter autoadvance. Once in autoadvance entering lone (!) or
-    bang-suffixed input like Duration(1, 8)! will enter input and terminate
-    autoadvance.
