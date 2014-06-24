@@ -72,15 +72,15 @@
 25. Change 'Bača material library' to 'Library: materials' and 'Bača 
     stylesheet library' to 'Library: stylesheets'.
 
-26. Change 'user library' and 'user_library' to just 'library'.
+26. Make (??) work in autoeditor. Right now it raises an exception.
 
-27. Make (??) work in autoeditor. Right now it raises an exception.
+27. Make (sv) work in autoeditor. Right now command is not recognized.
 
-28. Make (sv) work in autoeditor. Right now command is not recognized.
-
-29. Allow confirmation to show up *after* redraw.
+28. Allow confirmation to show up *after* redraw.
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.
 
-30. Make (!) not crash autoeditor.
+29. Make (!) not crash autoeditor.
+
+30. Change 'From library to' to 'From all whatever to'.

@@ -53,10 +53,10 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._annotate_autoeditor = True
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'
-        self._in_user_library = True
+        self._in_library = True
         self._manager_class = idetools.MaterialPackageManager
         self._score_storehouse_path_infix_parts = ('materials',)
-        path = configuration.user_library_material_packages_directory
+        path = configuration.library_material_packages_directory
         self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
@@ -100,7 +100,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         command = 'from {0}.{1}.{1} import {1} as class_'
         configuration = self._configuration
         library_path = \
-            configuration.user_library_material_packages_directory
+            configuration.library_material_packages_directory
         package = self._configuration.path_to_package(library_path)
         command = command.format(
             package,
@@ -129,7 +129,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     def _list_asset_paths(
         self,
         abjad_material_packages_and_stylesheets=True,
-        user_library=True,
+        library=True,
         example_score_packages=True,
         user_score_packages=True,
         output_material_class_name='',
@@ -138,7 +138,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         superclass = super(MaterialPackageWrangler, self)
         paths = superclass._list_asset_paths(
             abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
-            user_library=user_library,
+            library=library,
             example_score_packages=example_score_packages,
             user_score_packages=user_score_packages,
             )

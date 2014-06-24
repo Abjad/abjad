@@ -14,7 +14,7 @@ def test_MakerFileWrangler_copy_file_01():
         'RedExampleScoreTemplate.py',
         )
     target_path = os.path.join(
-        score_manager._configuration.user_library_makers_directory,
+        score_manager._configuration.library_makers_directory,
         'ReusableScoreTemplate.py',
         )
 

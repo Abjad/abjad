@@ -7,7 +7,7 @@ import scoremanager
 score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 path = os.path.join(
-    score_manager._configuration.user_library_material_packages_directory,
+    score_manager._configuration.library_material_packages_directory,
     'testnotes',
     )
 initializer_file_path = os.path.join(path, '__init__.py')
@@ -52,7 +52,7 @@ def test_MaterialPackageWrangler_make_package_02():
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory,
+        configuration.library_material_packages_directory,
         'testnotes',
         )
     directory_entries = [
@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler_make_package_03():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.user_library_material_packages_directory,
+        configuration.library_material_packages_directory,
         'testnotes',
         )
     definition_py_path = os.path.join(

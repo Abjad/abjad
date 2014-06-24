@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler__get_available_path_01():
 
     session = scoremanager.idetools.Session(is_test=True)
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
-    storehouse = configuration.user_library_material_packages_directory
+    storehouse = configuration.library_material_packages_directory
     input_ = 'foo'
     wrangler._session._pending_input = input_
     result = wrangler._get_available_path(

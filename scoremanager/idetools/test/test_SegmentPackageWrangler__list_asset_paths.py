@@ -46,7 +46,7 @@ def test_SegmentPackageWrangler__list_asset_paths_01():
     result = wrangler._list_asset_paths(
         abjad_material_packages_and_stylesheets=False,
         example_score_packages=True,
-        user_library=False,
+        library=False,
         user_score_packages=False,
         )
 

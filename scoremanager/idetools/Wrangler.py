@@ -26,7 +26,7 @@ class Wrangler(ScoreInternalAssetController):
         '_asset_identifier',
         '_basic_breadcrumb',
         '_force_lowercase',
-        '_in_user_library',
+        '_in_library',
         '_main_menu',
         '_manager_class',
         '_score_storehouse_path_infix_parts',
@@ -45,7 +45,7 @@ class Wrangler(ScoreInternalAssetController):
         self._asset_identifier = None
         self._basic_breadcrumb = None
         self._force_lowercase = True
-        self._in_user_library = False
+        self._in_library = False
         self._manager_class = idetools.PackageManager
         self._score_storehouse_path_infix_parts = ()
         self._sort_by_annotation = True
@@ -248,7 +248,7 @@ class Wrangler(ScoreInternalAssetController):
         from scoremanager import idetools
         abjad_material_packages_and_stylesheets = False
         example_score_packages = False
-        user_library = False
+        library = False
         user_score_packages = False
         if system and inside_score:
             example_score_packages = True
@@ -257,13 +257,13 @@ class Wrangler(ScoreInternalAssetController):
         elif not system and inside_score:
             user_score_packages = True
         elif not system and not inside_score:
-            user_library = True
+            library = True
         else:
             Exception
         asset_paths = self._list_asset_paths(
             abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
-            user_library=user_library,
+            library=library,
             user_score_packages=user_score_packages,
             )
         if type(self) is idetools.ScorePackageWrangler:
@@ -445,7 +445,7 @@ class Wrangler(ScoreInternalAssetController):
         self,
         abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
-        user_library=True,
+        library=True,
         user_score_packages=True,
         valid_only=True,
         ):
@@ -453,7 +453,7 @@ class Wrangler(ScoreInternalAssetController):
         directories = self._list_storehouse_paths(
             abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
-            user_library=user_library,
+            library=library,
             user_score_packages=user_score_packages,
             )
         for directory in directories:
@@ -474,14 +474,14 @@ class Wrangler(ScoreInternalAssetController):
         self,
         abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
-        user_library=True,
+        library=True,
         user_score_packages=True,
         ):
         result = []
         if (abjad_material_packages_and_stylesheets and
             self._abjad_storehouse_path is not None):
             result.append(self._abjad_storehouse_path)
-        if user_library and self._user_storehouse_path is not None:
+        if library and self._user_storehouse_path is not None:
             result.append(self._user_storehouse_path)
         if (example_score_packages and
             self._score_storehouse_path_infix_parts):
@@ -612,19 +612,19 @@ class Wrangler(ScoreInternalAssetController):
         self,
         abjad_material_packages_and_stylesheets=True,
         example_score_packages=True,
-        user_library=True,
+        library=True,
         user_score_packages=True,
         ):
         from scoremanager import idetools
         display_strings, keys = [], []
         keys.append(self._user_storehouse_path)
-        if self._in_user_library:
+        if self._in_library:
             display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = idetools.ScorePackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
             abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,
             example_score_packages=example_score_packages,
-            user_library=user_library,
+            library=library,
             user_score_packages=user_score_packages,
             )
         for path in paths:
@@ -829,7 +829,7 @@ class Wrangler(ScoreInternalAssetController):
         menu_entries = self._make_storehouse_menu_entries(
             abjad_material_packages_and_stylesheets=False,
             example_score_packages=False,
-            user_library=True,
+            library=True,
             user_score_packages=False,
             )
         selector = idetools.Selector(

@@ -8,7 +8,7 @@ configuration = scoremanager.idetools.Configuration()
 def test_Configuration__path_to_storehouse_01():
     
     storehouse = os.path.join(
-        configuration.user_library_directory,
+        configuration.library_directory,
         'stylesheets',
         )
 
