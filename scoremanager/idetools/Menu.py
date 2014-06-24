@@ -143,9 +143,13 @@ class Menu(Controller):
         ends_with_bang = input_.endswith('!')
         input_ = input_.strip('!')
         if input_.endswith('/'):
-            is_autoadvancing = self._session._is_autoadvancing
+            is_autoadvancing = self._session.is_autoadvancing
             self._session._is_autoadvancing = not bool(is_autoadvancing)
             input_ = input_.strip('/')
+        if input_.endswith('@'):
+            self._session._is_autostarting = True
+            self._session._is_autoadvancing = True
+            input_ = input_.strip('@')
         if self._user_enters_nothing(input_):
             default_value = None
             for section in self.menu_sections:

@@ -192,6 +192,8 @@ class AssetController(Controller):
                     self._input_to_method[result]()
             else:
                 self._handle_numeric_user_input(result)
+            if self._session.is_autostarting:
+                self._session._is_autostarting = False
 
     def _handle_numeric_user_input(self, result):
         pass

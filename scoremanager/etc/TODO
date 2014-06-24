@@ -52,3 +52,9 @@
     every (xa) command, while noting that (da) and (va) are the only two
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
+
+21. Integrate Session.is_autoterminating.
+    The property will cause autoeditor to terminate editing after 
+    composer edits last property on object.
+    Implement in such a way that autotermination can persist from one
+    composite object to the next.
