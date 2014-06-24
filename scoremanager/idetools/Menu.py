@@ -136,7 +136,10 @@ class Menu(Controller):
         if input_ == '!':
             return
         if input_.startswith('!'):
-            return input_
+            if self._has_shell_command():
+                return input_
+            else:
+                return
         ends_with_bang = input_.endswith('!')
         input_ = input_.strip('!')
         if self._user_enters_nothing(input_):
@@ -297,6 +300,13 @@ class Menu(Controller):
         for section in self.menu_sections:
             for entry in section.menu_entries:
                 if entry.key == '??':
+                    return True
+        return False
+
+    def _has_shell_command(self):
+        for section in self.menu_sections:
+            for entry in section.menu_entries:
+                if entry.key == '!':
                     return True
         return False
 
