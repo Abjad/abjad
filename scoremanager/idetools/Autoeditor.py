@@ -219,7 +219,7 @@ class Autoeditor(Controller):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name, prompt_character='|>')
         self._make_attributes_menu_section(menu)
         self._make_command_menu_section(menu)
         return menu
@@ -297,9 +297,7 @@ class Autoeditor(Controller):
                     is_first_pass = False
                 elif result and self._is_autoadvancing:
                     entry_point = entry_point or result
-                    result = \
-                        menu._return_value_to_next_return_value_in_section(
-                            result)
+                    result = menu._to_next_return_value_in_section(result)
                     if result == entry_point:
                         self._is_autoadvancing = False
                         continue

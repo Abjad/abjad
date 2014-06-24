@@ -310,12 +310,14 @@ class IOManager(IOManager):
         self,
         breadcrumb_callback=None,
         name=None,
+        prompt_character='>',
         subtitle=None,
         ):
         from scoremanager import idetools
         return idetools.Menu(
             breadcrumb_callback=breadcrumb_callback,
             name=name,
+            prompt_character=prompt_character,
             session=self._session,
             subtitle=subtitle,
             )

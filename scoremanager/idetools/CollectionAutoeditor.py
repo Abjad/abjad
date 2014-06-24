@@ -165,7 +165,7 @@ class CollectionAutoeditor(Autoeditor):
 
     def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
-        if result.endswith('!'):
+        if result.endswith('!') and 1 < len(result):
             self._session._is_autoadding = True
             result = result.strip('!')
         if result in self._input_to_method:
@@ -206,7 +206,7 @@ class CollectionAutoeditor(Autoeditor):
 
     def _make_main_menu(self):
         name = self._spaced_class_name
-        menu = self._io_manager._make_menu(name=name)
+        menu = self._io_manager._make_menu(name=name, prompt_character='|>')
         self._make_keyed_attributes_menu_section(menu)
         self._make_numbered_entries_menu_section(menu)
         self._make_command_menu_section(menu)

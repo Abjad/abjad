@@ -43,6 +43,7 @@ class Menu(Controller):
         '_menu_sections',
         '_name',
         '_predetermined_input',
+        '_prompt_character',
         '_subtitle',
         '_title',
         )
@@ -53,6 +54,7 @@ class Menu(Controller):
         self,
         breadcrumb_callback=None,
         name=None,
+        prompt_character='>',
         session=None,
         subtitle=None,
         title=None,
@@ -62,6 +64,7 @@ class Menu(Controller):
         self._menu_sections = []
         self._name = name
         self._predetermined_input = None
+        self._prompt_character = prompt_character
         self._subtitle = subtitle
         self._title = title
 
@@ -251,7 +254,10 @@ class Menu(Controller):
         return directive
 
     def _handle_user_input(self):
-        input_ = self._io_manager._handle_input('')
+        input_ = self._io_manager._handle_input(
+            '', 
+            prompt_character=self.prompt_character,
+            )
         user_entered_lone_return = input_ == ''
         directive = None
         parts = input_.split()
@@ -546,7 +552,7 @@ class Menu(Controller):
                 j = section._menu_entry_return_values.index(return_value)
                 return i, j
 
-    def _return_value_to_next_return_value_in_section(self, return_value):
+    def _to_next_return_value_in_section(self, return_value):
         section_index, entry_index = self._return_value_to_location_pair(
             return_value)
         section = self.menu_sections[section_index]
@@ -631,6 +637,21 @@ class Menu(Controller):
         Returns list.
         '''
         return self._name
+
+    @property
+    def prompt_character(self):
+        r'''Gets prompt character.
+
+        ..  container:: example
+
+            ::
+
+                >>> menu.prompt_character
+                '>'
+
+        Returns string.
+        '''
+        return self._prompt_character
 
     @property
     def subtitle(self):
