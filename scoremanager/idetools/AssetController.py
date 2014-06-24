@@ -415,23 +415,16 @@ class AssetController(Controller):
                 annotation = 'Example scores'
             else:
                 annotation = 'Scores'
-        elif path.startswith(
-            self._configuration.makers_library):
-            last_name = self._configuration.composer_last_name
-            annotation = '{} maker library'.format(last_name)
-        elif path.startswith(
-            self._configuration.materials_library):
-            last_name = self._configuration.composer_last_name
-            annotation = '{} material library'.format(last_name)
-        elif path.startswith(
-            self._configuration.stylesheets_library):
-            last_name = self._configuration.composer_last_name
-            annotation = '{} stylesheet library'.format(last_name)
-        elif path.startswith(self._configuration.abjad_stylesheets_directory):
-            annotation = 'Abjad stylesheets'
-        elif path.startswith(
-            self._configuration.example_material_packages_directory):
-            annotation = 'Example material packages'
+        elif path.startswith(self._configuration.makers_library):
+            annotation = 'Library: makers'
+        elif path.startswith(self._configuration.materials_library):
+            annotation = 'Library: materials'
+        elif path.startswith(self._configuration.stylesheets_library):
+            annotation = 'Library: stylesheets'
+        elif path.startswith(self._configuration.example_stylesheets_directory):
+            annotation = 'Example stylesheets'
+        elif path.startswith(self._configuration.example_materials):
+            annotation = 'Example materials'
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:

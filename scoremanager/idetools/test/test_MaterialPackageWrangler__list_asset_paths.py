@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            wrangler._configuration.example_material_packages_directory,
+            wrangler._configuration.example_materials,
             package_name,
             )
         paths.append(path)

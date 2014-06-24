@@ -11,11 +11,11 @@ def test_StylesheetWrangler_rename_file_01():
     '''
 
     path = os.path.join(
-        configuration.abjad_stylesheets_directory,
+        configuration.example_stylesheets_directory,
         'clean-letter-14.ily',
         )
     new_path = os.path.join(
-        configuration.abjad_stylesheets_directory,
+        configuration.example_stylesheets_directory,
         'very-clean-letter-14.ily',
         )
 

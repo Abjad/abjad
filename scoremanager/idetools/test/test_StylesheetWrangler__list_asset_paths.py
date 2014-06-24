@@ -5,7 +5,7 @@ import scoremanager
 
 
 def test_StylesheetWrangler__list_asset_paths_01():
-    r'''Lists paths of stylesheets resident in Abjad stylesheet library.
+    r'''Lists paths of example stylesheets.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
@@ -21,7 +21,7 @@ def test_StylesheetWrangler__list_asset_paths_01():
     paths = []
     for file_name in file_names:
         path = os.path.join(
-            wrangler._configuration.abjad_stylesheets_directory,
+            wrangler._configuration.example_stylesheets_directory,
             file_name,
             )
         paths.append(path)

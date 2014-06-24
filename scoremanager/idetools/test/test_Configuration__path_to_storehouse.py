@@ -57,7 +57,7 @@ def test_Configuration__path_to_storehouse_03():
 
 def test_Configuration__path_to_storehouse_04():
     
-    storehouse = configuration.abjad_stylesheets_directory
+    storehouse = configuration.example_stylesheets_directory
 
     assert configuration._path_to_storehouse(storehouse) == storehouse
 

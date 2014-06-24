@@ -19,7 +19,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             >>> configuration = scoremanager.idetools.Configuration()
             >>> session = scoremanager.idetools.Session()
             >>> path = os.path.join(
-            ...     configuration.example_material_packages_directory,
+            ...     configuration.example_materials,
             ...     'example_numbers',
             ...     )
             >>> manager = scoremanager.idetools.MaterialPackageManager(

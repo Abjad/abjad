@@ -30,7 +30,7 @@ class StylesheetWrangler(FileWrangler):
         superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = \
-            self._configuration.abjad_stylesheets_directory
+            self._configuration.example_stylesheets_directory
         self._asset_identifier = 'stylesheet'
         self._basic_breadcrumb = 'stylesheets'
         self._extension = '.ily'

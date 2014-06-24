@@ -5,14 +5,14 @@ import scoremanager
 
 
 def test_StylesheetWrangler__list_storehouse_paths_01():
-    r'''Lists Abjad stylesheet library path.
+    r'''Lists example stylesheets directory.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
     wrangler = scoremanager.idetools.StylesheetWrangler(session=session)
 
     paths = [
-        wrangler._configuration.abjad_stylesheets_directory,
+        wrangler._configuration.example_stylesheets_directory,
         ]
 
     result = wrangler._list_storehouse_paths(
@@ -26,7 +26,7 @@ def test_StylesheetWrangler__list_storehouse_paths_01():
 
 
 def test_StylesheetWrangler__list_storehouse_paths_02():
-    r'''Lists paths of Abjad score package stylesheet directories.
+    r'''Lists example score package stylesheet directories.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)

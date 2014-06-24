@@ -12,7 +12,7 @@ def test_StylesheetWrangler_remove_files_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.abjad_stylesheets_directory,
+        score_manager._configuration.example_stylesheets_directory,
         'clean-letter-14.ily',
         )
 

@@ -143,8 +143,8 @@ class Configuration(AbjadConfiguration):
             prefix = len(self.example_score_packages_directory)
         elif path.startswith(self.library):
             prefix = len(self.library)
-        elif path.startswith(self.abjad_stylesheets_directory):
-            return self.abjad_stylesheets_directory
+        elif path.startswith(self.example_stylesheets_directory):
+            return self.example_stylesheets_directory
         else:
             message = 'unidentifiable path: {!r}.'
             message = message.format(path)
@@ -206,14 +206,14 @@ class Configuration(AbjadConfiguration):
             )
 
     @property
-    def abjad_stylesheets_directory(self):
-        r'''Gets Abjad stylesheets directory.
+    def example_stylesheets_directory(self):
+        r'''Gets example stylesheets directory.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_stylesheets_directory
+                >>> configuration.example_stylesheets_directory
                 '.../abjad/stylesheets'
 
         Returns string.
@@ -349,14 +349,14 @@ class Configuration(AbjadConfiguration):
             )
 
     @property
-    def example_material_packages_directory(self):
+    def example_materials(self):
         r'''Gets Abjad material packages directory.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.example_material_packages_directory
+                >>> configuration.example_materials
                 '.../scoremanager/materials'
 
         Returns string.
@@ -651,7 +651,7 @@ class Configuration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif path.startswith(self.example_material_packages_directory):
+        elif path.startswith(self.example_materials):
             prefix = len(self.abjad_root_directory) + 1
         elif path.startswith(self.score_manager_directory):
             prefix = len(os.path.dirname(self.score_manager_directory)) + 1
@@ -660,7 +660,7 @@ class Configuration(AbjadConfiguration):
         elif path.startswith(self.stylesheets_library):
             prefix = len(
                 os.path.dirname(self.stylesheets_library)) + 1
-        elif path.startswith(self.abjad_stylesheets_directory):
+        elif path.startswith(self.example_stylesheets_directory):
             prefix = len(self.abjad_root_directory) + 1
         elif path.startswith(self.library):
             prefix = len(os.path.dirname(self.library)) + 1
