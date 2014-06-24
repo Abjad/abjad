@@ -307,7 +307,6 @@ class Autoeditor(Controller):
                     if self._session.is_backtracking:
                         return
                     elif not result:
-                        self._session._pending_redraw = True
                         continue
                 if result == 'done':
                     break

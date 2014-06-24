@@ -74,6 +74,3 @@
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.
-
-27. Make autoeditor messages like "Unknown command: 'asdf'." persist;
-    do not redraw immediately after message display.
