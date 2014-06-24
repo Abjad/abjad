@@ -2,7 +2,6 @@
 import os
 import shutil
 import tempfile
-from IPython.core.display import display_png
 
 
 def show(expr):
@@ -10,6 +9,7 @@ def show(expr):
     '''
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
+    from IPython.core.display import display_png
     assert '__illustrate__' in dir(expr)
     temporary_directory = tempfile.mkdtemp()
     temporary_file_path = os.path.join(
