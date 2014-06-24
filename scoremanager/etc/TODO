@@ -1,57 +1,50 @@
-1.  Implement interface commands to toggle autoadvance on and off.
-    This can be a complementary type of bang suffix. So (1!), (2!), (3!) or
-    (ht!), (md!), (xd!) will summon the getter for the attribute requested and
-    thereafter autoadvance. Once in autoadvance entering lone (!) or
-    bang-suffixed input like Duration(1, 8)! will enter input and terminate
-    autoadvance.
+1.  Implement TestManager.compare_lys().
 
-2.  Implement TestManager.compare_lys().
+2.  Integrate diff-pdf.
 
-3.  Integrate diff-pdf.
+3.  Integrate candidacy protocol.
 
-4.  Integrate candidacy protocol.
-
-5.  Clean up InstrumentInventory.
+4.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-6.  Implement 'views - write' (vw).
+5.  Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-7.  Implement '__metadata__.py - check' (mdc).
+6.  Implement '__metadata__.py - check' (mdc).
 
-8.  Implement '__metadata__.py - autoedit' (mda).
+7.  Implement '__metadata__.py - autoedit' (mda).
 
-9.  Take another pass at (ck) and (ck*) messaging.
+8.  Take another pass at (ck) and (ck*) messaging.
 
-10. Audit (**).
+9.  Audit (**).
 
-11. Audit all star commands.
+10. Audit all star commands.
 
-12. Audit material interface by hand.
+11. Audit material interface by hand.
     Audit segment interface by hand.
 
-13. Audit all public methods for py.test files.
+12. Audit all public methods for py.test files.
 
-14. Answer all inline TODOs.
+13. Answer all inline TODOs.
 
-15. Unskip all skipped tests.
+14. Unskip all skipped tests.
 
-16. Streamline all 39 classfiles.
+15. Streamline all 39 classfiles.
 
-17. Extended ControllerContext with directory=None keyword.
+16. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-18. Make (red m tempo da rm 4 done!) work.
+17. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-19. Make autoediting persist when editing nested objects.
+18. Make autoediting persist when editing nested objects.
     Test by autoediting TaleaRhythmMaker.
 
-20. Redisplay parent object when editing (nested) child object.
+19. Redisplay parent object when editing (nested) child object.
     Test by autoediting TaleaRhythmMaker.
 
-21. Implement interface commands to autostart autoediting.
+20. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (va!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -60,11 +53,14 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-22. Make (??) work in autoeditor. Right now it raises an exception.
+21. Implement interface commands to toggle autoadvance on and off.
+    This can be a complementary type of bang suffix. So (1!), (2!), (3!) or
+    (ht!), (md!), (xd!) will summon the getter for the attribute requested and
+    thereafter autoadvance. Once in autoadvance entering lone (!) or
+    bang-suffixed input like Duration(1, 8)! will enter input and terminate
+    autoadvance.
 
-23. Make (sv) work in autoeditor. Right now command is not recognized.
-
-24. Allow confirmation to show up *after* redraw.
+22. Allow confirmation to show up *after* redraw.
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.
