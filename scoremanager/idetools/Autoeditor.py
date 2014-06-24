@@ -16,9 +16,6 @@ class Autoeditor(Controller):
         '_attribute_section',
         '_attributes_in_memory',
         '_breadcrumb',
-        '_is_autoadding',
-        '_is_autoadvancing',
-        '_is_autostarting',
         '_target',
         )
 
@@ -27,9 +24,6 @@ class Autoeditor(Controller):
     def __init__(
         self,
         breadcrumb=None,
-        is_autoadding=False,
-        is_autoadvancing=False,
-        is_autostarting=False,
         session=None,
         target=None,
         ):
@@ -37,9 +31,6 @@ class Autoeditor(Controller):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._breadcrumb = breadcrumb
-        self._is_autoadding = is_autoadding
-        self._is_autoadvancing = is_autoadvancing
-        self._is_autostarting = is_autostarting
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -171,7 +162,7 @@ class Autoeditor(Controller):
             return
         result = attribute_editor._run()
         if self._session.is_backtracking:
-            self._is_autoadvancing = False
+            self._session._is_autoadvancing = False
             return
         if hasattr(attribute_editor, 'target'):
             attribute_value = attribute_editor.target
@@ -289,17 +280,17 @@ class Autoeditor(Controller):
                     menu._predetermined_input = result
                     menu._run()
                     is_first_pass = False
-                elif is_first_pass and self._is_autostarting:
+                elif is_first_pass and self._session.is_autostarting:
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_input = result
                     menu._run()
                     is_first_pass = False
-                elif result and self._is_autoadvancing:
+                elif result and self._session.is_autoadvancing:
                     entry_point = entry_point or result
                     result = menu._to_next_return_value_in_section(result)
                     if result == entry_point:
-                        self._is_autoadvancing = False
+                        self._session._is_autoadvancing = False
                         continue
                 else:
                     menu = self._make_main_menu()
@@ -363,30 +354,6 @@ class Autoeditor(Controller):
             name = stringtools.to_space_delimited_lowercase(name)
             return name
         return self._breadcrumb
-
-    @property
-    def is_autoadding(self):
-        r'''Is true when autoeditor is autoadding. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._is_autoadding
-
-    @property
-    def is_autoadvancing(self):
-        r'''Is true when autoeditor is autoadvancing. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._is_autoadvancing
-
-    @property
-    def is_autostarting(self):
-        r'''Is true when autoeditor is autostarting. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._is_autostarting
 
     @property
     def target(self):

@@ -172,10 +172,10 @@ def test_Autoeditor__run_10():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
     target = handlertools.NoteAndChordHairpinHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
         target=target,
         )
     input_ = "ht ('p', '<', 'f') Duration(1, 8) done"
@@ -195,10 +195,10 @@ def test_Autoeditor__run_11():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
     target = handlertools.NoteAndChordHairpinsHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
         target=target,
         )
     input_ = "ht [('p', '<', 'f')] Duration(1, 8) done"
@@ -219,9 +219,9 @@ def test_Autoeditor__run_12():
 
     session = scoremanager.idetools.Session(is_test=True)
     target = handlertools.PatternedArticulationsHandler()
+    session._is_autoadvancing = True
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
         target=target,
         )
     input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
@@ -244,11 +244,11 @@ def test_Autoeditor__run_13():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
+    session._is_autostarting = True
     target = handlertools.ReiteratedArticulationHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
-        is_autostarting=True,
         target=target,
         )
     input_ = "['.', '^'] (1, 16) (1, 8) cs'' c''' done"
@@ -271,11 +271,11 @@ def test_Autoeditor__run_14():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
+    session._is_autostarting = True
     target = handlertools.ReiteratedArticulationHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
-        is_autostarting=True,
         target=target,
         )
     input_ = "['.', '^'] None None None None done"
@@ -294,10 +294,10 @@ def test_Autoeditor__run_15():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
     target = handlertools.ReiteratedDynamicHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
         target=target
         )
     input_ = '1 f Duration(1, 8) q'
@@ -317,10 +317,10 @@ def test_Autoeditor__run_16():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
+    session._is_autoadvancing = True
     target = handlertools.TerracedDynamicsHandler()
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
-        is_autoadvancing=True,
         target=target,
         )
     input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
