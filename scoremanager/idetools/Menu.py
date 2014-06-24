@@ -133,6 +133,8 @@ class Menu(Controller):
         This avoids file name new-stylesheet.ily aliasing command (new).
         '''
         input_ = stringtools.strip_diacritics(input_)
+        if input_ == '!':
+            return
         if input_.startswith('!'):
             return input_
         ends_with_bang = input_.endswith('!')
