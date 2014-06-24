@@ -91,7 +91,7 @@ block constructs like ``\layout {}``, ``\paper {}`` ``\header {}`` or ``\midi
 
 Abjad 2.15 also features a simpler and more powerful rhythm-maker API. Complex
 rhythm-maker initializers have been streamlined by encapsulating related
-keyword arguments as specifier classes:
+keyword arguments into specifier classes:
 
 ::
 
