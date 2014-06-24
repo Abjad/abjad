@@ -482,7 +482,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             old_target = None
         else:
             old_target = copy.deepcopy(target)
-        autoeditor = self._io_manager._make_autoeditor(target=target)
+        autoeditor = self._io_manager._make_autoeditor(
+            breadcrumb='',
+            target=target,
+            )
         autoeditor._run()
         if self._session.is_backtracking:
             return
@@ -509,7 +512,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         output_material = self._execute_output_py()
         if output_material is None:
             return
-        autoeditor = self._io_manager._make_autoeditor(target=output_material)
+        autoeditor = self._io_manager._make_autoeditor(
+            breadcrumb='',
+            target=output_material,
+            )
         autoeditor._run()
         if self._session.is_backtracking:
             return

@@ -358,6 +358,10 @@ class Autoeditor(Controller):
 
         Returns none.
         '''
+        if self._breadcrumb is None:
+            name = type(self.target).__name__
+            name = stringtools.to_space_delimited_lowercase(name)
+            return name
         return self._breadcrumb
 
     @property

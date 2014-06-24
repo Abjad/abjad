@@ -15,8 +15,10 @@ def test_ListAutoeditor__run_01():
     autoeditor._session._is_autoadding = True
     autoeditor._session._pending_input = input_
     autoeditor._run()
+    contents = autoeditor._transcript.contents
 
     assert autoeditor.target == [17, 99, 'foo']
+    assert 'List (EDIT)' in contents
 
 
 def test_ListAutoeditor__run_02():

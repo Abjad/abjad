@@ -47,17 +47,13 @@
 19. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-20. Supply class name as autoeditor breadcrumb when autoeditor is run
-    independently, as during tests. So change '  (EDIT) to 
-    'NoteAndChordHairpinHandler (EDIT)'.
-
-21. Make autoediting persist when editing nested objects.
+20. Make autoediting persist when editing nested objects.
     Test by autoediting TaleaRhythmMaker.
 
-22. Redisplay parent object when editing (nested) child object.
+21. Redisplay parent object when editing (nested) child object.
     Test by autoediting TaleaRhythmMaker.
 
-23. Implement interface commands to autostart autoediting.
+22. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (va!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -66,11 +62,11 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-24. Make (??) work in autoeditor. Right now it raises an exception.
+23. Make (??) work in autoeditor. Right now it raises an exception.
 
-25. Make (sv) work in autoeditor. Right now command is not recognized.
+24. Make (sv) work in autoeditor. Right now command is not recognized.
 
-26. Allow confirmation to show up *after* redraw.
+25. Allow confirmation to show up *after* redraw.
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.

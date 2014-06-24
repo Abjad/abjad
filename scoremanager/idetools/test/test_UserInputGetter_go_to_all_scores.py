@@ -15,7 +15,7 @@ def test_UserInputGetter_go_to_all_scores_01():
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory',
         'Red Example Score (2013) - materials - tempo inventory (EDIT)',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
+        'Red Example Score (2013) - materials - tempo inventory - tempo (EDIT)',
         'Abjad IDE - scores',
         ]
     assert score_manager._transcript.titles == titles

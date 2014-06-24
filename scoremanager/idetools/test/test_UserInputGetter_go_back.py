@@ -17,7 +17,7 @@ def test_UserInputGetter_go_back_01():
         'Red Example Score (2013) - materials',
         'Red Example Score (2013) - materials - tempo inventory',
         'Red Example Score (2013) - materials - tempo inventory (EDIT)',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
+        'Red Example Score (2013) - materials - tempo inventory - tempo (EDIT)',
+        'Red Example Score (2013) - materials - tempo inventory - tempo (EDIT)',
         ]
     assert score_manager._transcript.titles == titles
