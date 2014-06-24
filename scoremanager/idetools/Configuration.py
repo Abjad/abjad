@@ -43,8 +43,8 @@ class Configuration(AbjadConfiguration):
         ]
 
     @property
-    def _library_directory_name(self):
-        directory = self.library_directory
+    def _library_name(self):
+        directory = self.library
         directory_name = os.path.split(directory)[-1]
         return directory_name
 
@@ -101,9 +101,9 @@ class Configuration(AbjadConfiguration):
 
     def _make_missing_directories(self):
         directories = (
-            self.library_directory,
-            self.library_material_packages_directory,
-            self.library_makers_directory,
+            self.library,
+            self.materials_library,
+            self.makers_library,
             )
         for directory in directories:
             if not os.path.exists(directory):
@@ -113,7 +113,7 @@ class Configuration(AbjadConfiguration):
                     file_pointer.write('')
         directories = (
             self.user_score_packages_directory,
-            self.library_stylesheets_directory,
+            self.stylesheets_library,
             self.transcripts_directory,
             )
         for directory in directories:
@@ -141,8 +141,8 @@ class Configuration(AbjadConfiguration):
         elif path.startswith(self.example_score_packages_directory):
             is_in_score = True
             prefix = len(self.example_score_packages_directory)
-        elif path.startswith(self.library_directory):
-            prefix = len(self.library_directory)
+        elif path.startswith(self.library):
+            prefix = len(self.library)
         elif path.startswith(self.abjad_stylesheets_directory):
             return self.abjad_stylesheets_directory
         else:
@@ -172,7 +172,7 @@ class Configuration(AbjadConfiguration):
                 )
             title = manager._get_title()
             return title
-        elif path.startswith(self.library_directory):
+        elif path.startswith(self.library):
             return self.composer_last_name
         elif path.startswith(self.abjad_root_directory):
             return 'Abjad'
@@ -457,14 +457,14 @@ class Configuration(AbjadConfiguration):
         return '# -*- encoding: utf-8 -*-'
 
     @property
-    def library_directory(self):
+    def library(self):
         r'''Gets library directory.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.library_directory
+                >>> configuration.library
                 '...'
 
         Aliases `score_manager_library` setting in score manager configuration
@@ -478,58 +478,58 @@ class Configuration(AbjadConfiguration):
         return path
 
     @property
-    def library_makers_directory(self):
-        r'''Gets library makers path.
+    def makers_library(self):
+        r'''Gets makers library path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.library_makers_directory
+                >>> configuration.makers_library
                 '.../makers'
 
         Returns string.
         '''
         path = os.path.join(
-            self.library_directory,
+            self.library,
             'makers',
             )
         return path
 
     @property
-    def library_material_packages_directory(self):
-        r'''Gets library material packages directory.
+    def materials_library(self):
+        r'''Gets materials library path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.library_material_packages_directory
+                >>> configuration.materials_library
                 '.../materials'
 
         Returns string.
         '''
         path = os.path.join(
-            self.library_directory,
+            self.library,
             'materials',
             )
         return path
 
     @property
-    def library_stylesheets_directory(self):
-        r'''Gets library stylesheets directory.
+    def stylesheets_library(self):
+        r'''Gets stylesheets library path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.library_stylesheets_directory
+                >>> configuration.stylesheets_library
                 '.../stylesheets'
 
         Returns string.
         '''
         path = os.path.join(
-            self.library_directory,
+            self.library,
             'stylesheets',
             )
         return path
@@ -635,19 +635,19 @@ class Configuration(AbjadConfiguration):
             path, extension = os.path.splitext(path)
         if path.startswith(self.example_score_packages_directory):
             prefix = len(self.example_score_packages_directory) + 1
-        elif path.startswith(self.library_material_packages_directory):
-            prefix = len(self.library_material_packages_directory) + 1
+        elif path.startswith(self.materials_library):
+            prefix = len(self.materials_library) + 1
             remainder = path[prefix:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
-                    self._library_directory_name,
+                    self._library_name,
                     'material_packages',
                     remainder,
                     )
             else:
                 result = '.'.join([
-                    self._library_directory_name,
+                    self._library_name,
                     'material_packages',
                     ])
             return result
@@ -657,13 +657,13 @@ class Configuration(AbjadConfiguration):
             prefix = len(os.path.dirname(self.score_manager_directory)) + 1
         elif path.startswith(self.user_score_packages_directory):
             prefix = len(self.user_score_packages_directory) + 1
-        elif path.startswith(self.library_stylesheets_directory):
+        elif path.startswith(self.stylesheets_library):
             prefix = len(
-                os.path.dirname(self.library_stylesheets_directory)) + 1
+                os.path.dirname(self.stylesheets_library)) + 1
         elif path.startswith(self.abjad_stylesheets_directory):
             prefix = len(self.abjad_root_directory) + 1
-        elif path.startswith(self.library_directory):
-            prefix = len(os.path.dirname(self.library_directory)) + 1
+        elif path.startswith(self.library):
+            prefix = len(os.path.dirname(self.library)) + 1
         else:
             message = 'can not change path to package: {!r}.'
             raise Exception(message.format(path))

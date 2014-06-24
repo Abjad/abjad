@@ -9,19 +9,19 @@ def test_Configuration__path_to_storehouse_annotation_01():
     r'''User library paths annotate composer last name.
     '''
 
-    path = configuration.library_directory
+    path = configuration.library
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.library_makers_directory
+    path = configuration.makers_library
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.library_material_packages_directory
+    path = configuration.materials_library
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 
-    path = configuration.library_stylesheets_directory
+    path = configuration.stylesheets_library
     annotation = configuration._path_to_storehouse_annotation(path)
     assert annotation == configuration.composer_last_name
 

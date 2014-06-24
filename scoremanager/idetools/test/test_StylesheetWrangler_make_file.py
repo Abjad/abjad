@@ -8,7 +8,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 def test_StylesheetWrangler_make_file_01():
 
     path = os.path.join(
-        score_manager._configuration.library_stylesheets_directory,
+        score_manager._configuration.stylesheets_library,
         'test-stylesheet.ily',
         )
 
@@ -26,11 +26,11 @@ def test_StylesheetWrangler_make_file_02():
     '''
 
     path_1 = os.path.join(
-        score_manager._configuration.library_stylesheets_directory,
+        score_manager._configuration.stylesheets_library,
         'new-test-stylesheet-1.ily',
         )
     path_2 = os.path.join(
-        score_manager._configuration.library_stylesheets_directory,
+        score_manager._configuration.stylesheets_library,
         'new-test-stylesheet-2.ily',
         )
 

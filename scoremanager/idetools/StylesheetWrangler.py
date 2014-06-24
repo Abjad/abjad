@@ -37,7 +37,7 @@ class StylesheetWrangler(FileWrangler):
         self._in_library = True
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._user_storehouse_path = \
-            self._configuration.library_stylesheets_directory
+            self._configuration.stylesheets_library
 
     ### PRIVATE METHODS ###
 

@@ -119,11 +119,11 @@ class AbjadIDE(Wrangler):
 
     def _list_storehouse_paths(self):
         paths = []
-        paths.append(self._configuration.library_makers_directory)
+        paths.append(self._configuration.makers_library)
         paths.append(self._configuration.example_material_packages_directory)
-        paths.append(self._configuration.library_material_packages_directory)
+        paths.append(self._configuration.materials_library)
         paths.append(self._configuration.abjad_stylesheets_directory)
-        paths.append(self._configuration.library_stylesheets_directory)
+        paths.append(self._configuration.stylesheets_library)
         paths.append(self._configuration.example_score_packages_directory)
         paths.append(self._configuration.user_score_packages_directory)
         return paths

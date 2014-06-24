@@ -39,7 +39,7 @@ class MakerFileWrangler(FileWrangler):
         self._in_library = True
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
-            self._configuration.library_makers_directory
+            self._configuration.makers_library
 
     ### PRIVATE METHODS ###
 

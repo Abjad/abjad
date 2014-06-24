@@ -56,7 +56,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._in_library = True
         self._manager_class = idetools.MaterialPackageManager
         self._score_storehouse_path_infix_parts = ('materials',)
-        path = configuration.library_material_packages_directory
+        path = configuration.materials_library
         self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
@@ -100,7 +100,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         command = 'from {0}.{1}.{1} import {1} as class_'
         configuration = self._configuration
         library_path = \
-            configuration.library_material_packages_directory
+            configuration.materials_library
         package = self._configuration.path_to_package(library_path)
         command = command.format(
             package,

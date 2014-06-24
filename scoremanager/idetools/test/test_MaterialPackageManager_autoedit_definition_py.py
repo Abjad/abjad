@@ -25,7 +25,7 @@ def test_MaterialPackageManager_autoedit_definition_py_02():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_tempo_inventory',
         )
     directory_entries = [
@@ -59,7 +59,7 @@ def test_MaterialPackageManager_autoedit_definition_py_03():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_pitch_range_inventory',
         )
     directory_entries = [
@@ -88,7 +88,7 @@ def test_MaterialPackageManager_autoedit_definition_py_04():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_pitch_range_inventory',
         )
     directory_entries = [
@@ -125,7 +125,7 @@ def test_MaterialPackageManager_autoedit_definition_py_05():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_markup_inventory',
         )
     inventory = markuptools.MarkupInventory(
@@ -167,7 +167,7 @@ def test_MaterialPackageManager_autoedit_definition_py_06():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_transposition_inventory',
         )
     directory_entries = [
@@ -200,7 +200,7 @@ def test_MaterialPackageManager_autoedit_definition_py_07():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_transposition_inventory',
         )
     directory_entries = [
@@ -244,7 +244,7 @@ def test_MaterialPackageManager_autoedit_definition_py_08():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_list',
         )
     directory_entries = [
@@ -272,7 +272,7 @@ def test_MaterialPackageManager_autoedit_definition_py_09():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_list',
         )
     directory_entries = [
@@ -303,7 +303,7 @@ def test_MaterialPackageManager_autoedit_definition_py_10():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_rhythm_maker',
         )
     directory_entries = [
@@ -347,7 +347,7 @@ def test_MaterialPackageManager_autoedit_definition_py_11():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_articulation_handler',
         )
     directory_entries = [
@@ -388,7 +388,7 @@ def test_MaterialPackageManager_autoedit_definition_py_12():
     score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.library_material_packages_directory,
+        configuration.materials_library,
         'test_dynamic_handler',
         )
     directory_entries = [

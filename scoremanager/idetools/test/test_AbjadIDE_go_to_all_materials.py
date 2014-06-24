@@ -5,7 +5,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_AbjadIDE_go_to_all_materials_01():
-    r'''From library to all materials.
+    r'''From top level to all materials.
     '''
 
     input_ = '** M q'

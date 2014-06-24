@@ -13,7 +13,7 @@ def test_StylesheetWrangler_copy_file_01():
         'clean-letter-14.ily',
         )
     target_path = os.path.join(
-        score_manager._configuration.library_stylesheets_directory,
+        score_manager._configuration.stylesheets_library,
         'test-foo-stylesheet.ily',
         )
 

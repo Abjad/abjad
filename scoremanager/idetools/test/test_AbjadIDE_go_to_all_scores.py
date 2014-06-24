@@ -5,7 +5,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_AbjadIDE_go_to_all_scores_01():
-    r'''From library to all scores.
+    r'''From top level to all scores.
     '''
 
     input_ = '** S q'

@@ -82,5 +82,3 @@
     should appear after material package manager redraws menu.
 
 29. Make (!) not crash autoeditor.
-
-30. Change 'From library to' to 'From all whatever to'.

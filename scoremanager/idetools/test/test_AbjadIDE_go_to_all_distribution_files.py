@@ -5,7 +5,7 @@ score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_AbjadIDE_go_to_all_distribution_files_01():
-    r'''From library to all distribution files.
+    r'''From top level to all distribution files.
     '''
 
     input_ = '** D q'
