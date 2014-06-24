@@ -351,7 +351,10 @@ class Menu(Controller):
             lines.append('')
         if lines:
             lines.pop()
-        lines = self._make_bicolumnar(lines, break_only_at_blank_lines=True)
+        lines = self._make_bicolumnar(
+            lines, 
+            break_only_at_blank_lines=True,
+            )
         title = self._session.menu_header
         title = title + ' - available commands'
         title = stringtools.capitalize_start(title)
@@ -365,7 +368,18 @@ class Menu(Controller):
         break_only_at_blank_lines=False,
         strip=True,
         ):
-        terminal_height = 40
+        # http://stackoverflow.com/questions/566746/
+        # how-to-get-console-window-width-in-python
+        result = os.popen('stty size', 'r').read().split()
+        if result:
+            terminal_height, terminal_width = result
+            terminal_height = int(terminal_height)
+            terminal_width = int(terminal_width)
+        # returns none when run under py.test
+        else:
+            terminal_height, terminal_width = 24, 80
+        if terminal_width <= 80:
+            return lines
         if len(lines) < terminal_height:
             return lines
         if strip:

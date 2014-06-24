@@ -42,18 +42,16 @@
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-18. Detect terminal width and suppress bicolumnar layout if width <= 80 chars.
-
-19. Make (red m tempo da rm 4 done!) work.
+18. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-20. Make autoediting persist when editing nested objects.
+19. Make autoediting persist when editing nested objects.
     Test by autoediting TaleaRhythmMaker.
 
-21. Redisplay parent object when editing (nested) child object.
+20. Redisplay parent object when editing (nested) child object.
     Test by autoediting TaleaRhythmMaker.
 
-22. Implement interface commands to autostart autoediting.
+21. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (va!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -62,11 +60,11 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-23. Make (??) work in autoeditor. Right now it raises an exception.
+22. Make (??) work in autoeditor. Right now it raises an exception.
 
-24. Make (sv) work in autoeditor. Right now command is not recognized.
+23. Make (sv) work in autoeditor. Right now command is not recognized.
 
-25. Allow confirmation to show up *after* redraw.
+24. Allow confirmation to show up *after* redraw.
     So (m > test list > da > add! > foo > bar > done > done).
     Then 'Wrote /Users/user/materials/test_list/definition.py to disk.'
     should appear after material package manager redraws menu.
