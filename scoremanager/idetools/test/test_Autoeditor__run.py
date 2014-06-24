@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 from experimental.tools import handlertools
 import scoremanager
@@ -450,3 +451,40 @@ def test_Autoeditor__run_21():
     contents = score_manager._transcript.contents
 
     assert "Unknown command: '!'." in contents
+
+
+def test_Autoeditor__run_22():
+    r'''Double bang doesn't blow up autoeditor.
+    '''
+    pytest.skip('make me work for the first time.')
+
+    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    input_ = 'red~example~score m tempo~inventory da !! q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    assert "Unknown command: '!!'." in contents
+
+
+def test_Autoeditor__run_23():
+    r'''Lone question mark doesn't blow up autoeditor.
+    '''
+
+    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    input_ = 'red~example~score m tempo~inventory da ? q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    assert "Unknown command: '?'." in contents
+
+
+def test_Autoeditor__run_24():
+    r'''Double question mark doesn't blow up autoeditor.
+    '''
+
+    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    input_ = 'red~example~score m tempo~inventory da ?? q'
+    score_manager._run(input_=input_)
+    contents = score_manager._transcript.contents
+
+    assert "Unknown command: '??'." in contents
