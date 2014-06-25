@@ -435,6 +435,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if self._session.is_backtracking or not result:
             return
         self._rename(new_directory)
+        if not os.path.exists(new_directory):
+            return
         for directory_entry in os.listdir(new_directory):
             if directory_entry.endswith('.py'):
                 path = os.path.join(new_directory, directory_entry)

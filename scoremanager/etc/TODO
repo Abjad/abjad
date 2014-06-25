@@ -58,3 +58,14 @@
     composer edits last property on object.
     Implement in such a way that autotermination can persist from one
     composite object to the next.
+
+22. Sort the asset sections in (M), (K) etc according to the same order
+    as used in (**).
+
+23. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
+    but has no yet been written to disk.
+
+24. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+    Right now the interface insists on
+    (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
+    Will add input flexibility.

@@ -160,6 +160,7 @@ class Autoeditor(Controller):
             )
         if attribute_editor is None:
             return
+        #print(repr(attribute_editor), 'ATT ED')
         result = attribute_editor._run()
         if self._session.is_backtracking:
             self._session._is_autoadvancing = False
