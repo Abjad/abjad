@@ -221,7 +221,7 @@ class Session(abctools.AbjadObject):
         lines.append('')
         self.io_manager._display(lines, capitalize=False)
 
-    def _format_controller_breadcrumbs(self):
+    def _format_controller_breadcrumbs(self, stop_controller=None):
         from scoremanager import idetools
         if not self.controller_stack:
             return ['']
@@ -232,6 +232,8 @@ class Session(abctools.AbjadObject):
         if breadcrumb:
             result_lines.append(breadcrumb)
         for controller in self.controller_stack[1:]:
+            if controller is stop_controller:
+                break
             if isinstance(controller, idetools.Selector):
                 continue
             breadcrumb = getattr(controller, 'breadcrumb', None)
@@ -247,6 +249,15 @@ class Session(abctools.AbjadObject):
             else:
                 result_lines.append(candidate_line)
         return result_lines
+
+    def _make_menu_header(self, annotate_edit=True, stop_controller=None):
+        breadcrumbs = self._format_controller_breadcrumbs(
+            stop_controller=stop_controller,
+            )
+        header = '\n'.join(breadcrumbs)
+        if annotate_edit and self.is_in_autoeditor:
+            header = '{} (EDIT)'.format(header)
+        return header
 
     def _print_transcript(self):
         for entry in self.transcript:
@@ -1192,10 +1203,7 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        header = '\n'.join(self._format_controller_breadcrumbs())
-        if self.is_in_autoeditor:
-            header = '{} (EDIT)'.format(header)
-        return header
+        return self._make_menu_header()
 
     @property
     def menu_header_width(self):

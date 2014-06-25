@@ -488,6 +488,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             breadcrumb='',
             target=target,
             )
+        # TODO: maybe the pending redraw setting can be removed
         self._session._pending_redraw = True
         autoeditor._run()
         if self._session.is_backtracking:

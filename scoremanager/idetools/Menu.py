@@ -209,6 +209,32 @@ class Menu(Controller):
         if self._user_enters_argument_range(input_):
             return self._handle_argument_range_input(input_)
 
+    def _display_parent_autoeditor_attribute_sections(self):
+        from scoremanager import idetools
+        autoeditors = []
+        for controller in self._session.controller_stack:
+            if isinstance(controller, idetools.Autoeditor):
+                autoeditors.append(controller)
+        if not autoeditors:
+            return
+        parent_autoeditors = autoeditors[:-1]
+        if not parent_autoeditors:
+            return
+        # YYY
+        for autoeditor in parent_autoeditors:
+            menu = autoeditor._make_main_menu()
+            header = self._session._make_menu_header(
+                annotate_edit=False,
+                stop_controller=autoeditor,
+                )
+            self._io_manager._display([header, ''])
+            try:
+                section = menu['attributes']
+            except KeyError:
+                continue
+            lines = section._make_lines()
+            self._io_manager._display(lines)
+
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
             return [expr]
@@ -588,6 +614,7 @@ class Menu(Controller):
         self._session._pending_redraw = False
         if clear_terminal:
             self._io_manager.clear_terminal()
+        self._display_parent_autoeditor_attribute_sections()
         if self._session.display_available_commands:
             lines = self._make_available_command_section_lines()
         else:

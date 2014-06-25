@@ -175,7 +175,9 @@ class Autoeditor(Controller):
         if attribute_editor is None:
             return
         # ZZZ
-        result = attribute_editor._run(clear_terminal=False, title=False)
+        # TODO: maybe remove clear_terminal and title keywords
+        #result = attribute_editor._run(clear_terminal=False, title=False)
+        result = attribute_editor._run()
         if self._session.is_backtracking:
             self._session._is_autoadvancing = False
             return

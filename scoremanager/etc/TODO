@@ -75,3 +75,8 @@
     ... to ...
         Abjad IDE - library - materials - talea rhythm maker
     ... instead.
+
+27. Update TaleaRhythmMaker attribute manifest to contain only 1- and
+    2-character property aliases.
+
+28. Change 'set to none' (none) to just 'none' (none).
