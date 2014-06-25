@@ -69,3 +69,9 @@
     Right now the interface insists on
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
+
+25. Change ...
+        Abjad IDE - materials - talea rhythm maker (Bača)
+    ... to ...
+        Abjad IDE - library - materials - talea rhythm maker
+    ... instead.
