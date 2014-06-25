@@ -16,6 +16,7 @@ class Autoeditor(Controller):
         '_attribute_section',
         '_attributes_in_memory',
         '_breadcrumb',
+        '_parent_autoeditor',
         '_target',
         )
 
@@ -24,6 +25,7 @@ class Autoeditor(Controller):
     def __init__(
         self,
         breadcrumb=None,
+        parent_autoeditor=None,
         session=None,
         target=None,
         ):
@@ -31,6 +33,7 @@ class Autoeditor(Controller):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._breadcrumb = breadcrumb
+        self._parent_autoeditor = parent_autoeditor
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -89,7 +92,7 @@ class Autoeditor(Controller):
             if attribute_value is not None:
                 self._attributes_in_memory[name] = attribute_value
 
-    def _get_attribute_editor(
+    def _get_attribute_autoeditor(
         self,
         attribute_detail,
         space_delimited_attribute_name,
@@ -105,6 +108,7 @@ class Autoeditor(Controller):
                 )
         elif issubclass(attribute_detail.editor, Autoeditor):
             autoeditor = attribute_detail.editor(
+                parent_autoeditor=self,
                 session=self._session,
                 target=prepopulated_value,
                 )
@@ -112,6 +116,7 @@ class Autoeditor(Controller):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
             autoeditor = idetools.ListAutoeditor(
+                parent_autoeditor=self,
                 session=self._session,
                 target=target,
                 )
@@ -119,6 +124,7 @@ class Autoeditor(Controller):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
             autoeditor = type(self)(
+                parent_autoeditor=self,
                 session=self._session,
                 target=target,
                 )
@@ -128,6 +134,14 @@ class Autoeditor(Controller):
             message = 'what is {!r}?'
             message = message.format(attribute_detail.editor)
             raise ValueError(message)
+        prototype = (
+            Autoeditor,
+            idetools.Selector,
+            idetools.UserInputGetter,
+            )
+        assert isinstance(autoeditor, prototype), repr(autoeditor)
+        if isinstance(autoeditor, type(self)):
+            assert autoeditor.parent_autoeditor is self, repr(autoeditor)
         return autoeditor
 
     def _get_target_summary_lines(self):
@@ -155,12 +169,12 @@ class Autoeditor(Controller):
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         attribute_editor = self._menu_key_to_attribute_editor(
             result,
-            session=self._session,
             prepopulated_value=prepopulated_value,
+            session=self._session,
             )
         if attribute_editor is None:
             return
-        #print(repr(attribute_editor), 'ATT ED')
+        print(repr(attribute_editor), 'ATT ED')
         result = attribute_editor._run()
         if self._session.is_backtracking:
             self._session._is_autoadvancing = False
@@ -249,7 +263,7 @@ class Autoeditor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         attribute_name = attribute_name.replace('_', ' ')
         attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
-        attribute_editor = self._get_attribute_editor(
+        attribute_editor = self._get_attribute_autoeditor(
             attribute_detail,
             attribute_name,
             prepopulated_value,
@@ -355,6 +369,14 @@ class Autoeditor(Controller):
             name = stringtools.to_space_delimited_lowercase(name)
             return name
         return self._breadcrumb
+
+    @property
+    def parent_autoeditor(self):
+        r'''Gets autoeditor parent.
+
+        Returns autoeditor or none.
+        '''
+        return self._parent_autoeditor
 
     @property
     def target(self):
