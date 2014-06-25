@@ -174,8 +174,8 @@ class Autoeditor(Controller):
             )
         if attribute_editor is None:
             return
-        print(repr(attribute_editor), 'ATT ED')
-        result = attribute_editor._run()
+        # ZZZ
+        result = attribute_editor._run(clear_terminal=False, title=False)
         if self._session.is_backtracking:
             self._session._is_autoadvancing = False
             return
@@ -275,7 +275,7 @@ class Autoeditor(Controller):
         attribute_name = manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def _run(self):
+    def _run(self, clear_terminal=True, title=True):
         with self._io_manager._controller(
             consume_local_backtrack=True,
             controller=self,
@@ -293,13 +293,13 @@ class Autoeditor(Controller):
                     menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_input = result
-                    menu._run()
+                    menu._run(clear_terminal=clear_terminal, title=title)
                     is_first_pass = False
                 elif is_first_pass and self._session.is_autostarting:
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_input = result
-                    menu._run()
+                    menu._run(clear_terminal=clear_terminal, title=title)
                     is_first_pass = False
                 elif result and self._session.is_autoadvancing:
                     entry_point = entry_point or result
@@ -309,7 +309,10 @@ class Autoeditor(Controller):
                         continue
                 else:
                     menu = self._make_main_menu()
-                    result = menu._run()
+                    result = menu._run(
+                        clear_terminal=clear_terminal, 
+                        title=title,
+                        )
                     if self._session.is_backtracking:
                         return
                     elif not result:

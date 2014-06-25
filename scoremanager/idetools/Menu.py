@@ -571,9 +571,12 @@ class Menu(Controller):
         result.append('')
         return result
 
-    def _make_visible_section_lines(self):
+    def _make_visible_section_lines(self, title=True):
         lines = []
-        lines.extend(self._make_title_lines())
+        if title:
+            lines.extend(self._make_title_lines())
+        else:
+            lines.append('')
         lines.extend(self._make_material_summary_lines())
         lines.extend(self._make_asset_lines())
         if lines and not all(_ == ' ' for _ in lines[-1]):
@@ -581,13 +584,14 @@ class Menu(Controller):
         lines.extend(self._make_command_section_lines())
         return lines
 
-    def _redraw(self):
+    def _redraw(self, clear_terminal=True, title=True):
         self._session._pending_redraw = False
-        self._io_manager.clear_terminal()
+        if clear_terminal:
+            self._io_manager.clear_terminal()
         if self._session.display_available_commands:
             lines = self._make_available_command_section_lines()
         else:
-            lines = self._make_visible_section_lines()
+            lines = self._make_visible_section_lines(title=title)
         self._io_manager._display(lines, capitalize=False, is_menu=True)
 
     def _return_value_to_location_pair(self, return_value):
@@ -596,18 +600,11 @@ class Menu(Controller):
                 j = section._menu_entry_return_values.index(return_value)
                 return i, j
 
-    def _to_next_return_value_in_section(self, return_value):
-        section_index, entry_index = self._return_value_to_location_pair(
-            return_value)
-        section = self.menu_sections[section_index]
-        entry_index = (entry_index + 1) % len(section)
-        return section._menu_entry_return_values[entry_index]
-
-    def _run(self):
+    def _run(self, clear_terminal=True, title=True):
         with self._io_manager._controller(controller=self):
             while True:
                 if self._session.pending_redraw:
-                    self._redraw()
+                    self._redraw(clear_terminal=clear_terminal, title=title)
                     message = self._session._after_redraw_message
                     if message:
                         self._io_manager._display(message)
@@ -639,6 +636,13 @@ class Menu(Controller):
             return expr
         else:
             return expr
+
+    def _to_next_return_value_in_section(self, return_value):
+        section_index, entry_index = self._return_value_to_location_pair(
+            return_value)
+        section = self.menu_sections[section_index]
+        entry_index = (entry_index + 1) % len(section)
+        return section._menu_entry_return_values[entry_index]
 
     def _user_enters_argument_range(self, input_):
         if ',' in input_:

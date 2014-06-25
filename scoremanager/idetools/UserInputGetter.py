@@ -205,7 +205,7 @@ class UserInputGetter(Controller, PromptMakerMixin):
             not self._all_prompts_are_done):
             self._present_prompt(include_chevron=include_chevron)
 
-    def _run(self):
+    def _run(self, clear_terminal=False, title=False):
         with self._io_manager._controller(
             consume_local_backtrack=True,
             controller=self,
