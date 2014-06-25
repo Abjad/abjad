@@ -597,12 +597,9 @@ class Menu(Controller):
         result.append('')
         return result
 
-    def _make_visible_section_lines(self, title=True):
+    def _make_visible_section_lines(self):
         lines = []
-        if title:
-            lines.extend(self._make_title_lines())
-        else:
-            lines.append('')
+        lines.extend(self._make_title_lines())
         lines.extend(self._make_material_summary_lines())
         lines.extend(self._make_asset_lines())
         if lines and not all(_ == ' ' for _ in lines[-1]):
@@ -610,15 +607,14 @@ class Menu(Controller):
         lines.extend(self._make_command_section_lines())
         return lines
 
-    def _redraw(self, clear_terminal=True, title=True):
+    def _redraw(self):
         self._session._pending_redraw = False
-        if clear_terminal:
-            self._io_manager.clear_terminal()
+        self._io_manager.clear_terminal()
         self._display_parent_autoeditor_attribute_sections()
         if self._session.display_available_commands:
             lines = self._make_available_command_section_lines()
         else:
-            lines = self._make_visible_section_lines(title=title)
+            lines = self._make_visible_section_lines()
         self._io_manager._display(lines, capitalize=False, is_menu=True)
 
     def _return_value_to_location_pair(self, return_value):
@@ -627,11 +623,11 @@ class Menu(Controller):
                 j = section._menu_entry_return_values.index(return_value)
                 return i, j
 
-    def _run(self, clear_terminal=True, title=True):
+    def _run(self):
         with self._io_manager._controller(controller=self):
             while True:
                 if self._session.pending_redraw:
-                    self._redraw(clear_terminal=clear_terminal, title=title)
+                    self._redraw()
                     message = self._session._after_redraw_message
                     if message:
                         self._io_manager._display(message)
