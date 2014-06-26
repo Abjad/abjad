@@ -62,6 +62,14 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        superclass = super(MaterialPackageWrangler, self)
+        breadcrumb = superclass._breadcrumb
+        if self._session.is_in_library:
+            breadcrumb = '{} - library'.format(breadcrumb)
+        return breadcrumb
+
+    @property
     def _input_to_method(self):
         superclass = super(MaterialPackageWrangler, self)
         result = superclass._input_to_method

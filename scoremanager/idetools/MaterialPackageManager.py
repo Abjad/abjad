@@ -55,14 +55,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     @property
     def _breadcrumb(self):
-        name = self._space_delimited_lowercase_name
-        if self._session.is_in_score:
-            return name
-        configuration = self._configuration
-        annotation = configuration._path_to_storehouse_annotation(self._path)
-        string = '{} ({})'
-        string = string.format(name, annotation)
-        return string
+        breadcrumb = self._space_delimited_lowercase_name
+        if not self._session.is_in_library and not self._session.is_in_score:
+            annotation = self._path_to_annotation(self._path)
+            breadcrumb = '{} - {}'.format(annotation, breadcrumb)
+        return breadcrumb
 
     @property
     def _definition_py_path(self):

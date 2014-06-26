@@ -414,19 +414,19 @@ class AssetController(Controller):
         elif (path.startswith(score_storehouses) and
             getattr(self, '_simple_score_annotation', False)):
             if self._configuration.example_score_packages_directory in path:
-                annotation = 'Example scores'
+                annotation = 'example scores'
             else:
-                annotation = 'Scores'
+                annotation = 'scores'
         elif path.startswith(self._configuration.makers_library):
-            annotation = 'Library: makers'
+            annotation = 'library: makers'
         elif path.startswith(self._configuration.materials_library):
-            annotation = 'Library: materials'
+            annotation = 'library: materials'
         elif path.startswith(self._configuration.stylesheets_library):
-            annotation = 'Library: stylesheets'
+            annotation = 'library: stylesheets'
         elif path.startswith(self._configuration.example_stylesheets_directory):
-            annotation = 'Example stylesheets'
+            annotation = 'example stylesheets'
         elif path.startswith(self._configuration.example_materials):
-            annotation = 'Example materials'
+            annotation = 'example materials'
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:

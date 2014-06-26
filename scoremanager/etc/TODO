@@ -70,11 +70,7 @@
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-25. Change ...
-        Abjad IDE - materials - talea rhythm maker (Bača)
-    ... to ...
-        Abjad IDE - library - materials - talea rhythm maker
-    ... instead.
-
-26. Change AttributeDetail.menu_key to AttributeDetail.command.
+25. Change AttributeDetail.menu_key to AttributeDetail.command.
     The term 'menu key' is nonstandard.
+
+26. Write in-library and in-score material breadcrumb tests.

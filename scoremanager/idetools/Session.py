@@ -797,6 +797,27 @@ class Session(abctools.AbjadObject):
         return self._is_in_confirmation_environment
 
     @property
+    def is_in_library(self):
+        r'''Is true when session is in library. Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_library
+                False
+
+        Returns boolean.
+        '''
+        if self.is_in_score:
+            return False
+        library = self._configuration.library
+        for controller in self.controller_stack:
+            if hasattr(controller, '_path') and library in controller._path:
+                return True
+        return False
+
+    @property
     def is_in_score(self):
         r'''Is true when session is in score. Otherwise false:
 
