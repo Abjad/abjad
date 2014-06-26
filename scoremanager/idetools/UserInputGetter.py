@@ -165,8 +165,11 @@ class UserInputGetter(Controller, PromptMakerMixin):
                 self._session._is_autoadding = False
                 self._session._pending_done = True
             elif input_.endswith('/'):
-                is_autoadvancing = self._session._is_autoadvancing
-                self._session._is_autoadvancing = not bool(is_autoadvancing)
+                is_autoadvancing = self._session.is_autoadvancing
+                if is_autoadvancing:
+                    self._session._autoadvance_depth = 0
+                else:   
+                    self._session._autoadvance_depth = 1
                 input_ = input_.strip('/')
             if input_ is None:
                 self._prompt_index += 1

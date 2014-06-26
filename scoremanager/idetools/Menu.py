@@ -144,7 +144,10 @@ class Menu(Controller):
         input_ = input_.strip('!')
         if input_.endswith('/'):
             is_autoadvancing = self._session.is_autoadvancing
-            self._session._is_autoadvancing = not bool(is_autoadvancing)
+            if is_autoadvancing:
+                self._session._autoadvance_depth = 0
+            else:   
+                self._session._autoadvance_depth = 1
             input_ = input_.strip('/')
         if input_.endswith('@'):
             self._session._is_autostarting = True
@@ -686,9 +689,15 @@ class Menu(Controller):
         else:
             return expr
 
+    def _to_last_return_value_in_section(self, return_value):
+        result = self._return_value_to_location_pair(return_value)
+        section_index, entry_index = result
+        section = self.menu_sections[section_index]
+        return section._menu_entry_return_values[-1]
+
     def _to_next_return_value_in_section(self, return_value):
-        section_index, entry_index = self._return_value_to_location_pair(
-            return_value)
+        result = self._return_value_to_location_pair(return_value)
+        section_index, entry_index = result
         section = self.menu_sections[section_index]
         entry_index = (entry_index + 1) % len(section)
         return section._menu_entry_return_values[entry_index]

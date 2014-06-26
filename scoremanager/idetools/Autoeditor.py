@@ -175,9 +175,12 @@ class Autoeditor(Controller):
         if attribute_editor is None:
             return
         # ZZZ
+        if self._session.is_autoadvancing:
+            self._session._autoadvance_depth += 1
         result = attribute_editor._run()
         if self._session.is_backtracking:
-            self._session._is_autoadvancing = False
+            #self._session._is_autoadvancing = False
+            self._session._autoadvance_depth -= 1
             return
         if hasattr(attribute_editor, 'target'):
             attribute_value = attribute_editor.target
@@ -285,35 +288,45 @@ class Autoeditor(Controller):
             if self._session.is_backtracking:
                 return
             result = None
+            # TODO: maybe see if entry_point can be removed
             entry_point = None
+            # TODO: maybe see if is_first_pass can be removed
             is_first_pass = True
             while True:
                 if self._session.is_autoadding:
+                    #print 'case 1 ...'
                     self._session._pending_redraw = True
                     menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_input = result
                     menu._run()
-                    is_first_pass = False
                 elif is_first_pass and self._session.is_autostarting:
+                    #print 'case 2 ...'
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_input = result
                     menu._run()
-                    is_first_pass = False
+                elif not result and self._session.is_autoadvancing:
+                    #print 'case 3 ...'
+                    menu = self._make_main_menu()
+                    result = menu._get_first_nonhidden_return_value_in_menu()
+                    menu._predetermined_input = result
+                    menu._run()
                 elif result and self._session.is_autoadvancing:
-                    entry_point = entry_point or result
+                    #print 'case 4 ...'
+                    #entry_point = entry_point or result
                     result = menu._to_next_return_value_in_section(result)
-                    if result == entry_point:
-                        self._session._is_autoadvancing = False
-                        continue
+                    menu._predetermined_input = result
+                    menu._run()
                 else:
+                    #print 'case 5 ...'
                     menu = self._make_main_menu()
                     result = menu._run()
                     if self._session.is_backtracking:
-                        return
+                        break
                     elif not result:
                         continue
+                is_first_pass = False
                 if result == 'done':
                     break
                 self._handle_input(result)
@@ -321,7 +334,12 @@ class Autoeditor(Controller):
                 if self._session.pending_done:
                     break
                 if self._session.is_backtracking:
-                    return
+                    break
+                if (self._session.is_autoadvancing and 
+                    result == menu._to_last_return_value_in_section(result)):
+                    break
+        if self._session.is_autoadvancing:
+            self._session._autoadvance_depth -= 1
 
     def _set_target_attribute(self, attribute_name, attribute_value):
         from abjad.tools import pitchtools
