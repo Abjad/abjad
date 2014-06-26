@@ -170,7 +170,6 @@ class Autoeditor(Controller):
             self._session._autoadvance_depth += 1
         result = attribute_editor._run()
         if self._session.is_backtracking:
-            #self._session._is_autoadvancing = False
             self._session._autoadvance_depth -= 1
             return
         if hasattr(attribute_editor, 'target'):
@@ -327,10 +326,6 @@ class Autoeditor(Controller):
             self._session._autoadvance_depth -= 1
 
     def _set_target_attribute(self, attribute_name, attribute_value):
-        from abjad.tools import pitchtools
-        # TODO: maybe remove this check
-        if self._session.is_quitting:
-            return
         kwargs = {attribute_name: attribute_value}
         try:
             new_target = new(self.target, **kwargs)
