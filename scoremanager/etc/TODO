@@ -74,5 +74,3 @@
     The term 'menu key' is nonstandard.
 
 26. Write in-library and in-score material breadcrumb tests.
-
-27. Remove Autoeditor.parent_autoeditor property.

@@ -16,7 +16,6 @@ class Autoeditor(Controller):
         '_attribute_section',
         '_attributes_in_memory',
         '_breadcrumb',
-        '_parent_autoeditor',
         '_target',
         )
 
@@ -25,7 +24,6 @@ class Autoeditor(Controller):
     def __init__(
         self,
         breadcrumb=None,
-        parent_autoeditor=None,
         session=None,
         target=None,
         ):
@@ -33,7 +31,6 @@ class Autoeditor(Controller):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._breadcrumb = breadcrumb
-        self._parent_autoeditor = parent_autoeditor
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -108,7 +105,6 @@ class Autoeditor(Controller):
                 )
         elif issubclass(attribute_detail.editor, Autoeditor):
             autoeditor = attribute_detail.editor(
-                parent_autoeditor=self,
                 session=self._session,
                 target=prepopulated_value,
                 )
@@ -116,7 +112,6 @@ class Autoeditor(Controller):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
             autoeditor = idetools.ListAutoeditor(
-                parent_autoeditor=self,
                 session=self._session,
                 target=target,
                 )
@@ -124,7 +119,6 @@ class Autoeditor(Controller):
             target = getattr(self.target, attribute_detail.name)
             target = target or attribute_detail.editor()
             autoeditor = type(self)(
-                parent_autoeditor=self,
                 session=self._session,
                 target=target,
                 )
@@ -139,9 +133,6 @@ class Autoeditor(Controller):
             idetools.Selector,
             idetools.UserInputGetter,
             )
-        assert isinstance(autoeditor, prototype), repr(autoeditor)
-        if isinstance(autoeditor, type(self)):
-            assert autoeditor.parent_autoeditor is self, repr(autoeditor)
         return autoeditor
 
     def _get_target_summary_lines(self):
@@ -381,14 +372,6 @@ class Autoeditor(Controller):
             name = stringtools.to_space_delimited_lowercase(name)
             return name
         return self._breadcrumb
-
-    @property
-    def parent_autoeditor(self):
-        r'''Gets autoeditor parent.
-
-        Returns autoeditor or none.
-        '''
-        return self._parent_autoeditor
 
     @property
     def target(self):

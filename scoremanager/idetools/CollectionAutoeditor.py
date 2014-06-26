@@ -34,7 +34,6 @@ class CollectionAutoeditor(Autoeditor):
         self, 
         allow_item_edit=True,
         breadcrumb=None,
-        parent_autoeditor=None,
         session=None, 
         target=None,
         ):
@@ -44,7 +43,6 @@ class CollectionAutoeditor(Autoeditor):
         superclass = super(CollectionAutoeditor, self)
         superclass.__init__(
             breadcrumb=breadcrumb,
-            parent_autoeditor=parent_autoeditor,
             session=session, 
             target=target,
             )
