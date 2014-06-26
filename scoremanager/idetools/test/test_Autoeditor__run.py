@@ -345,7 +345,7 @@ def test_Autoeditor__run_17():
         session=session,
         target=target,
         )
-    input_ = 't c (-1, 2, -3, 4) d 16 done sdc/ (6,) (2, 3)/ done'
+    input_ = 't c (-1, 2, -3, 4) d 16 done sd/ (6,) (2, 3)/ done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 

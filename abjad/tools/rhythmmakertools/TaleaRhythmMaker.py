@@ -347,12 +347,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ),
             systemtools.AttributeDetail(
                 name='split_divisions_by_counts',
-                menu_key='sdc',
+                menu_key='sd',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division',
-                menu_key='xcd',
+                menu_key='ec',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
@@ -362,12 +362,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ),
             systemtools.AttributeDetail(
                 name='burnish_specifier',
-                menu_key='rs',
+                menu_key='us',
                 editor=rhythmmakertools.BurnishSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
-                menu_key='dss',
+                menu_key='ds',
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(

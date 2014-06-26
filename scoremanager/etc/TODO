@@ -76,5 +76,5 @@
         Abjad IDE - library - materials - talea rhythm maker
     ... instead.
 
-27. Update TaleaRhythmMaker attribute manifest to contain only 1- and
-    2-character property aliases.
+26. Change AttributeDetail.menu_key to AttributeDetail.command.
+    The term 'menu key' is nonstandard.
