@@ -74,3 +74,9 @@
     The term 'menu key' is nonstandard.
 
 26. Write in-library and in-score material breadcrumb tests.
+
+27. Make autoadvance halt and insist on reentry of valu entered incorrectly
+    by composer.
+
+28. Write autoadvance tests that capture some of the good autoadvance
+    behaviors implemented so far.

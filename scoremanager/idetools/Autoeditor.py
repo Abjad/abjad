@@ -279,22 +279,20 @@ class Autoeditor(Controller):
                 return
             result = None
             while True:
+                menu = self._make_main_menu()
                 if result is None and self._session.is_autostarting:
                     #print 'case 1 ...'
-                    menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_input = result
                     menu._run()
                 elif self._session.is_autoadding:
                     #print 'case 2 ...'
                     self._session._pending_redraw = True
-                    menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_input = result
                     menu._run()
                 elif not result and self._session.is_autoadvancing:
                     #print 'case 3 ...'
-                    menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_input = result
                     menu._run()
@@ -305,7 +303,6 @@ class Autoeditor(Controller):
                     menu._run()
                 else:
                     #print 'case 5 ...'
-                    menu = self._make_main_menu()
                     result = menu._run()
                     if self._session.is_backtracking:
                         break
