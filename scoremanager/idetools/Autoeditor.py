@@ -217,7 +217,7 @@ class Autoeditor(Controller):
     def _make_command_menu_section(self, menu):
         commands = []
         commands.append(('done', 'done'))
-        commands.append(('set to none', 'none'))
+        commands.append(('none', 'none'))
         menu.make_navigation_section(
             commands=commands,
             name='done',
