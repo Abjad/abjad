@@ -38,13 +38,7 @@
 17. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-18. Make autoediting persist when editing nested objects.
-    Test by autoediting TaleaRhythmMaker.
-
-19. Redisplay parent object when editing (nested) child object.
-    Test by autoediting TaleaRhythmMaker.
-
-20. Implement interface commands to autostart autoediting.
+18. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (va!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -53,51 +47,41 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-21. Integrate Session.is_autoterminating.
-    The property will cause autoeditor to terminate editing after 
-    composer edits last property on object.
-    Implement in such a way that autotermination can persist from one
-    composite object to the next.
-
-22. Sort the asset sections in (M), (K) etc according to the same order
+19. Sort the asset sections in (M), (K) etc according to the same order
     as used in (**).
 
-23. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
+20. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
     but has no yet been written to disk.
 
-24. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+21. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-25. Change AttributeDetail.menu_key to AttributeDetail.command.
+22. Change AttributeDetail.menu_key to AttributeDetail.command.
     The term 'menu key' is nonstandard.
 
-26. Write in-library and in-score material breadcrumb tests.
+23. Write in-library and in-score material breadcrumb tests.
 
-27. Make autoadvance halt and insist on reentry of value entered incorrectly
+24. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
-28. Write autoadvance tests that capture some of the good autoadvance
+25. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
 
-29. Change behavior of lone (/) during autoadvance.
+26. Change behavior of lone (/) during autoadvance.
     Right now (/) does two things: stops autoadvance and sets current property
     to none. (/) should instead stop autoadvance put leave current property
     unchanged.
 
-30. Make (b) work during autoadvance.
+27. Make (b) work during autoadvance.
     The correct behavior should be to abandon and preserve value of current
     property and then to retreat back to previous property, all while
     leaving autoadvance turned on.
 
-31. Prevent (/) autoadvance from terminating autoeditor and writing target to
+28. Prevent (/) autoadvance from terminating autoeditor and writing target to
     disk. The write to disk should always come in response to an explicit
     additional command from the composer. The exception should be the more
     powerful (@) command which can take the composer through all properties
     of an object and then save the target to disk after all properties have
     been entered.
-
-32. Prevent "Wrote SargassoMeasureMaker to ....py." from displaying when
-    target has not changed. Probably SargassoMeasureMaker.__eq__ is not
-    defined or is not complete.
