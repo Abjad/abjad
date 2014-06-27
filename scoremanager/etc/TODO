@@ -75,8 +75,29 @@
 
 26. Write in-library and in-score material breadcrumb tests.
 
-27. Make autoadvance halt and insist on reentry of valu entered incorrectly
+27. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
 28. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
+
+29. Change behavior of lone (/) during autoadvance.
+    Right now (/) does two things: stops autoadvance and sets current property
+    to none. (/) should instead stop autoadvance put leave current property
+    unchanged.
+
+30. Make (b) work during autoadvance.
+    The correct behavior should be to abandon and preserve value of current
+    property and then to retreat back to previous property, all while
+    leaving autoadvance turned on.
+
+31. Prevent (/) autoadvance from terminating autoeditor and writing target to
+    disk. The write to disk should always come in response to an explicit
+    additional command from the composer. The exception should be the more
+    powerful (@) command which can take the composer through all properties
+    of an object and then save the target to disk after all properties have
+    been entered.
+
+32. Prevent "Wrote SargassoMeasureMaker to ....py." from displaying when
+    target has not changed. Probably SargassoMeasureMaker.__eq__ is not
+    defined or is not complete.
