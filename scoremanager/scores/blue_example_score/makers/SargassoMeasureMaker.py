@@ -197,6 +197,16 @@ class SargassoMeasureMaker(AbjadObject):
 
         return measures
 
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a sargasso measure-maker with type and 
+        public properties equal to those of this sargasso measure-maker.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
+
     def __illustrate__(self, **kwargs):
         r'''Illustrates sargasso measure maker.
 
