@@ -72,10 +72,39 @@ class TestManager(object):
         massaged_lines = []
         for split_line in split_lines:
             massaged_line = split_line[indent_width:]
-            #massaged_line = massaged_line.replace(tab_string, '\t')
             massaged_lines.append(massaged_line)
         massaged_string = '\n'.join(massaged_lines)
         return string_1.replace('\t', '    ') == massaged_string
+
+    @staticmethod
+    def compare_lys(path_1, path_2):
+        r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards any LilyPond version statements.
+
+        Returns boolean.
+        '''
+        if not os.path.isfile(path_1):
+            return False
+        if not os.path.isfile(path_2):
+            return False
+        file_1 = open(path_1, 'r')
+        file_2 = open(path_2, 'r')
+        with file_1, file_2:
+            file_1_lines, file_2_lines = [], []
+            for line in file_1.readlines():
+                if line.startswith(r'\version'):
+                    continue
+                line = line.strip()
+                file_1_lines.append(line)
+            for line in file_2.readlines():
+                if line.startswith(r'\version'):
+                    continue
+                line = line.strip()
+                file_2_lines.append(line)
+        return file_1_lines == file_2_lines
 
     @staticmethod
     def get_current_function_name():
