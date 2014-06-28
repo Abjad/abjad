@@ -250,7 +250,7 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.cache_file_path
-                '.../.score_manager/cache.py'
+                '.../.abjad/ide/cache.py'
 
         Returns string.
         '''
@@ -305,13 +305,11 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.configuration_directory
-                '.../.score_manager'
-
-        Defaults to path of hidden ``.score_manager`` directory.
+                '.../.abjad/ide'
 
         Returns string.
         '''
-        return os.path.join(self.home_directory, '.score_manager')
+        return os.path.join(self.abjad_configuration_directory, 'ide')
 
     @property
     def configuration_file_name(self):
@@ -322,11 +320,11 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.configuration_file_name
-                'score_manager.cfg'
+                'ide.cfg'
 
         Returns string.
         '''
-        return 'score_manager.cfg'
+        return 'ide.cfg'
 
     @property
     def configuration_file_path(self):
@@ -337,7 +335,7 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.configuration_file_path
-                '.../.score_manager/score_manager.cfg'
+                '.../.abjad/ide/ide.cfg'
 
         Returns string.
         '''
@@ -429,7 +427,7 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.transcripts_directory
-                '.../.score_manager/transcripts'
+                '.../.abjad/ide/transcripts'
 
         Returns string.
         '''
