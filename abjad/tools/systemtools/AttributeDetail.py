@@ -12,7 +12,7 @@ class AttributeDetail(AbjadObject):
         '_display_string',
         '_editor',
         '_is_keyword',
-        '_menu_key',
+        '_command',
         '_name',
         )
 
@@ -23,7 +23,7 @@ class AttributeDetail(AbjadObject):
         display_string=None,
         editor=None,
         is_keyword=True,
-        menu_key=None,
+        command=None,
         name=None,
         ):
         if not display_string and name:
@@ -31,7 +31,7 @@ class AttributeDetail(AbjadObject):
         self._display_string = display_string
         self._editor = editor
         self._is_keyword = is_keyword
-        self._menu_key = menu_key
+        self._command = command
         self._name = name
 
     ### SPECIAL METHODS ###
@@ -44,8 +44,8 @@ class AttributeDetail(AbjadObject):
         parts = []
         if self.display_string:
             parts.append(self.display_string)
-        if self.menu_key:
-            parts.append(self.menu_key)
+        if self.command:
+            parts.append(self.command)
         if self.editor:
             parts.append(self.editor.__name__)
         parts = ', '.join(parts)
@@ -78,12 +78,12 @@ class AttributeDetail(AbjadObject):
         return self._is_keyword
 
     @property
-    def menu_key(self):
+    def command(self):
         r'''Gets menu key of attribute detail.
 
         Returns string.
         '''
-        return self._menu_key
+        return self._command
 
     @property
     def name(self):

@@ -118,12 +118,12 @@ class DurationSpellingSpecifier(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='decrease_durations_monotonically',
-                menu_key='ddm',
+                command='ddm',
                 editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='forbidden_written_duration',
-                menu_key='fwd',
+                command='fwd',
                 editor=idetools.getters.get_duration,
                 ),
             )

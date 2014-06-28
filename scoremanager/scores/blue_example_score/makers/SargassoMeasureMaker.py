@@ -233,42 +233,42 @@ class SargassoMeasureMaker(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='measure_denominator',
-                menu_key='md',
+                command='md',
                 editor=idetools.getters.get_positive_integer_power_of_two,
                 ),
             systemtools.AttributeDetail(
                 name='measure_numerator_talea',
-                menu_key='mnt',
+                command='mnt',
                 editor=idetools.getters.get_positive_integers,
                 ),
             systemtools.AttributeDetail(
                 name='measure_division_denominator',
-                menu_key='mdd',
+                command='mdd',
                 editor=idetools.getters.get_nonnegative_integer,
                 ),
              systemtools.AttributeDetail(
                 name='measure_division_talea',
-                menu_key='mdt',
+                command='mdt',
                 editor=idetools.getters.get_nonnegative_integers,
                 ),
              systemtools.AttributeDetail(
                 name='total_duration',
-                menu_key='td',
+                command='td',
                 editor=idetools.getters.get_duration,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_scaled',
-                menu_key='sc',
+                command='sc',
                 editor=idetools.getters.get_boolean,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_split',
-                menu_key='sp',
+                command='sp',
                 editor=idetools.getters.get_boolean,
                 ),
              systemtools.AttributeDetail(
                 name='measures_are_shuffled',
-                menu_key='sh',
+                command='sh',
                 editor=idetools.getters.get_boolean,
                 ),
             )

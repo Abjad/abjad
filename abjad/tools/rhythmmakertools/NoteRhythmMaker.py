@@ -180,17 +180,17 @@ class NoteRhythmMaker(RhythmMaker):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='beam_specifier',
-                menu_key='bs',
+                command='bs',
                 editor=rhythmmakertools.BeamSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
-                menu_key='dss',
+                command='dss',
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='tie_specifier',
-                menu_key='ts',
+                command='ts',
                 editor=rhythmmakertools.TieSpecifier,
                 ),
             )

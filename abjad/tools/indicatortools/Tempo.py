@@ -294,13 +294,13 @@ class Tempo(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='duration',
-                menu_key='d',
+                command='d',
                 editor=idetools.getters.get_duration,
                 is_keyword=False,
                 ),
             systemtools.AttributeDetail(
                 name='units_per_minute',
-                menu_key='pm',
+                command='pm',
                 editor=idetools.getters.get_integer,
                 is_keyword=False,
                 ),

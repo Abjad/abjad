@@ -58,28 +58,25 @@
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-22. Change AttributeDetail.menu_key to AttributeDetail.command.
-    The term 'menu key' is nonstandard.
+22. Write in-library and in-score material breadcrumb tests.
 
-23. Write in-library and in-score material breadcrumb tests.
-
-24. Make autoadvance halt and insist on reentry of value entered incorrectly
+23. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
-25. Write autoadvance tests that capture some of the good autoadvance
+24. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
 
-26. Change behavior of lone (/) during autoadvance.
+25. Change behavior of lone (/) during autoadvance.
     Right now (/) does two things: stops autoadvance and sets current property
     to none. (/) should instead stop autoadvance put leave current property
     unchanged.
 
-27. Make (b) work during autoadvance.
+26. Make (b) work during autoadvance.
     The correct behavior should be to abandon and preserve value of current
     property and then to retreat back to previous property, all while
     leaving autoadvance turned on.
 
-28. Prevent (/) autoadvance from terminating autoeditor and writing target to
+27. Prevent (/) autoadvance from terminating autoeditor and writing target to
     disk. The write to disk should always come in response to an explicit
     additional command from the composer. The exception should be the more
     powerful (@) command which can take the composer through all properties

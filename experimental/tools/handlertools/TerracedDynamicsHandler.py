@@ -40,12 +40,12 @@ class TerracedDynamicsHandler(DynamicHandler):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='dynamics',
-                menu_key='dy',
+                command='dy',
                 editor=idetools.getters.get_dynamics,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
-                menu_key='md',
+                command='md',
                 editor=idetools.getters.get_duration,
                 ),
             )

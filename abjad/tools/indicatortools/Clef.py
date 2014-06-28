@@ -218,7 +218,7 @@ class Clef(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='name',
-                menu_key='nm',
+                command='nm',
                 editor=idetools.getters.get_string,
                 ),
             )

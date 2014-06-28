@@ -53,16 +53,16 @@ class Autoeditor(Controller):
 
     ### PRIVATE METHODS ###
 
-    def _attribute_name_to_menu_key(self, attribute_name, menu_keys):
-        found_menu_key = False
+    def _attribute_name_to_command(self, attribute_name, commands):
+        found_command = False
         attribute_parts = attribute_name.split('_')
         i = 1
         while True:
-            menu_key = ''.join([part[:i] for part in attribute_parts])
-            if menu_key not in menu_keys:
+            command = ''.join([part[:i] for part in attribute_parts])
+            if command not in commands:
                 break
             i = i + 1
-        return menu_key
+        return command
 
     def _clean_up_attributes_in_memory(self):
         if self.target is None:
@@ -156,9 +156,9 @@ class Autoeditor(Controller):
             self.set_attributes_to_none()
             return
         manifest = self._attribute_manifest
-        attribute_name = manifest._menu_key_to_attribute_name(result)
-        prepopulated_value = self._menu_key_to_prepopulated_value(result)
-        attribute_editor = self._menu_key_to_attribute_editor(
+        attribute_name = manifest._command_to_attribute_name(result)
+        prepopulated_value = self._command_to_prepopulated_value(result)
+        attribute_editor = self._command_to_attribute_editor(
             result,
             prepopulated_value=prepopulated_value,
             session=self._session,
@@ -226,7 +226,7 @@ class Autoeditor(Controller):
     def _make_target_attribute_tokens(self):
         result = []
         for attribute_detail in self._attribute_manifest.attribute_details:
-            key = attribute_detail.menu_key
+            key = attribute_detail.command
             display_string = attribute_detail.display_string
             attribute_value = getattr(
                 self.target,
@@ -245,17 +245,17 @@ class Autoeditor(Controller):
             result.append(menu_entry)
         return result
 
-    def _menu_key_to_attribute_editor(
+    def _command_to_attribute_editor(
         self,
-        menu_key,
+        command,
         prepopulated_value,
         session=None,
         ):
         manifest = self._attribute_manifest
         assert manifest
-        attribute_name = manifest._menu_key_to_attribute_name(menu_key)
+        attribute_name = manifest._command_to_attribute_name(command)
         attribute_name = attribute_name.replace('_', ' ')
-        attribute_detail = manifest._menu_key_to_attribute_detail(menu_key)
+        attribute_detail = manifest._command_to_attribute_detail(command)
         attribute_editor = self._get_attribute_autoeditor(
             attribute_detail,
             attribute_name,
@@ -263,9 +263,9 @@ class Autoeditor(Controller):
             )
         return attribute_editor
 
-    def _menu_key_to_prepopulated_value(self, menu_key):
+    def _command_to_prepopulated_value(self, command):
         manifest = self._attribute_manifest
-        attribute_name = manifest._menu_key_to_attribute_name(menu_key)
+        attribute_name = manifest._command_to_attribute_name(command)
         return getattr(self.target, attribute_name, None)
 
     def _run(self):

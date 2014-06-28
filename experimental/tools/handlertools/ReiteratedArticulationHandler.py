@@ -82,27 +82,27 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='articulation_list',
-                menu_key='al',
+                command='al',
                 editor=idetools.getters.get_articulations,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
-                menu_key='nd',
+                command='nd',
                 editor=idetools.getters.get_duration,
                 ),
             systemtools.AttributeDetail(
                 name='maximum_duration',
-                menu_key='xd',
+                command='xd',
                 editor=idetools.getters.get_duration,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_written_pitch',
-                menu_key='np',
+                command='np',
                 editor=idetools.getters.get_named_pitch,
                 ),
             systemtools.AttributeDetail(
                 name='maximum_written_pitch',
-                menu_key='xp',
+                command='xp',
                 editor=idetools.getters.get_named_pitch,
                 ),
             )

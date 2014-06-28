@@ -124,12 +124,12 @@ class Performer(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='name',
-                menu_key='nm',
+                command='nm',
                 editor=idetools.getters.get_string,
                 ),
             systemtools.AttributeDetail(
                 name='instruments',
-                menu_key='i',
+                command='i',
                 editor=instrumenttools.InstrumentInventory,
                 ),
             )

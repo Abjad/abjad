@@ -150,12 +150,12 @@ class BeamSpecifier(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='beam_divisions_together',
-                menu_key='bdt',
+                command='bdt',
                 editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='beam_each_division',
-                menu_key='bed',
+                command='bed',
                 editor=idetools.getters.get_boolean,
                 ),
             )

@@ -68,12 +68,12 @@ class Talea(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='counts',
-                menu_key='c',
+                command='c',
                 editor=idetools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
                 name='denominator',
-                menu_key='d',
+                command='d',
                 editor=idetools.getters.get_positive_integer_power_of_two,
                 ),
             )

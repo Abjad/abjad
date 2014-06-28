@@ -292,7 +292,7 @@ class PitchRange(AbjadObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='range_string',
-                menu_key='rs',
+                command='rs',
                 editor=idetools.getters.get_pitch_range_string,
                 ),
             )

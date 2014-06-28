@@ -104,7 +104,7 @@ class RestRhythmMaker(RhythmMaker):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
-                menu_key='dss',
+                command='dss',
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             )

@@ -342,37 +342,37 @@ class TaleaRhythmMaker(RhythmMaker):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='talea',
-                menu_key='t',
+                command='t',
                 editor=rhythmmakertools.Talea,
                 ),
             systemtools.AttributeDetail(
                 name='split_divisions_by_counts',
-                menu_key='sd',
+                command='sd',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division',
-                menu_key='ec',
+                command='ec',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='beam_specifier',
-                menu_key='bs',
+                command='bs',
                 editor=rhythmmakertools.BeamSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='burnish_specifier',
-                menu_key='us',
+                command='us',
                 editor=rhythmmakertools.BurnishSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='duration_spelling_specifier',
-                menu_key='ds',
+                command='ds',
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(
                 name='tie_specifier',
-                menu_key='ts',
+                command='ts',
                 editor=rhythmmakertools.TieSpecifier,
                 ),
             )

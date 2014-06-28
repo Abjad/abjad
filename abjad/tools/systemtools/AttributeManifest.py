@@ -44,18 +44,18 @@ class AttributeManifest(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _menu_key_to_attribute_detail(self, menu_key):
+    def _command_to_attribute_detail(self, command):
         for attribute_detail in self.attribute_details:
-            if attribute_detail.menu_key == menu_key:
+            if attribute_detail.command == command:
                 return attribute_detail
 
-    def _menu_key_to_attribute_name(self, menu_key):
-        attribute_detail = self._menu_key_to_attribute_detail(menu_key)
+    def _command_to_attribute_name(self, command):
+        attribute_detail = self._command_to_attribute_detail(command)
         if attribute_detail:
             return attribute_detail.name
 
-    def _menu_key_to_prepopulated_value(self, menu_key):
-        attribute_name = self._menu_key_to_attribute_name(menu_key)
+    def _command_to_prepopulated_value(self, command):
+        attribute_name = self._command_to_attribute_name(command)
         return getattr(self.target, attribute_name, None)
 
     def _to_initializer_argument_names(self, retrievable_attribute_name):
