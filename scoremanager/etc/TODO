@@ -1,44 +1,42 @@
-1.  Implement TestManager.compare_lys().
+1.  Answer all inline TODOs.
 
-2.  Integrate diff-pdf.
+2.  Unskip all skipped tests.
 
-3.  Integrate candidacy protocol.
+3.  Streamline all 39 classfiles.
 
-4.  Clean up InstrumentInventory.
+4.  Integrate diff-pdf.
+
+5.  Integrate candidacy protocol.
+
+6.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-5.  Implement 'views - write' (vw).
+7.  Implement 'views - write' (vw).
     Implement 'views - check' (vc).
 
-6.  Implement '__metadata__.py - check' (mdc).
+8.  Implement '__metadata__.py - check' (mdc).
 
-7.  Implement '__metadata__.py - autoedit' (mda).
+9.  Implement '__metadata__.py - autoedit' (mda).
 
-8.  Take another pass at (ck) and (ck*) messaging.
+10. Take another pass at (ck) and (ck*) messaging.
 
-9.  Audit (**).
+11. Audit (**).
 
-10. Audit all star commands.
+12. Audit all star commands.
 
-11. Audit material interface by hand.
+13. Audit material interface by hand.
     Audit segment interface by hand.
 
-12. Audit all public methods for py.test files.
+14. Audit all public methods for py.test files.
 
-13. Answer all inline TODOs.
-
-14. Unskip all skipped tests.
-
-15. Streamline all 39 classfiles.
-
-16. Extended ControllerContext with directory=None keyword.
+15. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-17. Make (red m tempo da rm 4 done!) work.
+16. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-18. Implement interface commands to autostart autoediting.
+17. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (va!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -47,36 +45,36 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-19. Sort the asset sections in (M), (K) etc according to the same order
+18. Sort the asset sections in (M), (K) etc according to the same order
     as used in (**).
 
-20. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
+19. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
     but has no yet been written to disk.
 
-21. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+20. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-22. Write in-library and in-score material breadcrumb tests.
+21. Write in-library and in-score material breadcrumb tests.
 
-23. Make autoadvance halt and insist on reentry of value entered incorrectly
+22. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
-24. Write autoadvance tests that capture some of the good autoadvance
+23. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
 
-25. Change behavior of lone (/) during autoadvance.
+24. Change behavior of lone (/) during autoadvance.
     Right now (/) does two things: stops autoadvance and sets current property
     to none. (/) should instead stop autoadvance put leave current property
     unchanged.
 
-26. Make (b) work during autoadvance.
+25. Make (b) work during autoadvance.
     The correct behavior should be to abandon and preserve value of current
     property and then to retreat back to previous property, all while
     leaving autoadvance turned on.
 
-27. Prevent (/) autoadvance from terminating autoeditor and writing target to
+26. Prevent (/) autoadvance from terminating autoeditor and writing target to
     disk. The write to disk should always come in response to an explicit
     additional command from the composer. The exception should be the more
     powerful (@) command which can take the composer through all properties

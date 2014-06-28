@@ -32,7 +32,7 @@ def test_MaterialPackageManager_illustrate_output_py_01():
         assert os.path.isfile(illustration_ly)
         assert os.path.isfile(illustration_pdf)
         #assert diff-pdf(illustration_pdf, backup_illustration_pdf)
-        #assert systemtools.TestManager.compare_lys(
-        #    illustration_ly,
-        #    illustration_ly + '.backup',
-        #    )
+        assert systemtools.TestManager.compare_lys(
+            illustration_ly,
+            illustration_ly + '.backup',
+            )

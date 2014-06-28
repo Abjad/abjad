@@ -26,8 +26,8 @@ def test_SegmentPackageManager_interpret_make_py_01():
         input_ = 'red~example~score g A ki y q'
         ide._run(input_=input_)
         assert all(os.path.isfile(_) for _ in output_paths)
-        #assert systemtools.TestManager.compare_lys(
-        #    ly_path,
-        #    ly_path + '.backup',
-        #    )
+        assert systemtools.TestManager.compare_lys(
+            ly_path,
+            ly_path + '.backup',
+            )
         #assert diff-pdf(pdf_path, pdf_path + '.backup')

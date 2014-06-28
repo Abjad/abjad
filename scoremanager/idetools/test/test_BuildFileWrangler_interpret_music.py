@@ -28,4 +28,8 @@ def test_BuildFileWrangler_interpret_music_01():
         input_ = 'red~example~score u mi q'
         ide._run(input_=input_)
         assert os.path.isfile(path)
-        #assert systemtools.TestManager.compare_lys(path, backup_path)
+        assert systemtools.TestManager.compare_lys(
+            source_path,
+            source_path + '.backup',
+            )
+        #assert pdf-diff(path, path + '.backup')
