@@ -82,7 +82,11 @@ class TestManager(object):
 
         Performs line-by-line comparison.
 
+        Discards blank lines.
+
         Discards any LilyPond version statements.
+
+        Discards any lines beginning with ``%``.
 
         Returns boolean.
         '''
@@ -95,14 +99,22 @@ class TestManager(object):
         with file_1, file_2:
             file_1_lines, file_2_lines = [], []
             for line in file_1.readlines():
+                line = line.strip()
                 if line.startswith(r'\version'):
                     continue
-                line = line.strip()
+                elif line.startswith('%'):
+                    continue
+                elif line == '':
+                    continue
                 file_1_lines.append(line)
             for line in file_2.readlines():
+                line = line.strip()
                 if line.startswith(r'\version'):
                     continue
-                line = line.strip()
+                elif line.startswith('%'):
+                    continue
+                elif line == '':
+                    continue
                 file_2_lines.append(line)
         return file_1_lines == file_2_lines
 

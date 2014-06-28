@@ -48,6 +48,18 @@ def test_systemtools_TestManager_compare_lys_02():
 
 
 def test_systemtools_TestManager_compare_lys_03():
+    r'''True when comments differ.
+    '''
+
+    with systemtools.FilesystemState(remove=[path_1, path_2]):
+        first_lines = [r'\version "2.19.7"'] + lines
+        second_lines = ['% 2014-01-01 05:43:01', r'\version "2.19.8"'] + lines
+        file(path_1, 'w').write('\n'.join(first_lines))
+        file(path_2, 'w').write('\n'.join(second_lines))
+        assert systemtools.TestManager.compare_lys(path_1, path_2)
+
+
+def test_systemtools_TestManager_compare_lys_04():
     r'''False when any other lines differ.
     '''
 
