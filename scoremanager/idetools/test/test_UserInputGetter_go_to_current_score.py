@@ -5,9 +5,9 @@ import scoremanager
 
 def test_UserInputGetter_go_to_current_score_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory da 1 d s q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
@@ -18,4 +18,4 @@ def test_UserInputGetter_go_to_current_score_01():
         'Red Example Score (2013) - materials - tempo inventory - tempo (EDIT)',
         'Red Example Score (2013)',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles

@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_generate_music_source_01():
@@ -14,7 +14,7 @@ def test_BuildFileWrangler_generate_music_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'music.ly',
@@ -22,7 +22,7 @@ def test_BuildFileWrangler_generate_music_source_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u mg y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(path)
         with open(path, 'r') as file_pointer:
             file_lines = file_pointer.readlines()

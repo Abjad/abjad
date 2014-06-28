@@ -10,8 +10,8 @@ class Configuration(AbjadConfiguration):
 
         ::
 
-            >>> score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-            >>> configuration = score_manager._configuration
+            >>> ide = scoremanager.idetools.AbjadIDE(is_test=True)
+            >>> configuration = ide._configuration
             >>> configuration
             Configuration()
 
@@ -341,8 +341,6 @@ class Configuration(AbjadConfiguration):
 
         Returns string.
         '''
-        #superclass = super(Configuration, self)
-        #return superclass.configuration_file_path
         return os.path.join(
             self.configuration_directory,
             self.configuration_file_name,

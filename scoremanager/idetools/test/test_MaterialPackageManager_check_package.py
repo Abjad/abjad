@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageManager_check_package_01():
@@ -11,8 +11,8 @@ def test_MaterialPackageManager_check_package_01():
     '''
 
     input_ = 'red~example~score m tempo~inventory ck y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Top level (7 assets): OK' in contents
     assert 'found' not in contents
@@ -24,8 +24,8 @@ def test_MaterialPackageManager_check_package_02():
     '''
 
     input_ = 'red~example~score m tempo~inventory ck n q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     lines = [
         '1 of 1 required directory found:',
@@ -42,7 +42,7 @@ def test_MaterialPackageManager_check_package_03():
     '''
 
     material_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'tempo_inventory',
@@ -54,6 +54,6 @@ def test_MaterialPackageManager_check_package_03():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score m tempo~inventory ck y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(versions_directory)

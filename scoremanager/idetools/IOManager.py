@@ -18,8 +18,8 @@ class IOManager(IOManager):
 
         ::
 
-            >>> score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-            >>> io_manager = score_manager._session.io_manager
+            >>> ide = scoremanager.idetools.AbjadIDE(is_test=True)
+            >>> io_manager = ide._session.io_manager
 
     '''
 

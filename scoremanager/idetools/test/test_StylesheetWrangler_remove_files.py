@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_StylesheetWrangler_remove_files_01():
@@ -12,18 +12,18 @@ def test_StylesheetWrangler_remove_files_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_stylesheets_directory,
+        ide._configuration.example_stylesheets_directory,
         'clean-letter-14.ily',
         )
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'Y rm clean-letter-14.ily remove q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert not os.path.exists(path)
         assert os.path.exists(path + '.backup')
         shutil.copyfile(path + '.backup', path)
         manager = scoremanager.idetools.PackageManager(
             path=path,
-            session=score_manager._session,
+            session=ide._session,
             )
         manager.add()

@@ -3,7 +3,7 @@ import filecmp
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_generate_score_source_01():
@@ -11,7 +11,7 @@ def test_BuildFileWrangler_generate_score_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'score.tex',
@@ -19,6 +19,6 @@ def test_BuildFileWrangler_generate_score_source_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u sg y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(path)
         assert filecmp.cmp(path, path + '.backup')

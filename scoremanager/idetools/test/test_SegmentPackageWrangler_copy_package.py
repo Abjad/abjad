@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_copy_package_01():
@@ -15,15 +15,15 @@ def test_SegmentPackageWrangler_copy_package_01():
     '''
 
     input_ = 'G cp A~(Red~Example~Score) q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - segments',
         'Abjad IDE - segments',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
@@ -32,13 +32,13 @@ def test_SegmentPackageWrangler_copy_package_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'copied_segment_01',
@@ -47,8 +47,8 @@ def test_SegmentPackageWrangler_copy_package_02():
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score g cp'
         input_ += ' A copied_segment_01 y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied_segment_01' in contents

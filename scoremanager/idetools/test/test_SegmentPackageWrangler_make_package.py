@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_make_package_01():
@@ -10,7 +10,7 @@ def test_SegmentPackageWrangler_make_package_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_04',
@@ -25,8 +25,8 @@ def test_SegmentPackageWrangler_make_package_01():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'red~example~score g new segment~04 y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert os.path.exists(path)
         session = scoremanager.idetools.Session(is_test=True)
         manager = scoremanager.idetools.SegmentPackageManager

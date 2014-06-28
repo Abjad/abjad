@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageManager_pytest_01():
 
     input_ = 'red~example~score m magic~numbers pyt q'
-    score_manager._run(input_=input_)
-    transcript_contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    transcript_contents = ide._transcript.contents
 
     strings = [
         'Running py.test ...',

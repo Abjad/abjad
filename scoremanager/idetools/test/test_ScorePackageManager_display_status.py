@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageManager_display_status_01():
@@ -9,8 +9,8 @@ def test_ScorePackageManager_display_status_01():
     '''
 
     input_ = 'red~example~score rst q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Repository status for' in contents
     assert '... OK' in contents
@@ -20,14 +20,14 @@ def test_ScorePackageManager_display_status_02():
     r'''Works with Subversion.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
-    name = score_manager._score_package_wrangler._find_svn_score_name()
+    ide = scoremanager.idetools.AbjadIDE(is_test=False)
+    name = ide._score_package_wrangler._find_svn_score_name()
     if not name:
         return
 
     input_ = '{} rst q'.format(name)
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Repository status for' in contents
     assert '... OK' in contents

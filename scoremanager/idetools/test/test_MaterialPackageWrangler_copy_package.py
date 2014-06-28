@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_copy_package_01():
@@ -16,15 +16,15 @@ def test_MaterialPackageWrangler_copy_package_01():
     '''
 
     input_ = 'M cp instrumentation~(Red~Example~Score) q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - materials',
         'Abjad IDE - materials',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
@@ -33,13 +33,13 @@ def test_MaterialPackageWrangler_copy_package_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'instrumentation',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'copied_instrumentation',
@@ -48,8 +48,8 @@ def test_MaterialPackageWrangler_copy_package_02():
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score m cp'
         input_ += ' instrumentation copied_instrumentation y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied_instrumentation' in contents
@@ -60,8 +60,8 @@ def test_MaterialPackageWrangler_copy_package_03():
     '''
 
     input_ = 'red~example~score m cp tempo~inventory ? q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
         
     string = 'Existing material package name> tempo_inventory'
     assert string in contents

@@ -5,9 +5,9 @@ import scoremanager
 
 def test_MaterialPackageWrangler_go_to_next_package_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m > > > > > > q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_go_to_next_package_01():
         'Red Example Score (2013) - materials - time signatures',
         'Red Example Score (2013) - materials - instrumentation',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
 
 
 def test_MaterialPackageWrangler_go_to_next_package_02():
@@ -27,9 +27,9 @@ def test_MaterialPackageWrangler_go_to_next_package_02():
     asset.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m > > g > > q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
@@ -40,4 +40,4 @@ def test_MaterialPackageWrangler_go_to_next_package_02():
         'Red Example Score (2013) - segments - A',
         'Red Example Score (2013) - segments - B',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles

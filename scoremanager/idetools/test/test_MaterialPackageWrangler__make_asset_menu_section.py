@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler__make_asset_menu_section_01():
@@ -9,13 +9,13 @@ def test_MaterialPackageWrangler__make_asset_menu_section_01():
     '''
 
     input_ = 'blue~example~score m q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - materials',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
 
 
 def test_MaterialPackageWrangler__make_asset_menu_section_02():
@@ -23,8 +23,8 @@ def test_MaterialPackageWrangler__make_asset_menu_section_02():
     '''
 
     input_ = 'red~example~score m q'
-    score_manager._run(input_=input_)
-    assert '(Red Example Score)' not in score_manager._transcript.contents
+    ide._run(input_=input_)
+    assert '(Red Example Score)' not in ide._transcript.contents
 
 
 def test_MaterialPackageWrangler__make_asset_menu_section_03():
@@ -32,5 +32,5 @@ def test_MaterialPackageWrangler__make_asset_menu_section_03():
     '''
 
     input_ = 'M q'
-    score_manager._run(input_=input_)
-    assert 'Red Example Score:' in score_manager._transcript.contents
+    ide._run(input_=input_)
+    assert 'Red Example Score:' in ide._transcript.contents

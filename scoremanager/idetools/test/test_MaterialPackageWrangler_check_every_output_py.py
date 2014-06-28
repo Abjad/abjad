@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_check_every_output_py_01():
@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_check_every_output_py_01():
     output_py_paths = []
     for name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             'red_example_score',
             'materials',
             name,
@@ -27,8 +27,8 @@ def test_MaterialPackageWrangler_check_every_output_py_01():
 
     with systemtools.FilesystemState(keep=output_py_paths):
         input_ = 'red~example~score m oc* y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert 'Will check ...' in contents
         for output_py_path in output_py_paths:
             message = '{} OK.'.format(output_py_path)

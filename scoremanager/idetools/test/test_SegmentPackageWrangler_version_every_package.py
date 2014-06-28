@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_version_every_package_01():
@@ -12,7 +12,7 @@ def test_SegmentPackageWrangler_version_every_package_01():
     file_names = ('definition.py', 'output.ly', 'output.pdf')
     for segment in segments:
         versions_directory = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             'red_example_score',
             'segments',
             segment,
@@ -26,6 +26,6 @@ def test_SegmentPackageWrangler_version_every_package_01():
 
     with systemtools.FilesystemState(remove=target_paths):
         input_ = 'red~example~score g vr* y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         for path in target_paths:
             assert os.path.isfile(path)

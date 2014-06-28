@@ -2,12 +2,12 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_interpret_every_output_ly_01():
 
-    path = score_manager._configuration.example_score_packages_directory
+    path = ide._configuration.example_score_packages_directory
     path = os.path.join(path, 'red_example_score', 'segments')
     paths = [
         os.path.join(path, 'segment_01', 'output.ly'),
@@ -23,8 +23,8 @@ def test_SegmentPackageWrangler_interpret_every_output_ly_01():
 
     with systemtools.FilesystemState(keep=pdf_paths):
         input_ = 'red~example~score g oli* y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         strings = []
         strings.extend(paths)
         strings.extend([

@@ -4,14 +4,14 @@ from abjad import *
 import scoremanager
 configuration = scoremanager.idetools.Configuration()
 session = scoremanager.idetools.Session()
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler__find_up_to_date_manager_01():
     r'''Works with Git.
     '''
 
-    wrangler = score_manager._score_package_wrangler
+    wrangler = ide._score_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         inside_score=False,
         system=True,
@@ -31,7 +31,7 @@ def test_ScorePackageWrangler__find_up_to_date_manager_02():
     r'''Works with Subversion.
     '''
 
-    wrangler = score_manager._score_package_wrangler
+    wrangler = ide._score_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         inside_score=False,
         system=False,

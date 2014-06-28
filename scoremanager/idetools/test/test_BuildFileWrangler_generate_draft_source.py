@@ -4,7 +4,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_generate_draft_source_01():
@@ -12,7 +12,7 @@ def test_BuildFileWrangler_generate_draft_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'draft.tex',
@@ -20,8 +20,8 @@ def test_BuildFileWrangler_generate_draft_source_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u dg y y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert 'Overwrite' in contents
         assert 'Will assemble segments in this order:' in contents
         assert 'Overwrote' in contents
@@ -36,7 +36,7 @@ def test_BuildFileWrangler_generate_draft_source_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'blue_example_score',
         'build',
         'draft.tex',
@@ -44,8 +44,8 @@ def test_BuildFileWrangler_generate_draft_source_02():
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'blue~example~score u dg y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         message = 'SegmentPackageWrangler views.py is corrupt.' 
         assert message not in contents
         assert 'Will assemble segments in this order:' in contents
@@ -57,7 +57,7 @@ def test_BuildFileWrangler_generate_draft_source_03():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'etude_example_score',
         'build',
         'draft.tex',
@@ -66,8 +66,8 @@ def test_BuildFileWrangler_generate_draft_source_03():
     with systemtools.FilesystemState(keep=[path]):
 
         input_ = 'etude~example~score u dg y y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert 'Overwrite' in contents
         assert 'No segments found:' in contents
         assert 'will generate source without segments' in contents

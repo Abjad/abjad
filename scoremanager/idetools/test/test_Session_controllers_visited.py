@@ -24,9 +24,9 @@ def test_Session_controllers_visited_01():
     r'''Abjad IDE.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -34,16 +34,16 @@ def test_Session_controllers_visited_01():
         scoremanager.idetools.ScorePackageWrangler(session=session),
         scoremanager.idetools.Menu(session=session),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_02():
     r'''Score package manager.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -55,16 +55,16 @@ def test_Session_controllers_visited_02():
             session=session,
             ),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_03():
     r'''Build file wrangler.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score u q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -77,16 +77,16 @@ def test_Session_controllers_visited_03():
             ),
         scoremanager.idetools.BuildFileWrangler(session=session),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_04():
     r'''Material package manager.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -99,16 +99,16 @@ def test_Session_controllers_visited_04():
             ),
         scoremanager.idetools.MaterialPackageWrangler(session=session),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_05():
     r'''Material package manager.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -125,16 +125,16 @@ def test_Session_controllers_visited_05():
             session=session,
             ),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_06():
     r'''Segment wrangler.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -147,16 +147,16 @@ def test_Session_controllers_visited_06():
             ),
         scoremanager.idetools.SegmentPackageWrangler(session=session),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_07():
     r'''Segment package manager.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g 1 q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -173,16 +173,16 @@ def test_Session_controllers_visited_07():
             session=session,
             ),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers
 
 
 def test_Session_controllers_visited_08():
     r'''Stylesheet file wrangler.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score y q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     session = scoremanager.idetools.Session(is_test=True)
     controllers = [
@@ -195,4 +195,4 @@ def test_Session_controllers_visited_08():
             ),
         scoremanager.idetools.StylesheetWrangler(session=session),
         ]
-    assert score_manager._session.controllers_visited == controllers
+    assert ide._session.controllers_visited == controllers

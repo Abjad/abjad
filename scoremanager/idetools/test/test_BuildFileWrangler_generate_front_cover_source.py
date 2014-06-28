@@ -3,7 +3,7 @@ import filecmp
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_generate_front_cover_source_01():
@@ -13,7 +13,7 @@ def test_BuildFileWrangler_generate_front_cover_source_01():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',
@@ -21,8 +21,8 @@ def test_BuildFileWrangler_generate_front_cover_source_01():
 
     with systemtools.FilesystemState(keep=[path]):
         input_ = 'red~example~score u fcg y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert 'Overwrite' in contents
         assert 'Overwrote' in contents
         assert filecmp.cmp(path, path + '.backup')
@@ -35,7 +35,7 @@ def test_BuildFileWrangler_generate_front_cover_source_02():
     '''
 
     path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',
@@ -45,8 +45,8 @@ def test_BuildFileWrangler_generate_front_cover_source_02():
         os.remove(path)
         assert not os.path.exists(path)
         input_ = 'red~example~score u fcg q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert 'Overwrite' not in contents
         assert 'Overwrote' not in contents
         assert filecmp.cmp(path, path + '.backup')

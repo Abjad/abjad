@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_list_every_metadata_py_01():
@@ -15,7 +15,7 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             'red_example_score',
             'segments',
             package_name,
@@ -24,8 +24,8 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
         paths.append(path)
 
     input_ = 'red~example~score g mdls* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     for path in paths:
         assert path in contents
@@ -35,10 +35,10 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
 def test_SegmentPackageWrangler_list_every_metadata_py_02():
 
     input_ = 'G mdls* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
-    path = score_manager._configuration.example_score_packages_directory
+    path = ide._configuration.example_score_packages_directory
     paths = [
         os.path.join(path, 'red_example_score'),
         ]

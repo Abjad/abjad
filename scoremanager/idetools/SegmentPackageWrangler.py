@@ -13,8 +13,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
 
         ::
 
-            >>> score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-            >>> wrangler = score_manager._segment_package_wrangler
+            >>> ide = scoremanager.idetools.AbjadIDE(is_test=True)
+            >>> wrangler = ide._segment_package_wrangler
             >>> wrangler
             SegmentPackageWrangler()
 

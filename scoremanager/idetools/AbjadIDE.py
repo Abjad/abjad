@@ -11,8 +11,8 @@ class AbjadIDE(Wrangler):
 
         ::
 
-            >>> score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-            >>> score_manager
+            >>> ide = scoremanager.idetools.AbjadIDE(is_test=True)
+            >>> ide
             AbjadIDE()
 
 

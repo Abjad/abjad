@@ -5,10 +5,10 @@ import scoremanager
 
 def test_SegmentPackageManager_doctest_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g A pyd q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     strings = [
         'Running doctest ...',

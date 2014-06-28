@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageManager_add_01():
@@ -11,7 +11,7 @@ def test_MaterialPackageManager_add_01():
     Then unadd the files and leave the material package as found.
     '''
 
-    wrangler = score_manager._material_package_wrangler
+    wrangler = ide._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
@@ -26,7 +26,7 @@ def test_MaterialPackageManager_add_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    wrangler = score_manager._material_package_wrangler
+    wrangler = ide._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='svn',
         system=False,

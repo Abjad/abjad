@@ -4,14 +4,14 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_collect_segment_pdfs_01():
 
     # find build directory
     build_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         )
@@ -22,7 +22,7 @@ def test_BuildFileWrangler_collect_segment_pdfs_01():
     for number in ('01', '02', '03'):
         directory_name = 'segment_{}'.format(number)
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             'red_example_score',
             'segments',
             directory_name,
@@ -40,7 +40,7 @@ def test_BuildFileWrangler_collect_segment_pdfs_01():
         file_name = 'segment-{}.pdf'
         file_name = file_name.format(number)
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             'red_example_score',
             'build',
             file_name,
@@ -69,7 +69,7 @@ def test_BuildFileWrangler_collect_segment_pdfs_01():
         
     # run input
     input_ = 'red~example~score u dc y q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     # make sure destination paths exist
     for path in destination_pdfs:

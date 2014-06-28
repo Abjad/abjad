@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 # must be is_test=False for view tests
-score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
+ide = scoremanager.idetools.AbjadIDE(is_test=False)
 
 
 def test_BuildFileWrangler_set_view_01():
@@ -13,11 +13,11 @@ def test_BuildFileWrangler_set_view_01():
     '''
     
     views_file = os.path.join(
-        score_manager._configuration.wrangler_views_directory,
+        ide._configuration.wrangler_views_directory,
         '__BuildFileWrangler_views__.py',
         )
     metadata_file = os.path.join(
-        score_manager._configuration.wrangler_views_directory,
+        ide._configuration.wrangler_views_directory,
         '__metadata__.py',
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
@@ -28,8 +28,8 @@ def test_BuildFileWrangler_set_view_01():
         input_ += ' add segment-02.ly~(Red~Example~Score)'
         input_ += ' add segment-03.ly~(Red~Example~Score) done done'
         input_ += ' vs _test q'
-        score_manager._run(input_=input_)
-        transcript = score_manager._transcript
+        ide._run(input_=input_)
+        transcript = ide._transcript
         lines = [
             'Abjad IDE - build files [_test]',
             '',
@@ -54,13 +54,13 @@ def test_BuildFileWrangler_set_view_02():
     '''
     
     views_file = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         '__views__.py',
         )
     metadata_file = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         '__metadata__.py',
@@ -71,8 +71,8 @@ def test_BuildFileWrangler_set_view_02():
         input_ = 'red~example~score u va add _test'
         input_ += ' add segment-01.ly done done'
         input_ += ' vs _test q'
-        score_manager._run(input_=input_)
-        transcript = score_manager._transcript
+        ide._run(input_=input_)
+        transcript = ide._transcript
         lines = [
             'Red Example Score (2013) - build files [_test]',
             '',

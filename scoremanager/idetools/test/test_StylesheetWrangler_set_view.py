@@ -3,13 +3,13 @@ import os
 from abjad import *
 import scoremanager
 # must have is_test=False to test views
-score_manager = scoremanager.idetools.AbjadIDE(is_test=False)
+ide = scoremanager.idetools.AbjadIDE(is_test=False)
 views_file = os.path.join(
-    score_manager._configuration.wrangler_views_directory,
+    ide._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',
     )
 metadata_file = os.path.join(
-    score_manager._configuration.wrangler_views_directory,
+    ide._configuration.wrangler_views_directory,
     '__metadata__.py',
     )
 
@@ -25,8 +25,8 @@ def test_StylesheetWrangler_set_view_01():
         os.remove(metadata_file)
         input_ = 'Y va add _test add clean-letter-14.ily done done'
         input_ += ' vs _test q'
-        score_manager._run(input_=input_)
-        transcript = score_manager._transcript
+        ide._run(input_=input_)
+        transcript = ide._transcript
         lines = [
             'Abjad IDE - stylesheets [_test]',
             '',
@@ -48,13 +48,13 @@ def test_StylesheetWrangler_set_view_02():
     '''
     
     views_file = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         '__views__.py',
         )
     metadata_file = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'stylesheets',
         '__metadata__.py',
@@ -65,8 +65,8 @@ def test_StylesheetWrangler_set_view_02():
         input_ = 'red~example~score y va add _test'
         input_ += ' add stylesheet-addendum.ily done done'
         input_ += ' vs _test q'
-        score_manager._run(input_=input_)
-        transcript = score_manager._transcript
+        ide._run(input_=input_)
+        transcript = ide._transcript
         lines = [
             'Red Example Score (2013) - stylesheets [_test]',
             '',

@@ -1316,14 +1316,14 @@ class Session(abctools.AbjadObject):
         return self._proceed_count
 
     @property
-    def score_manager(self):
+    def ide(self):
         r'''Gets session score manager.
 
         ..  container:: example
 
             ::
 
-                >>> session.score_manager
+                >>> session.ide
 
         Returns score manager or none.
         '''

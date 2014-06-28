@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_check_package_01():
@@ -11,7 +11,7 @@ def test_SegmentPackageManager_check_package_01():
     '''
 
     segment_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_02',
@@ -23,8 +23,8 @@ def test_SegmentPackageManager_check_package_01():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score g B ck y n q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
 
     lines = [
         '1 of 1 required directory missing:',
@@ -41,7 +41,7 @@ def test_SegmentPackageManager_check_package_02():
     '''
 
     segment_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_02',
@@ -53,8 +53,8 @@ def test_SegmentPackageManager_check_package_02():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score g B ck n n q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
 
     lines = [
         '1 of 1 required directory missing:',
@@ -70,7 +70,7 @@ def test_SegmentPackageManager_check_package_03():
     '''
 
     segment_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
@@ -82,6 +82,6 @@ def test_SegmentPackageManager_check_package_03():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score g A ck y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(versions_directory)

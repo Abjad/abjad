@@ -2,14 +2,14 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageManager_commit_01():
     r'''Flow control reaches Git-managed score package.
     '''
 
-    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
+    manager = ide._score_package_wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
         )
@@ -23,7 +23,7 @@ def test_ScorePackageManager_commit_02():
     r'''Flow control reaches Subversion-managed score package.
     '''
 
-    manager = score_manager._score_package_wrangler._find_up_to_date_manager(
+    manager = ide._score_package_wrangler._find_up_to_date_manager(
         repository='svn',
         system=False,
         )

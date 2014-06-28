@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_check_every_package_01():
@@ -20,8 +20,8 @@ def test_MaterialPackageWrangler_check_every_package_01():
         ]
 
     input_ = 'red~example~score m ck* y n q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
     for line in lines:
         assert line in contents
 
@@ -39,8 +39,8 @@ def test_MaterialPackageWrangler_check_every_package_02():
         ]
 
     input_ = 'M ck* y n q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
     for line in lines:
         assert line in contents
 
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_check_every_package_03():
     '''
 
     material_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'tempo_inventory',
@@ -61,6 +61,6 @@ def test_MaterialPackageWrangler_check_every_package_03():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'red~example~score m ck* y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(versions_directory)

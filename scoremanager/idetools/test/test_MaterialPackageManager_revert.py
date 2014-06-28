@@ -2,12 +2,12 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageManager_revert_01():
 
-    wrangler = score_manager._material_package_wrangler
+    wrangler = ide._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
@@ -18,7 +18,7 @@ def test_MaterialPackageManager_revert_01():
 
 def test_MaterialPackageManager_revert_02():
 
-    wrangler = score_manager._material_package_wrangler
+    wrangler = ide._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='svn',
         system=False,

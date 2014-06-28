@@ -2,14 +2,14 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_open_every_init_py_01():
 
     input_ = 'no* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Will open ...' in contents
 
@@ -22,7 +22,7 @@ def test_ScorePackageWrangler_open_every_init_py_01():
     paths = []
     for package_name in package_names:
         path = os.path.join(
-            score_manager._configuration.example_score_packages_directory,
+            ide._configuration.example_score_packages_directory,
             package_name,
             '__init__.py',
             )
@@ -30,4 +30,4 @@ def test_ScorePackageWrangler_open_every_init_py_01():
     for path in paths:
         assert path in contents
 
-    assert score_manager._session._attempted_to_open_file
+    assert ide._session._attempted_to_open_file

@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_go_to_next_score_01():
 
     input_ = 'red~example~score u >> q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
@@ -15,17 +15,17 @@ def test_BuildFileWrangler_go_to_next_score_01():
         'Red Example Score (2013) - build files',
         'Blue Example Score (2013)',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
 
 
 def test_BuildFileWrangler_go_to_next_score_02():
 
     input_ = 'U >> q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - build files',
         'Blue Example Score (2013)',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles

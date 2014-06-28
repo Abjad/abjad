@@ -4,14 +4,14 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_collect_segment_lilypond_files_01():
 
     # find build directory and set up temporary directory
     build_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         )
@@ -47,7 +47,7 @@ def test_BuildFileWrangler_collect_segment_lilypond_files_01():
 
     # call (mc)
     input_ = 'red~example~score u mc y q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     # make sure new segment files are currently in build directory
     for file_path in file_paths:
@@ -60,7 +60,7 @@ def test_BuildFileWrangler_collect_segment_lilypond_files_01():
     # remove temporary directory
     shutil.rmtree(temporary_directory)
 
-    contents = score_manager._transcript.contents
+    contents = ide._transcript.contents
     assert 'Will copy ...' in contents
     assert 'FROM:' in contents
     assert 'TO:' in contents

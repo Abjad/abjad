@@ -7,19 +7,19 @@ def test_BuildFileWrangler_add_every_asset_01():
     r'''Flow control reaches method in score.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    score_manager._session._is_repository_test = True
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._is_repository_test = True
     input_ = 'red~example~score u rad* q'
-    score_manager._run(input_=input_)
-    assert score_manager._session._attempted_to_add
+    ide._run(input_=input_)
+    assert ide._session._attempted_to_add
 
 
 def test_BuildFileWrangler_add_every_asset_02():
     r'''Flow control reaches method in library.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    score_manager._session._is_repository_test = True
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._is_repository_test = True
     input_ = 'U rad* q'
-    score_manager._run(input_=input_)
-    assert score_manager._session._attempted_to_add
+    ide._run(input_=input_)
+    assert ide._session._attempted_to_add

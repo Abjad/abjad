@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_display_status_01():
@@ -9,8 +9,8 @@ def test_SegmentPackageManager_display_status_01():
     '''
 
     input_ = 'red~example~score g A rst q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Repository status for' in contents
     assert '... OK' in contents
@@ -20,7 +20,7 @@ def test_SegmentPackageManager_display_status_02():
     r'''Works with Subversion.
     '''
 
-    wrangler = score_manager._segment_package_wrangler
+    wrangler = ide._segment_package_wrangler
     manager = wrangler._find_svn_manager()
     if not manager:
         return

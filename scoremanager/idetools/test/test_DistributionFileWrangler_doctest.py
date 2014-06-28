@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_doctest_01():
@@ -9,8 +9,8 @@ def test_DistributionFileWrangler_doctest_01():
     '''
 
     input_ = 'D pyd q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     strings = [
         'Running doctest ...',
@@ -25,8 +25,8 @@ def test_DistributionFileWrangler_doctest_02():
     '''
 
     input_ = 'red~example~score d pyd q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     strings = [
         'Running doctest ...',

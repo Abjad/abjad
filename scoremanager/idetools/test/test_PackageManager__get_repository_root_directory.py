@@ -2,18 +2,18 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_PackageManager__get_repository_root_directory_01():
 
     score_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         )
     manager = scoremanager.idetools.PackageManager(
         path=score_path,
-        session=score_manager._session,
+        session=ide._session,
         )
 
     repository_root_directory = manager._get_repository_root_directory()

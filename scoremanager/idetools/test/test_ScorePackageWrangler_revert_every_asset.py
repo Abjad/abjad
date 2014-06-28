@@ -5,8 +5,8 @@ import scoremanager
 
 def test_ScorePackageWrangler_revert_every_asset_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-    score_manager._session._is_repository_test = True
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._is_repository_test = True
     input_ = 'rrv* q'
-    score_manager._run(input_=input_)
-    assert score_manager._session._attempted_to_revert
+    ide._run(input_=input_)
+    assert ide._session._attempted_to_revert

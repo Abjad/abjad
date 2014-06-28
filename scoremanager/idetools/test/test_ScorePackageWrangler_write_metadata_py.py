@@ -2,20 +2,20 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_write_metadata_py_01():
 
     metadata_py_path = os.path.join(
-        score_manager._configuration.wrangler_views_directory,
+        ide._configuration.wrangler_views_directory,
         '__metadata__.py',
         )
 
     with systemtools.FilesystemState(keep=[metadata_py_path]):
         input_ = 'Mdw y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
 
     assert 'Will write ...' in contents
     assert metadata_py_path in contents

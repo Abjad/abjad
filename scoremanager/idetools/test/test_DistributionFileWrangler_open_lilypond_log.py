@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_open_lilypond_log_01():
@@ -9,9 +9,9 @@ def test_DistributionFileWrangler_open_lilypond_log_01():
     '''
 
     input_ = 'red~example~score d log q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
     
-    assert score_manager._session._attempted_to_open_file
+    assert ide._session._attempted_to_open_file
 
 
 def test_DistributionFileWrangler_open_lilypond_log_02():
@@ -19,6 +19,6 @@ def test_DistributionFileWrangler_open_lilypond_log_02():
     '''
 
     input_ = 'D log q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
     
-    assert score_manager._session._attempted_to_open_file
+    assert ide._session._attempted_to_open_file

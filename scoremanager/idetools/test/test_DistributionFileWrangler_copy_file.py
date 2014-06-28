@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_copy_file_01():
@@ -13,15 +13,15 @@ def test_DistributionFileWrangler_copy_file_01():
     '''
 
     input_ = 'D cp red-example-score.pdf q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     titles = [
         'Abjad IDE - scores',
         'Abjad IDE - distribution files',
         'Abjad IDE - distribution files',
         ]
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
@@ -30,13 +30,13 @@ def test_DistributionFileWrangler_copy_file_02():
     '''
 
     source_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'distribution',
         'red-example-score.pdf',
         )
     target_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'distribution',
         'copied-red-example-score.pdf',
@@ -45,8 +45,8 @@ def test_DistributionFileWrangler_copy_file_02():
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score d cp'
         input_ += ' red-example-score.pdf copied-red-example-score.pdf y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
         assert 'copied-red-example-score.pdf' in contents

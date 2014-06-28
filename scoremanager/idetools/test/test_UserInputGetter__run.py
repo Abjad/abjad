@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_UserInputGetter__run_01():
@@ -9,8 +9,8 @@ def test_UserInputGetter__run_01():
     '''
 
     input_ = 'red~example~score u mc foo q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     string = "Value for 'ok?' must be 'y' or 'n'."
     assert string in contents
@@ -21,8 +21,8 @@ def test_UserInputGetter__run_02():
     '''
 
     input_ = 'red~example~score u mc n q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Value for' not in contents
 
@@ -32,7 +32,7 @@ def test_UserInputGetter__run_03():
     '''
 
     input_ = 'red~example~score u mc N q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Value for' not in contents

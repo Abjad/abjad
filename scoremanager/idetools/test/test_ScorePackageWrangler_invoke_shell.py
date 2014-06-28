@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_invoke_shell_01():
@@ -10,10 +10,10 @@ def test_ScorePackageWrangler_invoke_shell_01():
     '''
 
     input_ = '!pwd q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
     path = os.path.join(
-        score_manager._configuration.score_manager_directory,
+        ide._configuration.score_manager_directory,
         )
     string = '\n{}\n'.format(path)
-    assert string in score_manager._transcript.contents
+    assert string in ide._transcript.contents

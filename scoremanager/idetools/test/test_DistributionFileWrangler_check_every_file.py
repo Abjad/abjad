@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_check_every_file_01():
@@ -10,8 +10,8 @@ def test_DistributionFileWrangler_check_every_file_01():
     '''
 
     input_ = 'red~example~score d ck* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Distribution files (2 files): OK' in contents
 
@@ -21,8 +21,8 @@ def test_DistributionFileWrangler_check_every_file_02():
     '''
 
     input_ = 'D ck* y q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     assert 'Distribution files' in contents
 
@@ -32,7 +32,7 @@ def test_DistributionFileWrangler_check_every_file_03():
     '''
 
     false_file = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'distribution',
         'false_file.txt',
@@ -42,7 +42,7 @@ def test_DistributionFileWrangler_check_every_file_03():
         with open(false_file, 'w') as file_pointer:
             file_pointer.write('')
         input_ = 'red~example~score d ck* y q'
-        score_manager._run(input_=input_)
-        contents = score_manager._transcript.contents
+        ide._run(input_=input_)
+        contents = ide._transcript.contents
 
     assert '1 unrecognized file found:' in contents

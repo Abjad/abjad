@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_list_every_versions_directory_01():
 
     input_ = 'red~example~score m vrls* q'
-    score_manager._run(input_=input_)
-    transcript_lines = score_manager._transcript.lines
+    ide._run(input_=input_)
+    transcript_lines = ide._transcript.lines
 
     lines = [
         '> vrls*',

@@ -4,8 +4,8 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
-configuration = score_manager._configuration
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
+configuration = ide._configuration
 
 
 def test_Wrangler__read_view_inventory_01():
@@ -35,7 +35,7 @@ def test_Wrangler__read_view_inventory_01():
         shutil.copyfile(exception_file, views_file)
         assert filecmp.cmp(views_file, exception_file)
         input_ = 'blue~example~score g va q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
 
     titles = [
         'Abjad IDE - scores',
@@ -44,4 +44,4 @@ def test_Wrangler__read_view_inventory_01():
         'Blue Example Score (2013) - segments - views (EDIT)',
         ]
 
-    assert score_manager._transcript.titles == titles
+    assert ide._transcript.titles == titles

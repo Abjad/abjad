@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_interpret_output_ly_01():
@@ -10,14 +10,14 @@ def test_SegmentPackageManager_interpret_output_ly_01():
     '''
 
     input_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
         'output.ly',
         )
     output_path = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
@@ -28,6 +28,6 @@ def test_SegmentPackageManager_interpret_output_ly_01():
         os.remove(output_path)
         assert not os.path.exists(output_path)
         input_ = 'red~example~score g A oli y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(output_path)
         #assert diff-pdf(output_path, backup_output_path)

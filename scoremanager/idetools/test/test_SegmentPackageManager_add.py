@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_add_01():
@@ -11,7 +11,7 @@ def test_SegmentPackageManager_add_01():
     Then unadd the files and leave the segment package as found.
     '''
 
-    wrangler = score_manager._segment_package_wrangler
+    wrangler = ide._segment_package_wrangler
     manager = wrangler._find_git_manager()
 
     assert manager._test_add()
@@ -23,7 +23,7 @@ def test_SegmentPackageManager_add_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    wrangler = score_manager._segment_package_wrangler
+    wrangler = ide._segment_package_wrangler
     manager = wrangler._find_svn_manager()
 
     if not manager:

@@ -8,10 +8,10 @@ def test_SegmentPackageManager_list_versions_directory_01():
     directory exists and raises no exceptions.
     '''
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score g 1 vrls q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
     string = 'definition_0001.py output_0001.ly output_0001.pdf'
     assert string in contents

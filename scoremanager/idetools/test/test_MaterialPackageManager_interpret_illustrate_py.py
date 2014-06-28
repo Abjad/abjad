@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageManager_interpret_illustrate_py_01():
@@ -10,7 +10,7 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
     '''
 
     package = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
         'magic_numbers',
@@ -24,7 +24,7 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
             os.remove(path)
             assert not os.path.exists(path)
         input_ = 'red~example~score m magic~numbers ii q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         for path in paths:
             assert os.path.isfile(path)
         #assert diff-pdf(pdf_path, pdf_path + '.backup')

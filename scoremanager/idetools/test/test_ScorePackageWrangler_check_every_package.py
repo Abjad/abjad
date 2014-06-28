@@ -3,7 +3,7 @@ import os
 import shutil
 from abjad import *
 import scoremanager
-score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_check_every_package_01():
@@ -36,8 +36,8 @@ def test_ScorePackageWrangler_check_every_package_01():
         ]
 
     input_ = 'ck* y n q'
-    score_manager._run(input_=input_)
-    contents = score_manager._transcript.contents
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
     for line in lines:
         assert line in contents
 
@@ -47,7 +47,7 @@ def test_ScorePackageWrangler_check_every_package_02():
     '''
 
     score_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         )
     build_directory = os.path.join(score_directory, 'build')
@@ -57,7 +57,7 @@ def test_ScorePackageWrangler_check_every_package_02():
         os.remove(initializer)
         shutil.rmtree(build_directory)
         input_ = 'ck* y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(build_directory)
 
@@ -67,7 +67,7 @@ def test_ScorePackageWrangler_check_every_package_03():
     '''
 
     segment_directory = os.path.join(
-        score_manager._configuration.example_score_packages_directory,
+        ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_02',
@@ -79,6 +79,6 @@ def test_ScorePackageWrangler_check_every_package_03():
         os.remove(initializer)
         shutil.rmtree(versions_directory)
         input_ = 'ck* y y q'
-        score_manager._run(input_=input_)
+        ide._run(input_=input_)
         assert os.path.isfile(initializer)
         assert os.path.isdir(versions_directory)

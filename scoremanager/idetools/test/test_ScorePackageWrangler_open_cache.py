@@ -5,8 +5,8 @@ import scoremanager
 
 def test_ScorePackageWrangler_open_cache_01():
 
-    score_manager = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'co q'
-    score_manager._run(input_=input_)
+    ide._run(input_=input_)
 
-    assert score_manager._session._attempted_to_open_file
+    assert ide._session._attempted_to_open_file
