@@ -28,4 +28,4 @@ def test_BuildFileWrangler_interpret_back_cover_01():
         input_ = 'red~example~score u bci q'
         ide._run(input_=input_)
         assert os.path.isfile(path)
-        #assert diff-pdf(path, backup_path)
+        assert systemtools.TestManager.compare_pdfs(path, path + '.backup')

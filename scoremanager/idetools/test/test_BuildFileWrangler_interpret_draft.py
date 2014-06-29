@@ -33,4 +33,5 @@ def test_BuildFileWrangler_interpret_draft_01():
         input_ = 'red~example~score u di q'
         ide._run(input_=input_)
         assert os.path.isfile(path)
-        #assert diff-pdf(path, backup_path)
+        # TODO: make this work
+        #assert systemtools.TestManager.compare_pdfs(path, path + '.backup')

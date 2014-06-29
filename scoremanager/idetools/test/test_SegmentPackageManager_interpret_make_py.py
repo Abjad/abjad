@@ -30,4 +30,8 @@ def test_SegmentPackageManager_interpret_make_py_01():
             ly_path,
             ly_path + '.backup',
             )
-        #assert diff-pdf(pdf_path, pdf_path + '.backup')
+        # TODO: make this work
+        #assert systemtools.TestManager.compare_pdfs(
+        #    pdf_path, 
+        #    pdf_path + '.backup',
+        #    )

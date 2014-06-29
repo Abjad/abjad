@@ -42,5 +42,9 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
         assert 'INPUT:' in contents
         assert 'OUTPUT:' in contents
         assert 'Interpreted' in contents
-        #for output_path, backup_output_path in pairs:
-        #    assert diff-pdf(output_path, backup_output_path)
+        # TODO: make this work
+        #for output_path in output_paths:
+        #    assert systemtools.TestManager.compare_pdfs(
+        #        output_path, 
+        #        output_path + '.backup',
+        #        )

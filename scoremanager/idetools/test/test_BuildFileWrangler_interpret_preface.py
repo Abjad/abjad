@@ -30,4 +30,4 @@ def test_BuildFileWrangler_interpret_preface_01():
         input_ = 'red~example~score u pi q'
         ide._run(input_=input_)
         assert os.path.isfile(path)
-        #assert diff-pdf(path, backup_path)
+        assert systemtools.TestManager.compare_pdfs(path, path + '.backup')

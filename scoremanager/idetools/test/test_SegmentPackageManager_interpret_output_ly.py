@@ -30,4 +30,8 @@ def test_SegmentPackageManager_interpret_output_ly_01():
         input_ = 'red~example~score g A oli y q'
         ide._run(input_=input_)
         assert os.path.isfile(output_path)
-        #assert diff-pdf(output_path, backup_output_path)
+        # TODO: make this work
+        #assert systemtools.TestManager.compare_pdfs(
+        #    output_path, 
+        #    output_path + '.backup',
+        #    )

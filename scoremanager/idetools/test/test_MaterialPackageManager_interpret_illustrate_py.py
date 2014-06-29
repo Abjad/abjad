@@ -27,8 +27,12 @@ def test_MaterialPackageManager_interpret_illustrate_py_01():
         ide._run(input_=input_)
         for path in paths:
             assert os.path.isfile(path)
-        #assert diff-pdf(pdf_path, pdf_path + '.backup')
         assert systemtools.TestManager.compare_lys(
             ly_path, 
             ly_path + '.backup',
             )
+        # TODO: make this work
+        #assert systemtools.TestManager.compare_pdfs(
+        #    pdf_path, 
+        #    pdf_path + '.backup',
+        #    )
