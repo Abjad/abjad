@@ -235,7 +235,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         inputs = [self._output_lilypond_file_path]
-        outputs = [self._output_pdf_file_path]
+        outputs = [(self._output_pdf_file_path,)]
         if dry_run:
             return inputs, outputs
         messages = self._format_messaging(inputs, outputs)

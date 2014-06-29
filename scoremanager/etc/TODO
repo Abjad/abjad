@@ -84,6 +84,4 @@
 27. Implement something to make sure _input_to_method contains
     neither duplicate commands nor duplicate methods.
 
-28. Fix (oli) messaging.
-
-29. Change IOManager._make_tab() to just Configuration.tab as a property.
+28. Change IOManager._make_tab() to just Configuration.tab as a property.
