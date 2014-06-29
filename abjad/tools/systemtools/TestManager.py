@@ -7,6 +7,50 @@ class TestManager(object):
     r'''Manages test logic.
     '''
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _normalize_ly(path):
+        lines = []
+        with open(path, 'r') as file_pointer:
+            for line in file_pointer.readlines():
+                line = line.strip()
+                if line == '':
+                    continue
+                if line.startswith(r'\version'):
+                    continue
+                elif line.startswith('%'):
+                    continue
+                lines.append(line)
+        return lines
+
+    @staticmethod
+    def _normalize_pdf(path):
+        lines = []
+        with open(path, 'r') as file_pointer:
+            for line in file_pointer.readlines():
+                line = line.strip()
+                if line == '':
+                    continue
+                elif '/ID' in line:
+                    continue
+                elif '/CreationDate' in line:
+                    continue
+                elif '/ModDate' in line:
+                    continue
+                elif 'xmp:CreateDate' in line:
+                    continue
+                elif 'xmp:ModifyDate' in line:
+                    continue
+                elif 'xapMM:DocumentID' in line:
+                    continue
+                elif 'rdf:about' in line:
+                    continue
+                lines.append(line)
+        return lines
+
+    ### PUBLIC METHODS ###
+
     @staticmethod
     def apply_additional_layout(lilypond_file):
         r'''Configures multiple-voice rhythmic staves in `lilypond_file`.
@@ -31,8 +75,8 @@ class TestManager(object):
                 topleveltools.override(voice_2).note_head.Y_offset = -0.5
                 topleveltools.override(voice_2).stem.direction = Down
                 spacing_vector = layouttools.make_spacing_vector(0, 0, 6, 0)
-                topleveltools.override(staff
-                    ).vertical_axis_group.staff_staff_spacing = spacing_vector
+                manager = topleveltools.override(staff)
+                manager.vertical_axis_group.staff_staff_spacing = spacing_vector
         # provide more space between staves with pitched notes
         for staff in topleveltools.iterate(
             lilypond_file.score_block.items[0]).by_class(scoretools.Staff):
@@ -46,8 +90,8 @@ class TestManager(object):
                     message = 'no staff group context block found.'
                     raise Exception(message)
                 spacing_vector = layouttools.make_spacing_vector(0, 0, 6, 0)
-                topleveltools.override(item
-                    ).vertical_axis_group.staff_staff_spacing = spacing_vector
+                manager = topleveltools.override(item)
+                manager.vertical_axis_group.staff_staff_spacing = spacing_vector
             break
 
     @staticmethod
@@ -90,32 +134,32 @@ class TestManager(object):
 
         Returns boolean.
         '''
-        if not os.path.isfile(path_1):
-            return False
-        if not os.path.isfile(path_2):
-            return False
-        file_1 = open(path_1, 'r')
-        file_2 = open(path_2, 'r')
-        with file_1, file_2:
-            file_1_lines, file_2_lines = [], []
-            for line in file_1.readlines():
-                line = line.strip()
-                if line.startswith(r'\version'):
-                    continue
-                elif line.startswith('%'):
-                    continue
-                elif line == '':
-                    continue
-                file_1_lines.append(line)
-            for line in file_2.readlines():
-                line = line.strip()
-                if line.startswith(r'\version'):
-                    continue
-                elif line.startswith('%'):
-                    continue
-                elif line == '':
-                    continue
-                file_2_lines.append(line)
+        file_1_lines = TestManager._normalize_ly(path_1)
+        file_2_lines = TestManager._normalize_ly(path_2)
+        return file_1_lines == file_2_lines
+
+    @staticmethod
+    def compare_pdfs(path_1, path_2):
+        r'''Compares PDF `path_1` to PDF `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards blank lines.
+
+        Discards lines that contain any of the following strings:
+
+        * ``/ID``
+        * ``/CreationDate``
+        * ``/ModDate``
+        * ``xmp:CreateDate``
+        * ``xmp:ModifyDate``
+        * ``xapMM:DocumentID``
+        * ``rdf:about``
+
+        Returns boolean.
+        '''
+        file_1_lines = TestManager._normalize_pdf(path_1)
+        file_2_lines = TestManager._normalize_pdf(path_2)
         return file_1_lines == file_2_lines
 
     @staticmethod
