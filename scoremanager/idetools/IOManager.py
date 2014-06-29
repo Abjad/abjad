@@ -2,6 +2,7 @@
 import abc
 import os
 import readline
+import shutil
 import subprocess
 import sys
 import traceback
@@ -594,11 +595,11 @@ class IOManager(IOManager):
             with systemtools.TemporaryDirectoryChange(input_directory):
                 self.spawn_subprocess(command)
             tab = self._make_tab()
+            messages = []
             if systemtools.TestManager.compare_pdfs(
                 output_path, 
                 candidate_path,
                 ):
-                messages = []
                 messages.append('The PDFs ...')
                 messages.append(tab + output_path)
                 messages.append(tab + candidate_path)
@@ -612,7 +613,7 @@ class IOManager(IOManager):
             messages.append('... compare differently.')
             message = 'overwrite existing PDF with candidate PDF?'
             self._display(messages)
-            result = self._io_manager._confirm(message=message)
+            result = self._confirm(message=message)
             if self._session.is_backtracking or not result:
                 return
             shutil.move(candidate_path, output_path)
