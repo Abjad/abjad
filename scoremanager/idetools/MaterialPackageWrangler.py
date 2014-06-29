@@ -204,7 +204,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    # TODO: factoroutput check_every_output_py shared code
+    # TODO: factor out check_every_output_py shared code
     def check_every_definition_py(self):
         r'''Checks ``definition.py`` in every package.
 

@@ -14,7 +14,6 @@ class Controller(object):
 
     __slots__ = (
         '_configuration',
-        '_controller_context',
         '_io_manager',
         '_session',
         '_transcript',
@@ -32,8 +31,6 @@ class Controller(object):
             session=self._session,
             )
         self._transcript = self._session.transcript
-        # TODO: maybe remove this property?
-        self._controller_context = idetools.ControllerContext(controller=self)
 
     ### SPECIAL METHODS ###
 
