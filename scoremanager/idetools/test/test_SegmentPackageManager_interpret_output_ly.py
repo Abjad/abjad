@@ -9,14 +9,14 @@ def test_SegmentPackageManager_interpret_output_ly_01():
     r'''Works when output.ly already exists.
     '''
 
-    input_path = os.path.join(
+    ly_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
         'output.ly',
         )
-    output_path = os.path.join(
+    pdf_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
@@ -24,14 +24,13 @@ def test_SegmentPackageManager_interpret_output_ly_01():
         'output.pdf',
         )
 
-    with systemtools.FilesystemState(keep=[input_path, output_path]):
-        os.remove(output_path)
-        assert not os.path.exists(output_path)
+    with systemtools.FilesystemState(keep=[ly_path, pdf_path]):
+        os.remove(pdf_path)
+        assert not os.path.exists(pdf_path)
         input_ = 'red~example~score g A oli y q'
         ide._run(input_=input_)
-        assert os.path.isfile(output_path)
-        # TODO: make this work
-        #assert systemtools.TestManager.compare_pdfs(
-        #    output_path, 
-        #    output_path + '.backup',
-        #    )
+        assert os.path.isfile(pdf_path)
+        assert systemtools.TestManager.compare_pdfs(
+            pdf_path, 
+            pdf_path + '.backup',
+            )

@@ -78,3 +78,10 @@
     powerful (@) command which can take the composer through all properties
     of an object and then save the target to disk after all properties have
     been entered.
+
+26. Change _input_to_method to _command_to_method.
+
+27. Implement something to make sure _input_to_method contains
+    neither duplicate commands nor duplicate methods.
+
+28. Fix (oli) messaging.
