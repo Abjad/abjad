@@ -567,25 +567,55 @@ class IOManager(IOManager):
             return lines
         self._display(lines, capitalize=capitalize)
 
-    def run_lilypond(self, path):
+    def run_lilypond(self, path, candidacy=False):
         r'''Runs LilyPond on file `path`.
 
         Returns none.
         '''
-        if self.find_executable('lily'):
-            executable = 'lily'
-        elif self.find_executable('lilypond'):
+        if self.find_executable('lilypond'):
             executable = 'lilypond'
         else:
             message = 'cannot find LilyPond executable.'
             raise ValueError(message)
-        command = '{} {}'.format(
-            executable,
-            path,
-            )
+        base, extension = os.path.splitext(path)
+        output_path = base + '.pdf'
         input_directory = os.path.dirname(path)
-        with systemtools.TemporaryDirectoryChange(input_directory):
-            self.spawn_subprocess(command)
+        if not os.path.exists(output_path) or not candidacy:
+            command = '{} -dno-point-and-click {}'
+            command = command.format(executable, path)
+            with systemtools.TemporaryDirectoryChange(input_directory):
+                self.spawn_subprocess(command)
+            return
+        base_candidate_path = base + '.candiate'
+        candidate_path = base_candidate_path + '.pdf'
+        with systemtools.FilesystemState(remove=[candidate_path]):
+            command = '{} -dno-point-and-click --output={} {}'
+            command = command.format(executable, base_candidate_path, path)
+            with systemtools.TemporaryDirectoryChange(input_directory):
+                self.spawn_subprocess(command)
+            tab = self._make_tab()
+            if systemtools.TestManager.compare_pdfs(
+                output_path, 
+                candidate_path,
+                ):
+                messages = []
+                messages.append('The PDFs ...')
+                messages.append(tab + output_path)
+                messages.append(tab + candidate_path)
+                messages.append('... compare the same.')
+                messages.append('Preserved {}.'.format(output_path))
+                self._display(messages)
+                return
+            messages.append('The PDFs ...')
+            messages.append(tab + output_path)
+            messages.append(tab + candidate_path)
+            messages.append('... compare differently.')
+            message = 'overwrite existing PDF with candidate PDF?'
+            self._display(messages)
+            result = self._io_manager._confirm(message=message)
+            if self._session.is_backtracking or not result:
+                return
+            shutil.move(candidate_path, output_path)
 
     def write(self, path, string):
         r'''Writes `string` to `path`.
