@@ -47,7 +47,24 @@ class TestManager(object):
                 elif 'rdf:about' in line:
                     continue
                 lines.append(line)
-        return lines
+        # discard first stream in document: can contain differences;
+        # no idea why; possibly first stream includes binary-encoded
+        # creator information or binary-encoded timestamp information
+        new_lines = []
+        found_first_stream = False
+        in_first_stream = False
+        for line in lines:
+            if line == 'stream' and not found_first_stream:
+                found_first_stream = True
+                in_first_stream = True
+            elif line.endswith('endstream') and in_first_stream:
+                in_first_stream = False
+                continue
+            if in_first_stream:
+                continue
+            else:
+                new_lines.append(line)
+        return new_lines
 
     ### PUBLIC METHODS ###
 
@@ -155,6 +172,11 @@ class TestManager(object):
         * ``xmp:ModifyDate``
         * ``xapMM:DocumentID``
         * ``rdf:about``
+
+        Discards first (binary) stream object in PDF;
+        possibly first stream contains binary-encoded creator
+        or timestamp information that can vary from one creation
+        of a PDF to another.
 
         Returns boolean.
         '''
