@@ -2,6 +2,7 @@
 import os
 import re
 import shutil
+import tempfile
 from abjad.tools import abctools
 
 
@@ -329,8 +330,6 @@ class PersistenceAgent(abctools.AbjadObject):
         Returns output path(s), elapsed formatting time and elapsed rendering
         time.
         '''
-        import shutil
-        import tempfile
         from abjad.tools import systemtools
         if illustrate_function is None:
             assert '__illustrate__' in dir(self._client)

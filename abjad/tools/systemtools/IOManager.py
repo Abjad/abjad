@@ -430,9 +430,9 @@ class IOManager(object):
         from abjad import abjad_configuration
         ABJADOUTPUT = abjad_configuration['abjad_output_directory']
         if isinstance(target, int) and target < 0:
-            last_lilypond_file_name = IOManager.get_last_output_file_name()
-            if last_lilypond_file_name:
-                result = os.path.splitext(last_lilypond_file_name)
+            last_lilypond_file_path = IOManager.get_last_output_file_name()
+            if last_lilypond_file_path:
+                result = os.path.splitext(last_lilypond_file_path)
                 file_name_root, extension = result
                 last_number = file_name_root
                 target_number = int(last_number) + (target + 1)
@@ -548,15 +548,14 @@ class IOManager(object):
         else:
             return result
 
-    # TODO: change lilypond_file_name to lilypond_file_path
     @staticmethod
     def run_lilypond(
-        lilypond_file_name, 
+        lilypond_file_path, 
         candidacy=False,
         flags=None,
         lilypond_path=None, 
         ):
-        r'''Runs LilyPond on `lilypond_file_name`.
+        r'''Runs LilyPond on `lilypond_file_path`.
 
         Returns none.
         '''
@@ -568,15 +567,15 @@ class IOManager(object):
             if not lilypond_path:
                 lilypond_path = 'lilypond'
         log_file_path = os.path.join(abjad_output_directory, 'lily.log')
-        lilypond_base, extension = os.path.splitext(lilypond_file_name)
-        pdf_path = lilypond_file_name.replace('.ly', '.pdf')
+        lilypond_base, extension = os.path.splitext(lilypond_file_path)
+        pdf_path = lilypond_file_path.replace('.ly', '.pdf')
         if flags:
             command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
             command = command.format(
                 lilypond_path,
                 flags,
                 lilypond_base,
-                lilypond_file_name,
+                lilypond_file_path,
                 log_file_path,
                 )
         else:
@@ -584,15 +583,15 @@ class IOManager(object):
             command = command.format(
                 lilypond_path,
                 lilypond_base,
-                lilypond_file_name,
+                lilypond_file_path,
                 log_file_path,
                 )
         fail_message = 'LilyPond rendering failed. Press any key to continue.'
         if not os.path.exists(pdf_path) or not candidacy:
             exit_code = IOManager.spawn_subprocess(command)
-            postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
+            postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
-                os.remove(postscript_file_name)
+                os.remove(postscript_path)
             except OSError:
                 pass
             if exit_code:
@@ -613,7 +612,7 @@ class IOManager(object):
                 lilypond_path,
                 flags,
                 candidate_base,
-                lilypond_file_name,
+                lilypond_file_path,
                 log_file_path,
                 )
         else:
@@ -621,16 +620,15 @@ class IOManager(object):
             command = command.format(
                 lilypond_path,
                 candidate_base,
-                lilypond_file_name,
+                lilypond_file_path,
                 log_file_path,
                 )
         candidate_path = candidate_base + '.pdf'
         with systemtools.FilesystemState(remove=[candidate_path]):
             exit_code = IOManager.spawn_subprocess(command)
-            # TODO: change postscript_file_name to postscript_path
-            postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
+            postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
-                os.remove(postscript_file_name)
+                os.remove(postscript_path)
             except OSError:
                 pass
             if systemtools.TestManager.compare_pdfs(
