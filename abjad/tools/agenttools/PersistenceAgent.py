@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import re
+import shutil
 from abjad.tools import abctools
 
 
@@ -46,7 +47,13 @@ class PersistenceAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def as_ly(self, ly_file_path=None, illustrate_function=None, **kwargs):
+    def as_ly(
+        self, 
+        ly_file_path=None, 
+        candidacy=False,
+        illustrate_function=None, 
+        **kwargs
+        ):
         r'''Persists client as LilyPond file.
 
         Autogenerates file path when `ly_file_path` is none.
@@ -60,14 +67,23 @@ class PersistenceAgent(abctools.AbjadObject):
             '/Users/josiah/Desktop/test.ly'
             0.04491996765136719
 
-        Returns output path and elapsed formatting time.
+        When `candidacy` is true, writes LilyPond output only when LilyPond 
+        output would differ from any existing output file.
+
+        When `candidacy` is false, writes LilyPond output even if LilyPond
+        output would not differ from any existing output file.
+
+        Returns output path and elapsed formatting time when LilyPond output is
+        written.
+
+        Returns false when when LilyPond output is not written due to 
+        `candidacy` being set.
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
         if illustrate_function is None:
             assert '__illustrate__' in dir(self._client)
             illustrate_function = self._client.__illustrate__
-        #illustration = self._client.__illustrate__(**kwargs)
         illustration = illustrate_function(**kwargs)
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
@@ -84,10 +100,24 @@ class PersistenceAgent(abctools.AbjadObject):
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
         systemtools.IOManager._ensure_directory_existence(directory)
-        with open(ly_file_path, 'w') as file_handle:
-            file_handle.write(lilypond_format)
-        return ly_file_path, abjad_formatting_time
-
+        if not os.path.exists(ly_file_path) or not candidacy:
+            with open(ly_file_path, 'w') as file_pointer:
+                file_pointer.write(lilypond_format)
+            return ly_file_path, abjad_formatting_time
+        base, extension = os.path.splitext(ly_file_path)
+        candidate_path = base + '.candidate' + extension
+        with systemtools.FilesystemState(remove=[candidate_path]):
+            with open(candidate_path, 'w') as file_pointer:
+                file_pointer.write(lilypond_format)
+            if systemtools.TestManager.compare_lys(
+                ly_file_path, 
+                candidate_path,
+                ):
+                return False
+            else:
+                shutil.move(candidate_path, ly_file_path)
+                return ly_file_path, abjad_formatting_time
+        
     def as_midi(self, midi_file_path=None, remove_ly=False, **kwargs):
         r'''Persists client as MIDI file.
 
