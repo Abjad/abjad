@@ -484,15 +484,13 @@ class IOManager(IOManager):
         if extension == '.py':
             command = 'python {}'.format(path)
         elif extension == '.ly':
-            command = 'lilypond {}'.format(path)
+            command = 'lilypond -dno-point-and-click {}'.format(path)
         else:
             message = 'can not interpret {}.'.format(path)
             raise Exception(message)
         directory = os.path.dirname(path)
         directory = systemtools.TemporaryDirectoryChange(directory)
         with directory:
-            #result = self.spawn_subprocess(command)
-            #process = self.make_subprocess(command)
             process = subprocess.Popen(
                 command,
                 shell=True,
@@ -513,7 +511,6 @@ class IOManager(IOManager):
         self._display(stderr_lines, capitalize=False)
         message = 'interpreted {}.'.format(path)
         self._display(message)
-        #return result
         return stdout_lines, stderr_lines
 
     def open_file(self, path):
