@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_UserInputGetter_go_to_all_scores_01():
+def test_Getter_go_to_all_scores_01():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory da 1 d S q'

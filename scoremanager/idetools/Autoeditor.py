@@ -131,7 +131,7 @@ class Autoeditor(Controller):
         prototype = (
             Autoeditor,
             idetools.Selector,
-            idetools.UserInputGetter,
+            idetools.Getter,
             )
         return autoeditor
 

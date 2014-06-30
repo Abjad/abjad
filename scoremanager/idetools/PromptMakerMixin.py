@@ -38,7 +38,7 @@ class PromptMakerMixin(AbjadObject):
         validation_function=None,
         ):
         from scoremanager import idetools
-        prompt = idetools.UserInputGetterPrompt(
+        prompt = idetools.Prompt(
             default_value=default_value,
             disallow_range=disallow_range,
             help_template=help_template,

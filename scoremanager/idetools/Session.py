@@ -892,7 +892,7 @@ class Session(abctools.AbjadObject):
         '''
         from scoremanager import idetools
         for controller in reversed(self.controller_stack):
-            if isinstance(controller, idetools.UserInputGetter):
+            if isinstance(controller, idetools.Getter):
                 return True
         return False
 

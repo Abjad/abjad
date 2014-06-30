@@ -4,7 +4,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_UserInputGetter__run_01():
+def test_Getter__run_01():
     r'''Entering junk during confirmation displays value reminder message.
     '''
 
@@ -16,7 +16,7 @@ def test_UserInputGetter__run_01():
     assert string in contents
 
 
-def test_UserInputGetter__run_02():
+def test_Getter__run_02():
     r'''Entering 'n' during confirmation cancels getter.
     '''
 
@@ -27,7 +27,7 @@ def test_UserInputGetter__run_02():
     assert 'Value for' not in contents
 
 
-def test_UserInputGetter__run_03():
+def test_Getter__run_03():
     r'''Entering 'N' during confirmation cancels getter.
     '''
 

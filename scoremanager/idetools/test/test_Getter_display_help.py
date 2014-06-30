@@ -4,7 +4,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_UserInputGetter_display_help_01():
+def test_Getter_display_help_01():
     r'''Question mark displays help.
     '''
 
@@ -16,7 +16,7 @@ def test_UserInputGetter_display_help_01():
     assert string in contents
 
 
-def test_UserInputGetter_display_help_02():
+def test_Getter_display_help_02():
     r'''Help string displays help.
     '''
 

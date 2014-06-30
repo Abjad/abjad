@@ -3,10 +3,10 @@ from abjad import *
 import scoremanager
 
 
-def test_UserInputGetterPrompt___format___01():
+def test_Prompt___format___01():
 
     session = scoremanager.idetools.Session()
-    getter = scoremanager.idetools.UserInputGetter(session=session)
+    getter = scoremanager.idetools.Getter(session=session)
     getter.append_string('value')
     prompt = getter.prompts[0]
     prompt_format = format(prompt)
@@ -17,7 +17,7 @@ def test_UserInputGetterPrompt___format___01():
     assert systemtools.TestManager.compare(
         modified_format,
         r'''
-        idetools.UserInputGetterPrompt(
+        idetools.Prompt(
             disallow_range=False,
             help_template='value must be string.',
             help_template_arguments=[],

@@ -52,7 +52,7 @@ class CollectionAutoeditor(Autoeditor):
         self._item_creator_class_kwargs = {}
         self._item_editor_class = None
         self._item_getter_configuration_method = \
-            idetools.UserInputGetter.append_expr
+            idetools.Getter.append_expr
         self._asset_identifier = 'element'
         if hasattr(target, '_item_creator_class'):
             self._item_creator_class = target._item_creator_class

@@ -4,7 +4,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_UserInputGetter_go_back_01():
+def test_Getter_go_back_01():
     r'''Back works.
     '''
 

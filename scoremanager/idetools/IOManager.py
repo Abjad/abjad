@@ -283,7 +283,7 @@ class IOManager(IOManager):
         include_newlines=False,
         ):
         from scoremanager import idetools
-        getter = idetools.UserInputGetter(
+        getter = idetools.Getter(
             session=self._session,
             allow_none=allow_none,
             include_chevron=include_chevron,

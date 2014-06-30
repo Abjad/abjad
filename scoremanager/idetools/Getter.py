@@ -6,8 +6,8 @@ from scoremanager.idetools.Controller import Controller
 from scoremanager.idetools.PromptMakerMixin import PromptMakerMixin
 
 
-class UserInputGetter(Controller, PromptMakerMixin):
-    r'''User input getter.
+class Getter(Controller, PromptMakerMixin):
+    r'''Getter.
     '''
 
     ### CLASS VARIABLES ###

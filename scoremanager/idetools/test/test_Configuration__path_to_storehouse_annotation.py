@@ -6,7 +6,7 @@ configuration = scoremanager.idetools.Configuration()
 
 
 def test_Configuration__path_to_storehouse_annotation_01():
-    r'''User library paths annotate composer last name.
+    r'''Library paths annotate composer last name.
     '''
 
     path = configuration.library
@@ -27,7 +27,7 @@ def test_Configuration__path_to_storehouse_annotation_01():
 
 
 def test_Configuration__path_to_storehouse_annotation_02():
-    r'''Abjad library paths annotate 'Abjad'.
+    r'''Example asset storehouse paths annotate 'Abjad'.
     '''
 
     path = configuration.example_materials

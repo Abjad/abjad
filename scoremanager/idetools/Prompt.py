@@ -2,8 +2,8 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class UserInputGetterPrompt(AbjadObject):
-    r'''User input getter prompt.
+class Prompt(AbjadObject):
+    r'''Prompt.
     '''
 
     ### CLASS VARIABLES ###
