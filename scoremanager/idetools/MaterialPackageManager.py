@@ -181,9 +181,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             return True
         return False
 
-    # TODO: decide whether the keep this method or not
     def _make_autoeditor_summary_menu_section(self, menu):
-        return
         output_material = self._execute_output_py()
         if output_material is None:
             return
