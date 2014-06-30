@@ -123,7 +123,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._make_metadata_menu_section(menu)
         self._make_make_py_menu_section(menu)
         self._make_output_ly_menu_section(menu)
-        self._make_output_pdf_menu_section(menu)
         self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
@@ -141,25 +140,17 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             )
 
     def _make_output_ly_menu_section(self, menu):
+        commands = []
         if os.path.isfile(self._output_lilypond_file_path):
-            commands = []
             commands.append(('output.ly - interpret', 'oli'))
             commands.append(('output.ly - open', 'olo'))
-            menu.make_command_section(
-                is_hidden=True,
-                commands=commands,
-                name='output.ly',
-                )
-
-    def _make_output_pdf_menu_section(self, menu):
-        commands = []
         if os.path.isfile(self._output_pdf_file_path):
             commands.append(('output.pdf - open', 'opo'))
         if commands:
             menu.make_command_section(
-                commands=commands,
                 is_hidden=True,
-                name='output.pdf',
+                commands=commands,
+                name='output',
                 )
 
     def _make_package(self):
@@ -212,7 +203,9 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         inputs = [self._make_py_path]
         outputs = [(
-            self._output_lilypond_file_path, self._output_pdf_file_path)]
+            self._output_lilypond_file_path, 
+            self._output_pdf_file_path,
+            )]
         if dry_run:
             return inputs, outputs
         if not os.path.isfile(self._make_py_path):
