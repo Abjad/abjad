@@ -246,7 +246,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         file_path = self._output_lilypond_file_path
         if not os.path.isfile(file_path):
             return
-        self._io_manager.run_lilypond(file_path, candidacy=True)
+        #self._io_manager.run_lilypond(file_path, candidacy=True)
+        self._io_manager.run_lilypond(file_path, candidacy=False)
 
     def open_definition_py(self):
         r'''Edits ``definition.py``.
