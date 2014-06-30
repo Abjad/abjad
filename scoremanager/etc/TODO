@@ -85,3 +85,12 @@
 27. Change IOManager._make_tab() to just Configuration.tab as a property.
 
 28. Add two blank lines between output chunks in iterative commands.
+
+29. Add (*) suffix to changed assets in asset menu.
+    Something like ...
+        1: instrumentation (*)
+        2: magic numbers
+        3: pitch range inventory (*)
+        4: tempo inventory (*)
+        5: time signatures
+    ... will make clear that three packages have changed.
