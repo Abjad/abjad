@@ -83,3 +83,5 @@
     neither duplicate commands nor duplicate methods.
 
 27. Change IOManager._make_tab() to just Configuration.tab as a property.
+
+28. Add two blank lines between output chunks in iterative commands.
