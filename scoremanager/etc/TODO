@@ -99,3 +99,6 @@
         illustration.ly:89:75: warning: conflicting note group events
     ... and related.
     Make a test zagged pitch class material package and illustrate to test.
+
+31. Maybe get rid of the segment __make__.py files.
+    Just do everything in IDE. Will improve messaging.
