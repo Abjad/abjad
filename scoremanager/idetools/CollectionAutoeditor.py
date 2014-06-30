@@ -83,7 +83,7 @@ class CollectionAutoeditor(Autoeditor):
         return self.target
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         result = {
             'add': self.add_items,
             'rm': self.remove_items,
@@ -168,8 +168,8 @@ class CollectionAutoeditor(Autoeditor):
         if result.endswith('!') and 1 < len(result):
             self._session._is_autoadding = True
             result = result.strip('!')
-        if result in self._input_to_method:
-            self._input_to_method[result]()
+        if result in self._command_to_method:
+            self._command_to_method[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             if self.allow_item_edit:
                 self.edit_item(result)

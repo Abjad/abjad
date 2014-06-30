@@ -9,9 +9,9 @@ class ScoreInternalAssetController(AssetController):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(ScoreInternalAssetController, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             '<<': self.go_to_previous_score,

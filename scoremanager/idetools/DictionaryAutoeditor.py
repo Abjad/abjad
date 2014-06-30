@@ -23,9 +23,9 @@ class DictionaryAutoeditor(CollectionAutoeditor):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(DictionaryAutoeditor, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result.update({
             'ren': self.rename_item,
             })

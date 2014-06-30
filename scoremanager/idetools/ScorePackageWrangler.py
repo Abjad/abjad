@@ -79,9 +79,9 @@ class ScorePackageWrangler(PackageWrangler):
             return self._configuration.user_score_packages_directory
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(ScorePackageWrangler, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'co': self.open_cache,

@@ -80,9 +80,9 @@ class PackageManager(ScoreInternalAssetController):
         return os.path.join(self._path, '__init__.py')
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(PackageManager, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'ck': self.check_package,

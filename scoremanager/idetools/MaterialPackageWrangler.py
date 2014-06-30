@@ -70,9 +70,9 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         return breadcrumb
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(MaterialPackageWrangler, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'dc*': self.check_every_definition_py,

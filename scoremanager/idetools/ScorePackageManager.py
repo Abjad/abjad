@@ -48,9 +48,9 @@ class ScorePackageManager(PackageManager):
             return annotated_title
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(ScorePackageManager, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'p': self.go_to_setup,
@@ -59,7 +59,7 @@ class ScorePackageManager(PackageManager):
         return result
 
     @property
-    def _setup_input_to_method(self):
+    def _setup_command_to_method(self):
         result = {
             'catalog number': self.edit_catalog_number,
             'paper dimensions': self.edit_paper_dimensions,
@@ -171,8 +171,8 @@ class ScorePackageManager(PackageManager):
         assert isinstance(result, str)
         if result == '<return>':
             pass
-        elif result in self._setup_input_to_method:
-            self._setup_input_to_method[result]()
+        elif result in self._setup_command_to_method:
+            self._setup_command_to_method[result]()
         else:
             raise ValueError(result)
 

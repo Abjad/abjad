@@ -39,9 +39,9 @@ class BuildFileWrangler(FileWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(BuildFileWrangler, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'bce': self.edit_back_cover_source,

@@ -33,9 +33,9 @@ class AssetController(Controller):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(AssetController, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             '**': self.go_to_top_level,
@@ -184,12 +184,12 @@ class AssetController(Controller):
             if result.startswith('!'):
                 statement = result[1:]
                 self._io_manager._invoke_shell(statement)
-            elif result in self._input_to_method:
-                self._input_to_method[result]()
-            elif result.endswith('!') and result[:-1] in self._input_to_method:
+            elif result in self._command_to_method:
+                self._command_to_method[result]()
+            elif result.endswith('!') and result[:-1] in self._command_to_method:
                 result = result[:-1]
                 with self._io_manager._make_interaction(confirm=False):
-                    self._input_to_method[result]()
+                    self._command_to_method[result]()
             else:
                 self._handle_numeric_user_input(result)
             if self._session.is_autostarting:

@@ -60,9 +60,9 @@ class AbjadIDE(Wrangler):
         return idetools.DistributionFileWrangler(session=self._session)
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(AbjadIDE, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'nls*': self.list_every_init_py,

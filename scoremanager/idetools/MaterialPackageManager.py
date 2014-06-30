@@ -82,9 +82,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return os.path.join(self._path, 'illustration.pdf')
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(MaterialPackageManager, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'da': self.autoedit_definition_py,

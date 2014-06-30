@@ -88,9 +88,9 @@ class Wrangler(ScoreInternalAssetController):
             return os.path.join(path, '__init__.py')
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(Wrangler, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'rad*': self.add_every_asset,

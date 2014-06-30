@@ -71,7 +71,7 @@ class Controller(object):
         pass
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         result = {
             '**': self.go_to_top_level,
             'b': self.go_back,

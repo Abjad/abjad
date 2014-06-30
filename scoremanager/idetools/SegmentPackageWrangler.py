@@ -39,9 +39,9 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(SegmentPackageWrangler, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result = result.copy()
         result.update({
             'do*': self.edit_every_definition_py,

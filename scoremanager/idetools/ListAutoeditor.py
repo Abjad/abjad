@@ -20,9 +20,9 @@ class ListAutoeditor(CollectionAutoeditor):
     ### PRIVATE METHODS ###
 
     @property
-    def _input_to_method(self):
+    def _command_to_method(self):
         superclass = super(ListAutoeditor, self)
-        result = superclass._input_to_method
+        result = superclass._command_to_method
         result.update({
             'mv': self.move_item,
             })
