@@ -111,7 +111,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         commands.append(('definition.py - stub', 'ds'))
         menu.make_command_section(
             commands=commands,
-            is_hidden=True,
+            is_hidden=False,
             name='definition py',
             )
 
@@ -135,7 +135,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         commands.append(('__make__.py - stub', 'ks'))
         menu.make_command_section(
             commands=commands,
-            is_hidden=True,
+            is_hidden=False,
             name='__make__.py',
             )
 
@@ -148,7 +148,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             commands.append(('output.pdf - open', 'opo'))
         if commands:
             menu.make_command_section(
-                is_hidden=True,
+                is_hidden=False,
                 commands=commands,
                 name='output',
                 )
