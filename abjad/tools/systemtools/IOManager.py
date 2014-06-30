@@ -3,6 +3,7 @@ import datetime
 import os
 import platform
 import re
+import shutil
 import subprocess
 import sys
 try:
@@ -547,25 +548,34 @@ class IOManager(object):
         else:
             return result
 
+    # TODO: change lilypond_file_name to lilypond_file_path
     @staticmethod
-    def run_lilypond(lilypond_file_name, lilypond_path=None, flags=None):
+    def run_lilypond(
+        lilypond_file_name, 
+        candidacy=False,
+        flags=None,
+        lilypond_path=None, 
+        ):
         r'''Runs LilyPond on `lilypond_file_name`.
 
         Returns none.
         '''
         from abjad import abjad_configuration
+        from abjad.tools import systemtools
         abjad_output_directory = abjad_configuration['abjad_output_directory']
         if not lilypond_path:
             lilypond_path = abjad_configuration['lilypond_path']
             if not lilypond_path:
                 lilypond_path = 'lilypond'
         log_file_path = os.path.join(abjad_output_directory, 'lily.log')
+        lilypond_base, extension = os.path.splitext(lilypond_file_name)
+        pdf_path = lilypond_file_name.replace('.ly', '.pdf')
         if flags:
             command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
             command = command.format(
                 lilypond_path,
                 flags,
-                os.path.splitext(lilypond_file_name)[0],
+                lilypond_base,
                 lilypond_file_name,
                 log_file_path,
                 )
@@ -573,29 +583,73 @@ class IOManager(object):
             command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
             command = command.format(
                 lilypond_path,
-                os.path.splitext(lilypond_file_name)[0],
+                lilypond_base,
                 lilypond_file_name,
                 log_file_path,
                 )
-        exit_code = IOManager.spawn_subprocess(command)
-        postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
-        try:
-            os.remove(postscript_file_name)
-        except OSError:
-            # no such file...
-            pass
-        if exit_code:
-            log_path = os.path.join(
-                abjad_configuration.abjad_output_directory,
-                'lily.log',
+        fail_message = 'LilyPond rendering failed. Press any key to continue.'
+        if not os.path.exists(pdf_path) or not candidacy:
+            exit_code = IOManager.spawn_subprocess(command)
+            postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
+            try:
+                os.remove(postscript_file_name)
+            except OSError:
+                pass
+            if exit_code:
+                log_path = os.path.join(
+                    abjad_configuration.abjad_output_directory,
+                    'lily.log',
+                    )
+                if os.path.exists(log_path):
+                    with open(log_path, 'r') as f:
+                        print(f.read())
+                raw_input(fail_message)
+                return False
+            return True
+        candidate_base = lilypond_base + '.candidate'
+        if flags:
+            command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = command.format(
+                lilypond_path,
+                flags,
+                candidate_base,
+                lilypond_file_name,
+                log_file_path,
                 )
-            if os.path.exists(log_path):
-                with open(log_path, 'r') as f:
-                    print(f.read())
-            message = 'LilyPond rendering failed. Press any key to continue.'
-            raw_input(message)
-            return False
-        return True
+        else:
+            command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = command.format(
+                lilypond_path,
+                candidate_base,
+                lilypond_file_name,
+                log_file_path,
+                )
+        candidate_path = candidate_base + '.pdf'
+        with systemtools.FilesystemState(remove=[candidate_path]):
+            exit_code = IOManager.spawn_subprocess(command)
+            # TODO: change postscript_file_name to postscript_path
+            postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
+            try:
+                os.remove(postscript_file_name)
+            except OSError:
+                pass
+            if systemtools.TestManager.compare_pdfs(
+                pdf_path,
+                candidate_path,
+                ):
+                return False
+            if exit_code:
+                log_path = os.path.join(
+                    abjad_configuration.abjad_output_directory,
+                    'lily.log',
+                    )
+                if os.path.exists(log_path):
+                    with open(log_path, 'r') as f:
+                        print(f.read())
+                raw_input(fail_message)
+                return False
+            shutil.move(candidate_path, pdf_path)
+            return True
 
     @staticmethod
     def save_last_ly_as(file_path):

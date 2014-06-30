@@ -215,8 +215,9 @@ class PersistenceAgent(abctools.AbjadObject):
     def as_pdf(
         self,
         pdf_file_path=None,
-        remove_ly=False,
+        candidacy=False,
         illustrate_function=None,
+        remove_ly=False,
         **kwargs
         ):
         r'''Persists client as PDF.
@@ -233,8 +234,17 @@ class PersistenceAgent(abctools.AbjadObject):
             0.047142982482910156
             0.7839350700378418
 
+        When `candidacy` is true, writes PDF output only when PDF 
+        output would differ from any existing output file.
+
+        When `candidacy` is false, writes PDF output even if PDF
+        output would not differ from any existing output file.
+
         Returns output path, elapsed formatting time and elapsed rendering
-        time.
+        time when PDF output is written.
+
+        Returns false when when PDF output is not written due to 
+        `candidacy` being set.
         '''
         from abjad.tools import systemtools
         if illustrate_function is None:
@@ -247,24 +257,33 @@ class PersistenceAgent(abctools.AbjadObject):
             ly_file_path = None
         result = self.as_ly(
             ly_file_path,
+            candidacy=candidacy,
             illustrate_function=illustrate_function,
             **kwargs
             )
+        if candidacy and result == False:
+            return False
         ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)
         timer = systemtools.Timer()
         with timer:
-            success = systemtools.IOManager.run_lilypond(ly_file_path)
+            success = systemtools.IOManager.run_lilypond(
+                ly_file_path,
+                candidacy=candidacy,
+                )
         lilypond_rendering_time = timer.elapsed_time
         if remove_ly:
             os.remove(ly_file_path)
-        return (
-            pdf_file_path,
-            abjad_formatting_time,
-            lilypond_rendering_time,
-            success,
-            )
+        if candidacy and not success:
+            return False
+        else:
+            return (
+                pdf_file_path,
+                abjad_formatting_time,
+                lilypond_rendering_time,
+                success,
+                )
 
     def as_png(
         self,
