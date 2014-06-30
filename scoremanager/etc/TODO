@@ -94,3 +94,8 @@
         4: tempo inventory (*)
         5: time signatures
     ... will make clear that three packages have changed.
+
+30. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
+        illustration.ly:89:75: warning: conflicting note group events
+    ... and related.
+    Make a test zagged pitch class material package and illustrate to test.

@@ -421,8 +421,11 @@ class Wrangler(ScoreInternalAssetController):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
+        if paths:
+            self._io_manager._display('')
         for path in paths:
             self._io_manager.interpret_file(path)
+            self._io_manager._display('')
 
     def _list(self, public_entries_only=False):
         result = []
