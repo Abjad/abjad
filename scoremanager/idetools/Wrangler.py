@@ -65,6 +65,27 @@ class Wrangler(ScoreInternalAssetController):
         return breadcrumb
 
     @property
+    def _command_to_method(self):
+        superclass = super(Wrangler, self)
+        result = superclass._command_to_method
+        result = result.copy()
+        result.update({
+            'rad*': self.add_every_asset,
+            'rci*': self.commit_every_asset,
+            'rcn*': self.remove_every_unadded_asset,
+            'rst*': self.display_every_asset_status,
+            'rrv*': self.revert_every_asset,
+            'rup*': self.update_every_asset,
+            #
+            'va': self.autoedit_views,
+            'vs': self.set_view,
+            #
+            'vo': self.open_views_py,
+            'vw': self.write_views_py,
+            })
+        return result
+
+    @property
     def _current_package_manager(self):
         path = self._get_current_directory()
         if path is None:
@@ -86,27 +107,6 @@ class Wrangler(ScoreInternalAssetController):
         path = self._get_current_directory()
         if path:
             return os.path.join(path, '__init__.py')
-
-    @property
-    def _command_to_method(self):
-        superclass = super(Wrangler, self)
-        result = superclass._command_to_method
-        result = result.copy()
-        result.update({
-            'rad*': self.add_every_asset,
-            'rci*': self.commit_every_asset,
-            'rcn*': self.remove_every_unadded_asset,
-            'rst*': self.display_every_asset_status,
-            'rrv*': self.revert_every_asset,
-            'rup*': self.update_every_asset,
-            #
-            'va': self.autoedit_views,
-            'vs': self.set_view,
-            #
-            'vo': self.open_views_py,
-            'vw': self.write_views_py,
-            })
-        return result
 
     @property
     def _metadata_py_path(self):

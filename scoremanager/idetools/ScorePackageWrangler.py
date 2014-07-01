@@ -65,6 +65,19 @@ class ScorePackageWrangler(PackageWrangler):
             return breadcrumb
 
     @property
+    def _command_to_method(self):
+        superclass = super(ScorePackageWrangler, self)
+        result = superclass._command_to_method
+        result = result.copy()
+        result.update({
+            'co': self.open_cache,
+            'cw': self.write_cache,
+            #
+            'spo*': self.open_every_score_pdf,
+            })
+        return result
+
+    @property
     def _current_storehouse_path(self):
         if self._session.is_in_score:
             path = self._configuration.example_score_packages_directory
@@ -77,19 +90,6 @@ class ScorePackageWrangler(PackageWrangler):
                 return self._configuration.user_score_packages_directory
         else:
             return self._configuration.user_score_packages_directory
-
-    @property
-    def _command_to_method(self):
-        superclass = super(ScorePackageWrangler, self)
-        result = superclass._command_to_method
-        result = result.copy()
-        result.update({
-            'co': self.open_cache,
-            'cw': self.write_cache,
-            #
-            'spo*': self.open_every_score_pdf,
-            })
-        return result
 
     ### PRIVATE METHODS ###
 

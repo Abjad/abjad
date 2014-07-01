@@ -148,7 +148,7 @@ class BuildFileWrangler(FileWrangler):
         return pairs
 
     def _confirm_segment_names(self):
-        wrangler = self._session._score_manager._segment_package_wrangler
+        wrangler = self._session._ide._segment_package_wrangler
         view_name = wrangler._read_view_name()
         view_inventory = wrangler._read_view_inventory()
         if not view_inventory or view_name not in view_inventory:

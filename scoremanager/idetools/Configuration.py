@@ -206,25 +206,6 @@ class Configuration(AbjadConfiguration):
             )
 
     @property
-    def example_stylesheets_directory(self):
-        r'''Gets example stylesheets directory.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.example_stylesheets_directory
-                '.../abjad/stylesheets'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.abjad_directory,
-            'stylesheets',
-            )
-        return path
-
-    @property
     def boilerplate_directory(self):
         r'''Gets boilerplate directory.
 
@@ -383,6 +364,25 @@ class Configuration(AbjadConfiguration):
         return path
 
     @property
+    def example_stylesheets_directory(self):
+        r'''Gets example stylesheets directory.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.example_stylesheets_directory
+                '.../abjad/stylesheets'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.abjad_directory,
+            'stylesheets',
+            )
+        return path
+
+    @property
     def handler_tools_directory(self):
         r'''Gets handler tools directory.
 
@@ -417,40 +417,6 @@ class Configuration(AbjadConfiguration):
         '''
         superclass = super(Configuration, self)
         return superclass.home_directory
-
-    @property
-    def transcripts_directory(self):
-        r'''Gets score manager transcripts directory.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.transcripts_directory
-                '.../.abjad/ide/transcripts'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.configuration_directory,
-            'transcripts',
-            )
-        return path
-
-    @property
-    def unicode_directive(self):
-        r'''Gets Unicode directive.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.unicode_directive
-                '# -*- encoding: utf-8 -*-'
-
-        Returns string.
-        '''
-        return '# -*- encoding: utf-8 -*-'
 
     @property
     def library(self):
@@ -529,6 +495,40 @@ class Configuration(AbjadConfiguration):
             'stylesheets',
             )
         return path
+
+    @property
+    def transcripts_directory(self):
+        r'''Gets score manager transcripts directory.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.transcripts_directory
+                '.../.abjad/ide/transcripts'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.configuration_directory,
+            'transcripts',
+            )
+        return path
+
+    @property
+    def unicode_directive(self):
+        r'''Gets Unicode directive.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.unicode_directive
+                '# -*- encoding: utf-8 -*-'
+
+        Returns string.
+        '''
+        return '# -*- encoding: utf-8 -*-'
 
     @property
     def user_score_packages_directory(self):

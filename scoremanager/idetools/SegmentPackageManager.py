@@ -51,16 +51,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         return string
 
     @property
-    def _definition_py_path(self):
-        return os.path.join(self._path, 'definition.py')
-
-    @property
     def _command_to_method(self):
         superclass = super(SegmentPackageManager, self)
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'do': self.open_definition_py,
+            'de': self.edit_definition_py,
             'ds': self.write_stub_definition_py,
             #
             'ki': self.interpret_make_py,
@@ -76,6 +72,10 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'vopo': self.open_versioned_output_pdf,
             })
         return result
+
+    @property
+    def _definition_py_path(self):
+        return os.path.join(self._path, 'definition.py')
 
     @property
     def _make_py_path(self):
@@ -107,7 +107,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 menu_entries=[message],
                 )
         commands = []
-        commands.append(('definition.py - edit', 'do'))
+        commands.append(('definition.py - edit', 'de'))
         commands.append(('definition.py - stub', 'ds'))
         menu.make_command_section(
             commands=commands,
@@ -194,6 +194,13 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     ### PUBLIC METHODS ###
 
+    def edit_definition_py(self):
+        r'''Edits ``definition.py``.
+
+        Returns none.
+        '''
+        self._io_manager.edit(self._definition_py_path)
+
     def interpret_make_py(self, dry_run=False):
         r'''Interprets ``__make__.py``.
 
@@ -240,13 +247,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         if not os.path.isfile(file_path):
             return
         self._io_manager.run_lilypond(file_path, candidacy=True)
-
-    def open_definition_py(self):
-        r'''Edits ``definition.py``.
-
-        Returns none.
-        '''
-        self._io_manager.edit(self._definition_py_path)
 
     def open_make_py(self):
         r'''Opens ``__make__.py``.

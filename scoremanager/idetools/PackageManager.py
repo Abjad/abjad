@@ -65,21 +65,6 @@ class PackageManager(ScoreInternalAssetController):
         return self._spaced_class_name
 
     @property
-    def _display_status_command(self):
-        if not self._path:
-            return
-        if self._is_in_git_repository(path=self._path):
-            return 'git status {}'.format(self._path)
-        elif self._is_svn_versioned(path=self._path):
-            return 'svn st {}'.format(self._path)
-        else:
-            return
-
-    @property
-    def _init_py_file_path(self):
-        return os.path.join(self._path, '__init__.py')
-
-    @property
     def _command_to_method(self):
         superclass = super(PackageManager, self)
         result = superclass._command_to_method
@@ -103,6 +88,21 @@ class PackageManager(ScoreInternalAssetController):
             'rup': self.update,
             })
         return result
+
+    @property
+    def _display_status_command(self):
+        if not self._path:
+            return
+        if self._is_in_git_repository(path=self._path):
+            return 'git status {}'.format(self._path)
+        elif self._is_svn_versioned(path=self._path):
+            return 'svn st {}'.format(self._path)
+        else:
+            return
+
+    @property
+    def _init_py_file_path(self):
+        return os.path.join(self._path, '__init__.py')
 
     @property
     def _metadata_py_path(self):

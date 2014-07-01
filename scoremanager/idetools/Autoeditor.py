@@ -72,6 +72,29 @@ class Autoeditor(Controller):
                 pass
         self._attributes_in_memory = {}
 
+    def _command_to_attribute_editor(
+        self,
+        command,
+        prepopulated_value,
+        session=None,
+        ):
+        manifest = self._attribute_manifest
+        assert manifest
+        attribute_name = manifest._command_to_attribute_name(command)
+        attribute_name = attribute_name.replace('_', ' ')
+        attribute_detail = manifest._command_to_attribute_detail(command)
+        attribute_editor = self._get_attribute_autoeditor(
+            attribute_detail,
+            attribute_name,
+            prepopulated_value,
+            )
+        return attribute_editor
+
+    def _command_to_prepopulated_value(self, command):
+        manifest = self._attribute_manifest
+        attribute_name = manifest._command_to_attribute_name(command)
+        return getattr(self.target, attribute_name, None)
+
     def _copy_target_attributes_to_memory(self):
         self._attributes_in_memory = {}
         manifest = self._attribute_manifest
@@ -244,29 +267,6 @@ class Autoeditor(Controller):
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
         return result
-
-    def _command_to_attribute_editor(
-        self,
-        command,
-        prepopulated_value,
-        session=None,
-        ):
-        manifest = self._attribute_manifest
-        assert manifest
-        attribute_name = manifest._command_to_attribute_name(command)
-        attribute_name = attribute_name.replace('_', ' ')
-        attribute_detail = manifest._command_to_attribute_detail(command)
-        attribute_editor = self._get_attribute_autoeditor(
-            attribute_detail,
-            attribute_name,
-            prepopulated_value,
-            )
-        return attribute_editor
-
-    def _command_to_prepopulated_value(self, command):
-        manifest = self._attribute_manifest
-        attribute_name = manifest._command_to_attribute_name(command)
-        return getattr(self.target, attribute_name, None)
 
     def _run(self):
         with self._io_manager._controller(

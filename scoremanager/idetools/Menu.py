@@ -348,18 +348,18 @@ class Menu(Controller):
                     return True
         return False
 
+    def _has_numbered_section(self):
+        return any(x.is_numbered for x in self.menu_sections)
+
+    def _has_ranged_section(self):
+        return any(x.is_ranged for x in self.menu_sections)
+
     def _has_shell_command(self):
         for section in self.menu_sections:
             for entry in section.menu_entries:
                 if entry.key == '!':
                     return True
         return False
-
-    def _has_numbered_section(self):
-        return any(x.is_numbered for x in self.menu_sections)
-
-    def _has_ranged_section(self):
-        return any(x.is_ranged for x in self.menu_sections)
 
     @staticmethod
     def _is_autoeditor_with_attributes_menu_section(controller):

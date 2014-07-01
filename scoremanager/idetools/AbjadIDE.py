@@ -35,7 +35,7 @@ class AbjadIDE(Wrangler):
         superclass = super(AbjadIDE, self)
         superclass.__init__(session=session)
         self._basic_breadcrumb = 'Abjad IDE'
-        self._session._score_manager = self
+        self._session._ide = self
         self._simple_score_annotation = True
         self._sort_by_annotation = True
 
@@ -54,12 +54,6 @@ class AbjadIDE(Wrangler):
         return idetools.BuildFileWrangler(session=self._session)
 
     @property
-    @systemtools.Memoize
-    def _distribution_file_wrangler(self):
-        from scoremanager import idetools
-        return idetools.DistributionFileWrangler(session=self._session)
-
-    @property
     def _command_to_method(self):
         superclass = super(AbjadIDE, self)
         result = superclass._command_to_method
@@ -70,6 +64,12 @@ class AbjadIDE(Wrangler):
             'ns*': self.write_every_init_py_stub,
             })
         return result
+
+    @property
+    @systemtools.Memoize
+    def _distribution_file_wrangler(self):
+        from scoremanager import idetools
+        return idetools.DistributionFileWrangler(session=self._session)
 
     @property
     @systemtools.Memoize

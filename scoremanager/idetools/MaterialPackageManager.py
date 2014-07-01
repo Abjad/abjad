@@ -62,26 +62,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return breadcrumb
 
     @property
-    def _definition_py_path(self):
-        return os.path.join(self._path, 'definition.py')
-
-    @property
-    def _handlertools_import_statement(self):
-        return 'from experimental.tools import handlertools'
-
-    @property
-    def _illustrate_py_path(self):
-        return os.path.join(self._path, '__illustrate__.py')
-
-    @property
-    def _illustration_ly_path(self):
-        return os.path.join(self._path, 'illustration.ly')
-
-    @property
-    def _illustration_pdf_path(self):
-        return os.path.join(self._path, 'illustration.pdf')
-
-    @property
     def _command_to_method(self):
         superclass = super(MaterialPackageManager, self)
         result = superclass._command_to_method
@@ -89,7 +69,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         result.update({
             'da': self.autoedit_definition_py,
             'dc': self.check_definition_py,
-            'do': self.open_definition_py,
+            'de': self.edit_definition_py,
             'dp': self.output_definition_py,
             'ds': self.write_stub_definition_py,
             #
@@ -112,6 +92,26 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'voo': self.open_versioned_output_py,
             })
         return result
+
+    @property
+    def _definition_py_path(self):
+        return os.path.join(self._path, 'definition.py')
+
+    @property
+    def _handlertools_import_statement(self):
+        return 'from experimental.tools import handlertools'
+
+    @property
+    def _illustrate_py_path(self):
+        return os.path.join(self._path, '__illustrate__.py')
+
+    @property
+    def _illustration_ly_path(self):
+        return os.path.join(self._path, 'illustration.ly')
+
+    @property
+    def _illustration_pdf_path(self):
+        return os.path.join(self._path, 'illustration.pdf')
 
     @property
     def _maker_py_path(self):
@@ -197,7 +197,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             is_hidden = False
             commands.append(('definition.py - autoedit', 'da'))
             commands.append(('definition.py - check', 'dc'))
-            commands.append(('definition.py - open', 'do'))
+            commands.append(('definition.py - open', 'de'))
             commands.append(('definition.py - output', 'dp'))
         else:
             is_hidden = True
@@ -572,6 +572,13 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self.edit_illustrate_py()
         self.interpret_illustrate_py()
 
+    def edit_definition_py(self):
+        r'''Edits ``definition.py``.
+
+        Returns none.
+        '''
+        self._io_manager.edit(self._definition_py_path)
+
     def edit_illustrate_py(self):
         r'''Edits ``__illustrate.py__``.
 
@@ -613,13 +620,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         else:
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
-
-    def open_definition_py(self):
-        r'''Edits ``definition.py``.
-
-        Returns none.
-        '''
-        self._io_manager.edit(self._definition_py_path)
 
     def open_illustration_ly(self):
         r'''Opens ``illustration.ly``.

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Prompt___format___01():
+def test_GetterPrompt___format___01():
 
     session = scoremanager.idetools.Session()
     getter = scoremanager.idetools.Getter(session=session)

@@ -50,34 +50,6 @@ class ScoreInternalAssetController(AssetController):
             message = 'no file ending in *stylesheet.ily found.'
             self._io_manager._display(message)
 
-    def go_to_score_build_files(self):
-        r'''Goes to build files.
-
-        Returns none.
-        '''
-        self._session._score_manager._build_file_wrangler._run()
-
-    def go_to_score_distribution_files(self):
-        r'''Goes to distribution files.
-
-        Returns none.
-        '''
-        self._session._score_manager._distribution_file_wrangler._run()
-
-    def go_to_score_maker_files(self):
-        r'''Goes to maker files.
-
-        Returns none.
-        '''
-        self._session._score_manager._maker_file_wrangler._run()
-
-    def go_to_score_materials(self):
-        r'''Goes to material packages.
-
-        Returns none.
-        '''
-        self._session._score_manager._material_package_wrangler._run()
-
     def go_to_next_score(self):
         r'''Goes to next score.
 
@@ -96,16 +68,44 @@ class ScoreInternalAssetController(AssetController):
         self._session._is_navigating_to_scores = True
         self._session._display_available_commands = False
 
+    def go_to_score_build_files(self):
+        r'''Goes to build files.
+
+        Returns none.
+        '''
+        self._session._ide._build_file_wrangler._run()
+
+    def go_to_score_distribution_files(self):
+        r'''Goes to distribution files.
+
+        Returns none.
+        '''
+        self._session._ide._distribution_file_wrangler._run()
+
+    def go_to_score_maker_files(self):
+        r'''Goes to maker files.
+
+        Returns none.
+        '''
+        self._session._ide._maker_file_wrangler._run()
+
+    def go_to_score_materials(self):
+        r'''Goes to material packages.
+
+        Returns none.
+        '''
+        self._session._ide._material_package_wrangler._run()
+
     def go_to_score_segments(self):
         r'''Goes to segment packages.
 
         Returns none.
         '''
-        self._session._score_manager._segment_package_wrangler._run()
+        self._session._ide._segment_package_wrangler._run()
 
     def go_to_score_stylesheets(self):
         r'''Goes to stylesheets.
 
         Returns none.
         '''
-        self._session._score_manager._stylesheet_wrangler._run()
+        self._session._ide._stylesheet_wrangler._run()

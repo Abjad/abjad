@@ -126,7 +126,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _get_tempo_inventory(self):
-        wrangler = self._session._score_manager._material_package_wrangler
+        wrangler = self._session._ide._material_package_wrangler
         paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_manager(path)
@@ -159,12 +159,12 @@ class ScorePackageManager(PackageManager):
 
     def _get_top_level_wranglers(self):
         return (
-            self._session._score_manager._build_file_wrangler,
-            self._session._score_manager._distribution_file_wrangler,
-            self._session._score_manager._maker_file_wrangler,
-            self._session._score_manager._material_package_wrangler,
-            self._session._score_manager._segment_package_wrangler,
-            self._session._score_manager._stylesheet_wrangler,
+            self._session._ide._build_file_wrangler,
+            self._session._ide._distribution_file_wrangler,
+            self._session._ide._maker_file_wrangler,
+            self._session._ide._material_package_wrangler,
+            self._session._ide._segment_package_wrangler,
+            self._session._ide._stylesheet_wrangler,
             )
 
     def _handle_setup_menu_result(self, result):
@@ -273,7 +273,7 @@ class ScorePackageManager(PackageManager):
     def _remove(self):
         superclass = super(ScorePackageManager, self)
         superclass._remove()
-        wrangler = self._session._score_manager._score_package_wrangler
+        wrangler = self._session._ide._score_package_wrangler
         with self._io_manager._silent():
             wrangler.write_cache()
 
@@ -326,7 +326,7 @@ class ScorePackageManager(PackageManager):
         if self._session.is_backtracking:
             return
         self._add_metadatum('title', result)
-        wrangler = self._session._score_manager._score_package_wrangler
+        wrangler = self._session._ide._score_package_wrangler
         with self._io_manager._silent():
             wrangler.write_cache()
 
@@ -345,7 +345,7 @@ class ScorePackageManager(PackageManager):
         if self._session.is_backtracking:
             return
         self._add_metadatum('year', result)
-        wrangler = self._session._score_manager._score_package_wrangler
+        wrangler = self._session._ide._score_package_wrangler
         with self._io_manager._silent():
             wrangler.write_cache()
 

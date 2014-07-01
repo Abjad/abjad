@@ -83,7 +83,7 @@ class Session(abctools.AbjadObject):
         '_pending_input',
         '_pending_redraw',
         '_proceed_count',
-        '_score_manager',
+        '_ide',
         '_task_depth',
         '_transcript',
         )
@@ -158,7 +158,7 @@ class Session(abctools.AbjadObject):
         self._pending_input = input_
         self._pending_redraw = True
         self._proceed_count = 0
-        self._score_manager = None
+        self._ide = None
         self._task_depth = 0
         self._transcript = idetools.Transcript()
 
@@ -591,6 +591,20 @@ class Session(abctools.AbjadObject):
         return result
 
     @property
+    def ide(self):
+        r'''Gets session IDE.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.ide
+
+        Returns Abjad IDE or none.
+        '''
+        return self._ide
+
+    @property
     def initial_input(self):
         r'''Gets session initial user input.
 
@@ -929,22 +943,6 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_distribution_files
 
     @property
-    def is_navigating_to_top_level(self):
-        r'''Is true when session is backtracking to library.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_top_level
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_top_level
-
-    @property
     def is_navigating_to_maker_files(self):
         r'''Is true when session is navigating to score makers.
         Otherwise false.
@@ -1110,6 +1108,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_stylesheets
+
+    @property
+    def is_navigating_to_top_level(self):
+        r'''Is true when session is backtracking to library.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_top_level
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_top_level
 
     @property
     def is_quitting(self):
@@ -1314,20 +1328,6 @@ class Session(abctools.AbjadObject):
         Returns nonnegative integer.
         '''
         return self._proceed_count
-
-    @property
-    def ide(self):
-        r'''Gets session score manager.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.ide
-
-        Returns score manager or none.
-        '''
-        return self._score_manager
 
     @property
     def task_depth(self):
