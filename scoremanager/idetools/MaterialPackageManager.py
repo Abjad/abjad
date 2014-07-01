@@ -79,14 +79,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ls': self.write_stub_illustrate_py,
             #
             'ii': self.interpret_illustration_ly,
-            'ilo': self.open_illustration_ly,
+            'ie': self.open_illustration_ly,
             'io': self.open_illustration_pdf,
             #
             'oc': self.check_output_py,
             'oi': self.illustrate_output_py,
-            'oo': self.open_output_py,
+            'oe': self.edit_output_py,
             #
-            'vdo': self.open_versioned_definition_py,
+            'vde': self.open_versioned_definition_py,
             'vilo': self.open_versioned_illustration_ly,
             'vipo': self.open_versioned_illustration_pdf,
             'voo': self.open_versioned_output_py,
@@ -197,7 +197,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             is_hidden = False
             commands.append(('definition.py - autoedit', 'da'))
             commands.append(('definition.py - check', 'dc'))
-            commands.append(('definition.py - open', 'de'))
+            commands.append(('definition.py - edit', 'de'))
             commands.append(('definition.py - output', 'dp'))
         else:
             is_hidden = True
@@ -254,7 +254,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands = []
         if os.path.isfile(self._illustration_ly_path):
             commands.append(('illustration.ly - interpret', 'ii'))
-            commands.append(('illustration.ly - open', 'ilo'))
+            commands.append(('illustration.ly - edit', 'ie'))
         if os.path.isfile(self._illustration_pdf_path):
             commands.append(('illustration.pdf - open', 'io'))
         if commands:
@@ -308,8 +308,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands = []
         if os.path.isfile(self._output_py_path):
             commands.append(('output.py - check', 'oc'))
+            commands.append(('output.py - edit', 'oe'))
             commands.append(('output.py - illustrate', 'oi'))
-            commands.append(('output.py - open', 'oo'))
         if commands:
             menu.make_command_section(
                 commands=commands,
@@ -381,7 +381,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdo'))
+        commands.append(('versions - definition.py - edit', 'vde'))
         commands.append(('versions - illustration.ly - open', 'vilo'))
         commands.append(('versions - illustration.pdf - open', 'vipo'))
         commands.append(('versions - output.py - open', 'voo'))
@@ -635,7 +635,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.open_file(self._illustration_pdf_path)
 
-    def open_output_py(self):
+    def edit_output_py(self):
         r'''Opens ``output.py``.
 
         Returns none.

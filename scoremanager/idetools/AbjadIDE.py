@@ -60,7 +60,7 @@ class AbjadIDE(Wrangler):
         result = result.copy()
         result.update({
             'nl*': self.list_every_init_py,
-            'no*': self.open_every_init_py,
+            'ne*': self.edit_every_init_py,
             'ns*': self.write_every_init_py_stub,
             })
         return result
@@ -141,8 +141,8 @@ class AbjadIDE(Wrangler):
         commands.append(('all assets - repository - revert', 'rrv*'))
         commands.append(('all assets - repository - status', 'rst*'))
         commands.append(('all assets - repository - update', 'rup*'))
+        commands.append(('all packages - __init__.py - edit', 'ne*'))
         commands.append(('all packages - __init__.py - list', 'nl*'))
-        commands.append(('all packages - __init__.py - open', 'no*'))
         commands.append(('all packages - __init__.py - stub', 'ns*'))
         menu.make_command_section(
             is_hidden=True,
@@ -213,7 +213,7 @@ class AbjadIDE(Wrangler):
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def open_every_init_py(self):
+    def edit_every_init_py(self):
         r'''Opens every ``__init__.py``.
 
         Returns none.

@@ -5,11 +5,13 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageWrangler_open_every_init_py_01():
+def test_MaterialPackageWrangler_edit_every_metadata_py_01():
 
-    input_ = 'red~example~score m no* y q'
+    input_ = 'red~example~score m mde* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
+
+    assert ide._session._attempted_to_open_file
 
     package_names = (
         'instrumentation',
@@ -25,7 +27,7 @@ def test_MaterialPackageWrangler_open_every_init_py_01():
             'red_example_score',
             'materials',
             package_name,
-            '__init__.py',
+            '__metadata__.py',
             )
 
     lines = []
@@ -34,5 +36,3 @@ def test_MaterialPackageWrangler_open_every_init_py_01():
 
     for line in lines:
         assert line in contents
-
-    assert ide._session._attempted_to_open_file

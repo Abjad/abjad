@@ -60,14 +60,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'ds': self.write_stub_definition_py,
             #
             'ki': self.interpret_make_py,
-            'ko': self.open_make_py,
+            'ke': self.open_make_py,
             'ks': self.write_stub_make_py,
             #
             'oli': self.interpret_output_ly,
             'olo': self.open_output_ly,
             'opo': self.open_output_pdf,
             #
-            'vdo': self.open_versioned_definition_py,
+            'vde': self.open_versioned_definition_py,
             'vlo': self.open_versioned_output_ly,
             'vpo': self.open_versioned_output_pdf,
             })
@@ -130,8 +130,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     def _make_make_py_menu_section(self, menu):
         commands = []
+        commands.append(('__make__.py - edit', 'ke'))
         commands.append(('__make__.py - interpret', 'ki'))
-        commands.append(('__make__.py - open', 'ko'))
         commands.append(('__make__.py - stub', 'ks'))
         menu.make_command_section(
             commands=commands,
@@ -180,7 +180,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         commands = []
-        commands.append(('versions - definition.py - open', 'vdo'))
+        commands.append(('versions - definition.py - edit', 'vde'))
         commands.append(('versions - output.ly - open', 'vlo'))
         commands.append(('versions - output.pdf - open', 'vpo'))
         menu.make_command_section(

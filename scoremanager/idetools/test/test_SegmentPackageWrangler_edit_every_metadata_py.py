@@ -5,9 +5,9 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_open_every_metadata_py_01():
+def test_SegmentPackageWrangler_edit_every_metadata_py_01():
 
-    input_ = 'red~example~score g mdo* y q'
+    input_ = 'red~example~score g mde* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

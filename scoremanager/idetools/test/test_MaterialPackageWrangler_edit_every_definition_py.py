@@ -5,21 +5,19 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageWrangler_open_every_metadata_py_01():
+def test_MaterialPackageWrangler_edit_every_definition_py_01():
 
-    input_ = 'red~example~score m mdo* y q'
+    input_ = 'red~example~score m de* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert ide._session._attempted_to_open_file
-
-    package_names = (
+    package_names = [
         'instrumentation',
         'magic_numbers',
         'pitch_range_inventory',
         'tempo_inventory',
-        )
-
+        'time_signatures',
+        ]
     paths = []
     for package_name in package_names:
         path = os.path.join(
@@ -27,12 +25,11 @@ def test_MaterialPackageWrangler_open_every_metadata_py_01():
             'red_example_score',
             'materials',
             package_name,
-            '__metadata__.py',
+            'definition.py',
             )
+        paths.append(path)
 
-    lines = []
-    lines.append('Will open ...')
-    lines.extend(paths)
-
-    for line in lines:
-        assert line in contents
+    assert 'Will open ...' in contents
+    for path in paths:
+        assert path in contents
+    assert ide._session._attempted_to_open_file

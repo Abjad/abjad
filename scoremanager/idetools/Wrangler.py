@@ -80,7 +80,7 @@ class Wrangler(ScoreInternalAssetController):
             'wa': self.autoedit_views,
             'ws': self.set_view,
             #
-            'wo': self.open_views_py,
+            'we': self.open_views_py,
             'ww': self.write_views_py,
             })
         return result
@@ -642,7 +642,7 @@ class Wrangler(ScoreInternalAssetController):
 
     def _make_views_menu_section(self, menu):
         commands = []
-        commands.append(('__views.py__ - open', 'wo'))
+        commands.append(('__views.py__ - edit', 'we'))
         commands.append(('__views.py__ - write', 'ww'))
         commands.append(('views - autoedit', 'wa'))
         commands.append(('views - set', 'ws'))

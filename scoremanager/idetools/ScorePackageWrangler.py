@@ -70,7 +70,7 @@ class ScorePackageWrangler(PackageWrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'co': self.open_cache,
+            'ce': self.open_cache,
             'cw': self.write_cache,
             #
             'so*': self.open_every_score_pdf,
@@ -220,7 +220,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def _make_cache_menu_section(self, menu):
         commands = []
-        commands.append(('cache - open', 'co'))
+        commands.append(('cache - edit', 'ce'))
         commands.append(('cache - write', 'cw'))
         menu.make_command_section(
             is_hidden=True,

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_open_metadata_py_01():
 
-    input_ = 'Mdo q'
+    input_ = 'mde q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file

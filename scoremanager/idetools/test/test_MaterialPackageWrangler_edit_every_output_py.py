@@ -7,7 +7,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_open_every_output_01():
 
-    input_ = 'red~example~score m oo* y q'
+    input_ = 'red~example~score m oe* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

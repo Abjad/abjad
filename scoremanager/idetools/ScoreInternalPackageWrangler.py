@@ -17,8 +17,8 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
+            'ne': self.open_init_py,
             'nl': self.list_init_py,
-            'no': self.open_init_py,
             'ns': self.write_stub_init_py,
             #
             'vr*': self.version_every_package,

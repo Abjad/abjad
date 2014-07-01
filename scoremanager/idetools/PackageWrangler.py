@@ -24,11 +24,11 @@ class PackageWrangler(Wrangler):
             'ck*': self.check_every_package,
             #
             'mdl*': self.list_every_metadata_py,
-            'mdo*': self.open_every_metadata_py,
+            'mde*': self.edit_every_metadata_py,
             'mdw*': self.write_every_metadata_py,
             #
             'nl*': self.list_every_init_py,
-            'no*': self.open_every_init_py,
+            'ne*': self.edit_every_init_py,
             'ns*': self.write_every_init_py_stub,
             })
         return result
@@ -46,11 +46,11 @@ class PackageWrangler(Wrangler):
 
     def _make_all_packages_menu_section(self, menu, commands_only=False):
         commands = []
+        commands.append(('all packages - __init__.py - edit', 'ne*'))
         commands.append(('all packages - __init__.py - list', 'nl*'))
-        commands.append(('all packages - __init__.py - open', 'no*'))
         commands.append(('all packages - __init__.py - stub', 'ns*'))
+        commands.append(('all packages - __metadata__.py - edit', 'mde*'))
         commands.append(('all packages - __metadata__.py - list', 'mdl*'))
-        commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - write', 'mdw*'))
         commands.append(('all packages - check', 'ck*'))
         commands.append(('all packages - repository - add', 'rad*'))
@@ -145,6 +145,23 @@ class PackageWrangler(Wrangler):
         self._io_manager._display(messages)
         return messages, supplied_directories, supplied_files
 
+    def edit_every_metadata_py(self):
+        r'''Opens ``__metadata__.py`` in every package.
+
+        Returns none.
+        '''
+        paths = self._list_metadata_py_files_in_all_directories()
+        messages = []
+        messages.append('will open ...')
+        for path in paths:
+            message = '    ' + path
+            messages.append(message)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        self._io_manager.open_file(paths)
+
     def list_every_init_py(self):
         r'''Lists ``__init__.py`` in every package.
 
@@ -208,29 +225,12 @@ class PackageWrangler(Wrangler):
             self.write_cache()
         manager._run()
 
-    def open_every_init_py(self):
+    def edit_every_init_py(self):
         r'''Opens ``__init__.py`` in every package.
 
         Returns none.
         '''
         self._open_in_every_package('__init__.py')
-
-    def open_every_metadata_py(self):
-        r'''Opens ``__metadata__.py`` in every package.
-
-        Returns none.
-        '''
-        paths = self._list_metadata_py_files_in_all_directories()
-        messages = []
-        messages.append('will open ...')
-        for path in paths:
-            message = '    ' + path
-            messages.append(message)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        self._io_manager.open_file(paths)
 
     def write_every_init_py_stub(self):
         r'''Writes stub ``__init__.py`` in every package.

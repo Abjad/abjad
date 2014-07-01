@@ -76,14 +76,14 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         result = result.copy()
         result.update({
             'dc*': self.check_every_definition_py,
-            'do*': self.open_every_definition_py,
+            'de*': self.edit_every_definition_py,
             'dp*': self.output_every_definition_py,
             #
             'ii*': self.interpret_every_illustration_ly,
             'io*': self.open_every_illustration_pdf,
             #
             'oc*': self.check_every_output_py,
-            'oo*': self.open_every_output_py,
+            'oe*': self.edit_every_output_py,
             })
         return result
 
@@ -168,12 +168,12 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
         commands.append(('all packages - definition.py - check', 'dc*'))
-        commands.append(('all packages - definition.py - open', 'do*'))
+        commands.append(('all packages - definition.py - edit', 'de*'))
         commands.append(('all packages - definition.py - output', 'dp*'))
         commands.append(('all packages - illustration.ly - interpret', 'ii*'))
         commands.append(('all packages - illustration.pdf - open', 'io*'))
         commands.append(('all packages - output.py - check', 'oc*'))
-        commands.append(('all packages - output.py - open', 'oo*'))
+        commands.append(('all packages - output.py - edit', 'oe*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -251,19 +251,19 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._copy_asset()
 
+    def edit_every_definition_py(self):
+        r'''Opens ``definition.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('definition.py')
+
     def interpret_every_illustration_ly(self):
         r'''Interprets ``illustration.ly`` in every package.
 
         Returns none.
         '''
         self._interpret_in_every_package('illustration.ly')
-
-    def open_every_definition_py(self):
-        r'''Opens ``definition.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_every_package('definition.py')
 
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` in every package.
@@ -272,7 +272,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('illustration.pdf')
 
-    def open_every_output_py(self):
+    def edit_every_output_py(self):
         r'''Opens ``output.py`` in every package.
 
         Returns none.
