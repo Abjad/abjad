@@ -613,6 +613,13 @@ class AssetController(Controller):
                 )
             self._io_manager._display(strings, capitalize=False)
 
+    def edit_metadata_py(self):
+        r'''Opens ``__metadata__.py``.
+
+        Returns none.
+        '''
+        self._open_file(self._metadata_py_path)
+
     def go_to_all_build_files(self):
         r'''Goes to all build files.
 
@@ -714,13 +721,6 @@ class AssetController(Controller):
         if self._session.is_test:
             return
         systemtools.IOManager.open_last_log()
-
-    def edit_metadata_py(self):
-        r'''Opens ``__metadata__.py``.
-
-        Returns none.
-        '''
-        self._open_file(self._metadata_py_path)
 
     def pytest(self):
         r'''Pytests Python files.

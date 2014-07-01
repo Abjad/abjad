@@ -258,6 +258,13 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('definition.py')
 
+    def edit_every_output_py(self):
+        r'''Opens ``output.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('output.py')
+
     def interpret_every_illustration_ly(self):
         r'''Interprets ``illustration.ly`` in every package.
 
@@ -271,13 +278,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('illustration.pdf')
-
-    def edit_every_output_py(self):
-        r'''Opens ``output.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_every_package('output.py')
 
     def output_every_definition_py(self):
         r'''Outputs ``definition.py`` to ``output.py`` in every package.

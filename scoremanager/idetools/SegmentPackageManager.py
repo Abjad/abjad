@@ -201,6 +201,34 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._definition_py_path)
 
+    def edit_make_py(self):
+        r'''Opens ``__make__.py``.
+
+        Returns none.
+        '''
+        self._open_file(self._make_py_path)
+
+    def edit_output_ly(self):
+        r'''Opens ``output.ly``.
+
+        Returns none.
+        '''
+        self._open_file(self._output_lilypond_file_path)
+
+    def edit_versioned_definition_py(self):
+        r'''Opens versioned ``definition py``.
+
+        Returns none.
+        '''
+        self._open_versioned_file('definition.py')
+
+    def edit_versioned_output_ly(self):
+        r'''Opens versioned ``output.ly``.
+
+        Returns none.
+        '''
+        self._open_versioned_file('output.ly')
+
     def interpret_make_py(self, dry_run=False):
         r'''Interprets ``__make__.py``.
 
@@ -248,40 +276,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             return
         self._io_manager.run_lilypond(file_path, candidacy=True)
 
-    def edit_make_py(self):
-        r'''Opens ``__make__.py``.
-
-        Returns none.
-        '''
-        self._open_file(self._make_py_path)
-
-    def edit_output_ly(self):
-        r'''Opens ``output.ly``.
-
-        Returns none.
-        '''
-        self._open_file(self._output_lilypond_file_path)
-
     def open_output_pdf(self):
         r'''Opens ``output.pdf``.
 
         Returns none.
         '''
         self._open_file(self._output_pdf_file_path)
-
-    def edit_versioned_definition_py(self):
-        r'''Opens versioned ``definition py``.
-
-        Returns none.
-        '''
-        self._open_versioned_file('definition.py')
-
-    def edit_versioned_output_ly(self):
-        r'''Opens versioned ``output.ly``.
-
-        Returns none.
-        '''
-        self._open_versioned_file('output.ly')
 
     def open_versioned_output_pdf(self):
         r'''Opens versioned ``output.pdf``.

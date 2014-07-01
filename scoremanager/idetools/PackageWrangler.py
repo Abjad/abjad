@@ -145,6 +145,13 @@ class PackageWrangler(Wrangler):
         self._io_manager._display(messages)
         return messages, supplied_directories, supplied_files
 
+    def edit_every_init_py(self):
+        r'''Opens ``__init__.py`` in every package.
+
+        Returns none.
+        '''
+        self._open_in_every_package('__init__.py')
+
     def edit_every_metadata_py(self):
         r'''Opens ``__metadata__.py`` in every package.
 
@@ -224,13 +231,6 @@ class PackageWrangler(Wrangler):
         if hasattr(self, 'write_cache'):
             self.write_cache()
         manager._run()
-
-    def edit_every_init_py(self):
-        r'''Opens ``__init__.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_every_package('__init__.py')
 
     def write_every_init_py_stub(self):
         r'''Writes stub ``__init__.py`` in every package.

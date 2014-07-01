@@ -44,6 +44,13 @@ class ScoreInternalPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    def edit_init_py(self):
+        r'''Opens ``__init__.py``.
+
+        Returns none.
+        '''
+        self._current_package_manager.edit_init_py()
+
     def go_to_next_package(self):
         r'''Goes to next package.
 
@@ -81,13 +88,6 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._current_package_manager.list_init_py()
-
-    def edit_init_py(self):
-        r'''Opens ``__init__.py``.
-
-        Returns none.
-        '''
-        self._current_package_manager.edit_init_py()
 
     def version_every_package(self):
         r'''Versions every package.

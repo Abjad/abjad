@@ -1227,6 +1227,13 @@ class PackageManager(ScoreInternalAssetController):
                 clean_lines.append(message)
             self._io_manager._display(messages, capitalize=False)
 
+    def edit_init_py(self):
+        r'''Opens ``__init__.py``.
+
+        Returns none.
+        '''
+        self._open_file(self._init_py_file_path)
+
     def get_metadatum(self):
         r'''Gets metadatum from ``__metadata.py__``.
 
@@ -1247,13 +1254,6 @@ class PackageManager(ScoreInternalAssetController):
         Returns none.
         '''
         self._io_manager._display(self._init_py_file_path)
-
-    def edit_init_py(self):
-        r'''Opens ``__init__.py``.
-
-        Returns none.
-        '''
-        self._open_file(self._init_py_file_path)
 
     def remove_metadatum(self):
         r'''Removes metadatum from ``__metadata__.py``.

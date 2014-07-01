@@ -586,6 +586,41 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.edit(self._illustrate_py_path)
 
+    def edit_illustration_ly(self):
+        r'''Opens ``illustration.ly``.
+
+        Returns none.
+        '''
+        self._io_manager.open_file(self._illustration_ly_path)
+
+    def edit_output_py(self):
+        r'''Opens ``output.py``.
+
+        Returns none.
+        '''
+        self._io_manager.open_file(self._output_py_path)
+
+    def edit_versioned_definition_py(self):
+        r'''Opens versioned ``definition.py``.
+
+        Returns none.
+        '''
+        self._open_versioned_file('definition.py')
+
+    def edit_versioned_illustration_ly(self):
+        r'''Opens versioned ``illustration.ly``.
+
+        Returns none.
+        '''
+        self._open_versioned_file('illustration.ly')
+
+    def edit_versioned_output_py(self):
+        r'''Opens versioned ``output.py``.
+
+        Returns none.
+        '''
+        self._open_versioned_file('output.py')
+
     def illustrate_output_py(self):
         r'''Illustrates ``output.py``.
 
@@ -621,13 +656,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
 
-    def edit_illustration_ly(self):
-        r'''Opens ``illustration.ly``.
-
-        Returns none.
-        '''
-        self._io_manager.open_file(self._illustration_ly_path)
-
     def open_illustration_pdf(self):
         r'''Opens ``illustration.pdf``.
 
@@ -635,40 +663,12 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.open_file(self._illustration_pdf_path)
 
-    def edit_output_py(self):
-        r'''Opens ``output.py``.
-
-        Returns none.
-        '''
-        self._io_manager.open_file(self._output_py_path)
-
-    def edit_versioned_definition_py(self):
-        r'''Opens versioned ``definition.py``.
-
-        Returns none.
-        '''
-        self._open_versioned_file('definition.py')
-
-    def edit_versioned_illustration_ly(self):
-        r'''Opens versioned ``illustration.ly``.
-
-        Returns none.
-        '''
-        self._open_versioned_file('illustration.ly')
-
     def open_versioned_illustration_pdf(self):
         r'''Opens versioned ``illustration.pdf``.
 
         Returns none.
         '''
         self._open_versioned_file('illustration.pdf')
-
-    def edit_versioned_output_py(self):
-        r'''Opens versioned ``output.py``.
-
-        Returns none.
-        '''
-        self._open_versioned_file('output.py')
 
     def output_definition_py(self, dry_run=False):
         r'''Outputs ``definition.py`` to ``output.py``.

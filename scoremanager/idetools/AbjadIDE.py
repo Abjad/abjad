@@ -173,13 +173,6 @@ class AbjadIDE(Wrangler):
         self._make_views_menu_section(menu)
         return menu
 
-    def _supply_missing_views_files(self):
-        if self._session.is_test:
-            return
-        with self._io_manager._silent():
-            for wrangler in self._wranglers:
-                wrangler.write_views_py()
-
     def _run(self, input_=None):
         from scoremanager import idetools
         self._session._reinitialize()
@@ -220,21 +213,28 @@ class AbjadIDE(Wrangler):
                         self._io_manager._display('')
                     return
     
+    def _supply_missing_views_files(self):
+        if self._session.is_test:
+            return
+        with self._io_manager._silent():
+            for wrangler in self._wranglers:
+                wrangler.write_views_py()
+
     def _update_session_variables(self):
         self._session._is_backtracking_to_score = False
         self._session._is_navigating_to_scores = False
 
     ### PUBLIC METHODS ###
 
-    def list_every_init_py(self):
-        r'''Lists every ``__init__.py``.
+    def edit_every_init_py(self):
+        r'''Opens every ``__init__.py``.
 
         Returns none.
         '''
         self._io_manager._display_not_yet_implemented()
 
-    def edit_every_init_py(self):
-        r'''Opens every ``__init__.py``.
+    def list_every_init_py(self):
+        r'''Lists every ``__init__.py``.
 
         Returns none.
         '''
