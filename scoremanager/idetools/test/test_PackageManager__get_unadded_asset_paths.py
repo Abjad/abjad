@@ -29,10 +29,11 @@ def test_PackageManager__get_unadded_asset_paths_02():
         repository='svn',
         system=False,
         )
-    temporary_file = os.path.join(manager._path, 'test_temporary.txt')
 
     if not manager:
         return
+
+    temporary_file = os.path.join(manager._path, 'test_temporary.txt')
 
     assert manager._is_up_to_date()
     assert manager._get_unadded_asset_paths() == []
