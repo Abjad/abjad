@@ -6,7 +6,7 @@ import scoremanager
 def test_SegmentPackageManager_doctest_01():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score g A pyd q'
+    input_ = 'red~example~score g A dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

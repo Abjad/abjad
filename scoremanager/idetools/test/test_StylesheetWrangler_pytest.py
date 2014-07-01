@@ -8,7 +8,7 @@ def test_StylesheetWrangler_pytest_01():
     r'''Works on all visible stylesheets in library.
     '''
 
-    input_ = 'Y pyt q'
+    input_ = 'Y pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_StylesheetWrangler_pytest_02():
     r'''Works on all visible stylesheets in a single score.
     '''
 
-    input_ = 'red~example~score y pyt q'
+    input_ = 'red~example~score y pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

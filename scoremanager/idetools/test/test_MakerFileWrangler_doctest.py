@@ -8,7 +8,7 @@ def test_MakerFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'K pyd q'
+    input_ = 'K dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_MakerFileWrangler_doctest_02():
     r'''In score package.
     '''
 
-    input_ = 'red~example~score k pyd q'
+    input_ = 'red~example~score k dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

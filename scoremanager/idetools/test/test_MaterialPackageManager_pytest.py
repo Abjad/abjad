@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageManager_pytest_01():
 
-    input_ = 'red~example~score m magic~numbers pyt q'
+    input_ = 'red~example~score m magic~numbers pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

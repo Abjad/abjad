@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'G pyd q'
+    input_ = 'G dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_SegmentPackageWrangler_doctest_02():
     r'''In score package.
     '''
 
-    input_ = 'red~example~score g pyd q'
+    input_ = 'red~example~score g dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -73,7 +73,7 @@ class ScorePackageWrangler(PackageWrangler):
             'co': self.open_cache,
             'cw': self.write_cache,
             #
-            'spo*': self.open_every_score_pdf,
+            'so*': self.open_every_score_pdf,
             })
         return result
 
@@ -202,7 +202,7 @@ class ScorePackageWrangler(PackageWrangler):
         superclass = super(ScorePackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
-        commands.append(('all packages - score.pdf - open', 'spo*'))
+        commands.append(('all packages - score.pdf - open', 'so*'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

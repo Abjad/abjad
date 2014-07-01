@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'D pyd q'
+    input_ = 'D dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -24,7 +24,7 @@ def test_DistributionFileWrangler_doctest_02():
     r'''In score package.
     '''
 
-    input_ = 'red~example~score d pyd q'
+    input_ = 'red~example~score d dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageManager_pytest_01():
 
-    input_ = 'red~example~score pyt q'
+    input_ = 'red~example~score pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

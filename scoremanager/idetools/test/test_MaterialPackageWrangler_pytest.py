@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_pytest_01():
     r'''Works on a single material package.
     '''
 
-    input_ = 'red~example~score m tempo~inventory pyt q'
+    input_ = 'red~example~score m tempo~inventory pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_pytest_02():
     r'''Works on all material packages in a score.
     '''
 
-    input_ = 'red~example~score m pyt q'
+    input_ = 'red~example~score m pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_pytest_03():
     r'''Works on all material packages in library.
     '''
 
-    input_ = 'M pyt q'
+    input_ = 'M pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

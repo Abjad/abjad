@@ -10,7 +10,7 @@ def test_Menu__display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'system - available commands' in contents
+    assert 'system - commands' in contents
     assert 'scores - new' in contents
 
 
@@ -30,11 +30,11 @@ def test_Menu__display_available_commands_02():
 
 
 def test_Menu__display_available_commands_03():
-    r'''Hidden menu persists after 'LilyPond log view.
+    r'''Hidden menu persists after LilyPond log.
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = '?? log q'
+    input_ = '?? ll q'
     ide._run(input_=input_)
 
     titles = [

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_SegmentPackageManager_invoke_python_01():
     
-    input_ = 'red~example~score g A pyi 2**38 q'
+    input_ = 'red~example~score g A py 2**38 q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

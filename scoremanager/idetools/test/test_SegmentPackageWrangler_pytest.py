@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_pytest_01():
     r'''Works on all visible segment packages in library.
     '''
 
-    input_ = 'G pyt q'
+    input_ = 'G pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_SegmentPackageWrangler_pytest_02():
     r'''Works on all segment packages in a score.
     '''
 
-    input_ = 'red~example~score g pyt q'
+    input_ = 'red~example~score g pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -42,7 +42,7 @@ def test_SegmentPackageWrangler_pytest_03():
     r'''Works on a single segment package.
     '''
 
-    input_ = 'red~example~score g A pyt q'
+    input_ = 'red~example~score g A pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

@@ -8,7 +8,7 @@ def test_StylesheetWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'Y pyd q'
+    input_ = 'Y dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -24,7 +24,7 @@ def test_StylesheetWrangler_doctest_02():
     r'''In score package.
     '''
 
-    input_ = 'red~example~score y pyd q'
+    input_ = 'red~example~score y dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

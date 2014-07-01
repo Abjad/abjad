@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_doctest_01():
     r'''Works in library.
     '''
 
-    input_ = 'M pyd q'
+    input_ = 'M dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_doctest_02():
     r'''Works in score.
     '''
 
-    input_ = 'red~example~score m pyd q'
+    input_ = 'red~example~score m dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

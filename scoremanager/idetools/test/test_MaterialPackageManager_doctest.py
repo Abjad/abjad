@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageManager_doctest_01():
 
-    input_ = 'red~example~score m tempo~inventory pyd q'
+    input_ = 'red~example~score m tempo~inventory dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

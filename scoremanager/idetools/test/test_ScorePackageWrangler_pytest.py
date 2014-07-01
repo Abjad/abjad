@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_pytest_01():
     r'''Works on all visible score packages.
     '''
 
-    input_ = 'pyt q'
+    input_ = 'pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_ScorePackageWrangler_pytest_02():
     r'''Works on a single score package.
     '''
 
-    input_ = 'red~example~score pyt q'
+    input_ = 'red~example~score pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

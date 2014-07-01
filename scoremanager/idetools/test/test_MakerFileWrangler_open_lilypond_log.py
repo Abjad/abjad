@@ -8,7 +8,7 @@ def test_MakerFileWrangler_open_lilypond_log_01():
     r'''In score.
     '''
 
-    input_ = 'red~example~score k log q'
+    input_ = 'red~example~score k ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file
@@ -18,7 +18,7 @@ def test_MakerFileWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'K log q'
+    input_ = 'K ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file

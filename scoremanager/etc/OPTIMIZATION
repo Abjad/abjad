@@ -170,7 +170,7 @@ CONCLUSION: these are extremely good results. The identified inefficiency was
 the problem.
 
 It is possible that turning caching back on could increase pytest battery 
-performance. Such will results will be recorded in a future entry to this log.
+performance. Such will results will be recorded in a future entry to this ll.
 
 
 ### r10,252 ###

@@ -8,7 +8,7 @@ def test_BuildFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'U pyd q'
+    input_ = 'U dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -24,7 +24,7 @@ def test_BuildFileWrangler_doctest_02():
     r'''In score package.
     '''
 
-    input_ = 'red~example~score u pyd q'
+    input_ = 'red~example~score u dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

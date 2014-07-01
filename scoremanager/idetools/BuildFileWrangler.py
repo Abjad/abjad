@@ -252,7 +252,7 @@ class BuildFileWrangler(FileWrangler):
             self._io_manager.spawn_subprocess(command_called_twice)
             command = 'rm {}/*.aux'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
-            command = 'rm {}/*.log'.format(output_directory)
+            command = 'rm {}/*.ll'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
 
     def _make_back_cover_menu_section(self, menu):

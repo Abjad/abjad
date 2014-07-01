@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_open_every_score_pdf_01():
 
-    input_ = 'spo* y q'
+    input_ = 'so* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_doctest_01():
 
-    input_ = 'pyd q'
+    input_ = 'dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

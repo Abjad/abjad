@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageManager_open_score_pdf_01():
 
-    input_ = 'red~example~score spo q'
+    input_ = 'red~example~score so q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file
@@ -14,7 +14,7 @@ def test_ScorePackageManager_open_score_pdf_01():
 
 def test_ScorePackageManager_open_score_pdf_02():
 
-    input_ = 'blue~example~score spo q'
+    input_ = 'blue~example~score so q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

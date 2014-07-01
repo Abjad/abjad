@@ -54,7 +54,7 @@ class ScorePackageManager(PackageManager):
         result = result.copy()
         result.update({
             'p': self.go_to_setup,
-            'spo': self.open_score_pdf,
+            'so': self.open_score_pdf,
             })
         return result
 
@@ -211,7 +211,7 @@ class ScorePackageManager(PackageManager):
         superclass = super(ScorePackageManager, self)
         commands = superclass._make_package_menu_section(
             menu, commands_only=True)
-        commands.append(('package - score.pdf - open', 'spo'))
+        commands.append(('package - score.pdf - open', 'so'))
         commands.append(('package - setup', 'p'))
         menu.make_command_section(
             is_hidden=True,

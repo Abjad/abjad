@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_pytest_01():
     r'''Works on all distribution files in library.
     '''
 
-    input_ = 'D pyt q'
+    input_ = 'D pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 
@@ -25,7 +25,7 @@ def test_DistributionFileWrangler_pytest_02():
     r'''Works on all files in a single distribution directory.
     '''
 
-    input_ = 'red~example~score d pyt q'
+    input_ = 'red~example~score d pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

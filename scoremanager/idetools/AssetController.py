@@ -55,10 +55,10 @@ class AssetController(Controller):
             #
             '!': self.invoke_shell,
             '??': self.display_available_commands,
-            'log': self.open_lilypond_log,
-            'pyd': self.doctest,
-            'pyi': self.invoke_python,
-            'pyt': self.pytest,
+            'll': self.open_lilypond_log,
+            'dt': self.doctest,
+            'py': self.invoke_python,
+            'pt': self.pytest,
             'sv': self.display_session_variables,
             })
         return result
@@ -370,13 +370,13 @@ class AssetController(Controller):
 
     def _make_system_menu_section(self, menu):
         commands = []
-        commands.append(('system - available commands', '??'))
-        commands.append(('system - doctest', 'pyd'))
-        commands.append(('system - session variables', 'sv'))
-        commands.append(('system - LilyPond log', 'log'))
-        commands.append(('system - Python', 'pyi'))
-        commands.append(('system - pytest', 'pyt'))
+        commands.append(('system - commands', '??'))
+        commands.append(('system - doctest', 'dt'))
+        commands.append(('system - log', 'll'))
+        commands.append(('system - pytest', 'pt'))
+        commands.append(('system - python', 'py'))
         commands.append(('system - shell', '!'))
+        commands.append(('system - variables', 'sv'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
