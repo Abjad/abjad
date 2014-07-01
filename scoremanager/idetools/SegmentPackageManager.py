@@ -63,9 +63,9 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'ke': self.edit_make_py,
             'ks': self.write_stub_make_py,
             #
-            'oi': self.interpret_output_ly,
-            'oe': self.edit_output_ly,
-            'oo': self.open_output_pdf,
+            'ii': self.interpret_output_ly,
+            'ie': self.edit_output_ly,
+            'io': self.open_output_pdf,
             #
             'vde': self.edit_versioned_definition_py,
             'voe': self.edit_versioned_output_ly,
@@ -142,10 +142,10 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_output_ly_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_lilypond_file_path):
-            commands.append(('illustration.ly - edit', 'oe'))
-            commands.append(('illustration.ly - interpret', 'oi'))
+            commands.append(('illustration.ly - edit', 'ie'))
+            commands.append(('illustration.ly - interpret', 'ii'))
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('illustration.pdf - open', 'oo'))
+            commands.append(('illustration.pdf - open', 'io'))
         if commands:
             menu.make_command_section(
                 is_hidden=False,

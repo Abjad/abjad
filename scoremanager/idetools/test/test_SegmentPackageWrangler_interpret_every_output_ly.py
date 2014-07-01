@@ -22,7 +22,7 @@ def test_SegmentPackageWrangler_interpret_every_output_ly_01():
     pdf_paths = [_ for _ in paths if _.endswith('.pdf')]
 
     with systemtools.FilesystemState(keep=pdf_paths):
-        input_ = 'red~example~score g oi* y q'
+        input_ = 'red~example~score g ii* y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         strings = []

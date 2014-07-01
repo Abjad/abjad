@@ -50,8 +50,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             'ke*': self.open_every_make_py,
             'ks*': self.write_every_make_py_stub,
             #
-            'oi*': self.interpret_every_output_ly,
-            'oo*': self.open_every_output_pdf,
+            'ii*': self.interpret_every_output_ly,
+            'io*': self.open_every_output_pdf,
             })
         return result
 
@@ -79,8 +79,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         commands.append(('all packages - __make.py__ - interpret', 'ki*'))
         commands.append(('all packages - __make.py__ - stub', 'ks*'))
         commands.append(('all packages - definition.py - edit', 'de*'))
-        commands.append(('all packages - illustration.ly - interpret', 'oi*'))
-        commands.append(('all packages - illustration.pdf - open', 'oo*'))
+        commands.append(('all packages - illustration.ly - interpret', 'ii*'))
+        commands.append(('all packages - illustration.pdf - open', 'io*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
