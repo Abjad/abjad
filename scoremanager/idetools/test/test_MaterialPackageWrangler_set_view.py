@@ -23,10 +23,10 @@ def test_MaterialPackageWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'M va add _test'
+        input_ = 'M wa add _test'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
 
@@ -67,9 +67,9 @@ def test_MaterialPackageWrangler_set_view_02():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'red~example~score m va add _test'
+        input_ = 'red~example~score m wa add _test'
         input_ += ' add instrumentation done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
 
@@ -105,7 +105,7 @@ def test_MaterialPackageWrangler_set_view_03():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs inventories q'
+        input_ = 'red~example~score m ws inventories q'
         ide._run(input_=input_)
         transcript = ide._transcript
 
@@ -144,7 +144,7 @@ def test_MaterialPackageWrangler_set_view_04():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs inventories q'
+        input_ = 'red~example~score m ws inventories q'
         ide._run(input_=input_)
         transcript = ide._transcript
 
@@ -183,7 +183,7 @@ def test_MaterialPackageWrangler_set_view_05():
         )
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(metadata_file)
-        input_ = 'red~example~score m vs magic q'
+        input_ = 'red~example~score m ws magic q'
         ide._run(input_=input_)
         transcript = ide._transcript
 

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MakerFileWrangler_open_views_py_01():
 
-    input_ = 'K vo q'
+    input_ = 'K wo q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file
@@ -14,7 +14,7 @@ def test_MakerFileWrangler_open_views_py_01():
 
 def test_MakerFileWrangler_open_views_py_02():
 
-    input_ = 'blue~example~score k vo q'
+    input_ = 'blue~example~score k wo q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

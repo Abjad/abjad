@@ -79,8 +79,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             'do*': self.open_every_definition_py,
             'dp*': self.output_every_definition_py,
             #
-            'ili*': self.interpret_every_illustration_ly,
-            'ipo*': self.open_every_illustration_pdf,
+            'ii*': self.interpret_every_illustration_ly,
+            'io*': self.open_every_illustration_pdf,
             #
             'oc*': self.check_every_output_py,
             'oo*': self.open_every_output_py,
@@ -170,8 +170,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         commands.append(('all packages - definition.py - check', 'dc*'))
         commands.append(('all packages - definition.py - open', 'do*'))
         commands.append(('all packages - definition.py - output', 'dp*'))
-        commands.append(('all packages - illustration.ly - interpret', 'ili*'))
-        commands.append(('all packages - illustration.pdf - open', 'ipo*'))
+        commands.append(('all packages - illustration.ly - interpret', 'ii*'))
+        commands.append(('all packages - illustration.pdf - open', 'io*'))
         commands.append(('all packages - output.py - check', 'oc*'))
         commands.append(('all packages - output.py - open', 'oo*'))
         menu.make_command_section(

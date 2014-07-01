@@ -78,9 +78,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'li': self.interpret_illustrate_py,
             'ls': self.write_stub_illustrate_py,
             #
-            'ili': self.interpret_illustration_ly,
+            'ii': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
-            'ipo': self.open_illustration_pdf,
+            'io': self.open_illustration_pdf,
             #
             'oc': self.check_output_py,
             'oi': self.illustrate_output_py,
@@ -253,10 +253,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._illustration_ly_path):
-            commands.append(('illustration.ly - interpret', 'ili'))
+            commands.append(('illustration.ly - interpret', 'ii'))
             commands.append(('illustration.ly - open', 'ilo'))
         if os.path.isfile(self._illustration_pdf_path):
-            commands.append(('illustration.pdf - open', 'ipo'))
+            commands.append(('illustration.pdf - open', 'io'))
         if commands:
             menu.make_command_section(
                 commands=commands,

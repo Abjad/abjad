@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_open_every_illustration_pdf_01():
             )
         paths.append(path)
 
-    input_ = 'red~example~score m ipo* y q'
+    input_ = 'red~example~score m io* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
     assert ide._session._attempted_to_open_file

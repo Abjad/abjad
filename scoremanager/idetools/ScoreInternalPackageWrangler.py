@@ -22,7 +22,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             'ns': self.write_stub_init_py,
             #
             'vr*': self.version_every_package,
-            'vrl*': self.list_every_versions_directory,
+            'vl*': self.list_every_versions_directory,
             })
         return result
 
@@ -32,7 +32,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         superclass = super(ScoreInternalPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
-        commands.append(('all packages - versions - list directory', 'vrl*'))
+        commands.append(('all packages - versions - list directory', 'vl*'))
         commands.append(('all packages - version', 'vr*'))
         if commands_only:
             return commands

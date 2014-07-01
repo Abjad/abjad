@@ -18,7 +18,7 @@ def test_StylesheetWrangler_autoedit_views_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = "Y va add _test add 'clean-letter-14'~in~:ds:"
+        input_ = "Y wa add _test add 'clean-letter-14'~in~:ds:"
         input_ += " add 'clean-letter-16'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'clean-letter-14' done"

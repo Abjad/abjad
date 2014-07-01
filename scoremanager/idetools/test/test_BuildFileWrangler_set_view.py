@@ -23,11 +23,11 @@ def test_BuildFileWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'U va add _test'
+        input_ = 'U wa add _test'
         input_ += ' add segment-01.ly~(Red~Example~Score)'
         input_ += ' add segment-02.ly~(Red~Example~Score)'
         input_ += ' add segment-03.ly~(Red~Example~Score) done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
@@ -68,9 +68,9 @@ def test_BuildFileWrangler_set_view_02():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'red~example~score u va add _test'
+        input_ = 'red~example~score u wa add _test'
         input_ += ' add segment-01.ly done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [

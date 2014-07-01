@@ -40,7 +40,7 @@ class ScoreInternalPackageManager(PackageManager):
             '>': self.go_to_next_package,
             #
             'vr': self.version_package,
-            'vrl': self.list_versions_directory,
+            'vl': self.list_versions_directory,
             })
         return result
 
@@ -55,7 +55,7 @@ class ScoreInternalPackageManager(PackageManager):
         commands = superclass._make_package_menu_section(
             menu, commands_only=True)
         commands.append(('package - version', 'vr'))
-        commands.append(('package - versions list', 'vrl'))
+        commands.append(('package - versions list', 'vl'))
         if commands_only:
             return commands
         if commands:

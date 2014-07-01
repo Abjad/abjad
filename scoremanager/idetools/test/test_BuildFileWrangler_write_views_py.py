@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_BuildFileWrangler_write_views_py_01():
 
-    input_ = 'red~example~score u vw y q'
+    input_ = 'red~example~score u ww y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

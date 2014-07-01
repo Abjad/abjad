@@ -18,7 +18,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = "S va add _test add 'Red~Example~Score'~in~:ds:"
+        input_ = "S wa add _test add 'Red~Example~Score'~in~:ds:"
         input_ += " add 'Blue~Example~Score'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'Red~Example~Score' done"

@@ -6,12 +6,12 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_list_every_versions_directory_01():
 
-    input_ = 'red~example~score m vrl* q'
+    input_ = 'red~example~score m vl* q'
     ide._run(input_=input_)
     transcript_lines = ide._transcript.lines
 
     lines = [
-        '> vrl*',
+        '> vl*',
         'Instrumentation:',
         '    output_0001.py',
         'Magic numbers:',

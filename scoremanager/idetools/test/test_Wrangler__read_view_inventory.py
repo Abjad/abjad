@@ -34,7 +34,7 @@ def test_Wrangler__read_view_inventory_01():
         os.remove(metadata_file)
         shutil.copyfile(exception_file, views_file)
         assert filecmp.cmp(views_file, exception_file)
-        input_ = 'blue~example~score g va q'
+        input_ = 'blue~example~score g wa q'
         ide._run(input_=input_)
 
     titles = [

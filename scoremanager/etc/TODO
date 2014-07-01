@@ -9,7 +9,7 @@
 5.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-6.  Implement 'views - write' (vw).
+6.  Implement 'views - write' (ww).
     Implement 'views - check' (vc).
 
 7.  Implement '__metadata__.py - check' (mdc).
@@ -36,10 +36,10 @@
 
 16. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
-    of definition.py files. Implement (va!) to autostart (and thereafter
+    of definition.py files. Implement (wa!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
     for __metadata__.py files. And in general implement a paired (xa!) for
-    every (xa) command, while noting that (da) and (va) are the only two
+    every (xa) command, while noting that (da) and (wa) are the only two
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 

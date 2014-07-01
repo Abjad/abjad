@@ -68,8 +68,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'opo': self.open_output_pdf,
             #
             'vdo': self.open_versioned_definition_py,
-            'volo': self.open_versioned_output_ly,
-            'vopo': self.open_versioned_output_pdf,
+            'vlo': self.open_versioned_output_ly,
+            'vpo': self.open_versioned_output_pdf,
             })
         return result
 
@@ -181,8 +181,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_versions_directory_menu_section(self, menu):
         commands = []
         commands.append(('versions - definition.py - open', 'vdo'))
-        commands.append(('versions - output.ly - open', 'volo'))
-        commands.append(('versions - output.pdf - open', 'vopo'))
+        commands.append(('versions - output.ly - open', 'vlo'))
+        commands.append(('versions - output.pdf - open', 'vpo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

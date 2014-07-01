@@ -21,9 +21,9 @@ def test_ScorePackageWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'va add _test'
+        input_ = 'wa add _test'
         input_ += ' add Red~Example~Score~(2013) done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [

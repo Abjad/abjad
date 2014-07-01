@@ -23,9 +23,9 @@ def test_DistributionFileWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'D va add _test'
+        input_ = 'D wa add _test'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
@@ -64,9 +64,9 @@ def test_DistributionFileWrangler_set_view_02():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'red~example~score d va add _test'
+        input_ = 'red~example~score d wa add _test'
         input_ += ' add red-example-score.pdf done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [

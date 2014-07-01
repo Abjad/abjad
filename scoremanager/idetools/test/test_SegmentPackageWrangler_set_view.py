@@ -23,9 +23,9 @@ def test_SegmentPackageWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'G va add _test'
+        input_ = 'G wa add _test'
         input_ += ' add A~(Red~Example~Score) done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
@@ -64,9 +64,9 @@ def test_SegmentPackageWrangler_set_view_02():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = 'red~example~score g va add _test'
+        input_ = 'red~example~score g wa add _test'
         input_ += ' add A done done'
-        input_ += ' vs _test q'
+        input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [

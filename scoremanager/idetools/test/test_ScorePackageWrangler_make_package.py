@@ -66,8 +66,8 @@ def test_ScorePackageWrangler_make_package_02():
     with systemtools.FilesystemState(
         keep=[cache, views_file], remove=[score_package]
         ):
-        input_ = 'va add _test_view done done'
-        input_ += ' vs _test_view new example~score y q'
+        input_ = 'wa add _test_view done done'
+        input_ += ' ws _test_view new example~score y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         assert os.path.exists(score_package)

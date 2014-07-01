@@ -27,7 +27,7 @@ def test_MaterialPackageManager_interpret_illustration_ly_01():
     with systemtools.FilesystemState(keep=[ly_path, pdf_path]):
         os.remove(pdf_path)
         assert not os.path.exists(pdf_path)
-        input_ = 'red~example~score m tempo~inventory ili q'
+        input_ = 'red~example~score m tempo~inventory ii q'
         ide._run(input_=input_)
         assert os.path.isfile(pdf_path)
         assert systemtools.TestManager.compare_pdfs(
