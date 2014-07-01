@@ -102,3 +102,5 @@
 
 31. Maybe get rid of the segment __make__.py files.
     Just do everything in IDE. Will improve messaging.
+
+32. Remove blank line at top of first column in two-column layout of (S ??).

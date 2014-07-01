@@ -1139,6 +1139,7 @@ class Wrangler(ScoreInternalAssetController):
 
         Returns none.
         '''
+        from scoremanager import idetools
         inputs, outputs = [], []
         inputs.append(self._views_py_path)
         messages = self._format_messaging(inputs, outputs, verb='write')
@@ -1147,6 +1148,7 @@ class Wrangler(ScoreInternalAssetController):
         if self._session.is_backtracking or not result:
             return
         view_inventory = self._read_view_inventory()
+        view_inventory = view_inventory or idetools.ViewInventory()
         with self._io_manager._silent():
             self._write_view_inventory(view_inventory)
         message = 'wrote {}.'.format(self._views_py_path)

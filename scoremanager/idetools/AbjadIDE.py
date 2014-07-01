@@ -38,6 +38,7 @@ class AbjadIDE(Wrangler):
         self._session._ide = self
         self._simple_score_annotation = True
         self._sort_by_annotation = True
+        self._supply_missing_views_files()
 
     ### PRIVATE PROPERTIES ###
 
@@ -59,8 +60,8 @@ class AbjadIDE(Wrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'nl*': self.list_every_init_py,
             'ne*': self.edit_every_init_py,
+            'nl*': self.list_every_init_py,
             'ns*': self.write_every_init_py_stub,
             })
         return result
@@ -100,6 +101,18 @@ class AbjadIDE(Wrangler):
     def _stylesheet_wrangler(self):
         from scoremanager import idetools
         return idetools.StylesheetWrangler(session=self._session)
+
+    @property
+    def _wranglers(self):
+        return (
+            self,
+            self._distribution_file_wrangler,
+            self._maker_file_wrangler,
+            self._material_package_wrangler,
+            self._score_package_wrangler,
+            self._segment_package_wrangler,
+            self._stylesheet_wrangler,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -159,6 +172,13 @@ class AbjadIDE(Wrangler):
         self._make_init_py_menu_section(menu)
         self._make_views_menu_section(menu)
         return menu
+
+    def _supply_missing_views_files(self):
+        if self._session.is_test:
+            return
+        with self._io_manager._silent():
+            for wrangler in self._wranglers:
+                wrangler.write_views_py()
 
     def _run(self, input_=None):
         from scoremanager import idetools
