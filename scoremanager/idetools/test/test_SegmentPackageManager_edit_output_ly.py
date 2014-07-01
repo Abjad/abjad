@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_ScorePackageWrangler_open_cache_01():
+def test_SegmentPackageManager_edit_output_ly_01():
 
-    ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'ce q'
+    input_ = 'red~example~score g A oe q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file

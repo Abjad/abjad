@@ -70,7 +70,7 @@ class ScorePackageWrangler(PackageWrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'ce': self.open_cache,
+            'ce': self.edit_cache,
             'cw': self.write_cache,
             #
             'so*': self.open_every_score_pdf,
@@ -290,7 +290,7 @@ class ScorePackageWrangler(PackageWrangler):
 #        with self._io_manager._silent():
 #            self.write_cache()
 
-    def open_cache(self):
+    def edit_cache(self):
         r'''Opens cache.
 
         Returns none.

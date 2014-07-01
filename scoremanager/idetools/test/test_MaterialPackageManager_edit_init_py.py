@@ -4,9 +4,9 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_ScorePackageManager_open_init_py_01():
+def test_MaterialPackageManager_edit_init_py_01():
 
-    input_ = 'red~example~score ne q'
+    input_ = 'red~example~score m magic~numbers ne q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file

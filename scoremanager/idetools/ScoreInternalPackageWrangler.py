@@ -17,7 +17,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
-            'ne': self.open_init_py,
+            'ne': self.edit_init_py,
             'nl': self.list_init_py,
             'ns': self.write_stub_init_py,
             #
@@ -82,12 +82,12 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         '''
         self._current_package_manager.list_init_py()
 
-    def open_init_py(self):
+    def edit_init_py(self):
         r'''Opens ``__init__.py``.
 
         Returns none.
         '''
-        self._current_package_manager.open_init_py()
+        self._current_package_manager.edit_init_py()
 
     def version_every_package(self):
         r'''Versions every package.

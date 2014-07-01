@@ -49,7 +49,7 @@ class AssetController(Controller):
             #
             'cc': self.check_contents,
             #
-            'mde': self.open_metadata_py,
+            'mde': self.edit_metadata_py,
             'mdl': self.list_metadata_py,
             'mdw': self.write_metadata_py,
             #
@@ -715,7 +715,7 @@ class AssetController(Controller):
             return
         systemtools.IOManager.open_last_log()
 
-    def open_metadata_py(self):
+    def edit_metadata_py(self):
         r'''Opens ``__metadata__.py``.
 
         Returns none.

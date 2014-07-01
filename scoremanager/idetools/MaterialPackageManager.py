@@ -79,17 +79,17 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ls': self.write_stub_illustrate_py,
             #
             'ii': self.interpret_illustration_ly,
-            'ie': self.open_illustration_ly,
+            'ie': self.edit_illustration_ly,
             'io': self.open_illustration_pdf,
             #
             'oc': self.check_output_py,
             'oi': self.illustrate_output_py,
             'oe': self.edit_output_py,
             #
-            'vde': self.open_versioned_definition_py,
-            'vilo': self.open_versioned_illustration_ly,
-            'vipo': self.open_versioned_illustration_pdf,
-            'voo': self.open_versioned_output_py,
+            'vde': self.edit_versioned_definition_py,
+            'vie': self.edit_versioned_illustration_ly,
+            'vio': self.open_versioned_illustration_pdf,
+            'voe': self.edit_versioned_output_py,
             })
         return result
 
@@ -382,9 +382,9 @@ class MaterialPackageManager(ScoreInternalPackageManager):
     def _make_versions_directory_menu_section(self, menu):
         commands = []
         commands.append(('versions - definition.py - edit', 'vde'))
-        commands.append(('versions - illustration.ly - open', 'vilo'))
-        commands.append(('versions - illustration.pdf - open', 'vipo'))
-        commands.append(('versions - output.py - open', 'voo'))
+        commands.append(('versions - illustration.ly - edit', 'vie'))
+        commands.append(('versions - illustration.pdf - open', 'vio'))
+        commands.append(('versions - output.py - edit', 'voe'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -621,7 +621,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             message = 'illustration.ly file does not exist.'
             self._io_manager._display(message)
 
-    def open_illustration_ly(self):
+    def edit_illustration_ly(self):
         r'''Opens ``illustration.ly``.
 
         Returns none.
@@ -642,14 +642,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._io_manager.open_file(self._output_py_path)
 
-    def open_versioned_definition_py(self):
+    def edit_versioned_definition_py(self):
         r'''Opens versioned ``definition.py``.
 
         Returns none.
         '''
         self._open_versioned_file('definition.py')
 
-    def open_versioned_illustration_ly(self):
+    def edit_versioned_illustration_ly(self):
         r'''Opens versioned ``illustration.ly``.
 
         Returns none.
@@ -663,7 +663,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('illustration.pdf')
 
-    def open_versioned_output_py(self):
+    def edit_versioned_output_py(self):
         r'''Opens versioned ``output.py``.
 
         Returns none.

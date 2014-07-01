@@ -76,7 +76,7 @@ class PackageManager(ScoreInternalAssetController):
             'mdg': self.get_metadatum,
             'mdr': self.remove_metadatum,
             #
-            'ne': self.open_init_py,
+            'ne': self.edit_init_py,
             'nl': self.list_init_py,
             'ns': self.write_stub_init_py,
             #
@@ -1248,7 +1248,7 @@ class PackageManager(ScoreInternalAssetController):
         '''
         self._io_manager._display(self._init_py_file_path)
 
-    def open_init_py(self):
+    def edit_init_py(self):
         r'''Opens ``__init__.py``.
 
         Returns none.

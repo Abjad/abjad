@@ -27,7 +27,7 @@ def test_SegmentPackageManager_interpret_output_ly_01():
     with systemtools.FilesystemState(keep=[ly_path, pdf_path]):
         os.remove(pdf_path)
         assert not os.path.exists(pdf_path)
-        input_ = 'red~example~score g A oli y q'
+        input_ = 'red~example~score g A oi y q'
         ide._run(input_=input_)
         assert os.path.isfile(pdf_path)
         assert systemtools.TestManager.compare_pdfs(

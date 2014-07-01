@@ -4,7 +4,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageManager_open_init_py_01():
+def test_SegmentPackageManager_edit_init_py_01():
     r'''Works when __init__.py doesn't exist.
     '''
 

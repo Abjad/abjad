@@ -80,7 +80,7 @@ class Wrangler(ScoreInternalAssetController):
             'wa': self.autoedit_views,
             'ws': self.set_view,
             #
-            'we': self.open_views_py,
+            'we': self.edit_views_py,
             'ww': self.write_views_py,
             })
         return result
@@ -1033,7 +1033,7 @@ class Wrangler(ScoreInternalAssetController):
             manager = self._io_manager._make_package_manager(path)
             manager.display_status()
 
-    def open_views_py(self):
+    def edit_views_py(self):
         r'''Opens ``__views__.py``.
 
         Returns none.

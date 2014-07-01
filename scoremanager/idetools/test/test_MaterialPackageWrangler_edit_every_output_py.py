@@ -5,7 +5,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageWrangler_open_every_output_01():
+def test_MaterialPackageWrangler_edit_every_output_py_01():
 
     input_ = 'red~example~score m oe* y q'
     ide._run(input_=input_)

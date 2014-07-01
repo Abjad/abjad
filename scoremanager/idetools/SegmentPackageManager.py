@@ -60,16 +60,16 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'ds': self.write_stub_definition_py,
             #
             'ki': self.interpret_make_py,
-            'ke': self.open_make_py,
+            'ke': self.edit_make_py,
             'ks': self.write_stub_make_py,
             #
-            'oli': self.interpret_output_ly,
-            'olo': self.open_output_ly,
-            'opo': self.open_output_pdf,
+            'oi': self.interpret_output_ly,
+            'oe': self.edit_output_ly,
+            'oo': self.open_output_pdf,
             #
-            'vde': self.open_versioned_definition_py,
-            'vlo': self.open_versioned_output_ly,
-            'vpo': self.open_versioned_output_pdf,
+            'vde': self.edit_versioned_definition_py,
+            'voe': self.edit_versioned_output_ly,
+            'voo': self.open_versioned_output_pdf,
             })
         return result
 
@@ -142,10 +142,10 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_output_ly_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_lilypond_file_path):
-            commands.append(('output.ly - interpret', 'oli'))
-            commands.append(('output.ly - open', 'olo'))
+            commands.append(('output.ly - edit', 'oe'))
+            commands.append(('output.ly - interpret', 'oi'))
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('output.pdf - open', 'opo'))
+            commands.append(('output.pdf - open', 'oo'))
         if commands:
             menu.make_command_section(
                 is_hidden=False,
@@ -181,8 +181,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_versions_directory_menu_section(self, menu):
         commands = []
         commands.append(('versions - definition.py - edit', 'vde'))
-        commands.append(('versions - output.ly - open', 'vlo'))
-        commands.append(('versions - output.pdf - open', 'vpo'))
+        commands.append(('versions - output.ly - edit', 'voe'))
+        commands.append(('versions - output.pdf - open', 'voo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -248,14 +248,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             return
         self._io_manager.run_lilypond(file_path, candidacy=True)
 
-    def open_make_py(self):
+    def edit_make_py(self):
         r'''Opens ``__make__.py``.
 
         Returns none.
         '''
         self._open_file(self._make_py_path)
 
-    def open_output_ly(self):
+    def edit_output_ly(self):
         r'''Opens ``output.ly``.
 
         Returns none.
@@ -269,14 +269,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         '''
         self._open_file(self._output_pdf_file_path)
 
-    def open_versioned_definition_py(self):
+    def edit_versioned_definition_py(self):
         r'''Opens versioned ``definition py``.
 
         Returns none.
         '''
         self._open_versioned_file('definition.py')
 
-    def open_versioned_output_ly(self):
+    def edit_versioned_output_ly(self):
         r'''Opens versioned ``output.ly``.
 
         Returns none.

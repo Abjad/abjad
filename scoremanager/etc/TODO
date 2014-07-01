@@ -104,3 +104,5 @@
     Just do everything in IDE. Will improve messaging.
 
 32. Remove blank line at top of first column in two-column layout of (S ??).
+    Also at the top of the first column of (M ??) and (D ??) and (U ??).
+    But not (G ??).

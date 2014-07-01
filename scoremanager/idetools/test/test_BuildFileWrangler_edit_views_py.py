@@ -4,17 +4,17 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_DistributionFileWrangler_open_views_py_01():
+def test_BuildFileWrangler_edit_views_py_01():
 
-    input_ = 'D we q'
+    input_ = 'U we q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file
 
 
-def test_DistributionFileWrangler_open_views_py_02():
+def test_BuildFileWrangler_edit_views_py_02():
 
-    input_ = 'blue~example~score d we q'
+    input_ = 'blue~example~score u we q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

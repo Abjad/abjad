@@ -4,9 +4,9 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_open_init_py_01():
+def test_StylesheetWrangler_edit_metadata_py_01():
 
-    input_ = 'red~example~score g ne q'
+    input_ = 'red~example~score y mde q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file
