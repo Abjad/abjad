@@ -13,5 +13,5 @@ def test_SegmentPackageManager_list_versions_directory_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    string = 'definition_0001.py output_0001.ly output_0001.pdf'
+    string = 'definition_0001.py illustration_0001.ly illustration_0001.pdf'
     assert string in contents

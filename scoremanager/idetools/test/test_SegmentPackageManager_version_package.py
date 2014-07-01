@@ -16,8 +16,8 @@ def test_SegmentPackageManager_version_package_01():
         )
     file_names = (
         'definition_0002.py',
-        'output_0002.ly',
-        'output_0002.pdf',
+        'illustration_0002.ly',
+        'illustration_0002.pdf',
         )
     paths = []
     for file_name in file_names:

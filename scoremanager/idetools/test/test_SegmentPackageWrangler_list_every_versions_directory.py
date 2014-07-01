@@ -13,11 +13,11 @@ def test_SegmentPackageWrangler_list_every_versions_directory_01():
     lines = [
         '> vl*',
         'A:',
-        '    definition_0001.py output_0001.ly output_0001.pdf',
+        '    definition_0001.py illustration_0001.ly illustration_0001.pdf',
         'B:',
-        '    definition_0001.py output_0001.ly output_0001.pdf',
+        '    definition_0001.py illustration_0001.ly illustration_0001.pdf',
         'C:',
-        '    definition_0001.py output_0001.ly output_0001.pdf',
+        '    definition_0001.py illustration_0001.ly illustration_0001.pdf',
         ]
     for line in lines:
         assert line in transcript_lines
