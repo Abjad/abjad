@@ -17,12 +17,12 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
-            'nls': self.list_init_py,
+            'nl': self.list_init_py,
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
             #
             'vr*': self.version_every_package,
-            'vrls*': self.list_every_versions_directory,
+            'vrl*': self.list_every_versions_directory,
             })
         return result
 
@@ -32,7 +32,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         superclass = super(ScoreInternalPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
-        commands.append(('all packages - versions - list directory', 'vrls*'))
+        commands.append(('all packages - versions - list directory', 'vrl*'))
         commands.append(('all packages - version', 'vr*'))
         if commands_only:
             return commands

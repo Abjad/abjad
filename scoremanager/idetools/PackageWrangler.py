@@ -23,11 +23,11 @@ class PackageWrangler(Wrangler):
             #
             'ck*': self.check_every_package,
             #
-            'mdls*': self.list_every_metadata_py,
+            'mdl*': self.list_every_metadata_py,
             'mdo*': self.open_every_metadata_py,
             'mdw*': self.write_every_metadata_py,
             #
-            'nls*': self.list_every_init_py,
+            'nl*': self.list_every_init_py,
             'no*': self.open_every_init_py,
             'ns*': self.write_every_init_py_stub,
             })
@@ -46,10 +46,10 @@ class PackageWrangler(Wrangler):
 
     def _make_all_packages_menu_section(self, menu, commands_only=False):
         commands = []
-        commands.append(('all packages - __init__.py - list', 'nls*'))
+        commands.append(('all packages - __init__.py - list', 'nl*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
         commands.append(('all packages - __init__.py - stub', 'ns*'))
-        commands.append(('all packages - __metadata__.py - list', 'mdls*'))
+        commands.append(('all packages - __metadata__.py - list', 'mdl*'))
         commands.append(('all packages - __metadata__.py - open', 'mdo*'))
         commands.append(('all packages - __metadata__.py - write', 'mdw*'))
         commands.append(('all packages - check', 'ck*'))

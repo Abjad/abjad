@@ -14,7 +14,7 @@ def test_DistributionFileWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'red~example~score d mdls q'
+    input_ = 'red~example~score d mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -28,7 +28,7 @@ def test_DistributionFileWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'D mdls q'
+    input_ = 'D mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

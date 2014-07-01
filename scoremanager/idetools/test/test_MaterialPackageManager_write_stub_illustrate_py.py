@@ -17,7 +17,7 @@ def test_MaterialPackageManager_write_stub_illustrate_py_01():
         )
 
     with systemtools.FilesystemState(keep=[path]):
-        input_ = 'red~example~score m magic~numbers is y q'
+        input_ = 'red~example~score m magic~numbers ls y q'
         ide._run(input_=input_)
         assert os.path.isfile(path)
         assert not filecmp.cmp(path, path + '.backup')

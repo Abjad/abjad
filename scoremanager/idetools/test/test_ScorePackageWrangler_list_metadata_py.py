@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'Mdls q'
+    input_ = 'mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

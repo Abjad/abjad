@@ -6,7 +6,7 @@ import scoremanager
 def test_MaterialPackageManager_list_versions_directory_01():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score m magic~numbers vrls q'
+    input_ = 'red~example~score m magic~numbers vrl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -17,7 +17,7 @@ def test_MaterialPackageManager_list_versions_directory_01():
 def test_MaterialPackageManager_list_versions_directory_02():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score m tempo~inventory vrls q'
+    input_ = 'red~example~score m tempo~inventory vrl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -14,7 +14,7 @@ def test_SegmentPackageWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'red~example~score g mdls q'
+    input_ = 'red~example~score g mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -28,7 +28,7 @@ def test_SegmentPackageWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'G mdls q'
+    input_ = 'G mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

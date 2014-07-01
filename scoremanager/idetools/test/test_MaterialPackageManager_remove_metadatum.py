@@ -30,7 +30,7 @@ def test_MaterialPackageManager_remove_metadatum_01():
         assert "'cherry'" in ide._transcript.contents
 
         # remove flavor metadatum
-        input_ = 'red~example~score m magic~numbers mdrm flavor q'
+        input_ = 'red~example~score m magic~numbers mdr flavor q'
         ide._run(input_=input_)
 
         # make sure no flavor metadatum found

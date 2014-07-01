@@ -14,7 +14,7 @@ metadata_py_path = os.path.join(
 
 def test_SegmentPackageManager_list_metadata_py_01():
 
-    input_ = 'red~example~score g A mdls q'
+    input_ = 'red~example~score g A mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

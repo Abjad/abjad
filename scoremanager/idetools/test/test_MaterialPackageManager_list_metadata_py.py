@@ -14,7 +14,7 @@ metadata_py_path = os.path.join(
 
 def test_MaterialPackageManager_list_metadata_py_01():
 
-    input_ = 'red~example~score m magic~numbers mdls q'
+    input_ = 'red~example~score m magic~numbers mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

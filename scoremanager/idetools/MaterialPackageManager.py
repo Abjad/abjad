@@ -73,10 +73,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'dp': self.output_definition_py,
             'ds': self.write_stub_definition_py,
             #
-            'ie': self.edit_illustrate_py,
-            'iei': self.edit_and_interpret_illustrate_py,
-            'ii': self.interpret_illustrate_py,
-            'is': self.write_stub_illustrate_py,
+            'le': self.edit_illustrate_py,
+            'lei': self.edit_and_interpret_illustrate_py,
+            'li': self.interpret_illustrate_py,
+            'ls': self.write_stub_illustrate_py,
             #
             'ili': self.interpret_illustration_ly,
             'ilo': self.open_illustration_ly,
@@ -233,17 +233,17 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         if os.path.isfile(self._illustrate_py_path):
             is_hidden = False
             string = '__illustrate__.py - edit'
-            commands.append((string, 'ie'))
+            commands.append((string, 'le'))
             string = '__illustrate__.py - edit & interpret'
-            commands.append((string, 'iei'))
+            commands.append((string, 'lei'))
             string = '__illustrate__.py - interpret'
-            commands.append((string, 'ii'))
+            commands.append((string, 'li'))
             string = '__illustrate__.py - stub'
-            commands.append((string, 'is'))
+            commands.append((string, 'ls'))
         else:
             is_hidden = True
             string = '__illustrate__.py - stub'
-            commands.append((string, 'is'))
+            commands.append((string, 'ls'))
         menu.make_command_section(
             is_hidden=is_hidden,
             commands=commands,

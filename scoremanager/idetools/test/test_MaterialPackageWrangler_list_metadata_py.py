@@ -14,7 +14,7 @@ def test_MaterialPackageWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'red~example~score m mdls q'
+    input_ = 'red~example~score m mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'M mdls q'
+    input_ = 'M mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

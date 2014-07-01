@@ -14,7 +14,7 @@ def test_BuildFileWrangler_list_metadata_py_01():
         '__metadata__.py',
         )
 
-    input_ = 'red~example~score u mdls q'
+    input_ = 'red~example~score u mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -30,7 +30,7 @@ def test_BuildFileWrangler_list_metadata_py_02():
         '__metadata__.py',
         )
 
-    input_ = 'U mdls q'
+    input_ = 'U mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

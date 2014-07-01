@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
             )
         paths.append(path)
 
-    input_ = 'red~example~score g mdls* y q'
+    input_ = 'red~example~score g mdl* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -34,7 +34,7 @@ def test_SegmentPackageWrangler_list_every_metadata_py_01():
 
 def test_SegmentPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'G mdls* y q'
+    input_ = 'G mdl* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

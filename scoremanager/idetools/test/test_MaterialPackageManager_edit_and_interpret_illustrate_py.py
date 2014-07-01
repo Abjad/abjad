@@ -23,7 +23,7 @@ def test_MaterialPackageManager_edit_and_interpret_illustrate_py_01():
         os.remove(pdf_path)
         assert not os.path.exists(ly_path)
         assert not os.path.exists(pdf_path)
-        input_ = 'red~example~score m magic~numbers iei q'
+        input_ = 'red~example~score m magic~numbers lei q'
         ide._run(input_=input_)
         assert os.path.isfile(ly_path)
         assert os.path.isfile(pdf_path)

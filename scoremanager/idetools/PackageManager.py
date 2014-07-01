@@ -74,9 +74,9 @@ class PackageManager(ScoreInternalAssetController):
             #
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
-            'mdrm': self.remove_metadatum,
+            'mdr': self.remove_metadatum,
             #
-            'nls': self.list_init_py,
+            'nl': self.list_init_py,
             'no': self.open_init_py,
             'ns': self.write_stub_init_py,
             #

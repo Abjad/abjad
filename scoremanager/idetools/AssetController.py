@@ -50,7 +50,7 @@ class AssetController(Controller):
             'cc': self.check_contents,
             #
             'mdo': self.open_metadata_py,
-            'mdls': self.list_metadata_py,
+            'mdl': self.list_metadata_py,
             'mdw': self.write_metadata_py,
             #
             '!': self.invoke_shell,
@@ -283,7 +283,7 @@ class AssetController(Controller):
 
     def _make_init_py_menu_section(self, menu):
         commands = []
-        commands.append(('__init__.py - list', 'nls'))
+        commands.append(('__init__.py - list', 'nl'))
         commands.append(('__init__.py - open', 'no'))
         commands.append(('__init__.py - stub', 'ns'))
         menu.make_command_section(
@@ -328,12 +328,12 @@ class AssetController(Controller):
 
     def _make_metadata_menu_section(self, menu):
         commands = []
-        commands.append(('__metadata__.py - list', 'mdls'))
+        commands.append(('__metadata__.py - list', 'mdl'))
         commands.append(('__metadata__.py - open', 'mdo'))
         commands.append(('__metadata__.py - write', 'mdw'))
         commands.append(('metadata - add', 'mda'))
         commands.append(('metadata - get', 'mdg'))
-        commands.append(('metadata - remove', 'mdrm'))
+        commands.append(('metadata - remove', 'mdr'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

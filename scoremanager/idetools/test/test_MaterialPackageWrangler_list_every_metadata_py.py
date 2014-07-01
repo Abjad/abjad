@@ -7,7 +7,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_list_every_metadata_py_01():
 
-    input_ = 'red~example~score m mdls* y q'
+    input_ = 'red~example~score m mdl* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_list_every_metadata_py_01():
 
 def test_MaterialPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'M mdls* y q'
+    input_ = 'M mdl* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

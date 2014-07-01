@@ -59,7 +59,7 @@ class AbjadIDE(Wrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'nls*': self.list_every_init_py,
+            'nl*': self.list_every_init_py,
             'no*': self.open_every_init_py,
             'ns*': self.write_every_init_py_stub,
             })
@@ -141,7 +141,7 @@ class AbjadIDE(Wrangler):
         commands.append(('all assets - repository - revert', 'rrv*'))
         commands.append(('all assets - repository - status', 'rst*'))
         commands.append(('all assets - repository - update', 'rup*'))
-        commands.append(('all packages - __init__.py - list', 'nls*'))
+        commands.append(('all packages - __init__.py - list', 'nl*'))
         commands.append(('all packages - __init__.py - open', 'no*'))
         commands.append(('all packages - __init__.py - stub', 'ns*'))
         menu.make_command_section(

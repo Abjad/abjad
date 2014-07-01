@@ -6,12 +6,12 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_SegmentPackageWrangler_list_every_versions_directory_01():
 
-    input_ = 'red~example~score g vrls* q'
+    input_ = 'red~example~score g vrl* q'
     ide._run(input_=input_)
     transcript_lines = ide._transcript.lines
 
     lines = [
-        '> vrls*',
+        '> vrl*',
         'A:',
         '    definition_0001.py output_0001.ly output_0001.pdf',
         'B:',

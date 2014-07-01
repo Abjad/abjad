@@ -28,7 +28,7 @@ def test_ScorePackageManager_remove_metadatum_01():
         assert "'cherry'" in ide._transcript.contents
 
         # remove flavor_type metadatum
-        input_ = 'red~example~score mdrm flavor_type q'
+        input_ = 'red~example~score mdr flavor_type q'
         ide._run(input_=input_)
 
         # make sure no flavor_type metadatum found
