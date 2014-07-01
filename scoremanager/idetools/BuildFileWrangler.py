@@ -365,19 +365,19 @@ class BuildFileWrangler(FileWrangler):
     ### PUBLIC METHODS ###
 
     def collect_segment_lilypond_files(self):
-        r'''Copies ``output.ly`` files from segment packages to build 
+        r'''Copies ``illustration.ly`` files from segment packages to build 
         directory.
 
         Trims top-level comments, includes and directives from each
-        ``output.ly`` file.
+        ``illustration.ly`` file.
 
-        Trims header and paper block from each ``output.ly`` file.
+        Trims header and paper block from each ``illustration.ly`` file.
 
-        Leaves score block in each ``output.ly`` file.
+        Leaves score block in each ``illustration.ly`` file.
 
         Returns none.
         '''
-        pairs = self._collect_segment_files('output.ly')
+        pairs = self._collect_segment_files('illustration.ly')
         if not pairs:
             return
         for source_file_path, target_file_path in pairs:
@@ -385,12 +385,12 @@ class BuildFileWrangler(FileWrangler):
             self._trim_lilypond_file(target_file_path)
 
     def collect_segment_pdfs(self):
-        r'''Copies ``output.pdf`` files from segment packages to build 
+        r'''Copies ``illustration.pdf`` files from segment packages to build 
         directory.
 
         Returns none.
         '''
-        pairs = self._collect_segment_files('output.pdf')
+        pairs = self._collect_segment_files('illustration.pdf')
         if not pairs:
             return
         for source_file_path, target_file_path in pairs:

@@ -24,8 +24,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         optional_files = list(self._optional_files)
         optional_files.extend([
             '__make__.py',
-            'output.ly',
-            'output.pdf',
+            'illustration.ly',
+            'illustration.pdf',
             ])
         self._optional_files = tuple(optional_files)
         required_files = list(self._required_files)
@@ -83,11 +83,11 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     @property
     def _output_lilypond_file_path(self):
-        return os.path.join(self._path, 'output.ly')
+        return os.path.join(self._path, 'illustration.ly')
 
     @property
     def _output_pdf_file_path(self):
-        return os.path.join(self._path, 'output.pdf')
+        return os.path.join(self._path, 'illustration.pdf')
 
     @property
     def _source_paths(self):
@@ -142,15 +142,15 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_output_ly_menu_section(self, menu):
         commands = []
         if os.path.isfile(self._output_lilypond_file_path):
-            commands.append(('output.ly - edit', 'oe'))
-            commands.append(('output.ly - interpret', 'oi'))
+            commands.append(('illustration.ly - edit', 'oe'))
+            commands.append(('illustration.ly - interpret', 'oi'))
         if os.path.isfile(self._output_pdf_file_path):
-            commands.append(('output.pdf - open', 'oo'))
+            commands.append(('illustration.pdf - open', 'oo'))
         if commands:
             menu.make_command_section(
                 is_hidden=False,
                 commands=commands,
-                name='output',
+                name='illustration',
                 )
 
     def _make_package(self):
@@ -181,8 +181,8 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     def _make_versions_directory_menu_section(self, menu):
         commands = []
         commands.append(('versions - definition.py - edit', 'vde'))
-        commands.append(('versions - output.ly - edit', 'voe'))
-        commands.append(('versions - output.pdf - open', 'voo'))
+        commands.append(('versions - illustration.ly - edit', 'voe'))
+        commands.append(('versions - illustration.pdf - open', 'voo'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -209,7 +209,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._open_file(self._make_py_path)
 
     def edit_output_ly(self):
-        r'''Opens ``output.ly``.
+        r'''Opens ``illustration.ly``.
 
         Returns none.
         '''
@@ -223,16 +223,16 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._open_versioned_file('definition.py')
 
     def edit_versioned_output_ly(self):
-        r'''Opens versioned ``output.ly``.
+        r'''Opens versioned ``illustration.ly``.
 
         Returns none.
         '''
-        self._open_versioned_file('output.ly')
+        self._open_versioned_file('illustration.ly')
 
     def interpret_make_py(self, dry_run=False):
         r'''Interprets ``__make__.py``.
 
-        Makes ``output.ly`` and ``output.pdf``.
+        Makes ``illustration.ly`` and ``illustration.pdf``.
 
         Returns none.
         '''
@@ -256,9 +256,9 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             self._io_manager.interpret_file(self._make_py_path)
 
     def interpret_output_ly(self, dry_run=False):
-        r'''Interprets ``output.ly``.
+        r'''Interprets ``illustration.ly``.
 
-        Makes ``output.pdf``.
+        Makes ``illustration.pdf``.
 
         Returns none.
         '''
@@ -277,18 +277,18 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._io_manager.run_lilypond(file_path, candidacy=True)
 
     def open_output_pdf(self):
-        r'''Opens ``output.pdf``.
+        r'''Opens ``illustration.pdf``.
 
         Returns none.
         '''
         self._open_file(self._output_pdf_file_path)
 
     def open_versioned_output_pdf(self):
-        r'''Opens versioned ``output.pdf``.
+        r'''Opens versioned ``illustration.pdf``.
 
         Returns none.
         '''
-        self._open_versioned_file('output.pdf')
+        self._open_versioned_file('illustration.pdf')
 
     def write_stub_definition_py(self):
         r'''Writes stub ``definition.py``.

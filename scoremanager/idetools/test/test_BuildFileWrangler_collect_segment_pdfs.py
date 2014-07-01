@@ -28,7 +28,7 @@ def test_BuildFileWrangler_collect_segment_pdfs_01():
             'red_example_score',
             'segments',
             directory_name,
-            'output.pdf',
+            'illustration.pdf',
             )
         source_pdfs.append(path)
 

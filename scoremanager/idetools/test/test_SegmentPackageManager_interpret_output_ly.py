@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_interpret_output_ly_01():
-    r'''Works when output.ly already exists.
+    r'''Works when illustration.ly already exists.
     '''
 
     ly_path = os.path.join(
@@ -14,14 +14,14 @@ def test_SegmentPackageManager_interpret_output_ly_01():
         'red_example_score',
         'segments',
         'segment_01',
-        'output.ly',
+        'illustration.ly',
         )
     pdf_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'segments',
         'segment_01',
-        'output.pdf',
+        'illustration.pdf',
         )
 
     with systemtools.FilesystemState(keep=[ly_path, pdf_path]):

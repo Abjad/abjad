@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_version_every_package_01():
     
     target_paths = []
     segments = ('segment_01', 'segment_02', 'segment_03')
-    file_names = ('definition.py', 'output.ly', 'output.pdf')
+    file_names = ('definition.py', 'illustration.ly', 'illustration.pdf')
     for segment in segments:
         versions_directory = os.path.join(
             ide._configuration.example_score_packages_directory,

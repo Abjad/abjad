@@ -14,8 +14,8 @@ def test_SegmentPackageManager_interpret_make_py_01():
         'segment_01',
         )
     make_path = os.path.join(segment_directory, '__make__.py')
-    ly_path = os.path.join(segment_directory, 'output.ly')
-    pdf_path = os.path.join(segment_directory, 'output.pdf')
+    ly_path = os.path.join(segment_directory, 'illustration.ly')
+    pdf_path = os.path.join(segment_directory, 'illustration.pdf')
     output_paths = (ly_path, pdf_path)
 
     keep = (make_path,) + output_paths

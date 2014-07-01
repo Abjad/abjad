@@ -79,8 +79,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         commands.append(('all packages - __make.py__ - interpret', 'ki*'))
         commands.append(('all packages - __make.py__ - stub', 'ks*'))
         commands.append(('all packages - definition.py - edit', 'de*'))
-        commands.append(('all packages - output.ly - interpret', 'oi*'))
-        commands.append(('all packages - output.pdf - open', 'oo*'))
+        commands.append(('all packages - illustration.ly - interpret', 'oi*'))
+        commands.append(('all packages - illustration.pdf - open', 'oo*'))
         menu.make_command_section(
             commands=commands,
             is_hidden=True,
@@ -142,7 +142,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     def interpret_every_make_py(self):
         r'''Interprets ``__make.py__`` in every package.
         
-        Makes ``output.ly`` and ``output.pdf`` in every package.
+        Makes ``illustration.ly`` and ``illustration.pdf`` in every package.
 
         Returns none.
         '''
@@ -162,9 +162,9 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
                 manager.interpret_make_py()
 
     def interpret_every_output_ly(self, open_every_output_pdf=True):
-        r'''Interprets ``output.ly`` in every package.
+        r'''Interprets ``illustration.ly`` in every package.
 
-        Makes ``output.pdf`` in every package.
+        Makes ``illustration.pdf`` in every package.
 
         Returns none.
         '''
@@ -191,11 +191,11 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         self._open_in_every_package('__make__.py')
 
     def open_every_output_pdf(self):
-        r'''Opens ``output.pdf`` file in every package.
+        r'''Opens ``illustration.pdf`` file in every package.
 
         Returns none.
         '''
-        self._open_in_every_package('output.pdf')
+        self._open_in_every_package('illustration.pdf')
 
     def remove_packages(self):
         r'''Removes one or more packages.

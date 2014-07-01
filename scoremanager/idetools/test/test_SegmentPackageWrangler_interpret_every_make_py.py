@@ -11,14 +11,14 @@ def test_SegmentPackageWrangler_interpret_every_make_py_01():
     path = os.path.join(path, 'red_example_score', 'segments')
     paths = [
         os.path.join(path, 'segment_01', '__make__.py'),
-        os.path.join(path, 'segment_01', 'output.ly'),
-        os.path.join(path, 'segment_01', 'output.pdf'),
+        os.path.join(path, 'segment_01', 'illustration.ly'),
+        os.path.join(path, 'segment_01', 'illustration.pdf'),
         os.path.join(path, 'segment_02', '__make__.py'),
-        os.path.join(path, 'segment_02', 'output.ly'),
-        os.path.join(path, 'segment_02', 'output.pdf'),
+        os.path.join(path, 'segment_02', 'illustration.ly'),
+        os.path.join(path, 'segment_02', 'illustration.pdf'),
         os.path.join(path, 'segment_03', '__make__.py'),
-        os.path.join(path, 'segment_03', 'output.ly'),
-        os.path.join(path, 'segment_03', 'output.pdf'),
+        os.path.join(path, 'segment_03', 'illustration.ly'),
+        os.path.join(path, 'segment_03', 'illustration.pdf'),
         ]
 
 
