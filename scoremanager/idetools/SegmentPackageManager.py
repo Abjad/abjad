@@ -290,7 +290,13 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 return
             if not os.path.exists(illustration_pdf_path):
                 shutil.move(candidate_pdf_path, illustration_pdf_path)
-                shutil.move(candate_ly_path, illustration_ly_path)
+                shutil.move(candidate_ly_path, illustration_ly_path)
+                tab = self._io_manager._make_tab()
+                messages = []
+                messages.append('Wrote ...')
+                messages.append(tab + illustration_ly_path)
+                messages.append(tab + illustration_pdf_path)
+                self._io_manager._display(messages)
             else:
                 result, messages = systemtools.TestManager.compare_pdfs(
                 candidate_pdf_path,
@@ -308,7 +314,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                     if self._session.is_backtracking or not result:
                         return
                     shutil.move(candidate_pdf_path, illustration_pdf_path)
-                    shutil.move(candate_ly_path, illustration_ly_path)
+                    shutil.move(candidate_ly_path, illustration_ly_path)
 
     def interpret_illustration_ly(self, dry_run=False):
         r'''Interprets ``illustration.ly``.
