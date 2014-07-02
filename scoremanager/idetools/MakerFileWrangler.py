@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import traceback
 from abjad.tools import documentationtools
 from abjad.tools import stringtools
 from scoremanager.idetools.FileWrangler import FileWrangler
@@ -30,7 +29,6 @@ class MakerFileWrangler(FileWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import idetools
         superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
         self._basic_breadcrumb = 'maker files'
@@ -69,7 +67,11 @@ class MakerFileWrangler(FileWrangler):
         for package in packages:
             statement = 'import {} as _module'.format(package)
             try:
-                exec(statement)
+                result = self._io_manager.execute_string(
+                    statement,
+                    ('_module',),
+                    )
+                _module = result[0]
                 modules.append(_module)
             except ImportError:
                 pass
