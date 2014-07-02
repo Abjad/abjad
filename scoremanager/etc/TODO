@@ -4,37 +4,35 @@
 
 3.  Streamline all 39 classfiles.
 
-4.  Integrate artifact candidacy protocol.
-
-5.  Clean up InstrumentInventory.
+4.  Clean up InstrumentInventory.
     Clean up PerformerInventory.
 
-6.  Implement 'views - write' (ww).
+5.  Implement 'views - write' (ww).
     Implement 'views - check' (vc).
 
-7.  Implement '__metadata__.py - check' (mdc).
+6.  Implement '__metadata__.py - check' (mdc).
 
-8.  Implement '__metadata__.py - autoedit' (mda).
+7.  Implement '__metadata__.py - autoedit' (mda).
 
-9.  Take another pass at (ck) and (ck*) messaging.
+8.  Take another pass at (ck) and (ck*) messaging.
 
-10. Audit (**).
+9.  Audit (**).
 
-11. Audit all star commands.
+10. Audit all star commands.
 
-12. Audit material interface by hand.
+11. Audit material interface by hand.
     Audit segment interface by hand.
 
-13. Audit all public methods for py.test files.
+12. Audit all public methods for py.test files.
 
-14. Extended ControllerContext with directory=None keyword.
+13. Extended ControllerContext with directory=None keyword.
     This will allow ControllerContext to act like TemporaryDirectoryChange.
     This will then remove some TemporaryDirectoryChange in _run() methods.
 
-15. Make (red m tempo da rm 4 done!) work.
+14. Make (red m tempo da rm 4 done!) work.
     Right now the (done!) raises an exception.
 
-16. Implement interface commands to autostart autoediting.
+15. Implement interface commands to autostart autoediting.
     Implement (da!) to autostart (and thereafter autoadvance) the autoediting 
     of definition.py files. Implement (wa!) to autostart (and thereafter
     autoadvance) the autoediting of __views__.py files. Implement (mda!)
@@ -43,50 +41,50 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-17. Sort the asset sections in (M), (K) etc according to the same order
+16. Sort the asset sections in (M), (K) etc according to the same order
     as used in (**).
 
-18. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
+17. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
     but has no yet been written to disk.
 
-19. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+18. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-20. Write in-library and in-score material breadcrumb tests.
+19. Write in-library and in-score material breadcrumb tests.
 
-21. Make autoadvance halt and insist on reentry of value entered incorrectly
+20. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
-22. Write autoadvance tests that capture some of the good autoadvance
+21. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
 
-23. Change behavior of lone (/) during autoadvance.
+22. Change behavior of lone (/) during autoadvance.
     Right now (/) does two things: stops autoadvance and sets current property
     to none. (/) should instead stop autoadvance put leave current property
     unchanged.
 
-24. Make (b) work during autoadvance.
+23. Make (b) work during autoadvance.
     The correct behavior should be to abandon and preserve value of current
     property and then to retreat back to previous property, all while
     leaving autoadvance turned on.
 
-25. Prevent (/) autoadvance from terminating autoeditor and writing target to
+24. Prevent (/) autoadvance from terminating autoeditor and writing target to
     disk. The write to disk should always come in response to an explicit
     additional command from the composer. The exception should be the more
     powerful (@) command which can take the composer through all properties
     of an object and then save the target to disk after all properties have
     been entered.
 
-26. Implement something to make sure _command_to_method contains
+25. Implement something to make sure _command_to_method contains
     neither duplicate commands nor duplicate methods.
 
-27. Change IOManager._make_tab() to just Configuration.tab as a property.
+26. Change IOManager._make_tab() to just Configuration.tab as a property.
 
-28. Add two blank lines between output chunks in iterative commands.
+27. Add two blank lines between output chunks in iterative commands.
 
-29. Add (*) suffix to changed assets in asset menu.
+28. Add (*) suffix to changed assets in asset menu.
     Something like ...
         1: instrumentation (*)
         2: magic numbers
@@ -95,17 +93,17 @@
         5: time signatures
     ... will make clear that three packages have changed.
 
-30. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
+29. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
         illustration.ly:89:75: warning: conflicting note group events
     ... and related.
     Make a test zagged pitch class material package and illustrate to test.
 
-31. Remove blank line at top of first column in two-column layout of (S ??).
+30. Remove blank line at top of first column in two-column layout of (S ??).
     Also at the top of the first column of (M ??) and (D ??) and (U ??).
     But not (G ??).
 
-32. Implement some functionality somewhere to sweep all managed directories
+31. Implement some functionality somewhere to sweep all managed directories
     and remove any orphaned candidate artifacts. Candidate artifacts should
     never persist on the filesystem.
 
-33. Changed 'output' to 'illustration' in SegmentPackageWrangler.
+32. Integrate artifact candidacy protocol.

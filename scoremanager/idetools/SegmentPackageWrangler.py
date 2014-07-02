@@ -46,8 +46,8 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         result.update({
             'de*': self.edit_every_definition_py,
             #
-            'ii*': self.interpret_every_output_ly,
-            'io*': self.open_every_output_pdf,
+            'ii*': self.interpret_every_illustration_ly,
+            'io*': self.open_every_illustration_pdf,
             })
         return result
 
@@ -132,7 +132,10 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('definition.py', verb='edit')
 
-    def interpret_every_output_ly(self, open_every_output_pdf=True):
+    def interpret_every_illustration_ly(
+        self, 
+        open_every_illustration_pdf=True,
+        ):
         r'''Interprets ``illustration.ly`` in every package.
 
         Makes ``illustration.pdf`` in every package.
@@ -154,7 +157,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             for manager in managers:
                 manager.interpret_illustration_ly()
 
-    def open_every_output_pdf(self):
+    def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` file in every package.
 
         Returns none.
