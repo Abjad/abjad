@@ -75,8 +75,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'ds': self.write_stub_definition_py,
             #
             'le': self.edit_illustrate_py,
-            'lei': self.edit_and_interpret_illustrate_py,
-            'li': self.interpret_illustrate_py,
             'ls': self.write_stub_illustrate_py,
             #
             'ii': self.interpret_illustration_ly,
@@ -90,7 +88,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'vde': self.edit_versioned_definition_py,
             'vie': self.edit_versioned_illustration_ly,
             'vio': self.open_versioned_illustration_pdf,
-            'vie': self.edit_versioned_output_py,
+            'voe': self.edit_versioned_output_py,
             })
         return result
 
@@ -235,10 +233,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             is_hidden = False
             string = '__illustrate__.py - edit'
             commands.append((string, 'le'))
-            string = '__illustrate__.py - edit & interpret'
-            commands.append((string, 'lei'))
-            string = '__illustrate__.py - interpret'
-            commands.append((string, 'li'))
             string = '__illustrate__.py - stub'
             commands.append((string, 'ls'))
         else:
@@ -329,32 +323,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._write_metadata_py(metadata)
             self.write_stub_definition_py()
 
-    # TODO: externalize in boilerplate/__illustrate_material__.py
-    def _make_temporary_illustrate_py_lines(self):
-        lines = []
-        lines.append(self._configuration.unicode_directive)
-        lines.append('import os')
-        lines.append(self._abjad_import_statement)
-        line = 'from output import {}'
-        line = line.format(self._package_name)
-        lines.append(line)
-        if os.path.isfile(self._illustrate_py_path):
-            lines.append('from illustrate import __illustrate__')
-        lines.append('')
-        lines.append('')
-        if os.path.isfile(self._illustrate_py_path):
-            line = 'lilypond_file = __illustrate__({})'
-        else:
-            line = 'lilypond_file = {}.__illustrate__()'
-        line = line.format(self._package_name)
-        lines.append(line)
-        lines.append('path = os.path.abspath(__file__)')
-        lines.append('directory = os.path.dirname(path)')
-        line = "path = os.path.join(directory, 'illustration.pdf')"
-        lines.append(line)
-        lines.append("persist(lilypond_file).as_pdf(path)")
-        return lines
-
     def _make_version_package_messages(self):
         path = self._versions_directory
         greatest_version = self._io_manager._get_greatest_version_number(path)
@@ -386,7 +354,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands.append(('versions - definition.py - edit', 'vde'))
         commands.append(('versions - illustration.ly - edit', 'vie'))
         commands.append(('versions - illustration.pdf - open', 'vio'))
-        commands.append(('versions - output.py - edit', 'vie'))
+        commands.append(('versions - output.py - edit', 'voe'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
@@ -566,14 +534,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             message = '{} OK.'.format(self._output_py_path)
             self._io_manager._display(message)
 
-    def edit_and_interpret_illustrate_py(self):
-        r'''Edits and then interprets ``__illustrate.py__``.
-
-        Returns none.
-        '''
-        self.edit_illustrate_py()
-        self.interpret_illustrate_py()
-
     def edit_definition_py(self):
         r'''Edits ``definition.py``.
 
@@ -631,13 +591,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-#        file_name = '_temporary_illustrate.py'
-#        path = os.path.join(self._path, file_name)
-#        with systemtools.FilesystemState(remove=[path]):
-#            lines = self._make_temporary_illustrate_py_lines()
-#            contents = '\n'.join(lines)
-#            self._io_manager.write(path, contents)
-#            self._io_manager.interpret_file(path)
         if os.path.isfile(self._illustrate_py_path):
             boilerplate_name = '__illustrate_material_2__.py'
         else:
@@ -715,13 +668,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                         return
                     shutil.move(candidate_pdf_path, illustration_pdf_path)
                     shutil.move(candidate_ly_path, illustration_ly_path)
-
-    def interpret_illustrate_py(self):
-        r'''Interprets ``__illustrate.py__``.
-
-        Returns none.
-        '''
-        result = self._io_manager.interpret_file(self._illustrate_py_path)
 
     def interpret_illustration_ly(self):
         r'''Interprets ``illustration.ly``.
