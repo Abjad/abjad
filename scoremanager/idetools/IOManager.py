@@ -452,7 +452,7 @@ class IOManager(IOManager):
         with open(path, 'r') as file_pointer:
             file_contents_string = file_pointer.read()
         try:
-            exec(file_contents_string)
+            result = self.execute_string(file_contents_string, attribute_names)
         except:
             message = 'Exception raised in {}.'
             message = message.format(path)
@@ -461,13 +461,6 @@ class IOManager(IOManager):
             print(message)
             traceback.print_exc()
             return 'corrupt'
-        result = []
-        for name in attribute_names:
-            if name in locals():
-                result.append(locals()[name])
-            else:
-                result.append(None)
-        result = tuple(result)
         return result
 
     def execute_string(self, string, attribute_names=None):

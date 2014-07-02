@@ -3,7 +3,6 @@ import collections
 import os
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
-from abjad.tools import systemtools
 from scoremanager.idetools.Controller import Controller
 
 
@@ -22,9 +21,9 @@ class AssetController(Controller):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):                                           
-        superclass = super(AssetController, self)                                    
-        superclass.__init__(session=session)                                    
+    def __init__(self, session=None):
+        superclass = super(AssetController, self)
+        superclass.__init__(session=session)
         self._annotate_year = False
         self._human_readable = True
         self._include_asset_name = True
@@ -156,10 +155,12 @@ class AssetController(Controller):
             with open(self._metadata_py_path, 'r') as file_pointer:
                 file_contents_string = file_pointer.read()
             try:
-                local_dict = {}
-                exec(file_contents_string, globals(), local_dict)
-                metadata = local_dict.get('metadata')
-            except:
+                result = self._io_manager.execute_string(
+                    file_contents_string,
+                    attribute_names=('metadata',),
+                    )
+                metadata = result[0]
+            except SyntaxError:
                 message = 'can not interpret metadata py: {!r}.'
                 message = message.format(self)
                 self._io_manager._display(message)
@@ -301,7 +302,7 @@ class AssetController(Controller):
         #self._make_repository_menu_section(menu)
         self._make_system_menu_section(menu)
         return menu
-            
+
     @staticmethod
     def _make_metadata_lines(metadata):
         if metadata:
@@ -339,7 +340,7 @@ class AssetController(Controller):
             commands=commands,
             name='metadata',
             )
-            
+
     def _make_repository_menu_section(self, menu):
         commands = []
         commands.append(('repository - add', 'rad'))
@@ -380,7 +381,7 @@ class AssetController(Controller):
         menu.make_command_section(
             is_hidden=True,
             commands=commands,
-            name='system', 
+            name='system',
             )
 
     def _open_file(self, path):
@@ -577,7 +578,7 @@ class AssetController(Controller):
 
     def doctest(self):
         r'''Doctests Python files.
-        
+
         Returns none.
         '''
         message = 'running doctest ...'
@@ -593,7 +594,7 @@ class AssetController(Controller):
                     for file_name in file_names:
                         if file_name.endswith('.py'):
                             file_path = os.path.join(
-                                directory_name, 
+                                directory_name,
                                 file_name,
                                 )
                             assets.append(file_path)
@@ -676,15 +677,16 @@ class AssetController(Controller):
         messages = []
         prompt = True
         statement = self._io_manager._handle_input(
-            '>>', 
+            '>>',
             include_newline=False,
             )
-        command = 'from abjad import *'
-        exec(command)
         try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
+            command = 'from abjad import *; result = {}'.format(statement)
+            result = self._io_manager.execute_string(
+                command,
+                attribute_names=('result',),
+                )
+            result = result[0]
             messages.append('{!r}'.format(result))
         except:
             messages.append('expression not executable.')

@@ -259,9 +259,11 @@ class ScorePackageWrangler(PackageWrangler):
             with open(path, 'r') as file_pointer:
                 cache_lines = file_pointer.read()
             try:
-                local_dict = {}
-                exec(cache_lines, globals(), local_dict)
-                start_menu_entries = local_dict.get('start_menu_entries', [])
+                result = self._session.io_manager.execute_string(
+                    cache_lines,
+                    attribute_names=('start_menu_entries',),
+                    )
+                start_menu_entries = result[0]
             except SyntaxError:
                 pass
         return start_menu_entries
