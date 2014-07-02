@@ -475,6 +475,10 @@ class IOManager(IOManager):
         r'''Invokes Python or LilyPond on `path`.
 
         Displays any in-file messaging during interpretation.
+
+        Returns the pair of `stdout_lines` with `stderr_lines`.
+        This makes it possible to execute in silent context
+        and then display stderr lines after execution.
         '''
         if not os.path.exists(path):
             message = 'file not found: {}'.format(path)
@@ -608,8 +612,8 @@ class IOManager(IOManager):
             messages.append(tab + output_path)
             messages.append(tab + candidate_path)
             messages.append('... compare differently.')
-            message = 'overwrite existing PDF with candidate PDF?'
             self._display(messages)
+            message = 'overwrite existing PDF with candidate PDF?'
             result = self._confirm(message=message)
             if self._session.is_backtracking or not result:
                 return

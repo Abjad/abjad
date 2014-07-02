@@ -106,3 +106,9 @@
 32. Remove blank line at top of first column in two-column layout of (S ??).
     Also at the top of the first column of (M ??) and (D ??) and (U ??).
     But not (G ??).
+
+33. Change boilerplate/__make__.py to boilerplate/__illustrate_segment__.py.
+
+34. Implement some functionality somewhere to sweep all managed directories
+    and remove any orphaned candidate artifacts. Candidate artifacts should
+    never persist on the filesystem.

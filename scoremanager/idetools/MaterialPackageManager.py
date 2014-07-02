@@ -328,6 +328,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._write_metadata_py(metadata)
             self.write_stub_definition_py()
 
+    # TODO: externalize in boilerplate/__illustrate_material__.py
     def _make_temporary_illustrate_py_lines(self):
         lines = []
         lines.append(self._configuration.unicode_directive)
@@ -628,7 +629,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        file_name = 'temporary_illustrate.py'
+        file_name = '_temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
         with systemtools.FilesystemState(remove=[path]):
             lines = self._make_temporary_illustrate_py_lines()

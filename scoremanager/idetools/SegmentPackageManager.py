@@ -247,7 +247,68 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        pass
+        boilerplate_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            '__illustrate_segment__.py',
+            )
+        illustrate_path = os.path.join(
+            self._path,
+            '__illustrate_segment__.py',
+            )
+        candidate_ly_path = os.path.join(
+            self._path, 
+            'illustration.candidate.ly'
+            )
+        candidate_pdf_path = os.path.join(
+            self._path, 
+            'illustration.candidate.pdf'
+            )
+        temporary_files = (
+            illustrate_path, 
+            candidate_ly_path,
+            candidate_pdf_path,
+            )
+        for path in temporary_files:
+            if os.path.exists(path):
+                os.remove(path)
+        illustration_ly_path = os.path.join(
+            self._path,
+            'illustration.ly',
+            )
+        illustration_pdf_path = os.path.join(
+            self._path,
+            'illustration.pdf',
+            )
+        with systemtools.FilesystemState(remove=temporary_files):
+            shutil.copyfile(boilerplate_path, illustrate_path)
+            with self._io_manager._silent():
+                result = self._io_manager.interpret_file(illustrate_path)
+            stdout_lines, stderr_lines = result
+            if stderr_lines:
+                self._io_manager._display(stderr_lines)
+                return
+            if not os.path.exists(illustration_pdf_path):
+                shutil.move(candidate_pdf_path, illustration_pdf_path)
+                shutil.move(candate_ly_path, illustration_ly_path)
+            else:
+                result, messages = systemtools.TestManager.compare_pdfs(
+                candidate_pdf_path,
+                illustration_pdf_path,
+                messages=True,
+                )
+                self._io_manager._display(messages)
+                if result:
+                    message = 'Preserved {}.'.format(illustration_pdf_path)
+                    self._io_manager._display(message)
+                    return
+                else:
+                    message = 'overwrite existing PDF with candidate PDF?'
+                    result = self._io_manager._confirm(message=message)
+                    if self._session.is_backtracking or not result:
+                        return
+                    shutil.move(candidate_pdf_path, illustration_pdf_path)
+                    shutil.move(candate_ly_path, illustration_ly_path)
 
     def interpret_illustration_ly(self, dry_run=False):
         r'''Interprets ``illustration.ly``.
