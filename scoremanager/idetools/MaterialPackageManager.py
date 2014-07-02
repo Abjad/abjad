@@ -2,6 +2,7 @@
 import collections
 import copy
 import os
+import shutil
 from abjad.tools import systemtools
 from scoremanager.idetools.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
@@ -622,20 +623,98 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         '''
         self._open_versioned_file('output.py')
 
+    # TODO: refactor with SegmentPackageManager.illustrate_definition_py()
     def illustrate_output_py(self):
         r'''Illustrates ``output.py``.
 
-        Creates ``illustration.pdf`` and ``illustration.ly`` files.
+        Makes ``illustration.pdf`` and ``illustration.ly``.
 
         Returns none.
         '''
-        file_name = '_temporary_illustrate.py'
-        path = os.path.join(self._path, file_name)
-        with systemtools.FilesystemState(remove=[path]):
-            lines = self._make_temporary_illustrate_py_lines()
-            contents = '\n'.join(lines)
-            self._io_manager.write(path, contents)
-            self._io_manager.interpret_file(path)
+#        file_name = '_temporary_illustrate.py'
+#        path = os.path.join(self._path, file_name)
+#        with systemtools.FilesystemState(remove=[path]):
+#            lines = self._make_temporary_illustrate_py_lines()
+#            contents = '\n'.join(lines)
+#            self._io_manager.write(path, contents)
+#            self._io_manager.interpret_file(path)
+        if os.path.isfile(self._illustrate_py_path):
+            boilerplate_name = '__illustrate_material_2__.py'
+        else:
+            boilerplate_name = '__illustrate_material_1__.py'
+        boilerplate_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            boilerplate_name,
+            )
+        illustrate_path = os.path.join(
+            self._path,
+            '__illustrate_material__.py',
+            )
+        candidate_ly_path = os.path.join(
+            self._path, 
+            'illustration.candidate.ly'
+            )
+        candidate_pdf_path = os.path.join(
+            self._path, 
+            'illustration.candidate.pdf'
+            )
+        temporary_files = (
+            illustrate_path, 
+            candidate_ly_path,
+            candidate_pdf_path,
+            )
+        for path in temporary_files:
+            if os.path.exists(path):
+                os.remove(path)
+        illustration_ly_path = os.path.join(
+            self._path,
+            'illustration.ly',
+            )
+        illustration_pdf_path = os.path.join(
+            self._path,
+            'illustration.pdf',
+            )
+        with systemtools.FilesystemState(remove=temporary_files):
+            shutil.copyfile(boilerplate_path, illustrate_path)
+            self._replace_in_file(
+                illustrate_path, 
+                'OUTPUT_OBJECT', 
+                self._package_name,
+                )
+            with self._io_manager._silent():
+                result = self._io_manager.interpret_file(illustrate_path)
+            stdout_lines, stderr_lines = result
+            if stderr_lines:
+                self._io_manager._display(stderr_lines)
+                return
+            if not os.path.exists(illustration_pdf_path):
+                shutil.move(candidate_pdf_path, illustration_pdf_path)
+                shutil.move(candidate_ly_path, illustration_ly_path)
+                tab = self._io_manager._make_tab()
+                messages = []
+                messages.append('Wrote ...')
+                messages.append(tab + illustration_ly_path)
+                messages.append(tab + illustration_pdf_path)
+                self._io_manager._display(messages)
+            else:
+                result, messages = systemtools.TestManager.compare_pdfs(
+                candidate_pdf_path,
+                illustration_pdf_path,
+                messages=True,
+                )
+                self._io_manager._display(messages)
+                if result:
+                    message = 'Preserved {}.'.format(illustration_pdf_path)
+                    self._io_manager._display(message)
+                    return
+                else:
+                    message = 'overwrite existing PDF with candidate PDF?'
+                    result = self._io_manager._confirm(message=message)
+                    if self._session.is_backtracking or not result:
+                        return
+                    shutil.move(candidate_pdf_path, illustration_pdf_path)
+                    shutil.move(candidate_ly_path, illustration_ly_path)
 
     def interpret_illustrate_py(self):
         r'''Interprets ``__illustrate.py__``.
