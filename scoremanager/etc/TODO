@@ -107,3 +107,9 @@
     never persist on the filesystem.
 
 32. Integrate artifact candidacy protocol.
+
+33. Make (red m magic 1) and (red m magic 3) work.
+    Right now (red m magic 2) works. But 1 and 3 are aliased by material
+    summary menu section.
+    AssertionError: 
+    (<MenuSection 'material summary' (33)>, 'explicit', <MenuEntry: '3'>)
