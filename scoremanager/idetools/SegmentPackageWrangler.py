@@ -181,7 +181,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.interpret_output_ly()
+                manager.interpret_illustration_ly()
 
     def open_every_make_py(self):
         r'''Opens ``__make__.py`` in every package.

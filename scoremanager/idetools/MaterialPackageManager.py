@@ -89,7 +89,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             'vde': self.edit_versioned_definition_py,
             'vie': self.edit_versioned_illustration_ly,
             'vio': self.open_versioned_illustration_pdf,
-            'voe': self.edit_versioned_output_py,
+            'vie': self.edit_versioned_output_py,
             })
         return result
 
@@ -384,7 +384,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         commands.append(('versions - definition.py - edit', 'vde'))
         commands.append(('versions - illustration.ly - edit', 'vie'))
         commands.append(('versions - illustration.pdf - open', 'vio'))
-        commands.append(('versions - output.py - edit', 'voe'))
+        commands.append(('versions - output.py - edit', 'vie'))
         menu.make_command_section(
             is_hidden=True,
             commands=commands,

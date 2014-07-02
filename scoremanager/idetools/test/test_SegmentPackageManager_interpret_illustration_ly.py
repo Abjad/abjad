@@ -5,7 +5,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageManager_interpret_output_ly_01():
+def test_SegmentPackageManager_interpret_illustration_ly_01():
     r'''Works when illustration.ly already exists.
     '''
 

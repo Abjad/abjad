@@ -4,9 +4,9 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageManager_edit_output_ly_01():
+def test_SegmentPackageManager_open_versioned_illustration_pdf_01():
 
-    input_ = 'red~example~score g A ie q'
+    input_ = 'red~example~score g A vio 1 q'
     ide._run(input_=input_)
 
     assert ide._session._attempted_to_open_file
