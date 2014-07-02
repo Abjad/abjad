@@ -156,7 +156,7 @@ class TestManager(object):
         return file_1_lines == file_2_lines
 
     @staticmethod
-    def compare_pdfs(path_1, path_2):
+    def compare_pdfs(path_1, path_2, messages=False):
         r'''Compares PDF `path_1` to PDF `path_2`.
 
         Performs line-by-line comparison.
@@ -178,11 +178,27 @@ class TestManager(object):
         or timestamp information that can vary from one creation
         of a PDF to another.
 
-        Returns boolean.
+        When `messages` is true returns boolean result together with
+        comparison result messages.
+
+        When `messages` is false returns boolean result only.
         '''
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
-        return file_1_lines == file_2_lines
+        result = file_1_lines == file_2_lines
+        if messages:
+            tab = '    '
+            messages = []
+            messages.append('The PDFs ...')
+            messages.append(tab + path_1)
+            messages.append(tab + path_2)
+            if result:
+                messages.append('... compare the same.')
+            else:
+                messages.append('... compare differently.')
+            return result, messages
+        else:
+            return result
 #        if file_1_lines == file_2_lines:
 #            return True
 #        print len(file_1_lines), len(file_2_lines)
