@@ -195,7 +195,7 @@ class IOManager(IOManager):
                 self._session.transcript._append_entry(menu_chunk)
                 if was_pending_input:
                     for string in menu_chunk:
-                        print string
+                        print(string)
                 menu_chunk = ['> ']
                 if include_newline:
                     if not input_ == 'help':
@@ -203,7 +203,7 @@ class IOManager(IOManager):
                 self._session.transcript._append_entry(menu_chunk)
                 if was_pending_input:
                     for string in menu_chunk:
-                        print string
+                        print(string)
             else:
                 menu_chunk = []
                 menu_chunk.append('{}{}'.format(message, input_))
@@ -213,14 +213,13 @@ class IOManager(IOManager):
                 self._session.transcript._append_entry(menu_chunk)
                 if was_pending_input:
                     for string in menu_chunk:
-                        print string
+                        print(string)
             return input_
         finally:
             readline.set_startup_hook()
 
     def _invoke_shell(self, statement):
         lines = []
-        prompt = True
         process = subprocess.Popen(
             statement,
             shell=True,
@@ -254,7 +253,7 @@ class IOManager(IOManager):
         return result
 
     def _make_autoeditor(
-        self, 
+        self,
         allow_item_edit=True,
         breadcrumb=None,
         target=None,
@@ -292,16 +291,16 @@ class IOManager(IOManager):
         return getter
 
     def _make_interaction(
-        self, 
-        confirm=True, 
-        display=True, 
-        dry_run=False, 
+        self,
+        confirm=True,
+        display=True,
+        dry_run=False,
         task=True,
         ):
         from scoremanager import idetools
         return idetools.Interaction(
             confirm=confirm,
-            controller=self.client, 
+            controller=self.client,
             display=display,
             dry_run=dry_run,
             task=task,
@@ -471,6 +470,31 @@ class IOManager(IOManager):
         result = tuple(result)
         return result
 
+    def execute_string(self, string, attribute_names=None):
+        r'''Executes `string`.
+
+        ::
+
+            >>> string = 'foo = 23'
+            >>> attribute_names = ('foo', 'bar')
+            >>> io_manager.execute_string(string, attribute_names)
+            (23, None)
+
+        Returns `attribute_names` from executed string.
+        '''
+        assert string
+        assert isinstance(attribute_names, tuple)
+        local_namespace = {}
+        exec(string, globals(), local_namespace)
+        result = []
+        for name in attribute_names:
+            if name in local_namespace:
+                result.append(local_namespace[name])
+            else:
+                result.append(None)
+        result = tuple(result)
+        return result
+
     def interpret_file(self, path):
         r'''Invokes Python or LilyPond on `path`.
 
@@ -598,7 +622,7 @@ class IOManager(IOManager):
             tab = self._make_tab()
             messages = []
             if systemtools.TestManager.compare_pdfs(
-                output_path, 
+                output_path,
                 candidate_path,
                 ):
                 messages.append('The PDFs ...')
