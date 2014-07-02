@@ -93,15 +93,17 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._session._is_navigating_to_materials = False
 
     def _get_material_package_manager(self, class_name, path):
-        import scoremanager
-        from scoremanager import idetools
         assert os.path.sep in path
         assert class_name is not None
         command = 'manager = scoremanager.idetools.{}'
         command += '(path=path, session=self._session)'
         command = command.format(class_name)
         try:
-            exec(command)
+            result = self._io_manager.execute_string(
+                command,
+                attribute_names=('manager',),
+                )
+            manager = result[0]
             return manager
         except AttributeError:
             pass
@@ -115,7 +117,11 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             class_name,
             )
         try:
-            exec(command)
+            result = self._io_manager.execute_string(
+                command,
+                attribute_names=('class_',),
+                )
+            class_ = result[0]
         except ImportError:
             return
         package = self._configuration.path_to_package(path)

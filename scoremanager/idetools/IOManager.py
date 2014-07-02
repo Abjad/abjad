@@ -463,7 +463,12 @@ class IOManager(IOManager):
             return 'corrupt'
         return result
 
-    def execute_string(self, string, attribute_names=None):
+    def execute_string(
+        self,
+        string,
+        attribute_names=None,
+        local_namespace=None,
+        ):
         r'''Executes `string`.
 
         ::
@@ -477,6 +482,9 @@ class IOManager(IOManager):
         '''
         assert string
         assert isinstance(attribute_names, tuple)
+        if local_namespace is None:
+            local_namespace = {}
+        assert isinstance(local_namespace, dict)
         local_namespace = {}
         exec(string, globals(), local_namespace)
         result = []
