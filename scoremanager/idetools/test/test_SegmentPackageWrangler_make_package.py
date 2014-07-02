@@ -17,7 +17,6 @@ def test_SegmentPackageWrangler_make_package_01():
         )
     directory_entries = [
         '__init__.py',
-        '__make__.py',
         '__metadata__.py',
         'definition.py',
         'versions',

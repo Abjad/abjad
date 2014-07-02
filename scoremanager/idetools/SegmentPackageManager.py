@@ -23,14 +23,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         superclass.__init__(path=path, session=session)
         optional_files = list(self._optional_files)
         optional_files.extend([
-            '__make__.py',
             'illustration.ly',
             'illustration.pdf',
             ])
         self._optional_files = tuple(optional_files)
         required_files = list(self._required_files)
         required_files.extend([
-            '__make__.py',
             'definition.py',
             ])
         self._required_files = tuple(required_files)
@@ -60,10 +58,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'di': self.illustrate_definition_py,
             'ds': self.write_stub_definition_py,
             #
-            'ki': self.interpret_make_py,
-            'ke': self.edit_make_py,
-            'ks': self.write_stub_make_py,
-            #
             'ii': self.interpret_illustration_ly,
             'ie': self.edit_illustration_ly,
             'io': self.open_illustration_pdf,
@@ -85,10 +79,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
     @property
     def _illustration_pdf_file_path(self):
         return os.path.join(self._path, 'illustration.pdf')
-
-    @property
-    def _make_py_path(self):
-        return os.path.join(self._path, '__make__.py')
 
     @property
     def _source_paths(self):
@@ -146,23 +136,11 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._make_definition_py_menu_section(menu)
         self._make_init_py_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_make_py_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_package_menu_section(menu)
         self._make_sibling_asset_tour_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         return menu
-
-    def _make_make_py_menu_section(self, menu):
-        commands = []
-        commands.append(('__make__.py - edit', 'ke'))
-        commands.append(('__make__.py - interpret', 'ki'))
-        commands.append(('__make__.py - stub', 'ks'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=False,
-            name='__make__.py',
-            )
 
     def _make_package(self):
         assert not os.path.exists(self._path)
@@ -218,13 +196,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         Returns none.
         '''
         self._open_file(self._illustration_lilypond_file_path)
-
-    def edit_make_py(self):
-        r'''Opens ``__make__.py``.
-
-        Returns none.
-        '''
-        self._open_file(self._make_py_path)
 
     def edit_versioned_definition_py(self):
         r'''Opens versioned ``definition py``.
@@ -337,32 +308,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             return
         self._io_manager.run_lilypond(file_path, candidacy=True)
 
-    def interpret_make_py(self, dry_run=False):
-        r'''Interprets ``__make__.py``.
-
-        Makes ``illustration.ly`` and ``illustration.pdf``.
-
-        Returns none.
-        '''
-        inputs = [self._make_py_path]
-        outputs = [(
-            self._illustration_lilypond_file_path, 
-            self._illustration_pdf_file_path,
-            )]
-        if dry_run:
-            return inputs, outputs
-        if not os.path.isfile(self._make_py_path):
-            message = 'no __make__.py found.'
-            self._io_manager._display(message)
-            return
-        messages = self._format_messaging(inputs, outputs)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        with self._io_manager._silent():
-            self._io_manager.interpret_file(self._make_py_path)
-
     def open_illustration_pdf(self):
         r'''Opens ``illustration.pdf``.
 
@@ -396,23 +341,4 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             'definition.py',
             )
         destination_path = self._definition_py_path
-        shutil.copyfile(source_path, destination_path)
-
-    def write_stub_make_py(self):
-        r'''Writes stub ``__make__.py``.
-
-        Returns none.
-        '''
-        messages = []
-        message = 'will write stub to {}.'.format(self._make_py_path)
-        self._io_manager._display(message)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        source_path = os.path.join(
-            self._configuration.score_manager_directory,
-            'boilerplate',
-            '__make__.py',
-            )
-        destination_path = self._make_py_path
         shutil.copyfile(source_path, destination_path)

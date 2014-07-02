@@ -46,10 +46,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         result.update({
             'de*': self.edit_every_definition_py,
             #
-            'ki*': self.interpret_every_make_py,
-            'ke*': self.open_every_make_py,
-            'ks*': self.write_every_make_py_stub,
-            #
             'ii*': self.interpret_every_output_ly,
             'io*': self.open_every_output_pdf,
             })
@@ -75,9 +71,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         superclass = super(SegmentPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
-        commands.append(('all packages - __make.py__ - edit', 'ke*'))
-        commands.append(('all packages - __make.py__ - interpret', 'ki*'))
-        commands.append(('all packages - __make.py__ - stub', 'ks*'))
         commands.append(('all packages - definition.py - edit', 'de*'))
         commands.append(('all packages - illustration.ly - interpret', 'ii*'))
         commands.append(('all packages - illustration.pdf - open', 'io*'))
@@ -139,28 +132,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('definition.py', verb='edit')
 
-    def interpret_every_make_py(self):
-        r'''Interprets ``__make.py__`` in every package.
-        
-        Makes ``illustration.ly`` and ``illustration.pdf`` in every package.
-
-        Returns none.
-        '''
-        managers = self._list_visible_asset_managers()
-        inputs, outputs = [], []
-        for manager in managers:
-            inputs_, outputs_ = manager.interpret_make_py(dry_run=True)
-            inputs.extend(inputs_)
-            outputs.extend(outputs_)
-        messages = self._format_messaging(inputs, outputs)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        with self._io_manager._silent():
-            for manager in managers:
-                manager.interpret_make_py()
-
     def interpret_every_output_ly(self, open_every_output_pdf=True):
         r'''Interprets ``illustration.ly`` in every package.
 
@@ -171,7 +142,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
         for manager in managers:
-            inputs_, outputs_ = manager.interpret_make_py(dry_run=True)
+            inputs_, outputs_ = manager.interpret_illustration_ly(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs)
@@ -182,13 +153,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         with self._io_manager._silent():
             for manager in managers:
                 manager.interpret_illustration_ly()
-
-    def open_every_make_py(self):
-        r'''Opens ``__make__.py`` in every package.
-
-        Returns none.
-        '''
-        self._open_in_every_package('__make__.py')
 
     def open_every_output_pdf(self):
         r'''Opens ``illustration.pdf`` file in every package.
@@ -210,10 +174,3 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._rename_asset()
-
-    def write_every_make_py_stub(self):
-        r'''Writes stub ``__make__.py`` in every package.
-
-        Returns none.
-        '''
-        self._io_manager._display_not_yet_implemented()

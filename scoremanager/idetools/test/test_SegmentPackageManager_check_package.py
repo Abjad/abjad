@@ -28,7 +28,7 @@ def test_SegmentPackageManager_check_package_01():
 
     lines = [
         '1 of 1 required directory missing:',
-        '1 of 4 required files missing:',
+        '1 of 3 required files missing:',
         ]
     for line in lines:
         assert line in contents
@@ -58,7 +58,7 @@ def test_SegmentPackageManager_check_package_02():
 
     lines = [
         '1 of 1 required directory missing:',
-        '1 of 4 required files missing:',
+        '1 of 3 required files missing:',
         '2 optional files found:',
         ]
     for line in lines:
