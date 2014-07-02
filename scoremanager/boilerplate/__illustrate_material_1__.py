@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad import *
-from output import PACKAGE_NAME
+from output import OUTPUT_OBJECT
 
 
-lilypond_file = PACKAGE_NAME.__illustrate__()
+lilypond_file = OUTPUT_OBJECT.__illustrate__()
 path = os.path.abspath(__file__)
 directory = os.path.dirname(path)
-path = os.path.join(directory, 'illustration.candidate.pdf')
+candidate_path = os.path.join(directory, 'illustration.candidate.pdf')
 persist(lilypond_file).as_pdf(candidate_path)
