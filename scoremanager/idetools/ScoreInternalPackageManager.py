@@ -2,6 +2,7 @@
 import itertools
 import os
 import shutil
+from abjad.tools import systemtools
 from scoremanager.idetools.PackageManager import PackageManager
 
 
@@ -80,6 +81,30 @@ class ScoreInternalPackageManager(PackageManager):
             messages.append(message)
         return messages
 
+    def _audit_version_differences(self):
+        last_version_number = self._get_last_version_number()
+        last_version_string = '%04d' % last_version_number
+        next_version_number = last_version_number + 1
+        next_version_string = '%04d' % next_version_number
+        messages = []
+        found_differing_artifacts = False
+        versions_directory = self._versions_directory
+        for source_path in self._source_paths:
+            message = ' FROM: {}'.format(source_path)
+            messages.append(message)
+            base_name = os.path.basename(source_path)
+            root, extension = os.path.splitext(base_name)
+            file_name = '{}_{}{}'.format(root, last_version_string, extension)
+            last_versioned_path = os.path.join(versions_directory, file_name)
+            file_name = '{}_{}{}'.format(root, next_version_string, extension)
+            next_versioned_path = os.path.join(versions_directory, file_name)
+            message = '   TO: {}'.format(next_versioned_path)
+            messages.append(message)
+            comparison_method = systemtools.TestManager.compare_files
+            if not comparison_method(source_path, last_versioned_path):
+                found_differing_artifacts = True
+        return found_differing_artifacts, messages
+
     def _make_versions_directory_menu_section(self, menu, commands_only=False):
         commands = []
         commands.append(('versions - list', 'vl'))
@@ -145,11 +170,6 @@ class ScoreInternalPackageManager(PackageManager):
         else:
             self._io_manager._display(messages, capitalize=False)
 
-    def _audit_version_differences(self):
-        result = True
-        messages = []
-        return result, messages
-
     def version_package(self):
         r'''Versions package.
         
@@ -157,13 +177,14 @@ class ScoreInternalPackageManager(PackageManager):
         '''
         if not os.path.isdir(self._versions_directory):
             os.mkdir(self._versions_directory)
-        result, messages = self._audit_version_differences()
-        self._io_manager._display(messages)
-        if not result:
+        found_different_artifact, messages = self._audit_version_differences()
+        if not found_different_artifact:
+            messages.insert(0, 'the files ...')
+            messages.append('... all compare the same.')
+            messages.append('no new version written.')
+            self._io_manager._display(messages)
             return
-        messages = []
-        messages.append('will copy ...')
-        messages.extend(self._make_version_package_messages())
+        messages.insert(0, 'will copy ...')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
