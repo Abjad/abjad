@@ -213,6 +213,14 @@ class TestManager(object):
 #        return False
 
     @staticmethod
+    def compare_pys(path_1, path_2):
+        with open(path_1, 'r') as file_pointer:
+            contents_1 = ''.join(file_pointer.readlines())
+        with open(path_2, 'r') as file_pointer:
+            contents_2 = ''.join(file_pointer.readlines())
+        return TestManager.compare(contents_1, contents_2)
+
+    @staticmethod
     def get_current_function_name():
         r'''Gets current function name.
 
