@@ -64,6 +64,22 @@ class ScoreInternalPackageManager(PackageManager):
                 name='package',
                 )
 
+    def _make_version_package_messages(self):
+        last_version_number = self._get_last_version_number()
+        next_version_number = last_version_number + 1
+        next_version_string = '%04d' % next_version_number
+        messages = []
+        for source_path in self._source_paths:
+            root, extension = os.path.splitext(source_path)
+            message = ' FROM: {}'.format(source_path)
+            messages.append(message)
+            directory = self._versions_directory
+            file_name = '{}_{}{}'.format(root, next_version_string, extension)
+            target_path = os.path.join(directory, file_name)
+            message = '   TO: {}'.format(target_path)
+            messages.append(message)
+        return messages
+
     def _make_versions_directory_menu_section(self, menu, commands_only=False):
         commands = []
         commands.append(('versions - list', 'vl'))
@@ -129,6 +145,11 @@ class ScoreInternalPackageManager(PackageManager):
         else:
             self._io_manager._display(messages, capitalize=False)
 
+    def _audit_version_differences(self):
+        result = True
+        messages = []
+        return result, messages
+
     def version_package(self):
         r'''Versions package.
         
@@ -136,6 +157,10 @@ class ScoreInternalPackageManager(PackageManager):
         '''
         if not os.path.isdir(self._versions_directory):
             os.mkdir(self._versions_directory)
+        result, messages = self._audit_version_differences()
+        self._io_manager._display(messages)
+        if not result:
+            return
         messages = []
         messages.append('will copy ...')
         messages.extend(self._make_version_package_messages())

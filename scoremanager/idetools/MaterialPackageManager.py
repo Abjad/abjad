@@ -323,32 +323,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._write_metadata_py(metadata)
             self.write_stub_definition_py()
 
-    def _make_version_package_messages(self):
-        path = self._versions_directory
-        greatest_version = self._io_manager._get_greatest_version_number(path)
-        new_version = greatest_version + 1
-        next_version_string = '%04d' % new_version
-        messages = []
-        for source_path in self._source_paths:
-            if not source_path:
-                continue
-            if not os.path.isfile(source_path):
-                continue
-            message = ' FROM: {}'.format(source_path)
-            messages.append(message)
-            versions_directory = self._versions_directory
-            base_name = os.path.basename(source_path)
-            file_name, extension = os.path.splitext(base_name)
-            name = '{}_{}{}'.format(
-                file_name,
-                next_version_string,
-                extension,
-                )
-            target_path = os.path.join(versions_directory, name)
-            message = '   TO: {}'.format(target_path)
-            messages.append(message)
-        return messages
-
     def _make_versions_directory_menu_section(self, menu):
         superclass = super(MaterialPackageManager, self)
         commands = superclass._make_versions_directory_menu_section(

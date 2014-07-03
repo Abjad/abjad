@@ -151,22 +151,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 supply_missing=True,
                 )
 
-    def _make_version_package_messages(self):
-        last_version_number = self._get_last_version_number()
-        next_version_number = last_version_number + 1
-        next_version_string = '%04d' % next_version_number
-        messages = []
-        for source_path in self._source_paths:
-            root, extension = os.path.splitext(source_path)
-            message = ' FROM: {}'.format(source_path)
-            messages.append(message)
-            directory = self._versions_directory
-            file_name = '{}_{}{}'.format(root, next_version_string, extension)
-            target_path = os.path.join(directory, file_name)
-            message = '   TO: {}'.format(target_path)
-            messages.append(message)
-        return messages
-
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_segments = True
 
