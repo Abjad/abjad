@@ -39,6 +39,6 @@ def test_SegmentPackageWrangler_version_every_package_01():
             assert not os.path.isfile(path)
 
     contents = ide._transcript.contents
-    assert 'Nothing to version:' in contents
+    assert 'Nothing to version ...' in contents
     for path in next_version_paths:
         assert path not in contents
