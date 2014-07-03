@@ -138,6 +138,28 @@ class TestManager(object):
         return string_1.replace('\t', '    ') == massaged_string
 
     @staticmethod
+    def compare_files(path_1, path_2):
+        r'''Compares file `path_1` to file `path_2`.
+
+        Handles .py, .ly and .pdf files according to the other methods
+        implemented on this class.
+
+        Files with other extensions are compared line by line, just
+        like .py files.
+        '''
+        base_1, extension_1 = os.path.splitext(path_1)
+        base_2, extension_2 = os.path.splitext(path_2)
+        assert extension_1 == extension_2
+        if extension_1 == 'ly':
+            return TestManager.compare_lys(path_1, path_2)
+        elif extension_1 == 'pdf':
+            return TestManager.compare_pdfs(path_1, path_2)
+        elif extension_1 == 'py':
+            return TestManager.compare_pys(path_1, path_2)
+        else:
+            return TestManager.compare_pys(path_1, path_2)
+
+    @staticmethod
     def compare_lys(path_1, path_2):
         r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
 
@@ -214,6 +236,16 @@ class TestManager(object):
 
     @staticmethod
     def compare_pys(path_1, path_2):
+        r'''Compares Python file `path_1` to Python file `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards blank lines.
+
+        Trims whitespace from the end of each line.
+
+        Returns boolean.
+        '''
         with open(path_1, 'r') as file_pointer:
             contents_1 = ''.join(file_pointer.readlines())
         with open(path_2, 'r') as file_pointer:
