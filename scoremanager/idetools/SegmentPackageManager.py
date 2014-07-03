@@ -167,17 +167,6 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             messages.append(message)
         return messages
 
-    def _make_versions_directory_menu_section(self, menu):
-        commands = []
-        commands.append(('versions - definition.py - edit', 'vde'))
-        commands.append(('versions - illustration.ly - edit', 'vie'))
-        commands.append(('versions - illustration.pdf - open', 'vio'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='versions directory',
-            )
-
     def _set_is_navigating_to_sibling_asset(self):
         self._session._is_navigating_to_segments = True
 

@@ -350,16 +350,18 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         return messages
 
     def _make_versions_directory_menu_section(self, menu):
-        commands = []
-        commands.append(('versions - definition.py - edit', 'vde'))
-        commands.append(('versions - illustration.ly - edit', 'vie'))
-        commands.append(('versions - illustration.pdf - open', 'vio'))
-        commands.append(('versions - output.py - edit', 'voe'))
-        menu.make_command_section(
-            is_hidden=True,
-            commands=commands,
-            name='versions directory',
+        superclass = super(MaterialPackageManager, self)
+        commands = superclass._make_versions_directory_menu_section(
+            menu,
+            commands_only=True,
             )
+        commands.append(('versions - output.py - edit', 'voe'))
+        if commands:
+            menu.make_command_section(
+                is_hidden=True,
+                commands=commands,
+                name='versions directory',
+                )
 
     def _object_to_import_statements(self, object_):
         import_statements = []

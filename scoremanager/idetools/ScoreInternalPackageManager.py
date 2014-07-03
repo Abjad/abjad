@@ -55,15 +55,28 @@ class ScoreInternalPackageManager(PackageManager):
         commands = superclass._make_package_menu_section(
             menu, commands_only=True)
         commands.append(('package - version', 'vr'))
-        commands.append(('package - versions list', 'vl'))
         if commands_only:
             return commands
         if commands:
             menu.make_command_section(
-                is_hidden=True,
+                is_hidden=False,
                 commands=commands,
                 name='package',
                 )
+
+    def _make_versions_directory_menu_section(self, menu, commands_only=False):
+        commands = []
+        commands.append(('versions - list', 'vl'))
+        commands.append(('versions - definition.py - edit', 'vde'))
+        commands.append(('versions - illustration.ly - edit', 'vie'))
+        commands.append(('versions - illustration.pdf - open', 'vio'))
+        if commands_only:
+            return commands
+        menu.make_command_section(
+            is_hidden=True,
+            commands=commands,
+            name='versions directory',
+            )
 
     ### PUBLIC METHODS ###
 
