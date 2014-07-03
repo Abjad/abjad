@@ -147,14 +147,22 @@ class TestManager(object):
         Files with other extensions are compared line by line, just
         like .py files.
         '''
+        assert os.path.exists(path_1), repr(path_1)
+        assert os.path.exists(path_2), repr(path_2)
+        if os.path.exists(path_1) and not os.path.exists(path_2):
+            return False
+        elif not os.path.exists(path_1) and os.path.exists(path_2):
+            return False
+        elif not os.path.exists(path_1) and not os.path.exists(path_2):
+            return True
         base_1, extension_1 = os.path.splitext(path_1)
         base_2, extension_2 = os.path.splitext(path_2)
         assert extension_1 == extension_2
-        if extension_1 == 'ly':
+        if extension_1 == '.ly':
             return TestManager.compare_lys(path_1, path_2)
-        elif extension_1 == 'pdf':
+        elif extension_1 == '.pdf':
             return TestManager.compare_pdfs(path_1, path_2)
-        elif extension_1 == 'py':
+        elif extension_1 == '.py':
             return TestManager.compare_pys(path_1, path_2)
         else:
             return TestManager.compare_pys(path_1, path_2)
@@ -208,6 +216,11 @@ class TestManager(object):
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
         result = file_1_lines == file_2_lines
+        #for line_1, line_2 in zip(file_1_lines, file_2_lines):
+        #    if line_1 != line_2:
+        #        print(repr(line_1))
+        #        print(repr(line_2))
+        #        return False
         if messages:
             tab = '    '
             messages = []
