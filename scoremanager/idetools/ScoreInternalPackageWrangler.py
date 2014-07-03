@@ -95,10 +95,20 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         Returns none.
         '''
         managers = self._list_visible_asset_managers()
-        messages = []
-        messages.append('will copy ...')
+        messages, refuse_messages = [], []
         for manager in managers:
-            messages.extend(manager._make_version_package_messages())
+            result, messages_ = manager._audit_version_differences()
+            if result:
+                messages.extend(messages_)
+            else:
+                refuse_messages.extend(messages_)
+        if refuse_messages:
+            refuse_messages.insert(0, 'nothing to version ...')
+            refuse_messages.append('')
+            self._io_manager._display(refuse_messages)
+        if not messages:
+            return
+        messages.insert(0, 'will copy ...')
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:

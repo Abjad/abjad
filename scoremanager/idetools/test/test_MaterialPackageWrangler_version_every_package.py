@@ -6,29 +6,21 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_version_every_package_01():
+    r'''The status of the five material packages should be that
+    there is nothing to version in instrumentation/ but that
+    the other four packges can version.
+    This is the reason for both the 'Nothing to version ...'
+    and the 'Will copy ...' messages showing up in the transcript.
     
-    target_paths = []
-    segments = ('segment_01', 'segment_02', 'segment_03')
-    file_names = ('definition.py', 'illustration.ly', 'illustration.pdf')
-    for segment in segments:
-        versions_directory = os.path.join(
-            ide._configuration.example_score_packages_directory,
-            'red_example_score',
-            'segments',
-            segment,
-            'versions',
-            )
-        for file_name in file_names:
-            root, extension = os.path.splitext(file_name)
-            target_name = '{}_{}{}'.format(root, '0002', extension)
-            target_path = os.path.join(versions_directory, target_name)
-            target_paths.append(target_path)
+    Test test differs from the corresponding test for SegmentPackageWrangler.
+    The reason is that the artifact structure of the material packages
+    is more complicated. So this test doesn't both actually touching
+    the filesystem and just test messaging.
+    '''
+    
+    input_ = 'red~example~score m vr* n q'
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
 
-    for path in target_paths:
-        assert not os.path.exists(path)
-
-    with systemtools.FilesystemState(remove=target_paths):
-        input_ = 'red~example~score g vr* y q'
-        ide._run(input_=input_)
-        for path in target_paths:
-            assert os.path.isfile(path)
+    assert 'Nothing to version ...' in contents
+    assert 'Will copy ...' in contents

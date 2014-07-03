@@ -6,6 +6,8 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageManager_version_package_01():
+    r'''Doesn't version anything because segment A should already be versioned.
+    '''
     
     versions_directory = os.path.join(
         ide._configuration.example_score_packages_directory,
@@ -14,17 +16,17 @@ def test_SegmentPackageManager_version_package_01():
         'segment_01',
         'versions',
         )
-    file_names = (
-        'definition_0002.py',
-        'illustration_0002.ly',
-        'illustration_0002.pdf',
+    next_versioned_file_names = (
+        'definition_0003.py',
+        'illustration_0003.ly',
+        'illustration_0003.pdf',
         )
     paths = []
-    for file_name in file_names:
-        path = os.path.join(versions_directory, file_name)
+    for next_versioned_file_name in next_versioned_file_names:
+        path = os.path.join(versions_directory, next_versioned_file_name)
         paths.append(path)
 
     with systemtools.FilesystemState(remove=paths):
         input_ = 'red~example~score g A vr y q'
         ide._run(input_=input_)
-        assert all(os.path.isfile(_) for _ in paths)
+        assert not any(os.path.isfile(_) for _ in paths)
