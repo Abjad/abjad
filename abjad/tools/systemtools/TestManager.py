@@ -147,8 +147,6 @@ class TestManager(object):
         Files with other extensions are compared line by line, just
         like .py files.
         '''
-        assert os.path.exists(path_1), repr(path_1)
-        assert os.path.exists(path_2), repr(path_2)
         if os.path.exists(path_1) and not os.path.exists(path_2):
             return False
         elif not os.path.exists(path_1) and os.path.exists(path_2):
