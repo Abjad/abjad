@@ -31,8 +31,8 @@ def test_SegmentPackageWrangler_doctest_02():
 
     strings = [
         'Running doctest ...',
-        '13 testable assets found ...',
-        '0 of 0 tests passed in 13 modules.',
+        '15 testable assets found ...',
+        '0 of 0 tests passed in 15 modules.',
         ]
     for string in strings:
         assert string in contents
