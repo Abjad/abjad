@@ -99,7 +99,7 @@ class IOManager(IOManager):
             )
 
     def _display(self, lines, capitalize=True, is_menu=False):
-        assert isinstance(lines, (str, list))
+        assert isinstance(lines, (str, list)), repr(lines)
         if not self._session.display:
             return
         if isinstance(lines, str):
@@ -597,7 +597,7 @@ class IOManager(IOManager):
     def run_lilypond(self, path, candidacy=False):
         r'''Runs LilyPond on file `path`.
 
-        Returns none.
+        Returns STDERR messages from LilyPond.
         '''
         if self.find_executable('lilypond'):
             executable = 'lilypond'
@@ -611,15 +611,39 @@ class IOManager(IOManager):
             command = '{} -dno-point-and-click {}'
             command = command.format(executable, path)
             with systemtools.TemporaryDirectoryChange(input_directory):
-                self.spawn_subprocess(command)
-            return
+                #self.spawn_subprocess(command)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    )
+                stderr_lines = []
+                for stdout_line in process.stderr.readlines():
+                    stdout_line = str(stdout_line)
+                    stdout_line = stdout_line.strip()
+                    stderr_lines.append(stdout_line)
+            self._display(stderr_lines)
+            return stderr_lines
         base_candidate_path = base + '.candiate'
         candidate_path = base_candidate_path + '.pdf'
         with systemtools.FilesystemState(remove=[candidate_path]):
             command = '{} -dno-point-and-click --output={} {}'
             command = command.format(executable, base_candidate_path, path)
             with systemtools.TemporaryDirectoryChange(input_directory):
-                self.spawn_subprocess(command)
+                #self.spawn_subprocess(command)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    )
+                stderr_lines = []
+                for stdout_line in process.stderr.readlines():
+                    stdout_line = str(stdout_line)
+                    stdout_line = stdout_line.strip()
+                    stderr_lines.append(stdout_line)
+            self._display(stderr_lines)
             tab = self._make_tab()
             messages = []
             if systemtools.TestManager.compare_pdfs(
@@ -631,17 +655,19 @@ class IOManager(IOManager):
                 messages.append(tab + candidate_path)
                 messages.append('... compare the same.')
                 messages.append('Preserved {}.'.format(output_path))
+                messages.append('')
                 self._display(messages)
-                return
+                return stderr_lines
             messages.append('The PDFs ...')
             messages.append(tab + output_path)
             messages.append(tab + candidate_path)
             messages.append('... compare differently.')
+            messages.append('')
             self._display(messages)
             message = 'overwrite existing PDF with candidate PDF?'
             result = self._confirm(message=message)
             if self._session.is_backtracking or not result:
-                return
+                return stderr_lines
             shutil.move(candidate_path, output_path)
 
     def write(self, path, string):

@@ -107,8 +107,10 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         '''
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
+        method_name = 'interpret_illustration_ly'
         for manager in managers:
-            inputs_, outputs_ = manager.interpret_illustration_ly(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs)
@@ -116,9 +118,13 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        with self._io_manager._silent():
-            for manager in managers:
-                manager.interpret_illustration_ly()
+        for manager in managers:
+            with self._io_manager._silent():
+                method = getattr(manager, method_name)
+                subprocess_messages = method()
+            if subprocess_messages:
+                subprocess_messages.append('')
+                self._io_manager._display(subprocess_messages)
 
     def list_every_versions_directory(self):
         r'''Lists versions directory in every package.

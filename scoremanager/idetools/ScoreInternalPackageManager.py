@@ -144,7 +144,7 @@ class ScoreInternalPackageManager(PackageManager):
 
         Makes ``illustration.pdf``.
 
-        Returns none.
+        Returns subprocess messages from LilyPond.
         '''
         inputs = [self._illustration_ly_path]
         outputs = [(self._illustration_pdf_path,)]
@@ -154,11 +154,15 @@ class ScoreInternalPackageManager(PackageManager):
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
-            return
+            return []
         file_path = self._illustration_ly_path
         if not os.path.isfile(file_path):
-            return
-        self._io_manager.run_lilypond(file_path, candidacy=True)
+            return []
+        subprocess_messages = self._io_manager.run_lilypond(
+            file_path, 
+            candidacy=True,
+            )
+        return subprocess_messages
 
     def list_versions_directory(self, messages_only=False):
         r'''Lists versions directory.

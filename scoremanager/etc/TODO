@@ -119,3 +119,9 @@
         (sg), (si)
     MaterialPackageWrangler: (ii*)
     SegmentPackageWrangler: (ii*)
+
+33. Update all iterative methods to use the method-name pattern.
+    See ScoreInteralPackageWrangler.interpret_every_illustration_ly().
+
+34. Change SegmentPackageWrangler.interpret_every_output_ly()
+    to SegmentPackageWrangler.interpret_every_illustration_ly().
