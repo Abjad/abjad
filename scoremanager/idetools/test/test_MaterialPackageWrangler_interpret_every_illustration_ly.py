@@ -6,43 +6,77 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
-    r'''Works when illustration.ly already exists.
+    r'''Does not display candidate messages.
     '''
 
+    path = ide._configuration.example_score_packages_directory
+    path = os.path.join(path, 'red_example_score', 'materials')
     package_names = (
         'magic_numbers', 
         'pitch_range_inventory', 
         'tempo_inventory',
         )
-    input_paths = []
-    for name in package_names:
-        path = os.path.join(
-            ide._configuration.example_score_packages_directory,
-            'red_example_score',
-            'materials',
-            name,
-            'illustration.ly',
-            )
-        input_paths.append(path)
-    output_paths = []
-    for path in input_paths:
-        path = path.replace('.ly', '.pdf')
-        output_paths.append(path)
+    ly_paths = [
+        os.path.join(path, _, 'illustration.ly') 
+        for _ in package_names
+        ]
+    pdf_paths = [_.replace('.ly', '.pdf') for _ in ly_paths]
+    paths = ly_paths + pdf_paths
 
-    keep = input_paths + output_paths
-    with systemtools.FilesystemState(keep=keep):
-        for path in output_paths:
+    with systemtools.FilesystemState(keep=paths):
+        for path in pdf_paths:
             os.remove(path)
-        assert not any(os.path.exists(_) for _ in output_paths)
+        assert not any(os.path.exists(_) for _ in pdf_paths)
         input_ = 'red~example~score m ii* y q'
         ide._run(input_=input_)
-        contents = ide._transcript.contents
-        assert all(os.path.isfile(_) for _ in output_paths)
-        assert 'Will interpret ...' in contents
-        assert 'INPUT:' in contents
-        assert 'OUTPUT:' in contents
-        for output_path in output_paths:
+        assert all(os.path.isfile(_) for _ in pdf_paths)
+        for pdf_path in pdf_paths:
             assert systemtools.TestManager.compare_pdfs(
-                output_path, 
-                output_path + '.backup',
+                pdf_path, 
+                pdf_path + '.backup',
                 )
+
+    contents = ide._transcript.contents
+    for path in paths:
+        assert path in contents
+
+    assert 'Will interpret ...' in contents
+    assert 'INPUT:' in contents
+    assert 'OUTPUT:' in contents
+    assert not 'The PDFs ...' in contents
+    assert not '... compare the same.' in contents
+    assert not 'Preserved' in contents
+
+
+def test_MaterialPackageWrangler_interpret_every_illustration_ly_02():
+    r'''Does display candidate messages.
+    '''
+
+    path = ide._configuration.example_score_packages_directory
+    path = os.path.join(path, 'red_example_score', 'materials')
+    package_names = (
+        'magic_numbers', 
+        'pitch_range_inventory', 
+        'tempo_inventory',
+        )
+    ly_paths = [
+        os.path.join(path, _, 'illustration.ly') 
+        for _ in package_names
+        ]
+    pdf_paths = [_.replace('.ly', '.pdf') for _ in ly_paths]
+    paths = ly_paths + pdf_paths
+
+    with systemtools.FilesystemState(keep=paths):
+        input_ = 'red~example~score m ii* y q'
+        ide._run(input_=input_)
+
+    contents = ide._transcript.contents
+    for path in paths:
+        assert path in contents
+
+    assert 'Will interpret ...' in contents
+    assert 'INPUT:' in contents
+    assert 'OUTPUT:' in contents
+    assert 'The PDFs ...' in contents
+    assert '... compare the same.' in contents
+    assert 'Preserved' in contents

@@ -121,10 +121,12 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         for manager in managers:
             with self._io_manager._silent():
                 method = getattr(manager, method_name)
-                subprocess_messages = method()
+                subprocess_messages, candidate_messages = method()
             if subprocess_messages:
-                subprocess_messages.append('')
+                #subprocess_messages.append('')
                 self._io_manager._display(subprocess_messages)
+                self._io_manager._display(candidate_messages)
+                self._io_manager._display('')
 
     def list_every_versions_directory(self):
         r'''Lists versions directory in every package.

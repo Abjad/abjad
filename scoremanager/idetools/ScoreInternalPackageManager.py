@@ -144,7 +144,8 @@ class ScoreInternalPackageManager(PackageManager):
 
         Makes ``illustration.pdf``.
 
-        Returns subprocess messages from LilyPond.
+        Returns pair. List of STDERR messages from LilyPond together
+        with list of candidate messages.
         '''
         inputs, outputs = [], []
         if os.path.isfile(self._illustration_ly_path):
@@ -156,17 +157,18 @@ class ScoreInternalPackageManager(PackageManager):
             message = 'The file {} does not exist.'
             message = message.format(self._illustration_ly_path)
             self._io_manager._display(message)
-            return []
+            return [], []
         messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
-            return []
-        subprocess_messages = self._io_manager.run_lilypond(
+            return [], []
+        result = self._io_manager.run_lilypond(
             self._illustration_ly_path, 
             candidacy=True,
             )
-        return subprocess_messages
+        subprocess_messages, candidate_messages = result
+        return subprocess_messages, candidate_messages
 
     def list_versions_directory(self, messages_only=False):
         r'''Lists versions directory.
