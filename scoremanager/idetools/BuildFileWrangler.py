@@ -559,8 +559,7 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        #self._generate_latex_source('front-cover.tex', candidacy=True)
-        self._generate_latex_source('front-cover.tex')
+        self._generate_latex_source('front-cover.tex', candidacy=True)
         
     def generate_music_source(self):
         r'''Generates ``music.ly``.
@@ -631,16 +630,14 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        #self._generate_latex_source('preface.tex', candidacy=True)
-        self._generate_latex_source('preface.tex')
+        self._generate_latex_source('preface.tex', candidacy=True)
 
     def generate_score_source(self):
         r'''Generates ``score.tex``.
 
         Returns none.
         '''
-        #self._generate_latex_source('score.tex', candidacy=True)
-        self._generate_latex_source('score.tex')
+        self._generate_latex_source('score.tex', candidacy=True)
 
     def interpret_back_cover(self):
         r'''Interprets ``back-cover.tex``.

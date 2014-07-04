@@ -35,9 +35,10 @@ def test_BuildFileWrangler_generate_preface_source_01():
         destination_contents = ''.join(file(destination_path).readlines())
         assert 'PAPER_SIZE' not in destination_contents
         assert '{8.5in, 11in}' in destination_contents
-        contents = ide._transcript.contents
-        assert 'Overwrite' not in contents
-        assert 'Overwrote' not in contents
+
+    contents = ide._transcript.contents
+    assert 'Overwrite' not in contents
+    assert 'Overwrote' not in contents
 
 
 def test_BuildFileWrangler_generate_preface_source_02():
@@ -67,6 +68,8 @@ def test_BuildFileWrangler_generate_preface_source_02():
         destination_contents = ''.join(file(destination_path).readlines())
         assert 'PAPER_SIZE' not in destination_contents
         assert '{8.5in, 11in}' in destination_contents
-        contents = ide._transcript.contents
-        assert 'Overwrite' in contents
-        assert 'Overwrote' in contents
+
+    contents = ide._transcript.contents
+    assert 'The files ...' in contents
+    assert '... compare the same.' in contents
+    assert 'Preserved' in contents

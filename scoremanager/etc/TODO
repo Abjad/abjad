@@ -109,14 +109,11 @@
     (<MenuSection 'material summary' (33)>, 'explicit', <MenuEntry: '3'>)
 
 32. Integrate artifact candidacy protocol.
-    Remaining commands to integrate listed before.
-    BuildFileManager:
-        (bci)
-        (dc), (dg), (di)
-        (fce[io]), (fcg), (fci)
-        (mc), (mg), (mi)
-        (pg), (pi)
-        (sg), (si)
+    Remaining commands to integrate:
+        BuildFileManager:
+            (mg)
+            (bci), (fce[io]), (fci), (di), (mi), (pi), (si)
+            (dc), (mc)
 
 33. Update all iterative methods to use the method-name pattern.
     See ScoreInteralPackageWrangler.interpret_every_illustration_ly().

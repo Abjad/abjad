@@ -12,20 +12,22 @@ def test_BuildFileWrangler_generate_front_cover_source_01():
     (Front cover source already exists in Red Example Score.)
     '''
 
-    path = os.path.join(
+    cover_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',
         )
 
-    with systemtools.FilesystemState(keep=[path]):
+    with systemtools.FilesystemState(keep=[cover_path]):
         input_ = 'red~example~score u fcg y q'
         ide._run(input_=input_)
-        contents = ide._transcript.contents
-        assert 'Overwrite' in contents
-        assert 'Overwrote' in contents
-        assert filecmp.cmp(path, path + '.backup')
+        assert filecmp.cmp(cover_path, cover_path + '.backup')
+
+    contents = ide._transcript.contents
+    assert 'The files ...' in contents
+    assert '... compare the same.' in contents
+    assert 'Preserved' in contents
 
 
 def test_BuildFileWrangler_generate_front_cover_source_02():
@@ -34,19 +36,19 @@ def test_BuildFileWrangler_generate_front_cover_source_02():
     (Front cover source does exist in Red Example Score.)
     '''
 
-    path = os.path.join(
+    cover_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'build',
         'front-cover.tex',
         )
 
-    with systemtools.FilesystemState(keep=[path]):
-        os.remove(path)
-        assert not os.path.exists(path)
+    with systemtools.FilesystemState(keep=[cover_path]):
+        os.remove(cover_path)
+        assert not os.path.exists(cover_path)
         input_ = 'red~example~score u fcg q'
         ide._run(input_=input_)
-        contents = ide._transcript.contents
-        assert 'Overwrite' not in contents
-        assert 'Overwrote' not in contents
-        assert filecmp.cmp(path, path + '.backup')
+        assert filecmp.cmp(cover_path, cover_path + '.backup')
+
+    contents = ide._transcript.contents
+    assert 'Wrote' in contents
