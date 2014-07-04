@@ -117,8 +117,6 @@
         (mc), (mg), (mi)
         (pg), (pi)
         (sg), (si)
-    MaterialPackageWrangler: (ii*)
-    SegmentPackageWrangler: (ii*)
 
 33. Update all iterative methods to use the method-name pattern.
     See ScoreInteralPackageWrangler.interpret_every_illustration_ly().
