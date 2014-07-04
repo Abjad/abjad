@@ -111,7 +111,7 @@
 32. Integrate artifact candidacy protocol.
     Remaining commands to integrate listed before.
     BuildFileManager:
-        (bcg), (bci)
+        (bci)
         (dc), (dg), (di)
         (fce[io]), (fcg), (fci)
         (mc), (mg), (mi)

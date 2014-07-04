@@ -214,11 +214,6 @@ class TestManager(object):
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
         result = file_1_lines == file_2_lines
-        #for line_1, line_2 in zip(file_1_lines, file_2_lines):
-        #    if line_1 != line_2:
-        #        print(repr(line_1))
-        #        print(repr(line_2))
-        #        return False
         if messages:
             tab = '    '
             messages = []
@@ -232,18 +227,6 @@ class TestManager(object):
             return result, messages
         else:
             return result
-#        if file_1_lines == file_2_lines:
-#            return True
-#        print len(file_1_lines), len(file_2_lines)
-#        test_1_path = '/Users/trevorbaca/Desktop/test_1.pdf'
-#        test_2_path = '/Users/trevorbaca/Desktop/test_2.pdf'
-#        with open(test_1_path, 'w') as file_pointer:
-#            contents = '\n'.join(file_1_lines)
-#            file_pointer.write(contents)
-#        with open(test_2_path, 'w') as file_pointer:
-#            contents = '\n'.join(file_2_lines)
-#            file_pointer.write(contents)
-#        return False
 
     @staticmethod
     def compare_pys(path_1, path_2):
