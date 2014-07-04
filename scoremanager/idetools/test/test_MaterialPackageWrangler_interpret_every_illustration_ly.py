@@ -41,7 +41,6 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
         assert 'Will interpret ...' in contents
         assert 'INPUT:' in contents
         assert 'OUTPUT:' in contents
-        assert 'Interpreted' in contents
         for output_path in output_paths:
             assert systemtools.TestManager.compare_pdfs(
                 output_path, 

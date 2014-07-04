@@ -401,32 +401,6 @@ class Wrangler(ScoreInternalAssetController):
             manager._asset_identifier = asset_identifier
         return manager
 
-    def _interpret_in_every_package(self, file_name):
-        paths = []
-        for path in self._list_visible_asset_paths():
-            path = os.path.join(path, file_name)
-            if os.path.isfile(path):
-                paths.append(path)
-        _, extension = os.path.splitext(file_name)
-        messages = []
-        messages.append('will interpret ...')
-        for path in paths:
-            message = ' INPUT: {}'.format(path)
-            messages.append(message)
-            if extension == '.ly':
-                output_path = path.replace('.ly', '.pdf')
-                message = 'OUTPUT: {}'.format(output_path)
-                messages.append(message)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        if paths:
-            self._io_manager._display('')
-        for path in paths:
-            self._io_manager.interpret_file(path)
-            self._io_manager._display('')
-
     def _list(self, public_entries_only=False):
         result = []
         path = self._get_current_directory()

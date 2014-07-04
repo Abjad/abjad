@@ -132,31 +132,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('definition.py', verb='edit')
 
-    def interpret_every_illustration_ly(
-        self, 
-        open_every_illustration_pdf=True,
-        ):
-        r'''Interprets ``illustration.ly`` in every package.
-
-        Makes ``illustration.pdf`` in every package.
-
-        Returns none.
-        '''
-        managers = self._list_visible_asset_managers()
-        inputs, outputs = [], []
-        for manager in managers:
-            inputs_, outputs_ = manager.interpret_illustration_ly(dry_run=True)
-            inputs.extend(inputs_)
-            outputs.extend(outputs_)
-        messages = self._format_messaging(inputs, outputs)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        with self._io_manager._silent():
-            for manager in managers:
-                manager.interpret_illustration_ly()
-
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` file in every package.
 

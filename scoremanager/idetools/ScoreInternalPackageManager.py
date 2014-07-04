@@ -139,6 +139,27 @@ class ScoreInternalPackageManager(PackageManager):
         '''
         self._go_to_previous_package()
 
+    def interpret_illustration_ly(self, dry_run=False):
+        r'''Interprets ``illustration.ly``.
+
+        Makes ``illustration.pdf``.
+
+        Returns none.
+        '''
+        inputs = [self._illustration_ly_path]
+        outputs = [(self._illustration_pdf_path,)]
+        if dry_run:
+            return inputs, outputs
+        messages = self._format_messaging(inputs, outputs)
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        file_path = self._illustration_ly_path
+        if not os.path.isfile(file_path):
+            return
+        self._io_manager.run_lilypond(file_path, candidacy=True)
+
     def list_versions_directory(self, messages_only=False):
         r'''Lists versions directory.
 

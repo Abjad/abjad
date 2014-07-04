@@ -645,19 +645,6 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                     shutil.move(candidate_pdf_path, illustration_pdf_path)
                     shutil.move(candidate_ly_path, illustration_ly_path)
 
-    def interpret_illustration_ly(self):
-        r'''Interprets ``illustration.ly``.
-
-        Returns none.
-        '''
-        from scoremanager import idetools
-        path = self._illustration_ly_path
-        if os.path.isfile(path):
-            self._io_manager.run_lilypond(path)
-        else:
-            message = 'illustration.ly file does not exist.'
-            self._io_manager._display(message)
-
     def open_illustration_pdf(self):
         r'''Opens ``illustration.pdf``.
 

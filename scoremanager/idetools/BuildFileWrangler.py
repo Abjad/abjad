@@ -250,9 +250,14 @@ class BuildFileWrangler(FileWrangler):
         command_called_twice = '{}; {}'.format(command, command)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self._io_manager.spawn_subprocess(command_called_twice)
+            # TODO: reimplement with glob.glob() and os.remove()
             command = 'rm {}/*.aux'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
+            # TODO: reimplement with glob.glob() and os.remove()
             command = 'rm {}/*.ll'.format(output_directory)
+            self._io_manager.spawn_subprocess(command)
+            # TODO: reimplement with glob.glob() and os.remove()
+            command = 'rm {}/*.log'.format(output_directory)
             self._io_manager.spawn_subprocess(command)
 
     def _make_back_cover_menu_section(self, menu):

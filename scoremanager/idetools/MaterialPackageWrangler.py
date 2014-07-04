@@ -271,13 +271,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         self._open_in_every_package('output.py')
 
-    def interpret_every_illustration_ly(self):
-        r'''Interprets ``illustration.ly`` in every package.
-
-        Returns none.
-        '''
-        self._interpret_in_every_package('illustration.ly')
-
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` in every package.
 

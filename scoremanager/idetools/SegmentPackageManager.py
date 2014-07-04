@@ -73,19 +73,19 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         return os.path.join(self._path, 'definition.py')
 
     @property
-    def _illustration_lilypond_file_path(self):
+    def _illustration_ly_path(self):
         return os.path.join(self._path, 'illustration.ly')
 
     @property
-    def _illustration_pdf_file_path(self):
+    def _illustration_pdf_path(self):
         return os.path.join(self._path, 'illustration.pdf')
 
     @property
     def _source_paths(self):
         return (
             self._definition_py_path,
-            self._illustration_lilypond_file_path,
-            self._illustration_pdf_file_path,
+            self._illustration_ly_path,
+            self._illustration_pdf_path,
             )
 
     ### PRIVATE METHODS ###
@@ -118,10 +118,10 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
     def _make_illustration_ly_menu_section(self, menu):
         commands = []
-        if os.path.isfile(self._illustration_lilypond_file_path):
+        if os.path.isfile(self._illustration_ly_path):
             commands.append(('illustration.ly - edit', 'ie'))
             commands.append(('illustration.ly - interpret', 'ii'))
-        if os.path.isfile(self._illustration_pdf_file_path):
+        if os.path.isfile(self._illustration_pdf_path):
             commands.append(('illustration.pdf - open', 'io'))
         if commands:
             menu.make_command_section(
@@ -168,7 +168,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
 
         Returns none.
         '''
-        self._open_file(self._illustration_lilypond_file_path)
+        self._open_file(self._illustration_ly_path)
 
     def edit_versioned_definition_py(self):
         r'''Opens versioned ``definition py``.
@@ -261,33 +261,12 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                     shutil.move(candidate_pdf_path, illustration_pdf_path)
                     shutil.move(candidate_ly_path, illustration_ly_path)
 
-    def interpret_illustration_ly(self, dry_run=False):
-        r'''Interprets ``illustration.ly``.
-
-        Makes ``illustration.pdf``.
-
-        Returns none.
-        '''
-        inputs = [self._illustration_lilypond_file_path]
-        outputs = [(self._illustration_pdf_file_path,)]
-        if dry_run:
-            return inputs, outputs
-        messages = self._format_messaging(inputs, outputs)
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        file_path = self._illustration_lilypond_file_path
-        if not os.path.isfile(file_path):
-            return
-        self._io_manager.run_lilypond(file_path, candidacy=True)
-
     def open_illustration_pdf(self):
         r'''Opens ``illustration.pdf``.
 
         Returns none.
         '''
-        self._open_file(self._illustration_pdf_file_path)
+        self._open_file(self._illustration_pdf_path)
 
     def open_versioned_illustration_pdf(self):
         r'''Opens versioned ``illustration.pdf``.
