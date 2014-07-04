@@ -1,8 +1,5 @@
 # -*- encoding: utf-8 -*-
-import collections
-import itertools
 import os
-import shutil
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.idetools.ScoreInternalAssetController import \
@@ -41,7 +38,7 @@ class PackageManager(ScoreInternalAssetController):
         self._optional_files = ()
         self._required_directories = ()
         self._required_files = (
-            '__init__.py', 
+            '__init__.py',
             '__metadata__.py',
             )
         self._package_name = os.path.basename(path)
@@ -191,8 +188,8 @@ class PackageManager(ScoreInternalAssetController):
                     return directory_entry
 
     def _format_counted_check_messages(
-        self, 
-        paths, 
+        self,
+        paths,
         identifier,
         participal,
         ):
@@ -210,9 +207,9 @@ class PackageManager(ScoreInternalAssetController):
         return messages
 
     def _format_ratio_check_messages(
-        self, 
-        found_paths, 
-        total_paths, 
+        self,
+        found_paths,
+        total_paths,
         identifier,
         participal='found',
         ):
@@ -239,7 +236,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith('A'):
                     path = line.strip('A')
@@ -252,7 +250,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith('A'):
                     path = line.strip('A')
@@ -300,7 +299,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith(('M', ' M')):
                     path = line.strip('M ')
@@ -313,7 +313,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith('M'):
                     path = line.strip('M')
@@ -333,8 +334,7 @@ class PackageManager(ScoreInternalAssetController):
         if self._is_in_git_repository():
             command = 'git rev-parse --show-toplevel'
             process = self._io_manager.make_subprocess(command)
-            line = str(process.stdout.readline())
-            line = line.strip()
+            line = self._io_manager._read_one_line_from_pipe(process.stdout)
             return line
         elif self._is_svn_versioned():
             pass
@@ -359,7 +359,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith('?'):
                     path = line.strip('?')
@@ -372,7 +373,8 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
             paths = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 if line.startswith('?'):
                     path = line.strip('?')
@@ -414,8 +416,7 @@ class PackageManager(ScoreInternalAssetController):
         command = 'git status --porcelain {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
-        first_line = first_line.strip()
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('A'):
             return True
         return False
@@ -429,8 +430,7 @@ class PackageManager(ScoreInternalAssetController):
         command = 'git status --porcelain {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
-        first_line = first_line.strip()
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('??'):
             return True
         return False
@@ -443,8 +443,7 @@ class PackageManager(ScoreInternalAssetController):
         command = command.format(path)
         with systemtools.TemporaryDirectoryChange(directory=self._path):
             process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
-        first_line = first_line.strip()
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('?'):
             return False
         return True
@@ -459,7 +458,7 @@ class PackageManager(ScoreInternalAssetController):
         command = command.format(path)
         with systemtools.TemporaryDirectoryChange(directory=path):
             process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('fatal:'):
             return False
         else:
@@ -492,7 +491,7 @@ class PackageManager(ScoreInternalAssetController):
         command = 'svn st {}'
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('svn: warning:'):
             return False
         else:
@@ -508,7 +507,7 @@ class PackageManager(ScoreInternalAssetController):
         command = command.format(self._path)
         with systemtools.TemporaryDirectoryChange(directory=self._path):
             process = self._io_manager.make_subprocess(command)
-        first_line = str(process.stdout.readline())
+        first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         return first_line == ''
 
     def _list(self, public_entries_only=False, smart_sort=False):
@@ -645,11 +644,11 @@ class PackageManager(ScoreInternalAssetController):
         path = self._path
         command = command.format(path)
         process = self._io_manager.make_subprocess(command)
-        line = str(process.stdout.readline())
+        self._io_manager._read_one_line_from_pipe(process.stdout)
         if cleanup_command:
             cleanup_command = cleanup_command.format(path)
             process = self._io_manager.make_subprocess(cleanup_command)
-            line = str(process.stdout.readline())
+            self._io_manager._read_one_line_from_pipe(process.stdout)
         return True
 
     def _remove_metadatum(self, metadatum_name):
@@ -676,7 +675,7 @@ class PackageManager(ScoreInternalAssetController):
             command = 'mv {} {}'
         command = command.format(self._path, new_path)
         process = self._io_manager.make_subprocess(command)
-        process.stdout.readline()
+        self._io_manager._read_from_pipe(process.stdout)
         self._path = new_path
 
     def _rename_interactively(
@@ -913,9 +912,9 @@ class PackageManager(ScoreInternalAssetController):
             self._add_metadatum(metadatum_name, metadatum_value)
 
     def check_package(
-        self, 
+        self,
         problems_only=None,
-        return_messages=False, 
+        return_messages=False,
         return_supply_messages=False,
         supply_missing=None,
         ):
@@ -1199,7 +1198,8 @@ class PackageManager(ScoreInternalAssetController):
             path = self._path
             path = path + os.path.sep
             clean_lines = []
-            for line in process.stdout.readlines():
+            stdout_lines = self._io_manager._read_from_pipe(process.stdout)
+            for line in stdout_lines.splitlines():
                 line = str(line)
                 clean_line = line.strip()
                 clean_line = clean_line.replace(path, '')
@@ -1295,7 +1295,7 @@ class PackageManager(ScoreInternalAssetController):
                 return messages
             command = self._repository_update_command
             messages = self._io_manager.run_command(
-                command, 
+                command,
                 messages_only=True,
                 )
         if messages and messages[-1].startswith('At revision'):
