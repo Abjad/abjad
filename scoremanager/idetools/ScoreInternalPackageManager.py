@@ -146,20 +146,24 @@ class ScoreInternalPackageManager(PackageManager):
 
         Returns subprocess messages from LilyPond.
         '''
-        inputs = [self._illustration_ly_path]
-        outputs = [(self._illustration_pdf_path,)]
+        inputs, outputs = [], []
+        if os.path.isfile(self._illustration_ly_path):
+            inputs.append(self._illustration_ly_path)
+            outputs.append((self._illustration_pdf_path,))
         if dry_run:
             return inputs, outputs
+        if not os.path.isfile(self._illustration_ly_path):
+            message = 'The file {} does not exist.'
+            message = message.format(self._illustration_ly_path)
+            self._io_manager._display(message)
+            return []
         messages = self._format_messaging(inputs, outputs)
         self._io_manager._display(messages)
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return []
-        file_path = self._illustration_ly_path
-        if not os.path.isfile(file_path):
-            return []
         subprocess_messages = self._io_manager.run_lilypond(
-            file_path, 
+            self._illustration_ly_path, 
             candidacy=True,
             )
         return subprocess_messages
