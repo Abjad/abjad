@@ -75,12 +75,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'dc*': self.check_every_definition_py,
-            'de*': self.edit_every_definition_py,
             'dp*': self.output_every_definition_py,
-            #
-            'ii*': self.interpret_every_illustration_ly,
-            'io*': self.open_every_illustration_pdf,
             #
             'oc*': self.check_every_output_py,
             'oe*': self.edit_every_output_py,
@@ -173,11 +168,7 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         superclass = super(MaterialPackageWrangler, self)
         commands = superclass._make_all_packages_menu_section(
             menu, commands_only=True)
-        commands.append(('all packages - definition.py - check', 'dc*'))
-        commands.append(('all packages - definition.py - edit', 'de*'))
         commands.append(('all packages - definition.py - output', 'dp*'))
-        commands.append(('all packages - illustration.ly - interpret', 'ii*'))
-        commands.append(('all packages - illustration.pdf - open', 'io*'))
         commands.append(('all packages - output.py - check', 'oc*'))
         commands.append(('all packages - output.py - edit', 'oe*'))
         menu.make_command_section(
@@ -209,26 +200,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         self._session._is_navigating_to_materials = True
 
     ### PUBLIC METHODS ###
-
-    # TODO: factor out check_every_output_py shared code
-    def check_every_definition_py(self):
-        r'''Checks ``definition.py`` in every package.
-
-        Returns none.
-        '''
-        managers = self._list_visible_asset_managers()
-        inputs, outputs = [], []
-        for manager in managers:
-            inputs_, outputs_ = manager.check_definition_py(dry_run=True)
-            inputs.extend(inputs_)
-            outputs.extend(outputs_)
-        messages = self._format_messaging(inputs, outputs, verb='check')
-        self._io_manager._display(messages)
-        result = self._io_manager._confirm()
-        if self._session.is_backtracking or not result:
-            return
-        for manager in managers:
-            manager.check_definition_py()
 
     # TODO: factor out check_every_definition_py shared code
     def check_every_output_py(self):

@@ -44,10 +44,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'de*': self.edit_every_definition_py,
-            #
-            'ii*': self.interpret_every_illustration_ly,
-            'io*': self.open_every_illustration_pdf,
             })
         return result
 
@@ -66,19 +62,6 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             if '.' not in expr:
                 return True
         return False
-
-    def _make_all_packages_menu_section(self, menu):
-        superclass = super(SegmentPackageWrangler, self)
-        commands = superclass._make_all_packages_menu_section(
-            menu, commands_only=True)
-        commands.append(('all packages - definition.py - edit', 'de*'))
-        commands.append(('all packages - illustration.ly - interpret', 'ii*'))
-        commands.append(('all packages - illustration.pdf - open', 'io*'))
-        menu.make_command_section(
-            commands=commands,
-            is_hidden=True,
-            name='all packages',
-            )
 
     def _make_asset(self, path, metadata=None):
         metadata = collections.OrderedDict(metadata or {})

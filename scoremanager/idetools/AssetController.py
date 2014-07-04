@@ -138,6 +138,7 @@ class AssetController(Controller):
                         path_list = [path_list]
                     for path in path_list:
                         messages.append('{}{}'.format(output_label, path))
+                messages.append('')
         return messages
 
     def _get_current_directory(self):
