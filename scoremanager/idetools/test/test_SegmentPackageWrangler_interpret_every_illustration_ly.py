@@ -5,7 +5,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_interpret_every_output_ly_01():
+def test_SegmentPackageWrangler_interpret_every_illustration_ly_01():
 
     path = ide._configuration.example_score_packages_directory
     path = os.path.join(path, 'red_example_score', 'segments')

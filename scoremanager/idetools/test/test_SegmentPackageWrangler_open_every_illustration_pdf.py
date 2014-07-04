@@ -4,7 +4,7 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_SegmentPackageWrangler_open_every_output_pdf_01():
+def test_SegmentPackageWrangler_open_every_illustration_pdf_01():
 
     input_ = 'red~example~score g io* y q'
     ide._run(input_=input_)
