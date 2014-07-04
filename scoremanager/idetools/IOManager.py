@@ -387,6 +387,15 @@ class IOManager(IOManager):
                 lines.append(line)
         return '\n'.join(lines)
 
+    def _read_one_line_from_pipe(self, pipe):
+        line = pipe.readline()
+        if sys.version_info[0] == 2:
+            line = str(line)
+        else:
+            line = line.decode('utf-8')
+        line = line.strip()
+        return line
+
     def _silent(self):
         from scoremanager import idetools
         return idetools.Interaction(
