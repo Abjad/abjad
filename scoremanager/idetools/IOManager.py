@@ -227,7 +227,7 @@ class IOManager(IOManager):
             stderr=subprocess.STDOUT,
             )
         try:
-            lines = [str(x) for x in process.stdout.readlines()]
+            lines = self._read_from_pipe(process.stdout).splitlines()
         except:
             lines.append('expression not executable.')
         lines = lines or []
@@ -372,6 +372,20 @@ class IOManager(IOManager):
         input_ = input_.replace('~', ' ')
         self._session._pending_input = pending_input
         return input_
+
+    def _read_from_pipe(self, pipe):
+        lines = []
+        if sys.version_info[0] == 2:
+            for line in pipe.readlines():
+                line = str(line)
+                line = line.strip()
+                lines.append(line)
+        else:
+            for line in pipe.readlines():
+                line = line.decode('utf-8')
+                line = line.strip()
+                lines.append(line)
+        return '\n'.join(lines)
 
     def _silent(self):
         from scoremanager import idetools
@@ -526,17 +540,9 @@ class IOManager(IOManager):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 )
-        stdout_lines = []
-        for stdout_line in process.stdout.readlines():
-            stdout_line = str(stdout_line)
-            stdout_line = stdout_line.strip()
-            stdout_lines.append(stdout_line)
+        stdout_lines = self._read_from_pipe(process.stdout).splitlines()
+        stderr_lines = self._read_from_pipe(process.stderr).splitlines()
         self._display(stdout_lines, capitalize=False)
-        stderr_lines = []
-        for stderr_line in process.stderr.readlines():
-            stderr_line = str(stderr_line)
-            stderr_line = stderr_line.strip()
-            stderr_lines.append(stderr_line)
         self._display(stderr_lines, capitalize=False)
         message = 'interpreted {}.'.format(path)
         self._display(message)
@@ -587,7 +593,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         process = self.make_subprocess(command)
-        lines = [str(line).strip() for line in process.stdout.readlines()]
+        lines = self._read_from_pipe(process.stdout).splitlines()
         if not lines:
             return
         if messages_only:
@@ -618,11 +624,8 @@ class IOManager(IOManager):
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     )
-                stderr_messages = []
-                for stderr_message in process.stderr.readlines():
-                    stderr_message = str(stderr_message)
-                    stderr_message = stderr_message.strip()
-                    stderr_messages.append(stderr_message)
+                stderr_messages = self._read_from_pipe(process.stderr)
+                stderr_messages = stderr_messages.splitlines()
             self._display(stderr_messages)
             return stderr_messages, []
         base_candidate_path = base + '.candiate'
@@ -637,11 +640,8 @@ class IOManager(IOManager):
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     )
-                stderr_messages = []
-                for stderr_message in process.stderr.readlines():
-                    stderr_message = str(stderr_message)
-                    stderr_message = stderr_message.strip()
-                    stderr_messages.append(stderr_message)
+                stderr_messages = self._read_from_pipe(process.stderr)
+                stderr_messages = stderr_messages.splitlines()
             self._display(stderr_messages)
             tab = self._make_tab()
             candidate_messages = []
