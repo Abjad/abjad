@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_generate_back_cover_source_01():
-    r'''Works when back cover LaTeX doesn't yet exist.
+    r'''Works when back cover source doesn't yet exist.
 
     Supplies papersize={8.5in, 11in} as a.
     '''
@@ -35,13 +35,13 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
         destination_contents = ''.join(file(destination_path).readlines())
         assert 'PAPER_SIZE' not in destination_contents
         assert '{8.5in, 11in}' in destination_contents
-        contents = ide._transcript.contents
-        assert 'Overwrite' not in contents
-        assert 'Overwrote' not in contents
+
+    contents = ide._transcript.contents
+    assert 'Wrote' in contents
 
 
 def test_BuildFileWrangler_generate_back_cover_source_02():
-    r'''Works when back cover LaTeX already exists.
+    r'''Preserves existing source when candidate doesn't differ.
     '''
 
     source_path = os.path.join(
@@ -64,9 +64,11 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
         input_ = 'red~example~score u bcg y q'
         ide._run(input_=input_)
         assert os.path.isfile(destination_path)
-        destination_contents = ''.join(file(destination_path).readlines())
-        assert 'PAPER_SIZE' not in destination_contents
-        assert '{8.5in, 11in}' in destination_contents
-        contents = ide._transcript.contents
-        assert 'Overwrite' in contents
-        assert 'Overwrote' in contents
+
+    destination_contents = ''.join(file(destination_path).readlines())
+    assert 'PAPER_SIZE' not in destination_contents
+    assert '{8.5in, 11in}' in destination_contents
+    contents = ide._transcript.contents
+    assert 'The files ...' in contents
+    assert '... compare the same.' in contents
+    assert 'Preserved' in contents

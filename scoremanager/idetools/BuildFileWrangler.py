@@ -192,38 +192,64 @@ class BuildFileWrangler(FileWrangler):
     def _enter_run(self):
         self._session._is_navigating_to_build_files = False
 
-    def _generate_latex_source(self, file_name):
+    def _generate_latex_source(self, file_name, candidacy=False):
         manager = self._session.current_score_package_manager
         assert manager is not None
         width, height, unit = manager._parse_paper_dimensions()
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            file_name,
-            )
-        previously_existed = False
-        if os.path.exists(destination_path):
-            previously_existed = True
-            messages = []
-            message = 'overwrite {}?'
-            message = message.format(destination_path)
-            result = self._io_manager._confirm(message)
-            if self._session.is_backtracking or not result:
-                return False
         source_path = os.path.join(
             self._configuration.score_manager_directory,
             'boilerplate',
             file_name,
             )
-        shutil.copyfile(source_path, destination_path)
-        old = '{PAPER_SIZE}'
-        new = '{{{}{}, {}{}}}'
-        new = new.format(width, unit, height, unit)
-        self._replace_in_file(destination_path, old, new)
-        if previously_existed:
-            message = 'overwrote {}.'.format(destination_path)
-            self._io_manager._display(message)
-        return True
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            file_name,
+            )
+        base_name, extension = os.path.splitext(file_name)
+        candidate_name = base_name + '.candidate' + extension
+        candidate_path = os.path.join(
+            manager._path,
+            'build',
+            candidate_name,
+            )
+        messages = []
+        with systemtools.FilesystemState(remove=[candidate_path]):
+            shutil.copyfile(source_path, candidate_path)
+            old = '{PAPER_SIZE}'
+            new = '{{{}{}, {}{}}}'
+            new = new.format(width, unit, height, unit)
+            self._replace_in_file(candidate_path, old, new)
+            if not os.path.exists(destination_path):
+                shutil.copyfile(candidate_path, destination_path)
+                message = 'wrote {}.'.format(destination_path)
+                messages.append(message)
+            elif not candidacy:
+                message = 'overwrite {}?'
+                message = message.format(destination_path)
+                result = self._io_manager._confirm(message)
+                if self._session.is_backtracking or not result:
+                    return False
+                shutil.copyfile(candidate_path, destination_path)
+                message = 'overwrote {}.'.format(destination_path)
+                messages.append(message)
+            elif systemtools.TestManager.compare_files(
+                candidate_path, 
+                destination_path,
+                ):
+                tab = self._io_manager._make_tab()
+                messages.append('the files ...')
+                messages.append(tab + candidate_path)
+                messages.append(tab + destination_path)
+                messages.append('... compare the same.')
+                message = 'preserved {}.'.format(destination_path)
+                messages.append(message)
+            else:
+                shutil.copyfile(candidate_path, destination_path)
+                message = 'overwrote {}.'.format(destination_path)
+                messages.append(message)
+            self._io_manager._display(messages)
+            return True
 
     def _interpret_file_ending_with(self, string):
         r'''Typesets TeX file.
@@ -459,7 +485,7 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._generate_latex_source('back-cover.tex')
+        self._generate_latex_source('back-cover.tex', candidacy=True)
 
     def generate_draft_source(self):
         r'''Generates ``draft.tex``.
