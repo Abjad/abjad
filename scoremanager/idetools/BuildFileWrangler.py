@@ -192,7 +192,7 @@ class BuildFileWrangler(FileWrangler):
     def _enter_run(self):
         self._session._is_navigating_to_build_files = False
 
-    def _generate_latex_source(self, file_name, candidacy=False):
+    def _copy_boilerplate(self, file_name, candidacy=False):
         manager = self._session.current_score_package_manager
         assert manager is not None
         width, height, unit = manager._parse_paper_dimensions()
@@ -485,7 +485,7 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._generate_latex_source('back-cover.tex', candidacy=True)
+        self._copy_boilerplate('back-cover.tex', candidacy=True)
 
     def generate_draft_source(self):
         r'''Generates ``draft.tex``.
@@ -532,6 +532,7 @@ class BuildFileWrangler(FileWrangler):
             else:
                 line_to_remove = '%%% SEGMENTS %%%\n'
                 self._remove_file_line(candidate_path, line_to_remove)
+            # TODO: combine with self.generate_music()
             messages = []
             if not os.path.exists(destination_path):
                 shutil.copyfile(candidate_path, destination_path)
@@ -559,85 +560,120 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._generate_latex_source('front-cover.tex', candidacy=True)
+        self._copy_boilerplate('front-cover.tex', candidacy=True)
         
     def generate_music_source(self):
         r'''Generates ``music.ly``.
 
         Returns none.
         '''
-        #result = self._generate_latex_source('music.ly', candidacy=True)
-        result = self._generate_latex_source('music.ly')
-        if self._session.is_backtracking or not result:
-            return
         result = self._confirm_segment_names()
         if self._session.is_backtracking or not isinstance(result, list):
             return
         segment_names = result
         lilypond_names = [_.replace('_', '-') for _ in segment_names]
+        source_path = os.path.join(
+            self._configuration.score_manager_directory,
+            'boilerplate',
+            'music.ly',
+            )
         manager = self._session.current_score_package_manager
         destination_path = os.path.join(
             manager._path,
             'build',
             'music.ly',
             )
-        lines = []
-        for lilypond_name in lilypond_names:
-            file_name = lilypond_name + '.ly'
-            line = r'   \include "{}"'
-            line = line.format(file_name)
-            lines.append(line)
-        if lines:
-            new = '\n'.join(lines)
-            old = '%%% SEGMENTS %%%'
-            self._replace_in_file(destination_path, old, new)
-        else:
-            line_to_remove = '%%% SEGMENTS %%%\n'
-            self._remove_file_line(destination_path, line_to_remove)
-        stylesheet_path = self._session.current_stylesheet_path
-        if stylesheet_path:
-            old = '% STYLESHEET_INCLUDE_STATEMENT'
-            new = r'\include "../stylesheets/stylesheet.ily"'
-            self._replace_in_file(destination_path, old, new)
-        language_token = lilypondfiletools.LilyPondLanguageToken()
-        lilypond_language_directive = format(language_token)
-        old = '% LILYPOND_LANGUAGE_DIRECTIVE'
-        new = lilypond_language_directive
-        self._replace_in_file(destination_path, old, new)
-        version_token = lilypondfiletools.LilyPondVersionToken()
-        lilypond_version_directive = format(version_token)
-        old = '% LILYPOND_VERSION_DIRECTIVE'
-        new = lilypond_version_directive
-        self._replace_in_file(destination_path, old, new)
-        score_title = manager._get_title()
-        if score_title:
-            old = 'SCORE_NAME'
-            new = score_title
-            self._replace_in_file(destination_path, old, new)
-        annotated_title = manager._get_title(year=True)
-        if annotated_title:
-            old = 'SCORE_TITLE'
-            new = annotated_title
-            self._replace_in_file(destination_path, old, new)
-        forces_tagline = manager._get_metadatum('forces_tagline')
-        if forces_tagline:
-            old = 'FORCES_TAGLINE'
-            new = forces_tagline
-            self._replace_in_file(destination_path, old, new)
+        candidate_path = os.path.join(
+            manager._path,
+            'build',
+            'music.candidate.ly',
+            )
+        with systemtools.FilesystemState(remove=[candidate_path]):
+            shutil.copyfile(source_path, candidate_path)
+            width, height, unit = manager._parse_paper_dimensions()
+            old = '{PAPER_SIZE}'
+            new = '{{{}{}, {}{}}}'
+            new = new.format(width, unit, height, unit)
+            self._replace_in_file(candidate_path, old, new)
+            lines = []
+            for lilypond_name in lilypond_names:
+                file_name = lilypond_name + '.ly'
+                line = r'   \include "{}"'
+                line = line.format(file_name)
+                lines.append(line)
+            if lines:
+                new = '\n'.join(lines)
+                old = '%%% SEGMENTS %%%'
+                self._replace_in_file(candidate_path, old, new)
+            else:
+                line_to_remove = '%%% SEGMENTS %%%\n'
+                self._remove_file_line(candidate_path, line_to_remove)
+            stylesheet_path = self._session.current_stylesheet_path
+            if stylesheet_path:
+                old = '% STYLESHEET_INCLUDE_STATEMENT'
+                new = r'\include "../stylesheets/stylesheet.ily"'
+                self._replace_in_file(candidate_path, old, new)
+            language_token = lilypondfiletools.LilyPondLanguageToken()
+            lilypond_language_directive = format(language_token)
+            old = '% LILYPOND_LANGUAGE_DIRECTIVE'
+            new = lilypond_language_directive
+            self._replace_in_file(candidate_path, old, new)
+            version_token = lilypondfiletools.LilyPondVersionToken()
+            lilypond_version_directive = format(version_token)
+            old = '% LILYPOND_VERSION_DIRECTIVE'
+            new = lilypond_version_directive
+            self._replace_in_file(candidate_path, old, new)
+            score_title = manager._get_title()
+            if score_title:
+                old = 'SCORE_NAME'
+                new = score_title
+                self._replace_in_file(candidate_path, old, new)
+            annotated_title = manager._get_title(year=True)
+            if annotated_title:
+                old = 'SCORE_TITLE'
+                new = annotated_title
+                self._replace_in_file(candidate_path, old, new)
+            forces_tagline = manager._get_metadatum('forces_tagline')
+            if forces_tagline:
+                old = 'FORCES_TAGLINE'
+                new = forces_tagline
+                self._replace_in_file(candidate_path, old, new)
+            # TODO: combine with self.generate_draft_source()
+            messages = []
+            if not os.path.exists(destination_path):
+                shutil.copyfile(candidate_path, destination_path)
+                message = 'wrote {}.'.format(destination_path)
+                messages.append(message)
+            elif systemtools.TestManager.compare_files(
+                candidate_path,
+                destination_path,
+                ):
+                tab = self._io_manager._make_tab()
+                messages.append('the files ...')
+                messages.append(tab + candidate_path)
+                messages.append(tab + destination_path)
+                messages.append('... compare the same.')
+                message = 'preserved {}.'.format(destination_path)
+                messages.append(message)
+            else:
+                shutil.copyfile(candidate_path, destination_path)
+                message = 'overwrote {}.'.format(destination_path)
+                messages.append(message)
+            self._io_manager._display(messages)
 
     def generate_preface_source(self):
         r'''Generates ``preface.tex``.
 
         Returns none.
         '''
-        self._generate_latex_source('preface.tex', candidacy=True)
+        self._copy_boilerplate('preface.tex', candidacy=True)
 
     def generate_score_source(self):
         r'''Generates ``score.tex``.
 
         Returns none.
         '''
-        self._generate_latex_source('score.tex', candidacy=True)
+        self._copy_boilerplate('score.tex', candidacy=True)
 
     def interpret_back_cover(self):
         r'''Interprets ``back-cover.tex``.
