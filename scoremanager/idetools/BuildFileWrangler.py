@@ -193,7 +193,7 @@ class BuildFileWrangler(FileWrangler):
     def _enter_run(self):
         self._session._is_navigating_to_build_files = False
 
-    def _copy_boilerplate(self, file_name, candidacy=False):
+    def _copy_boilerplate(self, file_name, candidacy=True):
         manager = self._session.current_score_package_manager
         assert manager is not None
         width, height, unit = manager._parse_paper_dimensions()
@@ -517,7 +517,7 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._copy_boilerplate('back-cover.tex', candidacy=True)
+        self._copy_boilerplate('back-cover.tex')
 
     def generate_draft_source(self):
         r'''Generates ``draft.tex``.
@@ -571,7 +571,7 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._copy_boilerplate('front-cover.tex', candidacy=True)
+        self._copy_boilerplate('front-cover.tex')
         
     def generate_music_source(self):
         r'''Generates ``music.ly``.
@@ -656,14 +656,14 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._copy_boilerplate('preface.tex', candidacy=True)
+        self._copy_boilerplate('preface.tex')
 
     def generate_score_source(self):
         r'''Generates ``score.tex``.
 
         Returns none.
         '''
-        self._copy_boilerplate('score.tex', candidacy=True)
+        self._copy_boilerplate('score.tex')
 
     def interpret_back_cover(self):
         r'''Interprets ``back-cover.tex``.
