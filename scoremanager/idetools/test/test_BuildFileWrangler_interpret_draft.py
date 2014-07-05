@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_interpret_draft_01():
-    r'''Works when draft already exists.
+    r'''Makes draft.pdf when draft.pdf doesn't yet exist.
     '''
 
     tex_path = os.path.join(
@@ -32,3 +32,31 @@ def test_BuildFileWrangler_interpret_draft_01():
             pdf_path, 
             pdf_path + '.backup',
             )
+
+
+def test_BuildFileWrangler_interpret_draft_02():
+    r'''Preserves draft.pdf when draft.candidate.pdf compares
+    equal to draft.pdf.
+    '''
+
+    tex_path = os.path.join(
+        ide._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        'draft.tex',
+        )
+    pdf_path = os.path.join(
+        ide._configuration.example_score_packages_directory,
+        'red_example_score',
+        'build',
+        'draft.pdf',
+        )
+
+    with systemtools.FilesystemState(keep=[tex_path, pdf_path]):
+        input_ = 'red~example~score u di q'
+        ide._run(input_=input_)
+
+    contents = ide._transcript.contents
+    assert 'The files ...' in contents
+    assert '... compare the same.' in contents
+    assert 'Preserved' in contents

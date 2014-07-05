@@ -252,6 +252,29 @@ class BuildFileWrangler(FileWrangler):
             self._io_manager._display(messages)
             return True
 
+    def _handle_candidate(self, candidate_path, destination_path):
+        messages = []
+        if not os.path.exists(destination_path):
+            shutil.copyfile(candidate_path, destination_path)
+            message = 'wrote {}.'.format(destination_path)
+            messages.append(message)
+        elif systemtools.TestManager.compare_files(
+            candidate_path,
+            destination_path,
+            ):
+            tab = self._io_manager._make_tab()
+            messages.append('the files ...')
+            messages.append(tab + candidate_path)
+            messages.append(tab + destination_path)
+            messages.append('... compare the same.')
+            message = 'preserved {}.'.format(destination_path)
+            messages.append(message)
+        else:
+            shutil.copyfile(candidate_path, destination_path)
+            message = 'overwrote {}.'.format(destination_path)
+            messages.append(message)
+        self._io_manager._display(messages)
+
     def _interpret_file_ending_with(self, string):
         r'''Typesets TeX file.
         Calls ``pdflatex`` on file TWICE.
@@ -264,18 +287,25 @@ class BuildFileWrangler(FileWrangler):
             self._io_manager._display(message)
             return
         input_directory = os.path.dirname(file_path)
+        output_directory = input_directory
         basename = os.path.basename(file_path)
         input_file_name_stem, extension = os.path.splitext(basename)
-        output_directory = input_directory
+        job_name = '{}.candidate'.format(input_file_name_stem)
+        candidate_name = '{}.candidate.pdf'.format(input_file_name_stem)
+        candidate_path = os.path.join(output_directory, candidate_name)
+        destination_name = '{}.pdf'.format(input_file_name_stem)
+        destination_path = os.path.join(output_directory, destination_name)
         command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
         command = command.format(
-            input_file_name_stem,
+            job_name,
             output_directory,
             input_directory,
             input_file_name_stem,
             )
         command_called_twice = '{}; {}'.format(command, command)
-        with systemtools.TemporaryDirectoryChange(input_directory):
+        filesystem = systemtools.FilesystemState(remove=[candidate_path])
+        directory = systemtools.TemporaryDirectoryChange(input_directory)
+        with filesystem, directory:
             self._io_manager.spawn_subprocess(command_called_twice)
             for file_name in glob.glob('*.aux'):
                 path = os.path.join(output_directory, file_name)
@@ -286,6 +316,7 @@ class BuildFileWrangler(FileWrangler):
             for file_name in glob.glob('*.log'):
                 path = os.path.join(output_directory, file_name)
                 os.remove(path)
+            self._handle_candidate(candidate_path, destination_path)
 
     def _make_back_cover_menu_section(self, menu):
         commands = []
@@ -533,28 +564,7 @@ class BuildFileWrangler(FileWrangler):
             else:
                 line_to_remove = '%%% SEGMENTS %%%\n'
                 self._remove_file_line(candidate_path, line_to_remove)
-            # TODO: combine with self.generate_music()
-            messages = []
-            if not os.path.exists(destination_path):
-                shutil.copyfile(candidate_path, destination_path)
-                message = 'wrote {}.'.format(destination_path)
-                messages.append(message)
-            elif systemtools.TestManager.compare_files(
-                candidate_path,
-                destination_path,
-                ):
-                tab = self._io_manager._make_tab()
-                messages.append('the files ...')
-                messages.append(tab + candidate_path)
-                messages.append(tab + destination_path)
-                messages.append('... compare the same.')
-                message = 'preserved {}.'.format(destination_path)
-                messages.append(message)
-            else:
-                shutil.copyfile(candidate_path, destination_path)
-                message = 'overwrote {}.'.format(destination_path)
-                messages.append(message)
-            self._io_manager._display(messages)
+            self._handle_candidate(candidate_path, destination_path)
 
     def generate_front_cover_source(self):
         r'''Generates ``front-cover.tex``.
@@ -639,28 +649,7 @@ class BuildFileWrangler(FileWrangler):
                 old = 'FORCES_TAGLINE'
                 new = forces_tagline
                 self._replace_in_file(candidate_path, old, new)
-            # TODO: combine with self.generate_draft_source()
-            messages = []
-            if not os.path.exists(destination_path):
-                shutil.copyfile(candidate_path, destination_path)
-                message = 'wrote {}.'.format(destination_path)
-                messages.append(message)
-            elif systemtools.TestManager.compare_files(
-                candidate_path,
-                destination_path,
-                ):
-                tab = self._io_manager._make_tab()
-                messages.append('the files ...')
-                messages.append(tab + candidate_path)
-                messages.append(tab + destination_path)
-                messages.append('... compare the same.')
-                message = 'preserved {}.'.format(destination_path)
-                messages.append(message)
-            else:
-                shutil.copyfile(candidate_path, destination_path)
-                message = 'overwrote {}.'.format(destination_path)
-                messages.append(message)
-            self._io_manager._display(messages)
+            self._handle_candidate(candidate_path, destination_path)
 
     def generate_preface_source(self):
         r'''Generates ``preface.tex``.
