@@ -444,8 +444,15 @@ class BuildFileWrangler(FileWrangler):
         if not pairs:
             return
         for source_file_path, target_file_path in pairs:
-            shutil.copyfile(source_file_path, target_file_path)
-            self._trim_lilypond_file(target_file_path)
+            candidate_file_path = target_file_path.replace(
+                '.ly',
+                '.candidate.ly',
+                )
+            with systemtools.FilesystemState(remove=[candidate_file_path]):
+                shutil.copyfile(source_file_path, candidate_file_path)
+                self._trim_lilypond_file(candidate_file_path)
+                self._handle_candidate(candidate_file_path, target_file_path)
+                self._io_manager._display('')
 
     def collect_segment_pdfs(self):
         r'''Copies ``illustration.pdf`` files from segment packages to build 

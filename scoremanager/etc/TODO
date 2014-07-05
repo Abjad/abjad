@@ -107,7 +107,3 @@
     summary menu section.
     AssertionError: 
     (<MenuSection 'material summary' (33)>, 'explicit', <MenuEntry: '3'>)
-
-32. Integrate artifact candidacy protocol.
-    Remaining commands to integrate:
-    BuildFileManager: (mc)
