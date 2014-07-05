@@ -62,7 +62,7 @@ def test_SegmentPackageManager_illustrate_definition_py_02():
         ide._run(input_=input_)
 
     contents = ide._transcript.contents
-    assert 'The PDFs ...' in contents
+    assert 'The files ...' in contents
     assert pdf_path in contents
     assert candidate_pdf_path in contents
     assert ly_path not in contents
@@ -104,7 +104,7 @@ def test_SegmentPackageManager_illustrate_definition_py_03():
             )
 
     contents = ide._transcript.contents
-    assert 'The PDFs ...' in contents
+    assert 'The files ...' in contents
     assert pdf_path in contents
     assert candidate_pdf_path in contents
     assert '... compare differently.' in contents

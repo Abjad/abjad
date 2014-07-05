@@ -658,14 +658,14 @@ class IOManager(IOManager):
                 output_path,
                 candidate_path,
                 ):
-                candidate_messages.append('The PDFs ...')
+                candidate_messages.append('The files ...')
                 candidate_messages.append(tab + candidate_path)
                 candidate_messages.append(tab + output_path)
                 candidate_messages.append('... compare the same.')
                 candidate_messages.append('Preserved {}.'.format(output_path))
                 self._display(candidate_messages)
                 return stderr_messages, candidate_messages
-            candidate_messages.append('The PDFs ...')
+            candidate_messages.append('The files ...')
             candidate_messages.append(tab + candidate_path)
             candidate_messages.append(tab + output_path)
             candidate_messages.append('... compare differently.')

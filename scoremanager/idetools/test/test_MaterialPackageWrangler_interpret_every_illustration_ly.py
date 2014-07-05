@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
     assert 'Will interpret ...' in contents
     assert 'INPUT:' in contents
     assert 'OUTPUT:' in contents
-    assert not 'The PDFs ...' in contents
+    assert not 'The files ...' in contents
     assert not '... compare the same.' in contents
     assert not 'Preserved' in contents
 
@@ -77,6 +77,6 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_02():
     assert 'Will interpret ...' in contents
     assert 'INPUT:' in contents
     assert 'OUTPUT:' in contents
-    assert 'The PDFs ...' in contents
+    assert 'The files ...' in contents
     assert '... compare the same.' in contents
     assert 'Preserved' in contents

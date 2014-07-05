@@ -217,7 +217,7 @@ class TestManager(object):
         if messages:
             tab = '    '
             messages = []
-            messages.append('The PDFs ...')
+            messages.append('The files ...')
             messages.append(tab + path_1)
             messages.append(tab + path_2)
             if result:

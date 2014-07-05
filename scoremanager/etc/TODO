@@ -110,4 +110,6 @@
 
 32. Integrate artifact candidacy protocol.
     Remaining commands to integrate:
-    BuildFileManager: (mi), (dc), (mc)
+    BuildFileManager: (dc), (mc)
+
+33. Change candidacy=False defaults to candidacy=True in IDE methods.

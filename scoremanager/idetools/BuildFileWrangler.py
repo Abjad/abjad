@@ -85,7 +85,7 @@ class BuildFileWrangler(FileWrangler):
     def _call_lilypond_on_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
-            self._io_manager.run_lilypond(file_path)
+            self._io_manager.run_lilypond(file_path, candidacy=True)
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
