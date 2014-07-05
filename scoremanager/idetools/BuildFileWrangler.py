@@ -457,7 +457,8 @@ class BuildFileWrangler(FileWrangler):
         if not pairs:
             return
         for source_file_path, target_file_path in pairs:
-            shutil.copyfile(source_file_path, target_file_path)
+            self._handle_candidate(source_file_path, target_file_path)
+            self._io_manager._display('')
 
     def edit_back_cover_source(self):
         r'''Edits ``back-cover.tex``.
