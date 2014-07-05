@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import glob
 import os
 import shutil
 from abjad.tools import lilypondfiletools
@@ -276,15 +277,15 @@ class BuildFileWrangler(FileWrangler):
         command_called_twice = '{}; {}'.format(command, command)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self._io_manager.spawn_subprocess(command_called_twice)
-            # TODO: reimplement with glob.glob() and os.remove()
-            command = 'rm {}/*.aux'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
-            # TODO: reimplement with glob.glob() and os.remove()
-            command = 'rm {}/*.ll'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
-            # TODO: reimplement with glob.glob() and os.remove()
-            command = 'rm {}/*.log'.format(output_directory)
-            self._io_manager.spawn_subprocess(command)
+            for file_name in glob.glob('*.aux'):
+                path = os.path.join(output_directory, file_name)
+                os.remove(path)
+            for file_name in glob.glob('*.aux'):
+                path = os.path.join(output_directory, file_name)
+                os.remove(path)
+            for file_name in glob.glob('*.log'):
+                path = os.path.join(output_directory, file_name)
+                os.remove(path)
 
     def _make_back_cover_menu_section(self, menu):
         commands = []
