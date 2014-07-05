@@ -31,10 +31,10 @@ class CollectionAutoeditor(Autoeditor):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         allow_item_edit=True,
         breadcrumb=None,
-        session=None, 
+        session=None,
         target=None,
         ):
         from scoremanager import idetools
@@ -43,7 +43,7 @@ class CollectionAutoeditor(Autoeditor):
         superclass = super(CollectionAutoeditor, self)
         superclass.__init__(
             breadcrumb=breadcrumb,
-            session=session, 
+            session=session,
             target=target,
             )
         self._allow_item_edit = allow_item_edit
@@ -104,7 +104,6 @@ class CollectionAutoeditor(Autoeditor):
             pass
 
     def _get_item_to_add(self, item_name=None):
-        from scoremanager import idetools
         if self._item_creator_class:
             item_creator_class = self._item_creator_class
             if self._item_class:
@@ -143,9 +142,14 @@ class CollectionAutoeditor(Autoeditor):
                 return
             if self._item_class:
                 if isinstance(item_initialization_token, str):
-                    exec(self._abjad_import_statement)
+                    namespace = {}
+                    exec(self._abjad_import_statement, namespace, namespace)
                     try:
-                        expression = eval(item_initialization_token)
+                        expression = eval(
+                            item_initialization_token,
+                            namespace,
+                            namespace,
+                            )
                     except (NameError, SyntaxError):
                         expression = item_initialization_token
                 else:

@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import types
 from abjad.tools import stringtools
-from scoremanager import predicates
 from scoremanager.idetools.Controller import Controller
 from scoremanager.idetools.PromptMakerMixin import PromptMakerMixin
 
@@ -88,41 +86,45 @@ class Getter(Controller, PromptMakerMixin):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_input(self, input_):
+    def _evaluate_input(self, input_, namespace):
         section = self._current_prompt.target_menu_section
         setup_statements = self._current_prompt.setup_statements
+        if 'evaluated_input' in namespace:
+            del(namespace['evaluated_input'])
         if self.allow_none and input_ in ('', 'None'):
-            evaluated_input = None
+            namespace['evaluated_input'] = None
         elif section is not None:
             evaluated_input = section._argument_range_string_to_numbers(
                 input_)
             if (1 < len(evaluated_input) and
                 self._current_prompt.disallow_range):
                 evaluated_input = None
+            namespace['evaluated_input'] = evaluated_input
         elif setup_statements:
             for setup_statement in self._current_prompt.setup_statements:
                 try:
                     command = setup_statement.format(input_)
-                    exec(command)
+                    exec(command, namespace, namespace)
                     continue
                 except (NameError, SyntaxError):
                     pass
                 try:
                     command = setup_statement.format(repr(input_))
-                    exec(command)
+                    exec(command, namespace, namespace)
                 except ValueError:
                     self.display_help()
         else:
             try:
-                evaluated_input = eval(input_)
+                namespace['evaluated_input'] = eval(
+                    input_, namespace, namespace)
             except (NameError, SyntaxError):
-                evaluated_input = input_
-        if not 'evaluated_input' in locals():
+                namespace['evaluated_input'] = input_
+        if not 'evaluated_input' in namespace:
             return
-        if not self._validate_evaluated_input(evaluated_input):
+        if not self._validate_evaluated_input(namespace['evaluated_input']):
             self.display_help()
             return
-        self._evaluated_input.append(evaluated_input)
+        self._evaluated_input.append(namespace['evaluated_input'])
         self._prompt_index += 1
         self._current_prompt_is_done = True
 
@@ -146,6 +148,7 @@ class Getter(Controller, PromptMakerMixin):
     def _present_prompt(self, include_chevron=True):
         self._load_message()
         self._current_prompt_is_done = False
+        namespace = {}
         while not self._current_prompt_is_done:
             message = self._messages[-1]
             message = self._indent_and_number_message(
@@ -168,7 +171,7 @@ class Getter(Controller, PromptMakerMixin):
                 is_autoadvancing = self._session.is_autoadvancing
                 if is_autoadvancing:
                     self._session._autoadvance_depth = 0
-                else:   
+                else:
                     self._session._autoadvance_depth = 1
                 input_ = input_.strip('/')
             if input_ is None:
@@ -195,7 +198,7 @@ class Getter(Controller, PromptMakerMixin):
             elif directive == 'skip':
                 break
             elif isinstance(directive, str):
-                self._evaluate_input(directive)
+                self._evaluate_input(directive, namespace)
             else:
                 self._io_manager._display_not_yet_implemented()
 
