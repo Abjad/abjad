@@ -163,10 +163,7 @@ class ScoreInternalPackageManager(PackageManager):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return [], []
-        result = self._io_manager.run_lilypond(
-            self._illustration_ly_path, 
-            candidacy=True,
-            )
+        result = self._io_manager.run_lilypond(self._illustration_ly_path)
         subprocess_messages, candidate_messages = result
         return subprocess_messages, candidate_messages
 

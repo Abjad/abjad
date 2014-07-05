@@ -609,7 +609,7 @@ class IOManager(IOManager):
             return lines
         self._display(lines, capitalize=capitalize)
 
-    def run_lilypond(self, path, candidacy=False):
+    def run_lilypond(self, path, candidacy=True):
         r'''Runs LilyPond on file `path`.
 
         Returns pair. List of STDERR messages from LilyPond together
