@@ -930,8 +930,10 @@ class Wrangler(ScoreInternalAssetController):
             return
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
+        method_name = 'add'
         for manager in managers:
-            inputs_, outputs_ = manager.add(dry_run=True)
+            method = getatttr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='add')
@@ -943,7 +945,8 @@ class Wrangler(ScoreInternalAssetController):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.add()
+                method = getattr(manager, method_name)
+                method()
         count = len(inputs)
         identifier = stringtools.pluralize('file', count)
         message = 'added {} {} to repository.'
@@ -1031,10 +1034,12 @@ class Wrangler(ScoreInternalAssetController):
         paths.sort()
         inputs, outputs = [], []
         managers = []
+        method_name = 'remove_unadded_assets'
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
             managers.append(manager)
-            inputs_, outputs_ = manager.remove_unadded_assets(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='remove')
@@ -1046,7 +1051,8 @@ class Wrangler(ScoreInternalAssetController):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.remove_unadded_assets()
+                method = getattr(manager, method_name)
+                method()
         count = len(inputs)
         identifier = stringtools.pluralize('asset', count)
         message = 'removed {} unadded {}.'

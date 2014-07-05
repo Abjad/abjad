@@ -62,8 +62,10 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         '''
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
+        method_name = 'check_definition_py'
         for manager in managers:
-            inputs_, outputs_ = manager.check_definition_py(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='check')
@@ -72,7 +74,8 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         if self._session.is_backtracking or not result:
             return
         for manager in managers:
-            manager.check_definition_py()
+            method = getattr(manager, method_name)
+            method()
 
     def edit_init_py(self):
         r'''Opens ``__init__.py``.
@@ -123,7 +126,6 @@ class ScoreInternalPackageWrangler(PackageWrangler):
                 method = getattr(manager, method_name)
                 subprocess_messages, candidate_messages = method()
             if subprocess_messages:
-                #subprocess_messages.append('')
                 self._io_manager._display(subprocess_messages)
                 self._io_manager._display(candidate_messages)
                 self._io_manager._display('')

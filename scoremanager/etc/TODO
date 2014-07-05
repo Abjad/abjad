@@ -113,6 +113,3 @@
         BuildFileManager:
             (bci), (fce[io]), (fci), (di), (mi), (pi), (si)
             (dc), (mc)
-
-33. Update all iterative methods to use the method-name pattern.
-    See ScoreInteralPackageWrangler.interpret_every_illustration_ly().

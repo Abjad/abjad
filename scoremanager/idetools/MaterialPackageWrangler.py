@@ -209,8 +209,10 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
+        method_name = 'check_output_py'
         for manager in managers:
-            inputs_, outputs_ = manager.check_output_py(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='check')
@@ -219,7 +221,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         if self._session.is_backtracking or not result:
             return
         for manager in managers:
-            manager.check_output_py()
+            method = getattr(manager, method_name)
+            method()
 
     def copy_package(self):
         r'''Copies package.
@@ -256,8 +259,10 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         '''
         managers = self._list_visible_asset_managers()
         inputs, outputs = [], []
+        method_name = 'output_definition_py'
         for manager in managers:
-            inputs_, outputs_ = manager.output_definition_py(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(inputs, outputs, verb='output')
@@ -267,7 +272,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.output_definition_py()
+                method = getattr(manager, method_name)
+                method()
 
     def remove_packages(self):
         r'''Removes one or more packages.

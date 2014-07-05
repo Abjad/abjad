@@ -250,8 +250,10 @@ class PackageWrangler(Wrangler):
             manager = self._io_manager._make_package_manager(directory)
             managers.append(manager)
         inputs, outputs = [], []
+        method_name = 'write_metadata_py'
         for manager in managers:
-            inputs_, outputs_ = manager.write_metadata_py(dry_run=True)
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
         messages = self._format_messaging(
@@ -265,7 +267,8 @@ class PackageWrangler(Wrangler):
             return
         with self._io_manager._silent():
             for manager in managers:
-                manager.write_metadata_py()
+                method = getattr(manager, method_name)
+                method()
         message = '{} __metadata__.py files rewritten.'
         message = message.format(len(managers))
         self._io_manager._display(message)
