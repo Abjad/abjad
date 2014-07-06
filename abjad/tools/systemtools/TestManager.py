@@ -27,24 +27,24 @@ class TestManager(object):
     @staticmethod
     def _normalize_pdf(path):
         lines = []
-        with open(path, 'r') as file_pointer:
+        with open(path, 'rb') as file_pointer:
             for line in file_pointer.readlines():
                 line = line.strip()
-                if line == '':
+                if line == b'':
                     continue
-                elif '/ID' in line:
+                elif b'/ID' in line:
                     continue
-                elif '/CreationDate' in line:
+                elif b'/CreationDate' in line:
                     continue
-                elif '/ModDate' in line:
+                elif b'/ModDate' in line:
                     continue
-                elif 'xmp:CreateDate' in line:
+                elif b'xmp:CreateDate' in line:
                     continue
-                elif 'xmp:ModifyDate' in line:
+                elif b'xmp:ModifyDate' in line:
                     continue
-                elif 'xapMM:DocumentID' in line:
+                elif b'xapMM:DocumentID' in line:
                     continue
-                elif 'rdf:about' in line:
+                elif b'rdf:about' in line:
                     continue
                 lines.append(line)
         # discard first stream in document: can contain differences;
@@ -54,10 +54,10 @@ class TestManager(object):
         found_first_stream = False
         in_first_stream = False
         for line in lines:
-            if line == 'stream' and not found_first_stream:
+            if line == b'stream' and not found_first_stream:
                 found_first_stream = True
                 in_first_stream = True
-            elif line.endswith('endstream') and in_first_stream:
+            elif line.endswith(b'endstream') and in_first_stream:
                 in_first_stream = False
                 continue
             if in_first_stream:
