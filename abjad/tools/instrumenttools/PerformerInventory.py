@@ -29,6 +29,91 @@ class PerformerInventory(TypedList):
     def _item_creator_class_kwargs(self):
         return {'is_ranged': True}
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _initialize_performer(performer, session):
+        from abjad.tools import instrumenttools
+        menu = PerformerInventory._make_performer_configuration_menu(
+            performer,
+            session,
+            )
+        while True:
+            result = menu._run()
+            if menu._session.is_backtracking:
+                return
+            elif not result:
+                continue
+            if result in ('skip', ['skip']):
+                break
+            elif result in ('more', ['more']):
+                inventory = instrumenttools.InstrumentInventory()
+                class_ = inventory._make_item_creator_class()
+                item_creator = class_(
+                    session=session,
+                    is_ranged=True,
+                    )
+                instruments = item_creator._run()
+                if item_creator._session.is_backtracking:
+                    break
+                if instruments is not None:
+                    for instrument in instruments:
+                        performer.instruments.append(instrument)
+                break
+            elif isinstance(result, list):
+                name = '_default_instrument_name_to_instrument_class'
+                method = getattr(instrumenttools.Instrument, name)
+                for instrument_name in result:
+                    instrument_class = method(instrument_name)
+                    instrument = instrument_class()
+                    performer.instruments.append(instrument)
+                break
+            else:
+                raise Exception("how'd we get here?")
+
+    @staticmethod
+    def _make_performer_configuration_menu(performer, session):
+        menu = session._io_manager._make_menu(name='performer configuration')
+        commands = []
+        likely_instruments = \
+            performer.likely_instruments_based_on_performer_name
+        likely_instrument_names = [
+            x().instrument_name for x in likely_instruments]
+        likely_instrument_names.sort()
+        most_likely_instrument = \
+            performer.most_likely_instrument_based_on_performer_name
+        default_index = None
+        numbered_menu_entries = []
+        if most_likely_instrument is not None:
+            most_likely_instrument_name = \
+                most_likely_instrument().instrument_name
+            assert most_likely_instrument_name in likely_instrument_names
+            most_likely_index = likely_instrument_names.index(
+                most_likely_instrument_name)
+            string = '{} (default)'.format(most_likely_instrument_name)
+            likely_instrument_names[most_likely_index] = string
+            most_likely_number = most_likely_index + 1
+            default_index = most_likely_index
+        if likely_instruments:
+            numbered_menu_entries = likely_instrument_names
+            commands.append(('instruments - more', 'more'))
+        else:
+            instrument_names = \
+                instrumenttools.Instrument._list_instrument_names()
+            numbered_menu_entries = instrument_names
+        numbered_list_section = menu.make_numbered_list_section(
+            default_index=default_index,
+            menu_entries=numbered_menu_entries,
+            name='select instruments',
+            title='select instruments',
+            )
+        commands.append(('instruments - skip', 'skip'))
+        menu.make_command_section(
+            commands=commands,
+            name='instrument commands',
+            )
+        return menu
+
     ### ITEM CREATOR ###
 
     @staticmethod
@@ -43,90 +128,9 @@ class PerformerInventory(TypedList):
                 self._is_ranged = is_ranged
                 self._target = target
             ### PRIVATE METHODS ###
-            def _initialize_performer(self, performer):
-                from abjad.tools import instrumenttools
-                menu = self._make_performer_configuration_menu(performer)
-                while True:
-                    result = menu._run()
-                    if self._session.is_backtracking:
-                        return
-                    elif not result:
-                        continue
-                    if result in ('skip', ['skip']):
-                        break
-                    elif result in ('more', ['more']):
-                        inventory = instrumenttools.InstrumentInventory()
-                        class_ = inventory._make_item_creator_class()
-                        item_creator = class_(
-                            session=self._session,
-                            is_ranged=True,
-                            )
-                        instruments = item_creator._run()
-                        if self._session.is_backtracking:
-                            break
-                        if instruments is not None:
-                            for instrument in instruments:
-                                performer.instruments.append(instrument)
-                        break
-                    elif isinstance(result, list):
-                        name = '_default_instrument_name_to_instrument_class'
-                        method = getattr(instrumenttools.Instrument, name)
-                        for instrument_name in result:
-                            instrument_class = method(instrument_name)
-                            instrument = instrument_class()
-                            performer.instruments.append(instrument)
-                        break
-                    else:
-                        raise Exception("how'd we get here?")
-            def _make_performer_configuration_menu(self, performer):
-                menu = self._io_manager._make_menu(
-                    name='performer configuration')
-                commands = []
-                likely_instruments = \
-                    performer.likely_instruments_based_on_performer_name
-                likely_instrument_names = [
-                    x().instrument_name for x in likely_instruments]
-                likely_instrument_names.sort()
-                most_likely_instrument = \
-                    performer.most_likely_instrument_based_on_performer_name
-                default_index = None
-                numbered_menu_entries = []
-                if most_likely_instrument is not None:
-                    most_likely_instrument_name = \
-                        most_likely_instrument().instrument_name
-                    assert most_likely_instrument_name in \
-                        likely_instrument_names
-                    most_likely_index = likely_instrument_names.index(
-                        most_likely_instrument_name)
-                    string = '{} (default)'.format(most_likely_instrument_name)
-                    likely_instrument_names[most_likely_index] = string
-                    most_likely_number = most_likely_index + 1
-                    default_index = most_likely_index
-                if likely_instruments:
-                    numbered_menu_entries = likely_instrument_names
-                    commands.append(('instruments - more', 'more'))
-                else:
-                    instrument_names = \
-                        instrumenttools.Instrument._list_instrument_names()
-                    numbered_menu_entries = instrument_names
-                numbered_list_section = menu.make_numbered_list_section(
-                    default_index=default_index,
-                    menu_entries=numbered_menu_entries,
-                    name='select instruments',
-                    title='select instruments',
-                    )
-                commands.append(('instruments - skip', 'skip'))
-                menu.make_command_section(
-                    commands=commands,
-                    name='instrument commands',
-                    )
-                return menu
-            #def _run(self, input_=None):
             def _run(self):
                 from abjad.tools import instrumenttools
                 from scoremanager import idetools
-                #if input_:
-                #    self._session._pending_input = input_
                 try_again = False
                 performers = []
                 controller = idetools.ControllerContext(controller=self)
@@ -147,7 +151,10 @@ class PerformerInventory(TypedList):
                         Performer = instrumenttools.Performer
                         for performer_name in performer_names:
                             performer = Performer(performer_name)
-                            self._initialize_performer(performer)
+                            PerformerInventory._initialize_performer(
+                                performer,
+                                self._session,
+                                )
                             was_backtracking_locally = \
                                 self._session.is_backtracking_locally
                             if self._session.is_backtracking:
