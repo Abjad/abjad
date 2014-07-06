@@ -99,8 +99,4 @@
     Also at the top of the first column of (M ??) and (D ??) and (U ??).
     But not (G ??).
 
-30. Make (red m magic 1) and (red m magic 3) work.
-    Right now (red m magic 2) works. But 1 and 3 are aliased by material
-    summary menu section.
-    AssertionError: 
-    (<MenuSection 'material summary' (33)>, 'explicit', <MenuEntry: '3'>)
+30. Change (**) to (H).

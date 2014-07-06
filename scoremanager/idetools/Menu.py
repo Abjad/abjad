@@ -129,8 +129,13 @@ class Menu(Controller):
     ### PRIVATE METHODS ###
 
     def _change_input_to_directive(self, input_):
-        r'''Match against any asset section last.
-        This avoids file name new-stylesheet.ily aliasing command (new).
+        r'''Match order:
+        
+            1. all command sections
+            2. 'assets' section, if it exists
+            3. 'material summary', if it exists
+
+        This avoids file name new-stylesheet.ily aliasing the (new) command.
         '''
         input_ = stringtools.strip_diacritics(input_)
         if input_ == '!':
@@ -169,12 +174,16 @@ class Menu(Controller):
         elif input_ == 's' and self._session.is_in_score:
             self._session._pending_redraw = True
             return input_
-        asset_section = None
+        # match on exact case
+        asset_section, material_summary_section = None, None
         for section in self.menu_sections:
             if section.is_information_section:
                 continue
             if section.is_asset_section:
                 asset_section = section
+                continue
+            if section.is_material_summary_section:
+                material_summary_section = section
                 continue
             for menu_entry in section:
                 if menu_entry.matches(input_):
@@ -189,12 +198,23 @@ class Menu(Controller):
                     if ends_with_bang:
                         return_value = return_value + '!'
                     return self._enclose_in_list(return_value)
+        elif material_summary_section is not None:
+            for menu_entry in asset_section:
+                if menu_entry.matches(input_):
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    return self._enclose_in_list(return_value)
+        # lower case version of the two sections above
         asset_section = None
         for section in self.menu_sections:
             if section.is_information_section:
                 continue
-            if section.is_asset_section:
+            elif section.is_asset_section:
                 asset_section = section
+                continue
+            elif section.is_material_summary_section:
+                material_summary_section = section
                 continue
             for menu_entry in section:
                 if menu_entry.matches(input_.lower()):
@@ -204,7 +224,15 @@ class Menu(Controller):
                     return self._enclose_in_list(return_value)
         if asset_section is not None:
             for menu_entry in asset_section:
-                if menu_entry.matches(input_):
+                #if menu_entry.matches(input_):
+                if menu_entry.matches(input_.lower()):
+                    return_value = menu_entry.return_value
+                    if ends_with_bang:
+                        return_value = return_value + '!'
+                    return self._enclose_in_list(return_value)
+        elif material_summary_section is not None:
+            for menu_entry in asset_section:
+                if menu_entry.matches(input_.lower()):
                     return_value = menu_entry.return_value
                     if ends_with_bang:
                         return_value = return_value + '!'
