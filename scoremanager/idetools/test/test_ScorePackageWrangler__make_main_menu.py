@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import sys
 from abjad import *
 import scoremanager
 
@@ -14,4 +15,7 @@ def test_ScorePackageWrangler__make_main_menu_01():
         local_context=locals(),
         )
 
-    assert count < 4600
+    if sys.version_info[0] == 2:
+        assert count < 4600
+    else:
+        assert count < 4850

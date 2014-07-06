@@ -23,7 +23,8 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
         'back-cover.tex',
         )
 
-    source_contents = ''.join(file(source_path).readlines())
+    with open(source_path) as file_pointer:
+        source_contents = ''.join(file_pointer.readlines())
     assert 'PAPER_SIZE' in source_contents
     assert '{8.5in, 11in}' not in source_contents
 
@@ -32,7 +33,8 @@ def test_BuildFileWrangler_generate_back_cover_source_01():
         input_ = 'blue~example~score u bcg q'
         ide._run(input_=input_)
         assert os.path.isfile(destination_path)
-        destination_contents = ''.join(file(destination_path).readlines())
+        with open(destination_path) as file_pointer:
+            destination_contents = ''.join(file_pointer.readlines())
         assert 'PAPER_SIZE' not in destination_contents
         assert '{8.5in, 11in}' in destination_contents
 
@@ -56,7 +58,8 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
         'back-cover.tex',
         )
 
-    source_contents = ''.join(file(source_path).readlines())
+    with open(source_path) as file_pointer:
+        source_contents = ''.join(file_pointer.readlines())
     assert 'PAPER_SIZE' in source_contents
     assert '{8.5in, 11in}' not in source_contents
 
@@ -65,7 +68,8 @@ def test_BuildFileWrangler_generate_back_cover_source_02():
         ide._run(input_=input_)
         assert os.path.isfile(destination_path)
 
-    destination_contents = ''.join(file(destination_path).readlines())
+    with open(destination_path) as file_pointer:
+        destination_contents = ''.join(file_pointer.readlines())
     assert 'PAPER_SIZE' not in destination_contents
     assert '{8.5in, 11in}' in destination_contents
     contents = ide._transcript.contents
