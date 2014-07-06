@@ -10,6 +10,20 @@ class TestManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _compare_backup(path):
+        if isinstance(path, str):
+            paths = [path]
+        elif (isinstance(path, (tuple, list))):
+            paths = path
+        else:
+            raise TypeError(path)
+        for path in paths:
+            backup_path = path + '.backup'
+            if not TestManager.compare_files(path, backup_path):
+                return False
+        return True
+
+    @staticmethod
     def _compare_lys(path_1, path_2):
         r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
 
