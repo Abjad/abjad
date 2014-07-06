@@ -107,3 +107,6 @@
     summary menu section.
     AssertionError: 
     (<MenuSection 'material summary' (33)>, 'explicit', <MenuEntry: '3'>)
+
+32. Make TestManager.compare_*() methods private;
+    leave TestManager.compare_files() public.

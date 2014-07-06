@@ -9,16 +9,16 @@ def test_PerformerInventory__item_creator_class_01():
 
     session = scoremanager.idetools.Session()
     item_creator = item_creator_class(session=session)
-    input_ = 'q'
-    assert item_creator._run(input_=input_) is None
+    item_creator._session._pending_input = 'q'
+    assert item_creator._run() is None
 
     item_creator = item_creator_class(session=session)
-    input_ = 'b'
-    assert item_creator._run(input_=input_) is None
+    item_creator._session._pending_input = 'b'
+    assert item_creator._run() is None
 
     item_creator = item_creator_class(session=session)
-    input_ = 'S'
-    assert item_creator._run(input_=input_) is None
+    item_creator._session._pending_input = 'S'
+    assert item_creator._run() is None
 
 
 def test_PerformerInventory__item_creator_class_02():
@@ -26,11 +26,11 @@ def test_PerformerInventory__item_creator_class_02():
     session = scoremanager.idetools.Session()
     item_creator = item_creator_class(session=session)
     input_ = 'vn <return>'
-    assert item_creator._run(input_=input_) == \
-        instrumenttools.Performer(
-            name='violinist',
-            instruments=[instrumenttools.Violin()],
-            )
+    item_creator._session._pending_input = input_
+    assert item_creator._run() == instrumenttools.Performer(
+        name='violinist',
+        instruments=[instrumenttools.Violin()],
+        )
 
 
 def test_PerformerInventory__item_creator_class_03():
@@ -43,7 +43,8 @@ def test_PerformerInventory__item_creator_class_03():
         session=session,
         )
     input_ = 'vn, va <return> <return>'
-    assert item_creator._run(input_=input_) == [
+    item_creator._session._pending_input = input_
+    assert item_creator._run() == [
         instrumenttools.Performer(
             name='violinist',
             instruments=[instrumenttools.Violin()],
@@ -65,7 +66,8 @@ def test_PerformerInventory__item_creator_class_04():
         session=session,
         )
     input_ = 'vn, va skip skip'
-    assert item_creator._run(input_=input_) == [
+    item_creator._session._pending_input = input_
+    assert item_creator._run() == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(name='violist'),
         ]
@@ -81,7 +83,8 @@ def test_PerformerInventory__item_creator_class_05():
         session=session,
         )
     input_ = 'vn, va skip more xyl'
-    assert item_creator._run(input_=input_) == [
+    item_creator._session._pending_input = input_
+    assert item_creator._run() == [
         instrumenttools.Performer(name='violinist'),
         instrumenttools.Performer(
             name='violist',
@@ -104,7 +107,8 @@ def test_PerformerInventory__item_creator_class_06():
         short_instrument_name='caxixi',
         )
     input_ = 'vn more untuned cax'
-    item_creator._run(input_=input_)
+    item_creator._session._pending_input = input_
+    item_creator._run()
     assert item_creator.target == [
         instrumenttools.Performer(
             name='violinist',

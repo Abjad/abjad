@@ -48,6 +48,19 @@ class InstrumentInventory(TypedList):
         contents = ', '.join(contents)
         return '{}([{}])'.format(type(self).__name__, contents)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_creator_class(self):
+        item_creator_class = self._make_item_creator_class()
+        return item_creator_class
+
+    @property
+    def _item_creator_class_kwargs(self):
+        return {'is_ranged': True}
+
+    ### PRIVATE METHODS ###
+
     @staticmethod
     def _change_instrument_name_to_instrument(instrument_name):
         from abjad.tools import instrumenttools
@@ -65,63 +78,41 @@ class InstrumentInventory(TypedList):
         instrument = instrument_class()
         return instrument
 
+    @staticmethod
+    def _name_untuned_percussion(instrument, session):
+        from abjad.tools import instrumenttools
+        from scoremanager import idetools
+        if isinstance(instrument, instrumenttools.UntunedPercussion):
+            UntunedPercussion = instrumenttools.UntunedPercussion
+            items = UntunedPercussion.known_untuned_percussion[:]
+            selector = idetools.Selector(session=session, items=items)
+            instrument_name = selector._run()
+            if selector._session.is_backtracking:
+                return
+            instrument = new(
+                instrument,
+                instrument_name=instrument_name,
+                short_instrument_name=instrument_name,
+                )
+        return instrument
+
     ### ITEM CREATOR ###
 
-    def _make_item_creator_class(self):
+    @staticmethod
+    def _make_item_creator_class():
         from scoremanager.idetools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target',)
             ### INITIALIZER ###
-            def __init__(
-                self,
-                is_ranged=False,
-                session=None,
-                target=None,
-                ):
+            def __init__(self, is_ranged=False, session=None, target=None):
                 Controller.__init__(self, session=session)
                 self._is_ranged = is_ranged
                 self._target = target
             ### PRIVATE METHODS ###
-#            @staticmethod
-#            def _change_instrument_name_to_instrument(instrument_name):
-#                if instrument_name in (
-#                    'alto',
-#                    'baritone',
-#                    'bass',
-#                    'soprano',
-#                    'tenor',
-#                    ):
-#                    instrument_name = instrument_name + ' Voice'
-#                instrument_name = instrument_name.title()
-#                instrument_name = instrument_name.replace(' ', '')
-#                command = 'instrument = instrumenttools.{}()'.format(instrument_name)
-#                exec(command)
-#                return instrument
-            def _name_untuned_percussion(self, instrument):
-                from abjad.tools import instrumenttools
-                from abjad.tools.instrumenttools import UntunedPercussion
-                from scoremanager import idetools
-                if isinstance(instrument, instrumenttools.UntunedPercussion):
-                    items = UntunedPercussion.known_untuned_percussion[:]
-                    selector = idetools.Selector(
-                        session=self._session,
-                        items=items,
-                        )
-                    instrument_name = selector._run()
-                    if self._session.is_backtracking:
-                        return
-                    instrument = new(
-                        instrument,
-                        instrument_name=instrument_name,
-                        short_instrument_name=instrument_name,
-                        )
-                return instrument
-            def _run(self, input_=None):
+            def _run(self):
                 from abjad.tools import instrumenttools
                 from scoremanager import idetools
-                if input_:
-                    self._session._pending_input = input_
                 controller = idetools.ControllerContext(controller=self)
                 with controller:
                     items = instrumenttools.Instrument._list_instrument_names()
@@ -138,12 +129,14 @@ class InstrumentInventory(TypedList):
                     else:
                         instrument_names = [result]
                     instruments = []
+                    class_ = InstrumentInventory
+                    to_instrument = \
+                        class_._change_instrument_name_to_instrument
+                    name_untuned = \
+                        class_._name_untuned_percussion
                     for instrument_name in instrument_names:
-                        #instrument = \
-                        #    self._change_instrument_name_to_instrument(instrument_name)
-                        instrument = \
-                            InstrumentInventory._change_instrument_name_to_instrument(instrument_name)
-                        instrument = self._name_untuned_percussion(instrument)
+                        instrument = to_instrument(instrument_name)
+                        instrument = name_untuned(instrument, self._session)
                         instruments.append(instrument)
                     if self._is_ranged:
                         result = instruments[:]
@@ -155,14 +148,3 @@ class InstrumentInventory(TypedList):
             def target(self):
                 return self._target
         return ItemCreator
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_creator_class(self):
-        item_creator_class = self._make_item_creator_class()
-        return item_creator_class
-
-    @property
-    def _item_creator_class_kwargs(self):
-        return {'is_ranged': True}

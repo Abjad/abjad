@@ -36,10 +36,7 @@ class PerformerInventory(TypedList):
         from scoremanager.idetools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
-            __slots__ = (
-                '_is_ranged',
-                '_target',
-                )
+            __slots__ = ('_is_ranged', '_target')
             ### INITIALIZER ###
             def __init__(self, is_ranged=False, session=None, target=None):
                 Controller.__init__(self, session=session)
@@ -59,8 +56,8 @@ class PerformerInventory(TypedList):
                         break
                     elif result in ('more', ['more']):
                         inventory = instrumenttools.InstrumentInventory()
-                        item_creator_class = inventory._make_item_creator_class()
-                        item_creator = item_creator_class(
+                        class_ = inventory._make_item_creator_class()
+                        item_creator = class_(
                             session=self._session,
                             is_ranged=True,
                             )
@@ -72,17 +69,18 @@ class PerformerInventory(TypedList):
                                 performer.instruments.append(instrument)
                         break
                     elif isinstance(result, list):
+                        name = '_default_instrument_name_to_instrument_class'
+                        method = getattr(instrumenttools.Instrument, name)
                         for instrument_name in result:
-                            instrument_class = \
-                                instrumenttools.Instrument._default_instrument_name_to_instrument_class(
-                                instrument_name)
+                            instrument_class = method(instrument_name)
                             instrument = instrument_class()
                             performer.instruments.append(instrument)
                         break
                     else:
                         raise Exception("how'd we get here?")
             def _make_performer_configuration_menu(self, performer):
-                menu = self._io_manager._make_menu(name='performer configuration')
+                menu = self._io_manager._make_menu(
+                    name='performer configuration')
                 commands = []
                 likely_instruments = \
                     performer.likely_instruments_based_on_performer_name
@@ -96,7 +94,8 @@ class PerformerInventory(TypedList):
                 if most_likely_instrument is not None:
                     most_likely_instrument_name = \
                         most_likely_instrument().instrument_name
-                    assert most_likely_instrument_name in likely_instrument_names
+                    assert most_likely_instrument_name in \
+                        likely_instrument_names
                     most_likely_index = likely_instrument_names.index(
                         most_likely_instrument_name)
                     string = '{} (default)'.format(most_likely_instrument_name)
@@ -122,11 +121,12 @@ class PerformerInventory(TypedList):
                     name='instrument commands',
                     )
                 return menu
-            def _run(self, input_=None):
+            #def _run(self, input_=None):
+            def _run(self):
                 from abjad.tools import instrumenttools
                 from scoremanager import idetools
-                if input_:
-                    self._session._pending_input = input_
+                #if input_:
+                #    self._session._pending_input = input_
                 try_again = False
                 performers = []
                 controller = idetools.ControllerContext(controller=self)
@@ -144,8 +144,9 @@ class PerformerInventory(TypedList):
                         else:
                             performer_names = [result]
                         performers = []
+                        Performer = instrumenttools.Performer
                         for performer_name in performer_names:
-                            performer = instrumenttools.Performer(performer_name)
+                            performer = Performer(performer_name)
                             self._initialize_performer(performer)
                             was_backtracking_locally = \
                                 self._session.is_backtracking_locally
