@@ -8,7 +8,7 @@ def test_SegmentPackageManager_go_to_top_level_01():
     r'''From score build files to library.
     '''
 
-    input_ = 'red~example~score g A ** q'
+    input_ = 'red~example~score g A H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

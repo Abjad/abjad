@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_go_to_top_level_01():
     r'''From score distribution files to library.
     '''
 
-    input_ = 'red~example~score d ** q'
+    input_ = 'red~example~score d H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_go_to_top_level_02():
     r'''From all distribution files to library.
     '''
 
-    input_ = 'D ** q'
+    input_ = 'D H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

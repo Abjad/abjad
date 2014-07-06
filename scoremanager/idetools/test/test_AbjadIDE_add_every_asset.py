@@ -9,6 +9,6 @@ def test_AbjadIDE_add_every_asset_01():
     '''
 
     ide._session._is_repository_test = True
-    input_ = '** rad* q'
+    input_ = 'H rad* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_add

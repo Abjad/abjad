@@ -73,7 +73,7 @@ class Controller(object):
     @property
     def _command_to_method(self):
         result = {
-            '**': self.go_to_top_level,
+            'H': self.go_to_top_level,
             'b': self.go_back,
             'q': self.quit,
             's': self.go_to_current_score,

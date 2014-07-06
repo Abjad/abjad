@@ -165,7 +165,7 @@ class Menu(Controller):
                     default_value = section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif input_ in ('**', 'S', 'q', 'b', '<return>'):
+        elif input_ in ('H', 'S', 'q', 'b', '<return>'):
             self._session._pending_redraw = True
             return input_
         elif input_ == '??' and self._has_help_command():

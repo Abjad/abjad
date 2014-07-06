@@ -13,7 +13,7 @@
 
 7.  Take another pass at (ck) and (ck*) messaging.
 
-8.  Audit (**).
+8.  Audit (H).
 
 9.  Audit all star commands.
 
@@ -39,7 +39,7 @@
     of bang suffix.
 
 15. Sort the asset sections in (M), (K) etc according to the same order
-    as used in (**).
+    as used in (H).
 
 16. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
     but has no yet been written to disk.
@@ -98,5 +98,3 @@
 29. Remove blank line at top of first column in two-column layout of (S ??).
     Also at the top of the first column of (M ??) and (D ??) and (U ??).
     But not (G ??).
-
-30. Change (**) to (H).

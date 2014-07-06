@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_go_to_top_level_01():
     r'''From score segments to library.
     '''
 
-    input_ = 'red~example~score g ** q'
+    input_ = 'red~example~score g H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_go_to_top_level_02():
     r'''From all segments to library.
     '''
 
-    input_ = 'G ** q'
+    input_ = 'G H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

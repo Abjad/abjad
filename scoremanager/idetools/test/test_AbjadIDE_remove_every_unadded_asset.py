@@ -6,6 +6,6 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_AbjadIDE_remove_every_unadded_asset_01():
 
-        input_ = '** rcn* q'
+        input_ = 'H rcn* q'
         ide._run(input_=input_)
         assert ide._session._attempted_remove_unadded_assets

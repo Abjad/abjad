@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageManager_go_to_top_level_01():
 
-    input_ = 'red~example~score m tempo~inventory ** q'
+    input_ = 'red~example~score m tempo~inventory H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

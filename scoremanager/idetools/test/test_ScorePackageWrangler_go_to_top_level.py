@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_to_top_level_01():
     r'''From all scores to library.
     '''
 
-    input_ = '** q'
+    input_ = 'H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

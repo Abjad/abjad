@@ -18,7 +18,7 @@ def test_AbjadIDE_autoedit_views_01():
     with systemtools.FilesystemState(keep=[views_file, metadata_file]):
         os.remove(views_file)
         os.remove(metadata_file)
-        input_ = "** wa add _test add 'clean-letter'~in~:ds:"
+        input_ = "H wa add _test add 'clean-letter'~in~:ds:"
         input_ += " add 'rhythm-letter'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'clean-letter done"

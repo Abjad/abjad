@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_top_level_01():
     r'''From top level to library.
     '''
 
-    input_ = '** ** q'
+    input_ = 'H H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

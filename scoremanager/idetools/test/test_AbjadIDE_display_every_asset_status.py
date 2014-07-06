@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_AbjadIDE_display_every_asset_status_01():
 
-    input_ = '** rst* q'
+    input_ = 'H rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

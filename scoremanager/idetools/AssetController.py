@@ -39,7 +39,7 @@ class AssetController(Controller):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            '**': self.go_to_top_level,
+            'H': self.go_to_top_level,
             #
             'D': self.go_to_all_distribution_files,
             'G': self.go_to_all_segments,
@@ -68,7 +68,7 @@ class AssetController(Controller):
     def _navigation_commands(self):
         return (
             'b', 'q',
-            '**', 'D', 'G', 'K', 'M', 'S', 'U', 'Y',
+            'H', 'D', 'G', 'K', 'M', 'S', 'U', 'Y',
             )
 
     @property
@@ -290,7 +290,7 @@ class AssetController(Controller):
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
-        commands.append(('go - all', '**'))
+        commands.append(('go - all', 'H'))
         commands.append(('go - all - build', 'U'))
         commands.append(('go - all - distribution', 'D'))
         commands.append(('go - all - makers', 'K'))

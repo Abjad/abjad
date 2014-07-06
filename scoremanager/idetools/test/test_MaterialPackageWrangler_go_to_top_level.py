@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_go_to_top_level_01():
     r'''From score materials to library.
     '''
 
-    input_ = 'red~example~score m ** q'
+    input_ = 'red~example~score m H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_top_level_02():
     r'''From all materials to library.
     '''
 
-    input_ = 'M ** q'
+    input_ = 'M H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_stylesheets_01():
     r'''From top level to all stylesheets.
     '''
 
-    input_ = '** Y q'
+    input_ = 'H Y q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

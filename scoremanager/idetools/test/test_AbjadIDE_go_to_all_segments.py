@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_segments_01():
     r'''From top level to all segments.
     '''
 
-    input_ = '** G q'
+    input_ = 'H G q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

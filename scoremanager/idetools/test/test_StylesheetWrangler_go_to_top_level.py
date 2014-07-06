@@ -8,7 +8,7 @@ def test_StylesheetWrangler_go_to_top_level_01():
     r'''From score stylesheets to library.
     '''
 
-    input_ = 'red~example~score y ** q'
+    input_ = 'red~example~score y H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_StylesheetWrangler_go_to_top_level_02():
     r'''From all stylesheets to library.
     '''
 
-    input_ = 'Y ** q'
+    input_ = 'Y H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

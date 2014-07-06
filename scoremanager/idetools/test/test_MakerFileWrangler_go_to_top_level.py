@@ -8,7 +8,7 @@ def test_MakerFileWrangler_go_to_top_level_01():
     r'''From score maker files to library.
     '''
 
-    input_ = 'red~example~score k ** q'
+    input_ = 'red~example~score k H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MakerFileWrangler_go_to_top_level_02():
     r'''From all maker files to library.
     '''
 
-    input_ = 'K ** q'
+    input_ = 'K H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_scores_01():
     r'''From top level to all scores.
     '''
 
-    input_ = '** S q'
+    input_ = 'H S q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

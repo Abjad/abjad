@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_materials_01():
     r'''From top level to all materials.
     '''
 
-    input_ = '** M q'
+    input_ = 'H M q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
