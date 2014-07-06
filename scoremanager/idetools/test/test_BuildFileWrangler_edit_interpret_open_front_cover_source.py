@@ -26,9 +26,6 @@ def test_BuildFileWrangler_edit_interpret_open_front_cover_source_01():
         input_ = 'red~example~score u fceio q'
         ide._run(input_=input_)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_files(
-            pdf_path, 
-            pdf_path + '.backup',
-            )
+        assert systemtools.TestManager._compare_backup(pdf_path)
 
     assert ide._session._attempted_to_open_file

@@ -25,14 +25,8 @@ def test_SegmentPackageManager_illustrate_definition_py_01():
         ide._run(input_=input_)
         assert os.path.isfile(ly_path)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_files(
-            ly_path,
-            ly_path + '.backup',
-            )
-        assert systemtools.TestManager.compare_files(
-            pdf_path, 
-            pdf_path + '.backup',
-            )
+        assert systemtools.TestManager._compare_backup(ly_path)
+        assert systemtools.TestManager._compare_backup(pdf_path)
 
     contents = ide._transcript.contents
     assert 'Wrote ...' in contents
@@ -94,14 +88,8 @@ def test_SegmentPackageManager_illustrate_definition_py_03():
         ide._run(input_=input_)
         assert os.path.isfile(ly_path)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_files(
-            ly_path,
-            ly_path + '.backup',
-            )
-        assert systemtools.TestManager.compare_files(
-            pdf_path, 
-            pdf_path + '.backup',
-            )
+        assert systemtools.TestManager._compare_backup(ly_path)
+        assert systemtools.TestManager._compare_backup(pdf_path)
 
     contents = ide._transcript.contents
     assert 'The files ...' in contents

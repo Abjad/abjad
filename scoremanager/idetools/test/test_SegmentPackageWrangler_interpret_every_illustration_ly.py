@@ -30,12 +30,7 @@ def test_SegmentPackageWrangler_interpret_every_illustration_ly_01():
         input_ = 'red~example~score g ii* y q'
         ide._run(input_=input_)
         assert all(os.path.isfile(_) for _ in pdf_paths)
-        # TODO: reinterpret illustration.ly files and this should work
-        #for pdf_path in pdf_paths:
-        #    assert systemtools.TestManager.compare_files(
-        #        pdf_path, 
-        #        pdf_path + '.backup',
-        #        )
+        assert systemtools.TestManager._compare_backup(pdf_paths)
 
     contents = ide._transcript.contents
     for path in paths:
