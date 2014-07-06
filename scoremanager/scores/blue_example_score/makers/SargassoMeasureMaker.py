@@ -207,6 +207,13 @@ class SargassoMeasureMaker(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
+    def __hash__(self):
+        r'''Hashes sargasso measure-maker.
+        '''
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
+
     def __illustrate__(self, **kwargs):
         r'''Illustrates sargasso measure maker.
 
