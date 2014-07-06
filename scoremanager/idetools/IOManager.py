@@ -509,7 +509,7 @@ class IOManager(IOManager):
             local_namespace = {}
         assert isinstance(local_namespace, dict)
         local_namespace = {}
-        exec(string, globals(), local_namespace)
+        exec(string, local_namespace, local_namespace)
         result = []
         for name in attribute_names:
             if name in local_namespace:
