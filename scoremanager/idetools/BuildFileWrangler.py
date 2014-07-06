@@ -238,11 +238,12 @@ class BuildFileWrangler(FileWrangler):
                 candidate_path, 
                 destination_path,
                 ):
-                tab = self._io_manager._make_tab()
-                messages.append('the files ...')
-                messages.append(tab + candidate_path)
-                messages.append(tab + destination_path)
-                messages.append('... compare the same.')
+                messages_ = self._make_candidate_messages(
+                    True, 
+                    candidate_path, 
+                    destination_path,
+                    )
+                messages.extend(messages_)
                 message = 'preserved {}.'.format(destination_path)
                 messages.append(message)
             else:
@@ -251,29 +252,6 @@ class BuildFileWrangler(FileWrangler):
                 messages.append(message)
             self._io_manager._display(messages)
             return True
-
-    def _handle_candidate(self, candidate_path, destination_path):
-        messages = []
-        if not os.path.exists(destination_path):
-            shutil.copyfile(candidate_path, destination_path)
-            message = 'wrote {}.'.format(destination_path)
-            messages.append(message)
-        elif systemtools.TestManager.compare_files(
-            candidate_path,
-            destination_path,
-            ):
-            tab = self._io_manager._make_tab()
-            messages.append('the files ...')
-            messages.append(tab + candidate_path)
-            messages.append(tab + destination_path)
-            messages.append('... compare the same.')
-            message = 'preserved {}.'.format(destination_path)
-            messages.append(message)
-        else:
-            shutil.copyfile(candidate_path, destination_path)
-            message = 'overwrote {}.'.format(destination_path)
-            messages.append(message)
-        self._io_manager._display(messages)
 
     def _interpret_file_ending_with(self, string):
         r'''Typesets TeX file.

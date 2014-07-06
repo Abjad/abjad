@@ -32,7 +32,7 @@ def test_SegmentPackageWrangler_interpret_every_illustration_ly_01():
         assert all(os.path.isfile(_) for _ in pdf_paths)
         # TODO: reinterpret illustration.ly files and this should work
         #for pdf_path in pdf_paths:
-        #    assert systemtools.TestManager.compare_pdfs(
+        #    assert systemtools.TestManager.compare_files(
         #        pdf_path, 
         #        pdf_path + '.backup',
         #        )

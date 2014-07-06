@@ -13,17 +13,17 @@ path_2 = os.path.join(
     )
 
 
-def test_systemtools_TestManager_compare_pdfs_01():
+def test_systemtools_TestManager__compare_pdfs_01():
     r'''True when PDFs are the same.
     '''
 
     with systemtools.FilesystemState(remove=[path_1]):
         note = Note("c'4")
         persist(note).as_pdf(path_1, remove_ly=True)
-        assert systemtools.TestManager.compare_pdfs(path_1, path_1)
+        assert systemtools.TestManager._compare_pdfs(path_1, path_1)
 
 
-def test_systemtools_TestManager_compare_pdfs_02():
+def test_systemtools_TestManager__compare_pdfs_02():
     r'''True when PDFs differ but contain the same music.
     '''
 
@@ -32,10 +32,10 @@ def test_systemtools_TestManager_compare_pdfs_02():
         persist(note).as_pdf(path_1, remove_ly=True)
         note = Note("c'4")
         persist(note).as_pdf(path_2, remove_ly=True)
-        assert systemtools.TestManager.compare_pdfs(path_1, path_2)
+        assert systemtools.TestManager._compare_pdfs(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_pdfs_03():
+def test_systemtools_TestManager__compare_pdfs_03():
     r'''False when PDFs contain different music.
     '''
 
@@ -44,4 +44,4 @@ def test_systemtools_TestManager_compare_pdfs_03():
         persist(note).as_pdf(path_1, remove_ly=True)
         note = Note("d'4")
         persist(note).as_pdf(path_2, remove_ly=True)
-        assert not systemtools.TestManager.compare_pdfs(path_1, path_2)
+        assert not systemtools.TestManager._compare_pdfs(path_1, path_2)

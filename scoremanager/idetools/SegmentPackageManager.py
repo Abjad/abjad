@@ -243,14 +243,15 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 messages.append(tab + illustration_pdf_path)
                 self._io_manager._display(messages)
             else:
-                result, messages = systemtools.TestManager.compare_pdfs(
+                result = systemtools.TestManager.compare_files(
                 candidate_pdf_path,
                 illustration_pdf_path,
-                messages=True,
                 )
+                messages = self._make_candidate_messages(
+                    result, candidate_pdf_path, illustration_pdf_path)
                 self._io_manager._display(messages)
                 if result:
-                    message = 'Preserved {}.'.format(illustration_pdf_path)
+                    message = 'preserved {}.'.format(illustration_pdf_path)
                     self._io_manager._display(message)
                     return
                 else:

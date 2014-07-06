@@ -631,7 +631,7 @@ class IOManager(object):
                 os.remove(postscript_path)
             except OSError:
                 pass
-            if systemtools.TestManager.compare_pdfs(
+            if systemtools.TestManager.compare_files(
                 pdf_path,
                 candidate_path,
                 ):

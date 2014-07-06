@@ -10,6 +10,97 @@ class TestManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _compare_lys(path_1, path_2):
+        r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards blank lines.
+
+        Discards any LilyPond version statements.
+
+        Discards any lines beginning with ``%``.
+
+        Returns boolean.
+        '''
+        file_1_lines = TestManager._normalize_ly(path_1)
+        file_2_lines = TestManager._normalize_ly(path_2)
+        return file_1_lines == file_2_lines
+
+    @staticmethod
+    def _compare_pdfs(path_1, path_2, messages=False):
+        r'''Compares PDF `path_1` to PDF `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards blank lines.
+
+        Discards lines that contain any of the following strings:
+
+        * ``/ID``
+        * ``/CreationDate``
+        * ``/ModDate``
+        * ``xmp:CreateDate``
+        * ``xmp:ModifyDate``
+        * ``xapMM:DocumentID``
+        * ``rdf:about``
+
+        Discards first (binary) stream object in PDF;
+        possibly first stream contains binary-encoded creator
+        or timestamp information that can vary from one creation
+        of a PDF to another.
+
+        When `messages` is true returns boolean result together with
+        comparison result messages.
+
+        When `messages` is false returns boolean result only.
+        '''
+        file_1_lines = TestManager._normalize_pdf(path_1)
+        file_2_lines = TestManager._normalize_pdf(path_2)
+        result = file_1_lines == file_2_lines
+        # TODO: remove messages from this class; implement elsewhere
+        if messages:
+            tab = '    '
+            messages = []
+            messages.append('The files ...')
+            messages.append(tab + path_1)
+            messages.append(tab + path_2)
+            if result:
+                messages.append('... compare the same.')
+            else:
+                messages.append('... compare differently.')
+            return result, messages
+        else:
+            return result
+
+    @staticmethod
+    def _compare_text_files(path_1, path_2):
+        r'''Compares text file `path_1` to text file `path_2`.
+
+        Performs line-by-line comparison.
+
+        Discards blank lines.
+
+        Trims whitespace from the end of each line.
+
+        Returns boolean.
+        '''
+        file_1_lines, file_2_lines = [], []
+        with open(path_1, 'r') as file_pointer:
+            for line in file_pointer.readlines():
+                line = line.strip()
+                if line == '':
+                    continue
+                file_1_lines.append(line)
+        with open(path_2, 'r') as file_pointer:
+            for line in file_pointer.readlines():
+                line = line.strip()
+                if line == '':
+                    continue
+                file_2_lines.append(line)
+        return file_1_lines == file_2_lines
+
+    @staticmethod
     def _normalize_ly(path):
         lines = []
         with open(path, 'r') as file_pointer:
@@ -141,57 +232,18 @@ class TestManager(object):
     def compare_files(path_1, path_2):
         r'''Compares file `path_1` to file `path_2`.
 
-        Handles .py, .ly and .pdf files according to the other methods
-        implemented on this class.
+        For all file types::
 
-        Files with other extensions are compared line by line, just
-        like .py files.
-        '''
-        if os.path.exists(path_1) and not os.path.exists(path_2):
-            return False
-        elif not os.path.exists(path_1) and os.path.exists(path_2):
-            return False
-        elif not os.path.exists(path_1) and not os.path.exists(path_2):
-            return True
-        base_1, extension_1 = os.path.splitext(path_1)
-        base_2, extension_2 = os.path.splitext(path_2)
-        assert extension_1 == extension_2
-        if extension_1 == '.ly':
-            return TestManager.compare_lys(path_1, path_2)
-        elif extension_1 == '.pdf':
-            return TestManager.compare_pdfs(path_1, path_2)
-        elif extension_1 == '.py':
-            return TestManager.compare_pys(path_1, path_2)
-        else:
-            return TestManager.compare_pys(path_1, path_2)
+        * Performs line-by-line comparison
+        * Discards blank lines
 
-    @staticmethod
-    def compare_lys(path_1, path_2):
-        r'''Compares LilyPond file `path_1` to LilyPond file `path_2`.
+        For LilyPond files, additionally::
 
-        Performs line-by-line comparison.
+        * Discards any LilyPond version statements
+        * Discards any lines beginning with ``%``
 
-        Discards blank lines.
-
-        Discards any LilyPond version statements.
-
-        Discards any lines beginning with ``%``.
-
-        Returns boolean.
-        '''
-        file_1_lines = TestManager._normalize_ly(path_1)
-        file_2_lines = TestManager._normalize_ly(path_2)
-        return file_1_lines == file_2_lines
-
-    @staticmethod
-    def compare_pdfs(path_1, path_2, messages=False):
-        r'''Compares PDF `path_1` to PDF `path_2`.
-
-        Performs line-by-line comparison.
-
-        Discards blank lines.
-
-        Discards lines that contain any of the following strings:
+        For PDFs, additionally discards lines that contain any of the 
+        following strings:
 
         * ``/ID``
         * ``/CreationDate``
@@ -206,45 +258,28 @@ class TestManager(object):
         or timestamp information that can vary from one creation
         of a PDF to another.
 
-        When `messages` is true returns boolean result together with
-        comparison result messages.
-
-        When `messages` is false returns boolean result only.
+        Returns true when files compare the same and false when files compare
+        differently.
         '''
-        file_1_lines = TestManager._normalize_pdf(path_1)
-        file_2_lines = TestManager._normalize_pdf(path_2)
-        result = file_1_lines == file_2_lines
-        if messages:
-            tab = '    '
-            messages = []
-            messages.append('The files ...')
-            messages.append(tab + path_1)
-            messages.append(tab + path_2)
-            if result:
-                messages.append('... compare the same.')
-            else:
-                messages.append('... compare differently.')
-            return result, messages
+        if os.path.exists(path_1) and not os.path.exists(path_2):
+            return False
+        elif not os.path.exists(path_1) and os.path.exists(path_2):
+            return False
+        elif not os.path.exists(path_1) and not os.path.exists(path_2):
+            return True
+        if path_1.endswith('.backup'):
+            path_1 = path_1.strip('.backup')
+        if path_2.endswith('.backup'):
+            path_2 = path_2.strip('.backup')
+        base_1, extension_1 = os.path.splitext(path_1)
+        base_2, extension_2 = os.path.splitext(path_2)
+        assert extension_1 == extension_2
+        if extension_1 == '.ly':
+            return TestManager._compare_lys(path_1, path_2)
+        elif extension_1 == '.pdf':
+            return TestManager._compare_pdfs(path_1, path_2)
         else:
-            return result
-
-    @staticmethod
-    def compare_pys(path_1, path_2):
-        r'''Compares Python file `path_1` to Python file `path_2`.
-
-        Performs line-by-line comparison.
-
-        Discards blank lines.
-
-        Trims whitespace from the end of each line.
-
-        Returns boolean.
-        '''
-        with open(path_1, 'r') as file_pointer:
-            contents_1 = ''.join(file_pointer.readlines())
-        with open(path_2, 'r') as file_pointer:
-            contents_2 = ''.join(file_pointer.readlines())
-        return TestManager.compare(contents_1, contents_2)
+            return TestManager._compare_text_files(path_1, path_2)
 
     @staticmethod
     def get_current_function_name():

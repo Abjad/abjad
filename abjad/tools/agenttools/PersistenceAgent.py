@@ -110,7 +110,7 @@ class PersistenceAgent(abctools.AbjadObject):
         with systemtools.FilesystemState(remove=[candidate_path]):
             with open(candidate_path, 'w') as file_pointer:
                 file_pointer.write(lilypond_format)
-            if systemtools.TestManager.compare_lys(
+            if systemtools.TestManager.compare_files(
                 ly_file_path, 
                 candidate_path,
                 ):

@@ -654,7 +654,7 @@ class IOManager(IOManager):
             self._display(stderr_messages)
             tab = self._make_tab()
             candidate_messages = []
-            if systemtools.TestManager.compare_pdfs(
+            if systemtools.TestManager.compare_files(
                 output_path,
                 candidate_path,
                 ):

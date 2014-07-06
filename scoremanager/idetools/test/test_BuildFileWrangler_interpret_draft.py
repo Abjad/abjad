@@ -28,7 +28,7 @@ def test_BuildFileWrangler_interpret_draft_01():
         input_ = 'red~example~score u di q'
         ide._run(input_=input_)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_pdfs(
+        assert systemtools.TestManager.compare_files(
             pdf_path, 
             pdf_path + '.backup',
             )

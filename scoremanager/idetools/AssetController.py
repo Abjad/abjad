@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+import shutil
 from abjad.tools import developerscripttools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.idetools.Controller import Controller
 
 
@@ -178,6 +180,28 @@ class AssetController(Controller):
         self._session._display_available_commands = False
         self._set_is_navigating_to_sibling_asset()
 
+    def _handle_candidate(self, candidate_path, destination_path):
+        messages = []
+        if not os.path.exists(destination_path):
+            shutil.copyfile(candidate_path, destination_path)
+            message = 'wrote {}.'.format(destination_path)
+            messages.append(message)
+        elif systemtools.TestManager.compare_files(
+            candidate_path,
+            destination_path,
+            ):
+            tab = self._io_manager._make_tab()
+            messages_ = self._make_candidate_messages(
+                True, candidate_path, destination_path)
+            messages.extend(messages_)
+            message = 'preserved {}.'.format(destination_path)
+            messages.append(message)
+        else:
+            shutil.copyfile(candidate_path, destination_path)
+            message = 'overwrote {}.'.format(destination_path)
+            messages.append(message)
+        self._io_manager._display(messages)
+
     def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
         if result == '<return>':
@@ -251,6 +275,18 @@ class AssetController(Controller):
         menu_entries = self._make_asset_menu_entries()
         if menu_entries:
             menu.make_asset_section(menu_entries=menu_entries)
+
+    def _make_candidate_messages(self, result, candidate_path, incumbent_path):
+        messages = []
+        tab = self._io_manager._make_tab()
+        messages.append('the files ...')
+        messages.append(tab + candidate_path)
+        messages.append(tab + incumbent_path)
+        if result:
+            messages.append('... compare the same.')
+        else:
+            messages.append('... compare differently.')
+        return messages
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []

@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
         ide._run(input_=input_)
         assert all(os.path.isfile(_) for _ in pdf_paths)
         for pdf_path in pdf_paths:
-            assert systemtools.TestManager.compare_pdfs(
+            assert systemtools.TestManager.compare_files(
                 pdf_path, 
                 pdf_path + '.backup',
                 )

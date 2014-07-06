@@ -30,7 +30,7 @@ def test_MaterialPackageManager_interpret_illustration_ly_01():
         input_ = 'red~example~score m tempo~inventory ii y q'
         ide._run(input_=input_)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_pdfs(
+        assert systemtools.TestManager.compare_files(
             pdf_path, 
             pdf_path + '.backup',
             )

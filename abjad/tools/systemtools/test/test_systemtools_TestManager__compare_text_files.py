@@ -13,7 +13,7 @@ path_2 = os.path.join(
     )
 
 
-def test_systemtools_TestManager_compare_pys_01():
+def test_systemtools_TestManager__compare_text_files_01():
     r'''True when lines are exactly the same.
     '''
 
@@ -24,10 +24,10 @@ def test_systemtools_TestManager_compare_pys_01():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert systemtools.TestManager.compare_pys(path_1, path_2)
+        assert systemtools.TestManager._compare_text_files(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_pys_02():
+def test_systemtools_TestManager__compare_text_files_02():
     r'''True when white space differs.
     '''
 
@@ -38,10 +38,10 @@ def test_systemtools_TestManager_compare_pys_02():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert systemtools.TestManager.compare_lys(path_1, path_2)
+        assert systemtools.TestManager._compare_text_files(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_pys_03():
+def test_systemtools_TestManager__compare_text_files_03():
     r'''False when any other lines differ.
     '''
 
@@ -52,4 +52,4 @@ def test_systemtools_TestManager_compare_pys_03():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert not systemtools.TestManager.compare_lys(path_1, path_2)
+        assert not systemtools.TestManager._compare_text_files(path_1, path_2)

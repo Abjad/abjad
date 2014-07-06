@@ -627,17 +627,25 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 messages.append(tab + illustration_pdf_path)
                 self._io_manager._display(messages)
             else:
-                result, messages = systemtools.TestManager.compare_pdfs(
+                result = systemtools.TestManager.compare_files(
                 candidate_pdf_path,
                 illustration_pdf_path,
-                messages=True,
                 )
-                self._io_manager._display(messages)
                 if result:
+                    messages.append('the files ...')
+                    messages.append(tab + candidate_path)
+                    messages.append(tab + destination_path)
+                    messages.append('... compare the same.')
+                    self._io_manager._display(messages)
                     message = 'Preserved {}.'.format(illustration_pdf_path)
                     self._io_manager._display(message)
                     return
                 else:
+                    messages.append('the files ...')
+                    messages.append(tab + candidate_path)
+                    messages.append(tab + destination_path)
+                    messages.append('... compare differently.')
+                    self._io_manager._display(messages)
                     message = 'overwrite existing PDF with candidate PDF?'
                     result = self._io_manager._confirm(message=message)
                     if self._session.is_backtracking or not result:

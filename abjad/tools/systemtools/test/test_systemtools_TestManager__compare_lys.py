@@ -23,7 +23,7 @@ lines = [
     ]
 
 
-def test_systemtools_TestManager_compare_lys_01():
+def test_systemtools_TestManager__compare_lys_01():
     r'''True when lines are exactly the same.
     '''
 
@@ -34,10 +34,10 @@ def test_systemtools_TestManager_compare_lys_01():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert systemtools.TestManager.compare_lys(path_1, path_2)
+        assert systemtools.TestManager._compare_lys(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_lys_02():
+def test_systemtools_TestManager__compare_lys_02():
     r'''True when version strings differ.
     '''
 
@@ -48,10 +48,10 @@ def test_systemtools_TestManager_compare_lys_02():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert systemtools.TestManager.compare_lys(path_1, path_2)
+        assert systemtools.TestManager._compare_lys(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_lys_03():
+def test_systemtools_TestManager__compare_lys_03():
     r'''True when comments differ.
     '''
 
@@ -62,10 +62,10 @@ def test_systemtools_TestManager_compare_lys_03():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert systemtools.TestManager.compare_lys(path_1, path_2)
+        assert systemtools.TestManager._compare_lys(path_1, path_2)
 
 
-def test_systemtools_TestManager_compare_lys_04():
+def test_systemtools_TestManager__compare_lys_04():
     r'''False when any other lines differ.
     '''
 
@@ -76,4 +76,4 @@ def test_systemtools_TestManager_compare_lys_04():
             file_pointer.write('\n'.join(first_lines))
         with open(path_2, 'w') as file_pointer:
             file_pointer.write('\n'.join(second_lines))
-        assert not systemtools.TestManager.compare_lys(path_1, path_2)
+        assert not systemtools.TestManager._compare_lys(path_1, path_2)

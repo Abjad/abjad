@@ -31,11 +31,11 @@ def test_MaterialPackageManager_illustrate_output_py_01():
         ide._run(input_=input_)
         assert os.path.isfile(illustration_ly)
         assert os.path.isfile(illustration_pdf)
-        assert systemtools.TestManager.compare_lys(
+        assert systemtools.TestManager.compare_files(
             illustration_ly,
             illustration_ly + '.backup',
             )
-        assert systemtools.TestManager.compare_pdfs(
+        assert systemtools.TestManager.compare_files(
             illustration_pdf, 
             illustration_pdf + '.backup',
             )

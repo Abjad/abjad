@@ -25,11 +25,11 @@ def test_SegmentPackageManager_illustrate_definition_py_01():
         ide._run(input_=input_)
         assert os.path.isfile(ly_path)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_lys(
+        assert systemtools.TestManager.compare_files(
             ly_path,
             ly_path + '.backup',
             )
-        assert systemtools.TestManager.compare_pdfs(
+        assert systemtools.TestManager.compare_files(
             pdf_path, 
             pdf_path + '.backup',
             )
@@ -94,11 +94,11 @@ def test_SegmentPackageManager_illustrate_definition_py_03():
         ide._run(input_=input_)
         assert os.path.isfile(ly_path)
         assert os.path.isfile(pdf_path)
-        assert systemtools.TestManager.compare_lys(
+        assert systemtools.TestManager.compare_files(
             ly_path,
             ly_path + '.backup',
             )
-        assert systemtools.TestManager.compare_pdfs(
+        assert systemtools.TestManager.compare_files(
             pdf_path, 
             pdf_path + '.backup',
             )
