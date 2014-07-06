@@ -5,6 +5,6 @@ import collections
 metadata = collections.OrderedDict([
     ('forces_tagline', 'for alto flute & guitar'),
     ('is_example', True),
-    ('title', '\xc3\x89tude Example Score'),
+    ('title', 'Étude Example Score'),
     ('year', 2013),
     ])
