@@ -20,8 +20,10 @@ def test_systemtools_TestManager_compare_pys_01():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'"]
         second_lines = first_lines[:]
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert systemtools.TestManager.compare_pys(path_1, path_2)
 
 
@@ -32,8 +34,10 @@ def test_systemtools_TestManager_compare_pys_02():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'", '', '', "print 'goodbye'", '']
         second_lines = ['', "print 'hello'", "print 'goodbye'"]
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert systemtools.TestManager.compare_lys(path_1, path_2)
 
 
@@ -44,6 +48,8 @@ def test_systemtools_TestManager_compare_pys_03():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = ["print 'hello'"]
         second_lines = ["print 'goodbye'"]
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert not systemtools.TestManager.compare_lys(path_1, path_2)

@@ -30,8 +30,10 @@ def test_systemtools_TestManager_compare_lys_01():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
         second_lines = first_lines[:]
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert systemtools.TestManager.compare_lys(path_1, path_2)
 
 
@@ -42,8 +44,10 @@ def test_systemtools_TestManager_compare_lys_02():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
         second_lines = [r'\version "2.19.8"'] + lines
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert systemtools.TestManager.compare_lys(path_1, path_2)
 
 
@@ -54,8 +58,10 @@ def test_systemtools_TestManager_compare_lys_03():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
         second_lines = ['% 2014-01-01 05:43:01', r'\version "2.19.8"'] + lines
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert systemtools.TestManager.compare_lys(path_1, path_2)
 
 
@@ -66,6 +72,8 @@ def test_systemtools_TestManager_compare_lys_04():
     with systemtools.FilesystemState(remove=[path_1, path_2]):
         first_lines = [r'\version "2.19.7"'] + lines
         second_lines = [r'\version "2.19.8"'] + lines + ['foo']
-        file(path_1, 'w').write('\n'.join(first_lines))
-        file(path_2, 'w').write('\n'.join(second_lines))
+        with open(path_1, 'w') as file_pointer:
+            file_pointer.write('\n'.join(first_lines))
+        with open(path_2, 'w') as file_pointer:
+            file_pointer.write('\n'.join(second_lines))
         assert not systemtools.TestManager.compare_lys(path_1, path_2)

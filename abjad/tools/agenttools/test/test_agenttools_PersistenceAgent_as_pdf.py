@@ -3,11 +3,11 @@ import os
 from abjad import *
 configuration = systemtools.AbjadConfiguration()
 ly_path = os.path.join(
-    configuration.abjad_directory, 
+    configuration.abjad_directory,
     'test.ly',
     )
 pdf_path = os.path.join(
-    configuration.abjad_directory, 
+    configuration.abjad_directory,
     'test.pdf',
     )
 candidate_pdf_path = os.path.join(
@@ -18,25 +18,25 @@ paths = [ly_path, pdf_path, candidate_pdf_path]
 
 
 def test_agenttools_PersistenceAgent_as_pdf_01():
-    r'''When candidacy is true, agent persists PDF file when no 
+    r'''When candidacy is true, agent persists PDF file when no
     PDF file exists.
     '''
 
     note = Note("c'4")
     with systemtools.FilesystemState(remove=paths):
-        result = persist(note).as_pdf(pdf_path, candidacy=True)    
+        result = persist(note).as_pdf(pdf_path, candidacy=True)
         assert os.path.isfile(pdf_path)
         assert isinstance(result, tuple)
 
 
 def test_agenttools_PersistenceAgent_as_pdf_02():
-    r'''When candidacy is true, agent refuses to persist PDF file when 
+    r'''When candidacy is true, agent refuses to persist PDF file when
     equivalent PDF file already exists.
     '''
 
     note = Note("c'4")
     with systemtools.FilesystemState(remove=paths):
-        result = persist(note).as_pdf(pdf_path, candidacy=True)    
+        result = persist(note).as_pdf(pdf_path, candidacy=True)
         assert os.path.isfile(pdf_path)
         assert isinstance(result, tuple)
         os.remove(ly_path)
@@ -59,7 +59,7 @@ def test_agenttools_PersistenceAgent_as_pdf_03():
         assert 'extra text' in contents
         result = persist(note).as_pdf(pdf_path, candidacy=True)
         assert isinstance(result, tuple)
-        with open(pdf_path, 'r') as file_pointer:
+        with open(pdf_path, 'rb') as file_pointer:
             lines = file_pointer.readlines()
-        contents = ''.join(lines)
-        assert 'extra text' not in contents
+        contents = b''.join(lines)
+        assert b'extra text' not in contents
