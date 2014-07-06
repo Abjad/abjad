@@ -23,6 +23,7 @@ class BowSpanner(spannertools.Spanner):
 
     ::
 
+        >>> from experimental import newspannertools
         >>> attach(newspannertools.BowSpanner(), staff[:])
         >>> show(staff) # doctest: +SKIP
 
@@ -90,10 +91,10 @@ class BowSpanner(spannertools.Spanner):
 
     def _get_bowing_indicators(self, leaf):
         inspector = inspect_(leaf)
-        bow_hair_contact_point = None
+        bow_contact_point = None
         prototype = indicatortools.BowContactPoint
         if inspector.has_indicator(prototype):
-            bow_hair_contact_point = inspector.get_indicator(prototype)
+            bow_contact_point = inspector.get_indicator(prototype)
         bow_pressure = None
         prototype = indicatortools.BowPressure
         if inspector.has_indicator(prototype):
@@ -107,7 +108,7 @@ class BowSpanner(spannertools.Spanner):
         if inspector.has_indicator(prototype):
             string_contact_point = inspector.get_indicator(prototype)
         return (
-            bow_hair_contact_point,
+            bow_contact_point,
             bow_pressure,
             bow_technique,
             string_contact_point,
@@ -116,20 +117,20 @@ class BowSpanner(spannertools.Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         indicators = self._get_bowing_indicators(leaf)
-        bow_hair_contact_point = indicators[0]
+        bow_contact_point = indicators[0]
         bow_pressure = indicators[1]
         bow_technique = indicators[2]
         string_contact_point = indicators[3]
         if self._is_my_only_leaf(leaf):
             return lilypond_format_bundle
-        self._make_bow_hair_contact_point_overrides(
-            bow_hair_contact_point=bow_hair_contact_point,
+        self._make_bow_contact_point_overrides(
+            bow_contact_point=bow_contact_point,
             lilypond_format_bundle=lilypond_format_bundle,
             )
         if not self._is_my_last_leaf(leaf):
             lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             self._make_bow_direction_change_contributions(
-                bow_hair_contact_point=bow_hair_contact_point,
+                bow_contact_point=bow_contact_point,
                 leaf=leaf,
                 lilypond_format_bundle=lilypond_format_bundle,
                 )
@@ -143,13 +144,13 @@ class BowSpanner(spannertools.Spanner):
 
     def _make_bow_direction_change_contributions(
         self,
-        bow_hair_contact_point=None,
+        bow_contact_point=None,
         leaf=None,
         lilypond_format_bundle=None,
         ):
         direction_change = None
         next_leaf = inspect_(leaf).get_leaf(1)
-        this_contact_point = bow_hair_contact_point
+        this_contact_point = bow_contact_point
         next_contact_point = inspect_(next_leaf).get_indicator(
             indicatortools.BowContactPoint)
         if self._is_my_first_leaf(leaf):
@@ -175,10 +176,10 @@ class BowSpanner(spannertools.Spanner):
             articulation = indicatortools.Articulation('downbow', Up)
         lilypond_format_bundle.right.articulations.append(str(articulation))
 
-    def _make_bow_hair_contact_point_overrides(
+    def _make_bow_contact_point_overrides(
         self,
         lilypond_format_bundle=None,
-        bow_hair_contact_point=None,
+        bow_contact_point=None,
         ):
         stencil_override = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
@@ -193,11 +194,11 @@ class BowSpanner(spannertools.Spanner):
             grob_name='NoteHead',
             is_once=True,
             property_path='text',
-            value=bow_hair_contact_point.markup,
+            value=bow_contact_point.markup,
             )
         text_override_string = '\n'.join(text_override.override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(text_override_string)
-        y_offset = float((4 * bow_hair_contact_point.contact_point) - 2)
+        y_offset = float((4 * bow_contact_point.contact_point) - 2)
         y_offset_override = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
