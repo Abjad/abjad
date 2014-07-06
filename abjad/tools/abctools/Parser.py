@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import abc
-import inspect
 import logging
 import os
 import ply
@@ -127,9 +126,13 @@ class Parser(AbjadObject):
         from abjad import abjad_configuration
         abjad_configuration_directory = \
             abjad_configuration.abjad_configuration_directory
-        if not os.path.isdir(abjad_configuration_directory):
-            os.makedirs(abjad_configuration_directory)
-        return abjad_configuration_directory
+        output_path = os.path.join(
+            abjad_configuration_directory,
+            'parsers',
+            )
+        if not os.path.isdir(output_path):
+            os.makedirs(output_path)
+        return output_path
 
     @property
     def parser(self):

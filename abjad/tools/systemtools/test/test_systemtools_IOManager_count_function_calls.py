@@ -10,7 +10,7 @@ def test_systemtools_IOManager_count_function_calls_01():
         globals(),
         )
     if sys.version_info[0] == 2:
-        assert result == 10271
+        assert result == 10277
     else:
         assert result < 17000
 
