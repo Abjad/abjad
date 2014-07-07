@@ -583,6 +583,19 @@ class PackageManager(ScoreInternalAssetController):
                 name='package',
                 )
 
+    def _make_repository_commit_command(self, message):
+        if not self._path:
+            return
+        if self._is_in_git_repository(path=self._path):
+            command = 'git commit -m "{}" {}; git push'
+            command = command.format(message, self._path)
+        elif self._is_svn_versioned(path=self._path):
+            command =  'svn commit -m "{}" {}'
+            command = command.format(message, self._path)
+        else:
+            raise ValueError(self)
+        return command
+
     def _open_versioned_file(self, file_name_prototype):
         getter = self._io_manager._make_getter()
         version_numbers = self._get_existing_version_numbers(
@@ -678,6 +691,7 @@ class PackageManager(ScoreInternalAssetController):
         self._io_manager._read_from_pipe(process.stdout)
         self._path = new_path
 
+    # TODO: remove Svn hard-coding
     def _rename_interactively(
         self,
         extension=None,
@@ -1142,7 +1156,6 @@ class PackageManager(ScoreInternalAssetController):
             messages.append(message)
             supplied_files.append(missing_file)
         if return_supply_messages:
-            #return messages
             return messages, supplied_directories, supplied_files
         else:
             self._io_manager._display(messages)
@@ -1172,8 +1185,10 @@ class PackageManager(ScoreInternalAssetController):
                     return
             message = self._get_score_package_directory_name()
             message = message + ' ...'
-            command = 'svn commit -m "{}" {}'
-            command = command.format(commit_message, self._path)
+            # ZZZ
+            #command = 'svn commit -m "{}" {}'
+            #command = command.format(commit_message, self._path)
+            command = self._make_repository_commit_command(message)
             self._io_manager.run_command(command, capitalize=False)
 
     def display_status(self):
