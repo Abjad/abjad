@@ -224,6 +224,7 @@ class Autoeditor(Controller):
         if not menu_entries:
             return
         section = menu.make_keyed_attribute_section(
+            group_by_annotation=False,
             is_numbered=True,
             menu_entries=menu_entries,
             name='attributes',
@@ -280,6 +281,9 @@ class Autoeditor(Controller):
             result = None
             while True:
                 menu = self._make_main_menu()
+                #print(repr(menu), 'MN')
+                #for section in menu.menu_sections:
+                #    print(repr(section), 'SEC', section.group_by_annotation)
                 if result is None and self._session.is_autostarting:
                     #print 'case 1 ...'
                     result = menu._get_first_nonhidden_return_value_in_menu()

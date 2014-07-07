@@ -347,7 +347,7 @@ class MenuSection(AbjadObject):
         ::
 
             >>> section.group_by_annotation
-            True
+            False
 
         Returns boolean.
         '''

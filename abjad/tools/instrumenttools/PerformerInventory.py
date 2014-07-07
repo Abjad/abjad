@@ -104,6 +104,7 @@ class PerformerInventory(TypedList):
             numbered_menu_entries = instrument_names
         numbered_list_section = menu.make_numbered_list_section(
             default_index=default_index,
+            group_by_annotation=False,
             menu_entries=numbered_menu_entries,
             name='select instruments',
             title='select instruments',

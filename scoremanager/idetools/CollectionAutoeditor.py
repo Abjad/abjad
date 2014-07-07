@@ -221,6 +221,7 @@ class CollectionAutoeditor(Autoeditor):
         if not menu_entries:
             return
         section = menu.make_numbered_section(
+            group_by_annotation=False,
             menu_entries=menu_entries,
             name='numbered entries',
             )

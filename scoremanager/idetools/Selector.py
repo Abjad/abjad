@@ -66,11 +66,12 @@ class Selector(Controller):
         if not menu_entries:
             return
         menu._make_section(
-            name='assets',
+            group_by_annotation=False,
             is_asset_section=True,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             menu_entries=menu_entries,
+            name='assets',
             return_value_attribute=self.return_value_attribute,
             )
 

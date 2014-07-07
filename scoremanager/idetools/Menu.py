@@ -584,6 +584,8 @@ class Menu(Controller):
         self,
         default_index=None,
         display_prepopulated_values=False,
+        # TODO: eventually make group_by_annotation=False
+        group_by_annotation=True,
         is_alphabetized=False,
         is_asset_section=False,
         is_attribute_section=False,
@@ -606,6 +608,7 @@ class Menu(Controller):
         section = idetools.MenuSection(
             default_index=default_index,
             display_prepopulated_values=display_prepopulated_values,
+            group_by_annotation=group_by_annotation,
             is_alphabetized=is_alphabetized,
             is_asset_section=is_asset_section,
             is_attribute_section=is_attribute_section,
@@ -898,10 +901,11 @@ class Menu(Controller):
         Returns menu section.
         '''
         section = self._make_section(
+            default_index=default_index,
+            group_by_annotation=False,
             is_alphabetized=is_alphabetized,
             is_command_section=True,
             is_hidden=is_hidden,
-            default_index=default_index,
             match_on_display_string=match_on_display_string,
             menu_entries=commands,
             name=name,
@@ -926,6 +930,7 @@ class Menu(Controller):
         Returns menu section.
         '''
         section = self._make_section(
+            group_by_annotation=False,
             is_hidden=False,
             is_information_section=True,
             menu_entries=menu_entries,
@@ -936,6 +941,7 @@ class Menu(Controller):
 
     def make_keyed_attribute_section(
         self,
+        group_by_annotation=True,
         is_numbered=False,
         menu_entries=None,
         name=None,
@@ -950,6 +956,7 @@ class Menu(Controller):
         '''
         section = self._make_section(
             display_prepopulated_values=True,
+            group_by_annotation=group_by_annotation,
             is_numbered=is_numbered,
             menu_entries=menu_entries,
             name=name,
@@ -1011,6 +1018,7 @@ class Menu(Controller):
 
     def make_numbered_list_section(
         self,
+        group_by_annotation=True,
         menu_entries=None,
         name=None,
         title=None,
@@ -1028,10 +1036,11 @@ class Menu(Controller):
         Returns menu section.
         '''
         section = self._make_section(
+            default_index=default_index,
+            group_by_annotation=group_by_annotation,
             is_asset_section=True,
             is_numbered=True,
             is_ranged=True,
-            default_index=default_index,
             menu_entries=menu_entries,
             name=name,
             return_value_attribute='display_string',
@@ -1039,7 +1048,12 @@ class Menu(Controller):
             )
         return section
 
-    def make_numbered_section(self, menu_entries=None, name=None):
+    def make_numbered_section(
+        self, 
+        group_by_annotation=True,
+        menu_entries=None, 
+        name=None,
+        ):
         r'''Makes numbered section.
 
         With these attributes:
@@ -1051,10 +1065,11 @@ class Menu(Controller):
         Returns menu section.
         '''
         section = self._make_section(
-            name=name,
+            group_by_annotation=group_by_annotation,
             is_asset_section=True,
             is_numbered=True,
             menu_entries=menu_entries,
+            name=name,
             return_value_attribute='number',
             )
         return section
