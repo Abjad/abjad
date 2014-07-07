@@ -127,9 +127,3 @@
 32. Fix stacktrace from (wa whatever_view 1 1).
 
 33. Add Configuration.views_metadata_file.
-
-34. Search for lines like ...
-        input_ = 'Mwd y q'
-    ... and change to ...
-        input_ = 'mwd y q'
-    ... instead (without the initial capital letter).

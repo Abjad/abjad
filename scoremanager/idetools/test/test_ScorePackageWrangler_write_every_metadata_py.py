@@ -7,7 +7,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_write_every_metadata_py_01():
 
-    input_ = 'Mdw* n q'
+    input_ = 'mdw* n q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

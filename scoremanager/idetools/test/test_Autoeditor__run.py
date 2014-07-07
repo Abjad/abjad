@@ -31,7 +31,7 @@ def test_Autoeditor__run_02():
         session=session,
         target=target,
         )
-    input_ = 'Done'
+    input_ = 'done'
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
