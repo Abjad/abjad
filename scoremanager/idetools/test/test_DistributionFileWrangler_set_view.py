@@ -2,8 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-# must be is_test=False for view tests
-ide = scoremanager.idetools.AbjadIDE(is_test=False)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_set_view_01():
