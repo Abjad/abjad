@@ -213,8 +213,7 @@ class ScorePackageWrangler(PackageWrangler):
         entries = self._read_cache()
         if self._session.is_test:
             entries = [_ for _ in entries if 'Example Score' in _[0]]
-        else:
-            entries = self._filter_asset_menu_entries_by_view(entries)
+        entries = self._filter_asset_menu_entries_by_view(entries)
         if entries:
             menu.make_asset_section(menu_entries=entries)
 

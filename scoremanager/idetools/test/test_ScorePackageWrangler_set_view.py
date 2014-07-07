@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-ide = scoremanager.idetools.AbjadIDE(is_test=False)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_set_view_01():

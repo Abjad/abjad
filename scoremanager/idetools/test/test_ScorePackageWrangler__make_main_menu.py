@@ -16,6 +16,6 @@ def test_ScorePackageWrangler__make_main_menu_01():
         )
 
     if sys.version_info[0] == 2:
-        assert count < 4600
+        assert count < 7000
     else:
-        assert count < 4850
+        assert count < 7000
