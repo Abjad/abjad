@@ -123,5 +123,3 @@
     importable output (like measures) in their output.py files?
     Right now SargassoMeasureMaker stores itself in its output.py file;
     this duplicates the definition.py file.
-
-32. Fix stacktrace from (wa whatever_view 1 1).

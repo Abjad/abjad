@@ -267,6 +267,8 @@ class CollectionAutoeditor(Autoeditor):
         item = self._get_item_from_item_number(number)
         if item is None:
             return
+        if not hasattr(item, '_attribute_manifest'):
+            return
         item_editor_class = self._item_editor_class or idetools.Autoeditor
         item_editor = item_editor_class(session=self._session, target=item)
         item_editor._run()
