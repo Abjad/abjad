@@ -73,6 +73,7 @@ class PerformerInventory(TypedList):
 
     @staticmethod
     def _make_performer_configuration_menu(performer, session):
+        from abjad.tools import instrumenttools
         menu = session._io_manager._make_menu(name='performer configuration')
         commands = []
         likely_instruments = \
