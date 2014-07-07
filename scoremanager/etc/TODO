@@ -120,3 +120,8 @@
         * division cells: ...
         * grouping counts: ...
     ... instead.
+
+32. Shouldn't frozen-function makers like SargassoMeasureMaker store
+    importable output (like measures) in their output.py files?
+    Right now SargassoMeasureMaker stores itself in its output.py file;
+    this duplicates the definition.py file.

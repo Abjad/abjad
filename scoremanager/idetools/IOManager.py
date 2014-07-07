@@ -384,7 +384,6 @@ class IOManager(IOManager):
             for line in pipe.readlines():
                 line = line.decode('utf-8')
                 line = line.strip()
-                lines.append(line)
         return '\n'.join(lines)
 
     def _read_one_line_from_pipe(self, pipe):

@@ -615,13 +615,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 result = self._io_manager.interpret_file(illustrate_path)
             stdout_lines, stderr_lines = result
             if stderr_lines:
-                self._io_manager._display(stderr_lines)
+                self._io_manager._display(stderr_lines, capitalize=False)
                 return
+            messages = []
+            tab = self._io_manager._make_tab()
             if not os.path.exists(illustration_pdf_path):
                 shutil.move(candidate_pdf_path, illustration_pdf_path)
                 shutil.move(candidate_ly_path, illustration_ly_path)
                 tab = self._io_manager._make_tab()
-                messages = []
                 messages.append('Wrote ...')
                 messages.append(tab + illustration_ly_path)
                 messages.append(tab + illustration_pdf_path)
@@ -633,8 +634,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 )
                 if result:
                     messages.append('the files ...')
-                    messages.append(tab + candidate_path)
-                    messages.append(tab + destination_path)
+                    messages.append(tab + candidate_pdf_path)
+                    messages.append(tab + illustration_pdf_path)
                     messages.append('... compare the same.')
                     self._io_manager._display(messages)
                     message = 'Preserved {}.'.format(illustration_pdf_path)
@@ -642,8 +643,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                     return
                 else:
                     messages.append('the files ...')
-                    messages.append(tab + candidate_path)
-                    messages.append(tab + destination_path)
+                    messages.append(tab + candidate_pdf_path)
+                    messages.append(tab + illustration_pdf_path)
                     messages.append('... compare differently.')
                     self._io_manager._display(messages)
                     message = 'overwrite existing PDF with candidate PDF?'
