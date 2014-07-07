@@ -642,7 +642,7 @@ class Wrangler(ScoreInternalAssetController):
         display_string, _, _, path = entry
         manager = self._io_manager._make_package_manager(path)
         count = pattern.count('md:')
-        for _ in xrange(count+1):
+        for _ in range(count+1):
             parts = pattern.split()
             for part in parts:
                 if part.startswith('md:'):
