@@ -42,6 +42,7 @@ set history=700
 set ignorecase
 set incsearch
 set nobackup
+set noeol
 set nojoinspaces
 set noswapfile
 set nowrap
@@ -113,6 +114,9 @@ map <leader>a ggVG
 " linesort 
 vnoremap <leader>s :sort<cr>
 noremap <leader>ab :'a,'bsort<cr>
+
+" remove trailing whitespace
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " settings reload & view
 map <leader>v :source ~/.vimrc<cr>
