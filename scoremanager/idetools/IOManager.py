@@ -686,8 +686,14 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        with open(path, 'w') as file_pointer:
-            file_pointer.write(string)
+        import codecs
+        import sys
+        if sys.version_info[0] == 2:
+            with codecs.open(path, 'w', encoding='utf-8') as file_pointer:
+                file_pointer.write(string)
+        else:
+            with open(path, 'w') as file_pointer:
+                file_pointer.write(string)
 
     def write_stub(self, path):
         r'''Writes Unicode directive to otherwise empty file at `path`.
