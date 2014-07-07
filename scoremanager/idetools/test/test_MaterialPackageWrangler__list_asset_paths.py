@@ -70,6 +70,13 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
         'sargasso_measures',
         )
     paths.append(path)
+    path = os.path.join(
+        wrangler._configuration.example_score_packages_directory,
+        'blue_example_score',
+        'materials',
+        'talea_rhythm_maker',
+        )
+    paths.append(path)
 
     result = wrangler._list_asset_paths(
         abjad_material_packages_and_stylesheets=False,
