@@ -94,7 +94,3 @@
         illustration.ly:89:75: warning: conflicting note group events
     ... and related.
     Make a test zagged pitch class material package and illustrate to test.
-
-29. Remove blank line at top of first column in two-column layout of (S ??).
-    Also at the top of the first column of (M ??) and (D ??) and (U ??).
-    But not (G ??).

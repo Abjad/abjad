@@ -491,13 +491,16 @@ class Menu(Controller):
             lines = [_.strip() for _ in lines]
         all_packages_lines = [_ for _ in lines if _.startswith('all')]
         lines = [_ for _ in lines if not _.startswith('all')]
-        # remove consecutive '', '' that can result from comprehension above
+        # remove consecutive blank lines from comprehension above
         clean_lines = []
         for line in lines:
             if line == '':
                 if clean_lines and clean_lines[-1] == '':
                     continue
             clean_lines.append(line)
+        # remove initial blank line
+        if clean_lines[0] == '':
+            clean_lines.pop(0)
         lines = clean_lines
         midpoint = int(len(lines)/2)
         if break_only_at_blank_lines:
