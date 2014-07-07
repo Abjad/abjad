@@ -71,6 +71,12 @@ class TestManager(object):
         '''
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
+#        for line_1, line_2 in zip(file_1_lines, file_2_lines):
+#            if line_1 != line_2:
+#                print line_1
+#                print line_2
+#                print
+#                raise Exception
         result = file_1_lines == file_2_lines
         # TODO: remove messages from this class; implement elsewhere
         if messages:
@@ -139,11 +145,15 @@ class TestManager(object):
                     continue
                 elif b'/ID' in line:
                     continue
+                elif b'/Creator' in line:
+                    continue
                 elif b'/CreationDate' in line:
                     continue
                 elif b'/ModDate' in line:
                     continue
                 elif b'xmp:CreateDate' in line:
+                    continue
+                elif b'xmp:CreatorTool' in line:
                     continue
                 elif b'xmp:ModifyDate' in line:
                     continue
