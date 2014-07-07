@@ -378,15 +378,17 @@ class IOManager(IOManager):
 
     def _read_from_pipe(self, pipe):
         lines = []
+        string = pipe.read()
         if sys.version_info[0] == 2:
-            for line in pipe.readlines():
+            for line in string.splitlines():
                 line = str(line)
                 line = line.strip()
                 lines.append(line)
         else:
-            for line in pipe.readlines():
+            for line in string.splitlines():
                 line = line.decode('utf-8')
                 line = line.strip()
+                lines.append(line)
         return '\n'.join(lines)
 
     def _read_one_line_from_pipe(self, pipe):
