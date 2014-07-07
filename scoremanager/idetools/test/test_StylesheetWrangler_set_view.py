@@ -2,8 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-# must have is_test=False to test views
-ide = scoremanager.idetools.AbjadIDE(is_test=False)
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',

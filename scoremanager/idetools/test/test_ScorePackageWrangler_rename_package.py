@@ -4,7 +4,6 @@ pytest.skip('make me work again.')
 import os
 from abjad import *
 import scoremanager
-#ide = scoremanager.idetools.AbjadIDE(is_test=True)
 ide = scoremanager.idetools.AbjadIDE(is_test=False)
 
 

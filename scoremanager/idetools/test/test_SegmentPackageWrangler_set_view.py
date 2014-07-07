@@ -2,7 +2,6 @@
 import os
 from abjad import *
 import scoremanager
-# must have is_test=False to test view application
 ide = scoremanager.idetools.AbjadIDE(is_test=False)
 
 
