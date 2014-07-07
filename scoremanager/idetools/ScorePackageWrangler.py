@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import sequencetools
+import sys
 from abjad.tools import stringtools
 from scoremanager.idetools.PackageWrangler import PackageWrangler
 
@@ -143,7 +143,7 @@ class ScorePackageWrangler(PackageWrangler):
             sibling_index = (index - 1) % len(paths)
         sibling_path = paths[sibling_index]
         return sibling_path
-        
+
     def _get_sibling_score_path(self):
         if self._session.is_navigating_to_next_score:
             self._session._is_navigating_to_next_score = False
@@ -322,7 +322,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def remove_packages(self):
         r'''Removes one or more packages.
-        
+
         Returns none.
         '''
         self._remove_assets()
@@ -349,10 +349,15 @@ class ScorePackageWrangler(PackageWrangler):
             set_view=False,
             )
         for menu_entry in menu_entries:
-            lines.append('{},'.format(menu_entry))
+            string = '{},'.format(menu_entry)
+            if sys.version_info[0] == 2:
+                string = string.decode('string_escape')
+            lines.append(string)
         lines.append(']')
         contents = '\n'.join(lines)
         cache_file_path = self._configuration.cache_file_path
+        if sys.version_info[0] == 2:
+            contents = contents.decode('utf-8')
         self._io_manager.write(cache_file_path, contents)
         message = 'wrote {}.'.format(cache_file_path)
         self._io_manager._display(message)
