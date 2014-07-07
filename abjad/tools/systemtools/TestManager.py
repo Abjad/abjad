@@ -42,7 +42,7 @@ class TestManager(object):
         return file_1_lines == file_2_lines
 
     @staticmethod
-    def _compare_pdfs(path_1, path_2, messages=False):
+    def _compare_pdfs(path_1, path_2):
         r'''Compares PDF `path_1` to PDF `path_2`.
 
         Performs line-by-line comparison.
@@ -64,34 +64,11 @@ class TestManager(object):
         or timestamp information that can vary from one creation
         of a PDF to another.
 
-        When `messages` is true returns boolean result together with
-        comparison result messages.
-
-        When `messages` is false returns boolean result only.
+        Returns boolean.
         '''
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
-#        for line_1, line_2 in zip(file_1_lines, file_2_lines):
-#            if line_1 != line_2:
-#                print line_1
-#                print line_2
-#                print
-#                raise Exception
-        result = file_1_lines == file_2_lines
-        # TODO: remove messages from this class; implement elsewhere
-        if messages:
-            tab = '    '
-            messages = []
-            messages.append('The files ...')
-            messages.append(tab + path_1)
-            messages.append(tab + path_2)
-            if result:
-                messages.append('... compare the same.')
-            else:
-                messages.append('... compare differently.')
-            return result, messages
-        else:
-            return result
+        return file_1_lines == file_2_lines
 
     @staticmethod
     def _compare_text_files(path_1, path_2):
@@ -139,9 +116,12 @@ class TestManager(object):
     def _normalize_pdf(path):
         lines = []
         with open(path, 'rb') as file_pointer:
-            for line in file_pointer.readlines():
+            contents = file_pointer.read()
+            for line in contents.splitlines():
                 line = line.strip()
                 if line == b'':
+                    continue
+                elif line.startswith(b'%'):
                     continue
                 elif b'/ID' in line:
                     continue
