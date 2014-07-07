@@ -7,17 +7,12 @@ views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__DistributionFileWrangler_views__.py',
     )
-metadata_file = os.path.join(
-    ide._configuration.wrangler_views_directory,
-    '__metadata__.py',
-    )
 
 
 def test_DistributionFileWrangler_autoedit_views_01():
 
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = "D wa add _test add 'score'~in~:ds:"
         input_ += " add 'audio'~in~:ds: done"
         input_ += " ren _test _new_test"

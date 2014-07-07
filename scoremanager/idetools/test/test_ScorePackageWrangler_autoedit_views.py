@@ -7,17 +7,12 @@ views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__ScorePackageWrangler_views__.py',
     )
-metadata_file = os.path.join(
-    ide._configuration.wrangler_views_directory,
-    '__metadata__.py',
-    )
 
 
 def test_ScorePackageWrangler_autoedit_views_01():
 
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = "S wa add _test add 'Red~Example~Score'~in~:ds:"
         input_ += " add 'Blue~Example~Score'~in~:ds: done"
         input_ += " ren _test _new_test"

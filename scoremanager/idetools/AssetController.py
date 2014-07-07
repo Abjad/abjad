@@ -264,7 +264,6 @@ class AssetController(Controller):
         for string, path in pairs:
             entry = (string, None, None, path)
             entries.append(entry)
-        #if set_view and not self._session.is_test:
         if set_view:
             entries = self._filter_asset_menu_entries_by_view(entries)
         if self._session.is_test:

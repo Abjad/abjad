@@ -7,17 +7,12 @@ views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',
     )
-metadata_file = os.path.join(
-    ide._configuration.wrangler_views_directory,
-    '__metadata__.py',
-    )
 
 
 def test_StylesheetWrangler_autoedit_views_01():
 
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = "Y wa add _test add 'clean-letter-14'~in~:ds:"
         input_ += " add 'clean-letter-16'~in~:ds: done"
         input_ += " ren _test _new_test"

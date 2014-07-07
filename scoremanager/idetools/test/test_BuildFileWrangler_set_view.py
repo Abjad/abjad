@@ -19,9 +19,8 @@ def test_BuildFileWrangler_set_view_01():
         ide._configuration.wrangler_views_directory,
         '__metadata__.py',
         )
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = 'U wa add _test'
         input_ += ' add segment-01.ly~(Red~Example~Score)'
         input_ += ' add segment-02.ly~(Red~Example~Score)'

@@ -124,45 +124,12 @@
     Right now SargassoMeasureMaker stores itself in its output.py file;
     this duplicates the definition.py file.
 
-32. Fix (red~example~score m instrumentation da add) ...
+32. Fix stacktrace from (wa whatever_view 1 1).
 
-    Red Example Score (2013) - materials - instrumentation (EDIT)
-    
-      Select:
-    
-        acc:                          13: hornist      
-           1: accordionist          ms:                
-        alto:                         14: mezzo-soprano
-           2: alto                  ob:                
-        bar:                          15: oboist       
-           3: baritone              perc:              
-        bass:                         16: percussionist
-           4: bass                  pf:                
-        vb:                           17: pianist      
-           5: bassist               sax:               
-        bsn:                          18: saxophonist  
-           6: bassoonist            sop:               
-        vc:                           19: soprano      
-           7: cellist               ten:               
-        cl:                           20: tenor        
-           8: clarinetist           trb:               
-        fl:                           21: trombonist   
-           9: flutist               tp:                
-        gt:                           22: trumpeter    
-          10: guitarist             tb:                
-        hp:                           23: tubist       
-          11: harpist               vn:                
-        hpschd:                       24: violinist    
-          12: harpsichordist        va:                
-        hn:                           25: violist      
-    ... to remove unnecessary one-element groups.
+33. Add Configuration.views_metadata_file.
 
-33. Fix (red m instrumentation da add cl b b). It generates ...
-    File "/Users/trevorbaca/Documents/abjad/abjad/tools/instrumenttools/PerformerInventory.py", line 39, in _initialize_performer
-        session,
-    File "/Users/trevorbaca/Documents/abjad/abjad/tools/instrumenttools/PerformerInventory.py", line 102, in _make_performer_configuration_menu
-        instrumenttools.Instrument._list_instrument_names()
-    NameError: global name 'instrumenttools' is not defined
-    ... right now.
-
-34. Fix stacktrace from (wa whatever_view 1 1).
+34. Search for lines like ...
+        input_ = 'Mwd y q'
+    ... and change to ...
+        input_ = 'mwd y q'
+    ... instead (without the initial capital letter).

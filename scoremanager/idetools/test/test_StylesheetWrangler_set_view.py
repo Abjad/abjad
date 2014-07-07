@@ -7,10 +7,6 @@ views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__StylesheetWrangler_views__.py',
     )
-metadata_file = os.path.join(
-    ide._configuration.wrangler_views_directory,
-    '__metadata__.py',
-    )
 
 
 def test_StylesheetWrangler_set_view_01():
@@ -19,9 +15,8 @@ def test_StylesheetWrangler_set_view_01():
     Makes sure only one stylesheet is visible after view is applied.
     '''
     
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = 'Y wa add _test add clean-letter-14.ily done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)

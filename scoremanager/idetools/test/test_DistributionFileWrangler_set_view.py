@@ -15,13 +15,8 @@ def test_DistributionFileWrangler_set_view_01():
         ide._configuration.wrangler_views_directory,
         '__DistributionFileWrangler_views__.py',
         )
-    metadata_file = os.path.join(
-        ide._configuration.wrangler_views_directory,
-        '__metadata__.py',
-        )
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = 'D wa add _test'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done done'
         input_ += ' ws _test q'

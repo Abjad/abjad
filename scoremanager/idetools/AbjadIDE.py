@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad.tools import systemtools
 from scoremanager.idetools.Wrangler import Wrangler
 
@@ -186,13 +187,26 @@ class AbjadIDE(Wrangler):
             )
         path = self._configuration.score_manager_directory
         directory_change = systemtools.TemporaryDirectoryChange(path)
-        path = self._configuration.cache_file_path
         state = systemtools.NullContextManager()
+        wrangler_views = os.path.join(
+            self._configuration.configuration_directory,
+            'views',
+            '__metadata__.py',
+            )
         if self._session.is_test:
-            state = systemtools.FilesystemState(keep=[path])
+            paths_to_keep = []
+            paths_to_keep.append(self._configuration.cache_file_path)
+            paths_to_keep.append(wrangler_views)
+            state = systemtools.FilesystemState(keep=paths_to_keep)
         interaction = self._io_manager._make_interaction(task=False)
         with controller, directory_change, state, interaction:
             self._session._pending_redraw = True
+            if self._session.is_test:
+                empty_views = os.path.join(
+                    self._configuration.boilerplate_directory,
+                    '__views_metadata__.py',
+                    )
+                shutil.copyfile(empty_views, wrangler_views)
             while True:
                 result = self._score_package_wrangler._get_sibling_score_path()
                 if not result:

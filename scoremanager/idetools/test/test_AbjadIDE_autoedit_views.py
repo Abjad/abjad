@@ -7,17 +7,12 @@ views_file = os.path.join(
     ide._configuration.wrangler_views_directory,
     '__AbjadIDE_views__.py',
     )
-metadata_file = os.path.join(
-    ide._configuration.wrangler_views_directory,
-    '__metadata__.py',
-    )
 
 
 def test_AbjadIDE_autoedit_views_01():
 
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = "H wa add _test add 'clean-letter'~in~:ds:"
         input_ += " add 'rhythm-letter'~in~:ds: done"
         input_ += " ren _test _new_test"

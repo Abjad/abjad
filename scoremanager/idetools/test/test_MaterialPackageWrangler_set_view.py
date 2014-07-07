@@ -15,13 +15,8 @@ def test_MaterialPackageWrangler_set_view_01():
         ide._configuration.wrangler_views_directory,
         '__MaterialPackageWrangler_views__.py',
         )
-    metadata_file = os.path.join(
-        ide._configuration.wrangler_views_directory,
-        '__metadata__.py',
-        )
-    with systemtools.FilesystemState(keep=[views_file, metadata_file]):
+    with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        os.remove(metadata_file)
         input_ = 'M wa add _test'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done done'
