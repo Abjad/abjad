@@ -125,5 +125,3 @@
     this duplicates the definition.py file.
 
 32. Fix stacktrace from (wa whatever_view 1 1).
-
-33. Add Configuration.views_metadata_file.

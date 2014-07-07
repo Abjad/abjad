@@ -565,6 +565,22 @@ class Configuration(AbjadConfiguration):
         '''
         return os.path.join(self.configuration_directory, 'views')
 
+    @property
+    def wrangler_views_metadata_file(self):
+        r'''Gets wrangler views __metadata__.py file path.
+
+        ..  container::
+
+            >>> configuration.wrangler_views_metadata_file
+            '.../ide/views/__metadata__.py'
+
+        Defined equal to metadata file resident in the wrangler views
+        directory.
+
+        Returns string.
+        '''
+        return os.path.join(self.wrangler_views_directory, '__metadata__.py')
+
     ### PUBLIC METHODS ###
 
     def list_score_directories(

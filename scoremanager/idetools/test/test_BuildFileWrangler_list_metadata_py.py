@@ -25,13 +25,8 @@ def test_BuildFileWrangler_list_metadata_py_02():
     r'''Outside score.
     '''
 
-    metadata_py_path = os.path.join(
-        ide._configuration.wrangler_views_directory,
-        '__metadata__.py',
-        )
-
     input_ = 'U mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert metadata_py_path in contents
+    assert ide._configuration.wrangler_views_metadata_file in contents

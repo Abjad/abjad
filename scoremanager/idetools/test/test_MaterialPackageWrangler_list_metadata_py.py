@@ -23,13 +23,8 @@ def test_MaterialPackageWrangler_list_metadata_py_01():
 
 def test_MaterialPackageWrangler_list_metadata_py_02():
 
-    metadata_py_path = os.path.join(
-        ide._configuration.wrangler_views_directory,
-        '__metadata__.py',
-        )
-
     input_ = 'M mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert metadata_py_path in contents
+    assert ide._configuration.wrangler_views_metadata_file in contents

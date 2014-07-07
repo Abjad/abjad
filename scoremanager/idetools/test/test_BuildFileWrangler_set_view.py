@@ -15,10 +15,6 @@ def test_BuildFileWrangler_set_view_01():
         ide._configuration.wrangler_views_directory,
         '__BuildFileWrangler_views__.py',
         )
-    metadata_file = os.path.join(
-        ide._configuration.wrangler_views_directory,
-        '__metadata__.py',
-        )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
         input_ = 'U wa add _test'
