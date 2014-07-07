@@ -505,7 +505,7 @@ class IOManager(IOManager):
 
         Returns `attribute_names` from executed string.
         '''
-        assert string
+        assert isinstance(string, str)
         assert isinstance(attribute_names, tuple)
         if local_namespace is None:
             local_namespace = {}
