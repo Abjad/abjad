@@ -190,7 +190,7 @@ class AssetController(Controller):
             candidate_path,
             destination_path,
             ):
-            tab = self._io_manager._make_tab()
+            tab = self._io_manager._tab
             messages_ = self._make_candidate_messages(
                 True, candidate_path, destination_path)
             messages.extend(messages_)
@@ -278,7 +278,7 @@ class AssetController(Controller):
 
     def _make_candidate_messages(self, result, candidate_path, incumbent_path):
         messages = []
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         messages.append('the files ...')
         messages.append(tab + candidate_path)
         messages.append(tab + incumbent_path)

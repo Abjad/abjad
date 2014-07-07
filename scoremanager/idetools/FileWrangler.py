@@ -115,7 +115,7 @@ class FileWrangler(Wrangler):
             identifier = stringtools.pluralize(identifier, count)
             message = '{} unrecognized {} found:'
             message = message.format(count, identifier)
-            tab = self._io_manager._make_tab()
+            tab = self._io_manager._tab
             message = tab + message
             messages.append(message)
             for invalid_path in invalid_paths:

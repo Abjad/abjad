@@ -77,11 +77,9 @@
 24. Implement something to make sure _command_to_method contains
     neither duplicate commands nor duplicate methods.
 
-25. Change IOManager._make_tab() to just Configuration.tab as a property.
+25. Add one blank line between output chunks in iterative commands.
 
-26. Add two blank lines between output chunks in iterative commands.
-
-27. Add (*) suffix to changed assets in asset menu.
+26. Add (*) suffix to changed assets in asset menu.
     Something like ...
         1: instrumentation (*)
         2: magic numbers
@@ -90,14 +88,14 @@
         5: time signatures
     ... will make clear that three packages have changed.
 
-28. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
+27. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
         illustration.ly:89:75: warning: conflicting note group events
     ... and related.
     Make a test zagged pitch class material package and illustrate to test.
 
-29. Change 'score_manager_library' to 'library'.
+28. Change 'score_manager_library' to 'library'.
 
-30. Make autoeditor display attributes in order of attribute manifest.
+29. Make autoeditor display attributes in order of attribute manifest.
     Right now autoeditor displays attributes alphabetically by name.
     Change ...
         1: division cells (dc): ...
@@ -109,7 +107,7 @@
         3: grouping counts (gc): ...
     ... instead.
 
-31. Make material summary menu section display attributes in order of class.
+30. Make material summary menu section display attributes in order of class.
     Right now section displays attributes alphabetically by name.
     Change ...
         * division cells: ...
@@ -121,7 +119,7 @@
         * grouping counts: ...
     ... instead.
 
-32. Shouldn't frozen-function makers like SargassoMeasureMaker store
+31. Shouldn't frozen-function makers like SargassoMeasureMaker store
     importable output (like measures) in their output.py files?
     Right now SargassoMeasureMaker stores itself in its output.py file;
     this duplicates the definition.py file.

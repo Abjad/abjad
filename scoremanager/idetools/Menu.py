@@ -291,7 +291,7 @@ class Menu(Controller):
         new_lines = []
         current_annotation = ''
         pattern = re.compile('(.*)(\s+)\((.+)\)')
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         for line in lines:
             line = line.replace('', '')
             match = pattern.match(line)
@@ -450,7 +450,7 @@ class Menu(Controller):
             for menu_entry in section:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
-                menu_line = self._make_tab(1)
+                menu_line = self._io_manager._tab
                 menu_line += '{} ({})'.format(display_string, key)
                 lines.append(menu_line)
             lines.append('')
@@ -633,9 +633,6 @@ class Menu(Controller):
         for noncommand_section in noncommand_sections:
             self.menu_sections.insert(0, noncommand_section)
         return section
-
-    def _make_tab(self, n=1):
-        return 4 * n * ' '
 
     def _make_title_lines(self):
         result = []

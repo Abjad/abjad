@@ -1098,7 +1098,7 @@ class Wrangler(ScoreInternalAssetController):
 
         Returns none.
         '''
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         managers = self._list_visible_asset_managers()
         for manager in managers:
             messages = []

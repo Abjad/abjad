@@ -195,7 +195,7 @@ class PackageManager(ScoreInternalAssetController):
         ):
         messages = []
         if paths:
-            tab = self._io_manager._make_tab()
+            tab = self._io_manager._tab
             count = len(paths)
             identifier = stringtools.pluralize(identifier, count)
             message = '{} {} {}:'
@@ -224,7 +224,7 @@ class PackageManager(ScoreInternalAssetController):
         message = message.format(
             numerator, denominator, identifier, participal)
         messages.append(message)
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         for path in sorted(found_paths):
             message = tab + path
             messages.append(message)
@@ -928,7 +928,7 @@ class PackageManager(ScoreInternalAssetController):
             if self._session.is_backtracking or result is None:
                 return
             problems_only = bool(result)
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         optional_directories, optional_files = [], []
         missing_directories, missing_files = [], []
         required_directories, required_files = [], []
@@ -1021,7 +1021,7 @@ class PackageManager(ScoreInternalAssetController):
             participal='found',
             )
         messages.extend(messages_)
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         messages = [tab + _ for _ in messages]
         name = self._path_to_asset_menu_display_string(self._path)
         found_problems = missing_directories or \
@@ -1048,7 +1048,7 @@ class PackageManager(ScoreInternalAssetController):
                 )
             silence = self._io_manager._silent()
             with controller, silence:
-                tab = self._io_manager._make_tab()
+                tab = self._io_manager._tab
                 for wrangler in wranglers:
                     if hasattr(wrangler, 'check_every_package'):
                         result = wrangler.check_every_package(

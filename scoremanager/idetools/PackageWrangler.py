@@ -82,7 +82,7 @@ class PackageWrangler(Wrangler):
         messages = []
         missing_directories, missing_files = [], []
         supplied_directories, supplied_files = [], []
-        tab = self._io_manager._make_tab(indent)
+        tab = indent * self._io_manager._tab
         if problems_only is None:
             prompt = 'show problem assets only?'
             result = self._io_manager._confirm(prompt)

@@ -137,7 +137,7 @@ class ScoreInternalPackageWrangler(PackageWrangler):
         '''
         managers = self._list_visible_asset_managers()
         messages = []
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         for manager in managers:
             string = self._path_to_asset_menu_display_string(manager._path)
             message = string + ':'

@@ -167,7 +167,7 @@ class ScorePackageWrangler(PackageWrangler):
                         )
                 messages, supplied_directories, supplied_files = result
                 messages = []
-                tab = self._io_manager._make_tab()
+                tab = self._io_manager._tab
                 if supplied_directories:
                     identifier = 'directory'
                     count = len(supplied_directories)
@@ -311,7 +311,7 @@ class ScorePackageWrangler(PackageWrangler):
             inputs, outputs = manager.open_score_pdf(dry_run=True)
             paths.extend(inputs)
         messages = ['will open ...']
-        tab = self._io_manager._make_tab()
+        tab = self._io_manager._tab
         paths = [tab + _ for _ in paths]
         messages.extend(paths)
         self._io_manager._display(messages)

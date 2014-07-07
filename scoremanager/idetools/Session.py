@@ -214,7 +214,7 @@ class Session(abctools.AbjadObject):
                 lines.append(line)
                 variable_value = getattr(self, variable_name)
                 for controller in variable_value:
-                    tab_string = self._io_manager._make_tab()
+                    tab_string = self._io_manager._tab
                     line = '{}{}'.format(tab_string, controller)
                     lines.append(line)
             else:

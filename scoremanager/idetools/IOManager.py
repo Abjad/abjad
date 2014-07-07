@@ -56,6 +56,12 @@ class IOManager(IOManager):
         '''
         return '{}()'.format(type(self).__name__)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _tab(self):
+        return 4 * ' '
+
     ### PRIVATE METHODS ###
 
     def _acknowledge(self):
@@ -342,9 +348,6 @@ class IOManager(IOManager):
             items=items,
             session=self._session,
             )
-
-    def _make_tab(self, n=1):
-        return 4 * n * ' '
 
     def _pop_from_pending_input(self):
         self._session._last_command_was_composite = False
@@ -651,7 +654,7 @@ class IOManager(IOManager):
                 stderr_messages = self._read_from_pipe(process.stderr)
                 stderr_messages = stderr_messages.splitlines()
             self._display(stderr_messages)
-            tab = self._make_tab()
+            tab = self._tab
             candidate_messages = []
             if systemtools.TestManager.compare_files(
                 output_path,

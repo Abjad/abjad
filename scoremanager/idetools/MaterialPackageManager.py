@@ -618,11 +618,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
                 self._io_manager._display(stderr_lines, capitalize=False)
                 return
             messages = []
-            tab = self._io_manager._make_tab()
+            tab = self._io_manager._tab
             if not os.path.exists(illustration_pdf_path):
                 shutil.move(candidate_pdf_path, illustration_pdf_path)
                 shutil.move(candidate_ly_path, illustration_ly_path)
-                tab = self._io_manager._make_tab()
+                tab = self._io_manager._tab
                 messages.append('Wrote ...')
                 messages.append(tab + illustration_ly_path)
                 messages.append(tab + illustration_pdf_path)

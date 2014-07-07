@@ -236,7 +236,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             if not os.path.exists(illustration_pdf_path):
                 shutil.move(candidate_pdf_path, illustration_pdf_path)
                 shutil.move(candidate_ly_path, illustration_ly_path)
-                tab = self._io_manager._make_tab()
+                tab = self._io_manager._tab
                 messages = []
                 messages.append('Wrote ...')
                 messages.append(tab + illustration_ly_path)
