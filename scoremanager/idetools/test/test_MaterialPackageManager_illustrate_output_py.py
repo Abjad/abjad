@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
 from abjad import *
 import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
@@ -41,7 +40,6 @@ def test_MaterialPackageManager_illustrate_output_py_01():
 def test_MaterialPackageManager_illustrate_output_py_02():
     r'''Works with type I maker (like sargasso measure maker).
     '''
-    pytest.skip('make me work again')
 
     illustration_ly = os.path.join(
         ide._configuration.example_score_packages_directory,
