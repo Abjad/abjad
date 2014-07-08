@@ -216,6 +216,23 @@ class Measure(FixedDurationContainer):
             time_signature_prolation = self.time_signature.implied_prolation
         return time_signature_prolation * self._contents_duration
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.time_signature,
+            self._contents_summary
+            )
+        if self.implicit_scaling:
+            keyword_argument_names = ('implicit_scaling',)
+        else:
+            keyword_argument_names = ()
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
