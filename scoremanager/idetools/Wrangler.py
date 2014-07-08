@@ -932,7 +932,7 @@ class Wrangler(ScoreInternalAssetController):
         inputs, outputs = [], []
         method_name = 'add'
         for manager in managers:
-            method = getatttr(manager, method_name)
+            method = getattr(manager, method_name)
             inputs_, outputs_ = method(dry_run=True)
             inputs.extend(inputs_)
             outputs.extend(outputs_)
