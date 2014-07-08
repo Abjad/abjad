@@ -78,19 +78,6 @@ class Selection(object):
             result = selection
         return result
 
-#    def __getstate__(self):
-#        r'''Gets state of selection.
-#
-#        Returns dictionary.
-#        '''
-#        if hasattr(self, '__dict__'):
-#            return vars(self)
-#        state = {}
-#        for class_ in type(self).__mro__:
-#            for slot in getattr(class_, '__slots__', ()):
-#                state[slot] = getattr(self, slot, None)
-#        return state
-
     def __hash__(self):
         r'''Hashes selection.
 
@@ -99,6 +86,43 @@ class Selection(object):
         Returns integer.
         '''
         return super(Selection, self).__hash__()
+
+    def __illustrate__(self):
+        r'''Attempts to illustrate selection.
+
+        Evaluates the storage format of the selection (to sever any references
+        to the source score from which the selection was taken). Then tries to
+        wrap the result in a staff; in the case that notes of only C4 are found
+        then sets the staff context name to ``'RhythmicStaff'``. If this works
+        then the staff is wrapped in a LilyPond file and the file is returned.
+        If this doesn't work then the method raises an exception.
+
+        The idea is that the illustration should work for simple selections of
+        that represent an essentially contiguous snippet of a single voice of
+        music.
+    
+        Returns LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        storage_format = format(self, 'storage')
+        namespace = {}
+        exec('from abjad import *', namespace, namespace)
+        music = eval(storage_format, namespace, namespace)
+        staff = scoretools.Staff(music)
+        found_different_pitch = False
+        for pitch in pitchtools.list_named_pitches_in_expr(staff):
+            if pitch != pitchtools.NamedPitch("c'"):
+                found_different_pitch = True
+                break
+        if not found_different_pitch:
+            staff.context_name = 'RhythmicStaff'
+        score = scoretools.Score([staff])
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
 
     def __len__(self):
         r'''Number of components in selection.
