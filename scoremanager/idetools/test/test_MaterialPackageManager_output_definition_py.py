@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import filecmp
 import os
 from abjad import *
 import scoremanager

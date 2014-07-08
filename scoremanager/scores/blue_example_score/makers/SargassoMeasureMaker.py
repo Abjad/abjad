@@ -195,7 +195,10 @@ class SargassoMeasureMaker(AbjadObject):
             measures.append(measure)
         #print measures
 
-        return measures
+        selection = selectiontools.Selection(measures)
+
+        #return measures
+        return selection
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a sargasso measure-maker with type and 

@@ -289,7 +289,10 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             self._io_manager._display(message)
             self._io_manager._acknowledge()
             return
-        output_material = result
+        try:
+            output_material = result()
+        except TypeError:
+            output_material = result
         body_string = '{} = {}'
         output_material_name = self._package_name
         storage_format = self._get_storage_format(output_material)
