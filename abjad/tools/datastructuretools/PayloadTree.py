@@ -114,19 +114,27 @@ class PayloadTree(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr=None):
+    def __init__(self, expr=None, item_class=None):
         if isinstance(expr, type(self)):
             expr = expr.to_nested_lists()
         self._children = self._initialize_children_list()
         self.parent = None
-        try:
-            self._payload = None
-            for element in expr:
-                child = type(self)(element)
-                self._children.append(child)
-                child.parent = self
-        except TypeError:
+        self._item_class = item_class
+        if isinstance(expr, str):
             self._payload = expr
+        else:
+            self._payload = None
+            try:
+                for element in expr:
+                    child = type(self)(element, item_class=self.item_class)
+                    self._children.append(child)
+                    child.parent = self
+            except TypeError:
+                self._payload = expr
+        if self.item_class is not None:
+            for node in self.iterate_at_level(-1):
+                pitch_class = self.item_class(node.payload)
+                node._payload = pitch_class
 
     ### SPECIAL METHODS ###
 
@@ -538,6 +546,32 @@ class PayloadTree(AbjadObject):
             return self.parent.index(self)
         else:
             return None
+
+    @property
+    def item_class(self):
+        r'''Gets item class of payload tree.
+
+        ..  container:: example
+
+            ::
+
+                >>> tree.item_class is None
+                True
+
+        ..  container:: example
+
+            Set item class to coerce input at initialization::
+
+                >>> tree = datastructuretools.PayloadTree(
+                ...     expr=[[1.1, 2.2], [8.8, 9.9]],
+                ...     item_class=int,
+                ...     )
+                >>> tree
+                PayloadTree([[1, 2], [8, 9]])
+
+        Returns class or none.
+        '''
+        return self._item_class
 
     @property
     def level(self):
