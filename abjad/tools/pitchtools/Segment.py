@@ -24,12 +24,13 @@ class Segment(TypedTuple):
         ):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools
-        if isinstance(items, str):
-            items = items.split()
-        elif isinstance(items, (
+        prototype = (
             collections.Iterator,
             types.GeneratorType,
-            )):
+            )
+        if isinstance(items, str):
+            items = items.split()
+        elif isinstance(items, prototype):
             items = [item for item in items]
         if item_class is None:
             item_class = self._named_item_class
