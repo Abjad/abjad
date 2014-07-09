@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import types
 from abjad.tools.datastructuretools.PayloadTree import PayloadTree
 
 
@@ -82,22 +81,13 @@ class PitchClassTree(PayloadTree):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
-        from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import override
         from scoremanager import idetools
-        pcs = list(self.iterate_payload())
-        pitches = [pitchtools.NamedPitch(_) for _ in pcs]
-        leaves = scoretools.make_leaves(pitches, [durationtools.Duration(1, 8)])
-        voice = scoretools.Voice(leaves)
+        voice = scoretools.Voice()
         staff = scoretools.Staff([voice])
         score = scoretools.Score([staff])
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
@@ -108,31 +98,9 @@ class PitchClassTree(PayloadTree):
             )
         lilypond_file.file_initial_user_includes.append(stylesheet)
         voice.consists_commands.append('Horizontal_bracket_engraver')
-        for level in (1, 2):
-            level_sizes = []
-            for x in self.iterate_at_level(level):
-                size = len(list(x.iterate_payload()))
-                level_sizes.append(size)
-            for part in sequencetools.partition_sequence_by_counts(
-                voice.select_leaves(), 
-                level_sizes, 
-                cyclic=False, 
-                overhang=False,
-                ):
-                spanner = spannertools.HorizontalBracketSpanner()
-                attach(spanner, part)
-        current_group = 0
-        for leaf in voice.select_leaves():
-            spanner_classes = spannertools.HorizontalBracketSpanner
-            brackets = inspect_(leaf).get_spanners(spanner_classes)
-            brackets = tuple(brackets)
-            if brackets[0][0] is leaf:
-                if brackets[1][0] is leaf:
-                    string = r'\bold {{ {} }}'.format(current_group)
-                    markup = markuptools.Markup(string, Up)
-                    attach(markup, leaf)
-                    current_group += 1
-        bar_line = score.add_final_bar_line()
+        leaf_list_stack = []
+        self._bracket_inner_nodes(leaf_list_stack, self, voice)
+        score.add_final_bar_line()
         override(score).bar_line.stencil = False
         override(score).flag.stencil = False
         override(score).stem.stencil = False
@@ -147,3 +115,39 @@ class PitchClassTree(PayloadTree):
         command = indicatortools.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
         return lilypond_file
+
+    ### PRIVATE METHODS ###
+
+    def _bracket_inner_nodes(self, leaf_list_stack, node, voice):
+        from abjad.tools import durationtools
+        from abjad.tools import markuptools
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import attach
+        if len(node):
+            if node.level:
+                leaf_list_stack.append([])
+            for child_node in node:
+                self._bracket_inner_nodes(
+                    leaf_list_stack,
+                    child_node,
+                    voice,
+                    )
+            if node.level:
+                bracket = spannertools.HorizontalBracketSpanner()
+                attach(bracket, leaf_list_stack[-1])
+                if node.level == 1:
+                    node_index = node.parent.index(node)
+                    level_one_first_leaf = leaf_list_stack[-1][0]
+                    string = r'\bold {{ {} }}'.format(node_index)
+                    markup = markuptools.Markup(string, Up)
+                    attach(markup, level_one_first_leaf)
+                leaf_list_stack.pop()
+        elif node.payload:
+            note = scoretools.Note(
+                node.payload,
+                durationtools.Duration(1, 8),
+                )
+            voice.append(note)
+            for leaf_list in leaf_list_stack:
+                leaf_list.append(note)

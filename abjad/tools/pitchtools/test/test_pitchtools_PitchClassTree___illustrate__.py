@@ -6,7 +6,7 @@ def test_pitchtools_PitchClassTree___illustrate___01():
 
 
     tree = pitchtools.PitchClassTree(
-        items=[['c', 'e', 'g', 'af'], ['a', 'd', 'ef', 'b']],
+        items=[['c', 'e', 'g', 'af'], ['a', ['d', 'ef'], 'b']],
         item_class=pitchtools.NamedPitchClass,
         )
     lilypond_file = tree.__illustrate__()
@@ -26,29 +26,29 @@ def test_pitchtools_PitchClassTree___illustrate___01():
                 \new Voice \with {
                     \consists Horizontal_bracket_engraver
                 } {
-                    c'8 \startGroup \startGroup \stopGroup
+                    c'8 \startGroup
                         ^ \markup {
                             \bold
                                 {
                                     0
                                 }
                             }
-                    e'8 \startGroup \stopGroup
-                    g'8 \startGroup \stopGroup
-                    af'8 \stopGroup \startGroup \stopGroup
-                    a'8 \startGroup \startGroup \stopGroup
+                    e'8
+                    g'8
+                    af'8 \stopGroup
+                    a'8 \startGroup
                         ^ \markup {
                             \bold
                                 {
                                     1
                                 }
                             }
-                    d'8 \startGroup \stopGroup
-                    ef'8 \startGroup \stopGroup
-                    b'8 \stopGroup \startGroup \stopGroup
+                    d'8 \startGroup
+                    ef'8 \stopGroup
+                    b'8 \stopGroup
                     \bar "|."
                 }
             }
         >>
         '''
-        ), f(score)
+        ), format(score)
