@@ -594,6 +594,7 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(message, self._path)
         else:
             raise ValueError(self)
+        print('CHECKIN COMMAND:', command)
         return command
 
     def _open_versioned_file(self, file_name_prototype):
@@ -1188,7 +1189,7 @@ class PackageManager(ScoreInternalAssetController):
             # ZZZ
             #command = 'svn commit -m "{}" {}'
             #command = command.format(commit_message, self._path)
-            command = self._make_repository_commit_command(message)
+            command = self._make_repository_commit_command(commit_message)
             self._io_manager.run_command(command, capitalize=False)
 
     def display_status(self):
