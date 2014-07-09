@@ -1,12 +1,9 @@
 # -*- encoding: utf-8 -*-
-import math
 import os
 import re
-import textwrap
-from abjad.tools import mathtools
+import shlex
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from abjad.tools import systemtools
 from scoremanager.idetools.Controller import Controller
 
 
@@ -341,7 +338,7 @@ class Menu(Controller):
             )
         user_entered_lone_return = input_ == ''
         directive = None
-        parts = input_.split()
+        parts = shlex.split(input_)
         length = len(parts)
         for i in range(len(parts)):
             count = length - i
@@ -350,7 +347,12 @@ class Menu(Controller):
             if directive is not None:
                 if count < length:
                     remaining_count = length - count
-                    remaining_input = ' '.join(parts[-remaining_count:])
+                    remaining_parts = parts[-remaining_count:]
+                    glued_remaining_parts = []
+                    for remaining_part in remaining_parts:
+                        remaining_part = remaining_part.replace(' ', '~')
+                        glued_remaining_parts.append(remaining_part)
+                    remaining_input = ' '.join(glued_remaining_parts)
                     pending_input = self._session._pending_input or ''
                     pending_input = pending_input + remaining_input
                     self._session._pending_input = pending_input
