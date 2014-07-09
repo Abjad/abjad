@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import types
 from abjad.tools.topleveltools import iterate
 
@@ -107,10 +108,8 @@ class Selection(object):
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        storage_format = format(self, 'storage')
-        namespace = {}
-        exec('from abjad import *', namespace, namespace)
-        music = eval(storage_format, namespace, namespace)
+        from abjad.tools.topleveltools import mutate
+        music = mutate(self).copy()
         staff = scoretools.Staff(music)
         found_different_pitch = False
         for pitch in pitchtools.list_named_pitches_in_expr(staff):
