@@ -647,7 +647,10 @@ class Wrangler(ScoreInternalAssetController):
             for part in parts:
                 if part.startswith('md:'):
                     metadatum_name = part[3:]
-                    metadatum = manager._get_metadatum(metadatum_name)
+                    metadatum = manager._get_metadatum(
+                        metadatum_name,
+                        include_score=True,
+                        )
                     metadatum = repr(metadatum)
                     pattern = pattern.replace(part, metadatum)
         try:

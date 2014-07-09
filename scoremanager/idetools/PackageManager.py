@@ -288,9 +288,12 @@ class PackageManager(ScoreInternalAssetController):
             return
         return max(self._file_name_to_version_number(_) for _ in file_names)
 
-    def _get_metadatum(self, metadatum_name):
+    def _get_metadatum(self, metadatum_name, include_score=False):
         metadata = self._get_metadata()
         metadatum = metadata.get(metadatum_name, None)
+        if metadatum is None:
+            metadata = self._get_score_metadata()
+            metadatum = metadata.get(metadatum_name, None)
         return metadatum
 
     def _get_modified_asset_paths(self):

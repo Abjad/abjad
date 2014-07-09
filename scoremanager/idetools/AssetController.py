@@ -170,6 +170,14 @@ class AssetController(Controller):
         metadata = metadata or collections.OrderedDict()
         return metadata
 
+    def _get_score_metadata(self):
+        score_path = self._configuration._path_to_score_path(self._path)
+        if score_path is None:
+            return collections.OrderedDict()
+        score_package_manager = self._io_manager._make_package_manager(
+            path=score_path)
+        return score_package_manager._get_metadata()
+
     def _go_to_next_package(self):
         self._session._is_navigating_to_next_asset = True
         self._session._display_available_commands = False
