@@ -753,24 +753,6 @@ class PackageManager(ScoreInternalAssetController):
         self._path = new_directory
         self._session._is_backtracking_locally = True
 
-    def _revert_from_repository(self):
-        paths = []
-        paths.extend(self._get_added_asset_paths())
-        paths.extend(self._get_modified_asset_paths())
-        commands = []
-        if self._is_in_git_repository():
-            for path in paths:
-                command = 'git checkout {}'.format(path)
-                commands.append(command)
-        elif self._is_svn_versioned():
-            for path in paths:
-                command = 'svn revert {}'.format(path)
-                commands.append(command)
-        else:
-            raise ValueError(self)
-        command = ' && '.join(commands)
-        self._io_manager.spawn_subprocess(command)
-
     def _run(self):
         controller = self._io_manager._controller(
             consume_local_backtrack=True,
@@ -1268,11 +1250,10 @@ class PackageManager(ScoreInternalAssetController):
         getter = self._io_manager._make_getter()
         getter.append_string('metadatum name')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or not result:
             return
-        if result:
-            metadatum_name = result
-            self._remove_metadatum(metadatum_name)
+        metadatum_name = result
+        self._remove_metadatum(metadatum_name)
 
     def remove_unadded_assets(self, dry_run=False):
         r'''Removes files not yet added to repository.
@@ -1291,10 +1272,30 @@ class PackageManager(ScoreInternalAssetController):
             self._session._attempted_to_revert = True
             if self._session.is_repository_test:
                 return
-            message = 'reverting {} ...'
-            message = message.format(self._path)
-            self._io_manager._display(message)
-            self._revert_from_repository()
+            paths = []
+            paths.extend(self._get_added_asset_paths())
+            paths.extend(self._get_modified_asset_paths())
+            messages = []
+            messages.append('will revert ...')
+            for path in paths:
+                messages.append(self._io_manager._tab + path)
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
+                return
+            commands = []
+            if self._is_in_git_repository():
+                for path in paths:
+                    command = 'git checkout {}'.format(path)
+                    commands.append(command)
+            elif self._is_svn_versioned():
+                for path in paths:
+                    command = 'svn revert {}'.format(path)
+                    commands.append(command)
+            else:
+                raise ValueError(self)
+            command = ' && '.join(commands)
+            self._io_manager.spawn_subprocess(command)
 
     def update(self, messages_only=False):
         r'''Updates files from repository.
