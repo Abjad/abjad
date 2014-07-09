@@ -294,7 +294,7 @@ class PackageManager(ScoreInternalAssetController):
         return metadatum
 
     def _get_modified_asset_paths(self):
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             command = 'git status --porcelain {}'
             command = command.format(self._path)
             process = self._io_manager.make_subprocess(command)
@@ -321,7 +321,7 @@ class PackageManager(ScoreInternalAssetController):
                     path = path.strip()
                     paths.append(path)
         else:
-            raise ValueError(self)
+            raise ValueError(self._path)
         return paths
 
     def _get_next_version_string(self):
@@ -461,8 +461,7 @@ class PackageManager(ScoreInternalAssetController):
         first_line = self._io_manager._read_one_line_from_pipe(process.stdout)
         if first_line.startswith('fatal:'):
             return False
-        else:
-            return True
+        return True
 
     def _is_populated_directory(self, directory):
         if os.path.exists(directory):
@@ -594,7 +593,6 @@ class PackageManager(ScoreInternalAssetController):
             command = command.format(message, self._path)
         else:
             raise ValueError(self)
-        print('CHECKIN COMMAND:', command)
         return command
 
     def _open_versioned_file(self, file_name_prototype):
@@ -760,7 +758,7 @@ class PackageManager(ScoreInternalAssetController):
         paths.extend(self._get_added_asset_paths())
         paths.extend(self._get_modified_asset_paths())
         commands = []
-        if self._is_git_versioned():
+        if self._is_in_git_repository():
             for path in paths:
                 command = 'git checkout {}'.format(path)
                 commands.append(command)
