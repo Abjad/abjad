@@ -1,30 +1,58 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools import TreeNode
+from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
-class GraphvizNode(TreeNode, GraphvizObject):
+class GraphvizNode(TreeContainer, GraphvizObject):
     r'''A Graphviz node.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, attributes=None, name=None):
-        TreeNode.__init__(self, name=name)
+    def __init__(
+        self,
+        attributes=None,
+        children=None,
+        name=None,
+        ):
+        TreeContainer.__init__(self, children=children, name=name)
         GraphvizObject.__init__(self, attributes=attributes)
         self._edges = set([])
 
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _node_class(self):
+        from abjad.tools import documentationtools
+        prototype = (
+            documentationtools.GraphvizField,
+            documentationtools.GraphvizGroup,
+            )
+        return prototype
+
+    @property
     def _graphviz_format_contributions(self):
         node_def = self._format_value(self.canonical_name)
-        if len(self.attributes):
+        attributes = self.attributes
+        struct_format_contributions = self._struct_format_contributions
+        if struct_format_contributions:
+            attributes['label'] = struct_format_contributions
+        if len(attributes):
             result = []
-            result.extend(self._format_attribute_list(self.attributes))
+            result.extend(self._format_attribute_list(attributes))
             result[0] = '{} {}'.format(node_def, result[0])
             return result
         return [node_def + ';']
+
+    @property
+    def _struct_format_contributions(self):
+        result = []
+        for x in self:
+            part = x._struct_format_contributions
+            if part:
+                result.append(part)
+        result = ' | '.join(result)
+        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -45,3 +73,16 @@ class GraphvizNode(TreeNode, GraphvizObject):
         Returns tuple.
         '''
         return tuple(self._edges)
+
+    @property
+    def all_edges(self):
+        r'''Gets edges of this node and those of any field in its field
+        subtree.
+        '''
+        from abjad.tools import documentationtools
+        edges = set(self.edges)
+        for node in self.nodes[1:]:
+            if isinstance(node, documentationtools.GraphvizGroup):
+                continue
+            edges.update(node.edges)
+        return tuple(edges)

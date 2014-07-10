@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import copy
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
@@ -179,8 +178,11 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     @property
     def _node_class(self):
         from abjad.tools import documentationtools
-        return (documentationtools.GraphvizSubgraph,
-            documentationtools.GraphvizNode)
+        prototype = (
+            documentationtools.GraphvizSubgraph,
+            documentationtools.GraphvizNode,
+            )
+        return prototype
 
     ### PUBLIC PROPERTIES ###
 
@@ -206,15 +208,31 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
         Returns string.
         '''
+        from abjad.tools import documentationtools
+
         edges = set([])
         for node in self.nodes[1:]:
-            edges.update(node._edges)
+            if isinstance(node, (
+                documentationtools.GraphvizField,
+                documentationtools.GraphvizGroup,
+                )):
+                continue
+            if isinstance(node, documentationtools.GraphvizSubgraph):
+                edges.update(node._edges)
+            elif isinstance(node, documentationtools.GraphvizNode):
+                edges.update(node.all_edges)
 
         edge_parents = {}
         for edge in edges:
             last_parent = None
-            tail_parentage = list(edge.tail.proper_parentage)
-            head_parentage = list(edge.head.proper_parentage)
+            if isinstance(edge.tail, documentationtools.GraphvizField):
+                tail_parentage = list(edge.tail.struct.proper_parentage)
+            else:
+                tail_parentage = list(edge.tail.proper_parentage)
+            if isinstance(edge.head, documentationtools.GraphvizField):
+                head_parentage = list(edge.head.struct.proper_parentage)
+            else:
+                head_parentage = list(edge.head.proper_parentage)
             while len(tail_parentage) and len(head_parentage) and \
                 tail_parentage[-1] is head_parentage[-1]:
                 last_parent = tail_parentage[-1]

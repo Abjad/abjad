@@ -24,10 +24,12 @@ class GraphvizEdge(GraphvizObject):
         from abjad.tools import documentationtools
         if args:
             assert len(args) == 2
-            assert all(isinstance(x,
-                (documentationtools.GraphvizSubgraph,
-                    documentationtools.GraphvizNode))
-                for x in args)
+            prototype = (
+                documentationtools.GraphvizSubgraph,
+                documentationtools.GraphvizNode,
+                documentationtools.GraphvizField,
+                )
+            assert all(isinstance(x, prototype) for x in args)
             tail, head = args
             self._disconnect()
             self._connect(tail, head)
