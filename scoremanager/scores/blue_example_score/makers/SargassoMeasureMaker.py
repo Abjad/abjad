@@ -195,7 +195,7 @@ class SargassoMeasureMaker(AbjadObject):
             measures.append(measure)
         #print measures
 
-        selection = selectiontools.Selection(measures)
+        selection = selectiontools.ContiguousSelection(measures)
 
         #return measures
         return selection

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-sargasso_measures = selectiontools.Selection(
+sargasso_measures = selectiontools.ContiguousSelection(
     (
         scoretools.Measure(
             indicatortools.TimeSignature((4, 16)),
