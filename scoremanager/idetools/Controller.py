@@ -85,6 +85,10 @@ class Controller(object):
     def _spaced_class_name(self):
         return stringtools.to_space_delimited_lowercase(type(self).__name__)
 
+    @property
+    def _tab(self):
+        return 4 * ' '
+
     ### PRIVATE METHODS ###
 
     @staticmethod

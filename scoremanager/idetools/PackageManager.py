@@ -881,12 +881,14 @@ class PackageManager(ScoreInternalAssetController):
             outputs = []
             if dry_run:
                 return inputs, outputs
-            self._session._attempted_to_add = True
-            if self._session.is_repository_test:
+            messages = []
+            messages.append('will add ...')
+            for path in inputs:
+                messages.append(self._tab + path)
+            self._io_manager._display(messages)
+            result = self._io_manager._confirm()
+            if self._session.is_backtracking or not result:
                 return
-            message = self._get_score_package_directory_name()
-            message = message + ' ...'
-            self._io_manager._display(message, capitalize=False)
             command = self._repository_add_command
             assert isinstance(command, str)
             self._io_manager.run_command(command)

@@ -32,11 +32,12 @@ class Session(abctools.AbjadObject):
 
     __slots__ = (
         '_after_redraw_message',
-        '_attempted_remove_unadded_assets',
         '_attempted_display_status',
+        '_attempted_remove_unadded_assets',
         '_attempted_to_add',
         '_attempted_to_commit',
         '_attempted_to_open_file',
+        '_attempted_to_remove',
         '_attempted_to_revert',
         '_attempted_to_update',
         '_autoadvance_depth',
@@ -108,11 +109,12 @@ class Session(abctools.AbjadObject):
     def __init__(self, input_=None, is_test=False):
         from scoremanager import idetools
         self._after_redraw_message = None
-        self._attempted_remove_unadded_assets = False
         self._attempted_display_status = False
+        self._attempted_remove_unadded_assets = False
         self._attempted_to_add = False
         self._attempted_to_commit = False
         self._attempted_to_open_file = False
+        self._attempted_to_remove = False
         self._attempted_to_revert = False
         self._attempted_to_update = False
         self._autoadvance_depth = 0

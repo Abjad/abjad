@@ -706,6 +706,9 @@ class Wrangler(ScoreInternalAssetController):
 
     def _remove_assets(self):
         from scoremanager import idetools
+        self._session._attempted_to_remove = True
+        if self._session.is_repository_test:
+            return
         paths = self._select_visible_asset_paths()
         if not paths:
             return
