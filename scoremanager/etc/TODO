@@ -102,9 +102,5 @@
 
 30. Make (dp) work with files to cirucmvent the reimport trap.
 
-31. Implement PitchClassTree in pitchtools. The class should work
-    with both NamedPitchClass items and NumberedPitchClass items.
-    Use PitchClassSet as a model for that part of the implementation.
-    Importantly, implement __illustrate__ on PitchClassTree.
-    Use analysis brackets. Copy from ZaggedPitchClassMaker.__illustrate__().
-    Then adjust ZaggedPitchClassMaker to output PitchClassTree when called.
+31. Implement something to allow the editing of text files in any
+    score's etc/ directory.
