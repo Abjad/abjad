@@ -33,13 +33,12 @@ class Configuration(AbjadConfiguration):
 
     @property
     def _initial_comment(self):
+        current_time = self._current_time
         return [
             '-*- coding: utf-8 -*-',
             '',
-            'Abjad IDE tools configuration file created on {}.'.format(
-                self._current_time),
-            'This file is interpreted by ConfigObj'
-            ' and should follow ini syntax.',
+            'Abjad IDE configuration file created on {}.'.format(current_time),
+            'This file is interpreted by ConfigObj and follows ini sytnax.',
         ]
 
     @property
@@ -53,24 +52,37 @@ class Configuration(AbjadConfiguration):
     def _get_option_definitions(self):
         #parent_options = AbjadConfiguration._get_option_definitions(self)
         options = {
-            'score_manager_library': {
+            'composer_full_name': {
                 'comment': [
                     '',
-                    'Set to the directory where you'
-                    ' house your score manager library.',
-                    'Defaults to $HOME/score_manager_library/.',
+                    'Your full name.',
+                ],
+                'spec': "string(default='Full Name')",
+            },
+            'composer_last_name': {
+                'comment': [
+                    '',
+                    'Your last name.',
+                ],
+                'spec': "string(default='Name')",
+            },
+            'library': {
+                'comment': [
+                    '',
+                    'The directory where you house score-external assets.',
+                    'Defaults to $HOME/.abjad/library/.',
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.home_directory,
-                        'score_manager_library',
+                        self.abjad_configuration_directory,
+                        'library',
                         )
                     ),
             },
             'scores_directory': {
                 'comment': [
                     '',
-                    'Set to the directory where you house your scores.',
+                    'The directory where you house your scores.',
                     'Defaults to $HOME/scores/.'
                 ],
                 'spec': 'string(default={!r})'.format(
@@ -79,20 +91,6 @@ class Configuration(AbjadConfiguration):
                         'scores',
                         )
                     ),
-            },
-            'composer_full_name': {
-                'comment': [
-                    '',
-                    'Set to full name of composer.',
-                ],
-                'spec': "string(default='Full Name')",
-            },
-            'composer_last_name': {
-                'comment': [
-                    '',
-                    'Set to last name of composer.',
-                ],
-                'spec': "string(default='Name')",
             },
         }
         #parent_options.update(options)
@@ -429,12 +427,12 @@ class Configuration(AbjadConfiguration):
                 >>> configuration.library
                 '...'
 
-        Aliases `score_manager_library` setting in score manager configuration
+        Aliases `library` setting in score manager configuration
         file.
 
         Returns string.
         '''
-        path = self._settings['score_manager_library']
+        path = self._settings['library']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
         return path
