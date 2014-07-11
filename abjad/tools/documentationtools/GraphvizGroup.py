@@ -11,8 +11,13 @@ class GraphvizGroup(TreeContainer):
     def __init__(
         self,
         children=None,
+        name=None,
         ):
-        TreeContainer.__init__(self, children=children)
+        TreeContainer.__init__(
+            self,
+            children=children,
+            name=name,
+            )
 
     ### PRIVATE PROPERTIES ###
 

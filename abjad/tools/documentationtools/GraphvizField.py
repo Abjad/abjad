@@ -11,8 +11,12 @@ class GraphvizField(TreeNode):
     def __init__(
         self,
         label=None,
+        name=None,
         ):
-        TreeNode.__init__(self)
+        TreeNode.__init__(
+            self,
+            name=name,
+            )
         self._label = label
         self._edges = set([])
 
