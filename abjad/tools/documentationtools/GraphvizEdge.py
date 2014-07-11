@@ -88,6 +88,16 @@ class GraphvizEdge(GraphvizObject):
         return self._head
 
     @property
+    def head_port_position(self):
+        r'''Head port position.
+        '''
+        return self._head_port_position
+
+    @head_port_position.setter
+    def head_port_position(self, expr):
+        self._head_port_position = expr
+
+    @property
     def is_directed(self):
         r'''Is true when Graphviz edge is directed. Otherwise false.
 
@@ -104,3 +114,14 @@ class GraphvizEdge(GraphvizObject):
         r'''Tail of Graphviz edge.
         '''
         return self._tail
+
+    @property
+    def tail_port_position(self):
+        r'''Tail port position.
+        '''
+        return self._tail_port_position
+
+    @tail_port_position.setter
+    def tail_port_position(self, expr):
+        self._tail_port_position = expr
+
