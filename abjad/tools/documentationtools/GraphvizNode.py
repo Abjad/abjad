@@ -15,8 +15,15 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         children=None,
         name=None,
         ):
-        TreeContainer.__init__(self, children=children, name=name)
-        GraphvizObject.__init__(self, attributes=attributes)
+        TreeContainer.__init__(
+            self,
+            children=children,
+            name=name,
+            )
+        GraphvizObject.__init__(
+            self,
+            attributes=attributes,
+            )
         self._edges = set([])
 
     ### PRIVATE PROPERTIES ###
