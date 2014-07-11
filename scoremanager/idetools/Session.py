@@ -405,8 +405,8 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.current_materials_directory
-                '.../scoremanager/materials'
+                >>> session.current_materials_directory is None
+                True
 
         ..  container:: example
 
@@ -421,8 +421,6 @@ class Session(abctools.AbjadObject):
         '''
         if self.current_score_directory:
             return os.path.join(self.current_score_directory, 'materials')
-        else:
-            return self._configuration.example_materials
 
     @property
     def current_score_directory(self):

@@ -5,27 +5,6 @@ import scoremanager
 
 
 def test_MaterialPackageWrangler__list_storehouse_paths_01():
-    r'''Abjad library materials directory.
-    '''
-
-    session = scoremanager.idetools.Session(is_test=True)
-    wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
-
-    paths = [
-        wrangler._configuration.example_materials,
-        ]
-
-    result = wrangler._list_storehouse_paths(
-        abjad_material_packages_and_stylesheets=True,
-        example_score_packages=False,
-        library=False,
-        user_score_packages=False,
-        )
-
-    assert result == paths
-
-
-def test_MaterialPackageWrangler__list_storehouse_paths_02():
     r'''Abjad score package material directories.
     '''
 

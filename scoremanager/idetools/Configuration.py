@@ -324,25 +324,6 @@ class Configuration(AbjadConfiguration):
             )
 
     @property
-    def example_materials(self):
-        r'''Gets Abjad material packages directory.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.example_materials
-                '.../scoremanager/materials'
-
-        Returns string.
-        '''
-        path = os.path.join(
-            self.score_manager_directory,
-            'materials',
-            )
-        return path
-
-    @property
     def example_score_packages_directory(self):
         r'''Gets Abjad score packages directory.
 
@@ -661,8 +642,6 @@ class Configuration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif path.startswith(self.example_materials):
-            prefix = len(self.abjad_root_directory) + 1
         elif path.startswith(self.score_manager_directory):
             prefix = len(os.path.dirname(self.score_manager_directory)) + 1
         elif path.startswith(self.user_score_packages_directory):

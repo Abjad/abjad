@@ -48,8 +48,6 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
         configuration = self._configuration
-        path = configuration.example_materials
-        self._abjad_storehouse_path = path
         self._annotate_autoeditor = True
         self._asset_identifier = 'material package'
         self._basic_breadcrumb = 'materials'

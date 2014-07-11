@@ -471,8 +471,6 @@ class AssetController(Controller):
             annotation = 'library: stylesheets'
         elif path.startswith(self._configuration.example_stylesheets_directory):
             annotation = 'example stylesheets'
-        elif path.startswith(self._configuration.example_materials):
-            annotation = 'example materials'
         elif path.startswith(self._configuration.abjad_root_directory):
             annotation = 'Abjad'
         else:
