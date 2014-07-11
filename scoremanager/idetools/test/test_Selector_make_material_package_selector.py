@@ -11,9 +11,9 @@ def test_Selector_make_material_package_selector_01():
         output_material_class_name='ReiteratedArticulationHandler',
         )
     selector._session._is_test = True
-    input_ = 'scoremanager.materials.example_articulation_handler'
+    input_ = 'blue_example_score.materials.articulation_handler'
     selector._session._pending_input = input_
     result = selector._run()
 
-    package = 'scoremanager.materials.example_articulation_handler'
+    package = 'blue_example_score.materials.articulation_handler'
     assert result == package

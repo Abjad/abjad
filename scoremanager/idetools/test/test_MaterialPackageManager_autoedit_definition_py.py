@@ -11,11 +11,10 @@ def test_MaterialPackageManager_autoedit_definition_py_01():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'M example~markup~inventory da q'
+    input_ = 'blue~example~score m markup~inventory da q'
     ide._run(input_=input_)
 
-    title = \
-        'Abjad IDE - materials - example materials - example markup inventory'
+    title = 'Blue Example Score (2013) - materials - markup inventory (EDIT)'
     assert title in ide._transcript.titles
 
 

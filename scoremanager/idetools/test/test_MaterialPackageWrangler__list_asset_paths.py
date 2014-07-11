@@ -5,55 +5,19 @@ import scoremanager
 
 
 def test_MaterialPackageWrangler__list_asset_paths_01():
-    r'''Abjad library material pcakages.
+    r'''Red Example Score material packages.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
 
-    package_names = [
-        'example_articulation_handler',
-        'example_dynamic_handler',
-        'example_markup_inventory',
-        'example_notes',
-        'example_numbers',
-        'example_pitch_range_inventory',
-        'example_sargasso_measures',
-        ]
-
-    paths = []
-    for package_name in package_names:
-        path = os.path.join(
-            wrangler._configuration.example_materials,
-            package_name,
-            )
-        paths.append(path)
-
-    result = wrangler._list_asset_paths(
-        abjad_material_packages_and_stylesheets=True,
-        example_score_packages=False,
-        library=False,
-        user_score_packages=False,
-        )
-
-    assert result == paths
-
-
-def test_MaterialPackageWrangler__list_asset_paths_02():
-    r'''Red Example Score material library.
-    '''
-
-    session = scoremanager.idetools.Session(is_test=True)
-    wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
-
-    package_names = [
+    package_names = (
         'instrumentation',
         'magic_numbers',
         'pitch_range_inventory',
         'tempo_inventory',
         'time_signatures',
-        ]
-
+        )
     paths = []
     for package_name in package_names:
         path = os.path.join(
@@ -63,20 +27,21 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
             package_name,
             )
         paths.append(path)
-    path = os.path.join(
-        wrangler._configuration.example_score_packages_directory,
-        'blue_example_score',
-        'materials',
+    package_names = (
+        'articulation_handler',
+        'dynamic_handler',
+        'markup_inventory',
         'sargasso_measures',
-        )
-    paths.append(path)
-    path = os.path.join(
-        wrangler._configuration.example_score_packages_directory,
-        'blue_example_score',
-        'materials',
         'talea_rhythm_maker',
         )
-    paths.append(path)
+    for package_name in package_names:
+        path = os.path.join(
+            wrangler._configuration.example_score_packages_directory,
+            'blue_example_score',
+            'materials',
+            package_name,
+            )
+        paths.append(path)
 
     result = wrangler._list_asset_paths(
         abjad_material_packages_and_stylesheets=False,

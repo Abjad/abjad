@@ -3,7 +3,7 @@ from abjad import *
 from experimental.tools import handlertools
 
 
-example_articulation_handler = handlertools.ReiteratedArticulationHandler(
+articulation_handler = handlertools.ReiteratedArticulationHandler(
     articulation_list=['^', '.'],
     minimum_duration=durationtools.Duration(1, 64),
     maximum_duration=durationtools.Duration(1, 4),

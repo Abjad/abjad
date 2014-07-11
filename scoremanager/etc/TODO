@@ -107,3 +107,5 @@
     Port example articulation handler and example dynamic handler
     into Blue Example Score.
     Port example markup inventory into Blue Example Score.
+
+32. Extend something somewhere to catch "unkown command" messages during test.
