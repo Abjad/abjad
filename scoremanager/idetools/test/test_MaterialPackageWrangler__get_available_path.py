@@ -8,28 +8,6 @@ configuration = scoremanager.idetools.Configuration()
 def test_MaterialPackageWrangler__get_available_path_01():
 
     session = scoremanager.idetools.Session(is_test=True)
-    wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
-    storehouse = configuration.materials_library
-    input_ = 'foo'
-    wrangler._session._pending_input = input_
-    result = wrangler._get_available_path(
-        storehouse_path=storehouse,
-        )
-    path = os.path.join(
-        storehouse,
-        'foo',
-        )
-    assert result == path
-
-    input_ = 'example~notes q'
-    wrangler._session._pending_input = input_
-    result = wrangler._get_available_path()
-    assert result is None
-
-
-def test_MaterialPackageWrangler__get_available_path_02():
-
-    session = scoremanager.idetools.Session(is_test=True)
     session._set_test_score('red_example_score')
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
     input_ = 'foo'
@@ -45,7 +23,7 @@ def test_MaterialPackageWrangler__get_available_path_02():
     assert result == path
 
 
-def test_MaterialPackageWrangler__get_available_path_03():
+def test_MaterialPackageWrangler__get_available_path_02():
 
     session = scoremanager.idetools.Session(is_test=True)
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
