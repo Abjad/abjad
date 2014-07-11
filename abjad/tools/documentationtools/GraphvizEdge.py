@@ -13,6 +13,8 @@ class GraphvizEdge(GraphvizObject):
         self._head = None
         self._tail = None
         self._is_directed = bool(is_directed)
+        self._head_port_position = None
+        self._tail_port_position = None
 
     ### SPECIAL METHODS ###
 
@@ -60,10 +62,17 @@ class GraphvizEdge(GraphvizObject):
         connection = '->'
         if not self.is_directed:
             connection = '--'
+        tail_name = self.tail.canonical_name
+        if self._tail_port_position is not None:
+            tail_name = '{}:{}'.format(tail_name, self._tail_port_position)
+        head_name = self.head.canonical_name
+        if self._head_port_position is not None:
+            head_name = '{}:{}'.format(head_name, self._head_port_position)
         edge_def = '{} {} {}'.format(
-            self._format_value(self.tail.canonical_name),
+            self._format_value(tail_name),
             connection,
-            self._format_value(self.head.canonical_name))
+            self._format_value(head_name),
+            )
         if len(self.attributes):
             result = self._format_attribute_list(self.attributes)
             result[0] = '{} {}'.format(edge_def, result[0])
