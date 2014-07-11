@@ -4,14 +4,15 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_ScorePackageWrangler_go_to_top_level_01():
-    r'''From all scores to library.
+def test_AbjadIDE_go_home_01():
+    r'''From top level to library.
     '''
 
-    input_ = 'H q'
+    input_ = 'H H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE',
+        'Abjad IDE - home',
+        'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

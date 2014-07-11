@@ -12,7 +12,7 @@ def test_AbjadIDE_go_to_all_maker_files_01():
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
-        'Abjad IDE',
+        'Abjad IDE - home',
         'Abjad IDE - maker files',
         ]
     assert ide._transcript.titles == titles

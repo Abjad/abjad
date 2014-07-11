@@ -4,15 +4,13 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_MaterialPackageManager_go_to_top_level_01():
+def test_ScorePackageManager_go_home_01():
 
-    input_ = 'red~example~score m tempo~inventory H q'
+    input_ = 'red~example~score H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory',
-        'Abjad IDE',
+        'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

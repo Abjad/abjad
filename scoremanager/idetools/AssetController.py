@@ -39,7 +39,7 @@ class AssetController(Controller):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'H': self.go_to_top_level,
+            'H': self.go_home,
             #
             'D': self.go_to_all_distribution_files,
             'G': self.go_to_all_segments,

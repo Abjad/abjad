@@ -213,7 +213,7 @@ class AbjadIDE(Wrangler):
                 if result:
                     self._score_package_wrangler._handle_input(
                         result)
-                elif not self._session.is_navigating_to_top_level:
+                elif not self._session.is_navigating_home:
                     self._score_package_wrangler._run()
                 else:
                     menu = self._make_main_menu()

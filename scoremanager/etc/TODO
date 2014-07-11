@@ -98,14 +98,9 @@
     to allow the talea to be copied into the getter as a type of
     prepopulation.
 
-29. Make (dp) work with files to cirucmvent the reimport trap.
+29. Make (dp) work with files to circumvent the reimport trap.
 
 30. Implement something to allow the editing of text files in any
     score's etc/ directory.
 
-31. Remove example materials.
-    Port example articulation handler and example dynamic handler
-    into Blue Example Score.
-    Port example markup inventory into Blue Example Score.
-
-32. Extend something somewhere to catch "unkown command" messages during test.
+31. Extend something somewhere to catch "unkown command" messages during test.

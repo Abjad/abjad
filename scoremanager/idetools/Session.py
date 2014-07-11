@@ -57,7 +57,7 @@ class Session(abctools.AbjadObject):
         '_is_autostarting',
         '_is_backtracking_locally',
         '_is_backtracking_to_all_build_files',
-        '_is_navigating_to_top_level',
+        '_is_navigating_home',
         '_is_backtracking_to_score',
         '_is_navigating_to_scores',
         '_is_in_confirmation_environment',
@@ -134,7 +134,7 @@ class Session(abctools.AbjadObject):
         self._is_autostarting = False
         self._is_backtracking_locally = False
         self._is_backtracking_to_all_build_files = False
-        self._is_navigating_to_top_level = False
+        self._is_navigating_home = False
         self._is_backtracking_to_score = False
         self._is_navigating_to_scores = False
         self._is_in_confirmation_environment = False
@@ -263,6 +263,8 @@ class Session(abctools.AbjadObject):
         header = '\n'.join(breadcrumbs)
         if annotate_edit and self.is_in_autoeditor:
             header = '{} (EDIT)'.format(header)
+        if header == 'Abjad IDE':
+            header = 'Abjad IDE - home'
         return header
 
     def _print_transcript(self):
@@ -736,7 +738,7 @@ class Session(abctools.AbjadObject):
             self.is_quitting
             ):
             return True
-        if self.is_navigating_to_top_level and not self.is_at_top_level:
+        if self.is_navigating_home and not self.is_at_top_level:
             return True
         return False
 
@@ -1110,7 +1112,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_stylesheets
 
     @property
-    def is_navigating_to_top_level(self):
+    def is_navigating_home(self):
         r'''Is true when session is backtracking to library.
         Otherwise false.
 
@@ -1118,12 +1120,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_top_level
+                >>> session.is_navigating_home
                 False
 
         Returns boolean.
         '''
-        return self._is_navigating_to_top_level
+        return self._is_navigating_home
 
     @property
     def is_quitting(self):

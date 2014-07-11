@@ -4,15 +4,17 @@ import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
-def test_AbjadIDE_go_to_all_segments_01():
-    r'''From top level to all segments.
+def test_SegmentPackageManager_go_home_01():
+    r'''From score build files to library.
     '''
 
-    input_ = 'H G q'
+    input_ = 'red~example~score g A H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
+        'Red Example Score (2013)',
+        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - segments - A',
         'Abjad IDE - home',
-        'Abjad IDE - segments',
         ]
     assert ide._transcript.titles == titles
