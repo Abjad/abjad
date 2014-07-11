@@ -444,11 +444,12 @@ class TreeContainer(TreeNode):
 
         Returns tuple.
         '''
+        from abjad.tools import datastructuretools
         def recurse(container):
             result = []
             for child in container.children:
                 result.append(child)
-                if isinstance(child, type(self)):
+                if isinstance(child, datastructuretools.TreeContainer):
                     result.extend(recurse(child))
             return result
         result = [self] + recurse(self)
