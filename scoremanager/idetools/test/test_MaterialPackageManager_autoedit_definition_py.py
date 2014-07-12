@@ -14,7 +14,7 @@ def test_MaterialPackageManager_autoedit_definition_py_01():
     input_ = 'blue~example~score m markup~inventory da q'
     ide._run(input_=input_)
 
-    title = 'Blue Example Score (2013) - materials - markup inventory (EDIT)'
+    title = 'Blue Example Score (2013) - materials directory - markup inventory (EDIT)'
     assert title in ide._transcript.titles
 
 

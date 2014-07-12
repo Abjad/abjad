@@ -10,7 +10,7 @@ def test_BuildFileWrangler_display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'build files - available commands' in contents
+    assert 'build directory - available commands' in contents
 
 
 def test_BuildFileWrangler_display_available_commands_02():
@@ -19,4 +19,4 @@ def test_BuildFileWrangler_display_available_commands_02():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Abjad IDE - build files - available commands' in contents
+    assert 'Abjad IDE - build depot - available commands' in contents

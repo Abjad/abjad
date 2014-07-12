@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_copy_file_01():
-    r'''Works in library.
+    r'''Works in build depot.
     
     Partial test because we can't be sure any user score packages will be
     present. And because Score PackageManager allows copying into user score 
@@ -19,16 +19,16 @@ def test_BuildFileWrangler_copy_file_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - build files',
-        'Abjad IDE - build files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - build depot',
+        'Abjad IDE - build depot',
         ]
     assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
 def test_BuildFileWrangler_copy_file_02():
-    r'''Works in score.
+    r'''Works in build directory.
     '''
 
     source_path = os.path.join(

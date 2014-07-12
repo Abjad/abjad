@@ -11,9 +11,9 @@ def test_StylesheetWrangler_go_to_score_distribution_files_01():
     input_ = 'red~example~score y d q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
-        'Red Example Score (2013) - distribution files',
+        'Red Example Score (2013) - stylesheets directory',
+        'Red Example Score (2013) - distribution directory',
         ]
     assert ide._transcript.titles == titles

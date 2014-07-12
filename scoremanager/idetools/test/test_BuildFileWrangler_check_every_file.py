@@ -6,25 +6,25 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_check_every_file_01():
-    r'''Works in score.
+    r'''Works in build directory.
     '''
 
     input_ = 'red~example~score u ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Build files (18 files): OK' in contents
+    assert 'Build directory (18 files): OK' in contents
 
 
 def test_BuildFileWrangler_check_every_file_02():
-    r'''Works in library.
+    r'''Works in build depot.
     '''
 
     input_ = 'U ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Build files' in contents
+    assert 'Build depot' in contents
 
 
 def test_BuildFileWrangler_check_every_file_03():

@@ -9,15 +9,15 @@ def test_MaterialPackageWrangler_go_to_next_package_01():
     input_ = 'red~example~score m > > > > > > q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - instrumentation',
-        'Red Example Score (2013) - materials - magic numbers',
-        'Red Example Score (2013) - materials - pitch range inventory',
-        'Red Example Score (2013) - materials - tempo inventory',
-        'Red Example Score (2013) - materials - time signatures',
-        'Red Example Score (2013) - materials - instrumentation',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - instrumentation',
+        'Red Example Score (2013) - materials directory - magic numbers',
+        'Red Example Score (2013) - materials directory - pitch range inventory',
+        'Red Example Score (2013) - materials directory - tempo inventory',
+        'Red Example Score (2013) - materials directory - time signatures',
+        'Red Example Score (2013) - materials directory - instrumentation',
         ]
     assert ide._transcript.titles == titles
 
@@ -31,13 +31,13 @@ def test_MaterialPackageWrangler_go_to_next_package_02():
     input_ = 'red~example~score m > > g > > q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - instrumentation',
-        'Red Example Score (2013) - materials - magic numbers',
-        'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - segments - A',
-        'Red Example Score (2013) - segments - B',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - instrumentation',
+        'Red Example Score (2013) - materials directory - magic numbers',
+        'Red Example Score (2013) - segments directory',
+        'Red Example Score (2013) - segments directory - A',
+        'Red Example Score (2013) - segments directory - B',
         ]
     assert ide._transcript.titles == titles

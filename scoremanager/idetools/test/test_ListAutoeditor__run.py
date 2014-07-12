@@ -279,10 +279,10 @@ def test_ListAutoeditor__run_13():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - instrumentation',
-        'Red Example Score (2013) - materials - instrumentation (EDIT)',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - instrumentation',
+        'Red Example Score (2013) - materials directory - instrumentation (EDIT)',
         ]
     assert ide._transcript.titles == titles

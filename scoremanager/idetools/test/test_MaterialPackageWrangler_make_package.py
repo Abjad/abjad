@@ -37,9 +37,9 @@ def test_MaterialPackageWrangler_make_package_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
-        'Abjad IDE - materials',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - materials depot',
+        'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles
 

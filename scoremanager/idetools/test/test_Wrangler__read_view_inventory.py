@@ -38,10 +38,10 @@ def test_Wrangler__read_view_inventory_01():
         ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Blue Example Score (2013)',
-        'Blue Example Score (2013) - segments',
-        'Blue Example Score (2013) - segments - views (EDIT)',
+        'Blue Example Score (2013) - segments directory',
+        'Blue Example Score (2013) - segments directory - views (EDIT)',
         ]
 
     assert ide._transcript.titles == titles

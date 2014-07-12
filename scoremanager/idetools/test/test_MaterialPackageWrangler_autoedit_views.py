@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
         transcript = ide._transcript
 
     lines = [
-        'Abjad IDE - materials - views - _test (EDIT)',
+        'Abjad IDE - materials depot - views - _test (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views - _test (EDIT)',
+        'Abjad IDE - materials depot - views - _test (EDIT)',
         '',
         "   1: 'example notes' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views - _test (EDIT)',
+        'Abjad IDE - materials depot - views - _test (EDIT)',
         '',
         "   1: 'example notes' in :ds:",
         "   2: 'example numbers' in :ds:",
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views (EDIT)',
+        'Abjad IDE - materials depot - views (EDIT)',
         '',
         "   1: _test: 'example notes' in :ds:, 'example numbers' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views (EDIT)',
+        'Abjad IDE - materials depot - views (EDIT)',
         '',
         "   1: _new_test: 'example notes' in :ds:, 'example numbers' in :ds:",
         '',
@@ -83,7 +83,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views - _new_test (EDIT)',
+        'Abjad IDE - materials depot - views - _new_test (EDIT)',
         '',
         "   1: 'example notes' in :ds:",
         "   2: 'example numbers' in :ds:",
@@ -97,7 +97,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views - _new_test (EDIT)',
+        'Abjad IDE - materials depot - views - _new_test (EDIT)',
         '',
         "   1: 'example numbers' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views (EDIT)',
+        'Abjad IDE - materials depot - views (EDIT)',
         '',
         "   1: _new_test: 'example numbers' in :ds:",
         '',
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - materials - views (EDIT)',
+        'Abjad IDE - materials depot - views (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',

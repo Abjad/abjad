@@ -11,9 +11,9 @@ def test_MaterialPackageWrangler_go_to_score_maker_files_01():
     input_ = 'red~example~score m k q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - maker files',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - makers directory',
         ]
     assert ide._transcript.titles == titles

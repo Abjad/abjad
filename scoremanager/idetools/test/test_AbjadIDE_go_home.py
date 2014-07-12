@@ -11,7 +11,7 @@ def test_AbjadIDE_go_home_01():
     input_ = 'H H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Abjad IDE - home',
         'Abjad IDE - home',
         ]

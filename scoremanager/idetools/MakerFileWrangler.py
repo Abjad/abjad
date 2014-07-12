@@ -39,6 +39,15 @@ class MakerFileWrangler(FileWrangler):
         self._user_storehouse_path = \
             self._configuration.makers_library
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        if self._session.is_in_score:
+            return 'makers directory'
+        else:
+            return 'makers depot'
+
     ### PRIVATE METHODS ###
 
     def _enter_run(self):

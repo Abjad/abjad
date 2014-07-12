@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_set_view_01():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Abjad IDE - distribution files [_test]',
+            'Abjad IDE - distribution depot [_test]',
             '',
             '    Red Example Score:',
             '       1: red-example-score.pdf',
@@ -64,7 +64,7 @@ def test_DistributionFileWrangler_set_view_02():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Red Example Score (2013) - distribution files [_test]',
+            'Red Example Score (2013) - distribution directory [_test]',
             '',
             '   1: red-example-score.pdf',
             '',

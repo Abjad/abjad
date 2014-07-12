@@ -10,7 +10,7 @@ def test_StylesheetWrangler_display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'stylesheets - available commands' in contents
+    assert 'stylesheets directory - available commands' in contents
 
 
 def test_StylesheetWrangler_display_available_commands_02():
@@ -19,4 +19,4 @@ def test_StylesheetWrangler_display_available_commands_02():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Abjad IDE - stylesheets - available commands' in contents
+    assert 'Abjad IDE - stylesheets depot - available commands' in contents

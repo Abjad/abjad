@@ -5,13 +5,13 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_go_to_all_segments_01():
-    r'''From all scores to all segments.
+    r'''From scores to segments depot.
     '''
 
     input_ = 'G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - segments',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - segments depot',
         ]
     assert ide._transcript.titles == titles

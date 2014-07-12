@@ -20,7 +20,7 @@ def test_MakerFileWrangler_copy_file_01():
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'K cp RedExampleScoreTemplate.py'
-        input_ += ' My~maker~files ReusableScoreTemplate y q'
+        input_ += ' My~makers~depot ReusableScoreTemplate y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         assert os.path.exists(source_path)

@@ -11,8 +11,8 @@ def test_AbjadIDE_go_to_all_stylesheets_01():
     input_ = 'H Y q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Abjad IDE - home',
-        'Abjad IDE - stylesheets',
+        'Abjad IDE - stylesheets depot',
         ]
     assert ide._transcript.titles == titles

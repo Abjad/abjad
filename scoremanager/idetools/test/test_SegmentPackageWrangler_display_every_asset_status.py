@@ -5,7 +5,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_display_every_asset_status_01():
-    r'''Works with library.
+    r'''Works in segments depot.
     '''
 
     input_ = 'G rst* q'

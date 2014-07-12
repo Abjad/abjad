@@ -5,15 +5,15 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MakerFileWrangler_go_to_score_stylesheets_01():
-    r'''Goes from score maker files to score stylesheets.
+    r'''Goes from makers directory to stylesheets directory.
     '''
 
     input_ = 'red~example~score k y q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - maker files',
-        'Red Example Score (2013) - stylesheets',
+        'Red Example Score (2013) - makers directory',
+        'Red Example Score (2013) - stylesheets directory',
         ]
     assert ide._transcript.titles == titles

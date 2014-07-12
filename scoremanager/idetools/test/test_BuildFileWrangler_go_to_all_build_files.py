@@ -11,10 +11,10 @@ def test_BuildFileWrangler_go_to_all_build_files_01():
     input_ = 'red~example~score u U q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build files',
-        'Abjad IDE - build files',
+        'Red Example Score (2013) - build directory',
+        'Abjad IDE - build depot',
         ]
     assert ide._transcript.titles == titles
 
@@ -26,8 +26,8 @@ def test_BuildFileWrangler_go_to_all_build_files_02():
     input_ = 'U U q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - build files',
-        'Abjad IDE - build files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - build depot',
+        'Abjad IDE - build depot',
         ]
     assert ide._transcript.titles == titles

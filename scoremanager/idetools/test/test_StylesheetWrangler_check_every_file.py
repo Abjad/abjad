@@ -6,25 +6,25 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_StylesheetWrangler_check_every_file_01():
-    r'''Works in score.
+    r'''Works in stylesheets directory.
     '''
 
     input_ = 'red~example~score y ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Stylesheets (3 files): OK' in contents
+    assert 'Stylesheets directory (3 files): OK' in contents
 
 
 def test_StylesheetWrangler_check_every_file_02():
-    r'''Works in library.
+    r'''Works in stylesheets depot.
     '''
 
     input_ = 'Y ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Stylesheets' in contents
+    assert 'Stylesheets depot' in contents
 
 
 def test_StylesheetWrangler_check_every_file_03():

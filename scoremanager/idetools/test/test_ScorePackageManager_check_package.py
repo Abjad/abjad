@@ -15,12 +15,12 @@ def test_ScorePackageManager_check_package_01():
     contents = ide._transcript.contents
 
     lines = [
-        'Build files (18 files): OK',
-        'Distribution files (2 files): OK',
-        'Maker files (2 files): OK',
-        'Materials (5 packages):',
-        'Segments (3 packages):',
-        'Stylesheets (3 files): OK',
+        'Build directory (18 files): OK',
+        'Distribution directory (2 files): OK',
+        'Makers directory (2 files): OK',
+        'Materials directory (5 packages):',
+        'Segments directory (3 packages):',
+        'Stylesheets directory (3 files): OK',
         ]
     for line in lines:
         assert line in contents

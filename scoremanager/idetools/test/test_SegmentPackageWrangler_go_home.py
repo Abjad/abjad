@@ -5,13 +5,13 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_go_home_01():
-    r'''From score segments to library.
+    r'''From segments directory.
     '''
 
     input_ = 'red~example~score g H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Abjad IDE - home',
@@ -20,14 +20,14 @@ def test_SegmentPackageWrangler_go_home_01():
 
 
 def test_SegmentPackageWrangler_go_home_02():
-    r'''From all segments to library.
+    r'''From segments depot.
     '''
 
     input_ = 'G H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - segments',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - segments depot',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

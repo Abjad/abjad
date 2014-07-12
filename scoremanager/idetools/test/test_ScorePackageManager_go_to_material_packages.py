@@ -10,8 +10,8 @@ def test_ScorePackageManager_go_to_material_packages_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
+        'Red Example Score (2013) - materials directory',
         ]
     assert ide._transcript.titles == titles

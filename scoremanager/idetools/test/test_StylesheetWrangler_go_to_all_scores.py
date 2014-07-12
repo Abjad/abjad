@@ -10,10 +10,10 @@ def test_StylesheetWrangler_go_to_all_scores_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
-        'Abjad IDE - scores',
+        'Red Example Score (2013) - stylesheets directory',
+        'Abjad IDE - scores depot',
         ]
     assert ide._transcript.titles == titles
 
@@ -24,8 +24,8 @@ def test_StylesheetWrangler_go_to_all_scores_02():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - stylesheets',
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - stylesheets depot',
+        'Abjad IDE - scores depot',
         ]
     assert ide._transcript.titles == titles

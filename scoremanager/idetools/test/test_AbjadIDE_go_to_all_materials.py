@@ -11,8 +11,8 @@ def test_AbjadIDE_go_to_all_materials_01():
     input_ = 'H M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Abjad IDE - home',
-        'Abjad IDE - materials',
+        'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles

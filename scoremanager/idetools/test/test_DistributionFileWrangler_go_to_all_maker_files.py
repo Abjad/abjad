@@ -5,29 +5,29 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_go_to_all_maker_files_01():
-    r'''From score distribution files to all maker files.
+    r'''From distribution directory to makers depot.
     '''
 
     input_ = 'red~example~score d K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - distribution files',
-        'Abjad IDE - maker files',
+        'Red Example Score (2013) - distribution directory',
+        'Abjad IDE - makers depot',
         ]
     assert ide._transcript.titles == titles
 
 
 def test_DistributionFileWrangler_go_to_all_maker_files_02():
-    r'''From all distribution files to all maker files.
+    r'''From distribution depot to makers depot.
     '''
 
     input_ = 'D K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - distribution files',
-        'Abjad IDE - maker files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - distribution depot',
+        'Abjad IDE - makers depot',
         ]
     assert ide._transcript.titles == titles

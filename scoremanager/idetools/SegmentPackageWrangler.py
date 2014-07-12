@@ -39,6 +39,13 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        if self._session.is_in_score:
+            return 'segments directory'
+        else:
+            return 'segments depot'
+
+    @property
     def _command_to_method(self):
         superclass = super(SegmentPackageWrangler, self)
         result = superclass._command_to_method

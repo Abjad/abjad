@@ -7,7 +7,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_copy_package_01():
-    r'''Works in library.
+    r'''Works in materials depot.
     
     Partial test because we can't be sure any user score packages will be
     present. And because Score PackageManager allows copying into user score 
@@ -20,16 +20,16 @@ def test_MaterialPackageWrangler_copy_package_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
-        'Abjad IDE - materials',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - materials depot',
+        'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
 def test_MaterialPackageWrangler_copy_package_02():
-    r'''Works in score.
+    r'''Works in materials directory.
     '''
 
     source_path = os.path.join(

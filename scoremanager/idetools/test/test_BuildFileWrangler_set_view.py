@@ -6,9 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_BuildFileWrangler_set_view_01():
-    r'''Works in library.
-    
-    Makes sure only select build files are visible.
+    r'''Makes sure only select build files are visible in build depot.
     '''
     
     views_file = os.path.join(
@@ -25,7 +23,7 @@ def test_BuildFileWrangler_set_view_01():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Abjad IDE - build files [_test]',
+            'Abjad IDE - build depot [_test]',
             '',
             '    Red Example Score:',
             '       1: segment-01.ly',
@@ -42,9 +40,7 @@ def test_BuildFileWrangler_set_view_01():
 
 
 def test_BuildFileWrangler_set_view_02():
-    r'''Works in score package build directory.
-    
-    Makes sure only select build file is visible.
+    r'''Makes sure only select build file is visible in build directory.
     '''
     
     views_file = os.path.join(
@@ -68,7 +64,7 @@ def test_BuildFileWrangler_set_view_02():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Red Example Score (2013) - build files [_test]',
+            'Red Example Score (2013) - build directory [_test]',
             '',
             '   1: segment-01.ly',
             '',

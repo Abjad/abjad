@@ -11,9 +11,9 @@ def test_BuildFileWrangler_go_to_score_build_files_01():
     input_ = 'red~example~score u u q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - build files',
-        'Red Example Score (2013) - build files',
+        'Red Example Score (2013) - build directory',
+        'Red Example Score (2013) - build directory',
         ]
     assert ide._transcript.titles == titles

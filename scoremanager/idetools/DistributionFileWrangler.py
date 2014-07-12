@@ -32,6 +32,15 @@ class DistributionFileWrangler(FileWrangler):
         self._basic_breadcrumb = 'distribution files'
         self._score_storehouse_path_infix_parts = ('distribution',)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        if self._session.is_in_score:
+            return 'distribution directory'
+        else:
+            return 'distribution depot'
+
     ### PRIVATE METHODS ###
 
     def _enter_run(self):

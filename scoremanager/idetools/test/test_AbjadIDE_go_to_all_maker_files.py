@@ -11,8 +11,8 @@ def test_AbjadIDE_go_to_all_maker_files_01():
     input_ = 'H K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Abjad IDE - home',
-        'Abjad IDE - maker files',
+        'Abjad IDE - makers depot',
         ]
     assert ide._transcript.titles == titles

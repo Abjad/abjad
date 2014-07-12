@@ -6,25 +6,25 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MakerFileWrangler_check_every_file_01():
-    r'''Works in score.
+    r'''Works in makers directory.
     '''
 
     input_ = 'red~example~score k ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Maker files (2 files): OK' in contents
+    assert 'Makers directory (2 files): OK' in contents
 
 
 def test_MakerFileWrangler_check_every_file_02():
-    r'''Works in library.
+    r'''Works in makers depot.
     '''
 
     input_ = 'K ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Maker files' in contents
+    assert 'Makers depot' in contents
 
 
 def test_MakerFileWrangler_check_every_file_03():

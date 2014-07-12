@@ -6,25 +6,25 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_DistributionFileWrangler_check_every_file_01():
-    r'''Works in score.
+    r'''Works in distribution directory.
     '''
 
     input_ = 'red~example~score d ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Distribution files (2 files): OK' in contents
+    assert 'Distribution directory (2 files): OK' in contents
 
 
 def test_DistributionFileWrangler_check_every_file_02():
-    r'''Works in library.
+    r'''Works in distribution depot.
     '''
 
     input_ = 'D ck* y q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Distribution files' in contents
+    assert 'Distribution depot' in contents
 
 
 def test_DistributionFileWrangler_check_every_file_03():

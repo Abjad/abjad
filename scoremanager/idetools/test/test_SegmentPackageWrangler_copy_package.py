@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_copy_package_01():
-    r'''Works in library.
+    r'''Works in segments depot.
     
     Partial test because we can't be sure any user score packages will be
     present. And because Score PackageManager allows copying into user score 
@@ -19,16 +19,16 @@ def test_SegmentPackageWrangler_copy_package_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - segments',
-        'Abjad IDE - segments',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - segments depot',
+        'Abjad IDE - segments depot',
         ]
     assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents
 
 
 def test_SegmentPackageWrangler_copy_package_02():
-    r'''Works in score.
+    r'''Works in segments directory.
     '''
 
     source_path = os.path.join(

@@ -10,4 +10,4 @@ def test_SegmentPackageManager_display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'segments - A - available commands' in contents
+    assert 'segments directory - A - available commands' in contents

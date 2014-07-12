@@ -11,10 +11,10 @@ def test_MaterialPackageWrangler_go_to_all_segments_01():
     input_ = 'red~example~score m G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Abjad IDE - segments',
+        'Red Example Score (2013) - materials directory',
+        'Abjad IDE - segments depot',
         ]
     assert ide._transcript.titles == titles
 
@@ -26,8 +26,8 @@ def test_MaterialPackageWrangler_go_to_all_segments_02():
     input_ = 'M G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
-        'Abjad IDE - segments',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - materials depot',
+        'Abjad IDE - segments depot',
         ]
     assert ide._transcript.titles == titles

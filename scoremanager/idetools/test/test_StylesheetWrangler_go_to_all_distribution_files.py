@@ -5,29 +5,29 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_StylesheetWrangler_go_to_all_distribution_files_01():
-    r'''From score stylesheets to all distribution files.
+    r'''From stylesheets directory to distribution depot.
     '''
 
     input_ = 'red~example~score y D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
-        'Abjad IDE - distribution files',
+        'Red Example Score (2013) - stylesheets directory',
+        'Abjad IDE - distribution depot',
         ]
     assert ide._transcript.titles == titles
 
 
 def test_StylesheetWrangler_go_to_all_distribution_files_02():
-    r'''From all stylesheets to all distribution files.
+    r'''From stylesheets depot to distribution depot.
     '''
 
     input_ = 'Y D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - stylesheets',
-        'Abjad IDE - distribution files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - stylesheets depot',
+        'Abjad IDE - distribution depot',
         ]
     assert ide._transcript.titles == titles

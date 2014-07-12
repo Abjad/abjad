@@ -11,9 +11,9 @@ def test_StylesheetWrangler_go_home_01():
     input_ = 'red~example~score y H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
+        'Red Example Score (2013) - stylesheets directory',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles
@@ -26,8 +26,8 @@ def test_StylesheetWrangler_go_home_02():
     input_ = 'Y H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - stylesheets',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - stylesheets depot',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

@@ -5,13 +5,13 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_ScorePackageWrangler_go_to_score_distribution_files_01():
-    r'''From materials directory to build directory.
+    r'''From scores to distribution depot.
     '''
 
     input_ = 'D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - distribution files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - distribution depot',
         ]
     assert ide._transcript.titles == titles

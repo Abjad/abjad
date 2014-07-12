@@ -17,9 +17,9 @@ def test_DistributionFileWrangler_copy_file_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - distribution files',
-        'Abjad IDE - distribution files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - distribution depot',
+        'Abjad IDE - distribution depot',
         ]
     assert ide._transcript.titles == titles
     assert 'Select storehouse:' in contents

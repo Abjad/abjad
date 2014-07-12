@@ -22,7 +22,7 @@ def test_BuildFileWrangler_autoedit_views_01():
         transcript = ide._transcript
 
     lines = [
-        'Abjad IDE - build files - views - _test (EDIT)',
+        'Abjad IDE - build depot - views - _test (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
@@ -31,7 +31,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views - _test (EDIT)',
+        'Abjad IDE - build depot - views - _test (EDIT)',
         '',
         "   1: 'front-cover' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views - _test (EDIT)',
+        'Abjad IDE - build depot - views - _test (EDIT)',
         '',
         "   1: 'front-cover' in :ds:",
         "   2: 'back-cover' in :ds:",
@@ -57,7 +57,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views (EDIT)',
+        'Abjad IDE - build depot - views (EDIT)',
         '',
         "   1: _test: 'front-cover' in :ds:, 'back-cover' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views (EDIT)',
+        'Abjad IDE - build depot - views (EDIT)',
         '',
         "   1: _new_test: 'front-cover' in :ds:, 'back-cover' in :ds:",
         '',
@@ -83,7 +83,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views - _new_test (EDIT)',
+        'Abjad IDE - build depot - views - _new_test (EDIT)',
         '',
         "   1: 'front-cover' in :ds:",
         "   2: 'back-cover' in :ds:",
@@ -97,7 +97,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views - _new_test (EDIT)',
+        'Abjad IDE - build depot - views - _new_test (EDIT)',
         '',
         "   1: 'back-cover' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views (EDIT)',
+        'Abjad IDE - build depot - views (EDIT)',
         '',
         "   1: _new_test: 'back-cover' in :ds:",
         '',
@@ -122,7 +122,7 @@ def test_BuildFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - build files - views (EDIT)',
+        'Abjad IDE - build depot - views (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',

@@ -5,29 +5,29 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_go_home_01():
-    r'''From score materials to library.
+    r'''From materials directory.
     '''
 
     input_ = 'red~example~score m H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
+        'Red Example Score (2013) - materials directory',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles
 
 
 def test_MaterialPackageWrangler_go_home_02():
-    r'''From all materials to library.
+    r'''From materials depot.
     '''
 
     input_ = 'M H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - materials depot',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

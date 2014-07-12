@@ -10,7 +10,7 @@ def test_MakerFileWrangler_display_avialable_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'maker files - available commands' in contents
+    assert 'makers directory - available commands' in contents
 
 
 def test_MakerFileWrangler_display_avialable_commands_02():
@@ -19,4 +19,4 @@ def test_MakerFileWrangler_display_avialable_commands_02():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Abjad IDE - maker files - available commands' in contents
+    assert 'Abjad IDE - makers depot - available commands' in contents

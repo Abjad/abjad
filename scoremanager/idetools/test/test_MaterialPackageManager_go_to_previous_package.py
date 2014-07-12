@@ -9,10 +9,10 @@ def test_MaterialPackageManager_go_to_previous_package_01():
     input_ = 'red~example~score m tempo~inventory < q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory',
-        'Red Example Score (2013) - materials - pitch range inventory',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - tempo inventory',
+        'Red Example Score (2013) - materials directory - pitch range inventory',
         ]
     assert ide._transcript.titles == titles

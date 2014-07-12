@@ -10,7 +10,7 @@ def test_DistributionFileWrangler_display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'distribution files - available commands' in contents
+    assert 'distribution directory - available commands' in contents
 
 
 def test_DistributionFileWrangler_display_available_commands_02():
@@ -19,5 +19,5 @@ def test_DistributionFileWrangler_display_available_commands_02():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    string = 'Abjad IDE - distribution files - available commands'
+    string = 'Abjad IDE - distribution depot - available commands'
     assert string in contents

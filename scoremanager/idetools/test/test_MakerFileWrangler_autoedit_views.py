@@ -22,7 +22,7 @@ def test_MakerFileWrangler_autoedit_views_01():
         transcript = ide._transcript
 
     lines = [
-        'Abjad IDE - maker files - views - _test (EDIT)',
+        'Abjad IDE - makers depot - views - _test (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
@@ -31,7 +31,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views - _test (EDIT)',
+        'Abjad IDE - makers depot - views - _test (EDIT)',
         '',
         "   1: 'RedExampleScoreRhythmMaker.py' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views - _test (EDIT)',
+        'Abjad IDE - makers depot - views - _test (EDIT)',
         '',
         "   1: 'RedExampleScoreRhythmMaker.py' in :ds:",
         "   2: 'RedExampleScoreTemplate.py' in :ds:",
@@ -57,7 +57,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views (EDIT)',
+        'Abjad IDE - makers depot - views (EDIT)',
         '',
         "   1: _test: 'RedExampleScoreRhythmMaker.py' in :ds:, 'RedExampleScoreTemplate.py' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views (EDIT)',
+        'Abjad IDE - makers depot - views (EDIT)',
         '',
         "   1: _new_test: 'RedExampleScoreRhythmMaker.py' in :ds:, 'RedExampleScoreTemplate.py' in :ds:",
         '',
@@ -83,7 +83,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views - _new_test (EDIT)',
+        'Abjad IDE - makers depot - views - _new_test (EDIT)',
         '',
         "   1: 'RedExampleScoreRhythmMaker.py' in :ds:",
         "   2: 'RedExampleScoreTemplate.py' in :ds:",
@@ -97,7 +97,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views - _new_test (EDIT)',
+        'Abjad IDE - makers depot - views - _new_test (EDIT)',
         '',
         "   1: 'RedExampleScoreTemplate.py' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views (EDIT)',
+        'Abjad IDE - makers depot - views (EDIT)',
         '',
         "   1: _new_test: 'RedExampleScoreTemplate.py' in :ds:",
         '',
@@ -122,7 +122,7 @@ def test_MakerFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - maker files - views (EDIT)',
+        'Abjad IDE - makers depot - views (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',

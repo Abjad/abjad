@@ -60,9 +60,10 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _breadcrumb(self):
         if not self._session.is_in_score:
-            superclass = super(ScorePackageWrangler, self)
-            breadcrumb = superclass._breadcrumb
-            return breadcrumb
+            #superclass = super(ScorePackageWrangler, self)
+            #breadcrumb = superclass._breadcrumb
+            #return breadcrumb
+            return 'scores depot'
 
     @property
     def _command_to_method(self):

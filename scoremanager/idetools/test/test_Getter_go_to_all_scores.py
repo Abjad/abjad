@@ -10,12 +10,12 @@ def test_Getter_go_to_all_scores_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - materials - tempo inventory',
-        'Red Example Score (2013) - materials - tempo inventory (EDIT)',
-        'Red Example Score (2013) - materials - tempo inventory - tempo (EDIT)',
-        'Abjad IDE - scores',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - tempo inventory',
+        'Red Example Score (2013) - materials directory - tempo inventory (EDIT)',
+        'Red Example Score (2013) - materials directory - tempo inventory - tempo (EDIT)',
+        'Abjad IDE - scores depot',
         ]
     assert ide._transcript.titles == titles

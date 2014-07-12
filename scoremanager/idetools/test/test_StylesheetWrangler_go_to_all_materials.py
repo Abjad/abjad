@@ -5,29 +5,29 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_StylesheetWrangler_go_to_all_materials_01():
-    r'''From score stylesheets to all materials.
+    r'''From stylesheets directory to materials depot.
     '''
 
     input_ = 'red~example~score y M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
-        'Abjad IDE - materials',
+        'Red Example Score (2013) - stylesheets directory',
+        'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles
 
 
 def test_StylesheetWrangler_go_to_all_materials_02():
-    r'''From all stylesheets to all materials.
+    r'''From stylesheets depot to materials depot.
     '''
 
     input_ = 'Y M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - stylesheets',
-        'Abjad IDE - materials',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - stylesheets depot',
+        'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles

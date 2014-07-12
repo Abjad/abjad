@@ -9,10 +9,10 @@ def test_SegmentPackageManager_go_back_01():
     input_ = 'red~example~score g A b q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - segments',
-        'Red Example Score (2013) - segments - A',
-        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - segments directory',
+        'Red Example Score (2013) - segments directory - A',
+        'Red Example Score (2013) - segments directory',
         ]
     assert ide._transcript.titles == titles

@@ -10,9 +10,9 @@ def test_DistributionFileWrangler_go_to_previous_score_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - distribution files',
+        'Red Example Score (2013) - distribution directory',
         'Étude Example Score (2013)',
         ]
     assert ide._transcript.titles == titles
@@ -24,8 +24,8 @@ def test_DistributionFileWrangler_go_to_previous_score_02():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - distribution files',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - distribution depot',
         'Red Example Score (2013)',
         ]
     assert ide._transcript.titles == titles

@@ -5,15 +5,15 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_go_to_score_segments_01():
-    r'''Goes from score materials to score segments.
+    r'''From materials directory to segments directory.
     '''
 
     input_ = 'red~example~score m g q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - segments directory',
         ]
     assert ide._transcript.titles == titles

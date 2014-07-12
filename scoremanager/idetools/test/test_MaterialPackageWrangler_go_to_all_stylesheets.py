@@ -11,10 +11,10 @@ def test_MaterialPackageWrangler_go_to_all_stylesheets_01():
     input_ = 'red~example~score m Y q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - materials',
-        'Abjad IDE - stylesheets',
+        'Red Example Score (2013) - materials directory',
+        'Abjad IDE - stylesheets depot',
         ]
     assert ide._transcript.titles == titles
 
@@ -26,8 +26,8 @@ def test_MaterialPackageWrangler_go_to_all_stylesheets_02():
     input_ = 'M Y q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
-        'Abjad IDE - materials',
-        'Abjad IDE - stylesheets',
+        'Abjad IDE - scores depot',
+        'Abjad IDE - materials depot',
+        'Abjad IDE - stylesheets depot',
         ]
     assert ide._transcript.titles == titles

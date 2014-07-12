@@ -11,8 +11,8 @@ def test_AbjadIDE_go_to_all_distribution_files_01():
     input_ = 'H D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores',
+        'Abjad IDE - scores depot',
         'Abjad IDE - home',
-        'Abjad IDE - distribution files',
+        'Abjad IDE - distribution depot',
         ]
     assert ide._transcript.titles == titles

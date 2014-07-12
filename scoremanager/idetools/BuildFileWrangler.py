@@ -40,6 +40,13 @@ class BuildFileWrangler(FileWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        if self._session.is_in_score:
+            return 'build directory'
+        else:
+            return 'build depot'
+
+    @property
     def _command_to_method(self):
         superclass = super(BuildFileWrangler, self)
         result = superclass._command_to_method
