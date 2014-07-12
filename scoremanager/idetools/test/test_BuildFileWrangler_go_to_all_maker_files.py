@@ -11,7 +11,7 @@ def test_BuildFileWrangler_go_to_all_maker_files_01():
     input_ = 'red~example~score u K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build directory',
         'Abjad IDE - makers depot',
@@ -26,7 +26,7 @@ def test_BuildFileWrangler_go_to_all_maker_files_02():
     input_ = 'U K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - build depot',
         'Abjad IDE - makers depot',
         ]

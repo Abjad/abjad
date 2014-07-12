@@ -22,7 +22,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
         transcript = ide._transcript
 
     lines = [
-        'Abjad IDE - scores depot - views - _test (EDIT)',
+        'Abjad IDE - scores - views - _test (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
@@ -31,7 +31,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views - _test (EDIT)',
+        'Abjad IDE - scores - views - _test (EDIT)',
         '',
         "   1: 'Red Example Score' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views - _test (EDIT)',
+        'Abjad IDE - scores - views - _test (EDIT)',
         '',
         "   1: 'Red Example Score' in :ds:",
         "   2: 'Blue Example Score' in :ds:",
@@ -57,7 +57,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
         '',
         "   1: _test: 'Red Example Score' in :ds:, 'Blue Example Score' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
         '',
         "   1: _new_test: 'Red Example Score' in :ds:, 'Blue Example Score' in :ds:",
         '',
@@ -83,7 +83,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views - _new_test (EDIT)',
+        'Abjad IDE - scores - views - _new_test (EDIT)',
         '',
         "   1: 'Red Example Score' in :ds:",
         "   2: 'Blue Example Score' in :ds:",
@@ -97,7 +97,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views - _new_test (EDIT)',
+        'Abjad IDE - scores - views - _new_test (EDIT)',
         '',
         "   1: 'Blue Example Score' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
         '',
         "   1: _new_test: 'Blue Example Score' in :ds:",
         '',
@@ -122,7 +122,7 @@ def test_ScorePackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - scores depot - views (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',

@@ -11,7 +11,7 @@ def test_AbjadIDE_go_to_all_segments_01():
     input_ = 'H G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - home',
         'Abjad IDE - segments depot',
         ]

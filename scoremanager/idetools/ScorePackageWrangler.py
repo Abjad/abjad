@@ -63,7 +63,7 @@ class ScorePackageWrangler(PackageWrangler):
             #superclass = super(ScorePackageWrangler, self)
             #breadcrumb = superclass._breadcrumb
             #return breadcrumb
-            return 'scores depot'
+            return 'scores'
 
     @property
     def _command_to_method(self):

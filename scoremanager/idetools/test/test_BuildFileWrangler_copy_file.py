@@ -19,7 +19,7 @@ def test_BuildFileWrangler_copy_file_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - build depot',
         'Abjad IDE - build depot',
         ]

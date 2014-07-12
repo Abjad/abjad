@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_home_01():
     input_ = 'H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

@@ -11,7 +11,7 @@ def test_BuildFileWrangler_go_to_score_segments_01():
     input_ = 'red~example~score u g q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - build directory',
         'Red Example Score (2013) - segments directory',

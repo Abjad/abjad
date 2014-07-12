@@ -11,7 +11,7 @@ def test_StylesheetWrangler_go_home_01():
     input_ = 'red~example~score y H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets directory',
         'Abjad IDE - home',
@@ -26,7 +26,7 @@ def test_StylesheetWrangler_go_home_02():
     input_ = 'Y H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - stylesheets depot',
         'Abjad IDE - home',
         ]

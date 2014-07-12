@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_score_maker_files_01():
     input_ = 'red~example~score g k q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments directory',
         'Red Example Score (2013) - makers directory',

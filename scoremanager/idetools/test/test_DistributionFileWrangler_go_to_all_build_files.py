@@ -11,7 +11,7 @@ def test_DistributionFileWrangler_go_to_all_build_files_01():
     input_ = 'red~example~score d U q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - distribution directory',
         'Abjad IDE - build depot',
@@ -26,7 +26,7 @@ def test_DistributionFileWrangler_go_to_all_build_files_02():
     input_ = 'D U q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - distribution depot',
         'Abjad IDE - build depot',
         ]

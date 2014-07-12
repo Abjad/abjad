@@ -37,7 +37,7 @@ def test_MaterialPackageWrangler_make_package_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - materials depot',
         'Abjad IDE - materials depot',
         ]

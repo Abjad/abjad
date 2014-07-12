@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_all_materials_01():
     input_ = 'red~example~score g M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments directory',
         'Abjad IDE - materials depot',
@@ -26,7 +26,7 @@ def test_SegmentPackageWrangler_go_to_all_materials_02():
     input_ = 'G M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - segments depot',
         'Abjad IDE - materials depot',
         ]

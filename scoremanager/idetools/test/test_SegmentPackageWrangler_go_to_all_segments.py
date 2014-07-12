@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_go_to_all_segments_01():
     input_ = 'red~example~score g G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - segments',
         'Abjad IDE - segments depot',
@@ -26,7 +26,7 @@ def test_SegmentPackageWrangler_go_to_all_segments_02():
     input_ = 'G G q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - segments depot',
         'Abjad IDE - segments depot',
         ]

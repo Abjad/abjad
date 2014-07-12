@@ -10,7 +10,7 @@ def test_StylesheetWrangler_go_to_next_score_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - stylesheets directory',
         'Blue Example Score (2013)',
@@ -24,7 +24,7 @@ def test_StylesheetWrangler_go_to_next_score_02():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - stylesheets depot',
         'Blue Example Score (2013)',
         ]

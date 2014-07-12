@@ -11,7 +11,7 @@ def test_AbjadIDE_go_to_all_distribution_files_01():
     input_ = 'H D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - home',
         'Abjad IDE - distribution depot',
         ]

@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_copy_package_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - materials depot',
         'Abjad IDE - materials depot',
         ]

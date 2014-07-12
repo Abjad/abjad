@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_display_available_commands_01():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    assert 'Abjad IDE - scores depot - available commands' in contents
+    assert 'Abjad IDE - scores - available commands' in contents
 
 
 def test_ScorePackageWrangler_display_available_commands_02():
@@ -23,7 +23,7 @@ def test_ScorePackageWrangler_display_available_commands_02():
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
-    title = 'Abjad IDE - scores depot - available commands'
+    title = 'Abjad IDE - scores - available commands'
     first_blank_line = ''
     first_real_line = '    all packages -'
     string = '\n'.join([title, first_blank_line, first_real_line])

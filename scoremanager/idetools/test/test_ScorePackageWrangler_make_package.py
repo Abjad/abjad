@@ -53,13 +53,13 @@ def test_ScorePackageWrangler_make_package_02():
         '__ScorePackageWrangler_views__.py',
         )
     titles = [
-        'Abjad IDE - scores depot',
-        'Abjad IDE - scores depot - views (EDIT)',
-        'Abjad IDE - scores depot - views - _test_view (EDIT)',
-        'Abjad IDE - scores depot - views (EDIT)',
-        'Abjad IDE - scores depot',
-        'Abjad IDE - scores depot',
-        'Abjad IDE - scores depot [_test_view]',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores - views (EDIT)',
+        'Abjad IDE - scores - views - _test_view (EDIT)',
+        'Abjad IDE - scores - views (EDIT)',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores',
+        'Abjad IDE - scores [_test_view]',
         '(untitled score)',
         ]
     

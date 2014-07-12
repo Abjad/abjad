@@ -17,7 +17,7 @@ def test_DistributionFileWrangler_copy_file_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - distribution depot',
         'Abjad IDE - distribution depot',
         ]

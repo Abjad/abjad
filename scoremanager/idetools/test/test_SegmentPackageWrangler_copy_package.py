@@ -19,7 +19,7 @@ def test_SegmentPackageWrangler_copy_package_01():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - segments depot',
         'Abjad IDE - segments depot',
         ]

@@ -10,7 +10,7 @@ def test_MaterialPackageManager_go_back_01():
     ide._run(input_=input_)
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
         'Red Example Score (2013) - materials directory - tempo inventory',

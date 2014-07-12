@@ -279,7 +279,7 @@ def test_ListAutoeditor__run_13():
     contents = ide._transcript.contents
 
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
         'Red Example Score (2013) - materials directory - instrumentation',

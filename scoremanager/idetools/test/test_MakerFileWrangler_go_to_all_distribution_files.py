@@ -11,7 +11,7 @@ def test_MakerFileWrangler_go_to_all_distribution_files_01():
     input_ = 'red~example~score k D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - makers directory',
         'Abjad IDE - distribution depot',
@@ -26,7 +26,7 @@ def test_MakerFileWrangler_go_to_all_distribution_files_02():
     input_ = 'K D q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - makers depot',
         'Abjad IDE - distribution depot',
         ]

@@ -9,7 +9,7 @@ def test_ScorePackageManager_go_home_01():
     input_ = 'red~example~score H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Abjad IDE - home',
         ]

@@ -11,7 +11,7 @@ def test_MakerFileWrangler_go_to_score_stylesheets_01():
     input_ = 'red~example~score k y q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - makers directory',
         'Red Example Score (2013) - stylesheets directory',

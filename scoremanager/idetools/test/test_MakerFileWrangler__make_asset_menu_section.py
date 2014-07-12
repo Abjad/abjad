@@ -11,7 +11,7 @@ def test_MakerFileWrangler__make_asset_menu_section_01():
     input_ = 'blue~example~score k q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Blue Example Score (2013)',
         'Blue Example Score (2013) - makers directory',
         ]

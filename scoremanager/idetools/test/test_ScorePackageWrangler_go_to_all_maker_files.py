@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_all_maker_files_01():
     input_ = 'K q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - makers depot',
         ]
     assert ide._transcript.titles == titles

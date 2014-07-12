@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_go_home_01():
     input_ = 'red~example~score m H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
         'Abjad IDE - home',
@@ -26,7 +26,7 @@ def test_MaterialPackageWrangler_go_home_02():
     input_ = 'M H q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - materials depot',
         'Abjad IDE - home',
         ]

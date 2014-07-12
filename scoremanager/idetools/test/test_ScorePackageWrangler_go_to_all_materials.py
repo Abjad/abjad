@@ -11,7 +11,7 @@ def test_ScorePackageWrangler_go_to_all_materials_01():
     input_ = 'M q'
     ide._run(input_=input_)
     titles = [
-        'Abjad IDE - scores depot',
+        'Abjad IDE - scores',
         'Abjad IDE - materials depot',
         ]
     assert ide._transcript.titles == titles
