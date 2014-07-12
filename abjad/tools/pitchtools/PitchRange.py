@@ -114,17 +114,14 @@ class PitchRange(AbjadObject):
                     return False
         return False
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a pitch range with start and stop equal 
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a pitch range with start and stop equal 
         to those of this pitch range. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            if self._start == arg._start:
-                if self._stop == arg._stop:
-                    return True
-        return False
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats pitch range.
@@ -176,7 +173,9 @@ class PitchRange(AbjadObject):
 
         Returns integer.
         '''
-        return super(PitchRange, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
 
     def __illustrate__(self):
         r'''Illustrates pitch range.
