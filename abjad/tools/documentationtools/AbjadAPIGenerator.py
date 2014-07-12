@@ -27,12 +27,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'internals': 'Abjad internal packages',
         'score manager': 'Abjad IDE packages',
         'unstable': 'Unstable packages (load manually)',
-    }
+        }
 
     _undocumented_packages = (
         'materialpackages',
         'scorepackages',
-    )
+        )
 
     ### INITIALIZER ###
 
@@ -56,7 +56,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             '__pycache__',
             '.git',
             '.svn',
-            'makers',
+            'scores',
             'test',
             ]
         ignored_directory_names.extend(self._undocumented_packages)
