@@ -424,9 +424,24 @@ class NamedPitch(Pitch):
     def invert(self, axis=None):
         r'''Inverts named pitch around `axis`.
 
-        Not yet implemented.
+        ::
+
+            >>> pitchtools.NamedPitch("d'").invert("c'")
+            NamedPitch('bf')
+
+        ::
+
+            >>> pitchtools.NamedPitch('bf').invert("c'")
+            NamedPitch("d'")
+
+        ::
+
+            >>> pitchtools.NamedPitch("d'").invert('a')
+            NamedPitch('e')
+
+        Returns new named pitch.
         '''
-        raise NotImplementedError
+        return Pitch.invert(self, axis=axis)
 
     def multiply(self, n=1):
         r'''Multiply pitch-class of named pitch by `n` while maintaining

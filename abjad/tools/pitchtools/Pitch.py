@@ -177,7 +177,10 @@ class Pitch(AbjadObject):
 
         Returns new pitch.
         '''
-        raise NotImplementedError
+        axis = type(self)(axis)
+        interval = self - axis
+        result = axis.transpose(interval)
+        return result
 
     @staticmethod
     def is_diatonic_pitch_name(expr):

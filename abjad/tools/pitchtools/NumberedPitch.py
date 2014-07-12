@@ -171,9 +171,24 @@ class NumberedPitch(Pitch):
     def invert(self, axis=None):
         r'''Inverts numberd pitch around `axis`.
 
-        Not yet implemented.
+        ::
+
+            >>> pitchtools.NumberedPitch(2).invert(0)
+            NumberedPitch(-2)
+
+        ::
+
+            >>> pitchtools.NumberedPitch(-2).invert(0)
+            NumberedPitch(2)
+
+        ::
+
+            >>> pitchtools.NumberedPitch(2).invert(-3)
+            NumberedPitch(-8)
+
+        Returns new numbered pitch.
         '''
-        raise NotImplementedError
+        return Pitch.invert(self, axis=axis)
 
     def multiply(self, n=1):
         r'''Multiplies pitch-class of numbered pitch by `n` and maintains
@@ -200,7 +215,7 @@ class NumberedPitch(Pitch):
 
         Returns new numbered pitch.
         '''
-        semitones = self.pitch_number + n
+        semitones = self.pitch_number + float(n)
         return type(self)(semitones)
 
     ### PUBLIC PROPERTIES ###
