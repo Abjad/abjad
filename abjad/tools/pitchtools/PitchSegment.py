@@ -255,7 +255,7 @@ class PitchSegment(Segment):
         '''
         return new(self, items=reversed(self))
 
-    def rotate(self, n):
+    def rotate(self, n, transpose=False):
         r'''Rotates pitch segment.
 
         ::
@@ -278,11 +278,28 @@ class PitchSegment(Segment):
 
             >>> show(result) # doctest: +SKIP
 
+        ::
+
+            >>> pitch_segment = pitchtools.PitchSegment("c' d' e' f'")
+            >>> result = pitch_segment.rotate(-1, transpose=True)
+            >>> result
+            PitchSegment(["c'", "d'", "ef'", 'bf'])
+
+        ::
+
+            >>> show(result) # doctest: +SKIP
+
         Returns new pitch segment.
         '''
         from abjad.tools import sequencetools
-        items = sequencetools.rotate_sequence(self._collection, n)
-        return new(self, items=items)
+        rotated_pitches = sequencetools.rotate_sequence(
+            self._collection, n)
+        new_segment = new(self, items=rotated_pitches)
+        if transpose:
+            if self[0] != new_segment[0]:
+                interval = new_segment[0] - self[0]
+                new_segment = new_segment.transpose(interval)
+        return new_segment
 
     def transpose(self, expr):
         r'''Transposes pitch segment by `expr`.
