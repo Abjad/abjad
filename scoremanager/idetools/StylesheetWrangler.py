@@ -39,15 +39,6 @@ class StylesheetWrangler(FileWrangler):
         self._user_storehouse_path = \
             self._configuration.stylesheets_library
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        if self._session.is_in_score:
-            return 'stylesheets directory'
-        else:
-            return 'stylesheets depot'
-
     ### PRIVATE METHODS ###
 
     def _enter_run(self):

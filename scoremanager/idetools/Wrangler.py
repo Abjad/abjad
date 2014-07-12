@@ -23,6 +23,7 @@ class Wrangler(ScoreInternalAssetController):
 
     __slots__ = (
         '_abjad_storehouse_path',
+        '_allow_depot',
         '_asset_identifier',
         '_basic_breadcrumb',
         '_force_lowercase',
@@ -42,6 +43,7 @@ class Wrangler(ScoreInternalAssetController):
         superclass = super(Wrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
+        self._allow_depot = True
         self._asset_identifier = None
         self._basic_breadcrumb = None
         self._force_lowercase = True
@@ -56,6 +58,12 @@ class Wrangler(ScoreInternalAssetController):
     @property
     def _breadcrumb(self):
         breadcrumb = self._basic_breadcrumb
+        if not self._allow_depot:
+            pass
+        elif self._session.is_in_score:
+            breadcrumb = '{} directory'.format(breadcrumb)
+        else:
+            breadcrumb = '{} depot'.format(breadcrumb)
         view_name = self._read_view_name()
         if not view_name:
             return breadcrumb

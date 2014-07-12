@@ -13,7 +13,7 @@ def test_SegmentPackageWrangler_go_home_01():
     titles = [
         'Abjad IDE - scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - segments',
+        'Red Example Score (2013) - segments directory',
         'Abjad IDE - home',
         ]
     assert ide._transcript.titles == titles

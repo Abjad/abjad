@@ -34,17 +34,10 @@ class BuildFileWrangler(FileWrangler):
     def __init__(self, session=None):
         superclass = super(BuildFileWrangler, self)
         superclass.__init__(session=session)
-        self._basic_breadcrumb = 'build files'
+        self._basic_breadcrumb = 'build'
         self._score_storehouse_path_infix_parts = ('build',)
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        if self._session.is_in_score:
-            return 'build directory'
-        else:
-            return 'build depot'
 
     @property
     def _command_to_method(self):

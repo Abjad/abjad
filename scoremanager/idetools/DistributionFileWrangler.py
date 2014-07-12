@@ -29,17 +29,8 @@ class DistributionFileWrangler(FileWrangler):
         from scoremanager import idetools
         superclass = super(DistributionFileWrangler, self)
         superclass.__init__(session=session)
-        self._basic_breadcrumb = 'distribution files'
+        self._basic_breadcrumb = 'distribution'
         self._score_storehouse_path_infix_parts = ('distribution',)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        if self._session.is_in_score:
-            return 'distribution directory'
-        else:
-            return 'distribution depot'
 
     ### PRIVATE METHODS ###
 

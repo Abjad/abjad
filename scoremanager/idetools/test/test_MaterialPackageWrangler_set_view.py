@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MaterialPackageWrangler_set_view_01():
-    r'''Works in library.
+    r'''Works in materials depot.
     
     Makes sure only select material packages are visible.
     '''
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_set_view_01():
         transcript = ide._transcript
 
         lines = [
-            'Abjad IDE - materials [_test]',
+            'Abjad IDE - materials depot [_test]',
             '',
             '    Red Example Score:',
             '       1: instrumentation',
@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler_set_view_01():
 
 
 def test_MaterialPackageWrangler_set_view_02():
-    r'''Works in score.
+    r'''Works in materials directory.
     
     Makes sure only select material package is visible.
     '''
@@ -68,7 +68,7 @@ def test_MaterialPackageWrangler_set_view_02():
         transcript = ide._transcript
 
         lines = [
-            'Red Example Score (2013) - materials [_test]',
+            'Red Example Score (2013) - materials directory [_test]',
             '',
             '   1: instrumentation',
             '',
@@ -104,7 +104,7 @@ def test_MaterialPackageWrangler_set_view_03():
         transcript = ide._transcript
 
         lines = [
-            'Red Example Score (2013) - materials [inventories]',
+            'Red Example Score (2013) - materials directory [inventories]',
             '',
             '   1: pitch range inventory',
             '   2: tempo inventory',
@@ -143,7 +143,7 @@ def test_MaterialPackageWrangler_set_view_04():
         transcript = ide._transcript
 
         lines = [
-            'Red Example Score (2013) - materials [inventories]',
+            'Red Example Score (2013) - materials directory [inventories]',
             '',
             '   1: pitch range inventory',
             '   2: tempo inventory',
@@ -182,7 +182,7 @@ def test_MaterialPackageWrangler_set_view_05():
         transcript = ide._transcript
 
         lines = [
-            'Red Example Score (2013) - materials [magic]',
+            'Red Example Score (2013) - materials directory [magic]',
             '',
             '   1: magic numbers',
             '',

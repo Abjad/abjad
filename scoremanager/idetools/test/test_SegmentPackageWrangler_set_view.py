@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_SegmentPackageWrangler_set_view_01():
-    r'''In library. Applies view.
+    r'''In segments depot. Applies view.
     
     Makes sure only one segment is visible after view is applied.
     '''
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_set_view_01():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Abjad IDE - segments [_test]',
+            'Abjad IDE - segments depot [_test]',
             '',
             '    Red Example Score:',
             '       1: A',
@@ -38,7 +38,7 @@ def test_SegmentPackageWrangler_set_view_01():
 
 
 def test_SegmentPackageWrangler_set_view_02():
-    r'''In score package. Applies view.
+    r'''In segments directory. Applies view.
     
     Makes sure only one segment is visible after view is applied.
     '''
@@ -64,7 +64,7 @@ def test_SegmentPackageWrangler_set_view_02():
         ide._run(input_=input_)
         transcript = ide._transcript
         lines = [
-            'Red Example Score (2013) - segments [_test]',
+            'Red Example Score (2013) - segments directory [_test]',
             '',
             '   1: A',
             '',

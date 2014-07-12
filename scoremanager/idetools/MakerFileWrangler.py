@@ -31,22 +31,13 @@ class MakerFileWrangler(FileWrangler):
     def __init__(self, session=None):
         superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
-        self._basic_breadcrumb = 'maker files'
+        self._basic_breadcrumb = 'makers'
         self._extension = '.py'
         self._force_lowercase = False
         self._in_library = True
         self._score_storehouse_path_infix_parts = ('makers',)
         self._user_storehouse_path = \
             self._configuration.makers_library
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        if self._session.is_in_score:
-            return 'makers directory'
-        else:
-            return 'makers depot'
 
     ### PRIVATE METHODS ###
 

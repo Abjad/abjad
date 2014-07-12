@@ -49,6 +49,7 @@ class ScorePackageWrangler(PackageWrangler):
         self._basic_breadcrumb = 'scores'
         self._include_asset_name = False
         self._annotate_year = True
+        self._allow_depot = False
         self._manager_class = idetools.ScorePackageManager
         self._only_example_scores_during_test = True
         self._sort_by_annotation = False
@@ -60,10 +61,9 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _breadcrumb(self):
         if not self._session.is_in_score:
-            #superclass = super(ScorePackageWrangler, self)
-            #breadcrumb = superclass._breadcrumb
-            #return breadcrumb
-            return 'scores'
+            superclass = super(ScorePackageWrangler, self)
+            breadcrumb = superclass._breadcrumb
+            return breadcrumb
 
     @property
     def _command_to_method(self):

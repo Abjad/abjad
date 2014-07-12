@@ -61,12 +61,8 @@ class MaterialPackageWrangler(ScoreInternalPackageWrangler):
 
     @property
     def _breadcrumb(self):
-        #superclass = super(MaterialPackageWrangler, self)
-        #breadcrumb = superclass._breadcrumb
-        if self._session.is_in_score:
-            breadcrumb = 'materials directory'
-        else:
-            breadcrumb = 'materials depot'
+        superclass = super(MaterialPackageWrangler, self)
+        breadcrumb = superclass._breadcrumb
         if self._session.is_in_library:
             breadcrumb = '{} - library'.format(breadcrumb)
         return breadcrumb

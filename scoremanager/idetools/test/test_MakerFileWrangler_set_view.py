@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 
 def test_MakerFileWrangler_set_view_01():
-    r'''Works in library.
+    r'''Works in makers depot.
     
     Makes sure only select maker file is visible.
     '''
@@ -25,7 +25,7 @@ def test_MakerFileWrangler_set_view_01():
         transcript = ide._transcript
 
         lines = [
-            'Abjad IDE - maker files [_test]',
+            'Abjad IDE - makers depot [_test]',
             '',
             '    Red Example Score:',
             '       1: RedExampleScoreTemplate.py',
@@ -40,7 +40,7 @@ def test_MakerFileWrangler_set_view_01():
 
 
 def test_MakerFileWrangler_set_view_02():
-    r'''Works in score package makers directory.
+    r'''Works in makers directory.
     
     Makes sure only select maker file is visible.
     '''
@@ -67,7 +67,7 @@ def test_MakerFileWrangler_set_view_02():
         transcript = ide._transcript
 
         lines = [
-            'Red Example Score (2013) - maker files [_test]',
+            'Red Example Score (2013) - makers directory [_test]',
             '',
             '   1: RedExampleScoreTemplate.py',
             '',

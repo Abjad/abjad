@@ -22,7 +22,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
         transcript = ide._transcript
 
     lines = [
-        'Abjad IDE - segments - views - _test (EDIT)',
+        'Abjad IDE - segments depot - views - _test (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
@@ -31,7 +31,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views - _test (EDIT)',
+        'Abjad IDE - segments depot - views - _test (EDIT)',
         '',
         "   1: 'A' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views - _test (EDIT)',
+        'Abjad IDE - segments depot - views - _test (EDIT)',
         '',
         "   1: 'A' in :ds:",
         "   2: 'B' in :ds:",
@@ -57,7 +57,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views (EDIT)',
+        'Abjad IDE - segments depot - views (EDIT)',
         '',
         "   1: _test: 'A' in :ds:, 'B' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views (EDIT)',
+        'Abjad IDE - segments depot - views (EDIT)',
         '',
         "   1: _new_test: 'A' in :ds:, 'B' in :ds:",
         '',
@@ -83,7 +83,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views - _new_test (EDIT)',
+        'Abjad IDE - segments depot - views - _new_test (EDIT)',
         '',
         "   1: 'A' in :ds:",
         "   2: 'B' in :ds:",
@@ -97,7 +97,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views - _new_test (EDIT)',
+        'Abjad IDE - segments depot - views - _new_test (EDIT)',
         '',
         "   1: 'B' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views (EDIT)',
+        'Abjad IDE - segments depot - views (EDIT)',
         '',
         "   1: _new_test: 'B' in :ds:",
         '',
@@ -122,7 +122,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - segments - views (EDIT)',
+        'Abjad IDE - segments depot - views (EDIT)',
         '',
         '      elements - add (add)',
         '      editing - done (done)',
