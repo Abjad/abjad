@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import collections
 import sys
 import types
@@ -176,6 +175,10 @@ class StorageFormatManager(object):
             value = getattr(specification.instance, name)
             if value is None or isinstance(value, types.MethodType):
                 continue
+            if specification.keyword_argument_callables:
+                callables = dict(specification.keyword_argument_callables)
+                if name in callables:
+                    value = callables[name](value)
             pieces = StorageFormatManager.format_one_value(
                 value,
                 as_storage_format=as_storage_format,
@@ -290,7 +293,8 @@ class StorageFormatManager(object):
         '''
         result = []
         for name in StorageFormatManager.get_keyword_argument_names(subject):
-            result.append(getattr(subject, name))
+            argument = getattr(subject, name)
+            result.append(argument)
         return tuple(result)
 
     @staticmethod

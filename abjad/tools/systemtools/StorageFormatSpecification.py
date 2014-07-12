@@ -13,6 +13,7 @@ class StorageFormatSpecification(AbjadObject):
         '_instance',
         '_is_bracketed',
         '_is_indented',
+        '_keyword_argument_callables',
         '_keyword_argument_names',
         '_keywords_ignored_when_false',
         '_positional_argument_values',
@@ -28,6 +29,7 @@ class StorageFormatSpecification(AbjadObject):
         body_text=None,
         is_bracketed=False,
         is_indented=True,
+        keyword_argument_callables=None,
         keyword_argument_names=None,
         keywords_ignored_when_false=None,
         positional_argument_values=None,
@@ -35,34 +37,38 @@ class StorageFormatSpecification(AbjadObject):
         tools_package_name=None,
         ):
         self._instance = instance
+
         if body_text is not None:
-            self._body_text = str(body_text)
-        else:
-            self._body_text = None
+            body_text = str(body_text)
+        self._body_text = body_text
+
         self._is_bracketed = bool(is_bracketed)
         self._is_indented = bool(is_indented)
+
+        if keyword_argument_callables is not None:
+            keyword_argument_callables = \
+                tuple(sorted(dict(keyword_argument_callables).items()))
+        self._keyword_argument_callables = keyword_argument_callables
+
         if keyword_argument_names is not None:
-            self._keyword_argument_names = tuple(keyword_argument_names)
-        else:
-            self._keyword_argument_names = None
+            keyword_argument_names = tuple(keyword_argument_names)
+        self._keyword_argument_names = keyword_argument_names
+
         if keywords_ignored_when_false is not None:
-            self._keywords_ignored_when_false = \
-                tuple(keywords_ignored_when_false)
-        else:
-            self._keywords_ignored_when_false = None
+            keywords_ignored_when_false = tuple(keywords_ignored_when_false)
+        self._keywords_ignored_when_false = keywords_ignored_when_false
+
         if positional_argument_values is not None:
-            self._positional_argument_values = \
-                tuple(positional_argument_values)
-        else:
-            self._positional_argument_values = None
+            positional_argument_values = tuple(positional_argument_values)
+        self._positional_argument_values = positional_argument_values
+
         if storage_format_pieces is not None:
-            self._storage_format_pieces = tuple(storage_format_pieces)
-        else:
-            self._storage_format_pieces = None
+            storage_format_pieces = tuple(storage_format_pieces)
+        self._storage_format_pieces = storage_format_pieces
+
         if tools_package_name is not None:
-            self._tools_package_name = str(tools_package_name)
-        else:
-            self._tools_package_name = None
+            tools_package_name = str(tools_package_name)
+        self._tools_package_name = tools_package_name
 
     ### PUBLIC PROPERTIES ###
 
@@ -120,6 +126,14 @@ class StorageFormatSpecification(AbjadObject):
                     names.remove(name)
             return tuple(names)
         return names
+
+    @property
+    def keyword_argument_callables(self):
+        r'''Keyword argument callables.
+
+        Returns tuple.
+        '''
+        return self._keyword_argument_callables
 
     @property
     def keywords_ignored_when_false(self):
