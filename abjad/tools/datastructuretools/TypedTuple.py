@@ -34,7 +34,6 @@ class TypedTuple(TypedCollection):
         if isinstance(expr, type(self)):
             items = expr._collection
             return new(self, items=self._collection[:] + items)
-
         elif isinstance(expr, type(self._collection)):
             items = expr[:]
             return new(self, items=self._collection[:] + items)
@@ -85,6 +84,12 @@ class TypedTuple(TypedCollection):
         Returns new typed tuple.
         '''
         items = self._collection * expr
+        return new(self, items=items)
+
+    def __radd__(self, expr):
+        r'''Right-adds `expr` to typed tuple.
+        '''
+        items = expr + self._collection
         return new(self, items=items)
 
     def __rmul__(self, expr):
