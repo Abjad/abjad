@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_check_every_package_01():
     '''
 
     lines = [
-        'Segments (3 packages)',
+        'Segments directory (3 packages)',
         'A: OK',
         'B: OK',
         'C: OK',

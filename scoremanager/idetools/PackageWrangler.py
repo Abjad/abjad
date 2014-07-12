@@ -114,7 +114,7 @@ class PackageWrangler(Wrangler):
             path = self._get_current_directory()
             name = os.path.basename(path)
             count = len(managers)
-            message = '{} ({} packages):'.format(name, count)
+            message = '{} directory ({} packages):'.format(name, count)
             if not found_problems:
                 message = '{} OK'.format(message)
             messages.insert(0, message)

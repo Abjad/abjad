@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_check_every_package_01():
     '''
 
     lines = [
-        'Materials (5 packages)',
+        'Materials directory (5 packages)',
         'Magic numbers: OK',
         'Time signatures: OK',
         'Instrumentation: OK',

@@ -1070,7 +1070,6 @@ class PackageManager(ScoreInternalAssetController):
         else:
             self._io_manager._display(messages)
         if not missing_directories + missing_files:
-            #return
             return messages, missing_directories, missing_files
         if supply_missing is None:
             directory_count = len(missing_directories)
@@ -1090,7 +1089,6 @@ class PackageManager(ScoreInternalAssetController):
                 return
             supply_missing = bool(result)
         if not supply_missing:
-            #return
             return messages, missing_directories, missing_files
         messages = []
         messages.append('Made:')
