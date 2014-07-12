@@ -10,3 +10,6 @@ Examples
         ligeti/index
         mozart/index
         part/index
+
+IPython Notebooks
+-----------------
