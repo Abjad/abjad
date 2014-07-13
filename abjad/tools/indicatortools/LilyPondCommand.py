@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -33,9 +32,6 @@ class LilyPondCommand(AbjadObject):
 
         >>> show(staff) # doctest: +SKIP
 
-    Initialize LilyPond commands from name; or from name with format slot; or
-    from another LilyPond command; or from another LilyPond command with format
-    slot.
     '''
 
     ### CLASS VARIABLES ###
@@ -57,26 +53,8 @@ class LilyPondCommand(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            name = copy.copy(args[0].name)
-            format_slot = copy.copy(args[0].format_slot)
-        elif len(args) == 1 and not isinstance(args[0], type(self)):
-            name = copy.copy(args[0])
-            format_slot = None
-        elif len(args) == 2 and isinstance(args[0], type(self)):
-            name = copy.copy(args[0].name)
-            format_slot = args[1]
-        elif len(args) == 2 and not isinstance(args[0], type(self)):
-            name = args[0]
-            format_slot = args[1]
-        elif len(args) == 0:
-            name = 'foo'
-            format_slot = None
-        else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, args)
-            raise ValueError(message)
+    def __init__(self, name=None, format_slot=None):
+        name = name or 'slurDotted'
         format_slot = format_slot or 'opening'
         assert format_slot in self._valid_format_slots, repr(format_slot)
         assert isinstance(name, str), repr(name)
@@ -154,11 +132,17 @@ class LilyPondCommand(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        positional_argument_values = [self.name]
-        if self.format_slot is not None:
-            positional_argument_values.append(self.format_slot)
+        positional_argument_values = (
+            self.name,
+            )
+        keyword_argument_names = ()
+        if not self.format_slot == 'opening':
+            keyword_argument_names = (
+                'format_slot',
+                )
         return systemtools.StorageFormatSpecification(
             self,
+            keyword_argument_names=keyword_argument_names,
             positional_argument_values=positional_argument_values,
             )
 
@@ -166,7 +150,7 @@ class LilyPondCommand(AbjadObject):
 
     @property
     def format_slot(self):
-        r'''Format slot of LilyPond command.
+        r'''Gets format slot of LilyPond command.
 
         ::
 
@@ -180,7 +164,7 @@ class LilyPondCommand(AbjadObject):
 
     @property
     def name(self):
-        r'''Name of LilyPond command.
+        r'''Gets name of LilyPond command.
 
         ::
 
