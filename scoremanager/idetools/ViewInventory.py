@@ -7,6 +7,11 @@ class ViewInventory(TypedOrderedDict):
     .. todo:: add examples.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property
