@@ -73,7 +73,6 @@ class ImportManager(object):
         path,
         namespace,
         delete_systemtools=True,
-        **kwargs
         ):
         r'''Inspects the top level of `path`.
 
@@ -130,7 +129,6 @@ class ImportManager(object):
         path,
         namespace,
         delete_systemtools=True,
-        **kwargs
         ):
         r'''Imports public names from `path` into `namespace`.
 
@@ -147,5 +145,43 @@ class ImportManager(object):
         if delete_systemtools:
             if 'systemtools' in namespace:
                 del(namespace['systemtools'])
+        if ImportManager.__name__ in namespace:
+            del(namespace[ImportManager.__name__])
+
+    @staticmethod
+    def import_material_packages(
+        path,
+        namespace,
+        ):
+        package_path = ImportManager._split_package_path(path)
+        for name in os.listdir(path):
+            if not os.path.isdir(os.path.join(path, name)):
+                continue
+            elif name in ('.svn', '.git', 'test', '__pycache__'):
+                continue
+            initializer_file_path = os.path.join(
+                path,
+                name,
+                '__init__.py',
+                )
+            if not os.path.exists(initializer_file_path):
+                continue
+            output_file_path = os.path.join(
+                path,
+                name,
+                'output.py',
+                )
+            if not os.path.exists(output_file_path):
+                continue
+            output_module_path = '.'.join((
+                package_path,
+                name,
+                'output',
+                ))
+            output_module = __import__(output_module_path, fromlist=['*'])
+            if name in dir(output_module):
+                namespace[name] = getattr(output_module, name)
+        if 'systemtools' in namespace:
+            del(namespace['systemtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])
