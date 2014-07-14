@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import stringtools
@@ -16,6 +17,7 @@ class Autoeditor(Controller):
         '_attribute_section',
         '_attributes_in_memory',
         '_breadcrumb',
+        '_original_target',
         '_target',
         )
 
@@ -31,6 +33,7 @@ class Autoeditor(Controller):
         Controller.__init__(self, session=session)
         self._attributes_in_memory = {}
         self._breadcrumb = breadcrumb
+        self._original_target = copy.deepcopy(target)
         self._target = target
 
     ### SPECIAL METHODS ###
@@ -48,8 +51,11 @@ class Autoeditor(Controller):
 
     @property
     def _attribute_manifest(self):
-        #return self.target._attribute_manifest
         return getattr(self.target, '_attribute_manifest', [])
+
+    @property
+    def _target_has_changed(self):
+        return not self.target == self._original_target
 
     ### PRIVATE METHODS ###
 
@@ -172,7 +178,6 @@ class Autoeditor(Controller):
 
     def _handle_input(self, result):
         assert isinstance(result, str), repr(result)
-        print(repr(result), 'RES')
         if result == '<return>':
             self._session._is_backtracking_locally = True
             return
@@ -189,7 +194,6 @@ class Autoeditor(Controller):
             )
         if attribute_editor is None:
             return
-        # ZZZ
         if self._session.is_autoadvancing:
             self._session._autoadvance_depth += 1
         result = attribute_editor._run()
@@ -282,9 +286,6 @@ class Autoeditor(Controller):
             result = None
             while True:
                 menu = self._make_main_menu()
-                #print(repr(menu), 'MN')
-                #for section in menu.menu_sections:
-                #    print(repr(section), 'SEC', section.group_by_annotation)
                 if result is None and self._session.is_autostarting:
                     #print 'case 1 ...'
                     result = menu._get_first_nonhidden_return_value_in_menu()

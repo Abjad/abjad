@@ -262,7 +262,10 @@ class Session(abctools.AbjadObject):
             )
         header = '\n'.join(breadcrumbs)
         if annotate_edit and self.is_in_autoeditor:
-            header = '{} (EDIT)'.format(header)
+            if self.autoeditor_target_has_changed:
+                header = '{} (EDIT+)'.format(header)
+            else:
+                header = '{} (EDIT)'.format(header)
         if header == 'Abjad IDE':
             header = 'Abjad IDE - home'
         return header
@@ -304,6 +307,24 @@ class Session(abctools.AbjadObject):
         Returns nonnegative integer.
         '''
         return self._autoadvance_depth
+
+    @property
+    def autoeditor_target_has_changed(self):
+        r'''Is true when session is in autoeditor and autoeditor target
+        has changed. Otherwise false. Responsible for the appearance of (EDIT+)
+        in autoeditor menu header.
+
+        Returns boolean.
+        '''
+        from scoremanager import idetools
+        autoeditor = None
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, idetools.Autoeditor):
+                autoeditor = controller
+                break
+        if autoeditor is None:
+            return False
+        return autoeditor._target_has_changed
 
     @property
     def command_history(self):

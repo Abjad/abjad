@@ -31,7 +31,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views - _test (EDIT)',
+        'Abjad IDE - views - _test (EDIT+)',
         '',
         "   1: 'clean-letter' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views - _test (EDIT)',
+        'Abjad IDE - views - _test (EDIT+)',
         '',
         "   1: 'clean-letter' in :ds:",
         "   2: 'rhythm-letter' in :ds:",
@@ -57,7 +57,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views (EDIT)',
+        'Abjad IDE - views (EDIT+)',
         '',
         "   1: _test: 'clean-letter' in :ds:, 'rhythm-letter' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views (EDIT)',
+        'Abjad IDE - views (EDIT+)',
         '',
         "   1: _new_test: 'clean-letter' in :ds:, 'rhythm-letter' in :ds:",
         '',
@@ -97,7 +97,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views - _new_test (EDIT)',
+        'Abjad IDE - views - _new_test (EDIT+)',
         '',
         "   1: 'rhythm-letter' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_AbjadIDE_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - views (EDIT)',
+        'Abjad IDE - views (EDIT+)',
         '',
         "   1: _new_test: 'rhythm-letter' in :ds:",
         '',

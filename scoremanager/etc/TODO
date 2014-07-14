@@ -38,45 +38,42 @@
 14. Sort the asset sections in (M), (K) etc according to the same order
     as used in (H).
 
-15. Change (EDIT) to (EDIT*) in Autoeditor menu when target has changed
-    but has no yet been written to disk.
-
-16. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+15. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on
     (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
-17. Write in-library and in-score material breadcrumb tests.
+16. Write in-library and in-score material breadcrumb tests.
 
-18. Make autoadvance halt and insist on reentry of value entered incorrectly
+17. Make autoadvance halt and insist on reentry of value entered incorrectly
     by composer.
 
-19. Write autoadvance tests that capture some of the good autoadvance
+18. Write autoadvance tests that capture some of the good autoadvance
     behaviors implemented so far.
 
-20. Change behavior of lone (/) during autoadvance.
+19. Change behavior of lone (/) during autoadvance.
     Right now (/) does two things: stops autoadvance and sets current property
     to none. (/) should instead stop autoadvance put leave current property
     unchanged.
 
-21. Make (b) work during autoadvance.
+20. Make (b) work during autoadvance.
     The correct behavior should be to abandon and preserve value of current
     property and then to retreat back to previous property, all while
     leaving autoadvance turned on.
 
-22. Prevent (/) autoadvance from terminating autoeditor and writing target to
+21. Prevent (/) autoadvance from terminating autoeditor and writing target to
     disk. The write to disk should always come in response to an explicit
     additional command from the composer. The exception should be the more
     powerful (@) command which can take the composer through all properties
     of an object and then save the target to disk after all properties have
     been entered.
 
-23. Implement something to make sure _command_to_method contains
+22. Implement something to make sure _command_to_method contains
     neither duplicate commands nor duplicate methods.
 
-24. Add one blank line between output chunks in iterative commands.
+23. Add one blank line between output chunks in iterative commands.
 
-25. Add (*) suffix to changed assets in asset menu.
+24. Add (*) suffix to changed assets in asset menu.
     Something like ...
         1: instrumentation (*)
         2: magic numbers
@@ -85,19 +82,19 @@
         5: time signatures
     ... will make clear that three packages have changed.
 
-26. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
+25. Fix zagged pitch-class illustration to remove LilyPond warnings like ...
         illustration.ly:89:75: warning: conflicting note group events
     ... and related.
     Make a test zagged pitch class material package and illustrate to test.
 
-27. Implement some sort of autoeditor postfix to allow in-place 'editing'
+26. Implement some sort of autoeditor postfix to allow in-place 'editing'
     of an existing value. Test with (M > example~talea > da > t-)
     to allow the talea to be copied into the getter as a type of
     prepopulation.
 
-28. Make (dp) work with files to circumvent the reimport trap.
+27. Make (dp) work with files to circumvent the reimport trap.
 
-29. Implement something to allow the editing of text files in any
+28. Implement something to allow the editing of text files in any
     score's etc/ directory.
 
-30. Extend something somewhere to catch "unkown command" messages during test.
+29. Extend something somewhere to catch "unkown command" messages during test.

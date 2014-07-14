@@ -18,6 +18,6 @@ def test_Getter_go_back_01():
         'Red Example Score (2013) - materials directory - tempo inventory',
         'Red Example Score (2013) - materials directory - tempo inventory (EDIT)',
         'Red Example Score (2013) - materials directory - tempo inventory - tempo (EDIT)',
-        'Red Example Score (2013) - materials directory - tempo inventory - tempo (EDIT)',
+        'Red Example Score (2013) - materials directory - tempo inventory - tempo (EDIT+)',
         ]
     assert ide._transcript.titles == titles

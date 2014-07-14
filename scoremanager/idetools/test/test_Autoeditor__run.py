@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 from experimental.tools import handlertools
 import scoremanager
@@ -495,3 +496,33 @@ def test_Autoeditor__run_25():
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
     input_ = 'red~example~score m tempo~inventory da done! q'
     ide._run(input_=input_)
+
+
+def test_Autoeditor__run_26():
+    r'''The (EDIT+) label shows up after target has been modified.
+    '''
+
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
+
+    definition_py = os.path.join(
+        ide._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        'tempo_inventory',
+        'definition.py',
+        )
+
+    with systemtools.FilesystemState(keep=[definition_py]):
+        input_ = 'red~example~score m tempo~inventory da add ((1, 8), 136) q'
+        ide._run(input_=input_)
+
+    titles = [
+        'Abjad IDE - scores',
+        'Red Example Score (2013)',
+        'Red Example Score (2013) - materials directory',
+        'Red Example Score (2013) - materials directory - tempo inventory',
+        'Red Example Score (2013) - materials directory - tempo inventory (EDIT)',
+        'Red Example Score (2013) - materials directory - tempo inventory (EDIT+)',
+        ]
+
+    assert ide._transcript.titles == titles

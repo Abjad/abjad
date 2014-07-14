@@ -31,7 +31,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views - _test (EDIT)',
+        'Abjad IDE - distribution depot - views - _test (EDIT+)',
         '',
         "   1: 'score' in :ds:",
         '',
@@ -43,7 +43,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views - _test (EDIT)',
+        'Abjad IDE - distribution depot - views - _test (EDIT+)',
         '',
         "   1: 'score' in :ds:",
         "   2: 'audio' in :ds:",
@@ -57,7 +57,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views (EDIT)',
+        'Abjad IDE - distribution depot - views (EDIT+)',
         '',
         "   1: _test: 'score' in :ds:, 'audio' in :ds:",
         '',
@@ -70,7 +70,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views (EDIT)',
+        'Abjad IDE - distribution depot - views (EDIT+)',
         '',
         "   1: _new_test: 'score' in :ds:, 'audio' in :ds:",
         '',
@@ -97,7 +97,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views - _new_test (EDIT)',
+        'Abjad IDE - distribution depot - views - _new_test (EDIT+)',
         '',
         "   1: 'audio' in :ds:",
         '',
@@ -109,7 +109,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
     assert any(_.lines == lines for _ in transcript)
 
     lines = [
-        'Abjad IDE - distribution depot - views (EDIT)',
+        'Abjad IDE - distribution depot - views (EDIT+)',
         '',
         "   1: _new_test: 'audio' in :ds:",
         '',
