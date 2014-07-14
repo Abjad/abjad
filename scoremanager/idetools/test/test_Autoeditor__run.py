@@ -486,3 +486,12 @@ def test_Autoeditor__run_24():
     contents = ide._transcript.contents
 
     assert "Unknown command: '??'." in contents
+
+
+def test_Autoeditor__run_25():
+    r'''Bang-suffixed done doesn't blow up autoeditor.
+    '''
+
+    ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    input_ = 'red~example~score m tempo~inventory da done! q'
+    ide._run(input_=input_)

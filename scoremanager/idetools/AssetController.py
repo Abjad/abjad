@@ -220,7 +220,8 @@ class AssetController(Controller):
                 self._io_manager._invoke_shell(statement)
             elif result in self._command_to_method:
                 self._command_to_method[result]()
-            elif result.endswith('!') and result[:-1] in self._command_to_method:
+            elif (result.endswith('!') and 
+                result[:-1] in self._command_to_method):
                 result = result[:-1]
                 with self._io_manager._make_interaction(confirm=False):
                     self._command_to_method[result]()
