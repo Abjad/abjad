@@ -13,7 +13,7 @@ foo_path = os.path.join(
 
 
 def test_DistributionFileWrangler_remove_every_unadded_asset_01():
-    r'''In score.
+    r'''In distribution directory.
     '''
 
     with systemtools.FilesystemState(remove=[foo_path]):
@@ -26,9 +26,9 @@ def test_DistributionFileWrangler_remove_every_unadded_asset_01():
 
 
 def test_DistributionFileWrangler_remove_every_unadded_asset_02():
-    r'''Out of score.
+    r'''In distribution depot.
     '''
 
-    input_ = 'D rcn* y q'
+    input_ = 'D rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

@@ -446,6 +446,7 @@ def test_Autoeditor__run_21():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._allow_unknown_command_during_test = True
     input_ = 'red~example~score m tempo~inventory da ! q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
@@ -458,6 +459,7 @@ def test_Autoeditor__run_22():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._allow_unknown_command_during_test = True
     input_ = 'red~example~score m tempo~inventory da !! q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
@@ -470,6 +472,7 @@ def test_Autoeditor__run_23():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._allow_unknown_command_during_test = True
     input_ = 'red~example~score m tempo~inventory da ? q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
@@ -482,6 +485,7 @@ def test_Autoeditor__run_24():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._allow_unknown_command_during_test = True
     input_ = 'red~example~score m tempo~inventory da ?? q'
     ide._run(input_=input_)
     contents = ide._transcript.contents

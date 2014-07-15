@@ -166,8 +166,6 @@ class AbjadIDE(Wrangler):
 
     def _make_main_menu(self):
         from scoremanager import idetools
-        #superclass = super(AbjadIDE, self)
-        #menu = superclass._make_main_menu()
         menu = idetools.AssetController._make_main_menu(self)
         self._make_asset_menu_section(menu)
         self._make_init_py_menu_section(menu)

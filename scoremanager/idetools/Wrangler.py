@@ -1023,6 +1023,11 @@ class Wrangler(ScoreInternalAssetController):
         for path in paths:
             manager = self._io_manager._make_package_manager(path)
             manager.display_status()
+        if not paths:
+            message = 'Repository status for {} ... OK'
+            directory = self._get_current_directory()
+            message = message.format(directory)
+            self._io_manager._display(message)
 
     def edit_views_py(self):
         r'''Opens ``__views__.py``.

@@ -31,6 +31,7 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_allow_unknown_command_during_test',
         '_after_redraw_message',
         '_attempted_display_status',
         '_attempted_remove_unadded_assets',
@@ -109,6 +110,7 @@ class Session(abctools.AbjadObject):
     def __init__(self, input_=None, is_test=False):
         from scoremanager import idetools
         self._after_redraw_message = None
+        self._allow_unknown_command_during_test = False
         self._attempted_display_status = False
         self._attempted_remove_unadded_assets = False
         self._attempted_to_add = False
@@ -281,8 +283,10 @@ class Session(abctools.AbjadObject):
     def _reinitialize(self):
         is_test = self._is_test
         is_add_test = self._is_repository_test
+        allow_unknown = self._allow_unknown_command_during_test
         type(self).__init__(self, is_test=self.is_test)
         self._is_repository_test = is_add_test
+        self._allow_unknown_command_during_test = allow_unknown
 
     def _set_test_score(self, score_package_name):
         from scoremanager import idetools

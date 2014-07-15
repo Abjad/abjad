@@ -20,7 +20,7 @@ def test_BuildFileWrangler_check_every_file_02():
     r'''Works in build depot.
     '''
 
-    input_ = 'U ck* y q'
+    input_ = 'U ck* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
