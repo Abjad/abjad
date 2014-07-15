@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 
 
 def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
@@ -61,7 +62,7 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
     from abjad.tools import selectiontools
 
     if classes is None:
-        classes = (list, tuple, selectiontools.Selection)
+        classes = (collections.Sequence, selectiontools.Selection)
 
     assert isinstance(sequence, classes), repr(sequence)
     sequence_type = type(sequence)
