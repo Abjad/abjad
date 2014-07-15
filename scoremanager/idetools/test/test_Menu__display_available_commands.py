@@ -19,6 +19,7 @@ def test_Menu__display_available_commands_02():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
+    ide._session._allow_unknown_command_during_test = True
     input_ = '?? asdf q'
     ide._run(input_=input_)
 

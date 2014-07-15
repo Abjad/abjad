@@ -367,10 +367,10 @@ class Menu(Controller):
             message = message.format(input_)
             self._io_manager._display([message, ''])
             result = None
-            #if (self._session.is_test and 
-            #    not self._session._allow_unknown_command_during_test):
-            #    message = 'tests should contain no unknown commands.'
-            #    raise Exception(message)
+            if (self._session.is_test and 
+                not self._session._allow_unknown_command_during_test):
+                message = 'tests should contain no unknown commands.'
+                raise Exception(message)
         else:
             result = directive
         return result

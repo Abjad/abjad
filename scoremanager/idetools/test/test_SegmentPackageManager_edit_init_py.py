@@ -8,7 +8,7 @@ def test_SegmentPackageManager_edit_init_py_01():
     r'''Works when __init__.py doesn't exist.
     '''
 
-    input_ = 'red~example~score g A no q'
+    input_ = 'red~example~score g A ne q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

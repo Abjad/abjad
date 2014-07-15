@@ -96,5 +96,3 @@
 
 28. Implement something to allow the editing of text files in any
     score's etc/ directory.
-
-29. Extend something somewhere to catch "unkown command" messages during test.

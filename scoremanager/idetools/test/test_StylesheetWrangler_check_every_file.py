@@ -20,7 +20,7 @@ def test_StylesheetWrangler_check_every_file_02():
     r'''Works in stylesheets depot.
     '''
 
-    input_ = 'Y ck* y q'
+    input_ = 'Y ck* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
