@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import re
 from abjad import *
-from scoremanager.idetools.Configuration \
-    import Configuration
+from scoremanager.idetools.Configuration import Configuration
 configuration = Configuration()
 
 
@@ -92,6 +91,30 @@ def is_nonnegative_integer(expr):
 
 def is_nonpositive_integer(expr):
     return is_integer(expr) and 0 <= expr
+
+def is_page_layout_unit(expr):
+    return expr in ('in', 'mm', 'cm', 'pt', 'pica')
+
+def is_paper_dimension_string(expr):
+    if not isinstance(expr, str):
+        return False
+    parts = expr.split()
+    if not len(parts) == 4:
+        return False
+    width, x, height, units = parts
+    try:
+        float(width) 
+    except ValueError:
+        return False
+    try:
+        float(height) 
+    except ValueError:
+        return False
+    if not x == 'x':
+        return False
+    if not is_page_layout_unit(units):
+        return False
+    return True
 
 def is_pitch_range_or_none(expr):
     return isinstance(expr, (pitchtools.PitchRange, type(None)))

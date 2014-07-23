@@ -309,7 +309,7 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         getter = self._io_manager._make_getter()
-        getter.append_string('paper dimensions')
+        getter.append_paper_dimensions('paper dimensions')
         result = getter._run()
         if self._session.is_backtracking:
             return

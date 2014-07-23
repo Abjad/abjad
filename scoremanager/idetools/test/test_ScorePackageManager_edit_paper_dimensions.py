@@ -17,6 +17,6 @@ def test_ScorePackageManager_edit_paper_dimensions_01():
         manager = scoremanager.idetools.ScorePackageManager
         manager = manager(path=path, session=ide._session)
         manager._get_metadatum('paper_dimensions') == '8.5 x 11 in'
-        input_ = 'red~example~score p paper~dimensions A4 q'
+        input_ = 'red~example~score p paper~dimensions 11~x~17~in q'
         ide._run(input_=input_)
-        assert manager._get_metadatum('paper_dimensions') == 'A4'
+        assert manager._get_metadatum('paper_dimensions') == '11 x 17 in'

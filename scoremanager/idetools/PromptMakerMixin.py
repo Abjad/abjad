@@ -570,6 +570,23 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
+    def append_paper_dimensions(
+        self,
+        spaced_attribute_name,
+        default_value='8.5 x 11 in',
+        ):
+        r'''Appends paper dimensions.
+
+        Returns prompt.
+        '''
+        help_template = "value must be of the form '8.5 x 11 in'."
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=predicates.is_paper_dimension_string,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_pitch_range(
         self,
         spaced_attribute_name,
@@ -582,8 +599,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value must be pitch range.'
         setup_statements = []
         setup_statements.append(self._abjad_import_statement)
-        setup_statements.append(
-            'evaluated_input = pitchtools.PitchRange({})')
+        setup_statements.append('evaluated_input = pitchtools.PitchRange({})')
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_pitch_range_or_none,
