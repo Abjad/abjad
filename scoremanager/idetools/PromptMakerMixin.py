@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanager import predicates
+from scoremanager.idetools import predicates
 
 
 class PromptMakerMixin(AbjadObject):

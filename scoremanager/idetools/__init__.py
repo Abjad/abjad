@@ -3,8 +3,10 @@ from abjad.tools import systemtools
 import sys
 if sys.version_info[0] == 2:
     import getters
+    import predicates
 else:
     from scoremanager.idetools import getters
+    from scoremanager.idetools import predicates
 del sys
 
 
