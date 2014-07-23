@@ -60,6 +60,7 @@ class BuildFileWrangler(FileWrangler):
             'fceio': self.edit_interpret_open_front_cover_source,
             'fcg': self.generate_front_cover_source,
             'fci': self.interpret_front_cover,
+            'fcio': self.interpret_open_front_cover,
             'fco': self.open_front_cover_pdf,
             #
             'mc': self.collect_segment_lilypond_files,
@@ -327,6 +328,7 @@ class BuildFileWrangler(FileWrangler):
         commands.append(('front cover - edit; interpret; open', 'fceio'))
         commands.append(('front cover - generate latex source', 'fcg'))
         commands.append(('front cover - interpret latex source', 'fci'))
+        commands.append(('front cover - interpret; open', 'fcio'))
         commands.append(('front cover - open pdf', 'fco'))
         menu.make_command_section(
             commands=commands,
@@ -671,6 +673,14 @@ class BuildFileWrangler(FileWrangler):
         Returns none.
         '''
         self._interpret_file_ending_with('front-cover.tex')
+
+    def interpret_open_front_cover(self):
+        r'''Interprets ``front-cover.tex`` and then opens ``front-cover.pdf``.
+
+        Returns none.
+        '''
+        self.interpret_front_cover()
+        self.open_front_cover_pdf()
 
     def interpret_music(self):
         r'''Interprets ``music.ly``.
