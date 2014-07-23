@@ -1,6 +1,8 @@
 # -*- encoding: utf -*-
 import abc
+import codecs
 import os
+import sys
 from abjad.tools import stringtools
 
 
@@ -146,13 +148,21 @@ class Controller(object):
 
     @staticmethod
     def _replace_in_file(file_path, old, new):
+        assert isinstance(old, str), repr(old)
+        assert isinstance(new, str), repr(new)
         with open(file_path, 'r') as file_pointer:
             new_file_lines = []
             for line in file_pointer.readlines():
                 line = line.replace(old, new)
                 new_file_lines.append(line)
-        with open(file_path, 'w') as file_pointer:
-            file_pointer.write(''.join(new_file_lines))
+        new_file_contents = ''.join(new_file_lines)
+        if sys.version_info[0] == 2:
+            new_file_contents = unicode(new_file_contents, 'utf-8')
+            with codecs.open(file_path, 'w', encoding='utf-8') as file_pointer:
+                file_pointer.write(new_file_contents)
+        else:
+            with open(file_path, 'w') as file_pointer:
+                file_pointer.write(new_file_contents)
 
     @staticmethod
     def _sort_ordered_dictionary(dictionary):

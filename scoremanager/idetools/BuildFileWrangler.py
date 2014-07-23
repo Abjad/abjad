@@ -561,7 +561,34 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._copy_boilerplate('front-cover.tex')
+        file_name = 'front-cover.tex'
+        self._copy_boilerplate(file_name)
+        manager = self._session.current_score_package_manager
+        destination_path = os.path.join(
+            manager._path,
+            'build',
+            file_name,
+            )
+        score_title = manager._get_title()
+        if score_title:
+            old = 'TITLE'
+            new = score_title.upper()
+            self._replace_in_file(destination_path, old, new)
+        forces_tagline = manager._get_metadatum('forces_tagline')
+        if forces_tagline:
+            old = 'FOR INSTRUMENTS'
+            new = forces_tagline
+            self._replace_in_file(destination_path, old, new)
+        year = manager._get_metadatum('year')
+        if year:
+            old = 'YEAR'
+            new = str(year)
+            self._replace_in_file(destination_path, old, new)
+        composer = self._configuration.upper_case_composer_full_name
+        if composer:
+            old = 'COMPOSER'
+            new = composer
+            self._replace_in_file(destination_path, old, new)
 
     def generate_interpret_open_front_cover(self):
         r'''Generates ``front-cover.tex``.
