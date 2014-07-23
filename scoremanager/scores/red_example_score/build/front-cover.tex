@@ -1,21 +1,18 @@
 \documentclass[11pt]{report}
-
+\usepackage[papersize={8.5in, 11in}, margin=1in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage[papersize={8.5in, 11in}]{geometry}
+\usepackage{lmodern}
 \usepackage{tikz}
 \usetikzlibrary{calc}
-
 % uncomment for use with xelatex
 %\usepackage{xltxtra,fontspec,xunicode}
 %\defaultfontfeatures{Scale=MatchLowercase}
 %\setromanfont[Numbers=Uppercase]{Didot}
-
 \newlength{\drop}
 \parindent=0pt
 
 \begin{document}
     \begin{titlepage}
-
         \begin{tikzpicture}[remember picture, overlay]
             \draw[line width = 1.6pt]
                 ($(current page.north west) + (1in,-1in)$)
@@ -26,58 +23,23 @@
                 rectangle
                 ($(current page.south east) + (-1in,1in) + (-2.8pt,2.8pt)$);
         \end{tikzpicture}
-
         \drop=0.1\textheight
         \centering
+        % must leave blank line below for vspace to work
 
-        \vspace*{\baselineskip}
-
-        \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
-        \rule{\textwidth}{0.4pt}\\[\baselineskip]
-        {
-            \fontsize{6cm}{1em}\selectfont
-            PIECE\\
-            [0.2\baselineskip]
-            TITLE
-        }
-        \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
-        \rule{\textwidth}{1.6pt}\\[\baselineskip]
-
-        \vspace*{2\baselineskip}
-
-        {
-            \itshape
-            A quartet for
-        }
+        {\vspace{0.2in}}
+        {\fontsize{5cm}{2em}\selectfont TITLE}
         \\
-        {
-            \large
-            Instrument one,\\
-            Instrument two,\\
-            Instrument three, and\\
-            Instrument four
-            \par
-        }
-
-        \vspace*{2\baselineskip}
-
-        {
-            \itshape
-            Composed by
-        }
-        \\
+        \vspace{2 in}
         {
             \Large
-            COMPOSER
-            \par
+            FOR INSTRUMENTS
+            \vspace*{0.5\baselineskip}
+            \\
+            (YEAR)
         }
-
-        \vspace*{2\baselineskip}
-
-        {
-            \Large
-            Year of Composition
-        }
-
+        \\
+        \vspace{3 in}
+        {\fontsize{5cm}{2em}\selectfont COMPOSER}
     \end{titlepage}
 \end{document}
