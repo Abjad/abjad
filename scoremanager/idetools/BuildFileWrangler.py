@@ -59,6 +59,7 @@ class BuildFileWrangler(FileWrangler):
             'fce': self.edit_front_cover_source,
             'fceio': self.edit_interpret_open_front_cover_source,
             'fcg': self.generate_front_cover_source,
+            'fcgio': self.generate_interpret_open_front_cover,
             'fci': self.interpret_front_cover,
             'fcio': self.interpret_open_front_cover,
             'fco': self.open_front_cover_pdf,
@@ -327,6 +328,7 @@ class BuildFileWrangler(FileWrangler):
         commands.append(('front cover - edit latex source', 'fce'))
         commands.append(('front cover - edit; interpret; open', 'fceio'))
         commands.append(('front cover - generate latex source', 'fcg'))
+        commands.append(('front cover - generate; interpret; open', 'fcgio'))
         commands.append(('front cover - interpret latex source', 'fci'))
         commands.append(('front cover - interpret; open', 'fcio'))
         commands.append(('front cover - open pdf', 'fco'))
@@ -560,6 +562,19 @@ class BuildFileWrangler(FileWrangler):
         Returns none.
         '''
         self._copy_boilerplate('front-cover.tex')
+
+    def generate_interpret_open_front_cover(self):
+        r'''Generates ``front-cover.tex``.
+
+        Then interprets ``front-cover.tex``.
+
+        Then opens ``front-cover.pdf``.
+
+        Returns none.
+        '''
+        self.generate_front_cover_source()
+        self.interpret_front_cover()
+        self.open_front_cover_pdf()
         
     def generate_music_source(self):
         r'''Generates ``music.ly``.

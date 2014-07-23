@@ -27,7 +27,7 @@ def test_predicates_02():
     assert not predicates.is_page_layout_unit(1)
 
 
-def test_prediates_03():
+def test_predicates_03():
 
     assert predicates.is_paper_dimension_string('8.5 x 11 in')
     assert predicates.is_paper_dimension_string('11 x 8.5 in')
