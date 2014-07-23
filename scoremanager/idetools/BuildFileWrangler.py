@@ -195,7 +195,8 @@ class BuildFileWrangler(FileWrangler):
     def _enter_run(self):
         self._session._is_navigating_to_build_files = False
 
-    def _copy_boilerplate(self, file_name, candidacy=True):
+    def _copy_boilerplate(self, file_name, candidacy=True, replacements=None):
+        replacements = replacements or {}
         manager = self._session.current_score_package_manager
         assert manager is not None
         width, height, unit = manager._parse_paper_dimensions()
@@ -223,6 +224,9 @@ class BuildFileWrangler(FileWrangler):
             new = '{{{}{}, {}{}}}'
             new = new.format(width, unit, height, unit)
             self._replace_in_file(candidate_path, old, new)
+            for old in replacements:
+                new = replacements[old]
+                self._replace_in_file(candidate_path, old, new)
             if not os.path.exists(destination_path):
                 shutil.copyfile(candidate_path, destination_path)
                 message = 'wrote {}.'.format(destination_path)
@@ -562,33 +566,29 @@ class BuildFileWrangler(FileWrangler):
         Returns none.
         '''
         file_name = 'front-cover.tex'
-        self._copy_boilerplate(file_name)
+        replacements = {}
         manager = self._session.current_score_package_manager
-        destination_path = os.path.join(
-            manager._path,
-            'build',
-            file_name,
-            )
         score_title = manager._get_title()
         if score_title:
             old = 'TITLE'
             new = score_title.upper()
-            self._replace_in_file(destination_path, old, new)
+            replacements[old] = new
         forces_tagline = manager._get_metadatum('forces_tagline')
         if forces_tagline:
             old = 'FOR INSTRUMENTS'
             new = forces_tagline
-            self._replace_in_file(destination_path, old, new)
+            replacements[old] = new
         year = manager._get_metadatum('year')
         if year:
             old = 'YEAR'
             new = str(year)
-            self._replace_in_file(destination_path, old, new)
+            replacements[old] = new
         composer = self._configuration.upper_case_composer_full_name
         if composer:
             old = 'COMPOSER'
             new = composer
-            self._replace_in_file(destination_path, old, new)
+            replacements[old] = new
+        self._copy_boilerplate(file_name, replacements=replacements)
 
     def generate_interpret_open_front_cover(self):
         r'''Generates ``front-cover.tex``.
