@@ -59,6 +59,13 @@ class Configuration(AbjadConfiguration):
                 ],
                 'spec': "string(default='Full Name')",
             },
+            'upper_case_composer_full_name': {
+                'comment': [
+                    '',
+                    'Upper case version of your full name for score covers.',
+                ],
+                'spec': "string(default='Full Name')",
+            },
             'composer_last_name': {
                 'comment': [
                     '',
@@ -508,6 +515,24 @@ class Configuration(AbjadConfiguration):
         Returns string.
         '''
         return '# -*- encoding: utf-8 -*-'
+
+    @property
+    def upper_case_composer_full_name(self):
+        r'''Gets upper case composer full name.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_full_name
+                '...'
+
+        Aliases `upper_case_composer_full_name` setting in score manager 
+        configuration file.
+
+        Returns string.
+        '''
+        return self._settings['upper_case_composer_full_name']
 
     @property
     def user_score_packages_directory(self):
