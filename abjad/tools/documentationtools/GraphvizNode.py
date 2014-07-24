@@ -15,6 +15,7 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         children=None,
         name=None,
         ):
+        self._children = []
         TreeContainer.__init__(
             self,
             children=children,
