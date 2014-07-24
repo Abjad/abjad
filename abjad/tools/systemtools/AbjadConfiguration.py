@@ -49,8 +49,6 @@ class AbjadConfiguration(Configuration):
 
     def __init__(self):
         Configuration.__init__(self)
-        # TODO: uncommenting this fails ScoreManagegerConfiguration init
-        # verify the PDF output directory
         if not os.path.exists(self.abjad_output_directory):
             os.makedirs(self.abjad_output_directory)
 
@@ -134,11 +132,13 @@ class AbjadConfiguration(Configuration):
 
     @property
     def _initial_comment(self):
-        line_1 = 'Abjad configuration file created by Abjad on {}.'
-        line_1 = line_1.format(self._current_time)
-        line_2 = 'File is interpreted by ConfigObj'
-        line_2 += ' and should follow ini syntax.'
-        return [line_1, line_2]
+        current_time = self._current_time
+        return [
+            '-*- coding: utf-8 -*-',
+            '',
+            'Abjad configuration file created on {}.'.format(current_time),
+            'This file is interpreted by ConfigObj and follows ini sytnax.',
+        ]
 
     ### PUBLIC METHODS ###
 
