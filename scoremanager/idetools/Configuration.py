@@ -71,7 +71,7 @@ class Configuration(AbjadConfiguration):
                     '',
                     'Your website.',
                 ],
-                'spec': "string(default='Website')",
+                'spec': "string(default=None)",
             },
             'library': {
                 'comment': [

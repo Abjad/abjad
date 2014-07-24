@@ -63,6 +63,7 @@ class ScorePackageManager(PackageManager):
         result = {
             'catalog number': self.edit_catalog_number,
             'paper dimensions': self.edit_paper_dimensions,
+            'price': self.edit_price,
             'tagline': self.edit_forces_tagline,
             'title': self.edit_title,
             'year': self.edit_year,
@@ -226,15 +227,6 @@ class ScorePackageManager(PackageManager):
 
     def _make_setup_menu_entries(self):
         entries = []
-        title = self._get_metadatum('title')
-        entry = self._make_setup_menu_entry('title', title)
-        entries.append(entry)
-        forces_tagline = self._get_metadatum('forces_tagline')
-        entry = self._make_setup_menu_entry('tagline', forces_tagline)
-        entries.append(entry)
-        year = self._get_metadatum('year')
-        entry = self._make_setup_menu_entry('year', year)
-        entries.append(entry)
         catalog_number = self._get_metadatum('catalog_number')
         entry = self._make_setup_menu_entry('catalog number', catalog_number)
         entries.append(entry)
@@ -243,6 +235,18 @@ class ScorePackageManager(PackageManager):
             'paper dimensions', 
             paper_dimensions,
             )
+        entries.append(entry)
+        forces_tagline = self._get_metadatum('forces_tagline')
+        entry = self._make_setup_menu_entry('tagline', forces_tagline)
+        entries.append(entry)
+        price = self._get_metadatum('price')
+        entry = self._make_setup_menu_entry('price', price)
+        entries.append(entry)
+        title = self._get_metadatum('title')
+        entry = self._make_setup_menu_entry('title', title)
+        entries.append(entry)
+        year = self._get_metadatum('year')
+        entry = self._make_setup_menu_entry('year', year)
         entries.append(entry)
         return entries
 
@@ -314,6 +318,18 @@ class ScorePackageManager(PackageManager):
         if self._session.is_backtracking:
             return
         self._add_metadatum('paper_dimensions', result)
+
+    def edit_price(self):
+        r'''Edits price.
+
+        Returns none.
+        '''
+        getter = self._io_manager._make_getter()
+        getter.append_string('price')
+        result = getter._run()
+        if self._session.is_backtracking:
+            return
+        self._add_metadatum('price', result)
 
     def edit_title(self):
         r'''Edits title.

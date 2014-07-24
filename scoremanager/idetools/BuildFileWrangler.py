@@ -511,7 +511,24 @@ class BuildFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self._copy_boilerplate('back-cover.tex')
+        replacements = {}
+        manager = self._session.current_score_package_manager
+        catalog_number = manager._get_metadatum('catalog_number')
+        if catalog_number:
+            old = 'CATALOG NUMBER'
+            new = str(catalog_number)
+            replacements[old] = new
+        composer_website = self._configuration.composer_website
+        if composer_website:
+            old = 'COMPOSER WEBSITE'
+            new = str(composer_website)
+            replacements[old] = new
+        price = manager._get_metadatum('price')
+        if price:
+            old = 'PRICE'
+            new = str(price)
+            replacements[old] = new
+        self._copy_boilerplate('back-cover.tex', replacements=replacements)
 
     def generate_draft_source(self):
         r'''Generates ``draft.tex``.
@@ -571,12 +588,12 @@ class BuildFileWrangler(FileWrangler):
         score_title = manager._get_title()
         if score_title:
             old = 'TITLE'
-            new = score_title.upper()
+            new = str(score_title.upper())
             replacements[old] = new
         forces_tagline = manager._get_metadatum('forces_tagline')
         if forces_tagline:
             old = 'FOR INSTRUMENTS'
-            new = forces_tagline
+            new = str(forces_tagline)
             replacements[old] = new
         year = manager._get_metadatum('year')
         if year:
@@ -586,7 +603,7 @@ class BuildFileWrangler(FileWrangler):
         composer = self._configuration.upper_case_composer_full_name
         if composer:
             old = 'COMPOSER'
-            new = composer
+            new = str(composer)
             replacements[old] = new
         self._copy_boilerplate(file_name, replacements=replacements)
 
