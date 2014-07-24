@@ -59,19 +59,19 @@ class Configuration(AbjadConfiguration):
                 ],
                 'spec': "string(default='Full Name')",
             },
-            'upper_case_composer_full_name': {
-                'comment': [
-                    '',
-                    'Upper case version of your full name for score covers.',
-                ],
-                'spec': "string(default='Full Name')",
-            },
             'composer_last_name': {
                 'comment': [
                     '',
                     'Your last name.',
                 ],
-                'spec': "string(default='Name')",
+                'spec': "string(default='Last Name')",
+            },
+            'composer_website': {
+                'comment': [
+                    '',
+                    'Your website.',
+                ],
+                'spec': "string(default='Website')",
             },
             'library': {
                 'comment': [
@@ -98,6 +98,13 @@ class Configuration(AbjadConfiguration):
                         'scores',
                         )
                     ),
+            },
+            'upper_case_composer_full_name': {
+                'comment': [
+                    '',
+                    'Upper case version of your full name for score covers.',
+                ],
+                'spec': "string(default='Upper Case Full Name')",
             },
         }
         #parent_options.update(options)
@@ -281,6 +288,24 @@ class Configuration(AbjadConfiguration):
         Returns string.
         '''
         return self._settings['composer_last_name']
+
+    @property
+    def composer_website(self):
+        r'''Gets composer website.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_website
+                '...'
+
+        Aliases `composer_website` setting in score manager configuration
+        file.
+
+        Returns string.
+        '''
+        return self._settings['composer_website']
 
     @property
     def configuration_directory(self):
