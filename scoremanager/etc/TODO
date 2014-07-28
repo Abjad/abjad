@@ -100,3 +100,9 @@
 29. Make (b) work correctly while in score setup menu.
 
 30. Implement three-column (??) layout.
+
+31. (rad) gives the following when there's nothing to add:
+        > rad
+        Will add ...
+        Ok? 
+    Change this to alert that there's nothing to add.
