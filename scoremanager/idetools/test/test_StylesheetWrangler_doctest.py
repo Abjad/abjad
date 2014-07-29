@@ -8,7 +8,7 @@ def test_StylesheetWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'Y dt q'
+    input_ = 'yy dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

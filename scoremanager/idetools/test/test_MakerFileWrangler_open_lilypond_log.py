@@ -18,7 +18,7 @@ def test_MakerFileWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'K ll q'
+    input_ = 'kk ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file

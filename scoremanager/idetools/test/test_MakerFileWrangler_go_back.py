@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_back_01():
 
 def test_MakerFileWrangler_go_back_02():
 
-    input_ = 'K b q'
+    input_ = 'kk b q'
     ide._run(input_=input_)
 
     titles = [

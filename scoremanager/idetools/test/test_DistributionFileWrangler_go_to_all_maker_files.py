@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_go_to_all_maker_files_01():
     r'''From distribution directory to makers depot.
     '''
 
-    input_ = 'red~example~score d K q'
+    input_ = 'red~example~score d kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_go_to_all_maker_files_02():
     r'''From distribution depot to makers depot.
     '''
 
-    input_ = 'D K q'
+    input_ = 'dd kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

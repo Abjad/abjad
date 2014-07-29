@@ -15,7 +15,7 @@ def test_StylesheetWrangler_quit_01():
 
 def test_StylesheetWrangler_quit_02():
     
-    input_ = 'Y q'
+    input_ = 'yy q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

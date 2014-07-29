@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_go_home_01():
     r'''From segments directory.
     '''
 
-    input_ = 'red~example~score g H q'
+    input_ = 'red~example~score g hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_go_home_02():
     r'''From segments depot.
     '''
 
-    input_ = 'G H q'
+    input_ = 'gg hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

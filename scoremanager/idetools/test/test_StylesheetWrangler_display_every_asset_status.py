@@ -8,7 +8,7 @@ def test_StylesheetWrangler_display_every_asset_status_01():
     r'''Works with stylesheet library.
     '''
 
-    input_ = 'Y rst* q'
+    input_ = 'yy rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -23,7 +23,7 @@ def test_MakerFileWrangler_list_metadata_py_01():
 
 def test_MakerFileWrangler_list_metadata_py_02():
 
-    input_ = 'K mdl q'
+    input_ = 'kk mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

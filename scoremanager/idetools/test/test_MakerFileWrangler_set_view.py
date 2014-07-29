@@ -17,7 +17,7 @@ def test_MakerFileWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'K wa add _test'
+        input_ = 'kk wa add _test'
         input_ += ' add RedExampleScoreTemplate.py~(Red~Example~Score)'
         input_ += ' done done'
         input_ += ' ws _test q'

@@ -18,7 +18,7 @@ def test_StylesheetWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'Y ll q'
+    input_ = 'yy ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file

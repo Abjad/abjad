@@ -17,7 +17,7 @@ def test_SegmentPackageWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'G wa add _test'
+        input_ = 'gg wa add _test'
         input_ += ' add A~(Red~Example~Score) done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)

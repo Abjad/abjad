@@ -8,7 +8,7 @@ def test_BuildFileWrangler_go_to_all_maker_files_01():
     r'''From score build files to all maker files.
     '''
 
-    input_ = 'red~example~score u K q'
+    input_ = 'red~example~score u kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_all_maker_files_02():
     r'''From all build files to all maker files.
     '''
 
-    input_ = 'U K q'
+    input_ = 'uu kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

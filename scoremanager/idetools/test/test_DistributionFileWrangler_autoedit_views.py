@@ -13,7 +13,7 @@ def test_DistributionFileWrangler_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = "D wa add _test add 'score'~in~:ds:"
+        input_ = "dd wa add _test add 'score'~in~:ds:"
         input_ += " add 'audio'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'score' done"

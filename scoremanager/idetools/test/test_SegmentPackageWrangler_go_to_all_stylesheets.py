@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_go_to_all_stylesheets_01():
     r'''From segments directory to stylesheets depot.
     '''
 
-    input_ = 'red~example~score g Y q'
+    input_ = 'red~example~score g yy q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_go_to_all_stylesheets_02():
     r'''From segments depot to stylesheets depot.
     '''
 
-    input_ = 'G Y q'
+    input_ = 'gg yy q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

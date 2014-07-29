@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_StylesheetWrangler_go_to_all_scores_01():
 
-    input_ = 'red~example~score y S q'
+    input_ = 'red~example~score y ss q'
     ide._run(input_=input_)
 
     titles = [
@@ -20,7 +20,7 @@ def test_StylesheetWrangler_go_to_all_scores_01():
 
 def test_StylesheetWrangler_go_to_all_scores_02():
 
-    input_ = 'Y S q'
+    input_ = 'yy ss q'
     ide._run(input_=input_)
 
     titles = [

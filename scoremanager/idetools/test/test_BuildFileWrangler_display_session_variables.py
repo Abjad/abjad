@@ -16,7 +16,7 @@ def test_BuildFileWrangler_display_session_variables_01():
 
 def test_BuildFileWrangler_display_session_variables_02():
     
-    input_ = 'U sv q'
+    input_ = 'uu sv q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

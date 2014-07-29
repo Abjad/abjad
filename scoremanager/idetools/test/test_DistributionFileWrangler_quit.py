@@ -15,7 +15,7 @@ def test_DistributionFileWrangler_quit_01():
 
 def test_DistributionFileWrangler_quit_02():
     
-    input_ = 'D q'
+    input_ = 'dd q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageWrangler_go_to_all_scores_01():
 
-    input_ = 'S q'
+    input_ = 'ss q'
     ide._run(input_=input_)
 
     titles = [

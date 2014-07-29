@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_display_every_asset_status_01():
     r'''Works in segments depot.
     '''
 
-    input_ = 'G rst* q'
+    input_ = 'gg rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

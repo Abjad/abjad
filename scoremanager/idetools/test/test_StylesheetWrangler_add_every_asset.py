@@ -19,6 +19,6 @@ def test_StylesheetWrangler_add_every_asset_02():
     '''
 
     ide._session._is_repository_test = True
-    input_ = 'Y rad* q'
+    input_ = 'yy rad* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_add

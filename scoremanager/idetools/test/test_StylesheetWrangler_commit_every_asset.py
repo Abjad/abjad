@@ -19,6 +19,6 @@ def test_StylesheetWrangler_commit_every_asset_02():
     '''
 
     ide._session._is_repository_test = True
-    input_ = 'Y rci* q'
+    input_ = 'yy rci* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_commit

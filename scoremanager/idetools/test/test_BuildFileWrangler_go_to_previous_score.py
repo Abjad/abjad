@@ -20,7 +20,7 @@ def test_BuildFileWrangler_go_to_previous_score_01():
 
 def test_BuildFileWrangler_go_to_previous_score_02():
 
-    input_ = 'U << q'
+    input_ = 'uu << q'
     ide._run(input_=input_)
 
     titles = [

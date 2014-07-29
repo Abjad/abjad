@@ -8,7 +8,7 @@ def test_StylesheetWrangler_go_to_all_segments_01():
     r'''From stylesheets director to segments depot.
     '''
 
-    input_ = 'red~example~score y G q'
+    input_ = 'red~example~score y gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_StylesheetWrangler_go_to_all_segments_02():
     r'''From stylesheets depot to segments depot.
     '''
 
-    input_ = 'Y G q'
+    input_ = 'yy gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler_go_back_01():
 
 def test_SegmentPackageWrangler_go_back_02():
 
-    input_ = 'G b q'
+    input_ = 'gg b q'
     ide._run(input_=input_)
 
     titles = [

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_ScorePackageManager_go_home_01():
 
-    input_ = 'red~example~score H q'
+    input_ = 'red~example~score hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

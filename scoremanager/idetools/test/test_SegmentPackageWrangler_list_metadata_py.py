@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_list_metadata_py_01():
 
 def test_SegmentPackageWrangler_list_metadata_py_02():
 
-    input_ = 'G mdl q'
+    input_ = 'gg mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_go_to_all_scores_01():
 
-    input_ = 'red~example~score m S q'
+    input_ = 'red~example~score m ss q'
     ide._run(input_=input_)
 
     titles = [
@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_go_to_all_scores_01():
 
 def test_MaterialPackageWrangler_go_to_all_scores_02():
 
-    input_ = 'mm S q'
+    input_ = 'mm ss q'
     ide._run(input_=input_)
 
     titles = [

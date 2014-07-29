@@ -29,6 +29,6 @@ def test_BuildFileWrangler_remove_every_unadded_asset_02():
     r'''Out of score.
     '''
 
-    input_ = 'U rcn* q'
+    input_ = 'uu rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

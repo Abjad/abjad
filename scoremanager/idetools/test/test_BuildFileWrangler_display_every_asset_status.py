@@ -8,7 +8,7 @@ def test_BuildFileWrangler_display_every_asset_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'U rst* q'
+    input_ = 'uu rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

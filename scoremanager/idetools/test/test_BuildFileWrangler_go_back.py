@@ -20,7 +20,7 @@ def test_BuildFileWrangler_go_back_01():
 
 def test_BuildFileWrangler_go_back_02():
 
-    input_ = 'U b q'
+    input_ = 'uu b q'
     ide._run(input_=input_)
 
     titles = [

@@ -92,7 +92,7 @@ copyright = u'2008 - 2014, Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-# The short X.Y version.
+# The short X.yy version.
 version = abjad_configuration.get_abjad_version_string()
 # The full version, including alpha/beta/rc metadata.
 release = abjad_configuration.get_abjad_version_string()
@@ -105,7 +105,7 @@ release = abjad_configuration.get_abjad_version_string()
 # non-false value, then it is used:
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
-#today_fmt = '%B %d, %Y'
+#today_fmt = '%B %d, %yy'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -171,7 +171,7 @@ html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = '%b %d, %yy'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.

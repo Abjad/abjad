@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_pytest_01():
     r'''Works on all visible segment packages in library.
     '''
 
-    input_ = 'G pt q'
+    input_ = 'gg pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

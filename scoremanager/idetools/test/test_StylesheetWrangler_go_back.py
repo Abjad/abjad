@@ -20,7 +20,7 @@ def test_StylesheetWrangler_go_back_01():
 
 def test_StylesheetWrangler_go_back_02():
 
-    input_ = 'Y b q'
+    input_ = 'yy b q'
     ide._run(input_=input_)
 
     titles = [

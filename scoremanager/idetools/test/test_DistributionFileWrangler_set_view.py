@@ -17,7 +17,7 @@ def test_DistributionFileWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'D wa add _test'
+        input_ = 'dd wa add _test'
         input_ += ' add red-example-score.pdf~(Red~Example~Score) done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)

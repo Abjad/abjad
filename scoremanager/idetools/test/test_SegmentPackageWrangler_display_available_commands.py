@@ -15,7 +15,7 @@ def test_SegmentPackageWrangler_display_available_commands_01():
 
 def test_SegmentPackageWrangler_display_available_commands_02():
     
-    input_ = 'G ?? q'
+    input_ = 'gg ?? q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

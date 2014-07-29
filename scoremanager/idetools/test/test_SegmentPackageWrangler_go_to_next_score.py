@@ -20,7 +20,7 @@ def test_SegmentPackageWrangler_go_to_next_score_01():
 
 def test_SegmentPackageWrangler_go_to_next_score_02():
 
-    input_ = 'G >> q'
+    input_ = 'gg >> q'
     ide._run(input_=input_)
 
     titles = [

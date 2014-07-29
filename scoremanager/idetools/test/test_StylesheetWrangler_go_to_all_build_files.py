@@ -8,7 +8,7 @@ def test_StylesheetWrangler_go_to_all_build_files_01():
     r'''From stylesheets directory to build depot.
     '''
 
-    input_ = 'red~example~score y U q'
+    input_ = 'red~example~score y uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_StylesheetWrangler_go_to_all_build_files_02():
     r'''From stylesheets depot to build depot.
     '''
 
-    input_ = 'Y U q'
+    input_ = 'yy uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_maker_files_01():
     r'''From top level to all maker files.
     '''
 
-    input_ = 'H K q'
+    input_ = 'hh kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

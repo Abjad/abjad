@@ -29,6 +29,6 @@ def test_DistributionFileWrangler_remove_every_unadded_asset_02():
     r'''In distribution depot.
     '''
 
-    input_ = 'D rcn* q'
+    input_ = 'dd rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

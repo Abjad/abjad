@@ -29,6 +29,6 @@ def test_SegmentPackageWrangler_remove_every_unadded_asset_02():
     r'''Out of score.
     '''
 
-    input_ = 'G rcn* q'
+    input_ = 'gg rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

@@ -8,7 +8,7 @@ def test_BuildFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'U dt q'
+    input_ = 'uu dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

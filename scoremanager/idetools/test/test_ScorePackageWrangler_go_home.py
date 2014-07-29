@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_home_01():
     r'''From scores.
     '''
 
-    input_ = 'H q'
+    input_ = 'hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

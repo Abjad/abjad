@@ -20,7 +20,7 @@ def test_MakerFileWrangler_check_every_file_02():
     r'''Works in makers depot.
     '''
 
-    input_ = 'K ck* q'
+    input_ = 'kk ck* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

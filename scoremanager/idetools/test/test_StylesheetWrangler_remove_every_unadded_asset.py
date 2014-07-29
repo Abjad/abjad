@@ -29,6 +29,6 @@ def test_StylesheetWrangler_remove_every_unadded_asset_02():
     r'''Out of score.
     '''
 
-    input_ = 'Y rcn* q'
+    input_ = 'yy rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

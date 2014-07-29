@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_go_to_all_build_files_01():
     r'''From segments directory to build depot.
     '''
 
-    input_ = 'red~example~score g U q'
+    input_ = 'red~example~score g uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_go_to_all_build_files_02():
     r'''From segments depot to build depot.
     '''
 
-    input_ = 'G U q'
+    input_ = 'gg uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

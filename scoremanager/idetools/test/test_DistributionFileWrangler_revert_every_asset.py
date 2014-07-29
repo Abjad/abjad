@@ -16,6 +16,6 @@ def test_DistributionFileWrangler_revert_every_asset_02():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
     ide._session._is_repository_test = True
-    input_ = 'D rrv* q'
+    input_ = 'dd rrv* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_revert

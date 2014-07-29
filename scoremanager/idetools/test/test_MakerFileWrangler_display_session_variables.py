@@ -16,7 +16,7 @@ def test_MakerFileWrangler_display_session_variables_01():
 
 def test_MakerFileWrangler_display_session_variables_02():
     
-    input_ = 'K sv q'
+    input_ = 'kk sv q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

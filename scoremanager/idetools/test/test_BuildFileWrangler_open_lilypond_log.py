@@ -18,7 +18,7 @@ def test_BuildFileWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'U ll q'
+    input_ = 'uu ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file

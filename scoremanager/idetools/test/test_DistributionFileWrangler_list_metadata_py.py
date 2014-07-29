@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_list_metadata_py_01():
 
 def test_DistributionFileWrangler_list_metadata_py_02():
 
-    input_ = 'D mdl q'
+    input_ = 'dd mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

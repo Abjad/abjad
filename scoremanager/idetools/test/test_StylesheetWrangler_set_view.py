@@ -17,7 +17,7 @@ def test_StylesheetWrangler_set_view_01():
     
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'Y wa add _test add clean-letter-14.ily done done'
+        input_ = 'yy wa add _test add clean-letter-14.ily done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript

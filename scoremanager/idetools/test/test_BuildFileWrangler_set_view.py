@@ -15,7 +15,7 @@ def test_BuildFileWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'U wa add _test'
+        input_ = 'uu wa add _test'
         input_ += ' add segment-01.ly~(Red~Example~Score)'
         input_ += ' add segment-02.ly~(Red~Example~Score)'
         input_ += ' add segment-03.ly~(Red~Example~Score) done done'

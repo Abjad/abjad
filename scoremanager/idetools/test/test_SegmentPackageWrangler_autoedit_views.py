@@ -13,7 +13,7 @@ def test_SegmentPackageWrangler_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = "G wa add _test add 'A'~in~:ds:"
+        input_ = "gg wa add _test add 'A'~in~:ds:"
         input_ += " add 'B'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'A' done"

@@ -13,7 +13,7 @@
 
 7.  Take another pass at (ck) and (ck*) messaging.
 
-8.  Audit (H).
+8.  Audit (hh).
 
 9.  Audit all star commands.
 
@@ -35,8 +35,8 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-14. Sort the asset sections in (mm), (K) etc according to the same order
-    as used in (H).
+14. Sort the asset sections in (mm), (kk) etc according to the same order
+    as used in (hh).
 
 15. Make (mm ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on

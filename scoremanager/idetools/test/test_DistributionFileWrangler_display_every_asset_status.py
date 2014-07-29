@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_display_every_asset_status_01():
     r'''Works with distribution file library.
     '''
 
-    input_ = 'D rst* q'
+    input_ = 'dd rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

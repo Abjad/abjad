@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_to_next_score_01():
 
 def test_MakerFileWrangler_go_to_next_score_02():
 
-    input_ = 'K >> q'
+    input_ = 'kk >> q'
     ide._run(input_=input_)
 
     titles = [

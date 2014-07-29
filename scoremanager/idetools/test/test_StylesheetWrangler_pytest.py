@@ -8,7 +8,7 @@ def test_StylesheetWrangler_pytest_01():
     r'''Works on all visible stylesheets in library.
     '''
 
-    input_ = 'Y pt q'
+    input_ = 'yy pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

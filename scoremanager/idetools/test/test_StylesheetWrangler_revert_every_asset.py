@@ -15,6 +15,6 @@ def test_StylesheetWrangler_revert_every_asset_01():
 def test_StylesheetWrangler_revert_every_asset_02():
 
     ide._session._is_repository_test = True
-    input_ = 'Y rrv* q'
+    input_ = 'yy rrv* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_revert

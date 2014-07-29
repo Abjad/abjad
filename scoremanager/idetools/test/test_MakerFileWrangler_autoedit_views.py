@@ -13,7 +13,7 @@ def test_MakerFileWrangler_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = "K wa add _test add 'RedExampleScoreRhythmMaker.py'~in~:ds:"
+        input_ = "kk wa add _test add 'RedExampleScoreRhythmMaker.py'~in~:ds:"
         input_ += " add 'RedExampleScoreTemplate.py'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'RedExampleScoreRhythmMaker.py' done"

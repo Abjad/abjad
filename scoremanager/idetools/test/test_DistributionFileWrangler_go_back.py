@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_go_back_01():
 
 def test_DistributionFileWrangler_go_back_02():
 
-    input_ = 'D b q'
+    input_ = 'dd b q'
     ide._run(input_=input_)
 
     titles = [

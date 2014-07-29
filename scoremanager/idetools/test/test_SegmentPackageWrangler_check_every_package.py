@@ -34,7 +34,7 @@ def test_SegmentPackageWrangler_check_every_package_02():
         'C (Red Example Score): OK',
         ]
 
-    input_ = 'G ck* y n q'
+    input_ = 'gg ck* y n q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
     for line in lines:

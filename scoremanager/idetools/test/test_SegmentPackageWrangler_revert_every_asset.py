@@ -15,6 +15,6 @@ def test_SegmentPackageWrangler_revert_every_asset_02():
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
     ide._session._is_repository_test = True
-    input_ = 'G rrv* q'
+    input_ = 'gg rrv* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_revert

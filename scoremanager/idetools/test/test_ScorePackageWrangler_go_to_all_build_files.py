@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_to_all_build_files_01():
     r'''From scores to build depot.
     '''
 
-    input_ = 'U q'
+    input_ = 'uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

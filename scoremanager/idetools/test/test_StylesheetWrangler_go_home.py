@@ -8,7 +8,7 @@ def test_StylesheetWrangler_go_home_01():
     r'''From score stylesheets to library.
     '''
 
-    input_ = 'red~example~score y H q'
+    input_ = 'red~example~score y hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_StylesheetWrangler_go_home_02():
     r'''From all stylesheets to library.
     '''
 
-    input_ = 'Y H q'
+    input_ = 'yy hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

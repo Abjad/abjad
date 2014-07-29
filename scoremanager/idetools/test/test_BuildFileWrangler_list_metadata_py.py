@@ -25,7 +25,7 @@ def test_BuildFileWrangler_list_metadata_py_02():
     r'''Outside score.
     '''
 
-    input_ = 'U mdl q'
+    input_ = 'uu mdl q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

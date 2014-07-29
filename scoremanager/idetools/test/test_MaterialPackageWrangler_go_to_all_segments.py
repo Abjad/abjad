@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_go_to_all_segments_01():
     r'''From score materials to all segments.
     '''
 
-    input_ = 'red~example~score m G q'
+    input_ = 'red~example~score m gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_all_segments_02():
     r'''From all materials to all segments.
     '''
 
-    input_ = 'mm G q'
+    input_ = 'mm gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

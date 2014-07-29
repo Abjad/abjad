@@ -8,7 +8,7 @@ def test_MakerFileWrangler_display_every_asset_status_01():
     r'''Works with library.
     '''
 
-    input_ = 'K rst* q'
+    input_ = 'kk rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

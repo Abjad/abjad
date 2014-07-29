@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_all_materials_02():
     r'''From all build files to all materials.
     '''
 
-    input_ = 'U mm q'
+    input_ = 'uu mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

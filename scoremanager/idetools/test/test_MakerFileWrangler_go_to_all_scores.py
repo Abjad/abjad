@@ -6,7 +6,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MakerFileWrangler_go_to_all_scores_01():
 
-    input_ = 'red~example~score k S q'
+    input_ = 'red~example~score k ss q'
     ide._run(input_=input_)
 
     titles = [
@@ -20,7 +20,7 @@ def test_MakerFileWrangler_go_to_all_scores_01():
 
 def test_MakerFileWrangler_go_to_all_scores_02():
 
-    input_ = 'K S q'
+    input_ = 'kk ss q'
     ide._run(input_=input_)
 
     titles = [

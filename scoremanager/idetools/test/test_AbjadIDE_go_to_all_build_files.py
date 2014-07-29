@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_build_files_01():
     r'''From top level to all build files.
     '''
 
-    input_ = 'H U q'
+    input_ = 'hh uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_go_to_all_build_files_01():
     r'''From distribution directory to build depot.
     '''
 
-    input_ = 'red~example~score d U q'
+    input_ = 'red~example~score d uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_DistributionFileWrangler_go_to_all_build_files_02():
     r'''From distribution depot to build depot.
     '''
 
-    input_ = 'D U q'
+    input_ = 'dd uu q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

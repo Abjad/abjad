@@ -15,7 +15,7 @@ def test_MakerFileWrangler_quit_01():
 
 def test_MakerFileWrangler_quit_02():
     
-    input_ = 'K q'
+    input_ = 'kk q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -8,7 +8,7 @@ def test_MakerFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'K dt q'
+    input_ = 'kk dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -9,7 +9,7 @@ def test_DistributionFileWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'D !pwd q'
+    input_ = 'dd !pwd q'
     ide._run(input_=input_)
 
     path = os.path.join(

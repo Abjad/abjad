@@ -8,7 +8,7 @@ def test_MakerFileWrangler_go_to_all_segments_01():
     r'''From makers directory to segments depot.
     '''
 
-    input_ = 'red~example~score k G q'
+    input_ = 'red~example~score k gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MakerFileWrangler_go_to_all_segments_02():
     r'''From makers depot to segments depot.
     '''
 
-    input_ = 'K G q'
+    input_ = 'kk gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

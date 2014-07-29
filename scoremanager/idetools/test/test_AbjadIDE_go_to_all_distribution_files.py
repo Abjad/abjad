@@ -8,7 +8,7 @@ def test_AbjadIDE_go_to_all_distribution_files_01():
     r'''From top level to all distribution files.
     '''
 
-    input_ = 'H D q'
+    input_ = 'hh dd q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

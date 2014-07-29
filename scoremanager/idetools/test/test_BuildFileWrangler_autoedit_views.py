@@ -13,7 +13,7 @@ def test_BuildFileWrangler_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = "U wa add _test add 'front-cover'~in~:ds:"
+        input_ = "uu wa add _test add 'front-cover'~in~:ds:"
         input_ += " add 'back-cover'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'front-cover' done"

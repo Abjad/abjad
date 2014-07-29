@@ -75,11 +75,11 @@ class Controller(object):
     @property
     def _command_to_method(self):
         result = {
-            'H': self.go_home,
+            'hh': self.go_home,
             'b': self.go_back,
             'q': self.quit,
             's': self.go_to_current_score,
-            'S': self.go_to_all_scores,
+            'ss': self.go_to_all_scores,
             }
         return result
 

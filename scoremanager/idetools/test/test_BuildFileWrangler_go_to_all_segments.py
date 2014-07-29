@@ -8,7 +8,7 @@ def test_BuildFileWrangler_go_to_all_segments_01():
     r'''From score build files to all segments.
     '''
 
-    input_ = 'red~example~score u G q'
+    input_ = 'red~example~score u gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_all_segments_02():
     r'''From all build files to all segments.
     '''
 
-    input_ = 'U G q'
+    input_ = 'uu gg q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

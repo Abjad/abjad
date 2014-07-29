@@ -8,7 +8,7 @@ def test_DistributionFileWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'D dt q'
+    input_ = 'dd dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

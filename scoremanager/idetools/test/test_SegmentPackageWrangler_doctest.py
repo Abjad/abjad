@@ -8,7 +8,7 @@ def test_SegmentPackageWrangler_doctest_01():
     r'''In library.
     '''
 
-    input_ = 'G dt q'
+    input_ = 'gg dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

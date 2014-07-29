@@ -15,7 +15,7 @@ def test_BuildFileWrangler_quit_01():
 
 def test_BuildFileWrangler_quit_02():
     
-    input_ = 'U q'
+    input_ = 'uu q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

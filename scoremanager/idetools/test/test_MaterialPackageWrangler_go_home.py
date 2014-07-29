@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_go_home_01():
     r'''From materials directory.
     '''
 
-    input_ = 'red~example~score m H q'
+    input_ = 'red~example~score m hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_home_02():
     r'''From materials depot.
     '''
 
-    input_ = 'mm H q'
+    input_ = 'mm hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

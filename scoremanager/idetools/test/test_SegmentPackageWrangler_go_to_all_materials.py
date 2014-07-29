@@ -23,7 +23,7 @@ def test_SegmentPackageWrangler_go_to_all_materials_02():
     r'''From segments depot to materials depot.
     '''
 
-    input_ = 'G mm q'
+    input_ = 'gg mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

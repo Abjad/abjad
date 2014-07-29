@@ -15,7 +15,7 @@ def test_DistributionFileWrangler_display_available_commands_01():
 
 def test_DistributionFileWrangler_display_available_commands_02():
     
-    input_ = 'D ?? q'
+    input_ = 'dd ?? q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

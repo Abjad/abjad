@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_go_to_all_stylesheets_01():
     r'''From score materials to all stylesheets.
     '''
 
-    input_ = 'red~example~score m Y q'
+    input_ = 'red~example~score m yy q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_all_stylesheets_02():
     r'''From all materials to all stylesheets.
     '''
 
-    input_ = 'mm Y q'
+    input_ = 'mm yy q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -20,7 +20,7 @@ def test_DistributionFileWrangler_check_every_file_02():
     r'''Works in distribution depot.
     '''
 
-    input_ = 'D ck* q'
+    input_ = 'dd ck* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

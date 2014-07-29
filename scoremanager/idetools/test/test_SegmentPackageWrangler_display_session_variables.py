@@ -16,7 +16,7 @@ def test_SegmentPackageWrangler_display_session_variables_01():
 
 def test_SegmentPackageWrangler_display_session_variables_02():
     
-    input_ = 'G sv q'
+    input_ = 'gg sv q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

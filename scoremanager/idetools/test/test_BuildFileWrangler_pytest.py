@@ -8,7 +8,7 @@ def test_BuildFileWrangler_pytest_01():
     r'''Works on all build files in library.
     '''
 
-    input_ = 'U pt q'
+    input_ = 'uu pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

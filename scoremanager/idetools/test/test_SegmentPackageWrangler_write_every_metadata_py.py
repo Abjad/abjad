@@ -36,7 +36,7 @@ def test_SegmentPackageWrangler_write_every_metadata_py_01():
 
 def test_SegmentPackageWrangler_write_every_metadata_py_02():
 
-    input_ = 'G mdw* n q'
+    input_ = 'gg mdw* n q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

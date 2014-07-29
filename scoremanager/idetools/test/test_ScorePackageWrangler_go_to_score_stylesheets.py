@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_to_score_stylesheets_01():
     r'''From scores to stylesheets depot.
     '''
 
-    input_ = 'Y q'
+    input_ = 'yy q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

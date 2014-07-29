@@ -8,7 +8,7 @@ def test_MakerFileWrangler_go_to_all_maker_files_01():
     r'''From makers directory to makers depot.
     '''
 
-    input_ = 'red~example~score k K q'
+    input_ = 'red~example~score k kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MakerFileWrangler_go_to_all_maker_files_02():
     r'''From makers depot to makers depot.
     '''
 
-    input_ = 'K K q'
+    input_ = 'kk kk q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

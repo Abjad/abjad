@@ -39,14 +39,14 @@ class AssetController(Controller):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'H': self.go_home,
+            'hh': self.go_home,
             #
-            'D': self.go_to_all_distribution_files,
-            'G': self.go_to_all_segments,
-            'K': self.go_to_all_maker_files,
+            'dd': self.go_to_all_distribution_files,
+            'gg': self.go_to_all_segments,
+            'kk': self.go_to_all_maker_files,
             'mm': self.go_to_all_materials,
-            'U': self.go_to_all_build_files,
-            'Y': self.go_to_all_stylesheets,
+            'uu': self.go_to_all_build_files,
+            'yy': self.go_to_all_stylesheets,
             #
             'cc': self.check_contents,
             #
@@ -68,7 +68,7 @@ class AssetController(Controller):
     def _navigation_commands(self):
         return (
             'b', 'q',
-            'H', 'D', 'G', 'K', 'mm', 'S', 'U', 'Y',
+            'hh', 'dd', 'gg', 'kk', 'mm', 'ss', 'uu', 'yy',
             )
 
     @property
@@ -299,14 +299,14 @@ class AssetController(Controller):
 
     def _make_go_menu_section(self, menu, packages=False):
         commands = []
-        commands.append(('go - all', 'H'))
-        commands.append(('go - all - build', 'U'))
-        commands.append(('go - all - distribution', 'D'))
-        commands.append(('go - all - makers', 'K'))
+        commands.append(('go - all', 'hh'))
+        commands.append(('go - all - build', 'uu'))
+        commands.append(('go - all - distribution', 'dd'))
+        commands.append(('go - all - makers', 'kk'))
         commands.append(('go - all - materials', 'mm'))
-        commands.append(('go - all - scores', 'S'))
-        commands.append(('go - all - segments', 'G'))
-        commands.append(('go - all - stylesheets', 'Y'))
+        commands.append(('go - all - scores', 'ss'))
+        commands.append(('go - all - segments', 'gg'))
+        commands.append(('go - all - stylesheets', 'yy'))
         if self._session.is_in_score:
             commands.append(('go - score', 's'))
             commands.append(('go - score - build', 'u'))

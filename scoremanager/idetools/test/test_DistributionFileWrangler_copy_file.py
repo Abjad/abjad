@@ -12,7 +12,7 @@ def test_DistributionFileWrangler_copy_file_01():
     packages could pollute the example score packages).
     '''
 
-    input_ = 'D cp red-example-score.pdf q'
+    input_ = 'dd cp red-example-score.pdf q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

@@ -15,7 +15,7 @@ def test_SegmentPackageWrangler_invoke_python_01():
 
 def test_SegmentPackageWrangler_invoke_python_02():
     
-    input_ = 'G py 2**38 q'
+    input_ = 'gg py 2**38 q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

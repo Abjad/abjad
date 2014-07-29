@@ -9,7 +9,7 @@ def test_MakerFileWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'K !pwd q'
+    input_ = 'kk !pwd q'
     ide._run(input_=input_)
 
     path = os.path.join(

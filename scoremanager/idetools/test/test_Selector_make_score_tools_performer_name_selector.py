@@ -19,7 +19,7 @@ def test_Selector_make_score_tools_performer_name_selector_01():
 
     selector = selector.make_score_tools_performer_name_selector()
     selector._session._is_test = True
-    selector._session._pending_input = 'S'
+    selector._session._pending_input = 'ss'
     assert selector._run() is None
 
 

@@ -8,7 +8,7 @@ def test_SegmentPackageManager_go_home_01():
     r'''From segment directory.
     '''
 
-    input_ = 'red~example~score g A H q'
+    input_ = 'red~example~score g A hh q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

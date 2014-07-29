@@ -15,7 +15,7 @@ def test_SegmentPackageWrangler_quit_01():
 
 def test_SegmentPackageWrangler_quit_02():
     
-    input_ = 'G q'
+    input_ = 'gg q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

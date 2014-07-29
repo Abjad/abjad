@@ -16,7 +16,7 @@ def test_DistributionFileWrangler_display_session_variables_01():
 
 def test_DistributionFileWrangler_display_session_variables_02():
     
-    input_ = 'D sv q'
+    input_ = 'dd sv q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
