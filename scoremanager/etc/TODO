@@ -106,3 +106,6 @@
         Will add ...
         Ok? 
     Change this to alert that there's nothing to add.
+
+32. Add something at menu-build time to ensure commands contain no capital
+    letters.
