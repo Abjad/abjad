@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_list_every_metadata_py_01():
 
 def test_MaterialPackageWrangler_list_every_metadata_py_02():
 
-    input_ = 'M mdl* q'
+    input_ = 'mm mdl* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

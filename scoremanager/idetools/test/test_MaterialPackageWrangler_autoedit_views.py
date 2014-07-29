@@ -13,7 +13,7 @@ def test_MaterialPackageWrangler_autoedit_views_01():
 
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = "M wa add _test add 'example~notes'~in~:ds:"
+        input_ = "mm wa add _test add 'example~notes'~in~:ds:"
         input_ += " add 'example~numbers'~in~:ds: done"
         input_ += " ren _test _new_test"
         input_ += " _new_test rm 'example~notes' done"

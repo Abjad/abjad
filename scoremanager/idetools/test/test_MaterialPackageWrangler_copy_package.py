@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_copy_package_01():
     example score packages).
     '''
 
-    input_ = 'M cp instrumentation~(Red~Example~Score) q'
+    input_ = 'mm cp instrumentation~(Red~Example~Score) q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

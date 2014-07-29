@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_go_to_all_materials_01():
     r'''From materials directory to materials depot.
     '''
 
-    input_ = 'red~example~score m M q'
+    input_ = 'red~example~score m mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_all_materials_02():
     r'''From materials depot to materials depot.
     '''
 
-    input_ = 'M M q'
+    input_ = 'mm mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_doctest_01():
     r'''Works in library.
     '''
 
-    input_ = 'M dt q'
+    input_ = 'mm dt q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

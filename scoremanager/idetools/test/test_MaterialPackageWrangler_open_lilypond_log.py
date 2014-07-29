@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_open_lilypond_log_02():
     r'''Out of score.
     '''
 
-    input_ = 'M ll q'
+    input_ = 'mm ll q'
     ide._run(input_=input_)
     
     assert ide._session._attempted_to_open_file

@@ -18,6 +18,6 @@ def test_MaterialPackageWrangler_update_every_asset_02():
     r'''Works in library.
     '''
 
-    input_ = 'M rup* q'
+    input_ = 'mm rup* q'
     ide._run(input_=input_)
     assert ide._session._attempted_to_update

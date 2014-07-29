@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_set_view_01():
         )
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
-        input_ = 'M wa add _test'
+        input_ = 'mm wa add _test'
         input_ += ' add instrumentation~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done done'
         input_ += ' ws _test q'

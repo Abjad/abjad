@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_all_build_files_02():
     r'''From materials depot to build depot.
     '''
 
-    input_ = 'M U q'
+    input_ = 'mm U q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

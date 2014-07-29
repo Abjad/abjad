@@ -44,7 +44,7 @@ class AssetController(Controller):
             'D': self.go_to_all_distribution_files,
             'G': self.go_to_all_segments,
             'K': self.go_to_all_maker_files,
-            'M': self.go_to_all_materials,
+            'mm': self.go_to_all_materials,
             'U': self.go_to_all_build_files,
             'Y': self.go_to_all_stylesheets,
             #
@@ -68,7 +68,7 @@ class AssetController(Controller):
     def _navigation_commands(self):
         return (
             'b', 'q',
-            'H', 'D', 'G', 'K', 'M', 'S', 'U', 'Y',
+            'H', 'D', 'G', 'K', 'mm', 'S', 'U', 'Y',
             )
 
     @property
@@ -303,7 +303,7 @@ class AssetController(Controller):
         commands.append(('go - all - build', 'U'))
         commands.append(('go - all - distribution', 'D'))
         commands.append(('go - all - makers', 'K'))
-        commands.append(('go - all - materials', 'M'))
+        commands.append(('go - all - materials', 'mm'))
         commands.append(('go - all - scores', 'S'))
         commands.append(('go - all - segments', 'G'))
         commands.append(('go - all - stylesheets', 'Y'))

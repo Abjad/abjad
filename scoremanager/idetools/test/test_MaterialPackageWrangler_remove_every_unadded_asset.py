@@ -29,6 +29,6 @@ def test_MaterialPackageWrangler_remove_every_unadded_asset_02():
     r'''Out of score.
     '''
 
-    input_ = 'M rcn* q'
+    input_ = 'mm rcn* q'
     ide._run(input_=input_)
     assert ide._session._attempted_remove_unadded_assets

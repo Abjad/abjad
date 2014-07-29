@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_to_all_stylesheets_02():
     r'''From all materials to all stylesheets.
     '''
 
-    input_ = 'M Y q'
+    input_ = 'mm Y q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

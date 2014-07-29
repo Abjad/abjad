@@ -38,7 +38,7 @@ def test_MaterialPackageWrangler_check_every_package_02():
         'Tempo inventory (Red Example Score): OK',
         ]
 
-    input_ = 'M ck* y n q'
+    input_ = 'mm ck* y n q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
     for line in lines:

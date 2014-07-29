@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_invoke_shell_01():
     r'''Outside of score package.
     '''
 
-    input_ = 'M !pwd q'
+    input_ = 'mm !pwd q'
     ide._run(input_=input_)
 
     path = os.path.join(

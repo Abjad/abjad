@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler_display_every_asset_status_01():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'M rst* q'
+    input_ = 'mm rst* q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

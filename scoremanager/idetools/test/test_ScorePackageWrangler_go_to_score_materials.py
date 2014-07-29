@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_go_to_score_materials_01():
     r'''From scores to materials depot.
     '''
 
-    input_ = 'M q'
+    input_ = 'mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -8,7 +8,7 @@ def test_BuildFileWrangler_go_to_all_materials_01():
     r'''From score build files to all materials.
     '''
 
-    input_ = 'red~example~score u M q'
+    input_ = 'red~example~score u mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',
@@ -23,7 +23,7 @@ def test_BuildFileWrangler_go_to_all_materials_02():
     r'''From all build files to all materials.
     '''
 
-    input_ = 'U M q'
+    input_ = 'U mm q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

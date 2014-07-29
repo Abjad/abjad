@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_pytest_03():
     r'''Works on all material packages in library.
     '''
 
-    input_ = 'M pt q'
+    input_ = 'mm pt q'
     ide._run(input_=input_)
     transcript_contents = ide._transcript.contents
 

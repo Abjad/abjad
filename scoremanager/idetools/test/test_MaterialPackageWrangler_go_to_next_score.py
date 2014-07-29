@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_go_to_next_score_01():
 
 def test_MaterialPackageWrangler_go_to_next_score_02():
 
-    input_ = 'M >> q'
+    input_ = 'mm >> q'
     ide._run(input_=input_)
 
     titles = [

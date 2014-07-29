@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_display_session_variables_01():
 
 def test_MaterialPackageWrangler_display_session_variables_02():
     
-    input_ = 'M sv q'
+    input_ = 'mm sv q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

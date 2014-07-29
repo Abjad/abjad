@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_go_home_02():
     r'''From materials depot.
     '''
 
-    input_ = 'M H q'
+    input_ = 'mm H q'
     ide._run(input_=input_)
     titles = [
         'Abjad IDE - scores',

@@ -35,12 +35,12 @@
     autoedit commands currently implemented. This will be a complementary type
     of bang suffix.
 
-14. Sort the asset sections in (M), (K) etc according to the same order
+14. Sort the asset sections in (mm), (K) etc according to the same order
     as used in (H).
 
-15. Make (M ren test~talea~rhythm~maker talea rhythm maker) work.
+15. Make (mm ren test~talea~rhythm~maker talea rhythm maker) work.
     Right now the interface insists on
-    (M ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
+    (mm ren test~talea~rhythm~maker talea_rhythm_maker) with snake case.
     Will add input flexibility.
 
 16. Write in-library and in-score material breadcrumb tests.
@@ -88,7 +88,7 @@
     Make a test zagged pitch class material package and illustrate to test.
 
 26. Implement some sort of autoeditor postfix to allow in-place 'editing'
-    of an existing value. Test with (M > example~talea > da > t-)
+    of an existing value. Test with (mm > example~talea > da > t-)
     to allow the talea to be copied into the getter as a type of
     prepopulation.
 

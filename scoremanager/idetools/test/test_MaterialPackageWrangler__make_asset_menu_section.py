@@ -31,6 +31,6 @@ def test_MaterialPackageWrangler__make_asset_menu_section_03():
     r'''Includes score annotation outside of score.
     '''
 
-    input_ = 'M q'
+    input_ = 'mm q'
     ide._run(input_=input_)
     assert 'Red Example Score:' in ide._transcript.contents
