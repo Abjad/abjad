@@ -291,7 +291,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager._make_getter()
         getter.append_string('catalog number')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('catalog_number', result)
 
@@ -303,7 +303,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager._make_getter()
         getter.append_string('forces tagline')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('forces_tagline', result)
 
@@ -315,7 +315,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager._make_getter()
         getter.append_paper_dimensions('paper dimensions')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('paper_dimensions', result)
 
@@ -327,7 +327,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager._make_getter()
         getter.append_string('price')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('price', result)
 
@@ -339,7 +339,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager._make_getter()
         getter.append_string('new title')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('title', result)
         wrangler = self._session._ide._score_package_wrangler
@@ -358,7 +358,7 @@ class ScorePackageManager(PackageManager):
             allow_none=True,
             )
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         self._add_metadatum('year', result)
         wrangler = self._session._ide._score_package_wrangler
@@ -381,7 +381,7 @@ class ScorePackageManager(PackageManager):
             elif not result:
                 continue
             self._handle_setup_menu_result(result)
-            if self._session.is_backtracking:
+            if self._session.is_backtracking or result is None:
                 break
         self._session._is_in_score_setup_menu = False
 

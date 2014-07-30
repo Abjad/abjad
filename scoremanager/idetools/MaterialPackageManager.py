@@ -365,7 +365,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         getter = self._io_manager._make_getter()
         getter.append_snake_case_package_name('enter new package name')
         new_package_name = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or new_package_name is None:
             return
         base_name = os.path.basename(self._path)
         new_directory = self._path.replace(

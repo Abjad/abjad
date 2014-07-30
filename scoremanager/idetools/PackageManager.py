@@ -611,7 +611,7 @@ class PackageManager(ScoreInternalAssetController):
         prompt = prompt.format(version_numbers)
         getter.append_integer(prompt)
         version_number = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or version_number is None:
             return
         if version_number < 0:
             version_number = version_numbers[version_number]
@@ -641,7 +641,7 @@ class PackageManager(ScoreInternalAssetController):
         getter.append_string("type 'remove' to proceed")
         if self._session.confirm:
             result = getter._run()
-            if self._session.is_backtracking:
+            if self._session.is_backtracking or result is None:
                 return
             if not result == 'remove':
                 return
@@ -705,7 +705,7 @@ class PackageManager(ScoreInternalAssetController):
         getter = self._io_manager._make_getter()
         getter.append_string('new name')
         new_package_name = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or new_package_name is None:
             return
         new_package_name = stringtools.strip_diacritics(new_package_name)
         if file_name_callback:
@@ -904,7 +904,7 @@ class PackageManager(ScoreInternalAssetController):
             )
         getter.append_expr('metadatum value')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         if result:
             metadatum_name, metadatum_value = result
@@ -1158,7 +1158,7 @@ class PackageManager(ScoreInternalAssetController):
                 getter = self._io_manager._make_getter()
                 getter.append_string('commit message')
                 commit_message = getter._run()
-                if self._session.is_backtracking:
+                if self._session.is_backtracking or commit_message is None:
                     return
                 message = 'commit message will be: "{}"'
                 message = message.format(commit_message)
@@ -1168,9 +1168,6 @@ class PackageManager(ScoreInternalAssetController):
                     return
             message = self._get_score_package_directory_name()
             message = message + ' ...'
-            # ZZZ
-            #command = 'svn commit -m "{}" {}'
-            #command = command.format(commit_message, self._path)
             command = self._make_repository_commit_command(commit_message)
             self._io_manager.run_command(command, capitalize=False)
 
@@ -1231,7 +1228,7 @@ class PackageManager(ScoreInternalAssetController):
         getter = self._io_manager._make_getter()
         getter.append_string('metadatum name')
         result = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
