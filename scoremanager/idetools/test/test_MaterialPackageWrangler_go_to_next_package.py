@@ -12,12 +12,12 @@ def test_MaterialPackageWrangler_go_to_next_package_01():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
-        'Red Example Score (2013) - materials directory - performer inventory',
         'Red Example Score (2013) - materials directory - magic numbers',
+        'Red Example Score (2013) - materials directory - performer inventory',
         'Red Example Score (2013) - materials directory - pitch range inventory',
         'Red Example Score (2013) - materials directory - tempo inventory',
         'Red Example Score (2013) - materials directory - time signatures',
-        'Red Example Score (2013) - materials directory - performer inventory',
+        'Red Example Score (2013) - materials directory - magic numbers',
         ]
     assert ide._transcript.titles == titles
 
@@ -34,8 +34,8 @@ def test_MaterialPackageWrangler_go_to_next_package_02():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
-        'Red Example Score (2013) - materials directory - performer inventory',
         'Red Example Score (2013) - materials directory - magic numbers',
+        'Red Example Score (2013) - materials directory - performer inventory',
         'Red Example Score (2013) - segments directory',
         'Red Example Score (2013) - segments directory - A',
         'Red Example Score (2013) - segments directory - B',
