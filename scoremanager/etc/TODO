@@ -154,3 +154,7 @@
 
     The 'select instrumets' indicator should be followed by a colon.
     And the right column is two lines too high.
+
+36. Audit 'if self._session.is_backtracking:' statements.
+    Most should be 'if self._session.is_backtracking or not result:'.
+    Change where appropriate.
