@@ -51,9 +51,11 @@ class ListAutoeditor(CollectionAutoeditor):
         '''
         getter = self._io_manager._make_getter()
         getter.append_integer_in_range('old number', 1, len(self._collection))
-        getter.append_integer_in_range('new number', 1, len(self._collection))
+        getter.append_positive_integer('new number')
         result = getter._run()
         if self._session.is_backtracking or result is None:
+            return
+        if not isinstance(result, list) or not len(result) == 2:
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
