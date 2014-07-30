@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler_copy_package_02():
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score m cp'
-        input_ += ' performer_inventory copied_performer_inventory y q'
+        input_ += ' performer~inventory copied~performer~inventory y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         assert os.path.exists(source_path)
