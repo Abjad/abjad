@@ -154,3 +154,9 @@
 
     The 'select instrumets' indicator should be followed by a colon.
     And the right column is two lines too high.
+
+36. Implement some sort of suffixed version of (done) like (done!!)
+    that will confirm out of all nested autoeditors.
+    Test somewhere like ...
+        (score > m > perf > da > perc > i > add > unt > crot > done!!)
+    ... or equivalent.
