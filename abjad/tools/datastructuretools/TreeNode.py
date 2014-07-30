@@ -87,6 +87,17 @@ class TreeNode(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _cache_named_children(self):
+        name_dictionary = {}
+        if hasattr(self, '_named_children'):
+            for name, children in self._named_children.items():
+                name_dictionary[name] = copy.copy(children)
+        if hasattr(self, 'name') and self.name is not None:
+            if self.name not in name_dictionary:
+                name_dictionary[self.name] = set([])
+            name_dictionary[self.name].add(self)
+        return name_dictionary
+
     def _get_node_state_flags(self):
         state_flags = {}
         for name in self._state_flag_names:
@@ -102,15 +113,12 @@ class TreeNode(AbjadObject):
             for name in self._state_flag_names:
                 setattr(node, name, False)
 
-    def _set_parent(self, new_parent):
-        name_dictionary = {}
-        if hasattr(self, '_named_children'):
-            for name, children in self._named_children.items():
-                name_dictionary[name] = copy.copy(children)
-        if hasattr(self, 'name') and self.name is not None:
-            if self.name not in name_dictionary:
-                name_dictionary[self.name] = set([])
-            name_dictionary[self.name].add(self)
+    def _remove_from_parent(self):
+        if self._parent is not None:
+            index = self._parent.index(self)
+            self._parent._children.pop(index)
+
+    def _remove_named_children_from_parentage(self, name_dictionary):
         if self._parent is not None and name_dictionary:
             for parent in self.proper_parentage:
                 named_children = parent._named_children
@@ -119,11 +127,17 @@ class TreeNode(AbjadObject):
                         named_children[name].remove(node)
                     if not named_children[name]:
                         del named_children[name]
-        if self._parent is not None:
-            index = self._parent.index(self)
-            self._parent._children.pop(index)
+
+    def _set_parent(self, new_parent):
+        named_children = self._cache_named_children()
+        self._remove_named_children_from_parentage(named_children)
+        self._remove_from_parent()
         self._parent = new_parent
-        if new_parent is not None and name_dictionary:
+        self._restore_named_children_to_parentage(named_children)
+        self._mark_entire_tree_for_later_update()
+
+    def _restore_named_children_to_parentage(self, name_dictionary):
+        if self._parent is not None and name_dictionary:
             for parent in self.proper_parentage:
                 named_children = parent._named_children
                 for name in name_dictionary:
@@ -131,7 +145,6 @@ class TreeNode(AbjadObject):
                         named_children[name].update(name_dictionary[name])
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
-        self._mark_entire_tree_for_later_update()
 
     ### PRIVATE PROPERTIES ###
 
