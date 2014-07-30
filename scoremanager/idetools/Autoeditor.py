@@ -197,6 +197,7 @@ class Autoeditor(Controller):
         if self._session.is_autoadvancing:
             self._session._autoadvance_depth += 1
         result = attribute_editor._run()
+        # do not include 'or result is None' below
         if self._session.is_backtracking:
             self._session._autoadvance_depth -= 1
             return

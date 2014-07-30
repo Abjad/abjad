@@ -118,12 +118,12 @@ class CollectionAutoeditor(Autoeditor):
             if item_name:
                 item_creator._breadcrumb = item_name
             result = item_creator._run()
-            if self._session.is_backtracking:
+            result = result or item_creator.target
+            if self._session.is_backtracking or result is None:
                 return
             if result == 'done':
                 self._session._is_autoadding = False
                 return
-            result = result or item_creator.target
         elif self._item_getter_configuration_method:
             getter = self._io_manager._make_getter()
             self._item_getter_configuration_method(
@@ -135,7 +135,8 @@ class CollectionAutoeditor(Autoeditor):
             lines.append('evaluated_input = {}')
             getter.prompts[0].setup_statements.extend(lines)
             item_initialization_token = getter._run()
-            if self._session.is_backtracking:
+            if (self._session.is_backtracking or
+                item_initialization_token is None):
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
@@ -285,7 +286,7 @@ class CollectionAutoeditor(Autoeditor):
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or argument_range is None:
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
