@@ -162,9 +162,7 @@ class Wrangler(ScoreInternalAssetController):
             new_storehouse = self._get_current_directory()
         else:
             new_storehouse = self._select_storehouse_path()
-            if self._session.is_backtracking:
-                return
-            if not new_storehouse:
+            if self._session.is_backtracking or new_storehouse is None:
                 return
         message = 'existing {} name> {}'
         message = message.format(self._asset_identifier, old_name)
@@ -178,9 +176,9 @@ class Wrangler(ScoreInternalAssetController):
         help_template = help_template + ' ' + string
         getter.prompts[0]._help_template = help_template
         name = getter._run()
-        if self._session.is_backtracking:
-            return
         name = name or old_name
+        if self._session.is_backtracking or name is None:
+            return
         name = stringtools.strip_diacritics(name)
         if hasattr(self, '_file_name_callback'):
             name = self._file_name_callback(name)
@@ -562,16 +560,12 @@ class Wrangler(ScoreInternalAssetController):
             path = self._get_current_directory()
         else:
             path = self._select_storehouse_path()
-            if self._session.is_backtracking:
-                return
-            if not path:
+            if self._session.is_backtracking or path is None:
                 return
         getter = self._io_manager._make_getter()
         getter.append_string(message)
         name = getter._run()
-        if self._session.is_backtracking:
-            return
-        if not name:
+        if self._session.is_backtracking or name is None:
             return
         name = stringtools.strip_diacritics(name)
         if hasattr(self, '_file_name_callback'):
@@ -742,7 +736,7 @@ class Wrangler(ScoreInternalAssetController):
         getter.append_string(message)
         if self._session.confirm:
             result = getter._run()
-            if self._session.is_backtracking:
+            if self._session.is_backtracking or result is None:
                 return
             if not result == confirmation_string:
                 return
@@ -829,7 +823,7 @@ class Wrangler(ScoreInternalAssetController):
             session=self._session,
             )
         result = selector._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         return result
 
@@ -854,7 +848,7 @@ class Wrangler(ScoreInternalAssetController):
             items=view_names,
             )
         result = selector._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or result is None:
             return
         return result
 
@@ -875,7 +869,7 @@ class Wrangler(ScoreInternalAssetController):
             asset_section,
             )
         numbers = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or numbers is None:
             return
         if not len(numbers) == 1:
             return
@@ -897,7 +891,7 @@ class Wrangler(ScoreInternalAssetController):
             asset_section,
             )
         numbers = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or numbers is None:
             return
         indices = [_ - 1 for _ in numbers]
         paths = [_.return_value for _ in asset_section.menu_entries]
@@ -998,7 +992,7 @@ class Wrangler(ScoreInternalAssetController):
         getter = self._io_manager._make_getter()
         getter.append_string('commit message')
         commit_message = getter._run()
-        if self._session.is_backtracking:
+        if self._session.is_backtracking or commit_message is None:
             return
         line = 'commit message will be: "{}"'.format(commit_message)
         self._io_manager._display(line)
