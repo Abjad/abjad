@@ -626,6 +626,23 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
+    def append_positive_integer(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends positive integer.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be positive integer.'
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=mathtools.is_positive_integer,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_positive_integer_power_of_two(
         self,
         spaced_attribute_name,
