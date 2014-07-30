@@ -160,3 +160,11 @@
     Test somewhere like ...
         (score > m > perf > da > perc > i > add > unt > crot > done!!)
     ... or equivalent.
+
+37. Make 'mv 1 99' work in (score > m > perf > da > perc > i).
+    Right now it does this ...
+        |> mv 
+        Old number]> 1
+        New number]> 99
+        Value must be integer between new number and 1, inclusive.
+    ... instead.
