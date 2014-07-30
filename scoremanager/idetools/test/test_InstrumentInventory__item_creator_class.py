@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
+ide = scoremanager.idetools.AbjadIDE(is_test=True)
 session = scoremanager.idetools.Session()
 inventory = instrumenttools.InstrumentInventory()
 item_creator_class = inventory._make_item_creator_class()
@@ -53,3 +55,20 @@ def test_InstrumentInventory__item_creator_class_04():
             ),
         ]
     assert item_creator.target == instruments
+
+
+def test_InstrumentInventory__item_creator_class_05():
+    r'''Back doesn't cause anything to blow up.
+    '''
+
+    input_ = 'red~example~score m instrumentation da hornist i add b q'
+
+    material_package = os.path.join(
+        ide._configuration.example_score_packages_directory,
+        'red_example_score',
+        'materials',
+        'instrumentation',
+        )
+
+    with systemtools.FilesystemState(keep=[material_package]):
+        ide._run(input_=input_)

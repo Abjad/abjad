@@ -123,7 +123,7 @@ class InstrumentInventory(TypedList):
                         is_ranged=self._is_ranged,
                         )
                     result = selector._run()
-                    if self._session.is_backtracking:
+                    if self._session.is_backtracking or not result:
                         return
                     if isinstance(result, list):
                         instrument_names = result
