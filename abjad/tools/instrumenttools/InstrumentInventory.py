@@ -88,7 +88,7 @@ class InstrumentInventory(TypedList):
             items = UntunedPercussion.known_untuned_percussion[:]
             selector = idetools.Selector(session=session, items=items)
             instrument_name = selector._run()
-            if selector._session.is_backtracking:
+            if selector._session.is_backtracking or instrument_name is None:
                 return
             instrument = new(
                 instrument,
@@ -138,7 +138,8 @@ class InstrumentInventory(TypedList):
                     for instrument_name in instrument_names:
                         instrument = to_instrument(instrument_name)
                         instrument = name_untuned(instrument, self._session)
-                        instruments.append(instrument)
+                        if instrument is not None:
+                            instruments.append(instrument)
                     if self._is_ranged:
                         result = instruments[:]
                     else:
