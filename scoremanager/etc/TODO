@@ -112,3 +112,7 @@
 
 33. Make (score > g > ren > a) work. Right now it raises an exception
     when there is a segment named simply 'a'.
+
+34. Make <return> work again for default selection in instrument selection.
+    (score > m > performer inventory > oboist > <return>) should select
+    oboe as the default instrument. Right now it does nothing.
