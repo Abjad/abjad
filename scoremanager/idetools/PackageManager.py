@@ -693,7 +693,6 @@ class PackageManager(ScoreInternalAssetController):
         self._io_manager._read_from_pipe(process.stdout)
         self._path = new_path
 
-    # TODO: remove Svn hard-coding
     def _rename_interactively(
         self,
         extension=None,
@@ -725,8 +724,8 @@ class PackageManager(ScoreInternalAssetController):
         result = self._io_manager._confirm()
         if self._session.is_backtracking or not result:
             return
-        new_directory = self._path.replace(
-            base_name,
+        new_directory = os.path.join(
+            os.path.dirname(self._path),
             new_package_name,
             )
         if self._is_svn_versioned():
