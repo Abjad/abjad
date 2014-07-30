@@ -116,3 +116,41 @@
 34. Make <return> work again for default selection in instrument selection.
     (score > m > performer inventory > oboist > <return>) should select
     oboe as the default instrument. Right now it does nothing.
+
+35. Fix layout of two-column 'select instruments' screen.
+    Current view looks like this:
+
+      Score (2014) - materials directory - performer inventory (EDIT)
+      
+            Select instruments        24: flute              
+                                      25: glockenspiel       
+         1: accordion                 26: guitar             
+         2: alto                      27: harp               
+         3: alto flute                28: harpsichord        
+         4: alto saxophone            29: horn               
+         5: alto trombone             30: marimba            
+         6: baritone                  31: mezzo-soprano      
+         7: baritone saxophone        32: oboe               
+         8: bass                      33: piano              
+         9: bass clarinet             34: piccolo            
+        10: bass flute                35: sopranino saxophone
+        11: bass saxophone            36: soprano            
+        12: bass trombone             37: soprano saxophone  
+        13: bassoon                   38: tenor              
+        14: cello                     39: tenor saxophone    
+        15: clarinet in A             40: tenor trombone     
+        16: clarinet in B-flat        41: trumpet            
+        17: clarinet in E-flat        42: tuba               
+        18: contrabass                43: untuned percussion 
+        19: contrabass clarinet       44: vibraphone         
+        20: contrabass flute          45: viola              
+        21: contrabass saxophone      46: violin             
+        22: contrabassoon             47: xylophone          
+        23: English horn                                     
+      
+            instruments - skip (skip)
+      
+      > 
+
+    The 'select instrumets' indicator should be followed by a colon.
+    And the right column is two lines too high.
