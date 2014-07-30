@@ -106,8 +106,9 @@ def test_MaterialPackageWrangler_set_view_03():
         lines = [
             'Red Example Score (2013) - materials directory [inventories]',
             '',
-            '   1: pitch range inventory',
-            '   2: tempo inventory',
+            '   1: performer inventory',
+            '   2: pitch range inventory',
+            '   3: tempo inventory',
             '',
             '      materials - copy (cp)',
             '      materials - new (new)',
@@ -145,8 +146,9 @@ def test_MaterialPackageWrangler_set_view_04():
         lines = [
             'Red Example Score (2013) - materials directory [inventories]',
             '',
-            '   1: pitch range inventory',
-            '   2: tempo inventory',
+            '   1: performer inventory',
+            '   2: pitch range inventory',
+            '   3: tempo inventory',
             '',
             '      materials - copy (cp)',
             '      materials - new (new)',
