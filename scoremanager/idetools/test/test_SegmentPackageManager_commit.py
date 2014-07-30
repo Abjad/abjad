@@ -30,3 +30,14 @@ def test_SegmentPackageManager_commit_02():
     manager._session._is_repository_test = True
     manager.commit()
     assert manager._session._attempted_to_commit
+
+
+def test_SegmentPackageManager_commit_03():
+    r'''Back works in commit message getter.
+    '''
+
+    input_ = 'red~example~score rci b q'
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
+
+    assert not 'Commit message will be' in contents

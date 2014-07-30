@@ -222,6 +222,8 @@ class Getter(Controller, PromptMakerMixin):
                 result = self._evaluated_input[0]
             else:
                 result = self._evaluated_input[:]
+            if result == []:
+                result = None
             return result
 
     def _validate_evaluated_input(self, evaluated_input):
