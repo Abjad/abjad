@@ -17,8 +17,8 @@ def test_MaterialPackageWrangler_go_to_previous_package_01():
         'Red Example Score (2013) - materials directory - time signatures',
         'Red Example Score (2013) - materials directory - tempo inventory',
         'Red Example Score (2013) - materials directory - pitch range inventory',
+        'Red Example Score (2013) - materials directory - performer inventory',
         'Red Example Score (2013) - materials directory - magic numbers',
-        'Red Example Score (2013) - materials directory - instrumentation',
         'Red Example Score (2013) - materials directory - time signatures',
         ]
     assert ide._transcript.titles == titles

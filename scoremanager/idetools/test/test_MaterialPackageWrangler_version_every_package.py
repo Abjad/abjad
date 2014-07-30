@@ -7,7 +7,7 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
 def test_MaterialPackageWrangler_version_every_package_01():
     r'''The status of the five material packages should be that
-    there is nothing to version in instrumentation/ but that
+    there is nothing to version in performer_inventory/ but that
     the other four packges can version.
     This is the reason for both the 'Nothing to version ...'
     and the 'Will copy ...' messages showing up in the transcript.

@@ -75,8 +75,8 @@
 
 24. Add (*) suffix to changed assets in asset menu.
     Something like ...
-        1: instrumentation (*)
-        2: magic numbers
+        1: magic numbers
+        2: performer inventory (*)
         3: pitch range inventory (*)
         4: tempo inventory (*)
         5: time signatures
@@ -154,5 +154,3 @@
 
     The 'select instrumets' indicator should be followed by a colon.
     And the right column is two lines too high.
-
-36. Change Red Example Score 'instrumentation' to 'performer inventory'.

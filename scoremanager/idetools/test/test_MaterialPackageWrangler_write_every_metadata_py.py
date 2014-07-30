@@ -8,8 +8,8 @@ ide = scoremanager.idetools.AbjadIDE(is_test=True)
 def test_MaterialPackageWrangler_write_every_metadata_py_01():
 
     package_names = [
-        'instrumentation',
         'magic_numbers',
+        'performer_inventory',
         'pitch_range_inventory',
         'tempo_inventory',
         'time_signatures',

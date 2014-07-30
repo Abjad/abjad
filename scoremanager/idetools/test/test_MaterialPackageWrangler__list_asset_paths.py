@@ -12,8 +12,8 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
     wrangler = scoremanager.idetools.MaterialPackageWrangler(session=session)
 
     package_names = (
-        'instrumentation',
         'magic_numbers',
+        'performer_inventory',
         'pitch_range_inventory',
         'tempo_inventory',
         'time_signatures',

@@ -12,10 +12,10 @@ def test_MaterialPackageWrangler_list_every_versions_directory_01():
 
     lines = [
         '> vl*',
-        'Instrumentation:',
-        '    output_0001.py',
         'Magic numbers:',
         '    definition_0001.py output_0001.py',
+        'Performer inventory:',
+        '    output_0001.py',
         'Pitch range inventory:',
         '    illustration_0001.ly illustration_0001.pdf output_0001.py',
         'Tempo inventory:',

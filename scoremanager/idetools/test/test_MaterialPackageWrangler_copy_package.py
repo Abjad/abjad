@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_copy_package_01():
     example score packages).
     '''
 
-    input_ = 'mm cp instrumentation~(Red~Example~Score) q'
+    input_ = 'mm cp performer~inventory~(Red~Example~Score) q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -36,23 +36,23 @@ def test_MaterialPackageWrangler_copy_package_02():
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
-        'instrumentation',
+        'performer_inventory',
         )
     target_path = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
-        'copied_instrumentation',
+        'copied_performer_inventory',
         )
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'red~example~score m cp'
-        input_ += ' instrumentation copied_instrumentation y q'
+        input_ += ' performer_inventory copied_performer_inventory y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         assert os.path.exists(source_path)
         assert os.path.exists(target_path)
-        assert 'copied_instrumentation' in contents
+        assert 'copied_performer_inventory' in contents
 
 
 def test_MaterialPackageWrangler_copy_package_03():

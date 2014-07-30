@@ -12,8 +12,8 @@ def test_MaterialPackageWrangler_list_every_metadata_py_01():
     contents = ide._transcript.contents
 
     package_names = [
-        'instrumentation',
         'magic_numbers',
+        'performer_inventory',
         'pitch_range_inventory',
         'tempo_inventory',
         'time_signatures',

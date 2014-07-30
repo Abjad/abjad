@@ -61,13 +61,13 @@ def test_InstrumentInventory__item_creator_class_05():
     r'''Back doesn't cause anything to blow up in add instrument getter.
     '''
 
-    input_ = 'red~example~score m instrumentation da hornist i add b q'
+    input_ = 'red~example~score m performer~inventory da hornist i add b q'
 
     material_package = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
-        'instrumentation',
+        'performer_inventory',
         )
 
     with systemtools.FilesystemState(keep=[material_package]):
@@ -78,14 +78,14 @@ def test_InstrumentInventory__item_creator_class_06():
     r'''Back doesn't cause anything to blow up in untuned percussion getter.
     '''
 
-    input_ = 'red~example~score m instrumentation da'
+    input_ = 'red~example~score m performer~inventory da'
     input_ += ' hornist i add untuned~percussion b q'
 
     material_package = os.path.join(
         ide._configuration.example_score_packages_directory,
         'red_example_score',
         'materials',
-        'instrumentation',
+        'performer_inventory',
         )
 
     with systemtools.FilesystemState(keep=[material_package]):

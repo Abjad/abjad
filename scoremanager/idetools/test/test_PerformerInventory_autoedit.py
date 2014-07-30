@@ -5,7 +5,7 @@ import scoremanager
 
 
 def test_PerformerInventory_autoedit_01():
-    r'''Adds three performers to instrumentation specifier.
+    r'''Adds three performers to performer inventory.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
@@ -37,7 +37,7 @@ def test_PerformerInventory_autoedit_01():
 
 
 def test_PerformerInventory_autoedit_02():
-    r'''Adds three performers to instrumentation specifier.
+    r'''Adds three performers to performer inventory.
 
     Tests range handling.
     '''
@@ -68,7 +68,7 @@ def test_PerformerInventory_autoedit_02():
 
 
 def test_PerformerInventory_autoedit_03():
-    r'''Edits instrumentation specifier. Adds three performers. Removes two.
+    r'''Edits performer inventory. Adds three performers. Removes two.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
@@ -95,7 +95,7 @@ def test_PerformerInventory_autoedit_03():
 
 
 def test_PerformerInventory_autoedit_04():
-    r'''Edits instrumentation specifier. Adds and removes.
+    r'''Edits performer inventory. Adds and removes.
 
     Tests range handling.
     '''
@@ -123,7 +123,7 @@ def test_PerformerInventory_autoedit_04():
 
 
 def test_PerformerInventory_autoedit_05():
-    r'''Edits instrumentation specifier. Adds three performers.
+    r'''Edits performer inventory. Adds three performers.
     Makes two moves.
     '''
 

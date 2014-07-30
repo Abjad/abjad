@@ -14,8 +14,8 @@ def test_MaterialPackageWrangler_edit_every_output_py_01():
     assert ide._session._attempted_to_open_file
 
     package_names = (
-        'instrumentation',
         'magic_numbers',
+        'performer_inventory',
         'pitch_range_inventory',
         'tempo_inventory',
         )

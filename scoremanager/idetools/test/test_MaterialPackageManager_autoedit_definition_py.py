@@ -461,7 +461,7 @@ def test_MaterialPackageManager_autoedit_definition_py_14():
     '''
 
     ide = scoremanager.idetools.AbjadIDE(is_test=True)
-    input_ = 'red~example~score m instrumentation da done q'
+    input_ = 'red~example~score m performer~inventory da done q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 

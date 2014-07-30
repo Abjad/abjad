@@ -274,7 +274,7 @@ def test_ListAutoeditor__run_12():
 
 def test_ListAutoeditor__run_13():
 
-    input_ = 'red~example~score m instrumentation da q'
+    input_ = 'red~example~score m performer~inventory da q'
     ide._run(input_=input_)
     contents = ide._transcript.contents
 
@@ -282,7 +282,7 @@ def test_ListAutoeditor__run_13():
         'Abjad IDE - scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - materials directory',
-        'Red Example Score (2013) - materials directory - instrumentation',
-        'Red Example Score (2013) - materials directory - instrumentation (EDIT)',
+        'Red Example Score (2013) - materials directory - performer inventory',
+        'Red Example Score (2013) - materials directory - performer inventory (EDIT)',
         ]
     assert ide._transcript.titles == titles

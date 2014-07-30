@@ -23,14 +23,14 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             ...     configuration.example_score_packages_directory,
             ...     'red_example_score',
             ...     'materials',
-            ...     'instrumentation',
+            ...     'performer_inventory',
             ...     )
             >>> manager = scoremanager.idetools.MaterialPackageManager(
             ...     path=path,
             ...     session=session,
             ...     )
             >>> manager
-            MaterialPackageManager('.../materials/instrumentation')
+            MaterialPackageManager('.../materials/performer_inventory')
 
     '''
 

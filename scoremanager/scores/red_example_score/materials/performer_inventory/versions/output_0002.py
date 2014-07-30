@@ -2,7 +2,7 @@
 from abjad import *
 
 
-instrumentation = instrumenttools.PerformerInventory(
+performer_inventory = instrumenttools.PerformerInventory(
     [
         instrumenttools.Performer(
             name='hornist',
@@ -28,7 +28,7 @@ instrumentation = instrumenttools.PerformerInventory(
                                 ]
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[B1, F5]'
+                            range_string='[B1, F5]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('f'),
                         ),
@@ -59,7 +59,7 @@ instrumentation = instrumenttools.PerformerInventory(
                                 ]
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[E2, Eb5]'
+                            range_string='[E2, Eb5]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                         ),
@@ -90,7 +90,7 @@ instrumentation = instrumenttools.PerformerInventory(
                                 ]
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[A0, C8]'
+                            range_string='[A0, C8]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                         ),
@@ -135,7 +135,7 @@ instrumentation = instrumenttools.PerformerInventory(
                                 ),
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[G3, G7]'
+                            range_string='[G3, G7]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                         ),
@@ -180,7 +180,7 @@ instrumentation = instrumenttools.PerformerInventory(
                                 ),
                             ),
                         pitch_range=pitchtools.PitchRange(
-                            '[C2, G5]'
+                            range_string='[C2, G5]',
                             ),
                         sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                         ),

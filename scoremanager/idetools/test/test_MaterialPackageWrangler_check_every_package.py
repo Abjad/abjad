@@ -13,10 +13,10 @@ def test_MaterialPackageWrangler_check_every_package_01():
     lines = [
         'Materials directory (5 packages)',
         'Magic numbers: OK',
-        'Time signatures: OK',
-        'Instrumentation: OK',
+        'Performer inventory: OK',
         'Pitch range inventory: OK',
         'Tempo inventory: OK',
+        'Time signatures: OK',
         ]
 
     input_ = 'red~example~score m ck* y n q'
@@ -32,10 +32,10 @@ def test_MaterialPackageWrangler_check_every_package_02():
 
     lines = [
         'Magic numbers (Red Example Score): OK',
-        'Time signatures (Red Example Score): OK',
-        'Instrumentation (Red Example Score): OK',
+        'Performer inventory (Red Example Score): OK',
         'Pitch range inventory (Red Example Score): OK',
         'Tempo inventory (Red Example Score): OK',
+        'Time signatures (Red Example Score): OK',
         ]
 
     input_ = 'mm ck* y n q'

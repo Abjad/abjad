@@ -2,7 +2,7 @@
 from abjad import *
 
 
-instrumentation = instrumenttools.PerformerInventory(
+performer_inventory = instrumenttools.PerformerInventory(
     [
         instrumenttools.Performer(
             name='hornist',

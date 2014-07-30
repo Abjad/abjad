@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_set_view_01():
     with systemtools.FilesystemState(keep=[views_file]):
         os.remove(views_file)
         input_ = 'mm wa add _test'
-        input_ += ' add instrumentation~(Red~Example~Score)'
+        input_ += ' add performer~inventory~(Red~Example~Score)'
         input_ += ' add tempo~inventory~(Red~Example~Score) done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_set_view_01():
             'Abjad IDE - materials depot [_test]',
             '',
             '    Red Example Score:',
-            '       1: instrumentation',
+            '       1: performer inventory',
             '       2: tempo inventory',
             '',
             '      materials - copy (cp)',
@@ -62,7 +62,7 @@ def test_MaterialPackageWrangler_set_view_02():
         os.remove(views_file)
         os.remove(metadata_file)
         input_ = 'red~example~score m wa add _test'
-        input_ += ' add instrumentation done done'
+        input_ += ' add performer~inventory done done'
         input_ += ' ws _test q'
         ide._run(input_=input_)
         transcript = ide._transcript
@@ -70,7 +70,7 @@ def test_MaterialPackageWrangler_set_view_02():
         lines = [
             'Red Example Score (2013) - materials directory [_test]',
             '',
-            '   1: instrumentation',
+            '   1: performer inventory',
             '',
             '      materials - copy (cp)',
             '      materials - new (new)',

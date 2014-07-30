@@ -12,8 +12,8 @@ def test_MaterialPackageWrangler_edit_every_init_py_01():
     contents = ide._transcript.contents
 
     package_names = (
-        'instrumentation',
         'magic_numbers',
+        'performer_inventory',
         'pitch_range_inventory',
         'tempo_inventory',
         )
