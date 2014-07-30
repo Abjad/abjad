@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_datastructuretools_TypedOrdereddictionary___copy___01():
+def test_datastructuretools_TypedOrderedDict___copy___01():
 
     dictionary_1 = datastructuretools.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),

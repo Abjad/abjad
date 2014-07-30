@@ -74,6 +74,7 @@ class InstrumentInventory(TypedList):
             instrument_name = instrument_name + ' Voice'
         instrument_name = instrument_name.title()
         instrument_name = instrument_name.replace(' ', '')
+        instrument_name = instrument_name.replace('-', '')
         instrument_class = instrumenttools.__dict__[instrument_name]
         instrument = instrument_class()
         return instrument

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_datastructuretools_TypedOrdereddictionary___eq___01():
+def test_datastructuretools_TypedOrderedDict___eq___01():
 
     dictionary_1 = datastructuretools.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
@@ -25,7 +25,7 @@ def test_datastructuretools_TypedOrdereddictionary___eq___01():
     assert dictionary_3 == dictionary_3
 
 
-def test_datastructuretools_TypedOrdereddictionary___eq___02():
+def test_datastructuretools_TypedOrderedDict___eq___02():
 
     dictionary_1 = datastructuretools.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
