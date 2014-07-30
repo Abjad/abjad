@@ -158,3 +158,5 @@
 36. Audit 'if self._session.is_backtracking:' statements.
     Most should be 'if self._session.is_backtracking or not result:'.
     Change where appropriate.
+
+37. Change Red Example Score 'instrumentation' to 'performer inventory'.
