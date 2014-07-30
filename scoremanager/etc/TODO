@@ -109,3 +109,6 @@
 
 32. Add something at menu-build time to ensure commands contain no capital
     letters.
+
+33. Make (score > g > ren > a) work. Right now it raises an exception
+    when there is a segment named simply 'a'.
