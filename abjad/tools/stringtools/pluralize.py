@@ -2,26 +2,34 @@
 
 
 def pluralize(string, count=None):
-    r'''Pluralize English `string`. Change terminal `-y` to `-ies`:
+    r'''Pluralizes English `string`.
+    
+    ..  container:: example
 
-    ::
+        Changes terminal `-y` to `-ies`:
 
-        >>> stringtools.pluralize('catenary')
-        'catenaries'
+        ::
 
-    Add `-es` to terminal `-s`, `-sh`, `-x` and `-z`:
+            >>> stringtools.pluralize('catenary')
+            'catenaries'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.pluralize('brush')
-        'brushes'
+        Adds `-es` to terminal `-s`, `-sh`, `-x` and `-z`:
 
-    Add `-s` to all other strings:
+        ::
 
-    ::
+            >>> stringtools.pluralize('brush')
+            'brushes'
 
-        >>> stringtools.pluralize('shape')
-        'shapes'
+    ..  container:: example
+
+        Adds `-s` to all other strings:
+
+        ::
+
+            >>> stringtools.pluralize('shape')
+            'shapes'
 
     Returns string.
     '''

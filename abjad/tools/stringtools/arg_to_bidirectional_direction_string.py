@@ -2,27 +2,37 @@
 
 
 def arg_to_bidirectional_direction_string(arg):
-    r'''Convert `arg` to bidirectional direction string:
+    r'''Changes `arg` to bidirectional direction string.
 
-        >>> stringtools.arg_to_bidirectional_direction_string('^')
-        'up'
+    ..  container:: example:
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_bidirectional_direction_string('_')
-        'down'
+            >>> stringtools.arg_to_bidirectional_direction_string('^')
+            'up'
 
-    ::
+    ..  container:: example:
 
-        >>> stringtools.arg_to_bidirectional_direction_string(1)
-        'up'
+        ::
 
-    ::
+            >>> stringtools.arg_to_bidirectional_direction_string('_')
+            'down'
 
-        >>> stringtools.arg_to_bidirectional_direction_string(-1)
-        'down'
+    ..  container:: example:
 
-    If `arg` is 'up' or 'down', `arg` will be returned.
+        ::
+
+            >>> stringtools.arg_to_bidirectional_direction_string(1)
+            'up'
+
+    ..  container:: example:
+
+        ::
+
+            >>> stringtools.arg_to_bidirectional_direction_string(-1)
+            'down'
+
+    Returns `arg` when `arg` is `'up'` or `'down'`.
 
     Returns string or none.
     '''

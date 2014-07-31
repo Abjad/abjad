@@ -2,13 +2,15 @@
 
 
 def space_delimited_lowercase_to_upper_camel_case(string):
-    '''Change space-delimited lowercase `string` to uppercamelcase:
+    '''Changes space-delimited lowercase `string` to uppercamelcase.
 
-    ::
+    ..  container:: example
 
-        >>> string = 'bass figure alignment positioning'
-        >>> stringtools.space_delimited_lowercase_to_upper_camel_case(string)
-        'BassFigureAlignmentPositioning'
+        ::
+
+            >>> string = 'bass figure alignment positioning'
+            >>> stringtools.space_delimited_lowercase_to_upper_camel_case(string)
+            'BassFigureAlignmentPositioning'
 
     Returns string.
     '''

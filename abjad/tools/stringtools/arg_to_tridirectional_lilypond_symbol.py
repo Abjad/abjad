@@ -2,46 +2,62 @@
 
 
 def arg_to_tridirectional_lilypond_symbol(arg):
-    r'''Convert `arg` to tridirectional LilyPond symbol:
+    r'''Changes `arg` to tridirectional LilyPond symbol.
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
-        '^'
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol('neutral')
-        '-'
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
+            '^'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol('default')
-        '-'
+        ::
 
-    ::
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol('neutral')
+            '-'
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(Down)
-        '_'
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
-        '^'
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol('default')
+            '-'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(0)
-        '-'
+        ::
 
-    ::
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(Down)
+            '_'
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
-        '_'
+    ..  container:: example
 
-    If `arg` is None, None will be returned.
+        ::
 
-    If `arg` is '^', '-', or '_', `arg` will be returned.
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
+            '^'
 
-    Returns string or None.
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(0)
+            '-'
+
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
+            '_'
+
+    Returns none when `arg` is none.
+
+    Returns `arg` when `arg` is `'^'`, `'-'` or `'_'`.
+
+    Returns string or none.
     '''
 
     lookup = {
