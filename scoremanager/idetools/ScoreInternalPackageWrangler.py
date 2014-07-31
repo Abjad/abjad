@@ -52,6 +52,12 @@ class ScoreInternalPackageWrangler(PackageWrangler):
             name='all packages',
             )
 
+    def _make_main_menu(self):
+        superclass = super(ScoreInternalPackageWrangler, self)
+        menu = superclass._make_main_menu()
+        self._make_init_py_menu_section(menu)
+        return menu
+
     ### PUBLIC METHODS ###
 
     # TODO: factor out check_every_output_py shared code
