@@ -39,6 +39,20 @@ class MakerFileWrangler(FileWrangler):
         self._user_storehouse_path = \
             self._configuration.makers_library
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _command_to_method(self):
+        superclass = super(MakerFileWrangler, self)
+        result = superclass._command_to_method
+        result = result.copy()
+        result.update({
+            'ne': self.edit_init_py,
+            'nl': self.list_init_py,
+            'ns': self.write_stub_init_py,
+            })
+        return result
+
     ### PRIVATE METHODS ###
 
     def _enter_run(self):
@@ -83,3 +97,39 @@ class MakerFileWrangler(FileWrangler):
             except ImportError:
                 pass
         return modules
+
+    def _make_main_menu(self):
+        superclass = super(MakerFileWrangler, self)
+        menu = superclass._make_main_menu()
+        self._make_init_py_menu_section(menu)
+        return menu
+
+    ### PUBLIC METHODS ###
+
+    def edit_init_py(self):
+        r'''Edits ``__init__.py``.
+
+        Returns none.
+        '''
+        self._open_file(self._init_py_file_path)
+
+    def list_init_py(self):
+        r'''Lists ``__init__.py``.
+
+        Returns none.
+        '''
+        self._io_manager._display(self._init_py_file_path)
+
+    def write_stub_init_py(self):
+        r'''Writes stub ``__init__.py``.
+
+        Returns none.
+        '''
+        path = self._init_py_file_path
+        message = 'will write stub to {}.'
+        message = message.format(path)
+        self._io_manager._display(message)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        self._io_manager.write_stub(self._init_py_file_path)

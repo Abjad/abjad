@@ -1214,7 +1214,7 @@ class PackageManager(ScoreInternalAssetController):
             self._io_manager._display(messages, capitalize=False)
 
     def edit_init_py(self):
-        r'''Opens ``__init__.py``.
+        r'''Edits ``__init__.py``.
 
         Returns none.
         '''
