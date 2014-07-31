@@ -151,6 +151,12 @@ class Wrangler(ScoreInternalAssetController):
         extension=None,
         new_storehouse=None
         ):
+        visible_asset_paths = self._list_visible_asset_paths()
+        if not visible_asset_paths:
+            messages = ['nothing to copy.']
+            messages.append('')
+            self._io_manager._display(messages)
+            return
         extension = extension or getattr(self, '_extension', '')
         old_path = self._select_visible_asset_path(infinitive_phrase='to copy')
         if not old_path:
@@ -190,6 +196,8 @@ class Wrangler(ScoreInternalAssetController):
         new_path = os.path.join(new_storehouse, name)
         if os.path.exists(new_path):
             message = 'already exists: {}'.format(new_path)
+            self._io_manager._display(message)
+            self._io_manager._acknowledge()
             return
         messages = []
         messages.append('will copy ...')
