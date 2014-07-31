@@ -318,6 +318,29 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
+    def append_identifier(
+        self,
+        spaced_attribute_name,
+        allow_spaces=False,
+        default_value=None,
+        ):
+        r'''Appends Python identifier.
+
+        String beginning with a letter or underscore and containing only 
+        letters, digits and underscores.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be valid Python identifier.'
+        helper = lambda x: predicates.is_identifier(
+            x, allow_spaces=allow_spaces)
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=helper,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_integer(
         self,
         spaced_attribute_name,

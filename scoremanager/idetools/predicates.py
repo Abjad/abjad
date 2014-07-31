@@ -49,6 +49,22 @@ def is_dynamic_token(expr):
 def is_hairpin_token(expr):
     return spannertools.Hairpin._is_hairpin_token(expr)
 
+def is_identifier(expr, allow_spaces=False):
+    if not isinstance(expr, str):
+        return False
+    if len(expr) < 1:
+        return False
+    if expr[0] in '0123456789':
+        return False
+    for _ in expr:
+        if allow_spaces:
+            if not (_.isalnum() or _ == '_' or _ == ' '):
+                return False
+        else:
+            if not (_.isalnum() or _ == '_'):
+                return False
+    return True
+
 def is_integer(expr):
     return isinstance(expr, int)
 
