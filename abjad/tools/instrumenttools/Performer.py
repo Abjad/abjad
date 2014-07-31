@@ -149,6 +149,25 @@ class Performer(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def get_instrument(self, instrument_name):
+        r'''Gets instrument in performer with `instrument_name`.
+
+        ..  container:: example
+
+            ::
+            
+                >>> flutist = instrumenttools.Performer(name='flutist')
+                >>> flutist.instruments.append(instrumenttools.Flute())
+                >>> flutist.instruments.append(instrumenttools.Piccolo())
+                >>> flutist.get_instrument('piccolo')
+                Piccolo()
+
+        Returns instrument or none.
+        '''
+        for instrument in self.instruments:
+            if instrument.instrument_name == instrument_name:
+                return instrument
+
     @staticmethod
     def list_performer_names():
         r'''Lists performer names.
