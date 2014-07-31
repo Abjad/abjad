@@ -46,10 +46,9 @@ class MakerFileWrangler(FileWrangler):
 
     @staticmethod
     def _file_name_callback(file_name):
-        # TODO: replace with stringtools.to_upper_camel_case()
-        file_name = file_name.replace(' ', '')
-        file_name = file_name.replace('_', '')
-        file_name = file_name.replace('-', '')
+        base_name, extension = os.path.splitext(file_name)
+        base_name = stringtools.to_upper_camel_case(base_name)
+        file_name = base_name + extension
         return file_name
 
     def _is_valid_directory_entry(self, directory_entry):
