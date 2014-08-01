@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class BeamSpecifier(AbjadObject):
+class BeamSpecifier(AbjadValueObject):
     r'''Beam specifier.
 
     ..  container:: example
@@ -113,7 +113,7 @@ class BeamSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__format__(
+        return AbjadValueObject.__format__(
             self,
             format_specification=format_specification,
             )
@@ -139,7 +139,7 @@ class BeamSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__repr__(self)
+        return AbjadValueObject.__repr__(self)
 
     ### PRIVATE PROPERTIES ###
 

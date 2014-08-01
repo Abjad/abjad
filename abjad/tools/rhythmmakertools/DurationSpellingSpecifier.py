@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class DurationSpellingSpecifier(AbjadObject):
+class DurationSpellingSpecifier(AbjadValueObject):
     r'''Duration spelling speficifier.
     '''
 
@@ -81,7 +81,7 @@ class DurationSpellingSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__format__(
+        return AbjadValueObject.__format__(
             self,
             format_specification=format_specification,
             )
@@ -107,7 +107,7 @@ class DurationSpellingSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__repr__(self)
+        return AbjadValueObject.__repr__(self)
 
     ### PRIVATE PROPERTIES ###
 

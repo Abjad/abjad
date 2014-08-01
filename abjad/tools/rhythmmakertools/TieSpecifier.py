@@ -2,14 +2,14 @@
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
-class TieSpecifier(AbjadObject):
+class TieSpecifier(AbjadValueObject):
     r'''Tie specifier.
     '''
 

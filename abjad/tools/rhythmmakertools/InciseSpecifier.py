@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class InciseSpecifier(AbjadObject):
+class InciseSpecifier(AbjadValueObject):
     r'''Incision specifier.
     '''
 

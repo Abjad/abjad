@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class BurnishSpecifier(AbjadObject):
+class BurnishSpecifier(AbjadValueObject):
     r'''Burnish specifier.
 
     ..  container:: example
@@ -217,7 +217,7 @@ class BurnishSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__format__(
+        return AbjadValueObject.__format__(
             self,
             format_specification=format_specification,
             )
@@ -271,7 +271,7 @@ class BurnishSpecifier(AbjadObject):
 
         Returns boolean.
         '''
-        return AbjadObject.__ne__(self, expr)
+        return AbjadValueObject.__ne__(self, expr)
 
     def __repr__(self):
         r'''Gets interpreter representation of burnish specifier.
@@ -292,7 +292,7 @@ class BurnishSpecifier(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__repr__(self)
+        return AbjadValueObject.__repr__(self)
 
     ### PRIVATE PROPERTIES ###
 

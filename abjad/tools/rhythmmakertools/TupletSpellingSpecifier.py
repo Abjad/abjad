@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class TupletSpellingSpecifier(AbjadObject):
+class TupletSpellingSpecifier(AbjadValueObject):
     r'''Tuplet spelling specifier.
     '''
 

@@ -12,11 +12,11 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class RhythmMaker(AbjadObject):
+class RhythmMaker(AbjadValueObject):
     '''Rhythm-maker abstract base class.
     '''
 
