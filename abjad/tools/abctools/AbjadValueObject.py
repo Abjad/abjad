@@ -7,6 +7,12 @@ class AbjadValueObject(AbjadObject):
     storage format.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
     def __eq__(self, expr):
         r'''Is true when all initialization values of Abjad value object equal
         the initialization values of `expr`.
