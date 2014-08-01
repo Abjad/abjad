@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import selectiontools
 from abjad.tools.topleveltools import iterate
 
 
-class RunSelectorCallback(AbjadObject):
+class RunSelectorCallback(AbjadValueObject):
     r'''A run selector callback.
     '''
 

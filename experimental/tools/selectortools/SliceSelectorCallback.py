@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import select
 
 
-class SliceSelectorCallback(AbjadObject):
+class SliceSelectorCallback(AbjadValueObject):
     r'''A slice selector callback.
     '''
 

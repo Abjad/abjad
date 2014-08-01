@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class LogicalTieSelectorCallback(AbjadObject):
+class LogicalTieSelectorCallback(AbjadValueObject):
     r'''A logical tie selector callback.
     '''
 
