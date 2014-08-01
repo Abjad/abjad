@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import collections
-import types
 
 
 def list_all_abjad_classes(modules=None):
