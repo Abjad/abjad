@@ -606,7 +606,8 @@ class Wrangler(ScoreInternalAssetController):
         display_strings, keys = [], []
         keys.append(self._user_storehouse_path)
         if self._in_library:
-            display_strings.append('My {}'.format(self._breadcrumb))
+            display_string = 'My {} library'.format(self._asset_identifier)
+            display_strings.append(display_string)
         wrangler = idetools.ScorePackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(
             abjad_material_packages_and_stylesheets=abjad_material_packages_and_stylesheets,

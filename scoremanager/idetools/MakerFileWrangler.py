@@ -31,6 +31,7 @@ class MakerFileWrangler(FileWrangler):
     def __init__(self, session=None):
         superclass = super(MakerFileWrangler, self)
         superclass.__init__(session=session)
+        self._asset_identifier = 'maker'
         self._basic_breadcrumb = 'makers'
         self._extension = '.py'
         self._force_lowercase = False
