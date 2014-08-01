@@ -96,23 +96,17 @@
 
 29. Implement three-column (??) layout.
 
-30. (rad) gives the following when there's nothing to add:
-        > rad
-        Will add ...
-        Ok? 
-    Change this to alert that there's nothing to add.
-
-31. Add something at menu-build time to ensure commands contain no capital
+30. Add something at menu-build time to ensure commands contain no capital
     letters.
 
-32. Make (score > g > ren > a) work. Right now it raises an exception
+31. Make (score > g > ren > a) work. Right now it raises an exception
     when there is a segment named simply 'a'.
 
-33. Make <return> work again for default selection in instrument selection.
+32. Make <return> work again for default selection in instrument selection.
     (score > m > performer inventory > oboist > <return>) should select
     oboe as the default instrument. Right now it does nothing.
 
-34. Fix layout of two-column 'select instruments' screen.
+33. Fix layout of two-column 'select instruments' screen.
     Current view looks like this:
 
       Score (2014) - materials directory - performer inventory (EDIT)
@@ -150,10 +144,10 @@
     The 'select instrumets' indicator should be followed by a colon.
     And the right column is two lines too high.
 
-35. Implement some sort of suffixed version of (done) like (done!!)
+34. Implement some sort of suffixed version of (done) like (done!!)
     that will confirm out of all nested autoeditors.
     Test somewhere like ...
         (score > m > perf > da > perc > i > add > unt > crot > done!!)
     ... or equivalent.
 
-36. Change 'My makers depot' to 'My makers library'.
+35. Change 'My makers depot' to 'My makers library'.

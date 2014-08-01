@@ -880,6 +880,10 @@ class PackageManager(ScoreInternalAssetController):
             outputs = []
             if dry_run:
                 return inputs, outputs
+            if not inputs:
+                message = 'nothing to add.'
+                self._io_manager._display(message)
+                return
             messages = []
             messages.append('will add ...')
             for path in inputs:
