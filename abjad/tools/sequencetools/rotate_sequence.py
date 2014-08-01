@@ -32,9 +32,3 @@ def rotate_sequence(sequence, n):
     result = sequencetools.Sequence(*sequence)
     result = result.rotate(n)
     return type(sequence)(result)
-    #result = []
-    #if len(sequence):
-    #    n = n % len(sequence)
-    #    for element in sequence[-n:len(sequence)] + sequence[:-n]:
-    #        result.append(copy.deepcopy(element))
-    #return type(sequence)(result)

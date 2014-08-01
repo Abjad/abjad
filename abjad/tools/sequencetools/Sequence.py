@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import collections
-import copy
 from abjad.tools.abctools import AbjadObject
 
 
@@ -111,7 +110,7 @@ class Sequence(AbjadObject):
         '''
         result = self._elements.__getitem__(i)
         if isinstance(i, slice):
-            return type(self)(*result) 
+            return type(self)(*result)
         return result
 
     def __getslice__(self, start, stop):
@@ -642,7 +641,8 @@ class Sequence(AbjadObject):
         if len(self):
             n = n % len(self)
             for element in self[-n:len(self)] + self[:-n]:
-                result.append(copy.deepcopy(element))
+                result.append(element)
+                #result.append(copy.deepcopy(element))
         return type(self)(*result)
 
 
