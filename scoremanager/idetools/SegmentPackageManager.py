@@ -231,7 +231,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 result = self._io_manager.interpret_file(illustrate_path)
             stdout_lines, stderr_lines = result
             if stderr_lines:
-                self._io_manager._display(stderr_lines)
+                self._io_manager._display_errors(stderr_lines)
                 return
             if not os.path.exists(illustration_pdf_path):
                 shutil.move(candidate_pdf_path, illustration_pdf_path)
