@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 from abjad.tools import lilypondfiletools
 from abjad.tools.abctools import AbjadObject
 
@@ -11,8 +10,8 @@ class SegmentMaker(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_lilypond_file',
         '_name',
-        '_score',
         )
 
     ### INITIALIZER ###
@@ -21,8 +20,8 @@ class SegmentMaker(AbjadObject):
         self,
         name=None,
         ):
+        self._lilypond_file = None
         self._name = name
-        self._score = None
 
     ### SPECIAL METHODS ###
 
@@ -31,9 +30,10 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
-        music = self._make_music()
-        assert isinstance(music, lilypondfiletools.LilyPondFile)
-        return music
+        lilypond_file = self._make_lilypond_file()
+        assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        self._lilypond_file = lilypond_file
+        return self._lilypond_file
 
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
@@ -58,17 +58,19 @@ class SegmentMaker(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def lilypond_file(self):
+        r'''Gets segment LilyPond file.
+
+        Created when segment-maker is called.
+
+        Returns LilyPond file.
+        '''
+        return self._lilypond_file
+
+    @property
     def name(self):
         r'''Gets segment name.
 
-        Returns string.
+        Returns string or none.
         '''
         return self._name
-
-    @property
-    def score(self):
-        r'''Gets segment score.
-
-        Returns score.
-        '''
-        return self._score
