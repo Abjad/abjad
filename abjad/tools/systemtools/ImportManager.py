@@ -200,7 +200,6 @@ class ImportManager(object):
         '''
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
-            print(name)
             module_path = os.path.join(path, name)
             if not os.path.isfile(module_path):
                 continue
@@ -213,9 +212,7 @@ class ImportManager(object):
                 package_path,
                 name,
                 ))
-            print(module_path)
             module = __import__(module_path, fromlist=['*'])
-            print(module)
             if name in dir(module):
                 namespace[name] = getattr(module, name)
         if 'systemtools' in namespace:
