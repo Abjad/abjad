@@ -19,7 +19,7 @@ def test_StylesheetWrangler_copy_file_01():
 
     with systemtools.FilesystemState(keep=[source_path], remove=[target_path]):
         input_ = 'yy cp clean-letter-14.ily'
-        input_ += ' My~stylesheets~depot test~foo~stylesheet y q'
+        input_ += ' My~stylesheet~library test~foo~stylesheet y q'
         ide._run(input_=input_)
         contents = ide._transcript.contents
         assert os.path.exists(source_path)

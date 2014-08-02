@@ -117,6 +117,9 @@ class IOManager(IOManager):
         for line in lines:
             print(line)
 
+    def _display_errors(self, lines):
+        self._display(lines, capitalize=False)
+
     def _display_not_yet_implemented(self):
         message = 'not yet implemented.'
         self._display(message)

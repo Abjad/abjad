@@ -2,16 +2,18 @@
 
 
 def upper_camel_case_to_snake_case(string):
-    r'''Change uppercamelcase `string` to underscore-delimited lowercase:
+    r'''Changes upper camel case `string` to snake-case.
 
-    ::
+    ..  container:: example:
 
-        >>> string = 'KeySignature'
+        ::
 
-    ::
+            >>> string = 'KeySignature'
 
-        >>> stringtools.upper_camel_case_to_snake_case(string)
-        'key_signature'
+        ::
+
+            >>> stringtools.upper_camel_case_to_snake_case(string)
+            'key_signature'
 
     Returns string.
     '''

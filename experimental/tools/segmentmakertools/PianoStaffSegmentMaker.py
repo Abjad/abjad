@@ -102,7 +102,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             )
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
 
-    def _make_music(self):
+    def _make_lilypond_file(self):
         template = templatetools.TwoStaffPianoScoreTemplate()
         score = template()
         self._score = score

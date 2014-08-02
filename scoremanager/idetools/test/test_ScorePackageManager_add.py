@@ -34,3 +34,14 @@ def test_ScorePackageManager_add_02():
         return
 
     assert manager._test_add()
+
+
+def test_ScorePackageManager_add_03():
+    r'''Displays informative message when nothing to add.
+    '''
+
+    input_ = 'red~example~score rad q'
+    ide._run(input_=input_)
+    contents = ide._transcript.contents
+
+    assert 'Nothing to add.' in contents

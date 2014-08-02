@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_rename_package_01():
         input_ = 'red~example~score m new test~material y q'
         ide._run(input_=input_)
         assert os.path.exists(path)
-        input_ = 'red~example~score m ren test~material new_test_material y q'
+        input_ = 'red~example~score m ren test~material new~test~material y q'
         ide._run(input_=input_)
         assert not os.path.exists(path)
         assert os.path.exists(new_path)

@@ -3,6 +3,7 @@ import collections
 import copy
 import os
 import shutil
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.idetools.ScoreInternalPackageManager import \
     ScoreInternalPackageManager
@@ -363,10 +364,11 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         force_lowercase=True,
         ):
         getter = self._io_manager._make_getter()
-        getter.append_snake_case_package_name('enter new package name')
+        getter.append_identifier('enter new package name', allow_spaces=True)
         new_package_name = getter._run()
         if self._session.is_backtracking or new_package_name is None:
             return
+        new_package_name = stringtools.to_snake_case(new_package_name)
         base_name = os.path.basename(self._path)
         new_directory = self._path.replace(
             base_name,

@@ -2,61 +2,65 @@
 
 
 def format_input_lines_as_regression_test(input_lines, tab_width=3):
-    r"""Format `input_lines` as regression test:
+    r"""Formats `input_lines` as regression test.
 
-    ::
+    ..  container:: example
 
-        >>> input_lines = '''
-        ... staff = Staff("c'8 d'8 e'8 f'8")
-        ... beam = spannertools.Beam()
-        ... attach(beam, staff.select_leaves())
-        ... f(staff)
-        ...
-        ... scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
-        ... f(staff)
-        ... '''
+        ::
 
-    ::
+            >>> input_lines = '''
+            ... staff = Staff("c'8 d'8 e'8 f'8")
+            ... beam = spannertools.Beam()
+            ... attach(beam, staff.select_leaves())
+            ... f(staff)
+            ...
+            ... scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
+            ... f(staff)
+            ... '''
 
-        >>> stringtools.format_input_lines_as_regression_test(input_lines) # doctest: +SKIP
+        ::
 
-            staff = Staff("c'8 d'8 e'8 f'8")
-            beam = spannertools.Beam()
-            attach(beam, staff.select_leaves())
+            >>> stringtools.format_input_lines_as_regression_test(input_lines) # doctest: +SKIP
 
-            r'''
-            \new Staff {
-                c'8 [
-                d'8
-                e'8
-                f'8 ]
-            }
-            '''
+                staff = Staff("c'8 d'8 e'8 f'8")
+                beam = spannertools.Beam()
+                attach(beam, staff.select_leaves())
 
-            scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
-
-            r'''
-            \new Staff {
-                \times 2/3 {
+                r'''
+                \new Staff {
                     c'8 [
                     d'8
                     e'8
+                    f'8 ]
                 }
-                f'8 ]
-            }
+                '''
 
-            assert select(staff).is_well_formed()
-            assert format(staff) == "\\new Staff {
-                \n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
-            '''
+                scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
 
-    Format expressions intelligently.
+                r'''
+                \new Staff {
+                    \times 2/3 {
+                        c'8 [
+                        d'8
+                        e'8
+                    }
+                    f'8 ]
+                }
 
-    Treat blank lines intelligently.
+                assert select(staff).is_well_formed()
+                assert format(staff) == "\\new Staff {
+                    \n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
+                '''
 
-    Remove line-final hash characters.
+    Formats expressions intelligently.
 
-    Used when writing tests.
+    Treats blank lines intelligently.
+
+    Removes line-final hash characters.
+
+    Use when writing tests.
+
+    Returns string.
     """
 
     tab = ' ' * tab_width

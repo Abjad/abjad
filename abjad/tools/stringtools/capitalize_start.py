@@ -2,25 +2,34 @@
 
 
 def capitalize_start(string):
-    r'''Capitalize `string`:
+    r'''Capitalizes `string`.
 
-    ::
+    ..  container:: example
 
-        >>> string = 'violin I'
+        ::
 
-    ::
+            >>> string = 'violin I'
 
-        >>> stringtools.capitalize_start(string)
-        'Violin I'
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.capitalize_start(string)
+            'Violin I'
 
     Function differs from built-in ``string.capitalize()``.
 
-    This function affects only ``string[0]`` and leaves noninitial characters as-is.
+    This function affects only ``string[0]`` and leaves noninitial characters
+    as-is.
 
     Built-in ``string.capitalize()`` forces noninitial characters to lowercase.
 
-        >>> string.capitalize()
-        'Violin i'
+    ..  container:: example
+
+        ::
+
+            >>> string.capitalize()
+            'Violin i'
 
     Returns newly constructed string.
     '''

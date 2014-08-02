@@ -4,21 +4,23 @@ import unicodedata
 
 
 def strip_diacritics(binary_string):
-    r'''Strip diacritics from `binary_string`:
+    r'''Strips diacritics from `binary_string`.
 
-    ::
+    ..  container:: example
 
-        >>> binary_string = 'Dvořák'
+        ::
 
-    ::
+            >>> binary_string = 'Dvořák'
 
-        >>> print(binary_string)
-        Dvořák
+        ::
 
-    ::
+            >>> print(binary_string)
+            Dvořák
 
-        >>> stringtools.strip_diacritics(binary_string)
-        'Dvorak'
+        ::
+
+            >>> stringtools.strip_diacritics(binary_string)
+            'Dvorak'
 
     Returns ASCII string.
     '''

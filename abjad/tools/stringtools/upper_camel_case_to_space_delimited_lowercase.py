@@ -2,16 +2,18 @@
 
 
 def upper_camel_case_to_space_delimited_lowercase(string):
-    r'''Change uppercamelcase `string` to space-delimited lowercase:
+    r'''Changes upper camel case `string` to space-delimited lowercase.
 
-    ::
+    ..  container:: example
 
-        >>> string = 'KeySignature'
+        ::
 
-    ::
+            >>> string = 'KeySignature'
 
-        >>> stringtools.upper_camel_case_to_space_delimited_lowercase(string)
-        'key signature'
+        ::
+
+            >>> stringtools.upper_camel_case_to_space_delimited_lowercase(string)
+            'key signature'
 
     Returns string.
     '''

@@ -187,3 +187,29 @@ class PerformerInventory(TypedList):
             def target(self):
                 return self._target
         return ItemCreator
+
+    ### PUBLIC METHODS ###
+
+    def get_instrument(self, instrument_name):
+        r'''Gets first instrument in performer inventory with
+        `instrument_name`.
+
+        ..  container:: example
+
+            ::
+            
+                >>> flutist = instrumenttools.Performer(name='flutist')
+                >>> flutist.instruments.append(instrumenttools.Flute())
+                >>> flutist.instruments.append(instrumenttools.Piccolo())
+                >>> inventory = instrumenttools.PerformerInventory(
+                ...     [flutist],
+                ...     )
+                >>> inventory.get_instrument('piccolo')
+                Piccolo()
+
+        Returns instrument or none.
+        '''
+        for performer in self:
+            instrument = performer.get_instrument(instrument_name)
+            if instrument is not None:
+                return instrument

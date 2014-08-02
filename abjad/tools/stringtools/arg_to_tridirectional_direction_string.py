@@ -2,44 +2,60 @@
 
 
 def arg_to_tridirectional_direction_string(arg):
-    r'''Convert `arg` to tridirectional direction string:
+    r'''Changes `arg` to tridirectional direction string.
 
-        >>> stringtools.arg_to_tridirectional_direction_string('^')
-        'up'
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_direction_string('-')
-        'center'
+            >>> stringtools.arg_to_tridirectional_direction_string('^')
+            'up'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_direction_string('_')
-        'down'
+        ::
 
-    ::
+            >>> stringtools.arg_to_tridirectional_direction_string('-')
+            'center'
 
-        >>> stringtools.arg_to_tridirectional_direction_string(1)
-        'up'
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_direction_string(0)
-        'center'
+            >>> stringtools.arg_to_tridirectional_direction_string('_')
+            'down'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_direction_string(-1)
-        'down'
+        ::
 
-    ::
+            >>> stringtools.arg_to_tridirectional_direction_string(1)
+            'up'
 
-        >>> stringtools.arg_to_tridirectional_direction_string('default')
-        'center'
+    ..  container:: example
 
-    If `arg` is None, None will be returned.
+        ::
 
-    Returns str or None.
+            >>> stringtools.arg_to_tridirectional_direction_string(0)
+            'center'
+
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_direction_string(-1)
+            'down'
+
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_direction_string('default')
+            'center'
+
+    Returns none when `arg` is none.
+
+    Returns string or none.
     '''
 
     lookup = {

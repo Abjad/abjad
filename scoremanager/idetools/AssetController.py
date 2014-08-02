@@ -345,7 +345,6 @@ class AssetController(Controller):
         if self._session.is_in_score:
             self._make_score_stylesheet_menu_section(menu)
         self._make_go_menu_section(menu)
-        #self._make_repository_menu_section(menu)
         self._make_system_menu_section(menu)
         return menu
 

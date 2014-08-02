@@ -2,29 +2,37 @@
 
 
 def arg_to_tridirectional_ordinal_constant(arg):
-    r'''Convert `arg` to tridirectional ordinal constant:
+    r'''Changes `arg` to tridirectional ordinal constant.
 
-        >>> stringtools.arg_to_tridirectional_ordinal_constant('^')
-        Up
+    ..  container:: example
 
-    ::
+            >>> stringtools.arg_to_tridirectional_ordinal_constant('^')
+            Up
 
-        >>> stringtools.arg_to_tridirectional_ordinal_constant('_')
-        Down
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_ordinal_constant(1)
-        Up
+            >>> stringtools.arg_to_tridirectional_ordinal_constant('_')
+            Down
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_ordinal_constant(-1)
-        Down
+        ::
 
-    If `arg` is Up, Center or Down, `arg` will be returned.
+            >>> stringtools.arg_to_tridirectional_ordinal_constant(1)
+            Up
 
-    Returns OrdinalConstant or None.
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_ordinal_constant(-1)
+            Down
+
+    Returns `arg` when `arg` is `Up`', `Center` or `Down`.
+
+    Returns ordinal constant or none.
     '''
 
     lookup = {

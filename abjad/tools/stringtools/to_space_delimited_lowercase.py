@@ -2,33 +2,43 @@
 
 
 def to_space_delimited_lowercase(string):
-    r'''Change uppercamelcase `string` to space-delimited lowercase:
+    r'''Changes `string` to space-delimited lowercase.
+    
+    ..  container:: example
 
-    ::
+        Changes upper camel case `string` to space-delimited lowercase:
 
-        >>> stringtools.to_space_delimited_lowercase('LogicalTie')
-        'logical tie'
+        ::
 
-    Change underscore-delimited `string` to space-delimited lowercase:
+            >>> stringtools.to_space_delimited_lowercase('LogicalTie')
+            'logical tie'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.to_space_delimited_lowercase('logical_tie')
-        'logical tie'
+        Changes underscore-delimited `string` to space-delimited lowercase:
 
-    Returns space-delimited string unchanged:
+        ::
 
-    ::
+            >>> stringtools.to_space_delimited_lowercase('logical_tie')
+            'logical tie'
 
-        >>> stringtools.to_space_delimited_lowercase('logical tie')
-        'logical tie'
+    ..  container:: example
 
-    Returns empty `string` unchanged:
+        Returns space-delimited string unchanged:
 
-    ::
+        ::
 
-        >>> stringtools.to_space_delimited_lowercase('')
-        ''
+            >>> stringtools.to_space_delimited_lowercase('logical tie')
+            'logical tie'
+
+    ..  container:: example
+
+        Returns empty `string` unchanged:
+
+        ::
+
+            >>> stringtools.to_space_delimited_lowercase('')
+            ''
 
     Returns string.
     '''

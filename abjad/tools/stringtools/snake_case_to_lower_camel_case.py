@@ -2,13 +2,15 @@
 
 
 def snake_case_to_lower_camel_case(string):
-    '''Change underscore-delimited lowercase `string` to lowercamelcase:
+    '''Changes underscore-delimited lowercase `string` to lowercamelcase.
 
-    ::
+    ..  container:: example
 
-        >>> string = 'bass_figure_alignment_positioning'
-        >>> stringtools.snake_case_to_lower_camel_case(string)
-        'bassFigureAlignmentPositioning'
+        ::
+
+            >>> string = 'bass_figure_alignment_positioning'
+            >>> stringtools.snake_case_to_lower_camel_case(string)
+            'bassFigureAlignmentPositioning'
 
     Returns string.
     '''

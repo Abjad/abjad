@@ -2,29 +2,39 @@
 
 
 def arg_to_bidirectional_lilypond_symbol(arg):
-    r'''Convert `arg` to bidirectional LilyPond symbol:
+    r'''Changes `arg` to bidirectional LilyPond symbol.
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
-        '^'
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(Down)
-        '_'
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
+            '^'
 
-    ::
+    ..  container:: example
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
-        '^'
+        ::
 
-    ::
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(Down)
+            '_'
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
-        '_'
+    ..  container:: example
 
-    If `arg` is '^' or '_', `arg` will be returned.
+        ::
 
-    Returns str or None.
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
+            '^'
+
+    ..  container:: example
+
+        ::
+
+            >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
+            '_'
+
+    Returns `arg` when `arg` is `'^'` or `'_'`.
+
+    Returns string or none.
     '''
 
     lookup = {

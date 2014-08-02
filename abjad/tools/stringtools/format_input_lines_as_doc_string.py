@@ -2,13 +2,13 @@
 
 
 def format_input_lines_as_doc_string(input_lines):
-    r'''Format `input_lines` as doc string.
+    r'''Formats `input_lines` as doc string.
 
-    Format expressions intelligently.
+    Formats expressions intelligently.
 
-    Treat blank lines intelligently.
+    Treats blank lines intelligently.
 
-    Capture hash-suffixed line output.
+    Captures hash-suffixed line output.
 
     Use when writing docstrings.
 

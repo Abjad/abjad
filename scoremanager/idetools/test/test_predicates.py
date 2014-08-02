@@ -15,6 +15,23 @@ def test_predicates_01():
 
 def test_predicates_02():
 
+    assert predicates.is_identifier('foo_bar')
+    assert predicates.is_identifier('FooBar')
+    assert predicates.is_identifier('_foo_bar')
+    assert predicates.is_identifier('__foo_bar')
+    assert predicates.is_identifier('_')
+    assert predicates.is_identifier('f')
+
+    assert not predicates.is_boolean(None)
+    assert not predicates.is_boolean('')
+    assert not predicates.is_boolean('1')
+    assert not predicates.is_boolean('foo_!')
+    assert not predicates.is_boolean('foo_#')
+    assert not predicates.is_boolean('foo_@')
+
+
+def test_predicates_03():
+
     assert predicates.is_page_layout_unit('in')
     assert predicates.is_page_layout_unit('mm')
     assert predicates.is_page_layout_unit('cm')
@@ -27,7 +44,7 @@ def test_predicates_02():
     assert not predicates.is_page_layout_unit(1)
 
 
-def test_predicates_03():
+def test_predicates_04():
 
     assert predicates.is_paper_dimension_string('8.5 x 11 in')
     assert predicates.is_paper_dimension_string('11 x 8.5 in')
