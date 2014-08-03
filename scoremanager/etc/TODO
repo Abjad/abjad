@@ -149,3 +149,6 @@
     Test somewhere like ...
         (score > m > perf > da > perc > i > add > unt > crot > done!!)
     ... or equivalent.
+
+35. Add output of Unix 'date' to top of LilyPond log on each run.
+    This will allow (ll) to show when LilyPond was last run.
