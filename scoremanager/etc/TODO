@@ -154,3 +154,40 @@
     This will allow (ll) to show when LilyPond was last run.
 
 36. Add Unicode directive to top of all new maker files after calling (new).
+
+37. Change ...
+
+        Score (2014)
+        
+           1: __init__.py
+           2: __metadata__.py
+           3: build/
+           4: distribution/
+           5: etc/
+           6: makers/
+           7: materials/
+           8: segments/
+           9: stylesheets/
+        
+              build (u)
+              distribution (d)
+              makers (k)
+              materials (m)
+              segments (g)
+              stylesheets (y)
+
+    ... to ...
+
+        Score (2014)
+        
+           1: __init__.py
+           2: __metadata__.py
+           3: build/ (u)
+           4: distribution/ (d)
+           5: etc/
+           6: makers/ (k)
+           7: materials/ (m)
+           8: segments/ (g)
+           9: stylesheets/ (y)
+
+    ... instead.
