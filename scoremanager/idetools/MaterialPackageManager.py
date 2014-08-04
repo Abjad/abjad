@@ -402,7 +402,8 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             path=self._definition_py_path,
             attribute_names=attribute_names,
             )
-        assert len(result) == 1
+        if not len(result) == 1:
+            return 'corrupt'
         output_material = result[0]
         return output_material
 
