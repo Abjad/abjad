@@ -152,3 +152,5 @@
 
 35. Add output of Unix 'date' to top of LilyPond log on each run.
     This will allow (ll) to show when LilyPond was last run.
+
+36. Add Unicode directive to top of all new maker files after calling (new).
