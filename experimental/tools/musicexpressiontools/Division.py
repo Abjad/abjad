@@ -10,33 +10,42 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 class Division(NonreducedFraction, BoundedObject):
     r'''Division.
 
-    Offset-positioned, bounded, nonreduced fraction.
+    A division is a bounded nonreduced fraction that is optionally
+    offset-positioned.
 
-    Example 1. Initialize from string:
+    ..  container:: example::
+    
+        Example 1. Initializes from string:
 
-    ::
+        ::
 
-        >>> musicexpressiontools.Division('[5, 8)')
-        Division('[5, 8)')
+            >>> musicexpressiontools.Division('[5, 8)')
+            Division('[5, 8)')
 
-    Example 2. Initialize from pair and optional open / closed keywords:
+    ..  container:: example::
 
-    ::
+        Example 2. Initializes from pair and optional open / closed keywords:
 
-        >>> musicexpressiontools.Division((5, 8),
-        ...     is_right_open=True, start_offset=Offset(1, 8))
-        Division('[5, 8)', start_offset=Offset(1, 8))
+        ::
 
-    Example 3. Initialize from other division:
+            >>> musicexpressiontools.Division(
+            ...     (5, 8),
+            ...     is_right_open=True,
+            ...     start_offset=Offset(1, 8),
+            ...     )
+            Division('[5, 8)', start_offset=Offset(1, 8))
 
-        >>> musicexpressiontools.Division(_)
-        Division('[5, 8)', start_offset=Offset(1, 8))
+    ..  container:: example::
 
-    Divisions may model beats. Divisions may model complete measures.
-    Divisions may model time objects other than beats or measures.
+        Example 3. Initializes from other division:
 
-    Divisions generally may be used to model any block of time that is
-    to be understood as divisible into parts.
+        ::
+
+            >>> musicexpressiontools.Division(_)
+            Division('[5, 8)', start_offset=Offset(1, 8))
+
+    Divisions model any block of time that is divisible into parts: beats,
+    complete measures or arbitrary spans of time.
     '''
 
     ### CLASS VARIABLES ###
