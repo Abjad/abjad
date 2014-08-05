@@ -16,6 +16,11 @@ def test_SegmentPackageManager_version_package_01():
         'segment_01',
         'versions',
         )
+    current_versioned_file_names = (
+        'definition_0002.py',
+        'illustration_0002.ly',
+        'illustration_0002.pdf',
+        )
     next_versioned_file_names = (
         'definition_0003.py',
         'illustration_0003.ly',
