@@ -5,25 +5,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class MeasurewiseDivisionMaker(AbjadValueObject):
     r'''Measurewise division-maker.
 
-    Follows the two-step configure-the-call pattern implemented
-    against all rhythm-makers.
+    Follows the two-step configure-once / call-repeatly pattern established
+    in rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_divisions',
-        '_hypermeasure_counts',
-        '_remainder_direction',
+        '_division_maker',
+        '_hypermeasure_specifier',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        divisions=None,
-        hypermeasure_counts=None,
-        remainder_direction=Right,
+        division_maker=None,
+        hypermeasure_specifier=None,
         ):
         pass
 
@@ -40,25 +38,17 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def divisions(self):
-        r'''Gets divisions.
+    def division_maker(self):
+        r'''Gets division-maker bundled in measurewise division-maker.
 
-        Returns tuple or cylic tuple of nonreduced fractions.
+        Returns division-maker.
         '''
         return self._divisions
 
     @property
-    def hypermeasure_counts(self):
-        r'''Gets hypermeasure counts.
+    def hypermeasure_specifier(self):
+        r'''Gets hypermeasure specifier bundled in measurewise division-maker.
 
-        Returns possibly empty tuple or cyclic tuple of positive integers.
+        Returns hypermeasure specifier or none.
         '''
-        return self._hypermeasure _counts
-
-    @property
-    def remainder_direction(self):
-        r'''Gets direction of any remainder division.
-
-        Returns left, right or none.
-        '''
-        return self._remainder_direction
+        return self._hypermeasure_specifier
