@@ -5,8 +5,44 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class MeasurewiseDivisionMaker(AbjadValueObject):
     r'''Measurewise division-maker.
 
+    ..  container:: example
+
+        ::
+
+            >>> division_maker = newmusicmakertools.DivisionMaker(
+            ...     pattern=[(1, 4)],
+            ...     )
+            >>> hypermeasure_specifier = newmusicmakertools.HypermeasureSpecifier(
+            ...     counts=[2],
+            ...     cyclic=True,
+            ...     )
+            >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+            ...     division_maker=division_maker,
+            ...     hypermeasure_specifier=hypermeasure_specifier,
+            ...     )
+
+        ::
+
+            >>> print(format(maker, 'storage'))
+            newmusicmakertools.MeasurewiseDivisionMaker(
+                division_maker=newmusicmakertools.DivisionMaker(
+                    cyclic=True,
+                    pattern=(
+                        mathtools.NonreducedFraction(1, 4),
+                        ),
+                    remainder=Right,
+                    ),
+                hypermeasure_specifier=newmusicmakertools.HypermeasureSpecifier(
+                    counts=(2,),
+                    cyclic=True,
+                    ),
+                )
+
+    Object model of a partially evaluated function that accepts measures (or
+    time signatures) as input and returns nonreduced fractions as output.
+
     Follows the two-step configure-once / call-repeatly pattern established
-    in rhythm-makers.
+    in the rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###
@@ -23,7 +59,8 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
         division_maker=None,
         hypermeasure_specifier=None,
         ):
-        pass
+        self._division_maker = division_maker
+        self._hypermeasure_specifier = hypermeasure_specifier
 
     ### SPECIAL METHODS ###
 
@@ -43,7 +80,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         Returns division-maker.
         '''
-        return self._divisions
+        return self._division_maker
 
     @property
     def hypermeasure_specifier(self):
