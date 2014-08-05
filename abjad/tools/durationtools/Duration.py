@@ -74,7 +74,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Intialize from fraction:
+        Intializes from fraction:
 
         ::
 
@@ -96,7 +96,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         ::
 
-            >>> Duration(mathtools.NonreducedFraction(3, 16))
+            >>> Duration(mathtools.NonreducedFraction(6, 32))
             Duration(3, 16)
 
     ..  container:: example
@@ -127,6 +127,9 @@ class Duration(AbjadObject, fractions.Fraction):
 
     def __new__(cls, *args):
         from abjad.tools import sequencetools
+        if (len(args) == 1 and 
+            isinstance(args[0], mathtools.NonreducedFraction)):
+            return fractions.Fraction.__new__(cls, *args[0].pair)
         try:
             return fractions.Fraction.__new__(cls, *args)
         except TypeError:
@@ -149,7 +152,8 @@ class Duration(AbjadObject, fractions.Fraction):
                 cls, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and \
             isinstance(args[0], str) and not '/' in args[0]:
-            result = Duration._initialize_from_lilypond_duration_string(args[0])
+            result = Duration._initialize_from_lilypond_duration_string(
+                args[0])
             self = fractions.Fraction.__new__(cls, result)
         elif mathtools.all_are_integer_equivalent_numbers(args):
             self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
