@@ -123,6 +123,7 @@ class DivisionMaker(AbjadValueObject):
                 allow_total=Less,
                 )
         total_duration = sum(divisions)
+        total_duration = durationtools.Duration(total_duration)
         if total_duration == duration:
             return divisions
         if self.remainder is None:
@@ -137,7 +138,9 @@ class DivisionMaker(AbjadValueObject):
             divisions.append(remainder)
         else:
             raise ValueError(self.remainder)
-        assert sum(divisions) == duration
+        total_duration = sum(divisions)
+        total_duration = durationtools.Duration(total_duration)
+        assert total_duration == duration, (total_duration, duration)
         return divisions
 
     ### PUBLIC PROPERTIES ###
@@ -213,7 +216,7 @@ class DivisionMaker(AbjadValueObject):
                 NonreducedFraction(1, 16)
                 NonreducedFraction(4, 16)
                 NonreducedFraction(1, 16)
-                NonreducedFraction(2, 16)
+                NonreducedFraction(1, 8)
 
         ..  container:: example
 
@@ -223,14 +226,14 @@ class DivisionMaker(AbjadValueObject):
 
                 >>> maker = newmusicmakertools.DivisionMaker(
                 ...     cyclic=False,
-                ...     pattern=[(4, 16), (1, 16)],
+                ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> divisions = maker(Duration(3, 4))
                 >>> for division in divisions:
                 ...     division
                 NonreducedFraction(7, 16)
-                NonreducedFraction(4, 16)
+                NonreducedFraction(1, 4)
                 NonreducedFraction(1, 16)
 
         ..  container:: example
@@ -241,16 +244,16 @@ class DivisionMaker(AbjadValueObject):
 
                 >>> maker = newmusicmakertools.DivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(4, 16), (1, 16)],
+                ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> divisions = maker(Duration(3, 4))
                 >>> for division in divisions:
                 ...     division
-                NonreducedFraction(2, 16)
-                NonreducedFraction(4, 16)
+                NonreducedFraction(1, 8)
+                NonreducedFraction(1, 4)
                 NonreducedFraction(1, 16)
-                NonreducedFraction(4, 16)
+                NonreducedFraction(1, 4)
                 NonreducedFraction(1, 16)
 
         Returns left, right or none.
