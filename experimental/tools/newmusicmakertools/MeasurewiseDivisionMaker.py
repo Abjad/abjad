@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import indicatortools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -9,16 +12,16 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> division_maker = newmusicmakertools.DivisionMaker(
+            >>> divisions = newmusicmakertools.DivisionMaker(
             ...     pattern=[(1, 4)],
             ...     )
-            >>> hypermeasure_specifier = newmusicmakertools.HypermeasureSpecifier(
+            >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
             ...     counts=[2],
             ...     cyclic=True,
             ...     )
             >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
-            ...     division_maker=division_maker,
-            ...     hypermeasure_specifier=hypermeasure_specifier,
+            ...     division_maker=divisions,
+            ...     hypermeasure_specifier=hypermeasures,
             ...     )
 
         ::
@@ -67,10 +70,68 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
     def __call__(self, measures=()):
         r'''Calls measurewise division-maker.
 
-        Returns list of nonreduced fractions.
+        ..  container:: example
+
+            Here's a maker that glues measures together two at a time
+            and then fills the resulting hypermeasures with qaurter-note
+            divisions followed by any remainder at right:
+
+            ::
+
+                >>> divisions = newmusicmakertools.DivisionMaker(
+                ...     pattern=[(1, 4)],
+                ...     remainder=Right,
+                ...     )
+                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                ...     counts=[2],
+                ...     cyclic=True,
+                ...     )
+                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                ...     division_maker=divisions,
+                ...     hypermeasure_specifier=hypermeasures,
+                ...     )
+
+            ::
+
+                >>> measures = [(2, 8), (3, 8), (2, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+
+        Returns nested list of nonreduced fractions.
+        Output structured one list per hypermeasure.
         '''
-        divisions = []
-        return divisions
+        nonreduced_fractions = self._measures_to_nonreduced_fractions(
+            measures)
+        if self.hypermeasure_specifier is not None:
+            parts = sequencetools.partition_sequence_by_counts(
+                nonreduced_fractions,
+                self.hypermeasure_specifier.counts,
+                cyclic=self.hypermeasure_specifier.cyclic,
+                overhang=True,
+                )
+            nonreduced_fractions = [sum(_) for _ in parts]
+        division_lists = []
+        for nonreduced_fraction in nonreduced_fractions:
+            division_list = self.division_maker(nonreduced_fraction)
+            division_lists.append(division_list)
+        return division_lists
+
+    ### PRIVATE METHODS ###
+
+    def _measures_to_nonreduced_fractions(self, measures):
+        nonreduced_fractions = []
+        for measure in measures:
+            if hasattr(measure, 'time_signature'):
+                nonreduced_fraction = mathtools.NonreducedFraction(
+                    measure.time_signature.pair
+                    )
+            else:
+                nonreduced_fraction = mathtools.NonreducedFraction(measure)
+            nonreduced_fractions.append(nonreduced_fraction)
+        return nonreduced_fractions
 
     ### PUBLIC PROPERTIES ###
 
