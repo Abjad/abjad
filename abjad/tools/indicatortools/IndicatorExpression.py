@@ -132,7 +132,7 @@ class IndicatorExpression(AbjadObject):
         elif isinstance(scope, str):
             scope_name = scope
             for component in self.component._get_parentage():
-                if component.context_name == scope_name:
+                if getattr(component, 'context_name', None) == scope_name:
                     return component
         else:
             message = 'target context {!r} must be'
