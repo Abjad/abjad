@@ -181,23 +181,9 @@ class ScorePackageManager(PackageManager):
         superclass = super(ScorePackageManager, self)
         menu = superclass._make_main_menu()
         self._make_init_py_menu_section(menu)
-        self._make_main_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_package_menu_section(menu)
         return menu
-
-    def _make_main_menu_section(self, menu):
-        commands = []
-        commands.append(('build', 'u'))
-        commands.append(('distribution', 'd'))
-        commands.append(('makers', 'k'))
-        commands.append(('materials', 'm'))
-        commands.append(('segments', 'g'))
-        commands.append(('stylesheets', 'y'))
-        menu.make_navigation_section(
-            commands=commands,
-            name='main',
-            )
 
     def _make_package(self):
         assert not os.path.exists(self._path)
