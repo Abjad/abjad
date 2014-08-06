@@ -5,36 +5,25 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class MeasurewiseDivisionMaker(AbjadValueObject):
-    r'''Measurewise division-maker.
+class HypermeasureDivisionMaker(AbjadValueObject):
+    r'''Hypermeasure division-maker.
 
     ..  container:: example
 
         ::
 
-            >>> divisions = newmusicmakertools.DivisionMaker(
-            ...     pattern=[(1, 4)],
-            ...     )
-            >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+            >>> hypermeasure_specifier = newmusicmakertools.HypermeasureSpecifier(
             ...     counts=[2],
             ...     cyclic=True,
             ...     )
-            >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
-            ...     division_maker=divisions,
-            ...     hypermeasure_specifier=hypermeasures,
+            >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+            ...     hypermeasure_specifier=hypermeasure_specifier,
             ...     )
 
         ::
 
             >>> print(format(maker, 'storage'))
-            newmusicmakertools.MeasurewiseDivisionMaker(
-                division_maker=newmusicmakertools.DivisionMaker(
-                    cyclic=True,
-                    pattern=(
-                        mathtools.NonreducedFraction(1, 4),
-                        ),
-                    remainder=Right,
-                    ),
+            newmusicmakertools.HypermeasureDivisionMaker(
                 hypermeasure_specifier=newmusicmakertools.HypermeasureSpecifier(
                     counts=(2,),
                     cyclic=True,
@@ -45,7 +34,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
     time signatures) as input and returns nonreduced fractions as output.
 
     Follows the two-step configure-once / call-repeatly pattern established
-    in the rhythm-makers.
+    by the rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###
@@ -80,7 +69,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
                 ...     division_maker=None,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -144,7 +133,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
                 ...     division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -207,7 +196,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
                 ...     division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -273,7 +262,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
                 ...     division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -327,7 +316,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
                 ...     division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )

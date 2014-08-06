@@ -29,7 +29,7 @@ class DivisionMaker(AbjadValueObject):
     input and returns nonreduced fractions as output.
 
     Follows the two-step configure-once / call-repeatedly pattern established
-    in the rhythm-makers.
+    by the rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###
