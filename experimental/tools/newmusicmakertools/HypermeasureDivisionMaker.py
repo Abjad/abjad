@@ -30,12 +30,12 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                     ),
                 )
 
-    Object model of a partially evaluated function that accepts nonreduced
-    fractions as input and returns nonreduced fractions as output.
+    Object model of a partially evaluated function that accepts divisions as
+    input and nested list of divisions as output.
 
-    Treats nonreduced fraction input as time signatures. Optionally glues input 
-    together into hypermeasures according to hypermeasure specifier. Optionally
-    postprocesses resulting hypermeasures according to hypermeasure callback.
+    Treats input as time signatures. Glues input together into hypermeasures
+    according to optional hypermeasure specifier. Postprocesses resulting
+    hypermeasures with opetional hypermeasure postprocessor.
 
     Follows the two-step configure-once / call-repeatly pattern established
     by the rhythm-makers.
@@ -44,7 +44,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_hypermeasure_callback',
+        '_hypermeasure_postprocessor',
         '_hypermeasure_specifier',
         )
 
@@ -52,14 +52,14 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
     def __init__(
         self,
-        hypermeasure_callback=None,
+        hypermeasure_postprocessor=None,
         hypermeasure_specifier=None,
         ):
         from experimental import newmusicmakertools
-        if hypermeasure_callback is not None:
+        if hypermeasure_postprocessor is not None:
             prototype = (newmusicmakertools.DivisionMaker,)
-            assert isinstance(hypermeasure_callback, prototype)
-        self._hypermeasure_callback = hypermeasure_callback
+            assert isinstance(hypermeasure_postprocessor, prototype)
+        self._hypermeasure_postprocessor = hypermeasure_postprocessor
         if hypermeasure_specifier is not None:
             prototype = (newmusicmakertools.HypermeasureSpecifier,)
             assert isinstance(hypermeasure_specifier, prototype)
@@ -67,12 +67,12 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, measures=None):
+    def __call__(self, divisions=None):
         r'''Calls hypermeasure division-maker.
 
         ..  container:: example
 
-            **Example 1.** Maker glues measures together two at a time:
+            **Example 1.** Glues divisions together two at a time:
 
             ::
 
@@ -81,7 +81,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_callback=None,
+                ...     hypermeasure_postprocessor=None,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -89,8 +89,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8), (3, 8), (2, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (2, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(6, 8)]
@@ -98,8 +98,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(6, 8)]
@@ -107,32 +107,32 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(6, 8)]
 
             ::
 
-                >>> measures = [(3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(3, 8)]
 
             ::
 
-                >>> measures = []
-                >>> lists = maker(measures)
+                >>> divisions = []
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
 
         ..  container:: example
 
-            **Example 2.** Maker glues measures together two at a time. Maker
-            fills resulting hypermeasures with ``1/4`` divisions. Maker
-            positions remainders to the right of each hypermeasure:
+            **Example 2.** Glues divisions together two at a time. Fills
+            resulting hypermeasure divisions with ``1/4`` divisions. Positions
+            remainders to the right of each list of divisions:
             
             ::
 
@@ -145,7 +145,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_callback=divisions,
+                ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -153,8 +153,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8), (2, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8), (2, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
@@ -162,8 +162,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8), (2, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8), (2, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
@@ -171,31 +171,31 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
 
             ::
 
-                >>> measures = [(2, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 4)]
 
             ::
 
-                >>> measures = []
-                >>> lists = maker(measures)
+                >>> divisions = []
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
 
         ..  container:: example
 
             **Example 3.** As above but with remainders at left of each
-            hypermeasure:
+            list of divisions:
 
             ::
 
@@ -208,7 +208,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_callback=divisions,
+                ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -216,8 +216,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8), (2, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8), (2, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
@@ -226,8 +226,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8), (2, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8), (2, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
@@ -235,33 +235,33 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(2, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
 
             ::
 
-                >>> measures = [(2, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(2, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 4)]
 
             ::
 
-                >>> measures = []
-                >>> lists = maker(measures)
+                >>> divisions = []
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
 
         ..  container:: example
 
-            **Example 4.** Similiar to the two makers above in that the maker
-            here glues measures together two at a time. But the maker then
-            fills resulting hypermeasures with ``2/8`` divisions instead of
-            ``1/4`` divisions. Remainders at right of each hypermeasure.
+            **Example 4.** Similiar to the two makers above. Glues divisions
+            together two at a time. But then fills resulting hypermeasures with
+            ``2/8`` divisions instead of ``1/4`` divisions. Remainders at right
+            of each list of divisions:
 
             ::
 
@@ -274,7 +274,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_callback=divisions,
+                ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -282,8 +282,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
@@ -291,31 +291,31 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
 
             ::
 
-                >>> measures = [(3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(2, 8), NonreducedFraction(1, 8)]
 
             ::
 
-                >>> measures = []
-                >>> lists = maker(measures)
+                >>> divisions = []
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
 
         ..  container:: example
 
             **Example 5.** As above but with remainders at left of each
-            hypermeasure.
+            list of divisions:
 
             ::
 
@@ -328,7 +328,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_callback=divisions,
+                ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -336,8 +336,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
@@ -345,73 +345,72 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> measures = [(3, 8), (3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8), (3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
 
             ::
 
-                >>> measures = [(3, 8)]
-                >>> lists = maker(measures)
+                >>> divisions = [(3, 8)]
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
                 [NonreducedFraction(1, 8), NonreducedFraction(2, 8)]
 
             ::
 
-                >>> measures = []
-                >>> lists = maker(measures)
+                >>> divisions = []
+                >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
 
         Returns nested list of nonreduced fractions.
         Output structured one list per hypermeasure.
         '''
-        measures = measures or ()
-        nonreduced_fractions = self._measures_to_nonreduced_fractions(
-            measures)
+        divisions = divisions or ()
+        divisions = self._coerce_divisions(divisions)
         if self.hypermeasure_specifier is not None:
             parts = sequencetools.partition_sequence_by_counts(
-                nonreduced_fractions,
+                divisions,
                 self.hypermeasure_specifier.counts,
                 cyclic=self.hypermeasure_specifier.cyclic,
                 overhang=True,
                 )
-            nonreduced_fractions = [sum(_) for _ in parts]
+            divisions = [sum(_) for _ in parts]
         division_lists = []
-        for nonreduced_fraction in nonreduced_fractions:
-            if self.hypermeasure_callback is not None:
-                division_list = self.hypermeasure_callback(nonreduced_fraction)
+        for division in divisions:
+            if self.hypermeasure_postprocessor is not None:
+                division_list = self.hypermeasure_postprocessor(division)
             else:
-                division_list = [nonreduced_fraction]
+                division_list = [division]
             division_lists.append(division_list)
         return division_lists
 
     ### PRIVATE METHODS ###
 
-    def _measures_to_nonreduced_fractions(self, measures):
+    def _coerce_divisions(self, divisions):
         nonreduced_fractions = []
-        for measure in measures:
-            if hasattr(measure, 'time_signature'):
+        for division in divisions:
+            if hasattr(division, 'time_signature'):
                 nonreduced_fraction = mathtools.NonreducedFraction(
-                    measure.time_signature.pair
+                    division.time_signature.pair
                     )
             else:
-                nonreduced_fraction = mathtools.NonreducedFraction(measure)
+                nonreduced_fraction = mathtools.NonreducedFraction(division)
             nonreduced_fractions.append(nonreduced_fraction)
         return nonreduced_fractions
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hypermeasure_callback(self):
-        r'''Gets hypermeasure callback of hypermeasure division-maker.
+    def hypermeasure_postprocessor(self):
+        r'''Gets hypermeasure postprocessor of hypermeasure division-maker.
 
         Returns division-maker or none.
         '''
-        return self._hypermeasure_callback
+        return self._hypermeasure_postprocessor
 
     @property
     def hypermeasure_specifier(self):
