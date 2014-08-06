@@ -30,8 +30,12 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                     ),
                 )
 
-    Object model of a partially evaluated function that accepts measures (or
-    time signatures) as input and returns nonreduced fractions as output.
+    Object model of a partially evaluated function that accepts nonreduced
+    fractions as input and returns nonreduced fractions as output.
+
+    Treats nonreduced fraction input as time signatures. Optionally glues input 
+    together into hypermeasures according to hypermeasure specifier. Optionally
+    postprocesses resulting hypermeasures according to hypermeasure callback.
 
     Follows the two-step configure-once / call-repeatly pattern established
     by the rhythm-makers.
@@ -40,7 +44,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_division_maker',
+        '_hypermeasure_callback',
         '_hypermeasure_specifier',
         )
 
@@ -48,16 +52,23 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
     def __init__(
         self,
-        division_maker=None,
+        hypermeasure_callback=None,
         hypermeasure_specifier=None,
         ):
-        self._division_maker = division_maker
+        from experimental import newmusicmakertools
+        if hypermeasure_callback is not None:
+            prototype = (newmusicmakertools.DivisionMaker,)
+            assert isinstance(hypermeasure_callback, prototype)
+        self._hypermeasure_callback = hypermeasure_callback
+        if hypermeasure_specifier is not None:
+            prototype = (newmusicmakertools.HypermeasureSpecifier,)
+            assert isinstance(hypermeasure_specifier, prototype)
         self._hypermeasure_specifier = hypermeasure_specifier
 
     ### SPECIAL METHODS ###
 
     def __call__(self, measures=None):
-        r'''Calls measurewise division-maker.
+        r'''Calls hypermeasure division-maker.
 
         ..  container:: example
 
@@ -70,7 +81,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     division_maker=None,
+                ...     hypermeasure_callback=None,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -134,7 +145,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     division_maker=divisions,
+                ...     hypermeasure_callback=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -197,7 +208,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     division_maker=divisions,
+                ...     hypermeasure_callback=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -263,7 +274,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     division_maker=divisions,
+                ...     hypermeasure_callback=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -317,7 +328,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
-                ...     division_maker=divisions,
+                ...     hypermeasure_callback=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -371,8 +382,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             nonreduced_fractions = [sum(_) for _ in parts]
         division_lists = []
         for nonreduced_fraction in nonreduced_fractions:
-            if self.division_maker is not None:
-                division_list = self.division_maker(nonreduced_fraction)
+            if self.hypermeasure_callback is not None:
+                division_list = self.hypermeasure_callback(nonreduced_fraction)
             else:
                 division_list = [nonreduced_fraction]
             division_lists.append(division_list)
@@ -395,16 +406,16 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def division_maker(self):
-        r'''Gets division-maker bundled in measurewise division-maker.
+    def hypermeasure_callback(self):
+        r'''Gets hypermeasure callback of hypermeasure division-maker.
 
-        Returns division-maker.
+        Returns division-maker or none.
         '''
-        return self._division_maker
+        return self._hypermeasure_callback
 
     @property
     def hypermeasure_specifier(self):
-        r'''Gets hypermeasure specifier bundled in measurewise division-maker.
+        r'''Gets hypermeasure specifier of hypermeasure division-maker.
 
         Returns hypermeasure specifier or none.
         '''
