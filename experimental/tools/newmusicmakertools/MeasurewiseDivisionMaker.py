@@ -72,7 +72,65 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Maker glues measures together two at a time. Maker
+            **Example 1.** Maker glues measures together two at a time:
+
+            ::
+
+                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                ...     counts=[2],
+                ...     cyclic=True,
+                ...     )
+                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                ...     division_maker=None,
+                ...     hypermeasure_specifier=hypermeasures,
+                ...     )
+
+            Example output:
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8), (3, 8), (2, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(6, 8)]
+                [NonreducedFraction(5, 8)]
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(6, 8)]
+                [NonreducedFraction(3, 8)]
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(6, 8)]
+
+            ::
+
+                >>> measures = [(3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8)]
+
+            ::
+
+                >>> measures = []
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+
+        ..  container:: example
+
+            **Example 2.** Maker glues measures together two at a time. Maker
             fills resulting hypermeasures with ``1/4`` divisions. Maker
             positions remainders to the right of each hypermeasure:
             
@@ -136,7 +194,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** As above but with remainders at left of each
+            **Example 3.** As above but with remainders at left of each
             hypermeasure:
 
             ::
@@ -200,7 +258,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Similiar to the two makers above in that the maker
+            **Example 4.** Similiar to the two makers above in that the maker
             here glues measures together two at a time. But the maker then
             fills resulting hypermeasures with ``2/8`` divisions instead of
             ``1/4`` divisions. Remainders at right of each hypermeasure.
@@ -256,7 +314,7 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** As above but with remainders at left of each
+            **Example 5.** As above but with remainders at left of each
             hypermeasure.
 
             ::
@@ -324,7 +382,10 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
             nonreduced_fractions = [sum(_) for _ in parts]
         division_lists = []
         for nonreduced_fraction in nonreduced_fractions:
-            division_list = self.division_maker(nonreduced_fraction)
+            if self.division_maker is not None:
+                division_list = self.division_maker(nonreduced_fraction)
+            else:
+                division_list = [nonreduced_fraction]
             division_lists.append(division_list)
         return division_lists
 
