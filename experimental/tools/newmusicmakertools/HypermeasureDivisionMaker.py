@@ -31,7 +31,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 )
 
     Object model of a partially evaluated function that accepts divisions as
-    input and nested list of divisions as output.
+    input and returns a nested list of divisions as output.
 
     Treats input as time signatures. Glues input together into hypermeasures
     according to optional hypermeasure specifier. Postprocesses resulting
@@ -366,8 +366,66 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> for list_ in lists:
                 ...     list_
 
-        Returns nested list of nonreduced fractions.
-        Output structured one list per hypermeasure.
+        ..  container:: example
+
+            **Example 6.** Trivial hypermeasure division-maker.
+            Returns nested list of divisions with one division per list:
+
+            ::
+
+                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                ...     hypermeasure_postprocessor=None,
+                ...     hypermeasure_specifier=None,
+                ...     )
+
+            Example output:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (2, 8)]
+                >>> lists = maker(divisions)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(2, 8)]
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(divisions)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(3, 8)]
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8)]
+                >>> lists = maker(divisions)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8)]
+                [NonreducedFraction(3, 8)]
+
+            ::
+
+                >>> divisions = [(3, 8)]
+                >>> lists = maker(divisions)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8)]
+
+            ::
+
+                >>> divisions = []
+                >>> lists = maker(divisions)
+                >>> for list_ in lists:
+                ...     list_
+
+        Returns nested list of divisions structued one list per hypermeasure.
         '''
         divisions = divisions or ()
         divisions = self._coerce_divisions(divisions)
