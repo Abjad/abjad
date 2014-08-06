@@ -2,7 +2,7 @@
 
 
 def new(expr, **kwargs):
-    r'''Makes new `expr` with optionally new ``kwargs``.
+    r'''Makes new `expr` with optional new `kwargs`.
 
     Returns new object with the same type as `expr`.
     '''
