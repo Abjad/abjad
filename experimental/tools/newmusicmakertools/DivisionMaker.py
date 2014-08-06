@@ -63,17 +63,17 @@ class DivisionMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration):
-        r'''Calls maker on `duration`.
+    def __call__(self, division):
+        r'''Calls maker on `division`.
 
         ..  container:: example
 
-            Calls maker on duration with no remainder:
+            Calls maker on division with no remainder:
 
             ::
 
                 >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
-                >>> divisions = maker(Duration(3, 4))
+                >>> divisions = maker((3, 4))
                 >>> for division in divisions:
                 ...     division
                 NonreducedFraction(1, 4)
@@ -82,12 +82,12 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls maker on duration with remainder:
+            Calls maker on division with remainder:
 
             ::
 
                 >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
-                >>> divisions = maker(Duration(7, 8))
+                >>> divisions = maker((7, 8))
                 >>> for division in divisions:
                 ...     division 
                 NonreducedFraction(1, 4)
@@ -95,42 +95,43 @@ class DivisionMaker(AbjadValueObject):
                 NonreducedFraction(1, 4)
                 NonreducedFraction(1, 8)
 
-            Positions maker at right of output because maker `remainder`
+            Positions remainder at right of output because maker `remainder`
             defaults to right.
 
         ..  container:: example
 
-            Calls maker on zero duration:
+            Calls maker on zero division:
 
             ::
 
                 >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
-                >>> maker(Duration(0))
+                >>> maker(0)
                 []
 
             Returns empty list.
 
         Returns possibly empty list of nonreduced fractions.
         '''
-        duration = durationtools.Duration(duration)
+        input_division = mathtools.NonreducedFraction(division)
+        input_duration = durationtools.Duration(input_division)
         if not self.pattern:
             return []
         divisions = list(self.pattern)
         if self.cyclic:
             divisions = sequencetools.repeat_sequence_to_weight(
                 divisions,
-                duration,
+                input_division,
                 allow_total=Less,
                 )
-        total_duration = sum(divisions)
-        total_duration = durationtools.Duration(total_duration)
-        if total_duration == duration:
+        total_duration = durationtools.Duration(sum(divisions))
+        if total_duration == input_duration:
             return divisions
         if self.remainder is None:
             message = 'can not fill {} from {} exactly.'
-            message = message.format(duration, self.divisions)
+            message = message.format(input_division, self.divisions)
             raise Exception(message)
-        remainder = duration - total_duration
+        remainder = input_division - total_duration
+        remainder = durationtools.Duration(remainder)
         remainder = mathtools.NonreducedFraction(remainder)
         if self.remainder is Left:
             divisions.insert(0, remainder)
@@ -138,9 +139,9 @@ class DivisionMaker(AbjadValueObject):
             divisions.append(remainder)
         else:
             raise ValueError(self.remainder)
-        total_duration = sum(divisions)
-        total_duration = durationtools.Duration(total_duration)
-        assert total_duration == duration, (total_duration, duration)
+        total_duration = durationtools.Duration(sum(divisions))
+        pair = total_duration, input_duration
+        assert total_duration == input_duration, pair
         return divisions
 
     ### PUBLIC PROPERTIES ###
