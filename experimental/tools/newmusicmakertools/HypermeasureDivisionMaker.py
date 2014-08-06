@@ -35,7 +35,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
     Treats input as time signatures. Glues input together into hypermeasures
     according to optional hypermeasure specifier. Postprocesses resulting
-    hypermeasures with opetional hypermeasure postprocessor.
+    hypermeasures with optional hypermeasure postprocessor.
 
     Follows the two-step configure-once / call-repeatly pattern established
     by the rhythm-makers.
