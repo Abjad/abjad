@@ -44,7 +44,8 @@ class SkipRhythmMaker(RhythmMaker):
                 }
             }
 
-    Usage follows the two-step configure-then-call pattern shown here.
+    Usage follows the two-step configure-once / call-repeatedly pattern shown
+    here.
     '''
 
     ### CLASS VARIABLES ###
