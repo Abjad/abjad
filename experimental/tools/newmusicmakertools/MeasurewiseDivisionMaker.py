@@ -67,15 +67,15 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, measures=()):
+    def __call__(self, measures=None):
         r'''Calls measurewise division-maker.
 
         ..  container:: example
 
-            Here's a maker that glues measures together two at a time
-            and then fills the resulting hypermeasures with qaurter-note
-            divisions followed by any remainder at right:
-
+            **Example 1.** Maker glues measures together two at a time. Maker
+            fills resulting hypermeasures with ``1/4`` divisions. Maker
+            positions remainders to the right of each hypermeasure:
+            
             ::
 
                 >>> divisions = newmusicmakertools.DivisionMaker(
@@ -131,12 +131,13 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
                 >>> measures = []
                 >>> lists = maker(measures)
-                >>> lists
-                []
+                >>> for list_ in lists:
+                ...     list_
 
         ..  container:: example
 
-            As above but with remainders at left of each hypermeasure:
+            **Example 2.** As above but with remainders at left of each
+            hypermeasure:
 
             ::
 
@@ -194,12 +195,123 @@ class MeasurewiseDivisionMaker(AbjadValueObject):
 
                 >>> measures = []
                 >>> lists = maker(measures)
-                >>> lists
-                []
+                >>> for list_ in lists:
+                ...     list_
+
+        ..  container:: example
+
+            **Example 3.** Similiar to the two makers above in that the maker
+            here glues measures together two at a time. But the maker then
+            fills resulting hypermeasures with ``2/8`` divisions instead of
+            ``1/4`` divisions. Remainders at right of each hypermeasure.
+
+            ::
+
+                >>> divisions = newmusicmakertools.DivisionMaker(
+                ...     pattern=[(2, 8)],
+                ...     remainder=Right,
+                ...     )
+                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                ...     counts=[2],
+                ...     cyclic=True,
+                ...     )
+                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                ...     division_maker=divisions,
+                ...     hypermeasure_specifier=hypermeasures,
+                ...     )
+
+            Example output:
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+                [NonreducedFraction(2, 8), NonreducedFraction(1, 8)]
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+
+            ::
+
+                >>> measures = [(3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(2, 8), NonreducedFraction(1, 8)]
+
+            ::
+
+                >>> measures = []
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+
+        ..  container:: example
+
+            **Example 4.** As above but with remainders at left of each
+            hypermeasure.
+
+            ::
+
+                >>> divisions = newmusicmakertools.DivisionMaker(
+                ...     pattern=[(2, 8)],
+                ...     remainder=Left,
+                ...     )
+                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                ...     counts=[2],
+                ...     cyclic=True,
+                ...     )
+                >>> maker = newmusicmakertools.MeasurewiseDivisionMaker(
+                ...     division_maker=divisions,
+                ...     hypermeasure_specifier=hypermeasures,
+                ...     )
+
+            Example output:
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+                [NonreducedFraction(1, 8), NonreducedFraction(2, 8)]
+
+            ::
+
+                >>> measures = [(3, 8), (3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+
+            ::
+
+                >>> measures = [(3, 8)]
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 8), NonreducedFraction(2, 8)]
+
+            ::
+
+                >>> measures = []
+                >>> lists = maker(measures)
+                >>> for list_ in lists:
+                ...     list_
 
         Returns nested list of nonreduced fractions.
         Output structured one list per hypermeasure.
         '''
+        measures = measures or ()
         nonreduced_fractions = self._measures_to_nonreduced_fractions(
             measures)
         if self.hypermeasure_specifier is not None:
