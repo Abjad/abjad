@@ -154,3 +154,6 @@
     This will allow (ll) to show when LilyPond was last run.
 
 36. Add Unicode directive to top of all new maker files after calling (new).
+
+37. Implement (rci+) to drop the composer into a text editor.
+    This will enable commit messages longer than a single line.
