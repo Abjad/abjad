@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from experimental.tools import segmentmakertools
+from experimental.tools import makertools
 
 
 time_signatures = 5 * [(3, 4)]
@@ -19,7 +19,7 @@ divisions = {
     'LH Voice': lh_divisions,
     }
 
-segment_maker = segmentmakertools.PianoStaffSegmentMaker(
+segment_maker = makertools.PianoStaffSegmentMaker(
     time_signatures=time_signatures,
     divisions=divisions,
     )
