@@ -146,7 +146,8 @@ class TaleaRhythmMaker(RhythmMaker):
         self._talea = talea
         helper_functions = helper_functions or {}
         talea_helper = helper_functions.get('talea')
-        prolation_addenda_helper = helper_functions.get('extra_counts_per_division')
+        prolation_addenda_helper = helper_functions.get(
+            'extra_counts_per_division')
         lefts_helper = helper_functions.get('lefts')
         middles_helper = helper_functions.get('middles')
         rights_helper = helper_functions.get('rights')
@@ -662,7 +663,9 @@ class TaleaRhythmMaker(RhythmMaker):
                 else:
                     numerator, denominator = duration_pair.pair
                 prolated_duration_pair = (
-                    numerator + prolation_addendum, denominator)
+                    numerator + prolation_addendum,
+                    denominator,
+                    )
                 prolated_duration_pairs.append(prolated_duration_pair)
         return prolated_duration_pairs
 
@@ -1430,7 +1433,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @property
     def extra_counts_per_division(self):
-        r'''Gets prolation addenda of talea rhythm-maker.
+        r'''Gets extra counts per division of talea rhythm-maker.
 
         ..  container:: example
 
