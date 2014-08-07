@@ -38,6 +38,7 @@ class DivisionMaker(AbjadValueObject):
 
     __slots__ = (
         '_cyclic',
+        '_fuse_remainder',
         '_pattern',
         '_remainder',
         )
@@ -47,11 +48,15 @@ class DivisionMaker(AbjadValueObject):
     def __init__(
         self,
         cyclic=True,
+        fuse_remainder=None,
         pattern=None,
         remainder=Right,
         ):
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
+        if fuse_remainder is not None:
+            assert isinstance(fuse_remainder, bool), repr(fuse_remainder)
+        self._fuse_remainder = fuse_remainder
         if pattern is not None:
             pattern_ = []
             for division in pattern:
@@ -155,12 +160,16 @@ class DivisionMaker(AbjadValueObject):
             remainder = input_division - total_duration
             remainder = durationtools.Duration(remainder)
             remainder = mathtools.NonreducedFraction(remainder)
-            if self.remainder is Left:
+            if self.remainder is Left and not self.fuse_remainder:
                 division_list.insert(0, remainder)
-            elif self.remainder is Right:
+            elif self.remainder is Left and self.fuse_remainder:
+                division_list[0] += remainder
+            elif self.remainder is Right and not self.fuse_remainder:
                 division_list.append(remainder)
+            elif self.remainder is Right and self.fuse_remainder:
+                division_list[-1] += remainder
             else:
-                raise ValueError(self.remainder)
+                raise ValueError((self.remainder, fuse_remainder))
             total_duration = durationtools.Duration(sum(division_list))
             pair = total_duration, input_duration
             assert total_duration == input_duration, pair
@@ -191,6 +200,95 @@ class DivisionMaker(AbjadValueObject):
         Returns boolean.
         '''
         return self._cyclic
+
+    @property
+    def fuse_remainder(self):
+        r'''Is true when remainder fuses to first or last division.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Remainder unfused to the right:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     fuse_remainder=False,
+                ...     pattern=[(1, 4)],
+                ...     remainder=Right,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(5, 8)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+
+        ..  container:: example
+
+            **Example 2.** Remainder fused to the right:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     fuse_remainder=True,
+                ...     pattern=[(1, 4)],
+                ...     remainder=Right,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(5, 8)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 4), NonreducedFraction(3, 8)]
+
+        ..  container:: example
+
+            **Example 3.** Remainder unfused to the left:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     fuse_remainder=False,
+                ...     pattern=[(1, 4)],
+                ...     remainder=Left,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(5, 8)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+
+        ..  container:: example
+
+            **Example 4.** Remainder fused to the left:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     fuse_remainder=True,
+                ...     pattern=[(1, 4)],
+                ...     remainder=Left,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(5, 8)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(3, 8), NonreducedFraction(1, 4)]
+
+        Returns boolean or none.
+        '''
+        return self._fuse_remainder
 
     @property
     def pattern(self):
