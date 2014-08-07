@@ -598,6 +598,7 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
             result = tuplets
+        # maybe hoist up to RhythmMaker
         beam_specifier = self.beam_specifier
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
