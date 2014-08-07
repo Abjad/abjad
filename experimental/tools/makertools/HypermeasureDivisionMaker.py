@@ -440,7 +440,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
         division_lists = []
         for division in divisions:
             if self.hypermeasure_postprocessor is not None:
-                division_list = self.hypermeasure_postprocessor(division)
+                division_list = self.hypermeasure_postprocessor([division])[0]
             else:
                 division_list = [division]
             division_lists.append(division_list)
