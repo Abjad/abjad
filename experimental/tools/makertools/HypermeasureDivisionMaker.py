@@ -30,8 +30,10 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                     ),
                 )
 
-    Object model of a partially evaluated function that accepts divisions as
-    input and returns a nested list of divisions as output.
+    Object model of a partially evaluated function that accepts a (possibly
+    empty) list of divisions as input and returns a (possibly empty) nested 
+    list of divisions as output (structured one output list per input
+    division.)
 
     Treats input as time signatures. Glues input together into hypermeasures
     according to optional hypermeasure specifier. Postprocesses resulting

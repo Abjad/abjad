@@ -26,8 +26,9 @@ class DivisionMaker(AbjadValueObject):
                 )
 
     Object model of a partially evaluated function that accepts a (possibly
-    none-valued) division as input and returns a (possibly empty) list of
-    divisions as output.
+    empty) list of divisions as input and returns a (possibly empty) nested 
+    list of divisions as output (structured one output list per input
+    division).
 
     Follows the two-step configure-once / call-repeatedly pattern established
     by the rhythm-makers.
