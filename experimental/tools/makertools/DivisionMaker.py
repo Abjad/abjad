@@ -38,6 +38,7 @@ class DivisionMaker(AbjadValueObject):
         '_cyclic',
         '_fuse_remainder',
         '_pattern',
+        '_pattern_rotation_index',
         '_remainder',
         )
 
@@ -48,6 +49,7 @@ class DivisionMaker(AbjadValueObject):
         cyclic=None,
         fuse_remainder=None,
         pattern=None,
+        pattern_rotation_index=None,
         remainder=None,
         ):
         if cyclic is not None:
@@ -65,6 +67,9 @@ class DivisionMaker(AbjadValueObject):
         self._pattern = pattern
         if not remainder is None:
             assert remainder in (Left, Right), repr(remainder)
+        if pattern_rotation_index is not None:
+            assert isinstance(pattern_rotation_index, int)
+        self._pattern_rotation_index = pattern_rotation_index
         self._remainder = remainder
 
     ### SPECIAL METHODS ###
@@ -138,7 +143,7 @@ class DivisionMaker(AbjadValueObject):
         if not divisions:
             return []
         division_lists = []
-        for division in divisions:
+        for i, division in enumerate(divisions):
             input_division = mathtools.NonreducedFraction(division)
             input_duration = durationtools.Duration(input_division)
             assert 0 < input_division, repr(input_division)
@@ -147,6 +152,12 @@ class DivisionMaker(AbjadValueObject):
                 division_lists.append(division_list)
                 continue
             division_list = list(self.pattern)
+            pattern_rotation_index = self.pattern_rotation_index or 0
+            pattern_rotation_index *= i
+            division_list = sequencetools.rotate_sequence(
+                division_list,
+                pattern_rotation_index,
+                )
             if self.cyclic:
                 division_list = sequencetools.repeat_sequence_to_weight(
                     division_list,
@@ -315,6 +326,80 @@ class DivisionMaker(AbjadValueObject):
         Returns (possibly empty) tuple of divisions or none.
         '''
         return self._pattern
+
+    @property
+    def pattern_rotation_index(self):
+        r'''Gets pattern rotation index of division-maker.
+
+        ..  container:: example
+
+            **Example 1.** Does not rotate pattern:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     )
+
+            ::
+
+                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+
+            All input divisions treated the same.
+
+        ..  container:: example
+
+            **Example 2.** Rotates pattern one element to the left on each new
+            input division:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     pattern_rotation_index=-1,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
+                [NonreducedFraction(1, 4), NonreducedFraction(1, 16), NonreducedFraction(1, 8)]
+
+        ..  container:: example
+
+            **Example 3.** Rotates pattern one element to the right on each new
+            input division:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     pattern_rotation_index=1,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+                [NonreducedFraction(1, 4), NonreducedFraction(1, 16), NonreducedFraction(1, 8)]
+                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
+
+        Returns integer or none.
+        '''
+        return self._pattern_rotation_index
 
     @property
     def remainder(self):
