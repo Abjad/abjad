@@ -157,3 +157,5 @@
 
 37. Implement (rci+) to drop the composer into a text editor.
     This will enable commit messages longer than a single line.
+
+38. Implement EtcFileWrangler.
