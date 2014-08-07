@@ -10,7 +10,7 @@ from experimental.tools import interpolationtools
 from experimental.tools import musicexpressiontools
 from experimental.tools import newabjadbooktools
 from experimental.tools import newindicatortools
-from experimental.tools import newmusicmakertools
+from experimental.tools import makertools
 from experimental.tools import newspannertools
 from experimental.tools import segmentmakertools
 from experimental.tools import selectortools

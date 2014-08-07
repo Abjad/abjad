@@ -12,12 +12,12 @@ class DivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
+            >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
 
         ::
 
             >>> print(format(maker, 'storage'))
-            newmusicmakertools.DivisionMaker(
+            makertools.DivisionMaker(
                 cyclic=True,
                 pattern=(
                     mathtools.NonreducedFraction(1, 4),
@@ -72,7 +72,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
                 >>> divisions = maker((3, 4))
                 >>> for division in divisions:
                 ...     division
@@ -86,7 +86,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
                 >>> divisions = maker((7, 8))
                 >>> for division in divisions:
                 ...     division 
@@ -104,7 +104,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
                 >>> maker(0)
                 []
 
@@ -187,7 +187,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(
+                >>> maker = makertools.DivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     remainder=Right,
@@ -205,7 +205,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(
+                >>> maker = makertools.DivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     remainder=Right,
@@ -225,7 +225,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(
+                >>> maker = makertools.DivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
@@ -243,7 +243,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.DivisionMaker(
+                >>> maker = makertools.DivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,

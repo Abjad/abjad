@@ -12,19 +12,19 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> hypermeasure_specifier = newmusicmakertools.HypermeasureSpecifier(
+            >>> hypermeasure_specifier = makertools.HypermeasureSpecifier(
             ...     counts=[2],
             ...     cyclic=True,
             ...     )
-            >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+            >>> maker = makertools.HypermeasureDivisionMaker(
             ...     hypermeasure_specifier=hypermeasure_specifier,
             ...     )
 
         ::
 
             >>> print(format(maker, 'storage'))
-            newmusicmakertools.HypermeasureDivisionMaker(
-                hypermeasure_specifier=newmusicmakertools.HypermeasureSpecifier(
+            makertools.HypermeasureDivisionMaker(
+                hypermeasure_specifier=makertools.HypermeasureSpecifier(
                     counts=(2,),
                     cyclic=True,
                     ),
@@ -55,13 +55,13 @@ class HypermeasureDivisionMaker(AbjadValueObject):
         hypermeasure_postprocessor=None,
         hypermeasure_specifier=None,
         ):
-        from experimental import newmusicmakertools
+        from experimental import makertools
         if hypermeasure_postprocessor is not None:
-            prototype = (newmusicmakertools.DivisionMaker,)
+            prototype = (makertools.DivisionMaker,)
             assert isinstance(hypermeasure_postprocessor, prototype)
         self._hypermeasure_postprocessor = hypermeasure_postprocessor
         if hypermeasure_specifier is not None:
-            prototype = (newmusicmakertools.HypermeasureSpecifier,)
+            prototype = (makertools.HypermeasureSpecifier,)
             assert isinstance(hypermeasure_specifier, prototype)
         self._hypermeasure_specifier = hypermeasure_specifier
 
@@ -76,11 +76,11 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                >>> hypermeasures = makertools.HypermeasureSpecifier(
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=None,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -136,15 +136,15 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             
             ::
 
-                >>> divisions = newmusicmakertools.DivisionMaker(
+                >>> divisions = makertools.DivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     remainder=Right,
                 ...     )
-                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                >>> hypermeasures = makertools.HypermeasureSpecifier(
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -199,15 +199,15 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> divisions = newmusicmakertools.DivisionMaker(
+                >>> divisions = makertools.DivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     remainder=Left,
                 ...     )
-                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                >>> hypermeasures = makertools.HypermeasureSpecifier(
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -265,15 +265,15 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> divisions = newmusicmakertools.DivisionMaker(
+                >>> divisions = makertools.DivisionMaker(
                 ...     pattern=[(2, 8)],
                 ...     remainder=Right,
                 ...     )
-                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                >>> hypermeasures = makertools.HypermeasureSpecifier(
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -319,15 +319,15 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> divisions = newmusicmakertools.DivisionMaker(
+                >>> divisions = makertools.DivisionMaker(
                 ...     pattern=[(2, 8)],
                 ...     remainder=Left,
                 ...     )
-                >>> hypermeasures = newmusicmakertools.HypermeasureSpecifier(
+                >>> hypermeasures = makertools.HypermeasureSpecifier(
                 ...     counts=[2],
                 ...     cyclic=True,
                 ...     )
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
@@ -373,7 +373,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = newmusicmakertools.HypermeasureDivisionMaker(
+                >>> maker = makertools.HypermeasureDivisionMaker(
                 ...     hypermeasure_postprocessor=None,
                 ...     hypermeasure_specifier=None,
                 ...     )

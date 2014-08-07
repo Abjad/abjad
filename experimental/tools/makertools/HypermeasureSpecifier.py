@@ -10,9 +10,9 @@ class HypermeasureSpecifier(AbjadValueObject):
 
         ::
 
-            >>> from experimental import newmusicmakertools
+            >>> from experimental import makertools
             >>> counts = [1, 1, 1, 2]
-            >>> specifier = newmusicmakertools.HypermeasureSpecifier(counts)
+            >>> specifier = makertools.HypermeasureSpecifier(counts)
             >>> specifier
             HypermeasureSpecifier(counts=(1, 1, 1, 2), cyclic=True)
 
@@ -23,7 +23,7 @@ class HypermeasureSpecifier(AbjadValueObject):
         ::
 
             >>> print(format(specifier, 'storage'))
-            newmusicmakertools.HypermeasureSpecifier(
+            makertools.HypermeasureSpecifier(
                 counts=(1, 1, 1, 2),
                 cyclic=True,
                 )
