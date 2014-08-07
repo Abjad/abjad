@@ -73,6 +73,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
             }
 
+    Follows the two-step configure-once / call-repeatedly pattern shown here.
+
+    Object model of a partially evaluated function that accepts a (possibly
+    empty) list of divisions as input and returns a list of selections as
+    output (structured one selection per input division).
     '''
 
     r'''Example helpers:
@@ -741,9 +746,17 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _split_sequence_extended_to_weights(sequence, weights, overhang=True):
-        n = int(math.ceil(float(mathtools.weight(weights)) / mathtools.weight(sequence)))
+        n = int(
+            math.ceil(float(mathtools.weight(weights)) / 
+            mathtools.weight(sequence))
+            )
         sequence = sequencetools.repeat_sequence(sequence, n)
-        return sequencetools.split_sequence(sequence, weights, cyclic=False, overhang=overhang)
+        return sequencetools.split_sequence(
+            sequence, 
+            weights, 
+            cyclic=False, 
+            overhang=overhang,
+            )
 
     ### PUBLIC PROPERTIES ###
 
