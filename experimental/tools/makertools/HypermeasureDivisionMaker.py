@@ -40,7 +40,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     hypermeasures with optional hypermeasure postprocessor.
 
     Follows the two-step configure-once / call-repeatly pattern established
-    by the rhythm-makers.
+    for the rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###

@@ -21,7 +21,6 @@ class DivisionMaker(AbjadValueObject):
                 pattern=(
                     mathtools.NonreducedFraction(1, 4),
                     ),
-                remainder=Right,
                 )
 
     Object model of a partially evaluated function that accepts a (possibly
@@ -30,7 +29,7 @@ class DivisionMaker(AbjadValueObject):
     division).
 
     Follows the two-step configure-once / call-repeatedly pattern established
-    by the rhythm-makers.
+    for the rhythm-makers.
     '''
 
     ### CLASS VARIABLES ###
@@ -49,7 +48,7 @@ class DivisionMaker(AbjadValueObject):
         cyclic=None,
         fuse_remainder=None,
         pattern=None,
-        remainder=Right,
+        remainder=None,
         ):
         if cyclic is not None:
             assert isinstance(cyclic, bool), repr(cyclic)
@@ -97,6 +96,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> maker = makertools.DivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
+                ...     remainder=Right,
                 ...     )
                 >>> lists = maker([(7, 8)])
                 >>> for list_ in lists:
@@ -155,7 +155,6 @@ class DivisionMaker(AbjadValueObject):
                     )
             total_duration = durationtools.Duration(sum(division_list))
             if total_duration == input_duration:
-                #return divisions
                 division_lists.append(division_list)
                 continue
             if self.remainder is None:
@@ -202,7 +201,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> maker.cyclic
                 True
 
-        Returns boolean.
+        Returns boolean or none.
         '''
         return self._cyclic
 
