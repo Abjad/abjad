@@ -7,7 +7,9 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
 
 
 class EvenDivisionRhythmMaker(RhythmMaker):
@@ -99,49 +101,49 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 6/7 {
+                            c'16 [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16
-                            c'16
+                            c'16 ]
                         }
                     }
                     {
                         \time 4/8
                         {
+                            c'16 [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16
-                            c'16
+                            c'16 ]
                         }
                     }
                     {
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/4 {
+                            c'8 [
                             c'8
                             c'8
-                            c'8
-                            c'8
+                            c'8 ]
                         }
                     }
                     {
                         \time 4/8
                         {
+                            c'16 [
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
                             c'16
-                            c'16
-                            c'16
+                            c'16 ]
                         }
                     }
                 }
@@ -191,11 +193,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, divisions, seeds):
+        from abjad.tools import rhythmmakertools
         assert not seeds, repr(seeds)
         selections = []
         divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
-        extra_counts_per_division = self.extra_counts_per_division or ()
+        extra_counts_per_division = self.extra_counts_per_division or (0,)
         extra_counts_per_division = datastructuretools.CyclicTuple(
             extra_counts_per_division
             )
@@ -231,6 +234,35 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 )
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
+        # maybe hoist up to RhythmMaker
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_divisions_together:
+            durations = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    duration = x.get_duration()
+                else:
+                    duration = x._get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    components.extend(x)
+                elif isinstance(x, scoretools.Tuplet):
+                    components.append(x)
+                else:
+                    raise TypeError(x)
+            attach(beam, components)
+        elif beam_specifier.beam_each_division:
+            for cell in selections:
+                beam = spannertools.MultipartBeam()
+                attach(beam, cell)
         return selections
 
     ### PUBLIC PROPERTIES ###
