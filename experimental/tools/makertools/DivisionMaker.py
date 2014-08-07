@@ -18,7 +18,6 @@ class DivisionMaker(AbjadValueObject):
 
             >>> print(format(maker, 'storage'))
             makertools.DivisionMaker(
-                cyclic=True,
                 pattern=(
                     mathtools.NonreducedFraction(1, 4),
                     ),
@@ -47,12 +46,13 @@ class DivisionMaker(AbjadValueObject):
 
     def __init__(
         self,
-        cyclic=True,
+        cyclic=None,
         fuse_remainder=None,
         pattern=None,
         remainder=Right,
         ):
-        assert isinstance(cyclic, bool), repr(cyclic)
+        if cyclic is not None:
+            assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
         if fuse_remainder is not None:
             assert isinstance(fuse_remainder, bool), repr(fuse_remainder)
@@ -79,7 +79,10 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
@@ -91,7 +94,10 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
                 >>> lists = maker([(7, 8)])
                 >>> for list_ in lists:
                 ...     list_ 
@@ -137,7 +143,6 @@ class DivisionMaker(AbjadValueObject):
             input_duration = durationtools.Duration(input_division)
             assert 0 < input_division, repr(input_division)
             if not self.pattern:
-                #return [input_division]
                 division_list = [input_division]
                 division_lists.append(division_list)
                 continue
