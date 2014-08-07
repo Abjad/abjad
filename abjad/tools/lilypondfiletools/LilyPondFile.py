@@ -103,7 +103,7 @@ class LilyPondFile(AbjadObject):
         return str(self)
 
     def __getitem__(self, name):
-        r'''Gets LilyPondFile item with `name`.
+        r'''Gets LilyPond file item with `name`.
 
         ..  container:: example
 

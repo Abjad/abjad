@@ -67,6 +67,31 @@ class Block(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __getitem__(self, name):
+        r'''Gets block item with `name`.
+
+        ..  container:: example
+
+            Gets score with name ``'Red Example Score'`` in score block:
+
+            ::
+
+                >>> block = lilypondfiletools.Block(name='score')
+                >>> score = Score(name='Red Example Score')
+                >>> block.items.append(score)
+
+            ::
+
+                >>> block['Red Example Score']
+                Score(is_simultaneous=True)
+
+        Raises key error when no item with `name` is found.
+        '''
+        for item in self.items:
+            if getattr(item, 'name', None) == name:
+                return item
+        raise KeyError
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -212,6 +237,12 @@ class Block(AbjadObject):
 
             ::
 
+                >>> block = lilypondfiletools.Block(name='score')
+                >>> markup = Markup('foo')
+                >>> block.items.append(markup)
+
+            ::
+
                 >>> block.items
                 [Markup(contents=('foo',))]
 
@@ -224,6 +255,12 @@ class Block(AbjadObject):
         r'''Gets name of block.
 
         ..  container:: example
+
+            ::
+
+                >>> block = lilypondfiletools.Block(name='score')
+                >>> markup = Markup('foo')
+                >>> block.items.append(markup)
 
             ::
 
