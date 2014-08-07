@@ -9,7 +9,7 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import templatetools
 from abjad.tools.topleveltools import iterate
-from experimental.tools.segmentmakertools.SegmentMaker import SegmentMaker
+from experimental.tools.makertools.SegmentMaker import SegmentMaker
 
 
 class PianoStaffSegmentMaker(SegmentMaker):
