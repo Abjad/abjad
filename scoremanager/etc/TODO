@@ -159,3 +159,5 @@
     This will enable commit messages longer than a single line.
 
 38. Implement EtcFileWrangler.
+
+39. Add Division to mainline durationtools.
