@@ -25,8 +25,9 @@ class DivisionMaker(AbjadValueObject):
                 remainder=Right,
                 )
 
-    Object model of a partially evaluated function that accepts duration as
-    input and returns nonreduced fractions as output.
+    Object model of a partially evaluated function that accepts a (possibly
+    none-valued) division as input and returns a (possibly empty) list of
+    divisions as output.
 
     Follows the two-step configure-once / call-repeatedly pattern established
     by the rhythm-makers.
@@ -63,12 +64,12 @@ class DivisionMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, division):
-        r'''Calls maker on `division`.
+    def __call__(self, division=None):
+        r'''Calls division-maker on `division`.
 
         ..  container:: example
 
-            Calls maker on division with no remainder:
+            Calls division-maker on division with no remainder:
 
             ::
 
@@ -82,7 +83,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls maker on division with remainder:
+            Calls division-maker on division with remainder:
 
             ::
 
@@ -95,27 +96,42 @@ class DivisionMaker(AbjadValueObject):
                 NonreducedFraction(1, 4)
                 NonreducedFraction(1, 8)
 
-            Positions remainder at right of output because maker `remainder`
-            defaults to right.
+            Positions remainder at right of output because divison-maker
+            `remainder` defaults to right.
 
         ..  container:: example
 
-            Calls maker on zero division:
+            Calls division-maker with pattern set to none:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker()
+                >>> maker((6, 32))
+                [NonreducedFraction(6, 32)]
+
+            Returns input division unchanged.
+
+        ..  container:: example
+
+            Calls division-maker on nothing:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
-                >>> maker(0)
+                >>> maker()
                 []
 
             Returns empty list.
 
-        Returns possibly empty list of nonreduced fractions.
+        Returns possibly empty list of divisions.
         '''
+        if division is None:
+            return []
         input_division = mathtools.NonreducedFraction(division)
         input_duration = durationtools.Duration(input_division)
+        assert 0 < input_division, repr(input_division)
         if not self.pattern:
-            return []
+            return [input_division]
         divisions = list(self.pattern)
         if self.cyclic:
             divisions = sequencetools.repeat_sequence_to_weight(
@@ -148,10 +164,17 @@ class DivisionMaker(AbjadValueObject):
 
     @property
     def cyclic(self):
-        r'''Is true when maker reads divisions cyclically.
+        r'''Is true when division-maker reads pattern cyclically.
         Otherwise false.
 
         ..  container:: example
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
 
             ::
 
@@ -164,22 +187,29 @@ class DivisionMaker(AbjadValueObject):
 
     @property
     def pattern(self):
-        r'''Gets maker pattern.
+        r'''Gets pattern of division-maker.
 
         ..  container:: example
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
 
             ::
 
                 >>> maker.pattern
                 (NonreducedFraction(1, 4),)
 
-        Returns possibly empty tuple of positive nonreduced fractions.
+        Returns (possibly empty) tuple of divisions or none.
         '''
         return self._pattern
 
     @property
     def remainder(self):
-        r'''Gets direction at which any remainder will be positioned.
+        r'''Gets direction to which any remainder will be positioned.
 
         ..  container:: example
 
