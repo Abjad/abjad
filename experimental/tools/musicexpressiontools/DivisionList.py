@@ -88,6 +88,7 @@ class DivisionList(BoundedObject):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         start_offset = start_offset or durationtools.Offset(0)
         start_offset = durationtools.Offset(start_offset)
+        self._start_offset = start_offset
         positioned_divisions = []
         total_duration = start_offset or durationtools.Duration(0)
         for division in divisions:
@@ -339,8 +340,9 @@ class DivisionList(BoundedObject):
 
         Returns offset.
         '''
-        if self:
-            return self[0]._start_offset
+        #if self:
+        #    return self[0]._start_offset
+        return self._start_offset
 
     @property
     def voice_name(self):

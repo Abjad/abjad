@@ -26,6 +26,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def __init__(self, payload=None, start_offset=None, voice_name=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         IterablePayloadExpression.__init__(self, payload=payload)
+        start_offset = start_offset or durationtools.Offset(0)
         start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
         self._voice_name = voice_name

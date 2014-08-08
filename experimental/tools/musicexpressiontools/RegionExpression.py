@@ -22,6 +22,7 @@ class RegionExpression(Expression):
         voice_name=None,
         ):
         assert isinstance(voice_name, str), repr(voice_name)
+        start_offset = start_offset or durationtools.Offset(0)
         start_offset = durationtools.Offset(start_offset)
         total_duration = durationtools.Duration(total_duration)
         self._source_expression = source_expression
