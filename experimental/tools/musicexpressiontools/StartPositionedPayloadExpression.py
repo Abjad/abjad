@@ -306,7 +306,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Returns newly constructed start-positioned payload expression.
         '''
+        from experimental import musicexpressiontools
         key = (repr(self), repr(time_relation))
+        my_start_offset = 'foo'
         if key not in callback_cache or not callback_cache[key]:
             start_offsets, stop_offsets = [], []
             my_start_offset = self.timespan.start_offset
@@ -322,13 +324,19 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             elements = self.elements[start_index:stop_index]
             if not elements:
                 return
+            assert 0 <= start_index, repr(start_index)
+            everything_before = self.elements[:start_index]
+            my_start_offset = self.start_offset + \
+                durationtools.Duration(sum(everything_before))
             callback_cache[key] = elements
         elements = callback_cache[key]
-        from experimental import musicexpressiontools
         assert all(
             isinstance(_, musicexpressiontools.Division) for _ in elements
             ), repr(elements)
-        start_offset = elements[0]._flamingo
+        if my_start_offset == 'foo':
+            start_offset = elements[0]._flamingo
+        else:
+            start_offset = my_start_offset
         expression = new(
             self,
             payload=elements,
