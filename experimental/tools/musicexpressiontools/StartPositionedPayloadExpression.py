@@ -309,7 +309,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         from experimental import musicexpressiontools
         key = (repr(self), repr(time_relation))
         my_start_offset = 'foo'
-        if key not in callback_cache or not callback_cache[key]:
+        if key not in callback_cache:
             start_offsets, stop_offsets = [], []
             my_start_offset = self.timespan.start_offset
             current_start_offset = my_start_offset
