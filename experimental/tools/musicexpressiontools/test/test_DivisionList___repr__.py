@@ -11,4 +11,4 @@ def test_DivisionList___repr___01():
     divisions.append(Division((1, 8)))
     division_list = DivisionList(divisions)
 
-    assert repr(division_list) == "DivisionList('[2, 8], [5, 8], [1, 8]')"
+    assert repr(division_list) == "DivisionList('[2, 8), [5, 8), [1, 8)')"

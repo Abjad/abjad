@@ -60,59 +60,59 @@ class DivisionList(BoundedObject):
         musicexpressiontools.DivisionList(
             [
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(0, 1),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(3, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(3, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(9, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(3, 4),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(15, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(9, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(21, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(3, 2),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(27, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(15, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(33, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(9, 4),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16]',
+                    '[3, 16)',
                     start_offset=durationtools.Offset(39, 16),
                     ),
                 ],
@@ -142,7 +142,7 @@ class DivisionList(BoundedObject):
         assert all(x.start_offset is not None for x in divisions)
         self._divisions = divisions
         self._voice_name = voice_name
-        assert self.is_well_formed
+        #assert self.is_well_formed
 
     ### SPECIAL METHODS ###
 
@@ -155,17 +155,16 @@ class DivisionList(BoundedObject):
         ::
 
             >>> left + right
-            DivisionList('[1, 16], [2, 16], [3, 16], [4, 16]')
+            DivisionList('[1, 16), [2, 16), [3, 16), [4, 16)')
 
         Returns newly constructed division list.
         '''
-        assert isinstance(expr, type(self)), repr(expr)
-        if self.is_right_open and expr.is_left_open:
-            return self._add_open_division_lists(self, expr)
-        elif self.is_right_closed and expr.is_left_closed:
-            return self._add_closed_division_lists(self, expr)
-        else:
-            raise ValueError
+        assert self.is_left_closed and expr.is_left_closed
+        assert self.is_right_open and expr.is_right_open
+        divisions = []
+        divisions.extend(self[:])
+        divisions.extend(expr[:])
+        return type(self)(divisions)
 
     def __format__(self, format_specification=''):
         r'''Formats division list.
@@ -179,59 +178,59 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(0, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(3, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(3, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(9, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(3, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(15, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(9, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(21, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(3, 2),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(27, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(15, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(33, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(9, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(39, 16),
                         ),
                     ],
@@ -275,21 +274,6 @@ class DivisionList(BoundedObject):
         contents_string = ', '.join(contents_string)
         return contents_string
 
-    ### PRIVATE METHODS ###
-
-    def _add_closed_division_lists(self, left, right):
-        divisions = []
-        divisions.extend(left)
-        divisions.extend(right)
-        return type(left)(divisions)
-
-    def _add_open_division_lists(self, left, right):
-        divisions = []
-        divisions.extend(left[:-1])
-        divisions.append(left[-1] + right[0])
-        divisions.extend(right[1:])
-        return type(left)(divisions)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -297,20 +281,20 @@ class DivisionList(BoundedObject):
         r'''Division list divisions.
 
             >>> for division in division_list.divisions: division
-            Division('[3, 16]', start_offset=Offset(0, 1))
-            Division('[3, 16]', start_offset=Offset(3, 16))
-            Division('[3, 16]', start_offset=Offset(3, 8))
-            Division('[3, 16]', start_offset=Offset(9, 16))
-            Division('[3, 16]', start_offset=Offset(3, 4))
-            Division('[3, 16]', start_offset=Offset(15, 16))
-            Division('[3, 16]', start_offset=Offset(9, 8))
-            Division('[3, 16]', start_offset=Offset(21, 16))
-            Division('[3, 16]', start_offset=Offset(3, 2))
-            Division('[3, 16]', start_offset=Offset(27, 16))
-            Division('[3, 16]', start_offset=Offset(15, 8))
-            Division('[3, 16]', start_offset=Offset(33, 16))
-            Division('[3, 16]', start_offset=Offset(9, 4))
-            Division('[3, 16]', start_offset=Offset(39, 16))
+            Division('[3, 16)', start_offset=Offset(0, 1))
+            Division('[3, 16)', start_offset=Offset(3, 16))
+            Division('[3, 16)', start_offset=Offset(3, 8))
+            Division('[3, 16)', start_offset=Offset(9, 16))
+            Division('[3, 16)', start_offset=Offset(3, 4))
+            Division('[3, 16)', start_offset=Offset(15, 16))
+            Division('[3, 16)', start_offset=Offset(9, 8))
+            Division('[3, 16)', start_offset=Offset(21, 16))
+            Division('[3, 16)', start_offset=Offset(3, 2))
+            Division('[3, 16)', start_offset=Offset(27, 16))
+            Division('[3, 16)', start_offset=Offset(15, 8))
+            Division('[3, 16)', start_offset=Offset(33, 16))
+            Division('[3, 16)', start_offset=Offset(9, 4))
+            Division('[3, 16)', start_offset=Offset(39, 16))
 
         Returns list.
         '''
@@ -362,7 +346,7 @@ class DivisionList(BoundedObject):
         ::
 
             >>> division_list.is_right_closed
-            True
+            False
 
         Returns boolean.
         '''
@@ -375,29 +359,29 @@ class DivisionList(BoundedObject):
         ::
 
             >>> division_list.is_right_open
-            False
+            True
 
         Returns boolean.
         '''
         return self[-1].is_right_open
 
-    @property
-    def is_well_formed(self):
-        r'''Is true when division list is well-formed.
-        Otherwise false.
-
-        ::
-
-            >>> division_list.is_well_formed
-            True
-
-        Returns boolean.
-        '''
-        if 1 < len(self) and self[0].is_right_open:
-            return False
-        if 1 < len(self) and self[-1].is_left_open:
-            return False
-        return True
+#    @property
+#    def is_well_formed(self):
+#        r'''Is true when division list is well-formed.
+#        Otherwise false.
+#
+#        ::
+#
+#            >>> division_list.is_well_formed
+#            True
+#
+#        Returns boolean.
+#        '''
+#        if 1 < len(self) and self[0].is_right_open:
+#            return False
+#        if 1 < len(self) and self[-1].is_left_open:
+#            return False
+#        return True
 
     @property
     def pairs(self):
@@ -473,19 +457,19 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[4, 16]',
+                        '[4, 16)',
                         start_offset=durationtools.Offset(5, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(21, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[4, 16]',
+                        '[4, 16)',
                         start_offset=durationtools.Offset(87, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(91, 16),
                         ),
                     ],
@@ -516,19 +500,19 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[4, 16]',
+                        '[4, 16)',
                         start_offset=durationtools.Offset(5, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(21, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[4, 16]',
+                        '[4, 16)',
                         start_offset=durationtools.Offset(87, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16]',
+                        '[3, 16)',
                         start_offset=durationtools.Offset(91, 16),
                         ),
                     ],
