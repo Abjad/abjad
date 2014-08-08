@@ -328,6 +328,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             everything_before = self.elements[:start_index]
             my_start_offset = self.start_offset + \
                 durationtools.Duration(sum(everything_before))
+            assert all(
+                isinstance(_, musicexpressiontools.Division) for _ in elements
+                ), repr(elements)
             callback_cache[key] = elements
         elements = callback_cache[key]
         assert all(

@@ -79,18 +79,31 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return result
 
     def _partition_by_ratio(
-        self, payload_expression, ratio, part, callback_cache):
+        self, 
+        payload_expression, 
+        ratio, 
+        part, 
+        callback_cache,
+        ):
+        from experimental import musicexpressiontools
         assert hasattr(payload_expression, 'partition_by_ratio')
         key = (repr(payload_expression), repr(ratio))
         if key not in callback_cache:
             parts = payload_expression.partition_by_ratio(ratio)
+            assert not any(
+                isinstance(_, musicexpressiontools.Division) for _ in parts
+                ), repr(parts)
             callback_cache[key] = parts
         parts = callback_cache[key]
         selected_part = parts[part]
         return selected_part
 
     def _partition_by_ratio_of_durations(
-        self, payload_expression, ratio, part):
+        self, 
+        payload_expression, 
+        ratio, 
+        part,
+        ):
         assert hasattr(payload_expression, 'partition_by_ratio_of_durations')
         parts = payload_expression.partition_by_ratio_of_durations(ratio)
         selected_part = parts[part]
