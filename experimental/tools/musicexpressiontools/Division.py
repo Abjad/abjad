@@ -88,6 +88,11 @@ class Division(NonreducedFraction, BoundedObject):
         if start_offset is None:
             start_offset = getattr(pair, 'start_offset', None)
         self._start_offset = start_offset
+
+        # MIGRATION:
+        assert self.is_left_closed, repr(self)
+        assert not self.is_left_open, repr(self)
+
         return self
 
     ### SPECIAL METHODS ###
