@@ -261,13 +261,14 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Returns boolean.
         '''
-        if len(self.elements):
-            last_element = self.elements[0]
-            for current_element in self.elements[1:]:
-                if not last_element._get_timespan().stop_offset == \
-                    current_element._get_timespan().start_offset:
-                    return False
-                last_element = current_element
+#        if len(self.elements):
+#            last_element = self.elements[0]
+#            for current_element in self.elements[1:]:
+#                if not last_element._get_timespan().stop_offset == \
+#                    current_element._get_timespan().start_offset:
+#                    return False
+#                last_element = current_element
+#        return True
         return True
 
     @property

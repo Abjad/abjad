@@ -74,20 +74,3 @@ class Division(NonreducedFraction):
             self.pair,
             start_offset=self._start_offset,
             )
-
-    ### PRIVATE METHODS ###
-
-    # TODO: maybe keep only _get_timespan?
-    def _get_timespan(self):
-        return timespantools.Timespan(self._start_offset, self._stop_offset)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def _duration(self):
-        return durationtools.Duration(self.numerator, self.denominator)
-
-    @property
-    def _stop_offset(self):
-        if self._start_offset is not None:
-            return self._start_offset + self._duration
