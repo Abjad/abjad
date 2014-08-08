@@ -5,7 +5,8 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 class Division(NonreducedFraction):
     r'''Division.
 
-    A division is an optionally offset-positioned nonreduced fraction.
+    A division is a nonreduced fraction used to model beats, measures
+    or any block of time divisible into parts.
 
     ..  container:: example::
     
@@ -13,7 +14,8 @@ class Division(NonreducedFraction):
 
         ::
 
-            >>> musicexpressiontools.Division(5, 8)
+            >>> division = musicexpressiontools.Division(5, 8)
+            >>> division
             Division(5, 8)
 
     ..  container:: example::
@@ -22,23 +24,13 @@ class Division(NonreducedFraction):
 
         ::
 
-            >>> division = musicexpressiontools.Division(5, 8)
             >>> musicexpressiontools.Division(division)
             Division(5, 8)
 
-    Divisions model beats, measures or any block of time divisible into parts.
+    Divisions are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_flamingo',
         )
-
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *args):
-        result = type(self)(self.pair)
-        if hasattr(self, '_flamingo'):
-            result._flamingo = self._flamingo
-        return result

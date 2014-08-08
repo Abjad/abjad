@@ -90,17 +90,7 @@ class DivisionList(BoundedObject):
         start_offset = start_offset or durationtools.Offset(0)
         start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
-        positioned_divisions = []
-        total_duration = start_offset or durationtools.Duration(0)
-        for division in divisions:
-            division_start_offset = durationtools.Offset(total_duration)
-            division = division or 0
-            positioned_division = musicexpressiontools.Division(division)
-            #positioned_division._start_offset = division_start_offset
-            positioned_division._flamingo = division_start_offset
-            positioned_divisions.append(positioned_division)
-            total_duration += durationtools.Duration(positioned_division)
-        divisions = positioned_divisions
+        divisions = [musicexpressiontools.Division(_) for _ in divisions]
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed
