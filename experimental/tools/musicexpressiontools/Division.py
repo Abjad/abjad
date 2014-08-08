@@ -12,11 +12,11 @@ class Division(NonreducedFraction):
 
     ..  container:: example::
     
-        Example 1. Initializes from string:
+        Example 1. Initializes from pair:
 
         ::
 
-            >>> musicexpressiontools.Division('[5, 8)')
+            >>> musicexpressiontools.Division(5, 8)
             Division(5, 8)
 
     ..  container:: example::
@@ -26,7 +26,7 @@ class Division(NonreducedFraction):
         ::
 
             >>> division = musicexpressiontools.Division(
-            ...     '[5, 8)', 
+            ...     (5, 8),
             ...     start_offset=Offset(1, 8),
             ...     )
             >>> new_division = musicexpressiontools.Division(division)
@@ -36,7 +36,7 @@ class Division(NonreducedFraction):
             Offset(1, 8)
 
     Divisions model any block of time that is divisible into parts: beats,
-    complete measures and so on.
+    complete measures, etc.
     '''
 
     ### CLASS VARIABLES ###
@@ -49,19 +49,25 @@ class Division(NonreducedFraction):
 
     def __new__(
         cls,
-        arg,
-        start_offset=None,
+        *args,
+        **kwargs
         ):
-        if isinstance(arg, str):
-            triple = Division.parse_interval_range_string(arg)
-            pair, is_left_open, is_right_open = triple
-        elif isinstance(arg, cls):
-            pair = arg
-        elif hasattr(arg, 'duration'):
-            pair = (arg.duration.numerator, arg.duration.denominator)
+        if len(args) == 1:
+            arg = args[0]
+            if isinstance(arg, str):
+                raise Exception(str)
+            elif isinstance(arg, cls):
+                pair = arg
+            elif hasattr(arg, 'duration'):
+                pair = (arg.duration.numerator, arg.duration.denominator)
+            else:
+                pair = arg
+        elif len(args) == 2:
+            pair = args
         else:
-            pair = arg
+            raise ValueError(args)
         self = NonreducedFraction.__new__(cls, pair)
+        start_offset = kwargs.get('start_offset')
         if start_offset is None:
             start_offset = getattr(pair, 'start_offset', None)
         self._start_offset = start_offset
@@ -156,32 +162,3 @@ class Division(NonreducedFraction):
         Returns timespan.
         '''
         return timespantools.Timespan(self.start_offset, self.stop_offset)
-
-    @staticmethod
-    def parse_interval_range_string(interval_range_string):
-        r'''Parses `interval_range_string` into interval pair, boolean start
-        and boolean stop.
-
-        ::
-
-            >>> musicexpressiontools.Division.parse_interval_range_string(
-            ...     '[5, 8)')
-            ((5, 8), False, True)
-
-        Parses square brackets as closed interval bounds.
-
-        Parses parentheses as open interval bounds.
-
-        Returns triple.
-        '''
-        assert isinstance(interval_range_string, str)
-        assert interval_range_string.startswith('[')
-        assert interval_range_string.endswith(')')
-        numbers = interval_range_string[1:-1]
-        comma_index = numbers.index(',')
-        start = numbers[:comma_index]
-        start = int(start)
-        stop = numbers[comma_index+1:]
-        stop = int(stop)
-        pair = (start, stop)
-        return pair, False, True
