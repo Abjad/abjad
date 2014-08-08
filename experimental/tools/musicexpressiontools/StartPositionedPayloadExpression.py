@@ -331,15 +331,11 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             assert all(
                 isinstance(_, musicexpressiontools.Division) for _ in elements
                 ), repr(elements)
-            callback_cache[key] = elements
-        elements = callback_cache[key]
+            callback_cache[key] = (elements, my_start_offset)
+        elements, start_offset = callback_cache[key]
         assert all(
             isinstance(_, musicexpressiontools.Division) for _ in elements
             ), repr(elements)
-        if my_start_offset == 'foo':
-            start_offset = elements[0]._flamingo
-        else:
-            start_offset = my_start_offset
         expression = new(
             self,
             payload=elements,
