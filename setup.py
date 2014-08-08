@@ -79,11 +79,8 @@ setuptools.setup(
     license='GPL',
     long_description=long_description,
     name='Abjad',
-    packages=setuptools.find_packages(
-        exclude=(
-            'experimental',
-            'scoremanager',
-            ),
+    packages=(
+        'abjad',
         ),
     platforms='Any',
     url='http://www.projectabjad.org',
