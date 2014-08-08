@@ -43,3 +43,6 @@ nosetests.xml
 # Misc.
 *.bak
 *.pkl
+
+# OS X
+.DS_Store
