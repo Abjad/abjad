@@ -22,5 +22,3 @@ def test_Division___init___02():
 
     assert not division_1 is division_2
     assert division_1 == division_2
-    assert division_1.is_left_closed
-    assert division_2.is_left_closed

@@ -1,14 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import timespantools
-from abjad.tools.mathtools.BoundedObject import BoundedObject
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
 
-class Division(NonreducedFraction, BoundedObject):
+class Division(NonreducedFraction):
     r'''Division.
 
-    A division is a bounded nonreduced fraction that is optionally
+    A division is a nonreduced fraction that is optionally
     offset-positioned.
 
     ..  container:: example::
@@ -34,18 +33,12 @@ class Division(NonreducedFraction, BoundedObject):
             Division('[5, 8)', start_offset=Offset(1, 8))
 
     Divisions model any block of time that is divisible into parts: beats,
-    complete measures or arbitrary spans of time.
+    complete measures and so on.
     '''
 
     ### CLASS VARIABLES ###
 
-    # slots definition does nothing here because multiple inheritance
-    # breaks with multiple slots base classes
     __slots__ = (
-        '_is_left_closed',
-        '_is_left_open',
-        '_is_right_closed',
-        '_is_right_open',
         '_start_offset',
         )
 
@@ -66,22 +59,9 @@ class Division(NonreducedFraction, BoundedObject):
         else:
             pair = arg
         self = NonreducedFraction.__new__(cls, pair)
-
-        self._is_left_closed = True
-        self._is_left_open = False
-        self._is_right_open = True
-        self._is_right_closed = False
-
         if start_offset is None:
             start_offset = getattr(pair, 'start_offset', None)
         self._start_offset = start_offset
-
-        # MIGRATION:
-        assert self.is_left_closed, repr(self)
-        assert not self.is_left_open, repr(self)
-        assert self.is_right_open, repr(self)
-        assert not self.is_right_closed, repr(self)
-
         return self
 
     ### SPECIAL METHODS ###

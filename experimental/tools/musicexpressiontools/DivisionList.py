@@ -324,7 +324,7 @@ class DivisionList(BoundedObject):
 
         Returns boolean.
         '''
-        return self[0].is_left_closed
+        return True
 
     @property
     def is_left_open(self):
@@ -337,7 +337,7 @@ class DivisionList(BoundedObject):
 
         Returns boolean.
         '''
-        return self[0].is_left_open
+        return False
 
     @property
     def is_right_closed(self):
@@ -350,7 +350,7 @@ class DivisionList(BoundedObject):
 
         Returns boolean.
         '''
-        return self[-1].is_right_closed
+        return False
 
     @property
     def is_right_open(self):
@@ -363,7 +363,7 @@ class DivisionList(BoundedObject):
 
         Returns boolean.
         '''
-        return self[-1].is_right_open
+        return True
 
     @property
     def is_well_formed(self):
