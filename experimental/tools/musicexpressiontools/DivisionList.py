@@ -86,8 +86,8 @@ class DivisionList(BoundedObject):
     def __init__(self, divisions, start_offset=None, voice_name=None):
         from experimental.tools import musicexpressiontools
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        if start_offset is not None:
-            start_offset = durationtools.Offset(start_offset)
+        start_offset = start_offset or durationtools.Offset(0)
+        start_offset = durationtools.Offset(start_offset)
         positioned_divisions = []
         total_duration = start_offset or durationtools.Duration(0)
         for division in divisions:
@@ -97,7 +97,6 @@ class DivisionList(BoundedObject):
             positioned_divisions.append(positioned_division)
             total_duration += durationtools.Duration(positioned_division)
         divisions = positioned_divisions
-        assert all(x._start_offset is not None for x in divisions)
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed
