@@ -19,7 +19,7 @@ class DivisionMaker(AbjadValueObject):
             >>> print(format(maker, 'storage'))
             makertools.DivisionMaker(
                 pattern=(
-                    mathtools.NonreducedFraction(1, 4),
+                    durationtools.Division(1, 4),
                     ),
                 )
 
@@ -58,7 +58,7 @@ class DivisionMaker(AbjadValueObject):
         if pattern is not None:
             pattern_ = []
             for division in pattern:
-                division = mathtools.NonreducedFraction(division)
+                division = durationtools.Division(division)
                 pattern_.append(division)
             pattern = tuple(pattern_)
         self._pattern = pattern
@@ -92,7 +92,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
 
         ..  container:: example
 
@@ -108,7 +108,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(7, 8)])
                 >>> for list_ in lists:
                 ...     list_ 
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
 
             Positions remainder at right of output because divison-maker
             `remainder` defaults to right.
@@ -123,7 +123,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(6, 32)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(6, 32)]
+                [Division(6, 32)]
 
             Returns input division unchanged.
 
@@ -146,7 +146,7 @@ class DivisionMaker(AbjadValueObject):
             return []
         division_lists = []
         for i, division in enumerate(divisions):
-            input_division = mathtools.NonreducedFraction(division)
+            input_division = durationtools.Division(division)
             input_duration = durationtools.Duration(input_division)
             assert 0 < input_division, repr(input_division)
             if not self.pattern:
@@ -176,27 +176,25 @@ class DivisionMaker(AbjadValueObject):
                 raise Exception(message)
             remainder = input_division - total_duration
             remainder = durationtools.Duration(remainder)
-            remainder = mathtools.NonreducedFraction(remainder)
-#            if self.remainder is Left and not self.fuse_remainder:
-#                division_list.insert(0, remainder)
-#            elif self.remainder is Left and self.fuse_remainder:
-#                division_list[0] += remainder
+            remainder = durationtools.Division(remainder)
             if self.remainder is Left:
                 if self.remainder_fuse_threshold is None:
                     division_list.insert(0, remainder)
                 elif remainder <= self.remainder_fuse_threshold:
-                    division_list[0] += remainder
+                    #division_list[0] += remainder
+                    fused_value = division_list[0] + remainder
+                    fused_value = durationtools.Division(fused_value)
+                    division_list[0] = fused_value
                 else:
                     division_list.insert(0, remainder)
-#            elif self.remainder is Right and not self.fuse_remainder:
-#                division_list.append(remainder)
-#            elif self.remainder is Right and self.fuse_remainder:
-#                division_list[-1] += remainder
             elif self.remainder is Right:
                 if self.remainder_fuse_threshold is None:
                     division_list.append(remainder)
                 elif remainder <= self.remainder_fuse_threshold:
-                    division_list[-1] += remainder
+                    #division_list[-1] += remainder
+                    fused_value = division_list[-1] + remainder
+                    fused_value = durationtools.Division(fused_value)
+                    division_list[-1] = fused_value
                 else:
                     division_list.append(remainder)
             else:
@@ -248,7 +246,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker.pattern
-                (NonreducedFraction(1, 4),)
+                (Division(1, 4),)
 
         Returns (possibly empty) tuple of divisions or none.
         '''
@@ -274,9 +272,9 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(7, 16), (7, 16), (7, 16)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
+                [Division(1, 16), Division(1, 8), Division(1, 4)]
+                [Division(1, 16), Division(1, 8), Division(1, 4)]
+                [Division(1, 16), Division(1, 8), Division(1, 4)]
 
             All input divisions treated the same.
 
@@ -298,9 +296,9 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(7, 16), (7, 16), (7, 16)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 16), NonreducedFraction(1, 8)]
+                [Division(1, 16), Division(1, 8), Division(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 16)]
+                [Division(1, 4), Division(1, 16), Division(1, 8)]
 
         ..  container:: example
 
@@ -320,9 +318,9 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(7, 16), (7, 16), (7, 16)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 16), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 16), NonreducedFraction(1, 8)]
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
+                [Division(1, 16), Division(1, 8), Division(1, 4)]
+                [Division(1, 4), Division(1, 16), Division(1, 8)]
+                [Division(1, 8), Division(1, 4), Division(1, 16)]
 
         Returns integer or none.
         '''
@@ -346,7 +344,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(4, 16), NonreducedFraction(1, 16), NonreducedFraction(7, 16)]
+                [Division(4, 16), Division(1, 16), Division(7, 16)]
 
         ..  container:: example
 
@@ -362,7 +360,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(4, 16), NonreducedFraction(1, 16), NonreducedFraction(4, 16), NonreducedFraction(1, 16), NonreducedFraction(1, 8)]
+                [Division(4, 16), Division(1, 16), Division(4, 16), Division(1, 16), Division(1, 8)]
 
         ..  container:: example
 
@@ -378,7 +376,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(7, 16), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
+                [Division(7, 16), Division(1, 4), Division(1, 16)]
 
         ..  container:: example
 
@@ -394,7 +392,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 16), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]
+                [Division(1, 8), Division(1, 4), Division(1, 16), Division(1, 4), Division(1, 16)]
 
         Returns left, right or none.
         '''
@@ -422,7 +420,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(5, 8)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 8)]
 
         ..  container:: example
 
@@ -443,7 +441,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(5, 8)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(3, 8)]
+                [Division(1, 4), Division(3, 8)]
 
         ..  container:: example
 
@@ -463,7 +461,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(5, 8)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 4)]
 
         ..  container:: example
 
@@ -484,7 +482,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lists = maker([(5, 8)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8), NonreducedFraction(1, 4)]
+                [Division(3, 8), Division(1, 4)]
 
         Returns boolean or none.
         '''

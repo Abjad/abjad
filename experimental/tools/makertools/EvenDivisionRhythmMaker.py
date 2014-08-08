@@ -196,7 +196,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         assert not seeds, repr(seeds)
         selections = []
-        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
+        divisions = [durationtools.Division(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
         extra_counts_per_division = self.extra_counts_per_division or (0,)
         extra_counts_per_division = datastructuretools.CyclicTuple(

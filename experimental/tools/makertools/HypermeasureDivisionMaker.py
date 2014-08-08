@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import indicatortools
-from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -95,8 +95,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(6, 8)]
-                [NonreducedFraction(5, 8)]
+                [Division(6, 8)]
+                [Division(5, 8)]
 
             ::
 
@@ -104,8 +104,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(6, 8)]
-                [NonreducedFraction(3, 8)]
+                [Division(6, 8)]
+                [Division(3, 8)]
 
             ::
 
@@ -113,7 +113,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(6, 8)]
+                [Division(6, 8)]
 
             ::
 
@@ -121,7 +121,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8)]
+                [Division(3, 8)]
 
             ::
 
@@ -160,8 +160,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 8)]
 
             ::
 
@@ -169,8 +169,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-                [NonreducedFraction(1, 4)]
+                [Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4)]
 
             ::
 
@@ -178,7 +178,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 8)]
 
             ::
 
@@ -186,7 +186,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4)]
+                [Division(1, 4)]
 
             ::
 
@@ -224,8 +224,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 4)]
 
 
             ::
@@ -234,8 +234,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 4)]
+                [Division(1, 4)]
 
             ::
 
@@ -243,7 +243,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+                [Division(1, 8), Division(1, 4), Division(1, 4)]
 
             ::
 
@@ -251,7 +251,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 4)]
+                [Division(1, 4)]
 
             ::
 
@@ -291,8 +291,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
-                [NonreducedFraction(2, 8), NonreducedFraction(1, 8)]
+                [Division(2, 8), Division(2, 8), Division(2, 8)]
+                [Division(2, 8), Division(1, 8)]
 
             ::
 
@@ -300,7 +300,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+                [Division(2, 8), Division(2, 8), Division(2, 8)]
 
             ::
 
@@ -308,7 +308,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 8), NonreducedFraction(1, 8)]
+                [Division(2, 8), Division(1, 8)]
 
             ::
 
@@ -346,8 +346,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
-                [NonreducedFraction(1, 8), NonreducedFraction(2, 8)]
+                [Division(2, 8), Division(2, 8), Division(2, 8)]
+                [Division(1, 8), Division(2, 8)]
 
             ::
 
@@ -355,7 +355,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+                [Division(2, 8), Division(2, 8), Division(2, 8)]
 
             ::
 
@@ -363,7 +363,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(1, 8), NonreducedFraction(2, 8)]
+                [Division(1, 8), Division(2, 8)]
 
             ::
 
@@ -392,10 +392,10 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(2, 8)]
+                [Division(3, 8)]
+                [Division(3, 8)]
+                [Division(3, 8)]
+                [Division(2, 8)]
 
             ::
 
@@ -403,9 +403,9 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(3, 8)]
+                [Division(3, 8)]
+                [Division(3, 8)]
+                [Division(3, 8)]
 
             ::
 
@@ -413,8 +413,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8)]
-                [NonreducedFraction(3, 8)]
+                [Division(3, 8)]
+                [Division(3, 8)]
 
             ::
 
@@ -422,7 +422,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 >>> lists = maker(divisions)
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(3, 8)]
+                [Division(3, 8)]
 
             ::
 
@@ -449,6 +449,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 division_list = self.hypermeasure_postprocessor([division])[0]
             else:
                 division_list = [division]
+            division_list = [durationtools.Division(_) for _ in division_list]
             division_lists.append(division_list)
         return division_lists
 
@@ -458,11 +459,11 @@ class HypermeasureDivisionMaker(AbjadValueObject):
         nonreduced_fractions = []
         for division in divisions:
             if hasattr(division, 'time_signature'):
-                nonreduced_fraction = mathtools.NonreducedFraction(
+                nonreduced_fraction = durationtools.Division(
                     division.time_signature.pair
                     )
             else:
-                nonreduced_fraction = mathtools.NonreducedFraction(division)
+                nonreduced_fraction = durationtools.Division(division)
             nonreduced_fractions.append(nonreduced_fraction)
         return nonreduced_fractions
 
