@@ -159,3 +159,7 @@
     This will enable commit messages longer than a single line.
 
 38. Implement EtcFileWrangler.
+
+39. Redefine math operations on Division.
+    Should return Division objects where appropriate.
+    Compare with NonreducedFraction.
