@@ -32,13 +32,13 @@ class Division(NonreducedFraction):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_start_offset',
+        '_flamingo',
         )
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         result = type(self)(self.pair)
-        if hasattr(self, '_start_offset'):
-            result._start_offset = self._start_offset
+        if hasattr(self, '_flamingo'):
+            result._flamingo = self._flamingo
         return result

@@ -324,7 +324,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
                 return
             callback_cache[key] = elements
         elements = callback_cache[key]
-        start_offset = elements[0]._start_offset
+        start_offset = elements[0]._flamingo
         expression = new(
             self,
             payload=elements,
