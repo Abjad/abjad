@@ -318,31 +318,31 @@ class ScoreSpecification(Specification):
                         division_list=musicexpressiontools.DivisionList(
                             [
                                 musicexpressiontools.Division(
-                                    '[2, 8)',
+                                    (2, 8),
                                     start_offset=durationtools.Offset(0, 1),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[3, 8)',
+                                    (3, 8),
                                     start_offset=durationtools.Offset(1, 4),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 8)',
+                                    (4, 8),
                                     start_offset=durationtools.Offset(5, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(9, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(11, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(13, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(31, 16),
                                     ),
                                 ],
@@ -366,31 +366,31 @@ class ScoreSpecification(Specification):
                         division_list=musicexpressiontools.DivisionList(
                             [
                                 musicexpressiontools.Division(
-                                    '[2, 8)',
+                                    (2, 8),
                                     start_offset=durationtools.Offset(0, 1),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[3, 8)',
+                                    (3, 8),
                                     start_offset=durationtools.Offset(1, 4),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 8)',
+                                    (4, 8),
                                     start_offset=durationtools.Offset(5, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(9, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(11, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(13, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(31, 16),
                                     ),
                                 ],
@@ -632,31 +632,31 @@ class ScoreSpecification(Specification):
                         payload=musicexpressiontools.DivisionList(
                             [
                                 musicexpressiontools.Division(
-                                    '[2, 8)',
+                                    (2, 8),
                                     start_offset=durationtools.Offset(0, 1),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[3, 8)',
+                                    (3, 8),
                                     start_offset=durationtools.Offset(1, 4),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 8)',
+                                    (4, 8),
                                     start_offset=durationtools.Offset(5, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(9, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(11, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(13, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(31, 16),
                                     ),
                                 ],
@@ -683,31 +683,31 @@ class ScoreSpecification(Specification):
                         payload=musicexpressiontools.DivisionList(
                             [
                                 musicexpressiontools.Division(
-                                    '[2, 8)',
+                                    (2, 8),
                                     start_offset=durationtools.Offset(0, 1),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[3, 8)',
+                                    (3, 8),
                                     start_offset=durationtools.Offset(1, 4),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 8)',
+                                    (4, 8),
                                     start_offset=durationtools.Offset(5, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(9, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[4, 16)',
+                                    (4, 16),
                                     start_offset=durationtools.Offset(11, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(13, 8),
                                     ),
                                 musicexpressiontools.Division(
-                                    '[5, 16)',
+                                    (5, 16),
                                     start_offset=durationtools.Offset(31, 16),
                                     ),
                                 ],

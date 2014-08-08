@@ -17,7 +17,7 @@ class Division(NonreducedFraction):
         ::
 
             >>> musicexpressiontools.Division('[5, 8)')
-            Division('[5, 8)')
+            Division(5, 8)
 
     ..  container:: example::
 
@@ -29,8 +29,11 @@ class Division(NonreducedFraction):
             ...     '[5, 8)', 
             ...     start_offset=Offset(1, 8),
             ...     )
-            >>> musicexpressiontools.Division(division)
-            Division('[5, 8)', start_offset=Offset(1, 8))
+            >>> new_division = musicexpressiontools.Division(division)
+            >>> new_division
+            Division(5, 8)
+            >>> new_division.start_offset
+            Offset(1, 8)
 
     Divisions model any block of time that is divisible into parts: beats,
     complete measures and so on.
@@ -75,22 +78,6 @@ class Division(NonreducedFraction):
     # TODO: remove?
     __deepcopy__ = __copy__
 
-    def __repr__(self):
-        if self.start_offset is not None:
-            return '{}({!r}, start_offset={!r})'.format(
-                type(self).__name__, 
-                str(self),
-                self.start_offset,
-                )
-        else:
-            return '{}({!r})'.format(type(self).__name__, str(self))
-
-    def __str__(self):
-        return '[{}, {})'.format(
-            self.numerator, 
-            self.denominator, 
-            )
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -100,7 +87,7 @@ class Division(NonreducedFraction):
         if self.start_offset is not None:
             keyword_argument_names.append('start_offset')
         positional_argument_values = (
-            str(self),
+            self.pair,
             )
         return systemtools.StorageFormatSpecification(
             self,

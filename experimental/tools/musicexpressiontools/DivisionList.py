@@ -60,59 +60,59 @@ class DivisionList(BoundedObject):
         musicexpressiontools.DivisionList(
             [
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(0, 1),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(3, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(3, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(9, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(3, 4),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(15, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(9, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(21, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(3, 2),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(27, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(15, 8),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(33, 16),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(9, 4),
                     ),
                 musicexpressiontools.Division(
-                    '[3, 16)',
+                    (3, 16),
                     start_offset=durationtools.Offset(39, 16),
                     ),
                 ],
@@ -155,7 +155,7 @@ class DivisionList(BoundedObject):
         ::
 
             >>> left + right
-            DivisionList('[1, 16), [2, 16), [3, 16), [4, 16)')
+            DivisionList('1/16, 2/16, 3/16, 4/16')
 
         Returns newly constructed division list.
         '''
@@ -178,59 +178,59 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(0, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(3, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(3, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(9, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(3, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(15, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(9, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(21, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(3, 2),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(27, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(15, 8),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(33, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(9, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(39, 16),
                         ),
                     ],
@@ -281,20 +281,20 @@ class DivisionList(BoundedObject):
         r'''Division list divisions.
 
             >>> for division in division_list.divisions: division
-            Division('[3, 16)', start_offset=Offset(0, 1))
-            Division('[3, 16)', start_offset=Offset(3, 16))
-            Division('[3, 16)', start_offset=Offset(3, 8))
-            Division('[3, 16)', start_offset=Offset(9, 16))
-            Division('[3, 16)', start_offset=Offset(3, 4))
-            Division('[3, 16)', start_offset=Offset(15, 16))
-            Division('[3, 16)', start_offset=Offset(9, 8))
-            Division('[3, 16)', start_offset=Offset(21, 16))
-            Division('[3, 16)', start_offset=Offset(3, 2))
-            Division('[3, 16)', start_offset=Offset(27, 16))
-            Division('[3, 16)', start_offset=Offset(15, 8))
-            Division('[3, 16)', start_offset=Offset(33, 16))
-            Division('[3, 16)', start_offset=Offset(9, 4))
-            Division('[3, 16)', start_offset=Offset(39, 16))
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
+            Division(3, 16)
 
         Returns list.
         '''
@@ -459,19 +459,19 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[4, 16)',
+                        (4, 16),
                         start_offset=durationtools.Offset(5, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(21, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[4, 16)',
+                        (4, 16),
                         start_offset=durationtools.Offset(87, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(91, 16),
                         ),
                     ],
@@ -502,19 +502,19 @@ class DivisionList(BoundedObject):
             musicexpressiontools.DivisionList(
                 [
                     musicexpressiontools.Division(
-                        '[4, 16)',
+                        (4, 16),
                         start_offset=durationtools.Offset(5, 1),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(21, 4),
                         ),
                     musicexpressiontools.Division(
-                        '[4, 16)',
+                        (4, 16),
                         start_offset=durationtools.Offset(87, 16),
                         ),
                     musicexpressiontools.Division(
-                        '[3, 16)',
+                        (3, 16),
                         start_offset=durationtools.Offset(91, 16),
                         ),
                     ],
