@@ -105,7 +105,7 @@ class Division(NonreducedFraction):
 
     # TODO: maybe keep only _get_timespan?
     def _get_timespan(self):
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return timespantools.Timespan(self.start_offset, self._stop_offset)
 
     ### PUBLIC PROPERTIES ###
 
@@ -135,17 +135,7 @@ class Division(NonreducedFraction):
         '''
         return self._start_offset
 
-    # TODO: remove in favor of self.timespan
     @property
-    def stop_offset(self):
-        r'''Division stop offset defined equal to start offset plus duration
-        when start offset is not none.
-
-        .. note:: remove in favor of ``self.timespan``.
-
-        Defined equal to none when start offset is none.
-
-        Returns offset or none.
-        '''
+    def _stop_offset(self):
         if self.start_offset is not None:
             return self.start_offset + self.duration
