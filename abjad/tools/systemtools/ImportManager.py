@@ -69,6 +69,78 @@ class ImportManager(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    def import_material_packages(
+        path,
+        namespace,
+        ):
+        r'''Imports public materials from `path` into `namespace`.
+
+        This is the custom function that all AbjadIDE-managed scores may use to
+        import public materials on startup.
+        '''
+        package_path = ImportManager._split_package_path(path)
+        for name in os.listdir(path):
+            if not os.path.isdir(os.path.join(path, name)):
+                continue
+            elif name in ('.svn', '.git', 'test', '__pycache__'):
+                continue
+            initializer_file_path = os.path.join(
+                path,
+                name,
+                '__init__.py',
+                )
+            if not os.path.exists(initializer_file_path):
+                continue
+            output_file_path = os.path.join(
+                path,
+                name,
+                'output.py',
+                )
+            if not os.path.exists(output_file_path):
+                continue
+            output_module_path = '.'.join((
+                package_path,
+                name,
+                'output',
+                ))
+            output_module = __import__(output_module_path, fromlist=['*'])
+            if name in dir(output_module):
+                namespace[name] = getattr(output_module, name)
+        if 'systemtools' in namespace:
+            del(namespace['systemtools'])
+        if ImportManager.__name__ in namespace:
+            del(namespace[ImportManager.__name__])
+
+    @staticmethod
+    def import_nominative_modules(
+        path,
+        namespace,
+        ):
+        r'''Imports nominative modules from `path` into `namespace`.
+        '''
+        package_path = ImportManager._split_package_path(path)
+        for name in os.listdir(path):
+            module_path = os.path.join(path, name)
+            if not os.path.isfile(module_path):
+                continue
+            elif not module_path.endswith('.py'):
+                continue
+            elif name.startswith(('.', '_')):
+                continue
+            name = name.replace('.py', '')
+            module_path = '.'.join((
+                package_path,
+                name,
+                ))
+            module = __import__(module_path, fromlist=['*'])
+            if name in dir(module):
+                namespace[name] = getattr(module, name)
+        if 'systemtools' in namespace:
+            del(namespace['systemtools'])
+        if ImportManager.__name__ in namespace:
+            del(namespace[ImportManager.__name__])
+
+    @staticmethod
     def import_public_names_from_path_into_namespace(
         path,
         namespace,
@@ -145,77 +217,5 @@ class ImportManager(object):
         if delete_systemtools:
             if 'systemtools' in namespace:
                 del(namespace['systemtools'])
-        if ImportManager.__name__ in namespace:
-            del(namespace[ImportManager.__name__])
-
-    @staticmethod
-    def import_material_packages(
-        path,
-        namespace,
-        ):
-        r'''Imports public materials from `path` into `namespace`.
-
-        This is the custom function that all AbjadIDE-managed scores may use to
-        import public materials on startup.
-        '''
-        package_path = ImportManager._split_package_path(path)
-        for name in os.listdir(path):
-            if not os.path.isdir(os.path.join(path, name)):
-                continue
-            elif name in ('.svn', '.git', 'test', '__pycache__'):
-                continue
-            initializer_file_path = os.path.join(
-                path,
-                name,
-                '__init__.py',
-                )
-            if not os.path.exists(initializer_file_path):
-                continue
-            output_file_path = os.path.join(
-                path,
-                name,
-                'output.py',
-                )
-            if not os.path.exists(output_file_path):
-                continue
-            output_module_path = '.'.join((
-                package_path,
-                name,
-                'output',
-                ))
-            output_module = __import__(output_module_path, fromlist=['*'])
-            if name in dir(output_module):
-                namespace[name] = getattr(output_module, name)
-        if 'systemtools' in namespace:
-            del(namespace['systemtools'])
-        if ImportManager.__name__ in namespace:
-            del(namespace[ImportManager.__name__])
-
-    @staticmethod
-    def import_nominative_modules(
-        path,
-        namespace,
-        ):
-        r'''Imports nominative modules from `path` into `namespace`.
-        '''
-        package_path = ImportManager._split_package_path(path)
-        for name in os.listdir(path):
-            module_path = os.path.join(path, name)
-            if not os.path.isfile(module_path):
-                continue
-            elif not module_path.endswith('.py'):
-                continue
-            elif name.startswith(('.', '_')):
-                continue
-            name = name.replace('.py', '')
-            module_path = '.'.join((
-                package_path,
-                name,
-                ))
-            module = __import__(module_path, fromlist=['*'])
-            if name in dir(module):
-                namespace[name] = getattr(module, name)
-        if 'systemtools' in namespace:
-            del(namespace['systemtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])

@@ -106,6 +106,14 @@ class StorageFormatSpecification(AbjadObject):
         return self._is_indented
 
     @property
+    def keyword_argument_callables(self):
+        r'''Keyword argument callables.
+
+        Returns tuple.
+        '''
+        return self._keyword_argument_callables
+
+    @property
     def keyword_argument_names(self):
         r'''Keyword argument names of storage format.
 
@@ -126,14 +134,6 @@ class StorageFormatSpecification(AbjadObject):
                     names.remove(name)
             return tuple(names)
         return names
-
-    @property
-    def keyword_argument_callables(self):
-        r'''Keyword argument callables.
-
-        Returns tuple.
-        '''
-        return self._keyword_argument_callables
 
     @property
     def keywords_ignored_when_false(self):

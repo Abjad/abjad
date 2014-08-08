@@ -54,6 +54,14 @@ class AttributeDetail(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def command(self):
+        r'''Gets menu key of attribute detail.
+
+        Returns string.
+        '''
+        return self._command
+
+    @property
     def display_string(self):
         r'''Gets display string of attribute detail.
 
@@ -76,14 +84,6 @@ class AttributeDetail(AbjadObject):
         Returns boolean.
         '''
         return self._is_keyword
-
-    @property
-    def command(self):
-        r'''Gets menu key of attribute detail.
-
-        Returns string.
-        '''
-        return self._command
 
     @property
     def name(self):

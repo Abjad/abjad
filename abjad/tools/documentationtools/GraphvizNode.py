@@ -30,15 +30,6 @@ class GraphvizNode(TreeContainer, GraphvizObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _node_class(self):
-        from abjad.tools import documentationtools
-        prototype = (
-            documentationtools.GraphvizField,
-            documentationtools.GraphvizGroup,
-            )
-        return prototype
-
-    @property
     def _graphviz_format_contributions(self):
         node_def = self._format_value(self.canonical_name)
         attributes = self.attributes
@@ -53,6 +44,15 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         return [node_def + ';']
 
     @property
+    def _node_class(self):
+        from abjad.tools import documentationtools
+        prototype = (
+            documentationtools.GraphvizField,
+            documentationtools.GraphvizGroup,
+            )
+        return prototype
+
+    @property
     def _struct_format_contributions(self):
         result = []
         for x in self:
@@ -63,6 +63,19 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         return result
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def all_edges(self):
+        r'''Gets edges of this node and those of any field in its field
+        subtree.
+        '''
+        from abjad.tools import documentationtools
+        edges = set(self.edges)
+        for node in self.nodes[1:]:
+            if isinstance(node, documentationtools.GraphvizGroup):
+                continue
+            edges.update(node.edges)
+        return tuple(edges)
 
     @property
     def canonical_name(self):
@@ -81,16 +94,3 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         Returns tuple.
         '''
         return tuple(self._edges)
-
-    @property
-    def all_edges(self):
-        r'''Gets edges of this node and those of any field in its field
-        subtree.
-        '''
-        from abjad.tools import documentationtools
-        edges = set(self.edges)
-        for node in self.nodes[1:]:
-            if isinstance(node, documentationtools.GraphvizGroup):
-                continue
-            edges.update(node.edges)
-        return tuple(edges)
