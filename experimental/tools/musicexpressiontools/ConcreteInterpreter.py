@@ -240,11 +240,8 @@ class ConcreteInterpreter(Interpreter):
                 voice_proxy.payload_expressions_by_attribute['divisions']
             divisions = [x.payload.divisions for x in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
-            start_offset = durationtools.Offset(0)
             for division in divisions:
                 division = copy.deepcopy(division)
-                division._start_offset = durationtools.Offset(start_offset)
-                start_offset += durationtools.Duration(division)
                 voice_division_list.divisions.append(division)
             voice_proxy._voice_division_list = voice_division_list
 
