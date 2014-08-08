@@ -150,22 +150,22 @@ class Division(NonreducedFraction):
         if self.start_offset is not None:
             return self.start_offset + self.duration
 
-    # TODO: remove in favor of self.get_timespan()
-    @property
-    def timespan(self):
-        r'''Division timespan.
+#    # TODO: remove in favor of self.get_timespan()
+#    @property
+#    def timespan(self):
+#        r'''Division timespan.
+#
+#        Returns timespan.
+#
+#        .. note:: Deprecated. Use get_timespan() instead.
+#        '''
+#        return timespantools.Timespan(self.start_offset, self.stop_offset)
 
-        Returns timespan.
-
-        .. note:: Deprecated. Use get_timespan() instead.
-        '''
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
-
-    ### PUBLIC METHODS ###
-
-    def get_timespan(self):
-        '''Get timespan of division.
-
-        Returns timespan.
-        '''
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+#    ### PUBLIC METHODS ###
+#
+#    def get_timespan(self):
+#        '''Get timespan of division.
+#
+#        Returns timespan.
+#        '''
+#        return timespantools.Timespan(self.start_offset, self.stop_offset)
