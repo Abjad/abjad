@@ -182,6 +182,17 @@ def get_positive_integer_power_of_two(
     getter.append_positive_integer_power_of_two(space_delimited_attribute_name)
     return getter
 
+def get_positive_integer_powers_of_two(
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
+    allow_none=True,
+    ):
+    getter = Getter(session=session, allow_none=allow_none)
+    getter.append_positive_integer_powers_of_two(
+        space_delimited_attribute_name)
+    return getter
+
 def get_positive_integers(
     space_delimited_attribute_name,
     session=None,

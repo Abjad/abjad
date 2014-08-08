@@ -683,6 +683,25 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
+    def append_positive_integer_powers_of_two(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends positive integer powers of two.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be list or tuple of'
+        help_template += ' positive integer powers of two.'
+        validation_function = mathtools.all_are_positive_integer_powers_of_two
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=validation_function,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
     def append_positive_integers(
         self,
         spaced_attribute_name,

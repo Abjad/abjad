@@ -70,16 +70,17 @@ class RhythmMaker(AbjadValueObject):
             for x in divisions
             ]
         seeds = self._to_tuple(seeds)
-        music = self._make_music(duration_pairs, seeds)
+        selections = self._make_music(duration_pairs, seeds)
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
-        tie_specifier._make_ties(music)
-        assert isinstance(music, list), repr(music)
-        assert len(music), repr(music)
+        tie_specifier._make_ties(selections)
+        assert isinstance(selections, list), repr(selections)
+        assert len(selections), repr(selections)
         prototype = selectiontools.Selection
-        assert all(isinstance(x, prototype) for x in music), repr(music)
-        return music
+        assert all(isinstance(x, prototype) for x in selections), repr(
+            selections)
+        return selections
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a rhythm-maker with type and public
