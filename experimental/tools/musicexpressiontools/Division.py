@@ -113,6 +113,13 @@ class Division(NonreducedFraction):
     def duration(self):
         r'''Division duration.
 
+        ..  container:: example
+
+            ::
+
+                >>> division.duration
+                Duration(5, 8)
+
         Returns duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
