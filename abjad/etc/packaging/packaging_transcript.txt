@@ -1,6 +1,6 @@
 Abjad 2.15
     Build start date: 2014-05-21
-    Build complete date: ...?
+    Build complete date: 2014-08-08
     MD5 hash of Abjad GitHub repository:
         ...?
 
@@ -12,32 +12,32 @@ Abjad 2.15
         4. pip --version: pip 1.5.6
         5. py.test --version: This is py.test version 2.5.2
         6. sphinx-build --version: Sphinx (sphinx-build) 1.2.2
-        7. lilypond --version: GNU LilyPond 2.19.6
-        8. convert --version: ImageMagick 6.8.7-3 2013-11-16 Q16
+        7. lilypond --version: GNU LilyPond 2.19.11
+        8. convert --version: ImageMagick 6.8.8-6 Q16 x86_64 2014-02-17
         9. dot -V: graphviz version 2.38.0 (20140413.2041)
 
     Python 2.7 test results:
-        1. mainline py.test test results: 9114 passed, 7 skipped
-        2. mainline doctest test results: 6788 tests passed in 819 modules
+        1. mainline py.test test results: 9173 passed, 7 skipped
+        2. mainline doctest test results: 6839 tests passed in 829 modules
         3. experimental py.test test results: 440 passed, 7 skipped
-        4. experimental doctest test results: 845 tests passed in 172 modules
-        5. scoremanager py.test test results: 889 passed, 12 skipped
-        6. scoremanager doctest test results: 186 tests passed in 117 modules
+        4. experimental doctest test results: 1023 tests passed in 177 modules
+        5. scoremanager py.test test results: 1059 passed, 5 skipped
+        6. scoremanager doctest test results: 206 tests passed in 131 modules
         7. sanity check test results: OK
         8. experimental HTML build results: OK
         9. mainline HTML build results: OK
        10. scoremanager HTML build results: OK
-       11. LaTeX build results:
-       12. Abjad.pdf build results:
-       13. AbjadAPI.pdf build results:
+       11. LaTeX build results: OK
+       12. Abjad.pdf build results: OK
+       13. AbjadAPI.pdf build results: OK
 
     Python 3.4 test results:
-        1. mainline py.test test results: 9114 passed, 7 skipped
-        2. mainline doctest test results: 6788 tests passed in 819 modules
+        1. mainline py.test test results: 9173 passed, 7 skipped
+        2. mainline doctest test results: 6839 tests passed in 829 modules
         3. experimental py.test test results: 440 passed, 7 skipped
-        4. experimental doctest test results: 845 tests passed in 172 modules
-        5. scoremanager py.test test results:
-        6. scoremanager doctest test results: 186 tests passed in 117 modules
+        4. experimental doctest test results: 1023 tests passed in 177 modules
+        5. scoremanager py.test test results: 1059 passed, 5 skipped
+        6. scoremanager doctest test results: 206 tests passed in 131 modules
         7. sanity check test results: OK
 
 
