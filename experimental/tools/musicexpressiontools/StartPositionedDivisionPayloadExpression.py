@@ -215,10 +215,21 @@ class StartPositionedDivisionPayloadExpression(
             divisions = [result]
         else:
             raise TypeError(result)
-        if divisions:
-            start_offset = divisions[0]._start_offset
+        if isinstance(expr, int):
+            if expr < 0:
+                i = len(self.payload) - abs(expr)
+            else:
+                i = expr
+        elif isinstance(expr, slice):
+            if expr.start is None:
+                i = 0
+            else:
+                i = expr.start
         else:
-            start_offset = durationtools.Offset(0)
+            raise TypeError(expr)
+        everything_before = self.payload[:i]
+        start_offset = self.payload.start_offset
+        start_offset += durationtools.Duration(sum(everything_before))
         result = type(self)(
             payload=divisions,
             voice_name=self.voice_name,
