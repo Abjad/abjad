@@ -23,18 +23,9 @@ class StartPositionedDivisionPayloadExpression(
         musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=musicexpressiontools.DivisionList(
                 [
-                    musicexpressiontools.Division(
-                        (6, 8),
-                        start_offset=durationtools.Offset(0, 1),
-                        ),
-                    musicexpressiontools.Division(
-                        (6, 8),
-                        start_offset=durationtools.Offset(3, 4),
-                        ),
-                    musicexpressiontools.Division(
-                        (3, 4),
-                        start_offset=durationtools.Offset(3, 2),
-                        ),
+                    musicexpressiontools.Division(6, 8),
+                    musicexpressiontools.Division(6, 8),
+                    musicexpressiontools.Division(3, 4),
                     ],
                 start_offset=durationtools.Offset(0, 1),
                 ),
@@ -83,10 +74,7 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (1, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
+                                musicexpressiontools.Division(1, 8),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -112,10 +100,7 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (1, 8),
-                                    start_offset=durationtools.Offset(17, 8),
-                                    ),
+                                musicexpressiontools.Division(1, 8),
                                 ],
                             start_offset=durationtools.Offset(17, 8),
                             ),
@@ -141,18 +126,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (5, 8),
-                                    start_offset=durationtools.Offset(1, 8),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (5, 8),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
+                                musicexpressiontools.Division(5, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(5, 8),
                                 ],
                             start_offset=durationtools.Offset(1, 8),
                             ),
@@ -193,18 +169,9 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(0, 1),
-                            ),
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(3, 4),
-                            ),
-                        musicexpressiontools.Division(
-                            (3, 4),
-                            start_offset=durationtools.Offset(3, 2),
-                            ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(3, 4),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -229,14 +196,8 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(0, 1),
-                            ),
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(3, 4),
-                            ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -255,7 +216,7 @@ class StartPositionedDivisionPayloadExpression(
         else:
             raise TypeError(result)
         if divisions:
-            start_offset = divisions[0].start_offset
+            start_offset = divisions[0]._start_offset
         else:
             start_offset = durationtools.Offset(0)
         result = type(self)(
@@ -293,22 +254,10 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (3, 16),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (3, 16),
-                                    start_offset=durationtools.Offset(3, 16),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (2, 16),
-                                    start_offset=durationtools.Offset(3, 8),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (2, 16),
-                                    start_offset=durationtools.Offset(1, 2),
-                                    ),
+                                musicexpressiontools.Division(3, 16),
+                                musicexpressiontools.Division(3, 16),
+                                musicexpressiontools.Division(2, 16),
+                                musicexpressiontools.Division(2, 16),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -342,18 +291,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (5, 8),
-                                    start_offset=durationtools.Offset(1, 8),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (3, 4),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
+                                musicexpressiontools.Division(5, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(3, 4),
                                 ],
                             start_offset=durationtools.Offset(1, 8),
                             ),
@@ -379,18 +319,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (5, 8),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(5, 8),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -416,10 +347,7 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (1, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
+                                musicexpressiontools.Division(1, 8),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -428,10 +356,7 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (1, 8),
-                                    start_offset=durationtools.Offset(17, 8),
-                                    ),
+                                musicexpressiontools.Division(1, 8),
                                 ],
                             start_offset=durationtools.Offset(17, 8),
                             ),
@@ -457,18 +382,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (3, 4),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(3, 4),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -615,18 +531,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -635,18 +542,9 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(9, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 4),
-                                    start_offset=durationtools.Offset(3, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 4),
-                                    start_offset=durationtools.Offset(9, 2),
-                                    ),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 4),
+                                musicexpressiontools.Division(6, 4),
                                 ],
                             start_offset=durationtools.Offset(9, 4),
                             ),
@@ -681,22 +579,10 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(0, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 4),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(3, 2),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 8),
-                                    start_offset=durationtools.Offset(9, 4),
-                                    ),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
+                                musicexpressiontools.Division(6, 8),
                                 ],
                             start_offset=durationtools.Offset(0, 1),
                             ),
@@ -705,14 +591,8 @@ class StartPositionedDivisionPayloadExpression(
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
                             [
-                                musicexpressiontools.Division(
-                                    (6, 4),
-                                    start_offset=durationtools.Offset(3, 1),
-                                    ),
-                                musicexpressiontools.Division(
-                                    (6, 4),
-                                    start_offset=durationtools.Offset(9, 2),
-                                    ),
+                                musicexpressiontools.Division(6, 4),
+                                musicexpressiontools.Division(6, 4),
                                 ],
                             start_offset=durationtools.Offset(3, 1),
                             ),
@@ -744,18 +624,9 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                                (3, 4),
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 2),
-                                ),
+                        musicexpressiontools.Division(3, 4),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -785,26 +656,11 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (3, 4),
-                                start_offset=durationtools.Offset(3, 2),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(9, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (2, 8),
-                                start_offset=durationtools.Offset(3, 1),
-                                ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(3, 4),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(2, 8),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -836,26 +692,11 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (3, 4),
-                                start_offset=durationtools.Offset(3, 2),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(9, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 1),
-                                ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(3, 4),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -887,18 +728,9 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                        musicexpressiontools.Division(
-                                (3, 4),
-                                start_offset=durationtools.Offset(3, 4),
-                                ),
-                        musicexpressiontools.Division(
-                                (6, 8),
-                                start_offset=durationtools.Offset(3, 2),
-                                ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(3, 4),
+                        musicexpressiontools.Division(6, 8),
                         ],
                     start_offset=durationtools.Offset(0, 1),
                     ),
@@ -928,18 +760,9 @@ class StartPositionedDivisionPayloadExpression(
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(10, 1),
-                            ),
-                        musicexpressiontools.Division(
-                            (6, 8),
-                            start_offset=durationtools.Offset(43, 4),
-                            ),
-                        musicexpressiontools.Division(
-                            (3, 4),
-                            start_offset=durationtools.Offset(23, 2),
-                            ),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(6, 8),
+                        musicexpressiontools.Division(3, 4),
                         ],
                     start_offset=durationtools.Offset(10, 1),
                     ),

@@ -74,14 +74,8 @@ class IterablePayloadExpression(PayloadExpression):
                 [
                     musicexpressiontools.IterablePayloadExpression(
                         payload=(
-                            musicexpressiontools.Division(
-                                (3, 16),
-                                start_offset=durationtools.Offset(1, 16),
-                                ),
-                            musicexpressiontools.Division(
-                                (1, 16),
-                                start_offset=durationtools.Offset(1, 4),
-                                ),
+                            musicexpressiontools.Division(3, 16),
+                            musicexpressiontools.Division(1, 16),
                             ),
                         ),
                     ]

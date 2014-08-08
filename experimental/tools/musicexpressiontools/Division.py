@@ -25,15 +25,9 @@ class Division(NonreducedFraction):
 
         ::
 
-            >>> division = musicexpressiontools.Division(
-            ...     (5, 8),
-            ...     start_offset=Offset(1, 8),
-            ...     )
-            >>> new_division = musicexpressiontools.Division(division)
-            >>> new_division
+            >>> division = musicexpressiontools.Division(5, 8)
+            >>> musicexpressiontools.Division(division)
             Division(5, 8)
-            >>> new_division.start_offset
-            Offset(1, 8)
 
     Divisions model any block of time that is divisible into parts: beats,
     complete measures, etc.
@@ -78,34 +72,17 @@ class Division(NonreducedFraction):
     def __copy__(self, *args):
         return type(self)(
             self.pair,
-            start_offset=self.start_offset,
+            start_offset=self._start_offset,
             )
 
     # TODO: remove?
     __deepcopy__ = __copy__
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        keyword_argument_names = []
-        if self.start_offset is not None:
-            keyword_argument_names.append('start_offset')
-        positional_argument_values = (
-            self.pair,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     # TODO: maybe keep only _get_timespan?
     def _get_timespan(self):
-        return timespantools.Timespan(self.start_offset, self._stop_offset)
+        return timespantools.Timespan(self._start_offset, self._stop_offset)
 
     ### PUBLIC PROPERTIES ###
 
@@ -113,18 +90,7 @@ class Division(NonreducedFraction):
     def _duration(self):
         return durationtools.Duration(self.numerator, self.denominator)
 
-    # TODO: remove in favor of self.timespan
-    @property
-    def start_offset(self):
-        r'''Division start offset specified at initialization.
-
-        .. note:: remove in favor of ``self.timespan``.
-
-        Returns offset or none.
-        '''
-        return self._start_offset
-
     @property
     def _stop_offset(self):
-        if self.start_offset is not None:
-            return self.start_offset + self._duration
+        if self._start_offset is not None:
+            return self._start_offset + self._duration

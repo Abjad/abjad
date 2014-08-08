@@ -83,7 +83,7 @@ class DivisionSelectExpression(SelectExpression):
                 division_payload_expression.payload.divisions)
         if not existing_voice_divisions:
             return
-        start_offset = existing_voice_divisions[0].start_offset
+        start_offset = existing_voice_divisions[0]._start_offset
         expression = \
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
             existing_voice_divisions, start_offset=start_offset)
