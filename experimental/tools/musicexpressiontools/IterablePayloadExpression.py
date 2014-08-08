@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import new
@@ -85,7 +85,7 @@ class IterablePayloadExpression(PayloadExpression):
         '''
         from experimental.tools import musicexpressiontools
         if not mathtools.all_are_numbers(self.payload):
-            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
+            payload = [durationtools.Division(x) for x in self.payload]
         else:
             payload = self.payload
         division_payload_expression = \
@@ -341,22 +341,22 @@ class IterablePayloadExpression(PayloadExpression):
             >>> print(format(result))
             musicexpressiontools.IterablePayloadExpression(
                 payload=(
-                    mathtools.NonreducedFraction(4, 16),
-                    mathtools.NonreducedFraction(2, 16),
-                    mathtools.NonreducedFraction(4, 16),
-                    mathtools.NonreducedFraction(2, 16),
-                    mathtools.NonreducedFraction(1, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(2, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(2, 16),
+                    durationtools.Division(1, 16),
                     ),
                 )
 
         Returns newly constructed payload expression.
         '''
         if not mathtools.all_are_numbers(self.payload):
-            payload = [mathtools.NonreducedFraction(x) for x in self.payload]
+            payload = [durationtools.Division(_) for _ in self.payload]
         else:
             payload = self.payload
-        payload = sequencetools.repeat_sequence_to_weight(
-            payload, duration)
+        payload = sequencetools.repeat_sequence_to_weight(payload, duration)
+        payload = [durationtools.Division(_) for _ in payload]
         result = new(self, payload=payload)
         return result
 

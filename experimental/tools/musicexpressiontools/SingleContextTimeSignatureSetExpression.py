@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
+from abjad.tools import durationtools
 from experimental.tools.musicexpressiontools.SingleContextSetExpression \
     import SingleContextSetExpression
 
@@ -61,8 +61,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
                 expression,
                 musicexpressiontools.IterablePayloadExpression)
             time_signatures = expression.payload[:]
-        time_signatures = [
-            mathtools.NonreducedFraction(x) for x in time_signatures]
+        time_signatures = [durationtools.Division(x) for x in time_signatures]
         if time_signatures:
             self.root_specification._time_signatures = time_signatures[:]
             return time_signatures

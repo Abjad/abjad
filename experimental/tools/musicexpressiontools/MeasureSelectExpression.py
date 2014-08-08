@@ -103,8 +103,7 @@ class MeasureSelectExpression(SelectExpression):
         anchor_timespan = self._evaluate_anchor_timespan()
         time_relation = self._get_time_relation(anchor_timespan)
         time_signatures = self.root_specification.time_signatures[:]
-        time_signatures = \
-            [mathtools.NonreducedFraction(x) for x in time_signatures]
+        time_signatures = [durationtools.Division(x) for x in time_signatures]
         start_offset = self.root_specification.timespan.start_offset
         expression = \
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -128,8 +127,7 @@ class MeasureSelectExpression(SelectExpression):
         '''
         from experimental.tools import musicexpressiontools
         time_signatures = self.root_specification.time_signatures[:]
-        time_signatures = \
-            [mathtools.NonreducedFraction(x) for x in time_signatures]
+        time_signatures = [durationtools.Division(x) for x in time_signatures]
         expression = \
             musicexpressiontools.IterablePayloadExpression(time_signatures)
         expression = self._apply_callbacks(expression)

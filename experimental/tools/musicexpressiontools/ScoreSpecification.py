@@ -541,13 +541,13 @@ class ScoreSpecification(Specification):
 
             >>> for x in score_specification.time_signatures:
             ...     x
-            NonreducedFraction(2, 8)
-            NonreducedFraction(3, 8)
-            NonreducedFraction(4, 8)
-            NonreducedFraction(4, 16)
-            NonreducedFraction(4, 16)
-            NonreducedFraction(5, 16)
-            NonreducedFraction(5, 16)
+            Division(2, 8)
+            Division(3, 8)
+            Division(4, 8)
+            Division(4, 16)
+            Division(4, 16)
+            Division(5, 16)
+            Division(5, 16)
 
         Returns list.
         '''

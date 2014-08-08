@@ -66,7 +66,7 @@ class BeatSelectExpression(SelectExpression):
         for time_signature in time_signatures:
             numerator, denominator = time_signature.pair
             naive_beats.extend(
-                numerator * [mathtools.NonreducedFraction(1, denominator)])
+                numerator * [durationtools.Division(1, denominator)])
         return naive_beats
 
     ### PUBLIC METHODS ###

@@ -49,6 +49,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             payload_expression, musicexpressiontools.PayloadExpression)
         callback_cache = self.score_specification.interpreter.callback_cache
         evaluation_context = {
+            'Division': durationtools.Division,
             'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
             'Offset': durationtools.Offset,

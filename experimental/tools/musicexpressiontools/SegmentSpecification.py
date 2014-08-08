@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import *
-from experimental.tools.musicexpressiontools.Specification \
-    import Specification
+from experimental.tools.musicexpressiontools.Specification import Specification
 
 
 class SegmentSpecification(Specification):
@@ -252,11 +251,11 @@ class SegmentSpecification(Specification):
         ::
 
                 >>> red_segment.time_signatures
-                [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8)]
+                [Division(2, 8), Division(3, 8), Division(4, 8)]
 
         Returns list.
         '''
-        return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
+        return [durationtools.Division(x) for x in self._time_signatures]
 
     @property
     def timespan(self):
