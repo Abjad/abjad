@@ -90,9 +90,6 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         key = (repr(payload_expression), repr(ratio))
         if key not in callback_cache:
             parts = payload_expression.partition_by_ratio(ratio)
-            assert not any(
-                isinstance(_, musicexpressiontools.Division) for _ in parts
-                ), repr(parts)
             callback_cache[key] = parts
         parts = callback_cache[key]
         selected_part = parts[part]
