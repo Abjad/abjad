@@ -430,20 +430,6 @@ class StartPositionedDivisionPayloadExpression(
         return self.payload.divisions
 
     @property
-    def elements_are_time_contiguous(self):
-        r'''Is true when start-positioned division payload expression elements
-        are time-contiguous. Otherwise false:
-
-        ::
-
-            >>> expression.elements_are_time_contiguous
-            True
-
-        Returns boolean.
-        '''
-        return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)
-
-    @property
     def payload(self):
         r'''Start-positioned division payload expression payload.
 

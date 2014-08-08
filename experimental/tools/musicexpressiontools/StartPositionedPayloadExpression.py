@@ -254,24 +254,6 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         return self.payload
 
     @property
-    def elements_are_time_contiguous(self):
-        r'''Is true when start-positioned payload expression elements
-        are time-contiguous.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-#        if len(self.elements):
-#            last_element = self.elements[0]
-#            for current_element in self.elements[1:]:
-#                if not last_element._get_timespan().stop_offset == \
-#                    current_element._get_timespan().start_offset:
-#                    return False
-#                last_element = current_element
-#        return True
-        return True
-
-    @property
     def payload(self):
         r'''Start-postioned payload expression payload.
 
