@@ -321,7 +321,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             start_index, stop_index = time_relation.get_offset_indices(
                 start_offsets, stop_offsets)
             elements = self.elements[start_index:stop_index]
-            prototype = musicexpressiontools.Division
+            prototype = durationtools.Division
             assert all(isinstance(_, prototype) for _ in elements), elements
             if not elements:
                 return
@@ -331,7 +331,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             start_offset += durationtools.Duration(sum(everything_before))
             callback_cache[key] = (elements, start_offset)
         elements, start_offset = callback_cache[key]
-        prototype = musicexpressiontools.Division
+        prototype = durationtools.Division
         assert all(isinstance(_, prototype) for _ in elements), elements
         expression = new(
             self,

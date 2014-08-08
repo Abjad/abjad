@@ -60,20 +60,20 @@ class DivisionList(BoundedObject):
         >>> print(format(division_list))
         musicexpressiontools.DivisionList(
             [
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
-                musicexpressiontools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
+                durationtools.Division(3, 16),
                 ],
             start_offset=durationtools.Offset(0, 1),
             voice_name='Voice 1',
@@ -90,7 +90,7 @@ class DivisionList(BoundedObject):
         start_offset = start_offset or durationtools.Offset(0)
         start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
-        divisions = [musicexpressiontools.Division(_) for _ in divisions]
+        divisions = [durationtools.Division(_) for _ in divisions]
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed
@@ -128,20 +128,20 @@ class DivisionList(BoundedObject):
             >>> print(format(division_list))
             musicexpressiontools.DivisionList(
                 [
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(3, 16),
                     ],
                 start_offset=durationtools.Offset(0, 1),
                 voice_name='Voice 1',
@@ -370,10 +370,10 @@ class DivisionList(BoundedObject):
             >>> print(format(result))
             musicexpressiontools.DivisionList(
                 [
-                    musicexpressiontools.Division(4, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(4, 16),
-                    musicexpressiontools.Division(3, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(3, 16),
                     ],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1',
@@ -401,10 +401,10 @@ class DivisionList(BoundedObject):
             >>> print(format(result))
             musicexpressiontools.DivisionList(
                 [
-                    musicexpressiontools.Division(4, 16),
-                    musicexpressiontools.Division(3, 16),
-                    musicexpressiontools.Division(4, 16),
-                    musicexpressiontools.Division(3, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(3, 16),
+                    durationtools.Division(4, 16),
+                    durationtools.Division(3, 16),
                     ],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1',

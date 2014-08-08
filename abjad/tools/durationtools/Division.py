@@ -14,7 +14,7 @@ class Division(NonreducedFraction):
 
         ::
 
-            >>> division = musicexpressiontools.Division(5, 8)
+            >>> division = durationtools.Division(5, 8)
             >>> division
             Division(5, 8)
 
@@ -24,7 +24,7 @@ class Division(NonreducedFraction):
 
         ::
 
-            >>> musicexpressiontools.Division(division)
+            >>> durationtools.Division(division)
             Division(5, 8)
 
     Divisions are immutable.

@@ -24,7 +24,7 @@ class DivisionRegionExpression(RegionExpression):
         '''
         from experimental.tools import musicexpressiontools
         divisions = self.source_expression[:]
-        divisions = [musicexpressiontools.Division(x) for x in divisions]
+        divisions = [durationtools.Division(x) for x in divisions]
         divisions = sequencetools.repeat_sequence_to_weight(
             divisions, self.total_duration)
         expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(

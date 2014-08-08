@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from experimental.tools.musicexpressiontools.DivisionRegionExpression \
     import DivisionRegionExpression
@@ -20,7 +21,7 @@ class LiteralDivisionRegionExpression(DivisionRegionExpression):
         for x in self.source_expression:
             if hasattr(x, 'duration'):
                 x = x.duration
-            division = musicexpressiontools.Division(x)
+            division = durationtools.Division(x)
             divisions.append(division)
         divisions = sequencetools.repeat_sequence_to_weight(
             divisions, self.total_duration)
