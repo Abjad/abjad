@@ -61,13 +61,6 @@ class Division(NonreducedFraction):
         else:
             raise ValueError(args)
         self = NonreducedFraction.__new__(cls, pair)
-
-        # TODO: remove
-        start_offset = kwargs.get('start_offset')
-        if start_offset is None:
-            start_offset = getattr(pair, 'start_offset', None)
-        self._start_offset = start_offset
-
         return self
 
     ### SPECIAL METHODS ###
