@@ -24,4 +24,4 @@ def test_systemtools_IOManager_count_function_calls_02():
     if sys.version_info[0] == 2:
         assert result == 182
     else:
-        assert result == 192
+        assert result == 202
