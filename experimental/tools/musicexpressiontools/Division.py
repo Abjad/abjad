@@ -75,9 +75,6 @@ class Division(NonreducedFraction):
             start_offset=self._start_offset,
             )
 
-    # TODO: remove?
-    __deepcopy__ = __copy__
-
     ### PRIVATE METHODS ###
 
     # TODO: maybe keep only _get_timespan?
