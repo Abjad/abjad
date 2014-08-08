@@ -7,8 +7,8 @@ Version history
 Abjad 2.15
 ----------
 
-Released 2014-06-23. Implements 440 public classes and 391 functions totaling
-170,677 lines of code.
+Released 2014-08-08. Implements 443 public classes and 399 functions totaling
+172,384 lines of code.
 
 
 Python 3.4+ compatibility
@@ -204,7 +204,7 @@ Special thanks to:
 - George K. Thiruvathukal <thiruvathukal@gmail.com>
 - Tiago Antão <tiagoantao@gmail.com>
 
-for their help and with Abjad's Python 3 conversion and IPython integration.
+for their help with Abjad's Python 3 conversion and IPython integration.
 
 
 Older versions
