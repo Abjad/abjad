@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
@@ -56,9 +54,6 @@ class Division(NonreducedFraction, BoundedObject):
     def __new__(
         cls,
         arg,
-        is_left_open=None,
-        #is_right_open=None,
-        is_right_closed=None,
         start_offset=None,
         ):
         if isinstance(arg, str):
@@ -72,12 +67,6 @@ class Division(NonreducedFraction, BoundedObject):
             pair = arg
         self = NonreducedFraction.__new__(cls, pair)
 
-#        if is_left_open is None:
-#            is_left_open = getattr(pair, 'is_left_open', False)
-#        if is_right_open is None:
-#            is_right_open = getattr(pair, 'is_right_open', False)
-#        self.is_left_open = is_left_open
-#        self.is_right_open = is_right_open
         self._is_left_closed = True
         self._is_left_open = False
         self._is_right_open = True
@@ -90,7 +79,6 @@ class Division(NonreducedFraction, BoundedObject):
         # MIGRATION:
         assert self.is_left_closed, repr(self)
         assert not self.is_left_open, repr(self)
-
         assert self.is_right_open, repr(self)
         assert not self.is_right_closed, repr(self)
 
@@ -110,45 +98,20 @@ class Division(NonreducedFraction, BoundedObject):
     def __repr__(self):
         if self.start_offset is not None:
             return '{}({!r}, start_offset={!r})'.format(
-                type(self).__name__, str(self), self.start_offset)
+                type(self).__name__, 
+                str(self),
+                self.start_offset,
+                )
         else:
             return '{}({!r})'.format(type(self).__name__, str(self))
 
     def __str__(self):
-        if self.is_left_open:
-            left_symbol = '('
-        else:
-            left_symbol = '['
-        if self.is_right_open:
-            right_symbol = ')'
-        else:
-            right_symbol = ']'
-        return '{}{}, {}{}'.format(
-            left_symbol, 
+        return '[{}, {})'.format(
             self.numerator, 
             self.denominator, 
-            right_symbol,
             )
 
     ### PRIVATE PROPERTIES ###
-
-#    @property
-#    def _storage_format_specification(self):
-#        from abjad.tools import systemtools
-#        keyword_argument_names = []
-#        if self.is_left_open:
-#            keyword_argument_names.append('is_left_open')
-#        if self.is_right_open:
-#            keyword_argument_names.append('is_right_open')
-#        if self.start_offset is not None:
-#            keyword_argument_names.append('start_offset')
-#        return systemtools.StorageFormatSpecification(
-#            self,
-#            keyword_argument_names=keyword_argument_names,
-#            positional_argument_values=(
-#                str(self),
-#                ),
-#            )
 
     @property
     def _storage_format_specification(self):
@@ -245,28 +208,13 @@ class Division(NonreducedFraction, BoundedObject):
         Returns triple.
         '''
         assert isinstance(interval_range_string, str)
-        spaceless_interval_range_string = \
-            interval_range_string.replace(' ', '')
-        left, right = spaceless_interval_range_string.split(',')
-        if left[0] == '(':
-            is_left_open = True
-        elif left[0] == '[':
-            is_left_open = False
-        else:
-            message = 'can not initialize interval start from {!r}.'
-            message = message.format(interval_range_string)
-            raise ValueError(message)
-        # probably attackable
-        start = eval(left[1:])
-        if right[-1] == ')':
-            is_right_open = True
-        elif right[-1] == ']':
-            is_right_open = False
-        else:
-            message = 'can not initialize interval stop from {!r}.'
-            message = message.format(interval_range_string)
-            raise ValueError(message)
-        # probably attackable
-        stop = eval(right[:-1])
-        pair = start, stop
-        return pair, is_left_open, is_right_open
+        assert interval_range_string.startswith('[')
+        assert interval_range_string.endswith(')')
+        numbers = interval_range_string[1:-1]
+        comma_index = numbers.index(',')
+        start = numbers[:comma_index]
+        start = int(start)
+        stop = numbers[comma_index+1:]
+        stop = int(stop)
+        pair = (start, stop)
+        return pair, False, True

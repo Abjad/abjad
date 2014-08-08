@@ -142,7 +142,7 @@ class DivisionList(BoundedObject):
         assert all(x.start_offset is not None for x in divisions)
         self._divisions = divisions
         self._voice_name = voice_name
-        #assert self.is_well_formed
+        assert self.is_well_formed
 
     ### SPECIAL METHODS ###
 
@@ -365,23 +365,25 @@ class DivisionList(BoundedObject):
         '''
         return self[-1].is_right_open
 
-#    @property
-#    def is_well_formed(self):
-#        r'''Is true when division list is well-formed.
-#        Otherwise false.
-#
-#        ::
-#
-#            >>> division_list.is_well_formed
-#            True
-#
-#        Returns boolean.
-#        '''
-#        if 1 < len(self) and self[0].is_right_open:
-#            return False
-#        if 1 < len(self) and self[-1].is_left_open:
-#            return False
-#        return True
+    @property
+    def is_well_formed(self):
+        r'''Is true when division list is well-formed.
+        Otherwise false.
+
+        ::
+
+            >>> division_list.is_well_formed
+            True
+
+        Returns boolean.
+        '''
+        if not len(self):
+            return True
+        if not self.is_left_closed:
+            return False
+        if not self.is_right_open:
+            return False
+        return True
 
     @property
     def pairs(self):
