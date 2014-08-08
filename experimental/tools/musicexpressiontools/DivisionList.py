@@ -94,6 +94,7 @@ class DivisionList(BoundedObject):
         total_duration = start_offset or durationtools.Duration(0)
         for division in divisions:
             division_start_offset = durationtools.Offset(total_duration)
+            division = division or 0
             positioned_division = musicexpressiontools.Division(division)
             positioned_division._start_offset = division_start_offset
             positioned_divisions.append(positioned_division)

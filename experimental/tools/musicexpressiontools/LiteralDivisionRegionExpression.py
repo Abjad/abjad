@@ -16,8 +16,12 @@ class LiteralDivisionRegionExpression(DivisionRegionExpression):
         Returns start-positioned division payload expression.
         '''
         from experimental.tools import musicexpressiontools
-        divisions = [
-            musicexpressiontools.Division(x) for x in self.source_expression]
+        divisions = []
+        for x in self.source_expression:
+            if hasattr(x, 'duration'):
+                x = x.duration
+            division = musicexpressiontools.Division(x)
+            divisions.append(division)
         divisions = sequencetools.repeat_sequence_to_weight(
             divisions, self.total_duration)
         expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
