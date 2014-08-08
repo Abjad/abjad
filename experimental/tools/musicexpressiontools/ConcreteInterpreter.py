@@ -244,7 +244,7 @@ class ConcreteInterpreter(Interpreter):
             for division in divisions:
                 division = copy.deepcopy(division)
                 division._start_offset = durationtools.Offset(start_offset)
-                start_offset += division.duration
+                start_offset += durationtools.Duration(division)
                 voice_division_list.divisions.append(division)
             voice_proxy._voice_division_list = voice_division_list
 

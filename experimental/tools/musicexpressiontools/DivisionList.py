@@ -137,7 +137,8 @@ class DivisionList(BoundedObject):
             positioned_division = musicexpressiontools.Division(
                 division, start_offset=division_start_offset)
             positioned_divisions.append(positioned_division)
-            total_duration += positioned_division.duration
+            #total_duration += positioned_division.duration
+            total_duration += durationtools.Duration(positioned_division)
         divisions = positioned_divisions
         assert all(x.start_offset is not None for x in divisions)
         self._divisions = divisions
@@ -311,7 +312,9 @@ class DivisionList(BoundedObject):
 
         Returns duration.
         '''
-        return sum([division.duration for division in self.divisions])
+        return sum([
+            durationtools.Duration(division) for division in self.divisions
+            ])
 
     @property
     def is_left_closed(self):

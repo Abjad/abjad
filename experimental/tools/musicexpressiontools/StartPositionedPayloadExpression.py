@@ -325,19 +325,14 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         key = (repr(self), repr(time_relation))
         if key not in callback_cache or not callback_cache[key]:
             start_offsets, stop_offsets = [], []
-
-            # TODO: remove 3 commented lines after Division has no start offset
-            #for element in self.elements:
-            #    start_offsets.append(element.start_offset)
-            #    stop_offsets.append(element.stop_offset)
             my_start_offset = self.timespan.start_offset
             current_start_offset = my_start_offset
             for element in self.elements:
-                current_stop_offset = current_start_offset + element.duration
+                current_stop_offset = current_start_offset + \
+                    durationtools.Duration(element)
                 start_offsets.append(current_start_offset)
                 stop_offsets.append(current_stop_offset)
                 current_start_offset = current_stop_offset
-
             start_index, stop_index = time_relation.get_offset_indices(
                 start_offsets, stop_offsets)
             elements = self.elements[start_index:stop_index]

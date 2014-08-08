@@ -110,18 +110,7 @@ class Division(NonreducedFraction):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
-        r'''Division duration.
-
-        ..  container:: example
-
-            ::
-
-                >>> division.duration
-                Duration(5, 8)
-
-        Returns duration.
-        '''
+    def _duration(self):
         return durationtools.Duration(self.numerator, self.denominator)
 
     # TODO: remove in favor of self.timespan
@@ -138,4 +127,4 @@ class Division(NonreducedFraction):
     @property
     def _stop_offset(self):
         if self.start_offset is not None:
-            return self.start_offset + self.duration
+            return self.start_offset + self._duration
