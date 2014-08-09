@@ -38,12 +38,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
         assert mathtools.all_are_nonnegative_integer_powers_of_two(
             denominators), repr(denominators)

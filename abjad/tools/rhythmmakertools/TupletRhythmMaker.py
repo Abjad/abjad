@@ -143,14 +143,11 @@ class TupletRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
-        from abjad.tools import rhythmmakertools
-        prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
-        assert isinstance(tuplet_spelling_specifier, prototype)
         if tuplet_ratios is not None:
             tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
-        self._tuplet_spelling_specifier = tuplet_spelling_specifier
 
     ### SPECIAL METHODS ###
 
@@ -336,7 +333,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         Returns tuplet spelling specifier.
         '''
-        return self._tuplet_spelling_specifier
+        superclass = super(TupletRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

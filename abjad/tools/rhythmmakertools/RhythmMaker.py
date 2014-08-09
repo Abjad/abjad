@@ -28,6 +28,7 @@ class RhythmMaker(AbjadValueObject):
         '_beam_specifier',
         '_duration_spelling_specifier',
         '_tie_specifier',
+        '_tuplet_spelling_specifier',
         )
 
     _class_name_abbreviation = 'RM'
@@ -41,17 +42,21 @@ class RhythmMaker(AbjadValueObject):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
+        self._beam_specifier = beam_specifier
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
+        self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
-        self._beam_specifier = beam_specifier
-        self._duration_spelling_specifier = duration_spelling_specifier
         self._tie_specifier = tie_specifier
+        prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
+        assert isinstance(tuplet_spelling_specifier, prototype)
+        self._tuplet_spelling_specifier = tuplet_spelling_specifier
 
     ### SPECIAL METHODS ###
 
@@ -327,9 +332,17 @@ class RhythmMaker(AbjadValueObject):
     def tie_specifier(self):
         r'''Gets tie specifier of rhythm-maker.
 
-        Return tie specifier or none.
+        Returns tie specifier or none.
         '''
         return self._tie_specifier
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of rhythm-maker.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        return self._tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 
