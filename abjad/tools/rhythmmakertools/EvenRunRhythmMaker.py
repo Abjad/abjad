@@ -82,68 +82,6 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'even-run rhythm-maker'
 
-#    ### GALLERY EXAMPLES ###
-#
-#    _gallery_division_lists = (
-#        [
-#            (4, 16), (5, 16), (1, 2), (2, 12),
-#            (1, 2), (2, 12), (4, 16), (5, 16),
-#        ],
-#        [
-#            (1, 11), (3, 8), (3, 8), (3, 8),
-#            (3, 8), (3, 8), (1, 11), (3, 8),
-#        ],
-#        [
-#            (3, 15), (3, 15), (3, 16),
-#            (5, 24), (5, 24), (5, 16),
-#            (2, 12), (2, 12), (2, 8),
-#            (3, 28), (3, 28), (3, 16),
-#            (1, 9), (1, 9), (1, 8),
-#        ],
-#        [
-#            (9, 16), (1, 5), (9, 16),
-#            (1, 5), (9, 16), (9, 16),
-#        ],
-#        )
-#
-#    _gallery_example_wrappers = (
-#        ExampleWrapper(
-#            arguments={
-#                },
-#            division_lists=_gallery_division_lists,
-#            ),
-#        ExampleWrapper(
-#            arguments={
-#                'beam_specifier': BeamSpecifier(
-#                    beam_divisions_together=True,
-#                    ),
-#                },
-#            division_lists=_gallery_division_lists,
-#            ),
-#        ExampleWrapper(
-#            arguments={
-#                'beam_specifier': BeamSpecifier(
-#                    beam_each_division=False,
-#                    ),
-#                },
-#            division_lists=_gallery_division_lists,
-#            ),
-#        ExampleWrapper(
-#            arguments={
-#                'tie_specifier': TieSpecifier(
-#                    tie_across_divisions=True,
-#                    ),
-#                },
-#            division_lists=_gallery_division_lists,
-#            ),
-#        ExampleWrapper(
-#            arguments={
-#                'exponent': 1,
-#                },
-#            division_lists=_gallery_division_lists,
-#            ),
-#        )
-
     ### INITIALIZER ###
 
     def __init__(
@@ -419,12 +357,12 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Ties across divisions:
+            Do not tie across any divisions:
 
             ::
 
                 >>> tie_specifier = rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=True,
+                ...     tie_across_divisions=False,
                 ...     )
                 >>> maker = rhythmmakertools.EvenRunRhythmMaker(
                 ...     tie_specifier=tie_specifier,
@@ -432,7 +370,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -446,6 +384,88 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
+                        \time 5/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Ties across all divisions:
+
+            ::
+
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                ...     tie_across_divisions=True,
+                ...     )
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     tie_specifier=tie_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ~ ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ~ ]
+                        }
+                    }
+                    {
                         \time 4/8
                         {
                             c'8 [
@@ -455,18 +475,75 @@ class EvenRunRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \time 3/4
+                        \time 2/8
                         {
-                            c'4
-                            c'4
-                            c'4 ~
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Ties across every other pair of divisions (starting with the 
+            first):
+
+            ::
+
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                ...     tie_across_divisions=[1, 0],
+                ...     )
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     tie_specifier=tie_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ~ ]
                         }
                     }
                     {
-                        \time 2/4
+                        \time 3/8
                         {
-                            c'4
-                            c'4
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ~ ]
+                        }
+                    }
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
                         }
                     }
                 }
