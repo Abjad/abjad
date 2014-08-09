@@ -385,40 +385,6 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _add_ties(self, result, talea):
-        leaves = list(iterate(result).by_class(scoretools.Leaf))
-        written_durations = [leaf.written_duration for leaf in leaves]
-        weights = []
-        for numerator in talea:
-            duration = durationtools.Duration(
-                numerator,
-                self.talea.denominator,
-                )
-            weight = abs(duration)
-            weights.append(weight)
-        parts = sequencetools.partition_sequence_by_weights(
-            written_durations,
-            weights=weights,
-            allow_part_weights=More,
-            cyclic=True,
-            overhang=True,
-            )
-        counts = [len(part) for part in parts]
-        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
-        prototype = (spannertools.Tie,)
-        for part in parts:
-            part = selectiontools.SliceSelection(part)
-            tie_spanner = spannertools.Tie()
-            # this is voodoo to temporarily neuter the contiguity constraint
-            tie_spanner._contiguity_constraint = None
-            for component in part:
-                # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(prototype=prototype):
-                    spanner._sever_all_components()
-                #detach(prototype, component)
-            # TODO: remove usage of Spanner._extend()
-            tie_spanner._extend(part)
-
     def _burnish_all_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
         lefts_index, rights_index = 0, 0
@@ -598,13 +564,9 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
             result = tuplets
-        self._apply_beam_specifier(result)
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
-        if tie_specifier.tie_split_notes:
-            self._add_ties(result, unscaled_talea)
         result = [selectiontools.Selection(x) for x in result]
+        self._apply_beam_specifier(result)
+        self._tie_split_notes(result, unscaled_talea)
         return result
 
     def _make_numeric_map(self, duration_pairs, septuplet):
@@ -730,6 +692,46 @@ class TaleaRhythmMaker(RhythmMaker):
             cyclic=False, 
             overhang=overhang,
             )
+
+    def _tie_split_notes(self, result, unscaled_talea):
+        from abjad.tools import rhythmmakertools
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        if not tie_specifier.tie_split_notes:
+            return
+        leaves = list(iterate(result).by_class(scoretools.Leaf))
+        written_durations = [leaf.written_duration for leaf in leaves]
+        weights = []
+        for numerator in unscaled_talea:
+            duration = durationtools.Duration(
+                numerator,
+                self.talea.denominator,
+                )
+            weight = abs(duration)
+            weights.append(weight)
+        parts = sequencetools.partition_sequence_by_weights(
+            written_durations,
+            weights=weights,
+            allow_part_weights=More,
+            cyclic=True,
+            overhang=True,
+            )
+        counts = [len(part) for part in parts]
+        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
+        prototype = (spannertools.Tie,)
+        for part in parts:
+            part = selectiontools.SliceSelection(part)
+            tie_spanner = spannertools.Tie()
+            # voodoo to temporarily neuter the contiguity constraint
+            tie_spanner._contiguity_constraint = None
+            for component in part:
+                # TODO: make top-level detach() work here
+                for spanner in component._get_spanners(prototype=prototype):
+                    spanner._sever_all_components()
+                #detach(prototype, component)
+            # TODO: remove usage of Spanner._extend()
+            tie_spanner._extend(part)
 
     ### PUBLIC PROPERTIES ###
 

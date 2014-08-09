@@ -15,8 +15,6 @@ from abjad.tools.topleveltools import attach
 class EvenDivisionRhythmMaker(RhythmMaker):
     r'''Even division rhythm-maker.
 
-    ..  todo:: implement tie specifier.
-
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a list of selections as
     output (structured one selection per input division).

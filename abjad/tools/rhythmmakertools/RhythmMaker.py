@@ -58,30 +58,26 @@ class RhythmMaker(AbjadValueObject):
     def __call__(self, divisions, seeds=None):
         r'''Calls rhythm-maker.
 
-        Makes music.
+        Makes music as a list of selections.
 
-        Applies ties specified by tie specifier.
+        Applies cross-division ties (when specified by tie specifier).
+        Other types of ties specified by tie specifier must be
+        applied by child classes.
 
-        Checks output type.
+        Validates output type.
 
         Returns list of selections.
         '''
-        from abjad.tools import rhythmmakertools
+        # TODO: change 'duration_pairs' to 'divisions'
+        #       and change from NonreducedFractions to Divisions  
         duration_pairs = [
             mathtools.NonreducedFraction(x).pair
             for x in divisions
             ]
         seeds = self._to_tuple(seeds)
         selections = self._make_music(duration_pairs, seeds)
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
-        tie_specifier._make_ties(selections)
-        assert isinstance(selections, list), repr(selections)
-        assert len(selections), repr(selections)
-        prototype = selectiontools.Selection
-        assert all(isinstance(x, prototype) for x in selections), repr(
-            selections)
+        self._tie_across_divisions(selections)
+        self._validate_selections(selections)
         return selections
 
     def __eq__(self, expr):
@@ -291,6 +287,13 @@ class RhythmMaker(AbjadValueObject):
         result = '[${}$]'.format(result)
         return result
 
+    def _tie_across_divisions(self, selections):
+        from abjad.tools import rhythmmakertools
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        tie_specifier._make_ties_across_divisions(selections)
+
     def _to_tuple(self, expr):
         if isinstance(expr, list):
             expr = tuple(expr)
@@ -300,6 +303,12 @@ class RhythmMaker(AbjadValueObject):
         if isinstance(seeds, int) and len(talea):
             return sequencetools.rotate_sequence(talea, seeds)
         return talea
+
+    def _validate_selections(self, selections):
+        assert isinstance(selections, list), repr(selections)
+        assert len(selections), repr(selections)
+        for selection in selections:
+            assert isinstance(selection, selectiontools.Selection), selection
 
     ### PUBLIC PROPERTIES ###
 

@@ -77,12 +77,9 @@ class TieSpecifier(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _make_ties(self, music):
-        if self.tie_across_divisions:
-            self._make_ties_across_divisions(music)
-
-    @staticmethod
-    def _make_ties_across_divisions(music):
+    def _make_ties_across_divisions(self, music):
+        if not self.tie_across_divisions:
+            return
         for division_one, division_two in \
             sequencetools.iterate_sequence_nwise(music):
             leaf_one = next(iterate(division_one).by_class(
