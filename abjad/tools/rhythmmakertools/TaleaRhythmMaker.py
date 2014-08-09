@@ -598,35 +598,7 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
             result = tuplets
-        # maybe hoist up to RhythmMaker
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_divisions_together:
-            durations = []
-            for x in result:
-                if isinstance(x, selectiontools.Selection):
-                    duration = x.get_duration()
-                else:
-                    duration = x._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                durations=durations,
-                span_beam_count=1,
-                )
-            components = []
-            for x in result:
-                if isinstance(x, selectiontools.Selection):
-                    components.extend(x)
-                elif isinstance(x, scoretools.Tuplet):
-                    components.append(x)
-                else:
-                    raise TypeError(x)
-            attach(beam, components)
-        elif beam_specifier.beam_each_division:
-            for cell in result:
-                beam = spannertools.MultipartBeam()
-                attach(beam, cell)
+        self._apply_beam_specifier(result)
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()

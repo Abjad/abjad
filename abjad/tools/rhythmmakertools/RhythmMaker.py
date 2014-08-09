@@ -11,8 +11,10 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
@@ -154,6 +156,37 @@ class RhythmMaker(AbjadValueObject):
             return True
         else:
             return False
+
+    def _apply_beam_specifier(self, selections):
+        from abjad.tools import rhythmmakertools
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_divisions_together:
+            durations = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    duration = x.get_duration()
+                else:
+                    duration = x._get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    components.extend(x)
+                elif isinstance(x, scoretools.Tuplet):
+                    components.append(x)
+                else:
+                    raise TypeError(x)
+            attach(beam, components)
+        elif beam_specifier.beam_each_division:
+            for cell in selections:
+                beam = spannertools.MultipartBeam()
+                attach(beam, cell)
 
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):

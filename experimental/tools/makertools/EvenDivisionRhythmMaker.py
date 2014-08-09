@@ -15,6 +15,8 @@ from abjad.tools.topleveltools import attach
 class EvenDivisionRhythmMaker(RhythmMaker):
     r'''Even division rhythm-maker.
 
+    ..  todo:: implement tie specifier.
+
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a list of selections as
     output (structured one selection per input division).
@@ -234,35 +236,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 )
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
-        # maybe hoist up to RhythmMaker
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_divisions_together:
-            durations = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    duration = x.get_duration()
-                else:
-                    duration = x._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                durations=durations,
-                span_beam_count=1,
-                )
-            components = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    components.extend(x)
-                elif isinstance(x, scoretools.Tuplet):
-                    components.append(x)
-                else:
-                    raise TypeError(x)
-            attach(beam, components)
-        elif beam_specifier.beam_each_division:
-            for cell in selections:
-                beam = spannertools.MultipartBeam()
-                attach(beam, cell)
+        self._apply_beam_specifier(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
