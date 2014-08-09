@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -198,16 +199,18 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), division
         selections = []
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
-        for duration_pair in duration_pairs:
+        for division in divisions:
             selection = scoretools.make_leaves(
                 pitches=0,
-                durations=[duration_pair],
+                durations=[division],
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
