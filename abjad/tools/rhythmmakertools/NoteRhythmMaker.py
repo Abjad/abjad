@@ -214,20 +214,7 @@ class NoteRhythmMaker(RhythmMaker):
                     specifier.forbidden_written_duration,
                 )
             selections.append(selection)
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_divisions_together:
-            for component in iterate(selections).by_class():
-                detach(spannertools.Beam, component)
-            beam = spannertools.MultipartBeam()
-            leaves = iterate(selections).by_class(scoretools.Leaf)
-            leaves = list(leaves)
-            attach(beam, leaves)
-        elif beam_specifier.beam_each_division:
-            for selection in selections:
-                beam = spannertools.MultipartBeam()
-                attach(beam, selection)
+        self._apply_beam_specifier(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
