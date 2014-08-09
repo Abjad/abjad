@@ -65,7 +65,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-                >>> maker = makertools.EvenDivisionRhythmMaker(
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16, 16, 8],
                 ...     extra_counts_per_division=[1, 0],
                 ...     )
@@ -247,7 +247,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = makertools.EvenDivisionRhythmMaker(
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16, 16, 8],
                 ...     )
 
@@ -268,7 +268,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = makertools.EvenDivisionRhythmMaker(
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16, 16, 8],
                 ...     extra_counts_per_division=[1],
                 ...     )
