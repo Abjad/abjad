@@ -282,6 +282,17 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of note rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
+
     ### PUBLIC METHODS ###
 
     def reverse(self):

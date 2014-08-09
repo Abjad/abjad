@@ -54,17 +54,6 @@ class RestRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'rest rhythm-maker'
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        duration_spelling_specifier=None,
-        ):
-        RhythmMaker.__init__(
-            self,
-            duration_spelling_specifier=duration_spelling_specifier,
-            )
-
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -182,6 +171,17 @@ class RestRhythmMaker(RhythmMaker):
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of rest rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(RestRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

@@ -90,6 +90,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         if exponent is not None:
             assert mathtools.is_nonnegative_integer(exponent)
@@ -98,6 +99,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
         self._exponent = exponent
 
@@ -551,6 +553,17 @@ class EvenRunRhythmMaker(RhythmMaker):
         Returns boolean.
         '''
         return RhythmMaker.tie_specifier.fget(self)
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of even run rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(EvenRunRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

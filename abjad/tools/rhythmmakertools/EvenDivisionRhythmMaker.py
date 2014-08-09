@@ -494,3 +494,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns (possibly empty) tuple of integers or none.
         '''
         return self._extra_counts_per_division
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of even division rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(EvenDivisionRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier

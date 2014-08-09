@@ -143,6 +143,7 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
@@ -151,6 +152,7 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
         prototype = (rhythmmakertools.Talea, type(None))
         assert isinstance(talea, prototype)
@@ -1870,6 +1872,17 @@ class TaleaRhythmMaker(RhythmMaker):
         Returns tuple.
         '''
         return self._talea
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of talea rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

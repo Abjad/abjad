@@ -92,6 +92,7 @@ class IncisedRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
@@ -100,6 +101,7 @@ class IncisedRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
         prototype = (rhythmmakertools.InciseSpecifier, type(None))
         assert isinstance(incise_specifier, prototype)
@@ -583,6 +585,17 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns tuple or none.
         '''
         return self._split_divisions_by_counts
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of incised rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(IncisedRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 
