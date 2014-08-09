@@ -266,17 +266,228 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            **Example 1.** No extra counts per division:
+
             ::
 
+                
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 16, 8],
+                ...     denominators=[16, 8],
+                ...     extra_counts_per_division=None,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** One extra count per division:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16, 8],
                 ...     extra_counts_per_division=[1],
                 ...     )
 
             ::
 
-                >>> maker.extra_counts_per_division
-                (1,)
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Three extra counts per division:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16, 8],
+                ...     extra_counts_per_division=[3],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/7 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/7 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
 
         Returns (possibly empty) tuple of integers or none.
         '''
