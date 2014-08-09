@@ -68,12 +68,7 @@ class RhythmMaker(AbjadValueObject):
 
         Returns list of selections.
         '''
-        # TODO: change 'duration_pairs' to 'divisions'
-        #       and change from NonreducedFractions to Divisions  
-        duration_pairs = [
-            mathtools.NonreducedFraction(x).pair
-            for x in divisions
-            ]
+        duration_pairs = [durationtools.Division(x) for x in divisions]
         seeds = self._to_tuple(seeds)
         selections = self._make_music(duration_pairs, seeds)
         self._tie_across_divisions(selections)

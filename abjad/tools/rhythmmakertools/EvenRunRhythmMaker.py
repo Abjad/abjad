@@ -219,7 +219,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             duration_spelling_specifier.forbidden_written_duration
         time_signature = indicatortools.TimeSignature(division)
         implied_prolation = time_signature.implied_prolation
-        numerator, denominator = division
+        numerator, denominator = division.pair
         denominator = mathtools.greatest_power_of_two_less_equal(denominator)
         assert mathtools.is_positive_integer_power_of_two(denominator)
         exponent = self.exponent or 0
@@ -244,7 +244,9 @@ class EvenRunRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         selections = []
-        assert all(isinstance(x, tuple) for x in divisions)
+        #assert all(isinstance(x, tuple) for x in divisions)
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), division
         for duration_pair in divisions:
             container = self._make_container(duration_pair)
             selection = selectiontools.Selection(container)
