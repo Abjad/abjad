@@ -515,14 +515,69 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            **Example 1.** Ties nothing:
+
             ::
 
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=True,
-                ...     )
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
-                ...     tie_specifier=tie_specifier,
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        \times 4/5 {
+                            c'4
+                            c'4.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'16.
+                            r8.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 5/16
+                        {
+                            c'8 [
+                            c'8. ]
+                        }
+                    }
+                }
+
+            This is the default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Ties across all divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
                 ...     )
 
             ::
@@ -564,7 +619,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns tie specifier.
+        Returns tie specifier or none.
         '''
         return RhythmMaker.tie_specifier.fget(self)
 
@@ -578,7 +633,6 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
-                ...     tie_specifier=tie_specifier,
                 ...     )
                 >>> maker.tuplet_ratios
                 (Ratio(2, 3), Ratio(1, -2, 1))
