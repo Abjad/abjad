@@ -794,8 +794,10 @@ class Meter(AbjadObject):
         Returns list.
         '''
         from abjad.tools import metertools
+        #print(expr)
         offset_counter = \
             metertools.MetricAccentKernel.count_offsets_in_expr(expr)
+        #print(offset_counter)
         ordered_offsets = sorted(offset_counter, reverse=True)
         if not ordered_offsets:
             return []
@@ -811,8 +813,12 @@ class Meter(AbjadObject):
             key=lambda x: x.preprolated_duration, reverse=True)[0]
         longest_kernel_duration = max(
             x.preprolated_duration for x in meter_inventory)
-        kernels = [x.generate_offset_kernel_to_denominator(denominator)
-            for x in meter_inventory]
+        kernels = []
+        for i, x in enumerate(meter_inventory):
+            kernel = x.generate_offset_kernel_to_denominator(denominator)
+            kernels.append(kernel)
+            #print(meters[i])
+            #print(kernel)
         current_start_offset = start_offset
         selected_hierarchies = []
         while len(ordered_offsets) and \
@@ -848,6 +854,7 @@ class Meter(AbjadObject):
                         if len(meter_set) == 1 and 1 < len(meter_inventory):
                             continue
                     response = kernel(current_offset_counter)
+
                     candidates.append((response, meter_index))
                 candidates.sort(key=lambda x: x[0], reverse=True)
                 response, index = candidates[0]

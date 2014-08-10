@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-import collections
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class MetricAccentKernel(AbjadObject):
+class MetricAccentKernel(AbjadValueObject):
     r'''A metrical kernel, or offset-impulse-response-filter.
 
     ::
@@ -70,8 +70,8 @@ class MetricAccentKernel(AbjadObject):
         return float(response)
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a metrical accent kernal with a kernal equal to
-        that of this metrical accent kernel. Otherwise false.
+        r'''Is true when `expr` is a metrical accent kernal with a kernal equal
+        to that of this metrical accent kernel. Otherwise false.
 
         Returns boolean.
         '''
@@ -79,8 +79,6 @@ class MetricAccentKernel(AbjadObject):
             if self._kernel == expr._kernel:
                 return True
         return False
-
-    ### PRIVATE PROPERTIES ###
 
     def __hash__(self):
         r'''Hashes metric accent kernel.
@@ -90,6 +88,8 @@ class MetricAccentKernel(AbjadObject):
         Returns integer.
         '''
         return super(MetricAccentKernel, self).__hash__()
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _repr_specification(self):
@@ -193,7 +193,12 @@ class MetricAccentKernel(AbjadObject):
 
         Returns counter.
         '''
-        counter = collections.Counter()
+        if isinstance(expr, datastructuretools.TypedCounter):
+            if expr.item_class is durationtools.Offset:
+                return expr
+        counter = datastructuretools.TypedCounter(
+            item_class=durationtools.Offset,
+            )
         for x in expr:
             if hasattr(x, 'start_offset') and hasattr(x, 'stop_offset'):
                 counter[x.start_offset] += 1
@@ -201,10 +206,6 @@ class MetricAccentKernel(AbjadObject):
             elif hasattr(x, '_get_timespan'):
                 counter[x._get_timespan().start_offset] += 1
                 counter[x._get_timespan().stop_offset] += 1
-            # TODO: remove this branch in favor of the _get_timespan above
-            elif hasattr(x, 'get_timespan'):
-                counter[x.get_timespan().start_offset] += 1
-                counter[x.get_timespan().stop_offset] += 1
             else:
                 offset = durationtools.Offset(x)
                 counter[offset] += 1
