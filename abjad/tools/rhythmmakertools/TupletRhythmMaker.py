@@ -211,9 +211,11 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios = datastructuretools.CyclicTuple(
             sequencetools.rotate_sequence(self.tuplet_ratios, seeds)
             )
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
+
+#        beam_specifier = self.beam_specifier
+#        if beam_specifier is None:
+#            beam_specifier = rhythmmakertools.BeamSpecifier()
+
         tuplet_spelling_specifier = self.tuplet_spelling_specifier
         if tuplet_spelling_specifier is None:
             tuplet_spelling_specifier = \
@@ -227,14 +229,19 @@ class TupletRhythmMaker(RhythmMaker):
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
                 )
-            if beam_specifier.beam_each_division:
-                beam = spannertools.MultipartBeam()
-                attach(beam, tuplet)
+
+#            if beam_specifier.beam_each_division:
+#                beam = spannertools.MultipartBeam()
+#                attach(beam, tuplet)
+
             tuplets.append(tuplet)
-        if beam_specifier.beam_divisions_together:
-            beam = spannertools.MultipartBeam()
-            attach(beam, tuplets)
+
+#        if beam_specifier.beam_divisions_together:
+#            beam = spannertools.MultipartBeam()
+#            attach(beam, tuplets)
+
         selections = [selectiontools.Selection(x) for x in tuplets]
+        self._apply_beam_specifier(selections)
         return selections
 
     def _make_tuplet(
@@ -265,7 +272,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         ),
@@ -290,9 +297,11 @@ class TupletRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/9 {
-                            c'8. [
+                            c'16. [
+                            c'16.
                             c'8.
-                            c'8. ]
+                            c'16.
+                            c'16. ]
                         }
                     }
                     {
@@ -307,9 +316,11 @@ class TupletRhythmMaker(RhythmMaker):
                     {
                         \time 6/16
                         {
-                            c'8 [
+                            c'16 [
+                            c'16
                             c'8
-                            c'8 ]
+                            c'16
+                            c'16 ]
                         }
                     }
                     {
@@ -329,10 +340,9 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
-                ...         beam_each_division=False,
                 ...         ),
                 ...     )
 
@@ -355,33 +365,69 @@ class TupletRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/9 {
-                            c'8. [
+                            \set stemLeftBeamCount = #0
+                            \set stemRightBeamCount = #2
+                            c'16. [
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16.
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #1
                             c'8.
-                            c'8.
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16.
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16.
                         }
                     }
                     {
                         \time 3/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/5 {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #1
                             c'8.
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
                             c'16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
                             c'16
                         }
                     }
                     {
                         \time 6/16
                         {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #1
                             c'8
-                            c'8
-                            c'8
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16
                         }
                     }
                     {
                         \time 4/16
                         \times 4/5 {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #1
                             c'8.
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
                             c'16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #0
                             c'16 ]
                         }
                     }
@@ -394,7 +440,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
@@ -420,9 +466,11 @@ class TupletRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/9 {
+                            c'16.
+                            c'16.
                             c'8.
-                            c'8.
-                            c'8.
+                            c'16.
+                            c'16.
                         }
                     }
                     {
@@ -437,9 +485,11 @@ class TupletRhythmMaker(RhythmMaker):
                     {
                         \time 6/16
                         {
+                            c'16
+                            c'16
                             c'8
-                            c'8
-                            c'8
+                            c'16
+                            c'16
                         }
                     }
                     {
