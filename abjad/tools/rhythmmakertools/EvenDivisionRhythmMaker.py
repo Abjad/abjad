@@ -211,31 +211,35 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             denominator = denominators[i]
             extra_count = extra_counts_per_division[i]
             basic_duration = durationtools.Duration(1, denominator)
-            assert basic_duration <= division, repr((division, basic_duration))
-            unprolated_note_count = division / basic_duration
-            unprolated_note_count = int(unprolated_note_count)
-            unprolated_note_count = unprolated_note_count or 1
-            if 0 < extra_count:
-                modulus = unprolated_note_count
-                extra_count = extra_count % modulus
-            elif extra_count < 0:
-                modulus = int(math.ceil(unprolated_note_count / 2.0))
-                extra_count = abs(extra_count) % modulus
-                extra_count *= -1
-            note_count = unprolated_note_count + extra_count
-            durations = note_count * [basic_duration]
-            notes = scoretools.make_notes([0], durations)
-            assert all(
-                _.written_duration.denominator == denominator 
-                for _ in notes
-                )
+            unprolated_note_count = None
+            if division < 2 * basic_duration:
+                notes = scoretools.make_notes([0], [division])
+            else:
+                unprolated_note_count = division / basic_duration
+                unprolated_note_count = int(unprolated_note_count)
+                unprolated_note_count = unprolated_note_count or 1
+                if 0 < extra_count:
+                    modulus = unprolated_note_count
+                    extra_count = extra_count % modulus
+                elif extra_count < 0:
+                    modulus = int(math.ceil(unprolated_note_count / 2.0))
+                    extra_count = abs(extra_count) % modulus
+                    extra_count *= -1
+                note_count = unprolated_note_count + extra_count
+                durations = note_count * [basic_duration]
+                notes = scoretools.make_notes([0], durations)
+                assert all(
+                    _.written_duration.denominator == denominator 
+                    for _ in notes
+                    )
             tuplet_duration = durationtools.Duration(division)
             tuplet = scoretools.FixedDurationTuplet(
                 duration=tuplet_duration,
                 music=notes,
                 )
-            preferred_denominator = unprolated_note_count
-            tuplet.preferred_denominator = preferred_denominator
+            if unprolated_note_count is not None:
+                preferred_denominator = unprolated_note_count
+                tuplet.preferred_denominator = preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
         self._apply_beam_specifier(selections)
@@ -249,16 +253,223 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            **Example 1.** Fills divisions with 16th notes:
+
             ::
 
+                
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 16, 8],
+                ...     denominators=[16],
                 ...     )
 
             ::
 
-                >>> maker.denominators
-                (16, 16, 8)
+                >>> divisions = [(3, 16), (3, 8), (3, 4)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/16
+                        {
+                            c'16 [
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Fills divisions with 8th notes:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[8],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 16), (3, 8), (3, 4)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/16
+                        {
+                            c'8.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+            Divisions less than twice the duration of an eighth note are filled 
+            with a single attack.
+
+        ..  container:: example
+
+            **Example 3.** Fills divisions with quarter notes:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[4],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 16), (3, 8), (3, 4)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/16
+                        {
+                            c'8.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'4.
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }
+                }
+
+            Divisions less than twice the duration of a quarter note are filled 
+            with a single attack.
+
+        ..  container:: example
+
+            **Example 4.** Fills divisions with half notes:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[2],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 16), (3, 8), (3, 4)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/16
+                        {
+                            c'8.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'4.
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'2.
+                        }
+                    }
+                }
+
+            Divisions less than twice the duration of a half note are filled 
+            with a single attack.
 
         Returns tuple of nonnegative integer powers of two.
         '''
