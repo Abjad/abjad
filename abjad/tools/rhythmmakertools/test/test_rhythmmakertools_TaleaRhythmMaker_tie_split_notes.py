@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_rhythmmakertools_TieSpecifier_tie_split_notes_01():
+def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
     talea = rhythmmakertools.Talea(
         counts=(5,),
@@ -47,7 +47,7 @@ def test_rhythmmakertools_TieSpecifier_tie_split_notes_01():
     assert inspect_(staff).is_well_formed()
 
 
-def test_rhythmmakertools_TieSpecifier_tie_split_notes_02():
+def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
     talea = rhythmmakertools.Talea(
         counts=(5,),

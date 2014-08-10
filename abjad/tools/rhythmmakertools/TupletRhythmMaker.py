@@ -645,7 +645,7 @@ class TupletRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of tuplet rhythm-maker.
 
-        Returns tuplet spelling specifier.
+        Returns tuplet spelling specifier or none.
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
