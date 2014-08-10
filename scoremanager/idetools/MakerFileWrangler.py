@@ -75,7 +75,7 @@ class MakerFileWrangler(FileWrangler):
 
     def _list_maker_classes(self):
         modules = self._list_maker_modules()
-        classes = documentationtools.list_all_experimental_classes(
+        classes = documentationtools.list_all_classes(
             modules=modules)
         return classes
 
