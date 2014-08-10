@@ -33,7 +33,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        denominators=None,
+        denominators=[8],
         extra_counts_per_division=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
