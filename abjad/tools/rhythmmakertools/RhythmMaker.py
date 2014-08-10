@@ -15,6 +15,7 @@ from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
 
@@ -78,6 +79,7 @@ class RhythmMaker(AbjadValueObject):
         selections = self._make_music(duration_pairs, seeds)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
+        self._validate_tuplets(selections)
         return selections
 
     def __eq__(self, expr):
@@ -309,6 +311,12 @@ class RhythmMaker(AbjadValueObject):
         assert len(selections), repr(selections)
         for selection in selections:
             assert isinstance(selection, selectiontools.Selection), selection
+
+    def _validate_tuplets(self, selections):
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            assert tuplet.multiplier.is_proper_tuplet_multiplier, repr(
+                tuplet)
+            assert len(tuplet), repr(tuplet)
 
     ### PUBLIC PROPERTIES ###
 
