@@ -211,11 +211,6 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios = datastructuretools.CyclicTuple(
             sequencetools.rotate_sequence(self.tuplet_ratios, seeds)
             )
-
-#        beam_specifier = self.beam_specifier
-#        if beam_specifier is None:
-#            beam_specifier = rhythmmakertools.BeamSpecifier()
-
         tuplet_spelling_specifier = self.tuplet_spelling_specifier
         if tuplet_spelling_specifier is None:
             tuplet_spelling_specifier = \
@@ -229,17 +224,7 @@ class TupletRhythmMaker(RhythmMaker):
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
                 )
-
-#            if beam_specifier.beam_each_division:
-#                beam = spannertools.MultipartBeam()
-#                attach(beam, tuplet)
-
             tuplets.append(tuplet)
-
-#        if beam_specifier.beam_divisions_together:
-#            beam = spannertools.MultipartBeam()
-#            attach(beam, tuplets)
-
         selections = [selectiontools.Selection(x) for x in tuplets]
         self._apply_beam_specifier(selections)
         return selections
@@ -644,6 +629,220 @@ class TupletRhythmMaker(RhythmMaker):
     @property
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of tuplet rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Makes diminished tuplets and does not avoid dots:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=False,
+                ...         is_diminution=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (3, 8), (7, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 7/16
+                        {
+                            c'8.. [
+                            c'8.. ]
+                        }
+                    }
+                }
+
+            This is the default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Makes diminished tuplets and avoids dots:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         is_diminution=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (3, 8), (7, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'4
+                            c'4
+                        }
+                    }
+                    {
+                        \time 7/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 7/8 {
+                            c'4
+                            c'4
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Makes augmented tuplets and does not avoid dots:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=False,
+                ...         is_diminution=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (3, 8), (7, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 7/16
+                        {
+                            c'8.. [
+                            c'8.. ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Makes augmented tuplets and avoids dots:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         is_diminution=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (3, 8), (7, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/2 {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 7/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 7/4 {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                }
 
         Returns tuplet spelling specifier or none.
         '''
