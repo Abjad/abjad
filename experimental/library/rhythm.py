@@ -11,11 +11,6 @@ join_specifier = rhythmmakertools.BeamSpecifier(
 __all__.append('join_specifier')
 
 
-do_not_tie_split_notes = rhythmmakertools.TieSpecifier(
-    tie_split_notes=False,
-    )
-
-
 unbeam_specifier = rhythmmakertools.BeamSpecifier(
     beam_each_division=False,
     beam_divisions_together=False,
@@ -62,7 +57,7 @@ talea = rhythmmakertools.Talea(
     )
 eighths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('eighths')
 
@@ -77,7 +72,7 @@ talea = rhythmmakertools.Talea(
     )
 halves = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('halves')
 
@@ -142,7 +137,7 @@ talea = rhythmmakertools.Talea(
     )
 quarters = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('quarters')
 
@@ -157,7 +152,7 @@ talea = rhythmmakertools.Talea(
     )
 sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('sixteenths')
 
@@ -168,7 +163,7 @@ talea = rhythmmakertools.Talea(
     )
 sixty_fourths = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('sixty_fourths')
 
@@ -183,7 +178,7 @@ talea = rhythmmakertools.Talea(
     )
 thirty_seconds = rhythmmakertools.TaleaRhythmMaker(
     talea=talea,
-    tie_specifier=do_not_tie_split_notes,
+    tie_split_notes=False,
     )
 __all__.append('thirty_seconds')
 

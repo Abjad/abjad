@@ -228,11 +228,8 @@ class ScoreSpecification(Specification):
                                 talea=rhythmmakertools.Talea(
                                     counts=(1,),
                                     denominator=16,
-                                ),
-                                tie_specifier=rhythmmakertools.TieSpecifier(
-                                    tie_across_divisions=False,
-                                    tie_split_notes=False,
                                     ),
+                                tie_split_notes=False,
                                 ),
                             ),
                         target_timespan='red',
@@ -310,10 +307,7 @@ class ScoreSpecification(Specification):
                                 counts=(1,),
                                 denominator=16,
                                 ),
-                            tie_specifier=rhythmmakertools.TieSpecifier(
-                                tie_across_divisions=False,
-                                tie_split_notes=False,
-                                ),
+                            tie_split_notes=False,
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [
@@ -337,10 +331,7 @@ class ScoreSpecification(Specification):
                                 counts=(1,),
                                 denominator=16,
                             ),
-                            tie_specifier=rhythmmakertools.TieSpecifier(
-                                tie_across_divisions=False,
-                                tie_split_notes=False,
-                                ),
+                            tie_split_notes=False,
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [
