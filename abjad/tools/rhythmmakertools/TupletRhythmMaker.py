@@ -16,7 +16,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        Makes tuplets with ``3:2`` leaf ratios:
+        Makes tuplets with ``3:2`` ratios:
 
         ::
 
@@ -65,7 +65,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        Makes tuplets with alternating ``1:-1`` and ``3:1`` leaf ratios:
+        Makes tuplets with alternating ``1:-1`` and ``3:1`` ratios:
 
         ::
 
@@ -76,9 +76,9 @@ class TupletRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(1, 2), (3, 8), (5, 16)]
-            >>> music = maker(divisions)
+            >>> selections = maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
@@ -112,6 +112,11 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
             }
+
+    Object model of a partially evaluated function that accepts a (possibly
+    empty) list of divisions as input and returns a list of selections as
+    output (structured one selection per division). Each selection wraps a
+    single fixed-duration tuplet.
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown
     here.
@@ -166,8 +171,8 @@ class TupletRhythmMaker(RhythmMaker):
                 Selection(FixedDurationTuplet(Duration(3, 8), "c'4. c'8"),)
                 Selection(FixedDurationTuplet(Duration(5, 16), "c'8. r8."),)
 
-        Returns list of selections. Each selection holds a single
-        fixed-duration tuplet.
+        Returns list of selections structured one selection per division.
+        Each selection wraps a single fixed-duration tuplet.
         '''
         return RhythmMaker.__call__(
             self,
@@ -250,8 +255,213 @@ class TupletRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of tuplet rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Beams each division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 16), (3, 16), (6, 16), (4, 16)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file)  # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/9 {
+                            c'8. [
+                            c'8.
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 3/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8. [
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 6/16
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'8. [
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Beams divisions together:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=True,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 16), (3, 16), (6, 16), (4, 16)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file)  # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/9 {
+                            c'8. [
+                            c'8.
+                            c'8.
+                        }
+                    }
+                    {
+                        \time 3/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8.
+                            c'16
+                            c'16
+                        }
+                    }
+                    {
+                        \time 6/16
+                        {
+                            c'8
+                            c'8
+                            c'8
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'8.
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Beams nothing:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 1, 1), (3, 1, 1)],
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=False,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 16), (3, 16), (6, 16), (4, 16)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file)  # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/9 {
+                            c'8.
+                            c'8.
+                            c'8.
+                        }
+                    }
+                    {
+                        \time 3/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8.
+                            c'16
+                            c'16
+                        }
+                    }
+                    {
+                        \time 6/16
+                        {
+                            c'8
+                            c'8
+                            c'8
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'8.
+                            c'16
+                            c'16
+                        }
+                    }
+                }
+
+        Ignores `beam_each_division` when `beam_division_together` is true.
+
+        Returns beam specifier or none.
+        '''
+        superclass = super(TupletRhythmMaker, self)
+        return superclass.beam_specifier
+
+    @property
     def tie_specifier(self):
-        r'''Gets tie specifier of ratio talea rhythm-maker.
+        r'''Gets tie specifier of tuplet rhythm-maker.
 
         ..  container:: example
 
