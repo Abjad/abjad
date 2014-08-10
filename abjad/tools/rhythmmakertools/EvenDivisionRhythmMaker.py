@@ -215,7 +215,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             unprolated_note_count = division / basic_duration
             unprolated_note_count = int(unprolated_note_count)
             unprolated_note_count = unprolated_note_count or 1
-            #print unprolated_note_count, 'UNP CT'
             if 0 < extra_count:
                 modulus = unprolated_note_count
                 extra_count = extra_count % modulus
@@ -235,6 +234,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 duration=tuplet_duration,
                 music=notes,
                 )
+            preferred_denominator = unprolated_note_count
+            tuplet.preferred_denominator = preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
         self._apply_beam_specifier(selections)
@@ -739,7 +740,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 4/16
-                        \times 2/3 {
+                        \times 4/6 {
                             c'16 [
                             c'16
                             c'16
