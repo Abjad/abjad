@@ -215,8 +215,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             unprolated_note_count = division / basic_duration
             unprolated_note_count = int(unprolated_note_count)
             unprolated_note_count = unprolated_note_count or 1
+            #print unprolated_note_count, 'UNP CT'
             if 0 < extra_count:
-                modulus = 2 * unprolated_note_count
+                #modulus = 2 * unprolated_note_count
+                modulus = unprolated_note_count
                 extra_count = extra_count % modulus
             elif extra_count < 0:
                 modulus = int(unprolated_note_count / 2.0)
@@ -274,13 +276,13 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 8],
+                ...     denominators=[8],
                 ...     extra_counts_per_division=None,
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
@@ -294,34 +296,24 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
-                        \time 3/8
+                        \time 1/8
                         {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                            c'8
                         }
                     }
                     {
-                        \time 4/8
+                        \time 2/8
                         {
                             c'8 [
-                            c'8
-                            c'8
                             c'8 ]
                         }
                     }
                     {
                         \time 3/8
                         {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                            c'8 [
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
@@ -343,13 +335,13 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 8],
+                ...     denominators=[8],
                 ...     extra_counts_per_division=[1],
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
@@ -363,24 +355,15 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
-                        \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                        \time 1/8
+                        {
+                            c'8
                         }
                     }
                     {
-                        \time 4/8
-                        \times 4/5 {
+                        \time 2/8
+                        \times 2/3 {
                             c'8 [
-                            c'8
-                            c'8
                             c'8
                             c'8 ]
                         }
@@ -388,14 +371,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                        \times 3/4 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
@@ -412,19 +392,19 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Three extra counts per division:
+            **Example 3.** Two extra counts per division:
 
             ::
 
                 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 8],
-                ...     extra_counts_per_division=[3],
+                ...     denominators=[8],
+                ...     extra_counts_per_division=[2],
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8)]
                 >>> selections = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
@@ -438,25 +418,23 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
-                        \time 3/8
-                        \times 2/3 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                        \time 1/8
+                        {
+                            c'8
                         }
                     }
                     {
-                        \time 4/8
-                        \times 4/7 {
+                        \time 2/8
+                        {
                             c'8 [
-                            c'8
-                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8 [
                             c'8
                             c'8
                             c'8
@@ -464,17 +442,65 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \time 3/8
+                        \time 4/8
                         \times 2/3 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Three extra counts per division:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[8],
+                ...     extra_counts_per_division=[3],
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/8
+                        {
+                            c'8
+                        }
+                    }
+                    {
+                        \time 2/8
+                        \times 2/3 {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
@@ -490,6 +516,68 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                 }
+
+        ..  container:: example
+
+            **Example 4.** Four extra counts per division:
+
+            ::
+
+                
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[8],
+                ...     extra_counts_per_division=[4],
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/8
+                        {
+                            c'8
+                        }
+                    }
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
 
         Returns (possibly empty) tuple of integers or none.
         '''
