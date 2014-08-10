@@ -2,7 +2,6 @@
 import functools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from scoremanager.idetools import predicates
@@ -210,6 +209,27 @@ class PromptMakerMixin(AbjadObject):
         self._make_prompt(
             spaced_attribute_name,
             validation_function=predicates.is_duration_token,
+            help_template=help_template,
+            setup_statements=setup_statements,
+            default_value=default_value,
+            )
+
+    def append_durations(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends durations.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be list of durations.'
+        setup_statements = []
+        setup_statements.append(self._abjad_import_statement)
+        setup_statements.append('evaluated_input = [Duration(x) for x in {}]')
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=predicates.are_duration_tokens,
             help_template=help_template,
             setup_statements=setup_statements,
             default_value=default_value,
@@ -477,25 +497,6 @@ class PromptMakerMixin(AbjadObject):
             target_menu_section=target_menu_section,
             default_value=default_value,
             disallow_range=True,
-            )
-
-    def append_menu_section_range(
-        self,
-        spaced_attribute_name,
-        target_menu_section,
-        default_value=None,
-        ):
-        r'''Appends menu section range.
-
-        Returns prompt.
-        '''
-        help_template = 'value must be argument range.'
-        self._make_prompt(
-            spaced_attribute_name,
-            validation_function=predicates.is_list,
-            help_template=help_template,
-            target_menu_section=target_menu_section,
-            default_value=default_value,
             )
 
     def append_menu_section_range(

@@ -163,6 +163,10 @@ def are_articulation_tokens(expr):
     if isinstance(expr, (tuple, list)):
         return all(is_articulation_token(x) for x in expr)
 
+def are_duration_tokens(expr):
+    if isinstance(expr, (tuple, list)):
+        return all(is_duration_token(x) for x in expr)
+
 def are_dynamic_tokens(expr):
     if isinstance(expr, (tuple, list)):
         return all(is_dynamic_token(x) for x in expr)

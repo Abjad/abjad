@@ -52,6 +52,16 @@ def get_duration(
     getter.append_duration(space_delimited_attribute_name)
     return getter
 
+def get_durations(
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
+    allow_none=True,
+    ):
+    getter = Getter(session=session, allow_none=allow_none)
+    getter.append_durations(space_delimited_attribute_name)
+    return getter
+
 def get_dynamic(
     space_delimited_attribute_name,
     session=None,
