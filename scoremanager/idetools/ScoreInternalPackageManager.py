@@ -88,7 +88,7 @@ class ScoreInternalPackageManager(PackageManager):
             return commands
         if commands:
             menu.make_command_section(
-                is_hidden=False,
+                is_hidden=True,
                 commands=commands,
                 name='package',
                 )
