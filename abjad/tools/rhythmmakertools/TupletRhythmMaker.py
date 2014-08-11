@@ -125,6 +125,7 @@ class TupletRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_preferred_denominator_from_divisions',
         '_tuplet_ratios',
         '_tuplet_spelling_specifier',
         )
@@ -140,6 +141,7 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios=((1, 1), (1, 2), (1, 3)),
         beam_specifier=None,
         duration_spelling_specifier=None,
+        preferred_denominator_from_divisions=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -153,6 +155,10 @@ class TupletRhythmMaker(RhythmMaker):
         if tuplet_ratios is not None:
             tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
+        if preferred_denominator_from_divisions is not None:
+            assert isinstance(preferred_denominator_from_divisions, bool)
+        self._preferred_denominator_from_divisions = \
+            preferred_denominator_from_divisions
 
     ### SPECIAL METHODS ###
 
@@ -226,6 +232,8 @@ class TupletRhythmMaker(RhythmMaker):
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
                 )
+            if self.preferred_denominator_from_divisions:
+                tuplet.preferred_denominator = division.numerator
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
         self._apply_beam_specifier(selections)
@@ -495,6 +503,145 @@ class TupletRhythmMaker(RhythmMaker):
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.beam_specifier
+
+    @property
+    def preferred_denominator_from_divisions(self):
+        r'''Is true when rhythm-maker should take preferred denominator of
+        tuplets from each division. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not take preferred denominator of tuplets from 
+            numerators of divisions.
+
+            Tuplet ratio is reduced and tuplet numerator and denominator are 
+            relatively prime:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         ),
+                ...     preferred_denominator_from_divisions=False,
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 4/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Takes preferred denominator of tuplets from 
+            numerators of divisions.
+
+            Tuplet ratio is not reduced and tuplet numerator and denominator
+            are not necessarily relatively prime:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         ),
+                ...     preferred_denominator_from_divisions=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        Returns boolean or none.
+        '''
+        return self._preferred_denominator_from_divisions
 
     @property
     def tie_specifier(self):
