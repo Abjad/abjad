@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
@@ -15,6 +16,27 @@ class Talea(AbjadValueObject):
             ...    counts=(2, 1, 3, 2, 4, 1, 1),
             ...    denominator=16,
             ...    )
+
+    ..  container:: example
+
+        ::
+
+            >>> talea[2]
+            NonreducedFraction(3, 16)
+
+    ..  container:: example
+
+        ::
+
+            >>> for nonreduced_fraction in talea[3:9]:
+            ...     nonreduced_fraction
+            ...
+            NonreducedFraction(2, 16)
+            NonreducedFraction(4, 16)
+            NonreducedFraction(1, 16)
+            NonreducedFraction(1, 16)
+            NonreducedFraction(2, 16)
+            NonreducedFraction(1, 16)
 
     '''
 
@@ -50,6 +72,22 @@ class Talea(AbjadValueObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
+    def __getitem__(self, item):
+        r'''Gets non-reduced fraction at `item` cyclically.
+
+        Returns non-reduced fraction or non-reduced fractions.
+        '''
+        counts = datastructuretools.CyclicTuple(self.counts)
+        if isinstance(item, int):
+            count = counts[item]
+            return mathtools.NonreducedFraction(count, self.denominator)
+        elif isinstance(item, slice):
+            counts = counts[item]
+            result = [mathtools.NonreducedFraction(count, self.denominator)
+                for count in counts]
+            return result
+        raise ValueError(item)
+
     def __hash__(self):
         r'''Hashes talea.
 
@@ -58,6 +96,13 @@ class Talea(AbjadValueObject):
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
+
+    def __len__(self):
+        r'''Gets length of talea.
+
+        Returns integer.
+        '''
+        return len(self.counts)
 
     ### PRIVATE PROPERTIES ###
 
