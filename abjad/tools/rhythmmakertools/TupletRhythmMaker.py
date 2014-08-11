@@ -156,9 +156,8 @@ class TupletRhythmMaker(RhythmMaker):
             tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
         if preferred_denominator is not None:
-            assert isinstance(preferred_denominator, bool)
-        self._preferred_denominator = \
-            preferred_denominator
+            assert preferred_denominator == 'divisions'
+        self._preferred_denominator = preferred_denominator
 
     ### SPECIAL METHODS ###
 
@@ -232,7 +231,7 @@ class TupletRhythmMaker(RhythmMaker):
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
                 )
-            if self.preferred_denominator:
+            if self.preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
@@ -506,16 +505,26 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def preferred_denominator(self):
-        r'''Is true when rhythm-maker should take preferred denominator of
-        tuplets from each division. Otherwise false.
+        r'''Gets preferred denominator of tuplet rhythm-maker.
+
+        Initialize with any of these:
+
+        * none
+
+        * ``'divisions'``
+
+        * a duration
+
+        * a positive integer
 
         ..  container:: example
 
-            **Example 1.** Does not take preferred denominator of tuplets from 
-            numerators of divisions.
+            **Example 1.** Tuplet numerators and denominators are reduced to
+            numbers that are relatively prime when preferred denominator is set
+            to none.
 
-            Tuplet ratio is reduced and tuplet numerator and denominator are 
-            relatively prime:
+            This means that ratios like ``3:2`` and ``5:4`` are possible and
+            that ratios like ``6:4`` and ``10:8`` are not possible:
 
             ::
 
@@ -524,7 +533,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
                 ...         ),
-                ...     preferred_denominator=False,
+                ...     preferred_denominator=None,
                 ...     )
 
             ::
@@ -577,11 +586,14 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Takes preferred denominator of tuplets from 
-            numerators of divisions.
+            **Example 2.** The preferred denominator of each tuplet is set to
+            the numerator of the division that generates the tuplet when
+            preferred denominator is set to the string ``'divisions'``.
 
-            Tuplet ratio is not reduced and tuplet numerator and denominator
-            are not necessarily relatively prime:
+            This means that the number in the tuplet ratio are not necessarily
+            reduced and that the tuplet numerator and denominator are not
+            necessarily relatively prime. This also means that ratios like
+            ``6:4`` and ``10:8`` are possible:
 
             ::
 
@@ -590,7 +602,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
                 ...         ),
-                ...     preferred_denominator=True,
+                ...     preferred_denominator='divisions',
                 ...     )
 
             ::
@@ -639,7 +651,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns boolean or none.
+        Returns string, duration, positive integer or none.
         '''
         return self._preferred_denominator
 
@@ -699,7 +711,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is the default behavior.
+            This is default behavior.
 
         ..  container:: example
 
@@ -831,7 +843,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is the default behavior.
+            This is default behavior.
 
         ..  container:: example
 
