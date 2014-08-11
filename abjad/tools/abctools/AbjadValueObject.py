@@ -28,4 +28,10 @@ class AbjadValueObject(AbjadObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        return hash(systemtools.StorageFormatManager.get_hash_values(self))
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            message = 'unhashable type: {}'.format(self)
+            raise TypeError(message)
+        return result
