@@ -441,3 +441,8 @@ class Selector(AbjadValueObject):
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
+
+    def with_children(self, start=None, stop=None):
+        r'''
+        '''
+        from experimental.tools import selectortools

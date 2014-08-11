@@ -19,6 +19,8 @@ class SliceSelectorCallback(AbjadValueObject):
 
     def __init__(self, argument):
         assert isinstance(argument, (int, slice))
+        if isinstance(argument, slice):
+            argument = (argument.start, argument.stop)
         self._argument = argument
 
     ### SPECIAL METHODS ###
@@ -28,9 +30,12 @@ class SliceSelectorCallback(AbjadValueObject):
         '''
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
+        argument = self.argument
+        if isinstance(argument, tuple):
+            argument = slice(argument[0], argument[1])
         for subexpr in expr:
             try:
-                subresult = subexpr.__getitem__(self.argument)
+                subresult = subexpr.__getitem__(argument)
                 if not isinstance(subresult, prototype):
                     subresult = select(subresult)
                 result.append(subresult)
