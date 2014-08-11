@@ -203,9 +203,11 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         tuplets = []
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), repr(division)
         if not isinstance(seeds, int):
             seeds = 0
         tuplet_ratios = datastructuretools.CyclicTuple(
@@ -215,9 +217,9 @@ class TupletRhythmMaker(RhythmMaker):
         if tuplet_spelling_specifier is None:
             tuplet_spelling_specifier = \
                 rhythmmakertools.TupletSpellingSpecifier()
-        for duration_index, duration_pair in enumerate(duration_pairs):
+        for duration_index, division in enumerate(divisions):
             ratio = tuplet_ratios[duration_index]
-            duration = durationtools.Duration(duration_pair)
+            duration = durationtools.Duration(division)
             tuplet = self._make_tuplet(
                 duration,
                 ratio,

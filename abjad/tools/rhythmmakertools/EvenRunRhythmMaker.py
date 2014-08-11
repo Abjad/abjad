@@ -184,11 +184,10 @@ class EvenRunRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         selections = []
-        #assert all(isinstance(x, tuple) for x in divisions)
         for division in divisions:
             assert isinstance(division, durationtools.Division), division
-        for duration_pair in divisions:
-            container = self._make_container(duration_pair)
+        for division in divisions:
+            container = self._make_container(division)
             selection = selectiontools.Selection(container)
             selections.append(selection)
         beam_specifier = self.beam_specifier

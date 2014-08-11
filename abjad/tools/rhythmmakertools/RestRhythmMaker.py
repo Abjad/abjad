@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import new
@@ -100,23 +101,25 @@ class RestRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
-        result = []
+        selections = []
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), repr(division)
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
-        for duration_pair in duration_pairs:
-            rests = scoretools.make_leaves(
+        for division in divisions:
+            selection = scoretools.make_leaves(
                 pitches=None,
-                durations=[duration_pair],
+                durations=[division],
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
                     specifier.forbidden_written_duration,
                 )
-            result.append(rests)
-        return result
+            selections.append(selection)
+        return selections
 
     ### PUBLIC PROPERTIES ###
 
