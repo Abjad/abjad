@@ -329,6 +329,7 @@ class PackageManager(ScoreInternalAssetController):
 
     def _get_next_version_string(self):
         last_version_number = self._get_last_version_number()
+        last_version_number = last_version_number or 0
         next_version_number = last_version_number + 1
         next_version_string = '%04d' % next_version_number
         return next_version_string
