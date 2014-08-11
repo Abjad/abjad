@@ -1,15 +1,11 @@
 # -*- encoding: utf-8 -*-
-import copy
 import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
 
 
 class EvenDivisionRhythmMaker(RhythmMaker):
@@ -62,7 +58,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions):
+    def __call__(self, divisions, seeds=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -155,6 +151,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
+            seeds=seeds,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -195,8 +192,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, divisions, seeds):
-        from abjad.tools import rhythmmakertools
-        assert not seeds, repr(seeds)
+        #assert not seeds, repr(seeds)
         selections = []
         divisions = [durationtools.Division(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
@@ -229,7 +225,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 durations = note_count * [basic_duration]
                 notes = scoretools.make_notes([0], durations)
                 assert all(
-                    _.written_duration.denominator == denominator 
+                    _.written_duration.denominator == denominator
                     for _ in notes
                     )
             tuplet_duration = durationtools.Duration(division)
@@ -257,7 +253,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     )
@@ -321,7 +317,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[8],
                 ...     )
@@ -368,7 +364,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Divisions less than twice the duration of an eighth note are filled 
+            Divisions less than twice the duration of an eighth note are filled
             with a single attack.
 
         ..  container:: example
@@ -377,7 +373,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[4],
                 ...     )
@@ -419,7 +415,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Divisions less than twice the duration of a quarter note are filled 
+            Divisions less than twice the duration of a quarter note are filled
             with a single attack.
 
         ..  container:: example
@@ -428,7 +424,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[2],
                 ...     )
@@ -468,7 +464,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Divisions less than twice the duration of a half note are filled 
+            Divisions less than twice the duration of a half note are filled
             with a single attack.
 
         Returns tuple of nonnegative integer powers of two.
@@ -485,25 +481,25 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         division (as though `extra_counts_per_division` were set to zero). Then
         the actual number of extra counts included per division is given by two
         formulas:
-        
+
         * The actual number of extra counts included per division is given by
           ``extra_counts_per_division % unprolated_note_count`` when
           `extra_counts_per_division` is positive.
-        
-        * The actual number of extra counts included per division is given by 
-          the formula 
-          ``extra_counts_per_division % ceiling(unprolated_note_count / 2)`` 
+
+        * The actual number of extra counts included per division is given by
+          the formula
+          ``extra_counts_per_division % ceiling(unprolated_note_count / 2)``
           when `extra_counts_per_division` is negative.
 
         These formulas ensure that:
 
-        * even very large and very small values of 
+        * even very large and very small values of
           `extra_counts_per_division` produce valid output, and that
 
         * the values given as the rhythm-maker's `denominators` are always
           respected. A very large value of `extra_counts_per_division`, for
           example, never causes a `16`-denominated division to result 32nd or
-          64th note rhythms; `16`-denominated divisions always produce 16th 
+          64th note rhythms; `16`-denominated divisions always produce 16th
           note rhythms.
 
         ..  container:: example
@@ -512,7 +508,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-4],
@@ -581,7 +577,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-3],
@@ -650,7 +646,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-2],
@@ -718,7 +714,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-1],
@@ -787,7 +783,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=None,
@@ -856,7 +852,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[1],
@@ -931,7 +927,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[2],
@@ -1008,7 +1004,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[3],
@@ -1086,7 +1082,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[4],
