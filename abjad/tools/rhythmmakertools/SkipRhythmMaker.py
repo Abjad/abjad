@@ -57,15 +57,6 @@ class SkipRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'skip rhythm-maker'
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        ):
-        RhythmMaker.__init__(
-            self,
-            )
-
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -98,15 +89,29 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         result = []
-        for duration_pair in duration_pairs:
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), repr(division)
             written_duration = durationtools.Duration(1)
-            multiplied_duration = duration_pair
+            multiplied_duration = division
             skip = scoretools.make_skips_with_multiplied_durations(
                 written_duration, [multiplied_duration])
             result.append(skip)
         return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of skip rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(SkipRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

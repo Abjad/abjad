@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -198,36 +199,25 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
+        for division in divisions:
+            assert isinstance(division, durationtools.Division), division
         selections = []
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
-        for duration_pair in duration_pairs:
+        for division in divisions:
             selection = scoretools.make_leaves(
                 pitches=0,
-                durations=[duration_pair],
+                durations=[division],
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
                     specifier.forbidden_written_duration,
                 )
             selections.append(selection)
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_divisions_together:
-            for component in iterate(selections).by_class():
-                detach(spannertools.Beam, component)
-            beam = spannertools.MultipartBeam()
-            leaves = iterate(selections).by_class(scoretools.Leaf)
-            leaves = list(leaves)
-            attach(beam, leaves)
-        elif beam_specifier.beam_each_division:
-            for selection in selections:
-                beam = spannertools.MultipartBeam()
-                attach(beam, selection)
+        self._apply_beam_specifier(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
@@ -281,6 +271,17 @@ class NoteRhythmMaker(RhythmMaker):
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of note rhythm-maker.
+
+        ..  note:: note yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 

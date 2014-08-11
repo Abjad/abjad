@@ -126,6 +126,7 @@ class TaleaRhythmMaker(RhythmMaker):
         '_split_divisions_by_counts',
         '_talea',
         '_talea_denominator',
+        '_tie_split_notes',
         )
 
     _class_name_abbreviation = 'TlRM'
@@ -143,6 +144,8 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tie_split_notes=True,
+        tuplet_spelling_specifier=None,
         helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
@@ -151,10 +154,14 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
         prototype = (rhythmmakertools.Talea, type(None))
         assert isinstance(talea, prototype)
         self._talea = talea
+        if tie_split_notes is not None:
+            assert isinstance(tie_split_notes, bool), repr(tie_split_notes)
+        self._tie_split_notes = tie_split_notes
         helper_functions = helper_functions or {}
         talea_helper = helper_functions.get('talea')
         prolation_addenda_helper = helper_functions.get(
@@ -264,6 +271,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         counts=(1, 2, 3, 4),
                         denominator=16,
                         ),
+                    tie_split_notes=True,
                     )
 
         Returns string.
@@ -338,7 +346,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=talea,
                 ...     )
-                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16))
+                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16), tie_split_notes=True)
 
         Returns string.
         '''
@@ -387,9 +395,55 @@ class TaleaRhythmMaker(RhythmMaker):
                 command='ts',
                 editor=rhythmmakertools.TieSpecifier,
                 ),
+            systemtools.AttributeDetail(
+                name='tie_split_notes',
+                command='tn',
+                editor=idetools.getters.get_boolean,
+                ),
             )
 
     ### PRIVATE METHODS ###
+
+    def _apply_ties_to_split_notes(self, result, unscaled_talea):
+        from abjad.tools import rhythmmakertools
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        #if not tie_specifier.tie_split_notes:
+        if not self.tie_split_notes:
+            return
+        leaves = list(iterate(result).by_class(scoretools.Leaf))
+        written_durations = [leaf.written_duration for leaf in leaves]
+        weights = []
+        for numerator in unscaled_talea:
+            duration = durationtools.Duration(
+                numerator,
+                self.talea.denominator,
+                )
+            weight = abs(duration)
+            weights.append(weight)
+        parts = sequencetools.partition_sequence_by_weights(
+            written_durations,
+            weights=weights,
+            allow_part_weights=More,
+            cyclic=True,
+            overhang=True,
+            )
+        counts = [len(part) for part in parts]
+        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
+        prototype = (spannertools.Tie,)
+        for part in parts:
+            part = selectiontools.SliceSelection(part)
+            tie_spanner = spannertools.Tie()
+            # voodoo to temporarily neuter the contiguity constraint
+            tie_spanner._contiguity_constraint = None
+            for component in part:
+                # TODO: make top-level detach() work here
+                for spanner in component._get_spanners(prototype=prototype):
+                    spanner._sever_all_components()
+                #detach(prototype, component)
+            # TODO: remove usage of Spanner._extend()
+            tie_spanner._extend(part)
 
     def _burnish_all_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
@@ -572,7 +626,7 @@ class TaleaRhythmMaker(RhythmMaker):
             result = tuplets
         result = [selectiontools.Selection(x) for x in result]
         self._apply_beam_specifier(result)
-        self._tie_split_notes(result, unscaled_talea)
+        self._apply_ties_to_split_notes(result, unscaled_talea)
         return result
 
     def _make_numeric_map(self, duration_pairs, septuplet):
@@ -698,46 +752,6 @@ class TaleaRhythmMaker(RhythmMaker):
             cyclic=False, 
             overhang=overhang,
             )
-
-    def _tie_split_notes(self, result, unscaled_talea):
-        from abjad.tools import rhythmmakertools
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
-        if not tie_specifier.tie_split_notes:
-            return
-        leaves = list(iterate(result).by_class(scoretools.Leaf))
-        written_durations = [leaf.written_duration for leaf in leaves]
-        weights = []
-        for numerator in unscaled_talea:
-            duration = durationtools.Duration(
-                numerator,
-                self.talea.denominator,
-                )
-            weight = abs(duration)
-            weights.append(weight)
-        parts = sequencetools.partition_sequence_by_weights(
-            written_durations,
-            weights=weights,
-            allow_part_weights=More,
-            cyclic=True,
-            overhang=True,
-            )
-        counts = [len(part) for part in parts]
-        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
-        prototype = (spannertools.Tie,)
-        for part in parts:
-            part = selectiontools.SliceSelection(part)
-            tie_spanner = spannertools.Tie()
-            # voodoo to temporarily neuter the contiguity constraint
-            tie_spanner._contiguity_constraint = None
-            for component in part:
-                # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(prototype=prototype):
-                    spanner._sever_all_components()
-                #detach(prototype, component)
-            # TODO: remove usage of Spanner._extend()
-            tie_spanner._extend(part)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1871,6 +1885,26 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return self._talea
 
+    @property
+    def tie_split_notes(self):
+        r'''Is true when talea rhythm-maker should tie split notes.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._tie_split_notes
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of talea rhythm-maker.
+
+        ..  note:: not yet implemented.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.tuplet_spelling_specifier
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -1946,6 +1980,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
+                    tie_split_notes=True,
                     )
 
             ::
@@ -2010,6 +2045,7 @@ class TaleaRhythmMaker(RhythmMaker):
             duration_spelling_specifier = \
                 rhythmmakertools.DurationSpellingSpecifier()
         duration_spelling_specifier = duration_spelling_specifier.reverse()
+        tie_split_notes = self.tie_split_notes
         maker = new(
             self,
             burnish_specifier=burnish_specifier,
@@ -2017,6 +2053,7 @@ class TaleaRhythmMaker(RhythmMaker):
             extra_counts_per_division=extra_counts_per_division,
             split_divisions_by_counts=split_divisions_by_counts,
             talea=talea,
+            tie_split_notes=tie_split_notes,
             )
         return maker
 

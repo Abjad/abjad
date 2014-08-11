@@ -31,9 +31,10 @@ class RhythmMakerExpression(PayloadExpression):
                     talea=rhythmmakertools.Talea(
                         counts=(3, 1),
                         denominator=32,
+                        ),
+                    tie_split_notes=True,
                     ),
-                ),
-            )
+                )
 
         ::
 
@@ -47,7 +48,7 @@ class RhythmMakerExpression(PayloadExpression):
                     talea=rhythmmakertools.Talea(
                         counts=(1, 3),
                         denominator=32,
-                    ),
+                        ),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
                         burnish_output=False,
@@ -55,6 +56,7 @@ class RhythmMakerExpression(PayloadExpression):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
+                    tie_split_notes=True,
                     ),
                 )
 

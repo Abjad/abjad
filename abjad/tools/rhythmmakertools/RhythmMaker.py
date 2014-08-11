@@ -15,6 +15,7 @@ from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
 
@@ -28,6 +29,7 @@ class RhythmMaker(AbjadValueObject):
         '_beam_specifier',
         '_duration_spelling_specifier',
         '_tie_specifier',
+        '_tuplet_spelling_specifier',
         )
 
     _class_name_abbreviation = 'RM'
@@ -41,17 +43,21 @@ class RhythmMaker(AbjadValueObject):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
+        self._beam_specifier = beam_specifier
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
+        self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
-        self._beam_specifier = beam_specifier
-        self._duration_spelling_specifier = duration_spelling_specifier
         self._tie_specifier = tie_specifier
+        prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
+        assert isinstance(tuplet_spelling_specifier, prototype)
+        self._tuplet_spelling_specifier = tuplet_spelling_specifier
 
     ### SPECIAL METHODS ###
 
@@ -73,6 +79,7 @@ class RhythmMaker(AbjadValueObject):
         selections = self._make_music(duration_pairs, seeds)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
+        self._validate_tuplets(selections)
         return selections
 
     def __eq__(self, expr):
@@ -305,6 +312,12 @@ class RhythmMaker(AbjadValueObject):
         for selection in selections:
             assert isinstance(selection, selectiontools.Selection), selection
 
+    def _validate_tuplets(self, selections):
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            assert tuplet.multiplier.is_proper_tuplet_multiplier, repr(
+                tuplet)
+            assert len(tuplet), repr(tuplet)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -327,9 +340,17 @@ class RhythmMaker(AbjadValueObject):
     def tie_specifier(self):
         r'''Gets tie specifier of rhythm-maker.
 
-        Return tie specifier or none.
+        Returns tie specifier or none.
         '''
         return self._tie_specifier
+
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of rhythm-maker.
+
+        Returns tuplet spelling specifier or none.
+        '''
+        return self._tuplet_spelling_specifier
 
     ### PUBLIC METHODS ###
 
