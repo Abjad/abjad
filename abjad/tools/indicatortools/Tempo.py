@@ -124,6 +124,7 @@ class Tempo(AbjadObject):
             textual_indication=self.textual_indication,
             duration=self.duration,
             units_per_minute=self.units_per_minute,
+            markup=self.markup,
             )
 
     def __div__(self, expr):
@@ -167,7 +168,8 @@ class Tempo(AbjadObject):
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a tempo with duration, textual indication
-        and units-per-minute all equal to those of this tempo. Otherwise false.
+        units-per-minute and markup all equal to those of this tempo.
+        Otherwise false.
 
         Returns boolean.
         '''
@@ -175,7 +177,8 @@ class Tempo(AbjadObject):
             if self.duration == expr.duration:
                 if self.textual_indication == expr.textual_indication:
                     if self.units_per_minute == expr.units_per_minute:
-                        return True
+                        if self.markup == expr.markup:
+                            return True
         return False
 
     def __format__(self, format_specification=''):
@@ -184,15 +187,41 @@ class Tempo(AbjadObject):
         Set `format_specification` to `''`', `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> tempo = Tempo((1, 4), 84, 'Allegro')
-            >>> print(format(tempo))
-            indicatortools.Tempo(
-                duration=durationtools.Duration(1, 4),
-                units_per_minute=84,
-                textual_indication='Allegro',
-                )
+            Works without markup:
+            
+            ::
+
+                >>> tempo = Tempo((1, 4), 84, 'Allegro')
+                >>> print(format(tempo))
+                indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4),
+                    units_per_minute=84,
+                    textual_indication='Allegro',
+                    )
+
+        ..  container:: example
+
+            Works without markup:
+            
+            ::
+
+                >>> markup = Markup(r'\italic { Allegro }')
+                >>> tempo = Tempo((1, 4), 84, markup=markup)
+                >>> print(format(tempo))
+                indicatortools.Tempo(
+                    duration=durationtools.Duration(1, 4),
+                    units_per_minute=84,
+                    markup=markuptools.Markup(
+                        contents=(
+                            markuptools.MarkupCommand(
+                                'italic',
+                                ['Allegro']
+                                ),
+                            ),
+                        ),
+                    )
 
         Returns string.
         '''
@@ -336,6 +365,18 @@ class Tempo(AbjadObject):
                 editor=idetools.getters.get_integer,
                 is_keyword=False,
                 ),
+            systemtools.AttributeDetail(
+                name='textual_indication',
+                command='ti',
+                editor=idetools.getters.get_integer,
+                is_keyword=True,
+                ),
+            systemtools.AttributeDetail(
+                name='markup',
+                command='m',
+                editor=idetools.getters.get_markup,
+                is_keyword=True,
+                ),
             )
 
     @property
@@ -375,7 +416,14 @@ class Tempo(AbjadObject):
 
     @property
     def _one_line_menu_summary(self):
-        return self._lilypond_format.lstrip(r'\tempo ')
+        result = self._lilypond_format
+        if result.startswith(r'\tempo '):
+            result = result.lstrip(r'\tempo ')
+        elif result.startswith(r'\markup '):
+            result = result.lstrip(r'\markup ')
+        else:
+            raise ValueError(result)
+        return result
 
     @property
     def _repr_specification(self):
