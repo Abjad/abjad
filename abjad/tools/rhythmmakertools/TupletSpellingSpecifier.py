@@ -11,6 +11,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
     __slots__ = (
         '_avoid_dots',
         '_is_diminution',
+        '_simplify_tuplets',
         )
 
     ### INITIALIZER ###
@@ -19,11 +20,35 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self,
         avoid_dots=False,
         is_diminution=True,
+        simplify_tuplets=False,
         ):
-        assert isinstance(avoid_dots, bool), avoid_dots
-        assert isinstance(is_diminution, bool), is_diminution
-        self._avoid_dots = avoid_dots
-        self._is_diminution = is_diminution
+        self._avoid_dots = bool(avoid_dots)
+        self._is_diminution = bool(is_diminution)
+        self._simplify_tuplets = bool(simplify_tuplets)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='avoid_dots',
+                command='ad',
+                editor=idetools.getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='is_diminution',
+                command='id',
+                editor=idetools.getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='simplify_tuplets',
+                command='st',
+                editor=idetools.getters.get_boolean,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -48,3 +73,13 @@ class TupletSpellingSpecifier(AbjadValueObject):
         Returns boolean.
         '''
         return self._is_diminution
+
+    @property
+    def simplify_tuplets(self):
+        r'''Is true when tuplets should be simplified. Otherwise false.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._simplify_tuplets
