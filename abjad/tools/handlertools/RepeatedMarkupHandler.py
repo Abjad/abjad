@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
@@ -10,7 +8,9 @@ class RepeatedMarkupHandler(ArticulationHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, markups):
+    def __init__(self, markups=None):
+        if markups is not None:
+            markups = tuple(markups)
         self.markups = markups
 
     ### SPECIAL METHODS ###

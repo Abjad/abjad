@@ -15,7 +15,9 @@ class TwoStageHairpinHandler(DynamicHandler):
 
     def __init__(self, swell_dynamics=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        self.swell_dynamics = swell_dynamics
+        if swell_dynamics is not None:
+            swell_dynamic = tuple(swell_dynamics)
+        self._swell_dynamics = swell_dynamics
 
     ### SPECIAL METHODS ###
 
@@ -83,9 +85,3 @@ class TwoStageHairpinHandler(DynamicHandler):
     @property
     def swell_dynamics(self):
         return self._swell_dynamics
-
-    @swell_dynamics.setter
-    def swell_dynamics(self, swell_dynamics):
-        assert isinstance(swell_dynamics, (tuple, list)), repr(
-            swell_dynamics)
-        self._swell_dynamics = swell_dynamics
