@@ -44,6 +44,7 @@ class Tempo(AbjadObject):
     __slots__ = (
         '_default_scope',
         '_duration',
+        '_markup',
         '_textual_indication',
         '_units_per_minute',
         )
@@ -57,7 +58,9 @@ class Tempo(AbjadObject):
         duration=None,
         units_per_minute=None,
         textual_indication=None,
+        markup=None,
         ):
+        from abjad.tools import markuptools
         from abjad.tools import scoretools
         self._default_scope = scoretools.Score
         assert isinstance(textual_indication, (str, type(None)))
@@ -82,6 +85,9 @@ class Tempo(AbjadObject):
         self._duration = duration
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute
+        if markup is not None:
+            assert isinstance(markup, markuptools.Markup), repr(markup)
+        self._markup = markup
 
     ### SPECIAL METHODS ###
 
@@ -352,11 +358,13 @@ class Tempo(AbjadObject):
     def _lilypond_format(self):
         text, equation = None, None
         if self.textual_indication is not None:
-            text = schemetools.Scheme.format_scheme_value(
-                self.textual_indication)
+            text = self.textual_indication
+            text = schemetools.Scheme.format_scheme_value(text)
         if self.duration is not None and self.units_per_minute is not None:
             equation = self._equation
-        if text and equation:
+        if self.markup is not None:
+            return r'\tempo {}'.format(self.markup)
+        elif text and equation:
             return r'\tempo {} {}'.format(text, equation)
         elif equation:
             return r'\tempo {}'.format(equation)
@@ -376,26 +384,7 @@ class Tempo(AbjadObject):
             is_indented=False,
             )
 
-#    @property
-#    def _storage_format_specification(self):
-#        from abjad.tools import systemtools
-#        positional_argument_values = []
-#        is_indented = False
-#        if self.textual_indication:
-#            positional_argument_values.append(self.textual_indication)
-#            is_indented = True
-#        if self.duration:
-#            positional_argument_values.append(self.duration)
-#        if self.units_per_minute:
-#            positional_argument_values.append(self.units_per_minute)
-#        return systemtools.StorageFormatSpecification(
-#            self,
-#            is_indented=is_indented,
-#            positional_argument_values=positional_argument_values,
-#            )
-
     ### PUBLIC PROPERTIES ###
-
 
     @property
     def duration(self):
@@ -442,6 +431,51 @@ class Tempo(AbjadObject):
                 if not isinstance(self.units_per_minute, tuple):
                     return False
         return True
+
+    @property
+    def markup(self):
+        r'''Optional markup of tempo.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup(r'\smaller \general-align #Y #DOWN \note-by-number #2 #0 #1 " = 67.5"')
+                >>> tempo = Tempo(Duration(1, 4), 67.5, markup=markup)
+                >>> staff = Staff("c'4 d'4 e'4 f'4")
+                >>> score = Score([staff])
+                >>> attach(tempo, staff)
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        \tempo \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        " = 67.5"
+                        }
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                >>
+
+        All other tempo attributes are ignored at format time when markup is
+        set.
+
+        Returns markup or none.
+        '''
+        return self._markup
 
     @property
     def quarters_per_minute(self):
