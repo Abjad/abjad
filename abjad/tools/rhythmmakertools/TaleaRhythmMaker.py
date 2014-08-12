@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import copy
 import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -9,9 +8,6 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
@@ -396,6 +392,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 editor=rhythmmakertools.TieSpecifier,
                 ),
             systemtools.AttributeDetail(
+                name='tuplet_spelling_specifier',
+                command='tu',
+                editor=rhythmmakertools.TupletSpellingSpecifier,
+                ),
+            systemtools.AttributeDetail(
                 name='tie_split_notes',
                 command='tn',
                 editor=idetools.getters.get_boolean,
@@ -742,14 +743,14 @@ class TaleaRhythmMaker(RhythmMaker):
     @staticmethod
     def _split_sequence_extended_to_weights(sequence, weights, overhang=True):
         n = int(
-            math.ceil(float(mathtools.weight(weights)) / 
+            math.ceil(float(mathtools.weight(weights)) /
             mathtools.weight(sequence))
             )
         sequence = sequencetools.repeat_sequence(sequence, n)
         return sequencetools.split_sequence(
-            sequence, 
-            weights, 
-            cyclic=False, 
+            sequence,
+            weights,
+            cyclic=False,
             overhang=overhang,
             )
 
