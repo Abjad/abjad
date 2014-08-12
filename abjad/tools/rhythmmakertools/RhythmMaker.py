@@ -201,10 +201,15 @@ class RhythmMaker(AbjadValueObject):
         for tuplet in iterate(selections).by_class(scoretools.Tuplet):
             if tuplet.is_trivial:
                 continue
+            duration = tuplet._get_duration()
             if all(isinstance(x, scoretools.Rest) for x in tuplet):
-                duration = tuplet._get_duration()
-                rests = scoretools.make_rests(duration)
+                rests = scoretools.make_rests([duration])
                 tuplet[:] = rests
+            elif all(isinstance(x, scoretools.Note) for x in tuplet):
+                logical_ties = set([x._get_logical_tie() for x in tuplet])
+                if len(logical_ties) == 1:
+                    notes = scoretools.make_notes([0], [duration])
+                    tuplet[:] = notes
 
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
