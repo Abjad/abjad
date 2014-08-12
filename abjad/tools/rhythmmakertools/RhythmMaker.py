@@ -130,7 +130,17 @@ class RhythmMaker(AbjadValueObject):
         Returns LilyPond file.
         '''
         from abjad.tools import rhythmmakertools
-        divisions = divisions or [(3, 8), (4, 8), (3, 16), (4, 16)]
+        divisions = divisions or [
+            (3, 8),
+            (4, 8),
+            (3, 16),
+            (4, 16),
+            (5, 8),
+            (2, 4),
+            (5, 16),
+            (2, 8),
+            (7, 8),
+            ]
         selections = self(divisions)
         lilypond_file = rhythmmakertools.make_lilypond_file(
             selections,
