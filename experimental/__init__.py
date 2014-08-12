@@ -5,7 +5,6 @@ from abjad import *
 
 from experimental import library
 from experimental.tools import constrainttools
-from experimental.tools import handlertools
 from experimental.tools import interpolationtools
 from experimental.tools import makertools
 from experimental.tools import musicexpressiontools

@@ -114,7 +114,7 @@ def test_ListAutoeditor__run_05():
 def test_ListAutoeditor__run_06():
     r'''Edits empty tempo inventory.
 
-    Works with duration pairs.
+    Works with pairs.
     '''
 
     session = scoremanager.idetools.Session(is_test=True)

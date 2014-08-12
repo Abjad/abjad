@@ -469,8 +469,6 @@ class ConcreteInterpreter(Interpreter):
         timespan_delimited_single_context_rhythm_set_expression_duration_pairs = [
             (x, x.target_timespan.duration)
             for x in timespan_delimited_single_context_rhythm_set_expressions]
-        #self._debug_values(timespan_delimited_single_context_rhythm_set_expression_duration_pairs,
-        #    'rhythm expression / duration pairs')
         merged_duration_timespan_delimited_single_context_rhythm_set_expression_pairs = \
             self._pair_duration_sequence_elements_with_input_pair_values(
             timespan_delimited_single_context_rhythm_set_expression_merged_durations,

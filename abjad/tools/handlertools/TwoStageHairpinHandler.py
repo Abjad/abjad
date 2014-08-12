@@ -4,22 +4,34 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TwoStageHairpinHandler(DynamicHandler):
-    r'''Note and chord swell handler.
+    r'''Two-stage hairpin handler.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_swell_dynamics',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, swell_dynamics=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        self.swell_dynamics = swell_dynamics
+        if swell_dynamics is not None:
+            swell_dynamic = tuple(swell_dynamics)
+        self._swell_dynamics = swell_dynamics
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls handler on `expr`.
+
+        Returns none.
+        '''
         assert len(self.swell_dynamics) == 5, repr(self.swell_dynamics)
         assert scoretools.all_are_leaves(expr), repr(expr)
         start_dynamic, left_hairpin, peak_dynamic, right_hairpin, stop_dynamic = self.swell_dynamics
@@ -82,10 +94,8 @@ class TwoStageHairpinHandler(DynamicHandler):
 
     @property
     def swell_dynamics(self):
-        return self._swell_dynamics
+        r'''Gets swell dynamics of handler.
 
-    @swell_dynamics.setter
-    def swell_dynamics(self, swell_dynamics):
-        assert isinstance(swell_dynamics, (tuple, list)), repr(
-            swell_dynamics)
-        self._swell_dynamics = swell_dynamics
+        Returns tuple of strings or none.
+        '''
+        return self._swell_dynamics

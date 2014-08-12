@@ -845,15 +845,16 @@ class Measure(FixedDurationContainer):
                 self._scale_contents(remaining_multiplier)
         elif self._all_contents_are_scalable_by_multiplier(multiplier):
             self._scale_contents(multiplier)
-            if old_time_signature.has_non_power_of_two_denominator or \
-                not mathtools.is_nonnegative_integer_power_of_two(multiplier):
+            if (old_time_signature.has_non_power_of_two_denominator or
+                not mathtools.is_nonnegative_integer_power_of_two(multiplier)):
                 new_pair = mathtools.NonreducedFraction(old_pair)
                 new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
                 new_pair = new_pair.pair
             # multiplier is a negative power of two, like 1/2, 1/4, etc.
             elif multiplier < durationtools.Multiplier(0):
                 new_pair = \
-                    durationtools.multiply_duration_pair(old_pair, multiplier)
+                    mathtools.NonreducedFraction.multiply_without_reducing(
+                        old_pair, multiplier)
             # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
             elif durationtools.Multiplier(0) < multiplier:
                 new_pair = mathtools.NonreducedFraction(old_pair)

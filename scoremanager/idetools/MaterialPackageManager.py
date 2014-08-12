@@ -101,7 +101,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
 
     @property
     def _handlertools_import_statement(self):
-        return 'from experimental.tools import handlertools'
+        return 'from abjad.tools import handlertools'
 
     @property
     def _illustrate_py_path(self):

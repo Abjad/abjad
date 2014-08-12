@@ -37,7 +37,7 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
 
         Returns dynamic set expression.
         '''
-        from experimental.tools import handlertools
+        from abjad.tools import handlertools
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, handlertools.DynamicHandler)
         source_expression = \

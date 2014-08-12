@@ -2,11 +2,11 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.mathtools.BoundedObject import BoundedObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import new
 
 
-class DivisionList(BoundedObject):
+class DivisionList(AbjadObject):
     r'''Division list.
 
     Preparatory definitions:
@@ -93,7 +93,6 @@ class DivisionList(BoundedObject):
         divisions = [durationtools.Division(_) for _ in divisions]
         self._divisions = divisions
         self._voice_name = voice_name
-        assert self.is_well_formed
 
     ### SPECIAL METHODS ###
 
@@ -110,8 +109,6 @@ class DivisionList(BoundedObject):
 
         Returns newly constructed division list.
         '''
-        assert self.is_left_closed and expr.is_left_closed
-        assert self.is_right_open and expr.is_right_open
         divisions = []
         divisions.extend(self[:])
         divisions.extend(expr[:])
@@ -225,78 +222,6 @@ class DivisionList(BoundedObject):
             ])
 
     @property
-    def is_left_closed(self):
-        r'''Is true when first division in division is left closed.
-
-        ::
-
-            >>> division_list.is_left_closed
-            True
-
-        Returns boolean.
-        '''
-        return True
-
-    @property
-    def is_left_open(self):
-        r'''Is true when first division in division is left open.
-
-        ::
-
-            >>> division_list.is_left_open
-            False
-
-        Returns boolean.
-        '''
-        return False
-
-    @property
-    def is_right_closed(self):
-        r'''Is true when first division in division is right closed.
-
-        ::
-
-            >>> division_list.is_right_closed
-            False
-
-        Returns boolean.
-        '''
-        return False
-
-    @property
-    def is_right_open(self):
-        r'''Is true when first division in division is right open.
-
-        ::
-
-            >>> division_list.is_right_open
-            True
-
-        Returns boolean.
-        '''
-        return True
-
-    @property
-    def is_well_formed(self):
-        r'''Is true when division list is well-formed.
-        Otherwise false.
-
-        ::
-
-            >>> division_list.is_well_formed
-            True
-
-        Returns boolean.
-        '''
-        if not len(self):
-            return True
-        if not self.is_left_closed:
-            return False
-        if not self.is_right_open:
-            return False
-        return True
-
-    @property
     def pairs(self):
         r'''Division list pairs.
 
@@ -333,8 +258,6 @@ class DivisionList(BoundedObject):
 
         Returns offset.
         '''
-        #if self:
-        #    return self[0]._start_offset
         return self._start_offset
 
     @property

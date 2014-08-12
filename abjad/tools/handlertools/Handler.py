@@ -4,11 +4,16 @@ from abjad.tools import abctools
 from abjad.tools import scoretools
 
 
-class Handler(abctools.AbjadObject):
+class Handler(abctools.AbjadValueObject):
+    r'''Handler.
+    '''
 
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -19,6 +24,11 @@ class Handler(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''Is true when `expr` is a handler with the same type and
+        initializer parameter values as this one.
+
+        Returns boolean.
+        '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 

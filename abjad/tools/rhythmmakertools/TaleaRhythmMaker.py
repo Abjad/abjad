@@ -648,7 +648,7 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_lists.append(leaf_list)
         return leaf_lists
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         octuplet = self._prepare_input(seeds)
         talea, extra_counts_per_division = octuplet[:2]
@@ -656,35 +656,35 @@ class TaleaRhythmMaker(RhythmMaker):
         split_divisions_by_counts = octuplet[-1]
         taleas = (talea, extra_counts_per_division, split_divisions_by_counts)
         result = self._scale_taleas(
-            duration_pairs, self.talea.denominator, taleas)
-        duration_pairs, lcd, talea, extra_counts_per_division, split_divisions_by_counts = \
+            divisions, self.talea.denominator, taleas)
+        divisions, lcd, talea, extra_counts_per_division, split_divisions_by_counts = \
             result
-        secondary_duration_pairs = self._make_secondary_duration_pairs(
-            duration_pairs, split_divisions_by_counts)
+        secondary_divisions = self._make_secondary_divisions(
+            divisions, split_divisions_by_counts)
         septuplet = (talea, extra_counts_per_division) + octuplet[2:-1]
         numeric_map = self._make_numeric_map(
-            secondary_duration_pairs, septuplet)
+            secondary_divisions, septuplet)
         leaf_lists = self._make_leaf_lists(numeric_map, lcd)
         if not extra_counts_per_division:
             result = leaf_lists
         else:
-            tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
+            tuplets = self._make_tuplets(secondary_divisions, leaf_lists)
             result = tuplets
         result = [selectiontools.Selection(x) for x in result]
         self._apply_beam_specifier(result)
         self._apply_ties_to_split_notes(result, unscaled_talea)
         return result
 
-    def _make_numeric_map(self, duration_pairs, septuplet):
+    def _make_numeric_map(self, divisions, septuplet):
         talea, extra_counts_per_division, lefts, middles, rights, left_lengths, right_lengths = septuplet
-        prolated_duration_pairs = self._make_prolated_duration_pairs(
-            duration_pairs, extra_counts_per_division)
-        if isinstance(prolated_duration_pairs[0], tuple):
+        prolated_divisions = self._make_prolated_divisions(
+            divisions, extra_counts_per_division)
+        if isinstance(prolated_divisions[0], tuple):
             prolated_numerators = [
-                pair[0] for pair in prolated_duration_pairs]
+                pair[0] for pair in prolated_divisions]
         else:
             prolated_numerators = [
-                pair.numerator for pair in prolated_duration_pairs]
+                pair.numerator for pair in prolated_divisions]
         map_divisions = self._split_sequence_extended_to_weights(
             talea, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
@@ -693,27 +693,27 @@ class TaleaRhythmMaker(RhythmMaker):
         numeric_map = burnished_map_divisions
         return numeric_map
 
-    def _make_prolated_duration_pairs(self, duration_pairs, extra_counts_per_division):
-        prolated_duration_pairs = []
-        for i, duration_pair in enumerate(duration_pairs):
+    def _make_prolated_divisions(self, divisions, extra_counts_per_division):
+        prolated_divisions = []
+        for i, division in enumerate(divisions):
             if not extra_counts_per_division:
-                prolated_duration_pairs.append(duration_pair)
+                prolated_divisions.append(division)
             else:
                 prolation_addendum = extra_counts_per_division[i]
-                if hasattr(duration_pair, 'numerator'):
-                    prolation_addendum %= duration_pair.numerator
+                if hasattr(division, 'numerator'):
+                    prolation_addendum %= division.numerator
                 else:
-                    prolation_addendum %= duration_pair[0]
-                if isinstance(duration_pair, tuple):
-                    numerator, denominator = duration_pair
+                    prolation_addendum %= division[0]
+                if isinstance(division, tuple):
+                    numerator, denominator = division
                 else:
-                    numerator, denominator = duration_pair.pair
-                prolated_duration_pair = (
+                    numerator, denominator = division.pair
+                prolated_division = (
                     numerator + prolation_addendum,
                     denominator,
                     )
-                prolated_duration_pairs.append(prolated_duration_pair)
-        return prolated_duration_pairs
+                prolated_divisions.append(prolated_division)
+        return prolated_divisions
 
     def _prepare_input(self, seeds):
         from abjad.tools import rhythmmakertools
