@@ -114,7 +114,7 @@ class Talea(AbjadValueObject):
             systemtools.AttributeDetail(
                 name='counts',
                 command='c',
-                editor=idetools.getters.get_nonzero_integers,
+                editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
                 name='denominator',
