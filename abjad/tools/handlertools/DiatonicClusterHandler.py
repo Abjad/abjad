@@ -33,11 +33,19 @@ class DiatonicClusterHandler(PitchHandler):
 
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_cluster_widths',
+        ) 
+
     ### INITIALIZER ###
 
     def __init__(self, cluster_widths=None):
-        cluster_widths = cluster_widths or ()
-        self.cluster_widths = datastructuretools.CyclicTuple(cluster_widths)
+        PitchHandler.__init__(self)
+        if cluster_widths is not None:
+            cluster_widths = datastructuretools.CyclicTuple(cluster_widths)
+        self._cluster_widths = cluster_widths
 
     ### SPECIAL METHODS ###
 
@@ -61,3 +69,13 @@ class DiatonicClusterHandler(PitchHandler):
             chord = scoretools.Chord(note)
             chord.note_heads[:] = chord_pitches
             mutate(note).replace(chord)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cluster_widths(self):
+        r'''Gets cluster widths of handler.
+
+        Returns tuple of positive integers or none.
+        '''
+        return self._cluster_widths

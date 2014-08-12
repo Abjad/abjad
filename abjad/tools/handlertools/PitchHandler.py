@@ -6,4 +6,12 @@ class PitchHandler(Handler):
     r'''Pitch handler.
     '''
 
-    pass
+    ### CLASS ATTRIBUTES ###
+    
+    __slots__ = (
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        Handler.__init__(self)

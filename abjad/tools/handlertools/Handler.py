@@ -12,6 +12,9 @@ class Handler(abctools.AbjadValueObject):
 
     __metaclass__ = abc.ABCMeta
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     @abc.abstractmethod
@@ -19,20 +22,6 @@ class Handler(abctools.AbjadValueObject):
         pass
 
     ### SPECIAL METHODS ###
-
-    def __copy__(self, *args):
-        r'''Copies handler.
-
-        Returns new handler.
-        '''
-        return type(self)(*self.__getnewargs__())
-
-    def __deepcopy__(self, *args):
-        r'''Deecopies handler.
-
-        Returns new handler.
-        '''
-        return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a handler with the same type and
@@ -55,15 +44,6 @@ class Handler(abctools.AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
-
-    def __getnewargs__(self):
-        r'''Gets new arguments of handler.
-
-        Returns tuple.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_input_argument_values(
-            self)
 
     ### PRIVATE METHODS ###
 
