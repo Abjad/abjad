@@ -4,10 +4,10 @@ from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.handlertools.PitchHandler import PitchHandler
+from abjad.tools.handlertools.Handler import Handler
 
 
-class DiatonicClusterHandler(PitchHandler):
+class DiatonicClusterHandler(Handler):
     r'''Diatonic cluster handler.
 
     ..  container:: example
@@ -42,7 +42,7 @@ class DiatonicClusterHandler(PitchHandler):
     ### INITIALIZER ###
 
     def __init__(self, cluster_widths=None):
-        PitchHandler.__init__(self)
+        Handler.__init__(self)
         if cluster_widths is not None:
             cluster_widths = datastructuretools.CyclicTuple(cluster_widths)
         self._cluster_widths = cluster_widths
