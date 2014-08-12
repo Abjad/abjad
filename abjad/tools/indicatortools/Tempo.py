@@ -123,15 +123,41 @@ class Tempo(AbjadObject):
     def __div__(self, expr):
         r'''Divides tempo by `expr`.
 
-        Returns new tempo.
+        ..  container:: example
+
+            Divides tempo by number:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60) / 2
+                Tempo(duration=Duration(1, 4), units_per_minute=30)
+
+        ..  container:: example
+
+            Divides tempo by other tempo:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60) / Tempo(Duration(1, 4), 40)
+                Multiplier(3, 2)
+
+        Returns new tempo or multiplier.
         '''
+        if self.is_imprecise:
+            raise ImpreciseTempoError
+        if getattr(expr, 'is_imprecise', False):
+            raise ImpreciseTempoError
         if isinstance(expr, type(self)):
-            if self.is_imprecise or expr.is_imprecise:
-                raise ImpreciseTempoError
             result = self.quarters_per_minute / expr.quarters_per_minute
             return durationtools.Multiplier(result)
-        message = 'must be tempo indication.'
-        raise TypeError(message)
+        elif isinstance(expr, numbers.Number):
+            units_per_minute = self.units_per_minute / expr
+            result = new(self, units_per_minute=units_per_minute)
+            return result
+        else:
+            message = 'must be number or tempo indication: {!r}.'
+            message = message.format(expr)
+            raise TypeError(message)
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a tempo with duration, textual indication
