@@ -41,7 +41,8 @@ class DiatonicClusterHandler(PitchHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, cluster_widths):
+    def __init__(self, cluster_widths=None):
+        cluster_widths = cluster_widths or ()
         self.cluster_widths = datastructuretools.CyclicTuple(cluster_widths)
 
     ### SPECIAL METHODS ###

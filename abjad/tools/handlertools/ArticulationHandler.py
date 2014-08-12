@@ -14,11 +14,13 @@ class ArticulationHandler(Handler):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self,
+    def __init__(
+        self,
         minimum_duration=None,
         maximum_duration=None,
         minimum_written_pitch=None,
-        maximum_written_pitch=None):
+        maximum_written_pitch=None,
+        ):
         if minimum_duration is None:
             self.minimum_duration = minimum_duration
         else:

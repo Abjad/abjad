@@ -3,8 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
-from abjad.tools.handlertools.ArticulationHandler \
-    import ArticulationHandler
+from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class RepeatedMarkupHandler(ArticulationHandler):

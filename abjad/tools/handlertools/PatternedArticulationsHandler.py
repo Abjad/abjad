@@ -6,8 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
-from abjad.tools.handlertools.ArticulationHandler \
-    import ArticulationHandler
+from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class PatternedArticulationsHandler(ArticulationHandler):

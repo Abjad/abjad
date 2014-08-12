@@ -7,7 +7,7 @@ class TimewisePitchClassHandler(PitchHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, pitch_class_server):
+    def __init__(self, pitch_class_server=None):
         self.pitch_class_server = pitch_class_server
 
     ### SPECIAL METHODS ###

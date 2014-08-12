@@ -4,15 +4,15 @@ from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
-from abjad.tools.handlertools.ArticulationHandler \
-    import ArticulationHandler
+from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class StemTremoloHandler(ArticulationHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, hash_mark_counts):
+    def __init__(self, hash_mark_counts=None):
+        hash_mark_counts = hash_mark_counts or ()
         self.hash_mark_counts = hash_mark_counts
 
     ### SPECIAL METHODS ###

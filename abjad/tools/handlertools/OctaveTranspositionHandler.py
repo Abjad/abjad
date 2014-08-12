@@ -7,9 +7,12 @@ class OctaveTranspositionHandler(PitchHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, octave_transposition_mapping):
-        self.octave_transposition_mapping = \
-            pitchtools.OctaveTranspositionMapping(octave_transposition_mapping)
+    def __init__(self, octave_transposition_mapping=None):
+        if octave_transposition_mapping is not None:
+            octave_transposition_mapping = \
+                pitchtools.OctaveTranspositionMapping(
+                    octave_transposition_mapping)
+        self.octave_transposition_mapping = octave_transposition_mapping
 
     ### SPECIAL METHODS ###
 

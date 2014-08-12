@@ -8,7 +8,7 @@ from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TerracedDynamicsHandler(DynamicHandler):
-    r'''Terraced dynamics.
+    r'''Terraced dynamics handler.
     '''
 
     def __init__(self, dynamics=None, minimum_duration=None):

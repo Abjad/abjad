@@ -8,7 +8,7 @@ from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TwoStageHairpinHandler(DynamicHandler):
-    r'''Note and chord swell handler.
+    r'''Two-stage hairpin handler.
     '''
 
     ### INITIALIZER ###
