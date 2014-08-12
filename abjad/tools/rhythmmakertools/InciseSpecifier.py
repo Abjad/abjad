@@ -101,47 +101,47 @@ class InciseSpecifier(AbjadValueObject):
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='incise_divisions',
-                command='',
+                command='id',
                 editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='incise_output',
-                command='',
+                command='io',
                 editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
                 name='prefix_talea',
-                command='',
+                command='pt',
                 editor=idetools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
                 name='prefix_lengths',
-                command='',
+                command='pl',
                 editor=idetools.getters.get_nonnegative_integers,
                 ),
             systemtools.AttributeDetail(
                 name='suffix_talea',
-                command='',
+                command='st',
                 editor=idetools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
                 name='suffix_lengths',
-                command='',
+                command='sl',
                 editor=idetools.getters.get_nonnegative_integers,
                 ),
             systemtools.AttributeDetail(
                 name='talea_denominator',
-                command='',
+                command='td',
                 editor=idetools.getters.get_positive_integer_power_of_two,
                 ),
             systemtools.AttributeDetail(
                 name='body_ratio',
-                command='',
+                command='br',
                 editor=idetools.getters.get_positive_integers,
                 ),
             systemtools.AttributeDetail(
                 name='fill_with_notes',
-                command='',
+                command='fn',
                 editor=idetools.getters.get_boolean,
                 ),
             )
