@@ -8,7 +8,7 @@ from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class RestTerminatedMantenimentiHandler(DynamicHandler):

@@ -168,7 +168,7 @@ class Selector(Controller):
 
         Returns selector.
         '''
-        from experimental.tools import handlertools
+        from abjad.tools import handlertools
         classes = set()
         for class_ in documentationtools.list_all_abjad_classes():
             if hasattr(class_, '_attribute_manifest'):

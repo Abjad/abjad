@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from experimental.tools import handlertools
+from abjad.tools import handlertools
 
 
 dynamic_handler = handlertools.ReiteratedDynamicHandler(

@@ -4,7 +4,7 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TwoStageHairpinHandler(DynamicHandler):

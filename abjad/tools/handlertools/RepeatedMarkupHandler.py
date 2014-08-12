@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
-from experimental.tools.handlertools.ArticulationHandler \
+from abjad.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 
 

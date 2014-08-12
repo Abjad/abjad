@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
-from experimental.tools.handlertools.PitchHandler import PitchHandler
+from abjad.tools.handlertools.PitchHandler import PitchHandler
 
 
 class OctaveTranspositionHandler(PitchHandler):

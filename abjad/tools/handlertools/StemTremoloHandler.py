@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
-from experimental.tools.handlertools.ArticulationHandler \
+from abjad.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 
 

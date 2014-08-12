@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import durationtools
-from experimental.tools.handlertools.Handler import Handler
+from abjad.tools.handlertools.Handler import Handler
 
 
 class DynamicHandler(Handler):

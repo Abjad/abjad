@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad import *
-from experimental.tools import handlertools
+from abjad.tools import handlertools
 import scoremanager
 
 

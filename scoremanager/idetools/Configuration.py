@@ -402,12 +402,12 @@ class Configuration(AbjadConfiguration):
             ::
 
                 >>> configuration.handler_tools_directory
-                '.../experimental/tools/handlertools'
+                '.../tools/handlertools'
 
         Returns string.
         '''
         path = os.path.join(
-            self.abjad_experimental_directory,
+            self.abjad_directory,
             'tools',
             'handlertools',
             )

@@ -4,7 +4,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from experimental.tools.handlertools.PitchHandler import PitchHandler
+from abjad.tools.handlertools.PitchHandler import PitchHandler
 
 
 class DiatonicClusterHandler(PitchHandler):

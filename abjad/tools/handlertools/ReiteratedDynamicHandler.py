@@ -3,7 +3,7 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class ReiteratedDynamicHandler(DynamicHandler):

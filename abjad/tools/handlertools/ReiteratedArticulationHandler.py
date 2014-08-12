@@ -6,15 +6,15 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
-from experimental.tools.handlertools.ArticulationHandler \
+from abjad.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 
 
-class PatternedArticulationsHandler(ArticulationHandler):
+class ReiteratedArticulationHandler(ArticulationHandler):
 
     def __init__(
         self,
-        articulation_lists=None,
+        articulation_list=None,
         minimum_duration=None,
         maximum_duration=None,
         minimum_written_pitch=None,
@@ -27,26 +27,23 @@ class PatternedArticulationsHandler(ArticulationHandler):
             minimum_written_pitch=minimum_written_pitch,
             maximum_written_pitch=maximum_written_pitch,
             )
-        if articulation_lists is None:
-            articulation_lists = []
-        self.articulation_lists = articulation_lists
+        if articulation_list is None:
+            articulation_list = []
+        if isinstance(articulation_list, str):
+            articulation_list = [articulation_list]
+        self.articulation_list = articulation_list
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
-        articulation_lists = datastructuretools.CyclicTuple(
-            self.articulation_lists)
+        articulation_list = datastructuretools.CyclicTuple(
+            self.articulation_list)
         notes_and_chords = \
             list(iterate(expr).by_class((scoretools.Note, scoretools.Chord)))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
         for i, note_or_chord in enumerate(notes_and_chords):
-            articulation_list = articulation_lists[offset+i]
-            articulation_list = [
-                indicatortools.Articulation(x)
-                for x in articulation_list
-                ]
             if self.minimum_duration is not None:
                 if note_or_chord.duration.prolated < self.minimum_duration:
                     continue
@@ -67,6 +64,10 @@ class PatternedArticulationsHandler(ArticulationHandler):
                     maximum_written_pitch = note_or_chord.pitches[-1]
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
+            articulation_list = [
+                indicatortools.Articulation(x)
+                for x in self.articulation_list
+                ]
             for articulation in articulation_list:
                 new_articulation = copy.copy(articulation)
                 attach(new_articulation, note_or_chord)
@@ -80,9 +81,9 @@ class PatternedArticulationsHandler(ArticulationHandler):
         from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='articulation_lists',
+                name='articulation_list',
                 command='al',
-                editor=idetools.getters.get_lists,
+                editor=idetools.getters.get_articulations,
                 ),
             systemtools.AttributeDetail(
                 name='minimum_duration',
@@ -109,12 +110,15 @@ class PatternedArticulationsHandler(ArticulationHandler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def articulation_lists(self):
-        return self._articulation_lists
+    def articulation_list(self):
+        return self._articulation_list
 
-    @articulation_lists.setter
-    def articulation_lists(self, articulation_lists):
-        if all(isinstance(x, (tuple, list)) for x in articulation_lists):
-            self._articulation_lists = articulation_lists
+    @articulation_list.setter
+    def articulation_list(self, articulation_list):
+        if isinstance(articulation_list, list):
+            if all(isinstance(x, str) for x in articulation_list):
+                self._articulation_list = articulation_list
+        elif isinstance(articulation_list, str):
+            self._articulation_list = [articulation_list]
         else:
-            raise TypeError(articulation_lists)
+            raise TypeError(articulation_list)

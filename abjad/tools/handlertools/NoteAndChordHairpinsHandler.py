@@ -6,7 +6,7 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class NoteAndChordHairpinsHandler(DynamicHandler):
