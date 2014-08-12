@@ -1,18 +1,11 @@
 # -*- encoding: utf-8 -*-
 import abc
-import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import indicatortools
-from abjad.tools import lilypondfiletools
-from abjad.tools import markuptools
-from abjad.tools import mathtools
-from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -77,6 +70,7 @@ class RhythmMaker(AbjadValueObject):
         duration_pairs = [durationtools.Division(x) for x in divisions]
         seeds = self._to_tuple(seeds)
         selections = self._make_music(duration_pairs, seeds)
+        self._simplify_tuplets(selections)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
@@ -185,6 +179,25 @@ class RhythmMaker(AbjadValueObject):
             for cell in selections:
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
+
+    def _simplify_tuplets(self, selections):
+        from abjad.tools import rhythmmakertools
+        tuplet_spelling_specifier = self.tuplet_spelling_specifier
+        if tuplet_spelling_specifier is None:
+            tuplet_spelling_specifier = \
+                rhythmmakertools.TupletSpellingSpecifier()
+        if not tuplet_spelling_specifier.simplify_tuplets:
+            return
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            print tuplet
+            if tuplet.is_trivial:
+                print('trivial')
+                continue
+            if all(isinstance(x, scoretools.Rest) for x in tuplet):
+                print('all rests')
+                duration = tuplet._get_duration()
+                rests = scoretools.make_rests(duration)
+                tuplet[:] = rests
 
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
