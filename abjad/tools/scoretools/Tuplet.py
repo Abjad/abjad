@@ -1729,9 +1729,9 @@ class Tuplet(Container):
             self._preprolated_duration,
             Duration(1, denominator),
             ]
-        duration_pairs = Duration.durations_to_nonreduced_fractions(
+        nonreduced_fractions = Duration.durations_to_nonreduced_fractions(
             durations)
-        self.preferred_denominator = duration_pairs[1].numerator
+        self.preferred_denominator = nonreduced_fractions[1].numerator
 
     def to_fixed_duration_tuplet(self):
         r'''Changes tuplet to fixed-duration tuplet.

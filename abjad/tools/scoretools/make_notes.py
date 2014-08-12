@@ -75,18 +75,16 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    duration_pairs = [durationtools.Duration(duration)
-        for duration in durations]
-
-    # set lists of pitches and duration pairs to the same length
-    size = max(len(duration_pairs), len(pitches))
-    duration_pairs = \
-        sequencetools.repeat_sequence_to_length(duration_pairs, size)
+    nonreduced_fractions = [mathtools.NonreducedFraction(_) for _ in durations]
+    size = max(len(nonreduced_fractions), len(pitches))
+    nonreduced_fractions = sequencetools.repeat_sequence_to_length(
+        nonreduced_fractions, 
+        size,
+        )
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
-
     Duration = durationtools.Duration
     durations = Duration._group_nonreduced_fractions_by_implied_prolation(
-        duration_pairs)
+        nonreduced_fractions)
 
     def _make_unprolated_notes(
         pitches,
