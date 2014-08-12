@@ -86,7 +86,8 @@ class Selection(object):
 
         Returns integer.
         '''
-        return super(Selection, self).__hash__()
+        hash_values = (type(self), self._music) 
+        return hash(hash_values)
 
     def __illustrate__(self):
         r'''Attempts to illustrate selection.
