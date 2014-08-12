@@ -165,7 +165,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             systemtools.AttributeDetail(
                 name='denominators',
                 command='d',
-                editor=idetools.getters.get_positive_powers_of_two,
+                editor=idetools.getters.get_positive_integer_powers_of_two,
                 ),
             systemtools.AttributeDetail(
                 name='extra_counts_per_division',
