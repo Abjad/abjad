@@ -320,6 +320,41 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'8. [
                         c'16 ]
                     }
+                    {
+                        \time 5/8
+                        c'8 [
+                        c'8. ]
+                        c'4
+                        c'16
+                    }
+                    {
+                        \time 2/4
+                        c'8 [
+                        c'8.
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 5/16
+                        c'16 [
+                        c'16
+                        c'8
+                        c'16 ~ ]
+                    }
+                    {
+                        \time 2/8
+                        c'8 [
+                        c'8 ~ ]
+                    }
+                    {
+                        \time 7/8
+                        c'8 [
+                        c'16
+                        c'8
+                        c'8. ]
+                        c'4
+                        c'16 [
+                        c'16 ]
+                    }
                 }
 
         Defaults `divisions` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
@@ -513,9 +548,13 @@ class TaleaRhythmMaker(RhythmMaker):
     def _burnish_first_and_last_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
         burnished_divisions = []
-        left_length = left_lengths[0]
+        left_length = 0
+        if left_lengths:
+            left_length = left_lengths[0]
         left = lefts[:left_length]
-        right_length = right_lengths[0]
+        right_length = 0
+        if right_lengths:
+            right_length = right_lengths[0]
         right = rights[:right_length]
         if len(divisions) == 1:
             available_left_length = len(divisions[0])
@@ -524,7 +563,10 @@ class TaleaRhythmMaker(RhythmMaker):
             right_length = min([right_length, available_right_length])
             middle_length = len(divisions[0]) - left_length - right_length
             left = left[:left_length]
-            middle = middle_length * [middles[0]]
+            if not middles:
+                middles = [1]
+            middle = [middles[0]]
+            middle = middle_length * middle
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
@@ -544,7 +586,10 @@ class TaleaRhythmMaker(RhythmMaker):
             left_length = min([left_length, available_left_length])
             middle_length = len(divisions[0]) - left_length
             left = left[:left_length]
-            middle = middle_length * [middles[0]]
+            if not middles:
+                middles = [1]
+            middle = [middles[0]]
+            middle = middle_length * middle
             left_part, middle_part = \
                 sequencetools.partition_sequence_by_counts(
                     divisions[0],
