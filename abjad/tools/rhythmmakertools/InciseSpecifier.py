@@ -92,6 +92,60 @@ class InciseSpecifier(AbjadValueObject):
             expr = tuple(expr)
         return expr
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='incise_divisions',
+                command='',
+                editor=idetools.getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='incise_output',
+                command='',
+                editor=idetools.getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='prefix_talea',
+                command='',
+                editor=idetools.getters.get_nonzero_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='prefix_lengths',
+                command='',
+                editor=idetools.getters.get_nonnegative_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='suffix_talea',
+                command='',
+                editor=idetools.getters.get_nonzero_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='suffix_lengths',
+                command='',
+                editor=idetools.getters.get_nonnegative_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='talea_denominator',
+                command='',
+                editor=idetools.getters.get_positive_integer_power_of_two,
+                ),
+            systemtools.AttributeDetail(
+                name='body_ratio',
+                command='',
+                editor=idetools.getters.get_positive_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='fill_with_notes',
+                command='',
+                editor=idetools.getters.get_boolean,
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
