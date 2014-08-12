@@ -13,6 +13,12 @@ class PatternedArticulationsHandler(ArticulationHandler):
     r'''Patterned articulations handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_articulation_lists',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -30,13 +36,27 @@ class PatternedArticulationsHandler(ArticulationHandler):
             minimum_written_pitch=minimum_written_pitch,
             maximum_written_pitch=maximum_written_pitch,
             )
-        if articulation_lists is None:
-            articulation_lists = []
-        self.articulation_lists = articulation_lists
+        if articulation_lists is not None:
+            for articulation_list in articulation_lists:
+                prototype = (tuple, list)
+                if not isinstance(articulation_list, (tuple, list)):
+                    message = 'not articulation list: {!r}.'
+                    message = message.format(articulation_list)
+                    raise TypeError(message)
+                for articulation in articulation_list:
+                    if not isinstance(articulation, str):
+                        message = 'not articulation: {!r}.'
+                        message = message.format(articulation)
+                        raise TypeError(message)
+        self._articulation_lists = articulation_lists
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
+        r'''Calls handler on `expr` with optional keywords.
+
+        Returns none.
+        '''
         articulation_lists = datastructuretools.CyclicTuple(
             self.articulation_lists)
         notes_and_chords = \
@@ -113,11 +133,8 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     @property
     def articulation_lists(self):
-        return self._articulation_lists
+        r'''Gets articulation lists of handler.
 
-    @articulation_lists.setter
-    def articulation_lists(self, articulation_lists):
-        if all(isinstance(x, (tuple, list)) for x in articulation_lists):
-            self._articulation_lists = articulation_lists
-        else:
-            raise TypeError(articulation_lists)
+        Returns tuple or none.
+        '''
+        return self._articulation_lists

@@ -4,7 +4,7 @@ from abjad.tools import abctools
 from abjad.tools import scoretools
 
 
-class Handler(abctools.AbjadObject):
+class Handler(abctools.AbjadValueObject):
     r'''Handler.
     '''
 
@@ -20,7 +20,26 @@ class Handler(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __copy__(self, *args):
+        r'''Copies handler.
+
+        Returns new handler.
+        '''
+        return type(self)(*self.__getnewargs__())
+
+    def __deepcopy__(self, *args):
+        r'''Deecopies handler.
+
+        Returns new handler.
+        '''
+        return type(self)(*self.__getnewargs__())
+
     def __eq__(self, expr):
+        r'''Is true when `expr` is a handler with the same type and
+        initializer parameter values as this one.
+
+        Returns boolean.
+        '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
@@ -36,6 +55,15 @@ class Handler(abctools.AbjadObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
+
+    def __getnewargs__(self):
+        r'''Gets new arguments of handler.
+
+        Returns tuple.
+        '''
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_input_argument_values(
+            self)
 
     ### PRIVATE METHODS ###
 

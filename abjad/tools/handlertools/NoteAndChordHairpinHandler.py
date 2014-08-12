@@ -12,15 +12,27 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     r'''Note and chord hairpin handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_hairpin_token',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, hairpin_token=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        self.hairpin_token = hairpin_token
+        if hairpin_token is not None:
+            assert spannertools.Hairpin._is_hairpin_token(hairpin_token)
+        self._hairpin_token = hairpin_token
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
+        r'''Calls note and chord hairpin handler on `expr` with `offset`.
+
+        Returns none.
+        '''
         leaves = list(iterate(expr).by_class(scoretools.Leaf))
         leaves = self._remove_outer_rests_from_sequence(leaves)
         #group = leaves
@@ -68,13 +80,8 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     @property
     def hairpin_token(self):
-        return self._hairpin_token
+        r'''Gets hairpin token of handler.
 
-    @hairpin_token.setter
-    def hairpin_token(self, hairpin_token):
-        if hairpin_token is None:
-            self._hairpin_token = hairpin_token
-        elif spannertools.Hairpin._is_hairpin_token(hairpin_token):
-            self._hairpin_token = hairpin_token
-        else:
-            raise TypeError(hairpin_token)
+        Returns string or none.
+        '''
+        return self._hairpin_token

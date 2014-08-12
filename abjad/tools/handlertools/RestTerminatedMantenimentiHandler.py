@@ -13,16 +13,27 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
     r'''Rest-terminated mantenimenti handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_dynamics_talea',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, dynamics_talea=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        dynamics_talea = dynamics_talea or []
-        self.dynamics_talea = dynamics_talea
+        dynamics_talea = dynamics_talea or ()
+        dynamics_talea = datastructuretools.CyclicTuple(dynamics_talea)
+        self._dynamics_talea = dynamics_talea
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls handler on `expr`.
+
+        Returns none.
+        '''
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
         classes = (scoretools.Note, scoretools.Chord)
@@ -50,10 +61,8 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
 
     @property
     def dynamics_talea(self):
-        return self._dynamics_talea
+        r'''Gets dynamics talea of handler.
 
-    @dynamics_talea.setter
-    def dynamics_talea(self, dynamics_talea):
-        assert isinstance(dynamics_talea, (list, tuple)), repr(
-            dynamics_talea)
-        self._dynamics_talea = datastructuretools.CyclicTuple(dynamics_talea)
+        Returns cyclic tuple or none.
+        '''
+        return self._dynamics_talea

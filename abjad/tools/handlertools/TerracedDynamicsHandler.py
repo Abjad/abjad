@@ -11,17 +11,30 @@ class TerracedDynamicsHandler(DynamicHandler):
     r'''Terraced dynamics handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_dynamics',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, dynamics=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        if dynamics is None:
-            dynamics = []
-        self.dynamics = dynamics
+        if dynamics is not None:
+            for dynamic in dynamics:
+                if not indicatortools.Dynamic.is_dynamic_name(dynamic):
+                    message = 'not dynamic name: {!r}.'.format(dynamic)
+                    raise TypeError(message)
+        self._dynamics = dynamics
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
+        r'''Calls handler on `expr` with keywords.
+
+        Returns none.
+        '''
         dynamics = datastructuretools.CyclicTuple(self.dynamics)
         for i, note_or_chord in enumerate(
             iterate(expr).by_class((scoretools.Note, scoretools.Chord))):
@@ -56,14 +69,8 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     @property
     def dynamics(self):
-        return self._dynamics
+        r'''Gets dynamics of handler.
 
-    @dynamics.setter
-    def dynamics(self, dynamics):
-        if dynamics is None:
-            self._dynamics = dynamics
-        elif all(
-            indicatortools.Dynamic.is_dynamic_name(x) for x in dynamics):
-            self._dynamics = dynamics
-        else:
-            raise TypeError(dynamics)
+        Returns tuple of strings or none.
+        '''
+        return self._dynamics

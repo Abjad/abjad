@@ -1,20 +1,30 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools.handlertools.PitchHandler import PitchHandler
+from abjad.tools.handlertools.Handler import Handler
 
 
-class TimewisePitchClassHandler(PitchHandler):
+class TimewisePitchClassHandler(Handler):
     r'''Timewise pitch-class handler.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_pitch_class_server',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, pitch_class_server=None):
-        self.pitch_class_server = pitch_class_server
+        self._pitch_class_server = pitch_class_server
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls handler on `expr`.
+
+        Returns none.
+        '''
         classes = (scoretools.Note, scoretools.Chord)
         for leaf in \
             scoretools.iterate_components_forward_in_expr(expr, classes):
@@ -30,3 +40,13 @@ class TimewisePitchClassHandler(PitchHandler):
                 leaf.extend(pitch_classes)
             else:
                 raise ValueError
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def pitch_class_server(self):
+        r'''Gets pitch-class server of handler.
+
+        Returns pitch-class server or none.
+        '''
+        return self._pitch_class_server

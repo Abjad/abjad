@@ -13,6 +13,12 @@ class ReiteratedArticulationHandler(ArticulationHandler):
     r'''Reiterated articulation handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_articulation_list',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -30,15 +36,22 @@ class ReiteratedArticulationHandler(ArticulationHandler):
             minimum_written_pitch=minimum_written_pitch,
             maximum_written_pitch=maximum_written_pitch,
             )
-        if articulation_list is None:
-            articulation_list = []
+        articulation_list = articulation_list or ()
         if isinstance(articulation_list, str):
             articulation_list = [articulation_list]
-        self.articulation_list = articulation_list
+        for articulation in articulation_list:
+            if not isinstance(articulation, str):
+                message = 'not articulation: {!r}'.format(articulation)
+                raise TypeError(message)
+        self._articulation_list = articulation_list
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
+        r'''Calls handler on `expr` with keywords.
+
+        Returns none.
+        '''
         articulation_list = datastructuretools.CyclicTuple(
             self.articulation_list)
         notes_and_chords = \
@@ -114,14 +127,8 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     @property
     def articulation_list(self):
-        return self._articulation_list
+        r'''Gets articulation list of handler.
 
-    @articulation_list.setter
-    def articulation_list(self, articulation_list):
-        if isinstance(articulation_list, list):
-            if all(isinstance(x, str) for x in articulation_list):
-                self._articulation_list = articulation_list
-        elif isinstance(articulation_list, str):
-            self._articulation_list = [articulation_list]
-        else:
-            raise TypeError(articulation_list)
+        Returns list, tuple or none.
+        '''
+        return self._articulation_list

@@ -8,16 +8,27 @@ class RepeatedMarkupHandler(ArticulationHandler):
     r'''Repeated markup handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_markups',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, markups=None):
         if markups is not None:
+            markups = [markuptools.Markup(_) for _ in markups]
             markups = tuple(markups)
-        self.markups = markups
+        self._markups = markups
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls handler on `expr`.
+
+        Returns none.
+        '''
         classes = (scoretools.Note, scoretools.Chord)
         markups = datastructuretools.CyclicTuple(self.markups)
         for i, leaf in  enumerate(
@@ -25,3 +36,13 @@ class RepeatedMarkupHandler(ArticulationHandler):
             markup = markup[i]
             markup = markuptools.Markup(markup)
             markup(leaf)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def markups(self):
+        r'''Gets markups of handler.
+
+        Returns tuple or none.
+        '''
+        return self._markups

@@ -10,15 +10,27 @@ class ReiteratedDynamicHandler(DynamicHandler):
     r'''Reiterated dynamic handler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_dynamic_name',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, dynamic_name=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        self.dynamic_name = dynamic_name
+        if dynamic_name is not None:
+            assert indicatortools.Dynamic.is_dynamic_name(dynamic_name)
+        self._dynamic_name = dynamic_name
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls handler on `expr`.
+
+        Returns none.
+        '''
         for note_or_chord in \
             iterate(expr).by_class((scoretools.Note, scoretools.Chord)):
             #indicatortools.Dynamic(self.dynamic_name)(note_or_chord)
@@ -52,13 +64,8 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     @property
     def dynamic_name(self):
-        return self._dynamic_name
+        r'''Gets dynamic name of handler.
 
-    @dynamic_name.setter
-    def dynamic_name(self, dynamic_name):
-        if dynamic_name is None:
-            self._dynamic_name = dynamic_name
-        elif indicatortools.Dynamic.is_dynamic_name(dynamic_name):
-            self._dynamic_name = dynamic_name
-        else:
-            raise TypeError(dynamic_name)
+        Returns string or none.
+        '''
+        return self._dynamic_name
