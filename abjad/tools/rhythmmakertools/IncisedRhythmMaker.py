@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -443,6 +442,51 @@ class IncisedRhythmMaker(RhythmMaker):
             suffix_lengths,
             extra_counts_per_division,
             split_divisions_by_counts,
+            )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import rhythmmakertools
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='incise_specifier',
+                command='is',
+                editor=rhythmmakertools.InciseSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='split_divisions_by_counts',
+                command='sd',
+                editor=idetools.getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='extra_counts_per_division',
+                command='ec',
+                editor=idetools.getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
+                name='beam_specifier',
+                command='bs',
+                editor=rhythmmakertools.BeamSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='duration_spelling_specifier',
+                command='ds',
+                editor=rhythmmakertools.DurationSpellingSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='tie_specifier',
+                command='ts',
+                editor=rhythmmakertools.TieSpecifier,
+                ),
+            systemtools.AttributeDetail(
+                name='tuplet_spelling_specifier',
+                command='tu',
+                editor=rhythmmakertools.TupletSpellingSpecifier,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###
