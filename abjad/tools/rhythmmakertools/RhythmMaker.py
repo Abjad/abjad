@@ -74,9 +74,9 @@ class RhythmMaker(AbjadValueObject):
 
         Returns list of selections.
         '''
-        duration_pairs = [durationtools.Division(x) for x in divisions]
+        divisions = [durationtools.Division(x) for x in divisions]
         seeds = self._to_tuple(seeds)
-        selections = self._make_music(duration_pairs, seeds)
+        selections = self._make_music(divisions, seeds)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
@@ -200,19 +200,19 @@ class RhythmMaker(AbjadValueObject):
         return False
 
     @abc.abstractmethod
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         pass
 
-    def _make_secondary_duration_pairs(
+    def _make_secondary_divisions(
         self,
-        duration_pairs,
+        divisions,
         split_divisions_by_counts,
         ):
         if not split_divisions_by_counts:
-            return duration_pairs[:]
+            return divisions[:]
         numerators = [
-            duration_pair.numerator
-            for duration_pair in duration_pairs
+            division.numerator
+            for division in divisions
             ]
         secondary_numerators = sequencetools.split_sequence(
             numerators,
@@ -222,18 +222,18 @@ class RhythmMaker(AbjadValueObject):
             )
         secondary_numerators = \
             sequencetools.flatten_sequence(secondary_numerators)
-        denominator = duration_pairs[0].denominator
-        secondary_duration_pairs = [
+        denominator = divisions[0].denominator
+        secondary_divisions = [
             (n, denominator)
             for n in secondary_numerators
             ]
-        return secondary_duration_pairs
+        return secondary_divisions
 
-    def _make_tuplets(self, duration_pairs, leaf_lists):
-        assert len(duration_pairs) == len(leaf_lists)
+    def _make_tuplets(self, divisions, leaf_lists):
+        assert len(divisions) == len(leaf_lists)
         tuplets = []
-        for duration_pair, leaf_list in zip(duration_pairs, leaf_lists):
-            tuplet = scoretools.FixedDurationTuplet(duration_pair, leaf_list)
+        for division, leaf_list in zip(divisions, leaf_lists):
+            tuplet = scoretools.FixedDurationTuplet(division, leaf_list)
             tuplets.append(tuplet)
         return tuplets
 
@@ -259,14 +259,14 @@ class RhythmMaker(AbjadValueObject):
         if expr is not None:
             return tuple(sequencetools.rotate_sequence(expr, n))
 
-    def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
-        dummy_duration_pair = (1, talea_denominator)
-        duration_pairs.append(dummy_duration_pair)
+    def _scale_taleas(self, divisions, talea_denominator, taleas):
+        dummy_division = (1, talea_denominator)
+        divisions.append(dummy_division)
         Duration = durationtools.Duration
-        duration_pairs = Duration.durations_to_nonreduced_fractions(
-            duration_pairs)
-        dummy_duration_pair = duration_pairs.pop()
-        lcd = dummy_duration_pair.denominator
+        divisions = Duration.durations_to_nonreduced_fractions(
+            divisions)
+        dummy_division = divisions.pop()
+        lcd = dummy_division.denominator
         multiplier = lcd / talea_denominator
         scaled_taleas = []
         for talea in taleas:
@@ -274,7 +274,7 @@ class RhythmMaker(AbjadValueObject):
                 [multiplier * x for x in talea],
                 )
             scaled_taleas.append(talea)
-        result = [duration_pairs, lcd]
+        result = [divisions, lcd]
         result.extend(scaled_taleas)
         return tuple(result)
 
