@@ -189,12 +189,9 @@ class RhythmMaker(AbjadValueObject):
         if not tuplet_spelling_specifier.simplify_tuplets:
             return
         for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            print tuplet
             if tuplet.is_trivial:
-                print('trivial')
                 continue
             if all(isinstance(x, scoretools.Rest) for x in tuplet):
-                print('all rests')
                 duration = tuplet._get_duration()
                 rests = scoretools.make_rests(duration)
                 tuplet[:] = rests
