@@ -418,9 +418,9 @@ class Tempo(AbjadObject):
     def _one_line_menu_summary(self):
         result = self._lilypond_format
         if result.startswith(r'\tempo '):
-            result = result.lstrip(r'\tempo ')
+            result = result[7:]
         elif result.startswith(r'\markup '):
-            result = result.lstrip(r'\markup ')
+            result = result[8:]
         else:
             raise ValueError(result)
         return result

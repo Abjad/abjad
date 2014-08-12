@@ -163,23 +163,3 @@
 39. Redefine math operations on Division.
     Should return Division objects where appropriate.
     Compare with NonreducedFraction.
-
-40. Fix whatever causes the 'M' at the start of 'Markup' to truncate:
-
-    Score (2014) - materials directory - tempo inventory (EDIT+)
-    
-       1: 4=72
-       2: 4=108
-       3: 4=90
-       4: 4=135
-       5: arkup {
-    	\smaller
-    		\general-align
-    			#Y
-    			#DOWN
-    			\note-by-number
-    				#2
-    				#0
-    				#1
-    	" = 67.5"
-    	}
