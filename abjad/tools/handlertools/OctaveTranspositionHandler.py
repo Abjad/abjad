@@ -4,6 +4,8 @@ from abjad.tools.handlertools.PitchHandler import PitchHandler
 
 
 class OctaveTranspositionHandler(PitchHandler):
+    r'''Octave transposition handler.
+    '''
 
     ### INITIALIZER ###
 

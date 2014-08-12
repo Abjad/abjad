@@ -11,6 +11,8 @@ class TerracedDynamicsHandler(DynamicHandler):
     r'''Terraced dynamics handler.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, dynamics=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if dynamics is None:
@@ -50,7 +52,7 @@ class TerracedDynamicsHandler(DynamicHandler):
                 ),
             )
 
-    ###  PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def dynamics(self):

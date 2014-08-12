@@ -5,6 +5,8 @@ from abjad.tools import scoretools
 
 
 class Handler(abctools.AbjadObject):
+    r'''Handler.
+    '''
 
     ### CLASS VARIABLES ###
 

@@ -4,6 +4,8 @@ from abjad.tools.handlertools.PitchHandler import PitchHandler
 
 
 class TimewisePitchClassHandler(PitchHandler):
+    r'''Timewise pitch-class handler.
+    '''
 
     ### INITIALIZER ###
 

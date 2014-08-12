@@ -5,6 +5,8 @@ from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class RepeatedMarkupHandler(ArticulationHandler):
+    r'''Repeated markup handler.
+    '''
 
     ### INITIALIZER ###
 

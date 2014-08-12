@@ -7,6 +7,8 @@ from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class ReiteratedDynamicHandler(DynamicHandler):
+    r'''Reiterated dynamic handler.
+    '''
 
     ### INITIALIZER ###
 

@@ -6,6 +6,8 @@ from abjad.tools.handlertools.Handler import Handler
 
 
 class ArticulationHandler(Handler):
+    r'''Articulation handler.
+    '''
 
     ### CLASS VARIABLES ##
 

@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
-from abjad.tools import scoretools
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import schemetools
+from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.handlertools.DynamicHandler import DynamicHandler

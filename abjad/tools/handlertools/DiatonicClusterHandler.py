@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.handlertools.PitchHandler import PitchHandler
 
 
 class DiatonicClusterHandler(PitchHandler):
-    r'''Diatonic cluster handler:
+    r'''Diatonic cluster handler.
 
     ::
 

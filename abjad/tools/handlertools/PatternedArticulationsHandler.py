@@ -10,6 +10,10 @@ from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
 
 class PatternedArticulationsHandler(ArticulationHandler):
+    r'''Patterned articulations handler.
+    '''
+
+    ### INITIALIZER ###
 
     def __init__(
         self,

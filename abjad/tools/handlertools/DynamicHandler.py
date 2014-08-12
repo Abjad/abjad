@@ -5,6 +5,8 @@ from abjad.tools.handlertools.Handler import Handler
 
 
 class DynamicHandler(Handler):
+    r'''Dynamic handler.
+    '''
 
     ### CLASS VARIABLES ###
 

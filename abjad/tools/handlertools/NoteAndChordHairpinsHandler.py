@@ -10,6 +10,10 @@ from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class NoteAndChordHairpinsHandler(DynamicHandler):
+    r'''Note and chord hairpins handler.
+    '''
+
+    ### INTIIALIZER ###
 
     def __init__(self, hairpin_tokens=None, minimum_duration=None):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
