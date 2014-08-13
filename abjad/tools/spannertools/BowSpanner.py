@@ -3,11 +3,11 @@ from abjad import *
 from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
-from abjad.tools import spannertools
+from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
 
 
-class BowSpanner(spannertools.Spanner):
+class BowSpanner(Spanner):
     r'''Bow spanner.
 
     ..  container:: example
@@ -25,8 +25,7 @@ class BowSpanner(spannertools.Spanner):
 
         ::
 
-            >>> from experimental import newspannertools
-            >>> attach(newspannertools.BowSpanner(), staff[:])
+            >>> attach(spannertools.BowSpanner(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -84,7 +83,7 @@ class BowSpanner(spannertools.Spanner):
         self,
         overrides=None,
         ):
-        spannertools.Spanner.__init__(
+        Spanner.__init__(
             self,
             overrides=overrides,
             )
