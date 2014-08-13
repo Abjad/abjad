@@ -42,6 +42,7 @@ class Tempo(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotation_only',
         '_default_scope',
         '_duration',
         '_markup',
@@ -62,6 +63,7 @@ class Tempo(AbjadObject):
         ):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
+        self._annotation_only = None
         self._default_scope = scoretools.Score
         assert isinstance(textual_indication, (str, type(None)))
         arguments = (duration, units_per_minute, textual_indication)
@@ -397,6 +399,8 @@ class Tempo(AbjadObject):
 
     @property
     def _lilypond_format(self):
+        if self._annotation_only:
+            return []
         text, equation = None, None
         if self.textual_indication is not None:
             text = self.textual_indication
@@ -431,6 +435,21 @@ class Tempo(AbjadObject):
             self._storage_format_specification,
             is_indented=False,
             )
+
+    ### PRIVATE METHODS ###
+
+    def _to_markup(self):
+        from abjad.tools import markuptools
+        if self.markup is not None:
+            return self.markup
+        duration_log = int(math.log(self.duration.denominator, 2))
+        dot_count = self.duration.dot_count
+        units_per_minute = self.units_per_minute
+        string = r'\smaller \general-align #Y #DOWN'
+        string += r' \note-by-number #{} #{} #1 " = {}"'
+        string = string.format(duration_log, dot_count, units_per_minute)
+        markup = markuptools.Markup(string)
+        return markup
 
     ### PUBLIC PROPERTIES ###
 

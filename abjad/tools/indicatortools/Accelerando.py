@@ -51,6 +51,7 @@ class Accelerando(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotation_only',
         '_default_scope',
         '_markup',
         )
@@ -60,6 +61,7 @@ class Accelerando(AbjadObject):
     def __init__(self, markup=None):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
+        self._annotation_only = None
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
         if markup is not None:
@@ -221,9 +223,10 @@ class Accelerando(AbjadObject):
     def _lilypond_format_bundle(self):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        markup = self.markup or self._default_markup
-        markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
+        if not self._annotation_only:
+            markup = self.markup or self._default_markup
+            markup_format_pieces = markup._get_format_pieces()
+            lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
         
     ### PUBLIC PROPERTIES ###

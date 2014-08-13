@@ -94,7 +94,7 @@ class StaffLinesSpanner(Spanner):
                     property_path='line-count',
                     value=self.lines,
                     )
-                string = '\n'.join(override.override_format_pieces)
+                string = '\n'.join(override._override_format_pieces)
                 result.append(string)
             else:
                 override = lilypondnametools.LilyPondGrobOverride(
@@ -104,7 +104,7 @@ class StaffLinesSpanner(Spanner):
                     property_path='line-positions',
                     value=schemetools.SchemeVector(*self.lines),
                     )
-                string = '\n'.join(override.override_format_pieces)
+                string = '\n'.join(override._override_format_pieces)
                 result.append(string)
             result.append(r'\startStaff')
         return result

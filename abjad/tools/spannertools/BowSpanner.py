@@ -203,7 +203,7 @@ class BowSpanner(Spanner):
             property_path='stencil',
             value=schemetools.Scheme('ly:text-interface::print'),
             )
-        string = '\n'.join(override_.override_format_pieces)
+        string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(string)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
@@ -211,7 +211,7 @@ class BowSpanner(Spanner):
             property_path='text',
             value=bow_contact_point.markup,
             )
-        string = '\n'.join(override_.override_format_pieces)
+        string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(string)
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -220,7 +220,7 @@ class BowSpanner(Spanner):
             property_path='Y-offset',
             value=y_offset,
             )
-        string = '\n'.join(override_.override_format_pieces)
+        string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(string)
 
     def _make_bow_direction_change_contributions(
@@ -270,15 +270,11 @@ class BowSpanner(Spanner):
                 bow_motion_technique.glissando_style,
                 quoting="'",
                 )
-            bow_motion_override = lilypondnametools.LilyPondGrobOverride(
+            override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='Glissando',
                 is_once=True,
                 property_path='style',
                 value=style,
                 )
-            bow_motion_override_string = '\n'.join(
-                bow_motion_override.override_format_pieces,
-                )
-            lilypond_format_bundle.grob_overrides.append(
-                bow_motion_override_string,
-                )
+            string = '\n'.join(override_._override_format_pieces)
+            lilypond_format_bundle.grob_overrides.append(string)
