@@ -5,17 +5,19 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class BendAfter(AbjadObject):
     r'''A fall or doit.
 
-    ::
+    ..  container:: example
 
-        >>> note = Note("c'4")
-        >>> bend = indicatortools.BendAfter(-4)
-        >>> attach(bend, note)
-        >>> show(note) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> note = Note("c'4")
+            >>> bend = indicatortools.BendAfter(-4)
+            >>> attach(bend, note)
+            >>> show(note) # doctest: +SKIP
 
-        >>> print(format(note))
-        c'4 - \bendAfter #'-4.0
+        ..  doctest::
+
+            >>> print(format(note))
+            c'4 - \bendAfter #'-4.0
 
     '''
 
@@ -41,6 +43,29 @@ class BendAfter(AbjadObject):
     def __copy__(self, *args):
         r'''Copies bend after.
 
+        ..  container:: example
+
+            ::
+
+                >>> import copy
+                >>> bend_1 = indicatortools.BendAfter(bend_amount=-2)
+                >>> bend_2 = copy.copy(bend_1)
+
+            ::
+
+                >>> str(bend_1) == str(bend_2)
+                True
+
+            ::
+
+                >>> bend_1 == bend_2
+                True
+
+            ::
+
+                >>> bend_1 is bend_2
+                False
+
         Returns new bend after.
         '''
         return type(self)(self.bend_amount)
@@ -48,6 +73,41 @@ class BendAfter(AbjadObject):
     def __eq__(self, expr):
         r'''Is true when `expr` is a bend after indication with bend amount
         equal to that of this bend after indication after. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> bend_1 = indicatortools.BendAfter(bend_amount=-4)
+                >>> bend_2 = indicatortools.BendAfter(bend_amount=-4)
+                >>> bend_3 = indicatortools.BendAfter(bend_amount=-2)
+
+            ::
+
+                >>> bend_1 == bend_1
+                True
+                >>> bend_1 == bend_2
+                True
+                >>> bend_1 == bend_3
+                False
+
+            ::
+
+                >>> bend_2 == bend_1
+                True
+                >>> bend_2 == bend_2
+                True
+                >>> bend_2 == bend_3
+                False
+
+            ::
+
+                >>> bend_3 == bend_1
+                False
+                >>> bend_3 == bend_2
+                False
+                >>> bend_3 == bend_3
+                True
 
         Returns boolean.
         '''
@@ -59,14 +119,21 @@ class BendAfter(AbjadObject):
     def __hash__(self):
         r'''Hashes bend after.
 
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+        Required to be explicitely redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
         return super(BendAfter, self).__hash__()
 
     def __str__(self):
-        r'''String representation of bend after.
+        r'''Gets string representation of bend after.
+
+        ..  container:: example
+
+            ::
+
+                >>> str(indicatortools.BendAfter())
+                "- \\bendAfter #'-4.0"
 
         Returns string.
         '''
@@ -93,12 +160,15 @@ class BendAfter(AbjadObject):
 
     @property
     def bend_amount(self):
-        r'''Amount of bend after.
+        r'''Gets bend amount of bend after.
 
-        ::
+        ..  container:: example
 
-            >>> bend.bend_amount
-            -4.0
+            ::
+
+                >>> bend = indicatortools.BendAfter()
+                >>> bend.bend_amount
+                -4.0
 
         Returns float.
         '''
