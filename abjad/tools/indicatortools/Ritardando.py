@@ -10,31 +10,34 @@ class Ritardando(AbjadObject):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
+            >>> score = Score([staff])
             >>> ritardando = indicatortools.Ritardando()
             >>> markup = Markup('foo')
             >>> attach(ritardando, staff[0])
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'4 ^ \markup {
-                    \large
-                        {
-                            \italic
-                                {
-                                    rit.
-                                }
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    c'4 ^ \markup {
+                        \large
+                            {
+                                \italic
+                                    {
+                                        rit.
+                                    }
+                            }
                         }
-                    }
-                d'4
-                e'4
-                f'4
-            }
+                    d'4
+                    e'4
+                    f'4
+                }
+            >>
 
     Ritardandi format as LilyPond markup.
 
@@ -49,6 +52,7 @@ class Ritardando(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_markup',
         )
 
@@ -56,6 +60,9 @@ class Ritardando(AbjadObject):
 
     def __init__(self, markup=None):
         from abjad.tools import markuptools
+        from abjad.tools import scoretools
+        # TODO: make default scope work
+        #self._default_scope = scoretools.Score
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -186,8 +193,20 @@ class Ritardando(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='markup',
+                command='m',
+                editor=idetools.getters.get_markup,
+                ),
+            )
+
+    @property
     def _contents_repr_string(self):
-        return str(self.bend_amount)
+        return str(self)
 
     @property
     def _default_markup(self):
