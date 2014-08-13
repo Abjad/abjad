@@ -7,7 +7,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 b'2 c''2")
+            >>> staff = Staff("c'4 d' e' f' g' f' e' d' c'2")
             >>> attach(TimeSignature((2, 4)), staff)
             >>> score = Score([staff])
 
@@ -19,7 +19,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(''), staff[:])
+            >>> attach(spannertools.TempoSpanner(), staff[:])
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -35,10 +35,11 @@ class TempoSpanner(Spanner):
                     f'4
                     \tempo 4=90
                     g'4
-                    a'4
-                    b'2
+                    f'4
+                    e'4
+                    d'4
                     \tempo 4=60
-                    c''2
+                    c'2
                 }
             >>
 

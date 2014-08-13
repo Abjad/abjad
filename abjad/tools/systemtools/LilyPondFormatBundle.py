@@ -22,6 +22,7 @@ class LilyPondFormatBundle(AbjadObject):
         '_grob_reverts',
         )
 
+    # TODO: implement as full-fledged class in its own right in systemtools
     ### INNER CLASS DEFINITION ###
 
     class SlotContributions(AbjadObject):

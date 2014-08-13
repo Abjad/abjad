@@ -12,7 +12,6 @@ class Accelerando(AbjadObject):
             >>> staff = Staff("c'4 d' e' f'")
             >>> score = Score([staff])
             >>> accelerando = indicatortools.Accelerando()
-            >>> markup = Markup('foo')
             >>> attach(accelerando, staff[0])
 
         ::
@@ -140,7 +139,7 @@ class Accelerando(AbjadObject):
     def __hash__(self):
         r'''Hashes accelerando.
 
-        Required to be explicitely redefined on Python 3 if __eq__ changes.
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
@@ -222,7 +221,9 @@ class Accelerando(AbjadObject):
     def _lilypond_format_bundle(self):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
+        markup = self.markup or self._default_markup
+        markup_format_pieces = markup._get_format_pieces()
+        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
         
     ### PUBLIC PROPERTIES ###
