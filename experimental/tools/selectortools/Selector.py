@@ -88,7 +88,10 @@ class Selector(AbjadValueObject):
 
         Returns a selection of selections or containers.
         '''
-        prototype = (scoretools.Container, selectiontools.Selection)
+        prototype = (
+            scoretools.Component,
+            selectiontools.Selection,
+            )
         if not isinstance(expr, prototype):
             expr = select(expr)
         expr = (expr,)
@@ -96,8 +99,6 @@ class Selector(AbjadValueObject):
         callbacks = self.callbacks or ()
         for callback in callbacks:
             expr = callback(expr)
-            assert all(isinstance(x, prototype) for x in expr), \
-                (expr, callback)
         return selectiontools.Selection(expr)
 
     def __getitem__(self, item):
@@ -427,7 +428,11 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"))
+                Note("d'4")
+                Note("d'4")
+                Note("e'4")
+                Note("e'4")
+                Note("e'4")
 
         Emits a new selector.
         '''
@@ -525,6 +530,38 @@ class Selector(AbjadValueObject):
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
             argument=(1, -1),
+            apply_to_each=False,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def most(self):
+        r'''Configures selector to select all but the last selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.most()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'4"),)
+                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            argument=(None, -1),
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()

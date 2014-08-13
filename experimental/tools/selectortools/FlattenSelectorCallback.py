@@ -17,7 +17,4 @@ class FlattenSelectorCallback(AbjadValueObject):
     def __call__(self, expr):
         r'''Iterates `expr`.
         '''
-        return (
-            selectiontools.Selection(
-                sequencetools.flatten_sequence(expr)),
-            )
+        return sequencetools.flatten_sequence(expr)
