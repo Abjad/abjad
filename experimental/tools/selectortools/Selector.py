@@ -56,7 +56,10 @@ class Selector(AbjadValueObject):
                     length=3,
                     parts=Exact,
                     ),
-                selectortools.SliceSelectorCallback(0),
+                selectortools.SliceSelectorCallback(
+                    argument=0,
+                    apply_to_each=True,
+                    ),
                 ),
             )
 
@@ -376,6 +379,94 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def first(self):
+        r'''Configures selector to select first selection
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.first()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'4"),)
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            argument=0,
+            apply_to_each=False,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def flatten(self):
+        r'''Configures selector to select the last selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.middle()
+                >>> selector = selector.flatten()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"))
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.FlattenSelectorCallback()
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def last(self):
+        r'''Configures selector to select the last selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.last()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("f'4"),)
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            argument=-1,
+            apply_to_each=False,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def longer_than(self, count):
         r'''Configures selector to select containers or selections whose length
         is longer than `count`.
@@ -404,6 +495,69 @@ class Selector(AbjadValueObject):
         callback = selectortools.LengthSelectorCallback(
             length=count + 1,
             parts=More,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def middle(self):
+        r'''Configures selector to select all but the first or last selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.middle()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            argument=(1, -1),
+            apply_to_each=False,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def rest(self):
+        r'''Configures selector to select all but the first selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.rest()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+                LogicalTie(Note("f'4"),)
+
+        Emits a new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            argument=(1, None),
+            apply_to_each=False,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -441,8 +595,3 @@ class Selector(AbjadValueObject):
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
-
-    def with_children(self, start=None, stop=None):
-        r'''
-        '''
-        from experimental.tools import selectortools
