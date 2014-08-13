@@ -3,149 +3,335 @@ import collections
 from abjad.tools import indicatortools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class StringOrchestraScoreTemplate(AbjadObject):
-    '''String orchestra score template.
+class StringOrchestraScoreTemplate(AbjadValueObject):
+    r'''String orchestra score template.
+
+    ::
+
+        >>> template = templatetools.StringOrchestraScoreTemplate()
+        >>> score = template()
+        >>> print(format(score))
+        \context Score = "Score" <<
+            \tag #'(Violin1 Violin2 Violin3 Violin4 Violin5 Violin6 Viola1 Viola2 Viola3 Viola4 Cello1 Cello2 Cello3 Contrabass1 Contrabass2)
+            \context TimeSignatureContext = "TimeSignatureContext" {
+            }
+            \context StaffGroup = "Outer Staff Group" <<
+                \context ViolinStaffGroup = "Violin Staff Group" <<
+                    \tag #'Violin1
+                    \context StringPerformerStaffGroup = "Violin 1 Staff Group" <<
+                        \context BowingStaff = "Violin 1 Bowing Staff" <<
+                            \context BowingVoice = "Violin 1 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 1 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 1 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin2
+                    \context StringPerformerStaffGroup = "Violin 2 Staff Group" <<
+                        \context BowingStaff = "Violin 2 Bowing Staff" <<
+                            \context BowingVoice = "Violin 2 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 2 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 2 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin3
+                    \context StringPerformerStaffGroup = "Violin 3 Staff Group" <<
+                        \context BowingStaff = "Violin 3 Bowing Staff" <<
+                            \context BowingVoice = "Violin 3 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 3 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 3 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin4
+                    \context StringPerformerStaffGroup = "Violin 4 Staff Group" <<
+                        \context BowingStaff = "Violin 4 Bowing Staff" <<
+                            \context BowingVoice = "Violin 4 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 4 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 4 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin5
+                    \context StringPerformerStaffGroup = "Violin 5 Staff Group" <<
+                        \context BowingStaff = "Violin 5 Bowing Staff" <<
+                            \context BowingVoice = "Violin 5 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 5 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 5 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin6
+                    \context StringPerformerStaffGroup = "Violin 6 Staff Group" <<
+                        \context BowingStaff = "Violin 6 Bowing Staff" <<
+                            \context BowingVoice = "Violin 6 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 6 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 6 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+                \context ViolaStaffGroup = "Viola Staff Group" <<
+                    \tag #'Viola1
+                    \context StringPerformerStaffGroup = "Viola 1 Staff Group" <<
+                        \context BowingStaff = "Viola 1 Bowing Staff" <<
+                            \context BowingVoice = "Viola 1 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Viola 1 Fingering Staff" <<
+                            \clef "alto"
+                            \context FingeringVoice = "Viola 1 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Viola2
+                    \context StringPerformerStaffGroup = "Viola 2 Staff Group" <<
+                        \context BowingStaff = "Viola 2 Bowing Staff" <<
+                            \context BowingVoice = "Viola 2 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Viola 2 Fingering Staff" <<
+                            \clef "alto"
+                            \context FingeringVoice = "Viola 2 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Viola3
+                    \context StringPerformerStaffGroup = "Viola 3 Staff Group" <<
+                        \context BowingStaff = "Viola 3 Bowing Staff" <<
+                            \context BowingVoice = "Viola 3 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Viola 3 Fingering Staff" <<
+                            \clef "alto"
+                            \context FingeringVoice = "Viola 3 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Viola4
+                    \context StringPerformerStaffGroup = "Viola 4 Staff Group" <<
+                        \context BowingStaff = "Viola 4 Bowing Staff" <<
+                            \context BowingVoice = "Viola 4 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Viola 4 Fingering Staff" <<
+                            \clef "alto"
+                            \context FingeringVoice = "Viola 4 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+                \context CelloStaffGroup = "Cello Staff Group" <<
+                    \tag #'Cello1
+                    \context StringPerformerStaffGroup = "Cello 1 Staff Group" <<
+                        \context BowingStaff = "Cello 1 Bowing Staff" <<
+                            \context BowingVoice = "Cello 1 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Cello 1 Fingering Staff" <<
+                            \clef "bass"
+                            \context FingeringVoice = "Cello 1 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Cello2
+                    \context StringPerformerStaffGroup = "Cello 2 Staff Group" <<
+                        \context BowingStaff = "Cello 2 Bowing Staff" <<
+                            \context BowingVoice = "Cello 2 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Cello 2 Fingering Staff" <<
+                            \clef "bass"
+                            \context FingeringVoice = "Cello 2 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Cello3
+                    \context StringPerformerStaffGroup = "Cello 3 Staff Group" <<
+                        \context BowingStaff = "Cello 3 Bowing Staff" <<
+                            \context BowingVoice = "Cello 3 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Cello 3 Fingering Staff" <<
+                            \clef "bass"
+                            \context FingeringVoice = "Cello 3 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+                \context ContrabassStaffGroup = "Contrabass Staff Group" <<
+                    \tag #'Contrabass1
+                    \context StringPerformerStaffGroup = "Contrabass 1 Staff Group" <<
+                        \context BowingStaff = "Contrabass 1 Bowing Staff" <<
+                            \context BowingVoice = "Contrabass 1 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Contrabass 1 Fingering Staff" <<
+                            \clef "bass_8"
+                            \context FingeringVoice = "Contrabass 1 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Contrabass2
+                    \context StringPerformerStaffGroup = "Contrabass 2 Staff Group" <<
+                        \context BowingStaff = "Contrabass 2 Bowing Staff" <<
+                            \context BowingVoice = "Contrabass 2 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Contrabass 2 Fingering Staff" <<
+                            \clef "bass_8"
+                            \context FingeringVoice = "Contrabass 2 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+            >>
+        >>
+
+    As a string quartet:
 
     ::
 
         >>> template = templatetools.StringOrchestraScoreTemplate(
-        ...     violin_count=6,
-        ...     viola_count=4,
-        ...     cello_count=3,
-        ...     contrabass_count=2,
+        ...     violin_count=2,
+        ...     viola_count=1,
+        ...     cello_count=1,
+        ...     contrabass_count=0,
         ...     )
         >>> score = template()
-
-    ::
-
-        >>> score
-        <Score-"String Orchestra Score"<<4>>>
-
-    ..  doctest::
-
         >>> print(format(score))
-        \context Score = "String Orchestra Score" <<
-            \context StaffGroup = "Violin Staff Group" <<
-                \context Staff = "Violin 1 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 1 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 1 }
-                    \context Voice = "Violin 1 Voice" {
-                    }
-                }
-                \context Staff = "Violin 2 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 2 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 2 }
-                    \context Voice = "Violin 2 Voice" {
-                    }
-                }
-                \context Staff = "Violin 3 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 3 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 3 }
-                    \context Voice = "Violin 3 Voice" {
-                    }
-                }
-                \context Staff = "Violin 4 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 4 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 4 }
-                    \context Voice = "Violin 4 Voice" {
-                    }
-                }
-                \context Staff = "Violin 5 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 5 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 5 }
-                    \context Voice = "Violin 5 Voice" {
-                    }
-                }
-                \context Staff = "Violin 6 Staff" {
-                    \clef "treble"
-                    \set Staff.instrumentName = \markup { Violin 6 }
-                    \set Staff.shortInstrumentName = \markup { Vln. 6 }
-                    \context Voice = "Violin 6 Voice" {
-                    }
-                }
-            >>
-            \context StaffGroup = "Viola Staff Group" <<
-                \context Staff = "Viola 1 Staff" {
-                    \clef "alto"
-                    \set Staff.instrumentName = \markup { Viola 1 }
-                    \set Staff.shortInstrumentName = \markup { Vla. 1 }
-                    \context Voice = "Viola 1 Voice" {
-                    }
-                }
-                \context Staff = "Viola 2 Staff" {
-                    \clef "alto"
-                    \set Staff.instrumentName = \markup { Viola 2 }
-                    \set Staff.shortInstrumentName = \markup { Vla. 2 }
-                    \context Voice = "Viola 2 Voice" {
-                    }
-                }
-                \context Staff = "Viola 3 Staff" {
-                    \clef "alto"
-                    \set Staff.instrumentName = \markup { Viola 3 }
-                    \set Staff.shortInstrumentName = \markup { Vla. 3 }
-                    \context Voice = "Viola 3 Voice" {
-                    }
-                }
-                \context Staff = "Viola 4 Staff" {
-                    \clef "alto"
-                    \set Staff.instrumentName = \markup { Viola 4 }
-                    \set Staff.shortInstrumentName = \markup { Vla. 4 }
-                    \context Voice = "Viola 4 Voice" {
-                    }
-                }
-            >>
-            \context StaffGroup = "Cello Staff Group" <<
-                \context Staff = "Cello 1 Staff" {
-                    \clef "bass"
-                    \set Staff.instrumentName = \markup { Cello 1 }
-                    \set Staff.shortInstrumentName = \markup { Vc. 1 }
-                    \context Voice = "Cello 1 Voice" {
-                    }
-                }
-                \context Staff = "Cello 2 Staff" {
-                    \clef "bass"
-                    \set Staff.instrumentName = \markup { Cello 2 }
-                    \set Staff.shortInstrumentName = \markup { Vc. 2 }
-                    \context Voice = "Cello 2 Voice" {
-                    }
-                }
-                \context Staff = "Cello 3 Staff" {
-                    \clef "bass"
-                    \set Staff.instrumentName = \markup { Cello 3 }
-                    \set Staff.shortInstrumentName = \markup { Vc. 3 }
-                    \context Voice = "Cello 3 Voice" {
-                    }
-                }
-            >>
-            \context StaffGroup = "Contrabass Staff Group" <<
-                \context Staff = "Contrabass 1 Staff" {
-                    \clef "bass_8"
-                    \set Staff.instrumentName = \markup { Contrabass 1 }
-                    \set Staff.shortInstrumentName = \markup { Cb. 1 }
-                    \context Voice = "Contrabass 1 Voice" {
-                    }
-                }
-                \context Staff = "Contrabass 2 Staff" {
-                    \clef "bass_8"
-                    \set Staff.instrumentName = \markup { Contrabass 2 }
-                    \set Staff.shortInstrumentName = \markup { Cb. 2 }
-                    \context Voice = "Contrabass 2 Voice" {
-                    }
-                }
+        \context Score = "Score" <<
+            \tag #'(Violin1 Violin2 Viola Cello)
+            \context TimeSignatureContext = "TimeSignatureContext" {
+            }
+            \context StaffGroup = "Outer Staff Group" <<
+                \context ViolinStaffGroup = "Violin Staff Group" <<
+                    \tag #'Violin1
+                    \context StringPerformerStaffGroup = "Violin 1 Staff Group" <<
+                        \context BowingStaff = "Violin 1 Bowing Staff" <<
+                            \context BowingVoice = "Violin 1 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 1 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 1 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                    \tag #'Violin2
+                    \context StringPerformerStaffGroup = "Violin 2 Staff Group" <<
+                        \context BowingStaff = "Violin 2 Bowing Staff" <<
+                            \context BowingVoice = "Violin 2 Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Violin 2 Fingering Staff" <<
+                            \clef "treble"
+                            \context FingeringVoice = "Violin 2 Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+                \context ViolaStaffGroup = "Viola Staff Group" <<
+                    \tag #'Viola
+                    \context StringPerformerStaffGroup = "Viola Staff Group" <<
+                        \context BowingStaff = "Viola Bowing Staff" <<
+                            \context BowingVoice = "Viola Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Viola Fingering Staff" <<
+                            \clef "alto"
+                            \context FingeringVoice = "Viola Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+                \context CelloStaffGroup = "Cello Staff Group" <<
+                    \tag #'Cello
+                    \context StringPerformerStaffGroup = "Cello Staff Group" <<
+                        \context BowingStaff = "Cello Bowing Staff" <<
+                            \context BowingVoice = "Cello Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Cello Fingering Staff" <<
+                            \clef "bass"
+                            \context FingeringVoice = "Cello Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
             >>
         >>
 
-    Returns score template.
+    As a cello solo:
+
+    ::
+
+        >>> template = templatetools.StringOrchestraScoreTemplate(
+        ...     violin_count=0,
+        ...     viola_count=0,
+        ...     cello_count=1,
+        ...     contrabass_count=0,
+        ...     )
+        >>> score = template()
+        >>> print(format(score))
+        \context Score = "Score" <<
+            \tag #'(Cello)
+            \context TimeSignatureContext = "TimeSignatureContext" {
+            }
+            \context StaffGroup = "Outer Staff Group" <<
+                \context CelloStaffGroup = "Cello Staff Group" <<
+                    \tag #'Cello
+                    \context StringPerformerStaffGroup = "Cello Staff Group" <<
+                        \context BowingStaff = "Cello Bowing Staff" <<
+                            \context BowingVoice = "Cello Bowing Voice" {
+                            }
+                        >>
+                        \context FingeringStaff = "Cello Fingering Staff" <<
+                            \clef "bass"
+                            \context FingeringVoice = "Cello Fingering Voice" {
+                            }
+                        >>
+                    >>
+                >>
+            >>
+        >>
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_cello_count',
+        '_contrabass_count',
+        '_split_hands',
+        '_use_percussion_clefs',
+        '_viola_count',
+        '_violin_count',
+        '_voice_name_abbreviations',
+        )
 
     ### INITIALIZER ###
 
@@ -155,6 +341,8 @@ class StringOrchestraScoreTemplate(AbjadObject):
         viola_count=4,
         cello_count=3,
         contrabass_count=2,
+        split_hands=True,
+        use_percussion_clefs=False,
         ):
         assert 0 <= violin_count
         assert 0 <= viola_count
@@ -164,6 +352,119 @@ class StringOrchestraScoreTemplate(AbjadObject):
         self._viola_count = int(viola_count)
         self._cello_count = int(cello_count)
         self._contrabass_count = int(contrabass_count)
+        self._split_hands = bool(split_hands)
+        self._use_percussion_clefs = bool(use_percussion_clefs)
+        self._voice_name_abbreviations = collections.OrderedDict()
+
+    ### PRIVATE METHODS ###
+
+    def _make_instrument_staff_group(
+        self,
+        clef_name=None,
+        count=None,
+        instrument=None,
+        ):
+        instrument_name = instrument.instrument_name.title()
+        instrument_staff_group = scoretools.StaffGroup(
+            context_name='{}StaffGroup'.format(instrument_name),
+            name='{} Staff Group'.format(instrument_name),
+            )
+        tag_names = []
+        if count == 1:
+            performer_staff_group, tag_name = \
+                self._make_performer_staff_group(
+                    clef_name=clef_name,
+                    instrument=instrument,
+                    number=None,
+                    )
+            instrument_staff_group.append(performer_staff_group)
+            tag_names.append(tag_name)
+        else:
+            for i in range(1, count + 1):
+                performer_staff_group, tag_name = \
+                    self._make_performer_staff_group(
+                        clef_name=clef_name,
+                        instrument=instrument,
+                        number=i,
+                        )
+                instrument_staff_group.append(performer_staff_group)
+                tag_names.append(tag_name)
+        return instrument_staff_group, tag_names
+
+    def _make_performer_staff_group(
+        self,
+        clef_name=None,
+        instrument=None,
+        number=None,
+        ):
+        if number is not None:
+            name = '{} {}'.format(
+                instrument.instrument_name.title(),
+                number,
+                )
+        else:
+            name = instrument.instrument_name.title()
+        pitch_range = instrument.pitch_range
+        staff_group = scoretools.StaffGroup(
+            context_name='StringPerformerStaffGroup',
+            name='{} Staff Group'.format(name),
+            )
+        tag_name = name.replace(' ', '')
+        tag_string = "tag #'{}".format(tag_name)
+        tag_command = indicatortools.LilyPondCommand(
+            tag_string,
+            'before',
+            )
+        attach(tag_command, staff_group)
+        if self.split_hands:
+            lh_voice = scoretools.Voice(
+                context_name='FingeringVoice',
+                name='{} Fingering Voice'.format(name),
+                )
+            abbreviation = lh_voice.name.lower().replace(' ', '_')
+            self.voice_name_abbreviations[abbreviation] = lh_voice.name
+            lh_staff = scoretools.Staff(
+                [
+                    lh_voice
+                    ],
+                context_name='FingeringStaff',
+                name='{} Fingering Staff'.format(name),
+                )
+            lh_staff.is_simultaneous = True
+            attach(pitch_range, lh_staff)
+            attach(indicatortools.Clef(clef_name), lh_staff)
+            rh_voice = scoretools.Voice(
+                context_name='BowingVoice',
+                name='{} Bowing Voice'.format(name),
+                )
+            abbreviation = rh_voice.name.lower().replace(' ', '_')
+            self.voice_name_abbreviations[abbreviation] = rh_voice.name
+            rh_staff = scoretools.Staff(
+                [
+                    rh_voice
+                    ],
+                context_name='BowingStaff',
+                name='{} Bowing Staff'.format(name),
+                )
+            rh_staff.is_simultaneous = True
+            staff_group.extend([rh_staff, lh_staff])
+        else:
+            lh_voice = scoretools.Voice(
+                context_name='FingeringVoice',
+                name='{} Voice'.format(name),
+                )
+            lh_staff = scoretools.Staff(
+                [
+                    lh_voice
+                    ],
+                context_name='FingeringStaff',
+                name='{} Staff'.format(name),
+                )
+            lh_staff.is_simultaneous = True
+            attach(pitch_range, lh_staff)
+            attach(indicatortools.Clef(clef_name), lh_staff)
+            staff_group.append(lh_staff)
+        return staff_group, tag_name
 
     ### SPECIAL METHODS ###
 
@@ -173,92 +474,103 @@ class StringOrchestraScoreTemplate(AbjadObject):
         Returns score.
         '''
 
-        string_orchestra_score = scoretools.Score(
-            name='String Orchestra Score',
+        ### TAGS ###
+
+        tag_names = []
+
+        ### SCORE ###
+
+        staff_group = scoretools.StaffGroup(
+            name='Outer Staff Group',
             )
 
+        score = scoretools.Score(
+            [staff_group],
+            name='Score',
+            )
+
+        ### VIOLINS ###
+
         if self.violin_count:
-            violin_staff_group = scoretools.StaffGroup(
-                name='Violin Staff Group',
-                )
-            for i in range(1, self.violin_count + 1):
-                violin_voice = scoretools.Voice(
-                    name='Violin {} Voice'.format(i),
+            clef_name = 'treble'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Violin()
+            instrument_count = self.violin_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
                     )
-                violin_staff = scoretools.Staff(
-                    [violin_voice], name='Violin {} Staff'.format(i))
-                clef = indicatortools.Clef('treble')
-                attach(clef, violin_staff)
-                violin = instrumenttools.Violin(
-                    instrument_name_markup='Violin {}'.format(i),
-                    short_instrument_name_markup='Vln. {}'.format(i),
-                    )
-                attach(violin, violin_staff)
-                violin_staff_group.append(violin_staff)
-            string_orchestra_score.append(violin_staff_group)
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### VIOLAS ###
 
         if self.viola_count:
-            viola_staff_group = scoretools.StaffGroup(
-                name='Viola Staff Group',
-                )
-            for i in range(1, self.viola_count + 1):
-                viola_voice = scoretools.Voice(
-                    name='Viola {} Voice'.format(i),
+            clef_name = 'alto'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Viola()
+            instrument_count = self.viola_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
                     )
-                viola_staff = scoretools.Staff(
-                    [viola_voice], name='Viola {} Staff'.format(i))
-                clef = indicatortools.Clef('alto')
-                attach(clef, viola_staff)
-                viola = instrumenttools.Viola(
-                    instrument_name_markup='Viola {}'.format(i),
-                    short_instrument_name_markup='Vla. {}'.format(i),
-                    )
-                attach(viola, viola_staff)
-                viola_staff_group.append(viola_staff)
-            string_orchestra_score.append(viola_staff_group)
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### CELLOS ###
 
         if self.cello_count:
-            cello_staff_group = scoretools.StaffGroup(
-                name='Cello Staff Group',
-                )
-            for i in range(1, self.cello_count + 1):
-                cello_voice = scoretools.Voice(
-                    name='Cello {} Voice'.format(i),
+            clef_name = 'bass'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Cello()
+            instrument_count = self.cello_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
                     )
-                cello_staff = scoretools.Staff(
-                    [cello_voice], name='Cello {} Staff'.format(i))
-                clef = indicatortools.Clef('bass')
-                attach(clef, cello_staff)
-                cello = instrumenttools.Cello(
-                    instrument_name_markup='Cello {}'.format(i),
-                    short_instrument_name_markup='Vc. {}'.format(i),
-                    )
-                attach(cello, cello_staff)
-                cello_staff_group.append(cello_staff)
-            string_orchestra_score.append(cello_staff_group)
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### BASSES ###
 
         if self.contrabass_count:
-            contrabass_staff_group = scoretools.StaffGroup(
-                name='Contrabass Staff Group',
-                )
-            for i in range(1, self.contrabass_count + 1):
-                contrabass_voice = scoretools.Voice(
-                    name='Contrabass {} Voice'.format(i),
+            clef_name = 'bass_8'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Contrabass()
+            instrument_count = self.contrabass_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
                     )
-                contrabass_staff = scoretools.Staff(
-                    [contrabass_voice], name='Contrabass {} Staff'.format(i))
-                clef = indicatortools.Clef('bass_8')
-                attach(clef, contrabass_staff)
-                contrabass = instrumenttools.Contrabass(
-                    instrument_name_markup='Contrabass {}'.format(i),
-                    short_instrument_name_markup='Cb. {}'.format(i),
-                    )
-                attach(contrabass, contrabass_staff)
-                contrabass_staff_group.append(contrabass_staff)
-            string_orchestra_score.append(contrabass_staff_group)
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
 
-        # return string quartet score
-        return string_orchestra_score
+        ### TIME SIGNATURE CONTEXT ###
+
+        time_signature_context = scoretools.Context(
+            name='TimeSignatureContext',
+            context_name='TimeSignatureContext',
+            )
+        instrument_tags = ' '.join(tag_names)
+        tag_string = "tag #'({})".format(instrument_tags)
+        tag_command = indicatortools.LilyPondCommand(tag_string, 'before')
+        attach(tag_command, time_signature_context)
+
+        score.insert(0, time_signature_context)
+
+        return score
 
     ### PUBLIC PROPERTIES ###
 
@@ -279,6 +591,19 @@ class StringOrchestraScoreTemplate(AbjadObject):
         return self._contrabass_count
 
     @property
+    def split_hands(self):
+        r'''Is true if each performer's hand receives a separate staff.
+        '''
+        return self._split_hands
+
+    @property
+    def use_percussion_clefs(self):
+        r'''Is true if each staff should use a percussion clef rather than the
+        normal clef for that instrument.
+        '''
+        return self._use_percussion_clefs
+
+    @property
     def viola_count(self):
         r'''Number of violas in string orcestra.
 
@@ -293,3 +618,9 @@ class StringOrchestraScoreTemplate(AbjadObject):
         Returns nonnegative integer.
         '''
         return self._violin_count
+
+    @property
+    def voice_name_abbreviations(self):
+        r'''Voice name abbreviations.
+        '''
+        return self._voice_name_abbreviations
