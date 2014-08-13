@@ -524,39 +524,6 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def longer_than(self, count):
-        r'''Configures selector to select containers or selections whose length
-        is longer than `count`.
-
-        ..  container:: example
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.longer_than(1)
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("d'8"), Note("e'8"))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
-
-        Emits new selector.
-        '''
-        from experimental.tools import selectortools
-        callback = selectortools.LengthSelectorCallback(
-            length=count + 1,
-            parts=More,
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
     def middle(self):
         r'''Configures selector to select all but the first or last selection.
 
@@ -583,6 +550,39 @@ class Selector(AbjadValueObject):
         callback = selectortools.SliceSelectorCallback(
             argument=(1, -1),
             apply_to_each=False,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def more_than(self, count):
+        r'''Configures selector to select containers or selections whose length
+        is more than `count`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.more_than(1)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Emits new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.LengthSelectorCallback(
+            length=count + 1,
+            parts=More,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -652,9 +652,9 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def shorter_than(self, count):
+    def less_than(self, count):
         r'''Configures selector to select containers or selections whose length
-        is shorter than `count`.
+        is less than `count`.
 
         ..  container:: example
 
@@ -664,7 +664,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
-                >>> selector = selector.shorter_than(3)
+                >>> selector = selector.less_than(3)
 
             ::
 
