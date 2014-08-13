@@ -23,6 +23,8 @@ class BowSpanner(Spanner):
             >>> override(staff).bar_line.transparent = True
             >>> override(staff).dots.staff_position = -8
             >>> override(staff).flag.Y_offset = -8.5
+            >>> override(staff).glissando.bound_details__left__padding = 1.5
+            >>> override(staff).glissando.bound_details__right__padding = 1.5
             >>> override(staff).glissando.thickness = 2
             >>> override(staff).script.staff_padding = 3
             >>> override(staff).staff_symbol.transparent = True
