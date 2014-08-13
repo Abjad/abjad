@@ -72,11 +72,21 @@ class TempoSpanner(Spanner):
                                     #1
                         " = 90"
                         }
-                    g'4 \startTextSpan
+                    g'4 \stopTextSpan \startTextSpan
                     f'4
                     e'4
                     d'4
-                    c'2 \stopTextSpan
+                    c'2 \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        " = 60"
+                        }
                 }
             >>
 
@@ -141,8 +151,7 @@ class TempoSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         indicators = self._get_tempo_related_indicators(leaf)
-        tempo = indicators[0]
-        tempo_trend = indicators[1]
+        tempo, tempo_trend = indicators
         if tempo is None and tempo_trend is None:
             pass
         elif tempo is None and tempo_trend is not None:
@@ -159,6 +168,7 @@ class TempoSpanner(Spanner):
                 )
         elif tempo is not None and tempo_trend is not None:
             self._start_tempo_trend_spanner_with_explicit_start(
+                leaf,
                 lilypond_format_bundle,
                 tempo,
                 tempo_trend,
@@ -179,16 +189,22 @@ class TempoSpanner(Spanner):
             string = r'\stopTextSpan'
             lilypond_format_bundle.right.spanner_stops.append(string)
         markup = tempo._to_markup()
+        markup._direction = Up
         string = format(markup, 'lilypond')
-        lilypond_format_bundle.opening.markup.append(string)
+        lilypond_format_bundle.right.markup.append(string)
 
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
+        leaf,
         lilypond_format_bundle,
         tempo,
         tempo_trend,
         ):
         assert tempo is not None and tempo_trend is not None
+        previous_tempo_trend = self._get_previous_tempo_trend(leaf)
+        if previous_tempo_trend is not None:
+            string = r'\stopTextSpan'
+            lilypond_format_bundle.right.spanner_stops.append(string)
         command = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(command)
         # TODO: implement parenthesization
