@@ -3,15 +3,17 @@ from abjad.tools.abctools import AbjadObject
 
 
 class BowPressure(AbjadObject):
-    r'''Bow pressure indicator.
+    r'''Bow pressure.
 
-    ::
+    ..  container:: example
 
-        >>> indicator = indicatortools.BowPressure('overpressure')
-        >>> print(format(indicator))
-        indicatortools.BowPressure(
-            pressure='overpressure',
-            )
+        ::
+
+            >>> bow_pressure = indicatortools.BowPressure('overpressure')
+            >>> print(format(bow_pressure))
+            indicatortools.BowPressure(
+                pressure='overpressure',
+                )
 
     '''
 
@@ -23,7 +25,8 @@ class BowPressure(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         pressure=None,
         ):
         self._pressure = pressure
@@ -32,13 +35,16 @@ class BowPressure(AbjadObject):
 
     @property
     def pressure(self):
-        r'''Gets pressure.
+        r'''Gets pressure of indicator.
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.BowPressure('underpressure')
-            >>> indicator.pressure
-            'underpressure'
+            ::
 
+                >>> bow_pressure = indicatortools.BowPressure('underpressure')
+                >>> bow_pressure.pressure
+                'underpressure'
+
+        Returns string.
         '''
         return self._pressure
