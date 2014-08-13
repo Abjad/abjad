@@ -23,7 +23,6 @@ class BowContactPoint(AbjadObject):
 
     Contact points are measured from frog to tip as a fraction between ``0`` 
     and ``1``.
-
     '''
 
     ### CLASS VARIABLES ###
