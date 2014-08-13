@@ -598,7 +598,7 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Selects components in spanner.
+        r'''Gets components in spanner.
 
         Returns selection.
         '''

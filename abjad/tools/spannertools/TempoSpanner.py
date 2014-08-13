@@ -2,8 +2,46 @@
 from abjad.tools.spannertools.Spanner import Spanner
 
 
-def TempoSpanner(Spanner):
+class TempoSpanner(Spanner):
     r'''Tempo spanner.
+
+    ..  container:: example
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 b'2 c''2")
+            >>> attach(TimeSignature((2, 4)), staff)
+            >>> score = Score([staff])
+
+        ::
+
+            >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+            >>> attach(Tempo(Duration(1, 4), 90), staff[4])
+            >>> attach(Tempo(Duration(1, 4), 60), staff[-1])
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(''), staff[:])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \time 2/4
+                    \tempo 4=60
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \tempo 4=90
+                    g'4
+                    a'4
+                    b'2
+                    \tempo 4=60
+                    c''2
+                }
+            >>
+
     '''
 
     ### CLASS VARIABLES ###
