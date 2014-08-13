@@ -36,9 +36,12 @@ class BowSpanner(Spanner):
         ::
 
             >>> leaves = staff.select_leaves()
+            >>> attach(indicatortools.BowMotionTechnique('jete'), leaves[0])
             >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
             >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
             >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
+            >>> attach(indicatortools.BowMotionTechnique('circular'),
+            ...     leaves[3])
             >>> attach(indicatortools.BowContactPoint((1, 1)), leaves[3])
             >>> attach(indicatortools.BowContactPoint((0, 1)), leaves[4])
 
@@ -65,6 +68,7 @@ class BowSpanner(Spanner):
                 \override TimeSignature #'stencil = ##f
             } {
                 \clef "percussion"
+                \once \override Glissando.style = #'dotted-line
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
@@ -93,6 +97,7 @@ class BowSpanner(Spanner):
                                 2
                         }
                     c'4 ^\upbow \glissando
+                    \once \override Glissando.style = #'zigzag
                     \once \override NoteHead.Y-offset = 2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
@@ -144,10 +149,10 @@ class BowSpanner(Spanner):
         prototype = indicatortools.BowPressure
         if inspector.has_indicator(prototype):
             bow_pressure = inspector.get_indicator(prototype)
-        bow_technique = None
-        #prototype = indicatortools.BowTechnique
-        #if inspector.has_indicator(prototype):
-        #    bow_technique = inspector.get_indicator(prototype)
+        bow_motion_technique = None
+        prototype = indicatortools.BowMotionTechnique
+        if inspector.has_indicator(prototype):
+            bow_motion_technique = inspector.get_indicator(prototype)
         string_contact_point = None
         prototype = indicatortools.StringContactPoint
         if inspector.has_indicator(prototype):
@@ -155,7 +160,7 @@ class BowSpanner(Spanner):
         return (
             bow_contact_point,
             bow_pressure,
-            bow_technique,
+            bow_motion_technique,
             string_contact_point,
             )
 
@@ -164,7 +169,7 @@ class BowSpanner(Spanner):
         indicators = self._get_bowing_indicators(leaf)
         bow_contact_point = indicators[0]
         bow_pressure = indicators[1]
-        bow_technique = indicators[2]
+        bow_motion_technique = indicators[2]
         string_contact_point = indicators[3]
         if self._is_my_only_leaf(leaf):
             return lilypond_format_bundle
@@ -181,7 +186,7 @@ class BowSpanner(Spanner):
                 )
             self._make_glissando_overrides(
                 bow_pressure=bow_pressure,
-                bow_technique=bow_technique,
+                bow_motion_technique=bow_motion_technique,
                 lilypond_format_bundle=lilypond_format_bundle,
                 string_contact_point=string_contact_point,
                 )
@@ -256,8 +261,24 @@ class BowSpanner(Spanner):
     def _make_glissando_overrides(
         self,
         bow_pressure=None,
-        bow_technique=None,
+        bow_motion_technique=None,
         lilypond_format_bundle=None,
         string_contact_point=None,
         ):
-        pass
+        if bow_motion_technique is not None:
+            style = schemetools.Scheme(
+                bow_motion_technique.glissando_style,
+                quoting="'",
+                )
+            bow_motion_override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Glissando',
+                is_once=True,
+                property_path='style',
+                value=style,
+                )
+            bow_motion_override_string = '\n'.join(
+                bow_motion_override.override_format_pieces,
+                )
+            lilypond_format_bundle.grob_overrides.append(
+                bow_motion_override_string,
+                )
