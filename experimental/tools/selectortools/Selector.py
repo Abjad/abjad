@@ -543,6 +543,39 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def less_than(self, count):
+        r'''Configures selector to select containers or selections whose length
+        is less than `count`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.less_than(3)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Note("d'8"), Note("e'8"))
+
+        Emits new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.LengthSelectorCallback(
+            length=count - 1,
+            parts=Less,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def longer_than(self, duration):
         r'''Configures selector to select containers or selections whose
         duration is longer than `duration`.
@@ -699,39 +732,6 @@ class Selector(AbjadValueObject):
         callback = selectortools.SliceSelectorCallback(
             argument=(1, None),
             apply_to_each=False,
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def less_than(self, count):
-        r'''Configures selector to select containers or selections whose length
-        is less than `count`.
-
-        ..  container:: example
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.less_than(3)
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("c'8"),)
-                Selection(Note("d'8"), Note("e'8"))
-
-        Emits new selector.
-        '''
-        from experimental.tools import selectortools
-        callback = selectortools.LengthSelectorCallback(
-            length=count - 1,
-            parts=Less,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)

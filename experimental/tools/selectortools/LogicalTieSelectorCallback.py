@@ -70,18 +70,6 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def pitched(self):
-        r'''Is true if callback iterates pitched logical ties.
-        '''
-        return self._pitched
-
-    @property
-    def trivial(self):
-        r'''Is true if callback iterates trivial logical ties.
-        '''
-        return self._trivial
-
-    @property
     def only_with_head(self):
         r'''Is true if callback only iterates logical ties whose heads are
         included in the expression to be iterated over.
@@ -94,3 +82,15 @@ class LogicalTieSelectorCallback(AbjadValueObject):
         included in the expression to be iterated over.
         '''
         return self._only_with_tail
+
+    @property
+    def pitched(self):
+        r'''Is true if callback iterates pitched logical ties.
+        '''
+        return self._pitched
+
+    @property
+    def trivial(self):
+        r'''Is true if callback iterates trivial logical ties.
+        '''
+        return self._trivial
