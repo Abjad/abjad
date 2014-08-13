@@ -102,6 +102,8 @@ class RunDoctestsScript(DirectoryScript):
             )
         if args and args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
+        if args and args.x:
+            optionflags = optionflags | doctest.REPORT_ONLY_FIRST_FAILURE
         total_failures = 0
         total_modules = 0
         total_tests = 0
@@ -109,16 +111,19 @@ class RunDoctestsScript(DirectoryScript):
         error_messages = []
         if not file_paths:
             file_paths = []
-            for dir_path, dir_names, file_names in os.walk(args.path):
-                dir_names[:] = [x for x in dir_names
-                    if not x.startswith('.')]
-                for file_name in sorted(file_names):
-                    if (file_name.endswith('.py') and
-                        not file_name.startswith('test_') and
-                        not file_name == '__init__.py'):
-                        file_path = os.path.abspath(
-                            os.path.join(dir_path, file_name))
-                        file_paths.append(file_path)
+            if os.path.isdir(args.path):
+                for dir_path, dir_names, file_names in os.walk(args.path):
+                    dir_names[:] = [x for x in dir_names
+                        if not x.startswith('.')]
+                    for file_name in sorted(file_names):
+                        if (file_name.endswith('.py') and
+                            not file_name.startswith('test_') and
+                            not file_name == '__init__.py'):
+                            file_path = os.path.abspath(
+                                os.path.join(dir_path, file_name))
+                            file_paths.append(file_path)
+            elif os.path.isfile(args.path):
+                file_paths.append(args.path)
         for file_path in file_paths:
             total_modules += 1
             relative_path = os.path.relpath(file_path)
@@ -215,4 +220,9 @@ class RunDoctestsScript(DirectoryScript):
             '--diff',
             action='store_true',
             help='print diff-like output on failed tests.',
+            )
+        parser.add_argument(
+            '-x',
+            action='store_true',
+            help='stop after first failure.',
             )
