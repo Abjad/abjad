@@ -14,24 +14,53 @@ class BowSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 c'4 c'4 c'4")
+            >>> staff = Staff()
+            >>> staff.extend(r"c'4. c'8 \times 2/3 { c'4 c'4 c'4 }")
 
         ::
 
-            >>> attach(indicatortools.BowContactPoint((1, 4)), staff[0])
-            >>> attach(indicatortools.BowContactPoint((3, 4)), staff[1])
-            >>> attach(indicatortools.BowContactPoint((1, 2)), staff[2])
-            >>> attach(indicatortools.BowContactPoint((1, 1)), staff[3])
+            >>> attach(Clef('percussion'), staff)
+            >>> override(staff).bar_line.transparent = True
+            >>> override(staff).dots.staff_position = -8
+            >>> override(staff).flag.Y_offset = -8.5
+            >>> override(staff).glissando.thickness = 2
+            >>> override(staff).script.staff_padding = 3
+            >>> override(staff).staff_symbol.transparent = True
+            >>> override(staff).stem.direction = Down
+            >>> override(staff).stem.length = 8
+            >>> override(staff).stem.stem_begin_position = -9
+            >>> override(staff).time_signature.stencil = False
 
         ::
 
-            >>> attach(spannertools.BowSpanner(), staff[:])
+            >>> leaves = staff.select_leaves()
+            >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
+            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
+            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
+            >>> attach(indicatortools.BowContactPoint((1, 1)), leaves[3])
+            >>> attach(indicatortools.BowContactPoint((0, 1)), leaves[4])
+
+        ::
+
+            >>> attach(spannertools.BowSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> print(format(staff))
-            \new Staff {
+            \new Staff \with {
+                \override BarLine #'transparent = ##t
+                \override Dots #'staff-position = #-8
+                \override Flag #'Y-offset = #-8.5
+                \override Glissando #'thickness = #2
+                \override Script #'staff-padding = #3
+                \override StaffSymbol #'transparent = ##t
+                \override Stem #'direction = #down
+                \override Stem #'length = #8
+                \override Stem #'stem-begin-position = #-9
+                \override TimeSignature #'stencil = ##f
+            } {
+                \clef "percussion"
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
@@ -40,7 +69,7 @@ class BowSpanner(Spanner):
                             1
                             4
                     }
-                c'4 ^\upbow \glissando
+                c'4. ^\upbow \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
@@ -49,25 +78,36 @@ class BowSpanner(Spanner):
                             3
                             4
                     }
-                c'4 ^\downbow \glissando
-                \once \override NoteHead.Y-offset = 0.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \vcenter
-                        \fraction
-                            1
-                            2
-                    }
-                c'4 ^\upbow \glissando
-                \once \override NoteHead.Y-offset = 2.0
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \vcenter
-                        \fraction
-                            1
-                            1
-                    }
-                c'4
+                c'8 ^\downbow \glissando
+                \times 2/3 {
+                    \once \override NoteHead.Y-offset = 0.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
+                        \vcenter
+                            \fraction
+                                1
+                                2
+                        }
+                    c'4 ^\upbow \glissando
+                    \once \override NoteHead.Y-offset = 2.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
+                        \vcenter
+                            \fraction
+                                1
+                                1
+                        }
+                    c'4 ^\downbow \glissando
+                    \once \override NoteHead.Y-offset = -2.0
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text = \markup {
+                        \vcenter
+                            \fraction
+                                0
+                                1
+                        }
+                    c'4
+                }
             }
 
     '''
