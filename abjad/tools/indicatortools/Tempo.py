@@ -432,6 +432,21 @@ class Tempo(AbjadObject):
             is_indented=False,
             )
 
+    ### PRIVATE METHODS ###
+
+    def _to_markup(self):
+        from abjad.tools import markuptools
+        if self.markup is not None:
+            return self.markup
+        duration_log = int(math.log(self.duration.denominator, 2))
+        dot_count = self.duration.dot_count
+        units_per_minute = self.units_per_minute
+        string = r'\smaller \general-align #Y #DOWN'
+        string += r' \note-by-number #{} #{} #1 " = {}"'
+        string = string.format(duration_log, dot_count, units_per_minute)
+        markup = markuptools.Markup(string)
+        return markup
+
     ### PUBLIC PROPERTIES ###
 
     @property
