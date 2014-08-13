@@ -399,6 +399,8 @@ class Tempo(AbjadObject):
 
     @property
     def _lilypond_format(self):
+        if self._annotation_only:
+            return []
         text, equation = None, None
         if self.textual_indication is not None:
             text = self.textual_indication

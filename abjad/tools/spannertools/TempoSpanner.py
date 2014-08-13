@@ -16,9 +16,15 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-            >>> attach(Tempo(Duration(1, 4), 90), staff[4])
-            >>> attach(Tempo(Duration(1, 4), 60), staff[-1])
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> tempo._annotation_only = True
+            >>> attach(tempo, staff[0])
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> tempo._annotation_only = True
+            >>> attach(tempo, staff[4])
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> tempo._annotation_only = True
+            >>> attach(tempo, staff[-1])
 
         ::
 
@@ -51,7 +57,6 @@ class TempoSpanner(Spanner):
                                     #1
                         " = 60"
                         }
-                    \tempo 4=60
                     c'4 \startTextSpan
                     d'4
                     e'4
@@ -67,12 +72,10 @@ class TempoSpanner(Spanner):
                                     #1
                         " = 90"
                         }
-                    \tempo 4=90
                     g'4 \startTextSpan
                     f'4
                     e'4
                     d'4
-                    \tempo 4=60
                     c'2 \stopTextSpan
                 }
             >>
