@@ -17,7 +17,9 @@ class TempoSpanner(Spanner):
         ::
 
             >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+            >>> attach(indicatortools.Accelerando(), staff[0])
             >>> attach(Tempo(Duration(1, 4), 90), staff[4])
+            >>> attach(indicatortools.Ritardando(), staff[4])
             >>> attach(Tempo(Duration(1, 4), 60), staff[-1])
 
         ::
@@ -31,18 +33,38 @@ class TempoSpanner(Spanner):
             \new Score <<
                 \new Staff {
                     \time 2/4
+                    \once \override TextSpanner.bound-details.left.text = #"\tempo 4=60"
                     \tempo 4=60
-                    c'4
+                    c'4 \startTextSpan
+                        ^ \markup {
+                            \large
+                                {
+                                    \italic
+                                        {
+                                            accel.
+                                        }
+                                }
+                            }
                     d'4
                     e'4
                     f'4
+                    \once \override TextSpanner.bound-details.left.text = #"\tempo 4=90"
                     \tempo 4=90
-                    g'4
+                    g'4 \startTextSpan
+                        ^ \markup {
+                            \large
+                                {
+                                    \italic
+                                        {
+                                            rit.
+                                        }
+                                }
+                            }
                     f'4
                     e'4
                     d'4
                     \tempo 4=60
-                    c'2
+                    c'2 \stopTextSpan
                 }
             >>
 
@@ -66,7 +88,7 @@ class TempoSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _get_previous_tempo_indicator(self, leaf):
+    def _get_previous_tempo(self, leaf):
         index = self._index(leaf)
         for index in reversed(range(index)):
             earlier_leaf = self[index]
@@ -111,8 +133,9 @@ class TempoSpanner(Spanner):
         tempo_trend = indicators[1]
         if tempo is None and tempo_trend is None:
             pass
-        elif tempo is not None and tempo_trend is not None:
+        elif tempo is None and tempo_trend is not None:
             self._start_tempo_trend_spanner_with_implicit_start(
+                leaf,
                 lilypond_format_bundle=lilypond_format_bundle,
                 tempo_trend=tempo_trend,
                 )
@@ -124,9 +147,9 @@ class TempoSpanner(Spanner):
                 )
         elif tempo is not None and tempo_trend is not None:
             self._start_tempo_trend_spanner_with_explicit_start(
-                lilypond_format_bundle=lilypond_format_bundle,
-                tempo=tempo,
-                tempo_trend=tempo_trend,
+                lilypond_format_bundle,
+                tempo,
+                tempo_trend,
                 )
         else:
             raise Exception
@@ -146,8 +169,33 @@ class TempoSpanner(Spanner):
         string = format(tempo, 'lilypond')
         lilypond_format_bundle.opening.markup.append(string)
 
+    def _start_tempo_trend_spanner_with_explicit_start(
+        self,
+        lilypond_format_bundle,
+        tempo,
+        tempo_trend,
+        ):
+        assert tempo is not None and tempo_trend is not None
+        command = r'\startTextSpan'
+        lilypond_format_bundle.right.spanner_starts.append(command)
+        # TODO: implement parenthesization
+        #tempo = tempo._parenthesize()
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'left',
+                'text',
+                ),
+            value=format(tempo, 'lilypond'),
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
+        leaf,
         lilypond_format_bundle=None,
         tempo_trend=None,
         ):
@@ -165,7 +213,7 @@ class TempoSpanner(Spanner):
                 'left',
                 'text',
                 ),
-            value=str(previous_tempo),
+            value=format(previous_tempo, 'lilypond'),
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
