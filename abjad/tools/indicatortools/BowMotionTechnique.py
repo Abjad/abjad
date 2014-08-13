@@ -37,6 +37,18 @@ class BowMotionTechnique(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def glissando_style(self):
+        r'''Gets glissando style.
+
+        Returns string.
+        '''
+        if self.technique_name == 'circular':
+            return 'zigzag'
+        elif self.technique_name == 'jete':
+            return 'dotted-line'
+        return 'line'
+
+    @property
     def technique_name(self):
         r'''Gets technique name.
 
