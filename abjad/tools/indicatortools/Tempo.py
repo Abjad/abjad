@@ -42,6 +42,7 @@ class Tempo(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotation_only',
         '_default_scope',
         '_duration',
         '_markup',
@@ -62,6 +63,7 @@ class Tempo(AbjadObject):
         ):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
+        self._annotation_only = None
         self._default_scope = scoretools.Score
         assert isinstance(textual_indication, (str, type(None)))
         arguments = (duration, units_per_minute, textual_indication)

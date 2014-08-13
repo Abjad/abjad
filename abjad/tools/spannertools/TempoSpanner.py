@@ -17,10 +17,17 @@ class TempoSpanner(Spanner):
         ::
 
             >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-            >>> attach(indicatortools.Accelerando(), staff[0])
             >>> attach(Tempo(Duration(1, 4), 90), staff[4])
-            >>> attach(indicatortools.Ritardando(), staff[4])
             >>> attach(Tempo(Duration(1, 4), 60), staff[-1])
+
+        ::
+
+            >>> accelerando = indicatortools.Accelerando()
+            >>> accelerando._annotation_only = True
+            >>> attach(accelerando, staff[0])
+            >>> ritardando = indicatortools.Ritardando()
+            >>> ritardando._annotation_only = True
+            >>> attach(ritardando, staff[4])
 
         ::
 
@@ -46,15 +53,6 @@ class TempoSpanner(Spanner):
                         }
                     \tempo 4=60
                     c'4 \startTextSpan
-                        ^ \markup {
-                            \large
-                                {
-                                    \italic
-                                        {
-                                            accel.
-                                        }
-                                }
-                            }
                     d'4
                     e'4
                     f'4
@@ -71,15 +69,6 @@ class TempoSpanner(Spanner):
                         }
                     \tempo 4=90
                     g'4 \startTextSpan
-                        ^ \markup {
-                            \large
-                                {
-                                    \italic
-                                        {
-                                            rit.
-                                        }
-                                }
-                            }
                     f'4
                     e'4
                     d'4
