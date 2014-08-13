@@ -32,17 +32,17 @@ class TempoSpanner(Spanner):
                 \new Staff {
                     \time 2/4
                     \tempo 4=60
-                    c'4 \tempo 4=60
+                    c'4
                     d'4
                     e'4
                     f'4
                     \tempo 4=90
-                    g'4 \tempo 4=90
+                    g'4
                     f'4
                     e'4
                     d'4
                     \tempo 4=60
-                    c'2 \tempo 4=60
+                    c'2
                 }
             >>
 
@@ -117,7 +117,7 @@ class TempoSpanner(Spanner):
                 tempo_trend=tempo_trend,
                 )
         elif tempo is not None and tempo_trend is None:
-            self._make_tempo_markup(
+            self._make_lone_tempo_markup(
                 leaf,
                 lilypond_format_bundle=lilypond_format_bundle,
                 tempo=tempo,
@@ -132,7 +132,7 @@ class TempoSpanner(Spanner):
             raise Exception
         return lilypond_format_bundle
 
-    def _make_tempo_markup(
+    def _make_lone_tempo_markup(
         self, 
         leaf,
         lilypond_format_bundle=None,
@@ -144,7 +144,7 @@ class TempoSpanner(Spanner):
             string = r'\stopTextSpan'
             lilypond_format_bundle.right.spanner_stops.append(string)
         string = format(tempo, 'lilypond')
-        lilypond_format_bundle.right.markup.append(string)
+        lilypond_format_bundle.opening.markup.append(string)
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,

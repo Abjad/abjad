@@ -21,7 +21,7 @@ class LilyPondGrobOverride(AbjadObject):
 
     ::
 
-        >>> print('\n'.join(override.override_format_pieces))
+        >>> print('\n'.join(override._override_format_pieces))
         \once \override Staff.TextSpanner.bound-details.left.text = \markup {
             \bold
                 {
@@ -102,9 +102,26 @@ class LilyPondGrobOverride(AbjadObject):
             revert_format = '\n'.join(self.revert_format_pieces)
             lilypond_format_bundle.grob_reverts.append(revert_format)
         if not self.is_revert:
-            override_format = '\n'.join(self.override_format_pieces)
+            override_format = '\n'.join(self._override_format_pieces)
             lilypond_format_bundle.grob_overrides.append(override_format)
         return lilypond_format_bundle
+
+    @property
+    def _override_format_pieces(self):
+        from abjad.tools import schemetools
+        result = []
+        if self.is_once:
+            result.append(r'\once')
+        result.append(r'\override')
+        result.append(self._override_property_path_string)
+        result.append('=')
+        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
+            self.value)
+        value_pieces = value_pieces.split('\n')
+        result.append(value_pieces[0])
+        result[:] = [' '.join(result)]
+        result.extend(value_pieces[1:])
+        return tuple(result)
 
     @property
     def _override_property_path_string(self):
@@ -160,27 +177,6 @@ class LilyPondGrobOverride(AbjadObject):
         Returns boolean or none.
         '''
         return self._is_revert
-
-    @property
-    def override_format_pieces(self):
-        r'''Gets LilyPond grob override \override format pieces.
-
-        Returns tuple of strings.
-        '''
-        from abjad.tools import schemetools
-        result = []
-        if self.is_once:
-            result.append(r'\once')
-        result.append(r'\override')
-        result.append(self._override_property_path_string)
-        result.append('=')
-        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
-            self.value)
-        value_pieces = value_pieces.split('\n')
-        result.append(value_pieces[0])
-        result[:] = [' '.join(result)]
-        result.extend(value_pieces[1:])
-        return tuple(result)
 
     @property
     def property_path(self):
