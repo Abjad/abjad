@@ -185,6 +185,39 @@ class BowSpanner(Spanner):
                 )
         return lilypond_format_bundle
 
+    def _make_bow_contact_point_overrides(
+        self,
+        lilypond_format_bundle=None,
+        bow_contact_point=None,
+        ):
+        stencil_override = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='stencil',
+            value=schemetools.Scheme('ly:text-interface::print'),
+            )
+        stencil_override_string = '\n'.join(
+            stencil_override.override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(stencil_override_string)
+        text_override = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='text',
+            value=bow_contact_point.markup,
+            )
+        text_override_string = '\n'.join(text_override.override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(text_override_string)
+        y_offset = float((4 * bow_contact_point.contact_point) - 2)
+        y_offset_override = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='Y-offset',
+            value=y_offset,
+            )
+        y_offset_override_string = '\n'.join(
+            y_offset_override.override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(y_offset_override_string)
+
     def _make_bow_direction_change_contributions(
         self,
         bow_contact_point=None,
@@ -218,39 +251,6 @@ class BowSpanner(Spanner):
         elif direction_change is Down:
             articulation = indicatortools.Articulation('downbow', Up)
         lilypond_format_bundle.right.articulations.append(str(articulation))
-
-    def _make_bow_contact_point_overrides(
-        self,
-        lilypond_format_bundle=None,
-        bow_contact_point=None,
-        ):
-        stencil_override = lilypondnametools.LilyPondGrobOverride(
-            grob_name='NoteHead',
-            is_once=True,
-            property_path='stencil',
-            value=schemetools.Scheme('ly:text-interface::print'),
-            )
-        stencil_override_string = '\n'.join(
-            stencil_override.override_format_pieces)
-        lilypond_format_bundle.grob_overrides.append(stencil_override_string)
-        text_override = lilypondnametools.LilyPondGrobOverride(
-            grob_name='NoteHead',
-            is_once=True,
-            property_path='text',
-            value=bow_contact_point.markup,
-            )
-        text_override_string = '\n'.join(text_override.override_format_pieces)
-        lilypond_format_bundle.grob_overrides.append(text_override_string)
-        y_offset = float((4 * bow_contact_point.contact_point) - 2)
-        y_offset_override = lilypondnametools.LilyPondGrobOverride(
-            grob_name='NoteHead',
-            is_once=True,
-            property_path='Y-offset',
-            value=y_offset,
-            )
-        y_offset_override_string = '\n'.join(
-            y_offset_override.override_format_pieces)
-        lilypond_format_bundle.grob_overrides.append(y_offset_override_string)
 
     def _make_glissando_overrides(
         self,
