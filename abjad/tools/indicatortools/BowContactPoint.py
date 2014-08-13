@@ -7,17 +7,22 @@ from abjad.tools.abctools import AbjadObject
 
 @functools.total_ordering
 class BowContactPoint(AbjadObject):
-    r'''Bow contact point indicator.
+    r'''Bow contact point.
 
-    Contact points are measured from frog to tip as a fraction between 0 and 1.
+    ..  container:: example
 
-    ::
+        Contact point exactly halfway from frog to tip of bow:
 
-        >>> indicator = indicatortools.BowContactPoint((1, 2))
-        >>> print(format(indicator))
-        indicatortools.BowContactPoint(
-            contact_point=durationtools.Multiplier(1, 2),
-            )
+        ::
+
+            >>> point = indicatortools.BowContactPoint((1, 2))
+            >>> print(format(point))
+            indicatortools.BowContactPoint(
+                contact_point=durationtools.Multiplier(1, 2),
+                )
+
+    Contact points are measured from frog to tip as a fraction between ``0`` 
+    and ``1``.
 
     '''
 
@@ -29,7 +34,8 @@ class BowContactPoint(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         contact_point=None,
         ):
         if contact_point is not None:
@@ -42,6 +48,41 @@ class BowContactPoint(AbjadObject):
     def __eq__(self, expr):
         r'''Is true if `expr` is a bow contact point with the same contact
         point as this bow contact point.
+
+        ..  container:: example
+
+            ::
+
+                >>> point_1 = indicatortools.BowContactPoint((1, 2))
+                >>> point_2 = indicatortools.BowContactPoint((1, 2))
+                >>> point_3 = indicatortools.BowContactPoint((2, 3))
+
+            ::
+
+                >>> point_1 == point_1
+                True
+                >>> point_1 == point_2
+                True
+                >>> point_1 == point_3
+                False
+
+            ::
+
+                >>> point_2 == point_1
+                True
+                >>> point_2 == point_2
+                True
+                >>> point_2 == point_3
+                False
+
+            ::
+
+                >>> point_3 == point_1
+                False
+                >>> point_3 == point_2
+                False
+                >>> point_3 == point_3
+                True
 
         Returns boolean.
         '''
@@ -59,6 +100,41 @@ class BowContactPoint(AbjadObject):
         r'''Is true if `expr` is a bow contact point and this bow contact point
         is less than `expr`.
 
+        ..  container:: example
+
+            ::
+
+                >>> point_1 = indicatortools.BowContactPoint((1, 2))
+                >>> point_2 = indicatortools.BowContactPoint((1, 2))
+                >>> point_3 = indicatortools.BowContactPoint((2, 3))
+
+            ::
+
+                >>> point_1 < point_1
+                False
+                >>> point_1 < point_2
+                False
+                >>> point_1 < point_3
+                True
+
+            ::
+
+                >>> point_2 < point_1
+                False
+                >>> point_2 < point_2
+                False
+                >>> point_2 < point_3
+                True
+
+            ::
+
+                >>> point_3 < point_1
+                False
+                >>> point_3 < point_2
+                False
+                >>> point_3 < point_3
+                False
+
         Returns boolean.
         '''
         if isinstance(expr, type(self)):
@@ -69,13 +145,15 @@ class BowContactPoint(AbjadObject):
 
     @property
     def contact_point(self):
-        r'''Gets contact point.
+        r'''Gets contact point of bow contact point.
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.BowContactPoint((1, 4))
-            >>> indicator.contact_point
-            Multiplier(1, 4)
+            ::
+
+                >>> point = indicatortools.BowContactPoint((1, 4))
+                >>> point.contact_point
+                Multiplier(1, 4)
 
         Returns multiplier.
         '''
@@ -83,21 +161,25 @@ class BowContactPoint(AbjadObject):
 
     @property
     def markup(self):
-        r'''Gets bow contact point markup.
+        r'''Gets markup of bow contact point.
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.BowContactPoint((3, 4))
-            >>> print(format(indicator.markup, 'lilypond'))
-            \markup {
-                \vcenter
-                    \fraction
-                        3
-                        4
-                }
+            ::
 
+                >>> indicator = indicatortools.BowContactPoint((3, 4))
+                >>> print(format(indicator.markup, 'lilypond'))
+                \markup {
+                    \vcenter
+                        \fraction
+                            3
+                            4
+                    }
+
+        Returns markup.
         '''
-        string = r'\vcenter \fraction {} {}'.format(
+        string = r'\vcenter \fraction {} {}'
+        string = string.format(
             self.contact_point.numerator,
             self.contact_point.denominator,
             )
