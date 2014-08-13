@@ -12,16 +12,21 @@ class SliceSelectorCallback(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_apply_to_each',
         '_argument',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, argument):
-        assert isinstance(argument, (int, slice))
+    def __init__(self, argument=0, apply_to_each=True):
+        assert isinstance(argument, (int, slice, tuple))
         if isinstance(argument, slice):
             argument = (argument.start, argument.stop)
+        elif isinstance(argument, tuple):
+            assert len(argument) == 2
+            assert all(isinstance(x, (int, type(None))) for x in argument)
         self._argument = argument
+        self._apply_to_each = bool(apply_to_each)
 
     ### SPECIAL METHODS ###
 
@@ -33,27 +38,39 @@ class SliceSelectorCallback(AbjadValueObject):
         argument = self.argument
         if isinstance(argument, tuple):
             argument = slice(argument[0], argument[1])
-        for subexpr in expr:
+        if self.apply_to_each:
+            for subexpr in expr:
+                try:
+                    subresult = subexpr.__getitem__(argument)
+                    if not isinstance(subresult, prototype):
+                        subresult = select(subresult)
+                    result.append(subresult)
+                except IndexError:
+                    pass
+        else:
             try:
-                subresult = subexpr.__getitem__(argument)
-                if not isinstance(subresult, prototype):
-                    subresult = select(subresult)
-                result.append(subresult)
+                subresult = select(expr.__getitem__(argument))
+                if isinstance(argument, int):
+                    result.append(subresult)
+                else:
+                    result.extend(subresult)
             except IndexError:
                 pass
         return tuple(result)
 
-    ### PRIVATE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            )
+    def apply_to_each(self):
+        r'''Is true if slice selector callback will be applied against the
+        contents of each selection, rather than against the sequence of
+        selections itself.
 
-    ### PUBLIC PROPERTIES ###
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._apply_to_each
 
     @property
     def argument(self):
