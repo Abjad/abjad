@@ -8,66 +8,68 @@ from abjad.tools.topleveltools import inspect_
 
 
 class BowSpanner(spannertools.Spanner):
-    r'''A bow spanner.
+    r'''Bow spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'4 c'4 c'4 c'4")
+        ::
 
-    ::
+            >>> staff = Staff("c'4 c'4 c'4 c'4")
 
-        >>> attach(indicatortools.BowContactPoint((1, 4)), staff[0])
-        >>> attach(indicatortools.BowContactPoint((3, 4)), staff[1])
-        >>> attach(indicatortools.BowContactPoint((1, 2)), staff[2])
-        >>> attach(indicatortools.BowContactPoint((1, 1)), staff[3])
+        ::
 
-    ::
+            >>> attach(indicatortools.BowContactPoint((1, 4)), staff[0])
+            >>> attach(indicatortools.BowContactPoint((3, 4)), staff[1])
+            >>> attach(indicatortools.BowContactPoint((1, 2)), staff[2])
+            >>> attach(indicatortools.BowContactPoint((1, 1)), staff[3])
 
-        >>> from experimental import newspannertools
-        >>> attach(newspannertools.BowSpanner(), staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> from experimental import newspannertools
+            >>> attach(newspannertools.BowSpanner(), staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print(format(staff))
-        \new Staff {
-            \once \override NoteHead.Y-offset = -1.0
-            \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \vcenter
-                    \fraction
-                        1
-                        4
-                }
-            c'4 ^\upbow \glissando
-            \once \override NoteHead.Y-offset = 1.0
-            \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \vcenter
-                    \fraction
-                        3
-                        4
-                }
-            c'4 ^\downbow \glissando
-            \once \override NoteHead.Y-offset = 0.0
-            \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \vcenter
-                    \fraction
-                        1
-                        2
-                }
-            c'4 ^\upbow \glissando
-            \once \override NoteHead.Y-offset = 2.0
-            \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \vcenter
-                    \fraction
-                        1
-                        1
-                }
-            c'4
-        }
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \once \override NoteHead.Y-offset = -1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \vcenter
+                        \fraction
+                            1
+                            4
+                    }
+                c'4 ^\upbow \glissando
+                \once \override NoteHead.Y-offset = 1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \vcenter
+                        \fraction
+                            3
+                            4
+                    }
+                c'4 ^\downbow \glissando
+                \once \override NoteHead.Y-offset = 0.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \vcenter
+                        \fraction
+                            1
+                            2
+                    }
+                c'4 ^\upbow \glissando
+                \once \override NoteHead.Y-offset = 2.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \vcenter
+                        \fraction
+                            1
+                            1
+                    }
+                c'4
+            }
 
     '''
 
