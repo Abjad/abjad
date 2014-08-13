@@ -12,34 +12,85 @@ class Selector(AbjadValueObject):
 
         >>> staff = Staff(r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4")
 
-    ::
+    Selectors aggregate a sequence of callable classes which describe the
+    process by which components will be selected.
 
-        >>> selector = selectortools.Selector()
-        >>> selector(staff)
-        Selection(<Staff{6}>,)
+    Selector provides methods for configuring and emitting new selectors,
+    allowing composers to chain together selection procedures.
 
-    ::
+    ..  container:: example
 
-        >>> selector = selector.by_leaves()
-        >>> selector = selector.by_run(Note)
-        >>> for x in selector(staff):
-        ...     x
-        ...
-        Selection(Note("c'4"), Note("d'8"))
-        Selection(Note("e'8"),)
-        Selection(Note("f'16"), Note("g'8"), Note("a'4"))
+        Select a component:
 
-    ::
+        ::
 
-        >>> selector = selector.by_length(3)
-        >>> selector(staff)
-        Selection(Selection(Note("f'16"), Note("g'8"), Note("a'4")),)
+            >>> selector = selectortools.Selector()
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            <Staff{6}>
 
-    ::
+    ..  container:: example
 
-        >>> selector = selector[0]
-        >>> selector(staff)
-        Selection(ContiguousSelection(Note("f'16"),),)
+        Select all of the leaves in a component:
+
+        ::
+
+            >>> selector = selector.by_leaves()
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
+
+    ..  container:: example
+
+        Select runs of notes:
+
+        ::
+
+            >>> selector = selector.by_run(Note)
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            Selection(Note("c'4"), Note("d'8"))
+            Selection(Note("e'8"),)
+            Selection(Note("f'16"), Note("g'8"), Note("a'4"))
+
+    ..  container:: example
+
+        Select sub-selections with lengths equal to 3:
+
+        ::
+
+            >>> selector = selector.by_length(3)
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            Selection(Note("f'16"), Note("g'8"), Note("a'4"))
+
+    ..  container:: example
+
+        Select the first item in each sub-selection:
+
+        ::
+
+            >>> selector = selector[0]
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            ContiguousSelection(Note("f'16"),)
+
+    ..  container:: example
+
+        Flatten all sub-selections and containers:
+
+        ::
+
+            >>> selector = selector.flatten()
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            Note("f'16")
 
     ::
 
@@ -60,6 +111,7 @@ class Selector(AbjadValueObject):
                     argument=0,
                     apply_to_each=True,
                     ),
+                selectortools.FlattenSelectorCallback(),
                 ),
             )
 
