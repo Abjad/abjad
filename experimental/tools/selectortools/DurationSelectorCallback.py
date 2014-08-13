@@ -41,10 +41,10 @@ class DurationSelectorCallback(AbjadValueObject):
                 if duration == self.duration:
                     result.append(subexpr)
             elif self.parts == More:
-                if self.duration <= duration:
+                if self.duration < duration:
                     result.append(subexpr)
             elif self.parts == Less:
-                if duration <= self.duration:
+                if duration < self.duration:
                     result.append(subexpr)
         return tuple(result)
 

@@ -183,6 +183,25 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def by_duration(
+        self,
+        duration=None,
+        parts=Exact,
+        ):
+        r'''Configures selector to selector containers or selections of
+        duration `duration`.
+
+        Emits new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.DurationSelectorCallback(
+            duration=duration,
+            parts=parts,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def by_leaves(self):
         r'''Configures selector to select leaves.
 
@@ -524,6 +543,39 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def longer_than(self, duration):
+        r'''Configures selector to select containers or selections whose
+        duration is longer than `duration`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.longer_than((1, 8))
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Emits new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.DurationSelectorCallback(
+            duration=duration,
+            parts=More,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def middle(self):
         r'''Configures selector to select all but the first or last selection.
 
@@ -679,6 +731,39 @@ class Selector(AbjadValueObject):
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=count - 1,
+            parts=Less,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def shorter_than(self, duration):
+        r'''Configures selector to select containers or selections whose
+        duration is shorter than `duration`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.shorter_than((3, 8))
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Note("d'8"), Note("e'8"))
+
+        Emits new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.DurationSelectorCallback(
+            duration=duration,
             parts=Less,
             )
         callbacks = self.callbacks or ()
