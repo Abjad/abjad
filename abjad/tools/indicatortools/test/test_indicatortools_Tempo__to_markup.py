@@ -19,7 +19,8 @@ def test_indicatortools_Tempo__to_markup_01():
                         #2
                         #0
                         #1
-            " = 60"
+            \upright
+                " = 60"
             }
         '''
         ), format(markup)
@@ -42,7 +43,8 @@ def test_indicatortools_Tempo__to_markup_02():
                         #3
                         #1
                         #1
-            " = 60"
+            \upright
+                " = 60"
             }
         '''
         ), format(markup)

@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools.new import new
 
 
 class Ritardando(AbjadObject):
@@ -157,7 +158,7 @@ class Ritardando(AbjadObject):
             ::
 
                 >>> print(str(indicatortools.Ritardando()))
-                ^ \markup {
+                \markup {
                     \large
                         {
                             \italic
@@ -188,8 +189,7 @@ class Ritardando(AbjadObject):
 
         Returns string.
         '''
-        markup = self.markup or self._default_markup
-        return str(markup)
+        return str(self._to_markup())
 
     ### PRIVATE PROPERTIES ###
 
@@ -213,7 +213,7 @@ class Ritardando(AbjadObject):
     def _default_markup(self):
         from abjad.tools import markuptools
         contents = r'\large { \italic { rit. } }'
-        return markuptools.Markup(contents=contents, direction=Up)
+        return markuptools.Markup(contents=contents)
 
     @property
     def _lilypond_format(self):
@@ -224,11 +224,19 @@ class Ritardando(AbjadObject):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         if not self._annotation_only:
-            markup = self.markup or self._default_markup
+            markup = self._to_markup()
+            markup = new(markup, direction=Up)
             markup_format_pieces = markup._get_format_pieces()
             lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
         
+    ### PRIVATE METHODS ###
+
+    def _to_markup(self):
+        if self.markup is not None:
+            return self.markup
+        return self._default_markup
+
     ### PUBLIC PROPERTIES ###
 
     @property

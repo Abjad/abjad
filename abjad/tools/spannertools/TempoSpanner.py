@@ -15,6 +15,8 @@ class TempoSpanner(Spanner):
             >>> staff = Staff("c'4 d' e' f' g' f' e' d' c'2")
             >>> attach(TimeSignature((2, 4)), staff)
             >>> score = Score([staff])
+            >>> override(score).text_script.staff_padding = 1.5
+            >>> override(score).text_spanner.staff_padding = 2
 
         ::
 
@@ -45,9 +47,24 @@ class TempoSpanner(Spanner):
         ..  doctest::
 
             >>> print(format(score))
-            \new Score <<
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.5
+                \override TextSpanner #'staff-padding = #2
+            } <<
                 \new Staff {
                     \time 2/4
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \large
+                            {
+                                \italic
+                                    {
+                                        accel.
+                                    }
+                            }
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \smaller
                             \general-align
@@ -59,11 +76,30 @@ class TempoSpanner(Spanner):
                                     #1
                         \upright
                             " = 60"
+                        \hspace
+                            #1.25
                         }
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
                     c'4 \startTextSpan \startTextSpan
                     d'4
                     e'4
                     f'4
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \large
+                            {
+                                \italic
+                                    {
+                                        rit.
+                                    }
+                            }
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \smaller
                             \general-align
@@ -75,7 +111,14 @@ class TempoSpanner(Spanner):
                                     #1
                         \upright
                             " = 90"
+                        \hspace
+                            #1.25
                         }
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
                     g'4 \stopTextSpan \startTextSpan \startTextSpan
                     f'4
                     e'4
@@ -198,6 +241,115 @@ class TempoSpanner(Spanner):
             raise Exception
         return lilypond_format_bundle
 
+    r'''
+    \override TextSpanner #'bound-details #'right-broken #'arrow = ##f
+    \override TextSpanner #'bound-details #'right-broken #'padding = #0
+    \override TextSpanner #'bound-details #'right-broken #'text = ##f
+    \override TextSpanner #'style = #'line
+
+    '''
+    def _make_other_text_spanner_overrides(self, lilypond_format_bundle):
+        r'''Alphabetically by property.
+        '''
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'arrow-width',
+                ),
+            value=0.25,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'dash-fraction',
+                ),
+            value=0.25,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'dash-period',
+                ),
+            value=1.5,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'left',
+                'stencil-align-dir-y',
+                ),
+            value=-0.5,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'left-broken',
+                'padding',
+                ),
+            value=-2,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right',
+                'arrow',
+                ),
+            value=True,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right',
+                'padding',
+                ),
+            value=1.5,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right',
+                'text',
+                ),
+            value=False,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
@@ -208,6 +360,9 @@ class TempoSpanner(Spanner):
         spanner_start = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(spanner_start)
         markup = current_tempo._to_markup()
+        commands = list(markup.contents)
+        commands.append(markuptools.MarkupCommand('hspace', 1.25))
+        markup = markuptools.Markup(contents=commands)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -220,6 +375,21 @@ class TempoSpanner(Spanner):
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        markup = current_tempo_trend._to_markup()
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'left-broken',
+                'text',
+                ),
+            value=markup,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        self._make_other_text_spanner_overrides(lilypond_format_bundle)
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
@@ -228,8 +398,8 @@ class TempoSpanner(Spanner):
         current_tempo_trend,
         previous_tempo,
         ):
-        command = r'\startTextSpan'
-        lilypond_format_bundle.right.spanner_starts.append(command)
+        spanner_start = r'\startTextSpan'
+        lilypond_format_bundle.right.spanner_starts.append(spanner_start)
         if previous_tempo:
             markup = previous_tempo._to_markup()
             command = markup.contents[:]
