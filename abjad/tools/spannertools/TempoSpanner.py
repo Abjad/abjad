@@ -4,6 +4,7 @@ from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import new
 
 
 class TempoSpanner(Spanner):
@@ -168,6 +169,7 @@ class TempoSpanner(Spanner):
         # use markup without a spanner if not tempo trend starts now
         if current_tempo_trend is None:
             markup = current_tempo._to_markup()
+            markup = new(markup, direction=Up)
             string = format(markup, 'lilypond')
             lilypond_format_bundle.right.markup.append(string)
         # use spanner if tempo trend starts now with explicit tempo
@@ -203,7 +205,6 @@ class TempoSpanner(Spanner):
         spanner_start = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(spanner_start)
         markup = current_tempo._to_markup()
-        markup._direction = None
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -233,7 +234,6 @@ class TempoSpanner(Spanner):
             markup = markuptools.Markup(command)
         else:
             makrup = current_tempo_trend.markup
-        markup._direction = None
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
