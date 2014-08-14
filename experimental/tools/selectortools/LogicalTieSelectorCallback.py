@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.abctools import AbjadValueObject
@@ -11,6 +12,7 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_flatten',
         '_pitched',
         '_trivial',
         '_only_with_head',
@@ -21,11 +23,13 @@ class LogicalTieSelectorCallback(AbjadValueObject):
 
     def __init__(
         self,
+        flatten=True,
         pitched=True,
         trivial=True,
         only_with_head=True,
         only_with_tail=True,
         ):
+        self._flatten = bool(flatten)
         self._pitched = bool(pitched)
         self._trivial = bool(trivial)
         self._only_with_head = bool(only_with_head)
@@ -37,8 +41,15 @@ class LogicalTieSelectorCallback(AbjadValueObject):
         r'''Iterates `expr`.
         '''
         result = []
-        for subexpr in expr:
-            result.extend(self._iterate_expr(subexpr))
+        if self.flatten:
+            for subexpr in expr:
+                result.extend(self._iterate_expr(subexpr))
+        else:
+            for subexpr in expr:
+                subresult = selectiontools.Selection(
+                    self._iterate_expr(subexpr),
+                    )
+                result.append(subresult)
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -68,6 +79,13 @@ class LogicalTieSelectorCallback(AbjadValueObject):
                 yield logical_tie
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def flatten(self):
+        r'''Is true if callback returns all logical ties in a single selection,
+        rather than grouping by each original sub-expression.
+        '''
+        return self._flatten
 
     @property
     def only_with_head(self):

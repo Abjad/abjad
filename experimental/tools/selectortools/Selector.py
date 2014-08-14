@@ -234,6 +234,7 @@ class Selector(AbjadValueObject):
 
     def by_logical_tie(
         self,
+        flatten=True,
         only_with_head=False,
         only_with_tail=False,
         pitched=False,
@@ -409,6 +410,7 @@ class Selector(AbjadValueObject):
         '''
         from experimental.tools import selectortools
         callback = selectortools.LogicalTieSelectorCallback(
+            flatten=flatten,
             pitched=pitched,
             trivial=trivial,
             only_with_head=only_with_head,
