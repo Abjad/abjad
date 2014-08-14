@@ -149,6 +149,8 @@ class RunDoctestsScript(DirectoryScript):
                     result_code = 'FAILED'
                     string = '{} {}'.format(relative_path, result_code)
                     result.append(string)
+                if args and args.x:
+                    break
             else:
                 if print_to_terminal:
                     result_code = ''.join((
