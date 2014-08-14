@@ -514,6 +514,217 @@ class TempoSpanner(Spanner):
                 }
             >>
 
+    ..  container:: example
+
+        **Example 5.** With an accelerando over a line break:
+
+        ::
+
+            >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+            >>> command = indicatortools.LilyPondCommand('break', 'after')
+            >>> attach(command, staff[3])
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[6], is_annotation=True)
+
+        ::
+
+            >>> accelerando = indicatortools.Accelerando()
+            >>> attach(accelerando, staff[2], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    c'4.
+                    d'4.
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
+                        \large
+                            {
+                                \italic
+                                    {
+                                        accel.
+                                    }
+                            }
+                        \hspace
+                            #0.75
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        \hspace
+                            #1.25
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 2
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    e'4. \startTextSpan
+                    f'4.
+                    \break
+                    g'4.
+                    a'4.
+                    b'4. \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 90"
+                        }
+                    c''4.
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 6.** With a ritardando over a line break:
+
+        ::
+
+            >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+            >>> command = indicatortools.LilyPondCommand('break', 'after')
+            >>> attach(command, staff[3])
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[6], is_annotation=True)
+
+        ::
+
+            >>> ritardando = indicatortools.Ritardando()
+            >>> attach(ritardando, staff[2], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    c'4.
+                    d'4.
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
+                        \large
+                            {
+                                \italic
+                                    {
+                                        rit.
+                                    }
+                            }
+                        \hspace
+                            #0.75
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 90"
+                        \hspace
+                            #1.25
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 2
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    e'4. \startTextSpan
+                    f'4.
+                    \break
+                    g'4.
+                    a'4.
+                    b'4. \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        }
+                    c''4.
+                }
+            >>
 
     '''
 
