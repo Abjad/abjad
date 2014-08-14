@@ -10,4 +10,3 @@ from experimental.tools import makertools
 from experimental.tools import musicexpressiontools
 from experimental.tools import newindicatortools
 from experimental.tools import newspannertools
-from experimental.tools import selectortools
