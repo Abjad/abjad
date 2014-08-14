@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
+from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
 
@@ -57,7 +58,7 @@ class TempoSpanner(Spanner):
                                     #1
                         " = 60"
                         }
-                    c'4 \startTextSpan
+                    c'4 \startTextSpan \startTextSpan
                     d'4
                     e'4
                     f'4
@@ -72,7 +73,7 @@ class TempoSpanner(Spanner):
                                     #1
                         " = 90"
                         }
-                    g'4 \stopTextSpan \startTextSpan
+                    g'4 \stopTextSpan \startTextSpan \startTextSpan
                     f'4
                     e'4
                     d'4
@@ -110,27 +111,7 @@ class TempoSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _get_previous_tempo(self, leaf):
-        index = self._index(leaf)
-        for index in reversed(range(index)):
-            earlier_leaf = self[index]
-            indicators = self._get_tempo_related_indicators(earlier_leaf)
-            tempo, tempo_trend = indicators
-            if tempo is not None:
-                return tempo
-
-    def _get_previous_tempo_trend(self, leaf):
-        index = self._index(leaf)
-        for index in reversed(range(index)):
-            earlier_leaf = self[index]
-            indicators = self._get_tempo_related_indicators(earlier_leaf)
-            tempo, tempo_trend = indicators
-            if tempo_trend is not None:
-                return tempo_trend
-            elif tempo is not None:
-                return
-
-    def _get_tempo_related_indicators(self, leaf):
+    def _get_current_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None
         prototype = indicatortools.Tempo,
@@ -148,68 +129,81 @@ class TempoSpanner(Spanner):
             tempo_trend,
             )
 
+    def _get_next_annotations(self, leaf):
+        index = self._index(leaf)
+        next_index = index + 1
+        if next_index == len(self):
+            return None, None
+        for next_leaf in self[next_index:]:
+            annotations = self._get_current_annotations(next_leaf)
+            tempo, tempo_trend = annotations
+            if tempo is not None or tempo_trend is not None:
+                return annotations
+        return None, None
+
+    def _get_previous_annotations(self, leaf):
+        index = self._index(leaf)
+        for index in reversed(range(index)):
+            previous_leaf = self[index]
+            annotations = self._get_current_annotations(previous_leaf)
+            tempo, tempo_trend = annotations
+            if tempo is not None or tempo_trend is not None:
+                return annotations
+        return None, None
+
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        indicators = self._get_tempo_related_indicators(leaf)
-        tempo, tempo_trend = indicators
-        if tempo is None and tempo_trend is None:
-            pass
-        elif tempo is None and tempo_trend is not None:
-            self._start_tempo_trend_spanner_with_implicit_start(
-                leaf,
-                lilypond_format_bundle=lilypond_format_bundle,
-                tempo_trend=tempo_trend,
-                )
-        elif tempo is not None and tempo_trend is None:
-            self._make_lone_tempo_markup(
-                leaf,
-                lilypond_format_bundle=lilypond_format_bundle,
-                tempo=tempo,
-                )
-        elif tempo is not None and tempo_trend is not None:
+        current_annotations = self._get_current_annotations(leaf)
+        current_tempo, current_tempo_trend = current_annotations
+        if current_tempo is None and current_tempo_trend is None:
+            return lilypond_format_bundle
+        previous_annotations = self._get_previous_annotations(leaf)
+        previous_tempo, previous_tempo_trend = previous_annotations
+        next_annotations = self._get_next_annotations(leaf)
+        next_tempo, next_tempo_trend = next_annotations
+        # stop any previous tempo trend
+        if previous_tempo_trend:
+            spanner_stop = r'\stopTextSpan'
+            lilypond_format_bundle.right.spanner_stops.append(spanner_stop)
+        # use markup without a spanner if not tempo trend starts now
+        if current_tempo_trend is None:
+            markup = current_tempo._to_markup()
+            string = format(markup, 'lilypond')
+            lilypond_format_bundle.right.markup.append(string)
+        # use spanner if tempo trend starts now with explicit tempo
+        elif current_tempo_trend and current_tempo:
+            spanner_start = r'\startTextSpan'
+            lilypond_format_bundle.right.spanner_starts.append(spanner_start)
             self._start_tempo_trend_spanner_with_explicit_start(
                 leaf,
                 lilypond_format_bundle,
-                tempo,
-                tempo_trend,
+                current_tempo,
+                current_tempo_trend,
+                )
+        # use spanner is tempo trend starts now with implicit tempo
+        elif current_tempo_trend and not current_tempo:
+            spanner_start = r'\startTextSpan'
+            lilypond_format_bundle.right.spanner_starts.append(spanner_start)
+            self._start_tempo_trend_spanner_with_implicit_start(
+                leaf,
+                lilypond_format_bundle,
+                current_tempo_trend,
                 )
         else:
             raise Exception
         return lilypond_format_bundle
 
-    def _make_lone_tempo_markup(
-        self, 
-        leaf,
-        lilypond_format_bundle=None,
-        tempo=None,
-        ):
-        assert tempo is not None
-        previous_tempo_trend = self._get_previous_tempo_trend(leaf)
-        if previous_tempo_trend is not None:
-            string = r'\stopTextSpan'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        markup = tempo._to_markup()
-        markup._direction = Up
-        string = format(markup, 'lilypond')
-        lilypond_format_bundle.right.markup.append(string)
-
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
         lilypond_format_bundle,
-        tempo,
-        tempo_trend,
+        current_tempo,
+        current_tempo_trend,
         ):
-        assert tempo is not None and tempo_trend is not None
-        previous_tempo_trend = self._get_previous_tempo_trend(leaf)
-        if previous_tempo_trend is not None:
-            string = r'\stopTextSpan'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        command = r'\startTextSpan'
-        lilypond_format_bundle.right.spanner_starts.append(command)
-        # TODO: implement parenthesization
-        #tempo = tempo._parenthesize()
-        markup = tempo._to_markup()
+        spanner_start = r'\startTextSpan'
+        lilypond_format_bundle.right.spanner_starts.append(spanner_start)
+        markup = current_tempo._to_markup()
+        markup._direction = None
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -226,16 +220,20 @@ class TempoSpanner(Spanner):
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
         leaf,
-        lilypond_format_bundle=None,
-        tempo_trend=None,
+        lilypond_format_bundle,
+        current_tempo_trend,
+        previous_tempo,
         ):
-        assert tempo_trend is not None
         command = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(command)
-        previous_tempo = self._get_previous_tempo(leaf)
-        # TODO: implement parenthesization
-        #previous_tempo = previous_tempo._parenthesize()
-        markup = previous_tempo._to_markup()
+        if previous_tempo:
+            markup = previous_tempo._to_markup()
+            command = markup.contents[:]
+            command = markuptools.MarkupCommand('parenthesize', command)
+            markup = markuptools.Markup(command)
+        else:
+            makrup = current_tempo_trend.markup
+        markup._direction = None
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
