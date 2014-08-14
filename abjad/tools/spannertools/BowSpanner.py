@@ -139,7 +139,7 @@ class BowSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _get_bowing_indicators(self, leaf):
+    def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
         bow_contact_point = None
         prototype = indicatortools.BowContactPoint
@@ -166,7 +166,7 @@ class BowSpanner(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        indicators = self._get_bowing_indicators(leaf)
+        indicators = self._get_annotations(leaf)
         bow_contact_point = indicators[0]
         bow_pressure = indicators[1]
         bow_motion_technique = indicators[2]
