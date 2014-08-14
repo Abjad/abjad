@@ -56,6 +56,7 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
                         \large
                             {
                                 \italic
@@ -63,6 +64,8 @@ class TempoSpanner(Spanner):
                                         accel.
                                     }
                             }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
@@ -79,18 +82,22 @@ class TempoSpanner(Spanner):
                         \hspace
                             #1.25
                         }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 2
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    c'4 \startTextSpan \startTextSpan
+                    c'4 \startTextSpan
                     d'4
                     e'4
                     f'4
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
                         \large
                             {
                                 \italic
@@ -98,6 +105,8 @@ class TempoSpanner(Spanner):
                                         rit.
                                     }
                             }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
@@ -114,12 +123,15 @@ class TempoSpanner(Spanner):
                         \hspace
                             #1.25
                         }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
                     \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.padding = 2
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'4 \stopTextSpan \startTextSpan \startTextSpan
+                    g'4 \stopTextSpan \startTextSpan
                     f'4
                     e'4
                     d'4
@@ -212,26 +224,22 @@ class TempoSpanner(Spanner):
         if previous_tempo_trend:
             spanner_stop = r'\stopTextSpan'
             lilypond_format_bundle.right.spanner_stops.append(spanner_stop)
-        # use markup without a spanner if not tempo trend starts now
+        # use markup if no tempo trend starts now
         if current_tempo_trend is None:
             markup = current_tempo._to_markup()
             markup = new(markup, direction=Up)
             string = format(markup, 'lilypond')
             lilypond_format_bundle.right.markup.append(string)
-        # use spanner if tempo trend starts now with explicit tempo
+        # use spanner if tempo trend starts now
         elif current_tempo_trend and current_tempo:
-            spanner_start = r'\startTextSpan'
-            lilypond_format_bundle.right.spanner_starts.append(spanner_start)
             self._start_tempo_trend_spanner_with_explicit_start(
                 leaf,
                 lilypond_format_bundle,
                 current_tempo,
                 current_tempo_trend,
                 )
-        # use spanner is tempo trend starts now with implicit tempo
+        # use spanner is tempo trend starts now
         elif current_tempo_trend and not current_tempo:
-            spanner_start = r'\startTextSpan'
-            lilypond_format_bundle.right.spanner_starts.append(spanner_start)
             self._start_tempo_trend_spanner_with_implicit_start(
                 leaf,
                 lilypond_format_bundle,
@@ -241,13 +249,6 @@ class TempoSpanner(Spanner):
             raise Exception
         return lilypond_format_bundle
 
-    r'''
-    \override TextSpanner #'bound-details #'right-broken #'arrow = ##f
-    \override TextSpanner #'bound-details #'right-broken #'padding = #0
-    \override TextSpanner #'bound-details #'right-broken #'text = ##f
-    \override TextSpanner #'style = #'line
-
-    '''
     def _make_other_text_spanner_overrides(self, lilypond_format_bundle):
         r'''Alphabetically by property.
         '''
@@ -332,7 +333,7 @@ class TempoSpanner(Spanner):
                 'right',
                 'padding',
                 ),
-            value=1.5,
+            value=2,
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
@@ -349,6 +350,45 @@ class TempoSpanner(Spanner):
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right-broken',
+                'arrow',
+                ),
+            value=False,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right-broken',
+                'padding',
+                ),
+            value=0,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
+        #
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='TextSpanner',
+            is_once=True,
+            property_path=(
+                'bound-details',
+                'right-broken',
+                'text',
+                ),
+            value=False,
+            )
+        override_string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
@@ -359,6 +399,7 @@ class TempoSpanner(Spanner):
         ):
         spanner_start = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(spanner_start)
+        #
         markup = current_tempo._to_markup()
         commands = list(markup.contents)
         commands.append(markuptools.MarkupCommand('hspace', 1.25))
@@ -377,6 +418,10 @@ class TempoSpanner(Spanner):
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         markup = current_tempo_trend._to_markup()
+        commands = list(markup.contents)
+        commands.insert(0, markuptools.MarkupCommand('parenthesize'))
+        commands.append(markuptools.MarkupCommand('hspace', 0.75))
+        markup = markuptools.Markup(contents=commands)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -400,13 +445,14 @@ class TempoSpanner(Spanner):
         ):
         spanner_start = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(spanner_start)
+        #
         if previous_tempo:
             markup = previous_tempo._to_markup()
             command = markup.contents[:]
             command = markuptools.MarkupCommand('parenthesize', command)
             markup = markuptools.Markup(command)
         else:
-            makrup = current_tempo_trend.markup
+            markup = current_tempo_trend._to_markup()
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
