@@ -1,11 +1,17 @@
-import types
+# -*- encoding: utf-8 -*-
 
 
-def attach(indicator, component_expression, scope=None):
+def attach(
+    indicator,
+    component_expression,
+    scope=None,
+    is_annotation=None,
+    ):
     r'''Attaches `indicator` to `component_expression`.
 
-    Derives scope from the default scope of `indicator`
-    when `scope` is none.
+    Derives scope from the default scope of `indicator` when `scope` is none.
+
+    Attached indicator is treated as annotative when `is_annotation` is true.
 
     Returns none.
     '''
@@ -34,8 +40,9 @@ def attach(indicator, component_expression, scope=None):
         scope = scope or indicator._default_scope
 
     expression = indicatortools.IndicatorExpression(
-        indicator,
-        component,
-        scope,
+        component=component,
+        indicator=indicator,
+        is_annotation=is_annotation,
+        scope=scope,
         )
     expression._bind_to_component(component)

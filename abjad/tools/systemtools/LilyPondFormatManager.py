@@ -108,13 +108,15 @@ class LilyPondFormatManager(object):
             # skip nonprinting indicators like annotation
             if not hasattr(expression.indicator, '_lilypond_format') and \
                 not hasattr(expression.indicator, '_lilypond_format_bundle'):
-                pass
+                continue
+            elif expression.is_annotation:
+                continue
             # skip comments and commands unless attached directly to us
             elif expression.scope is None and \
                 hasattr(expression.indicator, '_format_leaf_children') and \
                 not getattr(expression.indicator, '_format_leaf_children') and\
                 expression.component is not component:
-                pass
+                continue
             # store markup
             elif isinstance(expression.indicator, markuptools.Markup):
                 if expression.indicator.direction is Up:

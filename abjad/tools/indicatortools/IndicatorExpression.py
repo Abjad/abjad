@@ -14,12 +14,19 @@ class IndicatorExpression(AbjadObject):
         '_component',
         '_effective_context',
         '_indicator',
+        '_is_annotation',
         '_scope',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, indicator=None, component=None, scope=None):
+    def __init__(
+        self,
+        indicator=None,
+        is_annotation=None,
+        component=None,
+        scope=None,
+        ):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert not isinstance(indicator, type(self)), repr(indicator)
@@ -33,6 +40,9 @@ class IndicatorExpression(AbjadObject):
             else:
                 assert isinstance(scope, (scoretools.Component, str))
         self._indicator = indicator
+        if is_annotation is not None:
+            is_annotation = bool(is_annotation)
+        self._is_annotation = is_annotation
         self._component = component
         self._scope = scope
         self._effective_context = None
@@ -49,8 +59,9 @@ class IndicatorExpression(AbjadObject):
         Returns new indicator expression.
         '''
         new = type(self)(
-            copy.copy(self.indicator),
-            None,
+            component=None,
+            indicator=copy.copy(self.indicator),
+            is_annotation=self.is_annotation,
             scope=self.scope,
             )
         return new
@@ -64,7 +75,8 @@ class IndicatorExpression(AbjadObject):
         if isinstance(arg, type(self)):
             if self.indicator == arg.indicator:
                 if self.scope == arg.scope:
-                    return True
+                    if self.is_annotation == arg.is_annotation:
+                        return True
         return False
 
     def __hash__(self):
@@ -81,12 +93,13 @@ class IndicatorExpression(AbjadObject):
 
         Returns string.
         '''
-        result = '{}({!r}, {!s}, scope={!r})'
+        result = '{}({!r}, {!s}, scope={!r}, is_annotation={!r})'
         result = result.format(
             type(self).__name__,
             self.indicator,
             self.component,
             self.scope,
+            self.is_annotation,
             )
         return result
 
@@ -149,6 +162,8 @@ class IndicatorExpression(AbjadObject):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
         result = []
+        if self.is_annotation:
+            return result
         lilypond_format = self.indicator._lilypond_format
         if isinstance(lilypond_format, (tuple, list)):
             result.extend(lilypond_format)
@@ -166,6 +181,8 @@ class IndicatorExpression(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import indicatortools
         if not hasattr(self.indicator, '_format_slot'):
+            return False
+        if self.is_annotation:
             return False
         if isinstance(self.component, scoretools.Measure):
             if self.component is component:
@@ -257,6 +274,14 @@ class IndicatorExpression(AbjadObject):
         Returns indicator.
         '''
         return self._indicator
+
+    @property
+    def is_annotation(self):
+        r'''Is true if indicator expression is annotative.
+
+        Returns boolean.
+        '''
+        return self._is_annotation
 
     @property
     def scope(self):
