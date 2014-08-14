@@ -446,7 +446,7 @@ class Tempo(AbjadObject):
         dot_count = self.duration.dot_count
         units_per_minute = self.units_per_minute
         string = r'\smaller \general-align #Y #DOWN'
-        string += r' \note-by-number #{} #{} #1 " = {}"'
+        string += r' \note-by-number #{} #{} #1 \upright " = {}"'
         string = string.format(duration_log, dot_count, units_per_minute)
         markup = markuptools.Markup(string)
         return markup

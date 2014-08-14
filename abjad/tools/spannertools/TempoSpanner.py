@@ -57,7 +57,8 @@ class TempoSpanner(Spanner):
                                     #2
                                     #0
                                     #1
-                        " = 60"
+                        \upright
+                            " = 60"
                         }
                     c'4 \startTextSpan \startTextSpan
                     d'4
@@ -72,7 +73,8 @@ class TempoSpanner(Spanner):
                                     #2
                                     #0
                                     #1
-                        " = 90"
+                        \upright
+                            " = 90"
                         }
                     g'4 \stopTextSpan \startTextSpan \startTextSpan
                     f'4
@@ -87,7 +89,8 @@ class TempoSpanner(Spanner):
                                     #2
                                     #0
                                     #1
-                        " = 60"
+                        \upright
+                            " = 60"
                         }
                 }
             >>
