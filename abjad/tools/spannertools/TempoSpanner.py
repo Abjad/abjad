@@ -20,23 +20,18 @@ class TempoSpanner(Spanner):
         ::
 
             >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> tempo._annotation_only = True
-            >>> attach(tempo, staff[0])
+            >>> attach(tempo, staff[0], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> tempo._annotation_only = True
-            >>> attach(tempo, staff[7])
+            >>> attach(tempo, staff[7], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> tempo._annotation_only = True
-            >>> attach(tempo, staff[-1])
+            >>> attach(tempo, staff[-1], is_annotation=True)
 
         ::
 
             >>> accelerando = indicatortools.Accelerando()
-            >>> accelerando._annotation_only = True
-            >>> attach(accelerando, staff[0])
+            >>> attach(accelerando, staff[0], is_annotation=True)
             >>> ritardando = indicatortools.Ritardando()
-            >>> ritardando._annotation_only = True
-            >>> attach(ritardando, staff[7])
+            >>> attach(ritardando, staff[7], is_annotation=True)
 
         ::
 
