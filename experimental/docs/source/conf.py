@@ -51,7 +51,7 @@ extensions = [
 
 # abjad book settings
 abjad_book_should_process = True
-abjad_book_transform_path = 'experimental/'
+abjad_book_transform_path = 'tools/'
 
 # For sphinx.ext.todo
 todo_include_todos = True
