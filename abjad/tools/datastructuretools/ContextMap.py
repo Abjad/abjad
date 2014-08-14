@@ -15,10 +15,10 @@ class ContextMap(AbjadObject):
 
     ::
 
-        >>> context_map['String Orchestra Score']['color'] = 'red'
+        >>> context_map['Score']['color'] = 'red'
         >>> context_map['Violin Staff Group']['color'] = 'blue'
         >>> context_map['Contrabass Staff Group']['color'] = 'green'
-        >>> context_map['Contrabass 1 Voice']['color'] = 'yellow'
+        >>> context_map['Contrabass 1 Bowing Voice']['color'] = 'yellow'
 
     ::
 
@@ -29,10 +29,12 @@ class ContextMap(AbjadObject):
                 viola_count=4,
                 cello_count=3,
                 contrabass_count=2,
+                split_hands=True,
+                use_percussion_clefs=False,
                 ),
             settings=[
                 (
-                    'Contrabass 1 Voice',
+                    'Contrabass 1 Bowing Voice',
                     [
                         ('color', 'yellow'),
                         ],
@@ -44,7 +46,7 @@ class ContextMap(AbjadObject):
                         ],
                     ),
                 (
-                    'String Orchestra Score',
+                    'Score',
                     [
                         ('color', 'red'),
                         ],
@@ -60,22 +62,22 @@ class ContextMap(AbjadObject):
 
     ::
 
-        >>> context_map['Violin 1 Voice']['color']
+        >>> context_map['Violin 1 Bowing Voice']['color']
         'blue'
 
     ::
 
-        >>> context_map['Viola 3 Voice']['color']
+        >>> context_map['Viola 3 Bowing Voice']['color']
         'red'
 
     ::
 
-        >>> context_map['Contrabass 1 Voice']['color']
+        >>> context_map['Contrabass 1 Bowing Voice']['color']
         'yellow'
 
     ::
 
-        >>> context_map['Contrabass 2 Voice']['color']
+        >>> context_map['Contrabass 2 Bowing Voice']['color']
         'green'
 
     '''
@@ -140,10 +142,12 @@ class ContextMap(AbjadObject):
                     viola_count=4,
                     cello_count=3,
                     contrabass_count=2,
+                    split_hands=True,
+                    use_percussion_clefs=False,
                     ),
                 settings=[
                     (
-                        'Contrabass 1 Voice',
+                        'Contrabass 1 Bowing Voice',
                         [
                             ('color', 'yellow'),
                             ],
@@ -155,7 +159,7 @@ class ContextMap(AbjadObject):
                             ],
                         ),
                     (
-                        'String Orchestra Score',
+                        'Score',
                         [
                             ('color', 'red'),
                             ],
@@ -294,6 +298,8 @@ class ContextMap(AbjadObject):
                     viola_count=4,
                     cello_count=3,
                     contrabass_count=2,
+                    split_hands=True,
+                    use_percussion_clefs=False,
                     )
 
         Returns score template or none.
