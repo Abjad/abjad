@@ -16,9 +16,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f' g' a' b'2. c''2.")
-            >>> staff.extend("c''4 b' a' g' f' e'  d'2. c'2.")
-            >>> attach(TimeSignature((3, 4)), staff)
+            >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> attach(TimeSignature((3, 8)), staff)
             >>> score = Score([staff])
 
         ::
@@ -26,9 +25,9 @@ class TempoSpanner(Spanner):
             >>> tempo = Tempo(Duration(1, 4), 60)
             >>> attach(tempo, staff[0], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[7], is_annotation=True)
+            >>> attach(tempo, staff[2], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[-1], is_annotation=True)
+            >>> attach(tempo, staff[5], is_annotation=True)
 
         ::
 
@@ -37,7 +36,6 @@ class TempoSpanner(Spanner):
         ::
 
             >>> override(score).text_script.staff_padding = 1.5
-            >>> override(score).text_spanner.staff_padding = 2
 
         ::
 
@@ -48,11 +46,10 @@ class TempoSpanner(Spanner):
             >>> print(format(score))
             \new Score \with {
                 \override TextScript #'staff-padding = #1.5
-                \override TextSpanner #'staff-padding = #2
             } <<
                 \new Staff {
-                    \time 3/4
-                    c'4 ^ \markup {
+                    \time 3/8
+                    c'8. ^ \markup {
                         \smaller
                             \general-align
                                 #Y
@@ -64,13 +61,8 @@ class TempoSpanner(Spanner):
                         \upright
                             " = 60"
                         }
-                    d'4
-                    e'4
-                    f'4
-                    g'4
-                    a'4
-                    b'2.
-                    c''2. ^ \markup {
+                    d'8.
+                    e'4. ^ \markup {
                         \smaller
                             \general-align
                                 #Y
@@ -82,14 +74,9 @@ class TempoSpanner(Spanner):
                         \upright
                             " = 90"
                         }
-                    c''4
-                    b'4
-                    a'4
-                    g'4
-                    f'4
-                    e'4
-                    d'2.
-                    c'2. ^ \markup {
+                    g'8.
+                    f'8.
+                    ef'4. ^ \markup {
                         \smaller
                             \general-align
                                 #Y
@@ -103,6 +90,8 @@ class TempoSpanner(Spanner):
                         }
                 }
             >>
+
+        Output comprises markup only.
 
     ..  container:: example
 
