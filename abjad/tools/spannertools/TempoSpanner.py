@@ -12,7 +12,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Tempo indicators only:
+        **Example 1.** With tempo indicators only:
 
         ::
 
@@ -26,6 +26,8 @@ class TempoSpanner(Spanner):
             >>> attach(tempo, staff[0], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 90)
             >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 72)
+            >>> attach(tempo, staff[3], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 60)
             >>> attach(tempo, staff[5], is_annotation=True)
 
@@ -35,7 +37,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.5
+            >>> override(score).text_script.staff_padding = 1.25
 
         ::
 
@@ -45,7 +47,7 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.5
+                \override TextScript #'staff-padding = #1.25
             } <<
                 \new Staff {
                     \time 3/8
@@ -74,7 +76,18 @@ class TempoSpanner(Spanner):
                         \upright
                             " = 90"
                         }
-                    g'8.
+                    g'8. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 72"
+                        }
                     f'8.
                     ef'4. ^ \markup {
                         \smaller
@@ -91,17 +104,14 @@ class TempoSpanner(Spanner):
                 }
             >>
 
-        Output comprises markup only.
-
     ..  container:: example
 
-        **Example 2.** Tempo, accelerando and ritardando indicators together:
+        **Example 2.** With an accelerando:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f' g' a' b'2. c''2.")
-            >>> staff.extend("c''4 b' a' g' f' e'  d'2. c'2.")
-            >>> attach(TimeSignature((3, 4)), staff)
+            >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> attach(TimeSignature((3, 8)), staff)
             >>> score = Score([staff])
 
         ::
@@ -109,340 +119,16 @@ class TempoSpanner(Spanner):
             >>> tempo = Tempo(Duration(1, 4), 60)
             >>> attach(tempo, staff[0], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[7], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[-1], is_annotation=True)
-
-        ::
-
-            >>> accelerando = indicatortools.Accelerando()
-            >>> attach(accelerando, staff[0], is_annotation=True)
-            >>> ritardando = indicatortools.Ritardando()
-            >>> attach(ritardando, staff[7], is_annotation=True)
-
-        ::
-
-            >>> attach(spannertools.TempoSpanner(), staff[:])
-
-        ::
-
-            >>> override(score).text_script.staff_padding = 1.5
-            >>> override(score).text_spanner.staff_padding = 2
-
-        ::
-
-            >>> show(score) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(score))
-            \new Score \with {
-                \override TextScript #'staff-padding = #1.5
-                \override TextSpanner #'staff-padding = #2
-            } <<
-                \new Staff {
-                    \time 3/4
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
-                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
-                        \hspace
-                            #0.75
-                        }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 60"
-                        \hspace
-                            #1.25
-                        }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c'4 \startTextSpan
-                    d'4
-                    e'4
-                    f'4
-                    g'4
-                    a'4
-                    b'2.
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
-                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
-                        \hspace
-                            #0.75
-                        }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 90"
-                        \hspace
-                            #1.25
-                        }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c''2. \stopTextSpan \startTextSpan
-                    c''4
-                    b'4
-                    a'4
-                    g'4
-                    f'4
-                    e'4
-                    d'2.
-                    c'2. \stopTextSpan ^ \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 60"
-                        }
-                }
-            >>
-
-        Parenthesized left broken text is generated automatically.
-
-    ..  container:: example
-
-        **Example 3.** Composer supplies start and stop of each tempo trend
-        explicitly:
-
-        ::
-
-            >>> staff = Staff("c'4 d' e' f' g' a' b'2. c''2.")
-            >>> staff.extend("c''4 b' a' g' f' e'  d'2. c'2.")
-            >>> attach(TimeSignature((3, 4)), staff)
-            >>> score = Score([staff])
-
-        ::
-
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[7], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[11], is_annotation=True)
-
-        ::
-
-            >>> accelerando = indicatortools.Accelerando()
-            >>> attach(accelerando, staff[0], is_annotation=True)
-            >>> ritardando = indicatortools.Ritardando()
-            >>> attach(ritardando, staff[7], is_annotation=True)
-
-        ::
-
-            >>> attach(spannertools.TempoSpanner(), staff[:])
-
-        ::
-
-            >>> override(score).text_script.staff_padding = 1.5
-            >>> override(score).text_spanner.staff_padding = 2
-
-        ::
-
-            >>> show(score) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(score))
-            \new Score \with {
-                \override TextScript #'staff-padding = #1.5
-                \override TextSpanner #'staff-padding = #2
-            } <<
-                \new Staff {
-                    \time 3/4
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
-                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
-                        \hspace
-                            #0.75
-                        }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 60"
-                        \hspace
-                            #1.25
-                        }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c'4 \startTextSpan
-                    d'4
-                    e'4
-                    f'4 \stopTextSpan ^ \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 90"
-                        }
-                    g'4
-                    a'4
-                    b'2.
-                    \once \override TextSpanner.arrow-width = 0.25
-                    \once \override TextSpanner.bound-details.left-broken.padding = -2
-                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
-                        \hspace
-                            #0.75
-                        }
-                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                    \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 90"
-                        \hspace
-                            #1.25
-                        }
-                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                    \once \override TextSpanner.bound-details.right-broken.padding = 0
-                    \once \override TextSpanner.bound-details.right-broken.text = ##f
-                    \once \override TextSpanner.bound-details.right.arrow = ##t
-                    \once \override TextSpanner.bound-details.right.padding = 2
-                    \once \override TextSpanner.bound-details.right.text = ##f
-                    \once \override TextSpanner.dash-fraction = 0.25
-                    \once \override TextSpanner.dash-period = 1.5
-                    c''2. \startTextSpan
-                    c''4
-                    b'4
-                    a'4
-                    g'4 \stopTextSpan ^ \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 60"
-                        }
-                    f'4
-                    e'4
-                    d'2.
-                    c'2.
-                }
-            >>
-
-        Parenthesized left broken text is generated automatically.
-
-    ..  container:: example
-
-        **Example 4.** With impliciat start to ritardando:
-
-        ::
-
-            >>> staff = Staff("c'4 d' e' f' g' a' b'2. c''2.")
-            >>> staff.extend("c''4 b' a' g' f' e'  d'2. c'2.")
-            >>> attach(TimeSignature((3, 4)), staff)
-            >>> score = Score([staff])
-
-        ::
-
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 72)
             >>> attach(tempo, staff[3], is_annotation=True)
             >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[11], is_annotation=True)
+            >>> attach(tempo, staff[5], is_annotation=True)
 
         ::
 
             >>> accelerando = indicatortools.Accelerando()
             >>> attach(accelerando, staff[0], is_annotation=True)
-            >>> ritardando = indicatortools.Ritardando()
-            >>> attach(ritardando, staff[7], is_annotation=True)
 
         ::
 
@@ -450,7 +136,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.5
+            >>> override(score).text_script.staff_padding = 1.25
             >>> override(score).text_spanner.staff_padding = 2
 
         ::
@@ -461,11 +147,11 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.5
+                \override TextScript #'staff-padding = #1.25
                 \override TextSpanner #'staff-padding = #2
             } <<
                 \new Staff {
-                    \time 3/4
+                    \time 3/8
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -503,11 +189,10 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    c'4 \startTextSpan
-                    d'4
-                    e'4
-                    f'4 \stopTextSpan ^ \markup {
-                            \smaller
+                    c'8. \startTextSpan
+                    d'8.
+                    e'4. \stopTextSpan ^ \markup {
+                        \smaller
                             \general-align
                                 #Y
                                 #DOWN
@@ -518,9 +203,107 @@ class TempoSpanner(Spanner):
                         \upright
                             " = 90"
                         }
-                    g'4
-                    a'4
-                    b'2.
+                    g'8. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 72"
+                        }
+                    f'8.
+                    ef'4. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        }
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 3.** With a ritardando:
+
+        ::
+
+            >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[0], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 72)
+            >>> attach(tempo, staff[3], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[5], is_annotation=True)
+
+        ::
+
+            >>> ritardando = indicatortools.Ritardando()
+            >>> attach(ritardando, staff[3], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    c'8. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        }
+                    d'8.
+                    e'4. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 90"
+                        }
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -537,8 +320,6 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \parenthesize
-                        \combine
                         \smaller
                             \general-align
                                 #Y
@@ -548,7 +329,9 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            " = 72"
+                        \hspace
+                            #1.25
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
@@ -558,11 +341,9 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    c''2. \startTextSpan
-                    c''4
-                    b'4
-                    a'4
-                    g'4 \stopTextSpan ^ \markup {
+                    g'8. \startTextSpan
+                    f'8.
+                    ef'4. \stopTextSpan ^ \markup {
                         \smaller
                             \general-align
                                 #Y
@@ -574,12 +355,165 @@ class TempoSpanner(Spanner):
                         \upright
                             " = 60"
                         }
-                    f'4
-                    e'4
-                    d'2.
-                    c'2.
                 }
             >>
+
+
+    ..  container:: example
+
+        **Example 4.** With both an accelerando and a ritardando:
+
+        ::
+
+            >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[0], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 72)
+            >>> attach(tempo, staff[3], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[5], is_annotation=True)
+
+        ::
+
+            >>> accelerando = indicatortools.Accelerando()
+            >>> attach(accelerando, staff[0], is_annotation=True)
+            >>> ritardando = indicatortools.Ritardando()
+            >>> attach(ritardando, staff[3], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
+                        \large
+                            {
+                                \italic
+                                    {
+                                        accel.
+                                    }
+                            }
+                        \hspace
+                            #0.75
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        \hspace
+                            #1.25
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 2
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    c'8. \startTextSpan
+                    d'8.
+                    e'4. \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 90"
+                        }
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \parenthesize
+                        \large
+                            {
+                                \italic
+                                    {
+                                        rit.
+                                    }
+                            }
+                        \hspace
+                            #0.75
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 72"
+                        \hspace
+                            #1.25
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 2
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \startTextSpan
+                    f'8.
+                    ef'4. \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 60"
+                        }
+                }
+            >>
+
 
     '''
 
