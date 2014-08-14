@@ -12,11 +12,10 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-            >>> staff = Staff("c'4 d' e' f' g' f' e' d' c'2")
-            >>> attach(TimeSignature((2, 4)), staff)
+            >>> staff = Staff("c'4 d' e' f' g' a' b'2. c''2.")
+            >>> staff.extend("c''4 b' a' g' f' e'  d'2. c'2.")
+            >>> attach(TimeSignature((3, 4)), staff)
             >>> score = Score([staff])
-            >>> override(score).text_script.staff_padding = 1.5
-            >>> override(score).text_spanner.staff_padding = 2
 
         ::
 
@@ -25,7 +24,7 @@ class TempoSpanner(Spanner):
             >>> attach(tempo, staff[0])
             >>> tempo = Tempo(Duration(1, 4), 90)
             >>> tempo._annotation_only = True
-            >>> attach(tempo, staff[4])
+            >>> attach(tempo, staff[7])
             >>> tempo = Tempo(Duration(1, 4), 60)
             >>> tempo._annotation_only = True
             >>> attach(tempo, staff[-1])
@@ -37,11 +36,19 @@ class TempoSpanner(Spanner):
             >>> attach(accelerando, staff[0])
             >>> ritardando = indicatortools.Ritardando()
             >>> ritardando._annotation_only = True
-            >>> attach(ritardando, staff[4])
+            >>> attach(ritardando, staff[7])
 
         ::
 
             >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.5
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -52,7 +59,7 @@ class TempoSpanner(Spanner):
                 \override TextSpanner #'staff-padding = #2
             } <<
                 \new Staff {
-                    \time 2/4
+                    \time 3/4
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -94,6 +101,9 @@ class TempoSpanner(Spanner):
                     d'4
                     e'4
                     f'4
+                    g'4
+                    a'4
+                    b'2.
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -131,11 +141,15 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
-                    g'4 \stopTextSpan \startTextSpan
+                    c''2. \stopTextSpan \startTextSpan
+                    c''4
+                    b'4
+                    a'4
+                    g'4
                     f'4
                     e'4
-                    d'4
-                    c'2 \stopTextSpan ^ \markup {
+                    d'2.
+                    c'2. \stopTextSpan ^ \markup {
                         \smaller
                             \general-align
                                 #Y
