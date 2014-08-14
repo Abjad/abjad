@@ -2,6 +2,7 @@
 from __future__ import print_function
 import docutils
 import hashlib
+import importlib
 import os
 import pickle
 import posixpath
@@ -45,7 +46,6 @@ class AbjadBookDirective(sphinx.util.compat.Directive):
         literal['errors-ok'] = 'errors-ok' in self.options
         literal['hidden'] = 'hidden' in self.options
         literal['strip-prompt'] = 'strip-prompt' in self.options
-        #literal = docutils.nodes.literal_block(code, code)
         sphinx.util.nodes.set_source_info(self, literal)
         return [literal]
 
@@ -59,7 +59,6 @@ class ShellDirective(sphinx.util.compat.Directive):
 
     def run(self):
         self.assert_has_content()
-        #original_directory = os.path.abspath(os.path.curdir)
         os.chdir(abjad_configuration.abjad_directory)
         result = []
         for line in self.content:
@@ -68,7 +67,6 @@ class ShellDirective(sphinx.util.compat.Directive):
             result.append(prompt)
             proc = subprocess.Popen(
                 line,
-                #line.split(),
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
@@ -80,17 +78,7 @@ class ShellDirective(sphinx.util.compat.Directive):
         literal = docutils.nodes.literal_block(code, code)
         literal['language'] = 'console'
         sphinx.util.nodes.set_source_info(self, literal)
-#        if literal.rawsource != literal.astext():
-#            print 'RAW:\n' + literal.rawsource
-#            print 'TXT:\n' + literal.asText()
-#            literal.rawsource = literal.asText()
         return [literal]
-
-#        literal = docutils.nodes.literal_block(code, code)
-#        literal['language'] = 'bash'
-#        sphinx.util.nodes.set_source_info(self, literal)
-#        os.chdir(original_directory)
-#        return [literal]
 
 
 def on_builder_inited(app):
@@ -103,7 +91,13 @@ def on_builder_inited(app):
 
 
 def rewrite_literal_block_line(line):
-    if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'systemtools.log(')):
+    if line.strip().startswith((
+        'f(',
+        'play(',
+        'print ',
+        'print(',
+        'redo(',
+        )):
         return '', False
     elif not line.startswith(('show(', 'topleveltools.graph(')):
         return line, False
@@ -155,9 +149,14 @@ def process_literal_block_pairs(literal_block_pairs):
         '__builtins__': __builtins__,
         'print_function': print_function,
         }
+    exec('from abjad import *\n', environment)
+    try:
+        experimental = importlib.import_module('experimental')
+        environment.update(experimental.__dict__)
+    except ImportError:
+        pass
     string_io = StringIO()
     with systemtools.RedirectedStreams(stdout=string_io):
-        exec('from abjad import *\n', environment)
         for literal_block, all_lines in literal_block_pairs:
             original_lines = literal_block[0].splitlines()
             replacement_blocks = []
@@ -388,10 +387,6 @@ def setup(app):
     app.add_node(abjad_book_block,
         html=(visit_abjad_book_html, None),
         latex=(visit_abjad_book_latex, None),
-        # we can add more rendering options later
-        #texinfo=(visit_abjad_book_texinfo, None),
-        #text=(visit_abjad_book_text, None),
-        #man=(visit_abjad_book_man, None)
         )
     app.connect('builder-inited', on_builder_inited)
     app.connect('doctree-read', on_doctree_read)
