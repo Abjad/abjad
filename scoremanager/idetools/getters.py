@@ -122,6 +122,16 @@ def get_integers(
     getter.append_integers(space_delimited_attribute_name)
     return getter
 
+def get_list(
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
+    allow_none=True,
+    ):
+    getter = Getter(session=session, allow_none=allow_none)
+    getter.append_list(space_delimited_attribute_name)
+    return getter
+
 def get_lists(
     space_delimited_attribute_name,
     session=None,
