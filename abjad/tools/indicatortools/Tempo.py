@@ -448,7 +448,7 @@ class Tempo(AbjadObject):
         string = r'\smaller \general-align #Y #DOWN'
         string += r' \note-by-number #{} #{} #1 " = {}"'
         string = string.format(duration_log, dot_count, units_per_minute)
-        markup = markuptools.Markup(string, direction=Up)
+        markup = markuptools.Markup(string)
         return markup
 
     ### PUBLIC PROPERTIES ###

@@ -10,7 +10,7 @@ def test_indicatortools_Tempo__to_markup_01():
     assert systemtools.TestManager.compare(
         markup,
         r'''
-        ^ \markup {
+        \markup {
             \smaller
                 \general-align
                     #Y
@@ -33,7 +33,7 @@ def test_indicatortools_Tempo__to_markup_02():
     assert systemtools.TestManager.compare(
         markup,
         r'''
-        ^ \markup {
+        \markup {
             \smaller
                 \general-align
                     #Y
