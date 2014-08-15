@@ -472,6 +472,8 @@ class MetricModulation(AbjadObject):
         from abjad.tools import scoretools
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
+        left_rhythm = left_rhythm or scoretools.Note('c4')
+        right_rhythm = right_rhythm or scoretools.Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
