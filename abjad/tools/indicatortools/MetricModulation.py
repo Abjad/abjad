@@ -390,6 +390,7 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(staff))
             \new Staff {
+                \time 3/4
                 c'4
                 d'4
                 e'4
