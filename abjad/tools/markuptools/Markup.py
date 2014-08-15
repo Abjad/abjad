@@ -203,6 +203,21 @@ class Markup(AbjadObject):
                 >>> markup = Markup(string)
                 >>> show(markup) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> lilypond_file = markup.__illustrate__()
+                >>> markup = lilypond_file.items[-1]
+                >>> print(format(markup))
+                \markup {
+                    \bold
+                        {
+                            allegro
+                            ma
+                            non
+                            troppo
+                        }
+                    }
+
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
