@@ -154,6 +154,10 @@ class Selector(AbjadValueObject):
         return selectiontools.Selection(expr)
 
     def __getitem__(self, item):
+        r'''Gets `item` from selector.
+
+        Returns another selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(item)
         callbacks = self.callbacks or ()
