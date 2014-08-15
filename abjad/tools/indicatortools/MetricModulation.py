@@ -34,19 +34,23 @@ class MetricModulation(AbjadObject):
             \markup {
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -59,19 +63,23 @@ class MetricModulation(AbjadObject):
                     #-1
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4.
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4.
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -100,22 +108,26 @@ class MetricModulation(AbjadObject):
             \markup {
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            \tweak #'edge-height #'(0.7 . 0)
-                            \times 4/5 {
-                                c'4
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                \tweak #'edge-height #'(0.7 . 0)
+                                \times 4/5 {
+                                    c'4
+                                }
                             }
-                        }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -128,27 +140,29 @@ class MetricModulation(AbjadObject):
                     #-1
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
                         }
                     }
                 }
-
-        ..  todo:: Shorten tuplet bracket.
 
     ..  container:: example
 
@@ -171,19 +185,23 @@ class MetricModulation(AbjadObject):
             \markup {
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c16.
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c16.
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -196,30 +214,32 @@ class MetricModulation(AbjadObject):
                     #-1
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            \tweak #'edge-height #'(0.7 . 0)
-                            \times 2/3 {
-                                c8
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                \tweak #'edge-height #'(0.7 . 0)
+                                \times 2/3 {
+                                    c8
+                                }
                             }
-                        }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
                         }
                     }
                 }
-
-        ..  todo:: Shorten tuplet bracket.
 
     ..  container:: example
 
@@ -243,19 +263,23 @@ class MetricModulation(AbjadObject):
             \markup {
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -268,28 +292,30 @@ class MetricModulation(AbjadObject):
                     #-1
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4 ~
-                            c'16
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4 ~
+                                c'16
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
                         }
                     }
                 }
-
-        ..  todo:: Shorten tie.
 
     ..  container:: example
 
@@ -314,19 +340,23 @@ class MetricModulation(AbjadObject):
             \markup {
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            c'4
-                        }
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                c'4
+                            }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
@@ -339,31 +369,33 @@ class MetricModulation(AbjadObject):
                     #-1
                 \score
                     {
-                        \new RhythmicStaff \with {
-                            \remove Time_signature_engraver
-                            \remove Staff_symbol_engraver
-                            \override Stem #'length = #4
-                            \override TupletBracket #'backet-visibility = ##t
-                            \override TupletBracket #'padding = #1.25
-                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                            fontSize = #-2
-                            tupletFullLength = ##t
-                        } {
-                            \tweak #'edge-height #'(0.7 . 0)
-                            \times 2/3 {
-                                c'4 ~
-                                c'16
+                        \new Score \with {
+                            proportionalNotationDuration = ##f
+                        } <<
+                            \new RhythmicStaff \with {
+                                \remove Time_signature_engraver
+                                \remove Staff_symbol_engraver
+                                \override Stem #'length = #4
+                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'padding = #1.25
+                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                fontSize = #-2
+                                tupletFullLength = ##t
+                            } {
+                                \tweak #'edge-height #'(0.7 . 0)
+                                \times 2/3 {
+                                    c'4 ~
+                                    c'16
+                                }
                             }
-                        }
+                        >>
                         \layout {
                             indent = #0
                             ragged-right = ##t
                         }
                     }
                 }
-
-        ..  todo:: Shorten tie and tuplet bracket.
 
     Attach metric modulations to generate score output.
 
@@ -398,19 +430,23 @@ class MetricModulation(AbjadObject):
                     ^ \markup {
                         \score
                             {
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-2
-                                    tupletFullLength = ##t
-                                } {
-                                    c4
-                                }
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'length = #4
+                                        \override TupletBracket #'backet-visibility = ##t
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #-2
+                                        tupletFullLength = ##t
+                                    } {
+                                        c4
+                                    }
+                                >>
                                 \layout {
                                     indent = #0
                                     ragged-right = ##t
@@ -423,19 +459,23 @@ class MetricModulation(AbjadObject):
                             #-1
                         \score
                             {
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-2
-                                    tupletFullLength = ##t
-                                } {
-                                    c8.
-                                }
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'length = #4
+                                        \override TupletBracket #'backet-visibility = ##t
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #-2
+                                        tupletFullLength = ##t
+                                    } {
+                                        c8.
+                                    }
+                                >>
                                 \layout {
                                     indent = #0
                                     ragged-right = ##t
@@ -657,22 +697,26 @@ class MetricModulation(AbjadObject):
                 \markup {
                     \score
                         {
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-2
-                                tupletFullLength = ##t
-                            } {
-                                \tweak #'edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c'4
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak #'edge-height #'(0.7 . 0)
+                                    \times 2/3 {
+                                        c'4
+                                    }
                                 }
-                            }
+                            >>
                             \layout {
                                 indent = #0
                                 ragged-right = ##t
@@ -685,19 +729,23 @@ class MetricModulation(AbjadObject):
                         #-1
                     \score
                         {
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-2
-                                tupletFullLength = ##t
-                            } {
-                                c'4.
-                            }
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4.
+                                }
+                            >>
                             \layout {
                                 indent = #0
                                 ragged-right = ##t
@@ -732,22 +780,26 @@ class MetricModulation(AbjadObject):
                 \markup {
                     \score
                         {
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-2
-                                tupletFullLength = ##t
-                            } {
-                                \tweak #'edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c'4
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak #'edge-height #'(0.7 . 0)
+                                    \times 2/3 {
+                                        c'4
+                                    }
                                 }
-                            }
+                            >>
                             \layout {
                                 indent = #0
                                 ragged-right = ##t
@@ -760,19 +812,23 @@ class MetricModulation(AbjadObject):
                         #-1
                     \score
                         {
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-2
-                                tupletFullLength = ##t
-                            } {
-                                c'4
-                            }
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
                             \layout {
                                 indent = #0
                                 ragged-right = ##t
@@ -893,7 +949,9 @@ class MetricModulation(AbjadObject):
         layout_block = lilypondfiletools.Block(name='layout')
         layout_block.indent = 0
         layout_block.ragged_right = True
-        return staff, layout_block
+        score = scoretools.Score([staff])
+        set_(score).proportional_notation_duration = False
+        return score, layout_block
 
     def _to_markup(self, selection):
         staff, layout_block = self._make_score_block(selection)
