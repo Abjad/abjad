@@ -164,11 +164,12 @@
     Should return Division objects where appropriate.
     Compare with NonreducedFraction.
 
-40. TODO:
-
-    1) Create an auto-editable material "one".
+40. 1) Create an auto-editable material "one".
     2) Auto-edit "one", output and return to materials menu.
     3) Copy "one" as "two".
     4) Attempt to edit "two".
     5) Note that "two" will not be set as auto-editable, even though all of its
        files are identical to that of "one".
+
+41. After creating a new package, if there was previously a view set, that view
+    should *not* be cleared if the new package would appear under that view.
