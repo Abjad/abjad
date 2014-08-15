@@ -23,19 +23,19 @@ class MetricModulation(AbjadObject):
         ::
 
             >>> metric_modulation = indicatortools.MetricModulation(
-            ...     left_tempo=tempo_1,
-            ...     right_tempo=tempo_2,
+            ...     left_rhythm=tempo_1,
+            ...     right_rhythm=tempo_2,
             ...     )
 
         ::
 
             >>> print(format(metric_modulation))
             indicatortools.MetricModulation(
-                left_tempo=indicatortools.Tempo(
+                left_rhythm=indicatortools.Tempo(
                     duration=durationtools.Duration(1, 4),
                     units_per_minute=60,
                     ),
-                right_tempo=indicatortools.Tempo(
+                right_rhythm=indicatortools.Tempo(
                     duration=durationtools.Duration(1, 4),
                     units_per_minute=90,
                     ),
@@ -90,17 +90,17 @@ class MetricModulation(AbjadObject):
 
     __slots__ = (
         '_left_markup',
-        '_left_tempo',
+        '_left_rhythm',
         '_right_markup',
-        '_right_tempo',
+        '_right_rhythm',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        left_tempo=None,
-        right_tempo=None,
+        left_rhythm=None,
+        right_rhythm=None,
         left_markup=None,
         right_markup=None,
         ):
@@ -109,12 +109,12 @@ class MetricModulation(AbjadObject):
         from abjad.tools import scoretools
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
-        if left_tempo is not None:
-            assert isinstance(left_tempo, indicatortools.Tempo)
-        self._left_tempo = left_tempo
-        if right_tempo is not None:
-            assert isinstance(right_tempo, indicatortools.Tempo)
-        self._right_tempo = right_tempo
+        if left_rhythm is not None:
+            assert isinstance(left_rhythm, indicatortools.Tempo)
+        self._left_rhythm = left_rhythm
+        if right_rhythm is not None:
+            assert isinstance(right_rhythm, indicatortools.Tempo)
+        self._right_rhythm = right_rhythm
         if left_markup is not None:
             assert isinstance(left_markup, markuptools.Markup)
         self._left_markup = left_markup
@@ -133,12 +133,12 @@ class MetricModulation(AbjadObject):
         return self._left_markup
 
     @property
-    def left_tempo(self):
-        r'''Gets left tempo of metric modulation.
+    def left_rhythm(self):
+        r'''Gets left rhythm of metric modulation.
 
-        Returns tempo or none.
+        Returns selection.
         '''
-        return self._left_tempo
+        return self._left_rhythm
 
     @property
     def right_markup(self):
@@ -149,9 +149,9 @@ class MetricModulation(AbjadObject):
         return self._right_markup
 
     @property
-    def right_tempo(self):
+    def right_rhythm(self):
         r'''Gets right tempo of metric modulation.
 
-        Returns tempo or none.
+        Returns selection.
         '''
-        return self._right_tempo
+        return self._right_rhythm
