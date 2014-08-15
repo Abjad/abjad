@@ -398,6 +398,7 @@ class NamedInterval(Interval):
             )
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=False,
             positional_argument_values=positional_argument_values,
             )
 

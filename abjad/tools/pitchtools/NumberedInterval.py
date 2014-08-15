@@ -155,6 +155,7 @@ class NumberedInterval(Interval):
             )
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )

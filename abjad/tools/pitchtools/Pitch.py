@@ -138,6 +138,14 @@ class Pitch(AbjadObject):
         '''
         raise NotImplementedError
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            )
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod

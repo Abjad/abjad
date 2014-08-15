@@ -133,6 +133,7 @@ class Interval(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=False,
             positional_argument_values=(
                 self.number,
                 ),

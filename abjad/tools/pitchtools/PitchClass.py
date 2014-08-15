@@ -195,6 +195,16 @@ class PitchClass(AbjadObject):
         '''
         return hash(repr(self))
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            )
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
