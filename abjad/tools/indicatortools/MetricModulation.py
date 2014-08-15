@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import durationtools
+from abjad.tools import markuptools
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools.new import new
 
 
 class MetricModulation(AbjadObject):
@@ -24,8 +28,8 @@ class MetricModulation(AbjadObject):
         ::
 
             >>> metric_modulation = indicatortools.MetricModulation(
-            ...     left_rhythm=Duration(1, 4),
-            ...     right_rhythm=Duration(3, 8),
+            ...     left_rhythm=Note("c'4"),
+            ...     right_rhythm=Note("c'4."),
             ...     )
 
         ::
@@ -70,7 +74,14 @@ class MetricModulation(AbjadObject):
                         }
                     d'4
                     e'4
-                    f'4 ^ \markup {
+                    f'4
+                        ^ \markup {
+                            \combine
+                                c'4
+                                " = "
+                                c'4.
+                            }
+                        ^ \markup {
                         \smaller
                             \general-align
                                 #Y
@@ -124,24 +135,239 @@ class MetricModulation(AbjadObject):
             assert isinstance(right_markup, markuptools.Markup)
         self._right_markup = right_markup
 
+    ### SPECIAL METHODS ###
+
+    def __copy__(self, *args):
+        r'''Copies metric modulation.
+
+        ..  container:: example
+
+            ::
+
+                >>> import copy
+                >>> metric_modulation_1 = indicatortools.MetricModulation(
+                ...     left_rhythm=Note("c'4"),
+                ...     right_rhythm=Note("c'4."),
+                ...     )
+                >>> metric_modulation_2 = copy.copy(metric_modulation_1)
+
+            ::
+
+                >>> str(metric_modulation_1) == str(metric_modulation_2)
+                True
+
+            ::
+
+                >>> metric_modulation_1 == metric_modulation_2
+                True
+
+            ::
+
+                >>> metric_modulation_1 is metric_modulation_2
+                False
+
+        Returns new metric modulation.
+        '''
+        return type(self)(
+            left_rhythm=self.left_rhythm,
+            right_rhythm=self.right_rhythm,
+            left_markup=self.left_markup,
+            right_markup=self.right_markup,
+            )
+
+    def __eq__(self, expr):
+        r'''Is true `expr` is another metric modulation with the same ratio as
+        this metric modulation. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> metric_modulation_1 = indicatortools.MetricModulation(
+                ...     left_rhythm=Note("c'4"),
+                ...     right_rhythm=Note("c'4."),
+                ...     )
+                >>> metric_modulation_2 = indicatortools.MetricModulation(
+                ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
+                ...     right_rhythm=Note("c'4"),
+                ...     )
+                >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
+                >>> metric_modulation_3 = indicatortools.MetricModulation(
+                ...     left_rhythm=Note("c'4"),
+                ...     right_rhythm=notes,
+                ...     )
+
+            ::
+
+                >>> metric_modulation_1.ratio
+                Ratio(2, 3)
+                >>> metric_modulation_2.ratio
+                Ratio(2, 3)
+                >>> metric_modulation_3.ratio
+                Ratio(4, 5)
+
+            ::
+
+                >>> metric_modulation_1 == metric_modulation_1
+                True
+                >>> metric_modulation_1 == metric_modulation_2
+                True
+                >>> metric_modulation_1 == metric_modulation_3
+                False
+
+            ::
+
+                >>> metric_modulation_2 == metric_modulation_1
+                True
+                >>> metric_modulation_2 == metric_modulation_2
+                True
+                >>> metric_modulation_2 == metric_modulation_3
+                False
+
+            ::
+
+                >>> metric_modulation_3 == metric_modulation_1
+                False
+                >>> metric_modulation_3 == metric_modulation_2
+                False
+                >>> metric_modulation_3 == metric_modulation_3
+                True
+
+        Returns boolean.
+        '''
+        if isinstance(expr, type(self)):
+            if self.ratio == expr.ratio:
+                return True
+        return False
+
+    def __hash__(self):
+        r'''Hashes metric modulation.
+
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(MetricModulation, self).__hash__()
+
+    def __str__(self):
+        r'''Gets string representation of metric modulation.
+
+        ..  container:: example
+
+            ::
+
+                >>> metric_modulation = indicatortools.MetricModulation(
+                ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
+                ...     right_rhythm=Note("c'4"),
+                ...     )
+
+            ::
+
+                >>> print(str(metric_modulation))
+                \markup {
+                    \combine
+                        "Tuplet(Multiplier(2, 3), c'4 )"
+                        " = "
+                        c'4
+                    }
+
+        Returns string.
+        '''
+        return str(self._get_markup())
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='left_rhythm',
+                command='lh',
+                editor=idetools.getters.get_rhythm,
+                ),
+            systemtools.AttributeDetail(
+                name='right_rhythm',
+                command='rh',
+                editor=idetools.getters.get_rhythm,
+                ),
+            systemtools.AttributeDetail(
+                name='left_markup',
+                command='lk',
+                editor=idetools.getters.get_markup,
+                ),
+            systemtools.AttributeDetail(
+                name='right_markup',
+                command='rk',
+                editor=idetools.getters.get_markup,
+                ),
+            )
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
+    @property
+    def _lilypond_format(self):
+        return str(self)
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        markup = self._get_markup()
+        markup = new(markup, direction=Up)
+        markup_format_pieces = markup._get_format_pieces()
+        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
+        return lilypond_format_bundle
+
     ### PRIVATE METHODS ###
+
+    def _get_left_markup(self):
+        if self.left_markup is not None:
+            return self.left_markup
+        markup = self._to_markup(self.left_rhythm)
+        return markup
+
+    def _get_markup(self):
+        left_markup = self._get_left_markup()
+        right_markup = self._get_right_markup()
+        commands = []
+        commands.extend(left_markup.contents)
+        commands.append(' = ')
+        commands.extend(right_markup.contents)
+        command = markuptools.MarkupCommand('combine', *commands)
+        markup = markuptools.Markup(contents=command)
+        return markup
+
+    def _get_right_markup(self):
+        if self.right_markup is not None:
+            return self.right_markup
+        markup = self._to_markup(self.right_rhythm)
+        return markup
 
     def _initialize_rhythm(self, rhythm):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        if isinstance(rhythm, durationtools.Duration):
-            selection = scoretools.make_notes([0], [rhythm])
-        elif isinstance(rhythm, scoretools.Component):
-            rhythm = copy.copy(rhythm)
+        if isinstance(rhythm, scoretools.Component):
+            #rhythm = copy.copy(rhythm)
             selection = selectiontools.Selection([rhythm])
         elif isinstance(rhythm, selectiontools.Selection):
-            selection = copy.copy(selection)
+            #selection = copy.copy(rhythm)
+            selection = rhythm
         else:
             message = 'rhythm must be duration, component or selection: {!r}.'
             message = message.format(rhythm)
             raise TypeError(message)
         assert isinstance(selection, selectiontools.Selection)
         return selection
+
+    def _to_markup(self, selection):
+        component = selection[0]
+        string = str(component)
+        markup = markuptools.Markup(string)
+        return markup
 
     ### PUBLIC PROPERTIES ###
 
@@ -160,6 +386,29 @@ class MetricModulation(AbjadObject):
         Returns selection.
         '''
         return self._left_rhythm
+
+    @property
+    def ratio(self):
+        r'''Gets ratio of metric modulation.
+
+        ..  container:: example
+
+            ::
+
+                >>> metric_modulation = indicatortools.MetricModulation(
+                ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
+                ...     right_rhythm=Note("c'4"),
+                ...     )
+                >>> metric_modulation.ratio
+                Ratio(2, 3)
+
+        Returns ratio.
+        '''
+        left_duration = self.left_rhythm.get_duration()
+        right_duration = self.right_rhythm.get_duration()
+        duration = left_duration / right_duration
+        ratio = mathtools.Ratio(duration.pair)
+        return ratio
 
     @property
     def right_markup(self):
