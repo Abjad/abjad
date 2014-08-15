@@ -52,7 +52,6 @@ class Ritardando(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_annotation_only',
         '_default_scope',
         '_markup',
         )
@@ -62,7 +61,6 @@ class Ritardando(AbjadObject):
     def __init__(self, markup=None):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        self._annotation_only = None
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
         if markup is not None:
@@ -223,11 +221,10 @@ class Ritardando(AbjadObject):
     def _lilypond_format_bundle(self):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        if not self._annotation_only:
-            markup = self._to_markup()
-            markup = new(markup, direction=Up)
-            markup_format_pieces = markup._get_format_pieces()
-            lilypond_format_bundle.right.markup.extend(markup_format_pieces)
+        markup = self._to_markup()
+        markup = new(markup, direction=Up)
+        markup_format_pieces = markup._get_format_pieces()
+        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
         
     ### PRIVATE METHODS ###
