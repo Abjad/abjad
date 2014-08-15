@@ -98,10 +98,10 @@ class Selector(AbjadValueObject):
         selectortools.Selector(
             callbacks=(
                 selectortools.PrototypeSelectorCallback(
-                    scoretools.Leaf
+                    prototype=scoretools.Leaf,
                     ),
                 selectortools.RunSelectorCallback(
-                    scoretools.Note
+                    prototype=scoretools.Note,
                     ),
                 selectortools.LengthSelectorCallback(
                     length=3,

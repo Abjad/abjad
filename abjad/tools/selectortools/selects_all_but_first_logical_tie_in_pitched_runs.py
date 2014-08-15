@@ -13,13 +13,13 @@ def selects_all_but_first_logical_tie_in_pitched_runs():
             selectortools.Selector(
                 callbacks=(
                     selectortools.PrototypeSelectorCallback(
-                        scoretools.Leaf
+                        prototype=scoretools.Leaf,
                         ),
                     selectortools.RunSelectorCallback(
-                        (
+                        prototype=(
                             scoretools.Note,
                             scoretools.Chord,
-                            )
+                            ),
                         ),
                     selectortools.LogicalTieSelectorCallback(
                         flatten=False,
