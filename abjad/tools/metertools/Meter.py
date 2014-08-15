@@ -10,117 +10,143 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Meter(AbjadObject):
-    '''A rhythm tree-based model of nested time signature groupings.
+    '''A meter.
+    
+    The Abjad meter models the common practice understanding of meter
+    as a tree-based implementation of the beats and other levels of rhythmic
+    organization.
 
-    The structure of the tree corresponds to the monotonically increasing
-    sequence of factors of the time signature's numerator.
-
-    Each deeper level of the tree divides the previous by the next factor in
+    The tree structure of the Abjad meter corresponds to the monotonically
+    increasing sequence of factors in the numeratorof a given time signature.
+    Successively deeper levels of the tree divide time by the next factor in
     sequence.
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2`` and
-    ``3`` summing to that prime.  Hence ``5`` becomes ``3+2`` and ``7`` becomes
-    ``3+2+2``.
+    ..  container:: example
 
-    The meter models many parts of the common practice understanding of meter:
+        **Example 1.** Here's a tree corresponding to ``4/4``:
 
-    ::
+        ::
 
-        >>> meter = metertools.Meter((4, 4))
+            >>> meter = metertools.Meter((4, 4))
 
-    ::
+        ::
 
-        >>> meter
-        Meter('(4/4 (1/4 1/4 1/4 1/4))')
+            >>> meter
+            Meter('(4/4 (1/4 1/4 1/4 1/4))')
 
-    ::
+        ::
 
-        >>> print(meter.pretty_rtm_format)
-        (4/4 (
-            1/4
-            1/4
-            1/4
-            1/4))
+            >>> print(meter.pretty_rtm_format)
+            (4/4 (
+                1/4
+                1/4
+                1/4
+                1/4))
 
-    ::
+    ..  container:: example
 
-        >>> meter = metertools.Meter((3, 4))
-        >>> print(meter.pretty_rtm_format)
-        (3/4 (
-            1/4
-            1/4
-            1/4))
+        **Example 2.** Here's a tree corresponding to ``3/4``:
+        
+        ::
 
-    ::
-
-        >>> meter = metertools.Meter((6, 8))
-        >>> print(meter.pretty_rtm_format)
-        (6/8 (
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))))
-
-    ::
-
-        >>> meter = metertools.Meter((7, 4))
-        >>> print(meter.pretty_rtm_format)
-        (7/4 (
+            >>> meter = metertools.Meter((3, 4))
+            >>> print(meter.pretty_rtm_format)
             (3/4 (
                 1/4
                 1/4
                 1/4))
-            (2/4 (
-                1/4
-                1/4))
-            (2/4 (
-                1/4
-                1/4))))
 
-    ::
+    ..  container:: example
 
-        >>> meter = metertools.Meter(
-        ...     (7, 4), decrease_durations_monotonically=False)
-        >>> print(meter.pretty_rtm_format)
-        (7/4 (
-            (2/4 (
-                1/4
-                1/4))
-            (2/4 (
-                1/4
-                1/4))
-            (3/4 (
-                1/4
-                1/4
-                1/4))))
+        **Example 3.** Here's the three corresponding to ``6/8``:
 
-    ::
+        ::
 
-        >>> meter = metertools.Meter((12, 8))
-        >>> print(meter.pretty_rtm_format)
-        (12/8 (
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))))
+            >>> meter = metertools.Meter((6, 8))
+            >>> print(meter.pretty_rtm_format)
+            (6/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
 
-    Returns meter object.
+    ..  container:: example
+
+        **Example 4.** Here's one possible tree corresponding to ``7/4``:
+
+        ::
+
+            >>> meter = metertools.Meter((7, 4))
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+    ..  container:: example
+
+        **Example 5.** Here's another tree corresponding to ``7/4``:
+
+        ::
+
+            >>> meter = metertools.Meter(
+            ...     (7, 4),
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
+
+    ..  container:: example
+
+        **Example 6.** Here's a tree corresponding to ``12/8``:
+
+        ::
+
+            >>> meter = metertools.Meter((12, 8))
+            >>> print(meter.pretty_rtm_format)
+            (12/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+
+    Prime divisions greater than ``3`` are converted to sequences of ``2``
+    and ``3`` summing to that prime.
+    
+    ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
     '''
 
     ### CLASS VARIABLES ###

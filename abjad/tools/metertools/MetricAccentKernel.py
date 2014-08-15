@@ -5,37 +5,41 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class MetricAccentKernel(AbjadValueObject):
-    r'''A metrical kernel, or offset-impulse-response-filter.
+    r'''A metric accent kernel.
 
-    ::
+    ..  container:: example
 
-        >>> hierarchy = metertools.Meter((7, 8))
-        >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
-        >>> kernel
-        MetricAccentKernel(
-            {
-                Offset(0, 1): Multiplier(3, 14),
-                Offset(1, 8): Multiplier(1, 14),
-                Offset(1, 4): Multiplier(1, 14),
-                Offset(3, 8): Multiplier(1, 7),
-                Offset(1, 2): Multiplier(1, 14),
-                Offset(5, 8): Multiplier(1, 7),
-                Offset(3, 4): Multiplier(1, 14),
-                Offset(7, 8): Multiplier(3, 14),
-                }
-            )
+        ::
+
+            >>> hierarchy = metertools.Meter((7, 8))
+            >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
+            >>> kernel
+            MetricAccentKernel(
+                {
+                    Offset(0, 1): Multiplier(3, 14),
+                    Offset(1, 8): Multiplier(1, 14),
+                    Offset(1, 4): Multiplier(1, 14),
+                    Offset(3, 8): Multiplier(1, 7),
+                    Offset(1, 2): Multiplier(1, 14),
+                    Offset(5, 8): Multiplier(1, 7),
+                    Offset(3, 4): Multiplier(1, 14),
+                    Offset(7, 8): Multiplier(3, 14),
+                    }
+                )
 
     Call the kernel against an expression from which offsets can be counted
     to receive an impulse-response:
 
-    ::
+    ..  container:: example
 
-        >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> kernel(offsets)
-        0.5
+        ::
 
-    Return `MetricAccentKernel` instance.
+            >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
+            >>> kernel(offsets)
+            0.5
+
     '''
+
     ### CLASS VARIABLES ###
 
     __slots__ = (
