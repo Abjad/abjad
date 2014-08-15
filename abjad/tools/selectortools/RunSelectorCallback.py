@@ -17,7 +17,8 @@ class RunSelectorCallback(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, prototype):
+    def __init__(self, prototype=None):
+        prototype = prototype or ()
         if isinstance(prototype, collections.Sequence):
             prototype = tuple(prototype)
             assert all(isinstance(x, type) for x in prototype)
