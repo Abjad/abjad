@@ -173,3 +173,5 @@
 
 41. After creating a new package, if there was previously a view set, that view
     should *not* be cleared if the new package would appear under that view.
+
+42. Group materials by `output_material_class_name`.
