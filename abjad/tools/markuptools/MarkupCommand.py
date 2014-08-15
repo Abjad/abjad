@@ -8,7 +8,7 @@ class MarkupCommand(AbjadObject):
 
     ..  container:: example
 
-        This creates a LilyPond markup command:
+        **Example 1.** A complex LilyPond markup command:
 
         ::
 
@@ -65,7 +65,81 @@ class MarkupCommand(AbjadObject):
                             ##f
                     }
 
-    Markup commands are immutable.
+    ..  container:: example
+
+        **Example 2.** Works with the LilyPond ``\score`` markup command:
+
+        ::
+
+            >>> small_staff = Staff("fs'16 gs'16 as'16 b'16")
+            >>> small_staff.remove_commands.append('Clef_engraver')
+            >>> small_staff.remove_commands.append('Time_signature_engraver')
+            >>> set_(small_staff).font_size = -3
+            >>> layout_block = lilypondfiletools.Block(name='layout')
+            >>> layout_block.indent = 0
+            >>> layout_block.ragged_right = True
+            >>> command = markuptools.MarkupCommand(
+            ...     'score',
+            ...     [small_staff, layout_block],
+            ...     )
+
+        ::
+
+            >>> f(command)
+            \score
+                {
+                    \new Staff \with {
+                        \remove Clef_engraver
+                        \remove Time_signature_engraver
+                        fontSize = #-3
+                    } {
+                        fs'16
+                        gs'16
+                        as'16
+                        b'16
+                    }
+                    \layout {
+                        indent = #0
+                        ragged-right = ##t
+                    }
+                }
+
+        ::
+
+            >>> markup = Markup(contents=command, direction=Up)
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> attach(markup, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \score
+                            {
+                                \new Staff \with {
+                                    \remove Clef_engraver
+                                    \remove Time_signature_engraver
+                                    fontSize = #-3
+                                } {
+                                    fs'16
+                                    gs'16
+                                    as'16
+                                    b'16
+                                }
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                        }
+                d'4
+                e'4
+                f'4
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -162,6 +236,8 @@ class MarkupCommand(AbjadObject):
         return string
 
     def _get_format_pieces(self):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import scoretools
         indent = '\t'
         def recurse(iterable):
             result = []
@@ -174,6 +250,10 @@ class MarkupCommand(AbjadObject):
                     result.extend(x._get_format_pieces())
                 elif isinstance(x, schemetools.Scheme):
                     result.append(format(x))
+                elif isinstance(x, scoretools.Component):
+                    result.extend(x._format_pieces)
+                elif isinstance(x, lilypondfiletools.Block):
+                    result.extend(x._format_pieces)
                 else:
                     formatted = schemetools.Scheme.format_scheme_value(
                         x,
