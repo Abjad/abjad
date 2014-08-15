@@ -191,7 +191,6 @@ class Markup(AbjadObject):
         '''
         return hash((type(self).__name__, self.contents))
 
-    # TODO: add verifiable code in doctest
     def __illustrate__(self):
         r'''Illustrates markup.
 
