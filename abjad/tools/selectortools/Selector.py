@@ -111,7 +111,9 @@ class Selector(AbjadValueObject):
                     argument=0,
                     apply_to_each=True,
                     ),
-                selectortools.FlattenSelectorCallback(),
+                selectortools.FlattenSelectorCallback(
+                    depth=-1,
+                    ),
                 ),
             )
 
@@ -502,7 +504,7 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def flatten(self):
+    def flatten(self, depth=-1):
         r'''Configures selector to select the last selection.
 
         ..  container:: example
@@ -529,7 +531,7 @@ class Selector(AbjadValueObject):
         Emits a new selector.
         '''
         from experimental.tools import selectortools
-        callback = selectortools.FlattenSelectorCallback()
+        callback = selectortools.FlattenSelectorCallback(depth=depth)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
