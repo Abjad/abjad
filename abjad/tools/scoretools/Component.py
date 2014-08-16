@@ -536,7 +536,7 @@ class Component(AbjadObject):
         elif len(spanners) == 1:
             return spanners.pop()
         else:
-            message = 'multiple spanners found.'
+            message = 'multiple spanners found: {!r}'.format(spanners)
             raise ExtraSpannerError(message)
 
     def _get_spanner_indicators(self, prototype=None, unwrap=True):
