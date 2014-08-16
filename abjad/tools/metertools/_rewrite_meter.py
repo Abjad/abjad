@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 Selection = selectiontools.Selection
@@ -20,36 +20,17 @@ def _rewrite_meter(
     assert isinstance(components, selectiontools.Selection), \
         repr(components)
 
-    def get_offsets_at_depth(depth):
-        if depth < len(offset_inventory):
-            return offset_inventory[depth]
-        while len(offset_inventory) <= depth:
-            new_offsets = []
-            old_offsets = offset_inventory[-1]
-            for first, second in \
-                sequencetools.iterate_sequence_nwise(old_offsets):
-                new_offsets.append(first)
-                difference = second - first
-                half = (first + second) / 2
-                if durationtools.Duration(1, 8) < difference:
-                    new_offsets.append(half)
-                else:
-                    one_quarter = (first + half) / 2
-                    three_quarters = (half + second) / 2
-                    new_offsets.append(one_quarter)
-                    new_offsets.append(half)
-                    new_offsets.append(three_quarters)
-            new_offsets.append(old_offsets[-1])
-            offset_inventory.append(tuple(new_offsets))
-        return offset_inventory[depth]
-
     def recurse(
         boundary_depth=None,
         boundary_offsets=None,
         depth=0,
         logical_tie=None,
         ):
-        offsets = get_offsets_at_depth(depth)
+        offsets = metertools.MeterManager.get_offsets_at_depth(
+            depth,
+            offset_inventory,
+            )
+
         #print 'DEPTH:', depth
 
         logical_tie_duration = logical_tie._preprolated_duration
@@ -69,7 +50,10 @@ def _rewrite_meter(
             #print 'UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             split_offset = None
-            offsets = get_offsets_at_depth(depth)
+            offsets = metertools.MeterManager.get_offsets_at_depth(
+                depth,
+                offset_inventory,
+                )
 
             # If the logical tie's start aligns, take the latest possible offset.
             if logical_tie_starts_in_offsets:

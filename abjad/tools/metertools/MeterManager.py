@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import durationtools
+from abjad.tools import sequencetools
 
 
 class MeterManager(abctools.AbjadObject):
@@ -7,6 +9,32 @@ class MeterManager(abctools.AbjadObject):
     '''
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def get_offsets_at_depth(depth, offset_inventory):
+        r'''Gets offsets at `depth` in `offset_inventory`.
+        '''
+        if depth < len(offset_inventory):
+            return offset_inventory[depth]
+        while len(offset_inventory) <= depth:
+            new_offsets = []
+            old_offsets = offset_inventory[-1]
+            for first, second in \
+                sequencetools.iterate_sequence_nwise(old_offsets):
+                new_offsets.append(first)
+                difference = second - first
+                half = (first + second) / 2
+                if durationtools.Duration(1, 8) < difference:
+                    new_offsets.append(half)
+                else:
+                    one_quarter = (first + half) / 2
+                    three_quarters = (half + second) / 2
+                    new_offsets.append(one_quarter)
+                    new_offsets.append(half)
+                    new_offsets.append(three_quarters)
+            new_offsets.append(old_offsets[-1])
+            offset_inventory.append(tuple(new_offsets))
+        return offset_inventory[depth]
 
     @staticmethod
     def is_acceptable_logical_tie(
@@ -55,12 +83,17 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
+            >>> from abjad.tools import metertools
+            >>> from abjad.tools import scoretools
+
+        ::
+
             >>> string = "abj: | 2/4 c'4 d'4 ~ |"
             >>> string += "| 4/4 d'8. r16 r8. e'16 ~ "
             >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ |"
             >>> string += "| 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ |"
             >>> string += "| 2/4 b'4 c''4 |"
-            >>> staff = Staff(string)
+            >>> staff = scoretools.Staff(string)
 
         ..  doctest::
 
