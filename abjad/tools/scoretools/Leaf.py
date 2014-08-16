@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import systemtools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
@@ -432,7 +433,6 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import scoretools
@@ -451,11 +451,25 @@ class Leaf(Component):
             )
         result = []
         leaf_prolation = self._get_parentage(include_self=False).prolation
-        leaf_copy = copy.copy(self)
+        timespan = self._get_timespan()
+        start_offset = timespan.start_offset
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
             shard = new_leaf._set_duration(preprolated_duration)
+            for x in shard:
+                if isinstance(x, scoretools.Leaf):
+                    x_duration = x.written_duration * leaf_prolation
+                else:
+                    x_duration = x.multiplied_duration * leaf_prolation
+                stop_offset = x_duration + start_offset
+                x._start_offset = start_offset
+                x._stop_offset = stop_offset
+                x._timespan = timespantools.Timespan(
+                    start_offset=start_offset,
+                    stop_offset=stop_offset,
+                    )
+                start_offset = stop_offset
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
