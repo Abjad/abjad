@@ -1230,24 +1230,21 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4. d' e' f' g' a' b'4 c''")
+            >>> staff = Staff("c'8. d'8. e'4. g'8. f'8. ef'4.")
             >>> attach(TimeSignature((3, 8)), staff)
-            >>> attach(TimeSignature((2, 8)), staff[-2])
             >>> score = Score([staff])
-            >>> command = indicatortools.LilyPondCommand('break', 'after')
-            >>> attach(command, staff[3])
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[6], is_annotation=True)
+            >>> tempo = Tempo(Duration(3, 4), 90)
+            >>> attach(tempo, staff[0], is_annotation=True)
+            >>> tempo = Tempo(Duration(3, 4), 60)
+            >>> attach(tempo, staff[3], is_annotation=True)
             >>> metric_modulation = indicatortools.MetricModulation(
             ...     left_rhythm=Note('c4.'),
             ...     right_rhythm=Note('c4'),
             ...     )
-            >>> attach(metric_modulation, staff[6], is_annotation=True)
+            >>> attach(metric_modulation, staff[3], is_annotation=True)
 
         ::
 
@@ -1271,26 +1268,21 @@ class TempoSpanner(Spanner):
             } <<
                 \new Staff {
                     \time 3/8
-                    c'4.
-                    d'4.
-                    e'4. ^ \markup {
+                    c'8. ^ \markup {
                         \smaller
                             \general-align
                                 #Y
                                 #DOWN
                                 \note-by-number
                                     #2
-                                    #0
+                                    #1
                                     #1
                         \upright
                             " = 90"
                         }
-                    f'4.
-                    \break
-                    g'4.
-                    a'4.
-                    \time 2/8
-                    b'4 ^ \markup {
+                    d'8.
+                    e'4.
+                    g'8. ^ \markup {
                         \line
                             {
                                 \smaller
@@ -1299,7 +1291,7 @@ class TempoSpanner(Spanner):
                                         #DOWN
                                         \note-by-number
                                             #2
-                                            #0
+                                            #1
                                             #1
                                 \upright
                                     " = 60"
@@ -1372,7 +1364,8 @@ class TempoSpanner(Spanner):
                                                         }
                             }
                         }
-                    c''4
+                    f'8.
+                    ef'4.
                 }
             >>
 
