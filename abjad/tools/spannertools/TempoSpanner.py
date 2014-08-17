@@ -1230,8 +1230,9 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+            >>> staff = Staff("c'4. d' e' f' g' a' b'4 c''")
             >>> attach(TimeSignature((3, 8)), staff)
+            >>> attach(TimeSignature((2, 8)), staff[-2])
             >>> score = Score([staff])
             >>> command = indicatortools.LilyPondCommand('break', 'after')
             >>> attach(command, staff[3])
@@ -1288,24 +1289,24 @@ class TempoSpanner(Spanner):
                     \break
                     g'4.
                     a'4.
-                    b'4. ^ \markup {
-                        \general-align
-                            #Y
-                            #DOWN
-                            \line
-                                {
-                                    \smaller
-                                        \general-align
-                                            #Y
-                                            #DOWN
-                                            \note-by-number
-                                                #2
-                                                #0
-                                                #1
-                                    \upright
-                                        " = 60"
-                                    \hspace
-                                        #0.5
+                    \time 2/8
+                    b'4 ^ \markup {
+                        \line
+                            {
+                                \smaller
+                                    \general-align
+                                        #Y
+                                        #DOWN
+                                        \note-by-number
+                                            #2
+                                            #0
+                                            #1
+                                \upright
+                                    " = 60"
+                                \hspace
+                                    #0.5
+                                \raise
+                                    #0.35
                                     \scale
                                         #'(0.75 . 0.75)
                                         \override
@@ -1369,9 +1370,9 @@ class TempoSpanner(Spanner):
                                                                     }
                                                                 }
                                                         }
-                                }
+                            }
                         }
-                    c''4.
+                    c''4
                 }
             >>
 
@@ -1423,12 +1424,15 @@ class TempoSpanner(Spanner):
             metric_modulation_markup,
             (0.75, 0.75),
             )
+        metric_modulation_markup = self._raise_markup(
+            metric_modulation_markup,
+            0.35,
+            )
         commands = []
         commands.extend(tempo_markup.contents)
         commands.extend(metric_modulation_markup.contents)
         command = markuptools.MarkupCommand('line', commands)
         markup = markuptools.Markup(contents=command)
-        markup = self._general_align_markup(markup, 'Y', 'DOWN')
         return markup
 
     def _general_align_markup(self, markup, axis, direction):
@@ -1702,6 +1706,22 @@ class TempoSpanner(Spanner):
             command = markuptools.MarkupCommand('override', pair, command)
         commands.append(command)
         markup = markuptools.Markup(contents=commands)
+        return markup
+
+    def _raise_markup(self, markup, amount):
+        if len(markup.contents) == 1:
+            command = markuptools.MarkupCommand(
+                'raise', 
+                amount,
+                markup.contents[0],
+                )
+        else:
+            command = markuptools.MarkupCommand(
+                'raise',
+                amount,
+                list(markup.contents),
+                )
+        markup = markuptools.Markup(contents=command)
         return markup
 
     def _scale_markup(self, markup, factor_pair):
