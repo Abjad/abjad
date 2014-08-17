@@ -1224,6 +1224,157 @@ class TempoSpanner(Spanner):
                 }
             >>
 
+    ..  container:: example
+
+        **Example 11.** With a metric modulation:
+
+        ::
+
+            >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+            >>> command = indicatortools.LilyPondCommand('break', 'after')
+            >>> attach(command, staff[3])
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[2], is_annotation=True)
+            >>> tempo = Tempo(Duration(1, 4), 60)
+            >>> attach(tempo, staff[6], is_annotation=True)
+            >>> metric_modulation = indicatortools.MetricModulation(
+            ...     left_rhythm=Note('c4.'),
+            ...     right_rhythm=Note('c4'),
+            ...     )
+            >>> attach(metric_modulation, staff[6], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    c'4.
+                    d'4.
+                    e'4. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #0
+                                    #1
+                        \upright
+                            " = 90"
+                        }
+                    f'4.
+                    \break
+                    g'4.
+                    a'4.
+                    b'4. ^ \markup {
+                        \general-align
+                            #Y
+                            #DOWN
+                            \line
+                                {
+                                    \smaller
+                                        \general-align
+                                            #Y
+                                            #DOWN
+                                            \note-by-number
+                                                #2
+                                                #0
+                                                #1
+                                    \upright
+                                        " = 60"
+                                    \hspace
+                                        #0.5
+                                    \scale
+                                        #'(0.75 . 0.75)
+                                        \override
+                                            #'(thickness . 0.75)
+                                            \override
+                                                #'(padding . 0.5)
+                                                \parenthesize
+                                                    \line
+                                                        {
+                                                            \score
+                                                                {
+                                                                    \new Score \with {
+                                                                        proportionalNotationDuration = ##f
+                                                                    } <<
+                                                                        \new RhythmicStaff \with {
+                                                                            \remove Time_signature_engraver
+                                                                            \remove Staff_symbol_engraver
+                                                                            \override Stem #'length = #4
+                                                                            \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'padding = #1.25
+                                                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                            fontSize = #-2
+                                                                            tupletFullLength = ##t
+                                                                        } {
+                                                                            c4.
+                                                                        }
+                                                                    >>
+                                                                    \layout {
+                                                                        indent = #0
+                                                                        ragged-right = ##t
+                                                                    }
+                                                                }
+                                                            \hspace
+                                                                #-0.5
+                                                            " = "
+                                                            \hspace
+                                                                #-1
+                                                            \score
+                                                                {
+                                                                    \new Score \with {
+                                                                        proportionalNotationDuration = ##f
+                                                                    } <<
+                                                                        \new RhythmicStaff \with {
+                                                                            \remove Time_signature_engraver
+                                                                            \remove Staff_symbol_engraver
+                                                                            \override Stem #'length = #4
+                                                                            \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'padding = #1.25
+                                                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                            fontSize = #-2
+                                                                            tupletFullLength = ##t
+                                                                        } {
+                                                                            c4
+                                                                        }
+                                                                    >>
+                                                                    \layout {
+                                                                        indent = #0
+                                                                        ragged-right = ##t
+                                                                    }
+                                                                }
+                                                        }
+                                }
+                        }
+                    c''4.
+                }
+            >>
+
     '''
 
     ### CLASS VARIABLES ###
@@ -1270,12 +1421,35 @@ class TempoSpanner(Spanner):
             )
         metric_modulation_markup = self._scale_markup(
             metric_modulation_markup,
-            (0.5, 0.5),
+            (0.75, 0.75),
             )
         commands = []
         commands.extend(tempo_markup.contents)
         commands.extend(metric_modulation_markup.contents)
-        markup = markuptools.Markup(contents=commands)
+        command = markuptools.MarkupCommand('line', commands)
+        markup = markuptools.Markup(contents=command)
+        markup = self._general_align_markup(markup, 'Y', 'DOWN')
+        return markup
+
+    def _general_align_markup(self, markup, axis, direction):
+        axis = schemetools.Scheme(axis)
+        direction = schemetools.Scheme(direction)
+        if len(markup.contents) == 1:
+            command = markuptools.MarkupCommand(
+                'general-align', 
+                axis,
+                direction,
+                markup.contents[0],
+                )
+        else:
+            command = markuptools.MarkupCommand(
+                'general-align', 
+                schemetools.Scheme('Y'),
+                axis,
+                direction,
+                list(markup.contents),
+                )
+        markup = markuptools.Markup(contents=command)
         return markup
 
     def _get_annotations(self, leaf):
@@ -1328,8 +1502,6 @@ class TempoSpanner(Spanner):
             lilypond_format_bundle.right.spanner_stops.append(spanner_stop)
         # use markup if no tempo trend starts now
         if current_tempo_trend is None:
-            #markup = current_tempo._to_markup()
-            #markup = new(markup, direction=Up)
             markup = self._combine_tempo_and_metric_modulation(
                 current_tempo,
                 current_metric_modulation,
@@ -1341,12 +1513,12 @@ class TempoSpanner(Spanner):
         # use spanner if tempo trend starts now
         spanner_start = r'\startTextSpan'
         lilypond_format_bundle.right.spanner_starts.append(spanner_start)
-        if current_tempo:
+        if current_tempo or current_metric_modulation:
             self._start_tempo_trend_spanner_with_explicit_start(
                 leaf,
                 lilypond_format_bundle,
                 current_tempo,
-                current_tempo_trend,
+                current_metric_modulation,
                 )
         else:
             self._start_tempo_trend_spanner_with_implicit_start(
@@ -1554,10 +1726,14 @@ class TempoSpanner(Spanner):
         leaf,
         lilypond_format_bundle,
         current_tempo,
-        current_tempo_trend,
+        current_metric_modulation,
         ):
         #
-        markup = current_tempo._to_markup()
+        #markup = current_tempo._to_markup()
+        markup = self._combine_tempo_and_metric_modulation(
+            current_tempo,
+            current_metric_modulation,
+            )
         markup = self._append_hspace(markup, 1.25)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
