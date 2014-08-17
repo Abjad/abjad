@@ -1268,16 +1268,13 @@ class TempoSpanner(Spanner):
             padding=0.5,
             thickness=0.75,
             )
-        assert len(metric_modulation_markup.contents) == 1
-        pair = schemetools.SchemePair(0.5, 0.5)
-        metric_modulation_command = markuptools.MarkupCommand(
-            'scale',
-            pair,
-            metric_modulation_markup.contents[0],
+        metric_modulation_markup = self._scale_markup(
+            metric_modulation_markup,
+            (0.5, 0.5),
             )
         commands = []
         commands.extend(tempo_markup.contents)
-        commands.append(metric_modulation_command)
+        commands.extend(metric_modulation_markup.contents)
         markup = markuptools.Markup(contents=commands)
         return markup
 
@@ -1533,6 +1530,23 @@ class TempoSpanner(Spanner):
             command = markuptools.MarkupCommand('override', pair, command)
         commands.append(command)
         markup = markuptools.Markup(contents=commands)
+        return markup
+
+    def _scale_markup(self, markup, factor_pair):
+        factor_pair = schemetools.SchemePair(factor_pair)
+        if len(markup.contents) == 1:
+            command = markuptools.MarkupCommand(
+                'scale',
+                factor_pair,
+                markup.contents[0],
+                )
+        else:
+            command = markuptools.MarkupCommand(
+                'scale',
+                factor_pair,
+                list(markup.contents),
+                )
+        markup = markuptools.Markup(contents=command)
         return markup
 
     def _start_tempo_trend_spanner_with_explicit_start(
