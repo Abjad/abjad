@@ -24,15 +24,13 @@ class Ritardando(AbjadObject):
             >>> print(format(score))
             \new Score <<
                 \new Staff {
-                    c'4 ^ \markup {
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
+                    c'4
+                        ^ \markup {
+                            \large
+                                {
+                                    rit.
+                                }
                             }
-                        }
                     d'4
                     e'4
                     f'4
@@ -159,10 +157,7 @@ class Ritardando(AbjadObject):
                 \markup {
                     \large
                         {
-                            \italic
-                                {
-                                    rit.
-                                }
+                            rit.
                         }
                     }
 
@@ -210,7 +205,7 @@ class Ritardando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { \italic { rit. } }'
+        contents = r'\large { rit. }'
         return markuptools.Markup(contents=contents)
 
     @property

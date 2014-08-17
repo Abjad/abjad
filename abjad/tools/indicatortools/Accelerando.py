@@ -24,15 +24,13 @@ class Accelerando(AbjadObject):
             >>> print(format(score))
             \new Score <<
                 \new Staff {
-                    c'4 ^ \markup {
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
+                    c'4
+                        ^ \markup {
+                            \large
+                                {
+                                    accel.
+                                }
                             }
-                        }
                     d'4
                     e'4
                     f'4
@@ -159,10 +157,7 @@ class Accelerando(AbjadObject):
                 \markup {
                     \large
                         {
-                            \italic
-                                {
-                                    accel.
-                                }
+                            accel.
                         }
                     }
 
@@ -210,7 +205,7 @@ class Accelerando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { \italic { accel. } }'
+        contents = r'\large { accel. }'
         return markuptools.Markup(contents=contents)
 
     @property
