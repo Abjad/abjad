@@ -1316,8 +1316,10 @@ class TempoSpanner(Spanner):
                                                                         \new RhythmicStaff \with {
                                                                             \remove Time_signature_engraver
                                                                             \remove Staff_symbol_engraver
+                                                                            \override Stem #'direction = #up
                                                                             \override Stem #'length = #4
                                                                             \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'direction = #up
                                                                             \override TupletBracket #'padding = #1.25
                                                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -1345,8 +1347,10 @@ class TempoSpanner(Spanner):
                                                                         \new RhythmicStaff \with {
                                                                             \remove Time_signature_engraver
                                                                             \remove Staff_symbol_engraver
+                                                                            \override Stem #'direction = #up
                                                                             \override Stem #'length = #4
                                                                             \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'direction = #up
                                                                             \override TupletBracket #'padding = #1.25
                                                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -1479,8 +1483,10 @@ class TempoSpanner(Spanner):
                                                                         \new RhythmicStaff \with {
                                                                             \remove Time_signature_engraver
                                                                             \remove Staff_symbol_engraver
+                                                                            \override Stem #'direction = #up
                                                                             \override Stem #'length = #4
                                                                             \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'direction = #up
                                                                             \override TupletBracket #'padding = #1.25
                                                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -1508,8 +1514,10 @@ class TempoSpanner(Spanner):
                                                                         \new RhythmicStaff \with {
                                                                             \remove Time_signature_engraver
                                                                             \remove Staff_symbol_engraver
+                                                                            \override Stem #'direction = #up
                                                                             \override Stem #'length = #4
                                                                             \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'direction = #up
                                                                             \override TupletBracket #'padding = #1.25
                                                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
