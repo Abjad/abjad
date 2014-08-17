@@ -2,6 +2,7 @@
 from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
+from abjad.tools import schemetools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import new
@@ -155,14 +156,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    accel.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -307,14 +312,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    rit.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -357,7 +366,6 @@ class TempoSpanner(Spanner):
                         }
                 }
             >>
-
 
     ..  container:: example
 
@@ -412,14 +420,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    accel.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -463,14 +475,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    rit.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -563,14 +579,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    accel.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -578,11 +598,13 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
                             {
-                                \italic
+                                \upright
                                     {
                                         accel.
                                     }
                             }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
@@ -683,14 +705,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    rit.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -698,11 +724,13 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
                             {
-                                \italic
+                                \upright
                                     {
                                         rit.
                                     }
                             }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
@@ -828,31 +856,40 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    accel.
+                                                }
+                                            }
+                                }
                         \hspace
                             #0.75
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \parenthesize
-                        \combine
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 90"
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \smaller
+                                        \general-align
+                                            #Y
+                                            #DOWN
+                                            \note-by-number
+                                                #2
+                                                #0
+                                                #1
+                                    \upright
+                                        " = 90"
+                                }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
@@ -955,31 +992,40 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    rit.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \parenthesize
-                        \combine
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        \upright
-                            " = 90"
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \smaller
+                                        \general-align
+                                            #Y
+                                            #DOWN
+                                            \note-by-number
+                                                #2
+                                                #0
+                                                #1
+                                    \upright
+                                        " = 90"
+                                }
+                        \hspace
+                            #0.75
                         }
                     \once \override TextSpanner.bound-details.right-broken.arrow = ##f
                     \once \override TextSpanner.bound-details.right-broken.padding = 0
@@ -1059,14 +1105,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        accel.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    accel.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -1165,14 +1215,18 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                        \parenthesize
-                        \large
-                            {
-                                \italic
-                                    {
-                                        rit.
-                                    }
-                            }
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        {
+                                            \upright
+                                                {
+                                                    rit.
+                                                }
+                                        }
+                                }
                         \hspace
                             #0.75
                         }
@@ -1219,7 +1273,6 @@ class TempoSpanner(Spanner):
                     c''4.
                 }
             >>
-
 
     '''
 
@@ -1306,9 +1359,14 @@ class TempoSpanner(Spanner):
                 previous_tempo,
                 )
         #
+        # TODO: encapsulate in self._parenthesize_markup()
+        commands = []
         markup = current_tempo_trend._to_markup()
-        commands = list(markup.contents)
-        commands.insert(0, markuptools.MarkupCommand('parenthesize'))
+        command = markuptools.MarkupCommand('parenthesize', markup.contents)
+        pair = schemetools.SchemePair('padding', 0.45)
+        command = markuptools.MarkupCommand('override', pair, command)
+        commands.append(command)
+        # TODO: encapsulate in self._append_hspace()
         commands.append(markuptools.MarkupCommand('hspace', 0.75))
         markup = markuptools.Markup(contents=commands)
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1475,6 +1533,7 @@ class TempoSpanner(Spanner):
         current_tempo_trend,
         ):
         #
+        # TODO: encapsulate in self._append_hspace()
         markup = current_tempo._to_markup()
         commands = list(markup.contents)
         commands.append(markuptools.MarkupCommand('hspace', 1.25))
@@ -1491,24 +1550,6 @@ class TempoSpanner(Spanner):
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
-        #
-#        markup = current_tempo_trend._to_markup()
-#        commands = list(markup.contents)
-#        commands.insert(0, markuptools.MarkupCommand('parenthesize'))
-#        commands.append(markuptools.MarkupCommand('hspace', 0.75))
-#        markup = markuptools.Markup(contents=commands)
-#        override_ = lilypondnametools.LilyPondGrobOverride(
-#            grob_name='TextSpanner',
-#            is_once=True,
-#            property_path=(
-#                'bound-details',
-#                'left-broken',
-#                'text',
-#                ),
-#            value=markup,
-#            )
-#        override_string = '\n'.join(override_._override_format_pieces)
-#        lilypond_format_bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
@@ -1519,15 +1560,25 @@ class TempoSpanner(Spanner):
         ):
         #
         if previous_tempo:
+            # TODO: encapsulate in self._parenthesize_markup()
+            commands = []
             markup = previous_tempo._to_markup()
-            commands = list(markup.contents)
-            commands[0:0] = [
-                markuptools.MarkupCommand('parenthesize'),
-                markuptools.MarkupCommand('combine'),
-                ]
+            command = markuptools.MarkupCommand(
+                'parenthesize',
+                markup.contents,
+                )
+            pair = schemetools.SchemePair('padding', 0.45)
+            command = markuptools.MarkupCommand('override', pair, command)
+            commands.append(command)
+            # TODO: self._append_hspace()
+            commands.append(markuptools.MarkupCommand('hspace', 0.75))
             markup = markuptools.Markup(contents=commands)
         else:
             markup = current_tempo_trend._to_markup()
+            commands = list(markup.contents)
+            # TODO: self._append_hspace()
+            commands.append(markuptools.MarkupCommand('hspace', 0.75))
+            markup = markuptools.Markup(contents=commands)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
