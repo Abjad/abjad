@@ -181,19 +181,19 @@ class Wrangler(ScoreInternalAssetController):
         string = 'Press <return> to preserve existing name.'
         help_template = help_template + ' ' + string
         getter.prompts[0]._help_template = help_template
-        name = getter._run()
-        name = name or old_name
-        if self._session.is_backtracking or name is None:
+        new_name = getter._run()
+        new_name = new_name or old_name
+        if self._session.is_backtracking or new_name is None:
             return
-        name = stringtools.strip_diacritics(name)
+        new_name = stringtools.strip_diacritics(new_name)
         if hasattr(self, '_file_name_callback'):
-            name = self._file_name_callback(name)
-        name = name.replace(' ', '_')
+            new_name = self._file_name_callback(new_name)
+        new_name = new_name.replace(' ', '_')
         if self._force_lowercase:
-            name = name.lower()
-        if extension and not name.endswith(extension):
-            name = name + extension
-        new_path = os.path.join(new_storehouse, name)
+            new_name = new_name.lower()
+        if extension and not new_name.endswith(extension):
+            new_name = new_name + extension
+        new_path = os.path.join(new_storehouse, new_name)
         if os.path.exists(new_path):
             message = 'already exists: {}'.format(new_path)
             self._io_manager._display(message)
@@ -213,6 +213,16 @@ class Wrangler(ScoreInternalAssetController):
             shutil.copytree(old_path, new_path)
         else:
             raise TypeError(old_path)
+        if os.path.isdir(new_path):
+            for directory_entry in os.listdir(new_path):
+                if not directory_entry.endswith('.py'):
+                    continue
+                path = os.path.join(new_path, directory_entry)
+                self._replace_in_file(
+                    path,
+                    old_name,
+                    new_name,
+                    )
 
     def _enter_run(self):
         pass
