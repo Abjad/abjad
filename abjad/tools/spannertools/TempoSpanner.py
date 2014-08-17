@@ -866,7 +866,7 @@ class TempoSpanner(Spanner):
                                                 {
                                                     accel.
                                                 }
-                                            }
+                                        }
                                 }
                         \hspace
                             #0.75
@@ -876,18 +876,19 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \smaller
-                                        \general-align
-                                            #Y
-                                            #DOWN
-                                            \note-by-number
-                                                #2
-                                                #0
-                                                #1
-                                    \upright
-                                        " = 90"
-                                }
+                                \line
+                                    {
+                                        \smaller
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            " = 90"
+                                    }
                         \hspace
                             #0.75
                         }
@@ -915,8 +916,6 @@ class TempoSpanner(Spanner):
                         }
                 }
             >>
-
-        ..  todo:: set ``\override #'(padding . 0.25)`` in parenthesize markup.
 
     ..  container:: example
 
@@ -1012,18 +1011,19 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \smaller
-                                        \general-align
-                                            #Y
-                                            #DOWN
-                                            \note-by-number
-                                                #2
-                                                #0
-                                                #1
-                                    \upright
-                                        " = 90"
-                                }
+                                \line
+                                    {
+                                        \smaller
+                                            \general-align
+                                                #Y
+                                                #DOWN
+                                                \note-by-number
+                                                    #2
+                                                    #0
+                                                    #1
+                                        \upright
+                                            " = 90"
+                                    }
                         \hspace
                             #0.75
                         }
@@ -1051,8 +1051,6 @@ class TempoSpanner(Spanner):
                         }
                 }
             >>
-
-        ..  todo:: set ``\override #'(padding . 0.25)`` in parenthesize markup.
 
     ..  container:: example
 
@@ -1563,10 +1561,12 @@ class TempoSpanner(Spanner):
             # TODO: encapsulate in self._parenthesize_markup()
             commands = []
             markup = previous_tempo._to_markup()
-            command = markuptools.MarkupCommand(
-                'parenthesize',
-                markup.contents,
-                )
+            #command = markuptools.MarkupCommand(
+            #    'parenthesize',
+            #    markup.contents,
+            #    )
+            command = markuptools.MarkupCommand('line', markup.contents)
+            command = markuptools.MarkupCommand('parenthesize', command)
             pair = schemetools.SchemePair('padding', 0.45)
             command = markuptools.MarkupCommand('override', pair, command)
             commands.append(command)
