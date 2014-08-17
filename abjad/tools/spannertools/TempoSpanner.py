@@ -1250,7 +1250,7 @@ class TempoSpanner(Spanner):
         markup = markuptools.Markup(contents=commands)
         return markup
 
-    def _get_current_annotations(self, leaf):
+    def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None
         prototype = indicatortools.Tempo,
@@ -1263,29 +1263,37 @@ class TempoSpanner(Spanner):
             )
         if inspector.has_indicator(prototype):
             tempo_trend = inspector.get_indicator(prototype)
+        metric_modulation = None
+        prototype = indicatortools.MetricModulation
+        if inspector.has_indicator(prototype):
+            metric_modulation = inspector.get_indicator(prototype)
         return (
             tempo,
             tempo_trend,
+            metric_modulation,
             )
 
     def _get_previous_annotations(self, leaf):
         index = self._index(leaf)
         for index in reversed(range(index)):
             previous_leaf = self[index]
-            annotations = self._get_current_annotations(previous_leaf)
-            tempo, tempo_trend = annotations
-            if tempo is not None or tempo_trend is not None:
+            annotations = self._get_annotations(previous_leaf)
+            if any(_ is not None for _ in annotations):
                 return annotations
-        return None, None
+        return None, None, None
 
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        current_annotations = self._get_current_annotations(leaf)
-        current_tempo, current_tempo_trend = current_annotations
+        current_annotations = self._get_annotations(leaf)
+        current_tempo = current_annotations[0]
+        current_tempo_trend = current_annotations[1]
+        current_metric_modulation = current_annotations[2]
         if current_tempo is None and current_tempo_trend is None:
             return lilypond_format_bundle
         previous_annotations = self._get_previous_annotations(leaf)
-        previous_tempo, previous_tempo_trend = previous_annotations
+        previous_tempo = previous_annotations[0]
+        previous_tempo_trend = previous_annotations[1]
+        previous_metric_modulation = previous_annotations[2]
         # stop any previous tempo trend
         if previous_tempo_trend:
             spanner_stop = r'\stopTextSpan'
