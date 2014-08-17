@@ -41,7 +41,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -70,7 +70,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -115,7 +115,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -147,7 +147,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -192,7 +192,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -221,7 +221,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -270,7 +270,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -299,7 +299,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -347,7 +347,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -376,7 +376,7 @@ class MetricModulation(AbjadObject):
                                 \remove Time_signature_engraver
                                 \remove Staff_symbol_engraver
                                 \override Stem #'length = #4
-                                \override TupletBracket #'backet-visibility = ##t
+                                \override TupletBracket #'bracket-visibility = ##t
                                 \override TupletBracket #'padding = #1.25
                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -437,7 +437,7 @@ class MetricModulation(AbjadObject):
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem #'length = #4
-                                        \override TupletBracket #'backet-visibility = ##t
+                                        \override TupletBracket #'bracket-visibility = ##t
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -466,7 +466,7 @@ class MetricModulation(AbjadObject):
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem #'length = #4
-                                        \override TupletBracket #'backet-visibility = ##t
+                                        \override TupletBracket #'bracket-visibility = ##t
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -704,7 +704,7 @@ class MetricModulation(AbjadObject):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -736,7 +736,7 @@ class MetricModulation(AbjadObject):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -787,7 +787,7 @@ class MetricModulation(AbjadObject):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -819,7 +819,7 @@ class MetricModulation(AbjadObject):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'length = #4
-                                    \override TupletBracket #'backet-visibility = ##t
+                                    \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -900,7 +900,6 @@ class MetricModulation(AbjadObject):
         right_markup = self._get_right_markup()
         commands = []
         commands.extend(left_markup.contents)
-        #commands.append(markuptools.MarkupCommand('hspace', -1.5))
         commands.append(markuptools.MarkupCommand('hspace', -0.5))
         commands.append(' = ')
         commands.append(markuptools.MarkupCommand('hspace', -1))
@@ -939,7 +938,7 @@ class MetricModulation(AbjadObject):
         staff.remove_commands.append('Time_signature_engraver')
         staff.remove_commands.append('Staff_symbol_engraver')
         override(staff).stem.length = 4
-        override(staff).tuplet_bracket.backet_visibility = True
+        override(staff).tuplet_bracket.bracket_visibility = True
         override(staff).tuplet_bracket.padding = 1.25
         override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
         scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')

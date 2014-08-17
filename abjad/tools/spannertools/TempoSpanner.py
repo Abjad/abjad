@@ -1250,6 +1250,37 @@ class TempoSpanner(Spanner):
         markup = markuptools.Markup(contents=commands)
         return markup
 
+    def _combine_tempo_and_metric_modulation(
+        self,
+        tempo,
+        metric_modulation,
+        ):
+        assert tempo is not None or metric_modulation is not None
+        if tempo is None:
+            return metric_modulation._get_markup()
+        if metric_modulation is None:
+            return tempo._to_markup()
+        tempo_markup = tempo._to_markup()
+        tempo_markup = self._append_hspace(tempo_markup, 0.5)
+        metric_modulation_markup = metric_modulation._get_markup()
+        metric_modulation_markup = self._parenthesize_markup(
+            metric_modulation_markup,
+            padding=0.5,
+            thickness=0.75,
+            )
+        assert len(metric_modulation_markup.contents) == 1
+        pair = schemetools.SchemePair(0.5, 0.5)
+        metric_modulation_command = markuptools.MarkupCommand(
+            'scale',
+            pair,
+            metric_modulation_markup.contents[0],
+            )
+        commands = []
+        commands.extend(tempo_markup.contents)
+        commands.append(metric_modulation_command)
+        markup = markuptools.Markup(contents=commands)
+        return markup
+
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None
@@ -1300,7 +1331,12 @@ class TempoSpanner(Spanner):
             lilypond_format_bundle.right.spanner_stops.append(spanner_stop)
         # use markup if no tempo trend starts now
         if current_tempo_trend is None:
-            markup = current_tempo._to_markup()
+            #markup = current_tempo._to_markup()
+            #markup = new(markup, direction=Up)
+            markup = self._combine_tempo_and_metric_modulation(
+                current_tempo,
+                current_metric_modulation,
+                )
             markup = new(markup, direction=Up)
             string = format(markup, 'lilypond')
             lilypond_format_bundle.right.markup.append(string)
@@ -1482,15 +1518,19 @@ class TempoSpanner(Spanner):
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
 
-    def _parenthesize_markup(self, markup, padding=None):
+    def _parenthesize_markup(self, markup, padding=None, thickness=None):
         commands = []
         if 1 < len(markup.contents):
             command = markuptools.MarkupCommand('line', markup.contents)
         else:
             command = markup.contents[:1]
         command = markuptools.MarkupCommand('parenthesize', command)
-        pair = schemetools.SchemePair('padding', padding)
-        command = markuptools.MarkupCommand('override', pair, command)
+        if padding is not None:
+            pair = schemetools.SchemePair('padding', padding)
+            command = markuptools.MarkupCommand('override', pair, command)
+        if thickness is not None:
+            pair = schemetools.SchemePair('thickness', thickness)
+            command = markuptools.MarkupCommand('override', pair, command)
         commands.append(command)
         markup = markuptools.Markup(contents=commands)
         return markup
