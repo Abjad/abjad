@@ -1292,6 +1292,12 @@ class TempoSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _append_hspace(self, markup, hspace):
+        commands = list(markup.contents)
+        commands.append(markuptools.MarkupCommand('hspace', hspace))
+        markup = markuptools.Markup(contents=commands)
+        return markup
+
     def _get_current_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None
@@ -1357,16 +1363,9 @@ class TempoSpanner(Spanner):
                 previous_tempo,
                 )
         #
-        # TODO: encapsulate in self._parenthesize_markup()
-        commands = []
         markup = current_tempo_trend._to_markup()
-        command = markuptools.MarkupCommand('parenthesize', markup.contents)
-        pair = schemetools.SchemePair('padding', 0.45)
-        command = markuptools.MarkupCommand('override', pair, command)
-        commands.append(command)
-        # TODO: encapsulate in self._append_hspace()
-        commands.append(markuptools.MarkupCommand('hspace', 0.75))
-        markup = markuptools.Markup(contents=commands)
+        markup = self._parenthesize_markup(markup, padding=0.45)
+        markup = self._append_hspace(markup, 0.75)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -1523,6 +1522,19 @@ class TempoSpanner(Spanner):
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
 
+    def _parenthesize_markup(self, markup, padding=None):
+        commands = []
+        if 1 < len(markup.contents):
+            command = markuptools.MarkupCommand('line', markup.contents)
+        else:
+            command = markup.contents[:1]
+        command = markuptools.MarkupCommand('parenthesize', command)
+        pair = schemetools.SchemePair('padding', padding)
+        command = markuptools.MarkupCommand('override', pair, command)
+        commands.append(command)
+        markup = markuptools.Markup(contents=commands)
+        return markup
+
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
@@ -1531,11 +1543,8 @@ class TempoSpanner(Spanner):
         current_tempo_trend,
         ):
         #
-        # TODO: encapsulate in self._append_hspace()
         markup = current_tempo._to_markup()
-        commands = list(markup.contents)
-        commands.append(markuptools.MarkupCommand('hspace', 1.25))
-        markup = markuptools.Markup(contents=commands)
+        markup = self._append_hspace(markup, 1.25)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -1558,27 +1567,12 @@ class TempoSpanner(Spanner):
         ):
         #
         if previous_tempo:
-            # TODO: encapsulate in self._parenthesize_markup()
-            commands = []
             markup = previous_tempo._to_markup()
-            #command = markuptools.MarkupCommand(
-            #    'parenthesize',
-            #    markup.contents,
-            #    )
-            command = markuptools.MarkupCommand('line', markup.contents)
-            command = markuptools.MarkupCommand('parenthesize', command)
-            pair = schemetools.SchemePair('padding', 0.45)
-            command = markuptools.MarkupCommand('override', pair, command)
-            commands.append(command)
-            # TODO: self._append_hspace()
-            commands.append(markuptools.MarkupCommand('hspace', 0.75))
-            markup = markuptools.Markup(contents=commands)
+            markup = self._parenthesize_markup(markup, padding=0.45)
+            markup = self._append_hspace(markup, 0.75)
         else:
             markup = current_tempo_trend._to_markup()
-            commands = list(markup.contents)
-            # TODO: self._append_hspace()
-            commands.append(markuptools.MarkupCommand('hspace', 0.75))
-            markup = markuptools.Markup(contents=commands)
+            markup = self._append_hspace(markup, 0.75)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
