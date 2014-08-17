@@ -27,12 +27,8 @@ class Ritardando(AbjadObject):
                     c'4
                         ^ \markup {
                             \large
-                                {
-                                    \upright
-                                        {
-                                            rit.
-                                        }
-                                }
+                                \upright
+                                    rit.
                             }
                     d'4
                     e'4
@@ -159,12 +155,8 @@ class Ritardando(AbjadObject):
                 >>> print(str(indicatortools.Ritardando()))
                 \markup {
                     \large
-                        {
-                            \upright
-                                {
-                                    rit.
-                                }
-                        }
+                        \upright
+                            rit.
                     }
 
         ..  container:: example
@@ -211,7 +203,7 @@ class Ritardando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { \upright { rit. } }'
+        contents = r'\large \upright rit.'
         return markuptools.Markup(contents=contents)
 
     @property

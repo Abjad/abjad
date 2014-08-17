@@ -161,12 +161,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    accel.
-                                                }
-                                        }
+                                        \upright
+                                            accel.
                                 }
                         \hspace
                             #0.75
@@ -317,12 +313,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    rit.
-                                                }
-                                        }
+                                        \upright
+                                            rit.
                                 }
                         \hspace
                             #0.75
@@ -425,12 +417,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    accel.
-                                                }
-                                        }
+                                        \upright
+                                            accel.
                                 }
                         \hspace
                             #0.75
@@ -480,12 +468,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    rit.
-                                                }
-                                        }
+                                        \upright
+                                            rit.
                                 }
                         \hspace
                             #0.75
@@ -584,12 +568,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    accel.
-                                                }
-                                        }
+                                        \upright
+                                            accel.
                                 }
                         \hspace
                             #0.75
@@ -597,12 +577,8 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
-                            {
-                                \upright
-                                    {
-                                        accel.
-                                    }
-                            }
+                            \upright
+                                accel.
                         \hspace
                             #0.75
                         }
@@ -710,12 +686,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    rit.
-                                                }
-                                        }
+                                        \upright
+                                            rit.
                                 }
                         \hspace
                             #0.75
@@ -723,12 +695,8 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \large
-                            {
-                                \upright
-                                    {
-                                        rit.
-                                    }
-                            }
+                            \upright
+                                rit.
                         \hspace
                             #0.75
                         }
@@ -861,12 +829,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    accel.
-                                                }
-                                        }
+                                        \upright
+                                            accel.
                                 }
                         \hspace
                             #0.75
@@ -996,12 +960,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    rit.
-                                                }
-                                        }
+                                        \upright
+                                            rit.
                                 }
                         \hspace
                             #0.75
@@ -1108,12 +1068,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    accel.
-                                                }
-                                        }
+                                        \upright
+                                            accel.
                                 }
                         \hspace
                             #0.75
@@ -1218,12 +1174,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 {
                                     \large
-                                        {
-                                            \upright
-                                                {
-                                                    rit.
-                                                }
-                                        }
+                                        \upright
+                                            rit.
                                 }
                         \hspace
                             #0.75

@@ -27,12 +27,8 @@ class Accelerando(AbjadObject):
                     c'4
                         ^ \markup {
                             \large
-                                {
-                                    \upright
-                                        {
-                                            accel.
-                                        }
-                                }
+                                \upright
+                                    accel.
                             }
                     d'4
                     e'4
@@ -159,12 +155,8 @@ class Accelerando(AbjadObject):
                 >>> print(str(indicatortools.Accelerando()))
                 \markup {
                     \large
-                        {
-                            \upright
-                                {
-                                    accel.
-                                }
-                        }
+                        \upright
+                            accel.
                     }
 
         ..  container:: example
@@ -211,7 +203,7 @@ class Accelerando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { \upright { accel. } }'
+        contents = r'\large \upright accel.'
         return markuptools.Markup(contents=contents)
 
     @property
