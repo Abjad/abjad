@@ -28,7 +28,10 @@ class Accelerando(AbjadObject):
                         ^ \markup {
                             \large
                                 {
-                                    accel.
+                                    \upright
+                                        {
+                                            accel.
+                                        }
                                 }
                             }
                     d'4
@@ -157,7 +160,10 @@ class Accelerando(AbjadObject):
                 \markup {
                     \large
                         {
-                            accel.
+                            \upright
+                                {
+                                    accel.
+                                }
                         }
                     }
 
@@ -205,7 +211,7 @@ class Accelerando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { accel. }'
+        contents = r'\large { \upright { accel. } }'
         return markuptools.Markup(contents=contents)
 
     @property

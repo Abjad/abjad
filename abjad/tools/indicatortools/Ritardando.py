@@ -28,7 +28,10 @@ class Ritardando(AbjadObject):
                         ^ \markup {
                             \large
                                 {
-                                    rit.
+                                    \upright
+                                        {
+                                            rit.
+                                        }
                                 }
                             }
                     d'4
@@ -157,7 +160,10 @@ class Ritardando(AbjadObject):
                 \markup {
                     \large
                         {
-                            rit.
+                            \upright
+                                {
+                                    rit.
+                                }
                         }
                     }
 
@@ -205,7 +211,7 @@ class Ritardando(AbjadObject):
     @property
     def _default_markup(self):
         from abjad.tools import markuptools
-        contents = r'\large { rit. }'
+        contents = r'\large { \upright { rit. } }'
         return markuptools.Markup(contents=contents)
 
     @property
