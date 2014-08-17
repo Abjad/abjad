@@ -1369,6 +1369,191 @@ class TempoSpanner(Spanner):
                 }
             >>
 
+    ..  container:: example
+
+        **Example 12.** With a metric modulation and an accelerando:
+
+        ::
+
+            >>> staff = Staff("c'8. d'8. e'4. g'8. f'8. ef'4.")
+            >>> attach(TimeSignature((3, 8)), staff)
+            >>> score = Score([staff])
+
+        ::
+
+            >>> tempo = Tempo(Duration(3, 4), 90)
+            >>> attach(tempo, staff[0], is_annotation=True)
+            >>> tempo = Tempo(Duration(3, 4), 60)
+            >>> attach(tempo, staff[3], is_annotation=True)
+            >>> metric_modulation = indicatortools.MetricModulation(
+            ...     left_rhythm=Note('c4.'),
+            ...     right_rhythm=Note('c4'),
+            ...     )
+            >>> attach(metric_modulation, staff[3], is_annotation=True)
+            >>> attach(Accelerando(), staff[3], is_annotation=True)
+            >>> tempo = Tempo(Duration(3, 4), 90)
+            >>> attach(tempo, staff[-1], is_annotation=True)
+
+        ::
+
+            >>> attach(spannertools.TempoSpanner(), staff[:])
+
+        ::
+
+            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_spanner.staff_padding = 2
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score \with {
+                \override TextScript #'staff-padding = #1.25
+                \override TextSpanner #'staff-padding = #2
+            } <<
+                \new Staff {
+                    \time 3/8
+                    c'8. ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #1
+                                    #1
+                        \upright
+                            " = 90"
+                        }
+                    d'8.
+                    e'4.
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.padding = -2
+                    \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                        \override
+                            #'(padding . 0.45)
+                            \parenthesize
+                                {
+                                    \large
+                                        \upright
+                                            accel.
+                                }
+                        \hspace
+                            #0.75
+                        }
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \line
+                            {
+                                \smaller
+                                    \general-align
+                                        #Y
+                                        #DOWN
+                                        \note-by-number
+                                            #2
+                                            #1
+                                            #1
+                                \upright
+                                    " = 60"
+                                \hspace
+                                    #0.5
+                                \raise
+                                    #0.35
+                                    \scale
+                                        #'(0.75 . 0.75)
+                                        \override
+                                            #'(thickness . 0.75)
+                                            \override
+                                                #'(padding . 0.5)
+                                                \parenthesize
+                                                    \line
+                                                        {
+                                                            \score
+                                                                {
+                                                                    \new Score \with {
+                                                                        proportionalNotationDuration = ##f
+                                                                    } <<
+                                                                        \new RhythmicStaff \with {
+                                                                            \remove Time_signature_engraver
+                                                                            \remove Staff_symbol_engraver
+                                                                            \override Stem #'length = #4
+                                                                            \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'padding = #1.25
+                                                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                            fontSize = #-2
+                                                                            tupletFullLength = ##t
+                                                                        } {
+                                                                            c4.
+                                                                        }
+                                                                    >>
+                                                                    \layout {
+                                                                        indent = #0
+                                                                        ragged-right = ##t
+                                                                    }
+                                                                }
+                                                            \hspace
+                                                                #-0.5
+                                                            " = "
+                                                            \hspace
+                                                                #-1
+                                                            \score
+                                                                {
+                                                                    \new Score \with {
+                                                                        proportionalNotationDuration = ##f
+                                                                    } <<
+                                                                        \new RhythmicStaff \with {
+                                                                            \remove Time_signature_engraver
+                                                                            \remove Staff_symbol_engraver
+                                                                            \override Stem #'length = #4
+                                                                            \override TupletBracket #'bracket-visibility = ##t
+                                                                            \override TupletBracket #'padding = #1.25
+                                                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                            fontSize = #-2
+                                                                            tupletFullLength = ##t
+                                                                        } {
+                                                                            c4
+                                                                        }
+                                                                    >>
+                                                                    \layout {
+                                                                        indent = #0
+                                                                        ragged-right = ##t
+                                                                    }
+                                                                }
+                                                        }
+                            }
+                        \hspace
+                            #1.25
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right-broken.text = ##f
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 2
+                    \once \override TextSpanner.bound-details.right.text = ##f
+                    \once \override TextSpanner.dash-fraction = 0.25
+                    \once \override TextSpanner.dash-period = 1.5
+                    g'8. \startTextSpan
+                    f'8.
+                    ef'4. \stopTextSpan ^ \markup {
+                        \smaller
+                            \general-align
+                                #Y
+                                #DOWN
+                                \note-by-number
+                                    #2
+                                    #1
+                                    #1
+                        \upright
+                            " = 90"
+                        }
+                }
+            >>
+
     '''
 
     ### CLASS VARIABLES ###
