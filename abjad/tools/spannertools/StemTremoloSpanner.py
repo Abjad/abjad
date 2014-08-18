@@ -9,9 +9,8 @@ class StemTremoloSpanner(Spanner):
 
     ::
 
-        >>> from plague_water import makers
         >>> staff = Staff("c'32 d'16. e'8 f'4. g'4.")
-        >>> tremolo_spanner = makers.StemTremoloSpanner()
+        >>> tremolo_spanner = spannertools.StemTremoloSpanner()
         >>> attach(tremolo_spanner, staff[:])
         >>> f(staff)
         \new Staff {
