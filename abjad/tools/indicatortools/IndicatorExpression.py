@@ -242,13 +242,14 @@ class IndicatorExpression(AbjadObject):
             return
         prototype = type(self.indicator)
         effective = component._get_effective(prototype, unwrap=False)
-        if effective is not None and \
-            effective.scope is not None and \
-            effective.indicator != self.indicator:
+        if (effective is not None and
+            effective.scope is not None and
+            effective.indicator != self.indicator):
             indicator_start = effective.component._get_timespan().start_offset
             component_start = component._get_timespan().start_offset
             if indicator_start == component_start:
-                message = 'effective indicator already attached.'
+                message = 'effective indicator already attached: {!r}.'
+                message = message.format(effective)
                 raise ValueError(message)
 
     ### PUBLIC PROPERTIES ###
