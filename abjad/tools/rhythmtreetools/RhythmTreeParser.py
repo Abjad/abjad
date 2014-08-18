@@ -16,36 +16,36 @@ class RhythmTreeParser(Parser):
 
         >>> rtm = '(1 (1 (2 (1 -1 1)) -2))'
         >>> result = parser(rtm)[0]
-        >>> result
-        RhythmTreeContainer(
+        >>> print(format(result))
+        rhythmtreetools.RhythmTreeContainer(
             children=(
-                RhythmTreeLeaf(
-                    preprolated_duration=Duration(1, 1),
-                    is_pitched=True
+                rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=durationtools.Duration(1, 1),
+                    is_pitched=True,
                     ),
-                RhythmTreeContainer(
+                rhythmtreetools.RhythmTreeContainer(
                     children=(
-                        RhythmTreeLeaf(
-                            preprolated_duration=Duration(1, 1),
-                            is_pitched=True
+                        rhythmtreetools.RhythmTreeLeaf(
+                            preprolated_duration=durationtools.Duration(1, 1),
+                            is_pitched=True,
                             ),
-                        RhythmTreeLeaf(
-                            preprolated_duration=Duration(1, 1),
-                            is_pitched=False
+                        rhythmtreetools.RhythmTreeLeaf(
+                            preprolated_duration=durationtools.Duration(1, 1),
+                            is_pitched=False,
                             ),
-                        RhythmTreeLeaf(
-                            preprolated_duration=Duration(1, 1),
-                            is_pitched=True
+                        rhythmtreetools.RhythmTreeLeaf(
+                            preprolated_duration=durationtools.Duration(1, 1),
+                            is_pitched=True,
                             ),
                         ),
-                    preprolated_duration=Duration(2, 1)
+                    preprolated_duration=durationtools.Duration(2, 1),
                     ),
-                RhythmTreeLeaf(
-                    preprolated_duration=Duration(2, 1),
-                    is_pitched=False
+                rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=durationtools.Duration(2, 1),
+                    is_pitched=False,
                     ),
                 ),
-            preprolated_duration=Duration(1, 1)
+            preprolated_duration=durationtools.Duration(1, 1),
             )
 
     ::

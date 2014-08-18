@@ -707,54 +707,54 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter.root_node
-                RhythmTreeContainer(
+                >>> print(format(meter.root_node))
+                rhythmtreetools.RhythmTreeContainer(
                     children=(
-                        RhythmTreeContainer(
+                        rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=NonreducedFraction(3, 4)
+                            preprolated_duration=mathtools.NonreducedFraction(3, 4),
                             ),
-                        RhythmTreeContainer(
+                        rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=NonreducedFraction(2, 4)
+                            preprolated_duration=mathtools.NonreducedFraction(2, 4),
                             ),
-                        RhythmTreeContainer(
+                        rhythmtreetools.RhythmTreeContainer(
                             children=(
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
-                                RhythmTreeLeaf(
-                                    preprolated_duration=Duration(1, 4),
-                                    is_pitched=True
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=NonreducedFraction(2, 4)
+                            preprolated_duration=mathtools.NonreducedFraction(2, 4),
                             ),
                         ),
-                    preprolated_duration=NonreducedFraction(7, 4)
+                    preprolated_duration=mathtools.NonreducedFraction(7, 4),
                     )
 
         Returns rhythm tree node.
@@ -794,9 +794,8 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meters = [metertools.Meter(x)
-                ...     for x in [(3, 4), (4, 4), (5, 4)]
-                ...     ]
+                >>> meters = [(3, 4), (4, 4), (5, 4)]
+                >>> meters = [metertools.Meter(_) for _ in meters]
 
         ..  container:: example
 
@@ -927,10 +926,8 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = \
-                ...     metertools.Meter((4, 4))
-                >>> kernel = \
-                ...     meter.generate_offset_kernel_to_denominator(8)
+                >>> meter = metertools.Meter((4, 4))
+                >>> kernel = meter.generate_offset_kernel_to_denominator(8)
                 >>> for offset, weight in sorted(kernel.kernel.items()):
                 ...     print('{!s}\t{!s}'.format(offset, weight))
                 ... 

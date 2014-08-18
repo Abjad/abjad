@@ -16,9 +16,9 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         >>> container = rhythmtreetools.RhythmTreeContainer(
         ...     preprolated_duration=1, children=[])
-        >>> container
-        RhythmTreeContainer(
-            preprolated_duration=Duration(1, 1)
+        >>> print(format(container))
+        rhythmtreetools.RhythmTreeContainer(
+            preprolated_duration=durationtools.Duration(1, 1),
             )
 
     Similar to Abjad containers, `RhythmTreeContainer` supports a list
@@ -30,19 +30,19 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
         >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
         >>> container.extend([leaf_a, leaf_b])
-        >>> container
-        RhythmTreeContainer(
+        >>> print(format(container))
+        rhythmtreetools.RhythmTreeContainer(
             children=(
-                RhythmTreeLeaf(
-                    preprolated_duration=Duration(1, 1),
-                    is_pitched=True
+                rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=durationtools.Duration(1, 1),
+                    is_pitched=True,
                     ),
-                RhythmTreeLeaf(
-                    preprolated_duration=Duration(2, 1),
-                    is_pitched=True
+                rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=durationtools.Duration(2, 1),
+                    is_pitched=True,
                     ),
                 ),
-            preprolated_duration=Duration(1, 1)
+            preprolated_duration=durationtools.Duration(1, 1),
             )
 
     ::
@@ -53,28 +53,28 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
-        >>> container
-        RhythmTreeContainer(
+        >>> print(format(container))
+        rhythmtreetools.RhythmTreeContainer(
             children=(
-                RhythmTreeLeaf(
-                    preprolated_duration=Duration(1, 1),
-                    is_pitched=True
+                rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=durationtools.Duration(1, 1),
+                    is_pitched=True,
                     ),
-                RhythmTreeContainer(
+                rhythmtreetools.RhythmTreeContainer(
                     children=(
-                        RhythmTreeLeaf(
-                            preprolated_duration=Duration(3, 1),
-                            is_pitched=True
+                        rhythmtreetools.RhythmTreeLeaf(
+                            preprolated_duration=durationtools.Duration(3, 1),
+                            is_pitched=True,
                             ),
-                        RhythmTreeLeaf(
-                            preprolated_duration=Duration(2, 1),
-                            is_pitched=True
+                        rhythmtreetools.RhythmTreeLeaf(
+                            preprolated_duration=durationtools.Duration(2, 1),
+                            is_pitched=True,
                             ),
                         ),
-                    preprolated_duration=Duration(2, 1)
+                    preprolated_duration=durationtools.Duration(2, 1),
                     ),
                 ),
-            preprolated_duration=Duration(1, 1)
+            preprolated_duration=durationtools.Duration(1, 1),
             )
 
     Call `RhythmTreeContainer` with a preprolated_duration to generate
@@ -141,31 +141,31 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         ::
 
-            >>> c
-            RhythmTreeContainer(
+            >>> print(format(c))
+            rhythmtreetools.RhythmTreeContainer(
                 children=(
-                    RhythmTreeLeaf(
-                        preprolated_duration=Duration(1, 1),
-                        is_pitched=True
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(1, 1),
+                        is_pitched=True,
                         ),
-                    RhythmTreeLeaf(
-                        preprolated_duration=Duration(1, 1),
-                        is_pitched=True
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(1, 1),
+                        is_pitched=True,
                         ),
-                    RhythmTreeLeaf(
-                        preprolated_duration=Duration(1, 1),
-                        is_pitched=True
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(1, 1),
+                        is_pitched=True,
                         ),
-                    RhythmTreeLeaf(
-                        preprolated_duration=Duration(3, 1),
-                        is_pitched=True
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(3, 1),
+                        is_pitched=True,
                         ),
-                    RhythmTreeLeaf(
-                        preprolated_duration=Duration(4, 1),
-                        is_pitched=True
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(4, 1),
+                        is_pitched=True,
                         ),
                     ),
-                preprolated_duration=Duration(3, 1)
+                preprolated_duration=durationtools.Duration(3, 1),
                 )
 
         Returns new RhythmTreeContainer.
@@ -246,6 +246,17 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         Returns integer.
         '''
         return super(RhythmTreeContainer, self).__hash__()
+
+    def __repr__(self):
+        r'''Gets interpreter representation of rhythm tree container.
+
+        Returns string.
+        '''
+        return '{}(({}, {}))'.format(
+            type(self).__name__,
+            self.duration.numerator,
+            self.duration.denominator,
+            )
 
     def __setitem__(self, i, expr):
         r'''Set `expr` in self at nonnegative integer index `i`,

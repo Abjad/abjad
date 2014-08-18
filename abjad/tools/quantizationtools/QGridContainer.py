@@ -11,9 +11,9 @@ class QGridContainer(RhythmTreeContainer):
 
     ::
 
-        >>> container
-        QGridContainer(
-            preprolated_duration=Duration(1, 1)
+        >>> print(format(container))
+        quantizationtools.QGridContainer(
+            preprolated_duration=durationtools.Duration(1, 1),
             )
 
     Used internally by ``QGrid``.
