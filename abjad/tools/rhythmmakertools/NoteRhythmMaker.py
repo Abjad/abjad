@@ -68,12 +68,14 @@ class NoteRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
+            tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
 
     ### SPECIAL METHODS ###
@@ -203,11 +205,14 @@ class NoteRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         selections = []
-        specifier = self.duration_spelling_specifier
-        if specifier is None:
-            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        duration_specifier = self.duration_spelling_specifier
+        if duration_specifier is None:
+            duration_specifier = rhythmmakertools.DurationSpellingSpecifier()
+        tuplet_specifier = self.tuplet_spelling_specifier
+        if tuplet_specifier is None:
+            tuplet_specifier = rhythmmakertools.TupletSpellingSpecifier()
         for division in divisions:
-            if specifier.spell_metrically:
+            if duration_specifier.spell_metrically:
                 meter = metertools.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
@@ -217,9 +222,10 @@ class NoteRhythmMaker(RhythmMaker):
                 pitches=0,
                 durations=durations,
                 decrease_durations_monotonically=\
-                    specifier.decrease_durations_monotonically,
+                    duration_specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
-                    specifier.forbidden_written_duration,
+                    duration_specifier.forbidden_written_duration,
+                is_diminution=tuplet_specifier.is_diminution,
                 )
             selections.append(selection)
         self._apply_beam_specifier(selections)
@@ -353,7 +359,93 @@ class NoteRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of note rhythm-maker.
 
-        ..  note:: not yet implemented.
+        ..  container:: example
+
+            **Example 1.** Spells tuplets as diminutions:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 14), (3, 7)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/14
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 4/7 {
+                            c'2 ~
+                            c'8
+                        }
+                    }
+                    {
+                        \time 3/7
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 4/7 {
+                            c'2.
+                        }
+                    }
+                }
+
+            This is the default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Spells tuplets as augmentations:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         is_diminution=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 14), (3, 7)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/14
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 8/7 {
+                            c'4 ~
+                            c'16
+                        }
+                    }
+                    {
+                        \time 3/7
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 8/7 {
+                            c'4.
+                        }
+                    }
+                }
 
         Returns tuplet spelling specifier or none.
         '''
