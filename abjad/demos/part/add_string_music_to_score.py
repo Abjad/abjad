@@ -44,7 +44,8 @@ def add_string_music_to_score(score):
 
     # chop all string parts into 6/4 measures
     strings_staff_group = score['Strings Staff Group']
-    for voice in  iterate(strings_staff_group).by_class(scoretools.Voice):
-        shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
-        for shard in shards:
-            scoretools.Measure((6, 4), shard)
+    with systemtools.ForbidUpdate(score):
+        for voice in  iterate(strings_staff_group).by_class(scoretools.Voice):
+            shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
+            for shard in shards:
+                scoretools.Measure((6, 4), shard)
