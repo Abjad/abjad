@@ -165,3 +165,16 @@
     Compare with NonreducedFraction.
 
 40. Group materials by `output_material_class_name`.
+
+41. Add segment 'definition.py - write .ly' (dy) command.
+    The command will do the first half of what 
+    'definition.py - illustrate' (di) already does: read definition.py
+    and write illustration.ly. The use case for the command is minor: 
+    to create an illustration.ly (that presumably would be different than
+    the existing illustration.ly) and then allow for inspection of the
+    illustration.ly file. Composers will use the command only when (di) won't
+    do the trick. Why wouldn't (di) do the trick? Because the two
+    illustration.ly files might result in the same resulting PDF, in which
+    case candidacy rules will prevent any new files from being written.
+    On reflection, maybe some type of suffix to (di) might be cleanest.
+    Something like (di@) or the like.
