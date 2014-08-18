@@ -231,7 +231,7 @@ class RestRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells durations as large as possible:
+            **Example 1.** Spells durations with the fewest number of glyphs:
 
             ::
 

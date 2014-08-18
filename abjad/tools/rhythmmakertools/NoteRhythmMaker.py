@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import metertools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -201,16 +202,20 @@ class NoteRhythmMaker(RhythmMaker):
 
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
-        for division in divisions:
-            assert isinstance(division, durationtools.Division), division
         selections = []
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
         for division in divisions:
+            if specifier.spell_metrically:
+                meter = metertools.Meter(division)
+                rhythm_tree_container = meter.root_node
+                durations = [_.duration for _ in rhythm_tree_container]
+            else:
+                durations = [division]
             selection = scoretools.make_leaves(
                 pitches=0,
-                durations=[division],
+                durations=durations,
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
@@ -228,17 +233,49 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Forbids notes with written duration greater than or equal to
-            ``1/2`` of a whole note:
+            **Example 1.** Spells durations with the fewest number of glyphs:
 
             ::
 
-                >>> duration_spelling_specifier = \
-                ...     rhythmmakertools.DurationSpellingSpecifier(
-                ...     forbidden_written_duration=Duration(1, 2),
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
                 ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Forbids notes with written duration greater than or 
+            equal to ``1/2``:
+
+            ::
+
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     duration_spelling_specifier=duration_spelling_specifier,
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...     forbidden_written_duration=Duration(1, 2),
+                ...         ),
                 ...     )
 
             ::
@@ -268,6 +305,46 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 3.** Spells metrically:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_metrically=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (6, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    {
+                        \time 6/8
+                        c'4.
+                        c'4.
+                    }
+                }
+
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
@@ -276,7 +353,7 @@ class NoteRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of note rhythm-maker.
 
-        ..  note:: note yet implemented.
+        ..  note:: not yet implemented.
 
         Returns tuplet spelling specifier or none.
         '''
