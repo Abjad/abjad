@@ -296,7 +296,7 @@ class LilyPondFormatManager(object):
             expr = schemetools.Scheme(expr)
         elif isinstance(expr, str) and '::' in expr:
             expr = schemetools.Scheme(expr)
-        elif isinstance(expr, tuple):
+        elif isinstance(expr, tuple) and len(expr) == 2:
             expr = schemetools.SchemePair(expr[0], expr[1])
         elif isinstance(expr, str) and ' ' not in expr:
             expr = schemetools.Scheme(expr, quoting="'")
