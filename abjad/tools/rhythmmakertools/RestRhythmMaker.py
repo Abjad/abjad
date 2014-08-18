@@ -60,6 +60,86 @@ class RestRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls rest rhythm-maker on `divisions`.
 
+        ..  container:: example
+
+            **Example 1.** With power-of-two durations:
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        r4
+                        r16
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** With non-power-of-two divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 14), (3, 7)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> score_block = lilypond_file.items[-1]
+                >>> score = score_block.items[0]
+                >>> staff = score[-1]
+                >>> override(staff).tuplet_bracket.staff_padding = 2.5
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff \with {
+                    \override TupletBracket #'staff-padding = #2.5
+                } {
+                    {
+                        \time 5/14
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 4/7 {
+                            r2
+                            r8
+                        }
+                    }
+                    {
+                        \time 3/7
+                        \tweak #'edge-height #'(0.7 . 0)
+                        \times 4/7 {
+                            r2.
+                        }
+                    }
+                }
+
         Returns list of selections.
         '''
         return RhythmMaker.__call__(
@@ -124,62 +204,130 @@ class RestRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def beam_specifier(self):
+        r'''Rest rhythm-maker ignores beam specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker()
+                >>> maker.beam_specifier is None
+                True
+
+        Returns none.
+        '''
+        superclass = super(RestRhythmMaker, self)
+        return superclass.beam_specifier
+
+    @property
     def duration_spelling_specifier(self):
         r'''Gets duration spelling specifier of rest rhythm-maker.
 
-            ..  container:: example
+        ..  container:: example
 
-                Forbids rests with written duration greater than or equal to
-                ``1/4`` of a whole note:
+            **Example 1.** Spells durations as large as possible:
 
-                ::
+            ::
 
-                    >>> duration_spelling_specifier = \
-                    ...     rhythmmakertools.DurationSpellingSpecifier(
-                    ...     forbidden_written_duration=Duration(1, 4),
-                    ...     )
-                    >>> maker = rhythmmakertools.RestRhythmMaker(
-                    ...     duration_spelling_specifier=duration_spelling_specifier,
-                    ...     )
+                >>> maker = rhythmmakertools.RestRhythmMaker()
 
-                ::
+            ::
 
-                    >>> divisions = [(5, 16), (3, 8)]
-                    >>> music = maker(divisions)
-                    >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                    ...     music,
-                    ...     divisions,
-                    ...     )
-                    >>> show(lilypond_file) # doctest: +SKIP
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-                ..  doctest::
+            This is the default behavior.
 
-                    >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                    >>> f(staff)
-                    \new RhythmicStaff {
-                        {
-                            \time 5/16
-                            r8
-                            r8
-                            r16
-                        }
-                        {
-                            \time 3/8
-                            r8
-                            r8
-                            r8
-                        }
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        r4
+                        r16
                     }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Forbids rests with written duration greater than or 
+            equal to ``1/4``:
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker(
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         forbidden_written_duration=Duration(1, 4),
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        r8
+                        r8
+                        r16
+                    }
+                    {
+                        \time 3/8
+                        r8
+                        r8
+                        r8
+                    }
+                }
 
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
     @property
+    def tie_specifier(self):
+        r'''Rest rhythm-maker ignores tie specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker()
+                >>> maker.tie_specifier is None
+                True
+
+        Returns none.
+        '''
+        superclass = super(RestRhythmMaker, self)
+        return superclass.tie_specifier
+
+    @property
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of rest rhythm-maker.
 
-        ..  note:: note yet implemented.
+        ..  note:: not yet implemented.
 
         Returns tuplet spelling specifier or none.
         '''
