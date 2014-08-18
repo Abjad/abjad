@@ -55,7 +55,8 @@ class WoodwindFingering(AbjadObject):
         markuptools.MarkupCommand(
             'woodwind-diagram',
             schemetools.Scheme(
-                'clarinet'
+                'clarinet',
+                quoting="'",
                 ),
             schemetools.Scheme(
                 schemetools.SchemePair(
@@ -69,7 +70,8 @@ class WoodwindFingering(AbjadObject):
                 schemetools.SchemePair(
                     'rh',
                     ('e',)
-                    )
+                    ),
+                quoting="'",
                 )
             )
 
