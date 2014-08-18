@@ -12,6 +12,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
     __slots__ = (
         '_decrease_durations_monotonically',
         '_forbidden_written_duration',
+        '_spell_metrically',
         )
 
     ### INITIALIZER ###
@@ -20,6 +21,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         self,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        spell_metrically=None,
         ):
         assert isinstance(decrease_durations_monotonically, bool)
         if forbidden_written_duration is not None:
@@ -27,6 +29,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 forbidden_written_duration)
         self._decrease_durations_monotonically = decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
+        if spell_metrically is not None:
+            assert isinstance(spell_metrically, bool)
+        self._spell_metrically = spell_metrically
 
     ### SPECIAL METHODS ###
 
@@ -166,6 +171,25 @@ class DurationSpellingSpecifier(AbjadValueObject):
         Returns duration or none.
         '''
         return self._forbidden_written_duration
+
+    @property
+    def spell_metrically(self):
+        r'''Is true when durations should spell according to approximate common
+        practice understandings of meter. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier.spell_metrically is None
+                True
+
+        Defaults to none.
+
+        Returns boolean.
+        '''
+        return self._spell_metrically
 
     ### PUBLIC METHODS ###
 
