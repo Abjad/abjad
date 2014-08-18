@@ -172,9 +172,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
             return output_material
 
     def _get_storage_format(self, expr):
-        if hasattr(expr, '_make_storage_format_with_overrides'):
-            return expr._make_storage_format_with_overrides()
-        elif hasattr(expr, '_storage_format_specification'):
+        if hasattr(expr, '_storage_format_specification'):
             return format(expr, 'storage')
         return repr(expr)
 
