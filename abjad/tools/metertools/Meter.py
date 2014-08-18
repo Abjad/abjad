@@ -12,14 +12,12 @@ from abjad.tools.abctools import AbjadObject
 class Meter(AbjadObject):
     '''A meter.
     
-    The Abjad meter models the common practice understanding of meter
-    as a tree-based implementation of the beats and other levels of rhythmic
-    organization.
+    Meter models the common practice understanding of beats and other levels of
+    rhythmic organization organized as a tree.
 
-    The tree structure of the Abjad meter corresponds to the monotonically
-    increasing sequence of factors in the numeratorof a given time signature.
-    Successively deeper levels of the tree divide time by the next factor in
-    sequence.
+    Meter tree structure corresponds to the monotonically increasing sequence
+    of factors in the numerator of a given time signature. Successively deeper
+    levels of the tree divide time by successive factors.
 
     ..  container:: example
 
@@ -366,305 +364,6 @@ class Meter(AbjadObject):
                 ),
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def decrease_durations_monotonically(self):
-        r'''True if the meter divides large primes into collections of ``2``
-        and ``3`` that decrease monotonically.
-
-        ..  container:: example
-
-            **Example 1.** Metrical hiearchy with durations that increase
-            monotonically:
-
-            ::
-
-                >>> meter = metertools.Meter(
-                ...     (7, 4),
-                ...     decrease_durations_monotonically=False,
-                ...     )
-
-            ::
-
-                >>> meter.decrease_durations_monotonically
-                False
-
-            ::
-
-                >>> print(meter.pretty_rtm_format)
-                (7/4 (
-                    (2/4 (
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))
-                    (3/4 (
-                        1/4
-                        1/4
-                        1/4))))
-
-        ..  container:: example
-
-            **Example 2.** Meter with durations that
-            decrease monotonically:
-
-            ::
-
-                >>> meter = \
-                ...     metertools.Meter((7, 4),
-                ...     decrease_durations_monotonically=True)
-
-            ::
-
-                >>> meter.decrease_durations_monotonically
-                True
-
-            ::
-
-                >>> print(meter.pretty_rtm_format)
-                (7/4 (
-                    (3/4 (
-                        1/4
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))))
-
-        Returns boolean.
-        '''
-        return self._decrease_durations_monotonically
-
-    @property
-    def denominator(self):
-        r'''Beat hierarchy denominator:
-
-        ::
-
-            >>> meter.denominator
-            4
-
-        Returns positive integer.
-        '''
-        return self._denominator
-
-    @property
-    def depthwise_offset_inventory(self):
-        r'''Depthwise inventory of offsets at each grouping level:
-
-        ::
-
-            >>> for depth, offsets in enumerate(
-            ...     meter.depthwise_offset_inventory):
-            ...     print(depth, offsets)
-            0 (Offset(0, 1), Offset(7, 4))
-            1 (Offset(0, 1), Offset(3, 4), Offset(5, 4), Offset(7, 4))
-            2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
-
-        Returns dictionary.
-        '''
-        inventory = []
-        for depth, nodes in sorted(
-            self.root_node.depthwise_inventory.items()):
-            offsets = []
-            for node in nodes:
-                offsets.append(durationtools.Offset(node.start_offset))
-            offsets.append(
-                durationtools.Offset(self.numerator, self.denominator))
-            inventory.append(tuple(offsets))
-        return tuple(inventory)
-
-    @property
-    def graphviz_format(self):
-        r'''Graphviz format of hierarchy's root node:
-
-        ::
-
-            >>> print(meter.graphviz_format)
-            digraph G {
-                node_0 [label="7/4",
-                    shape=triangle];
-                node_1 [label="3/4",
-                    shape=triangle];
-                node_2 [label="1/4",
-                    shape=box];
-                node_3 [label="1/4",
-                    shape=box];
-                node_4 [label="1/4",
-                    shape=box];
-                node_5 [label="2/4",
-                    shape=triangle];
-                node_6 [label="1/4",
-                    shape=box];
-                node_7 [label="1/4",
-                    shape=box];
-                node_8 [label="2/4",
-                    shape=triangle];
-                node_9 [label="1/4",
-                    shape=box];
-                node_10 [label="1/4",
-                    shape=box];
-                node_0 -> node_1;
-                node_0 -> node_5;
-                node_0 -> node_8;
-                node_1 -> node_2;
-                node_1 -> node_3;
-                node_1 -> node_4;
-                node_5 -> node_6;
-                node_5 -> node_7;
-                node_8 -> node_10;
-                node_8 -> node_9;
-            }
-
-        ::
-
-            >>> topleveltools.graph(meter) # doctest: +SKIP
-
-        Returns string.
-        '''
-        return self.root_node.graphviz_format
-
-    @property
-    def implied_time_signature(self):
-        r'''Implied time signature:
-
-        ::
-
-            >>> metertools.Meter((4, 4)).implied_time_signature
-            TimeSignature((4, 4))
-
-        Returns TimeSignature object.
-        '''
-        return indicatortools.TimeSignature(
-            self.root_node.preprolated_duration)
-
-    @property
-    def numerator(self):
-        r'''Beat hierarchy numerator:
-
-        ::
-
-            >>> meter.numerator
-            7
-
-        Returns positive integer.
-        '''
-        return self._numerator
-
-    @property
-    def preprolated_duration(self):
-        r'''Beat hierarchy preprolated_duration:
-
-        ::
-
-            >>> meter.preprolated_duration
-            Duration(7, 4)
-
-        Returns preprolated_duration.
-        '''
-        return durationtools.Duration(self.numerator, self.denominator)
-
-    @property
-    def pretty_rtm_format(self):
-        r'''Beat hiearchy pretty RTM format:
-
-        ::
-
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-        Returns string.
-        '''
-        return self.root_node.pretty_rtm_format
-
-    @property
-    def root_node(self):
-        r'''Beat hiearchy root node:
-
-        ::
-
-            >>> meter.root_node
-            RhythmTreeContainer(
-                children=(
-                    RhythmTreeContainer(
-                        children=(
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            ),
-                        preprolated_duration=NonreducedFraction(3, 4)
-                        ),
-                    RhythmTreeContainer(
-                        children=(
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            ),
-                        preprolated_duration=NonreducedFraction(2, 4)
-                        ),
-                    RhythmTreeContainer(
-                        children=(
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            RhythmTreeLeaf(
-                                preprolated_duration=Duration(1, 4),
-                                is_pitched=True
-                                ),
-                            ),
-                        preprolated_duration=NonreducedFraction(2, 4)
-                        ),
-                    ),
-                preprolated_duration=NonreducedFraction(7, 4)
-                )
-
-        Returns rhythm tree node.
-        '''
-        return self._root_node
-
-    @property
-    def rtm_format(self):
-        r'''Beat hierarchy RTM format:
-
-        ::
-
-            >>> meter.rtm_format
-            '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-
-        Returns string.
-        '''
-        return self._root_node.rtm_format
-
     ### PRIVATE METHODS ###
 
     def _get_recurser(self):
@@ -758,6 +457,325 @@ class Meter(AbjadObject):
         # return notes
         return notes
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Is true when meter divides large primes into collections of ``2``
+        and ``3`` that decrease monotonically. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Metrical hiearchy with durations that increase
+            monotonically:
+
+            ::
+
+                >>> meter = metertools.Meter(
+                ...     (7, 4),
+                ...     decrease_durations_monotonically=False,
+                ...     )
+
+            ::
+
+                >>> meter.decrease_durations_monotonically
+                False
+
+            ::
+
+                >>> print(meter.pretty_rtm_format)
+                (7/4 (
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))))
+
+        ..  container:: example
+
+            **Example 2.** Meter with durations that
+            decrease monotonically:
+
+            ::
+
+                >>> meter = \
+                ...     metertools.Meter((7, 4),
+                ...     decrease_durations_monotonically=True)
+
+            ::
+
+                >>> meter.decrease_durations_monotonically
+                True
+
+            ::
+
+                >>> print(meter.pretty_rtm_format)
+                (7/4 (
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def denominator(self):
+        r'''Gets denominator of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter.denominator
+                4
+
+        Returns positive integer.
+        '''
+        return self._denominator
+
+    @property
+    def depthwise_offset_inventory(self):
+        r'''Gets depthwise offset inventory of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> for depth, offsets in enumerate(
+                ...     meter.depthwise_offset_inventory):
+                ...     print(depth, offsets)
+                0 (Offset(0, 1), Offset(7, 4))
+                1 (Offset(0, 1), Offset(3, 4), Offset(5, 4), Offset(7, 4))
+                2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
+
+        Returns dictionary.
+        '''
+        inventory = []
+        for depth, nodes in sorted(
+            self.root_node.depthwise_inventory.items()):
+            offsets = []
+            for node in nodes:
+                offsets.append(durationtools.Offset(node.start_offset))
+            offsets.append(
+                durationtools.Offset(self.numerator, self.denominator))
+            inventory.append(tuple(offsets))
+        return tuple(inventory)
+
+    @property
+    def graphviz_format(self):
+        r'''Gets Graphviz format of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> print(meter.graphviz_format)
+                digraph G {
+                    node_0 [label="7/4",
+                        shape=triangle];
+                    node_1 [label="3/4",
+                        shape=triangle];
+                    node_2 [label="1/4",
+                        shape=box];
+                    node_3 [label="1/4",
+                        shape=box];
+                    node_4 [label="1/4",
+                        shape=box];
+                    node_5 [label="2/4",
+                        shape=triangle];
+                    node_6 [label="1/4",
+                        shape=box];
+                    node_7 [label="1/4",
+                        shape=box];
+                    node_8 [label="2/4",
+                        shape=triangle];
+                    node_9 [label="1/4",
+                        shape=box];
+                    node_10 [label="1/4",
+                        shape=box];
+                    node_0 -> node_1;
+                    node_0 -> node_5;
+                    node_0 -> node_8;
+                    node_1 -> node_2;
+                    node_1 -> node_3;
+                    node_1 -> node_4;
+                    node_5 -> node_6;
+                    node_5 -> node_7;
+                    node_8 -> node_10;
+                    node_8 -> node_9;
+                }
+
+            ::
+
+                >>> topleveltools.graph(meter) # doctest: +SKIP
+
+        Returns string.
+        '''
+        return self.root_node.graphviz_format
+
+    @property
+    def implied_time_signature(self):
+        r'''Gets implied time signature of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> metertools.Meter((4, 4)).implied_time_signature
+                TimeSignature((4, 4))
+
+        Returns time signature.
+        '''
+        return indicatortools.TimeSignature(
+            self.root_node.preprolated_duration)
+
+    @property
+    def numerator(self):
+        r'''Gets numerator of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter.numerator
+                7
+
+        Returns positive integer.
+        '''
+        return self._numerator
+
+    @property
+    def preprolated_duration(self):
+        r'''Gets preprolated duration of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter.preprolated_duration
+                Duration(7, 4)
+
+        ..  todo:: rename to just ``duration``.
+
+        Returns duration.
+        '''
+        return durationtools.Duration(self.numerator, self.denominator)
+
+    @property
+    def pretty_rtm_format(self):
+        r'''Gets pretty RTM format of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> print(meter.pretty_rtm_format)
+                (7/4 (
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
+
+        Returns string.
+        '''
+        return self.root_node.pretty_rtm_format
+
+    @property
+    def root_node(self):
+        r'''Gets root node of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter.root_node
+                RhythmTreeContainer(
+                    children=(
+                        RhythmTreeContainer(
+                            children=(
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                ),
+                            preprolated_duration=NonreducedFraction(3, 4)
+                            ),
+                        RhythmTreeContainer(
+                            children=(
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                ),
+                            preprolated_duration=NonreducedFraction(2, 4)
+                            ),
+                        RhythmTreeContainer(
+                            children=(
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                RhythmTreeLeaf(
+                                    preprolated_duration=Duration(1, 4),
+                                    is_pitched=True
+                                    ),
+                                ),
+                            preprolated_duration=NonreducedFraction(2, 4)
+                            ),
+                        ),
+                    preprolated_duration=NonreducedFraction(7, 4)
+                    )
+
+        Returns rhythm tree node.
+        '''
+        return self._root_node
+
+    @property
+    def rtm_format(self):
+        r'''Gets RTM format of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter.rtm_format
+                '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+
+        Returns string.
+        '''
+        return self._root_node.rtm_format
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -769,18 +787,20 @@ class Meter(AbjadObject):
         maximum_repetitions=None,
         starting_offset=None,
         ):
-        r'''Find the best-matching sequence of meters for the offsets
+        r'''Finds the best-matching sequence of meters for the offsets
         contained in `expr`.
-
-        ::
-
-            >>> meters = [metertools.Meter(x)
-            ...     for x in [(3, 4), (4, 4), (5, 4)]
-            ...     ]
 
         ..  container:: example
 
-            **Example 1.** Matching a series of hypothetical 4/4 measures:
+            ::
+
+                >>> meters = [metertools.Meter(x)
+                ...     for x in [(3, 4), (4, 4), (5, 4)]
+                ...     ]
+
+        ..  container:: example
+
+            **Example 1.** Matches a series of hypothetical ``4/4`` measures:
 
             ::
 
@@ -796,7 +816,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Matching a series of hypothetical 5/4 measures:
+            **Example 2.** Matches a series of hypothetical ``5/4`` measures:
 
             ::
 
@@ -811,10 +831,10 @@ class Meter(AbjadObject):
                 5/4
                 5/4
 
-        Offsets are coerced from `expr` via
+        Coerces offsets from `expr` via
         `MetricAccentKernel.count_offsets_in_expr()`.
 
-        MetricalHierarchies are coerced from `meters` via
+        Coerces MetricalHierarchies from `meters` via
         `MetricalHierarchyInventory`.
 
         Returns list.
@@ -897,28 +917,32 @@ class Meter(AbjadObject):
         denominator,
         normalize=True,
         ):
-        r'''Generate a dictionary of all offsets in a meter up
-        to `denominator`, where the keys are the offsets and the values
-        are the normalized weights of those offsets:
+        r'''Generates a dictionary of all offsets in a meter up
+        to `denominator`.
+        
+        Keys are the offsets and the values are the normalized weights of 
+        those offsets.
 
-        ::
+        ..  container:: example
 
-            >>> meter = \
-            ...     metertools.Meter((4, 4))
-            >>> kernel = \
-            ...     meter.generate_offset_kernel_to_denominator(8)
-            >>> for offset, weight in sorted(kernel.kernel.items()):
-            ...     print('{!s}\t{!s}'.format(offset, weight))
-            ... 
-            0       3/16
-            1/8     1/16
-            1/4     1/8
-            3/8     1/16
-            1/2     1/8
-            5/8     1/16
-            3/4     1/8
-            7/8     1/16
-            1       3/16
+            ::
+
+                >>> meter = \
+                ...     metertools.Meter((4, 4))
+                >>> kernel = \
+                ...     meter.generate_offset_kernel_to_denominator(8)
+                >>> for offset, weight in sorted(kernel.kernel.items()):
+                ...     print('{!s}\t{!s}'.format(offset, weight))
+                ... 
+                0       3/16
+                1/8     1/16
+                1/4     1/8
+                3/8     1/16
+                1/2     1/8
+                5/8     1/16
+                3/4     1/8
+                7/8     1/16
+                1       3/16
 
         This is useful for testing how strongly a collection of offsets
         responds to a given meter.
