@@ -167,8 +167,14 @@ class Scheme(AbjadObject):
             positional_argument_values = (self._value,)
         else:
             positional_argument_values = self._value
+        keyword_argument_names = []
+        if self.force_quotes:
+            keyword_argument_names.append('force_quotes')
+        if self.quoting:
+            keyword_argument_names.append('quoting')
         return systemtools.StorageFormatSpecification(
             self,
+            keyword_argument_names=keyword_argument_names,
             positional_argument_values=positional_argument_values,
             )
 
@@ -252,3 +258,11 @@ class Scheme(AbjadObject):
         Returns boolean.
         '''
         return self._force_quotes
+
+    @property
+    def quoting(self):
+        r'''Gets Scheme quoting string.
+
+        Return string.
+        '''
+        return self._quoting

@@ -8,7 +8,7 @@ class SchemeVector(Scheme):
     ::
 
         >>> schemetools.SchemeVector(True, True, False)
-        SchemeVector(True, True, False)
+        SchemeVector(True, True, False, quoting="'")
 
     Scheme vectors and Scheme vector constants differ in only
     their LilyPond input format.
@@ -24,4 +24,4 @@ class SchemeVector(Scheme):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        Scheme.__init__(self, *args, **{'quoting': "'"})
+        Scheme.__init__(self, *args, quoting="'")
