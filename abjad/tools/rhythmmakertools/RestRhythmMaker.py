@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -192,7 +193,9 @@ class RestRhythmMaker(RhythmMaker):
         if tuplet_specifier is None:
             tuplet_specifier = rhythmmakertools.TupletSpellingSpecifier()
         for division in divisions:
-            if duration_specifier.spell_metrically:
+            if (duration_specifier.spell_metrically == True or
+                (duration_specifier.spell_metrically == 'unassignable' and
+                not mathtools.is_assignable_integer(division.numerator))):
                 meter = metertools.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
@@ -313,7 +316,8 @@ class RestRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells metrically:
+            **Example 3.** Spells all durations metrically when
+            `spell_metrically` is true:
 
             ::
 
@@ -325,7 +329,7 @@ class RestRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(3, 4), (6, 8)]
+                >>> divisions = [(3, 4), (6, 16), (9, 16)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -345,11 +349,65 @@ class RestRhythmMaker(RhythmMaker):
                         r4
                     }
                     {
-                        \time 6/8
-                        r4.
-                        r4.
+                        \time 6/16
+                        r8.
+                        r8.
+                    }
+                    {
+                        \time 9/16
+                        r8.
+                        r8.
+                        r8.
                     }
                 }
+
+        ..  container:: example
+
+            **Example 4.** Spells unassignable durations metrically when
+            `spell_metrically` is ``'unassignable'``:
+
+            ::
+
+                >>> maker = rhythmmakertools.RestRhythmMaker(
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_metrically='unassignable',
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (6, 16), (9, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        r2.
+                    }
+                    {
+                        \time 6/16
+                        r4.
+                    }
+                    {
+                        \time 9/16
+                        r8.
+                        r8.
+                        r8.
+                    }
+                }
+
+            ``9/16`` is spelled metrically because it is unassignable.
+            The other durations are spelled with the fewest number of symbols
+            possible.
 
         Returns duration spelling specifier or none.
         '''

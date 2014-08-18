@@ -29,7 +29,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 forbidden_written_duration)
         self._decrease_durations_monotonically = decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
-        if spell_metrically is not None:
+        if spell_metrically is not None and spell_metrically != 'unassignable':
             assert isinstance(spell_metrically, bool)
         self._spell_metrically = spell_metrically
 
@@ -185,9 +185,12 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 >>> specifier.spell_metrically is None
                 True
 
+        Spells unassignable durations like ``5/16`` and ``9/4`` metrically when
+        set to ``'unassignable'``. Leaves other durations unchanged.
+
         Defaults to none.
 
-        Returns boolean.
+        Returns boolean, ``'unassignable'`` or none..
         '''
         return self._spell_metrically
 
