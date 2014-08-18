@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import durationtools
+from abjad.tools.topleveltools.iterate import iterate
 
 
 class InspectionAgent(abctools.AbjadObject):
@@ -314,9 +315,11 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_leaf(self, n=0):
-        r'''Gets leaf `n` in logical voice.
+        r'''Gets leaf `n`.
 
         ..  container:: example
+
+            Example score:
 
             ::
 
@@ -343,10 +346,23 @@ class InspectionAgent(abctools.AbjadObject):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 1.** Gets leaf `n` **from** client of inspection agent
+            when client of inspection agent is a leaf.
+
+            With positive indices:
+
+            ::
+
+                >>> first_leaf = staff[0][0]
+                >>> first_leaf
+                Note("c'8")
+
             ::
 
                 >>> for n in range(8):
-                ...     print(n, inspect_(staff[0][0]).get_leaf(n))
+                ...     print(n, inspect_(first_leaf).get_leaf(n))
                 ... 
                 0 c'8
                 1 d'8
@@ -357,12 +373,105 @@ class InspectionAgent(abctools.AbjadObject):
                 6 None
                 7 None
 
+            With negative indices:
+
+            ::
+
+                >>> last_leaf = staff[0][-1]
+                >>> last_leaf
+                Note("f'8")
+
+            ::
+
+                >>> for n in range(0, -8, -1):
+                ...     print(n, inspect_(last_leaf).get_leaf(n))
+                ... 
+                0 f'8
+                -1 e'8
+                -2 d'8
+                -3 c'8
+                -4 None
+                -5 None
+                -6 None
+                -7 None
+
+        ..  container:: example
+
+            **Example 2.** Gets leaf `n` **in** client of inspection agent
+            when client of inspection agent is a container.
+
+            With positive indices:
+
+            ::
+
+                >>> first_voice = staff[0]
+                >>> first_voice
+                Voice("c'8 d'8 e'8 f'8")
+
+            ::
+
+                >>> for n in range(8):
+                ...     print(n, inspect_(first_voice).get_leaf(n))
+                ... 
+                0 c'8
+                1 d'8
+                2 e'8
+                3 f'8
+                4 None
+                5 None
+                6 None
+                7 None
+
+            With negative indices:
+
+            ::
+
+                >>> first_voice = staff[0]
+                >>> first_voice
+                Voice("c'8 d'8 e'8 f'8")
+
+            ::
+
+                >>> for n in range(-1, -9, -1):
+                ...     print(n, inspect_(first_voice).get_leaf(n))
+                ... 
+                -1 f'8
+                -2 e'8
+                -3 d'8
+                -4 c'8
+                -5 None
+                -6 None
+                -7 None
+                -8 None
+
         Returns leaf or none.
         '''
         from abjad.tools import scoretools
-        if not isinstance(self._client, scoretools.Leaf):
-            return None
-        return self._client._get_leaf(n=n)
+        if isinstance(self._client, scoretools.Leaf):
+            return self._client._get_leaf(n=n)
+        if 0 <= n:
+            leaves = iterate(self._client).by_class(
+                scoretools.Leaf,
+                start=0,
+                stop=n+1,
+                )
+            leaves = list(leaves)
+            if len(leaves) < n + 1:
+                return
+            leaf = leaves[n]
+            return leaf
+        else:
+            leaves = iterate(self._client).by_class(
+                scoretools.Leaf,
+                start=0,
+                stop=abs(n),
+                reverse=True,
+                )
+            leaves = list(leaves)
+            if len(leaves) < abs(n):
+                return
+            leaf = leaves[abs(n)-1]
+            return leaf
 
     def get_lineage(self):
         r'''Gets lineage of client.

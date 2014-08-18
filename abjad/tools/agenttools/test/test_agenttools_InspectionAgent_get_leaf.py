@@ -934,17 +934,17 @@ def test_agenttools_InspectionAgent_get_leaf_26():
     r'''Returns none on nested differently named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1, 8)) for i in range(1, 4)])
-    inner_voice.name = 'Your Voice'
-    outer_voice = Voice([Note(0, (1, 8)), inner_voice])
-    outer_voice.name = 'My Voice'
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(1, 4)])
+    voice_2.name = 'Voice 2'
+    voice_1 = Voice([Note(0, (1, 8)), voice_2])
+    voice_1.name = 'Voice 1'
 
     assert systemtools.TestManager.compare(
-        outer_voice,
+        voice_1,
         r'''
-        \context Voice = "My Voice" {
+        \context Voice = "Voice 1" {
             c'8
-            \context Voice = "Your Voice" {
+            \context Voice = "Voice 2" {
                 cs'8
                 d'8
                 ef'8
@@ -953,10 +953,10 @@ def test_agenttools_InspectionAgent_get_leaf_26():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(outer_voice[0]).get_leaf(1) is None
+    assert inspect_(voice_2[0]).get_leaf(1) is voice_2[1]
+    assert inspect_(voice_2[1]).get_leaf(1) is voice_2[2]
+    assert inspect_(voice_1[0]).get_leaf(1) is None
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(outer_voice[1]).get_leaf(-1) is None
+    assert inspect_(voice_2[1]).get_leaf(-1) is voice_2[0]
+    assert inspect_(voice_2[2]).get_leaf(-1) is voice_2[1]
+    assert inspect_(voice_1[1]).get_leaf(-1) is voice_2[-1]

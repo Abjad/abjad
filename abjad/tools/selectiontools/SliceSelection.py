@@ -31,6 +31,11 @@ class SliceSelection(ContiguousSelection):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     # TODO: assert all are contiguous components in same parent

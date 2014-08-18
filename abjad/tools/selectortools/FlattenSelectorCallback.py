@@ -32,4 +32,8 @@ class FlattenSelectorCallback(AbjadValueObject):
 
     @property
     def depth(self):
+        r'''Gets depth of callback.
+
+        Returns nonnegative integer.
+        '''
         return self._depth
