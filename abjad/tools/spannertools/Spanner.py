@@ -168,7 +168,7 @@ class Spanner(AbjadObject):
         from abjad.tools import systemtools
         keyword_argument_names = list(
             systemtools.StorageFormatManager.get_keyword_argument_names(self))
-        if 'overrides' in keyword_argument_names:
+        if 'overrides' in keyword_argument_names and not self.overrides:
             keyword_argument_names.remove('overrides')
         return systemtools.StorageFormatSpecification(
             self,
@@ -200,15 +200,11 @@ class Spanner(AbjadObject):
         self._components.insert(0, component)
 
     def _apply_overrides(self, overrides):
-        exec('from abjad import *')
-        for grob_attribute_string in overrides:
-            grob_value_string = overrides[grob_attribute_string]
-            statement = 'override(self).{} = {}'
-            grob_attribute_string = grob_attribute_string.replace('__', '.', 1)
-            grob_value_string = grob_value_string.replace('\t', '')
-            strings = (grob_attribute_string, grob_value_string)
-            statement = statement.format(*strings)
-            exec(statement)
+        manager = override(self)
+        for key, value in overrides.items():
+            grob_name, attribute = key.split('__', 1)
+            grob_manager = getattr(manager, grob_name)
+            setattr(grob_manager, attribute, value)
 
     def _attach(self, components):
         from abjad.tools import scoretools
@@ -511,23 +507,7 @@ class Spanner(AbjadObject):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _make_storage_format_with_overrides(self):
-        from abjad.tools import systemtools
-        override_dictionary = override(self)._make_override_dictionary()
-        lines = []
-        line = '{}.{}('.format(
-            systemtools.StorageFormatManager.get_tools_package_name(self),
-            type(self).__name__,
-            )
-        lines.append(line)
-        lines.append('\toverrides = {')
-        for key, value in override_dictionary.items():
-            value = value.replace('\t', '')
-            line = '\t\t{!r}: {!r},'.format(key, value)
-            lines.append(line)
-        lines.append('\t}')
-        lines.append(')')
-        result = '\n'.join(lines)
-        return result
+        return format(self, 'storage')
 
     def _remove(self, component):
         r'''Not composer-safe.
@@ -604,3 +584,17 @@ class Spanner(AbjadObject):
         '''
         from abjad.tools import selectiontools
         return selectiontools.Selection(self._components[:])
+
+    @property
+    def overrides(self):
+        r'''Gets overrides.
+
+        Returns dict.
+        '''
+        manager = override(self)
+        overrides = {}
+        for attribute_tuple in manager._get_attribute_tuples():
+            attribute = '__'.join(attribute_tuple[:-1])
+            value = attribute_tuple[-1]
+            overrides[attribute] = value
+        return overrides
