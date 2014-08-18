@@ -13,6 +13,11 @@ class ContiguousSelection(Selection):
     r'''A time-contiguous selection of components.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, music=None):

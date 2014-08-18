@@ -5,8 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import mutate
-from abjad.tools.selectiontools.ContiguousSelection \
-    import ContiguousSelection
+from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
 
 
 class LogicalTie(ContiguousSelection):
@@ -25,6 +24,11 @@ class LogicalTie(ContiguousSelection):
             LogicalTie(Note("e'4"), Note("e'4"))
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        ) 
 
     ### PRIVATE METHODS ###
 
