@@ -13,9 +13,12 @@ def make_leaves(
     decrease_durations_monotonically=True,
     tie_rests=False,
     forbidden_written_duration=None,
+    is_diminution=True,
     metrical_hiearchy=None,
     ):
-    r'''Make leaves.
+    r'''Makes leaves.
+
+    ..  todo:: Remove ``tie_rests`` functionality.
 
     ..  container:: example
 
@@ -322,7 +325,72 @@ def make_leaves(
                 g'4
             }
 
-    Returns selection of unincorporated leaves.
+    ..  container:: example
+
+        **Example 13.** Set `is_diminution` to true to produce
+        diminished tuplets:
+
+        ::
+
+            >>> pitches = "f'"
+            >>> durations = [Duration(5, 14)]
+            >>> leaves = scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     is_diminution=True
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = TimeSignature((5, 14))
+            >>> attach(time_signature, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \time 5/14
+                \tweak #'edge-height #'(0.7 . 0)
+                \times 4/7 {
+                    f'2 ~
+                    f'8
+                }
+            }
+
+        This is default behavior.
+
+    ..  container:: example
+
+        **Example 14.** Set `is_diminution` to false to produce
+        agumented tuplets:
+
+        ::
+
+            >>> pitches = "f'"
+            >>> durations = [Duration(5, 14)]
+            >>> leaves = scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     is_diminution=False
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = TimeSignature((5, 14))
+            >>> attach(time_signature, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \time 5/14
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak #'edge-height #'(0.7 . 0)
+                \times 8/7 {
+                    f'4 ~
+                    f'16
+                }
+            }
+
+    Returns selection of leaves.
     '''
     from abjad.tools import scoretools
 
@@ -380,10 +448,15 @@ def make_leaves(
                 leaves = _make_leaf_on_pitch(
                     pitch,
                     duration,
-                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    decrease_durations_monotonically=\
+                        decrease_durations_monotonically,
                     )
                 tuplet_leaves.extend(leaves)
             tuplet = scoretools.Tuplet(multiplier, tuplet_leaves)
+            if is_diminution and not tuplet.is_diminution:
+                tuplet.toggle_prolation()
+            elif not is_diminution and tuplet.is_diminution:
+                tuplet.toggle_prolation()
             result.append(tuplet)
 
     result = selectiontools.Selection(result)
