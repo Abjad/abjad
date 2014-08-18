@@ -7,7 +7,6 @@ def make_leaves_from_talea(
     talea,
     talea_denominator,
     decrease_durations_monotonically=True,
-    tie_rests=False,
     forbidden_written_duration=None,
     ):
     r'''Make leaves from `talea`.
@@ -119,7 +118,6 @@ def make_leaves_from_talea(
             pitches,
             [durationtools.Duration(abs(note_value), talea_denominator)],
             decrease_durations_monotonically=decrease_durations_monotonically,
-            tie_rests=tie_rests,
             forbidden_written_duration=forbidden_written_duration,
             )
         result.extend(leaves)

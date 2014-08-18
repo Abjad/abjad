@@ -28,11 +28,11 @@ def test_scoretools_make_rests_02():
 
 
 def test_scoretools_make_rests_03():
-    r'''Do tie rests.
+    r'''Do not tie rests.
     '''
 
     true = scoretools.make_rests((5, 8), tie_parts=True)
-    assert all(len(inspect_(x).get_logical_tie()) == 2 for x in true)
+    assert all(len(inspect_(x).get_logical_tie()) == 1 for x in true)
 
 
 def test_scoretools_make_rests_04():

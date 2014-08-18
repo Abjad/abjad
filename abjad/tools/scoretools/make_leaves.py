@@ -11,14 +11,11 @@ def make_leaves(
     pitches,
     durations,
     decrease_durations_monotonically=True,
-    tie_rests=False,
     forbidden_written_duration=None,
     is_diminution=True,
     metrical_hiearchy=None,
     ):
     r'''Makes leaves.
-
-    ..  todo:: Remove ``tie_rests`` functionality.
 
     ..  container:: example
 
@@ -232,37 +229,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 10.** Set `tie_rests` to true to return tied rests for
-        nonassignable durations. Note that LilyPond does not engrave
-        ties between rests:
-
-        ::
-
-            >>> pitches = [None]
-            >>> durations = [Duration(5, 8)]
-            >>> leaves = scoretools.make_leaves(
-            ...     pitches,
-            ...     durations,
-            ...     tie_rests=True,
-            ...     )
-            >>> staff = Staff(leaves)
-            >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((5, 8))
-            >>> attach(time_signature, staff)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new RhythmicStaff {
-                \time 5/8
-                r2
-                r8
-            }
-
-    ..  container:: example
-
-        **Example 11.** Set `forbidden_written_duration` to avoid notes
+        **Example 10.** Set `forbidden_written_duration` to avoid notes
         greater than or equal to a certain written duration:
 
         ::
@@ -294,7 +261,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 12.** You may set `forbidden_written_duration` and
+        **Example 11.** You may set `forbidden_written_duration` and
         `decrease_durations_monotonically` together:
 
         ::
@@ -327,7 +294,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 13.** Set `is_diminution` to true to produce
+        **Example 12.** Set `is_diminution` to true to produce
         diminished tuplets:
 
         ::
@@ -360,7 +327,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 14.** Set `is_diminution` to false to produce
+        **Example 13.** Set `is_diminution` to false to produce
         agumented tuplets:
 
         ::
@@ -430,7 +397,6 @@ def make_leaves(
                     duration,
                     decrease_durations_monotonically=decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
-                    tie_rests=tie_rests,
                     )
                 result.extend(leaves)
         else:
@@ -468,7 +434,6 @@ def _make_leaf_on_pitch(
     duration,
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
-    tie_rests=False,
     ):
     from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
@@ -497,7 +462,6 @@ def _make_leaf_on_pitch(
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             pitches=None,
-            tie_parts=tie_rests,
             )
     else:
         message = 'unknown pitch {!r}.'

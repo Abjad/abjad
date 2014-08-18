@@ -58,22 +58,6 @@ def test_scoretools_make_leaves_03():
 
 
 def test_scoretools_make_leaves_04():
-    r'''Leaves constructor can take an optional tie_rests=False keyword argument.
-    '''
-
-    leaves = scoretools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
-    assert len(leaves) == 4
-    for l in leaves:
-      assert isinstance(l, Rest)
-    tie_1 = inspect_(leaves[0]).get_spanner(spannertools.Tie)
-    tie_2 = inspect_(leaves[1]).get_spanner(spannertools.Tie)
-    assert tie_1 is tie_2
-    tie_3 = inspect_(leaves[2]).get_spanner(spannertools.Tie)
-    tie_4 = inspect_(leaves[3]).get_spanner(spannertools.Tie)
-    assert tie_3 is tie_4
-
-
-def test_scoretools_make_leaves_05():
     r'''Do not tie rests unless specified.
     '''
 
@@ -82,7 +66,7 @@ def test_scoretools_make_leaves_05():
     assert all(len(inspect_(x).get_logical_tie()) == 1 for x in leaves)
 
 
-def test_scoretools_make_leaves_06():
+def test_scoretools_make_leaves_05():
     r'''Works with quarter-tone pitch numbers.
     '''
 
@@ -91,7 +75,7 @@ def test_scoretools_make_leaves_06():
         [12, 12.5, 13, 13.5]
 
 
-def test_scoretools_make_leaves_07():
+def test_scoretools_make_leaves_06():
     r'''Works with pitch instances.
     '''
 
@@ -99,7 +83,7 @@ def test_scoretools_make_leaves_07():
     assert [leaf.written_pitch.numbered_pitch._pitch_number for leaf in leaves] == [0, 0, 0]
 
 
-def test_scoretools_make_leaves_08():
+def test_scoretools_make_leaves_07():
     r'''Chords work with pitch-class / octave strings.
     '''
 
@@ -124,7 +108,7 @@ def test_scoretools_make_leaves_08():
         )
 
 
-def test_scoretools_make_leaves_09():
+def test_scoretools_make_leaves_08():
     r'''Notes work with pitch-class / octave strings.
     '''
 
@@ -149,7 +133,7 @@ def test_scoretools_make_leaves_09():
         )
 
 
-def test_scoretools_make_leaves_10():
+def test_scoretools_make_leaves_09():
     r'''Works with space-delimited string of pitch names.
     '''
 
