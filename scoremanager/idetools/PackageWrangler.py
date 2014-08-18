@@ -226,8 +226,11 @@ class PackageWrangler(Wrangler):
             return
         manager = self._get_manager(path)
         manager._make_package()
-        with self._io_manager._silent():
-            self._clear_view()
+        paths = self._list_visible_asset_paths()
+        if path not in paths:
+            with self._io_manager._silent():
+                self._clear_view()
+        else:
         if hasattr(self, 'write_cache'):
             self.write_cache()
         manager._run()

@@ -536,8 +536,10 @@ class Wrangler(ScoreInternalAssetController):
                     return_supply_messages=True,
                     supply_missing=True,
                     )
-        with self._io_manager._silent():
-            self._clear_view()
+        paths = self._list_visible_asset_paths()
+        if path not in paths:
+            with self._io_manager._silent():
+                self._clear_view()
         self._session._pending_redraw = True
 
     def _make_asset_selection_breadcrumb(

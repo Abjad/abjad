@@ -413,12 +413,19 @@ class StorageFormatManager(object):
 
         '''
         if StorageFormatManager.is_instance(subject):
-            class_name = type(subject).__name__
+            class_ = type(subject)
         else:
-            class_name = subject.__name__
-        for part in reversed(subject.__module__.split('.')):
-            if not part == class_name:
-                return part
+            class_ = subject
+        class_name = class_.__name__
+        parts = class_.__module__.split('.')
+        if parts[0] in ('abjad', 'experimental', 'scoremanager'):
+            for part in reversed(class_.__module__.split('.')):
+                if not part == class_name:
+                    return part
+        parts = class_.__module__.split('.')
+        while parts and parts[-1] == class_name:
+            parts.pop()
+        return '.'.join(parts)
 
     @staticmethod
     def get_tools_package_qualified_class_name(subject):
@@ -432,16 +439,12 @@ class StorageFormatManager(object):
 
         Returns string.
         '''
-        tools_package_name = None
+        tools_package_name = StorageFormatManager.get_tools_package_name(
+            subject)
         if StorageFormatManager.is_instance(subject):
             class_name = type(subject).__name__
         else:
             class_name = subject.__name__
-        if not tools_package_name:
-            for part in reversed(subject.__module__.split('.')):
-                if not part == class_name:
-                    tools_package_name = part
-                    break
         return '{}.{}'.format(tools_package_name, class_name)
 
     @staticmethod
