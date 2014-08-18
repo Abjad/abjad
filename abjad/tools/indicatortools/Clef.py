@@ -172,6 +172,8 @@ class Clef(AbjadObject):
 
         Returns string.
         '''
+        if format_specification == 'lilypond':
+            return self._lilypond_format
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
