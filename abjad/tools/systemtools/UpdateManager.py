@@ -189,11 +189,13 @@ class UpdateManager(AbjadObject):
             time_signature = expression.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
-        if not pairs:
-            offset = durationtools.Offset(0)
-            time_signature = indicatortools.TimeSignature((4, 4))
-            pair = (offset, time_signature)
-            pairs = [pair]
+        offset_zero = durationtools.Offset(0)
+        default_time_signature = indicatortools.TimeSignature((4, 4))
+        default_pair = (offset_zero, default_time_signature)
+        if pairs and not pairs[0] == offset_zero:
+            pairs.insert(0, default_pair)
+        elif not pairs:
+            pairs = [default_pair]
         pairs.sort(key=lambda x: x[0])
         parentage = component._get_parentage()
         score_root = parentage.root
@@ -223,6 +225,8 @@ class UpdateManager(AbjadObject):
         from abjad.tools.topleveltools import inspect_
         inspector = inspect_(component)
         component_start_offset = inspector.get_timespan().start_offset
+        logical_measure_number_start_offsets = \
+            logical_measure_number_start_offsets[:]
         logical_measure_number_start_offsets.append(mathtools.Infinity())
         pairs = sequencetools.iterate_sequence_nwise(
             logical_measure_number_start_offsets,
