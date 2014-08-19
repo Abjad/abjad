@@ -447,6 +447,40 @@ class Markup(AbjadObject):
             contents=command,
             )
 
+    def with_box(self):
+        r'''LilyPond ``\box`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.with_box()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \box
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'box',
+            contents,
+            )
+        return new(self,
+            contents=command,
+            )
+
     def with_color(self, color):
         r'''LilyPond ``\with-color`` markup command.
 
