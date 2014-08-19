@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import schemetools
 from abjad.tools import stringtools
+from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -376,6 +377,42 @@ class Markup(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def pad_around(self, padding):
+        r'''LilyPond ``\pad-around`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.pad_around(0.5)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \pad-around
+                        #0.5
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'pad-around',
+            padding,
+            contents,
+            )
+        return new(self,
+            contents=command,
+            )
+
     def smaller(self):
         r'''LilyPond ``\smaller`` markup command.
 
@@ -406,7 +443,9 @@ class Markup(AbjadObject):
             'smaller',
             contents,
             )
-        return type(self)(contents=command)
+        return new(self,
+            contents=command,
+            )
 
     def with_color(self, color):
         r'''LilyPond ``\with-color`` markup command.
@@ -441,4 +480,6 @@ class Markup(AbjadObject):
             color,
             contents,
             )
-        return type(self)(contents=command)
+        return new(self,
+            contents=command,
+            )
