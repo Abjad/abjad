@@ -2,8 +2,8 @@
 from abjad.tools.topleveltools import select
 
 
-def get_one_indexed_measure_number_in_expr(expr, measure_number):
-    r'''Gets one-indexed `measure_number` in `expr`.
+def get_measure(expr, measure_number):
+    r'''Gets measure `measure_number` in `expr`.
 
     ::
 
@@ -31,7 +31,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     ::
 
-        >>> scoretools.get_one_indexed_measure_number_in_expr(staff, 3)
+        >>> scoretools.get_measure(staff, 3)
         Measure((2, 8), "g'8 a'8")
 
     Note that measures number from ``1``.
@@ -40,7 +40,8 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     # check input
     if measure_number < 1:
-        message = 'measure numbers allow only positive integers.'
+        message = 'must be positive integer: {!r}.'
+        message = message.format(measure_number)
         raise ValueError(message)
 
     # calculate measure index
