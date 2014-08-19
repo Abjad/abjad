@@ -5,9 +5,97 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class LogicalMeasureSelectorCallback(AbjadValueObject):
-    r'''A measure selector callback.
+    r'''A logical measure selector callback.
 
-    Groups components by start measure.
+    ..  container:: example
+
+        Score for examples 1 - 3:
+
+        ::
+
+            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
+            >>> attach(TimeSignature((2, 8)), staff[0])
+            >>> attach(TimeSignature((3, 8)), staff[4])
+            >>> attach(TimeSignature((1, 8)), staff[7])
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+
+        **Example 1.** Selects the leaves of every logical measure:
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_logical_measure()
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            Selection(Note("c'8"), Note("d'8"))
+            Selection(Note("e'8"), Note("f'8"))
+            Selection(Note("g'8"), Note("a'8"), Note("b'8"))
+            Selection(Note("c''8"),)
+
+    ..  container:: example
+
+        **Example 2.** Selects the first leaf of every logical measure:
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_logical_measure()
+            >>> selector = selector[0]
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            ContiguousSelection(Note("c'8"),)
+            ContiguousSelection(Note("e'8"),)
+            ContiguousSelection(Note("g'8"),)
+            ContiguousSelection(Note("c''8"),)
+
+    ..  container:: example
+
+        **Example 3.** Selects the last leaf of every logical measure:
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_logical_measure()
+            >>> selector = selector[-1]
+            >>> for x in selector(staff):
+            ...     x
+            ...
+            ContiguousSelection(Note("d'8"),)
+            ContiguousSelection(Note("f'8"),)
+            ContiguousSelection(Note("b'8"),)
+            ContiguousSelection(Note("c''8"),)
+
+    ..  container:: example
+
+        **Example 4.** Works with implicit time signatures:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f' g' a' b' c''")
+            >>> score = Score([staff])
+            >>> scheme = schemetools.SchemeMoment((1, 16))
+            >>> set_(score).proportional_notation_duration = scheme
+            >>> show(score) # doctest: +SKIP
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_logical_measure()
+            >>> for x in selector(score):
+            ...     x
+            ...
+            Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+            Selection(Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4"))
+
+    Groups components by the logical measure of component start offset.
     '''
 
     ### CLASS VARIABLES ###
