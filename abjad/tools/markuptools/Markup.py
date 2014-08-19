@@ -316,6 +316,20 @@ class Markup(AbjadObject):
         pieces.append('{}}}'.format(indent))
         return pieces
 
+    def _parse_markup_command_argument(self, argument):
+        if isinstance(argument, type(self)):
+            if len(argument.contents) == 1:
+                contents = argument.contents[0]
+            else:
+                contents = list(argument.contents)
+        elif isinstance(argument, (str, markuptools.MarkupCommand)):
+            contents = argument
+        else:
+            message = 'must be markup, markup command or string: {!r}.'
+            message = message.format(argument)
+            raise TypeError(argument)
+        return contents
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -359,3 +373,72 @@ class Markup(AbjadObject):
         Returns up, down, center or none.
         '''
         return self._direction
+
+    ### PUBLIC METHODS ###
+
+    def smaller(self):
+        r'''LilyPond ``\smaller`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.smaller()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \smaller
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'smaller',
+            contents,
+            )
+        return type(self)(contents=command)
+
+    def with_color(self, color):
+        r'''LilyPond ``\with-color`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.with_color('blue')
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \with-color
+                        #blue
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        color = schemetools.Scheme(color)
+        command = markuptools.MarkupCommand(
+            'with-color',
+            color,
+            contents,
+            )
+        return type(self)(contents=command)
