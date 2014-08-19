@@ -32,6 +32,8 @@ class SliceSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        Returns tuple of selections.
         '''
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []

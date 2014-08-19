@@ -29,6 +29,8 @@ class DurationSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        Returns tuple in which each item is a selection or component.
         '''
         from abjad.tools import scoretools
         result = []

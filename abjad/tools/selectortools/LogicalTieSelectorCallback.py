@@ -39,6 +39,8 @@ class LogicalTieSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        Returns tuple of selections.
         '''
         result = []
         if self.flatten:

@@ -29,6 +29,8 @@ class RunSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        Returns tuple of selections.
         '''
         result = []
         prototype = self.prototype
