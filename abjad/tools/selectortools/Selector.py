@@ -222,6 +222,8 @@ class Selector(AbjadValueObject):
         r'''Configures selector to selector containers or selections of
         duration `duration`.
 
+        ..  todo:: Generalize `duration` to accept a ``DurationInequality``.
+
         Returns new selector.
         '''
         from experimental.tools import selectortools
@@ -251,6 +253,8 @@ class Selector(AbjadValueObject):
         ):
         r'''Configures selector to selector containers or selections of length
         `length`.
+
+        ..  todo:: Generalize `length` to accept a ``LengthInequality``.
 
         Returns new selector.
         '''
@@ -598,6 +602,9 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
 
+        ..  todo:: Replace in favor of 
+            ``self.by_duration(duration=inequality)``.
+
         Returns new selector.
         '''
         from experimental.tools import selectortools
@@ -630,6 +637,9 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        ..  todo:: Replace in favor of 
+            ``self.by_length(length=inequality)``.
 
         Returns new selector.
         '''
@@ -694,6 +704,9 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        ..  todo:: Replace in favor of 
+            ``self.by_length(length=inequality)``.
 
         Returns new selector.
         '''
@@ -791,6 +804,9 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
+
+        ..  todo:: Replace in favor of 
+            ``self.by_duration(length=inequality)``.
 
         Returns new selector.
         '''
