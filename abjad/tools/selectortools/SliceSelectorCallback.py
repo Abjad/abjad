@@ -31,10 +31,11 @@ class SliceSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Iterates `expr`.
+        r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
+        assert isinstance(expr, tuple), repr(tuple)
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         argument = self.argument

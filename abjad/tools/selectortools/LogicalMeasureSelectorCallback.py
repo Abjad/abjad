@@ -23,7 +23,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Iterates `expr`.
+        r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''

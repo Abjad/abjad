@@ -28,10 +28,11 @@ class LengthSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Iterates `expr`.
+        r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
         '''
+        assert isinstance(expr, tuple), repr(tuple)
         result = []
         for subexpr in expr:
             if self.parts in (None, Exact):

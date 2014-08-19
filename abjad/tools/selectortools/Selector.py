@@ -147,7 +147,7 @@ class Selector(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Selects components from `expr`.
+        r'''Selects components from component or selection `expr`.
 
         Returns a selection of selections or containers.
         '''
@@ -158,7 +158,7 @@ class Selector(AbjadValueObject):
         if not isinstance(expr, prototype):
             expr = select(expr)
         expr = (expr,)
-        assert all(isinstance(x, prototype) for x in expr), expr
+        assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for callback in callbacks:
             expr = callback(expr)
@@ -455,13 +455,13 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def by_measure(self):
-        r'''Configures selector to select components of logical measure.
+    def by_logical_measure(self):
+        r'''Configures selector to group components by logical measure.
 
         Returns new selector.
         '''
         from experimental.tools import selectortools
-        callback = selectortools.MeasureSelectorCallback()
+        callback = selectortools.LogicalMeasureSelectorCallback()
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)

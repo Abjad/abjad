@@ -28,10 +28,11 @@ class PrototypeSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Iterates `expr`.
+        r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
+        assert isinstance(expr, tuple), repr(tuple)
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
