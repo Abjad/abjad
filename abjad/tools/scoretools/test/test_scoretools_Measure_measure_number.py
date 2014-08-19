@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Measure_number_01():
+def test_scoretools_Measure_measure_number_01():
     r'''Measures in staff number correctly starting from 1.
     '''
 
@@ -15,7 +15,7 @@ def test_scoretools_Measure_number_01():
     assert staff[2].measure_number == 3
 
 
-def test_scoretools_Measure_number_02():
+def test_scoretools_Measure_measure_number_02():
     r'''Orphan measures number correctly starting from 1.
     '''
 
@@ -23,7 +23,7 @@ def test_scoretools_Measure_number_02():
     assert measure.measure_number == 1
 
 
-def test_scoretools_Measure_number_03():
+def test_scoretools_Measure_measure_number_03():
     r'''Measure numbering works correctly after contents rotation.
     '''
 
