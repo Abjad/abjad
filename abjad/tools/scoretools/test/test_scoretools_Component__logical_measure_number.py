@@ -48,3 +48,21 @@ def test_scoretools_Component__logical_measure_number_02():
     assert leaves[5]._logical_measure_number == 3
     assert leaves[6]._logical_measure_number == 3
     assert leaves[7]._logical_measure_number == 4
+
+
+def test_scoretools_Component__logical_measure_number_03():
+    r'''Works when explicit time signatures are absent.
+    '''
+
+    staff = Staff("c'4 d' e' f' g' a' b' c''")
+    staff._update_logical_measure_numbers()
+
+    assert staff._logical_measure_number == 1
+    assert staff[0]._logical_measure_number == 1
+    assert staff[1]._logical_measure_number == 1
+    assert staff[2]._logical_measure_number == 1
+    assert staff[3]._logical_measure_number == 1
+    assert staff[4]._logical_measure_number == 2
+    assert staff[5]._logical_measure_number == 2
+    assert staff[6]._logical_measure_number == 2
+    assert staff[7]._logical_measure_number == 2

@@ -164,17 +164,15 @@ class UpdateManager(AbjadObject):
         if indicators and not indicators_are_current:
             self._update_all_indicators(component)
             self._update_all_offsets_in_seconds(component)
-            # TODO: uncomment this when Component._indicators_are_current
-            #       is actually being maintained by attach()
-            #self._update_logical_measure_numbers(component)
 
     ### EXPERIMENTAL ###
 
     def _get_logical_measure_start_offsets(self, component):
+        from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools import sequencetools
+        from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import iterate
-        component._update_now(offsets=True)
         expressions = []
         prototype = indicatortools.TimeSignature
         components = self._iterate_entire_score(component)
@@ -186,14 +184,21 @@ class UpdateManager(AbjadObject):
             expressions.extend(expressions_)
         pairs = []
         for expression in expressions:
-            start_offset = expression.component._start_offset
+            inspector = inspect_(expression.component)
+            start_offset = inspector.get_timespan().start_offset
             time_signature = expression.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
+        if not pairs:
+            offset = durationtools.Offset(0)
+            time_signature = indicatortools.TimeSignature((4, 4))
+            pair = (offset, time_signature)
+            pairs = [pair]
         pairs.sort(key=lambda x: x[0])
         parentage = component._get_parentage()
         score_root = parentage.root
-        score_stop_offset = score_root._stop_offset
+        inspector = inspect_(score_root)
+        score_stop_offset = inspector.get_timespan().stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
@@ -215,23 +220,23 @@ class UpdateManager(AbjadObject):
         ):
         from abjad.tools import mathtools
         from abjad.tools import sequencetools
-        start_offset = component._start_offset
+        from abjad.tools.topleveltools import inspect_
+        inspector = inspect_(component)
+        component_start_offset = inspector.get_timespan().start_offset
+        logical_measure_number_start_offsets.append(mathtools.Infinity())
         pairs = sequencetools.iterate_sequence_nwise(
             logical_measure_number_start_offsets,
             n=2,
             )
-        pairs = list(pairs)
-        dummy_last_pair = (
-            logical_measure_number_start_offsets[-1],
-            mathtools.Infinity(),
-            )
-        pairs.append(dummy_last_pair)
         for logical_measure_index, pair in enumerate(pairs):
-            if pair[0] <= component._start_offset < pair[-1]:
+            if pair[0] <= component_start_offset < pair[-1]:
                 logical_measure_number = logical_measure_index + 1
                 return logical_measure_number
-        message = 'can not find logical measure number: {!r}.'
-        message = message.format(component)
+        message = 'can not find logical measure number: {!r}, {!r}.'
+        message = message.format(
+            component,
+            logical_measure_number_start_offsets,
+            )
         raise ValueError(message)
 
     def _update_logical_measure_numbers(self, component):
