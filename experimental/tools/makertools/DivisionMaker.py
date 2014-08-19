@@ -139,7 +139,23 @@ class DivisionMaker(AbjadValueObject):
 
             Returns empty list.
 
-        Returns possibly empty list of divisions.
+        ..  container:: example
+
+            Call division-maker on multiple divisions:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
+                >>> lists = maker([(2, 4), (3, 4)])
+                >>> for list_ in lists:
+                ...     list_
+                [Division(1, 4), Division(1, 4)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
+
+        Returns possibly empty list of division lists.
         '''
         divisions = divisions or []
         if not divisions:
