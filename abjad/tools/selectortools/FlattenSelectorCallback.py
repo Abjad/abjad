@@ -22,6 +22,8 @@ class FlattenSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        ..  todo:: Does this always return a tuple of selections?
         '''
         return sequencetools.flatten_sequence(
             expr, 

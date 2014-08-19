@@ -29,6 +29,8 @@ class LengthSelectorCallback(AbjadValueObject):
 
     def __call__(self, expr):
         r'''Iterates `expr`.
+
+        Returns tuple in which each item is a selection or component.
         '''
         result = []
         for subexpr in expr:
