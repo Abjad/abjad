@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
 
 
@@ -51,6 +52,7 @@ class UpdateManager(AbjadObject):
         '''
         components = self._iterate_entire_score(component)
         for component in components:
+            indicators = component._get_indicators(unwrap=False)
             for indicator in component._get_indicators(unwrap=False):
                 if indicator.scope is not None:
                     assert hasattr(indicator, '_update_effective_context')
@@ -162,3 +164,86 @@ class UpdateManager(AbjadObject):
         if indicators and not indicators_are_current:
             self._update_all_indicators(component)
             self._update_all_offsets_in_seconds(component)
+            # TODO: uncomment this when Component._indicators_are_current
+            #       is actually being maintained by attach()
+            #self._update_logical_measure_numbers(component)
+
+    ### EXPERIMENTAL ###
+
+    def _get_logical_measure_start_offsets(self, component):
+        from abjad.tools import indicatortools
+        from abjad.tools import sequencetools
+        from abjad.tools.topleveltools import iterate
+        component._update_now(offsets=True)
+        expressions = []
+        prototype = indicatortools.TimeSignature
+        components = self._iterate_entire_score(component)
+        for component in components:
+            expressions_ = component._get_indicators(
+                prototype,
+                unwrap=False,
+                )
+            expressions.extend(expressions_)
+        pairs = []
+        for expression in expressions:
+            start_offset = expression.component._start_offset
+            time_signature = expression.indicator
+            pair = start_offset, time_signature
+            pairs.append(pair)
+        pairs.sort(key=lambda x: x[0])
+        parentage = component._get_parentage()
+        score_root = parentage.root
+        score_stop_offset = score_root._stop_offset
+        dummy_last_pair = (score_stop_offset, None)
+        pairs.append(dummy_last_pair)
+        measure_start_offsets = []
+        pairs = sequencetools.iterate_sequence_nwise(pairs, n=2)
+        for current_pair, next_pair in pairs:
+            current_start_offset, current_time_signature = current_pair
+            next_start_offset, next_time_signature = next_pair
+            measure_start_offset = current_start_offset
+            while measure_start_offset < next_start_offset:
+                measure_start_offsets.append(measure_start_offset)
+                measure_start_offset += current_time_signature.duration
+        return measure_start_offsets
+
+    # TODO: reimplement with some type of bisection
+    def _to_logical_measure_number(
+        self,
+        component,
+        logical_measure_number_start_offsets,
+        ):
+        from abjad.tools import mathtools
+        from abjad.tools import sequencetools
+        start_offset = component._start_offset
+        pairs = sequencetools.iterate_sequence_nwise(
+            logical_measure_number_start_offsets,
+            n=2,
+            )
+        pairs = list(pairs)
+        dummy_last_pair = (
+            logical_measure_number_start_offsets[-1],
+            mathtools.Infinity(),
+            )
+        pairs.append(dummy_last_pair)
+        for logical_measure_index, pair in enumerate(pairs):
+            if pair[0] <= component._start_offset < pair[-1]:
+                logical_measure_number = logical_measure_index + 1
+                return logical_measure_number
+        message = 'can not find logical measure number: {!r}.'
+        message = message.format(component)
+        raise ValueError(message)
+
+    def _update_logical_measure_numbers(self, component):
+        from abjad.tools.topleveltools import iterate
+        logical_measure_start_offsets = \
+            self._get_logical_measure_start_offsets(component)
+        assert logical_measure_start_offsets, repr(
+            logical_measure_start_offsets)
+        components = self._iterate_entire_score(component)
+        for component in components:
+            logical_measure_number = self._to_logical_measure_number(
+                component,
+                logical_measure_start_offsets,
+                )
+            component._logical_measure_number = logical_measure_number

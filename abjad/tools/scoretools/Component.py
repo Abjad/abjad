@@ -35,6 +35,7 @@ class Component(AbjadObject):
         '_is_forbidden_to_update',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
+        '_logical_measure_number',
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
         '_parent',
@@ -58,6 +59,7 @@ class Component(AbjadObject):
         self._indicator_expressions = []
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
+        self._logical_measure_number = None
         self._offsets_are_current = False
         self._offsets_in_seconds_are_current = False
         self._lilypond_grob_name_manager = None
@@ -792,6 +794,11 @@ class Component(AbjadObject):
                 component._offsets_are_current = False
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
+
+    def _update_logical_measure_numbers(self):
+        from abjad.tools import systemtools
+        update_manager = systemtools.UpdateManager()
+        update_manager._update_logical_measure_numbers(self)
 
     def _update_now(
         self,
