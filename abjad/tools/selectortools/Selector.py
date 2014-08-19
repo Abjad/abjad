@@ -455,6 +455,17 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def by_measure(self):
+        r'''Configures selector to select components of logical measure.
+
+        Returns new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.MeasureSelectorCallback()
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def by_run(
         self,
         prototype=None,
