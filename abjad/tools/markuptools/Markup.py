@@ -377,6 +377,108 @@ class Markup(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def bold(self):
+        r'''LilyPond ``\bold`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.bold()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \bold
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'bold',
+            contents,
+            )
+        return new(self,
+            contents=command,
+            )
+
+    def caps(self):
+        r'''LilyPond ``\caps`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.caps()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \caps
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'caps',
+            contents,
+            )
+        return new(self,
+            contents=command,
+            )
+
+    def italic(self):
+        r'''LilyPond ``\italic`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.italic()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \italic
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'italic',
+            contents,
+            )
+        return new(self,
+            contents=command,
+            )
+
     def pad_around(self, padding):
         r'''LilyPond ``\pad-around`` markup command.
 
@@ -385,15 +487,17 @@ class Markup(AbjadObject):
             ::
 
                 >>> markup = Markup('Allegro assai')
-                >>> markup = markup.pad_around(0.5)
+                >>> markup = markup.pad_around(10)
+                >>> markup = markup.with_box()
 
             ::
 
                 >>> print(format(markup))
                 \markup {
-                    \pad-around
-                        #0.5
-                        "Allegro assai"
+                    \box
+                        \pad-around
+                            #10
+                            "Allegro assai"
                     }
 
             ::
