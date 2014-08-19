@@ -184,10 +184,13 @@ class Scheme(AbjadObject):
     def format_embedded_scheme_value(value, force_quotes=False):
         r'''Formats `value` as an embedded Scheme value.
         '''
+        from abjad.tools import datastructuretools
         from abjad.tools import schemetools
         result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
         if isinstance(value, bool):
             result = '#{}'.format(result)
+        elif isinstance(value, datastructuretools.OrdinalConstant):
+            result = '#{}'.format(repr(value).lower())
         elif isinstance(value, str) and not force_quotes:
             result = '#{}'.format(result)
         elif isinstance(value, schemetools.Scheme):
