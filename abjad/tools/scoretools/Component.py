@@ -800,7 +800,8 @@ class Component(AbjadObject):
         indicators=False,
         ):
         from abjad.tools import systemtools
-        return systemtools.UpdateManager._update_now(
+        update_manager = systemtools.UpdateManager()
+        return update_manager._update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,

@@ -2,7 +2,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class UpdateManager(AbjadObject):
-    '''Update start offset, stop offsets and indicators everywhere in score.
+    '''Update manager.
+    
+    Updates start offset, stop offsets and indicators everywhere in score.
     '''
 
     ### PRIVATE METHODS ###
@@ -41,14 +43,13 @@ class UpdateManager(AbjadObject):
             )
         return components
 
-    @staticmethod
-    def _update_all_indicators(component):
+    def _update_all_indicators(self, component):
         r'''Updating indicators does not update offsets.
         On the other hand, getting an effective indicator does update
         offsets when at least one indicator of the appropriate type
         attaches to score.
         '''
-        components = UpdateManager._iterate_entire_score(component)
+        components = self._iterate_entire_score(component)
         for component in components:
             for indicator in component._get_indicators(unwrap=False):
                 if indicator.scope is not None:
@@ -84,21 +85,19 @@ class UpdateManager(AbjadObject):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
 
-    @staticmethod
-    def _update_all_offsets(component):
+    def _update_all_offsets(self, component):
         r'''Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
         '''
-        components = UpdateManager._iterate_entire_score(component)
+        components = self._iterate_entire_score(component)
         for component in components:
-            UpdateManager._update_component_offsets(component)
+            self._update_component_offsets(component)
             component._offsets_are_current = True
 
-    @staticmethod
-    def _update_all_offsets_in_seconds(component):
-        components = UpdateManager._iterate_entire_score(component)
+    def _update_all_offsets_in_seconds(self, component):
+        components = self._iterate_entire_score(component)
         for component in components:
-            UpdateManager._update_component_offsets_in_seconds(component)
+            self._update_component_offsets_in_seconds(component)
             component._offsets_in_seconds_are_current = True
 
     @staticmethod
@@ -138,8 +137,8 @@ class UpdateManager(AbjadObject):
         except MissingTempoError:
             pass
 
-    @staticmethod
     def _update_now(
+        self,
         component,
         offsets=False,
         offsets_in_seconds=False,
@@ -151,16 +150,15 @@ class UpdateManager(AbjadObject):
         for parent in parentage:
             if parent._is_forbidden_to_update:
                 return
-        state_flags = UpdateManager._get_score_tree_state_flags(component)
+        state_flags = self._get_score_tree_state_flags(component)
         offsets_are_current = state_flags[0]
         indicators_are_current = state_flags[1]
         offsets_in_seconds_are_current = state_flags[2]
         if offsets and not offsets_are_current:
-            UpdateManager._update_all_offsets(component)
-            UpdateManager._update_all_leaf_indices_and_measure_numbers(
-                component)
+            self._update_all_offsets(component)
+            self._update_all_leaf_indices_and_measure_numbers(component)
         if offsets_in_seconds and not offsets_in_seconds_are_current:
-            UpdateManager._update_all_offsets_in_seconds(component)
+            self._update_all_offsets_in_seconds(component)
         if indicators and not indicators_are_current:
-            UpdateManager._update_all_indicators(component)
-            UpdateManager._update_all_offsets_in_seconds(component)
+            self._update_all_indicators(component)
+            self._update_all_offsets_in_seconds(component)
