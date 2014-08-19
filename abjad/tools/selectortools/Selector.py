@@ -6,21 +6,30 @@ from abjad.tools.topleveltools import select
 
 
 class Selector(AbjadValueObject):
-    r'''A component selector.
+    r'''A selector.
 
-    ::
-
-        >>> staff = Staff(r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4")
+    Selectors select components.
 
     Selectors aggregate a sequence of callable classes which describe the
-    process by which components will be selected.
+    process of component selection.
 
-    Selector provides methods for configuring and emitting new selectors,
-    allowing composers to chain together selection procedures.
+    Selectors provide methods for configuring and making new selectors.
+
+    Composers may chain selectors together.
 
     ..  container:: example
 
-        Select a component:
+        Score for examples:
+
+        ::
+
+            >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
+            >>> staff = Staff(string)
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+
+        **Example 1.** Selects a component:
 
         ::
 
@@ -32,7 +41,7 @@ class Selector(AbjadValueObject):
 
     ..  container:: example
 
-        Select all of the leaves in a component:
+        **Example 2.** Selects all of the leaves in a component:
 
         ::
 
@@ -44,7 +53,7 @@ class Selector(AbjadValueObject):
 
     ..  container:: example
 
-        Select runs of notes:
+        **Example 3.** Selects runs of notes:
 
         ::
 
@@ -58,7 +67,7 @@ class Selector(AbjadValueObject):
 
     ..  container:: example
 
-        Select sub-selections with lengths equal to 3:
+        **Example 4.** Selects subselections with lengths equal to ``3``:
 
         ::
 
@@ -70,7 +79,7 @@ class Selector(AbjadValueObject):
 
     ..  container:: example
 
-        Select the first item in each sub-selection:
+        **Example 5.** Selects the first item in each subselection:
 
         ::
 
@@ -82,7 +91,7 @@ class Selector(AbjadValueObject):
 
     ..  container:: example
 
-        Flatten all sub-selections and containers:
+        **Example 6.** Flattens all subselections and containers:
 
         ::
 
@@ -92,30 +101,30 @@ class Selector(AbjadValueObject):
             ...
             Note("f'16")
 
-    ::
+        ::
 
-        >>> print(format(selector))
-        selectortools.Selector(
-            callbacks=(
-                selectortools.PrototypeSelectorCallback(
-                    prototype=scoretools.Leaf,
+            >>> print(format(selector))
+            selectortools.Selector(
+                callbacks=(
+                    selectortools.PrototypeSelectorCallback(
+                        prototype=scoretools.Leaf,
+                        ),
+                    selectortools.RunSelectorCallback(
+                        prototype=scoretools.Note,
+                        ),
+                    selectortools.LengthSelectorCallback(
+                        length=3,
+                        parts=Exact,
+                        ),
+                    selectortools.SliceSelectorCallback(
+                        argument=0,
+                        apply_to_each=True,
+                        ),
+                    selectortools.FlattenSelectorCallback(
+                        depth=-1,
+                        ),
                     ),
-                selectortools.RunSelectorCallback(
-                    prototype=scoretools.Note,
-                    ),
-                selectortools.LengthSelectorCallback(
-                    length=3,
-                    parts=Exact,
-                    ),
-                selectortools.SliceSelectorCallback(
-                    argument=0,
-                    apply_to_each=True,
-                    ),
-                selectortools.FlattenSelectorCallback(
-                    depth=-1,
-                    ),
-                ),
-            )
+                )
 
     '''
 
@@ -193,10 +202,11 @@ class Selector(AbjadValueObject):
 
     def by_class(
         self,
-        prototype=None):
+        prototype=None,
+        ):
         r'''Configures selector to select components of class `prototype`.
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
@@ -212,7 +222,7 @@ class Selector(AbjadValueObject):
         r'''Configures selector to selector containers or selections of
         duration `duration`.
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.DurationSelectorCallback(
@@ -226,7 +236,7 @@ class Selector(AbjadValueObject):
     def by_leaves(self):
         r'''Configures selector to select leaves.
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(scoretools.Leaf)
@@ -242,7 +252,7 @@ class Selector(AbjadValueObject):
         r'''Configures selector to selector containers or selections of length
         `length`.
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
@@ -265,7 +275,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Select all logical ties.
+            **Example 1.** Selects all logical ties:
 
             ::
 
@@ -298,7 +308,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Select pitched logical ties.
+            **Example 2.** Selects pitched logical ties:
 
             ::
 
@@ -330,7 +340,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Select pitched non-trivial logical ties.
+            **Example 3.** Selects pitched nontrivial logical ties:
 
             ::
 
@@ -360,8 +370,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Select pitched non-trivial logical ties whose head
-            is contained in the expression to be selected from.
+            **Example 4.** Selects pitched nontrivial logical ties whose head
+            is contained in the expression to be selected from:
 
             ::
 
@@ -383,8 +393,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Select pitched non-trivial logical ties whose tail
-            is contained in the expression to be selected from.
+            **Example 5.** Selects pitched nontrivial logical ties whose tail
+            is contained in the expression to be selected from:
 
             ::
 
@@ -406,8 +416,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Select logical ties whose head and tail is contained
-            in the expression to be selected from.
+            **Example 5.** Selects logical ties whose head and tail is 
+            contained in the expression to be selected from:
 
             ::
 
@@ -427,7 +437,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("e'8"),)
                 LogicalTie(Rest('r8'),)
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LogicalTieSelectorCallback(
@@ -466,7 +476,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("e'8"),)
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.RunSelectorCallback(prototype)
@@ -475,7 +485,7 @@ class Selector(AbjadValueObject):
         return type(self)(callbacks)
 
     def first(self):
-        r'''Configures selector to select first selection
+        r'''Configures selector to select first selection.
 
         ..  container:: example
 
@@ -493,7 +503,7 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("c'4"),)
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
@@ -528,7 +538,7 @@ class Selector(AbjadValueObject):
                 Note("e'4")
                 Note("e'4")
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.FlattenSelectorCallback(depth=depth)
@@ -555,7 +565,7 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("f'4"),)
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
@@ -588,7 +598,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
@@ -621,7 +631,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.DurationSelectorCallback(
@@ -652,7 +662,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'4"), Note("d'4"))
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
@@ -685,7 +695,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
@@ -717,7 +727,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'4"), Note("d'4"))
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
@@ -749,7 +759,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
                 LogicalTie(Note("f'4"),)
 
-        Emits a new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
@@ -782,7 +792,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
 
-        Emits new selector.
+        Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.DurationSelectorCallback(
