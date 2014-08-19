@@ -59,18 +59,9 @@ class WoodwindFingering(AbjadObject):
                 quoting="'",
                 ),
             schemetools.Scheme(
-                schemetools.SchemePair(
-                    'cc',
-                    ('one', 'two', 'three', 'five')
-                    ),
-                schemetools.SchemePair(
-                    'lh',
-                    ('R', 'thumb')
-                    ),
-                schemetools.SchemePair(
-                    'rh',
-                    ('e',)
-                    ),
+                schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')),
+                schemetools.SchemePair('lh', ('R', 'thumb')),
+                schemetools.SchemePair('rh', ('e',)),
                 quoting="'",
                 )
             )

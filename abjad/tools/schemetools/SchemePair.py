@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import stringtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -58,10 +59,7 @@ class SchemePair(Scheme):
         ::
 
             >>> print(format(scheme_pair, 'storage'))
-            schemetools.SchemePair(
-                -1,
-                1
-                )
+            schemetools.SchemePair(-1, 1)
 
         Returns string.
         '''
@@ -84,3 +82,17 @@ class SchemePair(Scheme):
     @property
     def _lilypond_format(self):
         return "#'%s" % self._formatted_value
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        if stringtools.is_string(self._value):
+            positional_argument_values = (self._value,)
+        else:
+            positional_argument_values = self._value
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=positional_argument_values,
+            )
+        
