@@ -76,6 +76,6 @@ class SliceSelectorCallback(AbjadValueObject):
     def argument(self):
         r'''Gets slice selector callback argument.
 
-        Returns int or slice.
+        Returns integer or slice.
         '''
         return self._argument

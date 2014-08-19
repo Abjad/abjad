@@ -84,6 +84,8 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     def flatten(self):
         r'''Is true if callback returns all logical ties in a single selection,
         rather than grouping by each original sub-expression.
+
+        Returns boolean.
         '''
         return self._flatten
 
@@ -91,6 +93,8 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     def only_with_head(self):
         r'''Is true if callback only iterates logical ties whose heads are
         included in the expression to be iterated over.
+
+        Returns boolean.
         '''
         return self._only_with_head
 
@@ -98,17 +102,23 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     def only_with_tail(self):
         r'''Is true if callback only iterates logical ties whose tails are
         included in the expression to be iterated over.
+
+        Returns boolean.
         '''
         return self._only_with_tail
 
     @property
     def pitched(self):
         r'''Is true if callback iterates pitched logical ties.
+
+        Returns boolean.
         '''
         return self._pitched
 
     @property
     def trivial(self):
         r'''Is true if callback iterates trivial logical ties.
+
+        Returns boolean.
         '''
         return self._trivial
