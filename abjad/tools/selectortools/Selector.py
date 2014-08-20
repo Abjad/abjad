@@ -488,6 +488,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects run of notes and chords at any depth:
+
             ::
 
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
@@ -517,6 +519,8 @@ class Selector(AbjadValueObject):
         r'''Configures selector to select first selection.
 
         ..  container:: example
+
+            **Example 1.** Selects first pitched logical tie:
 
             ::
 
@@ -548,6 +552,9 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects all pitched logical ties (except the first
+            and last) and then flattens the pitch logical ties:
+
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
@@ -578,11 +585,15 @@ class Selector(AbjadValueObject):
     def get_item(self, item, apply_to_each=True):
         r'''Configures selector to select `item`.
 
-        If `apply_to_each`, the callback will be mapped against each selection,
-        otherwise the callback will be mapped against all selections as a
-        sequence.
+        Maps the callback to each item in sequence when `apply_to_each` is
+        true.
+
+        Applies the callback to the entire sequence when `apply_to_each` is
+        false.
 
         ..  container:: example
+
+            **Example 1.** Selects the first note of each logical tie:
 
             ::
 
@@ -602,6 +613,8 @@ class Selector(AbjadValueObject):
                 ContiguousSelection(Note("f'4"),)
 
         ..  container:: example
+
+            **Example 2.** Selects logical tie at index ``1``:
 
             ::
 
@@ -630,11 +643,16 @@ class Selector(AbjadValueObject):
     def get_slice(self, start=None, stop=None, apply_to_each=True):
         r'''Configures selector to select `start`:`stop`.
 
-        If `apply_to_each`, the callback will be mapped against each selection,
-        otherwise the callback will be mapped against all selections as a
-        sequence.
+        Maps the callback to each item in sequence when `apply_to_each` is
+        true.
+
+        Applies the callback to the entire sequence when `apply_to_each` is
+        false.
 
         ..  container:: example
+
+            **Example 1.** Gets all notes (except the first) in each
+            pitched logical tie:
 
             ::
 
@@ -656,6 +674,8 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("e'4"), Note("e'4"))
 
         ..  container:: example
+
+            **Example 2.** Gets all pitched logical ties (except the last):
 
             ::
 
@@ -693,6 +713,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects the last pitched logical tie:
+
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
@@ -723,6 +745,9 @@ class Selector(AbjadValueObject):
         is less than `length`.
 
         ..  container:: example
+
+            **Example 1.** Selects all runs ``3`` or fewer notes:
+            ``3``:
 
             ::
 
@@ -760,6 +785,9 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects all runs of notes with duration greater than
+            ``1/8``:
+
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
@@ -795,6 +823,9 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects all pitched logical ties (except the first
+            and last):
+
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
@@ -827,6 +858,8 @@ class Selector(AbjadValueObject):
         is more than `length`.
 
         ..  container:: example
+
+            **Example 1.** Selects all runs of more than ``1`` note:
 
             ::
 
@@ -863,6 +896,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects all pitched logical ties (except the last):
+
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
@@ -894,6 +929,8 @@ class Selector(AbjadValueObject):
         r'''Configures selector to select all but the first selection.
 
         ..  container:: example
+
+            **Example 1.** Selects all pitched logical ties (except the first):
 
             ::
 
@@ -927,6 +964,9 @@ class Selector(AbjadValueObject):
         duration is shorter than `duration`.
 
         ..  container:: example
+
+            **Example 1.** Selects all runs of notes with duration less than
+            ``3/8``:
 
             ::
 
