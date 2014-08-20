@@ -183,12 +183,12 @@
     terminal (even though the bang means that confirmation is suppressed).
     Basically the principle is to never suppress errors.
 
-43. Change segment_x/illustration.ly to segment_x/score_x_(ry).ly.
-    Change segment_x/illustration.pdf to segment_x/score_x_(ry).pdf. 
-    The 'ry' will stand for 'revision y'.
+43. Change segment_x/illustration.ly to segment_x/score_x_(vy).ly.
+    Change segment_x/illustration.pdf to segment_x/score_x_(vy).pdf. 
+    The 'ry' will stand for 'version y'.
     So ...
-        segment_b/red_example_score_B_(r2).ly
-        segment_b/red_example_score_B_(r2).pdf
+        segment_b/red_example_score_B_(v2).ly
+        segment_b/red_example_score_B_(v2).pdf
     ... will be the result.
 
 44. Change ...
