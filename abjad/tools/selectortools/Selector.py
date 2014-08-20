@@ -627,6 +627,67 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def get_slice(self, start=None, stop=None, apply_to_each=True):
+        r'''Configures selector to select `start`:`stop`.
+
+        If `apply_to_each`, the callback will be mapped against each selection,
+        otherwise the callback will be mapped against all selections as a
+        sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_slice(
+                ...     start=1,
+                ...     stop=None,
+                ...     apply_to_each=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'4"),)
+                LogicalTie(Note("e'4"), Note("e'4"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_slice(
+                ...     start=None, 
+                ...     stop=-1,
+                ...     apply_to_each=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'4"),)
+                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.SliceSelectorCallback(
+            start=start,
+            stop=stop,
+            apply_to_each=apply_to_each,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def last(self):
         r'''Configures selector to select the last selection.
 

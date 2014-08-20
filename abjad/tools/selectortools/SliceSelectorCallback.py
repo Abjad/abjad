@@ -43,13 +43,21 @@ class SliceSelectorCallback(AbjadValueObject):
                     subresult = subexpr.__getitem__(argument)
                     if not isinstance(subresult, prototype):
                         subresult = select(subresult)
-                    result.append(subresult)
+                    if isinstance(subresult, selectiontools.Selection):
+                        if subresult:
+                            result.append(subresult)
+                    else:
+                        result.append(subresult)
                 except IndexError:
                     pass
         else:
             try:
                 subresult = select(expr.__getitem__(argument))
-                result.extend(subresult)
+                if isinstance(subresult, selectiontools.Selection):
+                    if subresult:
+                        result.extend(subresult)
+                else:
+                    result.extend(subresult)
             except IndexError:
                 pass
         return tuple(result)
