@@ -46,14 +46,13 @@ class DivisionMaker(AbjadValueObject):
 
     def __init__(
         self,
-        cyclic=None,
+        cyclic=True,
         pattern=None,
         pattern_rotation_index=None,
         remainder=None,
         remainder_fuse_threshold=None,
         ):
-        if cyclic is not None:
-            assert isinstance(cyclic, bool), repr(cyclic)
+        assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
         if pattern is not None:
             pattern_ = []
@@ -221,28 +220,77 @@ class DivisionMaker(AbjadValueObject):
             division_lists.append(division_list)
         return division_lists
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
+        if self.cyclic == True:
+            keyword_argument_names = list(keyword_argument_names)
+            keyword_argument_names.remove('cyclic')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def cyclic(self):
-        r'''Is true when division-maker reads pattern cyclically.
-        Otherwise false.
+        r'''Is true when division-maker reads pattern cyclically for each input
+        division.
+        
+        Is false when division-maker reads pattern only once per input
+        division.
 
         ..  container:: example
+
+            **Example 1.** Reads pattern cyclically for each input division:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
+                ...     remainder=Right,
                 ...     )
 
             ::
 
-                >>> maker.cyclic
-                True
+                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(3, 16)]
 
-        Returns boolean or none.
+            Default behavior.
+
+        ..  container:: example
+
+            **Examle 2.** Reads pattern only once per input division:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=False,
+                ...     pattern=[(1, 4)],
+                ...     remainder=Right,
+                ...     )
+
+            ::
+
+                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [Division(1, 4), Division(5, 8)]
+                [Division(1, 4), Division(5, 8)]
+                [Division(1, 4), Division(3, 16)]
+
+        Returns boolean.
         '''
         return self._cyclic
 
