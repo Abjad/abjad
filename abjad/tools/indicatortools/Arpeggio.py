@@ -80,7 +80,7 @@ class Arpeggio(AbjadObject):
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.right.articulations.append(r'\arpeggio')
         if self.direction in (Up, Down):
-            if self.direction is Up:
+            if self.direction == Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'

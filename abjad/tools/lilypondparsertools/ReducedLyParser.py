@@ -542,7 +542,7 @@ class ReducedLyParser(abctools.Parser):
 
                 starting, stopping = [], []
                 for direction in directions:
-                    if direction is Left:
+                    if direction == Left:
                         starting.append(Left)
                     else:
                         stopping.append(Right)

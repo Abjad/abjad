@@ -213,10 +213,10 @@ class GeneralizedBeam(Spanner):
         # leaf is orphan
         left, right = None, None
         if not previous_leaf_is_joinable and not next_leaf_is_joinable:
-            if self.isolated_nib_direction is Left:
+            if self.isolated_nib_direction == Left:
                 left = leaf.written_duration.flag_count
                 right = 0
-            elif self.isolated_nib_direction is Right:
+            elif self.isolated_nib_direction == Right:
                 left = 0
                 right = leaf.written_duration.flag_count
         # leaf is first of group

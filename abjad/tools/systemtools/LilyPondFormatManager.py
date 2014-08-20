@@ -119,9 +119,9 @@ class LilyPondFormatManager(object):
                 continue
             # store markup
             elif isinstance(expression.indicator, markuptools.Markup):
-                if expression.indicator.direction is Up:
+                if expression.indicator.direction == Up:
                     up_markup.append(expression.indicator)
-                elif expression.indicator.direction is Down:
+                elif expression.indicator.direction == Down:
                     down_markup.append(expression.indicator)
                 elif expression.indicator.direction in (Center, None):
                     neutral_markup.append(expression.indicator)

@@ -480,10 +480,10 @@ class Component(AbjadObject):
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
         markup = self._get_indicators(markuptools.Markup)
-        if direction is Up:
-            return tuple(x for x in markup if x.direction is Up)
-        elif direction is Down:
-            return tuple(x for x in markup if x.direction is Down)
+        if direction == Up:
+            return tuple(x for x in markup if x.direction == Up)
+        elif direction == Down:
+            return tuple(x for x in markup if x.direction == Down)
         return markup
 
     def _get_nth_component_in_time_order_from(self, n):
@@ -730,7 +730,7 @@ class Component(AbjadObject):
         from abjad.tools import selectiontools
         assert all(isinstance(x, scoretools.Component) for x in components)
         selection = selectiontools.ContiguousSelection(self)
-        if direction is Right:
+        if direction == Right:
             if grow_spanners:
                 insert_offset = self._get_timespan().stop_offset
                 receipt = selection._get_dominant_spanners()

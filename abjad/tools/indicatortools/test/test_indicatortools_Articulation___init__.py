@@ -9,10 +9,10 @@ def test_indicatortools_Articulation___init___01():
 
     articulation = Articulation('^\\marcato')
     assert articulation.name == 'marcato'
-    assert articulation.direction is Up
+    assert articulation.direction == Up
     articulation = Articulation('legato', Down)
     assert articulation.name == 'legato'
-    assert articulation.direction is Down
+    assert articulation.direction == Down
 
 
 def test_indicatortools_Articulation___init___02():
@@ -44,11 +44,11 @@ def test_indicatortools_Articulation___init___04():
     note = Note("c'4")
     articulation = Articulation('staccato', Up)
     attach(articulation, note)
-    assert articulation.direction is Up
+    assert articulation.direction == Up
     assert str(articulation) == r'^\staccato'
 
     articulation = Articulation('staccato', '^')
-    assert articulation.direction is Up
+    assert articulation.direction == Up
     assert str(articulation) == r'^\staccato'
 
 
@@ -59,11 +59,11 @@ def test_indicatortools_Articulation___init___05():
     note = Note("c'4")
     articulation = Articulation('staccato', Down)
     attach(articulation, note)
-    assert articulation.direction is Down
+    assert articulation.direction == Down
     assert str(articulation) == r'_\staccato'
 
     articulation = Articulation('staccato', '_')
-    assert articulation.direction is Down
+    assert articulation.direction == Down
     assert str(articulation) == r'_\staccato'
 
 
@@ -77,7 +77,7 @@ def test_indicatortools_Articulation___init___06():
     assert str(articulation) == r'-\staccato'
 
     articulation = Articulation('staccato', '-')
-    assert articulation.direction is Center
+    assert articulation.direction == Center
     assert str(articulation) == r'-\staccato'
 
 

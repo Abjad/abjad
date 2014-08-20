@@ -615,7 +615,7 @@ class TimespanInventory(TypedList):
         timespan_inventory = type(self)()
         for timespan in self:
             if minimum is not None and timespan.duration < minimum:
-                if anchor is Left:
+                if anchor == Left:
                     new_timespan = timespan.set_duration(minimum)
                 else:
                     new_start_offset = timespan.stop_offset - minimum
@@ -625,7 +625,7 @@ class TimespanInventory(TypedList):
                         stop_offset=timespan.stop_offset,
                         )
             elif maximum is not None and maximum < timespan.duration:
-                if anchor is Left:
+                if anchor == Left:
                     new_timespan = timespan.set_duration(maximum)
                 else:
                     new_start_offset = timespan.stop_offset - maximum

@@ -89,4 +89,4 @@ def test_markuptools_Markup___init___07():
 
     assert markup_1 is not markup_2
     assert markup_2.contents == ('foo contents string',)
-    assert markup_2.direction is Down
+    assert markup_2.direction == Down

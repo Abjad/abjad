@@ -82,7 +82,7 @@ def make_solid_text_spanner_with_nib(
     text_spanner = spannertools.TextSpanner()
     left_text = markuptools.Markup(left_text)
     override(text_spanner).text_spanner.bound_details__left__text = left_text
-    if direction is Up:
+    if direction == Up:
         pair = schemetools.SchemePair(0, -1)
     else:
         pair = schemetools.SchemePair(0, 1)

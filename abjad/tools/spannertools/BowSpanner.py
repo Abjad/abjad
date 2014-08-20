@@ -251,9 +251,9 @@ class BowSpanner(Spanner):
                 direction_change = Up
         if direction_change is None:
             return
-        if direction_change is Up:
+        if direction_change == Up:
             articulation = indicatortools.Articulation('upbow', Up)
-        elif direction_change is Down:
+        elif direction_change == Down:
             articulation = indicatortools.Articulation('downbow', Up)
         string = str(articulation)
         lilypond_format_bundle.right.articulations.append(string)

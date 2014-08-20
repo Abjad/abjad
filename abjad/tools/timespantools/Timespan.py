@@ -1420,7 +1420,7 @@ class Timespan(BoundedObject):
         new_stop_offset = durationtools.Offset(
             int(round(self.stop_offset / multiplier)) * multiplier)
         if (new_start_offset == new_stop_offset) and must_be_well_formed:
-            if anchor is Left:
+            if anchor == Left:
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
@@ -1460,10 +1460,10 @@ class Timespan(BoundedObject):
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
-        if anchor is Left:
+        if anchor == Left:
             new_start_offset = self.start_offset
             new_stop_offset = self.start_offset + new_duration
-        elif anchor is Right:
+        elif anchor == Right:
             new_stop_offset = self.stop_offset
             new_start_offset = self.stop_offset - new_duration
         else:
