@@ -193,7 +193,7 @@ class DivisionMaker(AbjadValueObject):
             remainder = input_division - total_duration
             remainder = durationtools.Duration(remainder)
             remainder = durationtools.Division(remainder)
-            if self.remainder is Left:
+            if self.remainder == Left:
                 if self.remainder_fuse_threshold is None:
                     division_list.insert(0, remainder)
                 elif remainder <= self.remainder_fuse_threshold:
@@ -203,7 +203,7 @@ class DivisionMaker(AbjadValueObject):
                     division_list[0] = fused_value
                 else:
                     division_list.insert(0, remainder)
-            elif self.remainder is Right:
+            elif self.remainder == Right:
                 if self.remainder_fuse_threshold is None:
                     division_list.append(remainder)
                 elif remainder <= self.remainder_fuse_threshold:
@@ -214,7 +214,7 @@ class DivisionMaker(AbjadValueObject):
                 else:
                     division_list.append(remainder)
             else:
-                raise ValueError((self.remainder, fuse_remainder))
+                raise ValueError((self.remainder, remainder))
             total_duration = durationtools.Duration(sum(division_list))
             pair = total_duration, input_duration
             assert total_duration == input_duration, pair
