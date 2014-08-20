@@ -28,8 +28,8 @@ def selects_first_logical_tie_in_pitched_runs():
                         only_with_head=False,
                         only_with_tail=False,
                         ),
-                    selectortools.SliceSelectorCallback(
-                        argument=0,
+                    selectortools.ItemSelectorCallback(
+                        item=0,
                         apply_to_each=True,
                         ),
                     ),

@@ -5,25 +5,22 @@ from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import select
 
 
-class SliceSelectorCallback(AbjadValueObject):
-    r'''A slice selector callback.
+class ItemSelectorCallback(AbjadValueObject):
+    r'''A item selector callback.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_apply_to_each',
-        '_start',
-        '_stop',
+        '_item',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, start=None, stop=None, apply_to_each=True):
-        assert isinstance(start, (int, type(None)))
-        assert isinstance(stop, (int, type(None)))
-        self._start = start
-        self._stop = stop
+    def __init__(self, item=0, apply_to_each=True):
+        assert isinstance(item, int)
+        self._item = item
         self._apply_to_each = bool(apply_to_each)
 
     ### SPECIAL METHODS ###
@@ -36,11 +33,10 @@ class SliceSelectorCallback(AbjadValueObject):
         assert isinstance(expr, tuple), repr(tuple)
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
-        argument = slice(self.start, self.stop)
         if self.apply_to_each:
             for subexpr in expr:
                 try:
-                    subresult = subexpr.__getitem__(argument)
+                    subresult = subexpr.__getitem__(self.item)
                     if not isinstance(subresult, prototype):
                         subresult = select(subresult)
                     result.append(subresult)
@@ -48,8 +44,8 @@ class SliceSelectorCallback(AbjadValueObject):
                     pass
         else:
             try:
-                subresult = select(expr.__getitem__(argument))
-                result.extend(subresult)
+                subresult = select(expr.__getitem__(self.item))
+                result.append(subresult)
             except IndexError:
                 pass
         return tuple(result)
@@ -58,7 +54,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
     @property
     def apply_to_each(self):
-        r'''Is true if slice selector callback will be applied against the
+        r'''Is true if item selector callback will be applied against the
         contents of each selection, rather than against the sequence of
         selections itself.
 
@@ -69,17 +65,9 @@ class SliceSelectorCallback(AbjadValueObject):
         return self._apply_to_each
 
     @property
-    def start(self):
-        r'''Gets slice selector callback start.
+    def item(self):
+        r'''Gets item selector callback item.
 
         Returns integer.
         '''
-        return self._start
-
-    @property
-    def stop(self):
-        r'''Gets slice selector callback stop.
-
-        Returns integer.
-        '''
-        return self._stop
+        return self._item

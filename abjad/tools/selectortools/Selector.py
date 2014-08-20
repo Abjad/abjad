@@ -116,8 +116,8 @@ class Selector(AbjadValueObject):
                         length=3,
                         parts=Exact,
                         ),
-                    selectortools.SliceSelectorCallback(
-                        argument=0,
+                    selectortools.ItemSelectorCallback(
+                        item=0,
                         apply_to_each=True,
                         ),
                     selectortools.FlattenSelectorCallback(
@@ -170,7 +170,19 @@ class Selector(AbjadValueObject):
         Returns another selector.
         '''
         from experimental.tools import selectortools
-        callback = selectortools.SliceSelectorCallback(item)
+        if isinstance(item, slice):
+            callback = selectortools.SliceSelectorCallback(
+                start=item.start,
+                stop=item.stop,
+                apply_to_each=True,
+                )
+        elif isinstance(item, int):
+            callback = selectortools.ItemSelectorCallback(
+                item=item,
+                apply_to_each=True,
+                )
+        else:
+            raise ValueError(item)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
@@ -523,8 +535,8 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from experimental.tools import selectortools
-        callback = selectortools.SliceSelectorCallback(
-            argument=0,
+        callback = selectortools.ItemSelectorCallback(
+            item=0,
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()
@@ -585,8 +597,8 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from experimental.tools import selectortools
-        callback = selectortools.SliceSelectorCallback(
-            argument=-1,
+        callback = selectortools.ItemSelectorCallback(
+            item=-1,
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()
@@ -689,7 +701,8 @@ class Selector(AbjadValueObject):
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
-            argument=(1, -1),
+            start=1,
+            stop=-1,
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()
@@ -757,7 +770,7 @@ class Selector(AbjadValueObject):
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
-            argument=(None, -1),
+            stop=-1,
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()
@@ -789,7 +802,7 @@ class Selector(AbjadValueObject):
         '''
         from experimental.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
-            argument=(1, None),
+            start=1,
             apply_to_each=False,
             )
         callbacks = self.callbacks or ()

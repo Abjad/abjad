@@ -29,7 +29,7 @@ def selects_all_but_last_logical_tie_in_pitched_runs():
                         only_with_tail=False,
                         ),
                     selectortools.SliceSelectorCallback(
-                        argument=(None, -1),
+                        stop=-1,
                         apply_to_each=True,
                         ),
                     selectortools.FlattenSelectorCallback(
