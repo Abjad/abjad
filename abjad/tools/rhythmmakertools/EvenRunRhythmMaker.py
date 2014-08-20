@@ -286,9 +286,67 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Makes even run of notes each equal in duration to
-            ``1/(2**d)`` with ``d`` equal to the denominator of each division
-            on which the rhythm-maker is called:
+            **Example 1.** Makes even run of notes with durations
+            equal to ``1/(2**0 * d)`` or ``1/d``:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     exponent=0,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'4
+                            c'4
+                        }
+                    }
+                }
+
+            (``d`` equals the denominator of each input division.)
+            
+            Input division denominators ``8``, ``4``, ``4`` result in notes
+            with durations ``1/8``, ``1/4``, ``1/4``.
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Makes even run of notes with durations
+            equal to ``1/(2**1 * d)`` or ``1/(2d)``:
 
             ::
 
@@ -346,7 +404,98 @@ class EvenRunRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Defaults to none and interprets none equal to ``0``.
+            (``d`` equals the denominator of each input division.)
+
+            Input division denominators ``8``, ``4``, ``4`` result in notes
+            with durations ``1/16``, ``1/8``, ``1/8``.
+
+        ..  container:: example
+
+            **Example 3.** Makes even run of notes with durations
+            equal to ``1/(2**2 * d)`` or ``1/(4d)``:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     exponent=2,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'32 [
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32
+                            c'32 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            (``d`` equals the denominator of each input division.)
+
+            Input division denominators ``8``, ``4``, ``4`` result in notes
+            with durations ``1/32``, ``1/16``, ``1/16``.
+
+        Defaults to none.
+        
+        Interprets none equal to ``0``.
 
         Returns nonnegative integer or none.
         '''
