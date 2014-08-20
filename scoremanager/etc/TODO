@@ -182,3 +182,11 @@
 42. Change (di!) and other bang-suffixed commands to push errors to
     terminal (even though the bang means that confirmation is suppressed).
     Basically the principle is to never suppress errors.
+
+43. Change segment_x/illustration.ly to segment_x/score_x_(ry).ly.
+    Change segment_x/illustration.pdf to segment_x/score_x_(ry).pdf. 
+    The 'ry' will stand for 'revision y'.
+    So ...
+        segment_b/red_example_score_B_(r2).ly
+        segment_b/red_example_score_B_(r2).pdf
+    ... will be the result.
