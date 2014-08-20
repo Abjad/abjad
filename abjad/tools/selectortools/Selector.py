@@ -422,7 +422,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Selects logical ties whose head and tail is 
+            **Example 5.** Selects logical ties whose head and tail is
             contained in the expression to be selected from:
 
             ::
@@ -532,7 +532,7 @@ class Selector(AbjadValueObject):
         return type(self)(callbacks)
 
     def flatten(self, depth=-1):
-        r'''Configures selector to select the last selection.
+        r'''Configures selector to flatten its selections to `depth`.
 
         ..  container:: example
 
@@ -593,9 +593,9 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def less_than(self, count):
+    def less_than(self, length):
         r'''Configures selector to select containers or selections whose length
-        is less than `count`.
+        is less than `length`.
 
         ..  container:: example
 
@@ -615,14 +615,14 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
 
-        ..  todo:: Replace in favor of 
-            ``self.by_duration(duration=inequality)``.
+        ..  todo:: Replace in favor of
+            ``self.by_length(length=inequality)``.
 
         Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
-            length=count - 1,
+            length=length - 1,
             parts=Less,
             )
         callbacks = self.callbacks or ()
@@ -651,8 +651,8 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        ..  todo:: Replace in favor of 
-            ``self.by_length(length=inequality)``.
+        ..  todo:: Replace in favor of
+            ``self.by_duration(duration=inequality)``.
 
         Returns new selector.
         '''
@@ -696,9 +696,9 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def more_than(self, count):
+    def more_than(self, length):
         r'''Configures selector to select containers or selections whose length
-        is more than `count`.
+        is more than `length`.
 
         ..  container:: example
 
@@ -718,14 +718,14 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        ..  todo:: Replace in favor of 
+        ..  todo:: Replace in favor of
             ``self.by_length(length=inequality)``.
 
         Returns new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
-            length=count + 1,
+            length=length + 1,
             parts=More,
             )
         callbacks = self.callbacks or ()
@@ -818,8 +818,8 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
 
-        ..  todo:: Replace in favor of 
-            ``self.by_duration(length=inequality)``.
+        ..  todo:: Replace in favor of
+            ``self.by_duration(duration=inequality)``.
 
         Returns new selector.
         '''
