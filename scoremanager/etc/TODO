@@ -211,3 +211,5 @@
         > vr!
         Copying ...
     ... instead.
+
+45. Implement '-' to return to last screen. In emulation of shell.
