@@ -575,6 +575,58 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def get_item(self, item, apply_to_each=True):
+        r'''Configures selector to select `item`.
+
+        If `apply_to_each`, the callback will be mapped against each selection,
+        otherwise the callback will be mapped against all selections as a
+        sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(0, apply_to_each=True)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                ContiguousSelection(Note("c'4"),)
+                ContiguousSelection(Note("d'4"),)
+                ContiguousSelection(Note("e'4"),)
+                ContiguousSelection(Note("f'4"),)
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(1, apply_to_each=False)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'4"), Note("d'4"))
+
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.ItemSelectorCallback(
+            item=item,
+            apply_to_each=apply_to_each,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def last(self):
         r'''Configures selector to select the last selection.
 
