@@ -7,61 +7,79 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class OrdinalConstant(AbjadObject):
     r'''An ordinal constant.
 
-    Initializes with `dimension`, `value` and `representation`:
+    ..  container:: example
 
-    ::
+        Initializes with `dimension`, `value` and `representation`:
 
-        >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
-        >>> Left
-        Left
+        ::
 
-    ::
+            >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
+            >>> Left
+            Left
 
-        >>> Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
-        >>> Right
-        Right
+        ::
 
-    ::
+            >>> Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
+            >>> Right
+            Right
 
-        >>> Left < Right
-        True
+        ::
 
-    Comparing like-dimensioned ordinal constants is allowed:
+            >>> Left < Right
+            True
 
-    ::
+    ..  container:: example
 
-        >>> Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
-        >>> Up
-        Up
+        Comparing like-dimensioned ordinal constants is allowed:
 
-    ::
+        ::
 
-        >>> Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
-        >>> Down
-        Down
+            >>> Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
+            >>> Up
+            Up
 
-    ::
+        ::
 
-        >>> Down < Up
-        True
+            >>> Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
+            >>> Down
+            Down
 
-    Comparing differently dimensioned ordinal constants raises an exception:
+        ::
 
-    ::
+            >>> Down < Up
+            True
 
-        >>> import pytest
+    ..  container:: example
 
-    ::
+        Comparing differently dimensioned ordinal constants raises an exception:
 
-        >>> bool(pytest.raises(Exception, 'Left < Up'))
-        True
+        ::
 
-    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants
-    shown here load into Python's built-in namespace on Abjad import.
+            >>> import pytest
 
-    These four objects can be used as constant values supplied to keywords.
+        ::
 
-    This behavior is similar to True, False and None.
+            >>> bool(pytest.raises(Exception, 'Left < Up'))
+            True
+
+    Abjad adds the following constants to Python's built-in namespace
+    when Abjad is first imported:
+
+    * ``Left``
+    * ``Right``
+    * ``Center``
+    * ``Up``
+    * ``Down``
+    * ``Less``
+    * ``More``
+    * ``Exact``
+
+    These eight objects can be used as constant values supplied to keywords.
+
+    This behavior is similar to built-in ``True``, ``False`` and ``None``.
+
+    ..  note:: Use ``==`` to compare Abjad ordinal constants.
+        Do not use ``is``.
 
     Ordinal constants are immutable.
     '''
