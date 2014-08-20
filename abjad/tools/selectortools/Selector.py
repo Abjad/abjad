@@ -206,6 +206,8 @@ class Selector(AbjadValueObject):
         ):
         r'''Configures selector to select components of class `prototype`.
 
+        ..  todo:: Maybe add a depth=None keyword.
+
         Returns new selector.
         '''
         from experimental.tools import selectortools
