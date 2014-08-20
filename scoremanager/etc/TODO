@@ -178,3 +178,7 @@
     case candidacy rules will prevent any new files from being written.
     On reflection, maybe some type of suffix to (di) might be cleanest.
     Something like (di@) or the like.
+
+42. Change (di!) and other bang-suffixed commands to push errors to
+    terminal (even though the bang means that confirmation is suppressed).
+    Basically the principle is to never suppress errors.
