@@ -348,7 +348,24 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Positions remainder to right of noncyclic pattern:
+            **Example 1.** Raises exception on remainder:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4), (1, 16)],
+                ...     remainder=None,
+                ...     )
+
+                >>> import pytest
+                >>> assert pytest.raises(Exception, 'maker([(3, 4)])')
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Positions remainder to right of noncyclic pattern:
 
             ::
 
@@ -364,7 +381,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Positions remainder to right of cyclic pattern:
+            **Example 3.** Positions remainder to right of cyclic pattern:
 
             ::
 
@@ -380,7 +397,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Positions remainder to left of noncyclic pattern:
+            **Example 4.** Positions remainder to left of noncyclic pattern:
 
             ::
 
@@ -396,7 +413,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Positions remainder to left of cyclic pattern:
+            **Example 5.** Positions remainder to left of cyclic pattern:
 
             ::
 
@@ -409,6 +426,12 @@ class DivisionMaker(AbjadValueObject):
                 >>> for list_ in lists:
                 ...     list_
                 [Division(1, 8), Division(1, 4), Division(1, 16), Division(1, 4), Division(1, 16)]
+
+        Defaults to none.
+
+        Interprets none to mean that any remainder should raise an exception.
+
+        Set to left, right or none.
 
         Returns left, right or none.
         '''
