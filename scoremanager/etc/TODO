@@ -190,3 +190,17 @@
         segment_b/red_example_score_B_(r2).ly
         segment_b/red_example_score_B_(r2).pdf
     ... will be the result.
+
+44. Change ...
+        > rad!
+        Will add ...
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/definition_0010.py
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/illustration_0010.ly
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/illustration_0010.pdf
+    ... to ...
+        > rad!
+        Adding ...
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/definition_0010.py
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/illustration_0010.ly
+            /Users/trevorbaca/Documents/scores/krummzeit/segments/segment_b/versions/illustration_0010.pdf
+    ... instead.
