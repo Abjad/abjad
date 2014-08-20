@@ -663,7 +663,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
-                ...     start=None, 
+                ...     start=None,
                 ...     stop=-1,
                 ...     apply_to_each=False,
                 ...     )
@@ -953,6 +953,71 @@ class Selector(AbjadValueObject):
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
             parts=Less,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def with_next_leaf(self):
+        r'''Configures selector to select the next leaf after each selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.with_next_leaf()
+                 
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'))
+                Selection(Note("d'8"), Note("e'8"), Rest('r8'))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Returns new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.ExtraLeafSelectorCallback(
+            with_next_leaf=True,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def with_previous_leaf(self):
+        r'''Configures selector to select the previous leaf before each
+        selection.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.with_previous_leaf()
+                 
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Rest('r8'), Note("d'8"), Note("e'8"))
+                Selection(Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Returns new selector.
+        '''
+        from experimental.tools import selectortools
+        callback = selectortools.ExtraLeafSelectorCallback(
+            with_previous_leaf=True,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
