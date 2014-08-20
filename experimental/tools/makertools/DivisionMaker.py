@@ -23,6 +23,15 @@ class DivisionMaker(AbjadValueObject):
                     ),
                 )
 
+        ::
+
+            >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+            >>> for list_ in lists:
+            ...     list_
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+            [Division(1, 4), Division(3, 16)]
+
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
     list of divisions as output (structured one output list per input
@@ -47,26 +56,24 @@ class DivisionMaker(AbjadValueObject):
     def __init__(
         self,
         cyclic=True,
-        pattern=None,
-        pattern_rotation_index=None,
-        remainder=None,
+        pattern=(),
+        pattern_rotation_index=0,
+        remainder=Right,
         remainder_fuse_threshold=None,
         ):
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
-        if pattern is not None:
-            pattern_ = []
-            for division in pattern:
-                division = durationtools.Division(division)
-                pattern_.append(division)
-            pattern = tuple(pattern_)
+        pattern = pattern or ()
+        pattern_ = []
+        for division in pattern:
+            division = durationtools.Division(division)
+            pattern_.append(division)
+        pattern = tuple(pattern_)
         self._pattern = pattern
-        if not remainder is None:
-            assert remainder in (Left, Right), repr(remainder)
-        if pattern_rotation_index is not None:
-            assert isinstance(pattern_rotation_index, int)
-        self._pattern_rotation_index = pattern_rotation_index
+        assert remainder in (Left, Right), repr(remainder)
         self._remainder = remainder
+        assert isinstance(pattern_rotation_index, int)
+        self._pattern_rotation_index = pattern_rotation_index
         if remainder_fuse_threshold is not None:
             remainder_fuse_threshold = durationtools.Duration(
                 remainder_fuse_threshold,
@@ -95,14 +102,13 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls division-maker on division with remainder:
+            Calls division-maker cyclically on each division.
+            Positions remainders to the right of each output list:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(1, 4)],
-                ...     remainder=Right,
                 ...     )
                 >>> lists = maker([(7, 8)])
                 >>> for list_ in lists:
@@ -228,9 +234,15 @@ class DivisionMaker(AbjadValueObject):
         manager = systemtools.StorageFormatManager
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
         if self.cyclic == True:
-            keyword_argument_names = list(keyword_argument_names)
             keyword_argument_names.remove('cyclic')
+        if not self.pattern:
+            keyword_argument_names.remove('pattern')
+        if self.remainder == Right:
+            keyword_argument_names.remove('remainder')
+        if self.pattern_rotation_index == 0:
+            keyword_argument_names.remove('pattern_rotation_index')
         return systemtools.StorageFormatSpecification(
             self,
             keyword_argument_names=keyword_argument_names,
@@ -253,9 +265,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(1, 4)],
-                ...     remainder=Right,
                 ...     )
 
             ::
@@ -267,18 +277,17 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(3, 16)]
 
-            Default behavior.
+            Defaults to ``cyclic=True``.
 
         ..  container:: example
 
-            **Examle 2.** Reads pattern only once per input division:
+            **Example 2.** Reads pattern only once per input division:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(1, 4)],
-                ...     remainder=Right,
                 ...     )
 
             ::
@@ -290,7 +299,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 4), Division(5, 8)]
                 [Division(1, 4), Division(3, 16)]
 
-        Returns boolean.
+        Set to true or false.
         '''
         return self._cyclic
 
@@ -300,19 +309,40 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Returns input division unchanged when pattern is
+            empty:
+
+                >>> maker = makertools.DivisionMaker()
+
             ::
 
+                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [Division(7, 8)]
+                [Division(7, 8)]
+                [Division(7, 16)]
+
+            Defaults to ``pattern=()``.
+
+        ..  container:: example
+
+            **Example 2.** Applies pattern to each input division:
+
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     )
 
             ::
 
-                >>> maker.pattern
-                (Division(1, 4),)
+                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+                >>> for list_ in lists:
+                ...     list_
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(3, 16)]
 
-        Returns (possibly empty) tuple of divisions or none.
+        Set to list or tuple of divisions.
         '''
         return self._pattern
 
@@ -340,7 +370,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
 
-            All input divisions treated the same.
+            Defaults to ``pattern_rotation_index=0``.
 
         ..  container:: example
 
@@ -386,7 +416,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 4), Division(1, 16), Division(1, 8)]
                 [Division(1, 8), Division(1, 4), Division(1, 16)]
 
-        Returns integer or none.
+        Set to integer.
         '''
         return self._pattern_rotation_index
 
@@ -396,56 +426,40 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Raises exception on remainder:
-
-            ::
-
-                >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
-                ...     pattern=[(1, 4), (1, 16)],
-                ...     remainder=None,
-                ...     )
-
-                >>> import pytest
-                >>> assert pytest.raises(Exception, 'maker([(3, 4)])')
-
-            This is default behavior.
-
-        ..  container:: example
-
-            **Example 2.** Positions remainder to right of noncyclic pattern:
+            **Example 1.** Positions remainder to right of noncyclic pattern:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(4, 16), (1, 16)],
-                ...     remainder=Right,
                 ...     )
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
                 [Division(4, 16), Division(1, 16), Division(7, 16)]
 
+            Defaults to ``remainder=Right``.
+
         ..  container:: example
 
-            **Example 3.** Positions remainder to right of cyclic pattern:
+            **Example 2.** Positions remainder to right of cyclic pattern:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(4, 16), (1, 16)],
-                ...     remainder=Right,
                 ...     )
                 >>> lists = maker([(3, 4)])
                 >>> for list_ in lists:
                 ...     list_
                 [Division(4, 16), Division(1, 16), Division(4, 16), Division(1, 16), Division(1, 8)]
 
+            Defaults to ``remainder=Right``.
+
         ..  container:: example
 
-            **Example 4.** Positions remainder to left of noncyclic pattern:
+            **Example 3.** Positions remainder to left of noncyclic pattern:
 
             ::
 
@@ -461,7 +475,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Positions remainder to left of cyclic pattern:
+            **Example 4.** Positions remainder to left of cyclic pattern:
 
             ::
 
@@ -475,13 +489,7 @@ class DivisionMaker(AbjadValueObject):
                 ...     list_
                 [Division(1, 8), Division(1, 4), Division(1, 16), Division(1, 4), Division(1, 16)]
 
-        Defaults to none.
-
-        Interprets none to mean that any remainder should raise an exception.
-
-        Set to left, right or none.
-
-        Returns left, right or none.
+        Set to left or right.
         '''
         return self._remainder
 
@@ -496,9 +504,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(1, 4)],
-                ...     remainder=Right,
                 ...     remainder_fuse_threshold=None,
                 ...     )
 
@@ -517,9 +523,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
                 ...     pattern=[(1, 4)],
-                ...     remainder=Right,
                 ...     remainder_fuse_threshold=Duration(1, 8),
                 ...     )
 
@@ -571,6 +575,6 @@ class DivisionMaker(AbjadValueObject):
                 ...     list_
                 [Division(3, 8), Division(1, 4)]
 
-        Returns boolean or none.
+        Set to duration or none.
         '''
         return self._remainder_fuse_threshold
