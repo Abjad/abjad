@@ -49,10 +49,7 @@ class RhythmMakerExpression(PayloadExpression):
                         counts=(1, 3),
                         denominator=32,
                         ),
-                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                        burnish_divisions=False,
-                        burnish_output=False,
-                        ),
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
