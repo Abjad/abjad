@@ -537,7 +537,7 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
             burnish_specifier = rhythmmakertools.BurnishSpecifier()
-        if burnish_specifier.burnish_divisions:
+        if burnish_specifier.burnish_each_division:
             return self._burnish_all_division_parts(divisions, quintuplet)
         elif burnish_specifier.burnish_output:
             return self._burnish_first_and_last_division_parts(
@@ -1190,7 +1190,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_divisions=True,
+                ...     burnish_each_division=True,
                 ...     lefts=(-1,),
                 ...     middles=(0,),
                 ...     rights=(0,),

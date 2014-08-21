@@ -106,7 +106,7 @@ class BurnishSpecifier(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_burnish_divisions',
+        '_burnish_each_division',
         '_burnish_output',
         '_left_lengths',
         '_lefts',
@@ -119,7 +119,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        burnish_divisions=False,
+        burnish_each_division=False,
         burnish_output=False,
         lefts=None,
         middles=None,
@@ -127,9 +127,9 @@ class BurnishSpecifier(AbjadValueObject):
         left_lengths=None,
         right_lengths=None,
         ):
-        assert isinstance(burnish_divisions, bool)
+        assert isinstance(burnish_each_division, bool)
         assert isinstance(burnish_output, bool)
-        self._burnish_divisions = burnish_divisions
+        self._burnish_each_division = burnish_each_division
         self._burnish_output = burnish_output
         lefts = self._to_tuple(lefts)
         middles = self._to_tuple(middles)
@@ -302,7 +302,7 @@ class BurnishSpecifier(AbjadValueObject):
         from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='burnish_divisions',
+                name='burnish_each_division',
                 command='bd',
                 editor=idetools.getters.get_boolean,
                 ),
@@ -345,8 +345,8 @@ class BurnishSpecifier(AbjadValueObject):
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
-        if self.burnish_divisions == False:
-            keyword_argument_names.remove('burnish_divisions')
+        if self.burnish_each_division == False:
+            keyword_argument_names.remove('burnish_each_division')
         if self.burnish_output == False:
             keyword_argument_names.remove('burnish_output')
         if not self.lefts:
@@ -392,15 +392,15 @@ class BurnishSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def burnish_divisions(self):
-        r'''Is true when rhythm-maker should burnish every division in output.
+    def burnish_each_division(self):
+        r'''Is true when rhythm-maker should burnish each division in output.
         Otherwise false.
 
         Defaults to false.
 
         Returns boolean.
         '''
-        return self._burnish_divisions
+        return self._burnish_each_division
 
     @property
     def burnish_output(self):
@@ -548,7 +548,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_divisions=True,
+                ...     burnish_each_division=True,
                 ...     lefts=[-1, 0],
                 ...     middles=[0],
                 ...     rights=[-1, -1, 0],
@@ -560,7 +560,7 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> print(format(burnish_specifier.reverse()))
                 rhythmmakertools.BurnishSpecifier(
-                    burnish_divisions=True,
+                    burnish_each_division=True,
                     lefts=(0, -1),
                     middles=(0,),
                     rights=(0, -1, -1),
@@ -599,7 +599,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_divisions=True,
+                ...     burnish_each_division=True,
                 ...     lefts=[-1, 0],
                 ...     middles=[0],
                 ...     rights=[-1, -1, 0],
@@ -611,7 +611,7 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> print(format(burnish_specifier.rotate(1)))
                 rhythmmakertools.BurnishSpecifier(
-                    burnish_divisions=True,
+                    burnish_each_division=True,
                     lefts=(0, -1),
                     middles=(0,),
                     rights=(0, -1, -1),

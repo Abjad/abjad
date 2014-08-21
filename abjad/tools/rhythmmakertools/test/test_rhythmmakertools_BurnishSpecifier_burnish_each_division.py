@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_01():
+def test_rhythmmakertools_BurnishSpecifier_burnish_each_division_01():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_divisions=True,
+        burnish_each_division=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
@@ -62,10 +62,10 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_01():
         )
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_02():
+def test_rhythmmakertools_BurnishSpecifier_burnish_each_division_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_divisions=True,
+        burnish_each_division=True,
         lefts=(0,),
         middles=(-1,),
         rights=(0,),
@@ -122,10 +122,10 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_02():
         )
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_03():
+def test_rhythmmakertools_BurnishSpecifier_burnish_each_division_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_divisions=True,
+        burnish_each_division=True,
         lefts=(0,),
         middles=(-1,),
         rights=(0,),
@@ -187,10 +187,10 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_03():
         )
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_04():
+def test_rhythmmakertools_BurnishSpecifier_burnish_each_division_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_divisions=True,
+        burnish_each_division=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
@@ -248,10 +248,10 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_04():
         )
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_divisions_05():
+def test_rhythmmakertools_BurnishSpecifier_burnish_each_division_05():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_divisions=True,
+        burnish_each_division=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
