@@ -46,26 +46,26 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_hypermeasure_postprocessor',
         '_hypermeasure_specifier',
+        '_secondary_division_maker',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        hypermeasure_postprocessor=None,
         hypermeasure_specifier=None,
+        secondary_division_maker=None,
         ):
         from experimental import makertools
-        if hypermeasure_postprocessor is not None:
-            prototype = (makertools.DivisionMaker,)
-            assert isinstance(hypermeasure_postprocessor, prototype)
-        self._hypermeasure_postprocessor = hypermeasure_postprocessor
         if hypermeasure_specifier is not None:
             prototype = (makertools.HypermeasureSpecifier,)
             assert isinstance(hypermeasure_specifier, prototype)
         self._hypermeasure_specifier = hypermeasure_specifier
+        if secondary_division_maker is not None:
+            prototype = (makertools.DivisionMaker,)
+            assert isinstance(secondary_division_maker, prototype)
+        self._secondary_division_maker = secondary_division_maker
 
     ### SPECIAL METHODS ###
 
@@ -83,7 +83,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=None,
+                ...     secondary_division_maker=None,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -148,7 +148,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=divisions,
+                ...     secondary_division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -212,7 +212,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=divisions,
+                ...     secondary_division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -279,7 +279,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=divisions,
+                ...     secondary_division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -334,7 +334,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     )
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=divisions,
+                ...     secondary_division_maker=divisions,
                 ...     hypermeasure_specifier=hypermeasures,
                 ...     )
 
@@ -380,7 +380,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     hypermeasure_postprocessor=None,
+                ...     secondary_division_maker=None,
                 ...     hypermeasure_specifier=None,
                 ...     )
 
@@ -445,8 +445,8 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             divisions = [sum(_) for _ in parts]
         division_lists = []
         for division in divisions:
-            if self.hypermeasure_postprocessor is not None:
-                division_list = self.hypermeasure_postprocessor([division])[0]
+            if self.secondary_division_maker is not None:
+                division_list = self.secondary_division_maker([division])[0]
             else:
                 division_list = [division]
             division_list = [durationtools.Division(_) for _ in division_list]
@@ -470,12 +470,12 @@ class HypermeasureDivisionMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hypermeasure_postprocessor(self):
+    def secondary_division_maker(self):
         r'''Gets hypermeasure postprocessor of hypermeasure division-maker.
 
         Returns division-maker or none.
         '''
-        return self._hypermeasure_postprocessor
+        return self._secondary_division_maker
 
     @property
     def hypermeasure_specifier(self):
