@@ -129,6 +129,7 @@ class BurnishSpecifier(AbjadValueObject):
         ):
         assert isinstance(burnish_each_division, bool)
         assert isinstance(burnish_output, bool)
+        assert not (burnish_each_division and burnish_output)
         self._burnish_each_division = burnish_each_division
         self._burnish_output = burnish_output
         lefts = self._to_tuple(lefts)

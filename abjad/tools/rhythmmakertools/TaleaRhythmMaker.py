@@ -536,14 +536,14 @@ class TaleaRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
-            burnish_specifier = rhythmmakertools.BurnishSpecifier()
-        if burnish_specifier.burnish_each_division:
+            return divisions
+        elif burnish_specifier.burnish_each_division:
             return self._burnish_all_division_parts(divisions, quintuplet)
         elif burnish_specifier.burnish_output:
             return self._burnish_first_and_last_division_parts(
                 divisions, quintuplet)
         else:
-            return divisions
+            raise ValueError
 
     def _burnish_first_and_last_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
@@ -2019,7 +2019,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         counts=(4, 3, 2, 1),
                         denominator=16,
                         ),
-                    burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
@@ -2078,9 +2077,11 @@ class TaleaRhythmMaker(RhythmMaker):
         extra_counts_per_division = \
             self._reverse_tuple(self.extra_counts_per_division)
         burnish_specifier = self.burnish_specifier
-        if burnish_specifier is None:
-            burnish_specifier = rhythmmakertools.BurnishSpecifier()
-        burnish_specifier = burnish_specifier.reverse()
+        #if burnish_specifier is None:
+        #    burnish_specifier = rhythmmakertools.BurnishSpecifier()
+        #burnish_specifier = burnish_specifier.reverse()
+        if burnish_specifier is not None:
+            burnish_specifier = burnish_specifier.reverse()
         split_divisions_by_counts = \
             self._reverse_tuple(self.split_divisions_by_counts)
         duration_spelling_specifier = self.duration_spelling_specifier
