@@ -142,6 +142,9 @@ class BurnishSpecifier(AbjadValueObject):
         self._rights = rights
         self._left_lengths = left_lengths
         self._right_lengths = right_lengths
+        if outer_divisions_only:
+            assert len(left_lengths) <= 1, repr(left_lengths)
+            assert len(right_lengths) <= 1, repr(right_lengths)
 
     ### SPECIAL METHODS ###
 
