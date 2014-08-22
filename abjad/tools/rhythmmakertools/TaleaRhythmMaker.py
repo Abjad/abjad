@@ -734,7 +734,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
-            burnish_specifier = rhythmmakertools.BurnishSpecifier()
+            burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                burnish_each_division=True,
+                )
 
         lefts = burnish_specifier.lefts or ()
         lefts_helper = self._none_to_trivial_helper(
