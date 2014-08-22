@@ -21,6 +21,7 @@ class RhythmMaker(AbjadValueObject):
     __slots__ = (
         '_beam_specifier',
         '_duration_spelling_specifier',
+        '_seeds',
         '_tie_specifier',
         '_tuplet_spelling_specifier',
         )
@@ -69,6 +70,7 @@ class RhythmMaker(AbjadValueObject):
         '''
         divisions = [durationtools.Division(x) for x in divisions]
         seeds = self._to_tuple(seeds)
+        self._seeds = seeds
         selections = self._make_music(divisions, seeds)
         self._simplify_tuplets(selections)
         self._tie_across_divisions(selections)

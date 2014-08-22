@@ -532,16 +532,22 @@ class TaleaRhythmMaker(RhythmMaker):
         new_division_part = type(division_part)(new_division_part)
         return new_division_part
 
-    def _burnish_division_parts(self, divisions, quintuplet):
-        from abjad.tools import rhythmmakertools
+    def _burnish_division_parts(self, divisions):
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
             return divisions
-        elif burnish_specifier.burnish_each_division:
-            return self._burnish_all_division_parts(divisions, quintuplet)
+        octuplet = self._prepare_input()
+        burnish_settings = octuplet[2:7]
+        if burnish_specifier.burnish_each_division:
+            return self._burnish_all_division_parts(
+                divisions, 
+                burnish_settings,
+                )
         elif burnish_specifier.burnish_output:
             return self._burnish_first_and_last_division_parts(
-                divisions, quintuplet)
+                divisions, 
+                burnish_settings,
+                )
         else:
             raise ValueError
 
@@ -649,21 +655,27 @@ class TaleaRhythmMaker(RhythmMaker):
         return leaf_lists
 
     def _make_music(self, divisions, seeds):
-        from abjad.tools import rhythmmakertools
-        octuplet = self._prepare_input(seeds)
-        talea, extra_counts_per_division = octuplet[:2]
+        octuplet = self._prepare_input()
+        talea = octuplet[0]
+        extra_counts_per_division = octuplet[1]
         unscaled_talea = tuple(talea)
         split_divisions_by_counts = octuplet[-1]
         taleas = (talea, extra_counts_per_division, split_divisions_by_counts)
-        result = self._scale_taleas(
-            divisions, self.talea.denominator, taleas)
-        divisions, lcd, talea, extra_counts_per_division, split_divisions_by_counts = \
-            result
+        result = self._scale_taleas(divisions, self.talea.denominator, taleas)
+        divisions = result[0]
+        lcd = result[1]
+        talea = result[2]
+        extra_counts_per_division = result[3]
+        split_divisions_by_counts = result[4]
         secondary_divisions = self._make_secondary_divisions(
-            divisions, split_divisions_by_counts)
-        septuplet = (talea, extra_counts_per_division) + octuplet[2:-1]
+            divisions, 
+            split_divisions_by_counts,
+            )
         numeric_map = self._make_numeric_map(
-            secondary_divisions, septuplet)
+            secondary_divisions,
+            talea,
+            extra_counts_per_division,
+            )
         leaf_lists = self._make_leaf_lists(numeric_map, lcd)
         if not extra_counts_per_division:
             result = leaf_lists
@@ -675,21 +687,21 @@ class TaleaRhythmMaker(RhythmMaker):
         self._apply_ties_to_split_notes(result, unscaled_talea)
         return result
 
-    def _make_numeric_map(self, divisions, septuplet):
-        talea, extra_counts_per_division, lefts, middles, rights, left_lengths, right_lengths = septuplet
+    def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
         prolated_divisions = self._make_prolated_divisions(
-            divisions, extra_counts_per_division)
+            divisions, 
+            extra_counts_per_division,
+            )
         if isinstance(prolated_divisions[0], tuple):
-            prolated_numerators = [
-                pair[0] for pair in prolated_divisions]
+            prolated_numerators = [pair[0] for pair in prolated_divisions]
         else:
-            prolated_numerators = [
-                pair.numerator for pair in prolated_divisions]
+            prolated_numerators = [_.numerator for _ in prolated_divisions]
         map_divisions = self._split_sequence_extended_to_weights(
-            talea, prolated_numerators, overhang=False)
-        quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
-        burnished_map_divisions = self._burnish_division_parts(
-            map_divisions, quintuplet)
+            talea, 
+            prolated_numerators, 
+            overhang=False,
+            )
+        burnished_map_divisions = self._burnish_division_parts(map_divisions)
         numeric_map = burnished_map_divisions
         return numeric_map
 
@@ -715,8 +727,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 prolated_divisions.append(prolated_division)
         return prolated_divisions
 
-    def _prepare_input(self, seeds):
-        from abjad.tools import rhythmmakertools
+    def _prepare_input(self):
+        seeds = self._seeds
         helper_functions = self.helper_functions or {}
         talea = self.talea.counts or ()
         talea_helper = self._none_to_trivial_helper(
