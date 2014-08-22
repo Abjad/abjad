@@ -129,6 +129,8 @@ class BurnishSpecifier(AbjadValueObject):
         self._outer_divisions_only = outer_divisions_only
         lefts = self._to_tuple(lefts)
         middles = self._to_tuple(middles)
+        if middles == (0,):
+            middles = ()
         rights = self._to_tuple(rights)
         left_lengths = self._to_tuple(left_lengths)
         right_lengths = self._to_tuple(right_lengths)
@@ -391,7 +393,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -416,7 +417,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -441,7 +441,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -449,8 +448,8 @@ class BurnishSpecifier(AbjadValueObject):
 
             ::
 
-                >>> burnish_specifier.middles
-                (0,)
+                >>> burnish_specifier.middles is None
+                True
 
         Returns tuple or none.
         '''
@@ -477,7 +476,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -502,7 +500,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -528,7 +525,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
@@ -539,7 +535,6 @@ class BurnishSpecifier(AbjadValueObject):
                 >>> print(format(burnish_specifier.reverse()))
                 rhythmmakertools.BurnishSpecifier(
                     lefts=(0, -1),
-                    middles=(0,),
                     rights=(0, -1, -1),
                     left_lengths=(2,),
                     right_lengths=(1,),
@@ -577,7 +572,6 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=[-1, 0],
-                ...     middles=[0],
                 ...     rights=[-1, -1, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1, 2, 3],
@@ -588,7 +582,6 @@ class BurnishSpecifier(AbjadValueObject):
                 >>> print(format(burnish_specifier.rotate(1)))
                 rhythmmakertools.BurnishSpecifier(
                     lefts=(0, -1),
-                    middles=(0,),
                     rights=(0, -1, -1),
                     left_lengths=(2,),
                     right_lengths=(3, 1, 2),

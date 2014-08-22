@@ -756,6 +756,8 @@ class TaleaRhythmMaker(RhythmMaker):
         lefts = lefts_helper(lefts, seeds)
         lefts = datastructuretools.CyclicTuple(lefts)
 
+        if middles == () or middles is None:
+            middles = (0,)
         middles_helper = self._none_to_trivial_helper(
             helper_functions.get('middles'))
         middles = middles_helper(middles, seeds)
@@ -1127,7 +1129,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=(-1,),
-                ...     middles=(0,),
                 ...     rights=(-1,),
                 ...     left_lengths=(1,),
                 ...     right_lengths=(2,),
@@ -1198,7 +1199,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     lefts=(-1,),
-                ...     middles=(0,),
                 ...     rights=(0,),
                 ...     left_lengths=(1,),
                 ...     right_lengths=(0,),

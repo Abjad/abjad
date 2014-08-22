@@ -70,7 +70,6 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,),
-        middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(1,),
@@ -126,7 +125,6 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,),
-        middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(1,),
@@ -189,7 +187,6 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,),
-        middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(2,),
