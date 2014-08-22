@@ -441,12 +441,10 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, divisions):
-        if self.burnish_specifier.burnish_each_division:
-            return self._burnish_each_division(divisions)
-        elif self.burnish_specifier.burnish_outer_divisions:
+        if self.burnish_specifier.outer_divisions_only:
             return self._burnish_outer_divisions(divisions)
         else:
-            raise ValueError
+            return self._burnish_each_division(divisions)
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
@@ -1115,10 +1113,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            'Output burnishing' means forcibly to cast the first leaf (or
-            leaves) of output; or forcibly to cast the last leaf (or leaves) of
-            output; or to cast both the first and last leaves of output at the
-            same time.
+            This example burnishes outer divisions only.
 
             This example makes a talea rhythm with the first leaf of output
             forcibly cast to a rest and also with the last two leaves of output
@@ -1131,12 +1126,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_outer_divisions=True,
                 ...     lefts=(-1,),
                 ...     middles=(0,),
                 ...     rights=(-1,),
                 ...     left_lengths=(1,),
                 ...     right_lengths=(2,),
+                ...     outer_divisions_only=True,
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=talea,
@@ -1202,7 +1197,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_each_division=True,
                 ...     lefts=(-1,),
                 ...     middles=(0,),
                 ...     rights=(0,),

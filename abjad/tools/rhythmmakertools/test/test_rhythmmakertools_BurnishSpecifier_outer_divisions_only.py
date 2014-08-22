@@ -2,15 +2,15 @@
 from abjad import *
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_01():
+def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_outer_divisions=True,
         lefts=(0,),
         middles=(-1,),
         rights=(0,),
         left_lengths=(1,),
         right_lengths=(1,),
+        outer_divisions_only=True,
         )
 
     talea = rhythmmakertools.Talea(
@@ -66,15 +66,15 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_01():
         ), format(staff)
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_02():
+def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_outer_divisions=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(1,),
+        outer_divisions_only=True,
         )
 
     talea = rhythmmakertools.Talea(
@@ -122,15 +122,15 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_02():
         ), format(staff)
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_03():
+def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_outer_divisions=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(1,),
+        outer_divisions_only=True,
         )
 
     talea = rhythmmakertools.Talea(
@@ -185,15 +185,15 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_03():
         ), format(staff)
 
 
-def test_rhythmmakertools_BurnishSpecifier_burnish_outer_divisions_04():
+def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        burnish_outer_divisions=True,
         lefts=(-1,),
         middles=(0,),
         rights=(-1,),
         left_lengths=(1,),
         right_lengths=(2,),
+        outer_divisions_only=True,
         )
 
     talea = rhythmmakertools.Talea(
