@@ -56,6 +56,7 @@ class NoteRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_burnish_specifier',
         )
 
     _class_name_abbreviation = 'N'
@@ -67,10 +68,12 @@ class NoteRhythmMaker(RhythmMaker):
     def __init__(
         self,
         beam_specifier=None,
+        burnish_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
+        from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -78,6 +81,10 @@ class NoteRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
+        if burnish_specifier is not None:
+            prototype = rhythmmakertools.BurnishSpecifier
+            assert isinstance(burnish_specifier, prototype)
+        self._burnish_specifier = burnish_specifier
 
     ### SPECIAL METHODS ###
 
@@ -203,6 +210,27 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    def _apply_burnish_specifier(self, selections):
+        if self.burnish_specifier is None:
+            return selections
+        elif self.burnish_specifier.outer_divisions_only:
+            selections = self._burnish_outer_divisions(selections)
+        else:
+            selections = self._burnish_each_division(selections)
+        return selections
+
+    def _burnish_each_division(self, selections):
+        message = 'NoteRhythmMaker does not yet implement'
+        message += ' burnishing each division.'
+        raise NotImplementedError(message)
+
+    def _burnish_outer_divisions(self, selections):
+        lefts = self.burnish_specifier.lefts
+        left_lengths = self.burnish_specifier.left_lengths
+        rights = self.burnish_specifier.rights
+        right_lengths = self.burnish_specifier.right_lengths
+        raise Exception(selections)
+
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         selections = []
@@ -231,10 +259,19 @@ class NoteRhythmMaker(RhythmMaker):
                 is_diminution=tuplet_specifier.is_diminution,
                 )
             selections.append(selection)
+        selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def burnish_specifier(self):
+        r'''Gets burnish specifier of note rhythm-maker.
+
+        Returns burnish specifier or none.
+        '''
+        return self._burnish_specifier
 
     @property
     def duration_spelling_specifier(self):
