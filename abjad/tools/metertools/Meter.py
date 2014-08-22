@@ -885,7 +885,10 @@ class Meter(AbjadObject):
                 else:
                     break
             if not current_offset_counter:
-                winner = longest_hierarchy
+                if selected_hierarchies:
+                    winner = selected_hierarchies[-1]
+                else:
+                    winner = longest_hierarchy
             else:
                 candidates = []
                 if maximum_repetitions is not None:
@@ -899,7 +902,6 @@ class Meter(AbjadObject):
                         if len(meter_set) == 1 and 1 < len(meter_inventory):
                             continue
                     response = kernel(current_offset_counter)
-
                     candidates.append((response, meter_index))
                 candidates.sort(key=lambda x: x[0], reverse=True)
                 response, index = candidates[0]
