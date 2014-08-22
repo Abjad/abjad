@@ -734,35 +734,38 @@ class TaleaRhythmMaker(RhythmMaker):
 
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
-            burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                burnish_each_division=True,
-                )
+            lefts = ()
+            middles = ()
+            rights = ()
+            left_lengths = ()
+            right_lengths = ()
+        else:
+            lefts = burnish_specifier.lefts
+            middles = burnish_specifier.middles
+            rights = burnish_specifier.rights
+            left_lengths = burnish_specifier.left_lengths
+            right_lengths = burnish_specifier.right_lengths
 
-        lefts = burnish_specifier.lefts or ()
         lefts_helper = self._none_to_trivial_helper(
             helper_functions.get('lefts'))
         lefts = lefts_helper(lefts, seeds)
         lefts = datastructuretools.CyclicTuple(lefts)
 
-        middles = burnish_specifier.middles or ()
         middles_helper = self._none_to_trivial_helper(
             helper_functions.get('middles'))
         middles = middles_helper(middles, seeds)
         middles = datastructuretools.CyclicTuple(middles)
 
-        rights = burnish_specifier.rights or ()
         rights_helper = self._none_to_trivial_helper(
             helper_functions.get('rights'))
         rights = rights_helper(rights, seeds)
         rights = datastructuretools.CyclicTuple(rights)
 
-        left_lengths = burnish_specifier.left_lengths or ()
         left_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('left_lengths'))
         left_lengths = left_lengths_helper(left_lengths, seeds)
         left_lengths = datastructuretools.CyclicTuple(left_lengths)
 
-        right_lengths = burnish_specifier.right_lengths or ()
         right_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('right_lengths'))
         right_lengths = right_lengths_helper(right_lengths, seeds)
