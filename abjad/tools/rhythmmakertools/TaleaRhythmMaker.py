@@ -440,6 +440,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    def _apply_burnish_specifier(self, divisions):
+        if self.burnish_specifier.burnish_each_division:
+            return self._burnish_each_division(divisions)
+        elif self.burnish_specifier.burnish_output:
+            return self._burnish_outer_divisions(divisions)
+        else:
+            raise ValueError
+
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
         tie_specifier = self.tie_specifier
@@ -481,8 +489,25 @@ class TaleaRhythmMaker(RhythmMaker):
             # TODO: remove usage of Spanner._extend()
             tie_spanner._extend(part)
 
-    def _burnish_all_division_parts(self, divisions, quintuplet):
-        lefts, middles, rights, left_lengths, right_lengths = quintuplet
+    def _burnish_division_part(self, division_part, token):
+        assert len(division_part) == len(token)
+        new_division_part = []
+        for number, i in zip(division_part, token):
+            if i == -1:
+                new_division_part.append(-abs(number))
+            elif i == 0:
+                new_division_part.append(number)
+            elif i == 1:
+                new_division_part.append(abs(number))
+            else:
+                raise ValueError
+        new_division_part = type(division_part)(new_division_part)
+        return new_division_part
+
+    def _burnish_each_division(self, divisions):
+        octuplet = self._prepare_input()
+        burnish_settings = octuplet[2:7]
+        lefts, middles, rights, left_lengths, right_lengths = burnish_settings
         lefts_index, rights_index = 0, 0
         burnished_divisions = []
         for division_index, division in enumerate(divisions):
@@ -517,42 +542,10 @@ class TaleaRhythmMaker(RhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
-    def _burnish_division_part(self, division_part, token):
-        assert len(division_part) == len(token)
-        new_division_part = []
-        for number, i in zip(division_part, token):
-            if i == -1:
-                new_division_part.append(-abs(number))
-            elif i == 0:
-                new_division_part.append(number)
-            elif i == 1:
-                new_division_part.append(abs(number))
-            else:
-                raise ValueError
-        new_division_part = type(division_part)(new_division_part)
-        return new_division_part
-
-    def _burnish_division_parts(self, divisions):
-        burnish_specifier = self.burnish_specifier
-        if burnish_specifier is None:
-            return divisions
+    def _burnish_outer_divisions(self, divisions):
         octuplet = self._prepare_input()
         burnish_settings = octuplet[2:7]
-        if burnish_specifier.burnish_each_division:
-            return self._burnish_all_division_parts(
-                divisions, 
-                burnish_settings,
-                )
-        elif burnish_specifier.burnish_output:
-            return self._burnish_first_and_last_division_parts(
-                divisions, 
-                burnish_settings,
-                )
-        else:
-            raise ValueError
-
-    def _burnish_first_and_last_division_parts(self, divisions, quintuplet):
-        lefts, middles, rights, left_lengths, right_lengths = quintuplet
+        lefts, middles, rights, left_lengths, right_lengths = burnish_settings
         burnished_divisions = []
         left_length = 0
         if left_lengths:
@@ -701,9 +694,12 @@ class TaleaRhythmMaker(RhythmMaker):
             prolated_numerators, 
             overhang=False,
             )
-        burnished_map_divisions = self._burnish_division_parts(map_divisions)
-        numeric_map = burnished_map_divisions
-        return numeric_map
+        if self.burnish_specifier is not None:
+            #burnished_map_divisions = self._burnish_division_parts(map_divisions)
+            #numeric_map = burnished_map_divisions
+            #return numeric_map
+            map_divisions = self._apply_burnish_specifier(map_divisions)
+        return map_divisions
 
     def _make_prolated_divisions(self, divisions, extra_counts_per_division):
         prolated_divisions = []
@@ -2094,9 +2090,6 @@ class TaleaRhythmMaker(RhythmMaker):
         extra_counts_per_division = \
             self._reverse_tuple(self.extra_counts_per_division)
         burnish_specifier = self.burnish_specifier
-        #if burnish_specifier is None:
-        #    burnish_specifier = rhythmmakertools.BurnishSpecifier()
-        #burnish_specifier = burnish_specifier.reverse()
         if burnish_specifier is not None:
             burnish_specifier = burnish_specifier.reverse()
         split_divisions_by_counts = \
