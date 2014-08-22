@@ -443,7 +443,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def _apply_burnish_specifier(self, divisions):
         if self.burnish_specifier.burnish_each_division:
             return self._burnish_each_division(divisions)
-        elif self.burnish_specifier.burnish_output:
+        elif self.burnish_specifier.burnish_outer_divisions:
             return self._burnish_outer_divisions(divisions)
         else:
             raise ValueError
@@ -453,7 +453,6 @@ class TaleaRhythmMaker(RhythmMaker):
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
-        #if not tie_specifier.tie_split_notes:
         if not self.tie_split_notes:
             return
         leaves = list(iterate(result).by_class(scoretools.Leaf))
@@ -1132,7 +1131,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_output=True,
+                ...     burnish_outer_divisions=True,
                 ...     lefts=(-1,),
                 ...     middles=(0,),
                 ...     rights=(-1,),
