@@ -5,11 +5,11 @@ from abjad import *
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=(0,),
-        middles=(-1,),
-        rights=(0,),
-        left_lengths=(1,),
-        right_lengths=(1,),
+        left_classes=(0,),
+        middle_classes=(-1,),
+        right_classes=(0,),
+        left_counts=(1,),
+        right_counts=(1,),
         outer_divisions_only=True,
         )
 
@@ -69,10 +69,10 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=(-1,),
-        rights=(-1,),
-        left_lengths=(1,),
-        right_lengths=(1,),
+        left_classes=(-1,),
+        right_classes=(-1,),
+        left_counts=(1,),
+        right_counts=(1,),
         outer_divisions_only=True,
         )
 
@@ -124,10 +124,10 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=(-1,),
-        rights=(-1,),
-        left_lengths=(1,),
-        right_lengths=(1,),
+        left_classes=(-1,),
+        right_classes=(-1,),
+        left_counts=(1,),
+        right_counts=(1,),
         outer_divisions_only=True,
         )
 
@@ -186,10 +186,10 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=(-1,),
-        rights=(-1,),
-        left_lengths=(1,),
-        right_lengths=(2,),
+        left_classes=(-1,),
+        right_classes=(-1,),
+        left_counts=(1,),
+        right_counts=(2,),
         outer_divisions_only=True,
         )
 

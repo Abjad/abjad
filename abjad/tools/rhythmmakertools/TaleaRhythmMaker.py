@@ -162,11 +162,11 @@ class TaleaRhythmMaker(RhythmMaker):
         talea_helper = helper_functions.get('talea')
         prolation_addenda_helper = helper_functions.get(
             'extra_counts_per_division')
-        lefts_helper = helper_functions.get('lefts')
-        middles_helper = helper_functions.get('middles')
-        rights_helper = helper_functions.get('rights')
-        left_lengths_helper = helper_functions.get('left_lengths')
-        right_lengths_helper = helper_functions.get('right_lengths')
+        lefts_helper = helper_functions.get('left_classes')
+        middles_helper = helper_functions.get('middle_classes')
+        rights_helper = helper_functions.get('right_classes')
+        left_lengths_helper = helper_functions.get('left_counts')
+        right_lengths_helper = helper_functions.get('right_counts')
         secondary_divisions_helper = \
             helper_functions.get('split_divisions_by_counts')
         extra_counts_per_division = self._to_tuple(extra_counts_per_division)
@@ -505,15 +505,15 @@ class TaleaRhythmMaker(RhythmMaker):
     def _burnish_each_division(self, divisions):
         octuplet = self._prepare_input()
         burnish_settings = octuplet[2:7]
-        lefts, middles, rights, left_lengths, right_lengths = burnish_settings
+        left_classes, middle_classes, right_classes, left_counts, right_counts = burnish_settings
         lefts_index, rights_index = 0, 0
         burnished_divisions = []
         for division_index, division in enumerate(divisions):
-            left_length = left_lengths[division_index]
-            left = lefts[lefts_index:lefts_index + left_length]
+            left_length = left_counts[division_index]
+            left = left_classes[lefts_index:lefts_index + left_length]
             lefts_index += left_length
-            right_length = right_lengths[division_index]
-            right = rights[rights_index:rights_index + right_length]
+            right_length = right_counts[division_index]
+            right = right_classes[rights_index:rights_index + right_length]
             rights_index += right_length
             available_left_length = len(division)
             left_length = min([left_length, available_left_length])
@@ -521,7 +521,7 @@ class TaleaRhythmMaker(RhythmMaker):
             right_length = min([right_length, available_right_length])
             middle_length = len(division) - left_length - right_length
             left = left[:left_length]
-            middle = middle_length * [middles[division_index]]
+            middle = middle_length * [middle_classes[division_index]]
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
@@ -543,16 +543,16 @@ class TaleaRhythmMaker(RhythmMaker):
     def _burnish_outer_divisions(self, divisions):
         octuplet = self._prepare_input()
         burnish_settings = octuplet[2:7]
-        lefts, middles, rights, left_lengths, right_lengths = burnish_settings
+        left_classes, middle_classes, right_classes, left_counts, right_counts = burnish_settings
         burnished_divisions = []
         left_length = 0
-        if left_lengths:
-            left_length = left_lengths[0]
-        left = lefts[:left_length]
+        if left_counts:
+            left_length = left_counts[0]
+        left = left_classes[:left_length]
         right_length = 0
-        if right_lengths:
-            right_length = right_lengths[0]
-        right = rights[:right_length]
+        if right_counts:
+            right_length = right_counts[0]
+        right = right_classes[:right_length]
         if len(divisions) == 1:
             available_left_length = len(divisions[0])
             left_length = min([left_length, available_left_length])
@@ -560,9 +560,9 @@ class TaleaRhythmMaker(RhythmMaker):
             right_length = min([right_length, available_right_length])
             middle_length = len(divisions[0]) - left_length - right_length
             left = left[:left_length]
-            if not middles:
-                middles = [1]
-            middle = [middles[0]]
+            if not middle_classes:
+                middle_classes = [1]
+            middle = [middle_classes[0]]
             middle = middle_length * middle
             right = right[:right_length]
             left_part, middle_part, right_part = \
@@ -583,9 +583,9 @@ class TaleaRhythmMaker(RhythmMaker):
             left_length = min([left_length, available_left_length])
             middle_length = len(divisions[0]) - left_length
             left = left[:left_length]
-            if not middles:
-                middles = [1]
-            middle = [middles[0]]
+            if not middle_classes:
+                middle_classes = [1]
+            middle = [middle_classes[0]]
             middle = middle_length * middle
             left_part, middle_part = \
                 sequencetools.partition_sequence_by_counts(
@@ -601,7 +601,7 @@ class TaleaRhythmMaker(RhythmMaker):
             # middle divisions
             for division in divisions[1:-1]:
                 middle_part = division
-                middle = len(division) * [middles[0]]
+                middle = len(division) * [middle_classes[0]]
                 middle_part = self._burnish_division_part(middle_part, middle)
                 burnished_division = middle_part
                 burnished_divisions.append(burnished_division)
@@ -610,7 +610,7 @@ class TaleaRhythmMaker(RhythmMaker):
             right_length = min([right_length, available_right_length])
             middle_length = len(divisions[-1]) - right_length
             right = right[:right_length]
-            middle = middle_length * [middles[0]]
+            middle = middle_length * [middle_classes[0]]
             middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
                     divisions[-1],
@@ -740,44 +740,44 @@ class TaleaRhythmMaker(RhythmMaker):
 
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
-            lefts = ()
-            middles = ()
-            rights = ()
-            left_lengths = ()
-            right_lengths = ()
+            left_classes = ()
+            middle_classes = ()
+            right_classes = ()
+            left_counts = ()
+            right_counts = ()
         else:
-            lefts = burnish_specifier.lefts
-            middles = burnish_specifier.middles
-            rights = burnish_specifier.rights
-            left_lengths = burnish_specifier.left_lengths
-            right_lengths = burnish_specifier.right_lengths
+            left_classes = burnish_specifier.left_classes
+            middle_classes = burnish_specifier.middle_classes
+            right_classes = burnish_specifier.right_classes
+            left_counts = burnish_specifier.left_counts
+            right_counts = burnish_specifier.right_counts
 
         lefts_helper = self._none_to_trivial_helper(
-            helper_functions.get('lefts'))
-        lefts = lefts_helper(lefts, seeds)
-        lefts = datastructuretools.CyclicTuple(lefts)
+            helper_functions.get('left_classes'))
+        left_classes = lefts_helper(left_classes, seeds)
+        left_classes = datastructuretools.CyclicTuple(left_classes)
 
-        if middles == () or middles is None:
-            middles = (0,)
+        if middle_classes == () or middle_classes is None:
+            middle_classes = (0,)
         middles_helper = self._none_to_trivial_helper(
-            helper_functions.get('middles'))
-        middles = middles_helper(middles, seeds)
-        middles = datastructuretools.CyclicTuple(middles)
+            helper_functions.get('middle_classes'))
+        middle_classes = middles_helper(middle_classes, seeds)
+        middle_classes = datastructuretools.CyclicTuple(middle_classes)
 
         rights_helper = self._none_to_trivial_helper(
-            helper_functions.get('rights'))
-        rights = rights_helper(rights, seeds)
-        rights = datastructuretools.CyclicTuple(rights)
+            helper_functions.get('right_classes'))
+        right_classes = rights_helper(right_classes, seeds)
+        right_classes = datastructuretools.CyclicTuple(right_classes)
 
         left_lengths_helper = self._none_to_trivial_helper(
-            helper_functions.get('left_lengths'))
-        left_lengths = left_lengths_helper(left_lengths, seeds)
-        left_lengths = datastructuretools.CyclicTuple(left_lengths)
+            helper_functions.get('left_counts'))
+        left_counts = left_lengths_helper(left_counts, seeds)
+        left_counts = datastructuretools.CyclicTuple(left_counts)
 
         right_lengths_helper = self._none_to_trivial_helper(
-            helper_functions.get('right_lengths'))
-        right_lengths = right_lengths_helper(right_lengths, seeds)
-        right_lengths = datastructuretools.CyclicTuple(right_lengths)
+            helper_functions.get('right_counts'))
+        right_counts = right_lengths_helper(right_counts, seeds)
+        right_counts = datastructuretools.CyclicTuple(right_counts)
 
         split_divisions_by_counts = self.split_divisions_by_counts or ()
         secondary_divisions_helper = self._none_to_trivial_helper(
@@ -790,11 +790,11 @@ class TaleaRhythmMaker(RhythmMaker):
         return (
             talea,
             extra_counts_per_division,
-            lefts,
-            middles,
-            rights,
-            left_lengths,
-            right_lengths,
+            left_classes,
+            middle_classes,
+            right_classes,
+            left_counts,
+            right_counts,
             split_divisions_by_counts,
             )
 
@@ -1129,10 +1129,10 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest],
-                ...     rights=[Rest],
-                ...     left_lengths=[1],
-                ...     right_lengths=[2],
+                ...     left_classes=[Rest],
+                ...     right_classes=[Rest],
+                ...     left_counts=[1],
+                ...     right_counts=[2],
                 ...     outer_divisions_only=True,
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
@@ -1199,10 +1199,10 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest],
-                ...     rights=[0],
-                ...     left_lengths=[1],
-                ...     right_lengths=[0],
+                ...     left_classes=[Rest],
+                ...     right_classes=[0],
+                ...     left_counts=[1],
+                ...     right_counts=[0],
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=talea,

@@ -15,8 +15,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[Rest],
-            ...     left_lengths=[1],
+            ...     left_classes=[Rest],
+            ...     left_counts=[1],
             ...     )
 
     ..  container:: example
@@ -26,8 +26,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[Rest],
-            ...     left_lengths=[3],
+            ...     left_classes=[Rest],
+            ...     left_counts=[3],
             ...     )
 
     ..  container:: example
@@ -37,8 +37,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[Rest],
-            ...     right_lengths=[1],
+            ...     right_classes=[Rest],
+            ...     right_counts=[1],
             ...     )
 
     ..  container:: example
@@ -48,8 +48,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[Rest],
-            ...     right_lengths=[3],
+            ...     right_classes=[Rest],
+            ...     right_counts=[3],
             ...     )
 
     ..  container:: example
@@ -60,8 +60,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[Rest, Note],
-            ...     left_lengths=[1],
+            ...     left_classes=[Rest, Note],
+            ...     left_counts=[1],
             ...     )
 
     ..  container:: example
@@ -72,8 +72,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[Rest, Note],
-            ...     right_lengths=[1],
+            ...     right_classes=[Rest, Note],
+            ...     right_counts=[1],
             ...     )
 
     ..  container:: example
@@ -84,8 +84,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[Rest, 0],
-            ...     left_lengths=[1],
+            ...     left_classes=[Rest, 0],
+            ...     left_counts=[1],
             ...     )
 
     ..  container:: example
@@ -96,8 +96,8 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[Rest, 0],
-            ...     right_lengths=[1],
+            ...     right_classes=[Rest, 0],
+            ...     right_counts=[1],
             ...     )
 
     Burnish specifiers are immutable.
@@ -118,35 +118,35 @@ class BurnishSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        lefts=None,
-        middles=None,
-        rights=None,
-        left_lengths=None,
-        right_lengths=None,
+        left_classes=None,
+        middle_classes=None,
+        right_classes=None,
+        left_counts=None,
+        right_counts=None,
         outer_divisions_only=False,
         ):
         assert isinstance(outer_divisions_only, bool)
         self._outer_divisions_only = outer_divisions_only
-        lefts = self._to_tuple(lefts)
-        middles = self._to_tuple(middles)
-        if middles == (0,):
-            middles = ()
-        rights = self._to_tuple(rights)
-        left_lengths = self._to_tuple(left_lengths)
-        right_lengths = self._to_tuple(right_lengths)
-        assert self._is_sign_tuple(lefts)
-        assert self._is_sign_tuple(middles)
-        assert self._is_sign_tuple(rights)
-        assert self._is_length_tuple(left_lengths)
-        assert self._is_length_tuple(right_lengths)
-        self._lefts = lefts
-        self._middles = middles
-        self._rights = rights
-        self._left_lengths = left_lengths
-        self._right_lengths = right_lengths
+        left_classes = self._to_tuple(left_classes)
+        middle_classes = self._to_tuple(middle_classes)
+        if middle_classes == (0,):
+            middle_classes = ()
+        right_classes = self._to_tuple(right_classes)
+        left_counts = self._to_tuple(left_counts)
+        right_counts = self._to_tuple(right_counts)
+        assert self._is_sign_tuple(left_classes)
+        assert self._is_sign_tuple(middle_classes)
+        assert self._is_sign_tuple(right_classes)
+        assert self._is_length_tuple(left_counts)
+        assert self._is_length_tuple(right_counts)
+        self._lefts = left_classes
+        self._middles = middle_classes
+        self._rights = right_classes
+        self._left_lengths = left_counts
+        self._right_lengths = right_counts
         if outer_divisions_only:
-            assert len(left_lengths) <= 1, repr(left_lengths)
-            assert len(right_lengths) <= 1, repr(right_lengths)
+            assert len(left_counts) <= 1, repr(left_counts)
+            assert len(right_counts) <= 1, repr(right_counts)
 
     ### SPECIAL METHODS ###
 
@@ -159,12 +159,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ... )
                 >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ... )
                 >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
 
@@ -202,19 +202,19 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ...     )
 
             ::
 
                 >>> print(format(burnish_specifier))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(
+                    left_classes=(
                         scoretools.Rest,
                         0,
                         ),
-                    left_lengths=(1,),
+                    left_counts=(1,),
                     )
 
         Returns string.
@@ -241,12 +241,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ... )
                 >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ... )
                 >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
 
@@ -283,14 +283,14 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     left_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     left_counts=[1],
                 ...     )
 
             ::
 
                 >>> burnish_specifier
-                BurnishSpecifier(lefts=(Rest, 0), left_lengths=(1,))
+                BurnishSpecifier(left_classes=(Rest, 0), left_counts=(1,))
 
         Returns string.
         '''
@@ -304,27 +304,27 @@ class BurnishSpecifier(AbjadValueObject):
         from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='lefts',
+                name='left_classes',
                 command='l',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
-                name='middles',
+                name='middle_classes',
                 command='m',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
-                name='rights',
+                name='right_classes',
                 command='r',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
-                name='left_lengths',
+                name='left_counts',
                 command='ll',
                 editor=idetools.getters.get_integers,
                 ),
             systemtools.AttributeDetail(
-                name='right_lengths',
+                name='right_counts',
                 command='rl',
                 editor=idetools.getters.get_integers,
                 ),
@@ -342,16 +342,16 @@ class BurnishSpecifier(AbjadValueObject):
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
-        if not self.lefts:
-            keyword_argument_names.remove('lefts')
-        if not self.middles:
-            keyword_argument_names.remove('middles')
-        if not self.rights:
-            keyword_argument_names.remove('rights')
-        if not self.left_lengths:
-            keyword_argument_names.remove('left_lengths')
-        if not self.right_lengths:
-            keyword_argument_names.remove('right_lengths')
+        if not self.left_classes:
+            keyword_argument_names.remove('left_classes')
+        if not self.middle_classes:
+            keyword_argument_names.remove('middle_classes')
+        if not self.right_classes:
+            keyword_argument_names.remove('right_classes')
+        if not self.left_counts:
+            keyword_argument_names.remove('left_counts')
+        if not self.right_counts:
+            keyword_argument_names.remove('right_counts')
         if self.outer_divisions_only == False:
             keyword_argument_names.remove('outer_divisions_only')
         return systemtools.StorageFormatSpecification(
@@ -389,7 +389,7 @@ class BurnishSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def left_lengths(self):
+    def left_counts(self):
         r'''Gets left lengths of burnish specifier.
 
         ..  container:: example
@@ -397,15 +397,15 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
-                >>> burnish_specifier.left_lengths
+                >>> burnish_specifier.left_counts
                 (2,)
 
         Returns tuple or none.
@@ -413,23 +413,23 @@ class BurnishSpecifier(AbjadValueObject):
         return self._left_lengths
 
     @property
-    def lefts(self):
-        r'''Gets lefts of burnish specifier.
+    def left_classes(self):
+        r'''Gets left_classes of burnish specifier.
 
         ..  container:: example
 
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
-                >>> burnish_specifier.lefts
+                >>> burnish_specifier.left_classes
                 (<class 'abjad.tools.scoretools.Rest.Rest'>, 0)
 
         Returns tuple or none.
@@ -437,23 +437,23 @@ class BurnishSpecifier(AbjadValueObject):
         return self._lefts
 
     @property
-    def middles(self):
-        r'''Gets middles of burnish specifier.
+    def middle_classes(self):
+        r'''Gets middle_classes of burnish specifier.
 
         ..  container:: example
 
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
-                >>> burnish_specifier.middles is None
+                >>> burnish_specifier.middle_classes is None
                 True
 
         Returns tuple or none.
@@ -472,7 +472,7 @@ class BurnishSpecifier(AbjadValueObject):
         return self._outer_divisions_only
 
     @property
-    def right_lengths(self):
+    def right_counts(self):
         r'''Gets right lengths of burnish specifier.
 
         ..  container:: example
@@ -480,15 +480,15 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
-                >>> burnish_specifier.right_lengths
+                >>> burnish_specifier.right_counts
                 (1,)
 
         Returns tuple or none.
@@ -496,23 +496,23 @@ class BurnishSpecifier(AbjadValueObject):
         return self._right_lengths
 
     @property
-    def rights(self):
-        r'''Gets rights of burnish specifier.
+    def right_classes(self):
+        r'''Gets right_classes of burnish specifier.
 
         ..  container:: example
 
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
-                >>> burnish_specifier.rights
+                >>> burnish_specifier.right_classes
                 (<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0)
 
         Returns tuple or none.
@@ -529,49 +529,49 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
                 ...     )
 
             ::
 
                 >>> print(format(burnish_specifier.reverse()))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(
+                    left_classes=(
                         0,
                         scoretools.Rest,
                         ),
-                    rights=(
+                    right_classes=(
                         0,
                         scoretools.Rest,
                         scoretools.Rest,
                         ),
-                    left_lengths=(2,),
-                    right_lengths=(1,),
+                    left_counts=(2,),
+                    right_counts=(1,),
                     )
 
         Returns new burnish specification.
         '''
         from abjad.tools import rhythmmakertools
-        lefts = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.lefts)
-        middles = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.middles)
-        rights = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.rights)
-        left_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.left_lengths)
-        right_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.right_lengths)
+        left_classes = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.left_classes)
+        middle_classes = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.middle_classes)
+        right_classes = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.right_classes)
+        left_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.left_counts)
+        right_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.right_counts)
         result = new(
             self,
-            lefts=lefts,
-            middles=middles,
-            rights=rights,
-            left_lengths=left_lengths,
-            right_lengths=right_lengths,
+            left_classes=left_classes,
+            middle_classes=middle_classes,
+            right_classes=right_classes,
+            left_counts=left_counts,
+            right_counts=right_counts,
             )
         return result
 
@@ -583,47 +583,47 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[Rest, 0],
-                ...     rights=[Rest, Rest, 0],
-                ...     left_lengths=[2],
-                ...     right_lengths=[1, 2, 3],
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1, 2, 3],
                 ...     )
 
             ::
 
                 >>> print(format(burnish_specifier.rotate(1)))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(
+                    left_classes=(
                         0,
                         scoretools.Rest,
                         ),
-                    rights=(
+                    right_classes=(
                         0,
                         scoretools.Rest,
                         scoretools.Rest,
                         ),
-                    left_lengths=(2,),
-                    right_lengths=(3, 1, 2),
+                    left_counts=(2,),
+                    right_counts=(3, 1, 2),
                     )
 
         Returns new burnish specification.
         '''
         from abjad.tools import rhythmmakertools
-        lefts = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.lefts, n)
-        middles = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.middles, n)
-        rights = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.rights, n)
-        left_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.left_lengths, n)
-        right_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.right_lengths, n)
+        left_classes = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.left_classes, n)
+        middle_classes = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.middle_classes, n)
+        right_classes = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.right_classes, n)
+        left_counts = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.left_counts, n)
+        right_counts = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.right_counts, n)
         return new(
             self,
-            lefts=lefts,
-            middles=middles,
-            rights=rights,
-            left_lengths=left_lengths,
-            right_lengths=right_lengths,
+            left_classes=left_classes,
+            middle_classes=middle_classes,
+            right_classes=right_classes,
+            left_counts=left_counts,
+            right_counts=right_counts,
             )

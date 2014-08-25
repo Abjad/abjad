@@ -5,10 +5,10 @@ from abjad import *
 def test_rhythmmakertools_BurnishSpecifier_01():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=[Rest],
-        rights=[Rest],
-        left_lengths=[2],
-        right_lengths=[1],
+        left_classes=[Rest],
+        right_classes=[Rest],
+        left_counts=[2],
+        right_counts=[1],
         )
 
     talea = rhythmmakertools.Talea(
@@ -63,11 +63,11 @@ def test_rhythmmakertools_BurnishSpecifier_01():
 def test_rhythmmakertools_BurnishSpecifier_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=[0],
-        middles=[Rest],
-        rights=[0],
-        left_lengths=[2],
-        right_lengths=[1],
+        left_classes=[0],
+        middle_classes=[Rest],
+        right_classes=[0],
+        left_counts=[2],
+        right_counts=[1],
         )
 
     talea = rhythmmakertools.Talea(
@@ -122,11 +122,11 @@ def test_rhythmmakertools_BurnishSpecifier_02():
 def test_rhythmmakertools_BurnishSpecifier_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=[0],
-        middles=[Rest],
-        rights=[0],
-        left_lengths=[2],
-        right_lengths=[1],
+        left_classes=[0],
+        middle_classes=[Rest],
+        right_classes=[0],
+        left_counts=[2],
+        right_counts=[1],
         )
 
     talea= rhythmmakertools.Talea(
@@ -186,10 +186,10 @@ def test_rhythmmakertools_BurnishSpecifier_03():
 def test_rhythmmakertools_BurnishSpecifier_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=[Rest],
-        rights=[Rest],
-        left_lengths=[1],
-        right_lengths=[1],
+        left_classes=[Rest],
+        right_classes=[Rest],
+        left_counts=[1],
+        right_counts=[1],
         )
 
     talea = rhythmmakertools.Talea(
@@ -245,10 +245,10 @@ def test_rhythmmakertools_BurnishSpecifier_04():
 def test_rhythmmakertools_BurnishSpecifier_05():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
-        lefts=[Rest],
-        rights=[Rest],
-        left_lengths=[1],
-        right_lengths=[1],
+        left_classes=[Rest],
+        right_classes=[Rest],
+        left_counts=[1],
+        right_counts=[1],
         )
 
     talea = rhythmmakertools.Talea(

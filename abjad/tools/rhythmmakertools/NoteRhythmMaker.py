@@ -225,10 +225,10 @@ class NoteRhythmMaker(RhythmMaker):
         raise NotImplementedError(message)
 
     def _burnish_outer_divisions(self, selections):
-        lefts = self.burnish_specifier.lefts
-        left_lengths = self.burnish_specifier.left_lengths
-        rights = self.burnish_specifier.rights
-        right_lengths = self.burnish_specifier.right_lengths
+        left_classes = self.burnish_specifier.left_classes
+        left_counts = self.burnish_specifier.left_counts
+        right_classes = self.burnish_specifier.right_classes
+        right_counts = self.burnish_specifier.right_counts
         raise Exception(selections)
 
     def _make_music(self, divisions, seeds):
