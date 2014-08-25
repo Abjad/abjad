@@ -369,10 +369,12 @@ class BurnishSpecifier(AbjadValueObject):
 
     @staticmethod
     def _is_sign_tuple(expr):
+        from abjad.tools import scoretools
         if expr is None:
             return True
         if isinstance(expr, tuple):
-            return all(x in (-1, 0, 1) for x in expr)
+            prototype = (-1, 0, 1, scoretools.Note, scoretools.Rest)
+            return all(_ in prototype for _ in expr)
         return False
 
     @staticmethod
