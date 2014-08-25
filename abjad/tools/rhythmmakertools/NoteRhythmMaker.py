@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
@@ -229,7 +231,52 @@ class NoteRhythmMaker(RhythmMaker):
         left_counts = self.burnish_specifier.left_counts
         right_classes = self.burnish_specifier.right_classes
         right_counts = self.burnish_specifier.right_counts
-        raise Exception(selections)
+        if left_counts:
+            assert len(left_counts) == 1, repr(left_counts)
+            left_count = left_counts[0]
+        else:
+            left_count = 0
+        if right_counts:
+            assert len(right_counts) == 1, repr(right_counts)
+            right_count = right_counts[0]
+        else:
+            right_count = 0
+        if left_count + right_count <= len(selections):
+            middle_count = len(selections) - (left_count + right_count)
+        elif left_count <= len(selections):
+            right_count = len(selections) - left_count
+            middle_count = 0
+        else:  
+            left_count = len(selections)
+            right_count = 0
+            middle_count = 0
+        assert left_count + middle_count + right_count == len(selections)
+        new_selections = []
+        left_classes = datastructuretools.CyclicTuple(left_classes)
+        for i, selection in enumerate(selections[:left_count]):
+            target_class = left_classes[i]
+            new_selection = self._cast_selection(selection, target_class)
+            new_selections.append(new_selection)
+        if right_count:
+            for selection in selections[left_count:-right_count]:
+                new_selections.append(selection)
+            right_classes = datastructuretools.CyclicTuple(right_classes)
+            for i, selection in enumerate(selections[-right_count:]):
+                target_class = right_classes[i]
+                new_selection = self._cast_selection(selection, target_class)
+                new_selections.append(new_selection)
+        else:
+            for selection in selections[left_count:]:
+                new_selections.append(selection)
+        return new_selections
+
+    def _cast_selection(self, selection, target_class):
+        new_selection = []
+        for leaf in selection:
+            new_leaf = target_class(leaf)
+            new_selection.append(new_leaf)
+        new_selection = selectiontools.Selection(new_selection)
+        return new_selection
 
     def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
@@ -268,6 +315,196 @@ class NoteRhythmMaker(RhythmMaker):
     @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Burnishes nothing:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                    {
+                        c'4
+                    }
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Forces leaves of first division to be rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[1],
+                ...         outer_divisions_only=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        r2
+                        r8
+                    }
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                    {
+                        c'4
+                    }
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Forces leaves of first two divisions to be rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[2],
+                ...         outer_divisions_only=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        r2
+                        r8
+                    }
+                    {
+                        \time 2/8
+                        r4
+                    }
+                    {
+                        c'4
+                    }
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Forces leaves of first and last divisions to rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[1],
+                ...         right_classes=[Rest],
+                ...         right_counts=[1],
+                ...         outer_divisions_only=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        r2
+                        r8
+                    }
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                    {
+                        c'4
+                    }
+                    {
+                        \time 5/8
+                        r2
+                        r8
+                    }
+                }
+
+        ..  note:: Currently only works when `outer_divisions_only` is true.
 
         Returns burnish specifier or none.
         '''
