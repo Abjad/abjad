@@ -487,14 +487,15 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_spanner._extend(part)
 
     def _burnish_division_part(self, division_part, token):
+        from abjad.tools import scoretools
         assert len(division_part) == len(token)
         new_division_part = []
         for number, i in zip(division_part, token):
-            if i == -1:
+            if i in (-1, scoretools.Rest):
                 new_division_part.append(-abs(number))
             elif i == 0:
                 new_division_part.append(number)
-            elif i == 1:
+            elif i in (1, scoretools.Note):
                 new_division_part.append(abs(number))
             else:
                 raise ValueError
@@ -1128,8 +1129,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1],
-                ...     rights=[-1],
+                ...     lefts=[Rest],
+                ...     rights=[Rest],
                 ...     left_lengths=[1],
                 ...     right_lengths=[2],
                 ...     outer_divisions_only=True,
@@ -1198,7 +1199,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1],
+                ...     lefts=[Rest],
                 ...     rights=[0],
                 ...     left_lengths=[1],
                 ...     right_lengths=[0],

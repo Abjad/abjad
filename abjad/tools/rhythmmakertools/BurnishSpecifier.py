@@ -15,7 +15,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[-1],
+            ...     lefts=[Rest],
             ...     left_lengths=[1],
             ...     )
 
@@ -26,7 +26,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[-1],
+            ...     lefts=[Rest],
             ...     left_lengths=[3],
             ...     )
 
@@ -37,7 +37,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[-1],
+            ...     rights=[Rest],
             ...     right_lengths=[1],
             ...     )
 
@@ -48,7 +48,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[-1],
+            ...     rights=[Rest],
             ...     right_lengths=[3],
             ...     )
 
@@ -60,7 +60,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[-1, 1],
+            ...     lefts=[Rest, Note],
             ...     left_lengths=[1],
             ...     )
 
@@ -72,7 +72,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[-1, 1],
+            ...     rights=[Rest, Note],
             ...     right_lengths=[1],
             ...     )
 
@@ -84,7 +84,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     lefts=[-1, 0],
+            ...     lefts=[Rest, 0],
             ...     left_lengths=[1],
             ...     )
 
@@ -96,7 +96,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     rights=[-1, 0],
+            ...     rights=[Rest, 0],
             ...     right_lengths=[1],
             ...     )
 
@@ -159,11 +159,11 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ... )
                 >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ... )
                 >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
@@ -202,7 +202,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ...     )
 
@@ -210,7 +210,10 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> print(format(burnish_specifier))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(-1, 0),
+                    lefts=(
+                        scoretools.Rest,
+                        0,
+                        ),
                     left_lengths=(1,),
                     )
 
@@ -238,11 +241,11 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ... )
                 >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ... )
                 >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
@@ -280,14 +283,14 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
+                ...     lefts=[Rest, 0],
                 ...     left_lengths=[1],
                 ...     )
 
             ::
 
                 >>> burnish_specifier
-                BurnishSpecifier(lefts=(-1, 0), left_lengths=(1,))
+                BurnishSpecifier(lefts=(Rest, 0), left_lengths=(1,))
 
         Returns string.
         '''
@@ -394,8 +397,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -418,8 +421,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -427,7 +430,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.lefts
-                (-1, 0)
+                (<class 'abjad.tools.scoretools.Rest.Rest'>, 0)
 
         Returns tuple or none.
         '''
@@ -442,8 +445,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -477,8 +480,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -501,8 +504,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -510,7 +513,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.rights
-                (-1, -1, 0)
+                (<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0)
 
         Returns tuple or none.
         '''
@@ -526,8 +529,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1],
                 ...     )
@@ -536,8 +539,15 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> print(format(burnish_specifier.reverse()))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(0, -1),
-                    rights=(0, -1, -1),
+                    lefts=(
+                        0,
+                        scoretools.Rest,
+                        ),
+                    rights=(
+                        0,
+                        scoretools.Rest,
+                        scoretools.Rest,
+                        ),
                     left_lengths=(2,),
                     right_lengths=(1,),
                     )
@@ -573,8 +583,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     lefts=[-1, 0],
-                ...     rights=[-1, -1, 0],
+                ...     lefts=[Rest, 0],
+                ...     rights=[Rest, Rest, 0],
                 ...     left_lengths=[2],
                 ...     right_lengths=[1, 2, 3],
                 ...     )
@@ -583,8 +593,15 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> print(format(burnish_specifier.rotate(1)))
                 rhythmmakertools.BurnishSpecifier(
-                    lefts=(0, -1),
-                    rights=(0, -1, -1),
+                    lefts=(
+                        0,
+                        scoretools.Rest,
+                        ),
+                    rights=(
+                        0,
+                        scoretools.Rest,
+                        scoretools.Rest,
+                        ),
                     left_lengths=(2,),
                     right_lengths=(3, 1, 2),
                     )
