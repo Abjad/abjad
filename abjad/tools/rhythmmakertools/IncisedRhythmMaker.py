@@ -383,6 +383,9 @@ class IncisedRhythmMaker(RhythmMaker):
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
         for numeric_map_part in numeric_map:
+            numeric_map_part = [
+                _ for _ in numeric_map_part if _ != durationtools.Duration(0)
+                ]
             selection = scoretools.make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
