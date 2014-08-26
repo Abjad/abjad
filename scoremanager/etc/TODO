@@ -215,3 +215,5 @@
 45. Implement '-' to return to last screen. In emulation of shell.
 
 46. Implement (q!) to quit the IDE and then automatically clear terminal.
+
+47. Implement getters.get_signs (for vectors of -1, 0, 1).
