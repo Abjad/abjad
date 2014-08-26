@@ -280,7 +280,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
-                ...         counts=(1, 2, 3, 4),
+                ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
                 ...     )
@@ -852,7 +852,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker beams each division:
+            **Example 1.** This rhythm-maker beams each division:
 
             ::
 
@@ -928,7 +928,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker beams divisions together:
+            **Example 2.** This rhythm-maker beams divisions together:
 
             ::
 
@@ -1057,7 +1057,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker makes no beams:
+            **Example 3.** This rhythm-maker makes no beams:
 
             ::
 
@@ -1140,7 +1140,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This example burnishes outer divisions only.
+            **Example 1.** This example burnishes outer divisions only.
 
             This example makes a talea rhythm with the first leaf of output
             forcibly cast to a rest and also with the last two leaves of output
@@ -1206,10 +1206,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            'Division burnishing' means forcibly to cast the first leaf (or
-            leaves) of every division; or forcibly to cast the last
-            leaf (or leaves) of every division; or forcibly to cast
-            both the first and last leaves of every division at the same time.
+            **Example 2.** 'Division burnishing' means forcibly to cast the
+            first leaf (or leaves) of every division; or forcibly to cast the
+            last leaf (or leaves) of every division; or forcibly to cast both
+            the first and last leaves of every division at the same time.
 
             This example makes a talea rhythm with the first leaf of every
             division forcibly cast to a rest:
@@ -1283,8 +1283,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker spells nonassignable durations like ``5/16`` with
-            monontonically decreasing durations:
+            **Example 1.** This rhythm-maker spells nonassignable durations
+            like ``5/16`` with monontonically decreasing durations:
 
             ::
 
@@ -1338,8 +1338,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker spells nonassignable durations like ``5/16`` with
-            monontonically increasing durations:
+            **Example 2.** This rhythm-maker spells nonassignable durations
+            like ``5/16`` with monontonically increasing durations:
 
             ::
 
@@ -1391,7 +1391,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker has no forbidden durations:
+            **Example 3.** This rhythm-maker has no forbidden durations:
 
             ::
 
@@ -1443,7 +1443,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            This rhythm-maker forbids durations equal to ``1/4`` or greater:
+            **Example 4.** This rhythm-maker forbids durations equal to ``1/4``
+            or greater:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1506,7 +1507,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Here's a talea:
+            **Example 1.** Here's a talea:
 
             ::
 
@@ -1559,8 +1560,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Here's the same rhythm with an extra count added to every other
-            division:
+        ..  container:: example
+
+            **Example 2.** Here's the same rhythm with an extra count added to
+            every other division:
 
             ::
 
@@ -1622,8 +1625,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            And here's the same rhythm with two extra counts added to every
-            other division:
+        ..  container:: example
+
+            **Example 3.** And here's the same rhythm with two extra counts
+            added to every other division:
 
             ::
 
@@ -1710,9 +1715,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Here's a talea equal to two thirty-second repeating indefinitely.
-            The maker makes four divisions equal to 12 thirty-second notes
-            each:
+            **Example 1.** Here's a talea equal to two thirty-second repeating
+            indefinitely. The maker makes four divisions equal to 12
+            thirty-second notes each:
 
             ::
 
@@ -1773,10 +1778,12 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Here's the same talea with secondary divisions set to split the
-            divisions every 17 thirty-second notes. The maker makes six
-            divisions with durations equal, respectively, to 12, 5, 7, 10, 2
-            and 12 thirty-second notes.
+        ..  container:: example
+
+            **Example 2.** Here's the same talea with secondary divisions set
+            to split the divisions every 17 thirty-second notes. The maker
+            makes six divisions with durations equal, respectively, to 12, 5,
+            7, 10, 2 and 12 thirty-second notes.
 
             Note that ``12 + 5 = 17`` and ``7 + 10 = 17``:
 
@@ -1845,9 +1852,12 @@ class TaleaRhythmMaker(RhythmMaker):
             `split_divisions_by_counts` are subject to `extra_counts_per_division` just like
             other divisions.
 
-            This example adds one extra thirty-second note to every other
-            division. The durations of the divisions remain the same as in the
-            previous example. But now every other division is tupletted:
+        ..  container:: example
+
+            **Example 3.** This example adds one extra thirty-second note to
+            every other division. The durations of the divisions remain the
+            same as in the previous example. But now every other division is
+            tupletted:
 
             ::
 
