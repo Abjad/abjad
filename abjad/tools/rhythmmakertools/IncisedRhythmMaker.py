@@ -19,7 +19,6 @@ class IncisedRhythmMaker(RhythmMaker):
         ::
 
             >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-            ...     incise_divisions=True,
             ...     prefix_talea=[-1],
             ...     prefix_counts=[0, 1],
             ...     suffix_talea=[-1],
@@ -176,7 +175,7 @@ class IncisedRhythmMaker(RhythmMaker):
         if incise_specifier is None:
             incise_specifier = rhythmmakertools.InciseSpecifier()
         if incise_specifier.fill_with_notes:
-            if incise_specifier.incise_divisions:
+            if not incise_specifier.outer_divisions_only:
                 if 0 < middle:
                     if incise_specifier.body_ratio is not None:
                         shards = mathtools.divide_number_by_ratio(
@@ -186,7 +185,7 @@ class IncisedRhythmMaker(RhythmMaker):
                         return (middle,)
                 else:
                     return ()
-            elif incise_specifier.incise_output:
+            elif incise_specifier.outer_divisions_only:
                 if 0 < middle:
                     return (middle,)
                 else:
@@ -195,12 +194,12 @@ class IncisedRhythmMaker(RhythmMaker):
                 message = 'must incise divisions or output.'
                 raise Exception(message)
         else:
-            if incise_specifier.incise_divisions:
+            if not incise_specifier.outer_divisions_only:
                 if 0 < middle:
                     return (-abs(middle),)
                 else:
                     return ()
-            elif incise_specifier.incise_output:
+            elif incise_specifier.outer_divisions_only:
                 if 0 < middle:
                     return (-abs(middle),)
                 else:
@@ -240,7 +239,7 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_specifier = self.incise_specifier
         if incise_specifier is None:
             incise_specifier = rhythmmakertools.InciseSpecifier()
-        if incise_specifier.incise_divisions:
+        if not incise_specifier.outer_divisions_only:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_divisions,
                 prefix_talea,
@@ -250,7 +249,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 extra_counts_per_division,
                 )
         else:
-            assert incise_specifier.incise_output
+            assert incise_specifier.outer_divisions_only
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_divisions,
                 prefix_talea,
@@ -513,17 +512,17 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Output-incised notes:
+            Outer notes incised:
 
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-                ...     incise_output=True,
                 ...     prefix_talea=[-8, -7],
                 ...     prefix_counts=[2],
                 ...     suffix_talea=[-3],
                 ...     suffix_counts=[4],
                 ...     talea_denominator=32,
+                ...     outer_divisions_only=True,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
@@ -566,18 +565,18 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Output-incised rests:
+            Incises first and last rests:
 
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-                ...     incise_output=True,
                 ...     prefix_talea=[7, 8],
                 ...     prefix_counts=[2],
                 ...     suffix_talea=[3],
                 ...     suffix_counts=[4],
                 ...     talea_denominator=32,
                 ...     fill_with_notes=False,
+                ...     outer_divisions_only=True,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,

@@ -14,8 +14,6 @@ class InciseSpecifier(AbjadValueObject):
     __slots__ = (
         '_body_ratio',
         '_fill_with_notes',
-        '_incise_divisions',
-        '_incise_output',
         '_outer_divisions_only',
         '_prefix_talea',
         '_prefix_lengths',
@@ -28,22 +26,15 @@ class InciseSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        incise_divisions=False,
-        incise_output=False,
-        prefix_talea=[-1],
-        prefix_counts=[0, 1],
-        suffix_talea=[-11],
-        suffix_counts=[1],
+        prefix_talea=(-1,),
+        prefix_counts=(0, 1),
+        suffix_talea=(-11,),
+        suffix_counts=(1,),
         talea_denominator=32,
         body_ratio=None,
         fill_with_notes=True,
+        outer_divisions_only=False,
         ):
-        assert isinstance(incise_divisions, bool)
-        self._incise_divisions = incise_divisions
-        assert isinstance(incise_output, bool)
-        self._incise_output = incise_output
-        assert incise_divisions or incise_output
-        assert not (incise_divisions and incise_output)
         assert self._is_integer_tuple(prefix_talea)
         self._prefix_talea = prefix_talea
         assert self._is_length_tuple(prefix_counts)
@@ -59,6 +50,8 @@ class InciseSpecifier(AbjadValueObject):
         self._body_ratio = body_ratio
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
+        assert isinstance(outer_divisions_only, bool)
+        self._outer_divisions_only = outer_divisions_only
 
     ### PRIVATE METHODS ###
 
@@ -103,16 +96,6 @@ class InciseSpecifier(AbjadValueObject):
         from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
-                name='incise_divisions',
-                command='id',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='incise_output',
-                command='io',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
                 name='prefix_talea',
                 command='pt',
                 editor=idetools.getters.get_nonzero_integers,
@@ -147,6 +130,11 @@ class InciseSpecifier(AbjadValueObject):
                 command='fn',
                 editor=idetools.getters.get_boolean,
                 ),
+            systemtools.AttributeDetail(
+                name='outer_divisions_only',
+                command='oo',
+                editor=idetools.getters.get_boolean,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###
@@ -162,7 +150,6 @@ class InciseSpecifier(AbjadValueObject):
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-                ...     incise_divisions=True,
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
@@ -230,28 +217,6 @@ class InciseSpecifier(AbjadValueObject):
         Returns boolean.
         '''
         return self._fill_with_notes
-
-    @property
-    def incise_divisions(self):
-        r'''Is true when rhythm-maker should incise every division.
-        Otherwise false.
-
-        Defaults to false.
-
-        Returns boolean.
-        '''
-        return self._incise_divisions
-
-    @property
-    def incise_output(self):
-        r'''Is true when rhythm-maker should incise first and last divisions.
-        Otherwise false.
-
-        Defaults to false.
-
-        Returns boolean.
-        '''
-        return self._incise_output
 
     @property
     def outer_divisions_only(self):
@@ -338,7 +303,6 @@ class InciseSpecifier(AbjadValueObject):
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-                ...     incise_divisions=True,
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 2, 1],
                 ...     suffix_talea=[-1, 1],
@@ -351,8 +315,6 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> print(format(incise_specifier.rotate(1)))
                 rhythmmakertools.InciseSpecifier(
-                    incise_divisions=True,
-                    incise_output=False,
                     prefix_talea=(-1,),
                     prefix_counts=(1, 0, 2),
                     suffix_talea=(1, -1),
@@ -360,6 +322,7 @@ class InciseSpecifier(AbjadValueObject):
                     talea_denominator=16,
                     body_ratio=mathtools.Ratio(1, 1),
                     fill_with_notes=True,
+                    outer_divisions_only=False,
                     )
 
         Returns new incision specifier.

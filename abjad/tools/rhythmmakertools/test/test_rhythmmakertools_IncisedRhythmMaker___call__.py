@@ -7,7 +7,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[-8],
         prefix_counts=[0, 1],
         suffix_talea=[-1],
@@ -63,7 +62,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[-8],
         prefix_counts=[1, 2, 3, 4],
         suffix_talea=[-1],
@@ -119,7 +117,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[-1],
         prefix_counts=[1],
         suffix_talea=[-8],
@@ -171,7 +168,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[],
         prefix_counts=[0],
         suffix_talea=[],
@@ -218,7 +214,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[-1],
         prefix_counts=[1],
         suffix_talea=[-1],
@@ -276,7 +271,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[-1],
         prefix_counts=[1],
         suffix_talea=[],
@@ -343,7 +337,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[8],
         prefix_counts=[0, 1],
         suffix_talea=[1],
@@ -401,7 +394,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[8],
         prefix_counts=[1, 2, 3, 4],
         suffix_talea=[1],
@@ -459,7 +451,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[1],
         prefix_counts=[1],
         suffix_talea=[8],
@@ -513,7 +504,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[],
         prefix_counts=[0],
         suffix_talea=[],
@@ -561,7 +551,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[1],
         prefix_counts=[1],
         suffix_talea=[1],
@@ -620,7 +609,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_divisions=True,
         prefix_talea=[1],
         prefix_counts=[1],
         suffix_talea=[],
@@ -688,12 +676,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[-8],
         prefix_counts=[2],
         suffix_talea=[-3],
         suffix_counts=[4],
         talea_denominator=32,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -739,12 +727,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[-1],
         prefix_counts=[20],
         suffix_talea=[-1],
         suffix_counts=[2],
         talea_denominator=4,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -788,12 +776,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[],
         prefix_counts=[0],
         suffix_talea=[],
         suffix_counts=[0],
         talea_denominator=4,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -835,12 +823,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[-1],
         prefix_counts=[1],
         suffix_talea=[-1],
         suffix_counts=[1],
         talea_denominator=8,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -888,12 +876,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[-1],
         prefix_counts=[1],
         suffix_talea=[-1],
         suffix_counts=[1],
         talea_denominator=8,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -950,13 +938,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[8],
         prefix_counts=[2],
         suffix_talea=[3],
         suffix_counts=[4],
         talea_denominator=32,
         fill_with_notes=False,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -1002,13 +990,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[1],
         prefix_counts=[20],
         suffix_talea=[1],
         suffix_counts=[2],
         talea_denominator=4,
         fill_with_notes=False,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -1052,13 +1040,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[],
         prefix_counts=[0],
         suffix_talea=[],
         suffix_counts=[0],
         talea_denominator=4,
         fill_with_notes=False,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -1100,13 +1088,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[1],
         prefix_counts=[1],
         suffix_talea=[1],
         suffix_counts=[1],
         talea_denominator=8,
         fill_with_notes=False,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
@@ -1154,13 +1142,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
     '''
 
     incise_specifier = rhythmmakertools.InciseSpecifier(
-        incise_output=True,
         prefix_talea=[1],
         prefix_counts=[1],
         suffix_talea=[1],
         suffix_counts=[1],
         talea_denominator=8,
         fill_with_notes=False,
+        outer_divisions_only=True,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
