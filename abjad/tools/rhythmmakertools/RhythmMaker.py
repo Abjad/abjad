@@ -297,9 +297,8 @@ class RhythmMaker(AbjadValueObject):
         multiplier = lcd / talea_denominator
         scaled_taleas = []
         for talea in taleas:
-            talea = datastructuretools.CyclicTuple(
-                [multiplier * x for x in talea],
-                )
+            talea = [multiplier * _ for _ in talea]
+            talea = datastructuretools.CyclicTuple(talea)
             scaled_taleas.append(talea)
         result = [divisions, lcd]
         result.extend(scaled_taleas)
