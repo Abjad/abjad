@@ -63,6 +63,8 @@ class InciseSpecifier(AbjadValueObject):
             assert mathtools.is_nonnegative_integer_power_of_two(
                 talea_denominator)
         self._talea_denominator = talea_denominator
+        if prefix_talea or suffix_talea:
+            assert talea_denominator is not None
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
