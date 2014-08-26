@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import new
 
 
 class InciseSpecifier(AbjadValueObject):
-    r'''Incision specifier.
+    r'''Incise specifier.
     '''
 
     ### CLASS VARIABLES ###
@@ -72,7 +72,7 @@ class InciseSpecifier(AbjadValueObject):
         if expr is None:
             return True
         if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
-            if isinstance(expr, tuple):
+            if isinstance(expr, (tuple, list)):
                 return True
         return False
 
@@ -160,10 +160,10 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_divisions=True,
-                ...     prefix_talea=(-1,),
-                ...     prefix_lengths=(0, 1),
-                ...     suffix_talea=(-1,),
-                ...     suffix_lengths=(1,),
+                ...     prefix_talea=[-1],
+                ...     prefix_lengths=[0, 1],
+                ...     suffix_talea=[-1],
+                ...     suffix_lengths=[1],
                 ...     talea_denominator=16,
                 ...     body_ratio=(1, 1),
                 ...     )
@@ -324,10 +324,10 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_divisions=True,
-                ...     prefix_talea=(-1,),
-                ...     prefix_lengths=(0, 2, 1),
-                ...     suffix_talea=(-1, 1),
-                ...     suffix_lengths=(1, 0, 0),
+                ...     prefix_talea=[-1],
+                ...     prefix_lengths=[0, 2, 1],
+                ...     suffix_talea=[-1, 1],
+                ...     suffix_lengths=[1, 0, 0],
                 ...     talea_denominator=16,
                 ...     body_ratio=(1, 1),
                 ...     )

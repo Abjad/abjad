@@ -20,10 +20,10 @@ class IncisedRhythmMaker(RhythmMaker):
 
             >>> incise_specifier = rhythmmakertools.InciseSpecifier(
             ...     incise_divisions=True,
-            ...     prefix_talea=(-1,),
-            ...     prefix_lengths=(0, 1),
-            ...     suffix_talea=(-1,),
-            ...     suffix_lengths=(1,),
+            ...     prefix_talea=[-1],
+            ...     prefix_lengths=[0, 1],
+            ...     suffix_talea=[-1],
+            ...     suffix_lengths=[1],
             ...     talea_denominator=16,
             ...     )
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
@@ -519,10 +519,10 @@ class IncisedRhythmMaker(RhythmMaker):
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_output=True,
-                ...     prefix_talea=(-8, -7),
-                ...     prefix_lengths=(2,),
-                ...     suffix_talea=(-3,),
-                ...     suffix_lengths=(4,),
+                ...     prefix_talea=[-8, -7],
+                ...     prefix_lengths=[2],
+                ...     suffix_talea=[-3],
+                ...     suffix_lengths=[4],
                 ...     talea_denominator=32,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
@@ -572,10 +572,10 @@ class IncisedRhythmMaker(RhythmMaker):
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_output=True,
-                ...     prefix_talea=(7, 8),
-                ...     prefix_lengths=(2,),
-                ...     suffix_talea=(3,),
-                ...     suffix_lengths=(4,),
+                ...     prefix_talea=[7, 8],
+                ...     prefix_lengths=[2],
+                ...     suffix_talea=[3],
+                ...     suffix_lengths=[4],
                 ...     talea_denominator=32,
                 ...     fill_with_notes=False,
                 ...     )
