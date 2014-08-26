@@ -8,6 +8,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
@@ -118,6 +119,7 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_extra_counts_per_division',
         '_helper_functions',
+        '_output_mask',
         '_split_divisions_by_counts',
         '_talea',
         '_talea_denominator',
@@ -138,6 +140,7 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_specifier=None,
         burnish_specifier=None,
         duration_spelling_specifier=None,
+        output_mask=None,
         tie_specifier=None,
         tie_split_notes=True,
         tuplet_spelling_specifier=None,
@@ -200,6 +203,10 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts
+        if output_mask is not None:
+            output_mask = tuple(output_mask)
+            assert self._is_sign_tuple(output_mask), repr(output_mask)
+        self._output_mask = output_mask
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
@@ -416,6 +423,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(
+                name='output_mask',
+                command='om',
+                editor=idetools.getters.get_integers,
+                ),
+            systemtools.AttributeDetail(
                 name='tie_specifier',
                 command='ts',
                 editor=rhythmmakertools.TieSpecifier,
@@ -453,6 +465,38 @@ class TaleaRhythmMaker(RhythmMaker):
             return self._burnish_outer_divisions(divisions)
         else:
             return self._burnish_each_division(divisions)
+
+    def _apply_output_mask(self, selections):
+        from abjad.tools import rhythmmakertools
+        if not self.output_mask:
+            return selections
+        output_mask = datastructuretools.CyclicTuple(self.output_mask)
+        new_selections = []
+        if self.duration_spelling_specifier is None:
+            duration_spelling_specifier = \
+                rhythmmakertools.DurationSpellingSpecifier()
+        decrease_durations_monotonically = \
+            duration_spelling_specifier.decrease_durations_monotonically
+        forbidden_written_duration = \
+            duration_spelling_specifier.forbidden_written_duration
+        for i, selection in enumerate(selections):
+            indicator = output_mask[i]
+            assert indicator in (0, 1)
+            if indicator == 1:
+                new_selections.append(selection)
+                continue
+            duration = selection.get_duration()
+            new_selection = scoretools.make_leaves(
+                [None],
+                [duration],
+                decrease_durations_monotonically=\
+                    decrease_durations_monotonically,
+                forbidden_written_duration=forbidden_written_duration,
+                )
+            for component in iterate(selection).by_class():
+                detach(spannertools.Tie, component)
+            new_selections.append(new_selection)
+        return new_selections
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
@@ -643,6 +687,13 @@ class TaleaRhythmMaker(RhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
+    @staticmethod
+    def _is_sign_tuple(expr):
+        if isinstance(expr, tuple):
+            prototype = (-1, 0, 1)
+            return all(_ in prototype for _ in expr)
+        return False
+
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         from abjad.tools import rhythmmakertools
         leaf_lists = []
@@ -703,6 +754,7 @@ class TaleaRhythmMaker(RhythmMaker):
         self._apply_beam_specifier(selections)
         if talea:
             self._apply_ties_to_split_notes(selections, unscaled_talea)
+        selections = self._apply_output_mask(selections)
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
@@ -1706,6 +1758,180 @@ class TaleaRhythmMaker(RhythmMaker):
         Returns dictionary or none.
         '''
         return self._helper_functions
+
+    @property
+    def output_mask(self):
+        r'''Gets output mask of talea rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No output mask:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'8
+                        c'8.
+                        c'8 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Masks every other output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     output_mask=[1, 0],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Masks every other secondary output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1],
+                ...         denominator=16,
+                ...         ),
+                ...     split_divisions_by_counts=[9],
+                ...     output_mask=[1, 0],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        r8.
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 3/8
+                        r4
+                        c'16 [
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        r4..
+                        c'16
+                    }
+                }
+
+        Set to boolean tuple or none.
+        '''
+        return self._output_mask
 
     @property
     def split_divisions_by_counts(self):
