@@ -16,6 +16,7 @@ class InciseSpecifier(AbjadValueObject):
         '_fill_with_notes',
         '_incise_divisions',
         '_incise_output',
+        '_outer_divisions_only',
         '_prefix_talea',
         '_prefix_lengths',
         '_suffix_talea',
@@ -30,9 +31,9 @@ class InciseSpecifier(AbjadValueObject):
         incise_divisions=False,
         incise_output=False,
         prefix_talea=[-1],
-        prefix_lengths=[0, 1],
+        prefix_counts=[0, 1],
         suffix_talea=[-11],
-        suffix_lengths=[1],
+        suffix_counts=[1],
         talea_denominator=32,
         body_ratio=None,
         fill_with_notes=True,
@@ -45,12 +46,12 @@ class InciseSpecifier(AbjadValueObject):
         assert not (incise_divisions and incise_output)
         assert self._is_integer_tuple(prefix_talea)
         self._prefix_talea = prefix_talea
-        assert self._is_length_tuple(prefix_lengths)
-        self._prefix_lengths = prefix_lengths
+        assert self._is_length_tuple(prefix_counts)
+        self._prefix_lengths = prefix_counts
         assert self._is_integer_tuple(suffix_talea)
         self._suffix_talea = suffix_talea
-        assert self._is_length_tuple(suffix_lengths)
-        self._suffix_lengths = suffix_lengths
+        assert self._is_length_tuple(suffix_counts)
+        self._suffix_lengths = suffix_counts
         assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
         self._talea_denominator = talea_denominator
         if body_ratio is not None:
@@ -117,7 +118,7 @@ class InciseSpecifier(AbjadValueObject):
                 editor=idetools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
-                name='prefix_lengths',
+                name='prefix_counts',
                 command='pl',
                 editor=idetools.getters.get_nonnegative_integers,
                 ),
@@ -127,7 +128,7 @@ class InciseSpecifier(AbjadValueObject):
                 editor=idetools.getters.get_nonzero_integers,
                 ),
             systemtools.AttributeDetail(
-                name='suffix_lengths',
+                name='suffix_counts',
                 command='sl',
                 editor=idetools.getters.get_nonnegative_integers,
                 ),
@@ -163,9 +164,9 @@ class InciseSpecifier(AbjadValueObject):
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_divisions=True,
                 ...     prefix_talea=[-1],
-                ...     prefix_lengths=[0, 1],
+                ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
-                ...     suffix_lengths=[1],
+                ...     suffix_counts=[1],
                 ...     talea_denominator=16,
                 ...     body_ratio=mathtools.Ratio(1, 1),
                 ...     )
@@ -253,7 +254,19 @@ class InciseSpecifier(AbjadValueObject):
         return self._incise_output
 
     @property
-    def prefix_lengths(self):
+    def outer_divisions_only(self):
+        r'''Is true when rhythm-maker should incise outer divisions only.
+
+        Is false when rhythm-maker should incise all divisions.
+
+        Defaults to false.
+
+        Set to true or false.
+        '''
+        return self._outer_divisions_only
+
+    @property
+    def prefix_counts(self):
         r'''Gets prefix lengths of incision specifier.
 
         Returns tuple or none.
@@ -269,7 +282,7 @@ class InciseSpecifier(AbjadValueObject):
         return self._prefix_talea
 
     @property
-    def suffix_lengths(self):
+    def suffix_counts(self):
         r'''Gets suffix lengths of incision specifier.
 
         Returns tuple or none.
@@ -300,19 +313,19 @@ class InciseSpecifier(AbjadValueObject):
         Returns new incision specifier.
         '''
         from abjad.tools import rhythmmakertools
-        prefix_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.prefix_lengths)
+        prefix_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.prefix_counts)
         prefix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
             self.prefix_talea)
-        suffix_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.suffix_lengths)
+        suffix_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.suffix_counts)
         suffix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
             self.suffix_talea)
         maker = new(
             self,
-            prefix_lengths=prefix_lengths,
+            prefix_counts=prefix_counts,
             prefix_talea=prefix_talea,
-            suffix_lengths=suffix_lengths,
+            suffix_counts=suffix_counts,
             suffix_talea=suffix_talea,
             )
         return maker
@@ -327,9 +340,9 @@ class InciseSpecifier(AbjadValueObject):
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_divisions=True,
                 ...     prefix_talea=[-1],
-                ...     prefix_lengths=[0, 2, 1],
+                ...     prefix_counts=[0, 2, 1],
                 ...     suffix_talea=[-1, 1],
-                ...     suffix_lengths=[1, 0, 0],
+                ...     suffix_counts=[1, 0, 0],
                 ...     talea_denominator=16,
                 ...     body_ratio=mathtools.Ratio(1, 1),
                 ...     )
@@ -341,9 +354,9 @@ class InciseSpecifier(AbjadValueObject):
                     incise_divisions=True,
                     incise_output=False,
                     prefix_talea=(-1,),
-                    prefix_lengths=(1, 0, 2),
+                    prefix_counts=(1, 0, 2),
                     suffix_talea=(1, -1),
-                    suffix_lengths=(0, 1, 0),
+                    suffix_counts=(0, 1, 0),
                     talea_denominator=16,
                     body_ratio=mathtools.Ratio(1, 1),
                     fill_with_notes=True,
@@ -352,19 +365,19 @@ class InciseSpecifier(AbjadValueObject):
         Returns new incision specifier.
         '''
         from abjad.tools import rhythmmakertools
-        prefix_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.prefix_lengths, n)
+        prefix_counts = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.prefix_counts, n)
         prefix_talea = rhythmmakertools.RhythmMaker._rotate_tuple(
             self.prefix_talea, n)
-        suffix_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
-            self.suffix_lengths, n)
+        suffix_counts = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.suffix_counts, n)
         suffix_talea = rhythmmakertools.RhythmMaker._rotate_tuple(
             self.suffix_talea, n)
         maker = new(
             self,
-            prefix_lengths=prefix_lengths,
+            prefix_counts=prefix_counts,
             prefix_talea=prefix_talea,
-            suffix_lengths=suffix_lengths,
+            suffix_counts=suffix_counts,
             suffix_talea=suffix_talea,
             )
         return maker

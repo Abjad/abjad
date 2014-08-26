@@ -21,9 +21,9 @@ class IncisedRhythmMaker(RhythmMaker):
             >>> incise_specifier = rhythmmakertools.InciseSpecifier(
             ...     incise_divisions=True,
             ...     prefix_talea=[-1],
-            ...     prefix_lengths=[0, 1],
+            ...     prefix_counts=[0, 1],
             ...     suffix_talea=[-1],
-            ...     suffix_lengths=[1],
+            ...     suffix_counts=[1],
             ...     talea_denominator=16,
             ...     )
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
@@ -143,15 +143,15 @@ class IncisedRhythmMaker(RhythmMaker):
         self,
         divisions=None,
         prefix_talea=None,
-        prefix_lengths=None,
+        prefix_counts=None,
         suffix_talea=None,
-        suffix_lengths=None,
+        suffix_counts=None,
         extra_counts_per_division=None,
         ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         for pair_index, division in enumerate(divisions):
             prefix_length, suffix_length = \
-                prefix_lengths[pair_index], suffix_lengths[pair_index]
+                prefix_counts[pair_index], suffix_counts[pair_index]
             prefix = prefix_talea[
                 prefix_talea_index:prefix_talea_index+prefix_length]
             suffix = suffix_talea[
@@ -213,9 +213,9 @@ class IncisedRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         input_ = self._prepare_input(seeds)
         prefix_talea = input_[0]
-        prefix_lengths = input_[1]
+        prefix_counts = input_[1]
         suffix_talea = input_[2]
-        suffix_lengths = input_[3]
+        suffix_counts = input_[3]
         extra_counts_per_division = input_[4]
         split_divisions_by_counts = input_[5]
         taleas = (
@@ -244,9 +244,9 @@ class IncisedRhythmMaker(RhythmMaker):
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_divisions,
                 prefix_talea,
-                prefix_lengths,
+                prefix_counts,
                 suffix_talea,
-                suffix_lengths,
+                suffix_counts,
                 extra_counts_per_division,
                 )
         else:
@@ -254,9 +254,9 @@ class IncisedRhythmMaker(RhythmMaker):
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_divisions,
                 prefix_talea,
-                prefix_lengths,
+                prefix_counts,
                 suffix_talea,
-                suffix_lengths,
+                suffix_counts,
                 extra_counts_per_division,
                 )
         result = []
@@ -318,13 +318,13 @@ class IncisedRhythmMaker(RhythmMaker):
         self,
         divisions,
         prefix_talea,
-        prefix_lengths,
+        prefix_counts,
         suffix_talea,
-        suffix_lengths,
+        suffix_counts,
         extra_counts_per_division,
         ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
-        prefix_length, suffix_length = prefix_lengths[0], suffix_lengths[0]
+        prefix_length, suffix_length = prefix_counts[0], suffix_counts[0]
         prefix = prefix_talea[
             prefix_talea_index:prefix_talea_index+prefix_length]
         suffix = suffix_talea[
@@ -400,11 +400,11 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
-        prefix_lengths = self.incise_specifier.prefix_lengths or ()
-        helper = helper_functions.get('prefix_lengths')
+        prefix_counts = self.incise_specifier.prefix_counts or ()
+        helper = helper_functions.get('prefix_counts')
         helper = self._none_to_trivial_helper(helper)
-        prefix_lengths = helper(prefix_lengths, seeds)
-        prefix_lengths = datastructuretools.CyclicTuple(prefix_lengths)
+        prefix_counts = helper(prefix_counts, seeds)
+        prefix_counts = datastructuretools.CyclicTuple(prefix_counts)
 
         suffix_talea = self.incise_specifier.suffix_talea or ()
         helper = helper_functions.get('suffix_talea')
@@ -412,11 +412,11 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix_talea = helper(suffix_talea, seeds)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
-        suffix_lengths = self.incise_specifier.suffix_lengths or ()
-        helper = helper_functions.get('suffix_lengths')
+        suffix_counts = self.incise_specifier.suffix_counts or ()
+        helper = helper_functions.get('suffix_counts')
         helper = self._none_to_trivial_helper(helper)
-        suffix_lengths = helper(suffix_lengths, seeds)
-        suffix_lengths = datastructuretools.CyclicTuple(suffix_lengths)
+        suffix_counts = helper(suffix_counts, seeds)
+        suffix_counts = datastructuretools.CyclicTuple(suffix_counts)
 
         extra_counts_per_division = self.extra_counts_per_division or ()
         helper = helper_functions.get('extra_counts_per_division')
@@ -437,9 +437,9 @@ class IncisedRhythmMaker(RhythmMaker):
 
         return (
             prefix_talea,
-            prefix_lengths,
+            prefix_counts,
             suffix_talea,
-            suffix_lengths,
+            suffix_counts,
             extra_counts_per_division,
             split_divisions_by_counts,
             )
@@ -520,9 +520,9 @@ class IncisedRhythmMaker(RhythmMaker):
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_output=True,
                 ...     prefix_talea=[-8, -7],
-                ...     prefix_lengths=[2],
+                ...     prefix_counts=[2],
                 ...     suffix_talea=[-3],
-                ...     suffix_lengths=[4],
+                ...     suffix_counts=[4],
                 ...     talea_denominator=32,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
@@ -573,9 +573,9 @@ class IncisedRhythmMaker(RhythmMaker):
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     incise_output=True,
                 ...     prefix_talea=[7, 8],
-                ...     prefix_lengths=[2],
+                ...     prefix_counts=[2],
                 ...     suffix_talea=[3],
-                ...     suffix_lengths=[4],
+                ...     suffix_counts=[4],
                 ...     talea_denominator=32,
                 ...     fill_with_notes=False,
                 ...     )

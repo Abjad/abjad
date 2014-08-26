@@ -468,6 +468,8 @@ class BurnishSpecifier(AbjadValueObject):
         
         Is false when rhythm-maker should burnish all divisions.
 
+        Defaults to false.
+
         Set to true or false.
         '''
         return self._outer_divisions_only

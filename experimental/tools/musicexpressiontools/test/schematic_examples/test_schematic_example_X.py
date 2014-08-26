@@ -342,9 +342,9 @@ def test_schematic_example_X_08():
     last_measure.timespan.set_rhythm(library.even_runs(1), contexts=['Voice 3'])
     incise_specifier = rhythmmakertools.InciseSpecifier(
         prefix_talea=[-1],
-        prefix_lengths=[1],
+        prefix_counts=[1],
         suffix_talea=[-1],
-        suffix_lengths=[1],
+        suffix_counts=[1],
         talea_denominator=32,
         )
     maker = rhythmmakertools.IncisedRhythmMaker(
