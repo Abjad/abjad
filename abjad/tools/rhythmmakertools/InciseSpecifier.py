@@ -16,9 +16,9 @@ class InciseSpecifier(AbjadValueObject):
         '_fill_with_notes',
         '_outer_divisions_only',
         '_prefix_talea',
-        '_prefix_lengths',
+        '_prefix_counts',
         '_suffix_talea',
-        '_suffix_lengths',
+        '_suffix_counts',
         '_talea_denominator',
         )
 
@@ -35,14 +35,22 @@ class InciseSpecifier(AbjadValueObject):
         fill_with_notes=True,
         outer_divisions_only=False,
         ):
+        prefix_talea = prefix_talea or ()
+        prefix_talea = tuple(prefix_talea)
         assert self._is_integer_tuple(prefix_talea)
         self._prefix_talea = prefix_talea
+        prefix_counts = prefix_counts or ()
+        prefix_counts = tuple(prefix_counts)
         assert self._is_length_tuple(prefix_counts)
-        self._prefix_lengths = prefix_counts
+        self._prefix_counts = prefix_counts
+        suffix_talea = suffix_talea or ()
+        suffix_talea = tuple(suffix_talea)
         assert self._is_integer_tuple(suffix_talea)
         self._suffix_talea = suffix_talea
         assert self._is_length_tuple(suffix_counts)
-        self._suffix_lengths = suffix_counts
+        suffix_counts = suffix_counts or ()
+        suffix_counts = tuple(suffix_counts)
+        self._suffix_counts = suffix_counts
         assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
         self._talea_denominator = talea_denominator
         if body_ratio is not None:
@@ -52,6 +60,69 @@ class InciseSpecifier(AbjadValueObject):
         self._fill_with_notes = fill_with_notes
         assert isinstance(outer_divisions_only, bool)
         self._outer_divisions_only = outer_divisions_only
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats incise specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     prefix_talea=[-1],
+                ...     prefix_counts=[0, 1],
+                ...     suffix_talea=[-1],
+                ...     suffix_counts=[1],
+                ...     talea_denominator=16,
+                ...     )
+
+            ::
+
+                >>> print(format(incise_specifier))
+                rhythmmakertools.InciseSpecifier(
+                    prefix_talea=(-1,),
+                    prefix_counts=(0, 1),
+                    suffix_talea=(-1,),
+                    suffix_counts=(1,),
+                    talea_denominator=16,
+                    )
+
+        Returns string.
+        '''
+        return AbjadValueObject.__format__(
+            self,
+            format_specification=format_specification,
+            )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
+        if self.prefix_talea is None:
+            keyword_argument_names.remove('prefix_talea')
+        if self.prefix_counts is None:
+            keyword_argument_names.remove('prefix_counts')
+        if self.suffix_talea is None:
+            keyword_argument_names.remove('suffix_talea')
+        if self.suffix_counts is None:
+            keyword_argument_names.remove('suffix_counts')
+        if self.body_ratio is None:
+            keyword_argument_names.remove('body_ratio')
+        if self.fill_with_notes == True:
+            keyword_argument_names.remove('fill_with_notes')
+        if self.outer_divisions_only == False:
+            keyword_argument_names.remove('outer_divisions_only')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -236,7 +307,7 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._prefix_lengths
+        return self._prefix_counts
 
     @property
     def prefix_talea(self):
@@ -252,7 +323,7 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_lengths
+        return self._suffix_counts
 
     @property
     def suffix_talea(self):
@@ -321,8 +392,6 @@ class InciseSpecifier(AbjadValueObject):
                     suffix_counts=(0, 1, 0),
                     talea_denominator=16,
                     body_ratio=mathtools.Ratio(1, 1),
-                    fill_with_notes=True,
-                    outer_divisions_only=False,
                     )
 
         Returns new incision specifier.
