@@ -32,7 +32,6 @@ class RhythmMakerExpression(PayloadExpression):
                         counts=(3, 1),
                         denominator=32,
                         ),
-                    tie_split_notes=True,
                     ),
                 )
 
@@ -52,7 +51,6 @@ class RhythmMakerExpression(PayloadExpression):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_split_notes=True,
                     ),
                 )
 

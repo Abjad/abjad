@@ -267,7 +267,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         counts=(1, 2, 3, 4),
                         denominator=16,
                         ),
-                    tie_split_notes=True,
                     )
 
         Returns string.
@@ -377,7 +376,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=talea,
                 ...     )
-                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16), tie_split_notes=True)
+                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16))
 
         Returns string.
         '''
@@ -436,6 +435,20 @@ class TaleaRhythmMaker(RhythmMaker):
                 command='tn',
                 editor=idetools.getters.get_boolean,
                 ),
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
+        if self.tie_split_notes == True:
+            keyword_argument_names.remove('tie_split_notes')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
             )
 
     ### PRIVATE METHODS ###
@@ -2029,7 +2042,6 @@ class TaleaRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_split_notes=True,
                     )
 
             ::
