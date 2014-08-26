@@ -43,6 +43,8 @@ class InciseSpecifier(AbjadValueObject):
         prefix_counts = tuple(prefix_counts)
         assert self._is_length_tuple(prefix_counts)
         self._prefix_counts = prefix_counts
+        if prefix_counts and prefix_counts != (0,):
+            assert prefix_talea
         suffix_talea = suffix_talea or ()
         suffix_talea = tuple(suffix_talea)
         assert self._is_integer_tuple(suffix_talea)
@@ -51,6 +53,8 @@ class InciseSpecifier(AbjadValueObject):
         suffix_counts = suffix_counts or ()
         suffix_counts = tuple(suffix_counts)
         self._suffix_counts = suffix_counts
+        if suffix_counts and suffix_counts != (0,):
+            assert suffix_talea
         assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
         self._talea_denominator = talea_denominator
         if body_ratio is not None:
