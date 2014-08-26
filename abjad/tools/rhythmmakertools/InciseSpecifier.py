@@ -29,10 +29,10 @@ class InciseSpecifier(AbjadValueObject):
         self,
         incise_divisions=False,
         incise_output=False,
-        prefix_talea=(-1,),
-        prefix_lengths=(0, 1),
-        suffix_talea=(-11,),
-        suffix_lengths=(1,),
+        prefix_talea=[-1],
+        prefix_lengths=[0, 1],
+        suffix_talea=[-11],
+        suffix_lengths=[1],
         talea_denominator=32,
         body_ratio=None,
         fill_with_notes=True,
@@ -41,6 +41,8 @@ class InciseSpecifier(AbjadValueObject):
         self._incise_divisions = incise_divisions
         assert isinstance(incise_output, bool)
         self._incise_output = incise_output
+        assert incise_divisions or incise_output
+        assert not (incise_divisions and incise_output)
         assert self._is_integer_tuple(prefix_talea)
         self._prefix_talea = prefix_talea
         assert self._is_length_tuple(prefix_lengths)
@@ -154,7 +156,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            Sets `body_ratio` to divide middle part proportionally:
+            Divides middle part of every division ``1:1``:
 
             ::
 
@@ -165,7 +167,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     suffix_talea=[-1],
                 ...     suffix_lengths=[1],
                 ...     talea_denominator=16,
-                ...     body_ratio=(1, 1),
+                ...     body_ratio=mathtools.Ratio(1, 1),
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
@@ -329,7 +331,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     suffix_talea=[-1, 1],
                 ...     suffix_lengths=[1, 0, 0],
                 ...     talea_denominator=16,
-                ...     body_ratio=(1, 1),
+                ...     body_ratio=mathtools.Ratio(1, 1),
                 ...     )
 
             ::
