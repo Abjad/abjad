@@ -15,10 +15,10 @@ class InciseSpecifier(AbjadValueObject):
         '_body_ratio',
         '_fill_with_notes',
         '_outer_divisions_only',
-        '_prefix_talea',
         '_prefix_counts',
-        '_suffix_talea',
+        '_prefix_talea',
         '_suffix_counts',
+        '_suffix_talea',
         '_talea_denominator',
         )
 
@@ -26,11 +26,11 @@ class InciseSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        prefix_talea=(-1,),
-        prefix_counts=(0, 1),
-        suffix_talea=(-11,),
-        suffix_counts=(1,),
-        talea_denominator=32,
+        prefix_talea=None,
+        prefix_counts=None,
+        suffix_talea=None,
+        suffix_counts=None,
+        talea_denominator=None,
         body_ratio=None,
         fill_with_notes=True,
         outer_divisions_only=False,
@@ -59,7 +59,9 @@ class InciseSpecifier(AbjadValueObject):
             assert suffix_talea
         if suffix_talea:
             assert suffix_counts
-        assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
+        if talea_denominator is not None:
+            assert mathtools.is_nonnegative_integer_power_of_two(
+                talea_denominator)
         self._talea_denominator = talea_denominator
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
@@ -113,13 +115,13 @@ class InciseSpecifier(AbjadValueObject):
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
-        if self.prefix_talea is None:
+        if not self.prefix_talea: 
             keyword_argument_names.remove('prefix_talea')
-        if self.prefix_counts is None:
+        if not self.prefix_counts:
             keyword_argument_names.remove('prefix_counts')
-        if self.suffix_talea is None:
+        if not self.suffix_talea:
             keyword_argument_names.remove('suffix_talea')
-        if self.suffix_counts is None:
+        if not self.suffix_counts:
             keyword_argument_names.remove('suffix_counts')
         if self.body_ratio is None:
             keyword_argument_names.remove('body_ratio')

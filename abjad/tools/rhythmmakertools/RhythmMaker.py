@@ -287,11 +287,11 @@ class RhythmMaker(AbjadValueObject):
             return tuple(sequencetools.rotate_sequence(expr, n))
 
     def _scale_taleas(self, divisions, talea_denominator, taleas):
+        talea_denominator = talea_denominator or 1
         dummy_division = (1, talea_denominator)
         divisions.append(dummy_division)
         Duration = durationtools.Duration
-        divisions = Duration.durations_to_nonreduced_fractions(
-            divisions)
+        divisions = Duration.durations_to_nonreduced_fractions(divisions)
         dummy_division = divisions.pop()
         lcd = dummy_division.denominator
         multiplier = lcd / talea_denominator

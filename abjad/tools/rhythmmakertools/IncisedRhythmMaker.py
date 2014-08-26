@@ -399,7 +399,7 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
-        prefix_counts = self.incise_specifier.prefix_counts or ()
+        prefix_counts = self.incise_specifier.prefix_counts or (0,)
         helper = helper_functions.get('prefix_counts')
         helper = self._none_to_trivial_helper(helper)
         prefix_counts = helper(prefix_counts, seeds)
@@ -411,7 +411,7 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix_talea = helper(suffix_talea, seeds)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
-        suffix_counts = self.incise_specifier.suffix_counts or ()
+        suffix_counts = self.incise_specifier.suffix_counts or (0,)
         helper = helper_functions.get('suffix_counts')
         helper = self._none_to_trivial_helper(helper)
         suffix_counts = helper(suffix_counts, seeds)
