@@ -18,15 +18,14 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-            ...     prefix_talea=[-1],
-            ...     prefix_counts=[0, 1],
-            ...     suffix_talea=[-1],
-            ...     suffix_counts=[1],
-            ...     talea_denominator=16,
-            ...     )
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
-            ...     incise_specifier=incise_specifier,
+            ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+            ...         prefix_talea=[-1],
+            ...         prefix_counts=[0, 1],
+            ...         suffix_talea=[-1],
+            ...         suffix_counts=[1],
+            ...         talea_denominator=16,
+            ...         ),
             ...     )
 
         ::
@@ -223,9 +222,13 @@ class IncisedRhythmMaker(RhythmMaker):
             extra_counts_per_division,
             split_divisions_by_counts,
             )
+        if self.incise_specifier is not None:
+            talea_denominator = self.incise_specifier.talea_denominator
+        else:
+            talea_denominator = None
         input_ = self._scale_taleas(
             divisions,
-            self.incise_specifier.talea_denominator,
+            talea_denominator,
             taleas,
             )
         divisions = input_[0]
@@ -392,26 +395,30 @@ class IncisedRhythmMaker(RhythmMaker):
         return selections
 
     def _prepare_input(self, seeds):
+        from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
-        prefix_talea = self.incise_specifier.prefix_talea or ()
+        incise_specifier = self.incise_specifier
+        if incise_specifier is None:
+            incise_specifier = rhythmmakertools.InciseSpecifier()
+        prefix_talea = incise_specifier.prefix_talea or ()
         helper = helper_functions.get('prefix_talea')
         helper = self._none_to_trivial_helper(helper)
         prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
-        prefix_counts = self.incise_specifier.prefix_counts or (0,)
+        prefix_counts = incise_specifier.prefix_counts or (0,)
         helper = helper_functions.get('prefix_counts')
         helper = self._none_to_trivial_helper(helper)
         prefix_counts = helper(prefix_counts, seeds)
         prefix_counts = datastructuretools.CyclicTuple(prefix_counts)
 
-        suffix_talea = self.incise_specifier.suffix_talea or ()
+        suffix_talea = incise_specifier.suffix_talea or ()
         helper = helper_functions.get('suffix_talea')
         helper = self._none_to_trivial_helper(helper)
         suffix_talea = helper(suffix_talea, seeds)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
-        suffix_counts = self.incise_specifier.suffix_counts or (0,)
+        suffix_counts = incise_specifier.suffix_counts or (0,)
         helper = helper_functions.get('suffix_counts')
         helper = self._none_to_trivial_helper(helper)
         suffix_counts = helper(suffix_counts, seeds)
@@ -508,11 +515,50 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def incise_specifier(self):
-        r'''Gets incise specifier or incised rhythm-maker.
+        r'''Gets incise specifier of incised rhythm-maker.
 
         ..  container:: example
 
-            Outer notes incised:
+            **Example 1.** Fills divisions with notes. Does not incise:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker()
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Fills divisions with notes. 
+            Incises outer divisions only:
 
             ::
 
@@ -565,7 +611,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Incises first and last rests:
+            **Example 3.** Fills divisions with rests. Incises outer divisions
+            only:
 
             ::
 
@@ -633,7 +680,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of incised rhythm-maker.
 
-        ..  note:: note yet implemented.
+        ..  note:: not yet implemented.
 
         Returns tuplet spelling specifier or none.
         '''
