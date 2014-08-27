@@ -526,6 +526,8 @@ class TaleaRhythmMaker(RhythmMaker):
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
         prototype = (spannertools.Tie,)
         for part in parts:
+            if any(isinstance(_, scoretools.Rest) for _ in part):
+                continue
             part = selectiontools.SliceSelection(part)
             tie_spanner = spannertools.Tie()
             # voodoo to temporarily neuter the contiguity constraint
