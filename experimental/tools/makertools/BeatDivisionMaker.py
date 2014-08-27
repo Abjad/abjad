@@ -90,7 +90,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Calls beat division maker on nonempty input:
+            **Example 1.** Calls maker on nonempty input:
 
             ::
 
@@ -107,7 +107,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Calls beat division maker on empty input:
+            **Example 2.** Calls maker on empty input:
 
             ::
 
