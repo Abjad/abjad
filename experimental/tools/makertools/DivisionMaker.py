@@ -37,8 +37,7 @@ class DivisionMaker(AbjadValueObject):
     list of divisions as output (structured one output list per input
     division).
 
-    Follows the two-step configure-once / call-repeatedly pattern established
-    for the rhythm-makers.
+    Follows the two-step configure-once / call-repeatedly pattern shown here.
     '''
 
     ### CLASS VARIABLES ###
