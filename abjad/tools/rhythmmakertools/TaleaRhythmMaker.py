@@ -836,6 +836,7 @@ class TaleaRhythmMaker(RhythmMaker):
             left_counts = burnish_specifier.left_counts
             right_counts = burnish_specifier.right_counts
 
+        left_classes = left_classes or ()
         lefts_helper = self._none_to_trivial_helper(
             helper_functions.get('left_classes'))
         left_classes = lefts_helper(left_classes, seeds)
@@ -848,16 +849,19 @@ class TaleaRhythmMaker(RhythmMaker):
         middle_classes = middles_helper(middle_classes, seeds)
         middle_classes = datastructuretools.CyclicTuple(middle_classes)
 
+        right_classes = right_classes or ()
         rights_helper = self._none_to_trivial_helper(
             helper_functions.get('right_classes'))
         right_classes = rights_helper(right_classes, seeds)
         right_classes = datastructuretools.CyclicTuple(right_classes)
 
+        left_counts = left_counts or (0,)
         left_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('left_counts'))
         left_counts = left_lengths_helper(left_counts, seeds)
         left_counts = datastructuretools.CyclicTuple(left_counts)
 
+        right_counts = right_counts or (0,)
         right_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('right_counts'))
         right_counts = right_lengths_helper(right_counts, seeds)
@@ -1184,7 +1188,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
 
-        Returns beam specifier or none.
+        Set to beam specifier or none.
         '''
         return RhythmMaker.beam_specifier.fget(self)
 
@@ -1194,11 +1198,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** This example burnishes outer divisions only.
-
-            This example makes a talea rhythm with the first leaf of output
-            forcibly cast to a rest and also with the last two leaves of output
-            forcibly cast to rests:
+            **Example 1.** Forces the first leaf and the last two leaves to be
+            rests:
 
             ::
 
@@ -1209,8 +1210,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[Rest],
-                ...         right_classes=[Rest],
                 ...         left_counts=[1],
+                ...         right_classes=[Rest],
                 ...         right_counts=[2],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -1260,13 +1261,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** 'Division burnishing' means forcibly to cast the
-            first leaf (or leaves) of every division; or forcibly to cast the
-            last leaf (or leaves) of every division; or forcibly to cast both
-            the first and last leaves of every division at the same time.
-
-            This example makes a talea rhythm with the first leaf of every
-            division forcibly cast to a rest:
+            **Example 2.** Forces the first leaf of every division to be a
+            rest:
 
             ::
 
@@ -1277,9 +1273,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[Rest],
-                ...         right_classes=[0],
                 ...         left_counts=[1],
-                ...         right_counts=[0],
                 ...         ),
                 ...     )
 
@@ -1325,7 +1319,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns burnish specifier or none.
+        Set to burnish specifier or none.
         '''
         return self._burnish_specifier
 
@@ -1551,7 +1545,7 @@ class TaleaRhythmMaker(RhythmMaker):
             Forbidden durations are rewritten with smaller durations tied
             together.
 
-        Returns duration spelling specifier or none.
+        Set to duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
@@ -1749,7 +1743,7 @@ class TaleaRhythmMaker(RhythmMaker):
             Note that the duration of each added count is equal to the duration
             of each count in the rhythm-maker's input talea.
 
-        Returns integer tuple or none.
+        Set to integer tuple or none.
         '''
         return self._extra_counts_per_division
 
@@ -1757,7 +1751,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def helper_functions(self):
         r'''Gets helper functions of talea rhythm-maker.
 
-        Returns dictionary or none.
+        Set to dictionary or none.
         '''
         return self._helper_functions
 
@@ -2166,7 +2160,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns positive integer tuple or none.
+        Set to positive integer tuple or none.
         '''
         return self._split_divisions_by_counts
 
@@ -2274,7 +2268,7 @@ class TaleaRhythmMaker(RhythmMaker):
         r'''Is true when talea rhythm-maker should tie split notes.
         Otherwise false.
 
-        Returns boolean.
+        Set to true or false.
         '''
         return self._tie_split_notes
 
@@ -2284,7 +2278,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  note:: not yet implemented.
 
-        Returns tuplet spelling specifier or none.
+        Set to tuplet spelling specifier or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
