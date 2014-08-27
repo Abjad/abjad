@@ -21,6 +21,7 @@ class RhythmMaker(AbjadValueObject):
     __slots__ = (
         '_beam_specifier',
         '_duration_spelling_specifier',
+        '_output_mask',
         '_seeds',
         '_tie_specifier',
         '_tuplet_spelling_specifier',
@@ -36,6 +37,7 @@ class RhythmMaker(AbjadValueObject):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        output_mask=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -46,6 +48,10 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
+        if output_mask is not None:
+            output_mask = tuple(output_mask)
+            assert self._is_sign_tuple(output_mask), repr(output_mask)
+        self._output_mask = output_mask
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
         self._tie_specifier = tie_specifier
@@ -226,6 +232,13 @@ class RhythmMaker(AbjadValueObject):
             return all(isinstance(x, scoretools.Leaf) for x in expr)
         return False
 
+    @staticmethod
+    def _is_sign_tuple(expr):
+        if isinstance(expr, tuple):
+            prototype = (-1, 0, 1)
+            return all(_ in prototype for _ in expr)
+        return False
+
     @abc.abstractmethod
     def _make_music(self, divisions, seeds):
         pass
@@ -361,6 +374,14 @@ class RhythmMaker(AbjadValueObject):
         Returns duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
+
+    @property
+    def output_mask(self):
+        r'''Gets output mask of rhythm-maker.
+
+        Returns sign tuple or none.
+        '''
+        return self._output_mask
 
     @property
     def tie_specifier(self):

@@ -119,7 +119,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_extra_counts_per_division',
         '_helper_functions',
-        '_output_mask',
         '_split_divisions_by_counts',
         '_talea',
         '_talea_denominator',
@@ -151,6 +150,7 @@ class TaleaRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
+            output_mask=output_mask,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -203,10 +203,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts
-        if output_mask is not None:
-            output_mask = tuple(output_mask)
-            assert self._is_sign_tuple(output_mask), repr(output_mask)
-        self._output_mask = output_mask
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
@@ -688,13 +684,6 @@ class TaleaRhythmMaker(RhythmMaker):
         burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
         return burnished_divisions
-
-    @staticmethod
-    def _is_sign_tuple(expr):
-        if isinstance(expr, tuple):
-            prototype = (-1, 0, 1)
-            return all(_ in prototype for _ in expr)
-        return False
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         from abjad.tools import rhythmmakertools
@@ -1927,7 +1916,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Set to boolean tuple or none.
         '''
-        return self._output_mask
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.output_mask
 
     @property
     def split_divisions_by_counts(self):
