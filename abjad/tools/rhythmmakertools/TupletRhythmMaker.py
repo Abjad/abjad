@@ -142,6 +142,7 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        output_mask=None,
         preferred_denominator=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -150,6 +151,7 @@ class TupletRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
+            output_mask=output_mask,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -253,6 +255,7 @@ class TupletRhythmMaker(RhythmMaker):
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
         self._apply_beam_specifier(selections)
+        selections = self._apply_output_mask(selections)
         return selections
 
     def _make_tuplet(
@@ -519,6 +522,128 @@ class TupletRhythmMaker(RhythmMaker):
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.beam_specifier
+
+    @property
+    def output_mask(self):
+        r'''Gets output mask of tuplet rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No output mask:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(4, 1)],
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=False,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \times 4/5 {
+                            c'4.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'2
+                            c'8
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \times 4/5 {
+                            c'4.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'2
+                            c'8
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Masks every other output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(4, 1)],
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=False,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     output_mask=[1, 0],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \times 4/5 {
+                            c'4.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        \times 4/5 {
+                            c'4.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                }
+
+        Set to sign tuple or none.
+        '''
+        superclass = super(TupletRhythmMaker, self)
+        return superclass.output_mask
 
     @property
     def preferred_denominator(self):

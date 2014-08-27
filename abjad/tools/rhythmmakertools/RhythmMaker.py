@@ -8,6 +8,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
@@ -198,26 +199,37 @@ class RhythmMaker(AbjadValueObject):
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
 
-    def _simplify_tuplets(self, selections):
+    def _apply_output_mask(self, selections):
         from abjad.tools import rhythmmakertools
-        tuplet_spelling_specifier = self.tuplet_spelling_specifier
-        if tuplet_spelling_specifier is None:
-            tuplet_spelling_specifier = \
-                rhythmmakertools.TupletSpellingSpecifier()
-        if not tuplet_spelling_specifier.simplify_tuplets:
-            return
-        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            if tuplet.is_trivial:
+        if not self.output_mask:
+            return selections
+        output_mask = datastructuretools.CyclicTuple(self.output_mask)
+        new_selections = []
+        if self.duration_spelling_specifier is None:
+            duration_spelling_specifier = \
+                rhythmmakertools.DurationSpellingSpecifier()
+        decrease_durations_monotonically = \
+            duration_spelling_specifier.decrease_durations_monotonically
+        forbidden_written_duration = \
+            duration_spelling_specifier.forbidden_written_duration
+        for i, selection in enumerate(selections):
+            indicator = output_mask[i]
+            assert indicator in (0, 1)
+            if indicator == 1:
+                new_selections.append(selection)
                 continue
-            duration = tuplet._get_duration()
-            if all(isinstance(x, scoretools.Rest) for x in tuplet):
-                rests = scoretools.make_rests([duration])
-                tuplet[:] = rests
-            elif all(isinstance(x, scoretools.Note) for x in tuplet):
-                logical_ties = set([x._get_logical_tie() for x in tuplet])
-                if len(logical_ties) == 1:
-                    notes = scoretools.make_notes([0], [duration])
-                    tuplet[:] = notes
+            duration = selection.get_duration()
+            new_selection = scoretools.make_leaves(
+                [None],
+                [duration],
+                decrease_durations_monotonically=\
+                    decrease_durations_monotonically,
+                forbidden_written_duration=forbidden_written_duration,
+                )
+            for component in iterate(selection).by_class():
+                detach(spannertools.Tie, component)
+            new_selections.append(new_selection)
+        return new_selections
 
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
@@ -327,6 +339,27 @@ class RhythmMaker(AbjadValueObject):
             result += ', ...'
         result = '[${}$]'.format(result)
         return result
+
+    def _simplify_tuplets(self, selections):
+        from abjad.tools import rhythmmakertools
+        tuplet_spelling_specifier = self.tuplet_spelling_specifier
+        if tuplet_spelling_specifier is None:
+            tuplet_spelling_specifier = \
+                rhythmmakertools.TupletSpellingSpecifier()
+        if not tuplet_spelling_specifier.simplify_tuplets:
+            return
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            if tuplet.is_trivial:
+                continue
+            duration = tuplet._get_duration()
+            if all(isinstance(x, scoretools.Rest) for x in tuplet):
+                rests = scoretools.make_rests([duration])
+                tuplet[:] = rests
+            elif all(isinstance(x, scoretools.Note) for x in tuplet):
+                logical_ties = set([x._get_logical_tie() for x in tuplet])
+                if len(logical_ties) == 1:
+                    notes = scoretools.make_notes([0], [duration])
+                    tuplet[:] = notes
 
     def _tie_across_divisions(self, selections):
         from abjad.tools import rhythmmakertools
