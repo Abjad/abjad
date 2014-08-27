@@ -139,7 +139,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        tuplet_ratios=((1, 1), (1, 2), (1, 3)),
+        tuplet_ratios=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
         preferred_denominator=None,
