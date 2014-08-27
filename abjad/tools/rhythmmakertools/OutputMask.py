@@ -66,6 +66,37 @@ class OutputMask(AbjadValueObject):
                 ),
             )
 
+    ### PRIVATE METHODS ###
+
+    def _matches_index(self, index, total_length):
+        assert 0 <= total_length
+        if 0 <= index:
+            nonnegative_index = index
+        else:
+            nonnegative_index = total_length - abs(index)
+        if self.period is None:
+            for index in self.indices:
+                if 0 <= index:
+                    if index == nonnegative_index and index < total_length:
+                        return True
+                else:
+                    index = total_length - abs(index)
+                    if index == nonnegative_index and index < total_length:
+                        return True
+        else:
+            nonnegative_index = nonnegative_index % self.period
+            for index in self.indices:
+                if 0 <= index:
+                    index = index % self.period
+                    if index == nonnegative_index and index < total_length:
+                        return True
+                else:
+                    index = total_length - abs(index)
+                    index = index % self.period
+                    if index == nonnegative_index and index < total_length:
+                        return True
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property

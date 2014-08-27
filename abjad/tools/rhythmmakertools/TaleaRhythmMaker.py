@@ -139,7 +139,7 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_specifier=None,
         burnish_specifier=None,
         duration_spelling_specifier=None,
-        output_mask=None,
+        output_masks=None,
         tie_specifier=None,
         tie_split_notes=True,
         tuplet_spelling_specifier=None,
@@ -150,7 +150,7 @@ class TaleaRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            output_mask=output_mask,
+            output_masks=output_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -713,7 +713,7 @@ class TaleaRhythmMaker(RhythmMaker):
         self._apply_beam_specifier(selections)
         if talea:
             self._apply_ties_to_split_notes(selections, unscaled_talea)
-        selections = self._apply_output_mask(selections)
+        selections = self._apply_output_masks(selections)
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
@@ -1713,12 +1713,12 @@ class TaleaRhythmMaker(RhythmMaker):
         return self._helper_functions
 
     @property
-    def output_mask(self):
-        r'''Gets output mask of talea rhythm-maker.
+    def output_masks(self):
+        r'''Gets output masks of talea rhythm-maker.
 
         ..  container:: example
 
-            **Example 1.** No output mask:
+            **Example 1.** No output masks:
 
             ::
 
@@ -1782,7 +1782,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     output_mask=[1, 0],
+                ...     output_masks=[
+                ...         rhythmmakertools.OutputMask(
+                ...             indices=[1],
+                ...             period=2,
+                ...             ),
+                ...         ],
                 ...     )
 
             ::
@@ -1833,7 +1838,12 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     split_divisions_by_counts=[9],
-                ...     output_mask=[1, 0],
+                ...     output_masks=[
+                ...         rhythmmakertools.OutputMask(
+                ...             indices=[1],
+                ...             period=2,
+                ...             ),
+                ...         ],
                 ...     )
 
             ::
@@ -1885,7 +1895,7 @@ class TaleaRhythmMaker(RhythmMaker):
         Set to boolean tuple or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
-        return superclass.output_mask
+        return superclass.output_masks
 
     @property
     def split_divisions_by_counts(self):

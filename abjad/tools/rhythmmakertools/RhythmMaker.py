@@ -22,7 +22,7 @@ class RhythmMaker(AbjadValueObject):
     __slots__ = (
         '_beam_specifier',
         '_duration_spelling_specifier',
-        '_output_mask',
+        '_output_masks',
         '_seeds',
         '_tie_specifier',
         '_tuplet_spelling_specifier',
@@ -38,7 +38,7 @@ class RhythmMaker(AbjadValueObject):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        output_mask=None,
+        output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -49,10 +49,11 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
-        if output_mask is not None:
-            output_mask = tuple(output_mask)
-            assert self._is_sign_tuple(output_mask), repr(output_mask)
-        self._output_mask = output_mask
+        if output_masks is not None:
+            output_masks = tuple(output_masks)
+            prototype = rhythmmakertools.OutputMask
+            assert (isinstance(_, prototype) for _ in output_masks)
+        self._output_masks = output_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
         self._tie_specifier = tie_specifier
@@ -199,11 +200,10 @@ class RhythmMaker(AbjadValueObject):
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
 
-    def _apply_output_mask(self, selections):
+    def _apply_output_masks(self, selections):
         from abjad.tools import rhythmmakertools
-        if not self.output_mask:
+        if not self.output_masks:
             return selections
-        output_mask = datastructuretools.CyclicTuple(self.output_mask)
         new_selections = []
         if self.duration_spelling_specifier is None:
             duration_spelling_specifier = \
@@ -212,10 +212,10 @@ class RhythmMaker(AbjadValueObject):
             duration_spelling_specifier.decrease_durations_monotonically
         forbidden_written_duration = \
             duration_spelling_specifier.forbidden_written_duration
+        length = len(selections)
+        output_masks = self.output_masks
         for i, selection in enumerate(selections):
-            indicator = output_mask[i]
-            assert indicator in (0, 1)
-            if indicator == 1:
+            if not any(_._matches_index(i, length) for _ in output_masks):
                 new_selections.append(selection)
                 continue
             duration = selection.get_duration()
@@ -409,12 +409,12 @@ class RhythmMaker(AbjadValueObject):
         return self._duration_spelling_specifier
 
     @property
-    def output_mask(self):
-        r'''Gets output mask of rhythm-maker.
+    def output_masks(self):
+        r'''Gets output masks of rhythm-maker.
 
-        Returns sign tuple or none.
+        Returns tuple of output masks or none.
         '''
-        return self._output_mask
+        return self._output_masks
 
     @property
     def tie_specifier(self):
