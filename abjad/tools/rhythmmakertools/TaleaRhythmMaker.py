@@ -462,38 +462,6 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             return self._burnish_each_division(divisions)
 
-#    def _apply_output_mask(self, selections):
-#        from abjad.tools import rhythmmakertools
-#        if not self.output_mask:
-#            return selections
-#        output_mask = datastructuretools.CyclicTuple(self.output_mask)
-#        new_selections = []
-#        if self.duration_spelling_specifier is None:
-#            duration_spelling_specifier = \
-#                rhythmmakertools.DurationSpellingSpecifier()
-#        decrease_durations_monotonically = \
-#            duration_spelling_specifier.decrease_durations_monotonically
-#        forbidden_written_duration = \
-#            duration_spelling_specifier.forbidden_written_duration
-#        for i, selection in enumerate(selections):
-#            indicator = output_mask[i]
-#            assert indicator in (0, 1)
-#            if indicator == 1:
-#                new_selections.append(selection)
-#                continue
-#            duration = selection.get_duration()
-#            new_selection = scoretools.make_leaves(
-#                [None],
-#                [duration],
-#                decrease_durations_monotonically=\
-#                    decrease_durations_monotonically,
-#                forbidden_written_duration=forbidden_written_duration,
-#                )
-#            for component in iterate(selection).by_class():
-#                detach(spannertools.Tie, component)
-#            new_selections.append(new_selection)
-#        return new_selections
-
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
         tie_specifier = self.tie_specifier
