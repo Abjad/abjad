@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 from abjad.tools.topleveltools import new
@@ -8,15 +7,38 @@ from abjad.tools.topleveltools import new
 class TypedOrderedDict(TypedCollection):
     r'''A typed ordered dictionary.
 
-    ..  note:: Doctests not included because class is used as a
-        base class. Doctests here would put weird examples in child classes.
-        See child classes for doctests.
+    ..  container:: example
+
+        ::
+
+            >>> dictionary = datastructuretools.TypedOrderedDict([
+            ...     ('color', 'red'),
+            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ])
+
+        ::
+
+            >>> print(format(dictionary))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ]
+                )
 
     '''
 
     ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
 
     __slots__ = (
         )
