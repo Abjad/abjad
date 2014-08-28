@@ -72,6 +72,7 @@ class NoteRhythmMaker(RhythmMaker):
         beam_specifier=None,
         burnish_specifier=None,
         duration_spelling_specifier=None,
+        output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -80,6 +81,7 @@ class NoteRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
+            output_masks=output_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -308,6 +310,7 @@ class NoteRhythmMaker(RhythmMaker):
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
+        selections = self._apply_output_masks(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
@@ -686,6 +689,104 @@ class NoteRhythmMaker(RhythmMaker):
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
+
+    @property
+    def output_masks(self):
+        r'''Gets output masks of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No output masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Masks every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     output_masks=[
+                ...         rhythmmakertools.OutputMask(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        Set to output masks or none.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.output_masks
 
     @property
     def tuplet_spelling_specifier(self):

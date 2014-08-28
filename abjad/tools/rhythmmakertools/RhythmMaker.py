@@ -396,7 +396,7 @@ class RhythmMaker(AbjadValueObject):
     def beam_specifier(self):
         r'''Gets beam specifier of rhythm-maker.
 
-        Returns beam specifier or none.
+        Set to beam specifier or none.
         '''
         return self._beam_specifier
 
@@ -404,7 +404,7 @@ class RhythmMaker(AbjadValueObject):
     def duration_spelling_specifier(self):
         r'''Gets duration spelling specifier of rhythm-maker.
 
-        Returns duration spelling specifier or none.
+        Set to duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
 
@@ -412,7 +412,7 @@ class RhythmMaker(AbjadValueObject):
     def output_masks(self):
         r'''Gets output masks of rhythm-maker.
 
-        Returns tuple of output masks or none.
+        Set to output masks or none.
         '''
         return self._output_masks
 
@@ -420,7 +420,7 @@ class RhythmMaker(AbjadValueObject):
     def tie_specifier(self):
         r'''Gets tie specifier of rhythm-maker.
 
-        Returns tie specifier or none.
+        Set to tie specifier or none.
         '''
         return self._tie_specifier
 
@@ -428,7 +428,7 @@ class RhythmMaker(AbjadValueObject):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of rhythm-maker.
 
-        Returns tuplet spelling specifier or none.
+        Set to tuplet spelling specifier or none.
         '''
         return self._tuplet_spelling_specifier
 
