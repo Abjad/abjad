@@ -88,6 +88,7 @@ class IncisedRhythmMaker(RhythmMaker):
         extra_counts_per_division=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         helper_functions=None,
@@ -97,6 +98,7 @@ class IncisedRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
+            output_masks=output_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -284,8 +286,9 @@ class IncisedRhythmMaker(RhythmMaker):
             for x in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
-        result = [selectiontools.Selection(x) for x in result]
-        return result
+        selections = [selectiontools.Selection(x) for x in result]
+        selections = self._apply_output_masks(selections)
+        return selections
 
     def _make_numeric_map_part(
         self,
@@ -522,7 +525,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Fills divisions with notes. Does not incise:
+            **Example 1.** Doesn't incise:
 
             ::
 
@@ -670,6 +673,125 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns incise specifier or none.
         '''
         return self._incise_specifier
+
+    @property
+    def output_masks(self):
+        r'''Gets output masks of incised rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No output masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         prefix_talea=[-1],
+                ...         prefix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        r16
+                        c'4 ~
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        r16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        r16
+                        c'4 ~
+                        c'16
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Masks every other output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         prefix_talea=[-1],
+                ...         prefix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     output_masks=[
+                ...         rhythmmakertools.OutputMask(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r16
+                        c'4 ~
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r16
+                        c'4 ~
+                        c'16
+                    }
+                }
+
+        Set to output masks or none.
+        '''
+        superclass = super(IncisedRhythmMaker, self)
+        return superclass.output_masks
 
     @property
     def split_divisions_by_counts(self):

@@ -1892,7 +1892,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Set to boolean tuple or none.
+        Set to output masks or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.output_masks
