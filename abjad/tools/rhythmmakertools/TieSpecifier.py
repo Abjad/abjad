@@ -127,9 +127,9 @@ class TieSpecifier(AbjadValueObject):
 
     @property
     def tie_across_divisions(self):
-        r'''Is true when rhythm-maker should tie across divisons.
-        Otherwise false.
+        r'''Is true or is a boolean vector when rhythm-maker should tie across
+        divisons. Otherwise false.
 
-        Returns boolean.
+        Set to true, false or to a boolean vector.
         '''
         return self._tie_across_divisions

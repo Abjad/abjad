@@ -518,7 +518,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         Ignores `beam_each_division` when `beam_division_together` is true.
 
-        Returns beam specifier or none.
+        Set to beam specifier or none.
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.beam_specifier
@@ -1168,7 +1168,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns none, ``'divisions'``, duration or positive integer.
+        Set to none, ``'divisions'``, duration or positive integer.
         '''
         return self._preferred_denominator
 
@@ -1282,7 +1282,67 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns tie specifier or none.
+        ..  container:: example
+
+            **Example 3.** Ties across every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=[1, 0],
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        \times 4/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'16.
+                            r8.
+                            c'16.
+                        }
+                    }
+                    {
+                        \time 5/16
+                        {
+                            c'8 [
+                            c'8. ~ ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/6 {
+                            c'16.
+                            r8.
+                            c'16.
+                        }
+                    }
+                }
+
+        Set to tie specifier or none.
         '''
         return RhythmMaker.tie_specifier.fget(self)
 
@@ -1300,7 +1360,7 @@ class TupletRhythmMaker(RhythmMaker):
                 >>> maker.tuplet_ratios
                 (Ratio(2, 3), Ratio(1, -2, 1))
 
-        Returns tuple of ratios.
+        Set to tuple of ratios.
         '''
         return self._tuplet_ratios
 
@@ -1522,7 +1582,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns tuplet spelling specifier or none.
+        Set to tuplet spelling specifier or none.
         '''
         superclass = super(TupletRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
