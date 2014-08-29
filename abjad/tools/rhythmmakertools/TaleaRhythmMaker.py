@@ -419,9 +419,9 @@ class TaleaRhythmMaker(RhythmMaker):
                 editor=rhythmmakertools.DurationSpellingSpecifier,
                 ),
             systemtools.AttributeDetail(
-                name='output_mask',
+                name='output_masks',
                 command='om',
-                editor=idetools.getters.get_integers,
+                editor=rhythmmakertools.OutputMask,
                 ),
             systemtools.AttributeDetail(
                 name='tie_specifier',
