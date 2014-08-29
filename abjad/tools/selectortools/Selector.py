@@ -779,7 +779,7 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def longer_than(self, duration):
+    def longer_than(self, duration, or_equal_to=False):
         r'''Configures selector to select containers or selections whose
         duration is longer than `duration`.
 
@@ -810,9 +810,13 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from experimental.tools import selectortools
+        if not or_equal_to:
+            parts = More
+        else:
+            parts = (More, Exact)
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
-            parts=More,
+            parts=parts,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -959,7 +963,7 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def shorter_than(self, duration):
+    def shorter_than(self, duration, or_equal_to=False):
         r'''Configures selector to select containers or selections whose
         duration is shorter than `duration`.
 
@@ -990,9 +994,13 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from experimental.tools import selectortools
+        if not or_equal_to:
+            parts = Less
+        else:
+            parts = (Less, Exact)
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
-            parts=Less,
+            parts=parts,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)

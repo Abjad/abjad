@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -22,7 +23,9 @@ class DurationSelectorCallback(AbjadValueObject):
         parts=Exact,
         ):
         self._duration = durationtools.Duration(duration)
-        assert parts in (None, Exact, More, Less)
+        if not isinstance(parts, collections.Sequence):
+            parts = (parts,)
+        assert all(_ in (None, Exact, More, Less) for _ in parts)
         self._parts = parts
 
     ### SPECIAL METHODS ###
@@ -40,13 +43,13 @@ class DurationSelectorCallback(AbjadValueObject):
                 duration = subexpr._get_duration()
             else:
                 duration = subexpr.get_duration()
-            if self.parts in (None, Exact):
+            if None in self.parts or Exact in self.parts:
                 if duration == self.duration:
                     result.append(subexpr)
-            elif self.parts == More:
+            elif More in self.parts:
                 if self.duration < duration:
                     result.append(subexpr)
-            elif self.parts == Less:
+            elif Less in self.parts:
                 if duration < self.duration:
                     result.append(subexpr)
         return tuple(result)
