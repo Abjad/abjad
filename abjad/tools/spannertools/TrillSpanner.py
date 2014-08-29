@@ -72,7 +72,7 @@ class TrillSpanner(Spanner):
                 string = r'\pitchedTrill'
                 lilypond_format_bundle.opening.spanners.append(string)
                 string = str(self.pitch)
-                lilypond_format_bundle.right.spanner_starts.append(string)
+                lilypond_format_bundle.right.trill_pitches.append(string)
         if self._is_my_last_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'revert',

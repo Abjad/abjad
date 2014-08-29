@@ -101,48 +101,49 @@ class ComplexTrillSpanner(Spanner):
             scoretools.MultimeasureRest,
             scoretools.Skip,
             )
-        if not isinstance(leaf, prototype):
-            logical_tie = inspect_(leaf).get_logical_tie()
-            if leaf is logical_tie.head:
-                previous_leaf = leaf._get_leaf(-1)
-                if previous_leaf is not None and \
-                    not isinstance(previous_leaf, prototype) and \
-                    inspect_(previous_leaf).get_spanners(type(self)):
-                    grob_override = lilypondnametools.LilyPondGrobOverride(
-                        grob_name='TrillSpanner',
-                        is_once=True,
-                        property_path=(
-                            'bound-details',
-                            'left',
-                            'text',
-                            ),
-                        value=markuptools.Markup(r'\null'),
-                        )
-                    string = '\n'.join(grob_override._override_format_pieces)
-                    lilypond_format_bundle.grob_overrides.append(string)
-                if self.interval is not None:
-                    string = r'\pitchedTrill'
-                    lilypond_format_bundle.opening.spanners.append(string)
-                    if hasattr(leaf, 'written_pitch'):
-                        written_pitch = leaf.written_pitch
-                    elif hasattr(leaf, 'written_pitches'):
-                        if 0 < self.interval.semitones:
-                            written_pitch = max(leaf.written_pitches)
-                        elif self.interval.semitones < 0:
-                            written_pitch = min(leaf.written_pitches)
-                    trill_pitch = written_pitch.transpose(self.interval)
-                    string = r'\startTrillSpan {!s}'.format(trill_pitch)
-                else:
-                    string = r'\startTrillSpan'
-                lilypond_format_bundle.right.spanner_starts.append(string)
-            if leaf is logical_tie.tail:
-                next_leaf = leaf._get_leaf(1)
-                if next_leaf is not None:
-                    string = r'<> \stopTrillSpan'
-                    lilypond_format_bundle.after.commands.append(string)
-                else:
-                    string = r'\stopTrillSpan'
-                    lilypond_format_bundle.right.spanner_stops.append(string)
+        if isinstance(leaf, prototype):
+            return lilypond_format_bundle
+        logical_tie = inspect_(leaf).get_logical_tie()
+        if leaf is logical_tie.head:
+            previous_leaf = leaf._get_leaf(-1)
+            if previous_leaf is not None and \
+                not isinstance(previous_leaf, prototype) and \
+                inspect_(previous_leaf).get_spanners(type(self)):
+                grob_override = lilypondnametools.LilyPondGrobOverride(
+                    grob_name='TrillSpanner',
+                    is_once=True,
+                    property_path=(
+                        'bound-details',
+                        'left',
+                        'text',
+                        ),
+                    value=markuptools.Markup(r'\null'),
+                    )
+                string = '\n'.join(grob_override._override_format_pieces)
+                lilypond_format_bundle.grob_overrides.append(string)
+            if self.interval is not None:
+                string = r'\pitchedTrill'
+                lilypond_format_bundle.opening.spanners.append(string)
+                if hasattr(leaf, 'written_pitch'):
+                    written_pitch = leaf.written_pitch
+                elif hasattr(leaf, 'written_pitches'):
+                    if 0 < self.interval.semitones:
+                        written_pitch = max(leaf.written_pitches)
+                    elif self.interval.semitones < 0:
+                        written_pitch = min(leaf.written_pitches)
+                trill_pitch = written_pitch.transpose(self.interval)
+                string = r'\startTrillSpan {!s}'.format(trill_pitch)
+            else:
+                string = r'\startTrillSpan'
+            lilypond_format_bundle.right.trill_pitches.append(string)
+        if leaf is logical_tie.tail:
+            next_leaf = leaf._get_leaf(1)
+            if next_leaf is not None:
+                string = r'<> \stopTrillSpan'
+                lilypond_format_bundle.after.commands.append(string)
+            else:
+                string = r'\stopTrillSpan'
+                lilypond_format_bundle.right.spanner_stops.append(string)
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###

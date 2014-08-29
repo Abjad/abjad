@@ -39,6 +39,7 @@ class LilyPondFormatBundle(AbjadObject):
             '_spanner_starts',
             '_spanner_stops',
             '_stem_tremolos',
+            '_trill_pitches',
             )
 
         def __init__(self):
@@ -51,6 +52,7 @@ class LilyPondFormatBundle(AbjadObject):
             self._spanner_starts = []
             self._spanner_stops = []
             self._stem_tremolos = []
+            self._trill_pitches = []
 
         @property
         def _storage_format_specification(self):
@@ -65,6 +67,7 @@ class LilyPondFormatBundle(AbjadObject):
                 'spanner_starts',
                 'spanner_stops',
                 'stem_tremolos',
+                'trill_pitches',
                 ]
             keyword_argument_names = [x for x in keyword_argument_names
                 if getattr(self, x)]
@@ -97,6 +100,7 @@ class LilyPondFormatBundle(AbjadObject):
                 'spanner_starts',
                 'spanner_stops',
                 'stem_tremolos',
+                'trill_pitches',
                 )
             return any(getattr(self, contribution_category)
                 for contribution_category in contribution_categories)
@@ -125,6 +129,10 @@ class LilyPondFormatBundle(AbjadObject):
         def stem_tremolos(self):
             return self._stem_tremolos
 
+        @property
+        def trill_pitches(self):
+            return self._trill_pitches
+
         def alphabetize(self):
             self._indicators.sort()
 
@@ -141,6 +149,7 @@ class LilyPondFormatBundle(AbjadObject):
             self._spanner_starts = tuple(self.spanner_starts)
             self._spanner_stops = tuple(self.spanner_stops)
             self._stem_tremolos = tuple(self.stem_tremolos)
+            self._trill_pitches = tuple(self.trill_pitches)
 
         def update(self, slot_contributions):
             assert isinstance(slot_contributions, type(self))
@@ -153,6 +162,7 @@ class LilyPondFormatBundle(AbjadObject):
             self.spanner_starts.extend(slot_contributions.spanner_starts)
             self.spanner_stops.extend(slot_contributions.spanner_stops)
             self.stem_tremolos.extend(slot_contributions.stem_tremolos)
+            self.trill_pitches.extend(slot_contributions.trill_pitches)
 
     ### INITIALIZER ###
 

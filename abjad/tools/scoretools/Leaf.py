@@ -236,6 +236,10 @@ class Leaf(Component):
                 result[0] += ' {}'.format(markup[0])
             else:
                 result.extend('\t{}'.format(x) for x in markup)
+        trill_pitches = bundle.right.trill_pitches
+        if trill_pitches:
+            assert len(trill_pitches) == 1
+            result[-1] += ' {}'.format(trill_pitches[0])
         return ['leaf body', result]
 
     # TODO: subclass this properly for chord

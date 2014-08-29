@@ -173,24 +173,12 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
-        from abjad.tools import spannertools
         pairs = []
         for spanner in component._get_parentage()._get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
-        prototype = (
-            spannertools.ComplexTrillSpanner,
-            spannertools.TrillSpanner,
-            )
         pairs.sort(key=lambda x: type(x[0]).__name__)
-        trill_pairs, nontrill_pairs = [], []
-        for pair in pairs:
-            if isinstance(pair[0], prototype):
-                trill_pairs.append(pair)
-            else:
-                nontrill_pairs.append(pair)
-        pairs = nontrill_pairs + trill_pairs
         for spanner, spanner_bundle in pairs:
             bundle.update(spanner_bundle)
 
