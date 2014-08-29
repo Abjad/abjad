@@ -114,7 +114,7 @@ class RunDoctestsScript(DirectoryScript):
             if os.path.isdir(args.path):
                 for dir_path, dir_names, file_names in os.walk(args.path):
                     dir_names[:] = [x for x in dir_names
-                        if not x.startswith('.')]
+                        if not x.startswith(('.', 'mothballed'))]
                     for file_name in sorted(file_names):
                         if (file_name.endswith('.py') and
                             not file_name.startswith('test_') and
