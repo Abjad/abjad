@@ -219,3 +219,36 @@
 47. Implement getters.get_signs (for vectors of -1, 0, 1).
 
 48. Allow A, B, C, ... as shortcuts for (g A), (g B), (g C), ....
+
+49. Optimize segment menu:
+    OLD:
+        Score (2014) - segments directory - B
+        
+           1: __init__.py
+           2: __metadata__.py
+           3: definition.py
+           4: illustration.ly
+           5: illustration.pdf
+           6: versions/
+        
+              definition.py - edit (de)
+              definition.py - illustrate (di)
+              definition.py - stub (ds)
+        
+              illustration.ly - edit (ie)
+              illustration.ly - interpret (ii)
+              illustration.pdf - open (io)
+    NEW:
+        Score (2014) - segments directory - B
+        
+           1: __init__.py
+           2: __metadata__.py
+           3: definition.py
+           4: illustration.ly
+           5: illustration.pdf
+           6: versions/
+        
+              definition.py - edit (de)
+              definition.py - illustrate (di)
+              illustration.pdf - open (io)
+    Will involve a few extensions to the menuing system.
