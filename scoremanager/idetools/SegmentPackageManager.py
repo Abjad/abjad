@@ -54,9 +54,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
-            'de': self.edit_definition_py,
             'di': self.illustrate_definition_py,
-            'ds': self.write_stub_definition_py,
             #
             'ii': self.interpret_illustration_ly,
             'ie': self.edit_illustration_ly,
@@ -107,6 +105,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 menu_entries=[message],
                 )
         commands = []
+        commands.append(('definition.py - check', 'dc'))
         commands.append(('definition.py - edit', 'de'))
         commands.append(('definition.py - illustrate', 'di'))
         commands.append(('definition.py - stub', 'ds'))

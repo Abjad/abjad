@@ -40,6 +40,10 @@ class ScoreInternalPackageManager(PackageManager):
             '<': self.go_to_previous_package,
             '>': self.go_to_next_package,
             #
+            'dc': self.check_definition_py,
+            'de': self.edit_definition_py,
+            'ds': self.write_stub_definition_py,
+            #
             'vr': self.version_package,
             'vl': self.list_versions_directory,
             })
@@ -124,6 +128,24 @@ class ScoreInternalPackageManager(PackageManager):
             )
 
     ### PUBLIC METHODS ###
+
+    def check_definition_py(self, dry_run=False):
+        r'''Checks ``definition.py``.
+
+        Display errors generated during interpretation.
+        '''
+        inputs, outputs = [], []
+        if dry_run:
+            inputs.append(self._definition_py_path)
+            return inputs, outputs
+        stderr_lines = self._io_manager.check_file(self._definition_py_path)
+        if stderr_lines:
+            messages = [self._definition_py_path + ' FAILED:']
+            messages.extend('    ' + _ for _ in stderr_lines)
+            self._io_manager._display(messages)
+        else:
+            message = '{} OK.'.format(self._definition_py_path)
+            self._io_manager._display(message)
 
     def go_to_next_package(self):
         r'''Goes to next package.
