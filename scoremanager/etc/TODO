@@ -257,3 +257,8 @@
     This will allow the composer to be in segment A and copy the
     definition.py file from segment B (all in the same score).
     Convenience function.
+
+51. Allow strings of three characters or more (like 'tempo',
+    'perf', 'time') to go automatically any matching material package.
+    Allow this from anywhere in a score package. So these will effectively
+    be aliases for (m tempo), (m perf), (m time) and so on.
