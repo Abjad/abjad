@@ -184,7 +184,7 @@ class SegmentPackageManager(ScoreInternalPackageManager):
         self._open_versioned_file('illustration.ly')
 
     # TODO: refactor with MaterialPackageManager.illustrate_output_py()
-    def illustrate_definition_py(self):
+    def illustrate_definition_py(self, dry_run=False):
         r'''Illustrates ``definition.py``.
 
         Makes ``illustration.ly`` and ``illustration.pdf``.
@@ -224,6 +224,11 @@ class SegmentPackageManager(ScoreInternalPackageManager):
             self._path,
             'illustration.pdf',
             )
+        inputs, outputs = [], []
+        if dry_run:
+            inputs.append(self._definition_py_path)
+            outputs.append((illustration_ly_path, illustration_pdf_path))
+            return inputs, outputs
         with systemtools.FilesystemState(remove=temporary_files):
             shutil.copyfile(boilerplate_path, illustrate_path)
             with self._io_manager._silent():

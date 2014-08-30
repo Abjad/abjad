@@ -44,6 +44,7 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         result = superclass._command_to_method
         result = result.copy()
         result.update({
+            'di*': self.illustrate_every_definition_py,  
             })
         return result
 
@@ -62,6 +63,19 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
             if '.' not in expr:
                 return True
         return False
+
+    def _make_all_packages_menu_section(self, menu, commands_only=False):
+        superclass = super(SegmentPackageWrangler, self)
+        commands = superclass._make_all_packages_menu_section(
+            menu, commands_only=True)
+        commands.append(('all packages - definition.py - illustrate', 'di*'))
+        if commands_only:
+            return commands
+        menu.make_command_section(
+            commands=commands,
+            is_hidden=True,
+            name='all packages',
+            )
 
     def _make_asset(self, path, metadata=None):
         metadata = collections.OrderedDict(metadata or {})
@@ -113,6 +127,28 @@ class SegmentPackageWrangler(ScoreInternalPackageWrangler):
         Returns none.
         '''
         self._open_in_every_package('definition.py', verb='edit')
+
+    def illustrate_every_definition_py(self):
+        r'''Illustrates ``definition.py`` in every package.
+
+        Returns none.
+        '''
+        managers = self._list_visible_asset_managers()
+        inputs, outputs = [], []
+        method_name = 'illustrate_definition_py'
+        for manager in managers:
+            method = getattr(manager, method_name)
+            inputs_, outputs_ = method(dry_run=True)
+            inputs.extend(inputs_)
+            outputs.extend(outputs_)
+        messages = self._format_messaging(inputs, outputs, verb='illustrate')
+        self._io_manager._display(messages)
+        result = self._io_manager._confirm()
+        if self._session.is_backtracking or not result:
+            return
+        for manager in managers:
+            method = getattr(manager, method_name)
+            method()
 
     def open_every_illustration_pdf(self):
         r'''Opens ``illustration.pdf`` file in every package.
