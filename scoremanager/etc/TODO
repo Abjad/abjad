@@ -252,3 +252,8 @@
               definition.py - illustrate (di)
               illustration.pdf - open (io)
     Will involve a few extensions to the menuing system.
+
+50. Add a new 'definition.py - copy' (dcp) command.
+    This will allow the composer to be in segment A and copy the
+    definition.py file from segment B (all in the same score).
+    Convenience function.
