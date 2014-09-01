@@ -21,14 +21,13 @@ class Vector(TypedCounter):
     def __init__(self, items=None, item_class=None):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools
+        prototype_1 = (collections.Iterator, types.GeneratorType)
+        prototype_2 = (TypedCounter, collections.Counter)
         if isinstance(items, str):
             items = items.split()
-        elif isinstance(items, (
-            collections.Iterator,
-            types.GeneratorType,
-            )):
+        elif isinstance(items, prototype_1):
             items = [item for item in items]
-        if isinstance(items, (TypedCounter, collections.Counter)):
+        if isinstance(items, prototype_2):
             new_tokens = []
             for item, count in items.items():
                 new_tokens.extend(count * [item])
@@ -36,8 +35,8 @@ class Vector(TypedCounter):
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if isinstance(items, datastructuretools.TypedCollection) and \
-                    issubclass(items.item_class, self._parent_item_class):
+                if (isinstance(items, datastructuretools.TypedCollection) and
+                    issubclass(items.item_class, self._parent_item_class)):
                     item_class = items.item_class
                 elif len(items):
                     if isinstance(items, collections.Set):
@@ -83,7 +82,7 @@ class Vector(TypedCounter):
     @property
     def _repr_specification(self):
         items = {}
-        for key, value in self:
+        for key, value in self.items():
             items[str(key)] = value
         return new(
             self._storage_format_specification,
