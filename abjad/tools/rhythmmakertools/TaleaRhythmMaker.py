@@ -421,7 +421,7 @@ class TaleaRhythmMaker(RhythmMaker):
             systemtools.AttributeDetail(
                 name='output_masks',
                 command='om',
-                editor=rhythmmakertools.OutputMask,
+                editor=rhythmmakertools.BooleanPattern,
                 ),
             systemtools.AttributeDetail(
                 name='tie_specifier',
@@ -1783,7 +1783,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     output_masks=[
-                ...         rhythmmakertools.OutputMask(
+                ...         rhythmmakertools.BooleanPattern(
                 ...             indices=[1],
                 ...             period=2,
                 ...             ),
@@ -1839,7 +1839,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     split_divisions_by_counts=[9],
                 ...     output_masks=[
-                ...         rhythmmakertools.OutputMask(
+                ...         rhythmmakertools.BooleanPattern(
                 ...             indices=[1],
                 ...             period=2,
                 ...             ),

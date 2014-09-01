@@ -51,7 +51,7 @@ class RhythmMaker(AbjadValueObject):
         assert isinstance(duration_spelling_specifier, prototype)
         if output_masks is not None:
             output_masks = tuple(output_masks)
-            prototype = rhythmmakertools.OutputMask
+            prototype = rhythmmakertools.BooleanPattern
             assert (isinstance(_, prototype) for _ in output_masks)
         self._output_masks = output_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))

@@ -744,7 +744,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         talea_denominator=16,
                 ...         ),
                 ...     output_masks=[
-                ...         rhythmmakertools.OutputMask(
+                ...         rhythmmakertools.BooleanPattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),

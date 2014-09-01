@@ -743,7 +743,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     output_masks=[
-                ...         rhythmmakertools.OutputMask(
+                ...         rhythmmakertools.BooleanPattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),

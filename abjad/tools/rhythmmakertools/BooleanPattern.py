@@ -3,14 +3,14 @@ from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 
 
-class OutputMask(AbjadValueObject):
+class BooleanPattern(AbjadValueObject):
     r'''Output mask.
 
     ..  container:: example
 
         ::
 
-            >>> mask = rhythmmakertools.OutputMask(
+            >>> mask = rhythmmakertools.BooleanPattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
             ...     )
@@ -18,7 +18,7 @@ class OutputMask(AbjadValueObject):
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.OutputMask(
+            rhythmmakertools.BooleanPattern(
                 indices=(0, 1, 7),
                 period=16,
                 )
@@ -107,7 +107,7 @@ class OutputMask(AbjadValueObject):
 
             ::
 
-                >>> mask = rhythmmakertools.OutputMask(
+                >>> mask = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -129,7 +129,7 @@ class OutputMask(AbjadValueObject):
 
             ::
 
-                >>> mask = rhythmmakertools.OutputMask(
+                >>> mask = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
