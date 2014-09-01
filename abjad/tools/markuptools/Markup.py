@@ -122,6 +122,42 @@ class Markup(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __add__(self, expr):
+        r'''Adds contents of this markup to `expr`.
+
+        ..  container:: example
+
+            **Example 1.** Adds markup to markup:
+
+                ::
+
+                    >>> Markup('foo') + Markup('bar')
+                    Markup(contents=('foo', 'bar'))
+
+        ..  container:: example
+
+            **Example 2.** Adds markup command to markup:
+
+                ::
+
+                    >>> Markup('foo') + Markup.hspace(0.75)
+                    Markup(contents=('foo', MarkupCommand('hspace', 0.75)))
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        commands = list(self.contents)
+        if isinstance(expr, type(self)):
+            commands.extend(expr.contents)
+        elif isinstance(expr, markuptools.MarkupCommand):
+            commands.append(expr)
+        else:
+            message = 'must be markup or markup command: {!r}.'
+            message = message.format(expr)
+            raise TypeError(message)
+        markup = type(self)(contents=commands)
+        return markup
+
     def __copy__(self, *args):
         r'''Copies markup.
 
