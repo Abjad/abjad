@@ -1582,12 +1582,6 @@ class TempoSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _append_hspace(self, markup, amount):
-        commands = list(markup.contents)
-        commands.append(markuptools.Markup.hspace(amount))
-        markup = markuptools.Markup(contents=commands)
-        return markup
-
     def _combine_tempo_and_metric_modulation(
         self,
         tempo,
@@ -1599,7 +1593,7 @@ class TempoSpanner(Spanner):
         if metric_modulation is None:
             return tempo._to_markup()
         tempo_markup = tempo._to_markup()
-        tempo_markup = self._append_hspace(tempo_markup, 0.5)
+        tempo_markup = tempo_markup + tempo_markup.hspace(0.5)
         metric_modulation_markup = metric_modulation._get_markup()
         metric_modulation_markup = self._parenthesize_markup(
             metric_modulation_markup,
@@ -1715,7 +1709,7 @@ class TempoSpanner(Spanner):
         #
         markup = current_tempo_trend._to_markup()
         markup = self._parenthesize_markup(markup, padding=0.45)
-        markup = self._append_hspace(markup, 0.75)
+        markup = markup + markup.hspace(0.75)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -1902,7 +1896,7 @@ class TempoSpanner(Spanner):
             current_tempo,
             current_metric_modulation,
             )
-        markup = self._append_hspace(markup, 1.25)
+        markup = markup + markup.hspace(1.25)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
@@ -1927,10 +1921,10 @@ class TempoSpanner(Spanner):
         if previous_tempo:
             markup = previous_tempo._to_markup()
             markup = self._parenthesize_markup(markup, padding=0.45)
-            markup = self._append_hspace(markup, 0.75)
+            markup = markup + markup.hspace(0.75)
         else:
             markup = current_tempo_trend._to_markup()
-            markup = self._append_hspace(markup, 0.75)
+            markup = markup + markup.hspace(0.75)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
