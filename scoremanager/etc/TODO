@@ -266,3 +266,6 @@
     should be identifiable without a prefix like (m) or (g) whereas
     verbs like (di) and (io) probably should require a prefix to
     disambiguate the runtime context.
+
+52. Change (di) to (i). Change (oi) to (i).
+    Find a way to structure the menuing system so this is clear.
