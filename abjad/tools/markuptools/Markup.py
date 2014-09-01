@@ -613,6 +613,43 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def override(self, new_property):
+        r'''LilyPond ``\override`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.parenthesize()
+                >>> markup = markup.override(('padding', 0.75))
+
+            ::
+
+                >>> f(markup)
+                \markup {
+                    \override
+                        #'(padding . 0.75)
+                        \parenthesize
+                            "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        new_property = schemetools.SchemePair(new_property)
+        command = markuptools.MarkupCommand(
+            'override',
+            new_property,
+            contents,
+            )
+        return new(self, contents=command)
+
     def pad_around(self, padding):
         r'''LilyPond ``\pad-around`` markup command.
 
@@ -645,6 +682,38 @@ class Markup(AbjadObject):
         command = markuptools.MarkupCommand(
             'pad-around',
             padding,
+            contents,
+            )
+        return new(self, contents=command)
+
+    def parenthesize(self):
+        r'''LilyPond ``\parenthesie`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.parenthesize()
+
+            ::
+            
+                >>> f(markup)
+                \markup {
+                    \parenthesize
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'parenthesize',
             contents,
             )
         return new(self, contents=command)
