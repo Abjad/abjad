@@ -1603,11 +1603,7 @@ class TempoSpanner(Spanner):
         pair = (0.75, 0.75)
         metric_modulation_markup = metric_modulation_markup.scale(pair)
         metric_modulation_markup = metric_modulation_markup.raise_(0.35)
-        commands = []
-        commands.extend(tempo_markup.contents)
-        commands.extend(metric_modulation_markup.contents)
-        command = markuptools.MarkupCommand('line', commands)
-        markup = markuptools.Markup(contents=command)
+        markup = tempo_markup.line(metric_modulation_markup)
         return markup
 
     def _get_annotations(self, leaf):

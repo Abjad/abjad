@@ -573,6 +573,46 @@ class Markup(AbjadObject):
             contents=command,
             )
 
+    def line(self, *markups):
+        r'''LilyPond ``\line`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.line(Markup('ma'), Markup('non troppo'))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \line
+                        {
+                            "Allegro assai"
+                            ma
+                            "non troppo"
+                        }
+                    }
+
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        contents.extend(self.contents)
+        for markup in markups:
+            contents.extend(markup.contents)
+        command = markuptools.MarkupCommand(
+            'line',
+            contents,
+            )
+        return new(self, contents=command)
+
     def pad_around(self, padding):
         r'''LilyPond ``\pad-around`` markup command.
 
