@@ -1582,9 +1582,9 @@ class TempoSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _append_hspace(self, markup, hspace):
+    def _append_hspace(self, markup, amount):
         commands = list(markup.contents)
-        commands.append(markuptools.MarkupCommand('hspace', hspace))
+        commands.append(markuptools.Markup.hspace(amount))
         markup = markuptools.Markup(contents=commands)
         return markup
 

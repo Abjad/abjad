@@ -445,6 +445,25 @@ class Markup(AbjadObject):
             contents=command,
             )
 
+    @staticmethod
+    def hspace(amount):
+        r'''LilyPond ``\hspace`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> Markup.hspace(0.75)
+                MarkupCommand('hspace', 0.75)
+
+        Returns markup command.
+        '''
+        from abjad.tools import markuptools
+        return markuptools.MarkupCommand(
+            'hspace',
+            amount,
+            )
+
     def italic(self):
         r'''LilyPond ``\italic`` markup command.
 
