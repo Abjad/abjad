@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
+import functools
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
+@functools.total_ordering
 class NumberedPitchClass(PitchClass):
     '''A numbered pitch-class.
 
@@ -163,6 +165,36 @@ class NumberedPitchClass(PitchClass):
         Returns integer.
         '''
         return self._pitch_class_number
+
+    def __lt__(self, expr):
+        r'''Is true when `expr` is a numbered pitch-class with a pitch number
+        greater than that of this numberd pitch-class.
+
+        ..  container:: example
+
+            **Example 1.** Compares less than:
+
+            ::
+
+                >>> pitchtools.NumberedPitchClass(1) < pitchtools.NumberedPitchClass(2)
+                True
+
+        ..  container:: example
+
+            **Example 2.** Does not compare less than:
+
+            ::
+
+                >>> pitchtools.NumberedPitchClass(2) < pitchtools.NumberedPitchClass(1)
+                False
+
+        Raises type error when `expr` is not a numbered pitch-class.
+        '''
+        if not isinstance(expr, type(self)):
+            message = 'can not compare numbered pitch-class to {!r}.'
+            message = message.format(expr)
+            raise TypeError(message)
+        return self.pitch_class_number < expr.pitch_class_number
 
     def __neg__(self):
         r'''Negates numbered pitch-class.

@@ -15,8 +15,7 @@ class PitchClassVector(Vector):
 
         ::
             
-            >>> items = list(vector.items())
-            >>> items.sort(key=lambda x: x[0].pitch_class_number)
+            >>> items = sorted(vector.items())
             >>> for pitch_class, count in items:
             ...     print(pitch_class, count)
             0 1
@@ -32,6 +31,41 @@ class PitchClassVector(Vector):
     '''
 
     ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Gets format of pitch-class vector.
+
+        ..  container:: example
+
+            ::
+
+                >>> vector = pitchtools.PitchClassVector(
+                ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+                ...     item_class=pitchtools.NumberedPitchClass,
+                ...     )
+
+            ::
+
+                >>> print(format(vector))
+                pitchtools.PitchClassVector(
+                    {
+                        pitchtools.NumberedPitchClass(0): 1,
+                        pitchtools.NumberedPitchClass(1): 1,
+                        pitchtools.NumberedPitchClass(2): 1,
+                        pitchtools.NumberedPitchClass(3): 1,
+                        pitchtools.NumberedPitchClass(4): 2,
+                        pitchtools.NumberedPitchClass(6): 1,
+                        pitchtools.NumberedPitchClass(7): 1,
+                        pitchtools.NumberedPitchClass(9): 2,
+                        pitchtools.NumberedPitchClass(10): 1,
+                        },
+                    item_class=pitchtools.NumberedPitchClass,
+                    )
+
+        Returns string.
+        '''
+        superclass = super(PitchClassVector, self)
+        return superclass.__format__(format_specification=format_specification)
 
     def __repr__(self):
         r'''Gets interpreter representation of pitch-class vector.
