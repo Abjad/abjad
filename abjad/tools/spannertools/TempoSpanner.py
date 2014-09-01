@@ -1610,27 +1610,6 @@ class TempoSpanner(Spanner):
         markup = markuptools.Markup(contents=command)
         return markup
 
-    def _general_align_markup(self, markup, axis, direction):
-        axis = schemetools.Scheme(axis)
-        direction = schemetools.Scheme(direction)
-        if len(markup.contents) == 1:
-            command = markuptools.MarkupCommand(
-                'general-align', 
-                axis,
-                direction,
-                markup.contents[0],
-                )
-        else:
-            command = markuptools.MarkupCommand(
-                'general-align', 
-                schemetools.Scheme('Y'),
-                axis,
-                direction,
-                list(markup.contents),
-                )
-        markup = markuptools.Markup(contents=command)
-        return markup
-
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None

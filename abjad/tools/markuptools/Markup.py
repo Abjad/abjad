@@ -477,9 +477,48 @@ class Markup(AbjadObject):
             'caps',
             contents,
             )
-        return new(self,
-            contents=command,
+        return new(self, contents=command)
+
+    def general_align(self, axis, direction):
+        r'''LilyPond ``\general-align`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.general_align('Y', Up)
+                >>> print(format(markup))
+                \markup {
+                    \general-align
+                        #Y
+                        #UP
+                        "Allegro assai"
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        axis = schemetools.Scheme(axis)
+        # TODO: make schemetools.Scheme(direction) work
+        if direction == Up:
+            direction = schemetools.Scheme('UP')
+        elif direction == Down:
+            direction = schemetools.Scheme('DOWN')
+        elif direction == Center:
+            direction = schemetools.Scheme('CENTER')
+        else:
+            message = 'unknown direction: {!r}.'
+            message = message.format(direction)
+            raise ValueError(message)
+        command = markuptools.MarkupCommand(
+            'general-align',
+            axis,
+            direction,
+            contents,
             )
+        return new(self, contents=command)
 
     @staticmethod
     def hspace(amount):
