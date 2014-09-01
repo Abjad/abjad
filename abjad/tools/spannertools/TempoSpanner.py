@@ -1572,16 +1572,15 @@ class TempoSpanner(Spanner):
             return tempo._to_markup()
         tempo_markup = tempo._to_markup()
         tempo_markup = tempo_markup + tempo_markup.hspace(0.5)
-        metric_modulation_markup = metric_modulation._get_markup()
-        metric_modulation_markup = self._parenthesize_markup(
-            metric_modulation_markup,
-            padding=0.5,
-            thickness=0.75,
-            )
+        modulation_markup = metric_modulation._get_markup()
+        modulation_markup = modulation_markup.line()
+        modulation_markup = modulation_markup.parenthesize()
+        modulation_markup = modulation_markup.override(('padding', 0.5))
+        modulation_markup = modulation_markup.override(('thickness', 0.75))
         pair = (0.75, 0.75)
-        metric_modulation_markup = metric_modulation_markup.scale(pair)
-        metric_modulation_markup = metric_modulation_markup.raise_(0.35)
-        markup = tempo_markup.line(metric_modulation_markup)
+        modulation_markup = modulation_markup.scale(pair)
+        modulation_markup = modulation_markup.raise_(0.35)
+        markup = tempo_markup.line(modulation_markup)
         return markup
 
     def _get_annotations(self, leaf):
@@ -1661,7 +1660,8 @@ class TempoSpanner(Spanner):
                 )
         #
         markup = current_tempo_trend._to_markup()
-        markup = self._parenthesize_markup(markup, padding=0.45)
+        markup = markup.parenthesize()
+        markup = markup.override(('padding', 0.45))
         markup = markup + markup.hspace(0.75)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1819,17 +1819,6 @@ class TempoSpanner(Spanner):
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
 
-    def _parenthesize_markup(self, markup, padding=None, thickness=None):
-        commands = []
-        if 1 < len(markup.contents):
-            markup = markup.line()
-        markup = markup.parenthesize()
-        if padding is not None:
-            markup = markup.override(('padding', padding))
-        if thickness is not None:
-            markup = markup.override(('thickness', thickness))
-        return markup
-
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
@@ -1867,7 +1856,9 @@ class TempoSpanner(Spanner):
         #
         if previous_tempo:
             markup = previous_tempo._to_markup()
-            markup = self._parenthesize_markup(markup, padding=0.45)
+            markup = markup.line()
+            markup = markup.parenthesize()
+            markup = markup.override(('padding', 0.45))
             markup = markup + markup.hspace(0.75)
         else:
             markup = current_tempo_trend._to_markup()
