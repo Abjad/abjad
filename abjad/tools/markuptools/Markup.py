@@ -129,19 +129,19 @@ class Markup(AbjadObject):
 
             **Example 1.** Adds markup to markup:
 
-                ::
+            ::
 
-                    >>> Markup('foo') + Markup('bar')
-                    Markup(contents=('foo', 'bar'))
+                >>> Markup('foo') + Markup('bar')
+                Markup(contents=('foo', 'bar'))
 
         ..  container:: example
 
             **Example 2.** Adds markup command to markup:
 
-                ::
+            ::
 
-                    >>> Markup('foo') + Markup.hspace(0.75)
-                    Markup(contents=('foo', MarkupCommand('hspace', 0.75)))
+                >>> Markup('foo') + Markup.hspace(0.75)
+                Markup(contents=('foo', MarkupCommand('hspace', 0.75)))
 
         Returns new markup.
         '''
@@ -528,16 +528,28 @@ class Markup(AbjadObject):
 
             ::
 
-                >>> Markup.hspace(0.75)
-                MarkupCommand('hspace', 0.75)
+                >>> markup = Markup.hspace(0.75)
 
-        Returns markup command.
+            ::
+
+                >>> f(markup)
+                \markup {
+                    \hspace
+                        #0.75
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
         '''
         from abjad.tools import markuptools
-        return markuptools.MarkupCommand(
+        command = markuptools.MarkupCommand(
             'hspace',
             amount,
             )
+        return Markup(contents=command)
 
     def italic(self):
         r'''LilyPond ``\italic`` markup command.
