@@ -74,6 +74,9 @@ class IntervalVector(Vector):
 
         ..  container:: example
 
+            **Example 1.** Gets interpreter representation of interval
+            vector:
+
             ::
 
                 >>> segment = pitchtools.PitchSegment(
@@ -87,7 +90,15 @@ class IntervalVector(Vector):
             ::
 
                 >>> vector
-                IntervalVector({'+1': 5, '+10': 1, '+2': 5, '+3': 5, '+4': 4, '+5': 3, '+6': 3, '+7': 2, '+8': 2, '+9': 2, '-1': 6, '-10': 1, '-11': 1, '-2': 5, '-3': 4, '-4': 4, '-5': 4, '-6': 3, '-7': 3, '-8': 2, '-9': 1})
+                IntervalVector({'+1': 5, '+10': 1, '+2': 5, '+3': 5, '+4': 4, '+5': 3, '+6': 3, '+7': 2, '+8': 2, '+9': 2, '-1': 6, '-10': 1, '-11': 1, '-2': 5, '-3': 4, '-4': 4, '-5': 4, '-6': 3, '-7': 3, '-8': 2, '-9': 1}, item_class=NumberedInterval)
+
+        ..  container:: example
+
+            **Example 2.** Initializes from interpreter representation of
+            interval vector:
+
+                >>> pitchtools.IntervalVector(vector)
+                IntervalVector({'+1': 5, '+10': 1, '+2': 5, '+3': 5, '+4': 4, '+5': 3, '+6': 3, '+7': 2, '+8': 2, '+9': 2, '-1': 6, '-10': 1, '-11': 1, '-2': 5, '-3': 4, '-4': 4, '-5': 4, '-6': 3, '-7': 3, '-8': 2, '-9': 1}, item_class=NumberedInterval)
 
         Returns string.
         '''

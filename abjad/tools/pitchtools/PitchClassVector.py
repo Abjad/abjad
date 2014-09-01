@@ -38,6 +38,9 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
+            **Example 1.** Gets interpreter representation of pitch-class
+            vector:
+
             ::
 
                 >>> vector = pitchtools.PitchClassVector(
@@ -48,7 +51,16 @@ class PitchClassVector(Vector):
             ::
 
                 >>> vector
-                PitchClassVector({'0': 1, '1': 1, '10': 1, '2': 1, '3': 1, '4': 2, '6': 1, '7': 1, '9': 2})
+                PitchClassVector({'0': 1, '1': 1, '10': 1, '2': 1, '3': 1, '4': 2, '6': 1, '7': 1, '9': 2}, item_class=NumberedPitchClass)
+
+        ..  container:: example
+
+            **Example 2.** Initializes from interpreter representation of
+            pitch-class vector:
+
+
+                >>> pitchtools.PitchClassVector(vector)
+                PitchClassVector({'0': 1, '1': 1, '10': 1, '2': 1, '3': 1, '4': 2, '6': 1, '7': 1, '9': 2}, item_class=NumberedPitchClass)
 
         Returns string.
         '''

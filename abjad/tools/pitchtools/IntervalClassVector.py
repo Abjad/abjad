@@ -60,6 +60,9 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
+            **Example 1.** Gets interpreter representation of interval-class
+            vector:
+
             ::
 
                 >>> segment = pitchtools.PitchSegment(
@@ -73,7 +76,17 @@ class IntervalClassVector(Vector):
             ::
 
                 >>> vector
-                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6})
+                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6}, item_class=NumberedInversionEquivalentIntervalClass)
+
+        ..  container:: example
+
+            **Example 2.** Initializes from interpreter representation of
+            interval-class vector:
+
+            ::
+
+                >>> pitchtools.IntervalClassVector(vector)
+                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6}, item_class=NumberedInversionEquivalentIntervalClass)
 
         Returns string.
         '''

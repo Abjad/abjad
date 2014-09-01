@@ -27,6 +27,8 @@ class Vector(TypedCounter):
             items = items.split()
         elif isinstance(items, prototype_1):
             items = [item for item in items]
+        elif isinstance(items, dict):
+            items = self._dictionary_to_items(items, item_class)
         if isinstance(items, prototype_2):
             new_tokens = []
             for item, count in items.items():
@@ -42,16 +44,7 @@ class Vector(TypedCounter):
                     if isinstance(items, collections.Set):
                         items = tuple(items)
                     if isinstance(items, dict):
-#                        keys = items.keys()
-#                        assert isinstance(keys[0], str), repr(keys[0])
-#                        try:
-#                            float(keys[0])
-#                            item_class = self._numbered_item_class
-#                        except ValueError:
-#                            item_class = self._named_item_class
-#                        raise Exception(item_class)
                         item_class = self._dictionary_to_item_class(items)
-                        items = self._dictionary_to_items(items)
                     elif isinstance(items[0], str):
                         item_class = self._named_item_class
                     elif isinstance(items[0], (int, float)):
@@ -95,19 +88,22 @@ class Vector(TypedCounter):
         items = {}
         for key, value in self.items():
             items[str(key)] = value
+        keyword_argument_names = (
+            'item_class',
+            )
+        positional_argument_values = (
+            items,
+            )
         return new(
             self._storage_format_specification,
             is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                items,
-                ),
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###
 
-    def _dictionary_to_items(self, dictionary):
-        item_class = self._dictionary_to_item_class(dictionary)
+    def _dictionary_to_items(self, dictionary, item_class):
         items = []
         for initializer_token, count in dictionary.items():
             for _ in range(count):
