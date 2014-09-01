@@ -513,9 +513,76 @@ class Markup(AbjadObject):
             padding,
             contents,
             )
-        return new(self,
-            contents=command,
+        return new(self, contents=command)
+
+    def raise_(self, amount):
+        r'''LilyPond ``\raise`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.raise_(0.35)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \raise
+                        #0.35
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'raise',
+            amount,
+            contents,
             )
+        return new(self, contents=command)
+
+    def scale(self, factor_pair):
+        r'''LilyPond ``\scale`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.scale((0.75, 0.75))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        factor_pair = schemetools.SchemePair(factor_pair)
+        command = markuptools.MarkupCommand(
+            'scale',
+            factor_pair,
+            contents,
+            )
+        return new(self, contents=command)
 
     def smaller(self):
         r'''LilyPond ``\smaller`` markup command.

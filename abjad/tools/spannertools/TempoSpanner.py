@@ -1606,14 +1606,9 @@ class TempoSpanner(Spanner):
             padding=0.5,
             thickness=0.75,
             )
-        metric_modulation_markup = self._scale_markup(
-            metric_modulation_markup,
-            (0.75, 0.75),
-            )
-        metric_modulation_markup = self._raise_markup(
-            metric_modulation_markup,
-            0.35,
-            )
+        pair = (0.75, 0.75)
+        metric_modulation_markup = metric_modulation_markup.scale(pair)
+        metric_modulation_markup = metric_modulation_markup.raise_(0.35)
         commands = []
         commands.extend(tempo_markup.contents)
         commands.extend(metric_modulation_markup.contents)
@@ -1892,39 +1887,6 @@ class TempoSpanner(Spanner):
             command = markuptools.MarkupCommand('override', pair, command)
         commands.append(command)
         markup = markuptools.Markup(contents=commands)
-        return markup
-
-    def _raise_markup(self, markup, amount):
-        if len(markup.contents) == 1:
-            command = markuptools.MarkupCommand(
-                'raise', 
-                amount,
-                markup.contents[0],
-                )
-        else:
-            command = markuptools.MarkupCommand(
-                'raise',
-                amount,
-                list(markup.contents),
-                )
-        markup = markuptools.Markup(contents=command)
-        return markup
-
-    def _scale_markup(self, markup, factor_pair):
-        factor_pair = schemetools.SchemePair(factor_pair)
-        if len(markup.contents) == 1:
-            command = markuptools.MarkupCommand(
-                'scale',
-                factor_pair,
-                markup.contents[0],
-                )
-        else:
-            command = markuptools.MarkupCommand(
-                'scale',
-                factor_pair,
-                list(markup.contents),
-                )
-        markup = markuptools.Markup(contents=command)
         return markup
 
     def _start_tempo_trend_spanner_with_explicit_start(
