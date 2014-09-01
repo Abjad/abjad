@@ -159,11 +159,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -311,11 +309,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            rit.
-                                }
+                                \large
+                                    \upright
+                                        rit.
                         \hspace
                             #0.75
                         }
@@ -415,11 +411,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -466,11 +460,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            rit.
-                                }
+                                \large
+                                    \upright
+                                        rit.
                         \hspace
                             #0.75
                         }
@@ -566,11 +558,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -684,11 +674,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            rit.
-                                }
+                                \large
+                                    \upright
+                                        rit.
                         \hspace
                             #0.75
                         }
@@ -827,11 +815,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -958,11 +944,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            rit.
-                                }
+                                \large
+                                    \upright
+                                        rit.
                         \hspace
                             #0.75
                         }
@@ -1066,11 +1050,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -1172,11 +1154,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            rit.
-                                }
+                                \large
+                                    \upright
+                                        rit.
                         \hspace
                             #0.75
                         }
@@ -1440,11 +1420,9 @@ class TempoSpanner(Spanner):
                         \override
                             #'(padding . 0.45)
                             \parenthesize
-                                {
-                                    \large
-                                        \upright
-                                            accel.
-                                }
+                                \large
+                                    \upright
+                                        accel.
                         \hspace
                             #0.75
                         }
@@ -1844,18 +1822,12 @@ class TempoSpanner(Spanner):
     def _parenthesize_markup(self, markup, padding=None, thickness=None):
         commands = []
         if 1 < len(markup.contents):
-            command = markuptools.MarkupCommand('line', markup.contents)
-        else:
-            command = markup.contents[:1]
-        command = markuptools.MarkupCommand('parenthesize', command)
+            markup = markup.line()
+        markup = markup.parenthesize()
         if padding is not None:
-            pair = schemetools.SchemePair('padding', padding)
-            command = markuptools.MarkupCommand('override', pair, command)
+            markup = markup.override(('padding', padding))
         if thickness is not None:
-            pair = schemetools.SchemePair('thickness', thickness)
-            command = markuptools.MarkupCommand('override', pair, command)
-        commands.append(command)
-        markup = markuptools.Markup(contents=commands)
+            markup = markup.override(('thickness', thickness))
         return markup
 
     def _start_tempo_trend_spanner_with_explicit_start(
