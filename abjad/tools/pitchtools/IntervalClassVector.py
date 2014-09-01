@@ -6,25 +6,27 @@ from abjad.tools.pitchtools.Vector import Vector
 class IntervalClassVector(Vector):
     r'''An interval-class vector.
 
-    ::
+    ..  container:: example
 
-        >>> pitch_segment = pitchtools.PitchSegment(
-        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-        ...     )
-        >>> numbered_interval_class_vector = pitchtools.IntervalClassVector(
-        ...     items=pitch_segment,
-        ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
-        ...     )
-        >>> items = sorted(numbered_interval_class_vector.items())
-        >>> for interval, count in items:
-        ...     print(interval, count)
-        ...
-        1 12
-        2 12
-        3 12
-        4 12
-        5 12
-        6 6
+        ::
+
+            >>> pitch_segment = pitchtools.PitchSegment(
+            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+            ...     )
+            >>> numbered_interval_class_vector = pitchtools.IntervalClassVector(
+            ...     items=pitch_segment,
+            ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+            ...     )
+            >>> items = sorted(numbered_interval_class_vector.items())
+            >>> for interval, count in items:
+            ...     print(interval, count)
+            ...
+            1 12
+            2 12
+            3 12
+            4 12
+            5 12
+            6 6
 
     '''
 
@@ -49,6 +51,33 @@ class IntervalClassVector(Vector):
             items=items,
             item_class=item_class,
             )
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        r'''Gets interpreter representation of interval-class vector.
+
+        ..  container:: example
+
+            ::
+
+                >>> segment = pitchtools.PitchSegment(
+                ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+                ...     )
+                >>> vector = pitchtools.IntervalClassVector(
+                ...     items=pitch_segment,
+                ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+                ...     )
+
+            ::
+
+                >>> vector
+                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6})
+
+        Returns string.
+        '''
+        superclass = super(IntervalClassVector, self)
+        return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
 

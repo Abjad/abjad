@@ -3,7 +3,57 @@ from abjad.tools.pitchtools.Vector import Vector
 
 class PitchClassVector(Vector):
     '''A pitch-class vector.
+
+    ..  container:: example
+
+        ::
+
+            >>> vector = pitchtools.PitchClassVector(
+            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+            ...     item_class=pitchtools.NumberedPitchClass,
+            ...     )
+
+        ::
+            
+            >>> items = list(vector.items())
+            >>> items.sort(key=lambda x: x[0].pitch_class_number)
+            >>> for pitch_class, count in items:
+            ...     print(pitch_class, count)
+            0 1
+            1 1
+            2 1
+            3 1
+            4 2
+            6 1
+            7 1
+            9 2
+            10 1
+
     '''
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        r'''Gets interpreter representation of pitch-class vector.
+
+        ..  container:: example
+
+            ::
+
+                >>> vector = pitchtools.PitchClassVector(
+                ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
+                ...     item_class=pitchtools.NumberedPitchClass,
+                ...     )
+
+            ::
+
+                >>> vector
+                PitchClassVector({'0': 1, '1': 1, '10': 1, '2': 1, '3': 1, '4': 2, '6': 1, '7': 1, '9': 2})
+
+        Returns string.
+        '''
+        superclass = super(PitchClassVector, self)
+        return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
 
