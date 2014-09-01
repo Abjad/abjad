@@ -479,6 +479,108 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def circle(self):
+        r'''LilyPond ``\circle`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.fraction(3, 5)
+                >>> markup = markup.circle()
+                >>> markup = markup.override(('circle-padding', 0.45))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \override
+                        #'(circle-padding . 0.45)
+                        \circle
+                            \fraction
+                                3
+                                5
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'circle',
+            contents,
+            )
+        return new(self, contents=command)
+
+    def finger(self):
+        r'''LilyPond ``\finger`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup(1)
+                >>> markup = markup.finger()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \finger
+                        1
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'finger',
+            contents,
+            )
+        return new(self, contents=command)
+            
+    @staticmethod
+    def fraction(numerator, denominator):
+        r'''LilyPond ``\fraction`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.fraction(3, 5)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \fraction
+                        3
+                        5
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'fraction',
+            str(numerator),
+            str(denominator),
+            )
+        return Markup(contents=command)
+
     def general_align(self, axis, direction):
         r'''LilyPond ``\general-align`` markup command.
 
@@ -827,6 +929,70 @@ class Markup(AbjadObject):
         contents = self._parse_markup_command_argument(self)
         command = markuptools.MarkupCommand(
             'smaller',
+            contents,
+            )
+        return new(self, contents=command)
+
+    def tiny(self):
+        r'''LilyPond ``\tiny`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.tiny()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \tiny
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'tiny',
+            contents,
+            )
+        return new(self, contents=command)
+
+    def vcenter(self):
+        r'''LilyPond ``\vcenter`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.vcenter()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \vcenter
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'vcenter',
             contents,
             )
         return new(self,

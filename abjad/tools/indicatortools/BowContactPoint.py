@@ -177,10 +177,9 @@ class BowContactPoint(AbjadObject):
 
         Returns markup.
         '''
-        string = r'\vcenter \fraction {} {}'
-        string = string.format(
+        markup = markuptools.Markup.fraction(
             self.contact_point.numerator,
             self.contact_point.denominator,
             )
-        markup = markuptools.Markup(string)
+        markup = markup.vcenter()
         return markup
