@@ -29,17 +29,12 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
-                \set stemLeftBeamCount = 0
-                \set stemRightBeamCount = 1
                 c'8 [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
                 d'16
-                \set stemLeftBeamCount = 2
-                \set stemRightBeamCount = 0
                 e'16 ]
                 r8
-                \set stemRightBeamCount = 1
                 fs'8
                 g'4
             }
@@ -67,18 +62,12 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
-                \set stemLeftBeamCount = 0
-                \set stemRightBeamCount = 1
                 c'8 [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
                 d'16
-                \set stemLeftBeamCount = 2
-                \set stemRightBeamCount = 0
                 e'16 ]
                 r8
-                \set stemLeftBeamCount = 0
-                \set stemRightBeamCount = 1
                 fs'8 [ ]
                 g'4
             }
@@ -106,8 +95,6 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
-                \set stemLeftBeamCount = 0
-                \set stemRightBeamCount = 1
                 c'8 [
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 2
@@ -118,8 +105,6 @@ class GeneralizedBeam(Spanner):
                 \set stemLeftBeamCount = 1
                 \set stemRightBeamCount = 1
                 r8
-                \set stemLeftBeamCount = 1
-                \set stemRightBeamCount = 0
                 fs'8 ]
                 g'4
             }
@@ -133,6 +118,7 @@ class GeneralizedBeam(Spanner):
         '_include_long_duration_notes',
         '_include_long_duration_rests',
         '_isolated_nib_direction',
+        '_span_points',
         '_use_stemlets',
         '_vertical_direction',
         )
@@ -158,6 +144,10 @@ class GeneralizedBeam(Spanner):
         self._include_long_duration_rests = bool(include_long_duration_rests)
         assert isolated_nib_direction in (Left, Right, None)
         self._isolated_nib_direction = isolated_nib_direction
+        if self._durations is not None:
+            self._span_points = mathtools.cumulative_sums(self.durations)[1:]
+        else:
+            self._span_points = [self._get_duration()]
         self._use_stemlets = bool(use_stemlets)
         assert vertical_direction in (Up, Down, Center, None)
         self._vertical_direction = vertical_direction
@@ -210,68 +200,57 @@ class GeneralizedBeam(Spanner):
         next_leaf,
         next_leaf_is_joinable,
         ):
-        # leaf is orphan
+
+        start_offset = self._start_offset_in_me(leaf)
+        stop_offset = self._stop_offset_in_me(leaf)
         left, right = None, None
-        if not previous_leaf_is_joinable and not next_leaf_is_joinable:
-            if self.isolated_nib_direction == Left:
-                left = leaf.written_duration.flag_count
-                right = 0
-            elif self.isolated_nib_direction == Right:
-                left = 0
-                right = leaf.written_duration.flag_count
-        # leaf is first of group
-        elif not previous_leaf_is_joinable:
-            left = 0
-            right = leaf.written_duration.flag_count
-        # leaf is last of group
-        elif not next_leaf_is_joinable:
-            left = leaf.written_duration.flag_count
-            right = 0
-        # leaf is interior
-        elif self._span_points:
-            start_offset = self._start_offset_in_me(leaf)
-            stop_offset = self._stop_offset_in_me(leaf)
-            # leaf starts subgroup
-            if start_offset in self._span_points and \
-                not stop_offset in self._span_points:
-                left = min(
-                    previous_leaf.written_duration.flag_count,
-                    leaf.written_duration.flag_count,
-                    )
-                left = (left - 1) or 1
-                right = leaf.written_duration.flag_count
-            # leaf stops subgroup
-            elif stop_offset in self._span_points and \
-                not start_offset in self._span_points:
-                left = leaf.written_duration.flag_count
-                right = min(
-                    leaf.written_duration.flag_count,
-                    next_leaf.written_duration.flag_count,
-                    )
-                right = (right - 1) or 1
+
+        previous_flag_count = 0
+        previous_measure_number = None
+        if previous_leaf is not None:
+            previous_flag_count = previous_leaf.written_duration.flag_count
+            previous_measure_number = previous_leaf._logical_measure_number
+
+        next_flag_count = 0
+        next_measure_number = None
+        if next_leaf is not None:
+            next_flag_count = next_leaf.written_duration.flag_count
+            next_measure_number = next_leaf._logical_measure_number
+
+        current_flag_count = leaf.written_duration.flag_count
+        current_measure_number = leaf._logical_measure_number
+
+        if previous_leaf_is_joinable and next_leaf_is_joinable:
+            if self._is_only_leaf_in_group(start_offset, stop_offset):
+                left = 1
+                right = current_flag_count
+            elif self._is_first_leaf_in_group(start_offset):
+                left = 1
+                right = current_flag_count
+            elif self._is_last_leaf_in_group(stop_offset):
+                left = current_flag_count
+                right = 1
             else:
-                left = min(
-                    previous_leaf.written_duration.flag_count,
-                    leaf.written_duration.flag_count,
-                    )
-                right = min(
-                    leaf.written_duration.flag_count,
-                    next_leaf.written_duration.flag_count,
-                    )
-        # leaf is simple interior leaf
-        else:
-            left = min(
-                previous_leaf.written_duration.flag_count,
-                leaf.written_duration.flag_count,
-                )
-            right = min(
-                leaf.written_duration.flag_count,
-                next_leaf.written_duration.flag_count,
-                )
-        flag_count = leaf.written_duration.flag_count
-        if (left is None or left < flag_count) and \
-            (right is None or right < flag_count):
-            right = flag_count
+                left = min(previous_flag_count, current_flag_count) or 1
+                right = min(current_flag_count, next_flag_count) or 1
+                if left != current_flag_count and right != current_flag_count:
+                    right = current_flag_count
+
+        elif previous_leaf_is_joinable:
+            if self._is_first_leaf_in_group(start_offset):
+                left = 1
+                right = current_flag_count
+            elif self._is_my_last_leaf(leaf):
+                right = None
+                left = current_flag_count
+                    
+        elif next_leaf_is_joinable:
+            if self._is_last_leaf_in_group(stop_offset):
+                right = 1
+            elif self._is_my_first_leaf(leaf):
+                left = None
+                right = current_flag_count
+
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -367,6 +346,22 @@ class GeneralizedBeam(Spanner):
                     return True
         return False
 
+    def _is_first_leaf_in_group(self, start_offset):
+        if start_offset in self._span_points:
+            return True
+        return False
+
+    def _is_last_leaf_in_group(self, stop_offset):
+        if stop_offset in self._span_points:
+            return True
+        return False
+
+    def _is_only_leaf_in_group(self, start_offset, stop_offset):
+        if self._is_first_leaf_in_group(start_offset):
+            if self._is_last_leaf_in_group(stop_offset):
+                return True
+        return False
+
     def _leaf_is_joinable(self, leaf, leaf_ids):
         if id(leaf) not in leaf_ids:
             return False
@@ -381,11 +376,3 @@ class GeneralizedBeam(Spanner):
             elif self.include_long_duration_rests:
                 return True
         return False
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _span_points(self):
-        if self.durations is not None:
-            return mathtools.cumulative_sums(self.durations)[1:]
-        return []
