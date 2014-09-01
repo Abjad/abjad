@@ -42,10 +42,16 @@ class Vector(TypedCounter):
                     if isinstance(items, collections.Set):
                         items = tuple(items)
                     if isinstance(items, dict):
-                        # TODO: accommodate initialization from dict
-                        #item_class = self._named_item_class
-                        #item_class = self._numbered_item_class
-                        raise NotImplementedError
+#                        keys = items.keys()
+#                        assert isinstance(keys[0], str), repr(keys[0])
+#                        try:
+#                            float(keys[0])
+#                            item_class = self._numbered_item_class
+#                        except ValueError:
+#                            item_class = self._named_item_class
+#                        raise Exception(item_class)
+                        item_class = self._dictionary_to_item_class(items)
+                        items = self._dictionary_to_items(items)
                     elif isinstance(items[0], str):
                         item_class = self._named_item_class
                     elif isinstance(items[0], (int, float)):
@@ -97,6 +103,30 @@ class Vector(TypedCounter):
                 items,
                 ),
             )
+
+    ### PRIVATE METHODS ###
+
+    def _dictionary_to_items(self, dictionary):
+        item_class = self._dictionary_to_item_class(dictionary)
+        items = []
+        for initializer_token, count in dictionary.items():
+            for _ in range(count):
+                item = item_class(initializer_token)
+                items.append(item)
+        return items
+
+    def _dictionary_to_item_class(self, dictionary):
+        if not len(dictionary):
+            return self._named_item_class
+        keys = dictionary.keys()
+        first_key = keys[0]
+        assert isinstance(first_key, str), repr(first_key)
+        try:
+            float(first_key)
+            item_class = self._numbered_item_class
+        except ValueError:
+            item_class = self._named_item_class
+        return item_class
 
     ### PUBLIC METHODS ###
 

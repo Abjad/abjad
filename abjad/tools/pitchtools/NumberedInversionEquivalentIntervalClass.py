@@ -1,15 +1,29 @@
 # -*- encoding: utf-8 -*-
 import numbers
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 
 
 class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     '''A numbered inversion-equivalent interval-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
-        NumberedInversionEquivalentIntervalClass(1)
+        **Example 1.** Initializes from integer:
+
+        ::
+
+            >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
+            NumberedInversionEquivalentIntervalClass(1)
+
+    ..  container:: example
+
+        **Example 2.** Initializes from string:
+
+        ::
+
+            >>> pitchtools.NumberedInversionEquivalentIntervalClass('1')
+            NumberedInversionEquivalentIntervalClass(1)
 
     '''
 
@@ -37,6 +51,10 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
                 number = 12 - number
         elif interval_class_token is None:
             number = 0
+        elif isinstance(interval_class_token, str):
+            number = float(interval_class_token)
+            if mathtools.is_integer_equivalent_expr(number):
+                number = int(number)
         else:
             message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, interval_class_token)
