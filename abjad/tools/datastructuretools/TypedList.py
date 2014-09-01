@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
+from abjad.tools.topleveltools.new import new
 
 
 class TypedList(TypedCollection):
@@ -68,7 +69,7 @@ class TypedList(TypedCollection):
         self,
         items=None,
         item_class=None,
-        keep_sorted=None,
+        keep_sorted=False,
         ):
         TypedCollection.__init__(
             self,
@@ -76,10 +77,8 @@ class TypedList(TypedCollection):
             items=items,
             )
         self._collection = []
-        if keep_sorted:
-            self._keep_sorted = True
-        else:
-            self._keep_sorted = None
+        assert isinstance(keep_sorted, bool), repr(keep_sorted)
+        self._keep_sorted = keep_sorted
         items = items or []
         the_items = []
         for item in items:
@@ -202,6 +201,32 @@ class TypedList(TypedCollection):
             self._collection[i] = new_items
         if self.keep_sorted:
             self.sort()
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        specification = self._storage_format_specification
+        return new(
+            specification,
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        superclass = super(TypedList, self)
+        specification = superclass._storage_format_specification
+        keyword_argument_names = list(specification.keyword_argument_names)
+        if (self.keep_sorted == False and
+            'keep_sorted' in keyword_argument_names):
+            keyword_argument_names.remove('keep_sorted')
+        positional_argument_values = specification.positional_argument_values
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC METHODS ###
 
