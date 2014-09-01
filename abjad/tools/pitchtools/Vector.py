@@ -41,7 +41,12 @@ class Vector(TypedCounter):
                 elif len(items):
                     if isinstance(items, collections.Set):
                         items = tuple(items)
-                    if isinstance(items[0], str):
+                    if isinstance(items, dict):
+                        # TODO: accommodate initialization from dict
+                        #item_class = self._named_item_class
+                        #item_class = self._numbered_item_class
+                        raise NotImplementedError
+                    elif isinstance(items[0], str):
                         item_class = self._named_item_class
                     elif isinstance(items[0], (int, float)):
                         item_class = self._numbered_item_class

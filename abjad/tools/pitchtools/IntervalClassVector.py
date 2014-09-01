@@ -34,16 +34,17 @@ class IntervalClassVector(Vector):
 
     def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
-        if isinstance(items, (
+        prototype = (
             pitchtools.PitchSegment,
             pitchtools.PitchSet,
             pitchtools.PitchClassSegment,
             pitchtools.PitchClassSet,
-            )):
+            )
+        if isinstance(items, prototype):
             intervals = []
-            for first, second in \
-                sequencetools.yield_all_unordered_pairs_of_sequence(
-                    tuple(items)):
+            items = tuple(items)
+            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(items)
+            for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
         Vector.__init__(

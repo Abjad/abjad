@@ -7,10 +7,32 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NumberedIntervalClass(IntervalClass):
     '''A numbered interval-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedIntervalClass(-14)
-        NumberedIntervalClass(-2)
+        **Example 1.** Initializes from integer:
+
+        ::
+
+            >>> pitchtools.NumberedIntervalClass(-14)
+            NumberedIntervalClass(-2)
+
+    ..  container:: example
+
+        **Example 2.** Initializes from float:
+
+        ::
+
+            >>> pitchtools.NumberedIntervalClass(-14.5)
+            NumberedIntervalClass(-2.5)
+
+    ..  container:: example
+
+        **Example 3.** Initializes from string:
+
+        ::
+
+            >>> pitchtools.NumberedIntervalClass('-14.5')
+            NumberedIntervalClass(-2.5)
 
     '''
 
@@ -52,6 +74,17 @@ class NumberedIntervalClass(IntervalClass):
             number *= sign
         elif item is None:
             number = 0
+        elif isinstance(item, str):
+            number = float(item)
+            if mathtools.is_integer_equivalent_expr(number):
+                number = int(number)
+            sign = mathtools.sign(number)
+            abs_token = abs(number)
+            if abs_token % 12 == 0 and 12 <= abs_token:
+                number = 12
+            else:
+                number = abs_token % 12
+            number *= sign
         else:
             message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, item)
