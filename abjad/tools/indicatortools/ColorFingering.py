@@ -13,8 +13,6 @@ class ColorFingering(AbjadObject):
 
     ..  container:: example
 
-        Color fingering number 1:
-
         ::
 
             >>> fingering = indicatortools.ColorFingering(1)
