@@ -4,58 +4,19 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class Registration(TypedList):
-    '''An octave transposition mapping.
+    '''A registration.
 
-    ::
-
-        >>> mapping = pitchtools.Registration(
-        ...     [('[A0, C4)', 15), ('[C4, C8)', 27)])
-
-    ::
-
-        >>> mapping
-        Registration([('[A0, C4)', 15), ('[C4, C8)', 27)])
-
-    Octave transposition mappings model
-    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
-    input.
-
-    Octave transposition mappings implement the list interface and
-    are mutable.
-    '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        )
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, pitches):
-        r'''Call octave transposition mapping on `pitches`.
-
-            >>> mapping([-24, -22, -23, -21])
-            [24, 26, 25, 15]
+    ..  container:: example
 
         ::
 
-            >>> mapping([0, 2, 1, 3])
-            [36, 38, 37, 27]
-
-        Returns list.
-        '''
-        transposed_pitches = [self._transpose_pitch(x) for x in pitches]
-        return transposed_pitches
-
-    def __format__(self, format_specification=''):
-        r'''Formats octave transposition mapping.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        
+            >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
+            >>> registration = pitchtools.Registration(components)
 
         ::
 
-            >>> print(format(mapping))
+            >>> print(format(registration))
             pitchtools.Registration(
                 [
                     pitchtools.RegistrationComponent(
@@ -72,6 +33,73 @@ class Registration(TypedList):
                         ),
                     ]
                 )
+
+    Registrations model
+    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
+    input.
+    '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, pitches):
+        r'''Calls registration on `pitches`.
+
+        ..  container:: example
+
+            **Example 1.** Transposes four pitches:
+
+            ::
+                >>> registration([-24, -22, -23, -21])
+                [24, 26, 25, 15]
+
+        ..  container:: example
+
+            **Example 2.** Transposes four other pitches:
+
+            ::
+
+                >>> registration([0, 2, 1, 3])
+                [36, 38, 37, 27]
+
+        Returns list of new pitches.
+        '''
+        transposed_pitches = [self._transpose_pitch(x) for x in pitches]
+        return transposed_pitches
+
+    def __format__(self, format_specification=''):
+        r'''Formats registration.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            Gets storage format of registration:
+
+            ::
+
+                >>> print(format(registration))
+                pitchtools.Registration(
+                    [
+                        pitchtools.RegistrationComponent(
+                            source_pitch_range=pitchtools.PitchRange(
+                                range_string='[A0, C4)',
+                                ),
+                            target_octave_start_pitch=pitchtools.NumberedPitch(15),
+                            ),
+                        pitchtools.RegistrationComponent(
+                            source_pitch_range=pitchtools.PitchRange(
+                                range_string='[C4, C8)',
+                                ),
+                            target_octave_start_pitch=pitchtools.NumberedPitch(27),
+                            ),
+                        ]
+                    )
 
         Returns string.
         '''
@@ -98,10 +126,10 @@ class Registration(TypedList):
 
     @property
     def _one_line_menu_summary(self):
-        name = 'mapping'
+        name = 'registration'
         contents = []
-        for mapping_component in self:
-            contents.append(mapping_component._one_line_menu_summary)
+        for registration_component in self:
+            contents.append(registration_component._one_line_menu_summary)
         contents_string = ', '.join(contents)
         return '{}: {}'.format(name, contents_string)
 
@@ -109,10 +137,10 @@ class Registration(TypedList):
     def _repr_specification(self):
         from abjad.tools import systemtools
         input_argument_tokens = []
-        for mapping_component in self:
+        for registration_component in self:
             item = (
-                mapping_component.source_pitch_range.one_line_named_pitch_repr,
-                mapping_component.target_octave_start_pitch.pitch_number
+                registration_component.source_pitch_range.one_line_named_pitch_repr,
+                registration_component.target_octave_start_pitch.pitch_number
                 )
             input_argument_tokens.append(item)
         keyword_argument_names = []
@@ -135,10 +163,9 @@ class Registration(TypedList):
             if pitch in component.source_pitch_range:
                 target_octave = range(
                     component.target_octave_start_pitch.pitch_number,
-                    component.target_octave_start_pitch.pitch_number
-                    + 12)
+                    component.target_octave_start_pitch.pitch_number + 12
+                    )
                 for candidate_pitch in target_octave:
-                    if candidate_pitch % 12 == \
-                        pitch.pitch_class_number:
+                    if candidate_pitch % 12 == pitch.pitch_class_number:
                         return candidate_pitch
         return pitch
