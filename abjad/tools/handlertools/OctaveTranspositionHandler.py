@@ -18,7 +18,7 @@ class OctaveTranspositionHandler(Handler):
     def __init__(self, octave_transposition_mapping=None):
         if octave_transposition_mapping is not None:
             octave_transposition_mapping = \
-                pitchtools.OctaveTranspositionMapping(
+                pitchtools.Registration(
                     octave_transposition_mapping)
         self._octave_transposition_mapping = octave_transposition_mapping
 

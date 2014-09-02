@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_pitchtools_OctaveTranspositionMapping__one_line_menuing_summary_01():
+def test_pitchtools_Registration__one_line_menuing_summary_01():
 
-    mapping = pitchtools.OctaveTranspositionMapping(
+    mapping = pitchtools.Registration(
         [('[A0, C4)', 15), ('[C4, C8)', 27)],
         )
 

@@ -222,7 +222,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import musicexpressiontools
         assert isinstance(
             source_expression,
-            pitchtools.OctaveTranspositionMapping)
+            pitchtools.Registration)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'reigster'

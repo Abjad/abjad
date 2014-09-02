@@ -189,7 +189,7 @@ def test_ListAutoeditor__run_09():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
-    target = pitchtools.OctaveTranspositionMapping()
+    target = pitchtools.Registration()
     autoeditor = scoremanager.idetools.ListAutoeditor(
         session=session,
         target=target,
@@ -199,7 +199,7 @@ def test_ListAutoeditor__run_09():
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
-    mapping = pitchtools.OctaveTranspositionMapping([
+    mapping = pitchtools.Registration([
         ('[A0, F#4]', 22),
         ('(F#4, C8]', 26),
         ])
@@ -211,7 +211,7 @@ def test_ListAutoeditor__run_10():
     '''
 
     session = scoremanager.idetools.Session(is_test=True)
-    target = pitchtools.OctaveTranspositionMapping()
+    target = pitchtools.Registration()
     autoeditor = scoremanager.idetools.ListAutoeditor(
         session=session,
         target=target,
@@ -221,7 +221,7 @@ def test_ListAutoeditor__run_10():
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
-    mapping = pitchtools.OctaveTranspositionMapping(
+    mapping = pitchtools.Registration(
             [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
             )
 

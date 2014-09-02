@@ -3,14 +3,14 @@ import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class OctaveTranspositionMappingComponent(AbjadObject):
+class RegistrationComponent(AbjadObject):
     '''An octave transposition mapping component.
 
     ::
 
-        >>> mc = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        >>> mc = pitchtools.RegistrationComponent('[A0, C8]', 15)
         >>> mc
-        OctaveTranspositionMappingComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
+        RegistrationComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
     Initializes from input parameters separately, from a pair, from
     a string or from another mapping component.
@@ -76,7 +76,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
         Returns integer.
         '''
-        return super(OctaveTranspositionMappingComponent, self).__hash__()
+        return super(RegistrationComponent, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

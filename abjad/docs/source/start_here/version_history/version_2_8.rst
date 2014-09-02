@@ -88,9 +88,9 @@ Added octave-transposition mapping model.
 
 - This version of the system contains the following classes::
 
-    pitchtools.OctaveTranspositionMapping
-    pitchtools.OctaveTranspositionMappingComponent
-    pitchtools.OctaveTranspositionMappingInventory
+    pitchtools.Registration
+    pitchtools.RegistrationComponent
+    pitchtools.RegistrationInventory
 
 - Octave-transposition mappings specify a way to maybe pitches 
   from one registral space to another.
@@ -127,7 +127,7 @@ Added object inventories for several classes.
     indicatortools.TempoInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory
-    pitchtools.OctaveTranspositionMappingInventory
+    pitchtools.RegistrationInventory
     pitchtools.PitchRangeInventory
     scoretools.PerformerInventory
 

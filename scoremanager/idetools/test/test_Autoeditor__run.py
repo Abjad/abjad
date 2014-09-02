@@ -125,7 +125,7 @@ def test_Autoeditor__run_08():
     r'''Edits mapping component source and target.
     '''
 
-    target = pitchtools.OctaveTranspositionMappingComponent()
+    target = pitchtools.RegistrationComponent()
     session = scoremanager.idetools.Session(is_test=True)
     autoeditor = scoremanager.idetools.Autoeditor(
         session=session,
@@ -135,7 +135,7 @@ def test_Autoeditor__run_08():
     autoeditor._session._pending_input = input_
     autoeditor._run()
 
-    component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', -18)
+    component = pitchtools.RegistrationComponent('[A0, C8]', -18)
     assert autoeditor.target == component
 
 

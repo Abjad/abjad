@@ -3,18 +3,18 @@ import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class OctaveTranspositionMapping(TypedList):
+class Registration(TypedList):
     '''An octave transposition mapping.
 
     ::
 
-        >>> mapping = pitchtools.OctaveTranspositionMapping(
+        >>> mapping = pitchtools.Registration(
         ...     [('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     ::
 
         >>> mapping
-        OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
+        Registration([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     Octave transposition mappings model
     ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
@@ -56,15 +56,15 @@ class OctaveTranspositionMapping(TypedList):
         ::
 
             >>> print(format(mapping))
-            pitchtools.OctaveTranspositionMapping(
+            pitchtools.Registration(
                 [
-                    pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.RegistrationComponent(
                         source_pitch_range=pitchtools.PitchRange(
                             range_string='[A0, C4)',
                             ),
                         target_octave_start_pitch=pitchtools.NumberedPitch(15),
                         ),
-                    pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.RegistrationComponent(
                         source_pitch_range=pitchtools.PitchRange(
                             range_string='[C4, C8)',
                             ),
@@ -75,7 +75,7 @@ class OctaveTranspositionMapping(TypedList):
 
         Returns string.
         '''
-        superclass = super(OctaveTranspositionMapping, self)
+        superclass = super(Registration, self)
         return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE PROPERTIES ###
@@ -89,8 +89,8 @@ class OctaveTranspositionMapping(TypedList):
     def _item_callable(expr):
         from abjad.tools import pitchtools
         if isinstance(expr, tuple):
-            component = pitchtools.OctaveTranspositionMappingComponent(*expr)
-        elif isinstance(expr, pitchtools.OctaveTranspositionMappingComponent):
+            component = pitchtools.RegistrationComponent(*expr)
+        elif isinstance(expr, pitchtools.RegistrationComponent):
             component = copy.copy(expr)
         else:
             raise TypeError(repr(expr))

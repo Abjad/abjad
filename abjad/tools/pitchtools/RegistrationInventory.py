@@ -1,35 +1,35 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.pitchtools.OctaveTranspositionMapping \
-    import OctaveTranspositionMapping
+from abjad.tools.pitchtools.Registration \
+    import Registration
 
 
-class OctaveTranspositionMappingInventory(TypedList):
+class RegistrationInventory(TypedList):
     '''An ordered list of octave transposition mappings.
 
     ::
 
-        >>> mapping_1 = pitchtools.OctaveTranspositionMapping(
+        >>> mapping_1 = pitchtools.Registration(
         ...     [('[A0, C4)', 15), ('[C4, C8)', 27)])
-        >>> mapping_2 = pitchtools.OctaveTranspositionMapping(
+        >>> mapping_2 = pitchtools.Registration(
         ...     [('[A0, C8]', -18)])
-        >>> inventory = pitchtools.OctaveTranspositionMappingInventory(
+        >>> inventory = pitchtools.RegistrationInventory(
         ...     [mapping_1, mapping_2])
 
     ::
 
         >>> print(format(inventory))
-        pitchtools.OctaveTranspositionMappingInventory(
+        pitchtools.RegistrationInventory(
             [
-                pitchtools.OctaveTranspositionMapping(
+                pitchtools.Registration(
                     [
-                        pitchtools.OctaveTranspositionMappingComponent(
+                        pitchtools.RegistrationComponent(
                             source_pitch_range=pitchtools.PitchRange(
                                 range_string='[A0, C4)',
                                 ),
                             target_octave_start_pitch=pitchtools.NumberedPitch(15),
                             ),
-                        pitchtools.OctaveTranspositionMappingComponent(
+                        pitchtools.RegistrationComponent(
                             source_pitch_range=pitchtools.PitchRange(
                                 range_string='[C4, C8)',
                                 ),
@@ -37,9 +37,9 @@ class OctaveTranspositionMappingInventory(TypedList):
                             ),
                         ]
                     ),
-                pitchtools.OctaveTranspositionMapping(
+                pitchtools.Registration(
                     [
-                        pitchtools.OctaveTranspositionMappingComponent(
+                        pitchtools.RegistrationComponent(
                             source_pitch_range=pitchtools.PitchRange(
                                 range_string='[A0, C8]',
                                 ),
@@ -68,4 +68,4 @@ class OctaveTranspositionMappingInventory(TypedList):
 
     @property
     def _item_callable(self):
-        return OctaveTranspositionMapping
+        return Registration

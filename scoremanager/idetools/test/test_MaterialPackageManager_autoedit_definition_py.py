@@ -177,11 +177,11 @@ def test_MaterialPackageManager_autoedit_definition_py_06():
         'output.py',
         'versions',
         ]
-    inventory = pitchtools.OctaveTranspositionMappingInventory()
+    inventory = pitchtools.RegistrationInventory()
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'mm new test~transposition~inventory y'
-        input_ += ' da y OctaveTranspositionMappingInventory'
+        input_ += ' da y RegistrationInventory'
         input_ += ' done dp y q'
         ide._run(input_=input_)
         assert os.path.exists(path)
@@ -210,21 +210,21 @@ def test_MaterialPackageManager_autoedit_definition_py_07():
         'output.py',
         'versions',
         ]
-    mapping_1 = pitchtools.OctaveTranspositionMapping([
+    mapping_1 = pitchtools.Registration([
         ('[A0, C4)', 15),
         ('[C4, C8)', 27),
         ])
-    mapping_2 = pitchtools.OctaveTranspositionMapping([
+    mapping_2 = pitchtools.Registration([
         ('[A0, C8]', -18),
         ])
-    inventory = pitchtools.OctaveTranspositionMappingInventory([
+    inventory = pitchtools.RegistrationInventory([
         mapping_1,
         mapping_2
         ])
 
     with systemtools.FilesystemState(remove=[path]):
         input_ = 'mm new test~transposition~inventory y'
-        input_ += ' da y OctaveTranspositionMappingInventory'
+        input_ += ' da y RegistrationInventory'
         input_ += " add add ('[A0, C4)', 15)"
         input_ += " add ('[C4, C8)', 27) done"
         input_ += " add add ('[A0, C8]', -18)"

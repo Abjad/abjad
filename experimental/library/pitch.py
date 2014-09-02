@@ -10,7 +10,7 @@ example_aggregates = [
     [-2, 0, 2, 7, 8, 11, 15, 16, 17, 18, 21, 25]]
 __all__.append('example_aggregates')
 
-example_octave_transposition = pitchtools.OctaveTranspositionMapping([
+example_octave_transposition = pitchtools.Registration([
     ('[A0, C4)', -12),
     ('[C4, C8)', 12)])
 __all__.append('example_octave_transposition')
