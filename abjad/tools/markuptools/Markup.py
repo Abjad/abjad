@@ -687,6 +687,38 @@ class Markup(AbjadObject):
             contents=command,
             )
 
+    def larger(self):
+        r'''LilyPond ``\larger`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.larger()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \larger
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'larger',
+            contents,
+            )
+        return new(self, contents=command)
+
     def line(self, *markups):
         r'''LilyPond ``\line`` markup command.
 
