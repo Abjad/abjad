@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import bisect
 import collections
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -118,26 +118,26 @@ class MeterFittingSession(AbjadValueObject):
             lookahead_scores.append(
                 lookahead_kernel(lookahead_offset_counter)
                 )
-        lookahead_score = sum(lookahead_scores)
+        lookahead_score = sum(lookahead_scores) / len(lookahead_scores)
         return lookahead_score
 
-    def _get_offset_counter_at(self, offset):
-        if offset in self.cached_offset_counters:
-            return self.cached_offset_counters[offset]
+    def _get_offset_counter_at(self, start_offset):
+        if start_offset in self.cached_offset_counters:
+            return self.cached_offset_counters[start_offset]
         offset_counter = {}
-        stop_offset = offset + self.longest_kernel.duration
-        index = bisect.bisect_left(self.ordered_offsets, offset)
+        stop_offset = start_offset + self.longest_kernel.duration
+        index = bisect.bisect_left(self.ordered_offsets, start_offset)
         if index == len(self.ordered_offsets):
             return offset_counter
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
             count = self.offset_counter[offset]
-            offset_counter[offset] = count
+            offset_counter[offset - start_offset] = count
             index += 1
             if index == len(self.ordered_offsets):
                 break
             offset = self.ordered_offsets[index]
-        self.cached_offset_counters[offset] = offset_counter
+        self.cached_offset_counters[start_offset] = offset_counter
         return offset_counter
 
     ### PUBLIC PROPERTIES ###

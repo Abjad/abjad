@@ -825,10 +825,10 @@ class Meter(AbjadObject):
                 ...     print(x.implied_time_signature)
                 ... 
                 3/4
+                3/4
+                4/4
                 5/4
-                4/4
-                4/4
-                4/4
+                5/4
 
         Coerces offsets from `expr` via
         `MetricAccentKernel.count_offsets_in_expr()`.
