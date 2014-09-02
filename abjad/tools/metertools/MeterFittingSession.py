@@ -53,7 +53,7 @@ class MeterFittingSession(AbjadValueObject):
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter))
         meters = meters or ()
-        self._meters = frozenset(metertools.Meter(_) for _ in meters)
+        self._meters = tuple(metertools.Meter(_) for _ in meters)
         self._kernel_denominator = durationtools.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
@@ -186,7 +186,7 @@ class MeterFittingSession(AbjadValueObject):
     def meters(self):
         r'''Gets meters.
 
-        Returns frozen set.
+        Returns meters.
         '''
         return self._meters
 
