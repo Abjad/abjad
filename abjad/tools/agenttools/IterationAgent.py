@@ -954,7 +954,7 @@ class IterationAgent(abctools.AbjadObject):
 
         Iterate leaves when `component_class` is none.
 
-        .. todo:: optimize to avoid behind-the-scenes full-score traversal.
+        .. todo:: Optimize to avoid behind-the-scenes full-score traversal.
         '''
         if component_class is None:
             component_class = scoretools.Leaf
@@ -1023,8 +1023,6 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-        ::
-
             >>> for leaf in iterate(score[1][2]).by_timeline_from_component(
             ...     reverse=True):
             ...     leaf
@@ -1039,7 +1037,7 @@ class IterationAgent(abctools.AbjadObject):
 
         Iterate leaves when `component_class` is none.
 
-        .. todo:: optimize to avoid behind-the-scenes full-score traversal.
+        .. todo:: Optimize to avoid behind-the-scenes full-score traversal.
         '''
         assert isinstance(self._client, scoretools.Component)
         if component_class is None:
