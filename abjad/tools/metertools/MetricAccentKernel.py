@@ -111,16 +111,6 @@ class MetricAccentKernel(AbjadValueObject):
             positional_argument_values=positional_argument_values,
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def kernel(self):
-        r'''The kernel datastructure.
-
-        Returns dict.
-        '''
-        return self._kernel.copy()
-
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -214,3 +204,19 @@ class MetricAccentKernel(AbjadValueObject):
                 offset = durationtools.Offset(x)
                 counter[offset] += 1
         return counter
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self):
+        r'''Gets duration.
+        '''
+        return durationtools.Duration(self._offsets[-1])
+
+    @property
+    def kernel(self):
+        r'''The kernel datastructure.
+
+        Returns dict.
+        '''
+        return self._kernel.copy()
