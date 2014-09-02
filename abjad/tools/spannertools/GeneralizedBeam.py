@@ -206,19 +206,12 @@ class GeneralizedBeam(Spanner):
         left, right = None, None
 
         previous_flag_count = 0
-        previous_measure_number = None
         if previous_leaf is not None:
             previous_flag_count = previous_leaf.written_duration.flag_count
-            previous_measure_number = previous_leaf._logical_measure_number
-
         next_flag_count = 0
-        next_measure_number = None
         if next_leaf is not None:
             next_flag_count = next_leaf.written_duration.flag_count
-            next_measure_number = next_leaf._logical_measure_number
-
         current_flag_count = leaf.written_duration.flag_count
-        current_measure_number = leaf._logical_measure_number
 
         if previous_leaf_is_joinable and next_leaf_is_joinable:
             if self._is_only_leaf_in_group(start_offset, stop_offset):
@@ -243,13 +236,12 @@ class GeneralizedBeam(Spanner):
             elif self._is_my_last_leaf(leaf):
                 right = None
                 left = current_flag_count
-                    
+
         elif next_leaf_is_joinable:
             if self._is_last_leaf_in_group(stop_offset):
                 right = 1
-            elif self._is_my_first_leaf(leaf):
-                left = None
-                right = current_flag_count
+                if self._is_my_first_leaf(leaf):
+                    left = current_flag_count
 
         return left, right
 
