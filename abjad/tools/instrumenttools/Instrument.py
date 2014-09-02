@@ -402,3 +402,50 @@ class Instrument(AbjadObject):
         Returns named pitch.
         '''
         return self._sounding_pitch_of_written_middle_c
+
+    ### PUBLIC METHODS ###
+
+    def transpose_from_sounding_pitch_to_written_pitch(self, note_or_chord):
+        r'''Transposes `note_or_chord` from sounding pitch of instrument to
+        written pitch of instrument.
+
+        Returns `note_or_chord` with adjusted pitches.
+        '''
+        from abjad.tools import scoretools
+        sounding_pitch = self.sounding_pitch_of_written_middle_c
+        index = pitchtools.NamedPitch('C4') - sounding_pitch
+        index *= -1
+        if isinstance(note_or_chord, scoretools.Note):
+            note_or_chord.written_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    note_or_chord.written_pitch, index)
+        elif isinstance(note_or_chord, scoretools.Chord):
+            pitches = [
+                pitchtools.transpose_pitch_carrier_by_interval(pitch, index)
+                for pitch in note_or_chord.written_pitches
+                ]
+            note_or_chord.written_pitches = pitches
+        else:
+            message = 'must be note or chord: {!r}.'
+            message = message.format(note_or_chord)
+            raise TypeError(message)
+
+    def transpose_from_written_pitch_to_sounding_pitch(self, note_or_chord):
+        r'''Transposes `expr` from written pitch of instrument to sounding
+        pitch of instrument.
+
+        Returns `note_or_chord` with adjusted pitches.
+        '''
+        from abjad.tools import scoretools
+        sounding_pitch = self.sounding_pitch_of_written_middle_c
+        index = pitchtools.NamedPitch('C4') - sounding_pitch
+        if isinstance(note_or_chord, scoretools.Note):
+            note_or_chord.written_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    note_or_chord.written_pitch, index)
+        elif isinstance(note_or_chord, scoretools.Chord):
+            pitches = [
+                pitchtools.transpose_pitch_carrier_by_interval(pitch, index)
+                for pitch in note_or_chord.written_pitches
+                ]
+            note_or_chord.written_pitches = pitches
