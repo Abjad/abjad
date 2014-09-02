@@ -118,7 +118,7 @@ class MeterFittingSession(AbjadValueObject):
             lookahead_scores.append(
                 lookahead_kernel(lookahead_offset_counter)
                 )
-        lookahead_score = sum(lookahead_scores) / len(lookahead_scores)
+        lookahead_score = sum(lookahead_scores)  # / len(lookahead_scores)
         return lookahead_score
 
     def _get_offset_counter_at(self, start_offset):

@@ -825,8 +825,8 @@ class Meter(AbjadObject):
                 ...     print(x.implied_time_signature)
                 ... 
                 3/4
-                3/4
                 4/4
+                3/4
                 5/4
                 5/4
 
