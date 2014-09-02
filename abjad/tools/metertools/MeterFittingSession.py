@@ -98,7 +98,7 @@ class MeterFittingSession(AbjadValueObject):
                         )
                     kernel_scores.append(kernel_score)
                 kernel_scores.sort(key=lambda kernel_score: kernel_score.score)
-                winning_kernel = kernel_scores[-1]
+                winning_kernel = kernel_scores[-1].kernel
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = tuple(self.kernels[_] for _ in selected_kernels)
@@ -127,6 +127,8 @@ class MeterFittingSession(AbjadValueObject):
         offset_counter = {}
         stop_offset = offset + self.longest_kernel.duration
         index = bisect.bisect_left(self.ordered_offsets, offset)
+        if index == len(self.ordered_offsets):
+            return offset_counter
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
             count = self.offset_counter[offset]
@@ -170,7 +172,7 @@ class MeterFittingSession(AbjadValueObject):
 
         Returns kernel.
         '''
-        return self._lonest_kernel
+        return self._longest_kernel
 
     @property
     def maximum_repetitions(self):

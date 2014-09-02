@@ -825,10 +825,10 @@ class Meter(AbjadObject):
                 ...     print(x.implied_time_signature)
                 ... 
                 3/4
-                3/4
+                5/4
                 4/4
-                5/4
-                5/4
+                4/4
+                4/4
 
         Coerces offsets from `expr` via
         `MetricAccentKernel.count_offsets_in_expr()`.
@@ -839,79 +839,14 @@ class Meter(AbjadObject):
         Returns list.
         '''
         from abjad.tools import metertools
-        #print(expr)
-        offset_counter = \
-            metertools.MetricAccentKernel.count_offsets_in_expr(expr)
-        #print(offset_counter)
-        ordered_offsets = sorted(offset_counter, reverse=True)
-        if not ordered_offsets:
-            return []
-        if starting_offset is None:
-            start_offset = durationtools.Offset(0)
-        else:
-            start_offset = durationtools.Offset(starting_offset)
-        meter_inventory = datastructuretools.TypedTuple(
-            items=meters,
-            item_class=metertools.Meter,
+        session = metertools.MeterFittingSession(
+            kernel_denominator=denominator,
+            maximum_repetitions=maximum_repetitions,
+            meters=meters,
+            offset_counter=expr,
             )
-        longest_hierarchy = sorted(meter_inventory,
-            key=lambda x: x.preprolated_duration, reverse=True)[0]
-        longest_kernel_duration = max(
-            x.preprolated_duration for x in meter_inventory)
-        kernels = []
-        for i, x in enumerate(meter_inventory):
-            kernel = x.generate_offset_kernel_to_denominator(denominator)
-            kernels.append(kernel)
-            #print(meters[i])
-            #print(kernel)
-        current_start_offset = start_offset
-        selected_hierarchies = []
-        while len(ordered_offsets) and \
-            ordered_offsets[-1] < current_start_offset:
-            ordered_offsets.pop()
-        while len(ordered_offsets) and \
-            current_start_offset <= ordered_offsets[-1]:
-            if len(ordered_offsets) == 1:
-                if discard_final_orphan_downbeat:
-                    if ordered_offsets[0] == current_start_offset:
-                        break
-            current_stop_offset = \
-                current_start_offset + longest_kernel_duration
-            current_offset_counter = {}
-            for offset in reversed(ordered_offsets):
-                if current_start_offset <= offset <= current_stop_offset:
-                    current_offset_counter[offset - current_start_offset] = \
-                        offset_counter[offset]
-                else:
-                    break
-            if not current_offset_counter:
-                if selected_hierarchies:
-                    winner = selected_hierarchies[-1]
-                else:
-                    winner = longest_hierarchy
-            else:
-                candidates = []
-                if maximum_repetitions is not None:
-                    fencepost = -1 * abs(maximum_repetitions)
-                    meter_buffer = selected_hierarchies[fencepost:]
-                for meter_index, kernel in enumerate(kernels):
-                    if maximum_repetitions is not None and \
-                        len(meter_buffer) == maximum_repetitions:
-                        meter_set = set(meter_buffer +
-                            [meter_inventory[meter_index]])
-                        if len(meter_set) == 1 and 1 < len(meter_inventory):
-                            continue
-                    response = kernel(current_offset_counter)
-                    candidates.append((response, meter_index))
-                candidates.sort(key=lambda x: x[0], reverse=True)
-                response, index = candidates[0]
-                winner = meter_inventory[index]
-            selected_hierarchies.append(winner)
-            current_start_offset += winner.preprolated_duration
-            while len(ordered_offsets) \
-                and ordered_offsets[-1] < current_start_offset:
-                ordered_offsets.pop()
-        return selected_hierarchies
+        meters = session()
+        return meters
 
     def generate_offset_kernel_to_denominator(
         self,
