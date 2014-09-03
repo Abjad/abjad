@@ -866,6 +866,40 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def rotate(self, angle):
+        r'''LilyPond ``\rotate`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.rotate(45)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \rotate
+                        #45
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'rotate',
+            angle,
+            contents,
+            )
+        return new(self, contents=command)
+
     def scale(self, factor_pair):
         r'''LilyPond ``\scale`` markup command.
 
@@ -964,6 +998,72 @@ class Markup(AbjadObject):
             contents,
             )
         return new(self, contents=command)
+
+    def translate(self, offset_pair):
+        r'''LilyPond ``translate`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.translate((2, 1))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \translate
+                        #'(2 . 1)
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        offset_pair = schemetools.SchemePair(offset_pair)
+        command = markuptools.MarkupCommand(
+            'translate',
+            offset_pair,
+            contents,
+            )
+        return new(self, contents=command)
+
+    @staticmethod
+    def triangle(is_filled=True):
+        r'''LilyPond ``\triangle`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.triangle()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \triangle
+                        ##t
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'triangle',
+            bool(is_filled),
+            )
+        return Markup(contents=command)
 
     def vcenter(self):
         r'''LilyPond ``\vcenter`` markup command.
