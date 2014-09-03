@@ -3,6 +3,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -21,7 +22,11 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     ### INTIIALIZER ###
 
-    def __init__(self, hairpin_tokens=None, minimum_duration=None):
+    def __init__(
+        self, 
+        hairpin_tokens=None, 
+        minimum_duration=None,
+        ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if hairpin_tokens is not None:
             for hairpin_token in hairpin_tokens:
@@ -32,38 +37,30 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, offset=0):
-        r'''Calls handler on `expr` with `offset`.
+    def __call__(self, logical_ties, timespan=None, offset=0):
+        r'''Calls handler on `logical_ties` with `offset`.
 
         Returns none.
         '''
-        leaves = list(iterate(expr).by_class(scoretools.Leaf))
-        groups = list(iterate(leaves).by_run(
-            (scoretools.Note, scoretools.Chord)))
         hairpin_tokens = datastructuretools.CyclicTuple(self.hairpin_tokens)
-        for i, group in enumerate(groups):
-            if not isinstance(group, selectiontools.SliceSelection):
-                group = selectiontools.SliceSelection(group)
-            is_short_group = False
-            hairpin_token = hairpin_tokens[offset + i]
-            if len(group) == 1:
-                is_short_group = True
-            elif self.minimum_duration is not None:
-                if group.get_duration() < self.minimum_duration:
-                    is_short_group = True
-            if is_short_group:
-                start_dynamic = hairpin_token[0]
-                #indicatortools.Dynamic(start_dynamic)(group[0])
-                command = indicatortools.LilyPondCommand(start_dynamic, 'right')
-                attach(command, group[0])
-            else:
-                descriptor = ' '.join([x for x in hairpin_token if x])
+        logical_tie_groups = self._group_contiguous_logical_ties(logical_ties)
+        for logical_tie_group in logical_tie_groups:
+            pairs = sequencetools.iterate_sequence_nwise(
+                logical_tie_group,
+                n=2,
+                )
+            for i, pair in enumerate(pairs):
+                hairpin_token = hairpin_tokens[i]
+                descriptor = ' '.join([_ for _ in hairpin_token if _])
                 hairpin = spannertools.Hairpin(
                     descriptor=descriptor,
                     include_rests=False,
                     )
-                attach(hairpin, group)
-        return expr
+                first_logical_tie, second_logical_tie = pair
+                notes = []
+                notes.extend(first_logical_tie)
+                notes.append(second_logical_tie.head)
+                attach(hairpin, notes)
 
     ### PRIVATE PROPERTIES ###
 
