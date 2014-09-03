@@ -19,6 +19,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     __slots__ = (
         '_articulation_list',
+        '_skip_ties',
         )
 
     ### INITIALIZER ###
@@ -30,6 +31,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         maximum_duration=None,
         minimum_written_pitch=None,
         maximum_written_pitch=None,
+        skip_ties=False,
         ):
         ArticulationHandler.__init__(
             self,
@@ -46,6 +48,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 message = 'not articulation: {!r}'.format(articulation)
                 raise TypeError(message)
         self._articulation_list = articulation_list
+        self._skip_ties = skip_ties
 
     ### SPECIAL METHODS ###
 
@@ -61,6 +64,8 @@ class ReiteratedArticulationHandler(ArticulationHandler):
             notes_and_chords = notes_and_chords[:-skip_last]
         for i, note_or_chord in enumerate(notes_and_chords):
             logical_tie = inspect_(note_or_chord).get_logical_tie()
+            if self.skip_ties and not logical_tie.is_trivial:
+                continue
             duration = logical_tie.get_duration()
             if self.minimum_duration is not None:
                 if duration < self.minimum_duration:
@@ -134,3 +139,11 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         Returns list, tuple or none.
         '''
         return self._articulation_list
+
+    @property
+    def skip_ties(self):
+        r'''Is true when handler should skip ties.
+
+        Set to true or false.
+        '''
+        return self._skip_ties
