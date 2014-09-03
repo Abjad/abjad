@@ -241,20 +241,42 @@ class NumberedPitch(Pitch):
     def invert(self, axis=None):
         r'''Inverts numberd pitch around `axis`.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.NumberedPitch(2).invert(0)
-            NumberedPitch(-2)
+            **Example 1.** Inverts pitch-class about pitch-class 0 explicitly:
 
-        ::
+            ::
 
-            >>> pitchtools.NumberedPitch(-2).invert(0)
-            NumberedPitch(2)
+                >>> pitchtools.NumberedPitch(2).invert(0)
+                NumberedPitch(-2)
 
-        ::
+            ::
 
-            >>> pitchtools.NumberedPitch(2).invert(-3)
-            NumberedPitch(-8)
+                >>> pitchtools.NumberedPitch(-2).invert(0)
+                NumberedPitch(2)
+
+            Default behavior.
+
+            **Example 2.** Inverts pitch-class about pitch-class 0 implicitly:
+
+            ::
+
+                >>> pitchtools.NumberedPitch(2).invert()
+                NumberedPitch(-2)
+
+            ::
+
+                >>> pitchtools.NumberedPitch(-2).invert()
+                NumberedPitch(2)
+
+            Default behavior.
+
+            **Example 3.** Inverts pitch-class about pitch-class -3:
+
+            ::
+
+                >>> pitchtools.NumberedPitch(2).invert(-3)
+                NumberedPitch(-8)
 
         Returns new numbered pitch.
         '''
