@@ -16,6 +16,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     __slots__ = (
         '_hairpin_token',
+        '_patterns',
         )
 
     ### INITIALIZER ###
@@ -24,11 +25,17 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         self, 
         hairpin_token=None, 
         minimum_duration=None,
+        patterns=None,
         ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if hairpin_token is not None:
+            if isinstance(hairpin_token, str):
+                hairpin_token = tuple(hairpin_token.split())
             assert spannertools.Hairpin._is_hairpin_token(hairpin_token)
         self._hairpin_token = hairpin_token
+        if patterns is not None:
+            assert isinstance(patterns, (list, tuple)), repr(patterns)
+        self._patterns = patterns
 
     ### SPECIAL METHODS ###
 
@@ -46,12 +53,19 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                     notes.append(note)
             if len(notes) <= 1:
                 continue
+            total_notes = len(notes)
+            notes_to_span = []
+            for i, note in enumerate(notes):
+                if self._index_matches_patterns(i, total_notes):
+                    notes_to_span.append(note)
+            if not notes_to_span:
+                continue
             descriptor = ' '.join([_ for _ in self.hairpin_token if _])
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
                 include_rests=False,
                 )
-            attach(hairpin, notes)
+            attach(hairpin, notes_to_span)
 
     ### PRIVATE PROPERTIES ###
 
@@ -72,6 +86,16 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 ),
             )
 
+    ### PRIVATE METHODS ###
+
+    def _index_matches_patterns(self, index, total):
+        if not self.patterns:
+            return True
+        for pattern in self.patterns:
+            if pattern._matches_index(index, total):
+                return True
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -83,3 +107,11 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         Set to triple.
         '''
         return self._hairpin_token
+
+    @property
+    def patterns(self):
+        r'''Gets patterns of handler.
+
+        Set to boolean patterns or none.
+        '''
+        return self._patterns
