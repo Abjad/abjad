@@ -269,3 +269,5 @@
 
 52. Change (di) to (i). Change (oi) to (i).
     Find a way to structure the menuing system so this is clear.
+
+53. Print Abjad and LilyPond timings to terminal if greater than threshold.
