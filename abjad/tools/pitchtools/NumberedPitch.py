@@ -220,7 +220,7 @@ class NumberedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         assert 0 <= fraction <= 1, repr(fraction)
-        assert isinstance(stop_pitch, type(self)), repr(stop_pitch)
+        stop_pitch = type(self)(stop_pitch)
         distance = stop_pitch - self
         distance = abs(distance.semitones)
         distance = fraction * distance
