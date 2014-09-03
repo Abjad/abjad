@@ -271,3 +271,7 @@
     Find a way to structure the menuing system so this is clear.
 
 53. Print Abjad and LilyPond timings to terminal if greater than threshold.
+
+54. Remove all cases of 'vim +G'. It seems arbitrary that some editor
+    sessions open to the beginning of file while other editor sessions
+    open to end of file. Always open to beginning of file instead.
