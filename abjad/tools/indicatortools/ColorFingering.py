@@ -102,7 +102,7 @@ class ColorFingering(AbjadObject):
         '''
         if isinstance(expr, type(self)):
             return self.number == expr.number
-        raise TypeError('unorderable types')
+        return False
 
     def __format__(self, format_specification=''):
         r'''Formats color fingering.
