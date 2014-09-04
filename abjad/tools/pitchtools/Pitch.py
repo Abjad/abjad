@@ -185,6 +185,8 @@ class Pitch(AbjadObject):
 
         Returns new pitch.
         '''
+        from abjad.tools import pitchtools
+        axis = axis or pitchtools.NamedPitch("c'")
         axis = type(self)(axis)
         interval = self - axis
         result = axis.transpose(interval)

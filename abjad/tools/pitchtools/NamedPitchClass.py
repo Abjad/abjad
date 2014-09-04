@@ -287,12 +287,19 @@ class NamedPitchClass(PitchClass):
         new_name = self.diatonic_pitch_class_name + new_accidental.abbreviation
         return type(self)(new_name)
 
-    def invert(self):
+    def invert(self, axis=None):
         r'''Inverts named pitch-class.
 
         Not yet implemented.
         '''
-        raise NotImplementedError
+        from abjad.tools import pitchtools
+        axis = axis or pitchtools.NamedPitch('c')
+        axis = pitchtools.NamedPitch(axis)
+        this = pitchtools.NamedPitch(self)
+        interval = this - axis
+        result = axis.transpose(interval)
+        result = type(self)(result)
+        return result
 
     def multiply(self, n=1):
         r'''Multiplies named pitch-class by `n`.

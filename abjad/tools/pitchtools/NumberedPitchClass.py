@@ -294,12 +294,19 @@ class NumberedPitchClass(PitchClass):
         semitones = self.pitch_class_number + accidental.semitones
         return type(self)(semitones)
 
-    def invert(self):
+    def invert(self, axis=None):
         r'''Invertes numbered pitch-class.
 
         Returns new numbered pitch-class.
         '''
-        return type(self)(12 - self.pitch_class_number)
+        from abjad.tools import pitchtools
+        axis = axis or pitchtools.NumberedPitch('c')
+        axis = pitchtools.NumberedPitch(axis)
+        this = pitchtools.NumberedPitch(self)
+        interval = this - axis
+        result = axis.transpose(interval)
+        result = type(self)(result)
+        return result
 
     def multiply(self, n=1):
         r'''Multiplies pitch-class number by `n`.

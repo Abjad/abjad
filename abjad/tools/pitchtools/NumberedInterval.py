@@ -31,6 +31,9 @@ class NumberedInterval(Interval):
             number = arg
         elif isinstance(arg, pitchtools.Interval):
             number = arg.semitones
+        elif isinstance(arg, pitchtools.IntervalClass):
+            interval_class = pitchtools.NumberedIntervalClass(arg)
+            number = interval_class.number
         elif arg is None:
             number = 0
         else:
