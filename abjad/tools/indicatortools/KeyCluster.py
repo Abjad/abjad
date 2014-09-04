@@ -5,32 +5,36 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class KeyCluster(AbjadObject):
     r'''A key cluster indication.
 
-    ::
+    ..  container:: example
 
-        >>> chord = Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = indicatortools.KeyCluster()
-        >>> attach(key_cluster, chord)
-        >>> show(chord) # doctest: +SKIP
+        Initializes key cluster with default values:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(chord))
-        \once \override Accidental.stencil = ##f
-        \once \override AccidentalCautionary.stencil = ##f
-        \once \override Arpeggio.X-offset = #-2
-        \once \override NoteHead.stencil = #ly:text-interface::print
-        \once \override NoteHead.text = \markup {
-            \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-        }
-        <c' e' g' b' d'' f''>8
-            \markup {
-                \center-align
-                    \concat
-                        {
-                            \natural
-                            \flat
-                        }
-                }
+            >>> chord = Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = indicatortools.KeyCluster()
+            >>> attach(key_cluster, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(chord))
+            \once \override Accidental.stencil = ##f
+            \once \override AccidentalCautionary.stencil = ##f
+            \once \override Arpeggio.X-offset = #-2
+            \once \override NoteHead.stencil = #ly:text-interface::print
+            \once \override NoteHead.text = \markup {
+                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+            }
+            <c' e' g' b' d'' f''>8
+                ^ \markup {
+                    \center-align
+                        \concat
+                            {
+                                \natural
+                                \flat
+                            }
+                    }
 
     '''
 
@@ -49,13 +53,13 @@ class KeyCluster(AbjadObject):
         self,
         include_black_keys=True,
         include_white_keys=True,
-        markup_direction=None,
+        markup_direction=Up,
         suppress_markup=False,
         ):
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
-        assert markup_direction in (None, Up, Center, Down)
+        assert markup_direction in (Up, Center, Down)
         self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
 
@@ -121,7 +125,73 @@ class KeyCluster(AbjadObject):
     def include_black_keys(self):
         r'''Is true if key cluster includes black keys.
 
-        Returns boolean.
+        ..  container:: example
+
+            **Example 1.** Includes flat markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     include_black_keys=True,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+            Default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Does not include flat markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     include_black_keys=False,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \natural
+                        }
+
+        ..  todo:: Rename to ``include_flat_markup``.
+
+        Set to true or false.
         '''
         return self._include_black_keys
 
@@ -129,7 +199,73 @@ class KeyCluster(AbjadObject):
     def include_white_keys(self):
         r'''Is true if key cluster includes white keys.
 
-        Returns boolean.
+        ..  container:: example
+
+            **Example 1.** Includes natural markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     include_white_keys=True,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+            Default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Does not include natural markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     include_white_keys=False,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \flat
+                        }
+
+        ..  todo:: Rename to ``include_natural_markup``.
+
+        Set to true or false.
         '''
         return self._include_white_keys
 
@@ -137,7 +273,75 @@ class KeyCluster(AbjadObject):
     def markup_direction(self):
         r'''Gets markup direction.
 
-        Returns ordinal constant or none.
+        ..  container:: example
+
+            **Example 1.** Positions markup up:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     markup_direction=Up,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+            Default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Positions markup down:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     markup_direction=Down,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    _ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+        Set to up, down or center.
         '''
         return self._markup_direction
 
@@ -145,6 +349,68 @@ class KeyCluster(AbjadObject):
     def suppress_markup(self):
         r'''Is true if key cluster suppresses key markup.
 
-        Returns boolean.
+        ..  container:: example
+
+            **Example 1.** Does not suppress markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     suppress_markup=False,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+                    ^ \markup {
+                        \center-align
+                            \concat
+                                {
+                                    \natural
+                                    \flat
+                                }
+                        }
+
+            Default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Does not suppress markup:
+
+            ::
+
+                >>> chord = Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = indicatortools.KeyCluster(
+                ...     suppress_markup=True,
+                ...     )
+                >>> attach(key_cluster, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                }
+                <c' e' g' b' d'' f''>8
+
+        ..  todo:: Remove?
+
+        Set to true or false.
         '''
         return self._suppress_markup

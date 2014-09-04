@@ -4,7 +4,9 @@ from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import select
 from abjad.tools.handlertools.ArticulationHandler import ArticulationHandler
 
@@ -17,6 +19,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     __slots__ = (
         '_articulation_list',
+        '_skip_ties',
         )
 
     ### INITIALIZER ###
@@ -28,6 +31,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         maximum_duration=None,
         minimum_written_pitch=None,
         maximum_written_pitch=None,
+        skip_ties=False,
         ):
         ArticulationHandler.__init__(
             self,
@@ -44,6 +48,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 message = 'not articulation: {!r}'.format(articulation)
                 raise TypeError(message)
         self._articulation_list = articulation_list
+        self._skip_ties = skip_ties
 
     ### SPECIAL METHODS ###
 
@@ -52,41 +57,43 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
         Returns none.
         '''
-        articulation_list = datastructuretools.CyclicTuple(
-            self.articulation_list)
-        notes_and_chords = \
-            list(iterate(expr).by_class((scoretools.Note, scoretools.Chord)))
+        prototype = (scoretools.Note, scoretools.Chord)
+        notes_and_chords = list(iterate(expr).by_class(prototype))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
         for i, note_or_chord in enumerate(notes_and_chords):
+            logical_tie = inspect_(note_or_chord).get_logical_tie()
+            if self.skip_ties and not logical_tie.is_trivial:
+                continue
+            duration = logical_tie.get_duration()
             if self.minimum_duration is not None:
-                if note_or_chord.duration.prolated < self.minimum_duration:
+                if duration < self.minimum_duration:
                     continue
             if self.maximum_duration is not None:
-                if self.maximum_duration < note_or_chord.duration.prolated:
+                if self.maximum_duration <= duration:
                     continue
             if self.minimum_written_pitch is not None:
                 if isinstance(note_or_chord, scoretools.Note):
                     minimum_written_pitch = note_or_chord.pitch
                 else:
-                    minimum_written_pitch = note_or_chord.pitches[0]
+                    minimum_written_pitch = note_or_chord.written_pitches[0]
                 if minimum_written_pitch < self.minimum_written_pitch:
                     continue
             if self.maximum_written_pitch is not None:
                 if isinstance(note_or_chord, scoretools.Note):
-                    maximum_written_pitch = note_or_chord.pitch
+                    maximum_written_pitch = note_or_chord.written_pitch
                 else:
-                    maximum_written_pitch = note_or_chord.pitches[-1]
+                    maximum_written_pitch = note_or_chord.written_pitches[-1]
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
-            articulation_list = [
-                indicatortools.Articulation(x)
-                for x in self.articulation_list
+            articulations = [
+                indicatortools.Articulation(_)
+                for _ in self.articulation_list
                 ]
-            for articulation in articulation_list:
-                new_articulation = copy.copy(articulation)
-                attach(new_articulation, note_or_chord)
+            for articulation in articulations:
+                articulation = copy.deepcopy(articulation)
+                attach(articulation, note_or_chord)
         return expr
 
     ### PRIVATE PROPERTIES ###
@@ -132,3 +139,11 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         Returns list, tuple or none.
         '''
         return self._articulation_list
+
+    @property
+    def skip_ties(self):
+        r'''Is true when handler should skip ties.
+
+        Set to true or false.
+        '''
+        return self._skip_ties

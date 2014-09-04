@@ -424,20 +424,44 @@ class NamedPitch(Pitch):
     def invert(self, axis=None):
         r'''Inverts named pitch around `axis`.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.NamedPitch("d'").invert("c'")
-            NamedPitch('bf')
+            **Example 1.** Inverts pitch around middle C explicitly:
+            
+            ::
 
-        ::
+                >>> NamedPitch("d'").invert("c'")
+                NamedPitch('bf')
 
-            >>> pitchtools.NamedPitch('bf').invert("c'")
-            NamedPitch("d'")
+            ::
 
-        ::
+                >>> NamedPitch('bf').invert("c'")
+                NamedPitch("d'")
 
-            >>> pitchtools.NamedPitch("d'").invert('a')
-            NamedPitch('e')
+            Default behavior.
+
+            **Example 2.** Inverts pitch around middle C implicitly:
+
+            ::
+
+                >>> NamedPitch("d'").invert()
+                NamedPitch('bf')
+
+            ::
+
+                >>> NamedPitch('bf').invert()
+                NamedPitch("d'")
+
+            Default behavior.
+
+            **Example 3.** Inverts pitch around A3:
+
+            ::
+
+                >>> NamedPitch("d'").invert('a')
+                NamedPitch('e')
+
+        Interprets none-valued `axis` equal to middle C.
 
         Returns new named pitch.
         '''

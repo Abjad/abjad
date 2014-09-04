@@ -183,6 +183,8 @@ class Pitch(AbjadObject):
     def invert(self, axis=None):
         r'''Inverts pitch about `axis`.
 
+        Interprets `axis` of none equal to middle C.
+
         Returns new pitch.
         '''
         from abjad.tools import pitchtools

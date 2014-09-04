@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
+from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools.handlertools.Handler import Handler
+from abjad.tools.topleveltools.attach import attach
+from abjad.tools.topleveltools.iterate import iterate
 
 
 class StemTremoloHandler(Handler):
@@ -25,17 +28,19 @@ class StemTremoloHandler(Handler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, timespan=None):
         r'''Calls handler on `expr`.
 
         Returns none.
         '''
-        classes = (scoretools.Note, scoretools.Chord)
+        prototype = (scoretools.Note, scoretools.Chord)
         hash_mark_counts = datastructuretools.CyclicTuple(
             self.hash_mark_counts)
-        for i, leaf in enumerate(
-            scoretools.iterate_components_forward_in_expr(expr, classes)):
-            indicatortools.StemTremolo(hash_mark_counts[i])(leaf)
+        leaves = iterate(expr).by_class(prototype)
+        for i, leaf in enumerate(leaves):
+            hash_mark_count = hash_mark_counts[i]
+            stem_tremolo = indicatortools.StemTremolo(hash_mark_count)
+            attach(stem_tremolo, leaf)
 
     ### PUBLIC PROPERTIES ###
 
@@ -43,6 +48,6 @@ class StemTremoloHandler(Handler):
     def hash_mark_counts(self):
         r'''Gets hash mark counts of handler.
 
-        Returns tuple of nonnegative integers or none.
+        Set to nonnegative integers or none.
         '''
         return self._hash_mark_counts

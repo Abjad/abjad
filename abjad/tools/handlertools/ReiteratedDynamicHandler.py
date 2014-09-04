@@ -26,13 +26,13 @@ class ReiteratedDynamicHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, timespan=None):
         r'''Calls handler on `expr`.
 
         Returns none.
         '''
-        for note_or_chord in \
-            iterate(expr).by_class((scoretools.Note, scoretools.Chord)):
+        prototype = (scoretools.Note, scoretools.Chord)
+        for note_or_chord in iterate(expr).by_class(prototype):
             #indicatortools.Dynamic(self.dynamic_name)(note_or_chord)
             command = indicatortools.LilyPondCommand(
                 self.dynamic_name,

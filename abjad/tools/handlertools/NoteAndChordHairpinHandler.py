@@ -16,46 +16,56 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     __slots__ = (
         '_hairpin_token',
+        '_patterns',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, hairpin_token=None, minimum_duration=None):
+    def __init__(
+        self, 
+        hairpin_token=None, 
+        minimum_duration=None,
+        patterns=None,
+        ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if hairpin_token is not None:
+            if isinstance(hairpin_token, str):
+                hairpin_token = tuple(hairpin_token.split())
             assert spannertools.Hairpin._is_hairpin_token(hairpin_token)
         self._hairpin_token = hairpin_token
+        if patterns is not None:
+            assert isinstance(patterns, (list, tuple)), repr(patterns)
+        self._patterns = patterns
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, offset=0):
-        r'''Calls note and chord hairpin handler on `expr` with `offset`.
+    def __call__(self, logical_ties, timespan=None, offset=0):
+        r'''Calls note and chord hairpin handler on `logical_ties` 
+        with `offset`.
 
         Returns none.
         '''
-        leaves = list(iterate(expr).by_class(scoretools.Leaf))
-        leaves = self._remove_outer_rests_from_sequence(leaves)
-        #group = leaves
-        group = selectiontools.SliceSelection(leaves)
-        is_short_group = False
-        if len(group) == 1:
-            is_short_group = True
-        elif self.minimum_duration is not None:
-            if group.duration < self.minimum_duration:
-                is_short_group = True
-        if is_short_group:
-            start_dynamic = self.hairpin_token[0]
-            #indicatortools.Dynamic(start_dynamic)(group[0])
-            command = indicatortools.LilyPondCommand(start_dynamic, 'right')
-            attach(command, group[0])
-        else:
-            descriptor = ' '.join([x for x in self.hairpin_token if x])
+        groups = self._group_contiguous_logical_ties(logical_ties)
+        for group in groups:
+            notes = []
+            for logical_tie in group:
+                for note in logical_tie:
+                    notes.append(note)
+            if len(notes) <= 1:
+                continue
+            total_notes = len(notes)
+            notes_to_span = []
+            for i, note in enumerate(notes):
+                if self._index_matches_patterns(i, total_notes):
+                    notes_to_span.append(note)
+            if not notes_to_span:
+                continue
+            descriptor = ' '.join([_ for _ in self.hairpin_token if _])
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
                 include_rests=False,
                 )
-            attach(hairpin, group)
-        return expr
+            attach(hairpin, notes_to_span)
 
     ### PRIVATE PROPERTIES ###
 
@@ -76,12 +86,32 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 ),
             )
 
+    ### PRIVATE METHODS ###
+
+    def _index_matches_patterns(self, index, total):
+        if not self.patterns:
+            return True
+        for pattern in self.patterns:
+            if pattern._matches_index(index, total):
+                return True
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def hairpin_token(self):
         r'''Gets hairpin token of handler.
 
-        Returns string or none.
+        Like ``('f', '>', 'p')``.
+
+        Set to triple.
         '''
         return self._hairpin_token
+
+    @property
+    def patterns(self):
+        r'''Gets patterns of handler.
+
+        Set to boolean patterns or none.
+        '''
+        return self._patterns

@@ -290,18 +290,21 @@ class WellformednessManager(AbjadObject):
         prototype = (spannertools.Glissando,)
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
             glissandi = leaf._get_spanners(prototype)
+            glissandi = list(glissandi)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:
-                    common_leaves = set(glissandi[0]._leaves) & \
-                        set(glissandi[1]._leaves)
+                    common_leaves = set(glissandi[0]._leaves)
+                    common_leaves &= set(glissandi[1]._leaves)
                     if len(common_leaves) == 1:
                         x = list(common_leaves)[0]
-                        if (glissandi[0]._is_my_first_leaf(x) and
-                            glissandi[1]._is_my_last_leaf(x)) or \
+                        if (
+                            (glissandi[0]._is_my_first_leaf(x) and
+                            glissandi[1]._is_my_last_leaf(x))
+                            or
                             (glissandi[1]._is_my_first_leaf(x) and
-                            glissandi[0]._is_my_last_leaf(x)):
+                            glissandi[0]._is_my_last_leaf(x))
+                            ):
                             break
-
                 for glissando in glissandi:
                     if glissando not in violators:
                         violators.append(glissando)

@@ -168,23 +168,115 @@ class NumberedPitch(Pitch):
         semitones = self.pitch_number + accidental.semitones
         return type(self)(semitones)
 
+    def interpolate(self, stop_pitch, fraction):
+        r'''Interpolates between this pitch and `stop_pitch`
+        by `fraction` amount.
+
+        ..  container:: example
+
+            **Example 1.** Interpolates up from C4 to C5:
+
+            ::
+
+                >>> start_pitch = pitchtools.NumberedPitch(0)
+                >>> stop_pitch = pitchtools.NumberedPitch(12)
+
+            ::
+
+                >>> start_pitch.interpolate(stop_pitch, Fraction(0))
+                NumberedPitch(0)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 4))
+                NumberedPitch(3)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 2))
+                NumberedPitch(6)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(3, 4))
+                NumberedPitch(9)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1))
+                NumberedPitch(12)
+
+        ..  container:: example
+
+            **Example 2.** Interpolates down from C5 to C4:
+
+            ::
+
+                >>> start_pitch = pitchtools.NumberedPitch(12)
+                >>> stop_pitch = pitchtools.NumberedPitch(0)
+
+            ::
+
+                >>> start_pitch.interpolate(stop_pitch, Fraction(0))
+                NumberedPitch(12)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 4))
+                NumberedPitch(9)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 2))
+                NumberedPitch(6)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(3, 4))
+                NumberedPitch(3)
+                >>> start_pitch.interpolate(stop_pitch, Fraction(1))
+                NumberedPitch(0)
+
+        Returns new pitch.
+        '''
+        from abjad.tools import pitchtools
+        assert 0 <= fraction <= 1, repr(fraction)
+        stop_pitch = type(self)(stop_pitch)
+        distance = stop_pitch - self
+        distance = abs(distance.semitones)
+        distance = fraction * distance
+        distance = int(distance)
+        if stop_pitch < self:
+            distance *= -1
+        pitch_number = self.pitch_number
+        pitch_number = pitch_number + distance
+        pitch = pitchtools.NumberedPitch(pitch_number)
+        if self <= stop_pitch:
+            triple = (self, pitch, stop_pitch)
+            assert self <= pitch <= stop_pitch, triple
+        else:
+            triple = (self, pitch, stop_pitch)
+            assert self >= pitch >= stop_pitch, triple
+        return pitch
+
     def invert(self, axis=None):
         r'''Inverts numberd pitch around `axis`.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.NumberedPitch(2).invert(0)
-            NumberedPitch(-2)
+            **Example 1.** Inverts pitch-class about pitch-class 0 explicitly:
 
-        ::
+            ::
 
-            >>> pitchtools.NumberedPitch(-2).invert(0)
-            NumberedPitch(2)
+                >>> pitchtools.NumberedPitch(2).invert(0)
+                NumberedPitch(-2)
 
-        ::
+            ::
 
-            >>> pitchtools.NumberedPitch(2).invert(-3)
-            NumberedPitch(-8)
+                >>> pitchtools.NumberedPitch(-2).invert(0)
+                NumberedPitch(2)
+
+            Default behavior.
+
+            **Example 2.** Inverts pitch-class about pitch-class 0 implicitly:
+
+            ::
+
+                >>> pitchtools.NumberedPitch(2).invert()
+                NumberedPitch(-2)
+
+            ::
+
+                >>> pitchtools.NumberedPitch(-2).invert()
+                NumberedPitch(2)
+
+            Default behavior.
+
+            **Example 3.** Inverts pitch-class about pitch-class -3:
+
+            ::
+
+                >>> pitchtools.NumberedPitch(2).invert(-3)
+                NumberedPitch(-8)
 
         Returns new numbered pitch.
         '''

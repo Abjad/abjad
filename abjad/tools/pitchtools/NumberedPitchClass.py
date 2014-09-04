@@ -295,7 +295,9 @@ class NumberedPitchClass(PitchClass):
         return type(self)(semitones)
 
     def invert(self, axis=None):
-        r'''Invertes numbered pitch-class.
+        r'''Inverts numbered pitch-class.
+
+        Interprets axis of inversion equal to pitch-class 0.
 
         Returns new numbered pitch-class.
         '''

@@ -1199,8 +1199,6 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-        ::
-
             >>> for x in iterate(score).by_vertical_moment(reverse=True):
             ...     x.leaves
             ...

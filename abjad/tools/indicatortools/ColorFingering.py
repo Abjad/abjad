@@ -28,13 +28,11 @@ class ColorFingering(AbjadObject):
             >>> f(note)
             c'4
                 ^ \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \override
-                            #'(circle-padding . 0.25)
-                            \circle
-                                \finger
-                                    1
+                    \override
+                        #'(circle-padding . 0.25)
+                        \circle
+                            \finger
+                                1
                     }
 
     Color fingerings indicate alternate woodwind fingerings by amount of pitch
@@ -104,7 +102,7 @@ class ColorFingering(AbjadObject):
         '''
         if isinstance(expr, type(self)):
             return self.number == expr.number
-        raise TypeError('unorderable types')
+        return False
 
     def __format__(self, format_specification=''):
         r'''Formats color fingering.
@@ -223,13 +221,11 @@ class ColorFingering(AbjadObject):
                 >>> fingering = indicatortools.ColorFingering(1)
                 >>> print(format(fingering.markup, 'lilypond'))
                 \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        \override
-                            #'(circle-padding . 0.25)
-                            \circle
-                                \finger
-                                    1
+                    \override
+                        #'(circle-padding . 0.25)
+                        \circle
+                            \finger
+                                1
                     }
 
         Returns markup.
@@ -240,7 +236,6 @@ class ColorFingering(AbjadObject):
         markup = markup.finger()
         markup = markup.circle()
         markup = markup.override(('circle-padding', 0.25))
-        markup = markup.scale((0.75, 0.75))
         return markup
 
     @property
