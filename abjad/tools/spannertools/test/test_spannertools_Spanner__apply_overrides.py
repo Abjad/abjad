@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_markuptools_Markup__apply_overrides_01():
+def test_spannertools_Spanner__apply_overrides_01():
 
     white_flautando_spanner = spannertools.TextSpanner(
         overrides = {

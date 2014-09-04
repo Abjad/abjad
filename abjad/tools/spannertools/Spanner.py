@@ -206,8 +206,9 @@ class Spanner(AbjadObject):
         for key, value in overrides.items():
             grob_name, attribute = key.split('__', 1)
             grob_manager = getattr(manager, grob_name)
-            if 'markuptools' in value or 'schemetools' in value:
-                value = eval(value)
+            if isinstance(value, str):
+                if 'markuptools' in value or 'schemetools' in value:
+                    value = eval(value)
             setattr(grob_manager, attribute, value)
 
     def _attach(self, components):
