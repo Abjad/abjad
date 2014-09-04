@@ -462,7 +462,7 @@ class IOManager(IOManager):
             self._display(message)
             return
         if line_number is None:
-            command = 'vim + {}'.format(path)
+            command = 'vim {}'.format(path)
         else:
             command = 'vim +{} {}'.format(line_number, path)
         self._session._attempted_to_open_file = True
