@@ -200,10 +200,14 @@ class Spanner(AbjadObject):
         self._components.insert(0, component)
 
     def _apply_overrides(self, overrides):
+        from abjad.tools import markuptools
+        from abjad.tools import schemetools
         manager = override(self)
         for key, value in overrides.items():
             grob_name, attribute = key.split('__', 1)
             grob_manager = getattr(manager, grob_name)
+            if 'markuptools' in value or 'schemetools' in value:
+                value = eval(value)
             setattr(grob_manager, attribute, value)
 
     def _attach(self, components):
