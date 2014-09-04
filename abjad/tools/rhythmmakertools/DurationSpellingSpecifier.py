@@ -91,6 +91,16 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 command='fwd',
                 editor=idetools.getters.get_duration,
                 ),
+            systemtools.AttributeDetail(
+                name='spell_metrically',
+                command='sm',
+                editor=idetools.getters.get_boolean,
+                ),
+            systemtools.AttributeDetail(
+                name='permit_meter_rewriting',
+                command='pmr',
+                editor=idetools.getters.get_boolean,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###
