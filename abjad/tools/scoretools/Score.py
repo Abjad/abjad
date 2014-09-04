@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
 from abjad.tools.scoretools.Context import Context
@@ -53,7 +54,11 @@ class Score(Context):
 
     ### PUBLIC METHODS ###
 
-    def add_final_bar_line(self, abbreviation='|.'):
+    def add_final_bar_line(
+        self, 
+        abbreviation='|.',
+        to_each_voice=False,
+        ):
         r'''Add final bar line to end of score.
 
 
@@ -102,10 +107,16 @@ class Score(Context):
         '''
         from abjad.tools import scoretools
         from abjad.tools import indicatortools
-        selection = select(self)
-        last_leaf = selection._get_component(scoretools.Leaf, -1)
         double_bar = indicatortools.BarLine(abbreviation)
-        attach(double_bar, last_leaf)
+        if not to_each_voice:
+            selection = select(self)
+            last_leaf = selection._get_component(scoretools.Leaf, -1)
+            attach(double_bar, last_leaf)
+        else:
+            for voice in iterate(self).by_class(scoretools.Voice):
+                selection = select(voice)
+                last_leaf = selection._get_component(scoretools.Leaf, -1)
+                attach(double_bar, last_leaf)
         return double_bar
 
     def add_final_markup(self, markup, extra_offset=None):
