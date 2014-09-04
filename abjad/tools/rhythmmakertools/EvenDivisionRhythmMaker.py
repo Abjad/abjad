@@ -193,6 +193,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     def _make_music(self, divisions, seeds):
         #assert not seeds, repr(seeds)
+        if seeds is None:
+            seeds = 0
         selections = []
         divisions = [durationtools.Division(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
@@ -200,7 +202,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         extra_counts_per_division = datastructuretools.CyclicTuple(
             extra_counts_per_division
             )
-        for i, division in enumerate(divisions):
+        for i, division in enumerate(divisions, seeds):
             # not yet extended to work with non-power-of-two divisions
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
