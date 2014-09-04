@@ -443,9 +443,7 @@ class Markup(AbjadObject):
             'bold',
             contents,
             )
-        return new(self,
-            contents=command,
-            )
+        return new(self, contents=command)
 
     def caps(self):
         r'''LilyPond ``\caps`` markup command.
@@ -512,6 +510,38 @@ class Markup(AbjadObject):
         contents = self._parse_markup_command_argument(self)
         command = markuptools.MarkupCommand(
             'circle',
+            contents,
+            )
+        return new(self, contents=command)
+
+    def dynamic(self):
+        r'''LilyPond ``\dynamic`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('sffz')
+                >>> markup = markup.dynamic()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \dynamic
+                        sffz
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'dynamic',
             contents,
             )
         return new(self, contents=command)
@@ -683,9 +713,7 @@ class Markup(AbjadObject):
             'italic',
             contents,
             )
-        return new(self,
-            contents=command,
-            )
+        return new(self, contents=command)
 
     def larger(self):
         r'''LilyPond ``\larger`` markup command.
