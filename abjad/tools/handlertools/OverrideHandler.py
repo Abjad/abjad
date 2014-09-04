@@ -57,9 +57,25 @@ class OverrideHandler(Handler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def statement(self):
-        r'''Gets statement of override handler.
+    def attribute_name(self):
+        r'''Gets attribute name of override handler.
 
         Set to string or none.
         '''
-        return self._statement
+        return self._attribute_name
+
+    @property
+    def attribute_value(self):
+        r'''Gets attribute value of override handler.
+
+        Set to string or none.
+        '''
+        return self._attribute_value
+
+    @property
+    def grob_name(self):
+        r'''Gets grob name of override handler.
+
+        Set to string or none.
+        '''
+        return self._grob_name
