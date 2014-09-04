@@ -819,7 +819,6 @@ class Timespan(BoundedObject):
         '''
         return True
 
-
     @property
     def is_left_open(self):
         r'''False for all timespans.
@@ -854,7 +853,6 @@ class Timespan(BoundedObject):
         Returns boolean.
         '''
         return False
-
 
     @property
     def is_right_open(self):
