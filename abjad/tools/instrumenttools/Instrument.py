@@ -19,6 +19,7 @@ class Instrument(AbjadObject):
     __slots__ = (
         '_allowable_clefs',
         '_default_scope',
+        '_do_not_format',
         '_instrument_name',
         '_instrument_name_markup',
         '_is_primary_instrument',
@@ -43,6 +44,7 @@ class Instrument(AbjadObject):
         sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
+        self._do_not_format = False
         self._instrument_name = instrument_name
         self._instrument_name_markup = instrument_name_markup
         self._short_instrument_name = short_instrument_name
@@ -193,6 +195,8 @@ class Instrument(AbjadObject):
     @property
     def _lilypond_format(self):
         result = []
+        if self._do_not_format:
+            return result
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
             self._scope_name,
