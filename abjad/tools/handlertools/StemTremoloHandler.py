@@ -48,6 +48,9 @@ class StemTremoloHandler(Handler):
     def hash_mark_counts(self):
         r'''Gets hash mark counts of handler.
 
+        ..  todo:: Rename to something that indicates power-of-two
+            requirement.
+
         Set to nonnegative integers or none.
         '''
         return self._hash_mark_counts
