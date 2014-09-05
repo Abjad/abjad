@@ -28,7 +28,8 @@ def new(expr, **kwargs):
         elif key in keyword_argument_dictionary:
             keyword_argument_dictionary[key] = value
         else:
-            raise KeyError(key)
+            message = '{} has no key {!r}'.format(type(expr), key)
+            raise KeyError(message)
     for key, pairs in recursive_arguments.items():
         recursed_object = getattr(expr, key)
         if recursed_object is None:
