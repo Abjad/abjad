@@ -445,6 +445,65 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def box(self):
+        r'''LilyPond ``\box`` markup command.
+
+        ..  container:: example
+
+            **Example 1.** Default box:
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.box()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \box
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Customized box:
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.box()
+                >>> markup = markup.override(('box-padding', 0.5))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \override
+                        #'(box-padding . 0.5)
+                        \box
+                            "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'box',
+            contents,
+            )
+        return new(self, contents=command)
+
     def caps(self):
         r'''LilyPond ``\caps`` markup command.
 
