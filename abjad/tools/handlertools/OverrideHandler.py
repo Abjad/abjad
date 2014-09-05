@@ -34,11 +34,14 @@ class OverrideHandler(Handler):
         maximum_written_duration=None,
         maximum_settings=None,
         ):
-        assert isinstance(grob_name, str), repr(grob_name)
+        if grob_name is not None:
+            assert isinstance(grob_name, str), repr(grob_name)
         self._grob_name = grob_name
-        assert isinstance(attribute_name, str), repr(attribute_name)
+        if attribute_name is not None:
+            assert isinstance(attribute_name, str), repr(attribute_name)
         self._attribute_name = attribute_name
-        assert isinstance(attribute_value, str), repr(attribute_value)
+        if attribute_value is not None:
+            assert isinstance(attribute_value, str), repr(attribute_value)
         self._attribute_value = attribute_value
         if maximum_written_duration is not None:
             maximum_written_duration = durationtools.Duration(
