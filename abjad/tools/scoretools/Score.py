@@ -103,6 +103,8 @@ class Score(Context):
 
             >>> show(score) # doctest: +SKIP
 
+        Set `to_each_voice` to true to make part extraction easier.
+
         Returns bar line.
         '''
         from abjad.tools import scoretools
