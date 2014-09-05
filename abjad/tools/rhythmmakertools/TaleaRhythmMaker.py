@@ -10,6 +10,7 @@ from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
 
 
@@ -119,6 +120,7 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_extra_counts_per_division',
         '_helper_functions',
+        '_rest_tied_notes',
         '_split_divisions_by_counts',
         '_talea',
         '_talea_denominator',
@@ -140,6 +142,7 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         duration_spelling_specifier=None,
         output_masks=None,
+        rest_tied_notes=False,
         tie_specifier=None,
         tie_split_notes=True,
         tuplet_spelling_specifier=None,
@@ -203,6 +206,8 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts
+        assert isinstance(rest_tied_notes, bool), rest_tied_notes
+        self._rest_tied_notes = rest_tied_notes
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
@@ -447,6 +452,8 @@ class TaleaRhythmMaker(RhythmMaker):
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
+        if self.rest_tied_notes == False:
+            keyword_argument_names.remove('rest_tied_notes')
         if self.tie_split_notes == True:
             keyword_argument_names.remove('tie_split_notes')
         return systemtools.StorageFormatSpecification(
@@ -713,6 +720,13 @@ class TaleaRhythmMaker(RhythmMaker):
         self._apply_beam_specifier(selections)
         if talea:
             self._apply_ties_to_split_notes(selections, unscaled_talea)
+        if self.rest_tied_notes:
+            for logical_tie in iterate(selections).by_logical_tie():
+                if not logical_tie.is_trivial:
+                    for note in logical_tie[1:]:
+                        rest = scoretools.Rest(note)
+                        mutate(note).replace(rest)
+                    detach(spannertools.Tie, logical_tie.head)
         selections = self._apply_output_masks(selections)
         return selections
 
@@ -1896,6 +1910,17 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.output_masks
+
+    @property
+    def rest_tied_notes(self):
+        r'''Is true when rhythm-maker should leave the head of each logical
+        tie but change tied notes to rests and remove ties.
+
+        ..  todo:: Add examples.
+
+        Set to true or false.
+        '''
+        return self._rest_tied_notes
 
     @property
     def split_divisions_by_counts(self):
