@@ -58,8 +58,7 @@ class OverrideHandler(Handler):
 
         Returns none.
         '''
-        prototype = (scoretools.Note, scoretools.Chord)
-        leaves = iterate(expr).by_class(prototype)
+        leaves = iterate(expr).by_class(scoretools.Leaf)
         statement = 'override(leaf).{}.{} = {}'
         statement = statement.format(
             self._grob_name,
