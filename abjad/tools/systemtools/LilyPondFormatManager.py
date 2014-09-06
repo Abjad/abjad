@@ -138,13 +138,13 @@ class LilyPondFormatManager(object):
                 continue
             elif 1 < len(markup_list):
                 contents = []
-                for markup in markup_list:
-                    contents += markup.contents
                 direction = markup_list[0].direction
                 if direction is None:
                     direction = '-'
-                command = markuptools.MarkupCommand('column', contents)
-                markup = markuptools.Markup(command, direction=direction)
+                markup = markuptools.Markup.column(
+                    markup_list,
+                    direction=direction,
+                    )
                 format_pieces = markup._get_format_pieces()
                 bundle.right.markup.extend(format_pieces)
             else:
