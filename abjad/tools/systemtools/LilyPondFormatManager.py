@@ -141,6 +141,8 @@ class LilyPondFormatManager(object):
                 direction = markup_list[0].direction
                 if direction is None:
                     direction = '-'
+                markup_list = markup_list[:]
+                markup_list.sort(key=lambda x: -x.stack_priority)
                 markup = markuptools.Markup.column(
                     markup_list,
                     direction=direction,

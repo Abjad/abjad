@@ -445,11 +445,70 @@ class Markup(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** ``'foo'`` appears higher in stack than ``'bar'``:
+
             ::
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup.stack_priority
-                0
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup('foo', stack_priority=1000), staff[1])
+                >>> attach(Markup('bar', stack_priority=0), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    foo
+                                    bar
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+        ..  container:: example
+
+            **Example 2.** ``'foo'`` appears lower in stack than ``'bar'``:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup('foo', stack_priority=0), staff[1])
+                >>> attach(Markup('bar', stack_priority=1000), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    bar
+                                    foo
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+
+        Higher priority equals higher position.
+
+        Defaults to zero.
 
         Set to integer.
         '''
