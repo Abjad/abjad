@@ -122,31 +122,28 @@ class Score(Context):
         return double_bar
 
     def add_final_markup(self, markup, extra_offset=None):
-        r'''Add `markup` to end of score:
+        r'''Adds `markup` to end of score:
 
         ::
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> score = Score([staff])
-            >>> markup = r'\italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }'
-            >>> markup = markuptools.Markup(markup, Down)
-            >>> markup = score.add_final_markup(markup, extra_offset=(4, -2))
+            >>> place = Markup('Bremen - Boston - LA.', direction=Down)
+            >>> date = Markup('Jul 2010 - May 2011.')
+            >>> markup = place.right_column(date).italic()
+            >>> markup = score.add_final_markup(markup, extra_offset=(0.5, -2))
 
         ::
 
-            >>> print(format(markup, 'storage'))
-            markuptools.Markup(
-                contents=(
-                    markuptools.MarkupCommand(
-                        'italic',
-                        markuptools.MarkupCommand(
-                            'right-column',
-                            ['Bremen - Boston - LA.', 'Jul 2010 - May 2011.']
-                            )
-                        ),
-                    ),
-                direction=Down,
-                )
+            >>> print(format(markup))
+            _ \markup {
+                \italic
+                    \right-column
+                        {
+                            "Bremen - Boston - LA."
+                            "Jul 2010 - May 2011."
+                        }
+                }
 
         ..  doctest::
 
@@ -156,7 +153,7 @@ class Score(Context):
                     c'4
                     d'4
                     e'4
-                    \once \override TextScript #'extra-offset = #'(4 . -2)
+                    \once \override TextScript #'extra-offset = #'(0.5 . -2)
                     f'4 _ \markup {
                         \italic
                             \right-column
@@ -172,7 +169,7 @@ class Score(Context):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return `markup`.
+        Returns `markup`.
         '''
         from abjad.tools import markuptools
         from abjad.tools import scoretools
