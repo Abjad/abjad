@@ -279,3 +279,6 @@
     IOManager.open() method to continually redisplay the same file
     when rerendering it with (di) (instead of reopening multiple
     Preview pointers to the same file).
+
+56. Do something to allow measure numbers to come out correctly between
+    segments even when just building a draft (as opposed to the full score).
