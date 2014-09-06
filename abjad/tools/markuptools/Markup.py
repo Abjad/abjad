@@ -985,6 +985,45 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def right_column(self, *markups):
+        r'''LilyPond ``\right-column`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> city = Markup('Los Angeles')
+                >>> date = Markup('May - August 2014')
+                >>> markup = city.right_column(date)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \right-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        contents.extend(self.contents)
+        for markup in markups:
+            contents.extend(markup.contents)
+        command = markuptools.MarkupCommand(
+            'right-column',
+            contents,
+            )
+        return new(self, contents=command)
+
     def rotate(self, angle):
         r'''LilyPond ``\rotate`` markup command.
 
