@@ -273,3 +273,9 @@
 53. Print Abjad and LilyPond timings to terminal if greater than threshold.
 
 54. Allow 'PH' to match on PitchHandler in makers menu.
+
+55. Investigate AppleScript to see if there's a way to find out which
+    file Preview has open at any given time. Then extend the IDE
+    IOManager.open() method to continually redisplay the same file
+    when rerendering it with (di) (instead of reopening multiple
+    Preview pointers to the same file).
