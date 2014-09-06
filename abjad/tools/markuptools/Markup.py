@@ -573,6 +573,45 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def column(markups, direction=Up):
+        r'''LilyPond ``\column`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> city = Markup('Los Angeles')
+                >>> date = Markup('May - August 2014')
+                >>> markup = Markup.column([city, date])
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        for markup in markups:
+            contents.extend(markup.contents)
+        command = markuptools.MarkupCommand(
+            'column',
+            contents,
+            )
+        return Markup(contents=command, direction=direction)
+
     def dynamic(self):
         r'''LilyPond ``\dynamic`` markup command.
 
