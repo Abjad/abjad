@@ -130,7 +130,8 @@ class Score(Context):
             >>> score = Score([staff])
             >>> place = Markup('Bremen - Boston - LA.', direction=Down)
             >>> date = Markup('Jul 2010 - May 2011.')
-            >>> markup = place.right_column(date).italic()
+            >>> markup = Markup.right_column([place, date], direction=Down)
+            >>> markup = markup.italic()
             >>> markup = score.add_final_markup(markup, extra_offset=(0.5, -2))
 
         ::
