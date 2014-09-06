@@ -83,11 +83,17 @@ class Markup(AbjadObject):
         '_contents',
         '_direction',
         '_format_slot',
+        '_stack_priority',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, contents=None, direction=None):
+    def __init__(
+        self, 
+        contents=None, 
+        direction=None,
+        stack_priority=0,
+        ):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
         if contents is None:
@@ -119,6 +125,8 @@ class Markup(AbjadObject):
         direction = \
             stringtools.arg_to_tridirectional_ordinal_constant(direction)
         self._direction = direction
+        assert isinstance(stack_priority, int), repr(stack_priority)
+        self._stack_priority = stack_priority
 
     ### SPECIAL METHODS ###
 
@@ -174,8 +182,9 @@ class Markup(AbjadObject):
         Returns new markup.
         '''
         return type(self)(
-            self._contents,
-            direction=self._direction,
+            self.contents,
+            direction=self.direction,
+            stack_priority=self.stack_priority
             )
 
     def __eq__(self, expr):
@@ -305,6 +314,11 @@ class Markup(AbjadObject):
                 command='dr',
                 editor=idetools.getters.get_direction_string,
                 ),
+            systemtools.AttributeDetail(
+                name='stack_priority',
+                command='sp',
+                editor=idetools.getters.get_integer,
+                ),
             )
 
     @property
@@ -314,6 +328,20 @@ class Markup(AbjadObject):
     @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
+        keyword_argument_names.remove('stack_priority')
+        keyword_argument_names = tuple(keyword_argument_names)
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -410,6 +438,22 @@ class Markup(AbjadObject):
         Returns up, down, center or none.
         '''
         return self._direction
+
+    @property
+    def stack_priority(self):
+        r'''Gets stack priority of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup.stack_priority
+                0
+
+        Set to integer.
+        '''
+        return self._stack_priority
 
     ### PUBLIC METHODS ###
 
