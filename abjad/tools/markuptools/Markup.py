@@ -1034,7 +1034,7 @@ class Markup(AbjadObject):
 
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.pad_around(10)
-                >>> markup = markup.with_box()
+                >>> markup = markup.box()
 
             ::
 
@@ -1393,40 +1393,6 @@ class Markup(AbjadObject):
         contents = self._parse_markup_command_argument(self)
         command = markuptools.MarkupCommand(
             'vcenter',
-            contents,
-            )
-        return new(self,
-            contents=command,
-            )
-
-    def with_box(self):
-        r'''LilyPond ``\box`` markup command.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.with_box()
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
-                    \box
-                        "Allegro assai"
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        from abjad.tools import markuptools
-        contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'box',
             contents,
             )
         return new(self,
