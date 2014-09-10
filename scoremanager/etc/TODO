@@ -284,3 +284,5 @@
     segments even when just building a draft (as opposed to the full score).
 
 57. Set build/score.ly template to tab width of 4 spaces instead of 3.
+
+58. Add build command to copy score.pdf to distribution directory.
