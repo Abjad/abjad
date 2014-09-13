@@ -243,6 +243,10 @@ class LilyPondLexicalDefinition(AbjadObject):
         r'%[^{\n\r][^\n\r]*[\n\r]'
         pass
 
+    def t_INITIAL_markup_notes_214_EOF(self, t):
+        r'%[^{\n\r][^\n\r]*$'
+        pass
+
     #lexer.ll:216
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
     def t_INITIAL_markup_notes_216(self, t):
