@@ -34,7 +34,8 @@ class Tuning(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         pitches=None,
         ):
         from abjad.tools import pitchtools
@@ -47,6 +48,21 @@ class Tuning(AbjadObject):
                     item_class=pitchtools.NamedPitch,
                     )
         self._pitches = pitches
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import pitchtools
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='pitches',
+                display_string='pitches',
+                command='p',
+                editor=pitchtools.PitchSegment,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

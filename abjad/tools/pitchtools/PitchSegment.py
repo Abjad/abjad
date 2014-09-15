@@ -93,6 +93,11 @@ class PitchSegment(Segment):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        return systemtools.AttributeManifest()
+
+    @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitch
