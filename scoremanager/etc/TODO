@@ -286,3 +286,8 @@
 57. Set build/score.ly template to tab width of 4 spaces instead of 3.
 
 58. Add build command to copy score.pdf to distribution directory.
+
+59. Extend ScoreManager main menu.
+    Include 'package - setup' (p) in main menu when score has just
+    been created but not yet set up.
+    The interface will then nudge the composer to first steps.
