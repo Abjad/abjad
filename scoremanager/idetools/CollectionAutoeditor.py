@@ -10,7 +10,8 @@ from scoremanager.idetools.Autoeditor import Autoeditor
 class CollectionAutoeditor(Autoeditor):
     r'''Collection editor.
 
-    Abstract base class for ListAutoeditor and DictionaryAutoeditor.
+    Abstract base class for ListAutoeditor, TupletAutoeditor and 
+    DictionaryAutoeditor.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -244,7 +245,7 @@ class CollectionAutoeditor(Autoeditor):
     ### PUBLIC METHODS ###
 
     def add_items(self):
-        r'''Adds items to list.
+        r'''Adds items to collection.
 
         Returns none.
         '''
@@ -260,7 +261,7 @@ class CollectionAutoeditor(Autoeditor):
         self._collection.extend(items)
 
     def edit_item(self, number):
-        r'''Edits item `number` in list.
+        r'''Edits item `number` in collection.
 
         Returns none.
         '''
@@ -277,7 +278,7 @@ class CollectionAutoeditor(Autoeditor):
         self._collection[item_index] = item_editor.target
 
     def remove_items(self):
-        r'''Removes items from list.
+        r'''Removes items from collection.
 
         Returns none.
         '''
