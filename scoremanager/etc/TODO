@@ -291,3 +291,9 @@
     Include 'package - setup' (p) in main menu when score has just
     been created but not yet set up.
     The interface will then nudge the composer to first steps.
+
+60. Make sure all tests pass when custom view is applied to score menu.
+    These three tests currently fail:
+    FAIL test_ScorePackageWrangler__list_visible_asset_paths_01
+    FAIL test_ScorePackageWrangler__make_main_menu_01
+    FAIL test_ScorePackageWrangler_make_package_02
