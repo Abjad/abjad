@@ -297,3 +297,18 @@
     FAIL test_ScorePackageWrangler__list_visible_asset_paths_01
     FAIL test_ScorePackageWrangler__make_main_menu_01
     FAIL test_ScorePackageWrangler_make_package_02
+
+61. Change this (da) behavior:
+    > da
+        Exception raised in /Users/trevorbaca/Documents/scores/huitzil/materials/pitch_segment/definition.py.
+        Traceback (most recent call last):
+        File "/Users/trevorbaca/Documents/abjad/scoremanager/idetools/IOManager.py", line 487, in execute_file
+            result = self.execute_string(file_contents_string, attribute_names)
+        File "/Users/trevorbaca/Documents/abjad/scoremanager/idetools/IOManager.py", line 521, in execute_string
+            exec(string, local_namespace, local_namespace)
+        File "<string>", line 5, in <module>
+        NameError: name 'NumberedPitch' is not defined
+        No autoedit target found; would you like to create one? 
+    What's going on here is that the definition.py module is corrupt.
+    IDE should explain this to composer.
+    IDE should refuse to overwrite definition.py file.
