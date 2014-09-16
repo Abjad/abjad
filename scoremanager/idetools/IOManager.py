@@ -276,6 +276,8 @@ class IOManager(IOManager):
             }
         if isinstance(target, (dict, datastructuretools.TypedOrderedDict)):
             class_ = idetools.DictionaryAutoeditor
+        elif isinstance(target, (tuple, datastructuretools.TypedTuple)):
+            class_ = idetools.TupleAutoeditor
         elif isinstance(target, (list, datastructuretools.TypedCollection)):
             class_ = idetools.ListAutoeditor
         else:

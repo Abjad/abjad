@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import types
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -59,6 +60,8 @@ class CollectionAutoeditor(Autoeditor):
             self._item_creator_class = target._item_creator_class
             kwargs = getattr(target, '_item_creator_class_kwargs', None)
             self._item_creator_class_kwargs = kwargs
+#        elif (getattr(target, '_item_callable', None) and
+#            isinstance(self.target._item_callable, type)):
         elif getattr(target, '_item_callable', None):
             assert self.target._item_callable
             if not isinstance(self.target._item_callable, type):
@@ -71,6 +74,19 @@ class CollectionAutoeditor(Autoeditor):
                 self._item_creator_class = idetools.ListAutoeditor
             else:
                 self._item_creator_class = idetools.Autoeditor
+#        elif (getattr(target, '_item_callable', None) and
+#            isinstance(self.target._item_callable, types.FunctionType)):
+#            try:
+#                dummy_item = self.target._item_callable()
+#            except TypeError:
+#                dummy_item = self.target._item_callable(0)
+#            helper = stringtools.upper_camel_case_to_space_delimited_lowercase
+#            asset_identifier = helper(type(dummy_item).__name__)
+#            if isinstance(dummy_item, datastructuretools.TypedList):
+#                self._item_creator_class = idetools.ListAutoeditor
+#            else:
+#                self._item_creator_class = idetools.Autoeditor
+#            self._item_class = type(dummy_item)
 
     ### PRIVATE PROPERTIES ###
 
