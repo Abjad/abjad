@@ -91,9 +91,11 @@ class TempoInventory(TypedList):
         return systemtools.AttributeManifest()
 
     @staticmethod
-    def _item_callable(expr):
+    def _item_callable(expr=None):
         from abjad.tools import indicatortools
-        if isinstance(expr, tuple):
+        if expr is None:
+            tempo = indicatortools.Tempo()
+        elif isinstance(expr, tuple):
             tempo = indicatortools.Tempo(*expr)
         elif isinstance(expr, indicatortools.Tempo):
             tempo = copy.copy(expr)
