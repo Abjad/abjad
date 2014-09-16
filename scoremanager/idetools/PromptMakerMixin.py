@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import functools
+import numbers
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
@@ -587,6 +588,24 @@ class PromptMakerMixin(AbjadObject):
         '''
         help_template = 'value must be tuple of nonzero integers.'
         function = lambda x: all(isinstance(y, int) and not y == 0 for y in x)
+        self._make_prompt(
+            spaced_attribute_name,
+            validation_function=function,
+            help_template=help_template,
+            default_value=default_value,
+            )
+
+    def append_number(
+        self,
+        spaced_attribute_name,
+        default_value=None,
+        ):
+        r'''Appends number.
+
+        Returns prompt.
+        '''
+        help_template = 'value must be number.'
+        function = lambda x: isinstance(x, numbers.Number)
         self._make_prompt(
             spaced_attribute_name,
             validation_function=function,

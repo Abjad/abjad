@@ -192,6 +192,16 @@ def get_nonzero_integers(
     getter.append_nonzero_integers(space_delimited_attribute_name)
     return getter
 
+def get_number(
+    space_delimited_attribute_name,
+    session=None,
+    prepopulated_value=None,
+    allow_none=True,
+    ):
+    getter = Getter(session=session, allow_none=allow_none)
+    getter.append_number(space_delimited_attribute_name)
+    return getter
+
 def get_positive_integer_power_of_two(
     space_delimited_attribute_name,
     session=None,

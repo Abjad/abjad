@@ -6,8 +6,6 @@ session = scoremanager.idetools.Session()
 
 
 def test_getters_01():
-    r'''Regression test.
-    '''
 
     getter = scoremanager.idetools.getters.get_duration(
         'foo bar',
@@ -18,7 +16,7 @@ def test_getters_01():
 
 
 def test_getters_02():
-    r'''Allow none.
+    r'''Allows none.
     '''
 
     getter = scoremanager.idetools.getters.get_duration(
@@ -27,3 +25,23 @@ def test_getters_02():
         )
     getter._session._pending_input = 'None'
     assert getter._run() is None
+
+
+def test_getters_03():
+
+    getter = scoremanager.idetools.getters.get_number(
+        'foo bar',
+        session=session,
+        )
+    getter._session._pending_input = '7'
+    assert getter._run() == 7
+
+
+def test_getters_04():
+
+    getter = scoremanager.idetools.getters.get_number(
+        'foo bar',
+        session=session,
+        )
+    getter._session._pending_input = '7.5'
+    assert getter._run() == 7.5
