@@ -114,7 +114,7 @@ class Registration(TypedList):
         return systemtools.AttributeManifest()
 
     @staticmethod
-    def _item_callable(expr):
+    def _coerce_item(expr):
         from abjad.tools import pitchtools
         if isinstance(expr, tuple):
             component = pitchtools.RegistrationComponent(*expr)

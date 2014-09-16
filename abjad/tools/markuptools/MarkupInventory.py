@@ -57,5 +57,5 @@ class MarkupInventory(TypedList):
         return systemtools.AttributeManifest()
 
     @property
-    def _item_callable(self):
+    def _coerce_item(self):
         return Markup

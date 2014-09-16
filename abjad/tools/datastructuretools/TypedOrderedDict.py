@@ -58,7 +58,7 @@ class TypedOrderedDict(TypedCollection):
         for item in items:
             assert len(item) == 2, repr(item)
             key = item[0]
-            value = self._item_callable(item[1])
+            value = self._coerce_item(item[1])
             the_item = (key, value)
             the_items.append(the_item)
         self._collection = collections.OrderedDict(items)
@@ -151,7 +151,7 @@ class TypedOrderedDict(TypedCollection):
 
         Returns none.
         '''
-        new_item = self._item_callable(expr)
+        new_item = self._coerce_item(expr)
         self._collection[i] = new_item
 
     ### PUBLIC METHODS ###

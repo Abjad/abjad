@@ -91,7 +91,7 @@ class TempoInventory(TypedList):
         return systemtools.AttributeManifest()
 
     @staticmethod
-    def _item_callable(expr=None):
+    def _coerce_item(expr=None):
         from abjad.tools import indicatortools
         if expr is None:
             tempo = indicatortools.Tempo()

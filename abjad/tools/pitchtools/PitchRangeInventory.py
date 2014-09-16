@@ -115,7 +115,7 @@ class PitchRangeInventory(TypedList):
         return systemtools.AttributeManifest()
 
     @staticmethod
-    def _item_callable(expr):
+    def _coerce_item(expr):
         from abjad.tools import pitchtools
         if isinstance(expr, str):
             range_ = pitchtools.PitchRange(expr)

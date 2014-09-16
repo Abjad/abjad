@@ -82,7 +82,7 @@ class TypedList(TypedCollection):
         items = items or []
         the_items = []
         for item in items:
-            the_items.append(self._item_callable(item))
+            the_items.append(self._coerce_item(item))
         self.extend(the_items)
 
     ### SPECIAL METHODS ###
@@ -186,13 +186,13 @@ class TypedList(TypedCollection):
         Returns none.
         '''
         if isinstance(i, int):
-            new_item = self._item_callable(expr)
+            new_item = self._coerce_item(expr)
             old_item = self._collection[i]
             self._on_removal(old_item)
             self._on_insertion(new_item)
             self._collection[i] = new_item
         elif isinstance(i, slice):
-            new_items = [self._item_callable(item) for item in expr]
+            new_items = [self._coerce_item(item) for item in expr]
             old_items = self._collection[i]
             for old_item in old_items:
                 self._on_removal(old_item)
@@ -250,7 +250,7 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         self._on_insertion(item)
         self._collection.append(item)
         if self.keep_sorted:
@@ -274,7 +274,7 @@ class TypedList(TypedCollection):
 
         Returns count.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         return self._collection.count(item)
 
     def extend(self, items):
@@ -308,7 +308,7 @@ class TypedList(TypedCollection):
 
         Returns index.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         return self._collection.index(item)
 
     def insert(self, i, item):
@@ -336,7 +336,7 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         self._on_insertion(item)
         result = self._collection.insert(i, item)
         if self.keep_sorted:
@@ -371,7 +371,7 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         index = self._collection.index(item)
         item = self._collection[index]
         self._on_removal(item)

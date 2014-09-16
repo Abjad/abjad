@@ -22,7 +22,7 @@ class TypedTuple(TypedCollection):
             )
         items = items or []
         self._collection = tuple(
-            self._item_callable(item) for item in items)
+            self._coerce_item(item) for item in items)
 
     ### SPECIAL METHODS ###
 
@@ -46,7 +46,7 @@ class TypedTuple(TypedCollection):
         Returns none.
         '''
         try:
-            item = self._item_callable(item)
+            item = self._coerce_item(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -106,7 +106,7 @@ class TypedTuple(TypedCollection):
 
         Returns count in collection.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         return self._collection.count(item)
 
     def index(self, item):
@@ -114,7 +114,7 @@ class TypedTuple(TypedCollection):
 
         Returns index in collection.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         return self._collection.index(item)
 
 

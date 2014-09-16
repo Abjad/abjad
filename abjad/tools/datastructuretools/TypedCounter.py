@@ -88,7 +88,7 @@ class TypedCounter(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
@@ -97,7 +97,7 @@ class TypedCounter(TypedCollection):
 
         Returns item.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         return self._collection[item]
 
     def __missing__(self, item):
@@ -131,7 +131,7 @@ class TypedCounter(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(item)
+        item = self._coerce_item(item)
         self._collection.__setitem__(item, value)
 
     def __sub__(self, expr):
@@ -152,7 +152,7 @@ class TypedCounter(TypedCollection):
         def _coerce_mapping(items):
             the_items = {}
             for item, count in items.items():
-                item = self._item_callable(item)
+                item = self._coerce_item(item)
                 if item not in the_items:
                     the_items[item] = 0
                 the_items[item] += count
@@ -164,7 +164,7 @@ class TypedCounter(TypedCollection):
             else:
                 the_items = []
                 for item in items:
-                    the_items.append(self._item_callable(item))
+                    the_items.append(self._coerce_item(item))
         itemdict = _coerce_mapping(kwargs)
         return the_items, itemdict
 

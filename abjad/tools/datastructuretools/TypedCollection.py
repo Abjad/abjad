@@ -30,7 +30,7 @@ class TypedCollection(AbjadObject):
         Returns boolean.
         '''
         try:
-            item = self._item_callable(item)
+            item = self._coerce_item(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -113,7 +113,7 @@ class TypedCollection(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _item_callable(self):
+    def _coerce_item(self):
         def coerce_(x):
             if isinstance(x, self._item_class):
                 return x

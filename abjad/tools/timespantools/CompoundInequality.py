@@ -73,7 +73,7 @@ class CompoundInequality(TypedList):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _item_callable(self):
+    def _coerce_item(self):
         from abjad.tools import timespantools
         def to_inequality(expr):
             if isinstance(expr, str):

@@ -19,6 +19,6 @@ class SelectionInventory(TypedList):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _item_callable(self):
+    def _coerce_item(self):
         from abjad.tools import selectiontools
         return selectiontools.SliceSelection

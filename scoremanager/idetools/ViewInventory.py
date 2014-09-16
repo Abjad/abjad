@@ -15,6 +15,6 @@ class ViewInventory(TypedOrderedDict):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _item_callable(self):
+    def _coerce_item(self):
         from scoremanager import idetools
         return idetools.View
