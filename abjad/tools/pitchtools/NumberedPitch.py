@@ -28,18 +28,19 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr=None):
+    def __init__(self, pitch_number=None):
         from abjad.tools import pitchtools
-        if hasattr(expr, 'pitch_number'):
-            pitch_number = expr.pitch_number
-        elif Pitch.is_pitch_number(expr):
-            pitch_number = expr
-        elif expr is None:
+        if hasattr(pitch_number, 'pitch_number'):
+            pitch_number = pitch_number.pitch_number
+        elif Pitch.is_pitch_number(pitch_number):
+            pitch_number = pitch_number
+        elif pitch_number is None:
             pitch_number = 0
         else:
-            pitch_number = pitchtools.NamedPitch(expr).pitch_number
-        self._pitch_number = mathtools.integer_equivalent_number_to_integer(
+            pitch_number = pitchtools.NamedPitch(pitch_number).pitch_number
+        pitch_number = mathtools.integer_equivalent_number_to_integer(
             pitch_number)
+        self._pitch_number = pitch_number
 
     ### SPECIAL METHODS ###
 
@@ -133,6 +134,19 @@ class NumberedPitch(Pitch):
                 self, -interval)
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attribute_manifest(self):
+        from abjad.tools import systemtools
+        from scoremanager import idetools
+        return systemtools.AttributeManifest(
+            systemtools.AttributeDetail(
+                name='pitch_number',
+                command='pn',
+                # TODO: change this to getters.get_number
+                editor=idetools.getters.get_integer,
+                ),
+            )
 
     @property
     def _lilypond_format(self):
