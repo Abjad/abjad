@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Autoeditor__Instrument_01():
+def test_Instrument_autoedit_01():
     r'''Short instrument name does not change short instrument name markup.
     Unless short instrument name markup is set explicitly.
     '''
@@ -34,7 +34,7 @@ def test_Autoeditor__Instrument_01():
     assert instrument.short_instrument_name_markup == Markup('bar')
 
 
-def test_Autoeditor__Instrument_02():
+def test_Instrument_autoedit_02():
     r'''Edits instrument range.
     '''
 
@@ -63,7 +63,7 @@ def test_Autoeditor__Instrument_02():
     assert autoeditor.target.pitch_range == range_
 
 
-def test_Autoeditor__Instrument_03():
+def test_Instrument_autoedit_03():
     r'''While editing instrument name: instrument name does not
     change instrument name markup.
     '''
@@ -94,7 +94,7 @@ def test_Autoeditor__Instrument_03():
     assert instrument.instrument_name_markup == Markup('bar')
 
 
-def test_Autoeditor__Instrument_04():
+def test_Instrument_autoedit_04():
     r'''While editing instrument: main screen.
     '''
 
@@ -127,7 +127,7 @@ def test_Autoeditor__Instrument_04():
         assert line in contents
 
 
-def test_Autoeditor__Instrument_05():
+def test_Instrument_autoedit_05():
     r'''Edits sounding pitch of written middle C.
     '''
 

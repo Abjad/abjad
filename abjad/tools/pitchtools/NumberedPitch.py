@@ -143,8 +143,7 @@ class NumberedPitch(Pitch):
             systemtools.AttributeDetail(
                 name='pitch_number',
                 command='pn',
-                # TODO: change this to getters.get_number
-                editor=idetools.getters.get_integer,
+                editor=idetools.getters.get_number,
                 ),
             )
 
