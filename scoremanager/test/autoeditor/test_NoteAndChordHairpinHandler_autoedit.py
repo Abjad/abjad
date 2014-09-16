@@ -4,7 +4,7 @@ from abjad.tools import handlertools
 import scoremanager
 
 
-def test_noteAndChordHairpinHandler_autoedit_01():
+def test_NoteAndChordHairpinHandler_autoedit_01():
     r'''Edits hairpin handler.
     '''
 
