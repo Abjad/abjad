@@ -71,7 +71,7 @@ class NoteHeadInventory(TypedList):
     ### PRIVATE PROPERTIES ##
 
     @property
-    def _coerce_item(self):
+    def _item_coercer(self):
         from abjad.tools import scoretools
         def coerce_(token):
             if not isinstance(token, scoretools.NoteHead):

@@ -60,26 +60,26 @@ class CollectionAutoeditor(Autoeditor):
             self._item_creator_class = target._item_creator_class
             kwargs = getattr(target, '_item_creator_class_kwargs', None)
             self._item_creator_class_kwargs = kwargs
-#        elif (getattr(target, '_coerce_item', None) and
-#            isinstance(self.target._coerce_item, type)):
-        elif getattr(target, '_coerce_item', None):
-            assert self.target._coerce_item
-            if not isinstance(self.target._coerce_item, type):
+#        elif (getattr(target, '_item_coercer', None) and
+#            isinstance(self.target._item_coercer, type)):
+        elif getattr(target, '_item_coercer', None):
+            assert self.target._item_coercer
+            if not isinstance(self.target._item_coercer, type):
                 return
-            self._item_class = self.target._coerce_item
-            dummy_item = self.target._coerce_item()
+            self._item_class = self.target._item_coercer
+            dummy_item = self.target._item_coercer()
             helper = stringtools.upper_camel_case_to_space_delimited_lowercase
             asset_identifier = helper(type(dummy_item).__name__)
             if isinstance(dummy_item, datastructuretools.TypedList):
                 self._item_creator_class = idetools.ListAutoeditor
             else:
                 self._item_creator_class = idetools.Autoeditor
-#        elif (getattr(target, '_coerce_item', None) and
-#            isinstance(self.target._coerce_item, types.FunctionType)):
+#        elif (getattr(target, '_item_coercer', None) and
+#            isinstance(self.target._item_coercer, types.FunctionType)):
 #            try:
-#                dummy_item = self.target._coerce_item()
+#                dummy_item = self.target._item_coercer()
 #            except TypeError:
-#                dummy_item = self.target._coerce_item(0)
+#                dummy_item = self.target._item_coercer(0)
 #            helper = stringtools.upper_camel_case_to_space_delimited_lowercase
 #            asset_identifier = helper(type(dummy_item).__name__)
 #            if isinstance(dummy_item, datastructuretools.TypedList):

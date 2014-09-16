@@ -91,7 +91,7 @@ class TempoInventory(TypedList):
         return systemtools.AttributeManifest()
 
     @property
-    def _coerce_item(self):
+    def _item_coercer(self):
         from abjad.tools import indicatortools
         def coerce_(expr):
             if expr is None:

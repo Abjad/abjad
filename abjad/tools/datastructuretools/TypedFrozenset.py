@@ -22,7 +22,7 @@ class TypedFrozenset(TypedCollection):
             items=items,
             )
         items = items or []
-        items = [self._coerce_item(_) for _ in items]
+        items = [self._item_coercer(_) for _ in items]
         self._collection = frozenset(items)
 
     ### SPECIAL METHODS ###
