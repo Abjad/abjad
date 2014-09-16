@@ -114,15 +114,17 @@ class PitchRangeInventory(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @staticmethod
-    def _coerce_item(expr):
+    @property
+    def _coerce_item(self):
         from abjad.tools import pitchtools
-        if isinstance(expr, str):
-            range_ = pitchtools.PitchRange(expr)
-        elif isinstance(expr, tuple):
-            range_ = pitchtools.PitchRange.from_pitches(*expr)
-        elif isinstance(expr, pitchtools.PitchRange):
-            range_ = copy.copy(expr)
-        else:
-            raise TypeError(expr)
-        return range_
+        def coerce_(expr):
+            if isinstance(expr, str):
+                range_ = pitchtools.PitchRange(expr)
+            elif isinstance(expr, tuple):
+                range_ = pitchtools.PitchRange.from_pitches(*expr)
+            elif isinstance(expr, pitchtools.PitchRange):
+                range_ = copy.copy(expr)
+            else:
+                raise TypeError(expr)
+            return range_
+        return coerce_

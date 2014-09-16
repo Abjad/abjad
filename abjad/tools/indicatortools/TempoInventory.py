@@ -90,15 +90,17 @@ class TempoInventory(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @staticmethod
-    def _coerce_item(expr=None):
+    @property
+    def _coerce_item(self):
         from abjad.tools import indicatortools
-        if expr is None:
-            tempo = indicatortools.Tempo()
-        elif isinstance(expr, tuple):
-            tempo = indicatortools.Tempo(*expr)
-        elif isinstance(expr, indicatortools.Tempo):
-            tempo = copy.copy(expr)
-        else:
-            raise TypeError(repr(expr))
-        return tempo
+        def coerce_(expr):
+            if expr is None:
+                tempo = indicatortools.Tempo()
+            elif isinstance(expr, tuple):
+                tempo = indicatortools.Tempo(*expr)
+            elif isinstance(expr, indicatortools.Tempo):
+                tempo = copy.copy(expr)
+            else:
+                raise TypeError(repr(expr))
+            return tempo
+        return coerce_

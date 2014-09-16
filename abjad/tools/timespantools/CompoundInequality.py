@@ -75,7 +75,7 @@ class CompoundInequality(TypedList):
     @property
     def _coerce_item(self):
         from abjad.tools import timespantools
-        def to_inequality(expr):
+        def coerce_(expr):
             if isinstance(expr, str):
                 return timespantools.SimpleInequality(expr)
             elif isinstance(expr, timespantools.SimpleInequality):
@@ -84,7 +84,7 @@ class CompoundInequality(TypedList):
                 return expr
             else:
                 raise TypeError(expr)
-        return to_inequality
+        return coerce_
 
     ### PUBLIC PROPERTIES ###
 

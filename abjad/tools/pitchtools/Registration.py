@@ -113,16 +113,18 @@ class Registration(TypedList):
         from abjad.tools import systemtools
         return systemtools.AttributeManifest()
 
-    @staticmethod
-    def _coerce_item(expr):
+    @property
+    def _coerce_item(self):
         from abjad.tools import pitchtools
-        if isinstance(expr, tuple):
-            component = pitchtools.RegistrationComponent(*expr)
-        elif isinstance(expr, pitchtools.RegistrationComponent):
-            component = copy.copy(expr)
-        else:
-            raise TypeError(repr(expr))
-        return component
+        def coerce_(expr):
+            if isinstance(expr, tuple):
+                component = pitchtools.RegistrationComponent(*expr)
+            elif isinstance(expr, pitchtools.RegistrationComponent):
+                component = copy.copy(expr)
+            else:
+                raise TypeError(repr(expr))
+            return component
+        return coerce_
 
     @property
     def _one_line_menu_summary(self):

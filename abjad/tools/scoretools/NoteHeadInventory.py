@@ -73,14 +73,14 @@ class NoteHeadInventory(TypedList):
     @property
     def _coerce_item(self):
         from abjad.tools import scoretools
-        def coerce(token):
+        def coerce_(token):
             if not isinstance(token, scoretools.NoteHead):
                 token = scoretools.NoteHead(
                     written_pitch=token,
                     )
                 token._client = self.client
             return token
-        return coerce
+        return coerce_
 
     @property
     def _storage_format_specification(self):
