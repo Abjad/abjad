@@ -126,7 +126,7 @@ class DictionaryAutoeditor(CollectionAutoeditor):
         Returns none.
         '''
         getter = self._io_manager._make_getter()
-        items_identifier = stringtools.pluralize(self._asset_identifier)
+        items_identifier = stringtools.pluralize(self._item_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()

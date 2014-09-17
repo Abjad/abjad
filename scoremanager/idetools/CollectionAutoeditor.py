@@ -11,7 +11,7 @@ from scoremanager.idetools.Autoeditor import Autoeditor
 class CollectionAutoeditor(Autoeditor):
     r'''Collection editor.
 
-    Abstract base class for ListAutoeditor, TupletAutoeditor and 
+    Abstract base class for ListAutoeditor, TupleAutoeditor and 
     DictionaryAutoeditor.
     '''
 
@@ -26,7 +26,7 @@ class CollectionAutoeditor(Autoeditor):
         '_item_creator_class_kwargs',
         '_item_editor_class',
         '_item_getter_configuration_method',
-        '_asset_identifier',
+        '_item_identifier',
         '_numbered_section',
         )
 
@@ -53,32 +53,25 @@ class CollectionAutoeditor(Autoeditor):
         self._item_creator_class = None
         self._item_creator_class_kwargs = {}
         self._item_editor_class = None
-        self._item_getter_configuration_method = \
-            idetools.Getter.append_expr
-        self._asset_identifier = 'element'
+        self._item_getter_configuration_method = idetools.Getter.append_expr
+        self._item_identifier = 'item'
         if hasattr(target, '_item_creator_class'):
             self._item_creator_class = target._item_creator_class
-            kwargs = getattr(target, '_item_creator_class_kwargs', None)
-            self._item_creator_class_kwargs = kwargs
+            self._item_creator_class_kwargs = getattr(
+                target,
+                '_item_creator_class_kwargs', 
+                None,
+                )
         elif (getattr(target, '_item_coercer', None) and
             isinstance(target._item_coercer, type)):
             self._item_class = self.target._item_coercer
             dummy_item = self.target._item_coercer()
+            # ViewInventory contains Views (typed lists)
+            # Registration contains RegistrationComponents (typed lists)
             if isinstance(dummy_item, datastructuretools.TypedList):
                 self._item_creator_class = idetools.ListAutoeditor
             else:
                 self._item_creator_class = idetools.Autoeditor
-#        elif (getattr(target, '_item_coercer', None) and
-#            isinstance(self.target._item_coercer, types.FunctionType)):
-#            try:
-#                dummy_item = self.target._item_coercer()
-#            except TypeError:
-#                dummy_item = self.target._item_coercer(0)
-#            if isinstance(dummy_item, datastructuretools.TypedList):
-#                self._item_creator_class = idetools.ListAutoeditor
-#            else:
-#                self._item_creator_class = idetools.Autoeditor
-#            self._item_class = type(dummy_item)
 
     ### PRIVATE PROPERTIES ###
 
@@ -137,7 +130,7 @@ class CollectionAutoeditor(Autoeditor):
             getter = self._io_manager._make_getter()
             self._item_getter_configuration_method(
                 getter,
-                self._asset_identifier,
+                self._item_identifier,
                 )
             lines = []
             lines.append('from abjad import *')
@@ -291,7 +284,7 @@ class CollectionAutoeditor(Autoeditor):
         Returns none.
         '''
         getter = self._io_manager._make_getter()
-        items_identifier = stringtools.pluralize(self._asset_identifier)
+        items_identifier = stringtools.pluralize(self._item_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()
