@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
+import numbers
 
 
-def are_relatively_prime(expr):
-    '''Is true when `expr` is a sequence comprising zero or more numbers,
+def are_relatively_prime(numbers_):
+    '''Is true when `numbers_` is a sequence comprising zero or more numbers,
     all of which are relatively prime.
 
     ::
@@ -17,14 +18,14 @@ def are_relatively_prime(expr):
         >>> mathtools.are_relatively_prime([13, 14, 15, 16])
         False
 
-    Returns true when `expr` is an empty sequence:
+    Returns true when `numbers_` is an empty sequence:
 
     ::
 
         >>> mathtools.are_relatively_prime([])
         True
 
-    Returns false when `expr` is nonsensical type:
+    Returns false when `numbers_` is nonsensical type:
 
     ::
 
@@ -35,16 +36,14 @@ def are_relatively_prime(expr):
     '''
     from abjad.tools import mathtools
 
-    try:
-        all_factors = set([])
-        for number in expr:
-            current_factors = mathtools.factors(number)
-            current_factors.remove(1)
-            current_factors = set(current_factors)
-            if all_factors & current_factors:
-                return False
-            all_factors.update(current_factors)
-        return True
-    # TODO: remove unqualified except
-    except:
+    if not all(isinstance(_, numbers.Number) for _ in numbers_):
         return False
+
+    all_factors = set([])
+    for number in numbers_:
+        current_factors = mathtools.factors(number)
+        current_factors = set(current_factors)
+        if all_factors & current_factors:
+            return False
+        all_factors.update(current_factors)
+    return True

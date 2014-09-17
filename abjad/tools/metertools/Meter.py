@@ -163,7 +163,11 @@ class Meter(AbjadObject):
         arg = arg or (4, 4)
 
         def recurse(
-            node, factors, denominator, decrease_durations_monotonically):
+            node, 
+            factors, 
+            denominator, 
+            decrease_durations_monotonically,
+            ):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 preprolated_duration = node.preprolated_duration.__div__(factor)
@@ -252,7 +256,7 @@ class Meter(AbjadObject):
                 fraction = mathtools.NonreducedFraction(
                     arg.numerator, arg.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
-            factors = mathtools.factors(numerator)[1:]
+            factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]

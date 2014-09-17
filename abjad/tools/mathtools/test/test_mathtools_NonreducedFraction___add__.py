@@ -33,7 +33,7 @@ def test_mathtools_NonreducedFraction___add___03():
         'a + 10', locals())
 
     if sys.version_info[0] == 2:
-        assert result_one == 67
+        assert result_one == 66
         assert result_two == 35
     else:
         assert result_one == 82
