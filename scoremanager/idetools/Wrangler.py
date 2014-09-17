@@ -550,8 +550,7 @@ class Wrangler(ScoreInternalAssetController):
         ):
         if human_readable_target_name is None:
             name = self._manager_class.__name__
-            name = stringtools.upper_camel_case_to_space_delimited_lowercase(
-                name)
+            name = stringtools.to_space_delimited_lowercase(name)
             human_readable_target_name = name
         if infinitival_phrase:
             return 'select {} {}:'.format(

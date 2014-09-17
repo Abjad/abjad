@@ -602,7 +602,9 @@ class IOManager(object):
                 if os.path.exists(log_path):
                     with open(log_path, 'r') as f:
                         print(f.read())
-                raw_input(fail_message)
+                # TODO: remove raw_input to benefit IDE
+                #raw_input(fail_message)
+                print(fail_message)
                 return False
             return True
         candidate_base = lilypond_base + '.candidate'
@@ -644,7 +646,9 @@ class IOManager(object):
                 if os.path.exists(log_path):
                     with open(log_path, 'r') as f:
                         print(f.read())
-                raw_input(fail_message)
+                # TODO: remove raw_input to benefit IDE
+                #raw_input(fail_message)
+                print(fail_message)
                 return False
             shutil.move(candidate_path, pdf_path)
             return True

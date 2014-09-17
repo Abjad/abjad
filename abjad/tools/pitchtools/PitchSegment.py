@@ -95,7 +95,6 @@ class PitchSegment(Segment):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        #return systemtools.AttributeManifest()
         from scoremanager import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(

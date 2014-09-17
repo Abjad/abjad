@@ -118,8 +118,10 @@ class LilyPondCommand(AbjadObject):
         command = self._name
         if command.startswith('#'):
             return command
+        elif ' ' not in command:
+            return '\\' + stringtools.to_lower_camel_case(command)
         else:
-            return '\\' + stringtools.snake_case_to_lower_camel_case(command)
+            return '\\' + command
 
     @property
     def _lilypond_format_bundle(self):

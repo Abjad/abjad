@@ -312,13 +312,13 @@ class LilyPondFormatManager(object):
         '''
         from abjad.tools import stringtools
         # parse input strings
-        grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
+        grob_name = stringtools.to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         grob_value = LilyPondFormatManager.format_lilypond_value(grob_value)
         if context_name is not None:
             context_prefix = \
-                stringtools.snake_case_to_upper_camel_case(context_name)
+                stringtools.to_upper_camel_case(context_name)
             context_prefix += '.'
         else:
             context_prefix = ''
@@ -349,15 +349,14 @@ class LilyPondFormatManager(object):
         '''
         from abjad.tools import stringtools
         # parse input strings
-        grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
+        grob_name = stringtools.to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         # change #'bound-details #'left #'text to #'bound-details
         grob_attribute = grob_attribute.split(' ')[0]
         context_prefix = ''
         if context_name is not None:
-            context_prefix = \
-                stringtools.snake_case_to_upper_camel_case(context_name)
+            context_prefix = stringtools.to_upper_camel_case(context_name)
             context_prefix += '.'
         # format revert string
         result = r'\revert {}{} {}'

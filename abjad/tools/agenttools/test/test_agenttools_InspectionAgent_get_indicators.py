@@ -24,7 +24,7 @@ def test_agenttools_InspectionAgent_get_indicators_01():
             f'8 )
         }
         '''
-        )
+        ), format(staff)
 
     indicators = inspect_(staff[0]).get_indicators(
         indicatortools.LilyPondCommand)
@@ -55,7 +55,7 @@ def test_agenttools_InspectionAgent_get_indicators_02():
             f'8 )
         }
         '''
-        )
+        ), format(staff)
 
     items = inspect_(staff[0]).get_indicators()
     assert comment in items
@@ -82,7 +82,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
             f'8
         }
         '''
-        )
+        ), format(staff)
 
     indicators = inspect_(staff[0]).get_indicators()
     assert dynamic == indicators[0]
@@ -108,7 +108,7 @@ def test_agenttools_InspectionAgent_get_indicators_04():
             f'8
         }
         '''
-        )
+        ), format(staff)
 
     dynamics = inspect_(staff[0]).get_indicators(Dynamic)
     assert dynamic == dynamics[0]
@@ -133,7 +133,7 @@ def test_agenttools_InspectionAgent_get_indicators_05():
             f'8
         }
         '''
-        )
+        ), format(staff)
 
     annotations = inspect_(staff[0]).get_indicators(indicatortools.Annotation)
     assert annotations == (annotation_1, annotation_2)
@@ -159,7 +159,7 @@ def test_agenttools_InspectionAgent_get_indicators_06():
             f'8
         }
         '''
-        )
+        ), format(staff)
 
     indicators = inspect_(staff[0]).get_indicators(
         indicatortools.LilyPondComment)

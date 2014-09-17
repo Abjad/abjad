@@ -21,7 +21,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools
-        camel_name = stringtools.snake_case_to_upper_camel_case(name)
+        camel_name = stringtools.to_upper_camel_case(name)
         if name.startswith('_'):
             try:
                 return vars(self)[name]

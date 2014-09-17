@@ -118,8 +118,7 @@ class DeveloperScript(abctools.AbjadObject):
         r'''The name of the script, callable from the command line.
         '''
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
-        return stringtools.upper_camel_case_to_space_delimited_lowercase(
-            name).replace(' ', '-')
+        return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')
 
     @property
     def scripting_group(self):
