@@ -30,7 +30,7 @@ def make_spacing_vector(
         % 2011-04-07 15:19
 
         \version "2.13.44"
-        \include "english.ly"
+        \language "english"
 
         \paper {
             system-system-spacing = #'(
