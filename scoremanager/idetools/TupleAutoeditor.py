@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scoremanager.idetools.CollectionAutoeditor import CollectionAutoeditor
 
@@ -61,7 +62,8 @@ class TupleAutoeditor(CollectionAutoeditor):
             items = [result]
         list_ = list(self._collection)
         list_.extend(items)
-        self._target = tuple(list_)
+        class_ = type(self._collection)
+        self._target = class_(list_)
 
     def edit_item(self, number):
         r'''Edits item `number` in collection.
@@ -80,7 +82,8 @@ class TupleAutoeditor(CollectionAutoeditor):
         item_index = int(number) - 1
         list_ = list(self._collection)
         list_[item_index] = item_editor.target
-        self._target = tuple(list_)
+        class_ = type(self._collection)
+        self._target = class_(list_)
 
     def move_item(self):
         r'''Moves items in tuple.
@@ -101,7 +104,8 @@ class TupleAutoeditor(CollectionAutoeditor):
         list_ = list(self._collection)
         list_.remove(item)
         list_.insert(new_index, item)
-        self._target = tuple(list_)
+        class_ = type(self._collection)
+        self._target = class_(list_)
 
     def remove_items(self):
         r'''Removes items from tuple.
@@ -119,4 +123,5 @@ class TupleAutoeditor(CollectionAutoeditor):
         indices = list(reversed(sorted(set(indices))))
         items = list(self._collection[:])
         items = sequencetools.remove_elements(items, indices)
-        self._target = tuple(items)
+        class_ = type(self._collection)
+        self._target = class_(items)

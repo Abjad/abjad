@@ -66,6 +66,10 @@ class Segment(TypedTuple):
 
     ### PRIVATE PROPERTIES ###
 
+    @property
+    def _item_coercer(self):
+        return self._item_class
+
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
