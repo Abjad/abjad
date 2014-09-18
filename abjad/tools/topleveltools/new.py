@@ -12,6 +12,11 @@ def new(expr, **kwargs):
     manager = systemtools.StorageFormatManager
     keyword_argument_dictionary = \
         manager.get_keyword_argument_dictionary(expr)
+    if hasattr(expr, '_storage_format_specification'):
+        specification = expr._storage_format_specification
+        keyword_argument_names = specification._keyword_argument_names or ()
+        for name in keyword_argument_names:
+            keyword_argument_dictionary[name] = getattr(expr, name)
     positional_argument_dictionary = \
         manager.get_positional_argument_dictionary(expr)
     recursive_arguments = {}
