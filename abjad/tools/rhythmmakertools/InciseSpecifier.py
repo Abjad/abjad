@@ -352,28 +352,3 @@ class InciseSpecifier(AbjadValueObject):
         Returns positive integer-equivalent number.
         '''
         return self._talea_denominator
-
-    ### PUBLIC METHODS ###
-
-    def reverse(self):
-        r'''Reverses incision specifier.
-
-        Returns new incision specifier.
-        '''
-        from abjad.tools import rhythmmakertools
-        prefix_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.prefix_counts)
-        prefix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.prefix_talea)
-        suffix_counts = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.suffix_counts)
-        suffix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
-            self.suffix_talea)
-        maker = new(
-            self,
-            prefix_counts=prefix_counts,
-            prefix_talea=prefix_talea,
-            suffix_counts=suffix_counts,
-            suffix_talea=suffix_talea,
-            )
-        return maker

@@ -811,32 +811,3 @@ class IncisedRhythmMaker(RhythmMaker):
         '''
         superclass = super(IncisedRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
-
-    ### PUBLIC METHODS ###
-
-    def reverse(self):
-        r'''Reverses incised rhythm-maker.
-
-        Returns newly constructed rhythm-maker.
-        '''
-        from abjad.tools import rhythmmakertools
-        extra_counts_per_division = \
-            self._reverse_tuple(self.extra_counts_per_division)
-        split_divisions_by_counts = \
-            self._reverse_tuple(self.split_divisions_by_counts)
-        duration_spelling_specifier = self.duration_spelling_specifier
-        if duration_spelling_specifier is None:
-            duration_spelling_specifier = \
-                rhythmmakertools.DurationSpellingSpecifier()
-        duration_spelling_specifier = duration_spelling_specifier.reverse()
-        incise_specifier = self.incise_specifier
-        if incise_specifier is not None:
-            incise_specifier = incise_specifier.reverse()
-        maker = new(
-            self,
-            duration_spelling_specifier=duration_spelling_specifier,
-            extra_counts_per_division=extra_counts_per_division,
-            incise_specifier=incise_specifier,
-            split_divisions_by_counts=split_divisions_by_counts,
-            )
-        return maker

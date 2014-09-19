@@ -148,28 +148,3 @@ class Talea(AbjadValueObject):
         Returns nonnegative integer power of two.
         '''
         return self._denominator
-
-    ### PUBLIC METHODS ###
-
-    def reverse(self):
-        r'''Reverses talea.
-
-        ..  container:: example
-
-            ::
-
-                >>> reversed_talea = talea.reverse()
-                >>> print(format(reversed_talea))
-                rhythmmakertools.Talea(
-                    counts=(1, 1, 4, 2, 3, 1, 2),
-                    denominator=16,
-                    )
-
-        Returns new talea.
-        '''
-        counts = tuple(reversed(self.counts))
-        result = type(self)(
-            counts=counts,
-            denominator=self.denominator,
-            )
-        return result
