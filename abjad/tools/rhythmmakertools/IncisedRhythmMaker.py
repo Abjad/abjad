@@ -840,23 +840,3 @@ class IncisedRhythmMaker(RhythmMaker):
             split_divisions_by_counts=split_divisions_by_counts,
             )
         return maker
-
-    def rotate(self, n=0):
-        r'''Rotates incised rhythm-maker.
-
-        Returns newly constructed rhythm-maker.
-        '''
-        extra_counts_per_division = \
-            self._rotate_tuple(self.extra_counts_per_division, n)
-        split_divisions_by_counts = \
-            self._rotate_tuple(self.split_divisions_by_counts, n)
-        incise_specifier = self.incise_specifier
-        if incise_specifier is not None:
-            incise_specifier = incise_specifier.rotate(n)
-        maker = new(
-            self,
-            extra_counts_per_division=extra_counts_per_division,
-            incise_specifier=incise_specifier,
-            split_divisions_by_counts=split_divisions_by_counts,
-            )
-        return maker
