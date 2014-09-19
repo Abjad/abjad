@@ -21,28 +21,6 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_rhythm_between_voices_05():
-    r'''Rhythm select expression between voices with multiple in-voice application.
-    '''
-
-    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_measures('Voice 1')[:1]
-    second_measure = red_segment.select_measures('Voice 1')[1:2]
-    first_measure.timespan.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
-    cell = first_measure.timespan.select_leaves('Voice 1')
-    second_measure.timespan.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])
-    first_measure.timespan.set_rhythm(cell.rotate(Duration(-2, 32)), contexts=['Voice 2'])
-    second_measure.timespan.set_rhythm(cell.rotate(Duration(-3, 32)), contexts=['Voice 2'])
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
 def test_SegmentSpecification__select_rhythm_between_voices_06():
     r'''Voice 2 rhythms interpret incorrectly.
     '''

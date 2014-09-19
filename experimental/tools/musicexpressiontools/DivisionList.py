@@ -272,37 +272,3 @@ class DivisionList(AbjadObject):
         Returns string.
         '''
         return self._voice_name
-
-    ### PUBLIC METHODS ###
-
-    def rotate(self, rotation):
-        r'''Rotate division list by `rotation`.
-
-        ::
-
-            >>> divisions = [(3, 16), (4, 16), (3, 16), (4, 16)]
-            >>> division_list = musicexpressiontools.DivisionList(
-            ...     divisions, Offset(5), 'Voice 1')
-
-        ::
-
-            >>> result = division_list.rotate(-1)
-
-        ::
-
-            >>> print(format(result))
-            musicexpressiontools.DivisionList(
-                [
-                    durationtools.Division(4, 16),
-                    durationtools.Division(3, 16),
-                    durationtools.Division(4, 16),
-                    durationtools.Division(3, 16),
-                    ],
-                start_offset=durationtools.Offset(5, 1),
-                voice_name='Voice 1',
-                )
-
-        Emit newly constructed division list.
-        '''
-        divisions = sequencetools.rotate_sequence(self.divisions, rotation)
-        return new(self, divisions=divisions)

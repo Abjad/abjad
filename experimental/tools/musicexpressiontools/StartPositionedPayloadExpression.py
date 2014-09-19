@@ -401,15 +401,6 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             payload_expressions.append(payload_expression)
         return payload_expressions
 
-    def rotate(self, rotation):
-        r'''Rotate start-positioned payload expression by `rotation`.
-
-        Operates in place and returns payload expression.
-        '''
-        payload = self.payload.rotate(rotation)
-        self._payload = payload
-        return self
-
     def translate(self, translation):
         r'''Translate start-positioned payload expression by `translation`.
 

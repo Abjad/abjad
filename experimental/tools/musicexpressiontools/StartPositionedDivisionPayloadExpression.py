@@ -674,38 +674,6 @@ class StartPositionedDivisionPayloadExpression(
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
         return result
 
-    def rotate(self, rotation):
-        r'''Rotate start-positioned division payload expression by `rotation`.
-
-        ::
-
-            >>> payload = [(6, 8), (6, 8), (3, 4)]
-            >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
-            ...     payload, Offset(0))
-
-        ::
-
-            >>> result = expression.rotate(-1)
-
-        ::
-
-            >>> print(format(expression))
-            musicexpressiontools.StartPositionedDivisionPayloadExpression(
-                payload=musicexpressiontools.DivisionList(
-                    [
-                        durationtools.Division(6, 8),
-                        durationtools.Division(3, 4),
-                        durationtools.Division(6, 8),
-                        ],
-                    start_offset=durationtools.Offset(0, 1),
-                    ),
-                start_offset=durationtools.Offset(0, 1),
-                )
-
-        Operates in place and returns division payload expression.
-        '''
-        return StartPositionedPayloadExpression.rotate(self, rotation)
-
     def translate(self, translation):
         r'''Translate division payload expression by `translation`.
 
