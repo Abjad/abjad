@@ -166,14 +166,6 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
-    def reflect(self):
-        r'''Reflect payload.
-
-        Returns copy of expression with callback.
-        '''
-        callback = 'result = self._reflect(payload_expression)'
-        return self._copy_and_append_callback(callback)
-
     def repeat_to_duration(self, duration):
         r'''Repeat payload to `duration`.
 

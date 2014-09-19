@@ -69,35 +69,6 @@ def test_SegmentSpecification__select_leaves_03():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaves_04():
-    r'''Select one division's leaves.
-    '''
-
-    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(3, 8), (3, 8)])
-    red_segment.set_divisions([(6, 32)], contexts=['Voice 1'])
-    talea = rhythmmakertools.Talea(
-        counts=(1, 2, 3),
-        denominator=32,
-        )
-    maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=talea,
-        beam_specifier=library.join_specifier,
-        )
-    red_segment.set_rhythm(maker, contexts=['Voice 1'])
-    first_division = red_segment.select_divisions('Voice 1')[:1]
-    red_rhythm_cell = first_division.timespan.select_leaves('Voice 1')
-    red_rhythm_cell = red_rhythm_cell.reflect()
-    red_segment.set_rhythm(red_rhythm_cell, contexts=['Voice 2'])
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
 def test_SegmentSpecification__select_leaves_05():
     r'''Select leaves that start during measure 1 + 1.
     '''

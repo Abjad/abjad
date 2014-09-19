@@ -102,26 +102,6 @@ def test_CounttimeComponentSelectExpression__callbacks_05():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_CounttimeComponentSelectExpression__callbacks_06():
-    r'''Reflect rhythm.
-    '''
-
-    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
-    red_segment.set_rhythm("{ c'16 [ c'8 c'8. ] }")
-    red_leaves = red_segment.select_leaves('Voice 1')
-    red_leaves = red_leaves.reflect()
-    blue_segment = score_specification.append_segment(name='blue')
-    blue_segment.set_rhythm(red_leaves)
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
 def test_CounttimeComponentSelectExpression__callbacks_07():
     r'''Rotate rhythm by count.
     '''

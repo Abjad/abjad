@@ -304,30 +304,6 @@ class IterablePayloadExpression(PayloadExpression):
             result.append(part)
         return result
 
-    def reflect(self):
-        r'''Reflect payload expression.
-
-        ::
-
-            >>> result = payload_expression.reflect()
-
-        ::
-
-            >>> print(format(result))
-            musicexpressiontools.IterablePayloadExpression(
-                payload=(
-                    (2, 16),
-                    (4, 16),
-                    ),
-                )
-
-        Returns newly constructed payload expression.
-        '''
-        assert isinstance(self.payload, tuple), repr(self.payload)
-        payload = type(self.payload)(reversed(self.payload))
-        result = new(self, payload=payload)
-        return result
-
     def repeat_to_duration(self, duration):
         r'''Repeat payload expression to duration.
 

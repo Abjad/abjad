@@ -597,39 +597,6 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(
             self, ratio)
 
-    def reflect(self):
-        r'''Reflect start-positioned rhythm payload expression about axis.
-
-        ::
-
-            >>> payload = [Container("c'8 d'8 e'8 f'8")]
-            >>> expression = \
-            ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
-            ...     payload, Offset(0))
-
-        ::
-
-            >>> result = expression.reflect()
-
-        ::
-
-            >>> print(format(expression))
-            musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                payload=scoretools.Container(
-                    "{ f'8 e'8 d'8 c'8 }"
-                    ),
-                start_offset=durationtools.Offset(0, 1),
-                )
-
-        Operates in place and returns start-positioned rhythm
-        payload expression.
-        '''
-        for container in iterate(self.payload).by_class(scoretools.Container):
-            container._music.reverse()
-        for spanner in self.payload._get_descendants().get_spanners():
-            spanner._reverse_components()
-        return self
-
     def repeat_to_duration(self, duration):
         r'''Repeat start-positioned rhythm payload expression to `duration`.
 
