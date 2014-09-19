@@ -2420,27 +2420,3 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_split_notes=tie_split_notes,
             )
         return maker
-
-    def rotate(self, n=0):
-        r'''Rotates talea rhythm-maker.
-
-        Returns newly constructed rhythm-maker.
-        '''
-        from abjad.tools import rhythmmakertools
-        talea = self.talea.rotate(n)
-        extra_counts_per_division = \
-            self._rotate_tuple(self.extra_counts_per_division, n)
-        burnish_specifier = self.burnish_specifier
-        if burnish_specifier is None:
-            burnish_specifier = rhythmmakertools.BurnishSpecifier()
-        burnish_specifier = burnish_specifier.rotate(n)
-        split_divisions_by_counts = \
-            self._rotate_tuple(self.split_divisions_by_counts, n)
-        maker = new(
-            self,
-            burnish_specifier=burnish_specifier,
-            extra_counts_per_division=extra_counts_per_division,
-            split_divisions_by_counts=split_divisions_by_counts,
-            talea=talea,
-            )
-        return maker
