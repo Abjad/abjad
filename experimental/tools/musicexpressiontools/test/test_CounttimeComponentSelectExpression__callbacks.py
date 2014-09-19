@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
-pytest.skip('regenerate all pdfs after renaming tests')
 from experimental import *
 
 
@@ -104,7 +102,7 @@ def test_CounttimeComponentSelectExpression__callbacks_05():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_CounttimeComponentSelectExpression__callbacks_09():
+def test_CounttimeComponentSelectExpression__callbacks_06():
     r'''Logical AND of rhythm and timespan.
     '''
 

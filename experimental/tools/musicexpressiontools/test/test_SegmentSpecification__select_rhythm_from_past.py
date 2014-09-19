@@ -51,7 +51,7 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_rhythm_from_past_09():
+def test_SegmentSpecification__select_rhythm_from_past_03():
     r'''From-past rhythm select expression.
 
     Repeat smaller source_expression to filler larger target.

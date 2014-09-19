@@ -22,7 +22,7 @@ def test_SegmentSpecification__select_divisions_from_past_01():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_divisions_from_past_05():
+def test_SegmentSpecification__select_divisions_from_past_02():
     r'''From-past division select expression with region break preservation.
     '''
 

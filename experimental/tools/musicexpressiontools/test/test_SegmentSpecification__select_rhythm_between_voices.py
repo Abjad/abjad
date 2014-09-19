@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_rhythm_between_voices_06():
+def test_SegmentSpecification__select_rhythm_between_voices_02():
     r'''Voice 2 rhythms interpret incorrectly.
     '''
 

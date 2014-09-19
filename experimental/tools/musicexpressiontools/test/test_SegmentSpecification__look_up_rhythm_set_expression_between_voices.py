@@ -21,7 +21,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_01()
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_05():
+def test_SegmentSpecification__look_up_rhythm_set_expression_between_voices_02():
     r'''Set-rhythm lookup expression between voices. From parseable string.
     '''
 

@@ -23,7 +23,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_01():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_05():
+def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_02():
     r'''Rhythm set expression lookup expression dependent leaf select expression start offset.
     Source is rhythm-maker.
     '''
@@ -48,7 +48,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_05():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_06():
+def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_03():
     r'''Rhythm set expression lookup expression dependent leaf select expression stop offset.
     Source is rhythm-maker.
     '''
@@ -73,7 +73,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_06():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_07():
+def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_04():
     r'''Rhythm set expression lookup expression dependent leaf select expression start offset.
     Source is parseable string.
     '''
@@ -98,7 +98,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_07():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_08():
+def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_05():
     r'''Rhythm set expression lookup expression dependent leaf select expression stop offset.
     Source is parseable string.
     '''

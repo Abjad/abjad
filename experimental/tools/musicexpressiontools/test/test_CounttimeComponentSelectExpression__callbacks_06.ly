@@ -1,12 +1,28 @@
 \context Score = "Grouped Rhythmic Staves Score" <<
 	\context TimeSignatureContext = "TimeSignatureContext" {
 		{
-			\time 4/8
+			\time 2/4
 			s1 * 1/2
 		}
 		{
 			\time 3/8
 			s1 * 3/8
+		}
+		{
+			\time 3/4
+			s1 * 3/4
+		}
+		{
+			\time 2/4
+			s1 * 1/2
+		}
+		{
+			\time 3/8
+			s1 * 3/8
+		}
+		{
+			\time 3/4
+			s1 * 3/4
 		}
 	}
 	\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
@@ -24,14 +40,6 @@
 				}
 				{
 					c'16 [
-					c'16 ]
-				}
-			}
-		}
-		\context RhythmicStaff = "Staff 2" {
-			\context Voice = "Voice 2" {
-				{
-					c'16 [
 					c'8
 					c'8. ]
 				}
@@ -43,6 +51,36 @@
 				{
 					c'16 [
 					c'16 ]
+				}
+				{
+					c'32 [
+					c'8
+					c'8. ]
+				}
+				{
+					c'16 [
+					c'8 ]
+				}
+				{
+					c'32 [
+					c'8
+					c'8. ]
+				}
+				{
+					c'16 [
+					c'8 ]
+				}
+				{
+					c'32 [
+					c'8
+					c'8. ]
+				}
+				{
+					c'16 [
+					c'8 ]
+				}
+				{
+					c'32 [ ]
 				}
 			}
 		}

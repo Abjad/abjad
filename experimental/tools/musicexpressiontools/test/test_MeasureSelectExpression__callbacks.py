@@ -99,7 +99,7 @@ def test_MeasureSelectExpression__callbacks_05():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_MeasureSelectExpression__callbacks_08():
+def test_MeasureSelectExpression__callbacks_06():
     r'''Logical AND of measures and timespan.
     '''
 

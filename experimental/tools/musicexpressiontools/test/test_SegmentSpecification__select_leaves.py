@@ -20,7 +20,7 @@ def test_SegmentSpecification__select_leaves_01():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaves_05():
+def test_SegmentSpecification__select_leaves_02():
     r'''Select leaves that start during measure 1 + 1.
     '''
 
@@ -39,7 +39,7 @@ def test_SegmentSpecification__select_leaves_05():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaves_06():
+def test_SegmentSpecification__select_leaves_03():
     r'''Select leaves that stop during measure 1 + 1.
     '''
 
@@ -59,7 +59,7 @@ def test_SegmentSpecification__select_leaves_06():
     assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaves_07():
+def test_SegmentSpecification__select_leaves_04():
     r'''Select leaves that intersect measure 1 + 1.
     '''
 
