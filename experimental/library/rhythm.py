@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools.rhythmmakertools import BooleanPattern
 __all__ = []
 
 
@@ -142,7 +143,9 @@ quarters = rhythmmakertools.TaleaRhythmMaker(
 __all__.append('quarters')
 
 
-rest_tokens = rhythmmakertools.RestRhythmMaker()
+rest_tokens = rhythmmakertools.NoteRhythmMaker(
+    output_masks=[BooleanPattern(indices=[0], period=1)],
+    )
 __all__.append('rest_tokens')
 
 

@@ -143,46 +143,6 @@ def test_IterablePayloadExpression__callbacks_07():
 
 
 def test_IterablePayloadExpression__callbacks_08():
-    r'''Reflect divisions.
-    '''
-
-    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    material_manager = musicexpressiontools.MaterialManager()
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures(3 * [(3, 8)])
-    divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
-    divisions = divisions.reflect()
-    red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.joined_sixteenths)
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
-def test_IterablePayloadExpression__callbacks_09():
-    r'''Rotate divisions.
-    '''
-
-    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    material_manager = musicexpressiontools.MaterialManager()
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures(3 * [(3, 8)])
-    divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
-    divisions = divisions.rotate(-1)
-    red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.joined_sixteenths)
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
-def test_IterablePayloadExpression__callbacks_10():
     r'''Logical AND of divisions and timespan.
     '''
 

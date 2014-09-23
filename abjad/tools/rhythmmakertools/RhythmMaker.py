@@ -431,23 +431,3 @@ class RhythmMaker(AbjadValueObject):
         Set to tuplet spelling specifier or none.
         '''
         return self._tuplet_spelling_specifier
-
-    ### PUBLIC METHODS ###
-
-    def reverse(self):
-        r'''Reverses rhythm-maker.
-
-        Concrete rhythm-makers should override this method.
-
-        Returns new rhythm-maker.
-        '''
-        from abjad.tools import rhythmmakertools
-        specifier = self.duration_spelling_specifier
-        if specifier is None:
-            specifier = rhythmmakertools.DurationSpellingSpecifier()
-        specifier = specifier.reverse()
-        maker = new(
-            self,
-            duration_spelling_specifier=specifier,
-            )
-        return maker

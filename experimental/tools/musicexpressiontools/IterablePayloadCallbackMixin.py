@@ -166,14 +166,6 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             result.append(self._copy_and_append_callback(callback))
         return tuple(result)
 
-    def reflect(self):
-        r'''Reflect payload.
-
-        Returns copy of expression with callback.
-        '''
-        callback = 'result = self._reflect(payload_expression)'
-        return self._copy_and_append_callback(callback)
-
     def repeat_to_duration(self, duration):
         r'''Repeat payload to `duration`.
 
@@ -192,16 +184,4 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(payload_expression, {!r})'
         callback = callback.format(length)
-        return self._copy_and_append_callback(callback)
-
-    def rotate(self, index):
-        r'''Rotate payload.
-
-        Returns copy of expression with callback.
-        '''
-        from experimental.tools import musicexpressiontools
-        assert isinstance(index, (int,
-            durationtools.Duration, musicexpressiontools.RotationExpression))
-        callback = 'result = self._rotate(payload_expression, {!r})'
-        callback = callback.format(index)
         return self._copy_and_append_callback(callback)

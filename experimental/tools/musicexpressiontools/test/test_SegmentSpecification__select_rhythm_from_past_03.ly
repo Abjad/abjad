@@ -1,8 +1,8 @@
 \context Score = "Grouped Rhythmic Staves Score" <<
 	\context TimeSignatureContext = "TimeSignatureContext" {
 		{
-			\time 6/8
-			s1 * 3/4
+			\time 4/8
+			s1 * 1/2
 		}
 		{
 			\time 3/8
@@ -13,8 +13,8 @@
 			s1 * 3/4
 		}
 		{
-			\time 3/8
-			s1 * 3/8
+			\time 9/8
+			s1 * 9/8
 		}
 	}
 	\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
@@ -47,6 +47,36 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #0
+					c'16 ]
+				}
+				{
+					\set stemLeftBeamCount = #0
+					\set stemRightBeamCount = #2
+					c'16 [
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #0
+					c'16 ]
+				}
+				{
+					\set stemLeftBeamCount = #0
+					\set stemRightBeamCount = #2
+					c'16 [
+					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -58,6 +88,14 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -90,6 +128,12 @@
 					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #2
 					c'16 [
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
 				}
 				{
 					\set stemLeftBeamCount = #1
@@ -99,9 +143,11 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #2
+					\set stemRightBeamCount = #1
 					c'16
-					\set stemLeftBeamCount = #2
+				}
+				{
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -116,11 +162,6 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #1
-					c'16
-				}
-				{
-					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -131,23 +172,14 @@
 					c'16
 				}
 				{
-					\set stemLeftBeamCount = #1
-					\set stemRightBeamCount = #2
-					c'16
 					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #2
-					c'16
-					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #1
-					c'16
+					\set stemRightBeamCount = #0
+					c'16 ]
 				}
 				{
-					\set stemLeftBeamCount = #1
+					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #2
-					c'16
-					\set stemLeftBeamCount = #2
-					\set stemRightBeamCount = #2
-					c'16
+					c'16 [
 					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #0
 					c'16 ]

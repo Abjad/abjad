@@ -181,38 +181,3 @@ class DurationSpellingSpecifier(AbjadValueObject):
         Returns boolean, ``'unassignable'`` or none..
         '''
         return self._spell_metrically
-
-    ### PUBLIC METHODS ###
-
-    def reverse(self):
-        r'''Reverses duration spelling specifier.
-
-        ..  container:: example
-
-            ::
-
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> print(format(specifier))
-                rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_durations_monotonically=True,
-                    )
-
-            ::
-
-                >>> reversed_specifier = specifier.reverse()
-                >>> print(format(reversed_specifier))
-                rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_durations_monotonically=False,
-                    )
-
-        Negates `decrecase_monotonically`.
-
-        Returns new duration spelling specifier.
-        '''
-        decrease_durations_monotonically = not self.decrease_durations_monotonically
-        arguments = {
-            'decrease_durations_monotonically': decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            }
-        result = type(self)(**arguments)
-        return result

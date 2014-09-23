@@ -100,46 +100,6 @@ def test_MeasureSelectExpression__callbacks_05():
 
 
 def test_MeasureSelectExpression__callbacks_06():
-    r'''Reflect measures.
-    '''
-
-    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
-    red_segment.set_rhythm(library.joined_sixteenths)
-    measures = red_segment.select_measures('Voice 1')
-    measures = measures.reflect()
-    blue_segment = score_specification.append_segment(name='blue')
-    blue_segment.set_time_signatures(measures)
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
-def test_MeasureSelectExpression__callbacks_07():
-    r'''Rotate measures.
-    '''
-
-    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
-    red_segment.set_rhythm(library.joined_sixteenths)
-    measures = red_segment.select_measures('Voice 1')
-    measures = measures.rotate(-1)
-    blue_segment = score_specification.append_segment(name='blue')
-    blue_segment.set_time_signatures(measures)
-    score = score_specification.interpret()
-
-    current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
-
-
-def test_MeasureSelectExpression__callbacks_08():
     r'''Logical AND of measures and timespan.
     '''
 
