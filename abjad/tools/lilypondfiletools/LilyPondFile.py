@@ -37,7 +37,7 @@ class LilyPondFile(AbjadObject):
             % Parts shown here for positioning.
 
             \version "2.19.0"
-            \include "english.ly"
+            \language "english"
 
             \include "external-settings-file-1.ly"
             \include "external-settings-file-2.ly"

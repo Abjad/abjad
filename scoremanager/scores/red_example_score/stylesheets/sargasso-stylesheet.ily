@@ -1,5 +1,5 @@
 \version "2.15.13"
-\include "english.ly"
+\language "english"
 
 #(set-default-paper-size "letter" 'portrait)
 #(set-global-staff-size 14)
