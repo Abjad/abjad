@@ -312,3 +312,8 @@
     What's going on here is that the definition.py module is corrupt.
     IDE should explain this to composer.
     IDE should refuse to overwrite definition.py file.
+
+62. Organize list of autoeditable classes into two or three sections.
+    (m > new > da).
+    Instruments should be grouped together.
+    Maybe everything else can be grouped together.
