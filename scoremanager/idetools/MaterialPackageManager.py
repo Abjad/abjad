@@ -345,7 +345,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         parts = module.split('.')
         if 'makers' in parts:
             index = parts.index('makers')
-            storehouse = parts[index-1]
+            storehouse = parts[0]
             import_statement = 'import {}'.format(storehouse)
             import_statements.append(import_statement)
         if 'handlertools' in parts:

@@ -317,3 +317,6 @@
     (m > new > da).
     Instruments should be grouped together.
     Maybe everything else can be grouped together.
+
+63. Extend PromptMakerMixin with append_ratios().
+    Then integrate into ZaggedPitchMaker.
