@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.selectortools.Inequality import Inequality
 
 
@@ -9,7 +10,10 @@ class LengthInequality(Inequality):
 
         >>> inequality = selectortools.LengthInequality('<', 4)
         >>> print(format(inequality))
-        selectortools.LengthInequality('<', 4)
+        selectortools.LengthInequality(
+            operator_string='<',
+            length=4,
+            )
 
     ::
 
@@ -38,19 +42,29 @@ class LengthInequality(Inequality):
 
     def __init__(
         self,
-        operator_string,
-        length,
+        operator_string='<',
+        length=mathtools.Infinity(),
         ):
         Inequality.__init__(
             self,
-            operator_string,
+            operator_string=operator_string,
             )
         assert 0 <= length
-        self._length = int(length)
+        infinities = (
+            mathtools.Infinity(),
+            mathtools.NegativeInfinity(),
+            )
+        if length not in infinities:
+            length = int(length)
+        self._length = length
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls length inequality on `expr`.
+
+        Returns boolean.
+        '''
         length = len(expr)
         result = self._operator_function(length, self._length)
         return result

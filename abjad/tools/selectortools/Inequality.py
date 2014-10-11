@@ -5,7 +5,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Inequality(AbjadValueObject):
-    '''An inequality.'''
+    '''An inequality.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -27,7 +28,7 @@ class Inequality(AbjadValueObject):
 
     def __init__(
         self,
-        operator_string,
+        operator_string='<',
         ):
         assert operator_string in self._operator_strings
         self._operator_string = operator_string
@@ -44,17 +45,11 @@ class Inequality(AbjadValueObject):
 
     @abc.abstractmethod
     def __call__(self, expr):
+        r'''Calls inequality on `expr`.
+
+        Returns boolean.
+        '''
         raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            )
 
     ### PUBLIC PROPERTIES ###
 

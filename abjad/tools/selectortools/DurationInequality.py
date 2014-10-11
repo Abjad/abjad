@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.topleveltools import inspect_
@@ -13,7 +14,10 @@ class DurationInequality(Inequality):
 
         >>> inequality = selectortools.DurationInequality('<', (3, 4))
         >>> print(format(inequality))
-        selectortools.DurationInequality('<', durationtools.Duration(3, 4))
+        selectortools.DurationInequality(
+            operator_string='<',
+            duration=durationtools.Duration(3, 4),
+            )
 
     ::
 
@@ -42,19 +46,29 @@ class DurationInequality(Inequality):
 
     def __init__(
         self,
-        operator_string,
-        duration,
+        operator_string='<',
+        duration=mathtools.Infinity(),
         ):
         Inequality.__init__(
             self,
-            operator_string,
+            operator_string=operator_string,
             )
         assert 0 <= duration
-        self._duration = durationtools.Duration(duration)
+        infinities = (
+            mathtools.Infinity(),
+            mathtools.NegativeInfinity(),
+            )
+        if duration not in infinities:
+            duration = durationtools.Duration(duration)
+        self._duration = duration
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls duration inequality on `expr`.
+
+        Returns boolean.
+        '''
         if isinstance(expr, scoretools.Component):
             duration = inspect_(expr).get_duration()
         elif isinstance(expr, selectiontools.Selection):
