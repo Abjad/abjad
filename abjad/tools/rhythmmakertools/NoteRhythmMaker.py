@@ -783,6 +783,49 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 3.** Masks every output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     output_masks=[rhythmmakertools.mask_all()],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
         Set to output masks or none.
         '''
         superclass = super(NoteRhythmMaker, self)

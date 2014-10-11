@@ -205,9 +205,8 @@ class RhythmMaker(AbjadValueObject):
         if not self.output_masks:
             return selections
         new_selections = []
-        if self.duration_spelling_specifier is None:
-            duration_spelling_specifier = \
-                rhythmmakertools.DurationSpellingSpecifier()
+        duration_spelling_specifier = self.duration_spelling_specifier or \
+            rhythmmakertools.DurationSpellingSpecifier()
         decrease_durations_monotonically = \
             duration_spelling_specifier.decrease_durations_monotonically
         forbidden_written_duration = \
