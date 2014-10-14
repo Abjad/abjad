@@ -1,0 +1,239 @@
+SUMMARY. Here're the commands necessary to rerender all test artifacts to
+accommodate a new version of LilyPond:
+
+    (red~example~score g ii* y q)
+    (red~example~score m ii* y q)
+    (red~example~score u dc y q)
+    (red~example~score u di q)
+    (red~example~score u mi y q)
+    (red~example~score u si y q)
+    trash scores/red_example_score/segments/segment_01/versions/*0002*
+    trash scores/red_example_score/segments/segment_02/versions/*0002*
+    trash scores/red_example_score/segments/segment_03/versions/*0002*
+    (red~example~score g vr* y q)
+
+About a half dozen display-status tests will fail if you run the battery after
+executing these 10 commands. These tests will pass again after commit.
+
+    git add .
+
+    git commit "Rerendered all test artifacts to accommodate LilyPond 2.19.15."
+
+Then run the battery and confirm that no tests fail.
+
+###############################################################################
+################################# METHOD ######################################
+###############################################################################
+
+What follows is verbose.
+
+This is a full transcript of the procedure followed to determine the 10 steps
+given in the summary at the head of this document.
+
+No reason to read through the remaining sections of this document unless you
+are updating the document.
+
+###############################################################################
+
+Run the IDE test battery and make sure that all tests pass.
+
+The download a new LilyPond binary from www.lilypond.org.
+
+The following four IDE tests will fail:
+
+    1 FAIL test_BuildFileWrangler_interpret_music_02
+    2 FAIL test_MaterialPackageWrangler_interpret_every_illustration_ly_02
+    3 FAIL test_SegmentPackageManager_illustrate_definition_py_02
+    4 FAIL test_SegmentPackageWrangler_interpret_every_illustration_ly_02
+
+###############################################################################
+
+You can fix  ...
+    test_SegmentPackageWrangler_interpret_every_illustration_ly_02
+... by running (red~example~score g ii*).
+This modifies ...
+    scores/red_example_score/segments/segment_01/illustration.pdf
+    scores/red_example_score/segments/segment_02/illustration.pdf
+    scores/red_example_score/segments/segment_03/illustration.pdf
+... when run.
+
+If you then run the battery again prior to checking in the three changed files,
+you will find that more tests fail than before:
+
+    1 FAIL test_BuildFileWrangler_collect_segment_pdfs_01 [N]
+    2 FAIL test_BuildFileWrangler_interpret_music_02 [P]
+    3 FAIL test_MaterialPackageWrangler_interpret_every_illustration_ly_02 [P]
+    4 FAIL test_ScorePackageManager_display_status_01 [*]
+    5 FAIL test_SegmentPackageManager_display_status_01 [*]
+    6 FAIL test_SegmentPackageManager_version_package_01 [N]
+    7 FAIL test_SegmentPackageWrangler_display_every_asset_status_02 [*]
+    8 FAIL test_SegmentPackageWrangler_version_every_package_01 [N]
+
+Why do these eight tests now fail?
+
+Two of the tests are preexisting failures; these are marked with [P] above.
+
+Of the six other failed tests, three are 'fake' failures caused by the presence
+of changed artifacts that have not yet been checked in; these are marked with
+[*] above.
+
+The remaining three failed tests are marked with [N] above to indicate that
+they are new failures that result from running (red~example~score g ii*). These
+new failures must be remedied.
+
+Finally, not that the test ...
+    test_SegmentPackageManager_illustrate_definition_py_02
+... has magically stopped failing and does not appear in the output above.
+
+###############################################################################
+
+We will proceed without checking in the three artifacts changed so far.
+For our second step we will attempt to fix ...
+    test_MaterialPackageWrangler_interpret_every_illustration_ly_02
+... by running (red~example~score m ii* y q).
+This does indeed fix the test.
+This also causes the files ...
+    scores/red_example_score/materials/magic_numbers/illustration.pdf
+    scores/red_example_score/materials/pitch_range_inventory/illustration.pdf
+    scores/red_example_score/materials/tempo_inventory/illustration.pdf
+... to change.
+
+What output do we get if we now rerun the battery?
+
+    1 FAIL test_BuildFileWrangler_collect_segment_pdfs_01 [P]
+    2 FAIL test_BuildFileWrangler_interpret_music_02 [P]
+    3 FAIL test_MaterialPackageManager_display_status_01 [*]
+    4 FAIL test_MaterialPackageWrangler_display_every_asset_status_02 [*]
+    5 FAIL test_ScorePackageManager_display_status_01 [*]
+    6 FAIL test_SegmentPackageManager_display_status_01 [*]
+    7 FAIL test_SegmentPackageManager_version_package_01 [P]
+    8 FAIL test_SegmentPackageWrangler_display_every_asset_status_02 [*]
+    9 FAIL test_SegmentPackageWrangler_version_every_package_01 [P]
+
+Our number of failed tests has increased from 8 to 9. But five of these are
+'fake' display-status failures. Only four of these are tests that need
+legitimately to be fixed. And this is down from five legitimate failures before
+we ran (red~example~score m ii* y q). This means that running the command
+fixed the test we had targetted.
+
+###############################################################################
+
+Now we'll try to fix ...
+    test_BuildFileWrangler_collect_segment_pdfs_01
+    test_BuildFileWrangler_interpret_music_02
+... though it's not clear which should be fixed first and which second.
+Looks like we have to collect segment PDFs first. So we run
+(red~example~score u dc y q).
+Doing this overwrites three PDFs.
+This means that the files ...
+    scores/red_example_score/build/segment-01.pdf
+    scores/red_example_score/build/segment-02.pdf
+    scores/red_example_score/build/segment-03.pdf
+... have now changed.
+
+This does fix ...
+    test_BuildFileWrangler_collect_segment_pdfs_01
+... however. Which is good.
+
+What do we get when we rerun the battery?
+
+Ten tests now fail:
+
+    FAIL test_BuildFileWrangler_display_every_asset_status_02 [*]
+    FAIL test_BuildFileWrangler_interpret_draft_02
+    FAIL test_BuildFileWrangler_interpret_music_02 [N]
+    FAIL test_MaterialPackageManager_display_status_01 [*]
+    FAIL test_MaterialPackageWrangler_display_every_asset_status_02 [*]
+    FAIL test_ScorePackageManager_display_status_01 [*]
+    FAIL test_SegmentPackageManager_display_status_01 [*]
+    FAIL test_SegmentPackageManager_version_package_01
+    FAIL test_SegmentPackageWrangler_display_every_asset_status_02 [*]
+    FAIL test_SegmentPackageWrangler_version_every_package_01
+
+Six are 'fake' display-status failures. Only the test ...
+    test_BuildFileWrangler_interpret_music_02
+... is a new failure. And this is correct because of the call to
+(red~example~score u dc y q) we ran in this cycle.
+
+###############################################################################
+
+We'll now try to fix the two interpret tests ...
+    test_BuildFileWrangler_interpret_draft_02
+    test_BuildFileWrangler_interpret_music_02
+... one after the other.
+
+We run (red~example~score u di q) to fix the interpret-draft test.
+And we run (red~example~score u mi y q) to fix the interpret-music test.
+
+These two commands cause ...
+    scores/red_example_score/build/draft.pdf
+    scores/red_example_score/build/music.pdf
+... to be modified.
+
+But these commands do fix the interpret-draft and interpret-music tests.
+
+What do we get when we rerun the battery?
+
+The number of failing tests has decreased to nine:
+
+    1 FAIL test_BuildFileWrangler_display_every_asset_status_02 [*]
+    2 FAIL test_BuildFileWrangler_interpret_score_02 [N]
+    3 FAIL test_MaterialPackageManager_display_status_01 [*]
+    4 FAIL test_MaterialPackageWrangler_display_every_asset_status_02 [*]
+    5 FAIL test_ScorePackageManager_display_status_01 [*]
+    6 FAIL test_SegmentPackageManager_display_status_01 [*]
+    7 FAIL test_SegmentPackageManager_version_package_01
+    8 FAIL test_SegmentPackageWrangler_display_every_asset_status_02 [*]
+    9 FAIL test_SegmentPackageWrangler_version_every_package_01
+
+Only the interpret-score test has popped up new. We fix that
+by running (red~example~score u si q). This causes the file ...
+    scores/red_example_score/build/score.pdf
+... to be modified.
+
+Rerunning the battery now gives only eight failing tests:
+
+    1 FAIL test_BuildFileWrangler_display_every_asset_status_02 [*]
+    2 FAIL test_MaterialPackageManager_display_status_01 [*]
+    3 FAIL test_MaterialPackageWrangler_display_every_asset_status_02 [*]
+    4 FAIL test_ScorePackageManager_display_status_01 [*]
+    5 FAIL test_SegmentPackageManager_display_status_01 [*]
+    6 FAIL test_SegmentPackageManager_version_package_01
+    7 FAIL test_SegmentPackageWrangler_display_every_asset_status_02 [*]
+    8 FAIL test_SegmentPackageWrangler_version_every_package_01
+
+Only the two version-package tests remain to be fixed.
+
+###############################################################################
+
+It looks like slightly more work is required to fix the first version-package
+test.
+
+Must first run ...
+    trash scores/red_example_score/segments/segment_01/versions/*_0002*
+... and then run (red~example~score g A vr y q).
+This causes the first version-package test to pass and does not modify any
+artifacts.
+
+In order for ...
+    test_SegmentPackageWrangler_version_every_package_01
+... to pass we must first run ...
+    trash scores/red_example_score/segments/segment_02/versions/*_0002*
+... and ... 
+    trash scores/red_example_score/segments/segment_03/versions/*_0002*
+... to remove version 2.
+This then allows us to run (red~example~score g vr* y q).
+This causes the second version-package test to pass and does not modify any
+artifacts.
+
+Now only six tests fail and all are 'fake' display-status tests:
+
+    FAIL test_BuildFileWrangler_display_every_asset_status_02
+    FAIL test_MaterialPackageManager_display_status_01
+    FAIL test_MaterialPackageWrangler_display_every_asset_status_02
+    FAIL test_ScorePackageManager_display_status_01
+    FAIL test_SegmentPackageManager_display_status_01
+    FAIL test_SegmentPackageWrangler_display_every_asset_status_02
+
+This means we've done enough to rerender all test artifacts to accommodate a
+new version of LilyPond.
