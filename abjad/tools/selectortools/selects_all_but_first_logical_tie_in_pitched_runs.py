@@ -75,7 +75,7 @@ def selects_all_but_first_logical_tie_in_pitched_runs():
             LogicalTie(Note("c''4"),)
 
     '''
-    from experimental.tools import selectortools
+    from abjad.tools import selectortools
     selector = selectortools.selects_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
     selector = selector[1:]

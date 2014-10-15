@@ -51,7 +51,7 @@ def selects_pitched_runs():
 
     '''
     from abjad.tools import scoretools
-    from experimental.tools import selectortools
+    from abjad.tools import selectortools
     selector = selectortools.Selector()
     selector = selector.by_leaves()
     selector = selector.by_run((scoretools.Note, scoretools.Chord))

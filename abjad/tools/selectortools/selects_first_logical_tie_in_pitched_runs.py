@@ -63,7 +63,7 @@ def selects_first_logical_tie_in_pitched_runs():
             LogicalTie(Note("e'4"), Note("e'8"))
 
     '''
-    from experimental.tools import selectortools
+    from abjad.tools import selectortools
     selector = selectortools.selects_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
     selector = selector[0]

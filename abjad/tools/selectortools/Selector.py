@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -169,7 +170,7 @@ class Selector(AbjadValueObject):
 
         Returns another selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         if isinstance(item, slice):
             callback = selectortools.SliceSelectorCallback(
                 start=item.start,
@@ -222,7 +223,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -231,19 +232,91 @@ class Selector(AbjadValueObject):
     def by_duration(
         self,
         duration=None,
-        parts=Exact,
         ):
         r'''Configures selector to selector containers or selections of
         duration `duration`.
+
+        ..  container:: example
+
+            **Example 1.** Selects all runs of notes with duration equal to
+            ``2/8``:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_duration(Duration(2, 8))
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+
+        ..  container:: example
+
+            **Example 2.** Selects all runs of notes with duration shorter than
+            ``3/8``:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_duration(
+                ...     selectortools.DurationInequality(
+                ...          duration=Duration(3, 8),
+                ...          operator_string='<',
+                ...          ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Note("d'8"), Note("e'8"))
+
+        ..  container:: example
+
+            **Example 3.** Selects all runs of notes with duration longer than
+            or equal to ``1/4``:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_duration(
+                ...     selectortools.DurationInequality(
+                ...          duration=Duration(1, 4),
+                ...          operator_string='>=',
+                ...          ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
         ..  todo:: Generalize `duration` to accept a ``DurationInequality``.
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
+        if not isinstance(duration, selectortools.DurationInequality):
+            duration = durationtools.Duration(duration)
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
-            parts=parts,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -254,7 +327,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(scoretools.Leaf)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -272,7 +345,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=length,
             parts=parts,
@@ -457,7 +530,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.LogicalTieSelectorCallback(
             flatten=flatten,
             pitched=pitched,
@@ -474,7 +547,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.LogicalMeasureSelectorCallback()
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -509,7 +582,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.RunSelectorCallback(prototype)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -538,7 +611,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.ItemSelectorCallback(
             item=0,
             apply_to_each=False,
@@ -576,7 +649,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.FlattenSelectorCallback(depth=depth)
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -631,7 +704,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'4"), Note("d'4"))
 
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.ItemSelectorCallback(
             item=item,
             apply_to_each=apply_to_each,
@@ -698,7 +771,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
 
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
             start=start,
             stop=stop,
@@ -731,7 +804,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.ItemSelectorCallback(
             item=-1,
             apply_to_each=False,
@@ -770,7 +843,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=length - 1,
             parts=Less,
@@ -809,14 +882,16 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
-        if not or_equal_to:
-            parts = More
-        else:
-            parts = (More, Exact)
-        callback = selectortools.DurationSelectorCallback(
+        from abjad.tools import selectortools
+        operator_string = '>'
+        if or_equal_to:
+            operator_string = '>='
+        inequality = selectortools.DurationInequality(
             duration=duration,
-            parts=parts,
+            operator_string=operator_string,
+            )
+        callback = selectortools.DurationSelectorCallback(
+            duration=inequality,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -847,7 +922,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
             start=1,
             stop=-1,
@@ -886,7 +961,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=length + 1,
             parts=More,
@@ -920,7 +995,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
             stop=-1,
             apply_to_each=False,
@@ -954,7 +1029,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.SliceSelectorCallback(
             start=1,
             apply_to_each=False,
@@ -993,14 +1068,16 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
-        if not or_equal_to:
-            parts = Less
-        else:
-            parts = (Less, Exact)
-        callback = selectortools.DurationSelectorCallback(
+        from abjad.tools import selectortools
+        operator_string = '<'
+        if or_equal_to:
+            operator_string = '<='
+        inequality = selectortools.DurationInequality(
             duration=duration,
-            parts=parts,
+            operator_string=operator_string,
+            )
+        callback = selectortools.DurationSelectorCallback(
+            duration=inequality,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -1030,7 +1107,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.ExtraLeafSelectorCallback(
             with_next_leaf=True,
             )
@@ -1063,7 +1140,7 @@ class Selector(AbjadValueObject):
 
         Returns new selector.
         '''
-        from experimental.tools import selectortools
+        from abjad.tools import selectortools
         callback = selectortools.ExtraLeafSelectorCallback(
             with_previous_leaf=True,
             )
