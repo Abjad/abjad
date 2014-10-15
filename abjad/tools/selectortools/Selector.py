@@ -307,8 +307,6 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
-        ..  todo:: Generalize `duration` to accept a ``DurationInequality``.
-
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -339,7 +337,56 @@ class Selector(AbjadValueObject):
         r'''Configures selector to selector containers or selections of length
         `length`.
 
-        ..  todo:: Generalize `length` to accept a ``LengthInequality``.
+        ..  container:: example
+
+            **Example 1.** Selects all runs of more than ``1`` note:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_length(
+                ...     selectortools.LengthInequality(
+                ...          length=1,
+                ...          operator_string='>',
+                ...          ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        ..  container:: example
+
+            **Example 1.** Selects all runs ``3`` or fewer notes:
+            ``3``:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_length(
+                ...     selectortools.LengthInequality(
+                ...          length=3,
+                ...          operator_string='<',
+                ...          ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Note("d'8"), Note("e'8"))
 
         Returns new selector.
         '''
@@ -812,47 +859,6 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def less_than(self, length):
-        r'''Configures selector to select containers or selections whose length
-        is less than `length`.
-
-        ..  container:: example
-
-            **Example 1.** Selects all runs ``3`` or fewer notes:
-            ``3``:
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.less_than(3)
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("c'8"),)
-                Selection(Note("d'8"), Note("e'8"))
-
-        ..  todo:: Replace in favor of
-            ``self.by_length(length=inequality)``.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        callback = selectortools.LengthSelectorCallback(
-            length=selectortools.LengthInequality(
-                length=length,
-                operator_string='<',
-                ),
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
     def middle(self):
         r'''Configures selector to select all but the first or last selection.
 
@@ -883,46 +889,6 @@ class Selector(AbjadValueObject):
             start=1,
             stop=-1,
             apply_to_each=False,
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def more_than(self, length):
-        r'''Configures selector to select containers or selections whose length
-        is more than `length`.
-
-        ..  container:: example
-
-            **Example 1.** Selects all runs of more than ``1`` note:
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.more_than(1)
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("d'8"), Note("e'8"))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
-
-        ..  todo:: Replace in favor of
-            ``self.by_length(length=inequality)``.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        callback = selectortools.LengthSelectorCallback(
-            length=selectortools.LengthInequality(
-                length=length,
-                operator_string='>',
-                ),
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
