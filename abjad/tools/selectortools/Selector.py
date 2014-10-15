@@ -852,51 +852,6 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def longer_than(self, duration, or_equal_to=False):
-        r'''Configures selector to select containers or selections whose
-        duration is longer than `duration`.
-
-        ..  container:: example
-
-            **Example 1.** Selects all runs of notes with duration greater than
-            ``1/8``:
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.longer_than((1, 8))
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("d'8"), Note("e'8"))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
-
-        ..  todo:: Replace in favor of
-            ``self.by_duration(duration=inequality)``.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        operator_string = '>'
-        if or_equal_to:
-            operator_string = '>='
-        inequality = selectortools.DurationInequality(
-            duration=duration,
-            operator_string=operator_string,
-            )
-        callback = selectortools.DurationSelectorCallback(
-            duration=inequality,
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
     def middle(self):
         r'''Configures selector to select all but the first or last selection.
 
@@ -1033,51 +988,6 @@ class Selector(AbjadValueObject):
         callback = selectortools.SliceSelectorCallback(
             start=1,
             apply_to_each=False,
-            )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def shorter_than(self, duration, or_equal_to=False):
-        r'''Configures selector to select containers or selections whose
-        duration is shorter than `duration`.
-
-        ..  container:: example
-
-            **Example 1.** Selects all runs of notes with duration less than
-            ``3/8``:
-
-            ::
-
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.shorter_than((3, 8))
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Selection(Note("c'8"),)
-                Selection(Note("d'8"), Note("e'8"))
-
-        ..  todo:: Replace in favor of
-            ``self.by_duration(duration=inequality)``.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        operator_string = '<'
-        if or_equal_to:
-            operator_string = '<='
-        inequality = selectortools.DurationInequality(
-            duration=duration,
-            operator_string=operator_string,
-            )
-        callback = selectortools.DurationSelectorCallback(
-            duration=inequality,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
