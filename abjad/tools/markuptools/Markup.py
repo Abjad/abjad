@@ -988,6 +988,42 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def musicglyph(glyph_name=None, direction=Up):
+        r'''LilyPond ``\musicglyph`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.musicglyph('accidentals.sharp')
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \musicglyph
+                        #"accidentals.sharp"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.ly import music_glyphs
+        from abjad.tools import markuptools
+        glyph_name = glyph_name or 'accidentals.sharp'
+        message = 'not a valid LilyPond glyph name.'
+        assert glyph_name in music_glyphs, message
+        glyph_scheme = schemetools.Scheme(glyph_name, force_quotes=True)
+        command = markuptools.MarkupCommand(
+            'musicglyph',
+            glyph_scheme,
+            )
+        return markuptools.Markup(contents=command, direction=direction)
+
     def override(self, new_property):
         r'''LilyPond ``\override`` markup command.
 
