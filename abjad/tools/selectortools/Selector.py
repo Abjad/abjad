@@ -115,7 +115,6 @@ class Selector(AbjadValueObject):
                         ),
                     selectortools.LengthSelectorCallback(
                         length=3,
-                        parts=Exact,
                         ),
                     selectortools.ItemSelectorCallback(
                         item=0,
@@ -336,7 +335,6 @@ class Selector(AbjadValueObject):
     def by_length(
         self,
         length=None,
-        parts=Exact,
         ):
         r'''Configures selector to selector containers or selections of length
         `length`.
@@ -346,9 +344,10 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
+        if not isinstance(length, selectortools.LengthInequality):
+            length = int(length)
         callback = selectortools.LengthSelectorCallback(
             length=length,
-            parts=parts,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -845,8 +844,10 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
-            length=length - 1,
-            parts=Less,
+            length=selectortools.LengthInequality(
+                length=length,
+                operator_string='<',
+                ),
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -918,8 +919,10 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
-            length=length + 1,
-            parts=More,
+            length=selectortools.LengthInequality(
+                length=length,
+                operator_string='>',
+                ),
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)

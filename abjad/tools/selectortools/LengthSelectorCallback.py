@@ -10,7 +10,6 @@ class LengthSelectorCallback(AbjadValueObject):
 
     __slots__ = (
         '_length',
-        '_parts',
         )
 
     ### INITIALIZER ###
@@ -18,12 +17,14 @@ class LengthSelectorCallback(AbjadValueObject):
     def __init__(
         self,
         length=1,
-        parts=Exact,
         ):
-        assert isinstance(length, int) and length
+        from abjad.tools import selectortools
+        prototype = (
+            int,
+            selectortools.LengthInequality,
+            )
+        assert isinstance(length, prototype)
         self._length = length
-        assert parts in (None, Exact, More, Less)
-        self._parts = parts
 
     ### SPECIAL METHODS ###
 
@@ -32,18 +33,18 @@ class LengthSelectorCallback(AbjadValueObject):
 
         Returns tuple in which each item is a selection or component.
         '''
+        from abjad.tools import selectortools
         assert isinstance(expr, tuple), repr(tuple)
+        inequality = self.length
+        if not isinstance(inequality, selectortools.LengthInequality):
+            inequality = selectortools.LengthInequality(
+                length=inequality,
+                operator_string='==',
+                )
         result = []
         for subexpr in expr:
-            if self.parts in (None, Exact):
-                if len(subexpr) == self.length:
-                    result.append(subexpr)
-            elif self.parts == More:
-                if self.length <= len(subexpr):
-                    result.append(subexpr)
-            elif self.parts == Less:
-                if len(subexpr) <= self.length:
-                    result.append(subexpr)
+            if inequality(subexpr):
+                result.append(subexpr)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###
@@ -55,11 +56,3 @@ class LengthSelectorCallback(AbjadValueObject):
         Returns length.
         '''
         return self._length
-
-    @property
-    def parts(self):
-        r'''Gets length selector callback partial-result handling.
-
-        Returns ordinal constant.
-        '''
-        return self._parts
