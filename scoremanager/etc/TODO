@@ -319,4 +319,13 @@
     Maybe everything else can be grouped together.
 
 63. Extend PromptMakerMixin with append_ratios().
-    Then integrate into ZaggedPitchMaker.
+
+64. Fix build depot copy bug.
+    (uu cp 60 traiettorie) causes this problem:
+        > traiett
+        Existing file name> preface.tex
+        New file name]> preface.tex
+        Already exists: /Users/trevorbaca/Documents/scores/tack/build/preface.tex
+        Press any key to continue. 
+    The composer requests "traiettorie" but the build file wrangler finds
+    "tack".
