@@ -46,3 +46,6 @@ nosetests.xml
 
 # OS X
 .DS_Store
+
+# IPython
+.ipynb_checkpoints
