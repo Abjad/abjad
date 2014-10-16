@@ -21,8 +21,10 @@ class Play(object):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._midi_bank = 'gs'
-        self._sound_font = None
+        from abjad.tools import ipythontools
+        configuration = ipythontools.IPythonConfiguration()
+        self._midi_bank = configuration['midi_bank'] or 'gs'
+        self._sound_font = configuration['sound_font']
 
     ### SPECIAL METHODS ###
 
