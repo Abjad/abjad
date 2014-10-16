@@ -22,6 +22,7 @@ def load_ipython_extension(ipython):
     import abjad
     from abjad.tools import ipythontools
     from abjad.tools import topleveltools
+    ipythontools.IPythonConfiguration()
     play = ipythontools.Play()
     show = ipythontools.Show()
     abjad.play = play
