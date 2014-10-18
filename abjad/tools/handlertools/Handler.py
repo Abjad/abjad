@@ -45,6 +45,15 @@ class Handler(abctools.AbjadValueObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes handler.
+
+        Returns integer.
+        '''
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
+
     ### PRIVATE METHODS ###
 
     @staticmethod
