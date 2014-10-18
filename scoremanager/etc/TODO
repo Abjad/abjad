@@ -329,3 +329,12 @@
         Press any key to continue. 
     The composer requests "traiettorie" but the build file wrangler finds
     "tack".
+
+65. Add ...
+        import makers
+        import materials
+    ... to score/__init__.py by default.
+    Right now the composer must add the two statements by hand.
+
+66. Make sure (k > ren) does not allow renaming to clobber an existing maker
+    file.
