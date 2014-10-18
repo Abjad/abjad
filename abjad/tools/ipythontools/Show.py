@@ -25,9 +25,8 @@ class Show(object):
         result = topleveltools.persist(expr).as_png(temporary_file_path)
         pngs = []
         for file_path in result[0]:
-            command = 'convert {file_path} -trim {file_path}'.format(
-                file_path=file_path,
-                )
+            command = 'convert {file_path} -trim {file_path}'
+            command = command.format(file_path=file_path)
             systemtools.IOManager.spawn_subprocess(command)
             with open(file_path, 'rb') as file_pointer:
                 file_contents = file_pointer.read()
