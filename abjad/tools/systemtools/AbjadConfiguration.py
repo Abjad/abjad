@@ -247,20 +247,21 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        # python prints to stderr on startup (instead of stdout)
-        command = 'python --version'
-        proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
-        # massage output string
-        if sys.version_info[0] == 2:
-            python_version_string = proc.stderr.readline()
-        else:
-            import locale
-            encoding = locale.getdefaultlocale()[1]
-            python_version_string = proc.stderr.readline().decode(encoding)
-        python_version_string = python_version_string.split(' ')[-1]
-        python_version_string = python_version_string.strip()
-        # return trimmed string
-        return python_version_string
+#        # python prints to stderr on startup (instead of stdout)
+#        command = 'python --version'
+#        proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
+#        # massage output string
+#        if sys.version_info[0] == 2:
+#            python_version_string = proc.stderr.readline()
+#        else:
+#            import locale
+#            encoding = locale.getdefaultlocale()[1]
+#            python_version_string = proc.stderr.readline().decode(encoding)
+#        python_version_string = python_version_string.split(' ')[-1]
+#        python_version_string = python_version_string.strip()
+#        # return trimmed string
+#        return python_version_string
+        return '.'.join(str(_) for _ in sys.version_info[:3])
 
     @staticmethod
     def get_tab_width():

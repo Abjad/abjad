@@ -82,6 +82,9 @@ class Tempo(AbjadObject):
             prototype = (int, float, durationtools.Duration)
             assert all(isinstance(x, prototype) for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
+        if isinstance(units_per_minute, float):
+            units_per_minute = mathtools.integer_equivalent_number_to_integer(
+                units_per_minute)
         self._duration = duration
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute

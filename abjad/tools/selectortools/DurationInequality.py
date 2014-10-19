@@ -53,13 +53,13 @@ class DurationInequality(Inequality):
             self,
             operator_string=operator_string,
             )
-        assert 0 <= duration
         infinities = (
             mathtools.Infinity(),
             mathtools.NegativeInfinity(),
             )
         if duration not in infinities:
             duration = durationtools.Duration(duration)
+            assert 0 <= duration
         self._duration = duration
 
     ### SPECIAL METHODS ###
