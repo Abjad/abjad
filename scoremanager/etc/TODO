@@ -338,3 +338,6 @@
 
 66. Make sure (k > ren) does not allow renaming to clobber an existing maker
     file.
+
+67. Make the following not raise a TypeError: 
+    (da > RegistrationInventory > add > add > foo).
