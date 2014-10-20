@@ -10,7 +10,7 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
-    
+
 
 class IOManager(object):
     r'''Manages Abjad IO.
@@ -168,7 +168,10 @@ class IOManager(object):
         return result
 
     @staticmethod
-    def get_last_output_file_name(output_directory=None):
+    def get_last_output_file_name(
+        extension=None,
+        output_directory=None,
+        ):
         r'''Gets last output file name in `output_directory`.
 
         ..  container:: example
@@ -192,7 +195,12 @@ class IOManager(object):
         if not os.path.exists(output_directory):
             return
         all_file_names = os.listdir(output_directory)
-        all_output = [x for x in all_file_names if pattern.match(x)]
+        if extension:
+            all_output = [x for x in all_file_names
+                if pattern.match(x)
+                and x.endswith(extension)]
+        else:
+            all_output = [x for x in all_file_names if pattern.match(x)]
         if all_output == []:
             last_output_file_name = None
         else:
@@ -550,10 +558,10 @@ class IOManager(object):
 
     @staticmethod
     def run_lilypond(
-        lilypond_file_path, 
+        lilypond_file_path,
         candidacy=False,
         flags=None,
-        lilypond_path=None, 
+        lilypond_path=None,
         ):
         r'''Runs LilyPond on `lilypond_file_path`.
 
@@ -668,12 +676,18 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         ABJADOUTPUT = abjad_configuration['abjad_output_directory']
-        last_output_file_path = IOManager.get_last_output_file_name()
-        if last_output_file_path is None:
+        last_output_file_name = IOManager.get_last_output_file_name(
+            extension='.ly',
+            )
+        if last_output_file_name is None:
             return
-        without_extension, extension = os.path.splitext(last_output_file_path)
-        last_ly = without_extension + '.ly'
-        last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
+        #without_extension, extension = os.path.splitext(last_output_file_path)
+        #last_ly = without_extension + '.ly'
+        #last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
+        last_ly_full_name = os.path.join(
+            ABJADOUTPUT,
+            last_output_file_name,
+            )
         with open(file_path, 'w') as new:
             with open(last_ly_full_name, 'r') as old:
                 new.write(''.join(old.readlines()))
@@ -693,10 +707,16 @@ class IOManager(object):
         '''
         from abjad import abjad_configuration
         ABJADOUTPUT = abjad_configuration['abjad_output_directory']
-        last_output_file_name = IOManager.get_last_output_file_name()
-        without_extension, extension = os.path.splitext(last_output_file_name)
-        last_pdf = without_extension + '.pdf'
-        last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
+        last_output_file_name = IOManager.get_last_output_file_name(
+            extension='.pdf',
+            )
+        #without_extension, extension = os.path.splitext(last_output_file_name)
+        #last_pdf = without_extension + '.pdf'
+        #last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
+        last_pdf_full_name = os.path.join(
+            ABJADOUTPUT,
+            last_output_file_name,
+            )
         with open(file_path, 'w') as new:
             with open(last_pdf_full_name, 'r') as old:
                 new.write(''.join(old.readlines()))
