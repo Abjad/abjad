@@ -54,6 +54,7 @@ class Registration(TypedList):
             **Example 1.** Transposes four pitches:
 
             ::
+
                 >>> registration([-24, -22, -23, -21])
                 [24, 26, 25, 15]
 
