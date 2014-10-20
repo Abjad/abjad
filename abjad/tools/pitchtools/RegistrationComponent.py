@@ -4,22 +4,25 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class RegistrationComponent(AbjadObject):
-    '''An octave transposition mapping component.
+    '''Registration component.
 
-    ::
+    ..  container:: example
 
-        >>> mc = pitchtools.RegistrationComponent('[A0, C8]', 15)
-        >>> mc
-        RegistrationComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
+        **Example.** Initializes a registration component that specifies that
+        all pitches from A0 up to and including C8 should be tranposed to
+        the octave starting at Eb5 (numbered pitch 15):
 
-    Initializes from input parameters separately, from a pair, from
-    a string or from another mapping component.
+        ::
+
+            >>> component = pitchtools.RegistrationComponent('[A0, C8]', 15)
+            >>> component
+            RegistrationComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
     Models
     ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
-    Octave transposition mapping components are mutable.
+    Registration components are mutable.
 
     .. todo:: make components immutable.
     '''
@@ -44,9 +47,9 @@ class RegistrationComponent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a an octave transposition mapping component
+        r'''Is true when `expr` is a registration component
         with source pitch range and target octave start pitch equal to those of
-        this octave transposition mapping component. Otherwise false.
+        this registration component. Otherwise false.
 
         Returns boolean.
         '''
@@ -58,7 +61,7 @@ class RegistrationComponent(AbjadObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats mapping component.
+        r'''Formats registration component.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
@@ -70,7 +73,7 @@ class RegistrationComponent(AbjadObject):
         return str(self)
 
     def __hash__(self):
-        r'''Hashes octave transposition mapping component.
+        r'''Hashes registration component.
 
         Required to be explicitely re-defined on Python 3 if __eq__ changes.
 
@@ -124,11 +127,11 @@ class RegistrationComponent(AbjadObject):
 
     @property
     def source_pitch_range(self):
-        r'''Gets and sets source pitch range of mapping component.
+        r'''Gets and sets source pitch range of registration component.
 
         ::
 
-            >>> mc.source_pitch_range
+            >>> component.source_pitch_range
             PitchRange(range_string='[A0, C8]')
 
         Returns pitch range or none.
@@ -146,11 +149,11 @@ class RegistrationComponent(AbjadObject):
 
     @property
     def target_octave_start_pitch(self):
-        r'''Gets and sets target octave start pitch of mapping component.
+        r'''Gets and sets target octave start pitch of registration component.
 
         ::
 
-            >>> mc.target_octave_start_pitch
+            >>> component.target_octave_start_pitch
             NumberedPitch(15)
 
         Returns numbered pitch or none.
