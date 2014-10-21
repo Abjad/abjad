@@ -1,19 +1,24 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
+from abjad.tools.topleveltools import new
 
 
 class TwelveToneRow(PitchClassSegment):
     '''A twelve-tone row.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
-        TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+        **Example.** Initializes twelve-tone row from list of nonnegative 
+        integers:
+
+        ::
+
+            >>> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+            TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
 
     Twelve-tone rows validate pitch-classes at initialization.
 
-    Twelve-tone rows inherit canonical operators from numbered
-    pitch-class segment.
+    Twelve-tone rows inherit canonical operators from pitch-class segment.
 
     Twelve-tone rows return numbered pitch-class segments
     on calls to getslice.
@@ -99,3 +104,79 @@ class TwelveToneRow(PitchClassSegment):
         Returns twelve-tone row.
         '''
         raise NotImplementedError
+
+    def invert(self, axis=None):
+        r'''Inverts twelve-tone row about `axis`.
+
+        ..  container:: example
+
+            **Example 1.** Inverts twelve-tone row about first pitch-class
+            in row when `axis` is none:
+
+            :: 
+
+                >>> row = pitchtools.TwelveToneRow(
+                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                ...     )
+
+            ::
+
+                >>> row.invert()
+                TwelveToneRow([1, 3, 5, 11, 8, 7, 9, 10, 4, 0, 6, 2])
+
+            First pitch-classes of prime form and inversion are equal.
+
+        ..  container:: example
+
+            **Example 2.** Inverts twelve-tone row about pitch-class 1:
+
+            :: 
+
+                >>> row = pitchtools.TwelveToneRow(
+                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                ...     )
+
+            ::
+
+                >>> row.invert(axis=1)
+                TwelveToneRow([1, 3, 5, 11, 8, 7, 9, 10, 4, 0, 6, 2])
+
+            Same result as above because 1 is the first pitch-class in row.
+
+        ..  container:: example
+
+            **Example 3.** Inverts twelve-tone row about pitch-class 0:
+
+            :: 
+
+                >>> row = pitchtools.TwelveToneRow(
+                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                ...     )
+
+            ::
+
+                >>> row.invert(axis=0)
+                TwelveToneRow([11, 1, 3, 9, 6, 5, 7, 8, 2, 10, 4, 0])
+
+        ..  container:: example
+
+            **Example 4.** Inverts twelve-tone row about pitch-class 5:
+
+            :: 
+
+                >>> row = pitchtools.TwelveToneRow(
+                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                ...     )
+
+            ::
+
+                >>> row.invert(axis=5)
+                TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
+
+        Returns new twelve-tone row.
+        '''
+        from abjad.tools import pitchtools
+        if axis is None:
+            axis = self[0]
+        items = [pc.invert(axis=axis) for pc in self]
+        return new(self, items=items)
