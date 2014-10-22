@@ -121,7 +121,7 @@ class PitchClassSegment(Segment):
             )
 
     def invert(self):
-        r'''Invert pitch-class segment:
+        r'''Inverts pitch-class segment:
 
         ::
 
