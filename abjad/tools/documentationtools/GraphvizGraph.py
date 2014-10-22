@@ -73,7 +73,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> print(graph.graphviz_format)
+        >>> print(str(graph))
         digraph G {
             subgraph cluster_0 {
                 graph [color=lightgrey,
@@ -137,7 +137,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> print(graph.graphviz_format)
+        >>> print(str(graph))
         digraph Graph {
             subgraph cluster_0 {
                 node_0_0;
@@ -173,37 +173,9 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         self._verify_attributes(node_attributes, '_node_attributes')
         self._is_digraph = bool(is_digraph)
 
-    ### PRIVATE PROPERTIES ###
+    ### SPECIAL METHODS ###
 
-    @property
-    def _node_class(self):
-        from abjad.tools import documentationtools
-        prototype = (
-            documentationtools.GraphvizSubgraph,
-            documentationtools.GraphvizNode,
-            )
-        return prototype
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def canonical_name(self):
-        r'''Canonical name of Graphviz graph.
-
-        Returns string.
-        '''
-        if self.name is not None:
-            return self.name
-        return 'Graph'
-
-    @property
-    def edge_attributes(self):
-        r'''Edge attributes of Graphviz graph.
-        '''
-        return self._edge_attributes
-
-    @property
-    def graphviz_format(self):
+    def __str__(self):
         r'''Graphviz format of Graphviz graph.
 
         Returns string.
@@ -285,6 +257,35 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             return '\n'.join(recurse(self, indent=0, prefix='digraph'))
         return '\n'.join(recurse(self, indent=0, prefix='graph'))
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _node_class(self):
+        from abjad.tools import documentationtools
+        prototype = (
+            documentationtools.GraphvizSubgraph,
+            documentationtools.GraphvizNode,
+            )
+        return prototype
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def canonical_name(self):
+        r'''Canonical name of Graphviz graph.
+
+        Returns string.
+        '''
+        if self.name is not None:
+            return self.name
+        return 'Graph'
+
+    @property
+    def edge_attributes(self):
+        r'''Edge attributes of Graphviz graph.
+        '''
+        return self._edge_attributes
+
     @property
     def is_digraph(self):
         r'''Is true when Graphviz graph is a digraph. Otherwise false.
@@ -312,7 +313,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         from abjad.tools import systemtools
         assert systemtools.IOManager.find_executable(
             'unflatten'), 'Cannot find `unflatten` command-line tool.'
-        graphviz_format = self.graphviz_format
+        graphviz_format = str(self)
         process = subprocess.Popen('unflatten -l 4'.split(),
             shell=False,
             stdin=subprocess.PIPE,

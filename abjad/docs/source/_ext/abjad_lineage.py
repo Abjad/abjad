@@ -59,7 +59,7 @@ class AbjadLineage(Directive):
                 addresses=addresses,
                 lineage_addresses=((module_name, class_name),)
                 )
-            graph = lineage.graphviz_graph
+            graph = lineage.__graph__()
 
         except InheritanceException as err:
             return [node.document.reporter.warning(err.args[0],
@@ -74,7 +74,7 @@ class AbjadLineage(Directive):
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=2,
                 )
-            graph = lineage.graphviz_graph
+            graph = lineage.__graph__()
 
         # keep pruning if still too many nodes
         if maximum_node_count < len(graph.leaves):
@@ -83,7 +83,7 @@ class AbjadLineage(Directive):
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=1,
                 )
-            graph = lineage.graphviz_graph
+            graph = lineage.__graph__()
 
         # finally, revert to subclass-less version if still too many nodes
         if maximum_node_count < len(graph.leaves):
@@ -102,7 +102,7 @@ class AbjadLineage(Directive):
                 return str('.'.join(name))
 
             node_name = get_node_name(module_name + '.' + class_name)
-            graph = lineage.graphviz_graph
+            graph = lineage.__graph__()
             graph_node = graph[node_name]
             graph_node.attributes['color'] = 'black'
             graph_node.attributes['fontcolor'] = 'white'

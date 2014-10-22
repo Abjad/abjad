@@ -267,6 +267,85 @@ class PayloadTree(AbjadObject):
         '''
         return vars(self)
 
+    def __graph__(self):
+        r'''The GraphvizGraph representation of payload tree.
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = datastructuretools.PayloadTree(sequence)
+
+        ::
+
+            >>> graph = tree.__graph__()
+            >>> print(str(graph))
+            digraph G {
+                node_0 [label="",
+                    shape=circle];
+                node_1 [label="",
+                    shape=circle];
+                node_2 [label=0,
+                    shape=box];
+                node_3 [label=1,
+                    shape=box];
+                node_4 [label="",
+                    shape=circle];
+                node_5 [label=2,
+                    shape=box];
+                node_6 [label=3,
+                    shape=box];
+                node_7 [label="",
+                    shape=circle];
+                node_8 [label=4,
+                    shape=box];
+                node_9 [label=5,
+                    shape=box];
+                node_10 [label="",
+                    shape=circle];
+                node_11 [label=6,
+                    shape=box];
+                node_12 [label=7,
+                    shape=box];
+                node_0 -> node_1;
+                node_0 -> node_10;
+                node_0 -> node_4;
+                node_0 -> node_7;
+                node_1 -> node_2;
+                node_1 -> node_3;
+                node_10 -> node_11;
+                node_10 -> node_12;
+                node_4 -> node_5;
+                node_4 -> node_6;
+                node_7 -> node_8;
+                node_7 -> node_9;
+            }
+
+        ::
+
+            >>> topleveltools.graph(graph) # doctest: +SKIP
+
+        Returns graphviz graph.
+        '''
+        from abjad.tools import documentationtools
+        graph = documentationtools.GraphvizGraph(name='G')
+        node_mapping = {}
+        for node in self.iterate_depth_first():
+            graphviz_node = documentationtools.GraphvizNode()
+            if node.children:
+                graphviz_node.attributes['shape'] = 'circle'
+                graphviz_node.attributes['label'] = '""'
+            else:
+                graphviz_node.attributes['shape'] = 'box'
+                graphviz_node.attributes['label'] = str(node.payload)
+            graph.append(graphviz_node)
+            node_mapping[node] = graphviz_node
+            if node.parent is not None:
+                documentationtools.GraphvizEdge()(
+                    node_mapping[node.parent],
+                    node_mapping[node],
+                    )
+        return graph
+
     def __hash__(self):
         r'''Hashes payload tree.
 
@@ -412,96 +491,6 @@ class PayloadTree(AbjadObject):
         r'''Gets input argument.
         '''
         return self._expr
-
-    @property
-    def graphviz_format(self):
-        r'''Graphviz format of payload tree.
-
-        ::
-
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
-            >>> print(tree.graphviz_format)
-            digraph G {
-                node_0 [label="",
-                    shape=circle];
-                node_1 [label="",
-                    shape=circle];
-                node_2 [label=0,
-                    shape=box];
-                node_3 [label=1,
-                    shape=box];
-                node_4 [label="",
-                    shape=circle];
-                node_5 [label=2,
-                    shape=box];
-                node_6 [label=3,
-                    shape=box];
-                node_7 [label="",
-                    shape=circle];
-                node_8 [label=4,
-                    shape=box];
-                node_9 [label=5,
-                    shape=box];
-                node_10 [label="",
-                    shape=circle];
-                node_11 [label=6,
-                    shape=box];
-                node_12 [label=7,
-                    shape=box];
-                node_0 -> node_1;
-                node_0 -> node_10;
-                node_0 -> node_4;
-                node_0 -> node_7;
-                node_1 -> node_2;
-                node_1 -> node_3;
-                node_10 -> node_11;
-                node_10 -> node_12;
-                node_4 -> node_5;
-                node_4 -> node_6;
-                node_7 -> node_8;
-                node_7 -> node_9;
-            }
-
-        Returns string.
-        '''
-        return self.graphviz_graph.graphviz_format
-
-    @property
-    def graphviz_graph(self):
-        r'''The GraphvizGraph representation of payload tree.
-
-        ::
-
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
-
-        ::
-
-            >>> graph = tree.graphviz_graph
-            >>> topleveltools.graph(graph) # doctest: +SKIP
-
-        Returns graphviz graph.
-        '''
-        from abjad.tools import documentationtools
-        graph = documentationtools.GraphvizGraph(name='G')
-        node_mapping = {}
-        for node in self.iterate_depth_first():
-            graphviz_node = documentationtools.GraphvizNode()
-            if node.children:
-                graphviz_node.attributes['shape'] = 'circle'
-                graphviz_node.attributes['label'] = '""'
-            else:
-                graphviz_node.attributes['shape'] = 'box'
-                graphviz_node.attributes['label'] = str(node.payload)
-            graph.append(graphviz_node)
-            node_mapping[node] = graphviz_node
-            if node.parent is not None:
-                documentationtools.GraphvizEdge()(
-                    node_mapping[node.parent],
-                    node_mapping[node],
-                    )
-        return graph
 
     @property
     def improper_parentage(self):

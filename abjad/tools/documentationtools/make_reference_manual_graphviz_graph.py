@@ -12,7 +12,7 @@ def make_reference_manual_graphviz_graph(graph):
 
     if not isinstance(graph, documentationtools.GraphvizGraph):
         try:
-            graph = graph.graphviz_graph
+            graph = graph.__graph__()
         except:
             return graph
     graph.attributes['size'] = "8.0, 12.0"

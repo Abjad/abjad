@@ -27,20 +27,30 @@ def graph(expr, image_format='pdf', layout='dot'):
     from abjad import abjad_configuration
     from abjad.tools import systemtools
 
+    if isinstance(expr, str):
+        graphviz_format = expr
+    else:
+        assert '__graph__' in dir(expr)
+        graphviz_graph = expr.__graph__
+        graphviz_format = str(graphviz_graph)
+
     assert image_format in ('pdf', 'png')
-    layouts =('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
-    assert layout in layouts
+    valid_layouts = (
+        'circo',
+        'dot',
+        'fdp',
+        'neato',
+        'osage',
+        'sfdp',
+        'twopi',
+        )
+    assert layout in valid_layouts
+
     message = 'cannot find `{}` command-line tool.'
     message = message.format(layout)
     message += ' Please download Graphviz from graphviz.org.'
     assert systemtools.IOManager.find_executable(layout), message
 
-    if isinstance(expr, str):
-        graphviz_format = expr
-    else:
-        graphviz_format = expr.graphviz_format
-
-    current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output_directory']
     systemtools.IOManager._ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(

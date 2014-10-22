@@ -40,7 +40,9 @@ class InheritanceGraph(AbjadObject):
     ::
 
         >>> graph = documentationtools.InheritanceGraph(
-        ...     (A, B, C, D, E, F), root_addresses=(B,))
+        ...     (A, B, C, D, E, F),
+        ...     root_addresses=(B,),
+        ...     )
 
     The class is intended for use in documenting packages.
 
@@ -49,7 +51,8 @@ class InheritanceGraph(AbjadObject):
     ::
 
         >>> graph = documentationtools.InheritanceGraph(
-        ...     addresses=('abjad',))
+        ...     addresses=('abjad',),
+        ...     )
 
     To document only those classes descending from Container,
     use this formulation:
@@ -58,7 +61,7 @@ class InheritanceGraph(AbjadObject):
 
         >>> graph = documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     root_addresses=(Container,)
+        ...     root_addresses=(Container,),
         ...     )
 
     To document only those classes whose lineage pass through scoretools,
@@ -165,6 +168,139 @@ class InheritanceGraph(AbjadObject):
 
         self._lineage_distance_mapping = self._find_lineage_distances()
 
+    ### SPECIAL METHODS ###
+
+    def __graph__(self):
+        r'''Graphviz graph of inheritance graph.
+        '''
+        from abjad.tools import documentationtools
+
+        class_nodes = {}
+
+        graph = documentationtools.GraphvizGraph(
+            name='InheritanceGraph',
+            attributes={
+                'color': 'lightslategrey',
+                'fontname': 'Arial',
+                'outputorder': 'edgesfirst',
+                'overlap': 'prism',
+                'penwidth': 2,
+                #'ranksep': 0.5,
+                'splines': 'spline',
+                'style': ('dotted', 'rounded'),
+                },
+            edge_attributes={
+                'color': 'lightsteelblue2',
+                'penwidth': 2,
+                },
+            node_attributes={
+                'colorscheme': 'pastel19',
+                'fontname': 'Arial',
+                'fontsize': 12,
+                'penwidth': 2,
+                'style': ('filled', 'rounded'),
+                },
+            )
+
+        for current_class in sorted(self.parent_children_mapping,
+            key=lambda x: (x.__module__, x.__name__)):
+            pieces = self._get_class_name_pieces(current_class)
+
+            try:
+                cluster = graph[pieces[0]]
+            except KeyError:
+                cluster = documentationtools.GraphvizSubgraph(
+                    name=pieces[0],
+                    attributes={
+                        'label': pieces[0],
+                    },
+                    )
+                graph.append(cluster)
+
+            node = documentationtools.GraphvizNode(
+                name='.'.join(pieces),
+                )
+            node.attributes['label'] = pieces[-1]
+
+            if current_class in self.immediate_classes:
+                pass
+            if current_class in self.root_classes:
+                pass
+            if inspect.isabstract(current_class):
+                node.attributes['shape'] = 'oval'
+                node.attributes['style'] = 'bold'
+            else:
+                node.attributes['shape'] = 'box'
+            if current_class in self.lineage_classes:
+                node.attributes['color'] = 'black'
+                node.attributes['fontcolor'] = 'white'
+                node.attributes['style'] = ('filled', 'rounded')
+
+            if self.lineage_prune_distance is None:
+                cluster.append(node)
+                class_nodes[current_class] = node
+            elif current_class not in self.lineage_distance_mapping:
+                cluster.append(node)
+                class_nodes[current_class] = node
+            else:
+                ok_distance = self.lineage_prune_distance + 1
+                distance = self.lineage_distance_mapping[current_class]
+                if distance < ok_distance:
+                    cluster.append(node)
+                    class_nodes[current_class] = node
+                elif distance == ok_distance:
+                    node.attributes['shape'] = 'invis'
+                    node.attributes['style'] = 'transparent'
+                    node.attributes['label'] = ' '
+                    cluster.append(node)
+                    class_nodes[current_class] = node
+                elif ok_distance < distance:
+                    pass
+
+        distances = self.lineage_distance_mapping
+        for parent, children in self.parent_children_mapping.items():
+            for child in children:
+                ok_to_join = False
+                if self.lineage_prune_distance is None:
+                    ok_to_join = True
+                elif parent not in distances:
+                    if child not in distances:
+                        ok_to_join = True
+                    elif child in distances and \
+                        distances[child] <= ok_distance:
+                        ok_to_join = True
+                elif child not in distances:
+                    if parent not in distances:
+                        ok_to_join = True
+                    elif parent in distances and \
+                        distances[parent] <= ok_distance:
+                        ok_to_join = True
+                elif distances[child] <= ok_distance and \
+                    distances[parent] <= ok_distance:
+                    ok_to_join = True
+                if ok_to_join:
+                    parent_node = class_nodes[parent]
+                    child_node = class_nodes[child]
+                    documentationtools.GraphvizEdge()(parent_node, child_node)
+
+        for i, cluster in enumerate(
+            sorted(graph.children, key=lambda x: x.name)):
+            color = i % 9 + 1
+            for node in cluster:
+                if 'color' not in node.attributes:
+                    node.attributes['color'] = color
+                if self.use_groups:
+                    node.attributes['group'] = i
+            if not self.use_clusters:
+                graph.extend(cluster[:])
+                graph.remove(cluster)
+
+        if self.root_addresses is None:
+            graph.attributes['root'] = '__builtin__.object'
+
+        return graph
+
+
     ### PRIVATE METHODS ###
 
     def _build_basic_mappings(self, classes):
@@ -248,32 +384,74 @@ class InheritanceGraph(AbjadObject):
             recurse_downward(current_class)
         return distance_mapping
 
+    @staticmethod
+    def _get_class_name_pieces(current_class):
+        parts = (
+            current_class.__module__ + '.' + current_class.__name__
+            ).split('.')
+        name = [parts[0]]
+        for part in parts[1:]:
+            if part != name[-1]:
+                name.append(part)
+        if name[0] in ('abjad', 'experimental'):
+            return name[2:]
+        return name
+
+    @staticmethod
+    def _recurse_upward(
+        current_class,
+        invalid_classes,
+        child_parents_mapping,
+        ):
+        if current_class not in child_parents_mapping:
+            return
+        for parent in child_parents_mapping[current_class]:
+            if parent in invalid_classes:
+                invalid_classes.remove(parent)
+                InheritanceGraph._recurse_upward(
+                    parent,
+                    invalid_classes,
+                    child_parents_mapping,
+                    )
+
+    @staticmethod
+    def _recurse_downward(
+        current_class,
+        invalid_classes,
+        parent_children_mapping,
+        ):
+        if current_class not in parent_children_mapping:
+            return
+        for child in parent_children_mapping[current_class]:
+            if child in invalid_classes:
+                invalid_classes.remove(child)
+                InheritanceGraph._recurse_downward(
+                    child,
+                    invalid_classes,
+                    parent_children_mapping,
+                    )
+
     def _strip_nonlineage_classes(self,
         child_parents_mapping, parent_children_mapping):
         if not self.lineage_classes:
             return
-        def recurse_upward(current_class, invalid_classes):
-            if current_class not in child_parents_mapping:
-                return
-            for parent in child_parents_mapping[current_class]:
-                if parent in invalid_classes:
-                    invalid_classes.remove(parent)
-                    recurse_upward(parent, invalid_classes)
-        # TODO: change nested helper to private static method
-        def recurse_downward(current_class, invalid_classes):
-            if current_class not in parent_children_mapping:
-                return
-            for child in parent_children_mapping[current_class]:
-                if child in invalid_classes:
-                    invalid_classes.remove(child)
-                    recurse_downward(child, invalid_classes)
         invalid_classes = set(
-            list(child_parents_mapping.keys()) + list(parent_children_mapping.keys()))
+            list(child_parents_mapping.keys()) +
+            list(parent_children_mapping.keys())
+            )
         for current_class in self.lineage_classes:
             if current_class in invalid_classes:
                 invalid_classes.remove(current_class)
-            recurse_upward(current_class, invalid_classes)
-            recurse_downward(current_class, invalid_classes)
+            InheritanceGraph._recurse_upward(
+                current_class,
+                invalid_classes,
+                child_parents_mapping,
+                )
+            InheritanceGraph._recurse_downward(
+                current_class,
+                invalid_classes,
+                parent_children_mapping
+                )
         for current_class in invalid_classes:
             for child in parent_children_mapping[current_class]:
                 child_parents_mapping[child].remove(current_class)
@@ -306,155 +484,6 @@ class InheritanceGraph(AbjadObject):
         r'''Child / parent mapping of inheritance graph.
         '''
         return self._child_parents_mapping
-
-    @property
-    def graphviz_format(self):
-        r'''Graphviz format of inheritance graph.
-        '''
-        return self.graphviz_graph.graphviz_format
-
-    @property
-    def graphviz_graph(self):
-        r'''Graphviz graph of inheritance graph.
-        '''
-        from abjad.tools import documentationtools
-
-        # TODO: change nested helper to private static method
-        def get_class_name_pieces(current_class):
-            parts = (current_class.__module__ + '.' + current_class.__name__).split('.')
-            name = [parts[0]]
-            for part in parts[1:]:
-                if part != name[-1]:
-                    name.append(part)
-            if name[0] in ('abjad', 'experimental'):
-                return name[2:]
-            return name
-
-        class_nodes = {}
-
-        graph = documentationtools.GraphvizGraph(
-            name='InheritanceGraph',
-            attributes={
-                'color': 'lightslategrey',
-                'fontname': 'Arial',
-                'outputorder': 'edgesfirst',
-                'overlap': 'prism',
-                'penwidth': 2,
-                #'ranksep': 0.5,
-                'splines': 'spline',
-                'style': ('dotted', 'rounded'),
-            },
-            edge_attributes={
-                'color': 'lightsteelblue2',
-                'penwidth': 2,
-            },
-            node_attributes={
-                'colorscheme': 'pastel19',
-                'fontname': 'Arial',
-                'fontsize': 12,
-                'penwidth': 2,
-                'style': ('filled', 'rounded'),
-            },
-            )
-
-        for current_class in sorted(self.parent_children_mapping,
-            key=lambda x: (x.__module__, x.__name__)):
-            pieces = get_class_name_pieces(current_class)
-
-            try:
-                cluster = graph[pieces[0]]
-            except KeyError:
-                cluster = documentationtools.GraphvizSubgraph(
-                    name=pieces[0],
-                    attributes={
-                        'label': pieces[0],
-                    },
-                    )
-                graph.append(cluster)
-
-            node = documentationtools.GraphvizNode(
-                name='.'.join(pieces),
-                )
-            #node.attributes['label'] = '\\n'.join(pieces)
-            node.attributes['label'] = pieces[-1]
-
-            if current_class in self.immediate_classes:
-                pass
-            if current_class in self.root_classes:
-                pass
-            if inspect.isabstract(current_class):
-                node.attributes['shape'] = 'oval'
-                node.attributes['style'] = 'bold'
-            else:
-                node.attributes['shape'] = 'box'
-            if current_class in self.lineage_classes:
-                node.attributes['color'] = 'black'
-                node.attributes['fontcolor'] = 'white'
-                node.attributes['style'] = ('filled', 'rounded')
-
-            if self.lineage_prune_distance is None:
-                cluster.append(node)
-                class_nodes[current_class] = node
-            elif current_class not in self.lineage_distance_mapping:
-                cluster.append(node)
-                class_nodes[current_class] = node
-            else:
-                ok_distance = self.lineage_prune_distance + 1
-                distance = self.lineage_distance_mapping[current_class]
-                if distance < ok_distance:
-                    cluster.append(node)
-                    class_nodes[current_class] = node
-                elif distance == ok_distance:
-                    node.attributes['shape'] = 'invis'
-                    node.attributes['style'] = 'transparent'
-                    node.attributes['label'] = ' '
-                    cluster.append(node)
-                    class_nodes[current_class] = node
-                elif ok_distance < distance:
-                    pass
-
-        distances = self.lineage_distance_mapping
-        for parent, children in self.parent_children_mapping.items():
-            for child in children:
-                ok_to_join = False
-                if self.lineage_prune_distance is None:
-                    ok_to_join = True
-                elif parent not in distances:
-                    if child not in distances:
-                        ok_to_join = True
-                    elif child in distances and \
-                        distances[child] <= ok_distance:
-                        ok_to_join = True
-                elif child not in distances:
-                    if parent not in distances:
-                        ok_to_join = True
-                    elif parent in distances and \
-                        distances[parent] <= ok_distance:
-                        ok_to_join = True
-                elif distances[child] <= ok_distance and \
-                    distances[parent] <= ok_distance:
-                    ok_to_join = True
-                if ok_to_join:
-                    parent_node = class_nodes[parent]
-                    child_node = class_nodes[child]
-                    documentationtools.GraphvizEdge()(parent_node, child_node)
-
-        for i, cluster in enumerate(
-            sorted(graph.children, key=lambda x: x.name)):
-            color = i % 9 + 1
-            for node in cluster:
-                if 'color' not in node.attributes:
-                    node.attributes['color'] = color
-                if self.use_groups:
-                    node.attributes['group'] = i
-            if not self.use_clusters:
-                graph.extend(cluster[:])
-                graph.remove(cluster)
-
-        if self.root_addresses is None:
-            graph.attributes['root'] = '__builtin__.object'
-
-        return graph
 
     @property
     def immediate_classes(self):

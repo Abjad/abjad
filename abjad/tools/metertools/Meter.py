@@ -312,6 +312,58 @@ class Meter(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __graph__(self):
+        r'''Gets Graphviz format of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> graph = meter.__graph__()
+                >>> print(str(graph))
+                digraph G {
+                    node_0 [label="7/4",
+                        shape=triangle];
+                    node_1 [label="3/4",
+                        shape=triangle];
+                    node_2 [label="1/4",
+                        shape=box];
+                    node_3 [label="1/4",
+                        shape=box];
+                    node_4 [label="1/4",
+                        shape=box];
+                    node_5 [label="2/4",
+                        shape=triangle];
+                    node_6 [label="1/4",
+                        shape=box];
+                    node_7 [label="1/4",
+                        shape=box];
+                    node_8 [label="2/4",
+                        shape=triangle];
+                    node_9 [label="1/4",
+                        shape=box];
+                    node_10 [label="1/4",
+                        shape=box];
+                    node_0 -> node_1;
+                    node_0 -> node_5;
+                    node_0 -> node_8;
+                    node_1 -> node_2;
+                    node_1 -> node_3;
+                    node_1 -> node_4;
+                    node_5 -> node_6;
+                    node_5 -> node_7;
+                    node_8 -> node_10;
+                    node_8 -> node_9;
+                }
+
+            ::
+
+                >>> topleveltools.graph(meter) # doctest: +SKIP
+
+        Returns Graphviz graph.
+        '''
+        return self.root_node.__graph__()
+
     def __hash__(self):
         r'''Hashes meter.
         '''
@@ -577,58 +629,6 @@ class Meter(AbjadObject):
                 durationtools.Offset(self.numerator, self.denominator))
             inventory.append(tuple(offsets))
         return tuple(inventory)
-
-    @property
-    def graphviz_format(self):
-        r'''Gets Graphviz format of meter.
-
-        ..  container:: example
-
-            ::
-
-                >>> print(meter.graphviz_format)
-                digraph G {
-                    node_0 [label="7/4",
-                        shape=triangle];
-                    node_1 [label="3/4",
-                        shape=triangle];
-                    node_2 [label="1/4",
-                        shape=box];
-                    node_3 [label="1/4",
-                        shape=box];
-                    node_4 [label="1/4",
-                        shape=box];
-                    node_5 [label="2/4",
-                        shape=triangle];
-                    node_6 [label="1/4",
-                        shape=box];
-                    node_7 [label="1/4",
-                        shape=box];
-                    node_8 [label="2/4",
-                        shape=triangle];
-                    node_9 [label="1/4",
-                        shape=box];
-                    node_10 [label="1/4",
-                        shape=box];
-                    node_0 -> node_1;
-                    node_0 -> node_5;
-                    node_0 -> node_8;
-                    node_1 -> node_2;
-                    node_1 -> node_3;
-                    node_1 -> node_4;
-                    node_5 -> node_6;
-                    node_5 -> node_7;
-                    node_8 -> node_10;
-                    node_8 -> node_9;
-                }
-
-            ::
-
-                >>> topleveltools.graph(meter) # doctest: +SKIP
-
-        Returns string.
-        '''
-        return self.root_node.graphviz_format
 
     @property
     def implied_time_signature(self):

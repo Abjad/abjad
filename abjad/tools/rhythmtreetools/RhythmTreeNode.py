@@ -98,18 +98,6 @@ class RhythmTreeNode(TreeNode):
         return self.prolation * self.preprolated_duration
 
     @property
-    def graphviz_format(self):
-        r'''Graphviz format of rhythm tree node.
-        '''
-        return self.graphviz_graph.graphviz_format
-
-    @abc.abstractproperty
-    def graphviz_graph(self):
-        r'''Graphviz graph of rhythm tree node.
-        '''
-        raise NotImplementedError
-
-    @property
     def parentage_ratios(self):
         r'''A sequence describing the relative durations of the nodes in a
         node's improper parentage.

@@ -180,7 +180,7 @@ def process_literal_block_pairs(literal_block_pairs):
                         new_abjad_book_block['raw_code'] = format(obj)
                     elif kind == 'graphviz':
                         graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
-                        new_abjad_book_block['code'] = graphviz_graph.graphviz_format
+                        new_abjad_book_block['code'] = str(graphviz_graph)
                     text = '\n'.join(original_lines[previous_line_number:i + 1])
                     new_literal_block = literal_block.deepcopy()
                     new_literal_block.rawsource = text
@@ -253,7 +253,7 @@ def render_graphviz_image(self, code, paths, file_format='png',
 
     if is_pickled:
         graph = pickle.loads(code)
-        alt = graph.graphviz_format
+        alt = str(graph)
         if is_latex:
             graph.attributes['fontsize'] = 10
             graph.attributes['ranksep'] = 0.25

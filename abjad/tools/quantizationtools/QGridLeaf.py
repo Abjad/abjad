@@ -73,6 +73,22 @@ class QGridLeaf(RhythmTreeNode):
             self.is_divisible,
             )
 
+    def __graph__(self):
+        r'''Graphviz graph of q-grid leaf.
+
+        Returns Graphviz graph.
+        '''
+        from abjad.tools import documentationtools
+        graph = documentationtools.GraphvizGraph(name='G')
+        node = documentationtools.GraphvizNode(
+            attributes={
+                'label': str(self.preprolated_duration),
+                'shape': 'box'
+                }
+            )
+        graph.append(node)
+        return graph
+
     def __hash__(self):
         r'''Hashes q-grid leaf.
 
@@ -99,22 +115,6 @@ class QGridLeaf(RhythmTreeNode):
             )
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def graphviz_graph(self):
-        r'''Graphviz graph of q-grid leaf.
-
-        Returns Graphviz graph.
-        '''
-        graph = documentationtools.GraphvizGraph(name='G')
-        node = documentationtools.GraphvizNode(
-            attributes={
-                label: str(self.preprolated_duration),
-                shape: 'box'
-                }
-            )
-        graph.append(node)
-        return graph
 
     @property
     def is_divisible(self):

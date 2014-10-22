@@ -238,6 +238,63 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     return True
         return False
 
+    def __graph__(self):
+        r'''The GraphvizGraph representation of the RhythmTreeContainer:
+
+        ::
+
+            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> graph = tree.__graph__()
+            >>> print(str(graph))
+            digraph G {
+                node_0 [label=1,
+                    shape=triangle];
+                node_1 [label=1,
+                    shape=box];
+                node_2 [label=2,
+                    shape=triangle];
+                node_3 [label=1,
+                    shape=box];
+                node_4 [label=1,
+                    shape=box];
+                node_5 [label=1,
+                    shape=box];
+                node_6 [label=2,
+                    shape=box];
+                node_0 -> node_1;
+                node_0 -> node_2;
+                node_0 -> node_6;
+                node_2 -> node_3;
+                node_2 -> node_4;
+                node_2 -> node_5;
+            }
+
+        ::
+
+            >>> topleveltools.graph(graph) # doctest: +SKIP
+
+        Return `GraphvizGraph` instance.
+        '''
+
+        graph = documentationtools.GraphvizGraph(name='G')
+        node_mapping = {}
+        for node in self.nodes:
+            graphviz_node = documentationtools.GraphvizNode()
+            graphviz_node.attributes['label'] = str(node.preprolated_duration)
+            if isinstance(node, type(self)):
+                graphviz_node.attributes['shape'] = 'triangle'
+            else:
+                graphviz_node.attributes['shape'] = 'box'
+            graph.append(graphviz_node)
+            node_mapping[node] = graphviz_node
+            if node.parent is not None:
+                documentationtools.GraphvizEdge()(
+                    node_mapping[node.parent],
+                    node_mapping[node],
+                    )
+        return graph
+
     def __hash__(self):
         r'''Hashes rhythm-tree container.
 
@@ -388,64 +445,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return result
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def graphviz_graph(self):
-        r'''The GraphvizGraph representation of the RhythmTreeContainer:
-
-        ::
-
-            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-            >>> graph = tree.graphviz_graph
-            >>> print(graph.graphviz_format)
-            digraph G {
-                node_0 [label=1,
-                    shape=triangle];
-                node_1 [label=1,
-                    shape=box];
-                node_2 [label=2,
-                    shape=triangle];
-                node_3 [label=1,
-                    shape=box];
-                node_4 [label=1,
-                    shape=box];
-                node_5 [label=1,
-                    shape=box];
-                node_6 [label=2,
-                    shape=box];
-                node_0 -> node_1;
-                node_0 -> node_2;
-                node_0 -> node_6;
-                node_2 -> node_3;
-                node_2 -> node_4;
-                node_2 -> node_5;
-            }
-
-        ::
-
-            >>> topleveltools.graph(graph) # doctest: +SKIP
-
-        Return `GraphvizGraph` instance.
-        '''
-
-        graph = documentationtools.GraphvizGraph(name='G')
-        node_mapping = {}
-        for node in self.nodes:
-            graphviz_node = documentationtools.GraphvizNode()
-            graphviz_node.attributes['label'] = str(node.preprolated_duration)
-            if isinstance(node, type(self)):
-                graphviz_node.attributes['shape'] = 'triangle'
-            else:
-                graphviz_node.attributes['shape'] = 'box'
-            graph.append(graphviz_node)
-            node_mapping[node] = graphviz_node
-            if node.parent is not None:
-                documentationtools.GraphvizEdge()(
-                    node_mapping[node.parent],
-                    node_mapping[node],
-                    )
-        return graph
 
     @property
     def rtm_format(self):

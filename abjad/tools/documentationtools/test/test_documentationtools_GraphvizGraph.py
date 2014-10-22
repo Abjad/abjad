@@ -67,7 +67,7 @@ def test_documentationtools_GraphvizGraph_01():
         struct_3_field_d,
         )
 
-    graphviz_format = graph.graphviz_format
+    graphviz_format = str(graph)
 
     assert systemtools.TestManager.compare(
         graphviz_format,

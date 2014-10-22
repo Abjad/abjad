@@ -17,7 +17,7 @@ def test_documentationtools_GraphvizGraph_pickle_01():
     edge = documentationtools.GraphvizEdge()(graph[0][0], graph[0][-1][0])
 
     assert systemtools.TestManager.compare(
-        graph.graphviz_format,
+        str(graph),
         r'''
         digraph Graph {
             subgraph cluster_0 {
@@ -37,4 +37,4 @@ def test_documentationtools_GraphvizGraph_pickle_01():
 
     pickled = pickle.loads(pickle.dumps(graph))
 
-    assert graph.graphviz_format == pickled.graphviz_format
+    assert str(graph) == str(pickled)
