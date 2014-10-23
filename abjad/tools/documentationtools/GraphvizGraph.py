@@ -175,6 +175,13 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ### SPECIAL METHODS ###
 
+    def __graph__(self):
+        r'''Gets graphviz graph.
+
+        Returns graphviz graph.
+        '''
+        return self
+
     def __str__(self):
         r'''Graphviz format of Graphviz graph.
 
