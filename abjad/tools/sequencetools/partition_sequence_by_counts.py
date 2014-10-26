@@ -130,15 +130,25 @@ def partition_sequence_by_counts(
     '''
     from abjad.tools import sequencetools
 
+    if not isinstance(counts, (tuple, list)):
+        message = 'must be list or tuple: {!r}.'
+        message = message.format(counts)
+        raise TypeError(message)
+
     result = []
 
     if cyclic:
         if overhang:
             counts = sequencetools.repeat_sequence_to_weight(
-                counts, len(sequence))
+                counts,
+                len(sequence),
+                )
         else:
             counts = sequencetools.repeat_sequence_to_weight(
-                counts, len(sequence), allow_total=Less)
+                counts, 
+                len(sequence), 
+                allow_total=Less,
+                )
     elif overhang:
         weight_counts = mathtools.weight(counts)
         len_sequence = len(sequence)
