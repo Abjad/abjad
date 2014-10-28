@@ -9,10 +9,12 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class NamedPitch(Pitch):
     '''A named pitch.
 
-    ::
+    ..  container:: example
 
-        >>> pitch = NamedPitch("cs''")
-        >>> show(pitch) # doctest: +SKIP
+        ::
+
+            >>> pitch = NamedPitch("cs''")
+            >>> show(pitch) # doctest: +SKIP
 
     '''
 
@@ -801,3 +803,49 @@ class NamedPitch(Pitch):
             self.diatonic_pitch_class_number] + \
             self.alteration_in_semitones + \
             (12 * (self._octave_number - 4))
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_clef_and_staff_position(clef, staff_position):
+        r'''Initializes named pitch from `clef` and `staff_position`.
+
+        ..  container:: example
+
+            ::
+
+                >>> clef = Clef('treble')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
+                ...     print(pitch)
+                c'
+                d'
+                e'
+                f'
+                g'
+                a'
+                b'
+                c''
+                d''
+                e''
+                f''
+                g''
+
+        Returns new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        position_residue_to_pitch_name = {
+            0: 'b', 1: 'c', 2: 'd', 3: 'e', 4: 'f', 5: 'g', 6: 'a',
+            }
+        n = staff_position.number - (6 + clef.middle_c_position.number)
+        position_residue = n % 7
+        pitch_name = position_residue_to_pitch_name[position_residue]
+        if type(n) == int:
+            octave = 4 + int(n // 7) + 1
+        else:
+            octave = 4 + int(n / 7) + 1
+        if pitch_name == 'b':
+            octave -= 1
+        pitch = NamedPitch(pitch_name, octave)
+        return pitch
