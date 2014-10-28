@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
 
@@ -121,6 +122,49 @@ class PitchSet(Set):
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitch)
         return expr == new_pitches
+
+    def register(self, pitch_classes):
+        '''Registers `pitch_classes` by pitch set.
+
+        ..  container:: example
+
+        ::
+
+            >>> pitch_set = pitchtools.PitchSet(
+            ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
+            ...     item_class=pitchtools.NumberedPitch,
+            ...     )
+            >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
+            >>> pitches = pitch_set.register(pitch_classes)
+            >>> for pitch in pitches:
+            ...     pitch
+            NumberedPitch(10)
+            NumberedPitch(24)
+            NumberedPitch(26)
+            NumberedPitch(30)
+            NumberedPitch(20)
+            NumberedPitch(19)
+            NumberedPitch(29)
+            NumberedPitch(27)
+            NumberedPitch(37)
+            NumberedPitch(33)
+            NumberedPitch(40)
+            NumberedPitch(23)
+
+        Returns list of zero or more numbered pitches.
+        '''
+        if isinstance(pitch_classes, list):
+            result = [
+                [_ for _ in self if _.pitch_number % 12 == pc] 
+                for pc in [x % 12 for x in pitch_classes]
+                ]
+            result = sequencetools.flatten_sequence(result)
+        elif isinstance(pitch_classes, int):
+            result = [p for p in aggregate if p % 12 == pitch_classes][0]
+        else:
+            message = 'must be pitch-class or list of pitch-classes.'
+            raise TypeError(message)
+        return result
 
     def transpose(self, expr):
         r'''Transposes all pitches in pitch set by `expr`.
