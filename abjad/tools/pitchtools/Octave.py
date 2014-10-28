@@ -28,7 +28,6 @@ class Octave(AbjadObject):
         >>> pitchtools.Octave(pitchtools.Octave(2))
         Octave(2)
 
-    Returns octave.
     '''
 
     ### CLASS VARIABLES ###
