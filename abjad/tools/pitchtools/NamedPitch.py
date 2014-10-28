@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+import math
 import re
 from abjad.tools import mathtools
 from abjad.tools import stringtools
@@ -318,6 +319,10 @@ class NamedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _lilypond_format(self):
+        return str(self)
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
@@ -385,9 +390,10 @@ class NamedPitch(Pitch):
     def _initialize_by_pitch_number_and_diatonic_pitch_class_name(
         self, pitch_number, diatonic_pitch_class_name):
         from abjad.tools import pitchtools
-        accidental, octave_number = \
-            pitchtools.spell_pitch_number(
-                pitch_number, diatonic_pitch_class_name)
+        accidental, octave_number = self._spell_pitch_number(
+                pitch_number,
+                diatonic_pitch_class_name,
+                )
         pitch_class_name = diatonic_pitch_class_name + \
             accidental.abbreviation
         named_pitch_class = pitchtools.NamedPitchClass(pitch_class_name)
@@ -400,9 +406,30 @@ class NamedPitch(Pitch):
         self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
 
-    @property
-    def _lilypond_format(self):
-        return str(self)
+    @staticmethod
+    def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):
+        from abjad.tools import pitchtools
+        # check input
+        if not isinstance(pitch_number, (int, float)):
+            raise TypeError
+        if not isinstance(diatonic_pitch_class_name, str):
+            raise TypeError
+        if not diatonic_pitch_class_name in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
+            raise ValueError
+        # find accidental semitones
+        pc = pitchtools.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
+            diatonic_pitch_class_name]
+        nearest_neighbor = pitchtools.transpose_pitch_class_number_to_pitch_number_neighbor(
+            pitch_number, pc)
+        semitones = pitch_number - nearest_neighbor
+        # find accidental alphabetic string
+        abbreviation = pitchtools.Accidental._semitones_to_abbreviation[
+            semitones]
+        accidental = pitchtools.Accidental(abbreviation)
+        # find octave
+        octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
+        # return accidental and octave
+        return accidental, octave_number
 
     ### PUBLIC METHODS ###
 
