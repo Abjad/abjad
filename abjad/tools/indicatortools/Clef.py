@@ -335,6 +335,44 @@ class Clef(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    @staticmethod
+    def from_selection(selection):
+        r'''Makes clef from `selection`.
+
+        ..  container:: example
+
+            ::
+
+                >>> numbers = list(range(-12, -6))
+                >>> notes = scoretools.make_notes(numbers, [Duration(1, 4)])
+                >>> staff = Staff(notes)
+                >>> Clef.from_selection(staff)
+                Clef(name='bass')
+
+            Choses between treble and bass based on minimal number of ledger 
+            lines.
+
+        Returns new clef.
+        '''
+        from abjad.tools import pitchtools
+        pitches = pitchtools.list_named_pitches_in_expr(selection)
+        diatonic_pitch_numbers = [pitch.diatonic_pitch_number for pitch in pitches]
+        max_diatonic_pitch_number = max(diatonic_pitch_numbers)
+        min_diatonic_pitch_number = min(diatonic_pitch_numbers)
+        lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
+        lowest_treble_line_diatonic_pitch_number = \
+            lowest_treble_line_pitch.diatonic_pitch_number
+        candidate_steps_below_treble = \
+            lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
+        highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
+        highest_bass_line_diatonic_pitch_number = \
+            highest_bass_line_pitch.diatonic_pitch_number
+        candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
+        if candidate_steps_above_bass < candidate_steps_below_treble:
+            return Clef('bass')
+        else:
+            return Clef('treble')
+
     def named_pitch_to_staff_position(self, named_pitch):
         r'''Changes `named_pitch` to staff position.
 
