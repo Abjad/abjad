@@ -119,6 +119,20 @@ class StaffPosition(AbjadObject):
         '''
         return int(self.number)
 
+    def __str__(self):
+        r'''Gets string representation of staff position.
+
+        ..  container:: example
+
+            ::
+
+                >>> str(pitchtools.StaffPosition(-2))
+                StaffPosition(-2)
+
+        Returns string.
+        '''
+        return '{}({})'.format(type(self).__name__, self.number)
+
     ### PUBLIC PROPERTIES ###
 
     @property

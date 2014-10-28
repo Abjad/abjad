@@ -332,3 +332,36 @@ class Clef(AbjadObject):
         Returns string.
         '''
         return self._name
+
+    ### PUBLIC METHODS ###
+
+    def named_pitch_to_staff_position(self, named_pitch):
+        r'''Changes `named_pitch` to staff position.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+                >>> clef = Clef('treble')
+                >>> for note in staff:
+                ...     named_pitch = note.written_pitch
+                ...     staff_position = clef.named_pitch_to_staff_position(named_pitch)
+                ...     message = '{}\t{!s}'
+                ...     message = message.format(named_pitch, staff_position) 
+                ...     print(message)
+                c'	StaffPosition(-6)
+                d'	StaffPosition(-5)
+                e'	StaffPosition(-4)
+                f'	StaffPosition(-3)
+                g'	StaffPosition(-2)
+                a'	StaffPosition(-1)
+                b'	StaffPosition(0)
+                c''	StaffPosition(1)
+
+        Returns staff position.
+        '''
+        from abjad.tools import pitchtools
+        number = abs(named_pitch.diatonic_pitch_number)
+        number += self.middle_c_position.number
+        return pitchtools.StaffPosition(number)
