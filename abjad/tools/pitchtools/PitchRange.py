@@ -345,7 +345,7 @@ class PitchRange(AbjadObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
-    def _list_numeric_octave_transpositions(pitch_number_list):
+    def _list_numeric_octave_transpositions(self, pitch_number_list):
         result = []
         pitch_number_set = set(pitch_number_list)
         start_pitch_number = self.start_pitch.pitch_number
@@ -451,7 +451,7 @@ class PitchRange(AbjadObject):
         from abjad.tools import scoretools
         if isinstance(pitch_carrier, collections.Iterable):
             if all(isinstance(x, (int, float)) for x in pitch_carrier):
-                return self._list_numeric_ocatve_transpositions(pitch_carrier)
+                return self._list_numeric_octave_transpositions(pitch_carrier)
         prototype = (scoretools.Chord, pitchtools.PitchSet)
         if not isinstance(pitch_carrier, prototype):
             message = 'must be chord or pitch-set: {!r}'
