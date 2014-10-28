@@ -180,3 +180,38 @@ class TwelveToneRow(PitchClassSegment):
             axis = self[0]
         items = [pc.invert(axis=axis) for pc in self]
         return new(self, items=items)
+
+    def permute(self, pitches):
+        r'''Permutes `pitches` by twelve-tone row.
+
+        ..  container:: example
+
+            ::
+
+                >>> notes = scoretools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
+                >>> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
+                >>> row.permute(notes)
+                [Note('bf4'), Note('d4'), Note("f''4"), Note("b'4")]
+
+        Method works by reference. No objects are copied.
+
+        Returns list.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        result = []
+        for pc in self:
+            matching_pitches = []
+            for pitch in pitches:
+                if isinstance(pitch, pitchtools.NamedPitch):
+                    if pitch.numbered_pitch_class == pc:
+                        matching_pitches.append(pitch)
+                elif isinstance(pitch, scoretools.Note):
+                    if pitchtools.NumberedPitchClass(pitch.written_pitch) == pc:
+                        matching_pitches.append(pitch)
+                else:
+                    message = 'must be pitch or note: {!r}'
+                    message = message.format(pitch)
+                    raise TypeError(message)
+            result.extend(matching_pitches)
+        return result
