@@ -120,7 +120,53 @@ class IntervalClassVector(Vector):
         ):
         r'''Makes interval-class vector from `selection`.
 
-        Returns interval-class vector.
+        ..  container:: example
+
+            **Example 1.** Makes numbered inversion-equivalent interval-class
+            vector from selection:
+
+            ::
+
+                >>> vector = pitchtools.IntervalClassVector.from_selection(
+                ...     Chord("<c' d' b''>4"),
+                ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+                ...     )
+                >>> vector
+                IntervalClassVector({'1': 1, '2': 1, '3': 1}, item_class=NumberedInversionEquivalentIntervalClass)
+
+        ..  container:: example
+
+            **Example 2.** Makes numbered interval-class vector from selection:
+
+            ::
+
+                >>> vector = pitchtools.IntervalClassVector.from_selection(
+                ...     Chord("<c' d' b''>4"),
+                ...     item_class=pitchtools.NumberedIntervalClass,
+                ...     )
+                >>> vector
+                IntervalClassVector({'-11': 1, '-2': 1, '-9': 1}, item_class=NumberedIntervalClass)
+
+            .. todo:: This should probabaly be checked. Resulting values
+                should probabaly be positive (or signless) instead of negative.
+
+        ..  container:: example
+
+            **Example 3.** Makes named interval-class vector from selection:
+
+            ::
+
+                >>> vector = pitchtools.IntervalClassVector.from_selection(
+                ...     Chord("<c' d' b''>4"),
+                ...     item_class=None,
+                ...     )
+                >>> vector
+                IntervalClassVector({'-M2': 1, '-M6': 1, '-M7': 1}, item_class=NamedIntervalClass)
+
+            .. todo:: This should probabaly be checked. Resulting values
+                should probabaly be positive (or signless) instead of negative.
+
+        Returns new interval-class vector.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
