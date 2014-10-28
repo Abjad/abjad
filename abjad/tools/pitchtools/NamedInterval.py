@@ -431,8 +431,12 @@ class NamedInterval(Interval):
             pitchtools.NumberedPitch(pitch_1).pitch_number -
             pitchtools.NumberedPitch(pitch_2).pitch_number
             )
-        absolute_named_interval = pitchtools.spell_numbered_interval_number(
-            named_interval_number, numbered_interval_number)
+        numbered_interval = pitchtools.NumberedInterval(
+            numbered_interval_number,
+            )
+        absolute_named_interval = numbered_interval.to_named_interval(
+            named_interval_number
+            )
         if pitch_2 < pitch_1:
             named_interval = -absolute_named_interval
         else:
