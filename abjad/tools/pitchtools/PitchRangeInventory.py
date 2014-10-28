@@ -47,10 +47,10 @@ class PitchRangeInventory(TypedList):
         start_note_clefs = []
         stop_note_clefs = []
         for pitch_range in self.items:
-            start_note_clef = pitchtools.suggest_clef_for_named_pitches(
+            start_note_clef = indicatortools.Clef.from_selection(
                 pitch_range.start_pitch)
             start_note_clefs.append(start_note_clef)
-            stop_note_clef = pitchtools.suggest_clef_for_named_pitches(
+            stop_note_clef = indicatortools.Clef.from_selection(
                 pitch_range.stop_pitch)
             stop_note_clefs.append(stop_note_clef)
         if start_note_clefs == stop_note_clefs:
@@ -70,10 +70,10 @@ class PitchRangeInventory(TypedList):
             score, treble_staff, bass_staff = result
             for pitch_range in self.items:
                 start_note = scoretools.Note(pitch_range.start_pitch, 1)
-                start_note_clef = pitchtools.suggest_clef_for_named_pitches(
+                start_note_clef = indicatortools.Clef.from_selection(
                     pitch_range.start_pitch)
                 stop_note = scoretools.Note(pitch_range.stop_pitch, 1)
-                stop_note_clef = pitchtools.suggest_clef_for_named_pitches(
+                stop_note_clef = indicatortools.Clef.from_selection(
                     pitch_range.stop_pitch)
                 notes = [start_note, stop_note]
                 glissando = spannertools.Glissando()

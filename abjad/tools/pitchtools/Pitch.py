@@ -103,6 +103,7 @@ class Pitch(AbjadObject):
         Returns LilyPond file.
         '''
         from abjad.tools import durationtools
+        from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
@@ -112,7 +113,7 @@ class Pitch(AbjadObject):
         pitch = pitchtools.NamedPitch(self)
         note = scoretools.Note(pitch, 1)
         attach(durationtools.Multiplier(1, 4), note)
-        clef = pitchtools.suggest_clef_for_named_pitches([pitch])
+        clef = indicatortools.Clef.from_selection([pitch])
         staff = scoretools.Staff()
         attach(clef, staff)
         staff.append(note)

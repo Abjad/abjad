@@ -196,10 +196,8 @@ class PitchRange(AbjadObject):
         from abjad.tools.topleveltools import attach
         from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import override
-        start_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
-            self.start_pitch)
-        stop_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
-            self.stop_pitch)
+        start_pitch_clef = indicatortools.Clef.from_selection(self.start_pitch)
+        stop_pitch_clef = indicatortools.Clef.from_selection(self.stop_pitch)
         start_note = scoretools.Note(self.start_pitch, 1)
         stop_note = scoretools.Note(self.stop_pitch, 1)
         glissando = spannertools.Glissando()

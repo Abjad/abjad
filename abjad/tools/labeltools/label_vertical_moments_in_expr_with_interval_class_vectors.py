@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import iterate
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(
     expr, markup_direction=Down):
-    r'''Label interval-class vector of every vertical moment in `expr`:
+    r'''Labels interval-class vector of every vertical moment in `expr`:
 
     ::
 
@@ -67,15 +67,15 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(
     Returns none.
     '''
 
-    for vertical_moment in \
-        iterate(expr).by_vertical_moment():
+    for vertical_moment in iterate(expr).by_vertical_moment():
         leaves = vertical_moment.leaves
         pitches = pitchtools.PitchSegment.from_selection(leaves)
         if not pitches:
             continue
-        interval_class_vector = \
-            pitchtools.numbered_inversion_equivalent_interval_class_dictionary(
-            pitches)
+        interval_class_vector = pitchtools.IntervalClassVector(
+            pitches,
+            item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+            )
         formatted = _format_interval_class_vector(interval_class_vector)
         markup = markuptools.Markup(formatted, markup_direction)
         attach(markup, vertical_moment.start_leaves[-1])
