@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+import copy
 import numbers
 import re
 from abjad.tools import datastructuretools
@@ -344,6 +345,26 @@ class PitchRange(AbjadObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
+    def _list_numeric_octave_transpositions(pitch_number_list):
+        result = []
+        pitch_number_set = set(pitch_number_list)
+        start_pitch_number = self.start_pitch.pitch_number
+        stop_pitch_number = self.stop_pitch.pitch_number
+        range_set = set(range(start_pitch_number, stop_pitch_number + 1))
+        while pitch_number_set.issubset(range_set):
+            next_pitch_number = list(pitch_number_set)
+            next_pitch_number.sort()
+            result.extend([next_pitch_number])
+            pitch_number_set = set([_ + 12 for _ in pitch_number_set])
+        pitch_number_set = set([_ - 12 for _ in pitch_number_list])
+        while pitch_number_set.issubset(range_set):
+            next_pitch_number = list(pitch_number_set)
+            next_pitch_number.sort()
+            result.extend([next_pitch_number])
+            pitch_number_set = set([_ - 12 for _ in pitch_number_set])
+        result.sort()
+        return result
+
     def _parse_range_string(self, range_string):
         from abjad.tools import pitchtools
         assert isinstance(range_string, str), repr(range_string)
@@ -390,8 +411,7 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitchtools.PitchRange.is_range_string(
-            ...     '[A0, C8]')
+            >>> pitchtools.PitchRange.is_range_string('[A0, C8]')
             True
 
         The regex that underlies this predicate matches against two
@@ -403,6 +423,63 @@ class PitchRange(AbjadObject):
         if not isinstance(expr, str):
             return False
         return bool(cls._range_string_regex.match(expr))
+
+    def list_octave_transpositions(self, pitch_carrier):
+        r"""Lists octave transpositions of `pitch_carrier` in pitch range.
+
+        ..  container:: example
+
+            ::
+
+                >>> chord = Chord("<c' d' e'>4")
+                >>> pitch_range = pitchtools.PitchRange.from_pitches(0, 48)
+                >>> result = pitch_range.list_octave_transpositions(chord)
+
+            ::
+
+                >>> for chord in result:
+                ...     chord
+                ...
+                Chord("<c' d' e'>4")
+                Chord("<c'' d'' e''>4")
+                Chord("<c''' d''' e'''>4")
+                Chord("<c'''' d'''' e''''>4")
+
+        Returns a list of `pitch_carrier` objects.
+        """
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        if isinstance(pitch_carrier, collections.Iterable):
+            if all(isinstance(x, (int, float)) for x in pitch_carrier):
+                return self._list_numeric_ocatve_transpositions(pitch_carrier)
+        prototype = (scoretools.Chord, pitchtools.PitchSet)
+        if not isinstance(pitch_carrier, prototype):
+            message = 'must be chord or pitch-set: {!r}'
+            message = message.format(pitch_carrier)
+            raise TypeError(message)
+        result = []
+        interval = pitchtools.NumberedInterval(-12)
+        while True:
+            pitch_carrier_copy = copy.copy(pitch_carrier)
+            candidate = pitchtools.transpose_pitch_carrier_by_interval(
+                pitch_carrier_copy, interval)
+            if candidate in self:
+                result.append(candidate)
+                interval -= pitchtools.NumberedInterval(12)
+            else:
+                break
+        result.reverse()
+        interval = pitchtools.NumberedInterval(0)
+        while True:
+            pitch_carrier_copy = copy.copy(pitch_carrier)
+            candidate = pitchtools.transpose_pitch_carrier_by_interval(
+                pitch_carrier_copy, interval)
+            if candidate in self:
+                result.append(candidate)
+                interval += pitchtools.NumberedInterval(12)
+            else:
+                break
+        return result
 
     def voice_pitch_class(self, pitch_class):
         r"""Voices `pitch_class` in this pitch-range.
@@ -447,6 +524,7 @@ class PitchRange(AbjadObject):
 
         ::
 
+            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
             >>> pitch_range.one_line_named_pitch_repr
             '[C3, C7]'
 

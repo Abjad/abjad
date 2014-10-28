@@ -80,22 +80,20 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
 # TODO: make public
 def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
     result = []
-    ps = set(pitch_number_list)
+    pitch_number_set = set(pitch_number_list)
     start_pitch_number = pitch_range.start_pitch.pitch_number
     stop_pitch_number = pitch_range.stop_pitch.pitch_number
-    R = set(range(start_pitch_number, stop_pitch_number + 1))
-    while ps.issubset(R):
-        next_pitch_number = list(ps)
+    range_set = set(range(start_pitch_number, stop_pitch_number + 1))
+    while pitch_number_set.issubset(range_set):
+        next_pitch_number = list(pitch_number_set)
         next_pitch_number.sort()
         result.extend([next_pitch_number])
-        ps = set([p + 12 for p in ps])
-
-    ps = set([p - 12 for p in pitch_number_list])
-    while ps.issubset(R):
-        next_pitch_number = list(ps)
+        pitch_number_set = set([_ + 12 for _ in pitch_number_set])
+    pitch_number_set = set([_ - 12 for _ in pitch_number_list])
+    while pitch_number_set.issubset(range_set):
+        next_pitch_number = list(pitch_number_set)
         next_pitch_number.sort()
         result.extend([next_pitch_number])
-        ps = set([p - 12 for p in ps])
-
+        pitch_number_set = set([_ - 12 for _ in pitch_number_set])
     result.sort()
     return result
