@@ -30,7 +30,7 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
     position_residue_to_pitch_name = {
         0: 'b', 1: 'c', 2: 'd', 3: 'e', 4: 'f', 5: 'g', 6: 'a'}
 
-    n = staff_position_number - (6 + clef.middle_c_position)
+    n = staff_position_number - (6 + clef.middle_c_position.number)
     #position_residue = staff_position_number % 7
     position_residue = n % 7
     pitch_name = position_residue_to_pitch_name[position_residue]

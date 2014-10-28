@@ -127,7 +127,7 @@ class StaffPosition(AbjadObject):
             ::
 
                 >>> str(pitchtools.StaffPosition(-2))
-                StaffPosition(-2)
+                'StaffPosition(-2)'
 
         Returns string.
         '''
