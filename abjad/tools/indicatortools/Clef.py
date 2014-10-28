@@ -91,6 +91,7 @@ class Clef(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, name='treble'):
+        from abjad.tools import pitchtools
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
         if isinstance(name, str):
@@ -102,6 +103,7 @@ class Clef(AbjadObject):
             message = message.format(name)
             raise TypeError(message)
         middle_c_position = self._calculate_middle_c_position(self._name)
+        middle_c_position = pitchtools.StaffPosition(middle_c_position)
         self._middle_c_position = middle_c_position
 
     ### SPECIAL METHODS ###
@@ -290,7 +292,7 @@ class Clef(AbjadObject):
             ::
 
                 >>> Clef('treble').middle_c_position
-                -6
+                StaffPosition(number=-6)
 
         ..  container:: example
 
@@ -299,7 +301,7 @@ class Clef(AbjadObject):
             ::
 
                 >>> Clef('alto').middle_c_position
-                0
+                StaffPosition(number=0)
 
         Returns nonnegative integer staff position.
         '''
