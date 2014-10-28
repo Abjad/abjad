@@ -5,58 +5,62 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class Clef(AbjadObject):
     r'''A clef.
 
-    ::
+    ..  container:: example
 
-        >>> clef = Clef('treble')
-        >>> clef
-        Clef(name='treble')
+        ::
 
-    ::
+            >>> clef = Clef('treble')
+            >>> clef
+            Clef(name='treble')
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> show(staff) # doctest: +SKIP
 
-        >>> clef = Clef('treble')
-        >>> attach(clef, staff)
-        >>> clef = Clef('alto')
-        >>> attach(clef, staff[1])
-        >>> clef = Clef('bass')
-        >>> attach(clef, staff[2])
-        >>> clef = Clef('treble^8')
-        >>> attach(clef, staff[3])
-        >>> clef = Clef('bass_8')
-        >>> attach(clef, staff[4])
-        >>> clef = Clef('tenor')
-        >>> attach(clef, staff[5])
-        >>> clef = Clef('bass^15')
-        >>> attach(clef, staff[6])
-        >>> clef = Clef('percussion')
-        >>> attach(clef, staff[7])
-        >>> show(staff) # doctest: +SKIP
+    ..  container:: example
 
-    ..  doctest::
+        ::
 
-        >>> print(format(staff))
-        \new Staff {
-            \clef "treble"
-            c'8
-            \clef "alto"
-            d'8
-            \clef "bass"
-            e'8
-            \clef "treble^8"
-            f'8
-            \clef "bass_8"
-            g'8
-            \clef "tenor"
-            a'8
-            \clef "bass^15"
-            b'8
-            \clef "percussion"
-            c''8
-        }
+            >>> clef = Clef('treble')
+            >>> attach(clef, staff)
+            >>> clef = Clef('alto')
+            >>> attach(clef, staff[1])
+            >>> clef = Clef('bass')
+            >>> attach(clef, staff[2])
+            >>> clef = Clef('treble^8')
+            >>> attach(clef, staff[3])
+            >>> clef = Clef('bass_8')
+            >>> attach(clef, staff[4])
+            >>> clef = Clef('tenor')
+            >>> attach(clef, staff[5])
+            >>> clef = Clef('bass^15')
+            >>> attach(clef, staff[6])
+            >>> clef = Clef('percussion')
+            >>> attach(clef, staff[7])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \clef "treble"
+                c'8
+                \clef "alto"
+                d'8
+                \clef "bass"
+                e'8
+                \clef "treble^8"
+                f'8
+                \clef "bass_8"
+                g'8
+                \clef "tenor"
+                a'8
+                \clef "bass^15"
+                b'8
+                \clef "percussion"
+                c''8
+            }
 
     '''
 
@@ -105,26 +109,28 @@ class Clef(AbjadObject):
     def __copy__(self, *args):
         r'''Copies clef.
 
-        ::
+        ..  container:: example
 
-            >>> import copy
-            >>> clef_1 = Clef('alto')
-            >>> clef_2 = copy.copy(clef_1)
+            ::
 
-        ::
+                >>> import copy
+                >>> clef_1 = Clef('alto')
+                >>> clef_2 = copy.copy(clef_1)
 
-            >>> clef_1, clef_2
-            (Clef(name='alto'), Clef(name='alto'))
+            ::
 
-        ::
+                >>> clef_1, clef_2
+                (Clef(name='alto'), Clef(name='alto'))
 
-            >>> clef_1 == clef_2
-            True
+            ::
 
-        ::
+                >>> clef_1 == clef_2
+                True
 
-            >>> clef_1 is clef_2
-            False
+            ::
+
+                >>> clef_1 is clef_2
+                False
 
         Returns new clef.
         '''
@@ -134,21 +140,23 @@ class Clef(AbjadObject):
         r'''Is true when `expr` is a clef with name equal to that of this clef.
         Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> clef_1 = Clef('treble')
-            >>> clef_2 = Clef('alto')
+            ::
 
-        ::
+                >>> clef_1 = Clef('treble')
+                >>> clef_2 = Clef('alto')
 
-            >>> clef_1 == clef_1
-            True
-            >>> clef_1 == clef_2
-            False
-            >>> clef_2 == clef_1
-            False
-            >>> clef_2 == clef_2
-            True
+            ::
+
+                >>> clef_1 == clef_1
+                True
+                >>> clef_1 == clef_2
+                False
+                >>> clef_2 == clef_1
+                False
+                >>> clef_2 == clef_2
+                True
 
         Returns boolean.
         '''
@@ -162,13 +170,15 @@ class Clef(AbjadObject):
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> clef = Clef('treble')
-            >>> print(format(clef))
-            indicatortools.Clef(
-                name='treble',
-                )
+            ::
+
+                >>> clef = Clef('treble')
+                >>> print(format(clef))
+                indicatortools.Clef(
+                    name='treble',
+                    )
 
         Returns string.
         '''
@@ -190,21 +200,23 @@ class Clef(AbjadObject):
         r'''Is true when clef of `arg` does not equal clef name of clef.
         Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> clef_1 = Clef('treble')
-            >>> clef_2 = Clef('alto')
+            ::
 
-        ::
+                >>> clef_1 = Clef('treble')
+                >>> clef_2 = Clef('alto')
 
-            >>> clef_1 != clef_1
-            False
-            >>> clef_1 != clef_2
-            True
-            >>> clef_2 != clef_1
-            True
-            >>> clef_2 != clef_2
-            False
+            ::
+
+                >>> clef_1 != clef_1
+                False
+                >>> clef_1 != clef_2
+                True
+                >>> clef_2 != clef_1
+                True
+                >>> clef_2 != clef_2
+                False
 
         Returns boolean.
         '''
@@ -269,21 +281,51 @@ class Clef(AbjadObject):
 
     @property
     def middle_c_position(self):
-        r'''Middle C position of clef.
+        r'''Gets middle C position of clef.
 
-        ::
+        ..  container:: example
 
-            >>> clef = Clef('treble')
-            >>> clef.middle_c_position
-            -6
+            **Example 1.** Gets staff position of middle C in treble clef:
 
-        Returns integer number of stafflines.
+            ::
+
+                >>> Clef('treble').middle_c_position
+                -6
+
+        ..  container:: example
+
+            **Example 2.** Gets staff position of middle C in alto clef:
+
+            ::
+
+                >>> Clef('alto').middle_c_position
+                0
+
+        Returns nonnegative integer staff position.
         '''
         return self._middle_c_position
 
     @property
     def name(self):
-        r'''Name of clef.
+        r'''Gets name of clef.
+
+        ..  container:: example
+
+            **Example 1.** Gets name treble clef:
+
+            ::
+
+                >>> Clef('treble').name
+                'treble'
+
+        ..  container:: example
+
+            **Example 2.** Gets name of alto clef:
+
+            ::
+
+                >>> Clef('alto').name
+                'alto'
 
         Returns string.
         '''
