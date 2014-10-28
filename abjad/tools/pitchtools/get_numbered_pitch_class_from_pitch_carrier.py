@@ -18,7 +18,7 @@ def get_numbered_pitch_class_from_pitch_carrier(pitch_carrier):
     '''
     from abjad.tools import pitchtools
 
-    pitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier)
+    pitch = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier)
     pitch_class = pitchtools.NumberedPitchClass(pitch)
 
     return pitch_class

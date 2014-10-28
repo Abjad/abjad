@@ -182,10 +182,8 @@ class NumberedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         # get pitches
-        pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(
-            pitch_carrier_1)
-        pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(
-            pitch_carrier_2)
+        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
         # get difference in semitones
         number = pitchtools.NumberedPitch(pitch_2).pitch_number - \
             pitchtools.NumberedPitch(pitch_1).pitch_number

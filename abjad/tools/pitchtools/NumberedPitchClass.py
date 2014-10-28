@@ -268,8 +268,7 @@ class NumberedPitchClass(PitchClass):
 
     def _initialize_by_pitch_carrier(self, expr):
         from abjad.tools import pitchtools
-        named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
-            expr)
+        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(expr)
         self._initialize_by_named_pitch(named_pitch)
 
     def _initialize_by_string(self, expr):

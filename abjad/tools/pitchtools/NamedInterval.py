@@ -420,10 +420,8 @@ class NamedInterval(Interval):
         Returns named interval.
         '''
         from abjad.tools import pitchtools
-        pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(
-            pitch_carrier_1)
-        pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(
-            pitch_carrier_2)
+        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
         degree_1 = pitch_1.diatonic_pitch_number
         degree_2 = pitch_2.diatonic_pitch_number
         named_interval_number = abs(degree_1 - degree_2) + 1

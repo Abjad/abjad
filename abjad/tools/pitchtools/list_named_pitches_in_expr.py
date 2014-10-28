@@ -29,7 +29,7 @@ def list_named_pitches_in_expr(expr):
 
     # TODO: remove try-except
     try:
-        result = pitchtools.get_named_pitch_from_pitch_carrier(expr)
+        result = pitchtools.NamedPitch.from_pitch_carrier(expr)
         return pitchtools.PitchSegment(
             items=(result,),
             item_class=pitchtools.NamedPitch,
