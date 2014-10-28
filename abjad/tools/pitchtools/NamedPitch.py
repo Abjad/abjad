@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import math
+import numbers
 import re
 from abjad.tools import mathtools
 from abjad.tools import stringtools
@@ -876,3 +877,118 @@ class NamedPitch(Pitch):
             octave -= 1
         pitch = NamedPitch(pitch_name, octave)
         return pitch
+
+    @staticmethod
+    def from_pitch_carrier(pitch_carrier):
+        r'''Initializes named pitch from `pitch_carrier`.
+
+        ..  container:: example
+
+            **Example 1.** Initializes named pitch from named pitch:
+
+            ::
+
+                >>> pitch = NamedPitch('df', 5)
+                >>> NamedPitch.from_pitch_carrier(pitch)
+                NamedPitch("df''")
+
+        ..  container:: example
+
+            **Example 2.** Initializes named pitch from note:
+
+            ::
+
+                >>> note = Note("df''4")
+                >>> NamedPitch.from_pitch_carrier(note)
+                NamedPitch("df''")
+
+        ..  container:: example
+
+            **Example 3.** Initializes named pitch from note head:
+
+            ::
+
+                >>> note = Note("df''4")
+                >>> NamedPitch.from_pitch_carrier(note.note_head)
+                NamedPitch("df''")
+
+        ..  container:: example
+
+            **Example 4.** Initializes named pitch from chord:
+
+            ::
+
+                >>> chord = Chord("<df''>4")
+                >>> NamedPitch.from_pitch_carrier(chord)
+                NamedPitch("df''")
+
+        ..  container:: example
+
+            **Example 5.** Initializes named pitch from integer:
+
+            ::
+
+                >>> NamedPitch.from_pitch_carrier(13)
+                NamedPitch("cs''")
+
+        ..  container:: example
+
+            **Example 6.** Initializes named pitch from numbered pitch-class:
+
+            ::
+
+                >>> pitch_class = pitchtools.NumberedPitchClass(7)
+                >>> NamedPitch.from_pitch_carrier(pitch_class)
+                NamedPitch("g'")
+
+        Raises value error when `pitch_carrier` carries no pitch.
+
+        Raises value error when `pitch_carrier` carries more than one pitch.
+
+        Returns new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        if isinstance(pitch_carrier, pitchtools.NamedPitch):
+            return pitch_carrier
+        elif isinstance(pitch_carrier, pitchtools.NumberedPitch):
+            return pitchtools.NamedPitch(pitch_carrier)
+        elif isinstance(pitch_carrier, numbers.Number):
+            return pitchtools.NamedPitch(pitch_carrier)
+        elif isinstance(pitch_carrier, scoretools.Note):
+            pitch = pitch_carrier.written_pitch
+            if pitch is not None:
+                return NamedPitch.from_pitch_carrier(pitch)
+            else:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, scoretools.NoteHead):
+            pitch = pitch_carrier.written_pitch
+            if pitch is not None:
+                return NamedPitch.from_pitch_carrier(pitch)
+            else:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, scoretools.Chord):
+            pitches = pitch_carrier.written_pitches
+            if len(pitches) == 0:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+            elif len(pitches) == 1:
+                return NamedPitch.from_pitch_carrier(pitches[0])
+            else:
+                message = 'multiple pitches found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, pitchtools.NumberedPitchClass):
+            named_pitch_class = pitch_carrier.named_pitch_class
+            named_pitch = pitchtools.NamedPitch(named_pitch_class)
+            return named_pitch
+        else:
+            message = 'pitch carrier {!r} must be'
+            message += ' pitch, note, note head or chord.'
+            message = message.format(pitch_carrier)
+            raise TypeError(message)
