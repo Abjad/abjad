@@ -8,25 +8,41 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class Octave(AbjadObject):
     r'''An octave.
 
-    ::
+    ..  container:: example:
 
-        >>> pitchtools.Octave(4)
-        Octave(4)
+        **Example 1.** Initializes octave from integer:
 
-    ::
+        ::
 
-        >>> pitchtools.Octave(",,")
-        Octave(1)
+            >>> pitchtools.Octave(4)
+            Octave(4)
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.Octave(NamedPitch("cs''"))
-        Octave(5)
+        **Example 2.** Initializes octave from octave-tick string:
 
-    ::
+        ::
 
-        >>> pitchtools.Octave(pitchtools.Octave(2))
-        Octave(2)
+            >>> pitchtools.Octave(",,")
+            Octave(1)
+
+    ..  container:: example
+
+        **Example 3.** Initializes octave from named pitch:
+
+        ::
+
+            >>> pitchtools.Octave(NamedPitch("cs''"))
+            Octave(5)
+
+    ..  container:: example
+
+        **Example 4.** Initializes octave from other octave:
+
+        ::
+
+            >>> pitchtools.Octave(pitchtools.Octave(2))
+            Octave(2)
 
     '''
 
@@ -82,23 +98,26 @@ class Octave(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        r'''True if `other` is octave with same octave number. Otherwise False.
+        r'''Is true when `other` is octave with same octave number.
+        Otherwise False.
 
-        ::
+        ..  container:: example
 
-            >>> octave = pitchtools.Octave(4)
-            >>> octave == pitchtools.Octave(4)
-            True
+            ::
 
-        ::
+                >>> octave = pitchtools.Octave(4)
+                >>> octave == pitchtools.Octave(4)
+                True
 
-            >>> octave == pitchtools.Octave(3)
-            False
+            ::
 
-        ::
+                >>> octave == pitchtools.Octave(3)
+                False
 
-            >>> octave == 'foo'
-            False
+            ::
+
+                >>> octave == 'foo'
+                False
 
         Returns boolean.
         '''
@@ -109,12 +128,14 @@ class Octave(AbjadObject):
             return False
 
     def __float__(self):
-        r'''Cast octave as floating-point number.
+        r'''Casts octave as floating-point number.
 
-        ::
+        ..  container:: example
 
-            >>> float(pitchtools.Octave(3))
-            3.0
+            ::
+
+                >>> float(pitchtools.Octave(3))
+                3.0
 
         Returns floating-point number.
         '''
@@ -130,34 +151,38 @@ class Octave(AbjadObject):
     def __int__(self):
         r'''Changes octave to integer.
 
-        ::
+        ..  container:: example
 
-            >>> int(pitchtools.Octave(3))
-            3
+            ::
+
+                >>> int(pitchtools.Octave(3))
+                3
 
         Returns integer.
         '''
         return self.octave_number
 
     def __str__(self):
-        r'''String representation of octave.
+        r'''Gets string representation of octave.
 
         Defined equal to LilyPond octave / tick representation of octave.
 
-        ::
+        ..  container:: example
 
-            >>> str(pitchtools.Octave(4))
-            "'"
+            ::
 
-        ::
+                >>> str(pitchtools.Octave(4))
+                "'"
 
-            >>> str(pitchtools.Octave(1))
-            ',,'
+            ::
 
-        ::
+                >>> str(pitchtools.Octave(1))
+                ',,'
 
-            >>> str(pitchtools.Octave(3))
-            ''
+            ::
+
+                >>> str(pitchtools.Octave(3))
+                ''
 
         Returns string.
         '''
@@ -185,12 +210,14 @@ class Octave(AbjadObject):
 
     @property
     def octave_number(self):
-        r'''Octave number of octave.
+        r'''Gets octave number of octave.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave(5).octave_number
-            5
+            ::
+
+                >>> pitchtools.Octave(5).octave_number
+                5
 
         Returns integer.
         '''
@@ -198,22 +225,24 @@ class Octave(AbjadObject):
 
     @property
     def octave_tick_string(self):
-        r"""LilyPond octave tick representation of octave.
+        r"""Gets LilyPond octave tick representation of octave.
 
-        ::
+        ..  container:: example
 
-            >>> for i in range(-1, 9):
-            ...     print(i, pitchtools.Octave(i).octave_tick_string)
-            -1 ,,,,
-            0  ,,,
-            1  ,,
-            2  ,
-            3
-            4  '
-            5  ''
-            6  '''
-            7  ''''
-            8  '''''
+            ::
+
+                >>> for i in range(-1, 9):
+                ...     print(i, pitchtools.Octave(i).octave_tick_string)
+                -1 ,,,,
+                0  ,,,
+                1  ,,
+                2  ,
+                3
+                4  '
+                5  ''
+                6  '''
+                7  ''''
+                8  '''''
 
         Returns string.
         """
@@ -221,22 +250,24 @@ class Octave(AbjadObject):
 
     @property
     def pitch_number(self):
-        r'''Pitch number of first note in octave.
+        r'''Gets pitch number of first note in octave.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave(4).pitch_number
-            0
+            ::
 
-        ::
+                >>> pitchtools.Octave(4).pitch_number
+                0
 
-            >>> pitchtools.Octave(5).pitch_number
-            12
+            ::
 
-        ::
+                >>> pitchtools.Octave(5).pitch_number
+                12
 
-            >>> pitchtools.Octave(3).pitch_number
-            -12
+            ::
+
+                >>> pitchtools.Octave(3).pitch_number
+                -12
 
         Returns integer.
         '''
@@ -244,12 +275,14 @@ class Octave(AbjadObject):
 
     @property
     def pitch_range(self):
-        r'''Pitch range of octave.
+        r'''Gets pitch range of octave.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave(5).pitch_range
-            PitchRange(range_string='[C5, C6)')
+            ::
+
+                >>> pitchtools.Octave(5).pitch_range
+                PitchRange(range_string='[C5, C6)')
 
         Returns pitch range.
         '''
@@ -266,10 +299,12 @@ class Octave(AbjadObject):
     def from_pitch_name(cls, pitch_name):
         '''Makes octave from `pitch_name`.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave.from_pitch_name('cs')
-            Octave(3)
+            ::
+
+                >>> pitchtools.Octave.from_pitch_name('cs')
+                Octave(3)
 
         Returns integer.
         '''
@@ -289,10 +324,12 @@ class Octave(AbjadObject):
     def from_pitch_number(cls, pitch_number):
         r'''Makes octave from `pitch_number`.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave.from_pitch_number(13)
-            Octave(5)
+            ::
+
+                >>> pitchtools.Octave.from_pitch_number(13)
+                Octave(5)
 
         Returns octave.
         '''
@@ -303,10 +340,12 @@ class Octave(AbjadObject):
     def is_octave_tick_string(cls, expr):
         '''Is true when `expr` is an octave tick string. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Octave.is_octave_tick_string(',,,')
-            True
+            ::
+
+                >>> pitchtools.Octave.is_octave_tick_string(',,,')
+                True
 
         The regex ``^,+|'+|$`` underlies this predicate.
 
