@@ -255,3 +255,116 @@ class NumberedInterval(Interval):
         Returns nonnegative number.
         '''
         return self.number
+
+    ### PUBLIC METHODS ###
+
+    def to_named_interval(self, staff_positions):
+        r'''Changes numbered interval to named interval that encompasses
+        `staff_positions`.
+
+        ..  container:: example
+
+            ::
+
+                >>> numbered_interval = pitchtools.NumberedInterval(1)
+                >>> numbered_interval.to_named_interval(2)
+                NamedInterval('+m2')
+
+        Returns named interval.
+        '''
+        from abjad.tools import pitchtools
+        direction_number = mathtools.sign(self.number)
+        if staff_positions == 1:
+            if self.number % 12 == 11:
+                quality_string = 'augmented'
+            elif self.number % 12 == 0:
+                quality_string = 'perfect'
+            elif self.number % 12 == 1:
+                quality_string = 'augmented'
+            if not direction_number == 0:
+                staff_positions *= direction_number
+            named_interval = pitchtools.NamedInterval(
+                quality_string, staff_positions)
+            return named_interval
+        named_interval_class_number = staff_positions % 7
+        numbered_interval_class_number = abs(self.number) % 12
+        if named_interval_class_number == 0:
+            if numbered_interval_class_number == 9:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 10:
+                quality_string = 'minor'
+            elif numbered_interval_class_number == 11:
+                quality_string = 'major'
+            elif numbered_interval_class_number == 0:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 1:
+            if numbered_interval_class_number == 11:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 0:
+                quality_string = 'perfect'
+            elif numbered_interval_class_number == 1:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 2:
+            if numbered_interval_class_number == 0:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 1:
+                quality_string = 'minor'
+            elif numbered_interval_class_number == 2:
+                quality_string = 'major'
+            elif numbered_interval_class_number == 3:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 3:
+            if numbered_interval_class_number == 2:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 3:
+                quality_string = 'minor'
+            elif numbered_interval_class_number == 4:
+                quality_string = 'major'
+            elif numbered_interval_class_number == 5:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 4:
+            if numbered_interval_class_number == 4:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 5:
+                quality_string = 'perfect'
+            elif numbered_interval_class_number == 6:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 5:
+            if numbered_interval_class_number == 6:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 7:
+                quality_string = 'perfect'
+            elif numbered_interval_class_number == 8:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 6:
+            if numbered_interval_class_number == 7:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 8:
+                quality_string = 'minor'
+            elif numbered_interval_class_number == 9:
+                quality_string = 'major'
+            elif numbered_interval_class_number == 10:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 7:
+            if numbered_interval_class_number == 9:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 10:
+                quality_string = 'minor'
+            elif numbered_interval_class_number == 11:
+                quality_string = 'major'
+            elif numbered_interval_class_number == 0:
+                quality_string = 'augmented'
+        elif named_interval_class_number == 8:
+            if numbered_interval_class_number == 11:
+                quality_string = 'diminished'
+            elif numbered_interval_class_number == 0:
+                quality_string = 'perfect'
+            elif numbered_interval_class_number == 1:
+                quality_string = 'augmented'
+        if not direction_number == 0:
+            staff_positions *= direction_number
+        named_interval = pitchtools.NamedInterval(
+            quality_string, 
+            staff_positions,
+            )
+        return named_interval
