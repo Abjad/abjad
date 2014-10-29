@@ -707,6 +707,169 @@ class NamedPitch(Pitch):
         pitch = type(self)(name, octave.octave_number)
         return pitch
 
+    def to_staff_position(self, clef=None):
+        r'''Changes named pitch to staff position with optional `clef`.
+
+        ..  container:: example
+
+            **Example 1.** Changes C#5 to absolute staff position:
+
+            ::
+
+                >>> NamedPitch('C#5').to_staff_position()
+                StaffPosition(number=7)
+
+        ..  container:: example
+
+            **Example 2.** Changes C#5 to treble staff position:
+
+            ::
+
+            
+                >>> NamedPitch('C#5').to_staff_position(clef=Clef('treble'))
+                StaffPosition(number=1)
+
+        ..  container:: example
+
+            **Example 3.** Changes C#5 to bass staff position:
+
+            ::
+
+            
+                >>> NamedPitch('C#5').to_staff_position(clef=Clef('bass'))
+                StaffPosition(number=13)
+
+        ..  container:: example
+
+            **Example 4.** Marks up absolute staff position of many pitches:
+
+            ::
+
+                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> for note in staff:
+                ...     staff_position = note.written_pitch.to_staff_position()
+                ...     markup = Markup(staff_position.number)
+                ...     attach(markup, note)
+                >>> override(staff).text_script.staff_padding = 5
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #5
+                } {
+                    g16 - \markup { -3 }
+                    a16 - \markup { -2 }
+                    b16 - \markup { -1 }
+                    c'16 - \markup { 0 }
+                    d'16 - \markup { 1 }
+                    e'16 - \markup { 2 }
+                    f'16 - \markup { 3 }
+                    g'16 - \markup { 4 }
+                    a'16 - \markup { 5 }
+                    b'16 - \markup { 6 }
+                    c''16 - \markup { 7 }
+                    d''16 - \markup { 8 }
+                    e''16 - \markup { 9 }
+                    f''16 - \markup { 10 }
+                    g''16 - \markup { 11 }
+                    a''16 - \markup { 12 }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Marks up treble staff position of many pitches:
+
+            ::
+
+                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> clef = Clef('treble')
+                >>> for note in staff:
+                ...     staff_position = note.written_pitch.to_staff_position(
+                ...         clef=clef
+                ...         )
+                ...     markup = Markup(staff_position.number)
+                ...     attach(markup, note)
+                >>> override(staff).text_script.staff_padding = 5
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #5
+                } {
+                    g16 - \markup { -9 }
+                    a16 - \markup { -8 }
+                    b16 - \markup { -7 }
+                    c'16 - \markup { -6 }
+                    d'16 - \markup { -5 }
+                    e'16 - \markup { -4 }
+                    f'16 - \markup { -3 }
+                    g'16 - \markup { -2 }
+                    a'16 - \markup { -1 }
+                    b'16 - \markup { 0 }
+                    c''16 - \markup { 1 }
+                    d''16 - \markup { 2 }
+                    e''16 - \markup { 3 }
+                    f''16 - \markup { 4 }
+                    g''16 - \markup { 5 }
+                    a''16 - \markup { 6 }
+                }
+
+        ..  container:: example
+
+            **Example 6.** Marks up bass staff position of many pitches:
+
+            ::
+
+                >>> staff = Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
+                >>> clef = Clef('bass')
+                >>> attach(clef, staff)
+                >>> for note in staff:
+                ...     staff_position = note.written_pitch.to_staff_position(
+                ...         clef=clef
+                ...         )
+                ...     markup = Markup(staff_position.number)
+                ...     attach(markup, note)
+                >>> override(staff).text_script.staff_padding = 5
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #5
+                } {
+                    \clef "bass"
+                    g,16 - \markup { -4 }
+                    a,16 - \markup { -3 }
+                    b,16 - \markup { -2 }
+                    c16 - \markup { -1 }
+                    d16 - \markup { 0 }
+                    e16 - \markup { 1 }
+                    f16 - \markup { 2 }
+                    g16 - \markup { 3 }
+                    a16 - \markup { 4 }
+                    b16 - \markup { 5 }
+                    c'16 - \markup { 6 }
+                    d'16 - \markup { 7 }
+                    e'16 - \markup { 8 }
+                    f'16 - \markup { 9 }
+                    g'16 - \markup { 10 }
+                    a'16 - \markup { 11 }
+                }
+
+        Returns staff position.
+        '''
+        from abjad.tools import pitchtools
+        staff_position_number = self.diatonic_pitch_number
+        if clef is not None:
+            staff_position_number += clef.middle_c_position.number
+        staff_position = pitchtools.StaffPosition(staff_position_number)
+        return staff_position
+
     def transpose(self, expr):
         r'''Transposes named pitch by `expr`.
 
@@ -737,64 +900,6 @@ class NamedPitch(Pitch):
         return type(self)(transposed_pitch)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def absolute_staff_position(self):
-        r'''Gets absolute staff position of named pitch.
-
-        ..  container:: example
-
-            **Example 1.** Gets absolute staff position of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").absolute_staff_position
-                StaffPosition(number=7)
-
-        ..  container:: example
-
-            **Example 2.** Gets absolute staff position of many pitches:
-
-            ::
-
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> for note in staff:
-                ...     staff_position = note.written_pitch.absolute_staff_position
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
-                >>> override(staff).text_script.staff_padding = 5
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #5
-                } {
-                    g16 - \markup { -3 }
-                    a16 - \markup { -2 }
-                    b16 - \markup { -1 }
-                    c'16 - \markup { 0 }
-                    d'16 - \markup { 1 }
-                    e'16 - \markup { 2 }
-                    f'16 - \markup { 3 }
-                    g'16 - \markup { 4 }
-                    a'16 - \markup { 5 }
-                    b'16 - \markup { 6 }
-                    c''16 - \markup { 7 }
-                    d''16 - \markup { 8 }
-                    e''16 - \markup { 9 }
-                    f''16 - \markup { 10 }
-                    g''16 - \markup { 11 }
-                    a''16 - \markup { 12 }
-                }
-
-        Absolute staff position is defined in terms of diatonic pitch number.
-
-        Returns integer.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.StaffPosition(self.diatonic_pitch_number)
 
     @property
     def accidental(self):
