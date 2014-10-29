@@ -1477,23 +1477,68 @@ class NamedPitch(Pitch):
                 StaffPosition(4)	f''
                 StaffPosition(5)	g''
 
+        ..  container:: example
+
+            **Example 2.** Initializes notes inside bass staff from staff
+            positions:
+
+            ::
+
+                >>> clef = Clef('bass')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	e,
+                StaffPosition(-5)	f,
+                StaffPosition(-4)	g,
+                StaffPosition(-3)	a,
+                StaffPosition(-2)	b,
+                StaffPosition(-1)	c
+                StaffPosition(0)	d
+                StaffPosition(1)	e
+                StaffPosition(2)	f
+                StaffPosition(3)	g
+                StaffPosition(4)	a
+                StaffPosition(5)	b
+
+        ..  container:: example
+
+            **Example 3.** Initializes notes inside alto staff from staff
+            positions:
+
+            ::
+
+                >>> clef = Clef('alto')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	d
+                StaffPosition(-5)	e
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
-        position_residue_to_pitch_name = {
-            0: 'b', 1: 'c', 2: 'd', 3: 'e', 4: 'f', 5: 'g', 6: 'a',
-            }
-        n = staff_position.number - (6 + clef.middle_c_position.number)
-        position_residue = n % 7
-        pitch_name = position_residue_to_pitch_name[position_residue]
-        if type(n) == int:
-            octave = 4 + int(n // 7) + 1
-        else:
-            octave = 4 + int(n / 7) + 1
-        if pitch_name == 'b':
-            octave -= 1
-        pitch = NamedPitch(pitch_name, octave)
-        return pitch
+        if not isinstance(staff_position, pitchtools.StaffPosition):
+            staff_position = pitchtools.StaffPosition(staff_position)
+        staff_position_number = staff_position.number
+        staff_position_number -= clef.middle_c_position.number
+        staff_position = pitchtools.StaffPosition(staff_position_number)
+        named_pitch = NamedPitch.from_absolute_staff_position(staff_position)
+        return named_pitch
 
     @staticmethod
     def from_pitch_carrier(pitch_carrier):
