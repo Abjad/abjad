@@ -1391,156 +1391,6 @@ class NamedPitch(Pitch):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_absolute_staff_position(staff_position):
-        r'''Initializes named pitch from absolute `staff_position`.
-
-        ..  container:: example
-
-            **Example 1.** Initializes named pitch from absolute staff position
-            7:
-
-            ::
-
-                >>> NamedPitch.from_absolute_staff_position(7)
-                NamedPitch("c''")
-
-        ..  container:: example
-            
-            **Example 2.** Initializes named pitches from many absolute staff
-            positions:
-
-            ::
-
-                >>> for staff_position in range(-4, 12):
-                ...     staff_position = pitchtools.StaffPosition(staff_position)
-                ...     pitch = NamedPitch.from_absolute_staff_position(staff_position)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
-                StaffPosition(6)	b'
-                StaffPosition(7)	c''
-                StaffPosition(8)	d''
-                StaffPosition(9)	e''
-                StaffPosition(10)	f''
-                StaffPosition(11)	g''
-
-        Returns new named pitch.
-        '''
-        from abjad.tools import pitchtools
-        if not isinstance(staff_position, pitchtools.StaffPosition):
-            staff_position = pitchtools.StaffPosition(staff_position)
-        octave_number = staff_position.number // 7 + 4
-        diatonic_pitch_class_number = staff_position.number % 7
-        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
-            diatonic_pitch_class_number]
-        pitch_number = 12 * (octave_number - 4)
-        pitch_number += pitch_class_number
-        named_pitch = NamedPitch(pitch_number)
-        return named_pitch
-
-    @staticmethod
-    def from_clef_and_staff_position(clef, staff_position):
-        r'''Initializes named pitch from `clef` and `staff_position`.
-
-        ..  container:: example
-
-            **Example 1.** Initializes notes inside treble staff from staff
-            positions:
-
-            ::
-
-                >>> clef = Clef('treble')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	c'
-                StaffPosition(-5)	d'
-                StaffPosition(-4)	e'
-                StaffPosition(-3)	f'
-                StaffPosition(-2)	g'
-                StaffPosition(-1)	a'
-                StaffPosition(0)	b'
-                StaffPosition(1)	c''
-                StaffPosition(2)	d''
-                StaffPosition(3)	e''
-                StaffPosition(4)	f''
-                StaffPosition(5)	g''
-
-        ..  container:: example
-
-            **Example 2.** Initializes notes inside bass staff from staff
-            positions:
-
-            ::
-
-                >>> clef = Clef('bass')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	e,
-                StaffPosition(-5)	f,
-                StaffPosition(-4)	g,
-                StaffPosition(-3)	a,
-                StaffPosition(-2)	b,
-                StaffPosition(-1)	c
-                StaffPosition(0)	d
-                StaffPosition(1)	e
-                StaffPosition(2)	f
-                StaffPosition(3)	g
-                StaffPosition(4)	a
-                StaffPosition(5)	b
-
-        ..  container:: example
-
-            **Example 3.** Initializes notes inside alto staff from staff
-            positions:
-
-            ::
-
-                >>> clef = Clef('alto')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_clef_and_staff_position(clef, staff_position)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	d
-                StaffPosition(-5)	e
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
-
-        Returns new named pitch.
-        '''
-        from abjad.tools import pitchtools
-        if not isinstance(staff_position, pitchtools.StaffPosition):
-            staff_position = pitchtools.StaffPosition(staff_position)
-        staff_position_number = staff_position.number
-        staff_position_number -= clef.middle_c_position.number
-        staff_position = pitchtools.StaffPosition(staff_position_number)
-        named_pitch = NamedPitch.from_absolute_staff_position(staff_position)
-        return named_pitch
-
-    @staticmethod
     def from_pitch_carrier(pitch_carrier):
         r'''Initializes named pitch from `pitch_carrier`.
 
@@ -1654,3 +1504,139 @@ class NamedPitch(Pitch):
             message += ' pitch, note, note head or chord.'
             message = message.format(pitch_carrier)
             raise TypeError(message)
+
+    @staticmethod
+    def from_staff_position(staff_position, clef=None):
+        r'''Initializes named pitch from `staff_position` and optional `clef`.
+
+        ..  container:: example
+
+            **Example 1.** Initializes notes from absolute staff positions:
+
+            ::
+
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_staff_position(staff_position)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	d
+                StaffPosition(-5)	e
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+
+        ..  container:: example
+
+            **Example 2.** Initializes notes inside treble staff from staff
+            positions:
+
+            ::
+
+                >>> clef = Clef('treble')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_staff_position(
+                ...         staff_position,
+                ...         clef=clef,
+                ...         )
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	c'
+                StaffPosition(-5)	d'
+                StaffPosition(-4)	e'
+                StaffPosition(-3)	f'
+                StaffPosition(-2)	g'
+                StaffPosition(-1)	a'
+                StaffPosition(0)	b'
+                StaffPosition(1)	c''
+                StaffPosition(2)	d''
+                StaffPosition(3)	e''
+                StaffPosition(4)	f''
+                StaffPosition(5)	g''
+
+        ..  container:: example
+
+            **Example 3.** Initializes notes inside bass staff from staff
+            positions:
+
+            ::
+
+                >>> clef = Clef('bass')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_staff_position(
+                ...         staff_position,
+                ...         clef=clef,
+                ...         )
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	e,
+                StaffPosition(-5)	f,
+                StaffPosition(-4)	g,
+                StaffPosition(-3)	a,
+                StaffPosition(-2)	b,
+                StaffPosition(-1)	c
+                StaffPosition(0)	d
+                StaffPosition(1)	e
+                StaffPosition(2)	f
+                StaffPosition(3)	g
+                StaffPosition(4)	a
+                StaffPosition(5)	b
+
+        ..  container:: example
+
+            **Example 4.** Initializes notes inside alto staff from staff
+            positions:
+
+            ::
+
+                >>> clef = Clef('alto')
+                >>> for n in range(-6, 6):
+                ...     staff_position = pitchtools.StaffPosition(n)
+                ...     pitch = NamedPitch.from_staff_position(
+                ...         staff_position,
+                ...         clef=clef,
+                ...         )
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	d
+                StaffPosition(-5)	e
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+
+        Returns new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        if not isinstance(staff_position, pitchtools.StaffPosition):
+            staff_position = pitchtools.StaffPosition(staff_position)
+        if clef is not None:
+            offset_staff_position_number = staff_position.number
+            offset_staff_position_number -= clef.middle_c_position.number
+            offset_staff_position = pitchtools.StaffPosition(
+                offset_staff_position_number)
+        else:
+            offset_staff_position = staff_position
+        octave_number = offset_staff_position.number // 7 + 4
+        diatonic_pitch_class_number = offset_staff_position.number % 7
+        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+            diatonic_pitch_class_number]
+        pitch_number = 12 * (octave_number - 4)
+        pitch_number += pitch_class_number
+        named_pitch = NamedPitch(pitch_number)
+        return named_pitch
