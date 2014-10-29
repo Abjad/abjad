@@ -647,17 +647,60 @@ class NamedPitch(Pitch):
 
     @property
     def diatonic_pitch_number(self):
-        r'''Diatonic pitch number of named pitch.
+        r'''Gets diatonic pitch number of named pitch.
 
-        ::
+        ..  container:: example
 
-            >>> NamedPitch("cs''").diatonic_pitch_number
-            7
+            **Example 1.** Gets diatonic pitch number of C#5:
+
+            ::
+
+                >>> NamedPitch("cs''").diatonic_pitch_number
+                7
+
+        ..  container:: example
+
+            **Example 2.** Gets diatonic pitch numbers of many pitches:
+
+            ::
+
+                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> for note in staff:
+                ...     number = note.written_pitch.diatonic_pitch_number
+                ...     markup = Markup(number)
+                ...     attach(markup, note)
+                >>> override(staff).text_script.staff_padding = 5
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #5
+                } {
+                    g16 - \markup { -3 }
+                    a16 - \markup { -2 }
+                    b16 - \markup { -1 }
+                    c'16 - \markup { 0 }
+                    d'16 - \markup { 1 }
+                    e'16 - \markup { 2 }
+                    f'16 - \markup { 3 }
+                    g'16 - \markup { 4 }
+                    a'16 - \markup { 5 }
+                    b'16 - \markup { 6 }
+                    c''16 - \markup { 7 }
+                    d''16 - \markup { 8 }
+                    e''16 - \markup { 9 }
+                    f''16 - \markup { 10 }
+                    g''16 - \markup { 11 }
+                    a''16 - \markup { 12 }
+                }
 
         Returns integer.
         '''
-        return ((self._octave_number - 4) * 7) + \
-            self._diatonic_pitch_class_number
+        diatonic_pitch_number = 7 * (self.octave_number - 4)
+        diatonic_pitch_number += self.diatonic_pitch_class_number
+        return diatonic_pitch_number
 
     @property
     def named_pitch(self):
