@@ -83,7 +83,7 @@ class Clef(AbjadObject):
         'baritone': 4,
         'varbaritone': 4,
         'percussion': 0,
-        'tab': 0
+        'tab': 0,
         }
 
     _format_slot = 'opening'
@@ -240,6 +240,23 @@ class Clef(AbjadObject):
             )
 
     @property
+    def _clef_name_to_staff_position_zero(self, clef_name):
+        from abjad.tools import pitchtools
+        return {
+            'treble': pitchtools.NamedPitch('B4'),
+            'alto': pitchtools.NamedPitch('C4'),
+            'tenor': pitchtools.NamedPitch('A3'),
+            'bass': pitchtools.NamedPitch('D3'),
+            'french': pitchtools.NamedPitch('D5'),
+            'soprano': pitchtools.NamedPitch('G4'),
+            'mezzosoprano': pitchtools.NamedPitch('E4'),
+            'baritone': pitchtools.NamedPitch('F3'),
+            'varbaritone': pitchtools.NamedPitch('F3'),
+            'percussion': None,
+            'tab': None,
+            }[clef_name]
+
+    @property
     def _contents_repr_string(self):
         return repr(self._name)
 
@@ -378,6 +395,9 @@ class Clef(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets staff positions of fourth-octave pitches
+            in treble clef:
+
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -397,9 +417,56 @@ class Clef(AbjadObject):
                 b'	StaffPosition(0)
                 c''	StaffPosition(1)
 
+        ..  container:: example
+
+            **Example 2.** Gets staff positions of third-octave pitches
+            in bass clef:
+
+            ::
+
+                >>> staff = Staff("c8 d8 e8 f8 g8 a8 b8 c'8")
+                >>> clef = Clef('bass')
+                >>> for note in staff:
+                ...     named_pitch = note.written_pitch
+                ...     staff_position = clef.named_pitch_to_staff_position(named_pitch)
+                ...     message = '{}\t{!s}'
+                ...     message = message.format(named_pitch, staff_position) 
+                ...     print(message)
+
+            .. todo:: Make this work.
+
         Returns staff position.
         '''
         from abjad.tools import pitchtools
         number = abs(named_pitch.diatonic_pitch_number)
         number += self.middle_c_position.number
         return pitchtools.StaffPosition(number)
+
+    def staff_position_to_named_pitch(self, staff_position):
+        r'''Changes `staff_position` to named pitch.
+
+        ..  container:: example
+
+            **Example 1.** Gets named pitches inside treble staff:
+
+            ::
+
+                >>> clef = Clef('treble')
+                >>> for staff_position in range(-4, 5):
+                ...     named_pitch = clef.staff_position_to_named_pitch(staff_position)
+                ...     message = '{}\t{!s}'
+                ...     message = message.format(staff_position, named_pitch) 
+                ...     print(message)
+
+
+        Returns named pitch.
+        '''
+        from abjad.tools import pitchtools
+        if not isinstance(staff_position, pitchtools.StaffPosition):
+            staff_position = pitchtools.StaffPosition(staff_position)
+        center_pitch = self._clef_name_to_staff_position_zero(self.name)
+        diatonic_pitch_number = center_pitch.diatonic_pitch_number
+        diatonic_pitch_number += staff_position.number
+        named_pitch = pitchtools.NamedPitch.from_diatonic_pitch_number(
+            diatonic_pitch_number)
+        return named_pitch

@@ -1382,11 +1382,11 @@ class NamedPitch(Pitch):
         Returns integer or float.
         '''
         from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        return class_._diatonic_pitch_class_number_to_pitch_class_number[
-            self.diatonic_pitch_class_number] + \
-            self.alteration_in_semitones + \
-            (12 * (self._octave_number - 4))
+        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+            self.diatonic_pitch_class_number]
+        pitch_number = pitch_class_number + 12 * (self.octave_number - 4)
+        pitch_number += self.alteration_in_semitones
+        return pitch_number
 
     ### PUBLIC METHODS ###
 
@@ -1394,11 +1394,58 @@ class NamedPitch(Pitch):
     def from_absolute_staff_position(staff_position):
         r'''Initializes named pitch from absolute `staff_position`.
 
-        ..  todo:: Implement me.
+        ..  container:: example
+
+            **Example 1.** Initializes named pitch from absolute staff position
+            7:
+
+            ::
+
+                >>> NamedPitch.from_absolute_staff_position(7)
+                NamedPitch("c''")
+
+        ..  container:: example
+            
+            **Example 2.** Initializes named pitches from many absolute staff
+            positions:
+
+            ::
+
+                >>> for staff_position in range(-4, 12):
+                ...     staff_position = pitchtools.StaffPosition(staff_position)
+                ...     pitch = NamedPitch.from_absolute_staff_position(staff_position)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+                StaffPosition(6)	b'
+                StaffPosition(7)	c''
+                StaffPosition(8)	d''
+                StaffPosition(9)	e''
+                StaffPosition(10)	f''
+                StaffPosition(11)	g''
 
         Returns new named pitch.
         '''
-        raise NotImplementedError
+        from abjad.tools import pitchtools
+        if not isinstance(staff_position, pitchtools.StaffPosition):
+            staff_position = pitchtools.StaffPosition(staff_position)
+        octave_number = staff_position.number // 7 + 4
+        diatonic_pitch_class_number = staff_position.number % 7
+        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+            diatonic_pitch_class_number]
+        pitch_number = 12 * (octave_number - 4)
+        pitch_number += pitch_class_number
+        named_pitch = NamedPitch(pitch_number)
+        return named_pitch
 
     @staticmethod
     def from_clef_and_staff_position(clef, staff_position):
