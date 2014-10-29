@@ -1391,6 +1391,16 @@ class NamedPitch(Pitch):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    def from_absolute_staff_position(staff_position):
+        r'''Initializes named pitch from absolute `staff_position`.
+
+        ..  todo:: Implement me.
+
+        Returns new named pitch.
+        '''
+        raise NotImplementedError
+
+    @staticmethod
     def from_clef_and_staff_position(clef, staff_position):
         r'''Initializes named pitch from `clef` and `staff_position`.
 
