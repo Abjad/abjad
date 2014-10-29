@@ -739,6 +739,64 @@ class NamedPitch(Pitch):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def absolute_staff_position(self):
+        r'''Gets absolute staff position of named pitch.
+
+        ..  container:: example
+
+            **Example 1.** Gets absolute staff position of C#5:
+
+            ::
+
+                >>> NamedPitch("cs''").absolute_staff_position
+                StaffPosition(number=7)
+
+        ..  container:: example
+
+            **Example 2.** Gets absolute staff position of many pitches:
+
+            ::
+
+                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> for note in staff:
+                ...     staff_position = note.written_pitch.absolute_staff_position
+                ...     markup = Markup(staff_position.number)
+                ...     attach(markup, note)
+                >>> override(staff).text_script.staff_padding = 5
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #5
+                } {
+                    g16 - \markup { -3 }
+                    a16 - \markup { -2 }
+                    b16 - \markup { -1 }
+                    c'16 - \markup { 0 }
+                    d'16 - \markup { 1 }
+                    e'16 - \markup { 2 }
+                    f'16 - \markup { 3 }
+                    g'16 - \markup { 4 }
+                    a'16 - \markup { 5 }
+                    b'16 - \markup { 6 }
+                    c''16 - \markup { 7 }
+                    d''16 - \markup { 8 }
+                    e''16 - \markup { 9 }
+                    f''16 - \markup { 10 }
+                    g''16 - \markup { 11 }
+                    a''16 - \markup { 12 }
+                }
+
+        Absolute staff position is defined in terms of diatonic pitch number.
+
+        Returns integer.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.StaffPosition(self.diatonic_pitch_number)
+
+    @property
     def accidental(self):
         r'''Gets accidental of named pitch.
 
