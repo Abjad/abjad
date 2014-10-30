@@ -214,3 +214,12 @@ def test_scoretools_Chord___init___20():
     chord_2 = Chord(chord_1, Duration(1, 8))
 
     assert format(chord_2) == "<c' e' g' bf'>8"
+
+
+def test_scoretools_Chord___init___21():
+    r'''Initialize chord with drum pitches.
+    '''
+
+    chord = Chord("<sn? bd! tamb>4")
+
+    assert format(chord) == '<bassdrum! snare? tambourine>4'

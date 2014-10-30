@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 import copy
-import re
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
 
@@ -38,6 +36,7 @@ class Note(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *args):
+        from abjad.ly import drums
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         assert len(args) in (0, 1, 2)
@@ -72,11 +71,18 @@ class Note(Leaf):
             raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration)
         if written_pitch is not None:
-            self.note_head = scoretools.NoteHead(
-                written_pitch=written_pitch,
-                is_cautionary=is_cautionary,
-                is_forced=is_forced
-                )
+            if written_pitch not in drums:
+                self.note_head = scoretools.NoteHead(
+                    written_pitch=written_pitch,
+                    is_cautionary=is_cautionary,
+                    is_forced=is_forced
+                    )
+            else:
+                self.note_head = scoretools.DrumNoteHead(
+                    written_pitch=written_pitch,
+                    is_cautionary=is_cautionary,
+                    is_forced=is_forced
+                    )
         else:
             self.note_head = None
         if len(args) == 1 and isinstance(args[0], Leaf):

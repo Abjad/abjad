@@ -228,3 +228,12 @@ def test_scoretools_Note___init___18():
     note = Note(chord)
 
     assert format(note) == "c'!?4"
+
+
+def test_scoretools_Note___init___19():
+    r'''Initialize note with drum pitch.
+    '''
+
+    note = Note('sn4')
+
+    assert format(note) == 'snare4'

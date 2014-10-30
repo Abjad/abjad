@@ -454,15 +454,20 @@ class LilyPondLexicalDefinition(AbjadObject):
     # <notes,figures>{ALPHAWORD}
     @lex.TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
+        from abjad.ly import drums
         pitch_names = self.client._pitch_names
-        if t.value in pitch_names:
+        value = t.value
+        if value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]
-        elif t.value in ['r', 's']:
+        elif value in drums:
+            t.type = 'NOTENAME_PITCH'
+            t.value = drums[value]
+        elif value in ['r', 's']:
             t.type = 'RESTNAME'
-        elif t.value == 'R':
+        elif value == 'R':
             t.type = 'MULTI_MEASURE_REST'
-        elif t.value == 'q':
+        elif value == 'q':
             if self.client._last_chord is None:
                 self.client._last_chord = scoretools.Chord(
                     ['c', 'g', "c'"], (1, 4))

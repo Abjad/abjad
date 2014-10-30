@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 import copy
-import re
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
 
@@ -34,6 +32,7 @@ class Chord(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *args):
+        from abjad.ly import drums
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         assert len(args) in (0, 1, 2)
@@ -80,11 +79,18 @@ class Chord(Leaf):
             is_forced = [False] * len(written_pitches)
         for written_pitch, cautionary, forced in zip(
             written_pitches, is_cautionary, is_forced):
-            note_head = scoretools.NoteHead(
-                written_pitch=written_pitch,
-                is_cautionary=cautionary,
-                is_forced=forced,
-                )
+            if written_pitch not in drums:
+                note_head = scoretools.NoteHead(
+                    written_pitch=written_pitch,
+                    is_cautionary=cautionary,
+                    is_forced=forced
+                    )
+            else:
+                note_head = scoretools.DrumNoteHead(
+                    written_pitch=written_pitch,
+                    is_cautionary=cautionary,
+                    is_forced=forced
+                    )
             self._note_heads.append(note_head)
         if len(args) == 1 and isinstance(args[0], Leaf):
             self._copy_override_and_set_from_leaf(args[0])
