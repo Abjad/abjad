@@ -328,7 +328,6 @@ class Timespan(BoundedObject):
 
         ::
 
-
             >>> new_timespan = timespan_1 | timespan_4
             >>> print(format(new_timespan))
             timespantools.TimespanInventory(
@@ -749,7 +748,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.axis
+            >>> timespantools.Timespan(0, 10).axis
             Offset(5, 1)
 
         Returns offset.
@@ -762,7 +761,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.duration
+            >>> timespantools.Timespan(0, 10).duration
             Duration(10, 1)
 
         Returns duration.
@@ -775,7 +774,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_closed
+            >>> timespantools.Timespan(0, 10).is_closed
             False
 
         Returns boolean.
@@ -788,7 +787,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_half_closed
+            >>> timespantools.Timespan(0, 10).is_half_closed
             True
 
         Returns boolean.
@@ -801,7 +800,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_half_open
+            >>> timespantools.Timespan(0, 10).is_half_open
             True
 
         Returns boolean.
@@ -812,7 +811,9 @@ class Timespan(BoundedObject):
     def is_left_closed(self):
         r'''True for all timespans.
 
-            >>> timespan_1.is_left_closed
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_left_closed
             True
 
         Returns boolean.
@@ -823,7 +824,9 @@ class Timespan(BoundedObject):
     def is_left_open(self):
         r'''False for all timespans.
 
-            >>> timespan_1.is_left_open
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_left_open
             False
 
         Returns boolean.
@@ -836,7 +839,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_open
+            >>> timespantools.Timespan(0, 10).is_open
             False
 
         Returns boolean.
@@ -847,7 +850,9 @@ class Timespan(BoundedObject):
     def is_right_closed(self):
         r'''False for all timespans.
 
-            >>> timespan_1.is_right_closed
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_right_closed
             False
 
         Returns boolean.
@@ -858,7 +863,9 @@ class Timespan(BoundedObject):
     def is_right_open(self):
         r'''True for all timespans.
 
-            >>> timespan_1.is_right_open
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_right_open
             True
 
         Returns boolean.
@@ -872,7 +879,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_well_formed
+            >>> timespantools.Timespan(0, 10).is_well_formed
             True
 
         Returns boolean.
@@ -885,7 +892,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.offsets
+            >>> timespantools.Timespan(0, 10).offsets
             (Offset(0, 1), Offset(10, 1))
 
         Returns offset pair.
@@ -898,7 +905,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.start_offset
+            >>> timespantools.Timespan(0, 10).start_offset
             Offset(0, 1)
 
         Returns offset.
@@ -911,7 +918,7 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.stop_offset
+            >>> timespantools.Timespan(0, 10).stop_offset
             Offset(10, 1)
 
         Returns offset.
