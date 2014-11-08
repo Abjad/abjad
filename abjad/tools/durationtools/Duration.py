@@ -130,6 +130,8 @@ class Duration(AbjadObject, fractions.Fraction):
         if (len(args) == 1 and 
             isinstance(args[0], mathtools.NonreducedFraction)):
             return fractions.Fraction.__new__(cls, *args[0].pair)
+        elif len(args) == 1 and hasattr(args[0], 'duration'):
+            args = args[0].numerator, args[0].denominator
         try:
             return fractions.Fraction.__new__(cls, *args)
         except TypeError:
