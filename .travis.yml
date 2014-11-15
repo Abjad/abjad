@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+install:
+  - sh scripts/travis/install-texlive.sh
+  - sh scripts/travis/install-pip.sh
+  - sh scripts/travis/install-lilypond.sh
+script:
+  - python setup.py build
+  - python setup.py install
