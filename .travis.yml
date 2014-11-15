@@ -4,8 +4,8 @@ python:
   - "3.4"
 install:
   - sh scripts/travis/install-texlive.sh
-  - sh scripts/travis/install-pip.sh
   - sh scripts/travis/install-lilypond.sh
+  - sh scripts/travis/install-pip.sh
 script:
   - python setup.py build
   - python setup.py install
