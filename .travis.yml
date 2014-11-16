@@ -11,4 +11,4 @@ install:
   - python setup.py install
 script:
   - py.test
-  - ajv doctest
+  - python ./abjad/scr/ajv doctest abjad
