@@ -6,7 +6,7 @@ def list_all_experimental_classes(modules=None):
 
     ::
 
-        >>> all_classes = documentationtools.list_all_experimental_classes()
+        >>> all_classes = documentationtools.list_all_experimental_classes()  # doctest: +SKIP
 
     '''
     from abjad.tools import documentationtools

@@ -10,7 +10,7 @@ def list_all_classes(modules=None):
     ::
 
         >>> all_classes = documentationtools.list_all_classes(
-        ...     modules='experimental',
+        ...     modules='abjad',
         ...     )
 
     '''
@@ -19,7 +19,7 @@ def list_all_classes(modules=None):
     all_classes = set()
     paths = []
     if modules is None:
-        paths.append(abjad_configuration.score_manager_directory)
+        paths.append(abjad_configuration.abjad_directory)
     elif isinstance(modules, str):
         module = importlib.import_module(modules)
         paths.extend(module.__path__)

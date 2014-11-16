@@ -6,7 +6,7 @@ def list_all_scoremanager_classes(modules=None):
 
     ::
 
-        >>> all_classes = documentationtools.list_all_scoremanager_classes()
+        >>> all_classes = documentationtools.list_all_scoremanager_classes()  # doctest: +SKIP
 
     '''
     from abjad.tools import documentationtools
