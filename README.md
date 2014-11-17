@@ -1,7 +1,7 @@
 Build Status
 ==============
 
-[![Build Status @ gkthiruvathukal/Abjad](https://travis-ci.org/gkthiruvathukal/abjad.svg?branch=master)](https://travis-ci.org/gkthiruvathukal/abjad)
+[![Build Status](https://travis-ci.org/Abjad/abjad.svg?branch=master)](https://travis-ci.org/Abjad/abjad)
 
 Abjad
 =====
