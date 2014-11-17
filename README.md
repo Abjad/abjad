@@ -1,8 +1,3 @@
-Build Status
-==============
-
-[![Build Status](https://travis-ci.org/Abjad/abjad.svg?branch=master)](https://travis-ci.org/Abjad/abjad)
-
 Abjad
 =====
 
@@ -15,6 +10,8 @@ LilyPond music notation package, you can use Abjad to control the typographic
 details of the symbols on the page.
 
 Abjad's documentation is available at http://projectabjad.org.
+
+[![Build Status](https://travis-ci.org/Abjad/abjad.svg?branch=master)](https://travis-ci.org/Abjad/abjad)
 
 
 Abjad depends on Python
