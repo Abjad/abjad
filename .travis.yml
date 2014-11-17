@@ -1,14 +1,18 @@
 language: python
+
 python:
-  - "2.7"
-  - "3.4"
+    - 2.7
+    - 3.4
+
 before_install:
-  - sh scripts/travis/install-texlive.sh
-  - sh scripts/travis/install-lilypond.sh
-  - sh scripts/travis/install-pip.sh
+    - sudo apt-get update -qq
+    - sudo apt-get install -y help2man texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texinfo
+    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.18.2-1.linux-64.sh
+    - sudo sh lilypond-2.18.2-1.linux-64.sh --batch
+
 install:
-  - python setup.py build
-  - python setup.py install
+    - pip install -e . 
+
 script:
-  - py.test abjad
-  - python ./abjad/scr/ajv doctest abjad
+    - py.test abjad
+    - python ./abjad/scr/ajv doctest abjad
