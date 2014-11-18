@@ -853,6 +853,33 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def hcenter_in(self, length):
+        r'''LilyPond ``\hcenter-in`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.hcenter_in(12)
+                >>> print(format(markup))
+                \markup {
+                    \hcenter-in
+                        #12
+                        "Allegro assai"
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'hcenter-in',
+            length,
+            contents,
+            )
+        return new(self, contents=command)
+
     @staticmethod
     def hspace(amount):
         r'''LilyPond ``\hspace`` markup command.
