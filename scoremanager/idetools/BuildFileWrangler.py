@@ -117,14 +117,15 @@ class BuildFileWrangler(FileWrangler):
                 score_path)
             score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
-            if 'segment' in directory_entry:
+            #if 'segment' in directory_entry:
+            if True:
                 target_file_name = directory_entry + extension
-            else:
-                target_file_name = '{}-{}{}'.format(
-                    score_name,
-                    directory_entry,
-                    extension
-                    )
+            #else:
+            #    target_file_name = '{}-{}{}'.format(
+            #        score_name,
+            #        directory_entry,
+            #        extension
+            #        )
             target_file_path = os.path.join(
                 build_directory,
                 target_file_name,
