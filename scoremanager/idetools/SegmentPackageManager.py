@@ -238,13 +238,15 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                 self._io_manager._display_errors(stderr_lines)
                 return
             if not os.path.exists(illustration_pdf_path):
-                shutil.move(candidate_pdf_path, illustration_pdf_path)
-                shutil.move(candidate_ly_path, illustration_ly_path)
-                tab = self._io_manager._tab
                 messages = []
                 messages.append('Wrote ...')
-                messages.append(tab + illustration_ly_path)
-                messages.append(tab + illustration_pdf_path)
+                tab = self._io_manager._tab
+                if os.path.exists(candidate_ly_path):
+                    shutil.move(candidate_ly_path, illustration_ly_path)
+                    messages.append(tab + illustration_ly_path)
+                if os.path.exists(candidate_pdf_path):
+                    shutil.move(candidate_pdf_path, illustration_pdf_path)
+                    messages.append(tab + illustration_pdf_path)
                 self._io_manager._display(messages)
             else:
                 result = systemtools.TestManager.compare_files(
