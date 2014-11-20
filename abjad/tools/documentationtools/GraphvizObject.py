@@ -52,6 +52,8 @@ class GraphvizObject(AbjadObject):
                 "." in value or \
                 '/' in value:
                 return '"{}"'.format(value)
+            elif value.lower() in ('node', 'graph', 'subgraph', 'digraph'):
+                return '"{}"'.format(value)
             return value
         elif isinstance(value, (list, tuple)):
             return '"{}"'.format(', '.join(
