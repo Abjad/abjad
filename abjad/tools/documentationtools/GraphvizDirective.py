@@ -10,12 +10,13 @@ class GraphvizDirective(ReSTDirective):
 
     def __init__(
         self,
-        graph,
+        graph=None,
         name=None,
         options=None,
         ):
         from abjad.tools import documentationtools
-        assert isinstance(graph, documentationtools.GraphvizGraph)
+        if graph is not None:
+            assert isinstance(graph, documentationtools.GraphvizGraph)
         self._graph = graph
         ReSTDirective.__init__(
             self,
