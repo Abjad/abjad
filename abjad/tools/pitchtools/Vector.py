@@ -103,14 +103,6 @@ class Vector(TypedCounter):
 
     ### PRIVATE METHODS ###
 
-    def _dictionary_to_items(self, dictionary, item_class):
-        items = []
-        for initializer_token, count in dictionary.items():
-            for _ in range(count):
-                item = item_class(initializer_token)
-                items.append(item)
-        return items
-
     def _dictionary_to_item_class(self, dictionary):
         if not len(dictionary):
             return self._named_item_class
@@ -123,6 +115,14 @@ class Vector(TypedCounter):
         except ValueError:
             item_class = self._named_item_class
         return item_class
+
+    def _dictionary_to_items(self, dictionary, item_class):
+        items = []
+        for initializer_token, count in dictionary.items():
+            for _ in range(count):
+                item = item_class(initializer_token)
+                items.append(item)
+        return items
 
     ### PUBLIC METHODS ###
 

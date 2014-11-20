@@ -1606,15 +1606,6 @@ class TempoSpanner(Spanner):
             metric_modulation,
             )
 
-    def _get_previous_annotations(self, leaf):
-        index = self._index(leaf)
-        for index in reversed(range(index)):
-            previous_leaf = self[index]
-            annotations = self._get_annotations(previous_leaf)
-            if any(_ is not None for _ in annotations):
-                return annotations
-        return None, None, None
-
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         current_annotations = self._get_annotations(leaf)
@@ -1677,6 +1668,15 @@ class TempoSpanner(Spanner):
         lilypond_format_bundle.grob_overrides.append(override_string)
         self._make_other_text_spanner_overrides(lilypond_format_bundle)
         return lilypond_format_bundle
+
+    def _get_previous_annotations(self, leaf):
+        index = self._index(leaf)
+        for index in reversed(range(index)):
+            previous_leaf = self[index]
+            annotations = self._get_annotations(previous_leaf)
+            if any(_ is not None for _ in annotations):
+                return annotations
+        return None, None, None
 
     def _make_other_text_spanner_overrides(self, lilypond_format_bundle):
         r'''Alphabetically by property.

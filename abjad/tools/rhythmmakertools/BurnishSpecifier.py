@@ -390,30 +390,6 @@ class BurnishSpecifier(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def left_counts(self):
-        r'''Gets left lengths of burnish specifier.
-
-        ..  container:: example
-
-            ::
-
-                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
-                ...     left_counts=[2],
-                ...     right_counts=[1],
-                ...     )
-
-            ::
-
-                >>> burnish_specifier.left_counts
-                (2,)
-
-        Returns tuple or none.
-        '''
-        return self._left_lengths
-
-    @property
     def left_classes(self):
         r'''Gets left_classes of burnish specifier.
 
@@ -436,6 +412,30 @@ class BurnishSpecifier(AbjadValueObject):
         Returns tuple or none.
         '''
         return self._lefts
+
+    @property
+    def left_counts(self):
+        r'''Gets left lengths of burnish specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
+                ...     )
+
+            ::
+
+                >>> burnish_specifier.left_counts
+                (2,)
+
+        Returns tuple or none.
+        '''
+        return self._left_lengths
 
     @property
     def middle_classes(self):
@@ -475,30 +475,6 @@ class BurnishSpecifier(AbjadValueObject):
         return self._outer_divisions_only
 
     @property
-    def right_counts(self):
-        r'''Gets right lengths of burnish specifier.
-
-        ..  container:: example
-
-            ::
-
-                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
-                ...     left_counts=[2],
-                ...     right_counts=[1],
-                ...     )
-
-            ::
-
-                >>> burnish_specifier.right_counts
-                (1,)
-
-        Returns tuple or none.
-        '''
-        return self._right_lengths
-
-    @property
     def right_classes(self):
         r'''Gets right_classes of burnish specifier.
 
@@ -521,3 +497,27 @@ class BurnishSpecifier(AbjadValueObject):
         Returns tuple or none.
         '''
         return self._rights
+
+    @property
+    def right_counts(self):
+        r'''Gets right lengths of burnish specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     left_classes=[Rest, 0],
+                ...     right_classes=[Rest, Rest, 0],
+                ...     left_counts=[2],
+                ...     right_counts=[1],
+                ...     )
+
+            ::
+
+                >>> burnish_specifier.right_counts
+                (1,)
+
+        Returns tuple or none.
+        '''
+        return self._right_lengths

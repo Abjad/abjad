@@ -400,6 +400,17 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
+    def by_logical_measure(self):
+        r'''Configures selector to group components by logical measure.
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.LogicalMeasureSelectorCallback()
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
     def by_logical_tie(
         self,
         flatten=True,
@@ -584,17 +595,6 @@ class Selector(AbjadValueObject):
             only_with_head=only_with_head,
             only_with_tail=only_with_tail,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def by_logical_measure(self):
-        r'''Configures selector to group components by logical measure.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        callback = selectortools.LogicalMeasureSelectorCallback()
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
