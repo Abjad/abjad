@@ -11,8 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import os
-import sys
+
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
 from abjad import abjad_configuration
@@ -41,6 +40,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.coverage',
+    'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     #'sphinx.ext.viewcode',
@@ -325,3 +325,6 @@ inheritance_graph_attrs = {
     'rankdir': 'TB',
     'ratio': 'compress',
 }
+
+graphviz_dot_args = ['-s32']
+graphviz_output_format = 'svg'

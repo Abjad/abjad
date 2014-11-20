@@ -401,16 +401,20 @@ div.example {
     padding: 1em;
     }
 
-div.example {
-    border: 1px solid #ddd;
-    margin-bottom: 1em;
-    -webkit-border-radius: 2px;
+div.example, p.graphviz {
     -moz-border-radius: 2px;
-    border-radius: 2px;
-    padding: 1em;
     -moz-box-shadow: 0px 0px 10px #eee;
+    -webkit-border-radius: 2px;
     -webkit-box-shadow: 0px 0px 10px #eee;
+    border-radius: 2px;
+    border: 1px solid #ddd;
     box-shadow: 0px 0px 10px #eee;
+    margin-bottom: 1em;
+    padding: 1em;
+    }
+
+p.graphviz {
+    background-color: white;
     }
 
 div.two-column div.toctree-wrapper > ul {
