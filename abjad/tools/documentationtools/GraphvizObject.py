@@ -24,7 +24,10 @@ class GraphvizObject(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _format_attribute(self, name, value):
-        return '{}={}'.format(name, self._format_value(value))
+        return '{}={}'.format(
+            name,
+            self._format_value(value, quote_keywords=True),
+            )
 
     def _format_attribute_list(self, attributes):
         result = []
@@ -40,7 +43,7 @@ class GraphvizObject(AbjadObject):
                     result[i] = '\t' + result[i]
         return result
 
-    def _format_value(self, value):
+    def _format_value(self, value, quote_keywords=False):
         if isinstance(value, bool):
             return repr(value).lower()
         elif isinstance(value, (int, float)):
@@ -52,12 +55,18 @@ class GraphvizObject(AbjadObject):
                 "." in value or \
                 '/' in value:
                 return '"{}"'.format(value)
-            elif value.lower() in ('node', 'graph', 'subgraph', 'digraph'):
+            elif value.lower() in (
+                'digraph',
+                'graph',
+                'node',
+                'subgraph',
+                ) and quote_keywords:
                 return '"{}"'.format(value)
             return value
         elif isinstance(value, (list, tuple)):
             return '"{}"'.format(', '.join(
-                self._format_value(x) for x in value))
+                self._format_value(x, quote_keywords=quote_keywords)
+                for x in value))
         raise ValueError
 
     def _verify_attributes(self, attributes, destination):
