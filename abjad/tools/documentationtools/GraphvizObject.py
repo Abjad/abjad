@@ -49,7 +49,9 @@ class GraphvizObject(AbjadObject):
         elif isinstance(value, (int, float)):
             return repr(value)
         elif isinstance(value, str):
-            if ' ' in value or \
+            if value.startswith('<') and value.endswith('>'):
+                return value
+            elif ' ' in value or \
                 ',' in value or \
                 '\\' in value or \
                 "." in value or \
