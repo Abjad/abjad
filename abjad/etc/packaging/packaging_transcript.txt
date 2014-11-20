@@ -1,3 +1,45 @@
+Abjad 2.16
+    Build start date: 2014-11-20
+    Build complete date:
+    MD5 hash of Abjad Github repository:
+
+    Packaging environment:
+        0. workstation description:
+        1. uname -v:
+        2. git --version:
+        3. python --version:
+        4. pip --version:
+        5. py.test --version:
+        6. sphinx-build --version:
+        7. lilypond --version:
+        8. convert --version:
+        9. dot -V:
+
+    Python 2.7 test results:
+        1. mainline py.test test results:
+        2. mainline doctest test results:
+        3. experimental py.test test results:
+        4. experimental doctest test results:
+        5. scoremanager py.test test results:
+        6. scoremanager doctest test results:
+        7. sanity check test results:
+        8. experimental HTML build results:
+        9. mainline HTML build results:
+       10. scoremanager HTML build results:
+       11. LaTeX build results:
+       12. Abjad.pdf build results:
+       13. AbjadAPI.pdf build results:
+
+    Python 3.4 test results:
+        1. mainline py.test test results:
+        2. mainline doctest test results:
+        3. experimental py.test test results:
+        4. experimental doctest test results:
+        5. scoremanager py.test test results:
+        6. scoremanager doctest test results:
+        7. sanity check test results:
+
+
 Abjad 2.15
     Build start date: 2014-05-21
     Build complete date: 2014-08-08
