@@ -124,4 +124,3 @@ class GraphvizEdge(GraphvizObject):
     @tail_port_position.setter
     def tail_port_position(self, expr):
         self._tail_port_position = expr
-
