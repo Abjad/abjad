@@ -13,6 +13,7 @@ class ReSTDirective(TreeContainer):
         self,
         argument=None,
         children=None,
+        directive=None,
         name=None,
         options=None,
         ):
@@ -22,6 +23,7 @@ class ReSTDirective(TreeContainer):
         self._options = {}
         if options is not None:
             self._options.update(options)
+        self._directive = directive
 
     ### PRIVATE PROPERTIES ###
 
@@ -83,11 +85,15 @@ class ReSTDirective(TreeContainer):
         assert isinstance(arg, (str, type(None)))
         self._argument = arg
 
-    @abc.abstractproperty
+    @property
     def directive(self):
         r'''Gets and sets directive of ReST directive.
         '''
-        raise NotImplementedError
+        return self._directive
+
+    @directive.setter
+    def directive(self, expr):
+        self._directive = str(expr)
 
     @property
     def node_class(self):

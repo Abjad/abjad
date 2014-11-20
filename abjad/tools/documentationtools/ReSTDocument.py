@@ -47,7 +47,8 @@ class ReSTDocument(TreeContainer):
                         ReSTTOCItem(
                             text='quux'
                             ),
-                        )
+                        ),
+                    directive='toctree'
                     ),
                 )
             )

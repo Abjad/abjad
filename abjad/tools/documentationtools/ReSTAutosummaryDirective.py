@@ -24,7 +24,8 @@ class ReSTAutosummaryDirective(ReSTDirective):
                 ReSTAutosummaryItem(
                     text='baz.Baz'
                     ),
-                )
+                ),
+            directive='autosummary'
             )
 
     ::

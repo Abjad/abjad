@@ -27,6 +27,7 @@ class ReSTTOCDirective(ReSTDirective):
                     text='baz/index'
                     ),
                 ),
+            directive='toctree',
             options={
                 'hidden': True,
                 'maxdepth': 1,
