@@ -1,4 +1,4 @@
-lilypond_version = "2.19.6"
+lilypond_version = "2.19.15"
 
 music_glyphs = set([
     "accidentals.doublesharp",

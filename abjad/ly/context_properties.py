@@ -1,4 +1,4 @@
-lilypond_version = "2.19.6"
+lilypond_version = "2.19.15"
 
 context_properties = [
     "aDueText",
@@ -10,6 +10,7 @@ context_properties = [
     "alternativeNumberingStyle",
     "alternativeRestores",
     "associatedVoice",
+    "associatedVoiceType",
     "autoAccidentals",
     "autoBeamCheck",
     "autoBeaming",
@@ -101,8 +102,9 @@ context_properties = [
     "internalBarNumber",
     "keepAliveInterfaces",
     "keyAlterationOrder",
-    "keySignature",
+    "keyAlterations",
     "lyricMelismaAlignment",
+    "magnifyStaffValue",
     "majorSevenSymbol",
     "markFormatter",
     "maximumFretStretch",
@@ -117,6 +119,7 @@ context_properties = [
     "midiBalance",
     "midiChannelMapping",
     "midiChorusLevel",
+    "midiExpression",
     "midiInstrument",
     "midiMaximumVolume",
     "midiMergeUnisons",

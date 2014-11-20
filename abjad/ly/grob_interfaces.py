@@ -1,4 +1,4 @@
-lilypond_version = "2.19.6"
+lilypond_version = "2.19.15"
 
 grob_interfaces = {
     "Accidental": [
@@ -211,6 +211,7 @@ grob_interfaces = {
         "grob-interface",
         "item-interface",
         "outside-staff-interface",
+        "self-alignment-interface",
         "side-position-interface",
         "text-interface",
         "text-script-interface",
@@ -418,6 +419,7 @@ grob_interfaces = {
         "side-position-interface",
         "spanner-interface",
         "system-start-text-interface",
+        "text-interface",
     ],
     "InstrumentSwitch": [
         "font-interface",
@@ -728,6 +730,7 @@ grob_interfaces = {
         "item-interface",
         "outside-staff-interface",
         "script-interface",
+        "self-alignment-interface",
         "side-position-interface",
     ],
     "ScriptColumn": [

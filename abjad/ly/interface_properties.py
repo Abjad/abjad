@@ -1,4 +1,4 @@
-lilypond_version = "2.19.6"
+lilypond_version = "2.19.15"
 
 interface_properties = {
     "accidental-interface": [
@@ -64,8 +64,8 @@ interface_properties = {
         "hair-thickness",
         "kern",
         "rounded",
+        "segno-kern",
         "thick-thickness",
-        "thin-kern",
     ],
     "bass-figure-alignment-interface": [],
     "bass-figure-interface": [
@@ -123,7 +123,9 @@ interface_properties = {
         "glyph-name",
         "non-default",
     ],
-    "clef-modifier-interface": [],
+    "clef-modifier-interface": [
+        "clef-alignments",
+    ],
     "cluster-beacon-interface": [
         "positions",
     ],
@@ -247,6 +249,7 @@ interface_properties = {
     "hara-kiri-group-spanner-interface": [
         "remove-empty",
         "remove-first",
+        "remove-layer",
     ],
     "horizontal-bracket-interface": [
         "bracket-flare",
@@ -469,6 +472,9 @@ interface_properties = {
         "toward-stem-shift",
     ],
     "self-alignment-interface": [
+        "X-align-on-main-noteheads",
+        "parent-alignment-X",
+        "parent-alignment-Y",
         "self-alignment-X",
         "self-alignment-Y",
     ],
@@ -577,6 +583,7 @@ interface_properties = {
         "default-direction",
         "details",
         "direction",
+        "double-stem-separation",
         "duration-log",
         "french-beaming",
         "length",
