@@ -260,7 +260,7 @@ class ClassDocumenter(Documenter):
     @staticmethod
     def _build_lineage_graph(cls):
         from abjad.tools import documentationtools
-        addresses = ('abjad', 'supriya')
+        addresses = ('abjad',)
         module_name, _, class_name = cls.__module__.rpartition('.')
         importlib.import_module(module_name)
         lineage = documentationtools.InheritanceGraph(
@@ -306,7 +306,7 @@ class ClassDocumenter(Documenter):
         for part in parts[1:]:
             if part != name[-1]:
                 name.append(part)
-        if name[0] in ('abjad', 'experimental', 'supriya') and \
+        if name[0] in ('abjad', 'experimental',) and \
             name[1] == 'tools':
             return str('.'.join(name[2:]))
         return str('.'.join(name))
