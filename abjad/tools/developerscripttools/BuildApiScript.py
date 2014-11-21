@@ -200,7 +200,11 @@ class BuildApiScript(DeveloperScript):
                 command = 'make {}'.format(api_format)
                 systemtools.IOManager.spawn_subprocess(command)
 
-    def _build_experimental_api(self, api_format='html', clean=False):
+    def _build_experimental_api(
+        self,
+        api_format='html',
+        clean=False,
+        ):
         from abjad import abjad_configuration
         api_generator = BuildApiScript.ExperimentalAPIGenerator()
         api_title = 'experimental'
@@ -226,7 +230,11 @@ class BuildApiScript(DeveloperScript):
             )
         return path
 
-    def _build_mainline_api(self, api_format='html', clean=False):
+    def _build_mainline_api(
+        self,
+        api_format='html',
+        clean=False,
+        ):
         from abjad import abjad_configuration
         api_generator = AbjadAPIGenerator()
         api_title = 'mainline'
@@ -252,7 +260,11 @@ class BuildApiScript(DeveloperScript):
             )
         return path
 
-    def _build_scoremanager_api(self, api_format='html', clean=False):
+    def _build_scoremanager_api(
+        self,
+        api_format='html',
+        clean=False,
+        ):
         from abjad import abjad_configuration
         api_generator = BuildApiScript.AbjadIDEAPIGenerator()
         api_title = 'Abjad IDE'
