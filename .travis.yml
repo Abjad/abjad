@@ -17,3 +17,5 @@ install:
 script:
     - py.test abjad
     - python ./abjad/scr/ajv doctest abjad
+    - py.test experimental
+    - python ./abjad/scr/ajv doctest experimental
