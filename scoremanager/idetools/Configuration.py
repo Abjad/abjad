@@ -297,8 +297,8 @@ class Configuration(AbjadConfiguration):
 
             ::
 
-                >>> configuration.composer_website
-                '...'
+                >>> configuration.composer_website  # doctest: +SKIP
+                'My website address'
 
         Aliases `composer_website` setting in score manager configuration
         file.
