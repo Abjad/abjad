@@ -178,8 +178,11 @@ class BuildApiScript(DeveloperScript):
         api_title=None,
         api_format='html',
         clean=False,
+        rst_only=False,
         ):
         api_generator(verbose=True)
+        if rst_only:
+            return
         print('Now building the {} {} docs ...'.format(
             api_title,
             api_format.upper(),
@@ -204,6 +207,7 @@ class BuildApiScript(DeveloperScript):
         self,
         api_format='html',
         clean=False,
+        rst_only=False,
         ):
         from abjad import abjad_configuration
         api_generator = BuildApiScript.ExperimentalAPIGenerator()
@@ -219,6 +223,7 @@ class BuildApiScript(DeveloperScript):
             api_format=api_format,
             clean=clean,
             docs_directory=docs_directory,
+            rst_only=rst_only,
             )
         path = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -234,6 +239,7 @@ class BuildApiScript(DeveloperScript):
         self,
         api_format='html',
         clean=False,
+        rst_only=False,
         ):
         from abjad import abjad_configuration
         api_generator = AbjadAPIGenerator()
@@ -248,6 +254,7 @@ class BuildApiScript(DeveloperScript):
             api_format=api_format,
             clean=clean,
             docs_directory=docs_directory,
+            rst_only=rst_only,
             )
         path = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -264,6 +271,7 @@ class BuildApiScript(DeveloperScript):
         self,
         api_format='html',
         clean=False,
+        rst_only=False,
         ):
         from abjad import abjad_configuration
         api_generator = BuildApiScript.AbjadIDEAPIGenerator()
@@ -279,6 +287,7 @@ class BuildApiScript(DeveloperScript):
             api_format=api_format,
             clean=clean,
             docs_directory=docs_directory,
+            rst_only=rst_only,
             )
         path = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -299,26 +308,30 @@ class BuildApiScript(DeveloperScript):
         '''
         api_format = args.format
         clean = args.clean
+        rst_only = args.rst_only
         paths = []
         if args.mainline:
             path = self._build_mainline_api(
                 api_format=api_format,
                 clean=clean,
+                rst_only=rst_only,
                 )
             paths.append(path)
         if args.experimental:
             path = self._build_experimental_api(
                 api_format=api_format,
                 clean=clean,
+                rst_only=rst_only,
                 )
             paths.append(path)
         if args.scoremanager:
             path = self._build_scoremanager_api(
                 api_format=api_format,
                 clean=clean,
+                rst_only=rst_only,
                 )
             paths.append(path)
-        if api_format == 'html' and args.openinbrowser:
+        if api_format == 'html' and args.openinbrowser and not rst_only:
             for path in paths:
                 if path.startswith('/'):
                     path = 'file://' + path
@@ -350,6 +363,11 @@ class BuildApiScript(DeveloperScript):
             action='store_true',
             dest='openinbrowser',
             help='open the docs in a web browser after building',
+            )
+        parser.add_argument('-R', '--rst-only',
+            action='store_true',
+            dest='rst_only',
+            help='generate the ReSt source files but do not build',
             )
         parser.add_argument('--format',
             choices=(
