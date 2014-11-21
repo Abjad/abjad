@@ -693,6 +693,9 @@ class IOManager(IOManager):
         '''
         import codecs
         import sys
+        directory_path = os.path.dirname(path)
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
         if sys.version_info[0] == 2:
             with codecs.open(path, 'w', encoding='utf-8') as file_pointer:
                 file_pointer.write(string)
