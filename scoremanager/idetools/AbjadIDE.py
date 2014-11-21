@@ -229,7 +229,8 @@ class AbjadIDE(Wrangler):
 
     def _supply_missing_cache_file(self):
         if not os.path.exists(self._configuration.cache_file_path):
-            self._score_package_wrangler.write_cache()
+            with self._io_manager._silent():
+                self._score_package_wrangler.write_cache()
 
     def _supply_missing_views_files(self):
         from scoremanager import idetools
