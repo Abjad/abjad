@@ -39,6 +39,7 @@ class AbjadIDE(Wrangler):
         self._session._ide = self
         self._simple_score_annotation = True
         self._sort_by_annotation = True
+        self._supply_missing_cache_file()
         self._supply_missing_views_files()
 
     ### PRIVATE PROPERTIES ###
@@ -225,13 +226,30 @@ class AbjadIDE(Wrangler):
                     if not self._transcript[-1][-1] == '':
                         self._io_manager._display('')
                     return
-    
+
+    def _supply_missing_cache_file(self):
+        if not os.path.exists(self._configuration.cache_file_path):
+            self._score_package_wrangler.write_cache()
+
     def _supply_missing_views_files(self):
+        from scoremanager import idetools
+        if not os.path.exists(self._views_py_path):
+            view_inventory = idetools.ViewInventory()
+            with self._io_manager._silent():
+                self._write_view_inventory(view_inventory)
+        if not os.path.exists(self._metadata_py_path):
+            metadata = self._get_metadata()
+            with self._io_manager._silent():
+                self._write_metadata_py(metadata)
         if self._session.is_test:
-            return
-        with self._io_manager._silent():
-            for wrangler in self._wranglers:
-                wrangler.write_views_py()
+            with self._io_manager._silent():
+                for wrangler in self._wranglers:
+                    if not os.path.exists(wrangler._views_py_path):
+                        wrangler.write_views_py()
+        else:
+            with self._io_manager._silent():
+                for wrangler in self._wranglers:
+                    wrangler.write_views_py()
 
     def _update_session_variables(self):
         self._session._is_backtracking_to_score = False
