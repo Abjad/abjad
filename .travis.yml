@@ -15,12 +15,12 @@ install:
     - pip install -e . 
 
 script:
-    - python ./abjad/scr/ajv doctest abjad
-    - py.test abjad
-    - python ./abjad/scr/ajv doctest experimental
-    - py.test experimental
-    - python ./abjad/scr/ajv doctest scoremanager
-    - py.test scoremanager
+    - python ./abjad/scr/ajv doctest experimental -x
+    - py.test experimental -x
+    - python ./abjad/scr/ajv doctest scoremanager -x
+    - py.test scoremanager -x
+    - python ./abjad/scr/ajv doctest abjad -x
+    - py.test abjad -x
     - python ./abjad/scr/ajv api -RM
     - python ./abjad/scr/ajv api -RX
     - python ./abjad/scr/ajv api -RS
