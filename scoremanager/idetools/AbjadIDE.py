@@ -108,6 +108,7 @@ class AbjadIDE(Wrangler):
     def _wranglers(self):
         return (
             self,
+            self._build_file_wrangler,
             self._distribution_file_wrangler,
             self._maker_file_wrangler,
             self._material_package_wrangler,
