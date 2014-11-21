@@ -18,14 +18,14 @@ Abjad 2.16
     Python 2.7.8 test results:
         1. mainline py.test test results: 9004 passed, 14 skipped
         2. mainline doctest test results: 8142 tests passed in 872 modules
-        3. experimental py.test test results:
-        4. experimental doctest test results:
+        3. experimental py.test test results: 13 passed, 1 skipped
+        4. experimental doctest test results: 359 tests passed in 50 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
         7. sanity check test results: OK
-        8. experimental HTML build results:
-        9. mainline HTML build results:
-       10. scoremanager HTML build results:
+        8. experimental HTML build results: OK
+        9. mainline HTML build results: OK
+       10. scoremanager HTML build results: OK
        11. LaTeX build results:
        12. Abjad.pdf build results:
        13. AbjadAPI.pdf build results:
@@ -33,11 +33,11 @@ Abjad 2.16
     Python 3.4.2 test results:
         1. mainline py.test test results: 9004 passed, 14 skipped
         2. mainline doctest test results: 8142 tests passed in 872 modules
-        3. experimental py.test test results:
-        4. experimental doctest test results:
+        3. experimental py.test test results: 13 passed, 1 skipped
+        4. experimental doctest test results: 359 tests passed in 50 modules
         5. scoremanager py.test test results:
         6. scoremanager doctest test results:
-        7. sanity check test results:
+        7. sanity check test results: OK
 
 
 Abjad 2.15
