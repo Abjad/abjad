@@ -20,3 +20,6 @@ script:
     - python ./abjad/scr/ajv doctest experimental
     - py.test experimental
     - python ./abjad/scr/ajv doctest scoremanager
+    - python ./abjad/scr/ajv api -RM
+    - python ./abjad/scr/ajv api -RX
+    - python ./abjad/scr/ajv api -RS
