@@ -17,12 +17,11 @@ install:
 
 script:
 
-    - python ./abjad/scr/ajv doctest experimental -x
-    - py.test experimental -x
-
-    - python ./scoremanager/scr/start-abjad-ide q
     - python ./abjad/scr/ajv doctest scoremanager -x
     - py.test scoremanager -x
+
+    - python ./abjad/scr/ajv doctest experimental -x
+    - py.test experimental -x
 
     - python ./abjad/scr/ajv doctest abjad -x
     - py.test abjad -x
