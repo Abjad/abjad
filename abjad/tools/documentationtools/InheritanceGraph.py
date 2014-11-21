@@ -258,7 +258,13 @@ class InheritanceGraph(AbjadObject):
                     pass
 
         distances = self.lineage_distance_mapping
-        for parent, children in self.parent_children_mapping.items():
+        for parent in sorted(self.parent_children_mapping,
+            key=lambda x: (x.__module__, x.__name__)):
+            children = self.parent_children_mapping[parent]
+            children = sorted(
+                children,
+                key=lambda x: (x.__module__, x.__name__),
+                )
             for child in children:
                 ok_to_join = False
                 if self.lineage_prune_distance is None:
