@@ -6,6 +6,8 @@
 #(ly:set-option 'relative-includes #t)
 % STYLESHEET_INCLUDE_STATEMENT
 
-\context Score = "SCORE_NAME" {
+\score {
+    {
 %%% SEGMENTS %%%
+    }
 }
