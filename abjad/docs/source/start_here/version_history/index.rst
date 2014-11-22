@@ -11,6 +11,38 @@ Released 2014-11-22. Implements 496 public classes and 387 functions totaling
 186,963 lines of code.
 
 
+IPython / MIDI integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Travis-CI integration
+^^^^^^^^^^^^^^^^^^^^^
+
+
+The graphing protocol
+^^^^^^^^^^^^^^^^^^^^^
+
+
+Indicatortools improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Markuptools improvements
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Pitchtools improvements
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Rhythmmakertools improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Spannertools improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 Thanks
 ^^^^^^
 
