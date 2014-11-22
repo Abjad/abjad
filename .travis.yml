@@ -15,6 +15,10 @@ before_install:
 install:
     - pip install -e . 
 
+before_script:
+    - export PYTHONPATH=$TRAVIS_BUILD_DIR/scoremanager/scores:${PYTHONPATH}
+    - echo $PYTHONPATH
+
 script:
 
     - python ./abjad/scr/ajv doctest scoremanager -x
