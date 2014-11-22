@@ -32,7 +32,10 @@ def test_BuildFileWrangler_interpret_score_01():
         assert systemtools.TestManager._compare_backup(pdf_path)
 
 
-@pytest.mark.skip(os.environ.get('TRAVIS'), reason='Cannot build on Travis-CI')
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS'),
+    reason='Cannot build on Travis-CI',
+    )
 def test_BuildFileWrangler_interpret_score_02():
     r'''Preserves score.pdf when score.candidate.pdf compares
     equal to score.pdf.

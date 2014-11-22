@@ -44,6 +44,10 @@ def test_SegmentPackageWrangler_interpret_every_illustration_ly_01():
     assert not 'Preserved' in contents
 
 
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS'),
+    reason='Cannot build on Travis-CI',
+    )
 def test_SegmentPackageWrangler_interpret_every_illustration_ly_02():
     r'''Does display candidate messages.
     '''

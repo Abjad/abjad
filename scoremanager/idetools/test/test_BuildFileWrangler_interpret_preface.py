@@ -32,7 +32,10 @@ def test_BuildFileWrangler_interpret_preface_01():
         assert systemtools.TestManager._compare_backup(pdf_path)
 
 
-@pytest.mark.skip(os.environ.get('TRAVIS'), reason='Cannot build on Travis-CI')
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS'),
+    reason='Cannot build on Travis-CI',
+    )
 def test_BuildFileWrangler_interpret_preface_02():
     r'''Preserves preface.pdf when preface.candidate.pdf compares
     equal to preface.pdf.
