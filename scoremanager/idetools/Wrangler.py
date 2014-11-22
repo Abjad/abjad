@@ -214,7 +214,7 @@ class Wrangler(ScoreInternalAssetController):
         else:
             raise TypeError(old_path)
         if os.path.isdir(new_path):
-            for directory_entry in os.listdir(new_path):
+            for directory_entry in sorted(os.listdir(new_path)):
                 if not directory_entry.endswith('.py'):
                     continue
                 path = os.path.join(new_path, directory_entry)
@@ -298,7 +298,7 @@ class Wrangler(ScoreInternalAssetController):
                 scores_directory = \
                     self._configuration.user_score_packages_directory
             asset_paths = []
-            for directory_entry in  os.listdir(scores_directory):
+            for directory_entry in sorted(os.listdir(scores_directory)):
                 if not directory_entry[0].isalpha():
                     continue
                 path = os.path.join(scores_directory, directory_entry)
@@ -462,7 +462,7 @@ class Wrangler(ScoreInternalAssetController):
                 continue
             if not os.path.exists(directory):
                 continue
-            directory_entries =  sorted(os.listdir(directory))
+            directory_entries = sorted(os.listdir(directory))
             for directory_entry in directory_entries:
                 if valid_only:
                     if not self._is_valid_directory_entry(directory_entry):

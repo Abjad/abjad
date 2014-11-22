@@ -266,7 +266,7 @@ class Selector(Controller):
         forbidden_class_names = forbidden_class_names or ()
         directory = configuration.handler_tools_directory
         class_names = []
-        for entry in os.listdir(directory):
+        for entry in sorted(os.listdir(directory)):
             if entry.endswith('.py'):
                 for base_class_name in base_class_names:
                     if base_class_name in entry:

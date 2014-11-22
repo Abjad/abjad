@@ -129,7 +129,7 @@ class IOManager(IOManager):
         if not os.path.isdir(version_directory):
             return 0
         greatest_number = 0
-        for entry in os.listdir(version_directory):
+        for entry in sorted(os.listdir(version_directory)):
             base_name, extension = os.path.splitext(entry)
             number = 0
             try:

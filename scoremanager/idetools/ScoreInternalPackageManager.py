@@ -201,7 +201,7 @@ class ScoreInternalPackageManager(PackageManager):
             self._io_manager._display(message)
             return
         file_names = []
-        for directory_entry in os.listdir(versions_directory):
+        for directory_entry in sorted(os.listdir(versions_directory)):
             if directory_entry[0].isalnum():
                 file_names.append(directory_entry)
         file_names.sort(key=lambda _: self._file_name_to_version_number(_))

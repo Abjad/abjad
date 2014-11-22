@@ -181,7 +181,7 @@ class PackageManager(ScoreInternalAssetController):
         return version_number
 
     def _find_first_file_name(self):
-        for directory_entry in os.listdir(self._path):
+        for directory_entry in sorted(os.listdir(self._path)):
             if not directory_entry.startswith('.'):
                 path = os.path.join(self._path, directory_entry)
                 if os.path.isfile(path):
@@ -267,7 +267,7 @@ class PackageManager(ScoreInternalAssetController):
     def _get_existing_version_numbers(self, file_name_prototype):
         root, extension = os.path.splitext(file_name_prototype)
         version_numbers = []
-        for entry in os.listdir(self._versions_directory):
+        for entry in sorted(os.listdir(self._versions_directory)):
             if entry.startswith(root) and entry.endswith(extension):
                 version_number = self._file_name_to_version_number(entry)
                 version_numbers.append(version_number)
@@ -283,7 +283,7 @@ class PackageManager(ScoreInternalAssetController):
         versions_directory = self._versions_directory
         if not os.path.exists(versions_directory):
             return
-        file_names = os.listdir(versions_directory)
+        file_names = sorted(os.listdir(versions_directory))
         if not file_names:
             return
         return max(self._file_name_to_version_number(_) for _ in file_names)
@@ -469,7 +469,7 @@ class PackageManager(ScoreInternalAssetController):
 
     def _is_populated_directory(self, directory):
         if os.path.exists(directory):
-            if os.listdir(directory):
+            if sorted(os.listdir(directory)):
                 return True
         return False
 
@@ -484,7 +484,7 @@ class PackageManager(ScoreInternalAssetController):
         root_directory = os.path.sep
         while path_to_check:
             if os.path.isdir(path_to_check):
-                if '.svn' in os.listdir(path_to_check):
+                if '.svn' in sorted(os.listdir(path_to_check)):
                     is_in_svn_versioned_tree = True
             path_to_check = os.path.dirname(path_to_check)
             if path_to_check == root_directory:

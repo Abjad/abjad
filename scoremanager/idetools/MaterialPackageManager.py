@@ -380,7 +380,7 @@ class MaterialPackageManager(ScoreInternalPackageManager):
         self._rename(new_directory)
         if not os.path.exists(new_directory):
             return
-        for directory_entry in os.listdir(new_directory):
+        for directory_entry in sorted(os.listdir(new_directory)):
             if directory_entry.endswith('.py'):
                 path = os.path.join(new_directory, directory_entry)
                 result = os.path.splitext(base_name)

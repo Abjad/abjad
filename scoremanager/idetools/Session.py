@@ -198,7 +198,7 @@ class Session(abctools.AbjadObject):
         if self.is_test:
             return
         transcripts_directory = self._configuration.transcripts_directory
-        transcripts = os.listdir(transcripts_directory)
+        transcripts = sorted(os.listdir(transcripts_directory))
         count = len(transcripts)
         if 9000 <= count:
             messages = []
@@ -541,7 +541,7 @@ class Session(abctools.AbjadObject):
         directory = self.current_score_directory
         stylesheets_directory = os.path.join(directory, 'stylesheets')
         found_score_stylesheet = False
-        for entry in os.listdir(stylesheets_directory):
+        for entry in sorted(os.listdir(stylesheets_directory)):
             if entry.endswith('stylesheet.ily'):
                 found_score_stylesheet = True
                 break

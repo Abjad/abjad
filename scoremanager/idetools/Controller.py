@@ -96,7 +96,7 @@ class Controller(object):
     @staticmethod
     def _is_directory_with_metadata_py(path):
         if os.path.isdir(path):
-            for directory_entry in os.listdir(path):
+            for directory_entry in sorted(os.listdir(path)):
                 if directory_entry == '__metadata__.py':
                     return True
         return False
