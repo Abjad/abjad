@@ -520,6 +520,8 @@ class BuildFileWrangler(FileWrangler):
             new = str(catalog_number)
             replacements[old] = new
         composer_website = self._configuration.composer_website
+        if self._session.is_test:
+            composer_website = 'www.composer-website.com'
         if composer_website:
             old = 'COMPOSER WEBSITE'
             new = str(composer_website)
@@ -602,6 +604,8 @@ class BuildFileWrangler(FileWrangler):
             new = str(year)
             replacements[old] = new
         composer = self._configuration.upper_case_composer_full_name
+        if self._session.is_test:
+            composer = 'EXAMPLE COMPOSER NAME'
         if composer:
             old = 'COMPOSER'
             new = str(composer)
