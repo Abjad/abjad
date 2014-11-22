@@ -31,6 +31,7 @@ def test_BuildFileWrangler_interpret_front_cover_01():
         assert systemtools.TestManager._compare_backup(pdf_path)
 
 
+@pytest.mark.skip(os.environ.get('TRAVIS'), reason='Cannot build on Travis-CI')
 def test_BuildFileWrangler_interpret_front_cover_02():
     r'''Preserves front-cover.pdf when front-cover.candidate.pdf 
     compares equal to front-cover.pdf.

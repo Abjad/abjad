@@ -31,6 +31,7 @@ def test_BuildFileWrangler_interpret_draft_01():
         assert systemtools.TestManager._compare_backup(pdf_path)
 
 
+@pytest.mark.skip(os.environ.get('TRAVIS'), reason='Cannot build on Travis-CI')
 def test_BuildFileWrangler_interpret_draft_02():
     r'''Preserves draft.pdf when draft.candidate.pdf compares
     equal to draft.pdf.

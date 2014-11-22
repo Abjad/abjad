@@ -32,6 +32,7 @@ def test_BuildFileWrangler_interpret_music_01():
         assert systemtools.TestManager._compare_backup(pdf_path)
 
 
+@pytest.mark.skip(os.environ.get('TRAVIS'), reason='Cannot build on Travis-CI')
 def test_BuildFileWrangler_interpret_music_02():
     r'''Preserves music.pdf when music.candidate.pdf compares
     equal to music.pdf.
