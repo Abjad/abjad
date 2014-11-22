@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad import *
+import os
+import pytest
 import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
