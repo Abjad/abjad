@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad import *
+import os
+import pytest
 import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
@@ -34,6 +35,10 @@ def test_SegmentPackageManager_illustrate_definition_py_01():
     assert pdf_path in contents
 
 
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS') == 'true',
+    reason='Cannot build on Travis-CI',
+    )
 def test_SegmentPackageManager_illustrate_definition_py_02():
     r'''Preserves existing PDF when candidate compares the same.
     '''

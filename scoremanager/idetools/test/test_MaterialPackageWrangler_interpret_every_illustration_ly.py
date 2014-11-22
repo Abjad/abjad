@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad import *
+import os
+import pytest
 import scoremanager
 ide = scoremanager.idetools.AbjadIDE(is_test=True)
 
@@ -44,6 +45,10 @@ def test_MaterialPackageWrangler_interpret_every_illustration_ly_01():
     assert not 'Preserved' in contents
 
 
+@pytest.mark.skipif(
+    os.environ.get('TRAVIS') == 'true',
+    reason='Cannot build on Travis-CI',
+    )
 def test_MaterialPackageWrangler_interpret_every_illustration_ly_02():
     r'''Does display candidate messages.
     '''
