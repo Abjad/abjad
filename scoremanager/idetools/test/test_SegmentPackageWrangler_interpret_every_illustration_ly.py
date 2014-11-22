@@ -46,7 +46,7 @@ def test_SegmentPackageWrangler_interpret_every_illustration_ly_01():
 
 
 @pytest.mark.skipif(
-    os.environ.get('TRAVIS'),
+    os.environ.get('TRAVIS') == 'true',
     reason='Cannot build on Travis-CI',
     )
 def test_SegmentPackageWrangler_interpret_every_illustration_ly_02():

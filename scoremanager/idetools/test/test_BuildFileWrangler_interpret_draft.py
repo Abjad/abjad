@@ -33,7 +33,7 @@ def test_BuildFileWrangler_interpret_draft_01():
 
 
 @pytest.mark.skipif(
-    os.environ.get('TRAVIS'),
+    os.environ.get('TRAVIS') == 'true',
     reason='Cannot build on Travis-CI',
     )
 def test_BuildFileWrangler_interpret_draft_02():
