@@ -375,6 +375,30 @@ class Pitch(AbjadObject):
         '''
         raise NotImplementedError
 
+    @property
+    def hertz(self):
+        r'''Gets hertz value of pitch.
+
+        ::
+
+            >>> pitchtools.NamedPitch("a'").hertz
+            440.0
+
+        ::
+
+            >>> pitchtools.NamedPitch("c'").hertz
+            261.62...
+
+        ::
+
+            >>> pitchtools.NamedPitch("c''").hertz
+            523.25...
+
+        Returns float.
+        '''
+        hertz = pow(2., (float(self) - 9.) / 12.) * 440.
+        return hertz
+
     @abc.abstractproperty
     def named_pitch(self):
         r'''Named pitch corresponding to pitch.

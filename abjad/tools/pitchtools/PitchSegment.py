@@ -354,6 +354,20 @@ class PitchSegment(Segment):
         return len(pitchtools.PitchSet(self)) < len(self)
 
     @property
+    def hertz(self):
+        r'''Gets hertz of pitches in pitch segment.
+
+        ::
+
+            >>> pitch_segment = pitchtools.PitchSegment('c e g b')
+            >>> pitch_segment.hertz
+            (130.81..., 164.81..., 195.99..., 246.94...)
+
+        Returns tuple.
+        '''
+        return tuple(_.hertz for _ in self)
+
+    @property
     def inflection_point_count(self):
         r'''Inflection point count of pitch segment.
 

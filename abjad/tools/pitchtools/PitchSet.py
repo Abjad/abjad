@@ -196,6 +196,20 @@ class PitchSet(Set):
             )
 
     @property
+    def hertz(self):
+        r'''Gets hertz of pitches in pitch segment.
+
+        ::
+
+            >>> pitch_set = pitchtools.PitchSet('c e g b')
+            >>> sorted(pitch_set.hertz)
+            [130.81..., 164.81..., 195.99..., 246.94...]
+
+        Returns set.
+        '''
+        return set(_.hertz for _ in self)
+
+    @property
     def is_pitch_class_unique(self):
         r'''Is true when pitch set is pitch-class-unique. Otherwise false.
 
