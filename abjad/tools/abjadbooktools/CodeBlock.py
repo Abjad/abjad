@@ -80,14 +80,21 @@ class CodeBlock(AbjadObject):
 
             processor.update_status(line)
 
-            hide = self.hide
 
             if not self.strip_prompt or not previous_line_was_empty:
                 current = self.read(pipe)
 
-            if line.endswith('<hide'):
+            hide = self.hide
+            if '<hide' in line:
                 hide = True
-                line = line.rpartition('<hide')[0]
+                line = line.replace('<hide', '')
+                line = line.rstrip()
+
+            no_doc_template = False 
+            if '<no-doc-template' in line:
+                no_doc_template = True
+                line = line.replace('<no-doc-template', '')
+                line = line.rstrip()
 
             page_range = None
             if '<page' in line:
@@ -118,8 +125,12 @@ class CodeBlock(AbjadObject):
                 file_path = file_name + '.ly'
                 if directory:
                     file_path = os.path.join(directory, file_path)
-                command = '__result__ = persist(documentationtools.make_reference_manual_lilypond_file({})).as_ly({!r})'.format(
-                    object_name, file_path)
+                if no_doc_template:
+                    command = '__result__ = persist({}).as_ly({!r})'.format(
+                        object_name, file_path)
+                else:
+                    command = '__result__ = persist(documentationtools.make_reference_manual_lilypond_file({})).as_ly({!r})'.format(
+                        object_name, file_path)
                 pipe.write(command)
                 grouped_results.append(result)
                 image_dict = {
