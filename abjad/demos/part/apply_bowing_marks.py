@@ -19,13 +19,11 @@ def apply_bowing_marks(score):
                 attach(articulation, chord)
 
     # create and apply rebowing markup
-    rebow_markup = markuptools.Markup(
-        markuptools.MarkupCommand(
-            'concat', [
-                markuptools.Markup.musicglyph('scripts.downbow'),
-                markuptools.Markup.hspace(1),
-                markuptools.Markup.musicglyph('scripts.upbow'),
-            ]))
+    rebow_markup = markuptools.Markup.concat([
+        markuptools.Markup.musicglyph('scripts.downbow'),
+        markuptools.Markup.hspace(1),
+        markuptools.Markup.musicglyph('scripts.upbow'),
+        ])
     markup = copy.copy(rebow_markup)
     attach(markup, score['First Violin Voice'][64][0])
     markup = copy.copy(rebow_markup)
