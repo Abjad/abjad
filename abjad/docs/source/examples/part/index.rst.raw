@@ -101,7 +101,7 @@ for i, descent in enumerate(descents[1:], 1):
 staff = Staff(sequencetools.flatten_sequence(descents))
 time_signature = TimeSignature((6, 4))
 attach(time_signature, staff)
-show(staff)
+show(staff) <no-doc-template
 </abjad>
 
 Let's look at the second violins too:
@@ -120,7 +120,7 @@ for i, descent in enumerate(descents[1:], 1):
 staff = Staff(sequencetools.flatten_sequence(descents))
 time_signature = TimeSignature((6, 4))
 attach(time_signature, staff)
-show(staff)
+show(staff) <no-doc-template
 </abjad>
 
 And, last we'll take a peek at the violas.  They have some longer notes, so
@@ -142,7 +142,7 @@ staff = Staff(sequencetools.flatten_sequence(descents))
 shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
 time_signature = indicatortools.TimeSignature((6, 4))
 attach(time_signature, staff)
-show(staff)
+show(staff) <no-doc-template
 </abjad>
 
 You can see how each part is twice as slow as the previous, and starts a little
@@ -231,13 +231,13 @@ additionally to hide empty staves if they appear in the first system:
 Let's run our original toplevel function to build the complete score:
 
 <abjad>
-lilypond_file = make_part_lilypond_file()
+lilypond_file = make_part_lilypond_file() <no-doc-template
 </abjad>
 
 And here we show it:
 
 <abjad>
-show(lilypond_file) <page 1-2
+show(lilypond_file) <page 1-2 <no-doc-template
 </abjad>
 
 ..  note:

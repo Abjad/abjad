@@ -219,10 +219,11 @@ function:
    
        # chop all string parts into 6/4 measures
        strings_staff_group = score['Strings Staff Group']
-       for voice in  iterate(strings_staff_group).by_class(scoretools.Voice):
-           shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
-           for shard in shards:
-               scoretools.Measure((6, 4), shard)
+       with systemtools.ForbidUpdate(score):
+           for voice in  iterate(strings_staff_group).by_class(scoretools.Voice):
+               shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
+               for shard in shards:
+                   scoretools.Measure((6, 4), shard)
 
 
 The pitch material is the same for all of the strings: a descending a-minor
@@ -244,11 +245,11 @@ overall scale:
    
        scale = tonalanalysistools.Scale('a', 'minor')
        pitch_ranges = {
-           'First Violin': pitchtools.PitchRange(("c'", "a'''")),
-           'Second Violin': pitchtools.PitchRange(('a', "a''")),
-           'Viola': pitchtools.PitchRange(('e', "a'")),
-           'Cello': pitchtools.PitchRange(('a,', 'a')),
-           'Bass': pitchtools.PitchRange(('c', 'a')),
+           'First Violin': pitchtools.PitchRange('[C4, A6]'),
+           'Second Violin': pitchtools.PitchRange('[A3, A5]'),
+           'Viola': pitchtools.PitchRange('[E3, A4]'),
+           'Cello': pitchtools.PitchRange('[A2, A3]'),
+           'Bass': pitchtools.PitchRange('[C3, A3]'),
        }
    
        reservoir = {}
@@ -447,9 +448,7 @@ Let's look at the second violins too:
    >>> attach(time_signature, staff)
    >>> show(staff)
 
-.. image:: images/index-2-page1.png
-
-.. image:: images/index-2-page2.png
+.. image:: images/index-2.png
 
 
 And, last we'll take a peek at the violas.  They have some longer notes, so
@@ -476,11 +475,7 @@ the bar lines accidentally:
    >>> attach(time_signature, staff)
    >>> show(staff)
 
-.. image:: images/index-3-page1.png
-
-.. image:: images/index-3-page2.png
-
-.. image:: images/index-3-page3.png
+.. image:: images/index-3.png
 
 
 You can see how each part is twice as slow as the previous, and starts a little
@@ -670,13 +665,11 @@ Let's take a look:
                    attach(articulation, chord)
    
        # create and apply rebowing markup
-       rebow_markup = markuptools.Markup(
-           markuptools.MarkupCommand(
-               'concat', [
-                   markuptools.MusicGlyph('scripts.downbow'),
-                   markuptools.MarkupCommand('hspace', 1),
-                   markuptools.MusicGlyph('scripts.upbow'),
-               ]))
+       rebow_markup = markuptools.Markup.concat([
+           markuptools.Markup.musicglyph('scripts.downbow'),
+           markuptools.Markup.hspace(1),
+           markuptools.Markup.musicglyph('scripts.upbow'),
+           ])
        markup = copy.copy(rebow_markup)
        attach(markup, score['First Violin Voice'][64][0])
        markup = copy.copy(rebow_markup)
