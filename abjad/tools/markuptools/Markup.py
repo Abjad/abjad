@@ -381,8 +381,10 @@ class Markup(AbjadObject):
         pieces.append('{}}}'.format(indent))
         return pieces
 
-    def _parse_markup_command_argument(self, argument):
-        if isinstance(argument, type(self)):
+    @staticmethod
+    def _parse_markup_command_argument(argument):
+        from abjad.tools import markuptools
+        if isinstance(argument, Markup):
             if len(argument.contents) == 1:
                 contents = argument.contents[0]
             else:
@@ -714,6 +716,44 @@ class Markup(AbjadObject):
             contents,
             )
         return Markup(contents=command, direction=direction)
+
+    @staticmethod
+    def concat(markup_list):
+        r'''Lilypond ``\concat`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> downbow = Markup.musicglyph('scripts.downbow')
+                >>> hspace = Markup.hspace(1)
+                >>> upbow = Markup.musicglyph('scripts.upbow')
+                >>> markup = Markup.concat([downbow, hspace, upbow])
+                >>> print(format(markup))
+                \markup {
+                    \concat
+                        {
+                            \musicglyph
+                                #"scripts.downbow"
+                            \hspace
+                                #1
+                            \musicglyph
+                                #"scripts.upbow"
+                        }
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        result = []
+        for markup in markup_list:
+            contents = Markup._parse_markup_command_argument(markup)
+            result.append(contents)
+        command = markuptools.MarkupCommand(
+            'concat',
+            result,
+            )
+        return Markup(contents=command)
 
     def dynamic(self):
         r'''LilyPond ``\dynamic`` markup command.
