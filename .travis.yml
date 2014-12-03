@@ -14,6 +14,8 @@ before_install:
     - sudo apt-get install -y texlive-latex-recommended 
     - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.15-1.linux-64.sh
     - sudo sh lilypond-2.19.15-1.linux-64.sh --batch
+    - pip install coveralls
+    - pip install coverage
 
 install:
     - pip install -e . 
@@ -24,15 +26,18 @@ before_script:
 
 script:
 
-    - python ./abjad/scr/ajv doctest scoremanager
-    - py.test scoremanager
+    - coverage run abjad/scr/ajv doctest scoremanager
+    - coverage run -a py.test scoremanager
 
-    - python ./abjad/scr/ajv doctest experimental
-    - py.test experimental
+    - coverage run -a abjad/scr/ajv doctest experimental
+    - coverage run -a py.test experimental
 
-    - python ./abjad/scr/ajv doctest abjad 
-    - py.test abjad
+    - coverage run -a abjad/scr/ajv doctest abjad 
+    - coverage run -a py.test abjad
 
-    - python ./abjad/scr/ajv api -RM
-    - python ./abjad/scr/ajv api -RX
-    - python ./abjad/scr/ajv api -RS
+    - python abjad/scr/ajv api -RM
+    - python abjad/scr/ajv api -RX
+    - python abjad/scr/ajv api -RS
+
+after_success:
+    coveralls
