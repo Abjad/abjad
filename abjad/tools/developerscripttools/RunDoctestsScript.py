@@ -124,7 +124,7 @@ class RunDoctestsScript(DirectoryScript):
                             file_paths.append(file_path)
             elif os.path.isfile(args.path):
                 file_paths.append(args.path)
-        for file_path in file_paths:
+        for file_path in sorted(file_paths):
             total_modules += 1
             relative_path = os.path.relpath(file_path)
             string_buffer = StringIO()
