@@ -1,6 +1,8 @@
 [run]
 branch = False
+cover_pylib = False
 omit = 
+    abjad/demos/*
     abjad/docs/*
     abjad/ly/*
     abjad/tools/*/test/*
