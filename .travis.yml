@@ -27,10 +27,10 @@ before_script:
 script:
 
     - abjad/scr/ajv doctest scoremanager
-    - `which py.test` scoremanager
+    - py.test scoremanager
 
     - abjad/scr/ajv doctest experimental
-    - `which py.test` experimental
+    - py.test experimental
 
     - coverage run -a abjad/scr/ajv doctest abjad 
     - coverage run -a `which py.test` abjad
