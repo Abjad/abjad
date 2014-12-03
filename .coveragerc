@@ -1,0 +1,14 @@
+[run]
+branch = False
+omit = 
+    abjad/docs/*
+    abjad/ly/*
+    abjad/tools/*/test/*
+    abjad/tools/test/*
+    experimental/docs/*
+    experimental/tools/*/test/*
+    scoremanager/docs/*
+    scoremanager/idetools/test/*
+    scoremanager/scores/*
+    scoremanager/test/*
+    setup.py
