@@ -16,3 +16,7 @@ omit =
     setup.py
 source =
     abjad
+
+[report]
+exclude_lines = 
+    raise NotImplementedError
