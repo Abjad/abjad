@@ -27,13 +27,13 @@ before_script:
 script:
 
     - coverage run abjad/scr/ajv doctest scoremanager
-    - coverage run -a py.test scoremanager
+    - coverage run -a `which py.test` scoremanager
 
     - coverage run -a abjad/scr/ajv doctest experimental
-    - coverage run -a py.test experimental
+    - coverage run -a `which py.test` experimental
 
     - coverage run -a abjad/scr/ajv doctest abjad 
-    - coverage run -a py.test abjad
+    - coverage run -a `which py.test` abjad
 
     - python abjad/scr/ajv api -RM
     - python abjad/scr/ajv api -RX
