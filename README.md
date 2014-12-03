@@ -11,6 +11,11 @@ details of the symbols on the page.
 
 Abjad's documentation is available at http://projectabjad.org.
 
+[![Build Status](https://travis-ci.org/Abjad/abjad.svg?branch=master)](https://travis-ci.org/Abjad/abjad)
+[![Coverage Status](https://coveralls.io/repos/Abjad/abjad/badge.png)](https://coveralls.io/r/Abjad/abjad)
+[![Downloads](https://pypip.in/download/Abjad/badge.svg)](https://pypi.python.org/pypi/Abjad/)
+[![Latest Version](https://pypip.in/version/Abjad/badge.svg)](https://pypi.python.org/pypi/Abjad/)
+
 
 Abjad depends on Python
 -----------------------
