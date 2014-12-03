@@ -1,8 +1,6 @@
 [run]
 branch = False
 cover_pylib = False
-include = 
-    abjad/*
 omit = 
     abjad/demos/*
     abjad/docs/*
@@ -17,6 +15,4 @@ omit =
     scoremanager/test/*
     setup.py
 source =
-    abjad/*
-    experimenta/*
-    scoremanager/*
+    abjad
