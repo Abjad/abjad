@@ -631,6 +631,23 @@ class Meter(AbjadObject):
         return tuple(inventory)
 
     @property
+    def duration(self):
+        r'''Gets duration of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter._duration
+                Duration(7, 4)
+
+        ..  todo:: rename to just ``duration``.
+
+        Returns duration.
+        '''
+        return durationtools.Duration(self.numerator, self.denominator)
+
+    @property
     def implied_time_signature(self):
         r'''Gets implied time signature of meter.
 
