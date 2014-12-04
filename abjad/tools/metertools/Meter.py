@@ -638,7 +638,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter._duration
+                >>> meter.duration
                 Duration(7, 4)
 
         ..  todo:: rename to just ``duration``.
