@@ -330,7 +330,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         '_use_percussion_clefs',
         '_viola_count',
         '_violin_count',
-        '_voice_name_abbreviations',
+        '_context_name_abbreviations',
         )
 
     ### INITIALIZER ###
@@ -354,7 +354,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         self._contrabass_count = int(contrabass_count)
         self._split_hands = bool(split_hands)
         self._use_percussion_clefs = bool(use_percussion_clefs)
-        self._voice_name_abbreviations = collections.OrderedDict()
+        self._context_name_abbreviations = collections.OrderedDict()
 
     ### PRIVATE METHODS ###
 
@@ -422,7 +422,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 name='{} Fingering Voice'.format(name),
                 )
             abbreviation = lh_voice.name.lower().replace(' ', '_')
-            self.voice_name_abbreviations[abbreviation] = lh_voice.name
+            self.context_name_abbreviations[abbreviation] = lh_voice.name
             lh_staff = scoretools.Staff(
                 [
                     lh_voice
@@ -438,7 +438,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 name='{} Bowing Voice'.format(name),
                 )
             abbreviation = rh_voice.name.lower().replace(' ', '_')
-            self.voice_name_abbreviations[abbreviation] = rh_voice.name
+            self.context_name_abbreviations[abbreviation] = rh_voice.name
             rh_staff = scoretools.Staff(
                 [
                     rh_voice
@@ -620,7 +620,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         return self._violin_count
 
     @property
-    def voice_name_abbreviations(self):
+    def context_name_abbreviations(self):
         r'''Voice name abbreviations.
         '''
-        return self._voice_name_abbreviations
+        return self._context_name_abbreviations
