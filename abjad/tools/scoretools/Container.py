@@ -58,11 +58,14 @@ class Container(Component):
 
         Returns boolean.
         '''
-        for x in self._music:
-            if x is expr:
-                return True
+        if isinstance(expr, str):
+            return expr in self._named_children
         else:
-            return False
+            for x in self._music:
+                if x is expr:
+                    return True
+            else:
+                return False
 
     def __delitem__(self, i):
         r'''Delete container `i`.
