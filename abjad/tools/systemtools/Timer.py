@@ -40,17 +40,21 @@ class Timer(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_message',
+        '_enter_message',
+        '_exit_message',
         '_start_time',
         '_stop_time',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, message=None):
-        if message is not None:
-            message = str(message)
-        self._message = message
+    def __init__(self, exit_message=None, enter_message=None):
+        if enter_message is not None:
+            enter_message = str(enter_message)
+        self._enter_message = enter_message
+        if exit_message is not None:
+            exit_message = str(exit_message)
+        self._exit_message = exit_message
         self._start_time = None
         self._stop_time = None
 
@@ -61,6 +65,8 @@ class Timer(ContextManager):
 
         Returns context manager.
         '''
+        if self.enter_message:
+            print(self.enter_message)
         self._stop_time = None
         self._start_time = time.time()
         return self
@@ -71,8 +77,8 @@ class Timer(ContextManager):
         Returns none.
         '''
         self._stop_time = time.time()
-        if self.message:
-            print(self.message, self.elapsed_time)
+        if self.exit_message:
+            print(self.exit_message, self.elapsed_time)
 
     ### PUBLIC PROPERTIES ###
 
@@ -89,12 +95,20 @@ class Timer(ContextManager):
         return None
 
     @property
-    def message(self):
-        r'''Timer completion message.
+    def enter_message(self):
+        r'''Timer enter message.
 
         Returns string.
         '''
-        return self._message
+        return self._enter_message
+
+    @property
+    def exit_message(self):
+        r'''Timer exit message.
+
+        Returns string.
+        '''
+        return self._exit_message
 
     @property
     def start_time(self):
