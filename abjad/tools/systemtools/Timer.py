@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import time
 from abjad.tools.abctools import ContextManager
 
@@ -25,7 +26,7 @@ class Timer(ContextManager):
         ...         for _ in range(1000000):
         ...             x = 1 + 1
         ...         print(timer.elapsed_time)
-        ... 
+        ...
         0.101150989532
         0.203935861588
         0.304930925369
@@ -39,13 +40,17 @@ class Timer(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_message',
         '_start_time',
         '_stop_time',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, message=None):
+        if message is not None:
+            message = str(message)
+        self._message = message
         self._start_time = None
         self._stop_time = None
 
@@ -66,6 +71,8 @@ class Timer(ContextManager):
         Returns none.
         '''
         self._stop_time = time.time()
+        if self.message:
+            print(self.message, self.elapsed_time)
 
     ### PUBLIC PROPERTIES ###
 
@@ -80,6 +87,14 @@ class Timer(ContextManager):
                 return self.stop_time - self.start_time
             return time.time() - self.start_time
         return None
+
+    @property
+    def message(self):
+        r'''Timer completion message.
+
+        Returns string.
+        '''
+        return self._message
 
     @property
     def start_time(self):
