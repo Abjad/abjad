@@ -57,3 +57,10 @@ def test_MakerFileWrangler_copy_file_03():
         contents = ide._transcript.contents
 
     assert 'Already exists:' in contents
+
+def test_MakerFileWrangler_copy_file_04():
+    r'''Raises no exception when user enters garbage for source file name.
+    '''
+
+    input_ = 'kk cp ZZZZZZ q'
+    ide._run(input_=input_)

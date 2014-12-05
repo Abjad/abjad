@@ -242,7 +242,7 @@ class MenuSection(AbjadObject):
                 return menu_entry_number
         try:
             number = int(argument_string)
-        except TypeError:
+        except (TypeError, ValueError):
             return
         greatest_menu_entry_number = len(self)
         if greatest_menu_entry_number < number:
