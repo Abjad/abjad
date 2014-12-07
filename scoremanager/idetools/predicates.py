@@ -145,10 +145,17 @@ def is_string_or_none(expr):
     return isinstance(expr, (str, type(None)))
 
 def is_tempo_token(expr):
+    import abjad
+    from scoremanager import idetools
     try:
-        exec('from abjad import *')
+        namespace = abjad.__dict__.copy()
         command = 'tempo = indicatortools.Tempo({})'.format(expr)
-        exec(command)
+        result = idetools.IOManager().execute_string(
+            command,
+            attribute_names=('tempo',),
+            local_namespace=namespace,
+            )
+        tempo = result[0]
         return isinstance(tempo, indicatortools.Tempo)
     except:
         return False
