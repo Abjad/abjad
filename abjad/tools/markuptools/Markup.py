@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
@@ -89,8 +90,8 @@ class Markup(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        contents=None, 
+        self,
+        contents=None,
         direction=None,
         stack_priority=0,
         ):
@@ -818,7 +819,42 @@ class Markup(AbjadObject):
             contents,
             )
         return new(self, contents=command)
-            
+
+    def fontsize(self, fontsize):
+        r'''LilyPond ``\fontsize`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('foo')
+                >>> markup = markup.fontsize(-3)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \fontsize #-3
+                        foo
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        fontsize = float(fontsize)
+        fontsize = mathtools.integer_equivalent_number_to_integer(fontsize)
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'fontsize',
+            fontsize,
+            contents,
+            )
+        return new(self, contents=command)
+
     @staticmethod
     def fraction(numerator, denominator):
         r'''LilyPond ``\fraction`` markup command.
@@ -1175,7 +1211,7 @@ class Markup(AbjadObject):
                 >>> markup = markup.parenthesize()
 
             ::
-            
+
                 >>> f(markup)
                 \markup {
                     \parenthesize
