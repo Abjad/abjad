@@ -222,9 +222,10 @@ class TestManager(object):
         if not split_lines[-1] or split_lines[-1].isspace():
             split_lines.pop(-1)
         indent_width = 0
-        for indent_width, character in enumerate(split_lines[0]):
-            if character != ' ':
-                break
+        if split_lines:
+            for indent_width, character in enumerate(split_lines[0]):
+                if character != ' ':
+                    break
         massaged_lines = []
         for split_line in split_lines:
             massaged_line = split_line[indent_width:]
