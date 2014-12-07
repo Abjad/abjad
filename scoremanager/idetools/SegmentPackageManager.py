@@ -265,8 +265,14 @@ class SegmentPackageManager(ScoreInternalPackageManager):
                     result = self._io_manager._confirm(message=message)
                     if self._session.is_backtracking or not result:
                         return
-                    shutil.move(candidate_pdf_path, illustration_pdf_path)
-                    shutil.move(candidate_ly_path, illustration_ly_path)
+                    try:
+                        shutil.move(candidate_ly_path, illustration_ly_path)
+                    except IOError:
+                        pass
+                    try:
+                        shutil.move(candidate_pdf_path, illustration_pdf_path)
+                    except IOError:
+                        pass
 
     def open_illustration_pdf(self):
         r'''Opens ``illustration.pdf``.
