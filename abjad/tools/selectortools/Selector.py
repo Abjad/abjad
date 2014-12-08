@@ -228,10 +228,7 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def by_duration(
-        self,
-        duration=None,
-        ):
+    def by_duration(self, *args):
         r'''Configures selector to selector containers or selections of
         duration `duration`.
 
@@ -310,8 +307,17 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        if not isinstance(duration, selectortools.DurationInequality):
-            duration = durationtools.Duration(duration)
+        if len(args) == 1:
+            duration = args[0]
+            if not isinstance(duration, selectortools.DurationInequality):
+                duration = durationtools.Duration(duration)
+        elif len(args) == 2:
+            duration = selectortools.DurationInequality(
+                duration=args[1],
+                operator_string=args[0],
+                )
+        else:
+            raise ValueError(args)
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
             )
@@ -330,10 +336,7 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def by_length(
-        self,
-        length=None,
-        ):
+    def by_length(self, *args):
         r'''Configures selector to selector containers or selections of length
         `length`.
 
@@ -391,8 +394,17 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        if not isinstance(length, selectortools.LengthInequality):
-            length = int(length)
+        if len(args) == 1:
+            length = args[0]
+            if not isinstance(length, selectortools.LengthInequality):
+                length = int(length)
+        elif len(args) == 2:
+            length = selectortools.LengthInequality(
+                length=args[1],
+                operator_string=args[0],
+                )
+        else:
+            raise ValueError(args)
         callback = selectortools.LengthSelectorCallback(
             length=length,
             )
