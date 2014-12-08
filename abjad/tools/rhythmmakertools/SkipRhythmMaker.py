@@ -95,7 +95,7 @@ class SkipRhythmMaker(RhythmMaker):
             assert isinstance(division, durationtools.Division), repr(division)
             written_duration = durationtools.Duration(1)
             multiplied_duration = division
-            skip = scoretools.make_skips_with_multiplied_durations(
+            skip = scoretools.make_skips(
                 written_duration, [multiplied_duration])
             result.append(skip)
         return result

@@ -4,7 +4,7 @@ from abjad.tools import selectiontools
 from abjad.tools.topleveltools import attach
 
 
-def make_skips_with_multiplied_durations(
+def make_skips(
     written_duration,
     multiplied_durations,
     ):
@@ -12,13 +12,13 @@ def make_skips_with_multiplied_durations(
 
     ::
 
-        >>> scoretools.make_skips_with_multiplied_durations(
+        >>> scoretools.make_skips(
         ...     Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
         Selection(Skip('s4 * 2'), Skip('s4 * 4/3'), Skip('s4 * 1'), Skip('s4 * 4/5'))
 
     Useful for making invisible layout voices.
 
-    Returns list of skips.
+    Returns selection.
     '''
     from abjad.tools import scoretools
 
