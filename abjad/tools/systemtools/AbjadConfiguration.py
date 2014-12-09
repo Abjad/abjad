@@ -424,14 +424,8 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        module_parts = self.__module__.split('.')
-        file_path_parts = os.path.abspath(__file__).rpartition('.py')
-        file_path_parts = file_path_parts[0].split(os.path.sep)
-        for part in reversed(module_parts):
-            if part == 'abjad':
-                break
-            file_path_parts.pop()
-        return os.path.sep.join(file_path_parts)
+        import abjad
+        return abjad.__path__[0]
 
     @property
     def abjad_experimental_directory(self):
@@ -516,8 +510,8 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        relative_path = os.path.join(
-            self.abjad_root_directory,
-            'scoremanager'
-            )
-        return os.path.abspath(relative_path)
+        try:
+            import scoremanager
+            return scoremanager.__path__[0]
+        except ImportError:
+            return None
