@@ -13,9 +13,7 @@ class TextSpanner(Spanner):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> text_spanner = spannertools.TextSpanner()
             >>> grob = override(text_spanner).text_spanner
-            >>> markup_command = markuptools.MarkupCommand('italic', 'foo')
-            >>> markup_command = markuptools.MarkupCommand('bold', markup_command)
-            >>> left_markup = markuptools.Markup(markup_command)
+            >>> left_markup = Markup('foo').italic().bold()
             >>> grob.bound_details__left__text = left_markup
             >>> pair = schemetools.SchemePair(0, -1)
             >>> markup_command = markuptools.MarkupCommand('draw-line', pair)
