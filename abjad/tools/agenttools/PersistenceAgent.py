@@ -187,11 +187,18 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
-        assert '_storage_format_specification' in dir(self._client)
         result = ['# -*- encoding: utf-8 -*-']
         result.extend(manager.get_import_statements(self._client))
         result.extend(('', ''))
-        storage_pieces = format(self._client, 'storage').splitlines()
+        if '_storage_format_specification' in dir(self._client):
+            storage_pieces = format(self._client, 'storage')
+        else:
+            try:
+                storage_pieces = manager.format_one_value(self._client)
+                storage_pieces = ''.join(storage_pieces)
+            except ValueError:
+                storage_pieces = repr(self._client)
+        storage_pieces = storage_pieces.splitlines()
         line = '{} = {}'.format(object_name, storage_pieces[0])
         result.append(line)
         result.extend(storage_pieces[1:])
