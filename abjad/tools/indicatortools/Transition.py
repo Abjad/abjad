@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import lilypondnametools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -63,6 +64,138 @@ class Transition(AbjadObject):
         self._right_broken_padding = right_broken_padding
         self._right_padding = right_padding
         self._style = style
+
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_grob_overrides(self):
+        overrides = []
+        if self.dash_fraction is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'dash-fraction',
+                    ),
+                value=self.dash_fraction,
+                )
+            overrides.append(override_)
+        if self.dash_period is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'dash-period',
+                    ),
+                value=self.dash_period,
+                )
+            overrides.append(override_)
+        if self.left_arrow is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'arrow',
+                    ),
+                value=self.left_arrow,
+                )
+            overrides.append(override_)
+        if self.left_attach_direction is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'attach-dir',
+                    ),
+                value=self.left_attach_direction,
+                )
+            overrides.append(override_)
+        if self.left_broken_padding is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left-broken',
+                    'padding',
+                    ),
+                value=self.left_broken_padding,
+                )
+            overrides.append(override_)
+        if self.left_padding is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'padding',
+                    ),
+                value=self.left_padding,
+                )
+            overrides.append(override_)
+        if self.right_arrow is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'arrow',
+                    ),
+                value=self.right_arrow,
+                )
+            overrides.append(override_)
+        if self.right_attach_direction is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'attach-dir',
+                    ),
+                value=self.right_attach_direction,
+                )
+            overrides.append(override_)
+        if self.right_broken_padding is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right-broken',
+                    'padding',
+                    ),
+                value=self.right_broken_padding,
+                )
+            overrides.append(override_)
+        if self.right_padding is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'padding',
+                    ),
+                value=self.right_padding,
+                )
+            overrides.append(override_)
+        if self.style is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'style',
+                    ),
+                value=self.style,
+                )
+            overrides.append(override_)
+        return overrides
 
     ### PUBLIC PROPERTIES ###
 

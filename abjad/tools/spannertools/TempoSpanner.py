@@ -1666,6 +1666,7 @@ class TempoSpanner(Spanner):
             )
         override_string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(override_string)
+        #
         self._make_other_text_spanner_overrides(lilypond_format_bundle)
         return lilypond_format_bundle
 
