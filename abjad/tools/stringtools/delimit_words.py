@@ -43,6 +43,13 @@ def delimit_words(string):
             >>> stringtools.delimit_words('SCALE_DEGREES_4_AND_5.')
             ['SCALE', 'DEGREES', '4', 'AND', '5']
 
+    ..  container:: example
+
+        Works with greater-than and less-than signs:
+
+            >>> stringtools.delimit_words('one < two')
+            ['one', '<', 'two']
+
     Returns list.
     '''
 
@@ -50,7 +57,10 @@ def delimit_words(string):
     words = []
     current_word = ''
     for character in string:
-        if not character.isalpha() and not character.isdigit():
+        if (not character.isalpha() and 
+            not character.isdigit() and
+            not character in ('<', '>')
+            ):
             if current_word:
                 words.append(current_word)
                 current_word = ''
