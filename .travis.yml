@@ -20,14 +20,7 @@ before_install:
 install:
     - pip install -e . 
 
-before_script:
-    - export PYTHONPATH=$TRAVIS_BUILD_DIR/scoremanager/scores:${PYTHONPATH}
-    - echo $PYTHONPATH
-
 script:
-
-    - abjad/scr/ajv doctest scoremanager
-    - py.test scoremanager
 
     - abjad/scr/ajv doctest experimental
     - py.test experimental
@@ -37,7 +30,6 @@ script:
 
     - python abjad/scr/ajv api -RM
     - python abjad/scr/ajv api -RX
-    - python abjad/scr/ajv api -RS
 
 after_success:
     coveralls
