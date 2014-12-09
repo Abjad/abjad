@@ -272,6 +272,10 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_types(subject, result=None):
+        r'''Gets all non-builtin types referenced in storage format.
+
+        Returns tuple of types.
+        '''
         if result is None:
             result = set()
         manager = StorageFormatManager
