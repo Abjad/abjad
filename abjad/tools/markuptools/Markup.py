@@ -756,6 +756,38 @@ class Markup(AbjadObject):
             )
         return Markup(contents=command)
 
+    @staticmethod
+    def draw_line(x, y):
+        r'''LilyPond ``\draw-line`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.draw_line(5, -2.5)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \draw-line
+                        #'(5 . -2.5)
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        pair = schemetools.SchemePair(x, y)
+        command = markuptools.MarkupCommand(
+            'draw-line',
+            pair,
+            )
+        return Markup(contents=command)
+
     def dynamic(self):
         r'''LilyPond ``\dynamic`` markup command.
 
