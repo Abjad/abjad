@@ -255,6 +255,26 @@ class StorageFormatManager(object):
         return tuple(values)
 
     @staticmethod
+    def get_import_statements(subject):
+        r'''Gets import statements for `subject`.
+
+        Returns tuple of strings.
+        '''
+        manager = StorageFormatManager
+        import_statements = set()
+        types = manager.get_types(subject)
+        for class_ in types:
+            root_package_name = manager.get_root_package_name(class_)
+            if root_package_name != 'abjad':
+                import_statement = 'import {}'.format(root_package_name)
+            else:
+                tools_package_name = manager.get_tools_package_name(class_)
+                import_statement = 'from abjad.tools import {}'.format(
+                    tools_package_name)
+            import_statements.add(import_statement)
+        return tuple(sorted(import_statements))
+
+    @staticmethod
     def get_indentation_strings(is_indented):
         r'''Gets indentation strings.
         '''
@@ -269,27 +289,6 @@ class StorageFormatManager(object):
         '''
         return StorageFormatManager.get_positional_argument_values(subject) + \
             StorageFormatManager.get_keyword_argument_values(subject)
-
-    @staticmethod
-    def get_types(subject, result=None):
-        r'''Gets all non-builtin types referenced in storage format.
-
-        Returns tuple of types.
-        '''
-        if result is None:
-            result = set()
-        manager = StorageFormatManager
-        arguments = []
-        arguments.extend(manager.get_keyword_argument_values(subject))
-        arguments.extend(manager.get_positional_argument_values(subject))
-        result.add(type(subject))
-        for argument in arguments:
-            if type(argument) == type:
-                continue
-            elif type(argument).__module__ == '__builtin__':
-                continue
-            result.update(manager.get_types(argument))
-        return result 
 
     @staticmethod
     def get_keyword_argument_dictionary(subject):
@@ -423,6 +422,19 @@ class StorageFormatManager(object):
         return result
 
     @staticmethod
+    def get_root_package_name(subject):
+        r'''Gets root package name of `subject`.
+
+        Returns string.
+        '''
+        if StorageFormatManager.is_instance(subject):
+            class_ = type(subject)
+        else:
+            class_ = subject
+        root_package_name, _, _ = class_.__module__.partition('.')
+        return root_package_name
+
+    @staticmethod
     def get_tools_package_name(subject):
         r'''Gets tools-package name of `subject`.
 
@@ -432,6 +444,7 @@ class StorageFormatManager(object):
             >>> manager.get_tools_package_name(Note)
             'scoretools'
 
+        Returns string.
         '''
         if StorageFormatManager.is_instance(subject):
             class_ = type(subject)
@@ -467,6 +480,27 @@ class StorageFormatManager(object):
         else:
             class_name = subject.__name__
         return '{}.{}'.format(tools_package_name, class_name)
+
+    @staticmethod
+    def get_types(subject, result=None):
+        r'''Gets all non-builtin types referenced in storage format.
+
+        Returns tuple of types.
+        '''
+        if result is None:
+            result = set()
+        manager = StorageFormatManager
+        arguments = []
+        arguments.extend(manager.get_keyword_argument_values(subject))
+        arguments.extend(manager.get_positional_argument_values(subject))
+        result.add(type(subject))
+        for argument in arguments:
+            if type(argument) == type:
+                continue
+            elif type(argument).__module__ == '__builtin__':
+                continue
+            result.update(manager.get_types(argument))
+        return result
 
     @staticmethod
     def get_unique_python_path_parts(subject):
