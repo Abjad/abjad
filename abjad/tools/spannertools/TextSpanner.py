@@ -15,9 +15,7 @@ class TextSpanner(Spanner):
             >>> grob = override(text_spanner).text_spanner
             >>> left_markup = Markup('foo').italic().bold()
             >>> grob.bound_details__left__text = left_markup
-            >>> pair = schemetools.SchemePair(0, -1)
-            >>> markup_command = markuptools.MarkupCommand('draw-line', pair)
-            >>> right_markup = markuptools.Markup(markup_command)
+            >>> right_markup = Markup.draw_line(0, -1)
             >>> grob.bound_details__right__text = right_markup
             >>> override(text_spanner).text_spanner.dash_fraction = 1
             >>> attach(text_spanner, [staff])
