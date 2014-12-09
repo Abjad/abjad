@@ -50,7 +50,6 @@ class TextSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_dynamic_text',
         )
 
     ### INITIALIZER ###
