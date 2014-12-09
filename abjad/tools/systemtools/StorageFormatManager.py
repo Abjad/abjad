@@ -490,16 +490,29 @@ class StorageFormatManager(object):
         if result is None:
             result = set()
         manager = StorageFormatManager
-        arguments = []
+        print(type(subject))
+        arguments = [subject]
         arguments.extend(manager.get_keyword_argument_values(subject))
         arguments.extend(manager.get_positional_argument_values(subject))
-        result.add(type(subject))
         for argument in arguments:
+            if isinstance(argument, str):
+                continue
+            if isinstance(argument, collections.Mapping):
+                for key, value in argument.items():
+                    result.update(manager.get_types(key))
+                    result.update(manager.get_types(value))
+            elif isinstance(argument, collections.Iterable):
+                for x in argument:
+                    result.update(manager.get_types(x))
             if type(argument) == type:
                 continue
-            elif type(argument).__module__ == '__builtin__':
+            elif type(argument).__module__ in (
+                '__builtin__',
+                'abc',
+                ):
                 continue
-            result.update(manager.get_types(argument))
+            else:
+                result.add(type(argument))
         return result
 
     @staticmethod
