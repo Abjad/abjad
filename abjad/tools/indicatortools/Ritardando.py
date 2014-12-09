@@ -42,8 +42,6 @@ class Ritardando(AbjadObject):
 
     Use ritardandi with a tempo spanner to generate dashed lines and other
     spanners.
-
-    ..  todo:: add example tempo spanner examle.
     '''
 
     ### CLASS VARIABLES ###
