@@ -81,19 +81,19 @@ class PitchClassTree(PayloadTree):
 
         Returns LilyPond file.
         '''
+        from abjad import abjad_configuration
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import override
-        from scoremanager import idetools
         voice = scoretools.Voice()
         staff = scoretools.Staff([voice])
         score = scoretools.Score([staff])
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        configuration = idetools.Configuration()
         stylesheet = os.path.join(
-            configuration.abjad_stylesheets_directory,
+            abjad_configuration.abjad_directory,
+            'stylesheets',
             'rhythm-letter-16.ily',
             )
         lilypond_file.file_initial_user_includes.append(stylesheet)
