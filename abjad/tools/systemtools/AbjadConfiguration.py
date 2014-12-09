@@ -515,3 +515,17 @@ class AbjadConfiguration(Configuration):
             return scoremanager.__path__[0]
         except ImportError:
             return None
+
+    @property
+    def score_manager_root_directory(self):
+        r'''Abjad score manager root directory.
+
+        Returns string.
+        '''
+        try:
+            import scoremanager
+            path = scoremanager.__path__[0]
+            path, _ = os.path.split(path)
+            return path
+        except ImportError:
+            return None
