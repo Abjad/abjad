@@ -271,6 +271,23 @@ class StorageFormatManager(object):
             StorageFormatManager.get_keyword_argument_values(subject)
 
     @staticmethod
+    def get_types(subject, result=None):
+        if result is None:
+            result = set()
+        manager = StorageFormatManager
+        arguments = []
+        arguments.extend(manager.get_keyword_argument_values(subject))
+        arguments.extend(manager.get_positional_argument_values(subject))
+        result.add(type(subject))
+        for argument in arguments:
+            if type(argument) == type:
+                continue
+            elif type(argument).__module__ == '__builtin__':
+                continue
+            result.update(manager.get_types(argument))
+        return result 
+
+    @staticmethod
     def get_keyword_argument_dictionary(subject):
         r'''Gets keyword argument dictionary.
         '''
@@ -446,6 +463,22 @@ class StorageFormatManager(object):
         else:
             class_name = subject.__name__
         return '{}.{}'.format(tools_package_name, class_name)
+
+    @staticmethod
+    def get_unique_python_path_parts(subject):
+        r'''Gets unique Python path parts for `subject`.
+
+        Returns tuple.
+        '''
+        if not isinstance(subject, type):
+            subject = type(subject)
+        path = '.'.join([subject.__module__, subject.__name__])
+        parts = path.split('.')
+        unique_parts = [parts[0]]
+        for part in parts[1:]:
+            if part != unique_parts[-1]:
+                unique_parts.append(part)
+        return unique_parts
 
     @staticmethod
     def is_instance(subject):
