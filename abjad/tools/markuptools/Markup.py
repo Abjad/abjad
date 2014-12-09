@@ -1536,6 +1536,38 @@ class Markup(AbjadObject):
             )
         return Markup(contents=command)
 
+    def upright(self):
+        r'''LilyPond ``\upright`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.upright()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \upright
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'upright',
+            contents,
+            )
+        return new(self, contents=command)
+
     def vcenter(self):
         r'''LilyPond ``\vcenter`` markup command.
 
@@ -1566,9 +1598,7 @@ class Markup(AbjadObject):
             'vcenter',
             contents,
             )
-        return new(self,
-            contents=command,
-            )
+        return new(self, contents=command)
 
     def with_color(self, color):
         r'''LilyPond ``\with-color`` markup command.
@@ -1603,6 +1633,4 @@ class Markup(AbjadObject):
             color,
             contents,
             )
-        return new(self,
-            contents=command,
-            )
+        return new(self, contents=command)
