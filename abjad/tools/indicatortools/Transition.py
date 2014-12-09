@@ -24,6 +24,7 @@ class Transition(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_arrow_width',
         '_dash_fraction',
         '_dash_period',
         '_left_arrow',
@@ -41,6 +42,7 @@ class Transition(AbjadObject):
 
     def __init__(
         self,
+        arrow_width=None,
         dash_fraction=None,
         dash_period=None,
         left_arrow=None,
@@ -53,6 +55,7 @@ class Transition(AbjadObject):
         right_padding=None,
         style=None,
         ):
+        self._arrow_width = arrow_width
         self._dash_fraction = dash_fraction
         self._dash_period = dash_period
         self._left_arrow = left_arrow
@@ -69,6 +72,16 @@ class Transition(AbjadObject):
 
     def _get_lilypond_grob_overrides(self):
         overrides = []
+        if self.arrow_width is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'arrow-width',
+                    ),
+                value=self.arrow_width,
+                )
+            overrides.append(override_)
         if self.dash_fraction is not None:
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='TextSpanner',
@@ -198,6 +211,14 @@ class Transition(AbjadObject):
         return overrides
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def arrow_width(self):
+        r'''Gets arrow width of transition.
+
+        Returns float or none.
+        '''
+        return self._arrow_width
 
     @property
     def dash_fraction(self):
