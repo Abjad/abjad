@@ -492,8 +492,16 @@ class StorageFormatManager(object):
         manager = StorageFormatManager
         print(type(subject))
         arguments = [subject]
-        arguments.extend(manager.get_keyword_argument_values(subject))
-        arguments.extend(manager.get_positional_argument_values(subject))
+        if hasattr(subject, '_storage_format_specification'):
+            specification = subject._storage_format_specification
+            for name in specification.keyword_argument_names:
+                value = getattr(subject, name)
+                arguments.append(value)
+            for value in specification.positional_argument_values:
+                arguments.append(value)
+        else:
+            arguments.extend(manager.get_keyword_argument_values(subject))
+            arguments.extend(manager.get_positional_argument_values(subject))
         for argument in arguments:
             if isinstance(argument, str):
                 continue
