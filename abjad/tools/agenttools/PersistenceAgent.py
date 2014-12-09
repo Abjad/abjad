@@ -186,23 +186,12 @@ class PersistenceAgent(abctools.AbjadObject):
         Returns none.
         '''
         from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
         assert '_storage_format_specification' in dir(self._client)
         result = ['# -*- encoding: utf-8 -*-']
+        result.extend(manager.get_import_statements(self._client))
+        result.extend(('', ''))
         storage_pieces = format(self._client, 'storage').splitlines()
-        pattern = re.compile(r'\b[a-z]+tools\b')
-        tools_package_names = set()
-        for line in storage_pieces:
-            match = pattern.search(line)
-            while match is not None:
-                group = match.group()
-                tools_package_names.add(group)
-                end = match.end()
-                match = pattern.search(line, pos=end)
-        for name in sorted(tools_package_names):
-            line = 'from abjad.tools import {}'.format(name)
-            result.append(line)
-        result.append('')
-        result.append('')
         line = '{} = {}'.format(object_name, storage_pieces[0])
         result.append(line)
         result.extend(storage_pieces[1:])
