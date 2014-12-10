@@ -101,14 +101,16 @@ class TextSpanner(Spanner):
             lilypond_format_bundle.right.spanner_stops.append(string)
         return lilypond_format_bundle
 
-#    def _get_lilypond_format_bundle(self, leaf):
-#        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-#        previous_annotations = self._get_previous_annotations(leaf)
+#    def _get_lilypond_format_bundle(self, component):
+#        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
+#            component,
+#            )
+#        previous_annotations = self._get_previous_annotations(component)
 #        previous_markups = previous_annotations[0]
 #        previous_line_segment = previous_annotations[1]
 #        previous_segment = (previous_markups is not None or 
 #            previous_line_segment is not None)
-#        current_annotations = self._get_annotations(leaf)
+#        current_annotations = self._get_annotations(component)
 #        current_markups = current_annotations[0]
 #        current_line_segment = current_annotations[1]
 #        current_event = (current_markups is not None or 
@@ -117,11 +119,11 @@ class TextSpanner(Spanner):
 #        # stop any previous segment
 #        if previous_segment and current_event:
 #            stop_spanner = True
-#        # start spanner if first leaf or if line segment begins here
-#        if self._is_my_first_leaf(leaf) or current_line_segment:
+#        # start spanner if first component or if line segment begins here
+#        if self._is_my_first_leaf(component) or current_line_segment:
 #            start_spanner = True
-#        # stop spanner if last leaf
-#        if self._is_my_last_leaf(leaf):
+#        # stop spanner if last component
+#        if self._is_my_last_leaf(component):
 #            stop_spanner = True
 #        if start_spanner:
 #            contributions = override(self)._list_format_contributions(
@@ -172,10 +174,14 @@ class TextSpanner(Spanner):
 #                lilypond_format_bundle.grob_overrides.append(override_string)
 #        return lilypond_format_bundle
 
-    def _get_previous_annotations(self, leaf):
-        index = self._index(leaf)
+    def _get_previous_annotations(self, component):
+        from abjad.tools import scoretools
+        if not isinstance(component, scoretools.Leaf):
+            return None, None
+        leaves = self._get_leaves()
+        index = leaves.index(component)
         for index in reversed(range(index)):
-            previous_leaf = self[index]
+            previous_leaf = leaves[index]
             annotations = self._get_annotations(previous_leaf)
             if any(_ is not None for _ in annotations):
                 return annotations

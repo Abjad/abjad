@@ -254,7 +254,7 @@ class GeneralizedBeam(Spanner):
             not hasattr(leaf, 'written_pitch') and
             not hasattr(leaf, 'written_pitches')):
             return lilypond_format_bundle
-        leaf_ids = [id(x) for x in self._leaves]
+        leaf_ids = [id(x) for x in self._get_leaves()]
         previous_leaf = leaf._get_leaf(-1)
         previous_leaf_is_joinable = self._leaf_is_joinable(
             previous_leaf, leaf_ids)

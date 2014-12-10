@@ -129,8 +129,8 @@ class WellformednessManager(AbjadObject):
         prototype = (spannertools.Hairpin,)
         hairpins = self.expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
-            if 2 < len(hairpin._leaves):
-                for leaf in hairpin._leaves[1:-1]:
+            if 2 < len(hairpin._get_leaves()):
+                for leaf in hairpin._get_leaves()[1:-1]:
                     if leaf._get_indicators(indicatortools.Dynamic):
                         violators.append(hairpin)
                         bad += 1
@@ -293,8 +293,8 @@ class WellformednessManager(AbjadObject):
             glissandi = list(glissandi)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:
-                    common_leaves = set(glissandi[0]._leaves)
-                    common_leaves &= set(glissandi[1]._leaves)
+                    common_leaves = set(glissandi[0]._get_leaves())
+                    common_leaves &= set(glissandi[1]._get_leaves())
                     if len(common_leaves) == 1:
                         x = list(common_leaves)[0]
                         if (
@@ -343,7 +343,7 @@ class WellformednessManager(AbjadObject):
         prototype = (spannertools.Hairpin,)
         hairpins = self.expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
-            if len(hairpin._leaves) <= 1:
+            if len(hairpin._get_leaves()) <= 1:
                 violators.append(hairpin)
             total += 1
         return violators, total

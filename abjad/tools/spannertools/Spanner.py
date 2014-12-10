@@ -138,16 +138,6 @@ class Spanner(AbjadObject):
         return duration
 
     @property
-    def _leaves(self):
-        result = []
-        for component in self._components:
-            for node in iterate(component).depth_first():
-                if isinstance(node, scoretools.Leaf):
-                    result.append(node)
-        result = tuple(result)
-        return result
-
-    @property
     def _preprolated_duration(self):
         return sum([component._preprolated_duration for component in self])
 
@@ -383,6 +373,15 @@ class Spanner(AbjadObject):
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
+    def _get_leaves(self):
+        from abjad.tools import selectiontools
+        result = []
+        for component in self._components:
+            for node in iterate(component).depth_first():
+                if isinstance(node, scoretools.Leaf):
+                    result.append(node)
+        return result
+
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         lilypond_format_bundle.get('before').spanners.extend(
@@ -456,7 +455,7 @@ class Spanner(AbjadObject):
             return False
 
     def _is_interior_leaf(self, leaf):
-        leaves = self._leaves
+        leaves = self._get_leaves()
         if leaf not in leaves:
             return False
         if len(leaves) < 3:

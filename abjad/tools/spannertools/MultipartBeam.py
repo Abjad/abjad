@@ -54,15 +54,15 @@ class MultipartBeam(Beam):
         if self.direction is not None:
             direction_string = '{} '.format(self.direction)
         beamable_leaf_count = 0
-        for _ in self._leaves:
+        for _ in self._get_leaves():
             if self._is_beamable_component(_):
                 beamable_leaf_count += 1
         if 2 <= beamable_leaf_count:
             previous_leaf = leaf._get_leaf(-1)
-            if previous_leaf not in self._leaves:
+            if previous_leaf not in self._get_leaves():
                 previous_leaf = None
             next_leaf = leaf._get_leaf(1)
-            if next_leaf not in self._leaves:
+            if next_leaf not in self._get_leaves():
                 next_leaf = None
             start_piece = None
             stop_piece = None
