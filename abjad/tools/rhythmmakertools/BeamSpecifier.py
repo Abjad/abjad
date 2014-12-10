@@ -146,7 +146,7 @@ class BeamSpecifier(AbjadValueObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from abjadide import idetools
+        from ide import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='beam_divisions_together',

@@ -70,7 +70,7 @@ class Violin(Instrument):
     def _attribute_manifest(self):
         from abjad.tools import indicatortools
         from abjad.tools import systemtools
-        from abjadide import idetools
+        from ide import idetools
         superclass = super(Violin, self)
         manifest = superclass._attribute_manifest
         attribute_details = manifest.attribute_details

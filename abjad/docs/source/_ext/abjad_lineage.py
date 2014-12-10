@@ -39,8 +39,8 @@ class AbjadLineage(Directive):
                 addresses = ('abjad',)
             elif module_name.startswith('experimental'):
                 addresses = ('abjad', 'experimental')
-            elif module_name.startswith('abjadide'):
-                addresses = ('abjad', 'experimental', 'abjadide')
+            elif module_name.startswith('ide'):
+                addresses = ('abjad', 'experimental', 'ide')
             else:
                 addresses = (module_name.partition('.')[0],)
                 #raise InheritanceException(
