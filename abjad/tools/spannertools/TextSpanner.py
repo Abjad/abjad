@@ -73,7 +73,7 @@ class TextSpanner(Spanner):
         if inspector.has_indicator(prototype):
             markups = inspector.get_indicators(markuptools.Markup)
         transition = None
-        prototype = indicatortools.Transition
+        prototype = indicatortools.LineSegment
         if inspector.has_indicator(prototype):
             transition = inspector.get_indicator(prototype)
         return (

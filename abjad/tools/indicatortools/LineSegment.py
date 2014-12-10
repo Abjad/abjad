@@ -3,7 +3,7 @@ from abjad.tools import lilypondnametools
 from abjad.tools.abctools import AbjadObject
 
 
-class Transition(AbjadObject):
+class LineSegment(AbjadObject):
     r'''A transition.
 
     Transitions format as text spanners.
@@ -12,9 +12,9 @@ class Transition(AbjadObject):
 
         ::
 
-            >>> transition = indicatortools.Transition()
+            >>> transition = indicatortools.LineSegment()
             >>> f(transition)
-            Transition()
+            LineSegment()
 
     .. todo:: add examples.
 
