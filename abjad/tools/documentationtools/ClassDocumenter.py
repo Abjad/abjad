@@ -267,8 +267,8 @@ class ClassDocumenter(Documenter):
         except ImportError:
             pass
         try:
-            import scoremanager
-            addresses.append('scoremanager')
+            import abjadide
+            addresses.append('abjadide')
         except ImportError:
             pass
         module_name, _, class_name = cls.__module__.rpartition('.')
@@ -316,7 +316,7 @@ class ClassDocumenter(Documenter):
         for part in parts[1:]:
             if part != name[-1]:
                 name.append(part)
-        if name[0] in ('abjad', 'experimental', 'scoremanager') and \
+        if name[0] in ('abjad', 'experimental', 'abjadide') and \
             name[1] in ('tools',):
             return str('.'.join(name[2:]))
         return str('.'.join(name))

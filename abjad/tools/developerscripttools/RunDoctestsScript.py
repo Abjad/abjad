@@ -91,8 +91,8 @@ class RunDoctestsScript(DirectoryScript):
         except:
             pass
         try:
-            scoremanager_module = importlib.import_module('scoremanager')
-            globs['scoremanager'] = scoremanager_module
+            abjadide_module = importlib.import_module('abjadide')
+            globs['abjadide'] = abjadide_module
         except:
             pass
         globs['print_function'] = print_function

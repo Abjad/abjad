@@ -454,7 +454,7 @@ class StorageFormatManager(object):
             class_ = subject
         class_name = class_.__name__
         parts = class_.__module__.split('.')
-        if parts[0] in ('abjad', 'experimental', 'scoremanager'):
+        if parts[0] in ('abjad', 'experimental', 'abjadide'):
             for part in reversed(class_.__module__.split('.')):
                 if not part == class_name:
                     return part

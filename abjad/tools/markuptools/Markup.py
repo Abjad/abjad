@@ -302,7 +302,7 @@ class Markup(AbjadObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import idetools
+        from abjadide import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='contents',
