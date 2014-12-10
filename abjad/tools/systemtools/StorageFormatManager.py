@@ -265,6 +265,8 @@ class StorageFormatManager(object):
         classes = manager.get_types(subject)
         for class_ in classes:
             root_package_name = manager.get_root_package_name(class_)
+            if root_package_name in ('builtins', '__builtin__'):
+                continue
             if root_package_name != 'abjad':
                 import_statement = 'import {}'.format(root_package_name)
             else:
@@ -488,6 +490,12 @@ class StorageFormatManager(object):
         Returns tuple of types.
         '''
         from abjad.tools import abctools
+
+        if sys.version_info[0] == 2:
+            type_type = types.TypeType
+        else:
+            type_type = type
+
         if result is None:
             result = set()
         manager = StorageFormatManager
@@ -496,7 +504,7 @@ class StorageFormatManager(object):
             return result
 
         arguments = []
-        if not isinstance(subject, types.TypeType):
+        if not isinstance(subject, type_type):
             if hasattr(subject, '_storage_format_specification'):
                 specification = subject._storage_format_specification
                 for name in specification.keyword_argument_names:
@@ -517,17 +525,18 @@ class StorageFormatManager(object):
                 result.update(manager.get_types(value))
 
         for argument in arguments:
-            if not isinstance(argument, types.TypeType):
+            if not isinstance(argument, type_type):
                 result.update(manager.get_types(argument))
-            if isinstance(argument, types.TypeType):
+            if isinstance(argument, type_type):
                 if not issubclass(argument, abctools.AbjadObject):
                     continue
             elif type(argument).__module__ in (
+                'builtins',
                 '__builtin__',
                 'abc',
                 ):
                 continue
-            if not isinstance(argument, types.TypeType):
+            if not isinstance(argument, type_type):
                 result.update(manager.get_types(argument))
                 argument = type(argument)
             result.add(argument)
@@ -539,7 +548,7 @@ class StorageFormatManager(object):
             'abc',
             ):
             return result
-        elif not isinstance(subject, types.TypeType):
+        elif not isinstance(subject, type_type):
             result.add(type(subject))
         else:
             result.add(subject)
