@@ -4,21 +4,21 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LineSegment(AbjadObject):
-    r'''A transition.
+    r'''A line segment.
 
-    Transitions format as text spanners.
+    Line segments format as text spanners.
 
     ..  container:: example
 
         ::
 
-            >>> transition = indicatortools.LineSegment()
-            >>> f(transition)
+            >>> line_segment = indicatortools.LineSegment()
+            >>> f(line_segment)
             LineSegment()
 
-    .. todo:: add examples.
+    .. todo:: Add examples.
 
-    Use transitions to start the body of a text spanner.
+    Use line segments to start a markup-terminated text spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -28,13 +28,14 @@ class LineSegment(AbjadObject):
         '_dash_fraction',
         '_dash_period',
         '_left_arrow',
-        '_left_attach_direction',
         '_left_broken_padding',
+        '_left_hspace',
         '_left_padding',
+        '_left_stencil_align_direction_y',
         '_right_arrow',
-        '_right_attach_direction',
         '_right_broken_padding',
         '_right_padding',
+        '_right_stencil_align_direction_y',
         '_style',
         )
 
@@ -46,26 +47,28 @@ class LineSegment(AbjadObject):
         dash_fraction=None,
         dash_period=None,
         left_arrow=None,
-        left_attach_direction=None,
         left_broken_padding=None,
+        left_hspace=None,
         left_padding=None,
+        left_stencil_align_direction_y=None,
         right_arrow=None,
-        right_attach_direction=None,
         right_broken_padding=None,
         right_padding=None,
+        right_stencil_align_direction_y=None,
         style=None,
         ):
         self._arrow_width = arrow_width
         self._dash_fraction = dash_fraction
         self._dash_period = dash_period
         self._left_arrow = left_arrow
-        self._left_attach_direction = left_attach_direction
         self._left_broken_padding = left_broken_padding
         self._left_padding = left_padding
+        self._left_hspace = left_hspace
+        self._left_stencil_align_direction_y = left_stencil_align_direction_y
         self._right_arrow = right_arrow
-        self._right_attach_direction = right_attach_direction
         self._right_broken_padding = right_broken_padding
         self._right_padding = right_padding
+        self._right_stencil_align_direction_y = right_stencil_align_direction_y
         self._style = style
 
     ### PRIVATE METHODS ###
@@ -114,18 +117,6 @@ class LineSegment(AbjadObject):
                 value=self.left_arrow,
                 )
             overrides.append(override_)
-        if self.left_attach_direction is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
-                grob_name='TextSpanner',
-                is_once=True,
-                property_path=(
-                    'bound-details',
-                    'left',
-                    'attach-dir',
-                    ),
-                value=self.left_attach_direction,
-                )
-            overrides.append(override_)
         if self.left_broken_padding is not None:
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='TextSpanner',
@@ -150,6 +141,18 @@ class LineSegment(AbjadObject):
                 value=self.left_padding,
                 )
             overrides.append(override_)
+        if self.left_stencil_align_direction_y is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left',
+                    'stencil-align-dir-y',
+                    ),
+                value=self.left_stencil_align_direction_y,
+                )
+            overrides.append(override_)
         if self.right_arrow is not None:
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='TextSpanner',
@@ -160,18 +163,6 @@ class LineSegment(AbjadObject):
                     'arrow',
                     ),
                 value=self.right_arrow,
-                )
-            overrides.append(override_)
-        if self.right_attach_direction is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
-                grob_name='TextSpanner',
-                is_once=True,
-                property_path=(
-                    'bound-details',
-                    'right',
-                    'attach-dir',
-                    ),
-                value=self.right_attach_direction,
                 )
             overrides.append(override_)
         if self.right_broken_padding is not None:
@@ -198,6 +189,18 @@ class LineSegment(AbjadObject):
                 value=self.right_padding,
                 )
             overrides.append(override_)
+        if self.right_stencil_align_direction_y is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right',
+                    'stencil-align-dir-y',
+                    ),
+                value=self.right_stencil_align_direction_y,
+                )
+            overrides.append(override_)
         if self.style is not None:
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='TextSpanner',
@@ -214,7 +217,7 @@ class LineSegment(AbjadObject):
 
     @property
     def arrow_width(self):
-        r'''Gets arrow width of transition.
+        r'''Gets arrow width of line segment.
 
         Returns float or none.
         '''
@@ -222,7 +225,7 @@ class LineSegment(AbjadObject):
 
     @property
     def dash_fraction(self):
-        r'''Gets dash fraction of transition.
+        r'''Gets dash fraction of line segment.
 
         Returns float or none.
         '''
@@ -230,7 +233,7 @@ class LineSegment(AbjadObject):
 
     @property
     def dash_period(self):
-        r'''Gets dash period of transition.
+        r'''Gets dash period of line segment.
 
         Returns float or none.
         '''
@@ -238,7 +241,7 @@ class LineSegment(AbjadObject):
 
     @property
     def left_arrow(self):
-        r'''Is true when left end of transition carries an arrow.
+        r'''Is true when left end of line segment carries an arrow.
         Otherwise false.
 
         Returns true, false or none.
@@ -246,32 +249,40 @@ class LineSegment(AbjadObject):
         return self._left_arrow
 
     @property
-    def left_attach_direction(self):
-        r'''Gets left attach direction of transition.
-
-        Returns float or none.
-        '''
-        return self._left_attach_direction
-
-    @property
     def left_broken_padding(self):
-        r'''Gets left broken padding of transition.
+        r'''Gets left broken padding of line segment.
 
         Returns float or none.
         '''
         return self._left_broken_padding
 
     @property
+    def left_hspace(self):
+        r'''Gets left hspace of line segment.
+
+        Returns float or none.
+        '''
+        return self._left_hspace
+
+    @property
     def left_padding(self):
-        r'''Gets left padding of transition.
+        r'''Gets left padding of line segment.
 
         Returns float or none.
         '''
         return self._left_padding
 
     @property
+    def left_stencil_align_direction_y(self):
+        r'''Gets left stencil align direction Y of line segment.
+
+        Returns float or none.
+        '''
+        return self._left_stencil_align_direction_y
+
+    @property
     def right_arrow(self):
-        r'''Is true when right end of transition carries an arrow.
+        r'''Is true when right end of line segment carries an arrow.
         Otherwise false.
 
         Returns true, false or none.
@@ -279,16 +290,8 @@ class LineSegment(AbjadObject):
         return self._right_arrow
 
     @property
-    def right_attach_direction(self):
-        r'''Gets right attach direction of transition.
-
-        Returns float or none.
-        '''
-        return self._right_attach_direction
-
-    @property
     def right_broken_padding(self):
-        r'''Gets right broken padding of transition.
+        r'''Gets right broken padding of line segment.
 
         Returns float or none.
         '''
@@ -296,15 +299,23 @@ class LineSegment(AbjadObject):
 
     @property
     def right_padding(self):
-        r'''Gets right padding of transition.
+        r'''Gets right padding of line segment.
 
         Returns float or none.
         '''
         return self._right_padding
 
     @property
+    def right_stencil_align_direction_y(self):
+        r'''Gets right stencil align direction Y of line segment.
+
+        Returns float or none.
+        '''
+        return self._right_stencil_align_direction_y
+
+    @property
     def style(self):
-        r'''Gets style of transition.
+        r'''Gets style of line segment.
 
         Returns string or none.
         '''
