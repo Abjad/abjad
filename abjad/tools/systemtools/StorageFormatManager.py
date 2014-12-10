@@ -262,8 +262,8 @@ class StorageFormatManager(object):
         '''
         manager = StorageFormatManager
         import_statements = set()
-        types = manager.get_types(subject)
-        for class_ in types:
+        classes = manager.get_types(subject)
+        for class_ in classes:
             root_package_name = manager.get_root_package_name(class_)
             if root_package_name != 'abjad':
                 import_statement = 'import {}'.format(root_package_name)
