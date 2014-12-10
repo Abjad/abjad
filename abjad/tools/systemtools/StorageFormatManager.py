@@ -487,11 +487,15 @@ class StorageFormatManager(object):
 
         Returns tuple of types.
         '''
+        from abjad.tools import abctools
         if result is None:
             result = set()
         manager = StorageFormatManager
-        print(type(subject))
-        arguments = [subject]
+
+        if isinstance(subject, str):
+            return result
+
+        arguments = []
         if hasattr(subject, '_storage_format_specification'):
             specification = subject._storage_format_specification
             for name in specification.keyword_argument_names:
@@ -502,25 +506,43 @@ class StorageFormatManager(object):
         else:
             arguments.extend(manager.get_keyword_argument_values(subject))
             arguments.extend(manager.get_positional_argument_values(subject))
+
+        if isinstance(subject, collections.Mapping):
+            for key, value in subject.items():
+                result.update(manager.get_types(key))
+                result.update(manager.get_types(value))
+        elif isinstance(subject, collections.Iterable):
+            for value in subject:
+                result.update(manager.get_types(value))
+
         for argument in arguments:
-            if isinstance(argument, str):
-                continue
-            if isinstance(argument, collections.Mapping):
-                for key, value in argument.items():
-                    result.update(manager.get_types(key))
-                    result.update(manager.get_types(value))
-            elif isinstance(argument, collections.Iterable):
-                for x in argument:
-                    result.update(manager.get_types(x))
-            if type(argument) == type:
-                continue
+            if not isinstance(argument, types.TypeType):
+                result.update(manager.get_types(argument))
+            if isinstance(argument, types.TypeType):
+                if not issubclass(argument, abctools.AbjadObject):
+                    continue
             elif type(argument).__module__ in (
                 '__builtin__',
                 'abc',
                 ):
                 continue
-            else:
-                result.add(type(argument))
+            if not isinstance(argument, types.TypeType):
+                result.update(manager.get_types(argument))
+                argument = type(argument)
+            result.add(argument)
+
+        if isinstance(subject, str):
+            return result
+        elif type(subject).__module__ in (
+            '__builtin__',
+            'abc',
+            ):
+            return result
+        elif not isinstance(subject, types.TypeType):
+            result.add(type(subject))
+        else:
+            result.add(subject)
+
         return result
 
     @staticmethod
