@@ -81,10 +81,31 @@ class TextSpanner(Spanner):
             line_segment,
             )
 
-    def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        if self._is_my_first_leaf(leaf):
+    def _get_lilypond_format_bundle(self, component):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
+            component,
+            )
+        previous_annotations = self._get_previous_annotations(component)
+        previous_markups = previous_annotations[0]
+        previous_line_segment = previous_annotations[1]
+        previous_segment = (previous_markups is not None or 
+            previous_line_segment is not None)
+        current_annotations = self._get_annotations(component)
+        current_markups = current_annotations[0]
+        current_line_segment = current_annotations[1]
+        current_event = (current_markups is not None or 
+            current_line_segment is not None)
+        start_spanner, stop_spanner = False, False
+        # stop any previous segment
+        if previous_segment and current_event:
+            stop_spanner = True
+        # start spanner if first component or if line segment begins here
+        if self._is_my_first_leaf(component) or current_line_segment:
+            start_spanner = True
+        # stop spanner if last component
+        if self._is_my_last_leaf(component):
+            stop_spanner = True
+        if start_spanner:
             contributions = override(self)._list_format_contributions(
                 'override',
                 is_once=False,
@@ -92,87 +113,46 @@ class TextSpanner(Spanner):
             lilypond_format_bundle.grob_overrides.extend(contributions)
             string = r'\startTextSpan'
             lilypond_format_bundle.right.spanner_starts.append(string)
-        if self._is_my_last_leaf(leaf):
+        if stop_spanner:
             contributions = override(self)._list_format_contributions(
                 'revert',
                 )
             lilypond_format_bundle.grob_reverts.extend(contributions)
             string = r'\stopTextSpan'
             lilypond_format_bundle.right.spanner_stops.append(string)
+        if current_markups is not None:
+            # assign markup to spanner left text
+            if start_spanner:
+                markup = current_markups[0]
+                if current_line_segment:
+                    if current_line_segment.left_hspace is not None:
+                        hspace = current_line_segment.left_hspace
+                        hspace = markuptools.Markup.hspace(hspace)
+                        markup = markuptools.Markup.concat([markup, hspace])
+                override_ = lilypondnametools.LilyPondGrobOverride(
+                    grob_name='TextSpanner',
+                    is_once=True,
+                    property_path=(
+                        'bound-details',
+                        'left',
+                        'text',
+                        ),
+                    value=markup,
+                    )
+                override_string = '\n'.join(override_._override_format_pieces)
+                lilypond_format_bundle.grob_overrides.append(override_string)
+            # format markup normally
+            else:
+                current_markup = current_markups[0]
+                markup = new(current_markup, direction=Up)
+                string = format(markup, 'lilypond')
+                lilypond_format_bundle.right.markup.append(string)
+        if current_line_segment is not None:
+            overrides = current_line_segment._get_lilypond_grob_overrides()
+            for override_ in overrides:
+                override_string = '\n'.join(override_._override_format_pieces)
+                lilypond_format_bundle.grob_overrides.append(override_string)
         return lilypond_format_bundle
-
-#    def _get_lilypond_format_bundle(self, component):
-#        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
-#            component,
-#            )
-#        previous_annotations = self._get_previous_annotations(component)
-#        previous_markups = previous_annotations[0]
-#        previous_line_segment = previous_annotations[1]
-#        previous_segment = (previous_markups is not None or 
-#            previous_line_segment is not None)
-#        current_annotations = self._get_annotations(component)
-#        current_markups = current_annotations[0]
-#        current_line_segment = current_annotations[1]
-#        current_event = (current_markups is not None or 
-#            current_line_segment is not None)
-#        start_spanner, stop_spanner = False, False
-#        # stop any previous segment
-#        if previous_segment and current_event:
-#            stop_spanner = True
-#        # start spanner if first component or if line segment begins here
-#        if self._is_my_first_leaf(component) or current_line_segment:
-#            start_spanner = True
-#        # stop spanner if last component
-#        if self._is_my_last_leaf(component):
-#            stop_spanner = True
-#        if start_spanner:
-#            contributions = override(self)._list_format_contributions(
-#                'override',
-#                is_once=False,
-#                )
-#            lilypond_format_bundle.grob_overrides.extend(contributions)
-#            string = r'\startTextSpan'
-#            lilypond_format_bundle.right.spanner_starts.append(string)
-#        if stop_spanner:
-#            contributions = override(self)._list_format_contributions(
-#                'revert',
-#                )
-#            lilypond_format_bundle.grob_reverts.extend(contributions)
-#            string = r'\stopTextSpan'
-#            lilypond_format_bundle.right.spanner_stops.append(string)
-#        if current_markups is not None:
-#            # assign markup to spanner left text
-#            if start_spanner:
-#                markup = current_markups[0]
-#                if current_line_segment:
-#                    if current_line_segment.left_hspace is not None:
-#                        hspace = current_line_segment.left_hspace
-#                        hspace = markuptools.Markup.hspace(hspace)
-#                        markup = markuptools.Markup.concat([markup, hspace])
-#                override_ = lilypondnametools.LilyPondGrobOverride(
-#                    grob_name='TextSpanner',
-#                    is_once=True,
-#                    property_path=(
-#                        'bound-details',
-#                        'left',
-#                        'text',
-#                        ),
-#                    value=markup,
-#                    )
-#                override_string = '\n'.join(override_._override_format_pieces)
-#                lilypond_format_bundle.grob_overrides.append(override_string)
-#            # format markup normally
-#            else:
-#                current_markup = current_markups[0]
-#                markup = new(current_markup, direction=Up)
-#                string = format(markup, 'lilypond')
-#                lilypond_format_bundle.right.markup.append(string)
-#        if current_line_segment is not None:
-#            overrides = current_line_segment._get_lilypond_grob_overrides()
-#            for override_ in overrides:
-#                override_string = '\n'.join(override_._override_format_pieces)
-#                lilypond_format_bundle.grob_overrides.append(override_string)
-#        return lilypond_format_bundle
 
     def _get_previous_annotations(self, component):
         from abjad.tools import scoretools
